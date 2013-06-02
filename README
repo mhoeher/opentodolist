@@ -1,0 +1,46 @@
+OpenTodoList - Todo Management Application
+
+
+ABOUT
+
+    OpenTodoList is an application to manage todos within lists. It
+    is build on top of Qt5 which means it is available in a variety of
+    different operating systems. Furthermore, the used plugin system allows
+    to easily integrate different sources where todos can be stored.
+
+    
+BUILDING
+
+    In order to build OpenTodoList, you will need:
+    - CMake 2.8.8 or higher
+    - Qt5 5.0 or higher
+    - An appropriate C++ compiler
+    
+    Assuming you have downloaded a cooy of OpenTodoList to 
+    /home/myself/OpenTodoList, do the following to build the application
+    and store it in the default locations:
+    
+        cd /home/myself/OpenTodoList
+        mkdir build
+        cd build
+        cmake ..
+        make
+        sudo make install
+    
+
+BACKENDS
+
+    OpenTodoList uses a plugin system to allow using different "backends" to
+    store data. This is the list of existing plugins:
+    
+    LocalXmlBackend
+        Stores data in XML files on the local hard disk.
+
+FRONTENDS
+
+    For different platforms, different "frontends" are used to present the data
+    appropriately. Here is a list of frontends:
+    
+    OpenTodoListDesktopQml
+        QML based desktop applications for typical desktop systems as
+        KDE, GNOME, MacOC or Windows.
