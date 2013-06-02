@@ -1,11 +1,18 @@
 #include "localxmlbackend.h"
 
+#include "localxmltodolistfactory.h"
+
 #include <QtPlugin>
 
 LocalXmlBackend::LocalXmlBackend(QObject *parent) :
-    QObject(parent),
-    m_factory( new TodoListFactory( this ) )
+    OpenTodoListBackend(parent),
+    m_factory( 0 )
 {
+    setName( tr( "Local XML Directory" ) );
+    setDescription( tr( "Stores data in XML files located in a directory on your local host." ) );
+    setType( "LocalXmlDirectory" );
+    
+    m_factory = new LocalXmlTodoListFactory( type(), this );
 }
 
 TodoListFactory *LocalXmlBackend::factory()

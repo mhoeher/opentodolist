@@ -4,7 +4,7 @@
 #include "opentodolistinterfaces.h"
 #include "todolistfactory.h"
 
-class LocalXmlBackend : public QObject, public OpenTodoListBackend
+class LocalXmlBackend : public OpenTodoListBackend
 {
     Q_OBJECT
     Q_INTERFACES(OpenTodoListBackend)

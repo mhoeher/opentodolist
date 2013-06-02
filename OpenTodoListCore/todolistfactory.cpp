@@ -1,11 +1,7 @@
 #include "todolistfactory.h"
 
-TodoListFactory::TodoListFactory(QObject *parent) :
-    QObject(parent)
+TodoListFactory::TodoListFactory(const QString& type, QObject* parent) :
+    QObject(parent),
+    m_type( type )
 {
-}
-
-AbstractTodoList *TodoListFactory::createTodoList(QObject *parent) const
-{
-    return new AbstractTodoList( parent );
 }

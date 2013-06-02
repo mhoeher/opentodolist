@@ -2,17 +2,23 @@
 #define PLUGINSLOADER_H
 
 #include "opentodolistinterfaces.h"
+#include "objectmodel.h"
 
 #include <QList>
 #include <QObject>
+#include <QObjectList>
 
 class PluginsLoader : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY( QObject* backends READ backends CONSTANT )
 public:
+    
+    typedef ObjectModel<OpenTodoListBackend> Backends;
+    
     explicit PluginsLoader(QObject *parent = 0);
     
-    const QList<OpenTodoListBackend *> &backends() const;
+    Backends* backends() const;
 
 signals:
     
@@ -20,7 +26,7 @@ public slots:
 
 private:
 
-    QList< OpenTodoListBackend* > m_backends;
+    Backends* m_backends;
     
 };
 
