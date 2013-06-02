@@ -20,7 +20,7 @@ import QtQuick 2.0
 
 Rectangle {
     id: button
-    height: parent.height
+    height: label.height + 10
     width: label.width + 20
     color: activePalette.button
     radius: 4
@@ -35,13 +35,14 @@ Rectangle {
     
     Text {
         id: label
-        anchors.centerIn: button
         text: "Button"
         color: activePalette.buttonText
+        x: 10
+        y: 5
     }
     
     MouseArea {
-        anchors.fill: button
+        anchors.fill: parent
         id: mouseArea
         hoverEnabled: true
         

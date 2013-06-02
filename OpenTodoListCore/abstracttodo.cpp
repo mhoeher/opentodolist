@@ -27,6 +27,10 @@ QObject(parent),
     m_subTodosModel->setParentTodo( this );
     m_subTodosModel->setSourceModel( parent->todos() );
     m_subTodosModel->setFilterMode( TodoSortFilterModel::SubTodos );
+    m_subTodosModel->sort( 0 );
+    
+    connect( m_subTodosModel, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), 
+             this, SLOT(childDataChanged()) );
     
     connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
@@ -48,7 +52,18 @@ void AbstractTodo::setPriority(int priority)
 
 int AbstractTodo::progress() const
 {
-    return m_progress;
+    if ( m_subTodosModel->rowCount() > 0 ) {
+        int result = 0;
+        for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
+            AbstractTodo* subTodo = qobject_cast< AbstractTodo* >( 
+            m_subTodosModel->index( i, 0 ).data( 
+            TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
+            result += subTodo->progress();
+        }
+        return result / m_subTodosModel->rowCount();
+    } else {
+        return m_progress;
+    }
 }
 
 void AbstractTodo::setProgress(int progress)
@@ -101,4 +116,12 @@ void AbstractTodo::setParentTodo(QObject* parentTodo)
 AbstractTodoList* AbstractTodo::parent() const
 {
     return qobject_cast< AbstractTodoList* >( QObject::parent() );
+}
+
+void AbstractTodo::childDataChanged()
+{
+    // emulate a change of progress to propagate any changes up the tree
+    if ( m_subTodosModel->rowCount() > 0 ) {
+        emit progressChanged();
+    }
 }

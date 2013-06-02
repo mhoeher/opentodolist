@@ -30,6 +30,7 @@ class TodoSortFilterModel : public QSortFilterProxyModel
 {
     
     Q_OBJECT
+    Q_ENUMS( SortMode )
     
 public:
     
@@ -39,11 +40,18 @@ public:
         NoFilter
     } FilterMode;
     
+    typedef enum {
+        NoSort,
+        PrioritySort,
+        ProgressSort
+    } SortMode;
+    
     typedef ObjectModel< AbstractTodo > TodoModel;
     
     explicit TodoSortFilterModel( QObject* parent = 0 );
     
     void setSourceModel(TodoModel* sourceModel);
+    void setSourceModel( TodoSortFilterModel* sourceModel );
     
     FilterMode filterMode() const {
         return m_filterMode;
@@ -55,6 +63,16 @@ public:
         emit endResetModel();
     }
     
+    SortMode sortMode() const {
+        return m_sortMode;
+    }
+    
+    void setSortMode( SortMode sortMode ) {
+        emit beginResetModel();
+        m_sortMode = sortMode;
+        emit endResetModel();
+    }
+    
     AbstractTodo* parentTodo() const {
         return m_parentTodo;
     }
@@ -62,19 +80,20 @@ public:
     void setParentTodo( AbstractTodo* todo );
     
     virtual QHash< int, QByteArray > roleNames() const {
-        return m_model ? m_model->roleNames() : QAbstractProxyModel::roleNames();
+        return sourceModel() ? sourceModel()->roleNames() : QAbstractProxyModel::roleNames();
     }
 
 protected:
     
     virtual bool filterAcceptsRow(int source_row, 
                                   const QModelIndex& source_parent) const;
+    virtual bool lessThan(const QModelIndex& left, const QModelIndex& right) const;
     
 private:
     
     FilterMode m_filterMode;
+    SortMode m_sortMode;
     AbstractTodo *m_parentTodo;
-    TodoModel* m_model;
     
     virtual void setSourceModel(QAbstractItemModel*) {}
     

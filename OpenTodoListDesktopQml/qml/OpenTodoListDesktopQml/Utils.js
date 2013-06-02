@@ -16,34 +16,24 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var PriorityColors = new Array( 
+    "#00E508",
+    "#24E100",
+    "#4FDD00",
+    "#78D900",
+    "#A0D500",
+    "#C6D200",
+    "#CEB000",
+    "#CA8500",
+    "#C65C00",
+    "#C23400",
+    "#BF0E00" );
+PriorityColors[-1] = "#00000000";
 
-#include "applicationviewer.h"
-
-#include <QQmlEngine>
-
-ApplicationViewer::ApplicationViewer(QWindow* parent) : 
-    QtQuick2ApplicationViewer(parent),
-    m_watcher( new QFileSystemWatcher( this ) )
-{
-    connect( m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(reload()) );
-    connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
+function tintPriority( color, priority ) {
+    if ( priority < 0 ) {
+        return color;
+    }
+    return Qt.tint( color, "#30" + PriorityColors[priority].substr( 1 ) );
 }
 
-void ApplicationViewer::addImportPath(const QString& path)
-{
-    QtQuick2ApplicationViewer::addImportPath( path );
-    m_watcher->addPath( path );
-}
-
-void ApplicationViewer::setMainFile(const QString& mainFile)
-{
-    m_mainFile = mainFile;
-    reload();
-}
-
-void ApplicationViewer::reload()
-{
-    engine()->clearComponentCache();
-    releaseResources();
-    setMainQmlFile( m_mainFile );
-}

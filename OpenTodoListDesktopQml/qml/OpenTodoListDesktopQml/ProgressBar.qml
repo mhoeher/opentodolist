@@ -40,7 +40,7 @@ Rectangle {
         width: progress
         color: 'green'
         
-        Behavior on width { SmoothedAnimation { velocity: 1200 } }
+        Behavior on width { SmoothedAnimation { velocity: 1000 } }
     }
     
     Text {

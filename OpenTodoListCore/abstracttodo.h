@@ -87,6 +87,10 @@ private:
     QObject* todoList() const {
         return QObject::parent();
     }
+    
+private slots:
+    
+    void childDataChanged();
 
 };
 

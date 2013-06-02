@@ -18,7 +18,7 @@
 
 import QtQuick 2.0
 
-Rectangle {
+Item {
     id: view
     x: parent.x + parent.width
     width: parent.width
@@ -27,49 +27,65 @@ Rectangle {
     
     property alias toolButtons: toolbarContent.children
     property bool hidden: true
+    property alias clientWidth: contentsFlickable.width
+    property alias clientHeight: contentsFlickable.height
     default property alias content: contentPanel.children
     
-    MouseArea {
-        anchors.fill: parent
-    }
-    
-    Rectangle {
+    Item {
         id: toolbar
-        height: 40
+        height: toolbarContent.childrenRect.height
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        color: activePalette.window
-        border.color: Qt.darker( activePalette.button )
-        border.width: 2
-        radius: 10
-        clip: true
         
         Flickable {
-            anchors.fill: parent
+            anchors.top: parent.top
+            anchors.left: parent.left
+            width: parent.width
+            height: childrenRect.height
+            
+            contentWidth: toolbarContent.childrenRect.width
             
             Row {
                 id: toolbarContent
                 x: parent.x + 5
                 y: parent.y + 5
-                width: parent.width - 10
-                height: parent.height - 10
                 spacing: 3
             }
         }
     }
     
-    Rectangle {
+    Item {
         anchors.top: toolbar.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.topMargin: 10
-        color: activePalette.window
+        
+        BorderImage {
+            anchors.fill: parent
+            
+            source: "view.sci"
+            //TODO: Remove this, this is for debugging only!
+            cache: false
+            smooth: true
+            
+            Component.onCompleted: rotation = 3 * Math.random() - 1.5
+        }
         
         Flickable {
-            id: contentPanel
-            anchors.fill: parent
+            id: contentsFlickable
+            anchors { fill: parent; margins: 20 }
+            clip: true
+            contentWidth: contentPanel.width
+            contentHeight: contentPanel.height
+            
+            Item {
+                id: contentPanel
+                
+                width: childrenRect.width
+                height: childrenRect.height
+            }
         }
     }
     

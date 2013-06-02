@@ -17,10 +17,11 @@
  */
 
 import QtQuick 2.0
+import "Utils.js" as Utils;
 
 Rectangle {
     id: entry
-    color: activePalette.button
+    color: Utils.tintPriority( activePalette.button, todo.priority )
     width: parent.width - 10
     x: parent.x + 5
     height: childrenRect.height

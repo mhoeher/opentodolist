@@ -23,13 +23,18 @@
 TodoSortFilterModel::TodoSortFilterModel(QObject* parent): 
     QSortFilterProxyModel(parent),
     m_filterMode( NoFilter ),
+    m_sortMode( NoSort ),
     m_parentTodo( 0 )
 {
 }
 
 void TodoSortFilterModel::setSourceModel(TodoSortFilterModel::TodoModel* sourceModel)
 {
-    m_model = sourceModel;
+    QSortFilterProxyModel::setSourceModel( sourceModel );
+}
+
+void TodoSortFilterModel::setSourceModel(TodoSortFilterModel* sourceModel)
+{
     QSortFilterProxyModel::setSourceModel( sourceModel );
 }
 
@@ -50,17 +55,42 @@ bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& so
     switch ( m_filterMode ) {
         case TodoListEntries:
         {
-            AbstractTodo* todo = qobject_cast< AbstractTodo* >( m_model->index( source_row, 0 ).data( TodoModel::ObjectRole ).value< QObject* >() );
+            AbstractTodo* todo = qobject_cast< AbstractTodo* >( 
+                sourceModel()->index( source_row, 0 ).data( 
+                    TodoModel::ObjectRole ).value< QObject* >() );
             return ( todo && !todo->parentTodo() ) ? result : false;
         }
         
         case SubTodos:
         {
-            AbstractTodo* todo = qobject_cast< AbstractTodo* >( m_model->index( source_row, 0 ).data( TodoModel::ObjectRole ).value< QObject* >() );
+            AbstractTodo* todo = qobject_cast< AbstractTodo* >( 
+                sourceModel()->index( source_row, 0 ).data( 
+                    TodoModel::ObjectRole ).value< QObject* >() );
             return ( todo && todo->parentTodo() == m_parentTodo ) ? result : false;
         }
         
         default:
             return result;
     }
+}
+
+bool TodoSortFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+{
+    if ( m_sortMode != NoSort ) {
+        AbstractTodo* leftTodo = qobject_cast< AbstractTodo* >( 
+            left.data( TodoModel::ObjectRole ).value<QObject*>());
+        AbstractTodo* rightToto = qobject_cast< AbstractTodo* >( 
+            right.data( TodoModel::ObjectRole ).value< QObject* >());
+        if ( leftTodo && rightToto ) {
+            switch ( m_sortMode ) {
+                case PrioritySort:
+                    return leftTodo->priority() > rightToto->priority();
+                case ProgressSort:
+                    return leftTodo->progress() < rightToto->progress();
+                default:
+                    return QSortFilterProxyModel::lessThan( left, right );
+            }
+        }
+    }
+    return QSortFilterProxyModel::lessThan(left, right);
 }

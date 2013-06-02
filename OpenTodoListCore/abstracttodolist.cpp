@@ -29,6 +29,8 @@ AbstractTodoList::AbstractTodoList(const QString& key, const QString& type, QObj
 {
     m_topLevelTodos->setFilterMode( TodoSortFilterModel::TodoListEntries );
     m_topLevelTodos->setSourceModel( m_todos );
+    m_topLevelTodos->setSortMode( TodoSortFilterModel::PrioritySort );
+    m_topLevelTodos->sort( 0 );
     
     connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
 }
@@ -74,7 +76,7 @@ void AbstractTodoList::setName(const QString& name)
 void AbstractTodoList::appendTodo(AbstractTodo* todo)
 {
     m_todos->append( todo );
-    connect( todo, SIGNAL(parentTodoChanged()), this, SLOT(todoParentChanged()) );
+    connect( todo, SIGNAL(changed()), this, SLOT(todoParentChanged()) );
 }
 
 void AbstractTodoList::todoParentChanged()
