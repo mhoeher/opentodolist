@@ -44,64 +44,8 @@ Rectangle {
         onTodoSelected: todoDetailsView.todo = todo
     }
     
-    View {
+    NewTodoListView {
         id: newTodoListView
-        
-        property alias name: newTodoListName.text
-        property QtObject type: null
-        
-        toolButtons: [
-        Button {
-            label: "Create"
-            
-            onClicked: {
-                if ( library.createTodoList( newTodoListView.name, newTodoListView.type ) ) {
-                    newTodoListView.hidden = true;
-                }
-            }
-        },
-        Button {
-            label: "Cancel"
-            
-            onClicked: newTodoListView.hidden = true
-        }
-        ]
-        
-        Grid {
-            spacing: 5
-            columns: 2
-            anchors.fill: parent
-            
-            Text {
-                text: "<b>List Name:</b>"
-            }
-            SimpleTextInput {
-                id: newTodoListName
-                width: parent.width * 0.8
-            }
-            Text {
-                text: "<b>Type:</b>"
-            }
-            ListView {
-                model: library.plugins.backends
-                clip: true
-                width: parent.width * 0.8
-                height: 400
-                delegate: Rectangle {
-                    width: parent.width
-                    height: childrenRect.height
-                    radius: 5
-                    color: object == newTodoListView.type ? Qt.darker( activePalette.button, 1.1 ) : activePalette.button
-                    Text {
-                        text: object.name
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: newTodoListView.type = object
-                    }
-                }
-            }
-        }
     }
        
     TodoDetailsView {

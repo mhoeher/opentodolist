@@ -37,6 +37,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
+        anchors.leftMargin: 10
         
         Flickable {
             anchors.top: parent.top
@@ -48,9 +49,19 @@ Item {
             
             Row {
                 id: toolbarContent
+                
+                //TODO: Will not work! Views remain unhidden even if they are not topmost!
+                property bool disabled: !view.hidden
+                
                 x: parent.x + 5
                 y: parent.y + 5
                 spacing: 3
+                
+                Component.onCompleted: {
+                    for ( var i = 0; i < children.length; ++i ) {
+                        children[i].sourceIndex = i;
+                    }
+                }
             }
         }
     }
@@ -70,12 +81,12 @@ Item {
             cache: false
             smooth: true
             
-            Component.onCompleted: rotation = 3 * Math.random() - 1.5
+            Component.onCompleted: rotation = 1 * Math.random() - 0.5
         }
         
         Flickable {
             id: contentsFlickable
-            anchors { fill: parent; margins: 20 }
+            anchors { fill: parent; margins: 40 }
             clip: true
             contentWidth: contentPanel.width
             contentHeight: contentPanel.height

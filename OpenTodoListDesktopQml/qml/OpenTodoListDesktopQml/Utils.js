@@ -37,3 +37,13 @@ function tintPriority( color, priority ) {
     return Qt.tint( color, "#30" + PriorityColors[priority].substr( 1 ) );
 }
 
+var ToolButtonImages = new Array(
+    "toolbutton_1.png",
+    "toolbutton_2.png",
+    "toolbutton_3.png",
+    "toolbutton_4.png"
+);
+
+function getToolButtonImage( index ) {
+    return ToolButtonImages[ index % ToolButtonImages.length ];
+}

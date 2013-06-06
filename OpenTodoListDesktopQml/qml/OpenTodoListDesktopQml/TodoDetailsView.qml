@@ -29,7 +29,7 @@ View {
     //      does not properly shrink. Find out how to fix this.
     
     toolButtons: [
-    Button {
+    ToolButton {
         label: "Back"
         
         onClicked: {
@@ -81,20 +81,24 @@ View {
             }
             Repeater {
                 model: 12
+                
                 Rectangle {
+                    id: prioritySelectorItem
                     smooth: true
-                    width: parent.height
-                    height: parent.height
-                    radius: 5
-                    border.width: 1
-                    border.color: "black"
+                    width: 32
+                    height: 32
+                    radius: 32
+                    border.width: 2
+                    border.color: todoDetailsView.todo && todoDetailsView.todo.priority == index - 1 ? "black" : "gray"
                     color: Utils.PriorityColors[ index - 1 ]
                     
                     MouseArea {
                         anchors.fill: parent
                         onClicked: todoDetailsView.todo.priority = index - 1
                     }
+                    
                 }
+                
             }
         }
         
@@ -132,24 +136,39 @@ View {
             }
         }
         
-        Rectangle {
+        Item {
             
             width: parent.width
             height: childrenRect.height
+            
+            BorderImage {
+                anchors.fill: parent
+                source: "description.sci"
+                //TODO: Remove in productive version
+                cache: false
+            }
             
             MouseArea {
                 anchors.fill: parent    
                 onClicked: todoDescriptionEdit.focus = true;
             }
             
-            TextEdit {
-                id: todoDescriptionEdit
-                
-                text: todoDetailsView.todo ? todoDetailsView.todo.description : ""
-                textFormat: TextEdit.RichText
-                wrapMode: Text.Wrap
+            Item {
                 width: parent.width
+                height: childrenRect.height + 40
+                
+                TextEdit {
+                    id: todoDescriptionEdit
+                    
+                    text: todoDetailsView.todo ? todoDetailsView.todo.description : ""
+                    textFormat: TextEdit.RichText
+                    wrapMode: Text.Wrap
+                    width: parent.width - 40
+                    x: 20
+                    y: 20
+                }
             }
+            
         }
         
         Button {

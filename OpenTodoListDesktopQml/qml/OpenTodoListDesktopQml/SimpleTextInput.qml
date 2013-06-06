@@ -31,7 +31,7 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { parent.textInput.focus = true; }
+        onClicked: { textInput.focus = true; }
     }
     
     TextInput {

@@ -23,13 +23,24 @@ Rectangle {
     height: label.height + 10
     width: label.width + 20
     color: activePalette.button
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: Qt.lighter( backgroundColor )
+        }
+        GradientStop {
+            position: 1.0
+            color: activePalette.button
+        }
+    }
     radius: 4
     border.width: 1
-    border.color: Qt.darker( activePalette.buttonText )
+    border.color: Qt.darker( backgroundColor )
     
     property alias label: label.text
     property alias pressed: mouseArea.pressed
     property alias containsMouse: mouseArea.containsMouse
+    property color backgroundColor: activePalette.button
     
     signal clicked
     
@@ -55,7 +66,7 @@ Rectangle {
             when: pressed || containsMouse
             PropertyChanges {
                 target: button
-                color: Qt.darker( activePalette.button )
+                backgroundColor: Qt.darker( activePalette.button )
             }
         }
     ]

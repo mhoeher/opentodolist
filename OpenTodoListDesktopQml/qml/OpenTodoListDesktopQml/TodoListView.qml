@@ -26,12 +26,12 @@ View {
     signal todoSelected(QtObject todo)
     
     toolButtons: [
-    Button {
+    ToolButton {
         label: "New List"
         
         onClicked: newTodoListView.hidden = false
     },
-    Button {
+    ToolButton {
         label: "Quit"
         
         onClicked: Qt.quit()
