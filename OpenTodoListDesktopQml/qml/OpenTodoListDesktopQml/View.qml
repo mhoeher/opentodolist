@@ -51,7 +51,7 @@ Item {
                 id: toolbarContent
                 
                 //TODO: Will not work! Views remain unhidden even if they are not topmost!
-                property bool disabled: !view.hidden
+                property bool disabled: view.hidden
                 
                 x: parent.x + 5
                 y: parent.y + 5
