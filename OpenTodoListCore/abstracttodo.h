@@ -35,6 +35,7 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
     Q_PROPERTY( int progress READ progress WRITE setProgress NOTIFY progressChanged )
     Q_PROPERTY( int priority READ priority WRITE setPriority NOTIFY priorityChanged )
     Q_PROPERTY( QObject* parentTodo READ parentTodo WRITE setParentTodo NOTIFY parentTodoChanged )
+    Q_PROPERTY( bool deleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
     Q_PROPERTY( QObject* todoList READ todoList CONSTANT )
     Q_PROPERTY( QObject* subTodos READ subTodos CONSTANT )
 
@@ -55,6 +56,9 @@ public:
     
     AbstractTodo* parentTodo() const;
     void setParentTodo( QObject* parentTodo );
+
+    bool isDeleted() const;
+    void setDeleted( bool deleted );
     
     AbstractTodoList* parent() const;
     
@@ -69,6 +73,7 @@ signals:
     void progressChanged();
     void priorityChanged();
     void parentTodoChanged();
+    void deletedChanged();
     
     void changed();
     
@@ -81,6 +86,7 @@ private:
     int                 m_progress;
     int                 m_priority;
     AbstractTodo        *m_parentTodo;
+    bool                m_deleted;
     
     TodoSortFilterModel *m_subTodosModel;
     

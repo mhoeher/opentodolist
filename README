@@ -12,21 +12,22 @@ ABOUT
 BUILDING
 
     In order to build OpenTodoList, you will need:
-    - CMake 2.8.8 or higher
     - Qt5 5.0 or higher
     - An appropriate C++ compiler
     
     Assuming you have downloaded a cooy of OpenTodoList to 
-    /home/myself/OpenTodoList, do the following to build the application
-    and store it in the default locations:
+    /home/myself/OpenTodoList, do the following to build the application:
     
-        cd /home/myself/OpenTodoList
-        mkdir build
-        cd build
-        cmake ..
+        cd /home/myself
+        mkdir OpenTodoList-build
+        cd OpenTodoList-build
+        qmake ../OpenTodoList
         make
-        sudo make install
-    
+
+    You should end up with a dedicated subdirectory "build" within
+    /home/myself/OpenTodoList-build. Just execute the contained executable
+    to run OpenTodoList.
+
 
 BACKENDS
 
@@ -36,6 +37,7 @@ BACKENDS
     LocalXmlBackend
         Stores data in XML files on the local hard disk.
 
+
 FRONTENDS
 
     For different platforms, different "frontends" are used to present the data
@@ -44,3 +46,25 @@ FRONTENDS
     OpenTodoListDesktopQml
         QML based desktop applications for typical desktop systems as
         KDE, GNOME, MacOC or Windows.
+
+
+DEVELOPING OPENTODOLIST
+
+    OpenTodoList is developed using Qt Creator and qmake. However, other IDEs (as
+    long as they support qmake) should work as well.
+    
+    Here are some things to consider when developing OpenTodoList further:
+
+    FAST QML PROTOTYPING
+
+        When hacking the QML frontends, you probably want to avoid to "make" the
+        application after each change in the QML files. This is supported by the --base-path
+        command line option:
+
+            cd /home/myself/OpenTodoList-build/bin
+            ./OpenTodoListDesktopQml --base-path=../../OpenTodoList/OpenTodoListDesktopQml/qml/OpenTodoListDesktopQml
+
+        The above would start the compiled QML frontend in the build directory, however, it forces
+        it to use the QML files in the source directory. Whenever you change one of the files
+        there, this will trigger the to reload the QML parts, so neither you have to restart nor
+        rebuild it.

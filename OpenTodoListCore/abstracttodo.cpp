@@ -22,11 +22,12 @@ QObject(parent),
     m_progress( 0 ),
     m_priority( -1 ),
     m_parentTodo( 0 ),
+    m_deleted( false ),
     m_subTodosModel( new TodoSortFilterModel( this ) )
 {
     m_subTodosModel->setParentTodo( this );
     m_subTodosModel->setSourceModel( parent->todos() );
-    m_subTodosModel->setFilterMode( TodoSortFilterModel::SubTodos );
+    m_subTodosModel->setFilterMode( TodoSortFilterModel::SubTodos | TodoSortFilterModel::HideDeleted );
     m_subTodosModel->sort( 0 );
     
     connect( m_subTodosModel, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), 
@@ -37,6 +38,7 @@ QObject(parent),
     connect( this, SIGNAL(progressChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
 }
 
 int AbstractTodo::priority() const
@@ -111,6 +113,17 @@ void AbstractTodo::setParentTodo(QObject* parentTodo)
             emit parentTodoChanged();
         }
     }
+}
+
+bool AbstractTodo::isDeleted() const
+{
+    return m_deleted;
+}
+
+void AbstractTodo::setDeleted(bool deleted)
+{
+    m_deleted = deleted;
+    emit deletedChanged();
 }
 
 AbstractTodoList* AbstractTodo::parent() const

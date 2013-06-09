@@ -38,6 +38,7 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodoList : public QObject
     Q_PROPERTY( QString name READ name WRITE setName NOTIFY nameChanged )
     Q_PROPERTY( QObject* todos READ todos CONSTANT )
     Q_PROPERTY( QObject* entries READ topLevelTodos CONSTANT )
+    Q_PROPERTY( QObject* deletedTodos READ deletedTodos CONSTANT )
     Q_PROPERTY( QString type READ type CONSTANT )
     Q_PROPERTY( QString key READ key CONSTANT )
     
@@ -49,6 +50,7 @@ public:
     
     TodoList *todos() const;
     TodoSortFilterModel* topLevelTodos() const;
+    TodoSortFilterModel* deletedTodos() const;
     Q_INVOKABLE virtual QObject *addTodo();
     Q_INVOKABLE QObject* addTodo( const QString& title, QObject* parentTodo );
     
@@ -79,6 +81,7 @@ private:
 
     TodoList *m_todos;
     TodoSortFilterModel *m_topLevelTodos;
+    TodoSortFilterModel *m_deletedTodos;
     QString m_name;
     QString m_type;
     QString m_key;

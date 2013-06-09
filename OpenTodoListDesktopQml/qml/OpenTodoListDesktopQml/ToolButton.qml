@@ -28,6 +28,7 @@ Item {
     property int sourceIndex: 0
     property alias containsMouse: mouseArea.containsMouse
     property int childOffset: 10
+    property bool enabled: true
     
     width: image.width
     height: text.height * 2
@@ -58,7 +59,7 @@ Item {
     states: [
         State {
             name: "hovered"
-            when: containsMouse
+            when: containsMouse && !( parent.disabled || !enabled )
             PropertyChanges {
                 target: button
                 childOffset: 0
@@ -66,10 +67,11 @@ Item {
         },
         State {
             name: "disabled"
-            when: parent.disabled
+            when: parent.disabled || !enabled
             PropertyChanges {
                 target: button
                 opacity: 0
+                childOffset: height
             }
         }
     ]
@@ -86,13 +88,20 @@ Item {
             }
         },
         Transition {
-            from: ""
+            //from: ""
             to: "disabled"
             reversible: true
-            NumberAnimation {
-                properties: "opacity"
-                duration: 200
-                easing.type: Easing.InOutQuad
+            ParallelAnimation {
+                NumberAnimation {
+                    properties: "opacity"
+                    duration: 200
+                    easing.type: Easing.InOutQuad
+                }
+                NumberAnimation {
+                    properties: "childOffset"
+                    duration: 200
+                    easing.type: Easing.InOutQuad
+                }
             }
         }
     ]

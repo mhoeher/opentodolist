@@ -1,3 +1,4 @@
+TARGET = OpenTodoListDesktopQml
 TEMPLATE = app
 
 DESTDIR = ../bin
@@ -40,7 +41,9 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/ProgressBar.qml \
     qml/OpenTodoListDesktopQml/NewTodoListView.qml \
     qml/OpenTodoListDesktopQml/main.qml \
-    qml/OpenTodoListDesktopQml/Button.qml
+    qml/OpenTodoListDesktopQml/Button.qml \
+    qml/OpenTodoListDesktopQml/IconButton.qml \
+    qml/OpenTodoListDesktopQml/ViewContainer.qml
 
 # Add more folders to ship with the application, here
 qml.source = qml/OpenTodoListDesktopQml
@@ -61,3 +64,9 @@ qtcAddDeployment()
 
 include(../utils.pri)
 copyToDestDir($$OTHER_FILES)
+
+# Support "make install":
+target.path = $$INSTALL_PREFIX/bin
+OpenTodoListDesktopQmlData.files = $$OTHER_FILES
+OpenTodoListDesktopQmlData.path = $$INSTALL_PREFIX/share/OpenTodoList
+INSTALLS += target OpenTodoListDesktopQmlData

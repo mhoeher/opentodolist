@@ -24,13 +24,18 @@ AbstractTodoList::AbstractTodoList(const QString& key, const QString& type, QObj
     QObject(parent),
     m_todos( new TodoList( this ) ),
     m_topLevelTodos( new TodoSortFilterModel( this ) ),
+    m_deletedTodos( new TodoSortFilterModel( this ) ),
     m_type( type ),
     m_key( key )
 {
-    m_topLevelTodos->setFilterMode( TodoSortFilterModel::TodoListEntries );
-    m_topLevelTodos->setSourceModel( m_todos );
+    m_topLevelTodos->setFilterMode( TodoSortFilterModel::TodoListEntries | TodoSortFilterModel::HideDeleted );
     m_topLevelTodos->setSortMode( TodoSortFilterModel::PrioritySort );
     m_topLevelTodos->sort( 0 );
+    m_topLevelTodos->setSourceModel( m_todos );
+
+    m_deletedTodos->setFilterMode( TodoSortFilterModel::HideNonDeleted );
+    m_topLevelTodos->sort( 0 );
+    m_topLevelTodos->setSourceModel( m_todos );
     
     connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
 }
@@ -43,6 +48,11 @@ AbstractTodoList::TodoList* AbstractTodoList::todos() const
 TodoSortFilterModel* AbstractTodoList::topLevelTodos() const
 {
     return m_topLevelTodos;
+}
+
+TodoSortFilterModel *AbstractTodoList::deletedTodos() const
+{
+    return m_deletedTodos;
 }
 
 QObject *AbstractTodoList::addTodo()

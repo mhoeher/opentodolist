@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import "Utils.js" as Utils;
 
 Item {
     id: view
@@ -27,9 +28,18 @@ Item {
     
     property alias toolButtons: toolbarContent.children
     property bool hidden: true
+    property bool active: false
     property alias clientWidth: contentsFlickable.width
     property alias clientHeight: contentsFlickable.height
     default property alias content: contentPanel.children
+    property string title: "View"
+
+    onHiddenChanged: {
+        if ( parent ){
+            parent.activeViews = hidden ? Utils.hideView( parent.activeViews, view ) :
+                                  Utils.showView( parent.activeViews, view );
+        }
+    }
     
     Item {
         id: toolbar
@@ -51,7 +61,7 @@ Item {
                 id: toolbarContent
                 
                 //TODO: Will not work! Views remain unhidden even if they are not topmost!
-                property bool disabled: view.hidden
+                property bool disabled: !view.active
                 
                 x: parent.x + 5
                 y: parent.y + 5
@@ -106,7 +116,7 @@ Item {
             when: view.hidden == false
             PropertyChanges {
                 target: view
-                x: view.parent.x
+                x: 0
             }
         }
     ]

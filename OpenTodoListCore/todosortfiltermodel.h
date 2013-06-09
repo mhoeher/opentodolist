@@ -35,11 +35,13 @@ class TodoSortFilterModel : public QSortFilterProxyModel
 public:
     
     typedef enum {
-        TodoListEntries,
-        SubTodos,
-        NoFilter
+        TodoListEntries     = 0x0001,
+        SubTodos            = 0x0002,
+        HideDeleted         = 0x0004,
+        HideNonDeleted      = 0x0008,
+        NoFilter            = 0
     } FilterMode;
-    
+
     typedef enum {
         NoSort,
         PrioritySort,
@@ -53,11 +55,11 @@ public:
     void setSourceModel(TodoModel* sourceModel);
     void setSourceModel( TodoSortFilterModel* sourceModel );
     
-    FilterMode filterMode() const {
+    int filterMode() const {
         return m_filterMode;
     }
     
-    void setFilterMode( FilterMode mode ) {
+    void setFilterMode( int mode ) {
         emit beginResetModel();
         m_filterMode = mode;
         emit endResetModel();
@@ -91,7 +93,7 @@ protected:
     
 private:
     
-    FilterMode m_filterMode;
+    int m_filterMode;
     SortMode m_sortMode;
     AbstractTodo *m_parentTodo;
     

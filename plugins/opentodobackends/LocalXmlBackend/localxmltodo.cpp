@@ -56,6 +56,7 @@ void LocalXmlTodo::save()
         root.setAttribute( "title", title() );
         root.setAttribute( "progress", QString::number( progress() ) );
         root.setAttribute( "priority", QString::number( priority() ) );
+        root.setAttribute( "deleted", isDeleted() ? "true" : "false" );
         LocalXmlTodo* parentTodoItem = qobject_cast< LocalXmlTodo* >( parentTodo() );
         if ( parentTodoItem ) {
             root.setAttribute( "parent", parentTodoItem->m_key );
@@ -83,6 +84,7 @@ void LocalXmlTodo::load()
             setTitle( root.attribute( "title" ) );
             setProgress( root.attribute( "progress", "0" ).toInt() );
             setPriority( root.attribute( "priority", "-1" ).toInt() );
+            setDeleted( root.attribute( "deleted", "false" ) == "true" );
             m_parentKey = root.attribute( "parent", QString() );
             if ( !m_parentKey.isEmpty() ) {
                 QTimer::singleShot( 0, this, SLOT(updateParentTodo() ) );

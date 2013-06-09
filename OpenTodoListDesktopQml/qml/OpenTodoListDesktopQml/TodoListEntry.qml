@@ -40,6 +40,8 @@ Rectangle {
     }
     
     Row {
+        spacing: 4
+
         Rectangle {
             id: checkMark
             border.width: 1
@@ -60,14 +62,14 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: { 
-                    entry.todo.progress = ( entry.todo.progress == 100 ? 0 : 100 ); 
+                    entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 );
                 }
             }
             
             states: [ 
                 State {
                     name: "checked"
-                    when: entry.todo.progress == 100
+                    when: entry.todo.progress === 100
                     PropertyChanges {
                         target: checkMarkInner
                         opacity: 1
@@ -92,7 +94,18 @@ Rectangle {
         Text {
             id: label
             text: entry.todo.title
+            font.pointSize: 12
         }
+    }
+
+
+    IconButton {
+        anchors.right: parent.right
+        source: "action_delete.svg"
+        imageWidth: 32
+        imageHeight: 32
+
+        onClicked: entry.todo.deleted = true;
     }
     
     states: [

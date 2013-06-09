@@ -18,11 +18,10 @@
 
 import QtQuick 2.0
 
-Rectangle {
+ViewContainer {
     id: root
     width: 800
     height: 600
-    color: activePalette.window
     
     /*
      * Not working, see https://bugreports.qt-project.org/browse/QTBUG-26317
@@ -40,16 +39,51 @@ Rectangle {
     
     TodoListView {
         id: todoListView
+
+        //active: true
+        title: "Todo Lists"
         
         onTodoSelected: todoDetailsView.todo = todo
+        onShowTrashForList: deletedTodosView.todoList = list
+        Component.onCompleted: hidden = false
     }
     
     NewTodoListView {
         id: newTodoListView
+
+        title: "New Todo List"
     }
        
     TodoDetailsView {
         id: todoDetailsView
+
+        title: "Todo"
+    }
+
+    View {
+        id: deletedTodosView
+
+        property QtObject todoList: null
+
+        hidden: !todoList
+
+        toolButtons: [
+            ToolButton {
+                label: "Close"
+
+                onClicked: deletedTodosView.todoList = null
+            }
+
+        ]
+
+        ListView {
+            width: parent.clientWidth
+            height: parent.clientHeight
+            model: deletedTodosView.todoList ? deletedTodosView.todoList.deletedTodos : null
+            delegate: TodoListEntry {
+                todo: object
+            }
+        }
     }
     
     

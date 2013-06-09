@@ -89,7 +89,7 @@ View {
                     height: 32
                     radius: 32
                     border.width: 2
-                    border.color: todoDetailsView.todo && todoDetailsView.todo.priority == index - 1 ? "black" : "gray"
+                    border.color: todoDetailsView.todo && todoDetailsView.todo.priority === index - 1 ? "black" : "gray"
                     color: Utils.PriorityColors[ index - 1 ]
                     
                     MouseArea {
@@ -128,6 +128,7 @@ View {
             width: parent.width
             height: childrenRect.height
             clip: true
+            spacing: 4
             delegate: TodoListEntry {
                 todo: object
                 onClicked: {

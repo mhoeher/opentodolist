@@ -47,3 +47,28 @@ var ToolButtonImages = new Array(
 function getToolButtonImage( index ) {
     return ToolButtonImages[ index % ToolButtonImages.length ];
 }
+
+function initViewList() {
+    return [];
+}
+
+function showView( list, view ) {
+    if ( !list ) {
+        list = [];
+    }
+    for ( var i = 0; i < list.length; ++i ) {
+        list[i].active = false;
+    }
+    list.push( view );
+    view.active = true;
+    return list;
+}
+
+function hideView( list, view ) {
+    view.active = false;
+    list.pop();
+    if ( list.length > 0 ) {
+        list[list.length-1].active = true;
+    }
+    return list;
+}

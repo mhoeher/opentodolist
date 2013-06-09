@@ -1,11 +1,12 @@
 TEMPLATE = lib
+TARGET = LocalXmlBackend
 CONFIG += plugin
 
 DESTDIR = ../../../bin/plugins/opentodobackends
 
 INCLUDEPATH += $$PWD/../../../OpenTodoListCore
 
-LIBS += -L$$DESTDIR/../../ -lOpenTodoListCore
+LIBS += -L$$DESTDIR/../.. -lOpenTodoListCore
 
 QT += xml
 
@@ -23,3 +24,6 @@ HEADERS += \
 
 OTHER_FILES += \
     LocalXmlBackend.json
+
+target.path = $$INSTALL_PREFIX/lib/OpenTodoList/plugins
+INSTALLS += target
