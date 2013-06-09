@@ -35,7 +35,9 @@ int main(int argc, char *argv[])
     
     QGuiApplication app(argc, argv);
     
-    QString basePath = QStringLiteral("../share/OpenTodoList/qml/OpenTodoListDesktopQml");
+    //QStringLiteral("qml/OpenTodoListDesktopQml/main.qml")
+    //QString basePath = QStringLiteral("../share/OpenTodoList/qml/OpenTodoListDesktopQml");
+    QString basePath = QCoreApplication::applicationDirPath() + "/qml/OpenTodoListDesktopQml";
     
     foreach ( QString arg, app.arguments() ) {
         static const QRegExp basePathRE( "^--base-path=(.*)$" );
@@ -44,7 +46,7 @@ int main(int argc, char *argv[])
         }
     }
     
-    QCoreApplication::addLibraryPath( "../lib/opentodolist/plugins" );
+    QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() + "/plugins" );
     
     TodoListLibrary* library = new TodoListLibrary( &app );
     
