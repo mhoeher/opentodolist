@@ -101,7 +101,7 @@ Rectangle {
 
     IconButton {
         anchors.right: parent.right
-        source: "action_delete.svg"
+        source: "action_delete.png"
         imageWidth: 32
         imageHeight: 32
 

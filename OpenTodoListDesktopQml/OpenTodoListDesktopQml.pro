@@ -17,6 +17,8 @@ SOURCES += \
     applicationviewer.cpp
 
 OTHER_FILES += \
+    qml/OpenTodoListDesktopQml/action_delete.png \
+    qml/OpenTodoListDesktopQml/action_delete.svg \
     qml/OpenTodoListDesktopQml/view.svg \
     qml/OpenTodoListDesktopQml/view.sci \
     qml/OpenTodoListDesktopQml/view.png \
