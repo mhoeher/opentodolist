@@ -105,7 +105,7 @@ Rectangle {
         imageWidth: 32
         imageHeight: 32
 
-        onClicked: entry.todo.deleted = true;
+        onClicked: entry.todo.deleted = !entry.todo.deleted;
     }
     
     states: [
