@@ -34,8 +34,8 @@ AbstractTodoList::AbstractTodoList(const QString& key, const QString& type, QObj
     m_topLevelTodos->setSourceModel( m_todos );
 
     m_deletedTodos->setFilterMode( TodoSortFilterModel::HideNonDeleted );
-    m_topLevelTodos->sort( 0 );
-    m_topLevelTodos->setSourceModel( m_todos );
+    m_deletedTodos->sort( 0 );
+    m_deletedTodos->setSourceModel( m_todos );
     
     connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
 }
