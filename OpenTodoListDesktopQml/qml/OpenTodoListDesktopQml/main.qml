@@ -60,30 +60,8 @@ ViewContainer {
         title: "Todo"
     }
 
-    View {
+    DeletedTodosView {
         id: deletedTodosView
-
-        property QtObject todoList: null
-
-        hidden: !todoList
-
-        toolButtons: [
-            ToolButton {
-                label: "Close"
-
-                onClicked: deletedTodosView.todoList = null
-            }
-
-        ]
-
-        ListView {
-            width: parent.clientWidth
-            height: parent.clientHeight
-            model: deletedTodosView.todoList ? deletedTodosView.todoList.deletedTodos : null
-            delegate: TodoListEntry {
-                todo: object
-            }
-        }
     }
     
     

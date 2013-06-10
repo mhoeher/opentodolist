@@ -45,7 +45,8 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/main.qml \
     qml/OpenTodoListDesktopQml/Button.qml \
     qml/OpenTodoListDesktopQml/IconButton.qml \
-    qml/OpenTodoListDesktopQml/ViewContainer.qml
+    qml/OpenTodoListDesktopQml/ViewContainer.qml \
+    qml/OpenTodoListDesktopQml/DeletedTodosView.qml
 
 # Add more folders to ship with the application, here
 qml.source = qml/OpenTodoListDesktopQml
