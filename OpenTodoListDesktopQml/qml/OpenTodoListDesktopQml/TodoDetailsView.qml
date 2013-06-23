@@ -41,13 +41,35 @@ View {
     Column {
         width: todoDetailsView.clientWidth
         spacing: 10
-        
-        Text {
-            text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
-            font.bold: true
-            font.pointSize: 16
+
+        Item {
             width: parent.width
-            wrapMode: Text.Wrap
+            height: childrenRect.height
+
+            TextInput {
+                id: todoDetailsViewTitleEdit
+                text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
+                font.bold: true
+                font.pointSize: 16
+                width: parent.width - saveTitleButton.width
+                wrapMode: Text.Wrap
+
+                function saveTitle() {
+                    todoDetailsView.todo.title = todoDetailsViewTitleEdit.text;
+                    todoDetailsViewTitleEdit.focus = false;
+                }
+
+                Keys.onEnterPressed: saveTitle()
+                Keys.onReturnPressed: saveTitle()
+            }
+
+            Button {
+                id: saveTitleButton
+                label: "Save"
+                onClicked: todoDetailsViewTitleEdit.saveTitle()
+                visible: todoDetailsViewTitleEdit.focus
+                anchors.right: parent.right
+            }
         }
         
         Item {
