@@ -11,7 +11,7 @@ defineTest(copyToDestDir) {
         win32:FILE ~= s,/,\\,g
         win32:DDIR ~= s,/,\\,g
 
-        QMAKE_POST_LINK += $$QMAKE_MKDIR $$dirname(DDIR) $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += $$QMAKE_CHK_DIR_EXISTS $$dirname(DDIR) $$QMAKE_MKDIR $$dirname(DDIR) $$escape_expand(\\n\\t)
         QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$FILE) $$quote($$DDIR) $$escape_expand(\\n\\t)
     }
 
