@@ -94,6 +94,8 @@ View {
                     id: newTodoTitle
                     anchors { left: parent.left; right: parent.right; rightMargin: addNewTodoButton.width + 10 }
                     text: ""
+
+                    onApply: addNewTodoButton.createNewTodo()
                 }
                 Button {
                     id: addNewTodoButton
@@ -101,7 +103,9 @@ View {
                     
                     anchors.right: parent.right
                     
-                    onClicked: {
+                    onClicked: createNewTodo()
+
+                    function createNewTodo() {
                         var todo = todoListView.currentList.addTodo();
                         todo.title = newTodoTitle.text;
                         newTodoTitle.text = "";

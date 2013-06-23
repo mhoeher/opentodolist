@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
     
     QGuiApplication app(argc, argv);
     
-    //QStringLiteral("qml/OpenTodoListDesktopQml/main.qml")
-    //QString basePath = QStringLiteral("../share/OpenTodoList/qml/OpenTodoListDesktopQml");
     QString basePath = QCoreApplication::applicationDirPath() + "/qml/OpenTodoListDesktopQml";
     
     foreach ( QString arg, app.arguments() ) {
@@ -49,10 +47,20 @@ int main(int argc, char *argv[])
     QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() + "/plugins" );
     
     TodoListLibrary* library = new TodoListLibrary( &app );
+
+    // Prepare an object holding various "settings" to be passed into QML
+    QObject* settings = new QObject( &app );
+    // Use "debug" mode in QML (used occasionally to make development in "debug" mode easier)
+#ifdef QT_DEBUG
+    settings->setProperty( "debug", true );
+#else
+    settings->setProperty( "debug", false );
+#endif
     
     ApplicationViewer viewer;
     viewer.addImportPath( basePath );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("library"), library );
+    viewer.engine()->rootContext()->setContextProperty( QStringLiteral("settings"), settings );
     viewer.setMainFile(basePath + "/main.qml");
     viewer.showExpanded();
     

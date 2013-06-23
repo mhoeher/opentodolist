@@ -33,6 +33,7 @@ Item {
 
     Image {
         id: image
+        cache: !settings.debug
     }
 
     MouseArea {

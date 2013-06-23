@@ -88,7 +88,7 @@ Item {
             
             source: "view.sci"
             //TODO: Remove this, this is for debugging only!
-            cache: false
+            cache: !settings.debug
             smooth: true
             
             Component.onCompleted: rotation = 1 * Math.random() - 0.5

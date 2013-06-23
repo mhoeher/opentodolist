@@ -29,6 +29,15 @@ Rectangle {
     
     property alias text: textInput.text
 
+    // Indicates that return or enter has been pressed.
+    // Useful to implement a "default" action or
+    // provide a shortcut (so user does not have to hit a button
+    // next to the input).
+    signal apply()
+
+    Keys.onEnterPressed: apply();
+    Keys.onReturnPressed: apply();
+
     MouseArea {
         anchors.fill: parent
         onClicked: { textInput.focus = true; }

@@ -37,6 +37,7 @@ Item {
         id: image
         source: Utils.getToolButtonImage( button.sourceIndex )
         y: button.childOffset
+        cache: !settings.debug
     }
     
     Text {

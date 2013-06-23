@@ -46,6 +46,8 @@ View {
             text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
             font.bold: true
             font.pointSize: 16
+            width: parent.width
+            wrapMode: Text.Wrap
         }
         
         Item {
@@ -109,12 +111,16 @@ View {
                 id: newSubTodoTitle
                 text: ""
                 width: parent.width - addNewSubTodoButton.width
+
+                onApply: addNewSubTodoButton.createNewSubTodo()
             }
             
             Button {
                 id: addNewSubTodoButton
                 label: "Add"
-                onClicked: {
+                onClicked: createNewSubTodo()
+
+                function createNewSubTodo() {
                     var todo = todoDetailsView.todo.todoList.addTodo();
                     todo.title = newSubTodoTitle.text;
                     todo.parentTodo = todoDetailsView.todo;
