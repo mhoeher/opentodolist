@@ -19,6 +19,7 @@
 #ifndef TODOLISTLIBRARY_H
 #define TODOLISTLIBRARY_H
 
+#include "opentodolistcore_global.h"
 #include "abstracttodolist.h"
 #include "pluginsloader.h"
 #include "objectmodel.h"
@@ -26,7 +27,7 @@
 
 #include <QObject>
 
-class TodoListLibrary : public QObject
+class OPENTODOLISTCORESHARED_EXPORT TodoListLibrary : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QObject* plugins READ plugins CONSTANT )
