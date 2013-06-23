@@ -41,6 +41,7 @@ Rectangle {
     
     Row {
         spacing: 4
+        width: parent.width
 
         Rectangle {
             id: checkMark
@@ -95,17 +96,18 @@ Rectangle {
             id: label
             text: entry.todo.title
             font.pointSize: 12
+            width: parent.width - checkMark.width - deleteTodoButton.width - 8
+            wrapMode: Text.Wrap
         }
-    }
 
+        IconButton {
+            id: deleteTodoButton
+            source: "action_delete.png"
+            imageWidth: 32
+            imageHeight: 32
 
-    IconButton {
-        anchors.right: parent.right
-        source: "action_delete.png"
-        imageWidth: 32
-        imageHeight: 32
-
-        onClicked: entry.todo.deleted = !entry.todo.deleted;
+            onClicked: entry.todo.deleted = !entry.todo.deleted;
+        }
     }
     
     states: [
