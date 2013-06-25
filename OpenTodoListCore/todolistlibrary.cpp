@@ -18,6 +18,8 @@
 
 #include "todolistlibrary.h"
 
+#include "abstracttodo.h"
+#include "abstracttodolist.h"
 #include "todolistfactory.h"
 
 #include <QCoreApplication>
@@ -28,7 +30,8 @@ TodoListLibrary::TodoListLibrary(QObject *parent) :
     QObject(parent),
     m_plugins( new PluginsLoader( this ) ),
     m_lists( new TodoLists( this ) ),
-    m_nonLoadableLists()
+    m_nonLoadableLists(),
+    m_todos( new AbstractTodoList::TodoList( this ) )
 {
     restoreSettings();
     connect( QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(saveSettings()) );
@@ -48,12 +51,18 @@ TodoListLibrary::TodoLists* TodoListLibrary::todoLists() const
     return m_lists;
 }
 
+AbstractTodoList::TodoList *TodoListLibrary::todos() const
+{
+    return m_todos;
+}
+
 bool TodoListLibrary::createTodoList(const QString& name, OpenTodoListBackend* type)
 {
     if ( !name.isEmpty() && type ) {
         AbstractTodoList* list = type->factory()->createTodoList( this );
         list->setName( name );
         m_lists->append( list );
+        m_todos->append( list->todos() );
         return true;
     }
     return false;

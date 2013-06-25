@@ -30,7 +30,12 @@ class TodoSortFilterModel : public QSortFilterProxyModel
 {
     
     Q_OBJECT
+    Q_ENUMS( FilterMode )
     Q_ENUMS( SortMode )
+    Q_PROPERTY( QObject* sourceModel READ sourceModel WRITE setSourceModel NOTIFY sourceModelChanged )
+    Q_PROPERTY( int filterMode READ filterMode WRITE setFilterMode NOTIFY filterModeChanged )
+    Q_PROPERTY( SortMode sortMode READ sortMode WRITE setSortMode NOTIFY sortModeChanged )
+    Q_PROPERTY( QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged )
     
 public:
     
@@ -54,6 +59,7 @@ public:
     
     void setSourceModel(TodoModel* sourceModel);
     void setSourceModel( TodoSortFilterModel* sourceModel );
+    void setSourceModel( QObject* sourceModel );
     
     int filterMode() const {
         return m_filterMode;
@@ -63,6 +69,7 @@ public:
         emit beginResetModel();
         m_filterMode = mode;
         emit endResetModel();
+        emit filterModeChanged();
     }
     
     SortMode sortMode() const {
@@ -73,10 +80,22 @@ public:
         emit beginResetModel();
         m_sortMode = sortMode;
         emit endResetModel();
+        emit sortModeChanged();
     }
     
     AbstractTodo* parentTodo() const {
         return m_parentTodo;
+    }
+
+    void setSearchString( const QString& searchString ) {
+        emit beginResetModel();
+        m_searchString = searchString;
+        emit endResetModel();
+        emit searchStringChanged();
+    }
+
+    QString searchString() const {
+        return m_searchString;
     }
     
     void setParentTodo( AbstractTodo* todo );
@@ -84,6 +103,13 @@ public:
     virtual QHash< int, QByteArray > roleNames() const {
         return sourceModel() ? sourceModel()->roleNames() : QAbstractProxyModel::roleNames();
     }
+
+signals:
+
+    void sourceModelChanged();
+    void sortModeChanged();
+    void filterModeChanged();
+    void searchStringChanged();
 
 protected:
     
@@ -96,6 +122,7 @@ private:
     int m_filterMode;
     SortMode m_sortMode;
     AbstractTodo *m_parentTodo;
+    QString m_searchString;
     
     virtual void setSourceModel(QAbstractItemModel*) {}
     

@@ -20,10 +20,12 @@
 #include "applicationviewer.h"
 
 #include "todolistlibrary.h"
+#include "todosortfiltermodel.h"
 
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QRegExp>
+#include <QtQml>
 
 int main(int argc, char *argv[])
 {
@@ -56,6 +58,8 @@ int main(int argc, char *argv[])
 #else
     settings->setProperty( "debug", false );
 #endif
+
+    qmlRegisterType<TodoSortFilterModel>("net.rpdev.OpenTodoList", 1, 0, "TodoSortFilterModel");
     
     ApplicationViewer viewer;
     viewer.addImportPath( basePath );

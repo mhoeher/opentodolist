@@ -24,18 +24,28 @@ TodoSortFilterModel::TodoSortFilterModel(QObject* parent):
     QSortFilterProxyModel(parent),
     m_filterMode( NoFilter ),
     m_sortMode( NoSort ),
-    m_parentTodo( 0 )
+    m_parentTodo( 0 ),
+    m_searchString( QString() )
 {
 }
 
 void TodoSortFilterModel::setSourceModel(TodoSortFilterModel::TodoModel* sourceModel)
 {
     QSortFilterProxyModel::setSourceModel( sourceModel );
+    emit sourceModelChanged();
 }
 
 void TodoSortFilterModel::setSourceModel(TodoSortFilterModel* sourceModel)
 {
     QSortFilterProxyModel::setSourceModel( sourceModel );
+    emit sourceModelChanged();
+}
+
+void TodoSortFilterModel::setSourceModel(QObject *sourceModel)
+{
+    QSortFilterProxyModel::setSourceModel(
+                qobject_cast< QAbstractItemModel* >( sourceModel ) );
+    emit sourceModelChanged();
 }
 
 void TodoSortFilterModel::setParentTodo(AbstractTodo* todo)
@@ -56,6 +66,12 @@ bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& so
                 sourceModel()->index( source_row, 0 ).data(
                     TodoModel::ObjectRole ).value< QObject* >() );
     if ( todo ) {
+        if ( !m_searchString.isEmpty() ) {
+            if ( !(todo->title().contains( m_searchString, Qt::CaseInsensitive ) ||
+                 todo->description().contains( m_searchString, Qt::CaseInsensitive )) ) {
+                result = false;
+            }
+        }
         if ( m_filterMode & TodoListEntries ) {
             result = !todo->parentTodo() ? result : false;
         }

@@ -22,39 +22,53 @@
 
 #include "opentodolistcore_global.h"
 
+#include <QObject>
 #include <QAbstractListModel>
 #include <QHash>
 
 template< typename ObjectType >
 class OPENTODOLISTCORESHARED_EXPORT ObjectModel : public QAbstractListModel
 {
-    
+
 public:
     
+    typedef ObjectModel< ObjectType > ThisType;
     typedef QList< ObjectType* > List;
+    typedef QList< QAbstractListModel* > SubLists;
     
     enum {
         ObjectRole = Qt::UserRole + 1
     };
     
-    ObjectModel( QObject* parent = 0 ) : QAbstractListModel( parent ), list( List() ), myRoleNames() {
+    ObjectModel( QObject* parent = 0 ) :
+        QAbstractListModel( parent ),
+        list( List() ),
+        myRoleNames() {
         myRoleNames = QAbstractListModel::roleNames();
         myRoleNames.insert( ObjectRole, "object" );
     }
 
     virtual int rowCount(const QModelIndex& parent = QModelIndex()) const { 
-        return parent.isValid() ? 0 : list.size(); 
+        return parent.isValid() ? 0 : list.size() + this->subListEntryCount();
     }
         
-    virtual QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const {
-        return parent.isValid() ? QModelIndex() : createIndex( row, column, list[row] );
+    virtual QModelIndex index(int row, int column,
+                              const QModelIndex& parent = QModelIndex()) const {
+        return parent.isValid() ?
+                    QModelIndex() :
+                    createIndex( row, column, this->entryForRow( row ) );
     }
     
-    virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const {
+    virtual QVariant data(const QModelIndex& index,
+                          int role = Qt::DisplayRole) const {
         switch ( role ) {
             case Qt::DisplayRole:
             case ObjectRole:
-                return index.isValid() ? QVariant::fromValue< QObject* >( static_cast< QObject* >( index.internalPointer() ) ) : QVariant();
+                return index.isValid() ?
+                            QVariant::fromValue< QObject* >(
+                                static_cast< QObject* >(
+                                    index.internalPointer() ) ) :
+                            QVariant();
             default:
                 return QVariant();
         }
@@ -65,13 +79,28 @@ public:
     }
     
     void append( ObjectType* item ) {
+        Q_ASSERT( item != 0 );
         beginInsertRows( QModelIndex(), rowCount(), rowCount() );
         list << item;
+        endInsertRows();
+    }
+
+    void append( QAbstractListModel* subList ) {
+        Q_ASSERT( subList != 0 );
+        beginInsertRows( QModelIndex(), rowCount(),
+                         rowCount() + subList->rowCount() );
+        subLists << subList;
+        connect( subList, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+                 this, SLOT(onChildDataChanged(QModelIndex,QModelIndex)) );
         endInsertRows();
     }
     
     const List& data() const {
         return this->list;
+    }
+
+    const SubLists& lists() const {
+        return this->subLists();
     }
     
     void notifyObjectChanged( ObjectType* object ) {
@@ -84,8 +113,40 @@ public:
 private:
     
     List list;
+    SubLists subLists;
     QHash< int, QByteArray > myRoleNames;
+
+    int subListEntryCount() const {
+        int result = 0;
+        foreach ( QAbstractListModel* subList, this->subLists ) {
+            result += subList->rowCount();
+        }
+        return result;
+    }
+
+    QObject* entryForRow( int row ) const {
+        Q_ASSERT( row >= 0 );
+        if ( row < this->list.size() ) {
+            return qobject_cast< QObject* >( this->list.at( row ) );
+        }
+        row -= this->list.size();
+        foreach ( QAbstractListModel* subList, this->subLists ) {
+            if ( row <= subList->rowCount() ) {
+                QModelIndex idx = subList->index( row );
+                int role = ObjectRole;
+                return idx.data( role ).value< QObject* >();
+            }
+            row -= subList->rowCount();
+        }
+        return 0;
+    }
     
+private slots:
+
+    void onChildDataChanged( const QModelIndex& topLeft,
+                             const QModelIndex& bottomRight ) {
+
+    }
 };
 
 #endif // OBJECTMODEL_H

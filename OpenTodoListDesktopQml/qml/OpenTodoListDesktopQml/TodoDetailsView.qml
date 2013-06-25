@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import net.rpdev.OpenTodoList 1.0
 import "Utils.js" as Utils
 
 View {
@@ -24,6 +25,12 @@ View {
     hidden: todo ? false : true
     
     property QtObject todo: null
+    property TodoSortFilterModel model: TodoSortFilterModel {
+        sourceModel: todo ? todo.subTodos : null
+        searchString: filterText.text
+    }
+
+    onTodoChanged: filterText.text = ""
     
     //TODO: Whenever the todo changes, the size of the description edit
     //      does not properly shrink. Find out how to fix this.
@@ -150,9 +157,15 @@ View {
                 }
             }
         }
+
+        SimpleTextInput {
+            id: filterText
+            anchors.left: parent.left
+            anchors.right: parent.right
+        }
         
         ListView {
-            model: todoDetailsView.todo ? todoDetailsView.todo.subTodos : null
+            model: todoDetailsView.model
             width: parent.width
             height: childrenRect.height
             clip: true

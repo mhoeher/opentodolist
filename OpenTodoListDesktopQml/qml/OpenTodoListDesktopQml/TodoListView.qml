@@ -17,13 +17,21 @@
  */
 
 import QtQuick 2.0
+import net.rpdev.OpenTodoList 1.0
 
 View {
     id: todoListView
     
     property QtObject currentList : null
+    property TodoSortFilterModel model : TodoSortFilterModel {
+        sourceModel: currentList ? currentList.entries : null
+        searchString: filterText.text
+    }
+
     signal todoSelected(QtObject todo)
     signal showTrashForList( QtObject list )
+
+    onCurrentListChanged: filterText.text = ""
     
     toolButtons: [
         ToolButton {
@@ -49,8 +57,8 @@ View {
     
     Item {
         id: sideBar
-        
-        width: todoListView.currentList ? 200 : todoListView.clientWidth
+
+        width: todoListView.currentList || true ? 200 : todoListView.clientWidth
         height: todoListView.clientHeight
         
         Behavior on width { SmoothedAnimation { velocity: 1200 } }
@@ -112,9 +120,19 @@ View {
                     }
                 }
             }
+
+            Item {
+                height: childrenRect.height
+                width: todoListContents.width
+                SimpleTextInput {
+                    id: filterText
+                    anchors { left: parent.left; right: parent.right }
+                    text: ""
+                }
+            }
             
             ListView {
-                model: todoListView.currentList ? todoListView.currentList.entries : null
+                model: todoListView.model
                 width: todoListContents.width
                 height: todoListView.clientHeight
                 clip: true

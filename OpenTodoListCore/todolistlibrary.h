@@ -32,6 +32,7 @@ class OPENTODOLISTCORESHARED_EXPORT TodoListLibrary : public QObject
     Q_OBJECT
     Q_PROPERTY( QObject* plugins READ plugins CONSTANT )
     Q_PROPERTY( QObject* todoLists READ todoLists CONSTANT )
+    Q_PROPERTY( QObject* todos READ todos CONSTANT )
 public:
     
     typedef ObjectModel< AbstractTodoList > TodoLists;
@@ -41,6 +42,8 @@ public:
     
     PluginsLoader *plugins() const;
     TodoLists* todoLists() const;
+
+    AbstractTodoList::TodoList* todos() const;
     
     Q_INVOKABLE bool createTodoList( const QString& name, OpenTodoListBackend* type );
 
@@ -54,6 +57,7 @@ private:
     TodoLists                       *m_lists;
 
     QList<QVariantMap>               m_nonLoadableLists;
+    AbstractTodoList::TodoList      *m_todos;
     
     OpenTodoListBackend* backendByTypeName( const QString& type );
     
