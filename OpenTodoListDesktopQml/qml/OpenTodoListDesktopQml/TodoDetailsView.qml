@@ -184,18 +184,20 @@ View {
             height: childrenRect.height
             
             BorderImage {
-                anchors.fill: parent
+                width: todoDescriptionEditContains.width
+                height: todoDescriptionEditContains.height
                 source: "description.sci"
-                //TODO: Remove in productive version
-                cache: false
+                cache: !settings.debug
             }
             
             MouseArea {
-                anchors.fill: parent    
+                width: todoDescriptionEditContains.width
+                height: todoDescriptionEditContains.height
                 onClicked: todoDescriptionEdit.focus = true;
             }
             
             Item {
+                id: todoDescriptionEditContains
                 width: parent.width
                 height: childrenRect.height + 40
                 
