@@ -93,14 +93,20 @@ bool TodoSortFilterModel::lessThan(const QModelIndex& left, const QModelIndex& r
     if ( m_sortMode != NoSort ) {
         AbstractTodo* leftTodo = qobject_cast< AbstractTodo* >(
                     left.data( TodoModel::ObjectRole ).value<QObject*>());
-        AbstractTodo* rightToto = qobject_cast< AbstractTodo* >(
+        AbstractTodo* rightTodo = qobject_cast< AbstractTodo* >(
                     right.data( TodoModel::ObjectRole ).value< QObject* >());
-        if ( leftTodo && rightToto ) {
+        if ( leftTodo->isCompleted() && !rightTodo->isCompleted() ) {
+            return false;
+        }
+        if ( !leftTodo->isCompleted() && rightTodo->isCompleted() ) {
+            return true;
+        }
+        if ( leftTodo && rightTodo ) {
             switch ( m_sortMode ) {
             case PrioritySort:
-                return leftTodo->priority() > rightToto->priority();
+                return leftTodo->priority() > rightTodo->priority();
             case ProgressSort:
-                return leftTodo->progress() < rightToto->progress();
+                return leftTodo->progress() < rightTodo->progress();
             default:
                 return QSortFilterProxyModel::lessThan( left, right );
             }

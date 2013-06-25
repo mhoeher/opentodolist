@@ -38,6 +38,7 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
     Q_PROPERTY( bool deleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
     Q_PROPERTY( QObject* todoList READ todoList CONSTANT )
     Q_PROPERTY( QObject* subTodos READ subTodos CONSTANT )
+    Q_PROPERTY( bool isCompleted READ isCompleted NOTIFY progressChanged() )
 
 public:
     explicit AbstractTodo(AbstractTodoList *parent = 0);
@@ -59,6 +60,8 @@ public:
 
     bool isDeleted() const;
     void setDeleted( bool deleted );
+
+    bool isCompleted() const { return progress() == 100; }
     
     AbstractTodoList* parent() const;
     
