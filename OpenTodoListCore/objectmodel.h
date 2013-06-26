@@ -56,7 +56,7 @@ public:
                               const QModelIndex& parent = QModelIndex()) const {
         return parent.isValid() ?
                     QModelIndex() :
-                    createIndex( row, column, this->entryForRow( row ) );
+                    this->createIndex( row, column, this->entryForRow( row ) );
     }
     
     virtual QVariant data(const QModelIndex& index,
@@ -127,7 +127,7 @@ private:
     QObject* entryForRow( int row ) const {
         Q_ASSERT( row >= 0 );
         if ( row < this->list.size() ) {
-            return qobject_cast< QObject* >( this->list.at( row ) );
+            return (QObject*)( this->list.at( row ) );
         }
         row -= this->list.size();
         foreach ( QAbstractListModel* subList, this->subLists ) {

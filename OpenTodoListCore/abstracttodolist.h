@@ -21,14 +21,13 @@
 
 #include "opentodolistcore_global.h"
 
+#include "abstracttodo.h"
 #include "objectmodel.h"
 #include "todosortfiltermodel.h"
 
 #include <QList>
 #include <QObject>
 #include <QObjectList>
-
-class AbstractTodo;
 
 class OPENTODOLISTCORESHARED_EXPORT AbstractTodoList : public QObject
 {

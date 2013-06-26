@@ -21,12 +21,13 @@
 #define TODOSORTFILTERMODEL_H
 
 #include "objectmodel.h"
+#include "opentodolistcore_global.h"
 
 #include <QSortFilterProxyModel>
 
 class AbstractTodo;
 
-class TodoSortFilterModel : public QSortFilterProxyModel
+class OPENTODOLISTCORESHARED_EXPORT TodoSortFilterModel : public QSortFilterProxyModel
 {
     
     Q_OBJECT
