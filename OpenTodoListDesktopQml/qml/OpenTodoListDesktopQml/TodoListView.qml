@@ -92,8 +92,11 @@ View {
         anchors.left: sideBar.right
         anchors.leftMargin: 10
         width: todoListView.clientWidth - 200 - 10
+        height: parent.height
         Column {
+            id: controlsColumns
             spacing: 5
+            height: childrenRect.height
             
             Item {
                 height: childrenRect.height
@@ -122,6 +125,7 @@ View {
             }
 
             Item {
+                id: filterItem
                 height: childrenRect.height
                 width: todoListContents.width
                 SimpleTextInput {
@@ -130,18 +134,21 @@ View {
                     text: ""
                 }
             }
-            
-            ListView {
-                model: todoListView.model
-                width: todoListContents.width
-                height: todoListView.clientHeight
-                clip: true
-                spacing: 4
-                delegate: TodoListEntry {
-                    todo: object
-                    onClicked: {
-                        todoListView.todoSelected( object )
-                    }
+        }
+
+        ListView {
+            model: todoListView.model
+            width: todoListContents.width
+            anchors.top: controlsColumns.bottom
+            anchors.bottom: parent.bottom
+            anchors.topMargin: controlsColumns.spacing
+            anchors.bottomMargin: 30
+            clip: true
+            spacing: 4
+            delegate: TodoListEntry {
+                todo: object
+                onClicked: {
+                    todoListView.todoSelected( object )
                 }
             }
         }
