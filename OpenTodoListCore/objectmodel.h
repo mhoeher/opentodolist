@@ -26,22 +26,81 @@
 #include <QAbstractListModel>
 #include <QHash>
 
+class OPENTODOLISTCORESHARED_EXPORT ObjectModelBase : public QAbstractListModel
+{
+    Q_OBJECT
+public:
+
+    typedef QList< QAbstractItemModel* > SubLists;
+
+    explicit ObjectModelBase( QObject* parent = 0 );
+    virtual ~ObjectModelBase();
+
+    void appendList( QAbstractItemModel* subList );
+
+    const SubLists& lists() const {
+        return subLists;
+    }
+
+signals:
+
+protected:
+
+    SubLists subLists;
+
+    int subListEntryCount() const;
+
+protected slots:
+
+    void setThisItemCount( int thisItemCount );
+
+private:
+
+    int thisItemCount;
+
+    void connectToSubModel( QAbstractItemModel* subList );
+
+private slots:
+
+    int listOffset(const QAbstractItemModel *subList ) const;
+    QModelIndex fromSubList( const QModelIndex& index ) const;
+
+    void onSubDataChanged(const QModelIndex & topLeft,
+                          const QModelIndex & bottomRight );
+    void onSubLayoutAboutToBeChanged();
+    void onSubLayoutChanged();
+    void onSubModelAboutToBeReset();
+    void onSubModelReset();
+    void onSubRowsAboutToBeInserted(const QModelIndex & parent, int start, int end);
+    void onSubRowsAboutToBeMoved(const QModelIndex & sourceParent,
+                                 int sourceStart, int sourceEnd,
+                                 const QModelIndex & destinationParent,
+                                 int destinationRow);
+    void onSubRowsAboutToBeRemoved(const QModelIndex & parent,
+                                   int start, int end);
+    void onSubRowsInserted(const QModelIndex & parent, int start, int end);
+    void onSubRowsMoved(const QModelIndex & sourceParent, int sourceStart,
+                        int sourceEnd, const QModelIndex & destinationParent,
+                        int destinationRow);
+    void onSubRowsRemoved(const QModelIndex & parent, int start, int end);
+
+};
+
 template< typename ObjectType >
-class OPENTODOLISTCORESHARED_EXPORT ObjectModel : public QAbstractListModel
+class OPENTODOLISTCORESHARED_EXPORT ObjectModel : public ObjectModelBase
 {
 
 public:
     
     typedef ObjectModel< ObjectType > ThisType;
     typedef QList< ObjectType* > List;
-    typedef QList< QAbstractListModel* > SubLists;
     
     enum {
         ObjectRole = Qt::UserRole + 1
     };
     
     ObjectModel( QObject* parent = 0 ) :
-        QAbstractListModel( parent ),
+        ObjectModelBase( parent ),
         list( List() ),
         myRoleNames() {
         myRoleNames = QAbstractListModel::roleNames();
@@ -83,24 +142,11 @@ public:
         beginInsertRows( QModelIndex(), rowCount(), rowCount() );
         list << item;
         endInsertRows();
-    }
-
-    void append( QAbstractListModel* subList ) {
-        Q_ASSERT( subList != 0 );
-        beginInsertRows( QModelIndex(), rowCount(),
-                         rowCount() + subList->rowCount() );
-        subLists << subList;
-        connect( subList, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
-                 this, SLOT(onChildDataChanged(QModelIndex,QModelIndex)) );
-        endInsertRows();
+        this->setThisItemCount( list.size() );
     }
     
     const List& data() const {
         return this->list;
-    }
-
-    const SubLists& lists() const {
-        return this->subLists();
     }
     
     void notifyObjectChanged( ObjectType* object ) {
@@ -113,16 +159,7 @@ public:
 private:
     
     List list;
-    SubLists subLists;
     QHash< int, QByteArray > myRoleNames;
-
-    int subListEntryCount() const {
-        int result = 0;
-        foreach ( QAbstractListModel* subList, this->subLists ) {
-            result += subList->rowCount();
-        }
-        return result;
-    }
 
     QObject* entryForRow( int row ) const {
         Q_ASSERT( row >= 0 );
@@ -130,9 +167,9 @@ private:
             return (QObject*)( this->list.at( row ) );
         }
         row -= this->list.size();
-        foreach ( QAbstractListModel* subList, this->subLists ) {
-            if ( row <= subList->rowCount() ) {
-                QModelIndex idx = subList->index( row );
+        foreach ( QAbstractItemModel* subList, this->subLists ) {
+            if ( row < subList->rowCount() ) {
+                QModelIndex idx = subList->index( row, 0 );
                 int role = ObjectRole;
                 return idx.data( role ).value< QObject* >();
             }
@@ -140,13 +177,7 @@ private:
         }
         return 0;
     }
-    
-private slots:
 
-    void onChildDataChanged( const QModelIndex& topLeft,
-                             const QModelIndex& bottomRight ) {
-
-    }
 };
 
 #endif // OBJECTMODEL_H

@@ -62,7 +62,7 @@ bool TodoListLibrary::createTodoList(const QString& name, OpenTodoListBackend* t
         AbstractTodoList* list = type->factory()->createTodoList( this );
         list->setName( name );
         m_lists->append( list );
-        m_todos->append( list->todos() );
+        m_todos->appendList( list->todos() );
         return true;
     }
     return false;
@@ -110,6 +110,7 @@ void TodoListLibrary::restoreSettings()
             AbstractTodoList* list = backend->factory()->createTodoList( this, settings.value( "key" ).toString() );
             if ( list ) {
                 m_lists->append( list );
+                m_todos->appendList( list->todos() );
             }
         } else {
             QVariantMap backupData;

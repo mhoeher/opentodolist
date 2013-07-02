@@ -41,6 +41,7 @@ Rectangle {
     property alias pressed: mouseArea.pressed
     property alias containsMouse: mouseArea.containsMouse
     property color backgroundColor: activePalette.button
+    property bool down: false
     
     signal clicked
     
@@ -63,7 +64,7 @@ Rectangle {
     states: [
         State {
             name: "down"
-            when: pressed || containsMouse
+            when: pressed || containsMouse || button.down
             PropertyChanges {
                 target: button
                 backgroundColor: Qt.darker( activePalette.button )

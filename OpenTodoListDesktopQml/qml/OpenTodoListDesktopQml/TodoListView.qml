@@ -24,7 +24,7 @@ View {
     
     property QtObject currentList : null
     property TodoSortFilterModel model : TodoSortFilterModel {
-        sourceModel: currentList ? currentList.entries : null
+        sourceModel: currentList ? currentList.entries : library.todos
         searchString: filterText.text
     }
 
@@ -63,25 +63,28 @@ View {
         
         Behavior on width { SmoothedAnimation { velocity: 1200 } }
         
+        Button {
+            id: showAllTodosButton
+            label: "All Todos"
+            down: todoListView.currentList == null
+            width: parent.width
+
+            onClicked: todoListView.currentList = null
+        }
+
         ListView {
             width: parent.width
-            height: childrenRect.height
+            anchors.top: showAllTodosButton.bottom
+            anchors.topMargin: 4
+            anchors.bottom: parent.bottom
             model: library.todoLists
-            delegate: Rectangle {
+            spacing: 4
+            delegate: Button {
                 width: parent.width
-                height: todoListLabel.paintedHeight + 10
-                border.width: 1
-                border.color: todoListView.currentList == object ? 'red' : 'black'
-                
-                Text {
-                    id: todoListLabel
-                    text: object.name
-                }
-                
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: todoListView.currentList = object
-                }
+                label: object.name
+                down: todoListView.currentList == object
+
+                onClicked: todoListView.currentList = object
             }
         }
         
@@ -99,7 +102,7 @@ View {
             height: childrenRect.height
             
             Item {
-                height: childrenRect.height
+                height: todoListView.currentList ? childrenRect.height : 0
                 width: todoListContents.width
                 SimpleTextInput {
                     id: newTodoTitle
@@ -122,6 +125,8 @@ View {
                         newTodoTitle.text = "";
                     }
                 }
+
+                Behavior on height { SmoothedAnimation { velocity: 1200 } }
             }
 
             Item {
