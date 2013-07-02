@@ -45,6 +45,7 @@ ViewContainer {
         
         onTodoSelected: todoDetailsView.todo = todo
         onShowTrashForList: deletedTodosView.todoList = list
+        onShowSearch: searchView.hidden = false
         Component.onCompleted: hidden = false
     }
     
@@ -52,6 +53,15 @@ ViewContainer {
         id: newTodoListView
 
         title: "New Todo List"
+    }
+
+    SearchView {
+        id: searchView
+
+        title: "Search"
+        hidden: true
+
+        onTodoSelected: todoDetailsView.todo = todo
     }
        
     TodoDetailsView {

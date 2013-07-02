@@ -26,10 +26,14 @@ View {
     property TodoSortFilterModel model : TodoSortFilterModel {
         sourceModel: currentList ? currentList.entries : library.todos
         searchString: filterText.text
+        filterMode: sourceModel === library.todos ?
+                        TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted :
+                        TodoSortFilterModel.NoFilter
     }
 
     signal todoSelected(QtObject todo)
     signal showTrashForList( QtObject list )
+    signal showSearch()
 
     onCurrentListChanged: filterText.text = ""
     
@@ -40,9 +44,9 @@ View {
             onClicked: newTodoListView.hidden = false
         },
         ToolButton {
-            label: "Quit"
+            label: "Search"
 
-            onClicked: Qt.quit()
+            onClicked: todoListView.showSearch()
         },
         ToolButton {
             label: "Trash Bin"
@@ -51,6 +55,11 @@ View {
             onClicked: if ( todoListView.currentList ) {
                            todoListView.showTrashForList( todoListView.currentList );
                        }
+        },
+        ToolButton {
+            label: "Quit"
+
+            onClicked: Qt.quit()
         }
 
     ]
@@ -120,13 +129,15 @@ View {
                     onClicked: createNewTodo()
 
                     function createNewTodo() {
-                        var todo = todoListView.currentList.addTodo();
-                        todo.title = newTodoTitle.text;
-                        newTodoTitle.text = "";
+                        if ( newTodoTitle.text != "" ) {
+                            var todo = todoListView.currentList.addTodo();
+                            todo.title = newTodoTitle.text;
+                            newTodoTitle.text = "";
+                        }
                     }
                 }
 
-                Behavior on height { SmoothedAnimation { velocity: 1200 } }
+                Behavior on height { SmoothedAnimation { velocity: 120 } }
             }
 
             Item {

@@ -48,6 +48,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.margins: 2
         text: "Simple Text Input"
         color: activePalette.buttonText
     }
