@@ -40,6 +40,7 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/TodoListEntry.qml \
     qml/OpenTodoListDesktopQml/TodoDetailsView.qml \
     qml/OpenTodoListDesktopQml/SimpleTextInput.qml \
+    qml/OpenTodoListDesktopQml/SearchView.qml \
     qml/OpenTodoListDesktopQml/ProgressBar.qml \
     qml/OpenTodoListDesktopQml/NewTodoListView.qml \
     qml/OpenTodoListDesktopQml/main.qml \
