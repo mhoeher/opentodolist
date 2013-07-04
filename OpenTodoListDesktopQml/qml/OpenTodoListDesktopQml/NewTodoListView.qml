@@ -29,14 +29,15 @@ View {
         label: "Create"
         
         onClicked: {
-            if ( library.createTodoList( newTodoListView.name, newTodoListView.type ) ) {
+            if ( newTodoListView.name != "" &&
+                    library.createTodoList(
+                        newTodoListView.name, newTodoListView.type ) ) {
                 newTodoListView.hidden = true;
             }
         }
     },
     ToolButton {
         label: "Cancel"
-        
         onClicked: newTodoListView.hidden = true
     }
     ]
@@ -49,31 +50,27 @@ View {
         
         Text {
             text: "<b>List Name:</b>"
+            color: newTodoListName.text != "" ? "black" : "red"
         }
         SimpleTextInput {
             id: newTodoListName
             width: parent.width * 0.8
+            text: ""
         }
         Text {
             text: "<b>Type:</b>"
+            color: newTodoListView.type ? "black" : "red"
         }
         ListView {
             model: library.plugins.backends
             clip: true
             width: parent.width * 0.8
             height: 400
-            delegate: Rectangle {
-                width: parent.width
-                height: childrenRect.height
-                radius: 5
-                color: object == newTodoListView.type ? Qt.darker( activePalette.button, 1.1 ) : activePalette.button
-                Text {
-                    text: object.name
-                }
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: newTodoListView.type = object
-                }
+            delegate: Button {
+                label: object.name
+                down: newTodoListView.type == object
+
+                onClicked: newTodoListView.type = object
             }
         }
     }
