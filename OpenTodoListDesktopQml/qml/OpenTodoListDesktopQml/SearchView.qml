@@ -58,6 +58,7 @@ View {
             spacing: 4
             anchors.bottom: parent.bottom
             width: parent.width
+            clip: true
             delegate: TodoListEntry {
                 todo: object
                 onClicked: searchView.todoSelected( object )
