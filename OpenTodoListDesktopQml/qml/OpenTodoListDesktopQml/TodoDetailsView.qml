@@ -163,7 +163,7 @@ View {
             anchors.left: parent.left
             anchors.right: parent.right
         }
-        
+
         ListView {
             model: todoDetailsView.model
             width: parent.width

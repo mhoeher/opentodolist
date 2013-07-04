@@ -29,6 +29,7 @@ View {
         filterMode: sourceModel === library.todos ?
                         TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted :
                         TodoSortFilterModel.NoFilter
+        sortMode: TodoSortFilterModel.PrioritySort
     }
 
     signal todoSelected(QtObject todo)

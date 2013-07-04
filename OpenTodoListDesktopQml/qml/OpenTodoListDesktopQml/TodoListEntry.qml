@@ -25,6 +25,23 @@ Rectangle {
     width: parent.width - 10
     x: parent.x + 5
     height: childrenRect.height
+    radius: 4
+    border.width: 1
+    border.color: Qt.darker( color )
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: Qt.darker( entry.color, 1.1 )
+        }
+        GradientStop {
+            position: 0.5
+            color: entry.color
+        }
+        GradientStop {
+            position: 1.0
+            color: Qt.darker( entry.color, 1.1 )
+        }
+    }
     
     property QtObject todo: null
     property alias containsMouse: mouseArea.containsMouse
@@ -38,76 +55,110 @@ Rectangle {
         
         onClicked: entry.clicked()
     }
-    
-    Row {
-        spacing: 4
-        width: parent.width
 
-        Rectangle {
-            id: checkMark
-            border.width: 1
-            border.color: 'black'
-            color: 'white'
-            width: 20
-            height: 20
-            
+    Item {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
+        height: childrenRect.height + 10
+
+        Row {
+            spacing: 4
+            width: parent.width
+            anchors.margins: 10
+            y: 5
+
+
             Rectangle {
-                id: checkMarkInner
-                width: 10
-                height: 10
-                x: 5
-                y: 5
-                color: Qt.darker( activePalette.button )
-                opacity: 0
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: { 
-                    entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 );
+                id: checkMark
+                border.width: 1
+                border.color: 'black'
+                color: 'white'
+                width: 20
+                height: 20
+                anchors.verticalCenter: parent.verticalCenter
+
+                Rectangle {
+                    id: checkMarkInner
+                    width: 10
+                    height: 10
+                    x: 5
+                    y: 5
+                    color: Qt.darker( activePalette.button )
+                    opacity: 0
                 }
-            }
-            
-            states: [ 
-                State {
-                    name: "checked"
-                    when: entry.todo.progress === 100
-                    PropertyChanges {
-                        target: checkMarkInner
-                        opacity: 1
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 );
                     }
                 }
-            ]
-            
-            transitions: [
-                Transition {
-                    from: ""
-                    to: "checked"
-                    reversible: true
-                    NumberAnimation {
-                        duration: 300
-                        easing.type: Easing.Linear
-                        properties: "opacity"
+
+                states: [
+                    State {
+                        name: "checked"
+                        when: entry.todo.progress === 100
+                        PropertyChanges {
+                            target: checkMarkInner
+                            opacity: 1
+                        }
                     }
+                ]
+
+                transitions: [
+                    Transition {
+                        from: ""
+                        to: "checked"
+                        reversible: true
+                        NumberAnimation {
+                            duration: 300
+                            easing.type: Easing.Linear
+                            properties: "opacity"
+                        }
+                    }
+                ]
+            }
+
+            Text {
+                id: label
+                anchors.verticalCenter: parent.verticalCenter
+                text: entry.todo.title
+                font.pointSize: 12
+                width: parent.width - checkMark.width - deleteTodoButton.width - 8
+                wrapMode: Text.Wrap
+            }
+
+            /*IconButton {
+                id: deleteTodoButton
+                source: "action_delete.png"
+                imageWidth: 32
+                imageHeight: 32
+
+                onClicked: entry.todo.deleted = !entry.todo.deleted;
+            }*/
+            Item {
+                id: deleteTodoButton
+                width: childrenRect.width
+                height: childrenRect.height
+
+                Text {
+                    opacity: deleteMouseArea.containsMouse ? "1.0" : "0.3"
+                    text: entry.todo.deleted ? "↺" : "✖"
+                    font.pointSize: 15
+
+                    Behavior on opacity { SmoothedAnimation { velocity: 10 } }
                 }
-            ]
-        }
-        
-        Text {
-            id: label
-            text: entry.todo.title
-            font.pointSize: 12
-            width: parent.width - checkMark.width - deleteTodoButton.width - 8
-            wrapMode: Text.Wrap
+
+                MouseArea {
+                    id: deleteMouseArea
+                    anchors.fill: parent
+                    onClicked: entry.todo.deleted = !entry.todo.deleted
+                    hoverEnabled: true
+                }
+            }
         }
 
-        IconButton {
-            id: deleteTodoButton
-            source: "action_delete.png"
-            imageWidth: 32
-            imageHeight: 32
-
-            onClicked: entry.todo.deleted = !entry.todo.deleted;
-        }
     }
     
     states: [
