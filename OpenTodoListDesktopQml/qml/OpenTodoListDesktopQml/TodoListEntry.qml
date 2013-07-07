@@ -129,33 +129,13 @@ Rectangle {
                 wrapMode: Text.Wrap
             }
 
-            /*IconButton {
+            IconButton {
                 id: deleteTodoButton
-                source: "action_delete.png"
-                imageWidth: 32
-                imageHeight: 32
+                source: entry.todo.deleted ? "action_restore.png" : "action_delete.png"
+                imageWidth: 16
+                imageHeight: 16
 
                 onClicked: entry.todo.deleted = !entry.todo.deleted;
-            }*/
-            Item {
-                id: deleteTodoButton
-                width: childrenRect.width
-                height: childrenRect.height
-
-                Text {
-                    opacity: deleteMouseArea.containsMouse ? "1.0" : "0.3"
-                    text: entry.todo.deleted ? "↺" : "✖"
-                    font.pointSize: 15
-
-                    Behavior on opacity { SmoothedAnimation { velocity: 10 } }
-                }
-
-                MouseArea {
-                    id: deleteMouseArea
-                    anchors.fill: parent
-                    onClicked: entry.todo.deleted = !entry.todo.deleted
-                    hoverEnabled: true
-                }
             }
         }
 
