@@ -28,6 +28,7 @@ Rectangle {
     border.color: Qt.darker( activePalette.button )
     
     property alias text: textInput.text
+    property string placeholderText: ""
 
     // Indicates that return or enter has been pressed.
     // Useful to implement a "default" action or
@@ -41,6 +42,15 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: { textInput.focus = true; }
+    }
+
+    Text {
+        id: placeholder
+        text: textInput.text == "" ? input.placeholderText : ""
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
+        opacity: 0.5
     }
     
     TextInput {

@@ -40,8 +40,8 @@ function tintPriority( color, priority ) {
 var ToolButtonImages = new Array(
     "toolbutton_1.png",
     "toolbutton_2.png",
-    "toolbutton_3.png",
-    "toolbutton_4.png"
+    "toolbutton_4.png",
+    "toolbutton_3.png"
 );
 
 function getToolButtonImage( index ) {
@@ -71,4 +71,10 @@ function hideView( list, view ) {
         list[list.length-1].active = true;
     }
     return list;
+}
+
+function getLastDateOfWeek() {
+    var current = new Date();
+    return new Date(
+                current.setDate( current.getDate() - current.getDay() + 6 ) );
 }

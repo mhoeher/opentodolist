@@ -18,17 +18,31 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList 1.0
+import "Utils.js" as Utils
 
 View {
     id: todoListView
     
     property QtObject currentList : null
+
+    property TodoSortFilterModel allTopLevelTodos : TodoSortFilterModel {
+        sourceModel: library.todos
+        filterMode: TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted
+    }
+
+    property TodoSortFilterModel dueTodayModel : TodoSortFilterModel {
+        sourceModel: library.todos
+        maxDueDate: new Date()
+    }
+
+    property TodoSortFilterModel dueThisWeekModel : TodoSortFilterModel {
+        sourceModel: library.todos
+        maxDueDate: Utils.getLastDateOfWeek()
+    }
+
     property TodoSortFilterModel model : TodoSortFilterModel {
-        sourceModel: currentList ? currentList.entries : library.todos
+        sourceModel: allTopLevelTodos
         searchString: filterText.text
-        filterMode: sourceModel === library.todos ?
-                        TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted :
-                        TodoSortFilterModel.NoFilter
         sortMode: TodoSortFilterModel.PrioritySort
     }
 
@@ -76,15 +90,46 @@ View {
         Button {
             id: showAllTodosButton
             label: "All Todos"
-            down: todoListView.currentList == null
+            down: todoListView.model.sourceModel == todoListView.allTopLevelTodos
             width: parent.width
 
-            onClicked: todoListView.currentList = null
+            onClicked: {
+                todoListView.currentList = null;
+                todoListView.model.sourceModel = todoListView.allTopLevelTodos
+            }
+        }
+
+        Button {
+            id: showTodosDueToday
+            label: "Due Today"
+            down: todoListView.model.sourceModel == todoListView.dueTodayModel
+            width: parent.width
+            anchors.top: showAllTodosButton.bottom
+            anchors.topMargin: 4
+
+            onClicked: {
+                todoListView.currentList = null;
+                todoListView.model.sourceModel = todoListView.dueTodayModel
+            }
+        }
+
+        Button {
+            id: showTodosDueThisWeek
+            label: "Due This Week"
+            down: todoListView.model.sourceModel == todoListView.dueThisWeekModel
+            width: parent.width
+            anchors.top: showTodosDueToday.bottom
+            anchors.topMargin: 4
+
+            onClicked: {
+                todoListView.currentList = null;
+                todoListView.model.sourceModel = todoListView.dueThisWeekModel
+            }
         }
 
         ListView {
             width: parent.width
-            anchors.top: showAllTodosButton.bottom
+            anchors.top: showTodosDueThisWeek.bottom
             anchors.topMargin: 4
             anchors.bottom: parent.bottom
             model: library.todoLists
@@ -94,7 +139,10 @@ View {
                 label: object.name
                 down: todoListView.currentList == object
 
-                onClicked: todoListView.currentList = object
+                onClicked: {
+                    todoListView.currentList = object
+                    todoListView.model.sourceModel = object.entries
+                }
             }
         }
         

@@ -23,6 +23,7 @@
 #include "objectmodel.h"
 #include "opentodolistcore_global.h"
 
+#include <QDateTime>
 #include <QSortFilterProxyModel>
 
 class AbstractTodo;
@@ -37,6 +38,7 @@ class OPENTODOLISTCORESHARED_EXPORT TodoSortFilterModel : public QSortFilterProx
     Q_PROPERTY( int filterMode READ filterMode WRITE setFilterMode NOTIFY filterModeChanged )
     Q_PROPERTY( SortMode sortMode READ sortMode WRITE setSortMode NOTIFY sortModeChanged )
     Q_PROPERTY( QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged )
+    Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged )
     
 public:
     
@@ -98,6 +100,17 @@ public:
     QString searchString() const {
         return m_searchString;
     }
+
+    QDateTime maxDueDate() const {
+        return m_maxDueDate;
+    }
+
+    void setMaxDueDate( const QDateTime& maxDueDate ) {
+        emit beginResetModel();
+        m_maxDueDate = maxDueDate;
+        emit endResetModel();
+        emit maxDueDateChanged();
+    }
     
     void setParentTodo( AbstractTodo* todo );
     
@@ -111,6 +124,7 @@ signals:
     void sortModeChanged();
     void filterModeChanged();
     void searchStringChanged();
+    void maxDueDateChanged();
 
 protected:
     
@@ -124,6 +138,7 @@ private:
     SortMode m_sortMode;
     AbstractTodo *m_parentTodo;
     QString m_searchString;
+    QDateTime m_maxDueDate;
     
     virtual void setSourceModel(QAbstractItemModel*) {}
     

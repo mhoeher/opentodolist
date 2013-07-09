@@ -23,6 +23,7 @@ QObject(parent),
     m_priority( -1 ),
     m_parentTodo( 0 ),
     m_deleted( false ),
+    m_dueDate( QDateTime() ),
     m_subTodosModel( new TodoSortFilterModel( this ) )
 {
     m_subTodosModel->setParentTodo( this );
@@ -39,6 +40,7 @@ QObject(parent),
     connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()));
 }
 
 int AbstractTodo::priority() const
@@ -124,6 +126,17 @@ void AbstractTodo::setDeleted(bool deleted)
 {
     m_deleted = deleted;
     emit deletedChanged();
+}
+
+QDateTime AbstractTodo::dueDate() const
+{
+    return m_dueDate;
+}
+
+void AbstractTodo::setDueDate(const QDateTime &dateTime)
+{
+    m_dueDate = dateTime;
+    emit dueDateChanged();
 }
 
 AbstractTodoList* AbstractTodo::parent() const

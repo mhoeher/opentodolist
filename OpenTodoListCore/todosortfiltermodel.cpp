@@ -25,7 +25,8 @@ TodoSortFilterModel::TodoSortFilterModel(QObject* parent):
     m_filterMode( NoFilter ),
     m_sortMode( NoSort ),
     m_parentTodo( 0 ),
-    m_searchString( QString() )
+    m_searchString( QString() ),
+    m_maxDueDate( QDateTime() )
 {
 }
 
@@ -71,6 +72,10 @@ bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& so
                  todo->description().contains( m_searchString, Qt::CaseInsensitive )) ) {
                 result = false;
             }
+        }
+        if ( m_maxDueDate.isValid() ) {
+            result = !todo->isCompleted() && todo->dueDate().isValid() &&
+                    todo->dueDate().daysTo( m_maxDueDate ) >= 0;
         }
         if ( m_filterMode & TodoListEntries ) {
             result = !todo->parentTodo() ? result : false;

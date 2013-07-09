@@ -22,8 +22,8 @@
 #include "opentodolistcore_global.h"
 #include "todosortfiltermodel.h"
 
+#include <QDate>
 #include <QObject>
-#include <qshareddata.h>
 
 class AbstractTodoList;
 
@@ -36,6 +36,7 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
     Q_PROPERTY( int priority READ priority WRITE setPriority NOTIFY priorityChanged )
     Q_PROPERTY( QObject* parentTodo READ parentTodo WRITE setParentTodo NOTIFY parentTodoChanged )
     Q_PROPERTY( bool deleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
+    Q_PROPERTY( QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
     Q_PROPERTY( QObject* todoList READ todoList CONSTANT )
     Q_PROPERTY( QObject* subTodos READ subTodos CONSTANT )
     Q_PROPERTY( bool isCompleted READ isCompleted NOTIFY progressChanged() )
@@ -61,6 +62,9 @@ public:
     bool isDeleted() const;
     void setDeleted( bool deleted );
 
+    QDateTime dueDate() const;
+    void setDueDate( const QDateTime& dateTime );
+
     bool isCompleted() const { return progress() == 100; }
     
     AbstractTodoList* parent() const;
@@ -77,6 +81,7 @@ signals:
     void priorityChanged();
     void parentTodoChanged();
     void deletedChanged();
+    void dueDateChanged();
     
     void changed();
     
@@ -90,6 +95,7 @@ private:
     int                 m_priority;
     AbstractTodo        *m_parentTodo;
     bool                m_deleted;
+    QDateTime           m_dueDate;
     
     TodoSortFilterModel *m_subTodosModel;
     

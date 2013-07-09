@@ -30,7 +30,14 @@ View {
         searchString: filterText.text
     }
 
-    onTodoChanged: filterText.text = ""
+    onTodoChanged: {
+        filterText.text = "";
+        if ( todo ) {
+            todoDueDateEdit.date = todo.dueDate;
+        } else {
+            todoDueDateEdit.date = new Date( NaN, NaN, NaN );
+        }
+    }
     
     //TODO: Whenever the todo changes, the size of the description edit
     //      does not properly shrink. Find out how to fix this.
@@ -164,6 +171,26 @@ View {
             anchors.right: parent.right
         }
 
+        Row {
+            spacing: 5
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: "Due to"
+            }
+
+            DatePicker {
+                id: todoDueDateEdit
+                anchors.verticalCenter: parent.verticalCenter
+                //date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : new Date()
+
+                onDateChanged: {
+                    if ( todoDetailsView.todo ) {
+                        todoDetailsView.todo.dueDate = date
+                    }
+                }
+            }
+        }
+
         ListView {
             model: todoDetailsView.model
             width: parent.width
@@ -179,7 +206,6 @@ View {
         }
         
         Item {
-            
             width: parent.width
             height: childrenRect.height
             
@@ -212,7 +238,6 @@ View {
                     y: 20
                 }
             }
-            
         }
         
         Button {
@@ -221,6 +246,5 @@ View {
             
             onClicked: { todoDetailsView.todo.description = todoDescriptionEdit.text; }
         }
-        
     }
 }
