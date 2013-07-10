@@ -75,7 +75,8 @@ void LocalXmlTodo::save()
         QFile file( m_key );
         if ( file.open( QIODevice::WriteOnly ) ) {
             QTextStream stream( &file );
-            stream << xml.toString();
+            stream.setCodec( "UTF-8" );
+            stream << xml.toString().toUtf8();
             file.close();
         }
     }

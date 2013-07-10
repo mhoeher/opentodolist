@@ -64,6 +64,7 @@ void LocalXmlTodoList::save()
     QFile file( key() + "/config.xml" );
     if ( file.open( QIODevice::WriteOnly ) ) {
         QTextStream stream( &file );
+        stream.setCodec( "UTF-8" );
         stream << xml.toString();
         file.close();
     }
