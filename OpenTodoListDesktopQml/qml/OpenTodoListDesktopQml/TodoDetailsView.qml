@@ -171,22 +171,15 @@ View {
             anchors.right: parent.right
         }
 
-        Row {
-            spacing: 5
-            Text {
-                anchors.verticalCenter: parent.verticalCenter
-                text: "Due to"
-            }
 
-            DatePicker {
-                id: todoDueDateEdit
-                anchors.verticalCenter: parent.verticalCenter
-                //date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : new Date()
+        DatePicker {
+            id: todoDueDateEdit
+            date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : new Date()
+            label: "Due to"
 
-                onDateChanged: {
-                    if ( todoDetailsView.todo ) {
-                        todoDetailsView.todo.dueDate = date
-                    }
+            onDateChanged: {
+                if ( todoDetailsView.todo ) {
+                    todoDetailsView.todo.dueDate = date
                 }
             }
         }

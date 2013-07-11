@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var PriorityColors = new Array( 
+var PriorityColors = [
     "#00E508",
     "#24E100",
     "#4FDD00",
@@ -27,7 +27,7 @@ var PriorityColors = new Array(
     "#CA8500",
     "#C65C00",
     "#C23400",
-    "#BF0E00" );
+    "#BF0E00" ];
 PriorityColors[-1] = "#00000000";
 
 function tintPriority( color, priority ) {
@@ -37,12 +37,12 @@ function tintPriority( color, priority ) {
     return Qt.tint( color, "#30" + PriorityColors[priority].substr( 1 ) );
 }
 
-var ToolButtonImages = new Array(
+var ToolButtonImages = [
     "toolbutton_1.png",
     "toolbutton_2.png",
     "toolbutton_4.png",
     "toolbutton_3.png"
-);
+];
 
 function getToolButtonImage( index ) {
     return ToolButtonImages[ index % ToolButtonImages.length ];
@@ -73,8 +73,48 @@ function hideView( list, view ) {
     return list;
 }
 
+var DayNamesShort = [ "So", "Mo", "Tu", "We", "Th", "Fr", "Sa" ];
+var MonthNames = [ "January", "February", "March",
+                   "April", "May", "June", "July",
+                  "August", "September", "October",
+                  "November", "December" ];
+
 function getLastDateOfWeek() {
     var current = new Date();
     return new Date(
                 current.setDate( current.getDate() - current.getDay() + 6 ) );
+}
+
+function getFirstDay( date ) {
+    return new Date( date.getFullYear(), date.getMonth(), 1 ).getDay();
+}
+
+function getDaysInMonth( date ) {
+    return new Date( date.getFullYear(), date.getMonth() + 1, 0 ).getDate();
+}
+
+function getNullDate() {
+    return new Date( NaN, NaN, NaN );
+}
+
+function isValidDate( date ) {
+    return !( isNaN( date.getFullYear() ) ||
+             isNaN( date.getMonth() ) ||
+             isNaN( date.getDate() ) );
+}
+
+function areDatesEqual( date1, date2 ) {
+    return isValidDate( date1 ) &&
+           isValidDate( date2 ) &&
+           date1.getFullYear() === date2.getFullYear() &&
+             date1.getMonth() === date2.getMonth() &&
+             date1.getDate() === date2.getDate();
+}
+
+function formatDate( date, defaultLabel ) {
+    return isValidDate( date ) ?
+                date.getDate() + " " +
+            MonthNames[ date.getMonth() ] + " " +
+            date.getFullYear() :
+                defaultLabel;
 }

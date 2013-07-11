@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import "Utils.js" as Utils
 
 Item {
     id: root
@@ -25,56 +26,61 @@ Item {
     width: childrenRect.width
 
     property date date: new Date()
+    property string label: "Selected Date"
+    property string nullDateLabel: "No date set"
 
-    function applyDate() {
-        date = new Date( yearEdit.text, monthEdit.text, dateEdit.text )
-    }
+    Column {
 
-    Row {
-        width: childrenRect.width
-        spacing: 5
+        Row {
+            spacing: 10
+            Text {
+                text: root.label
+            }
+            Text {
+                text: Utils.formatDate( root.date, root.nullDateLabel )
+            }
+            Button {
+                label: "Select Date"
+                visible: root.state == ""
+                onClicked: {
+                    calendar.viewDate = Utils.isValidDate( root.date ) ? root.date : new Date()
+                    calendar.selectedDate = root.date
+                    root.state = "selecting"
+                }
+            }
+            Button {
+                label: "OK"
+                visible: root.state == "selecting"
+                onClicked: {
+                    root.date = calendar.selectedDate
+                    root.state = ""
+                }
+            }
+            Button {
+                label: "Clear"
+                visible: root.state == "selecting"
+                onClicked: {
+                    root.date = Utils.getNullDate()
+                    root.state = ""
+                }
+            }
 
-        SimpleTextInput {
-            id: dateEdit
-            text: isNaN( date.getDate() ) ? "" : date.getDate()
-            placeholderText: qsTr( "DD" )
-            width: 100
-
-            onApply: applyDate()
+            Button {
+                label: "Cancel"
+                visible: root.state == "selecting"
+                onClicked: {
+                    calendar.selectedDate = root.date
+                    root.state = ""
+                }
+            }
         }
-        Text {
-            text: "-"
-        }
-        SimpleTextInput {
-            id: monthEdit
-            text: isNaN( date.getMonth() ) ? "" : date.getMonth()
-            placeholderText: qsTr( "MM" )
-            width: 100
 
-            onApply: applyDate()
-        }
-        Text {
-            text: "-"
-        }
-        SimpleTextInput {
-            id: yearEdit
-            text: isNaN( date.getFullYear() ) ? "" : date.getFullYear()
-            placeholderText: qsTr( "YYYY" )
-            width: 100
-
-            onApply: applyDate()
-        }
-        IconButton {
-            source: "action_delete.png"
-            imageWidth: 16
-            imageHeight: 16
-            anchors.verticalCenter: parent.verticalCenter
-            visible: !(isNaN( date.getFullYear() )
-                       || isNaN( date.getMonth() )
-                       || isNaN( date.getDate() ) )
-
-            onClicked: {
-                date = new Date( NaN, NaN, NaN )
+        Row {
+            visible: root.state == "selecting"
+            Calendar {
+                id: calendar
+                viewDate: Utils.isValidDate( root.date ) ? root.date : new Date()
+                selectedDate: root.date
             }
         }
     }
