@@ -71,7 +71,7 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 include(../utils.pri)
-copyToDestDir($$OTHER_FILES)
+copyToDestDir($$OTHER_FILES,$$PWD)
 
 # Support "make install":
 target.path = $$INSTALL_PREFIX/bin
