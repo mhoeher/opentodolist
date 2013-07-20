@@ -36,6 +36,11 @@ ViewContainer {
         property color button: "#dddddd"
         property color buttonText: "#000000"
     }
+
+    FontLoader {
+        id: symbolFont
+        source: "fontawesome-webfont.ttf"
+    }
     
     TodoListView {
         id: todoListView

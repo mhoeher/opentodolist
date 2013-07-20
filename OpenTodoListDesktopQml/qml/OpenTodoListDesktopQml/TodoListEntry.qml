@@ -69,55 +69,10 @@ Rectangle {
             anchors.margins: 10
             y: 5
 
-
-            Rectangle {
+            SymbolButton {
                 id: checkMark
-                border.width: 1
-                border.color: 'black'
-                color: 'white'
-                width: 20
-                height: 20
-                anchors.verticalCenter: parent.verticalCenter
-
-                Rectangle {
-                    id: checkMarkInner
-                    width: 10
-                    height: 10
-                    x: 5
-                    y: 5
-                    color: Qt.darker( activePalette.button )
-                    opacity: 0
-                }
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 );
-                    }
-                }
-
-                states: [
-                    State {
-                        name: "checked"
-                        when: entry.todo.progress === 100
-                        PropertyChanges {
-                            target: checkMarkInner
-                            opacity: 1
-                        }
-                    }
-                ]
-
-                transitions: [
-                    Transition {
-                        from: ""
-                        to: "checked"
-                        reversible: true
-                        NumberAnimation {
-                            duration: 300
-                            easing.type: Easing.Linear
-                            properties: "opacity"
-                        }
-                    }
-                ]
+                text: entry.todo.progress === 100 ? "\uf046" : "\uf096"
+                onClicked: entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 )
             }
 
             Text {
@@ -129,14 +84,12 @@ Rectangle {
                 wrapMode: Text.Wrap
             }
 
-            IconButton {
+            SymbolButton {
                 id: deleteTodoButton
-                source: entry.todo.deleted ? "action_restore.png" : "action_delete.png"
-                imageWidth: 16
-                imageHeight: 16
-
+                text: entry.todo.deleted ? "\uf0e2" : "\uf014"
                 onClicked: entry.todo.deleted = !entry.todo.deleted;
             }
+
         }
 
     }

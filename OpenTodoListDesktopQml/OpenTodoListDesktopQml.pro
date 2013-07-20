@@ -51,7 +51,10 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/ViewContainer.qml \
     qml/OpenTodoListDesktopQml/DeletedTodosView.qml \
     qml/OpenTodoListDesktopQml/DatePicker.qml \
-    qml/OpenTodoListDesktopQml/Calendar.qml
+    qml/OpenTodoListDesktopQml/Calendar.qml \
+    qml/OpenTodoListDesktopQml/fontawesome-webfont.license.txt \
+    qml/OpenTodoListDesktopQml/fontawesome-webfont.ttf \
+    qml/OpenTodoListDesktopQml/SymbolButton.qml
 
 # Add more folders to ship with the application, here
 qml.source = qml/OpenTodoListDesktopQml
