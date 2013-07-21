@@ -19,12 +19,15 @@
 
 #include "applicationviewer.h"
 
+#include "imageprovider.h"
+
 #include <QQmlEngine>
 
 ApplicationViewer::ApplicationViewer(QWindow* parent) : 
     QtQuick2ApplicationViewer(parent),
     m_watcher( new QFileSystemWatcher( this ) )
 {
+    engine()->addImageProvider( "primitives", new ImageProvider() );
     connect( m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(reload()) );
     connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
 }

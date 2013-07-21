@@ -20,12 +20,11 @@ import QtQuick 2.0
 
 Rectangle {
     id: input
-    color: Qt.lighter( activePalette.button )
-    radius: 2
+    color: colors.input
     height: textInput.height + 10
     clip: true
     border.width: 1
-    border.color: Qt.darker( activePalette.button )
+    border.color: Qt.darker( colors.button )
     
     property alias text: textInput.text
     property string placeholderText: ""
@@ -60,6 +59,6 @@ Rectangle {
         anchors.right: parent.right
         anchors.margins: 2
         text: "Simple Text Input"
-        color: activePalette.buttonText
+        color: colors.fontColorFor( input.color )
     }
 }

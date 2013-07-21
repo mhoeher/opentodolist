@@ -19,7 +19,8 @@
 import QtQuick 2.0
 import "Utils.js" as Utils
 
-Item {
+Rectangle {
+    color: colors.window
 
     property variant activeViews: Utils.initViewList()
 

@@ -17,81 +17,68 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.0
 import "Utils.js" as Utils;
 
 Rectangle {
     id: entry
-    color: Utils.tintPriority( activePalette.button, todo.priority )
-    width: parent.width - 10
-    x: parent.x + 5
-    height: childrenRect.height
-    radius: 4
-    border.width: 1
-    border.color: Qt.darker( color )
-    gradient: Gradient {
-        GradientStop {
-            position: 0.0
-            color: Qt.darker( entry.color, 1.1 )
-        }
-        GradientStop {
-            position: 0.5
-            color: entry.color
-        }
-        GradientStop {
-            position: 1.0
-            color: Qt.darker( entry.color, 1.1 )
-        }
-    }
     
     property QtObject todo: null
     property alias containsMouse: mouseArea.containsMouse
+    property color fontColor: colors.fontColorFor( color )
     
     signal clicked
-    
+
+    color: colors.button
+    width: parent.width
+    height: childrenRect.height
+
     MouseArea {
         id: mouseArea
-        anchors.fill: parent
+        anchors.fill: entryContent
         hoverEnabled: true
         
         onClicked: entry.clicked()
     }
 
-    Item {
+    RowLayout {
+        id: entryContent
         anchors.left: parent.left
+        anchors.leftMargin: 4
         anchors.right: parent.right
-        anchors.leftMargin: 5
-        anchors.rightMargin: 5
-        height: childrenRect.height + 10
+        anchors.rightMargin: 4
 
-        Row {
-            spacing: 4
-            width: parent.width
-            anchors.margins: 10
-            y: 5
-
+        Item {
+            width: childrenRect.width
+            height: childrenRect.height
+            anchors.verticalCenter: parent.verticalCenter
+            SymbolButton {
+                text: "\uf0c8"
+                color: Utils.PriorityColors[entry.todo.priority]
+            }
             SymbolButton {
                 id: checkMark
                 text: entry.todo.progress === 100 ? "\uf046" : "\uf096"
+                color: fontColor
                 onClicked: entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 )
             }
-
-            Text {
-                id: label
-                anchors.verticalCenter: parent.verticalCenter
-                text: entry.todo.title
-                font.pointSize: 12
-                width: parent.width - checkMark.width - deleteTodoButton.width - 8
-                wrapMode: Text.Wrap
-            }
-
-            SymbolButton {
-                id: deleteTodoButton
-                text: entry.todo.deleted ? "\uf0e2" : "\uf014"
-                onClicked: entry.todo.deleted = !entry.todo.deleted;
-            }
-
         }
 
+        Text {
+            id: label
+            text: entry.todo.title
+            color: fontColor
+            font.pointSize: 12
+            wrapMode: Text.Wrap
+            Layout.fillWidth: true
+        }
+
+        SymbolButton {
+            id: deleteTodoButton
+            text: entry.todo.deleted ? "\uf0e2" : "\uf014"
+            color: fontColor
+            onClicked: entry.todo.deleted = !entry.todo.deleted;
+        }
     }
     
     states: [
@@ -100,7 +87,7 @@ Rectangle {
             when: containsMouse
             PropertyChanges {
                 target: entry
-                color: Qt.lighter( activePalette.button )
+                color: Qt.lighter( colors.button, 1.1 )
             }
         }
     ]

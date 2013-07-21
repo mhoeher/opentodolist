@@ -10,11 +10,13 @@ LIBS += -L$$DESTDIR -lOpenTodoListCore
 QT += quick
 
 HEADERS += \
-    applicationviewer.h
+    applicationviewer.h \
+    imageprovider.h
 
 SOURCES += \
     main.cpp \
-    applicationviewer.cpp
+    applicationviewer.cpp \
+    imageprovider.cpp
 
 OTHER_FILES += \
     qml/OpenTodoListDesktopQml/action_delete.png \
@@ -54,7 +56,9 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/Calendar.qml \
     qml/OpenTodoListDesktopQml/fontawesome-webfont.license.txt \
     qml/OpenTodoListDesktopQml/fontawesome-webfont.ttf \
-    qml/OpenTodoListDesktopQml/SymbolButton.qml
+    qml/OpenTodoListDesktopQml/SymbolButton.qml \
+    qml/OpenTodoListDesktopQml/ColorScheme.qml \
+    qml/OpenTodoListDesktopQml/rpdevlogo_webheader.png
 
 # Add more folders to ship with the application, here
 qml.source = qml/OpenTodoListDesktopQml

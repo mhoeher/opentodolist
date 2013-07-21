@@ -32,7 +32,8 @@ View {
 
     toolButtons: [
         ToolButton {
-            label: "Close"
+            font.family: symbolFont.name
+            label: "\uf060"
 
             onClicked: deletedTodosView.todoList = null
         }

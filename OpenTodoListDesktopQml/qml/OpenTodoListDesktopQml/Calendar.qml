@@ -25,7 +25,7 @@ Rectangle {
 
     width: childrenRect.width + spacing * 2
     height: childrenRect.height + spacing * 2
-    color: "white"
+    color: colors.window
 
     property date viewDate: new Date()
     property date selectedDate: Utils.getNullDate()

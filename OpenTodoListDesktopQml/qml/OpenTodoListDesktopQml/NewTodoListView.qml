@@ -25,21 +25,22 @@ View {
     property QtObject type: null
     
     toolButtons: [
-    ToolButton {
-        label: "Create"
-        
-        onClicked: {
-            if ( newTodoListView.name != "" &&
-                    library.createTodoList(
-                        newTodoListView.name, newTodoListView.type ) ) {
-                newTodoListView.hidden = true;
+        ToolButton {
+            font.family: symbolFont.name
+            label: "\uf060"
+            onClicked: newTodoListView.hidden = true
+        },
+        ToolButton {
+            label: "Create"
+
+            onClicked: {
+                if ( newTodoListView.name != "" &&
+                        library.createTodoList(
+                            newTodoListView.name, newTodoListView.type ) ) {
+                    newTodoListView.hidden = true;
+                }
             }
         }
-    },
-    ToolButton {
-        label: "Cancel"
-        onClicked: newTodoListView.hidden = true
-    }
     ]
     
     Grid {

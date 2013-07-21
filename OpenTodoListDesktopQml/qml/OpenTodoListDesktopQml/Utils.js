@@ -37,6 +37,10 @@ function tintPriority( color, priority ) {
     return Qt.tint( color, "#30" + PriorityColors[priority].substr( 1 ) );
 }
 
+function tint( base, overlay, alpha ) {
+    return Qt.tint( base, Qt.rgba( overlay.r, overlay.g, overlay.b, alpha ) )
+}
+
 var ToolButtonImages = [
     "toolbutton_1.png",
     "toolbutton_2.png",

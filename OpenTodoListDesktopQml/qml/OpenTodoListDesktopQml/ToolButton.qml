@@ -29,22 +29,30 @@ Item {
     property alias containsMouse: mouseArea.containsMouse
     property int childOffset: 10
     property bool enabled: true
+    property alias font: text.font
     
-    width: image.width
+    width: text.width + text.height * 2
     height: text.height * 2
-    
-    Image {
-        id: image
-        source: Utils.getToolButtonImage( button.sourceIndex )
-        y: button.childOffset
-        cache: !settings.debug
+
+    Rectangle {
+        id: background
+        width: parent.width
+        height: text.height * 4
+        color: colors.primary
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 100
+            }
+        }
     }
     
     Text {
         id: text
         text: "ToolButton"
         font.bold: true
-        font.pointSize: 10
+        font.pointSize: fonts.h1
+        color: colors.fontColorFor( background.color )
         anchors.horizontalCenter: parent.horizontalCenter
         y: childOffset + 10
         wrapMode: Text.WordWrap
@@ -54,7 +62,8 @@ Item {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: parent.clicked()
+        cursorShape: button.state == "disabled" ? Qt.ArrowCursor : Qt.PointingHandCursor
+        onClicked: if ( button.state != "disabled" ) parent.clicked()
     }
     
     states: [
@@ -62,8 +71,8 @@ Item {
             name: "hovered"
             when: containsMouse && !( parent.disabled || !enabled )
             PropertyChanges {
-                target: button
-                childOffset: 0
+                target: background
+                color: colors.primaryLighter1
             }
         },
         State {

@@ -26,9 +26,8 @@ Rectangle {
     property int value: 0
     property real progress: ( value - minValue ) / ( maxValue - minValue )
     
-    width: 100
-    height: 20
-    radius: 4
+    width: text.width * 1.5
+    height: text.height * 2
     clip: true
     
     Rectangle {
@@ -38,12 +37,13 @@ Rectangle {
         
         anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
         width: progress
-        color: 'green'
+        color: colors.button
         
         Behavior on width { SmoothedAnimation { velocity: 1000 } }
     }
     
     Text {
+        id: text
         anchors.centerIn: parent
         text: Math.floor( progressBar.progress * 100 ) + "%"
     }

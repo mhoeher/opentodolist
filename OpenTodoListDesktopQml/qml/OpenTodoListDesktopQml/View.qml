@@ -19,19 +19,20 @@
 import QtQuick 2.0
 import "Utils.js" as Utils;
 
-Item {
+Rectangle {
     id: view
     x: parent.x + parent.width
     width: parent.width
     height: parent.height
     clip: true
+    color: colors.window
     
     property alias toolButtons: toolbarContent.children
     property bool hidden: true
     property bool active: false
     property alias clientWidth: contentsFlickable.width
     property alias clientHeight: contentsFlickable.height
-    default property alias content: contentPanel.children
+    default property alias content: contentsFlickable.children
     property string title: "View"
 
     onHiddenChanged: {
@@ -40,14 +41,21 @@ Item {
                                   Utils.showView( parent.activeViews, view );
         }
     }
+
+    // Catch all mouse input when this view is active
+    MouseArea {
+        anchors.fill: parent
+        onClicked:;
+    }
     
-    Item {
+    Rectangle {
         id: toolbar
         height: toolbarContent.childrenRect.height
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.leftMargin: 10
+        clip: true
+        color: colors.primary
         
         Flickable {
             anchors.top: parent.top
@@ -63,10 +71,6 @@ Item {
                 //TODO: Will not work! Views remain unhidden even if they are not topmost!
                 property bool disabled: !view.active
                 
-                x: parent.x + 5
-                y: parent.y + 5
-                spacing: 3
-                
                 Component.onCompleted: {
                     for ( var i = 0; i < children.length; ++i ) {
                         children[i].sourceIndex = i;
@@ -81,32 +85,13 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.topMargin: 10
-        
-        BorderImage {
-            anchors.fill: parent
-            
-            source: "view.sci"
-            //TODO: Remove this, this is for debugging only!
-            cache: !settings.debug
-            smooth: true
-            
-            Component.onCompleted: rotation = 1 * Math.random() - 0.5
-        }
         
         Flickable {
             id: contentsFlickable
-            anchors { fill: parent; margins: 40 }
+            anchors { fill: parent; margins: 0 }
             clip: true
-            contentWidth: contentPanel.width
-            contentHeight: contentPanel.height
-            
-            Item {
-                id: contentPanel
-                
-                width: childrenRect.width
-                height: childrenRect.height
-            }
+            contentWidth: contentItem.childrenRect.width
+            contentHeight: contentItem.childrenRect.height
         }
     }
     

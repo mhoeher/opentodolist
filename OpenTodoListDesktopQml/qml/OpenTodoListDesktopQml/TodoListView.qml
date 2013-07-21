@@ -59,12 +59,13 @@ View {
             onClicked: newTodoListView.hidden = false
         },
         ToolButton {
-            label: "Search"
+            label: "\uf002"
+            font.family: symbolFont.name
 
             onClicked: todoListView.showSearch()
         },
         ToolButton {
-            label: "Trash Bin"
+            label: "Trash"
             enabled: currentList !== null
 
             onClicked: if ( todoListView.currentList ) {
@@ -72,80 +73,100 @@ View {
                        }
         },
         ToolButton {
-            label: "Quit"
+            font.family: symbolFont.name
+            label: "\uf011"
 
             onClicked: Qt.quit()
         }
 
     ]
     
-    Item {
+    Rectangle {
         id: sideBar
 
         width: todoListView.currentList || true ? 200 : todoListView.clientWidth
         height: todoListView.clientHeight
+        color: colors.primary
         
         Behavior on width { SmoothedAnimation { velocity: 1200 } }
-        
-        Button {
-            id: showAllTodosButton
-            label: "All Todos"
-            down: todoListView.model.sourceModel == todoListView.allTopLevelTodos
-            width: parent.width
 
-            onClicked: {
-                todoListView.currentList = null;
-                todoListView.model.sourceModel = todoListView.allTopLevelTodos
-            }
-        }
-
-        Button {
-            id: showTodosDueToday
-            label: "Due Today"
-            down: todoListView.model.sourceModel == todoListView.dueTodayModel
-            width: parent.width
-            anchors.top: showAllTodosButton.bottom
-            anchors.topMargin: 4
-
-            onClicked: {
-                todoListView.currentList = null;
-                todoListView.model.sourceModel = todoListView.dueTodayModel
-            }
-        }
-
-        Button {
-            id: showTodosDueThisWeek
-            label: "Due This Week"
-            down: todoListView.model.sourceModel == todoListView.dueThisWeekModel
-            width: parent.width
-            anchors.top: showTodosDueToday.bottom
-            anchors.topMargin: 4
-
-            onClicked: {
-                todoListView.currentList = null;
-                todoListView.model.sourceModel = todoListView.dueThisWeekModel
-            }
-        }
-
-        ListView {
-            width: parent.width
-            anchors.top: showTodosDueThisWeek.bottom
-            anchors.topMargin: 4
+        Image {
+            id: linkToWebPage
+            source: "rpdevlogo_webheader.png"
             anchors.bottom: parent.bottom
-            model: library.todoLists
-            spacing: 4
-            delegate: Button {
-                width: parent.width
-                label: object.name
-                down: todoListView.currentList == object
+            anchors.bottomMargin: 10
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
 
-                onClicked: {
-                    todoListView.currentList = object
-                    todoListView.model.sourceModel = object.entries
+        MouseArea {
+            anchors.fill: linkToWebPage
+            onClicked: Qt.openUrlExternally( "http://www.rpdev.net/home/project/opentodolist" )
+            cursorShape: Qt.PointingHandCursor
+        }
+        
+        Flickable {
+            width: parent.width
+            anchors.top: parent.top
+            anchors.bottom: linkToWebPage.top
+            contentWidth: width
+            contentHeight: todoListColumn.height
+            clip: true
+
+            Column {
+                id: todoListColumn
+                width: parent.width
+
+                Button {
+                    id: showAllTodosButton
+                    label: "All Todos"
+                    down: todoListView.model.sourceModel == todoListView.allTopLevelTodos
+                    width: parent.width
+
+                    onClicked: {
+                        todoListView.currentList = null;
+                        todoListView.model.sourceModel = todoListView.allTopLevelTodos
+                    }
+                }
+
+                Button {
+                    id: showTodosDueToday
+                    label: "Due Today"
+                    down: todoListView.model.sourceModel == todoListView.dueTodayModel
+                    width: parent.width
+
+                    onClicked: {
+                        todoListView.currentList = null;
+                        todoListView.model.sourceModel = todoListView.dueTodayModel
+                    }
+                }
+
+                Button {
+                    id: showTodosDueThisWeek
+                    label: "Due This Week"
+                    down: todoListView.model.sourceModel == todoListView.dueThisWeekModel
+                    width: parent.width
+
+                    onClicked: {
+                        todoListView.currentList = null;
+                        todoListView.model.sourceModel = todoListView.dueThisWeekModel
+                    }
+                }
+
+                Repeater {
+                    model: library.todoLists
+                    delegate: Button {
+                        width: parent.width
+                        label: object.name
+                        down: todoListView.currentList == object
+
+                        onClicked: {
+                            todoListView.currentList = object
+                            todoListView.model.sourceModel = object.entries
+                        }
+                    }
                 }
             }
         }
-        
     }
     
     Item {
@@ -160,18 +181,20 @@ View {
             height: childrenRect.height
             
             Item {
-                height: todoListView.currentList ? childrenRect.height : 0
+                height: todoListView.currentList ? Math.max( newTodoTitle.height, addNewTodoButton.height ) : 0
                 width: todoListContents.width
                 SimpleTextInput {
                     id: newTodoTitle
                     anchors { left: parent.left; right: parent.right; rightMargin: addNewTodoButton.width + 10 }
                     text: ""
+                    placeholderText: "Add new todo"
 
                     onApply: addNewTodoButton.createNewTodo()
                 }
                 Button {
                     id: addNewTodoButton
-                    label: "Add"
+                    label: "\uf067"
+                    font.family: symbolFont.name
                     
                     anchors.right: parent.right
                     
@@ -197,6 +220,7 @@ View {
                     id: filterText
                     anchors { left: parent.left; right: parent.right }
                     text: ""
+                    placeholderText: "Filter todos"
                 }
             }
         }

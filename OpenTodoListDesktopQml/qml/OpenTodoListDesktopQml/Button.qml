@@ -20,35 +20,30 @@ import QtQuick 2.0
 
 Rectangle {
     id: button
-    height: label.height + 10
-    width: label.width + 20
-    color: activePalette.button
-    gradient: Gradient {
-        GradientStop {
-            position: 0.0
-            color: Qt.lighter( backgroundColor )
-        }
-        GradientStop {
-            position: 1.0
-            color: activePalette.button
-        }
-    }
-    radius: 4
-    border.width: 1
-    border.color: Qt.darker( backgroundColor )
-    
+
     property alias label: label.text
     property alias pressed: mouseArea.pressed
     property alias containsMouse: mouseArea.containsMouse
-    property color backgroundColor: activePalette.button
+    property alias font: label.font
+    property color backgroundColor: colors.primary
+    property color highlightColor: colors.primaryLighter1
     property bool down: false
     
     signal clicked
+
+    height: label.height + 10
+    width: label.width + 20
+    color: backgroundColor
+
+    Behavior on color {
+        ColorAnimation { duration: 200 }
+    }
+
     
     Text {
         id: label
         text: "Button"
-        color: activePalette.buttonText
+        color: colors.fontColorFor( button.color )
         x: 10
         y: 5
     }
@@ -67,19 +62,7 @@ Rectangle {
             when: pressed || containsMouse || button.down
             PropertyChanges {
                 target: button
-                backgroundColor: Qt.darker( activePalette.button )
-            }
-        }
-    ]
-    
-    transitions: [
-        Transition {
-            from: ""
-            to: "down"
-            reversible: true
-            ColorAnimation {
-                duration: 200
-                easing.type: Easing.InOutQuad
+                color: button.highlightColor
             }
         }
     ]

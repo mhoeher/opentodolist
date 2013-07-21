@@ -26,18 +26,18 @@ Item {
     width: childrenRect.width
 
     property date date: new Date()
-    property string label: "Selected Date"
-    property string nullDateLabel: "No date set"
 
     Column {
 
         Row {
             spacing: 10
             Text {
-                text: root.label
+                font.family: symbolFont.name
+                font.pointSize: fonts.p
+                text: Utils.isValidDate( root.date ) ? "\uf073" : "\uf133"
             }
             Text {
-                text: Utils.formatDate( root.date, root.nullDateLabel )
+                text: Utils.formatDate( root.date, "" )
             }
             Button {
                 label: "Select Date"

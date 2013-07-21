@@ -39,205 +39,182 @@ View {
         }
     }
     
-    //TODO: Whenever the todo changes, the size of the description edit
-    //      does not properly shrink. Find out how to fix this.
-    
     toolButtons: [
-    ToolButton {
-        label: "Back"
-        
-        onClicked: {
-            todoDetailsView.todo = todoDetailsView.todo.parentTodo
+        ToolButton {
+            font.family: symbolFont.name
+            label: "\uf060"
+
+            onClicked: {
+                todoDetailsView.todo = todoDetailsView.todo.parentTodo
+            }
         }
-    }
     ]
-    
-    Column {
-        width: todoDetailsView.clientWidth
-        spacing: 10
+
+    Flickable {
+        anchors.fill: parent
+        contentWidth: detailsContents.width
+        contentHeight: detailsContents.height
 
         Item {
+            id: detailsContents
             width: parent.width
             height: childrenRect.height
 
-            TextInput {
-                id: todoDetailsViewTitleEdit
-                text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
-                font.bold: true
-                font.pointSize: 16
-                width: parent.width - saveTitleButton.width
-                wrapMode: Text.Wrap
+            Column {
+                width: todoDetailsView.clientWidth
+                spacing: 10
 
-                function saveTitle() {
-                    todoDetailsView.todo.title = todoDetailsViewTitleEdit.text;
-                    todoDetailsViewTitleEdit.focus = false;
-                }
+                Item {
+                    width: parent.width
+                    height: childrenRect.height
 
-                Keys.onEnterPressed: saveTitle()
-                Keys.onReturnPressed: saveTitle()
-            }
+                    TextInput {
+                        id: todoDetailsViewTitleEdit
+                        text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
+                        font.bold: true
+                        font.pointSize: 16
+                        width: parent.width - saveTitleButton.width
+                        wrapMode: Text.Wrap
 
-            Button {
-                id: saveTitleButton
-                label: "Save"
-                onClicked: todoDetailsViewTitleEdit.saveTitle()
-                visible: todoDetailsViewTitleEdit.focus
-                anchors.right: parent.right
-            }
-        }
-        
-        Item {
-            width: parent.width
-            height: childrenRect.height
-            
-            ProgressBar {
-                value: todoDetailsView.todo ? todoDetailsView.todo.progress : 0
-                anchors.left: parent.left
-                anchors.right: decreaseProgressButton.right
-            }
-            
-            Button {
-                id: decreaseProgressButton
-                label: "-"
-                anchors.right: increaseProgressButton.left
-                
-                onClicked: { todoDetailsView.todo.progress -= 10; }
-            }
-            Button {
-                id: increaseProgressButton
-                label: "+"
-                anchors.right: parent.right
-                
-                onClicked: { todoDetailsView.todo.progress += 10; }
-            }
-        }
-        
-        Row {
-            spacing: 10
-            Text {
-                text: "Priority: "
-            }
-            Repeater {
-                model: 12
-                
-                Rectangle {
-                    id: prioritySelectorItem
-                    smooth: true
-                    width: 32
-                    height: 32
-                    radius: 32
-                    border.width: 2
-                    border.color: todoDetailsView.todo && todoDetailsView.todo.priority === index - 1 ? "black" : "gray"
-                    color: Utils.PriorityColors[ index - 1 ]
-                    
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: todoDetailsView.todo.priority = index - 1
+                        function saveTitle() {
+                            todoDetailsView.todo.title = todoDetailsViewTitleEdit.text;
+                            todoDetailsViewTitleEdit.focus = false;
+                        }
+
+                        Keys.onEnterPressed: saveTitle()
+                        Keys.onReturnPressed: saveTitle()
                     }
-                    
+
+                    Button {
+                        id: saveTitleButton
+                        label: "Save"
+                        onClicked: todoDetailsViewTitleEdit.saveTitle()
+                        visible: todoDetailsViewTitleEdit.focus
+                        anchors.right: parent.right
+                    }
                 }
-                
-            }
-        }
-        
-        Row {
-            width: parent.width
-            
-            SimpleTextInput {
-                id: newSubTodoTitle
-                text: ""
-                width: parent.width - addNewSubTodoButton.width
 
-                onApply: addNewSubTodoButton.createNewSubTodo()
-            }
-            
-            Button {
-                id: addNewSubTodoButton
-                label: "Add"
-                onClicked: createNewSubTodo()
+                Flow {
+                    spacing: 10
+                    width: parent.width
+                    ProgressIndicator {
+                        id: progressIndicator
+                        percentage: todoDetailsView.todo ? todoDetailsView.todo.progress : 0
 
-                function createNewSubTodo() {
-                    var todo = todoDetailsView.todo.todoList.addTodo();
-                    todo.title = newSubTodoTitle.text;
-                    todo.parentTodo = todoDetailsView.todo;
-                    newSubTodoTitle.text = "";
+                        onDecreasePressed: todoDetailsView.todo.progress = stepDown()
+                        onIncreasePressed: todoDetailsView.todo.progress = stepUp()
+                    }
+                    PriorityIndicator {
+                        width: progressIndicator.width
+                        height: progressIndicator.height
+                        priority: todoDetailsView.todo ? todoDetailsView.todo.priority : -1
+
+                        onSelectedPriority: todoDetailsView.todo.priority = priority
+                    }
+                }
+
+                Row {
+                    width: parent.width
+
+                    SimpleTextInput {
+                        id: newSubTodoTitle
+                        text: ""
+                        placeholderText: "Add new subtodo"
+                        width: parent.width - addNewSubTodoButton.width
+
+                        onApply: addNewSubTodoButton.createNewSubTodo()
+                    }
+
+                    Button {
+                        id: addNewSubTodoButton
+                        label: "\uf067"
+                        font.family: symbolFont.name
+                        onClicked: createNewSubTodo()
+
+                        function createNewSubTodo() {
+                            var todo = todoDetailsView.todo.todoList.addTodo();
+                            todo.title = newSubTodoTitle.text;
+                            todo.parentTodo = todoDetailsView.todo;
+                            newSubTodoTitle.text = "";
+                        }
+                    }
+                }
+
+                SimpleTextInput {
+                    id: filterText
+                    placeholderText: "Filter subtodos"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                }
+
+
+                DatePicker {
+                    id: todoDueDateEdit
+                    date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : Utils.getNullDate()
+
+                    onDateChanged: {
+                        if ( todoDetailsView.todo ) {
+                            todoDetailsView.todo.dueDate = date
+                        }
+                    }
+                }
+
+                ListView {
+                    model: todoDetailsView.model
+                    width: parent.width
+                    height: childrenRect.height
+                    clip: true
+                    spacing: 4
+                    delegate: TodoListEntry {
+                        todo: object
+                        onClicked: {
+                            todoDetailsView.todo = object
+                        }
+                    }
+                }
+
+                Item {
+                    width: parent.width
+                    height: childrenRect.height
+
+                    BorderImage {
+                        width: todoDescriptionEditContains.width
+                        height: todoDescriptionEditContains.height
+                        source: "description.sci"
+                        cache: !settings.debug
+                    }
+
+                    MouseArea {
+                        width: todoDescriptionEditContains.width
+                        height: todoDescriptionEditContains.height
+                        onClicked: todoDescriptionEdit.focus = true;
+                    }
+
+                    Item {
+                        id: todoDescriptionEditContains
+                        width: parent.width
+                        height: childrenRect.height + 40
+
+                        TextEdit {
+                            id: todoDescriptionEdit
+
+                            text: todoDetailsView.todo ? todoDetailsView.todo.description : ""
+                            textFormat: TextEdit.RichText
+                            wrapMode: Text.Wrap
+                            width: parent.width - 40
+                            x: 20
+                            y: 20
+                        }
+                    }
+                }
+
+                Button {
+                    label: "Save"
+                    anchors.right: parent.right
+
+                    onClicked: { todoDetailsView.todo.description = todoDescriptionEdit.text; }
                 }
             }
-        }
-
-        SimpleTextInput {
-            id: filterText
-            anchors.left: parent.left
-            anchors.right: parent.right
-        }
-
-
-        DatePicker {
-            id: todoDueDateEdit
-            date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : new Date()
-            label: "Due to"
-
-            onDateChanged: {
-                if ( todoDetailsView.todo ) {
-                    todoDetailsView.todo.dueDate = date
-                }
-            }
-        }
-
-        ListView {
-            model: todoDetailsView.model
-            width: parent.width
-            height: childrenRect.height
-            clip: true
-            spacing: 4
-            delegate: TodoListEntry {
-                todo: object
-                onClicked: {
-                    todoDetailsView.todo = object
-                }
-            }
-        }
-        
-        Item {
-            width: parent.width
-            height: childrenRect.height
-            
-            BorderImage {
-                width: todoDescriptionEditContains.width
-                height: todoDescriptionEditContains.height
-                source: "description.sci"
-                cache: !settings.debug
-            }
-            
-            MouseArea {
-                width: todoDescriptionEditContains.width
-                height: todoDescriptionEditContains.height
-                onClicked: todoDescriptionEdit.focus = true;
-            }
-            
-            Item {
-                id: todoDescriptionEditContains
-                width: parent.width
-                height: childrenRect.height + 40
-                
-                TextEdit {
-                    id: todoDescriptionEdit
-                    
-                    text: todoDetailsView.todo ? todoDetailsView.todo.description : ""
-                    textFormat: TextEdit.RichText
-                    wrapMode: Text.Wrap
-                    width: parent.width - 40
-                    x: 20
-                    y: 20
-                }
-            }
-        }
-        
-        Button {
-            label: "Save"
-            anchors.right: parent.right
-            
-            onClicked: { todoDetailsView.todo.description = todoDescriptionEdit.text; }
         }
     }
 }

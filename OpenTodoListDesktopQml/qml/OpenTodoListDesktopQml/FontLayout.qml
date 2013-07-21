@@ -19,27 +19,11 @@
 import QtQuick 2.0
 
 Item {
-    id: button
-    width: childrenRect.width
-    height: childrenRect.height
+    id: fontLayout
 
-    property alias text: text.text
-    property alias color: text.color
-    property alias font: text.font
-
-    signal clicked()
-
-    Text {
-        id: text
-        font.pointSize: 20
-        font.family: symbolFont.name
-        text: "Button"
-    }
-
-    MouseArea {
-        anchors.fill: text
-        onClicked: button.clicked()
-    }
+    property int h1: 20
+    property int h2: 18
+    property int h3: 16
+    property int p: 14
 
 }
-

@@ -22,19 +22,13 @@ ViewContainer {
     id: root
     width: 800
     height: 600
-    
-    /*
-     * Not working, see https://bugreports.qt-project.org/browse/QTBUG-26317
-     *    SystemPalette { 
-     *        id: activePalette
-     }
-     */
-    // Workaround:
-    Item {
-        id: activePalette
-        property color window: "#eeeeee"
-        property color button: "#dddddd"
-        property color buttonText: "#000000"
+
+    ColorScheme {
+        id: colors
+    }
+
+    FontLayout {
+        id: fonts
     }
 
     FontLoader {
