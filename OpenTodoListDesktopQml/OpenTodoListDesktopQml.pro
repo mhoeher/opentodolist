@@ -58,7 +58,10 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/fontawesome-webfont.ttf \
     qml/OpenTodoListDesktopQml/SymbolButton.qml \
     qml/OpenTodoListDesktopQml/ColorScheme.qml \
-    qml/OpenTodoListDesktopQml/rpdevlogo_webheader.png
+    qml/OpenTodoListDesktopQml/rpdevlogo_webheader.png \
+    qml/OpenTodoListDesktopQml/FontLayout.qml \
+    qml/OpenTodoListDesktopQml/ProgressIndicator.qml \
+    qml/OpenTodoListDesktopQml/PriorityIndicator.qml
 
 # Add more folders to ship with the application, here
 qml.source = qml/OpenTodoListDesktopQml
