@@ -28,6 +28,7 @@ TodoSortFilterModel::TodoSortFilterModel(QObject* parent):
     m_searchString( QString() ),
     m_maxDueDate( QDateTime() )
 {
+    sort( 0, Qt::AscendingOrder );
 }
 
 void TodoSortFilterModel::setSourceModel(TodoSortFilterModel::TodoModel* sourceModel)
@@ -100,13 +101,13 @@ bool TodoSortFilterModel::lessThan(const QModelIndex& left, const QModelIndex& r
                     left.data( TodoModel::ObjectRole ).value<QObject*>());
         AbstractTodo* rightTodo = qobject_cast< AbstractTodo* >(
                     right.data( TodoModel::ObjectRole ).value< QObject* >());
-        if ( leftTodo->isCompleted() && !rightTodo->isCompleted() ) {
-            return false;
-        }
-        if ( !leftTodo->isCompleted() && rightTodo->isCompleted() ) {
-            return true;
-        }
         if ( leftTodo && rightTodo ) {
+            if ( leftTodo->isCompleted() && !rightTodo->isCompleted() ) {
+                return false;
+            }
+            if ( !leftTodo->isCompleted() && rightTodo->isCompleted() ) {
+                return true;
+            }
             switch ( m_sortMode ) {
             case PrioritySort:
                 return leftTodo->priority() > rightTodo->priority();
