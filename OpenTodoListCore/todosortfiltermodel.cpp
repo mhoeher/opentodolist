@@ -26,7 +26,8 @@ TodoSortFilterModel::TodoSortFilterModel(QObject* parent):
     m_sortMode( NoSort ),
     m_parentTodo( 0 ),
     m_searchString( QString() ),
-    m_maxDueDate( QDateTime() )
+    m_maxDueDate( QDateTime() ),
+    m_minDueDate( QDateTime() )
 {
     sort( 0, Qt::AscendingOrder );
 }
@@ -78,6 +79,10 @@ bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& so
             result = !todo->isCompleted() && todo->dueDate().isValid() &&
                     todo->dueDate().daysTo( m_maxDueDate ) >= 0;
         }
+        if ( m_minDueDate.isValid() ) {
+            result = !todo->isCompleted() && todo->dueDate().isValid() &&
+                    todo->dueDate().daysTo( m_minDueDate ) <= 0;
+        }
         if ( m_filterMode & TodoListEntries ) {
             result = !todo->parentTodo() ? result : false;
         }
@@ -120,3 +125,4 @@ bool TodoSortFilterModel::lessThan(const QModelIndex& left, const QModelIndex& r
     }
     return QSortFilterProxyModel::lessThan(left, right);
 }
+

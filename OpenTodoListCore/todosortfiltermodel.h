@@ -39,6 +39,7 @@ class OPENTODOLISTCORESHARED_EXPORT TodoSortFilterModel : public QSortFilterProx
     Q_PROPERTY( SortMode sortMode READ sortMode WRITE setSortMode NOTIFY sortModeChanged )
     Q_PROPERTY( QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged )
     Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged )
+    Q_PROPERTY( QDateTime minDueDate READ minDueDate WRITE setMinDueDate NOTIFY minDueDateChanged )
     
 public:
     
@@ -69,9 +70,8 @@ public:
     }
     
     void setFilterMode( int mode ) {
-        emit beginResetModel();
         m_filterMode = mode;
-        emit endResetModel();
+        invalidateFilter();
         emit filterModeChanged();
     }
     
@@ -91,9 +91,8 @@ public:
     }
 
     void setSearchString( const QString& searchString ) {
-        emit beginResetModel();
         m_searchString = searchString;
-        emit endResetModel();
+        invalidateFilter();
         emit searchStringChanged();
     }
 
@@ -106,10 +105,19 @@ public:
     }
 
     void setMaxDueDate( const QDateTime& maxDueDate ) {
-        emit beginResetModel();
         m_maxDueDate = maxDueDate;
-        emit endResetModel();
+        invalidateFilter();
         emit maxDueDateChanged();
+    }
+
+    QDateTime minDueDate() const {
+        return m_minDueDate;
+    }
+
+    void setMinDueDate( const QDateTime& minDueDate ) {
+        m_minDueDate = minDueDate;
+        invalidateFilter();
+        emit minDueDateChanged();
     }
     
     void setParentTodo( AbstractTodo* todo );
@@ -125,6 +133,7 @@ signals:
     void filterModeChanged();
     void searchStringChanged();
     void maxDueDateChanged();
+    void minDueDateChanged();
 
 protected:
     
@@ -139,7 +148,8 @@ private:
     AbstractTodo *m_parentTodo;
     QString m_searchString;
     QDateTime m_maxDueDate;
-    
+    QDateTime m_minDueDate;
+
     virtual void setSourceModel(QAbstractItemModel*) {}
     
 };

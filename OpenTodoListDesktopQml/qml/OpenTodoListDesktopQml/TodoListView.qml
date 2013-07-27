@@ -243,4 +243,13 @@ View {
         }
     }
     
+    Item {
+        Timer {
+            interval: 60000
+            onTriggered: {
+                dueTodayModel.maxDueDate = new Date()
+                dueThisWeekModel.maxDueDate = Utils.getLastDateOfWeek()
+            }
+        }
+    }
 }
