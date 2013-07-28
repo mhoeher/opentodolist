@@ -111,6 +111,18 @@ View {
 
                         onSelectedPriority: todoDetailsView.todo.priority = priority
                     }
+                    DatePicker {
+                        id: todoDueDateEdit
+                        baseWidth: progressIndicator.width
+                        baseHeight: progressIndicator.height
+                        date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : Utils.getNullDate()
+
+                        onDateChanged: {
+                            if ( todoDetailsView.todo ) {
+                                todoDetailsView.todo.dueDate = date
+                            }
+                        }
+                    }
                 }
 
                 Row {
@@ -145,18 +157,6 @@ View {
                     placeholderText: "Filter subtodos"
                     anchors.left: parent.left
                     anchors.right: parent.right
-                }
-
-
-                DatePicker {
-                    id: todoDueDateEdit
-                    date: todoDetailsView.todo ? todoDetailsView.todo.dueDate : Utils.getNullDate()
-
-                    onDateChanged: {
-                        if ( todoDetailsView.todo ) {
-                            todoDetailsView.todo.dueDate = date
-                        }
-                    }
                 }
 
                 ListView {

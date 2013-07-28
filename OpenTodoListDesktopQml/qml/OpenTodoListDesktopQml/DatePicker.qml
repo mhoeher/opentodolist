@@ -24,63 +24,108 @@ Item {
 
     height: childrenRect.height
     width: childrenRect.width
+    clip: true
 
     property date date: new Date()
+    property bool selecting: false
+    property int baseHeight: 100
+    property int baseWidth: 100
 
-    Column {
+    Flipable {
+        id: flipable
+        width: front.width
+        height: front.width
 
-        Row {
-            spacing: 10
-            Text {
-                font.family: symbolFont.name
-                font.pointSize: fonts.p
-                text: Utils.isValidDate( root.date ) ? "\uf073" : "\uf133"
-            }
-            Text {
-                text: Utils.formatDate( root.date, "" )
-            }
-            Button {
-                label: "Select Date"
-                visible: root.state == ""
-                onClicked: {
-                    calendar.viewDate = Utils.isValidDate( root.date ) ? root.date : new Date()
-                    calendar.selectedDate = root.date
-                    root.state = "selecting"
+        front: Item {
+            height: childrenRect.height
+            width: childrenRect.width
+            Column {
+                id: emblem
+                Text {
+                    font.family: symbolFont.name
+                    font.pixelSize: root.baseHeight * 0.75
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: Utils.isValidDate( root.date ) ? "\uf073" : "\uf133"
+                }
+                Text {
+                    font.pixelSize: root.baseHeight * 0.2
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: Utils.formatDate( root.date, "No Due Date" )
                 }
             }
-            Button {
-                label: "OK"
-                visible: root.state == "selecting"
-                onClicked: {
-                    root.date = calendar.selectedDate
-                    root.state = ""
-                }
-            }
-            Button {
-                label: "Clear"
-                visible: root.state == "selecting"
-                onClicked: {
-                    root.date = Utils.getNullDate()
-                    root.state = ""
-                }
-            }
-
-            Button {
-                label: "Cancel"
-                visible: root.state == "selecting"
+            MouseArea {
+                anchors.fill: emblem
                 onClicked: {
                     calendar.selectedDate = root.date
-                    root.state = ""
+                    root.selecting = true
                 }
             }
         }
 
-        Row {
-            visible: root.state == "selecting"
-            Calendar {
-                id: calendar
-                viewDate: Utils.isValidDate( root.date ) ? root.date : new Date()
-                selectedDate: root.date
+        back: Item {
+            height: editColumn.height
+            width: editColumn.width
+            Column {
+                id: editColumn
+                Calendar {
+                    id: calendar
+                }
+                Row {
+                    spacing: 5
+                    Button {
+                        label: "OK"
+                        onClicked: {
+                            root.date = calendar.selectedDate
+                            root.selecting = false
+                        }
+                    }
+                    Button {
+                        label: "Cancel"
+                        onClicked: root.selecting = false
+                    }
+                    Button {
+                        label: "Reset"
+                        onClicked: {
+                            root.date = Utils.getNullDate()
+                            root.selecting = false
+                        }
+                    }
+                }
+            }
+        }
+
+        transform: Rotation {
+            id: rotation
+            axis { x: 0; y: 1; z: 0 }
+            origin.x: root.width/2
+            angle: 0
+        }
+
+        states: State {
+            name: "flipped"
+            when: root.selecting
+            PropertyChanges { target: rotation; angle: 180 }
+            PropertyChanges { target: flipable; width: flipable.back.width; height: flipable.back.height }
+        }
+
+        transitions: Transition {
+            reversible: true
+            ParallelAnimation {
+                NumberAnimation {
+                    target: rotation
+                    property: "angle"
+                    duration: 1000
+                }
+                NumberAnimation {
+                    target: flipable
+                    property: "width"
+                    duration: 1000
+                }
+                NumberAnimation {
+                    target: flipable
+                    property: "height"
+                    duration: 1000
+                }
             }
         }
     }
