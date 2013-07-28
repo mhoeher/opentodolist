@@ -50,7 +50,7 @@ Item {
     Text {
         id: text
         text: "ToolButton"
-        font.bold: true
+        font.weight: Font.DemiBold
         font.pointSize: fonts.h1
         color: colors.fontColorFor( background.color )
         anchors.horizontalCenter: parent.horizontalCenter

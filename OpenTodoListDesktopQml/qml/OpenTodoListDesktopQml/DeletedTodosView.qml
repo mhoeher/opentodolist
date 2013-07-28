@@ -37,17 +37,11 @@ View {
 
             onClicked: deletedTodosView.todoList = null
         }
-
     ]
 
-    ListView {
+    TodoView {
         width: deletedTodosView.clientWidth
         height: deletedTodosView.clientHeight
         model: deletedTodosView.model
-        clip: true
-        spacing: 4
-        delegate: TodoListEntry {
-            todo: object
-        }
     }
 }

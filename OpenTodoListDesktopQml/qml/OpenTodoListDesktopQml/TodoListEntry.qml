@@ -20,18 +20,20 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import "Utils.js" as Utils;
 
-Rectangle {
+Item {
     id: entry
     
     property QtObject todo: null
     property alias containsMouse: mouseArea.containsMouse
     property color fontColor: colors.fontColorFor( color )
+    property int padding: 4
+    property bool hasNext: true
     
     signal clicked
 
-    color: colors.button
+    //color: colors.button
     width: parent.width
-    height: childrenRect.height
+    height: childrenRect.height + 2*padding
 
     MouseArea {
         id: mouseArea
@@ -47,6 +49,7 @@ Rectangle {
         anchors.leftMargin: 4
         anchors.right: parent.right
         anchors.rightMargin: 4
+        y: padding
 
         Item {
             width: childrenRect.width
@@ -80,27 +83,9 @@ Rectangle {
             onClicked: entry.todo.deleted = !entry.todo.deleted;
         }
     }
-    
-    states: [
-        State {
-            name: "hovered"
-            when: containsMouse
-            PropertyChanges {
-                target: entry
-                color: Qt.lighter( colors.button, 1.1 )
-            }
-        }
-    ]
-    
-    transitions: [
-        Transition {
-            from: ""
-            to: "hovered"
-            reversible: true
-            ColorAnimation {
-                duration: 200
-            }
-        }
-    ]
-    
+    Rectangle {
+        height: entry.hasNext ? 2 : 0
+        border.color: "#50000000"
+        anchors { left: parent.left; right: parent.right; top: entryContent.bottom; topMargin: entry.padding }
+    }
 }

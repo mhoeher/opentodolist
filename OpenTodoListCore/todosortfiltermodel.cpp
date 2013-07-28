@@ -29,6 +29,7 @@ TodoSortFilterModel::TodoSortFilterModel(QObject* parent):
     m_maxDueDate( QDateTime() ),
     m_minDueDate( QDateTime() )
 {
+    setDynamicSortFilter( true );
     sort( 0, Qt::AscendingOrder );
 }
 
@@ -60,6 +61,16 @@ void TodoSortFilterModel::setParentTodo(AbstractTodo* todo)
     } else {
         m_parentTodo = todo;
     }
+}
+
+QVariantMap TodoSortFilterModel::getItem(int index) const
+{
+    QVariantMap result;
+    const QHash<int, QByteArray> &roles = this->roleNames();
+    foreach ( int key, roles.keys() ) {
+        result.insert( roles.value( key ), this->index( index, 0 ).data( key ) );
+    }
+    return result;
 }
 
 bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const

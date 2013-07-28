@@ -65,7 +65,8 @@ View {
             onClicked: todoListView.showSearch()
         },
         ToolButton {
-            label: "Trash"
+            label: "\uf014"
+            font.family: symbolFont.name
             enabled: currentList !== null
 
             onClicked: if ( todoListView.currentList ) {
@@ -225,21 +226,13 @@ View {
             }
         }
 
-        ListView {
-            model: todoListView.model
+        TodoView {
             width: todoListContents.width
             anchors.top: controlsColumns.bottom
             anchors.bottom: parent.bottom
-            anchors.topMargin: controlsColumns.spacing
-            anchors.bottomMargin: 30
-            clip: true
-            spacing: 4
-            delegate: TodoListEntry {
-                todo: object
-                onClicked: {
-                    todoListView.todoSelected( object )
-                }
-            }
+            model: todoListView.model
+
+            onTodoSelected: todoListView.todoSelected(todo)
         }
     }
     

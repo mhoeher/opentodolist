@@ -61,7 +61,8 @@ OTHER_FILES += \
     qml/OpenTodoListDesktopQml/rpdevlogo_webheader.png \
     qml/OpenTodoListDesktopQml/FontLayout.qml \
     qml/OpenTodoListDesktopQml/ProgressIndicator.qml \
-    qml/OpenTodoListDesktopQml/PriorityIndicator.qml
+    qml/OpenTodoListDesktopQml/PriorityIndicator.qml \
+    qml/OpenTodoListDesktopQml/TodoView.qml
 
 # Add more folders to ship with the application, here
 qml.source = qml/OpenTodoListDesktopQml

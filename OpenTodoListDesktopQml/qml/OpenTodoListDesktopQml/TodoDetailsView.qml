@@ -159,18 +159,11 @@ View {
                     anchors.right: parent.right
                 }
 
-                ListView {
-                    model: todoDetailsView.model
+                TodoView {
+                    height: contentHeight
                     width: parent.width
-                    height: childrenRect.height
-                    clip: true
-                    spacing: 4
-                    delegate: TodoListEntry {
-                        todo: object
-                        onClicked: {
-                            todoDetailsView.todo = object
-                        }
-                    }
+                    model: todoDetailsView.model
+                    onTodoSelected: todoDetailsView.todo = todo
                 }
 
                 Item {

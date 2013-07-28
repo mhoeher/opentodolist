@@ -44,6 +44,16 @@ void ObjectModelBase::appendList(QAbstractItemModel *subList)
     connectToSubModel( subList );
 }
 
+QVariantMap ObjectModelBase::getItem(int index) const
+{
+    QVariantMap result;
+    const QHash<int, QByteArray> &roles = this->roleNames();
+    foreach ( int key, roles.keys() ) {
+        result.insert( roles.value( key ), this->index( index, 0 ).data( key ) );
+    }
+    return result;
+}
+
 void ObjectModelBase::setThisItemCount(int thisItemCount)
 {
     this->thisItemCount = thisItemCount;

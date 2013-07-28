@@ -42,6 +42,12 @@ public:
         return subLists;
     }
 
+    Q_INVOKABLE int itemCount() const {
+        return rowCount();
+    }
+
+    Q_INVOKABLE QVariantMap getItem( int index ) const;
+
 signals:
 
 protected:

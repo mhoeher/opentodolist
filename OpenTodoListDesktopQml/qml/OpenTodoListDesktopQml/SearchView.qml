@@ -50,20 +50,12 @@ View {
             onTextChanged: searchView.model.searchString = text
         }
 
-        ListView {
-            id: view
-            model: search.text == "" ? null : searchView.model
+        TodoView {
             anchors.top: search.bottom
-            anchors.topMargin: 4
-            spacing: 4
             anchors.bottom: parent.bottom
             width: parent.width
-            clip: true
-            delegate: TodoListEntry {
-                todo: object
-                onClicked: searchView.todoSelected( object )
-            }
+            model: search.text == "" ? null : searchView.model
+            onTodoSelected: todoDetailsView.todo = todo
         }
-
     }
 }
