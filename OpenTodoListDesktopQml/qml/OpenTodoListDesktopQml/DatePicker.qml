@@ -55,6 +55,7 @@ Item {
             }
             MouseArea {
                 anchors.fill: emblem
+                enabled: !root.selecting
                 onClicked: {
                     calendar.selectedDate = root.date
                     root.selecting = true
@@ -112,19 +113,20 @@ Item {
             reversible: true
             ParallelAnimation {
                 NumberAnimation {
+                    id: rotationAnimation
                     target: rotation
                     property: "angle"
-                    duration: 1000
+                    duration: 500
                 }
                 NumberAnimation {
                     target: flipable
                     property: "width"
-                    duration: 1000
+                    duration: rotationAnimation.duration
                 }
                 NumberAnimation {
                     target: flipable
                     property: "height"
-                    duration: 1000
+                    duration: rotationAnimation.duration
                 }
             }
         }

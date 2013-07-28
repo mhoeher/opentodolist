@@ -20,12 +20,11 @@ import QtQuick 2.0
 import "Utils.js" as Utils
 
 
-Rectangle {
+Item {
     id: calendar
 
     width: childrenRect.width + spacing * 2
     height: childrenRect.height + spacing * 2
-    color: colors.window
 
     property date viewDate: new Date()
     property date selectedDate: Utils.getNullDate()
@@ -123,4 +122,7 @@ Rectangle {
         }
 
     }
+
+    Behavior on width { SmoothedAnimation { duration: 500 } }
+    Behavior on height { SmoothedAnimation { duration: 500 } }
 }
