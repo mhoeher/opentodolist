@@ -197,15 +197,41 @@ View {
                             width: parent.width - 40
                             x: 20
                             y: 20
+
+                            onTextChanged: if ( todoDetailsView.todo )
+                                               saveDescriptionTimer.delayedSave( todoDetailsView.todo, text );
+                        }
+                        Timer {
+                            id: saveDescriptionTimer
+                            interval: 10000
+
+                            property QtObject todo: todo
+                            property string text: text
+
+                            function delayedSave( todo, text ) {
+                                if ( saveDescriptionTimer.todo ) {
+                                    if ( saveDescriptionTimer.todo !== todo ) {
+                                        // Other todo --> save immediately
+                                        save();
+                                    }
+                                }
+                                saveDescriptionTimer.todo = todo;
+                                saveDescriptionTimer.text = text;
+                                restart();
+                            }
+
+                            function save() {
+                                if ( todo ) {
+                                    todo.description = text;
+                                    todo = null;
+                                    text = "";
+                                }
+                            }
+
+                            onTriggered: save();
+                            Component.onDestruction: save();
                         }
                     }
-                }
-
-                Button {
-                    label: "Save"
-                    anchors.right: parent.right
-
-                    onClicked: { todoDetailsView.todo.description = todoDescriptionEdit.text; }
                 }
             }
         }
