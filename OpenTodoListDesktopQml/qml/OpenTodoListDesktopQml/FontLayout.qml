@@ -24,6 +24,6 @@ Item {
     property int h1: 20
     property int h2: 18
     property int h3: 16
-    property int p: 14
+    property int p: 12
 
 }

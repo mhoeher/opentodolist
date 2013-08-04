@@ -33,7 +33,10 @@ Item {
 
     Item {
         id: helper
-        property string hoveredColor: ""
+        readonly property color noColor: "#00000000"
+        property color hoveredColor: noColor
+        function noColorSelected() { return hoveredColor === noColor; }
+        Behavior on hoveredColor { ColorAnimation { duration: 200 } }
     }
 
     Image {
@@ -41,8 +44,8 @@ Item {
             fill: parent
         }
         source: "image://primitives/pie/percentage=100,fill=" +
-                ( helper.hoveredColor != "" ? helper.hoveredColor :
-                                            Utils.PriorityColors[priority] )
+                ( helper.noColorSelected() ? Utils.PriorityColors[priority] :
+                                            helper.hoveredColor )
     }
 
     MouseArea {
@@ -54,11 +57,12 @@ Item {
 
     Text {
         id: text
-        visible: !indicatorMouseArea.containsMouse || helper.hoveredColor == ""
+        opacity: indicator.focus ? 0 : 1
         anchors.centerIn: parent
         text: indicator.priority >= 0 ? "Priority " + indicator.priority : "No Priority"
         font.pointSize: fonts.p
         color: colors.fontColorFor( Utils.PriorityColors[indicator.priority] )
+        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
 
     Item {
@@ -69,11 +73,13 @@ Item {
         Repeater {
             model: 12
             Item {
-                visible: indicator.focus
+                opacity: indicator.focus ? 1 : 0
+                visible: opacity !== 0
                 width: indicator.width / 6
                 height: indicator.height * 9 / 10
                 rotation: index * 360 / 12
                 anchors.horizontalCenter: parent.horizontalCenter
+                Behavior on opacity { NumberAnimation { duration: 300 } }
                 Image {
                     width: parent.width
                     height: parent.width
@@ -99,7 +105,7 @@ Item {
                     onContainsMouseChanged: helper.hoveredColor =
                                             containsMouse ?
                                                 Utils.PriorityColors[index-1] :
-                                                ""
+                                                helpers.noColor
                 }
             }
         }

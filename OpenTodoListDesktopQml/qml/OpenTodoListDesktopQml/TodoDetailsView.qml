@@ -89,14 +89,17 @@ View {
                         id: saveTitleButton
                         label: "Save"
                         onClicked: todoDetailsViewTitleEdit.saveTitle()
-                        visible: todoDetailsViewTitleEdit.focus
+                        opacity: todoDetailsViewTitleEdit.focus ? 1 : 0
+                        visible: opacity !== 0
                         anchors.right: parent.right
+                        Behavior on opacity { NumberAnimation { duration: 300 } }
                     }
                 }
 
                 Flow {
                     spacing: 10
                     width: parent.width
+                    anchors.horizontalCenter: parent.horizontalCenter
                     ProgressIndicator {
                         id: progressIndicator
                         percentage: todoDetailsView.todo ? todoDetailsView.todo.progress : 0
@@ -105,6 +108,7 @@ View {
                         onIncreasePressed: todoDetailsView.todo.progress = stepUp()
                     }
                     PriorityIndicator {
+                        id: priorityIndicator
                         width: progressIndicator.width
                         height: progressIndicator.height
                         priority: todoDetailsView.todo ? todoDetailsView.todo.priority : -1
@@ -193,7 +197,9 @@ View {
 
                             text: todoDetailsView.todo ? todoDetailsView.todo.description : ""
                             textFormat: TextEdit.RichText
+                            font.pointSize: fonts.p
                             wrapMode: Text.Wrap
+                            selectByMouse: true
                             width: parent.width - 40
                             x: 20
                             y: 20

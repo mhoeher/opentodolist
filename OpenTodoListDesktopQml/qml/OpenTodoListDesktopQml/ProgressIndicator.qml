@@ -38,6 +38,7 @@ Item {
         return Math.max( 0, Math.min( 100, percentage - 10 ) );
     }
 
+    Behavior on percentage { SmoothedAnimation { velocity: 120 } }
     width: 150
     height: 150
 

@@ -45,11 +45,14 @@ Rectangle {
 
     Text {
         id: placeholder
-        text: textInput.text == "" ? input.placeholderText : ""
+        text: input.placeholderText
+        opacity: ( textInput.text == "" && !textInput.focus ) ? 0.5 : 0
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        opacity: 0.5
+        anchors.margins: 5
+        font.pointSize: fonts.p
+        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
     
     TextInput {
@@ -57,8 +60,11 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: 2
+        anchors.margins: 5
         text: "Simple Text Input"
         color: colors.fontColorFor( input.color )
+        font.pointSize: fonts.p
+        Keys.onEscapePressed: focus = false
+        Keys.onBackPressed: focus = false
     }
 }
