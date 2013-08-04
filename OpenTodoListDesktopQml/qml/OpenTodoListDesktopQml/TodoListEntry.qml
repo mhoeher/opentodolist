@@ -32,7 +32,7 @@ Item {
     signal clicked
 
     //color: colors.button
-    width: parent.width
+    //width: parent.width
     height: childrenRect.height + 2*padding
 
     MouseArea {

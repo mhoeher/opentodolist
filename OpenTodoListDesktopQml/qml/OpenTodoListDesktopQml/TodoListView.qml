@@ -231,6 +231,7 @@ View {
             anchors.top: controlsColumns.bottom
             anchors.bottom: parent.bottom
             model: todoListView.model
+            //autoSize: true
 
             onTodoSelected: todoListView.todoSelected(todo)
         }

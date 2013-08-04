@@ -25,13 +25,13 @@ Item {
     property int spacing: 4
     property QtObject model: null
     property bool autoSize: false
-    property int contentHeight: controls.childrenRect.height + listView.contentHeight
+    property int contentHeight: controls.childrenRect.height + list.childrenRect.height
 
     signal todoSelected(QtObject todo)
 
     clip: true
     width: 100
-    height: 100
+    height: autoSize ? contentHeight : 100
 
     Item {
         id: controls
@@ -39,22 +39,29 @@ Item {
         height: childrenRect.height
         Behavior on height { SmoothedAnimation { duration: 500 } }
     }
-    Item {
+    Flickable {
         id: list
         anchors { top: controls.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-        ListView {
+        contentWidth: listView.childrenRect.width
+        contentHeight: listView.childrenRect.height
+        interactive: !root.autoSize
+        Column {
             id: listView
             anchors.fill: parent
-            model: TodoSortFilterModel {
-                sourceModel: root.model
-                sortMode: TodoSortFilterModel.PrioritySort
-            }
+            Repeater {
+                id: repeater
+                model: TodoSortFilterModel {
+                    sourceModel: root.model
+                    sortMode: TodoSortFilterModel.PrioritySort
+                }
 
-            delegate: TodoListEntry {
-                todo: object
-                hasNext: object !== listView.model.getItem( listView.model.itemCount() - 1 ).object
-                onClicked: {
-                    root.todoSelected( object )
+                delegate: TodoListEntry {
+                    todo: object
+                    width: root.width
+                    hasNext: object !== repeater.model.getItem( repeater.model.itemCount() - 1 ).object
+                    onClicked: {
+                        root.todoSelected( object )
+                    }
                 }
             }
         }

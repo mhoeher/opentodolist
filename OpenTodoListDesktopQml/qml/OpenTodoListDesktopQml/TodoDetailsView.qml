@@ -160,7 +160,7 @@ View {
                 }
 
                 TodoView {
-                    height: contentHeight
+                    autoSize: true
                     width: parent.width
                     model: todoDetailsView.model
                     onTodoSelected: todoDetailsView.todo = todo
