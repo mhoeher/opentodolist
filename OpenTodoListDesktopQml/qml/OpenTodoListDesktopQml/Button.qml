@@ -28,11 +28,13 @@ Rectangle {
     property color backgroundColor: colors.primary
     property color highlightColor: colors.primaryLighter1
     property bool down: false
+    property int padding: 5
+    property bool autoSize: true
     
     signal clicked
 
-    height: label.height + 10
-    width: label.width + 20
+    height: label.height + 2 * padding
+    width: label.width + 4 * padding
     color: backgroundColor
 
     Behavior on color {
@@ -44,8 +46,8 @@ Rectangle {
         id: label
         text: "Button"
         color: colors.fontColorFor( button.color )
-        x: 10
-        y: 5
+        x: button.autoSize ?  ( button.width - width ) / 2 : button.padding * 2
+        y: button.padding
     }
     
     MouseArea {

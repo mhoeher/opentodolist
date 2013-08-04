@@ -122,3 +122,28 @@ function formatDate( date, defaultLabel ) {
             date.getFullYear() :
                 defaultLabel;
 }
+
+/*
+  Applies a given function on each todo in the given model. This is useful
+  as due to changing a todo, the ordering on the list of todos might change.
+  This is taken into account by this function.
+  */
+function applyToTodos( model, func ) {
+    var todos = [];
+    for ( var i = 0; i < model.itemCount(); ++i ) {
+        todos.push( model.getItem( i ).object );
+    }
+    for ( var i = 0; i < todos.length; ++i ) {
+        func( todos[ i ] );
+    }
+}
+
+function recursiveSetTodoProgress( todo, progress ) {
+    if ( todo.hasSubTodos() ) {
+        applyToTodos( todo.subTodos, function( todo ) {
+            recursiveSetTodoProgress( todo, progress );
+        } );
+    } else {
+        todo.progress = progress;
+    }
+}

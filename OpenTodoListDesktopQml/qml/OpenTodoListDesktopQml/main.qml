@@ -73,6 +73,8 @@ ViewContainer {
         id: deletedTodosView
     }
     
-    
+    Popup {
+        id: popup
+    }
 }
              

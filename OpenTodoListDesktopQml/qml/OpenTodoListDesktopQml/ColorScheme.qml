@@ -43,6 +43,7 @@ Item {
 
     // Background color definitions
     property color window: "#FCFEFC"
+    property color popup: "#C0000000"
     property color button: Qt.darker( colorScheme.window, 1.5 )
     property color input: Qt.lighter( colorScheme.window, 1.5 )
 

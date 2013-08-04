@@ -28,11 +28,13 @@ Item {
     property color fontColor: colors.fontColorFor( color )
     property int padding: 4
     property bool hasNext: true
+
+    readonly property string checkActionApplyAll: "all"
+    readonly property string checkActionShowDetails: "details"
+    readonly property string checkActionCancel: "cancel"
     
     signal clicked
 
-    //color: colors.button
-    //width: parent.width
     height: childrenRect.height + 2*padding
 
     MouseArea {
@@ -61,9 +63,31 @@ Item {
             }
             SymbolButton {
                 id: checkMark
+
+                function handleResult( result ) {
+                    if ( result === checkActionApplyAll ) {
+                        Utils.recursiveSetTodoProgress( entry.todo, entry.todo.progress === 100 ? 0 : 100 )
+                    } else if ( result === checkActionShowDetails ) {
+                        entry.clicked();
+                    }
+                    popup.result.disconnect( handleResult );
+                }
+
                 text: entry.todo.progress === 100 ? "\uf046" : "\uf096"
                 color: fontColor
-                onClicked: entry.todo.progress = ( entry.todo.progress === 100 ? 0 : 100 )
+
+                onClicked: if ( entry.todo.hasSubTodos() ) {
+                               var options = [
+                                           { label: entry.todo.progress === 100 ? "Uncheck Sub Todos" : "Check Sub Todos", id: checkActionApplyAll },
+                                           { label: "Show Details", id: checkActionShowDetails },
+                                           { label: "Cancel", id: checkActionCancel }
+                                       ];
+                               popup.result.connect( checkMark.handleResult )
+                               popup.show( options )
+                           } else {
+                               entry.todo.progress =
+                                       ( entry.todo.progress === 100 ? 0 : 100 )
+                           }
             }
         }
 
@@ -83,6 +107,7 @@ Item {
             onClicked: entry.todo.deleted = !entry.todo.deleted;
         }
     }
+
     Rectangle {
         height: entry.hasNext ? 2 : 0
         border.color: "#50000000"

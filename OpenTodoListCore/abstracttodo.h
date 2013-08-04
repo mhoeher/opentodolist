@@ -72,6 +72,10 @@ public:
     TodoSortFilterModel* subTodos() const {
         return m_subTodosModel;
     }
+
+    Q_INVOKABLE bool hasSubTodos() const {
+        return m_subTodosModel->rowCount() > 0;
+    }
     
 signals:
     
@@ -82,6 +86,7 @@ signals:
     void parentTodoChanged();
     void deletedChanged();
     void dueDateChanged();
+    void hasSubTodosChanged();
     
     void changed();
     
