@@ -29,6 +29,7 @@
 class OPENTODOLISTCORESHARED_EXPORT ObjectModelBase : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY( int count READ itemCount NOTIFY itemCountChanged )
 public:
 
     typedef QList< QAbstractItemModel* > SubLists;
@@ -49,6 +50,8 @@ public:
     Q_INVOKABLE QVariantMap getItem( int index ) const;
 
 signals:
+
+    void itemCountChanged();
 
 protected:
 

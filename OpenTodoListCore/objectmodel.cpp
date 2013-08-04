@@ -23,6 +23,14 @@ ObjectModelBase::ObjectModelBase(QObject *parent) :
     subLists( SubLists() ),
     thisItemCount( 0 )
 {
+    connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
+             this, SIGNAL(itemCountChanged()) );
+    connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+             this, SIGNAL(itemCountChanged()) );
+    connect( this, SIGNAL(modelReset()),
+             this, SIGNAL(itemCountChanged()) );
+    connect( this, SIGNAL(layoutChanged()),
+             this, SIGNAL(itemCountChanged()) );
 }
 
 ObjectModelBase::~ObjectModelBase()

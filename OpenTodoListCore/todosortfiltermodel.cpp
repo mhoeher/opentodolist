@@ -31,6 +31,14 @@ TodoSortFilterModel::TodoSortFilterModel(QObject* parent):
 {
     setDynamicSortFilter( true );
     sort( 0, Qt::AscendingOrder );
+    connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
+             this, SIGNAL(itemCountChanged()) );
+    connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+             this, SIGNAL(itemCountChanged()) );
+    connect( this, SIGNAL(modelReset()),
+             this, SIGNAL(itemCountChanged()) );
+    connect( this, SIGNAL(layoutChanged()),
+             this, SIGNAL(itemCountChanged()) );
 }
 
 void TodoSortFilterModel::setSourceModel(TodoSortFilterModel::TodoModel* sourceModel)

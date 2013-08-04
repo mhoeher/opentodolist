@@ -40,6 +40,7 @@ class OPENTODOLISTCORESHARED_EXPORT TodoSortFilterModel : public QSortFilterProx
     Q_PROPERTY( QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged )
     Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged )
     Q_PROPERTY( QDateTime minDueDate READ minDueDate WRITE setMinDueDate NOTIFY minDueDateChanged )
+    Q_PROPERTY( int count READ itemCount NOTIFY itemCountChanged )
     
 public:
     
@@ -140,6 +141,7 @@ signals:
     void searchStringChanged();
     void maxDueDateChanged();
     void minDueDateChanged();
+    void itemCountChanged();
 
 protected:
     

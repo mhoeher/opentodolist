@@ -58,7 +58,7 @@ Item {
                 delegate: TodoListEntry {
                     todo: object
                     width: root.width
-                    hasNext: object !== repeater.model.getItem( repeater.model.itemCount() - 1 ).object
+                    hasNext: index !== root.model.count - 1
                     onClicked: {
                         root.todoSelected( object )
                     }
