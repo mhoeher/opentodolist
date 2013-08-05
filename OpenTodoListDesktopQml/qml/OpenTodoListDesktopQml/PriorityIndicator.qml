@@ -105,7 +105,7 @@ Item {
                     onContainsMouseChanged: helper.hoveredColor =
                                             containsMouse ?
                                                 Utils.PriorityColors[index-1] :
-                                                helpers.noColor
+                                                helper.noColor
                 }
             }
         }
