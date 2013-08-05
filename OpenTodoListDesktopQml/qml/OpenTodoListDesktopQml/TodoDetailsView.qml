@@ -37,6 +37,9 @@ View {
         } else {
             todoDueDateEdit.date = new Date( NaN, NaN, NaN );
         }
+        priorityIndicator.focus = false
+        // Ensure changes in description are saved
+        saveDescriptionTimer.save();
     }
     
     toolButtons: [
