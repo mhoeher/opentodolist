@@ -40,6 +40,20 @@ View {
         priorityIndicator.focus = false
         // Ensure changes in description are saved
         saveDescriptionTimer.save();
+        // Update the bread crump
+        updateBreadCrump();
+    }
+
+    function updateBreadCrump() {
+        var parents = [];
+        if ( todoDetailsView.todo ) {
+            var parent = todoDetailsView.todo.parentTodo;
+            while ( parent ) {
+                parents.unshift( parent );
+                parent = parent.parentTodo;
+            }
+        }
+        breadCrump.model = parents
     }
     
     toolButtons: [
@@ -70,12 +84,51 @@ View {
                 Item {
                     width: parent.width
                     height: childrenRect.height
+                    Column {
+                        width: parent.width
+                        Repeater {
+                            id: breadCrump
+                            delegate: Item {
+                                id: parentLink
+                                width: todoDetailsView.clientWidth
+                                height: childrenRect.height
+                                Item {
+                                    id: bcSpace
+                                    height: 1
+                                    width: index * 20
+                                }
+                                Text {
+                                    id: bcSymbol
+                                    anchors { left: bcSpace.right; leftMargin: 10 }
+                                    font.family: symbolFont.name
+                                    font.pointSize: fonts.h2
+                                    text: "\uf101"
+                                }
+                                Text {
+                                    anchors { left: bcSymbol.right; leftMargin: 10; right: parent.left }
+                                    font.pointSize: fonts.h2
+                                    text: modelData.title
+                                }
+                                MouseArea {
+                                    anchors.fill: parentLink
+                                    onClicked: todoDetailsView.todo = modelData
+                                }
+                            }
+                        }
+                    }
+                    Behavior on height { NumberAnimation { duration: 300 } }
+                }
+
+                Item {
+                    width: parent.width
+                    height: childrenRect.height
 
                     TextInput {
                         id: todoDetailsViewTitleEdit
+                        x: breadCrump.model ? ( breadCrump.model.length + 1 ) * 20 : 0
                         text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
                         font.bold: true
-                        font.pointSize: 16
+                        font.pointSize: fonts.h1
                         width: parent.width - saveTitleButton.width
                         wrapMode: Text.Wrap
 
@@ -86,6 +139,8 @@ View {
 
                         Keys.onEnterPressed: saveTitle()
                         Keys.onReturnPressed: saveTitle()
+
+                        Behavior on x { NumberAnimation { duration: 300 } }
                     }
 
                     Button {
