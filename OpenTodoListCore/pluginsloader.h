@@ -25,6 +25,7 @@
 #include <QList>
 #include <QObject>
 #include <QObjectList>
+#include <QSet>
 
 class PluginsLoader : public QObject
 {
@@ -32,6 +33,7 @@ class PluginsLoader : public QObject
     Q_PROPERTY( QObject* backends READ backends CONSTANT )
 public:
     
+    typedef QSet< QString > NameSet;
     typedef ObjectModel<OpenTodoListBackend> Backends;
     
     explicit PluginsLoader(QObject *parent = 0);
@@ -45,6 +47,10 @@ public slots:
 private:
 
     Backends* m_backends;
+    NameSet   m_loadedBackends;
+
+
+    void addBackend( QObject* o );
     
 };
 

@@ -27,9 +27,12 @@
 #include <QRegExp>
 #include <QtQml>
 
+#ifdef Q_OS_ANDROID
+Q_IMPORT_PLUGIN(LocalXmlBackend)
+#endif
+
 int main(int argc, char *argv[])
-{
-    
+{   
     QCoreApplication::setApplicationName( "OpenTodoList" );
     QCoreApplication::setApplicationVersion( "0.0.0" );
     QCoreApplication::setOrganizationDomain( "www.rpdev.net" );
@@ -37,7 +40,7 @@ int main(int argc, char *argv[])
     
     QGuiApplication app(argc, argv);
     
-    QString basePath = QCoreApplication::applicationDirPath() + "/qml/OpenTodoListDesktopQml";
+    QString basePath = "qrc:///qml/OpenTodoList";
     
     foreach ( QString arg, app.arguments() ) {
         static const QRegExp basePathRE( "^--base-path=(.*)$" );
@@ -62,10 +65,10 @@ int main(int argc, char *argv[])
     qmlRegisterType<TodoSortFilterModel>("net.rpdev.OpenTodoList", 1, 0, "TodoSortFilterModel");
     
     ApplicationViewer viewer;
-    viewer.addImportPath( basePath );
+    viewer.addImportPath( QUrl( basePath ).toString() );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("library"), library );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("settings"), settings );
-    viewer.setMainFile(basePath + "/main.qml");
+    viewer.setMainFile( QUrl( basePath + "/main.qml" ).toString() );
     viewer.showExpanded();
     
     return app.exec();

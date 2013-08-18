@@ -23,3 +23,25 @@ defineTest(copyToDestDir) {
 
     export(QMAKE_POST_LINK)
 }
+
+defineTest(pluginConfig) {
+    type = $$1
+    macx|android {
+        CONFIG += static
+    } else {
+        DESTDIR = ../../../OpenTodoList/plugins/$$type
+    }
+
+    INCLUDEPATH += $$PWD/../../../OpenTodoListCore
+    LIBS += -L../../../OpenTodoListCore -lOpenTodoListCore
+
+    target.path = $$INSTALL_PREFIX/lib/OpenTodoList/plugins/$$type
+    INSTALLS += target
+
+    export(CONFIG)
+    export(DESTDIR)
+    export(INCLUDEPATH)
+    export(LIBS)
+    export(target)
+    export(INSTALLS)
+}

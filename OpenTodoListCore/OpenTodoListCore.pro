@@ -1,6 +1,6 @@
 TARGET = OpenTodoListCore
 TEMPLATE = lib
-DESTDIR = ../bin
+CONFIG += static
 
 QT += core
 
@@ -28,7 +28,3 @@ SOURCES = \
     todosortfiltermodel.cpp
 
 DEFINES +=  OPENTODOLISTCORE_LIBRARY
-
-# Support "make install":
-target.path = $$INSTALL_PREFIX/lib
-INSTALLS += target

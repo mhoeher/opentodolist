@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS = OpenTodoListCore OpenTodoListDesktopQml plugins
+SUBDIRS = OpenTodoListCore plugins OpenTodoList
 
-isEmpty(INSTALL_PREFIX){
+isEmpty(INSTALL_PREFIX) {
     INSTALL_PREFIX = $$OUT_PWD
 }

@@ -2,3 +2,4 @@
 *.autosave
 *.user
 *.kdev4
+android/*

@@ -35,7 +35,9 @@ ApplicationViewer::ApplicationViewer(QWindow* parent) :
 void ApplicationViewer::addImportPath(const QString& path)
 {
     QtQuick2ApplicationViewer::addImportPath( path );
-    m_watcher->addPath( path );
+    if ( !( path.startsWith( "qrc:" ) || path.startsWith( ":" ) ) ) {
+        m_watcher->addPath( path );
+    }
 }
 
 void ApplicationViewer::setMainFile(const QString& mainFile)
