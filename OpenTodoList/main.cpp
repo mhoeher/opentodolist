@@ -26,10 +26,109 @@
 #include <QQmlContext>
 #include <QRegExp>
 #include <QtQml>
+#include <QVariantMap>
 
 #ifdef Q_OS_ANDROID
 Q_IMPORT_PLUGIN(LocalXmlBackend)
 #endif
+
+QVariantMap getOsMap() {
+    QVariantMap result;
+#ifdef Q_OS_AIX
+    result.insert( "AIX", true );
+#endif
+#ifdef Q_OS_ANDROID
+    result.insert( "ANDROID", true );
+#endif
+#ifdef Q_OS_BSD4
+    result.insert( "BSD4", true );
+#endif
+#ifdef Q_OS_BSDI
+    result.insert( "BSDI", true );
+#endif
+#ifdef Q_OS_CYGWIN
+    result.insert( "CYGWIN", true );
+#endif
+#ifdef Q_OS_DARWIN
+    result.insert( "DARWIN", true );
+#endif
+#ifdef Q_OS_DGUX
+    result.insert( "DGUX", true );
+#endif
+#ifdef Q_OS_DYNIX
+    result.insert( "DYNIX", true );
+#endif
+#ifdef Q_OS_FREEBSD
+    result.insert( "FREEBSD", true );
+#endif
+#ifdef Q_OS_HPUX
+    result.insert( "HPUX", true );
+#endif
+#ifdef Q_OS_HURD
+    result.insert( "HURD", true );
+#endif
+#ifdef Q_OS_IOS
+    result.insert( "IOS", true );
+#endif
+#ifdef Q_OS_IRIX
+    result.insert( "IRIX", true );
+#endif
+#ifdef Q_OS_LINUX
+    result.insert( "LINUX", true );
+#endif
+#ifdef Q_OS_LYNX
+    result.insert( "LYNX", true );
+#endif
+#ifdef Q_OS_MAC
+    result.insert( "MAC", true );
+#endif
+#ifdef Q_OS_MACX
+    result.insert( "MACX", true );
+#endif
+#ifdef Q_OS_NETBSD
+    result.insert( "NETBSD", true );
+#endif
+#ifdef Q_OS_OPENBSD
+    result.insert( "OPENBSD", true );
+#endif
+#ifdef Q_OS_OSF
+    result.insert( "OSF", true );
+#endif
+#ifdef Q_OS_QNX
+    result.insert( "QNX", true );
+#endif
+#ifdef Q_OS_RELIANT
+    result.insert( "RELIANT", true );
+#endif
+#ifdef Q_OS_SCO
+    result.insert( "SCO", true );
+#endif
+#ifdef Q_OS_SOLARIS
+    result.insert( "SOLARIS", true );
+#endif
+#ifdef Q_OS_ULTRIX
+    result.insert( "ULTRIX", true );
+#endif
+#ifdef Q_OS_UNIX
+    result.insert( "UNIX", true );
+#endif
+#ifdef Q_OS_UNIXWARE
+    result.insert( "UNIXWARE", true );
+#endif
+#ifdef Q_OS_WIN32
+    result.insert( "WIN32", true );
+#endif
+#ifdef Q_OS_WIN64
+    result.insert( "WIN64", true );
+#endif
+#ifdef Q_OS_WIN
+    result.insert( "WIN", true );
+#endif
+#ifdef Q_OS_WINCE
+    result.insert( "WINCE", true );
+#endif
+    return result;
+}
 
 int main(int argc, char *argv[])
 {   
@@ -68,6 +167,7 @@ int main(int argc, char *argv[])
     viewer.addImportPath( QUrl( basePath ).toString() );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("library"), library );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("settings"), settings );
+    viewer.engine()->rootContext()->setContextProperty( QStringLiteral("os"), getOsMap() );
     viewer.setMainFile( QUrl( basePath + "/main.qml" ).toString() );
     viewer.showExpanded();
     

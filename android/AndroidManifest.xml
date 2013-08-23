@@ -10,7 +10,7 @@
             <meta-data android:value="@string/repository" android:name="android.app.repository"/>
             <meta-data android:resource="@array/qt_libs" android:name="android.app.qt_libs_resource_id"/>
             <meta-data android:resource="@array/bundled_libs" android:name="android.app.bundled_libs_resource_id"/>
-            <meta-data android:value="OpenTodoListDesktopQml" android:name="android.app.lib_name"/>
+            <meta-data android:value="OpenTodoList" android:name="android.app.lib_name"/>
             <!-- Deploy Qt libs as part of package -->
             <meta-data android:value="1" android:name="android.app.bundle_local_qt_libs"/>
             <meta-data android:resource="@array/bundled_in_lib" android:name="android.app.bundled_in_lib_resource_id"/>

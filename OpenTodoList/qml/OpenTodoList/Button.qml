@@ -55,14 +55,14 @@ Rectangle {
         anchors.fill: parent
         id: mouseArea
         hoverEnabled: true
-        
+
         onClicked: button.clicked()
     }
     
     states: [
         State {
             name: "down"
-            when: pressed || containsMouse || button.down
+            when: pressed || ( containsMouse && !layout.disableHover ) || button.down
             PropertyChanges {
                 target: button
                 color: button.highlightColor

@@ -69,7 +69,7 @@ Item {
     states: [
         State {
             name: "hovered"
-            when: containsMouse && !( parent.disabled || !enabled )
+            when: containsMouse && !( parent.disabled || !enabled || layout.disableHover )
             PropertyChanges {
                 target: background
                 color: colors.primaryLighter1

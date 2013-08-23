@@ -54,7 +54,7 @@ Item {
             delegate: TodoListEntry {
                 todo: object
                 width: listView.width
-                hasNext: index !== root.model.count - 1
+                hasNext: root.model && index !== root.model.count - 1
                 onClicked: {
                     root.todoSelected( object )
                 }

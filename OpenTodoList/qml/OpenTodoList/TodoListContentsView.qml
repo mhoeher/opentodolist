@@ -18,12 +18,26 @@
 
 import QtQuick 2.0
 
-Item {
-    id: fontLayout
+View {
+    id: todoListContentsView
 
-    property int h1: 20
-    property int h2: 18
-    property int h3: 16
-    property int p: 14
+    property bool showIfCompactView: false
 
+    signal todoSelected( QtObject todo )
+
+    toolButtons: [
+        ToolButton {
+            font.family: symbolFont.name
+            label: "\uf060"
+
+            onClicked: todoListContentsView.showIfCompactView = false
+        }
+    ]
+
+    TodoListContents {
+        width: todoListContentsView.clientWidth
+        height: todoListContentsView.clientHeight
+
+        onTodoSelected: todoListContentsView.todoSelected( todo )
+    }
 }

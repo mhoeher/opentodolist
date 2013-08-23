@@ -23,6 +23,10 @@ ViewContainer {
     width: 800
     height: 600
 
+    Layout {
+        id: layout
+    }
+
     ColorScheme {
         id: colors
     }
@@ -39,13 +43,24 @@ ViewContainer {
     TodoListView {
         id: todoListView
 
-        //active: true
         title: "Todo Lists"
         
-        onTodoSelected: todoDetailsView.todo = todo
+        onTodoSelected: {
+            todoDetailsView.todo = todo;
+        }
+        onTodoListClicked: todoListContentsView.showIfCompactView = true
         onShowTrashForList: deletedTodosView.todoList = list
         onShowSearch: searchView.hidden = false
         Component.onCompleted: hidden = false
+    }
+
+    TodoListContentsView {
+        id: todoListContentsView
+
+        onTodoSelected: {
+            todoDetailsView.todo = todo;
+        }
+        hidden: !(showIfCompactView && layout.useCompactLayout)
     }
     
     NewTodoListView {

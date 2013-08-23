@@ -25,52 +25,7 @@ SOURCES += \
 RESOURCES += \
     resources.qrc
 
-OTHER_FILES += \
-    qml/OpenTodoList/action_delete.png \
-    qml/OpenTodoList/action_delete.svg \
-    qml/OpenTodoList/action_restore.png \
-    qml/OpenTodoList/action_restore.svg \
-    qml/OpenTodoList/view.svg \
-    qml/OpenTodoList/view.sci \
-    qml/OpenTodoList/view.png \
-    qml/OpenTodoList/Utils.js \
-    qml/OpenTodoList/toolbutton_4.svg \
-    qml/OpenTodoList/toolbutton_4.png \
-    qml/OpenTodoList/toolbutton_3.svg \
-    qml/OpenTodoList/toolbutton_3.png \
-    qml/OpenTodoList/toolbutton_2.svg \
-    qml/OpenTodoList/toolbutton_2.png \
-    qml/OpenTodoList/toolbutton_1.svg \
-    qml/OpenTodoList/toolbutton_1.png \
-    qml/OpenTodoList/description.svg \
-    qml/OpenTodoList/description.sci \
-    qml/OpenTodoList/description.png \
-    qml/OpenTodoList/View.qml \
-    qml/OpenTodoList/ToolButton.qml \
-    qml/OpenTodoList/TodoListView.qml \
-    qml/OpenTodoList/TodoListEntry.qml \
-    qml/OpenTodoList/TodoDetailsView.qml \
-    qml/OpenTodoList/SimpleTextInput.qml \
-    qml/OpenTodoList/SearchView.qml \
-    qml/OpenTodoList/ProgressBar.qml \
-    qml/OpenTodoList/NewTodoListView.qml \
-    qml/OpenTodoList/main.qml \
-    qml/OpenTodoList/Button.qml \
-    qml/OpenTodoList/IconButton.qml \
-    qml/OpenTodoList/ViewContainer.qml \
-    qml/OpenTodoList/DeletedTodosView.qml \
-    qml/OpenTodoList/DatePicker.qml \
-    qml/OpenTodoList/Calendar.qml \
-    qml/OpenTodoList/fontawesome-webfont.license.txt \
-    qml/OpenTodoList/fontawesome-webfont.ttf \
-    qml/OpenTodoList/SymbolButton.qml \
-    qml/OpenTodoList/ColorScheme.qml \
-    qml/OpenTodoList/rpdevlogo_webheader.png \
-    qml/OpenTodoList/FontLayout.qml \
-    qml/OpenTodoList/ProgressIndicator.qml \
-    qml/OpenTodoList/PriorityIndicator.qml \
-    qml/OpenTodoList/TodoView.qml \
-    qml/OpenTodoList/Popup.qml
+include(files.pri)
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -84,12 +39,15 @@ QML_IMPORT_PATH =
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 #qtcAddDeployment()
 
-#include(../utils.pri)
-#copyToDestDir($$OTHER_FILES,$$PWD)
+# Extra Target for updating the resources.qrc file:
+update_qrc.target = update_qrc
+update_qrc.commands = perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml -o $$PWD/resources.qrc
+QMAKE_EXTRA_TARGETS += update_qrc
 
-# Support "make install":
-#target.path = $$INSTALL_PREFIX/bin
-#OpenTodoListData.files = $$OTHER_FILES
-#OpenTodoListData.path = $$INSTALL_PREFIX/share/OpenTodoList
-#INSTALLS += target OpenTodoListData
+update_pri.target = update_pri
+update_pri.commands = perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml -o $$PWD/files.pri
+QMAKE_EXTRA_TARGETS += update_pri
 
+update.depends = update_qrc update_pri
+update.target = update
+QMAKE_EXTRA_TARGETS += update

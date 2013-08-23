@@ -22,8 +22,10 @@ import "Utils.js" as Utils
 
 View {
     id: todoListView
-    
+
     property QtObject currentList : null
+
+    property string filterText
 
     property TodoSortFilterModel allTopLevelTodos : TodoSortFilterModel {
         sourceModel: library.todos
@@ -41,17 +43,30 @@ View {
     }
 
     property TodoSortFilterModel model : TodoSortFilterModel {
-        sourceModel: allTopLevelTodos
-        searchString: filterText.text
+        sourceModel: layout.useCompactLayout ? null : allTopLevelTodos
+        searchString: filterText
         sortMode: TodoSortFilterModel.PrioritySort
+    }
+
+    signal resetFilter()
+
+    onCurrentListChanged: {
+        filterText = "";
+        resetFilter();
+    }
+
+    onModelChanged: {
+        filterText = "";
+        resetFilter();
     }
 
     signal todoSelected(QtObject todo)
     signal showTrashForList( QtObject list )
     signal showSearch()
+    signal todoListClicked(QtObject list)
 
-    onCurrentListChanged: filterText.text = ""
-    
+    onResetFilter: filterText = ""
+
     toolButtons: [
         ToolButton {
             label: "New List"
@@ -67,7 +82,7 @@ View {
         ToolButton {
             label: "\uf014"
             font.family: symbolFont.name
-            enabled: currentList !== null
+            enabled: todoListView.currentList !== null
 
             onClicked: if ( todoListView.currentList ) {
                            todoListView.showTrashForList( todoListView.currentList );
@@ -85,7 +100,7 @@ View {
     Rectangle {
         id: sideBar
 
-        width: todoListView.currentList || true ? 200 : todoListView.clientWidth
+        width: layout.useCompactLayout ? parent.width : 300
         height: todoListView.clientHeight
         color: colors.primary
         
@@ -120,36 +135,39 @@ View {
                 Button {
                     id: showAllTodosButton
                     label: "All Todos"
-                    down: todoListView.model.sourceModel == todoListView.allTopLevelTodos
+                    down: todoListView.model.sourceModel === todoListView.allTopLevelTodos
                     width: parent.width
 
                     onClicked: {
                         todoListView.currentList = null;
                         todoListView.model.sourceModel = todoListView.allTopLevelTodos
+                        todoListView.todoListClicked( null )
                     }
                 }
 
                 Button {
                     id: showTodosDueToday
                     label: "Due Today"
-                    down: todoListView.model.sourceModel == todoListView.dueTodayModel
+                    down: todoListView.model.sourceModel === todoListView.dueTodayModel
                     width: parent.width
 
                     onClicked: {
                         todoListView.currentList = null;
                         todoListView.model.sourceModel = todoListView.dueTodayModel
+                        todoListView.todoListClicked( null )
                     }
                 }
 
                 Button {
                     id: showTodosDueThisWeek
                     label: "Due This Week"
-                    down: todoListView.model.sourceModel == todoListView.dueThisWeekModel
+                    down: todoListView.model.sourceModel === todoListView.dueThisWeekModel
                     width: parent.width
 
                     onClicked: {
                         todoListView.currentList = null;
                         todoListView.model.sourceModel = todoListView.dueThisWeekModel
+                        todoListView.todoListClicked( null )
                     }
                 }
 
@@ -163,6 +181,7 @@ View {
                         onClicked: {
                             todoListView.currentList = object
                             todoListView.model.sourceModel = object.entries
+                            todoListView.todoListClicked( object )
                         }
                     }
                 }
@@ -170,73 +189,15 @@ View {
         }
     }
     
-    Item {
-        id: todoListContents
+    TodoListContents {
         anchors.left: sideBar.right
         anchors.leftMargin: 10
-        width: todoListView.clientWidth - 200 - 10
+        anchors.right: parent.right
         height: parent.height
-        Column {
-            id: controlsColumns
-            spacing: 5
-            height: childrenRect.height
-            
-            Item {
-                height: todoListView.currentList ? Math.max( newTodoTitle.height, addNewTodoButton.height ) : 0
-                width: todoListContents.width
-                SimpleTextInput {
-                    id: newTodoTitle
-                    anchors { left: parent.left; right: parent.right; rightMargin: addNewTodoButton.width + 10 }
-                    text: ""
-                    placeholderText: "Add new todo"
 
-                    onApply: addNewTodoButton.createNewTodo()
-                }
-                Button {
-                    id: addNewTodoButton
-                    label: "\uf067"
-                    font.family: symbolFont.name
-                    
-                    anchors.right: parent.right
-                    
-                    onClicked: createNewTodo()
-
-                    function createNewTodo() {
-                        if ( newTodoTitle.text != "" ) {
-                            var todo = todoListView.currentList.addTodo();
-                            todo.title = newTodoTitle.text;
-                            newTodoTitle.text = "";
-                        }
-                    }
-                }
-
-                Behavior on height { SmoothedAnimation { velocity: 120 } }
-            }
-
-            Item {
-                id: filterItem
-                height: childrenRect.height
-                width: todoListContents.width
-                SimpleTextInput {
-                    id: filterText
-                    anchors { left: parent.left; right: parent.right }
-                    text: ""
-                    placeholderText: "Filter todos"
-                }
-            }
-        }
-
-        TodoView {
-            width: todoListContents.width
-            anchors.top: controlsColumns.bottom
-            anchors.bottom: parent.bottom
-            model: todoListView.model
-            //autoSize: true
-
-            onTodoSelected: todoListView.todoSelected(todo)
-        }
+        onTodoSelected: todoListView.todoSelected( todo )
     }
-    
+
     Item {
         Timer {
             interval: 60000
@@ -246,4 +207,5 @@ View {
             }
         }
     }
+
 }
