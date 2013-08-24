@@ -18,7 +18,7 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
-import "Utils.js" as Utils;
+import "../js/Utils.js" as Utils;
 
 Item {
     id: entry

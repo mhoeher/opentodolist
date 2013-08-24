@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import "Utils.js" as Utils
+import "../js/Utils.js" as Utils
 
 Item {
     id: indicator

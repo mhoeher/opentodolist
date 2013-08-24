@@ -17,6 +17,9 @@
  */
 
 import QtQuick 2.0
+import "helper"
+import "views"
+import "controls"
 
 ViewContainer {
     id: root
@@ -37,7 +40,7 @@ ViewContainer {
 
     FontLoader {
         id: symbolFont
-        source: "fontawesome-webfont.ttf"
+        source: "res/fontawesome-webfont.ttf"
     }
     
     TodoListView {

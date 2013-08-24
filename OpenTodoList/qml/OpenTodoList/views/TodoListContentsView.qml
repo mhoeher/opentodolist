@@ -17,31 +17,28 @@
  */
 
 import QtQuick 2.0
-import net.rpdev.OpenTodoList 1.0
+import "../controls"
 
 View {
-    id: deletedTodosView
+    id: todoListContentsView
 
-    property QtObject todoList: null
-    property TodoSortFilterModel model: TodoSortFilterModel {
-        sourceModel: todoList ? todoList.todos : null
-        filterMode: TodoSortFilterModel.HideNonDeleted
-    }
+    property bool showIfCompactView: false
 
-    hidden: !todoList
+    signal todoSelected( QtObject todo )
 
     toolButtons: [
         ToolButton {
             font.family: symbolFont.name
             label: "\uf060"
 
-            onClicked: deletedTodosView.todoList = null
+            onClicked: todoListContentsView.showIfCompactView = false
         }
     ]
 
-    TodoView {
-        width: deletedTodosView.clientWidth
-        height: deletedTodosView.clientHeight
-        model: deletedTodosView.model
+    TodoListContents {
+        width: todoListContentsView.clientWidth
+        height: todoListContentsView.clientHeight
+
+        onTodoSelected: todoListContentsView.todoSelected( todo )
     }
 }

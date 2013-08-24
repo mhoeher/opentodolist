@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import "../controls"
 
 Item {
     id: todoListContents

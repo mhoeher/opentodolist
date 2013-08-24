@@ -17,27 +17,11 @@
  */
 
 import QtQuick 2.0
+import "../js/Utils.js" as Utils
 
-View {
-    id: todoListContentsView
+Rectangle {
+    color: colors.window
 
-    property bool showIfCompactView: false
+    property variant activeViews: Utils.initViewList()
 
-    signal todoSelected( QtObject todo )
-
-    toolButtons: [
-        ToolButton {
-            font.family: symbolFont.name
-            label: "\uf060"
-
-            onClicked: todoListContentsView.showIfCompactView = false
-        }
-    ]
-
-    TodoListContents {
-        width: todoListContentsView.clientWidth
-        height: todoListContentsView.clientHeight
-
-        onTodoSelected: todoListContentsView.todoSelected( todo )
-    }
 }

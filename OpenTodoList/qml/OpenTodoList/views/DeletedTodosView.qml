@@ -18,44 +18,31 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList 1.0
+import "../controls"
 
 View {
-    id: searchView
+    id: deletedTodosView
 
-    property TodoSortFilterModel model : TodoSortFilterModel {
-        sourceModel: library.todos
-        filterMode: TodoSortFilterModel.HideDeleted
+    property QtObject todoList: null
+    property TodoSortFilterModel model: TodoSortFilterModel {
+        sourceModel: todoList ? todoList.todos : null
+        filterMode: TodoSortFilterModel.HideNonDeleted
     }
 
-    signal todoSelected(QtObject todo)
+    hidden: !todoList
 
     toolButtons: [
         ToolButton {
-            label: "Back"
+            font.family: symbolFont.name
+            label: "\uf060"
 
-            onClicked: searchView.hidden = true
+            onClicked: deletedTodosView.todoList = null
         }
-
     ]
 
-    Item {
-        width: searchView.clientWidth
-        height: searchView.clientHeight
-
-        SimpleTextInput {
-            id: search
-            text: ""
-            width: parent.width
-
-            onTextChanged: searchView.model.searchString = text
-        }
-
-        TodoView {
-            anchors.top: search.bottom
-            anchors.bottom: parent.bottom
-            width: parent.width
-            model: search.text == "" ? null : searchView.model
-            onTodoSelected: todoDetailsView.todo = todo
-        }
+    TodoView {
+        width: deletedTodosView.clientWidth
+        height: deletedTodosView.clientHeight
+        model: deletedTodosView.model
     }
 }

@@ -18,7 +18,8 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList 1.0
-import "Utils.js" as Utils
+import "../js/Utils.js" as Utils
+import "../controls"
 
 View {
     id: todoDetailsView
