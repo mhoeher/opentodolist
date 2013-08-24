@@ -59,8 +59,7 @@ View {
     
     toolButtons: [
         ToolButton {
-            font.family: symbolFont.name
-            label: "\uf060"
+            symbol: "\uf060"
 
             onClicked: {
                 todoDetailsView.todo = todoDetailsView.todo.parentTodo
@@ -236,7 +235,7 @@ View {
                     BorderImage {
                         width: todoDescriptionEditContains.width
                         height: todoDescriptionEditContains.height
-                        source: "description.sci"
+                        source: "../res/description.sci"
                         cache: !settings.debug
                     }
 

@@ -48,6 +48,8 @@ Item {
                 ",percentage=" + indicator.percentage
         width: indicator.width
         height: indicator.height
+        sourceSize.width: width
+        sourceSize.height: height
     }
 
     Image {
@@ -57,6 +59,8 @@ Item {
         height: indicator.height - indicator.indicatorBorder * 2
         x: indicator.indicatorBorder
         y: indicator.indicatorBorder
+        sourceSize.width: width
+        sourceSize.height: height
     }
 
     SymbolButton {

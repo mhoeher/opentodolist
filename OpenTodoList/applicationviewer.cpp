@@ -21,6 +21,7 @@
 
 #include "imageprovider.h"
 
+#include <QDir>
 #include <QQmlEngine>
 
 ApplicationViewer::ApplicationViewer(QWindow* parent) : 
@@ -32,11 +33,22 @@ ApplicationViewer::ApplicationViewer(QWindow* parent) :
     connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
 }
 
+#include <QDebug>
+
 void ApplicationViewer::addImportPath(const QString& path)
 {
     QtQuick2ApplicationViewer::addImportPath( path );
     if ( !( path.startsWith( "qrc:" ) || path.startsWith( ":" ) ) ) {
-        m_watcher->addPath( path );
+        QStringList pathsToWatch;
+        pathsToWatch << path;
+        while ( !pathsToWatch.isEmpty() ) {
+            m_watcher->addPath( pathsToWatch.first() );
+            QDir dir( pathsToWatch.first() );
+            foreach ( QString entry, dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks ) ) {
+                pathsToWatch << dir.absoluteFilePath( entry );
+            }
+            pathsToWatch.removeFirst();
+        }
     }
 }
 

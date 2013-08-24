@@ -33,7 +33,7 @@ Item {
       that each button or other click/tapable component should get to be easily
       usable (esp. on touch devices).
       */
-    property int minimumButtonHeight: helper.height
+    property int minimumButtonHeight: helper.height * 2
 
     /*
       Are we on a touch device?

@@ -25,7 +25,7 @@ Item {
     
     property QtObject todo: null
     property alias containsMouse: mouseArea.containsMouse
-    property color fontColor: colors.fontColorFor( color )
+    property color fontColor: "black"
     property int padding: 4
     property bool hasNext: true
 

@@ -27,8 +27,7 @@ View {
     
     toolButtons: [
         ToolButton {
-            font.family: symbolFont.name
-            label: "\uf060"
+            symbol: "\uf060"
             onClicked: newTodoListView.hidden = true
         },
         ToolButton {

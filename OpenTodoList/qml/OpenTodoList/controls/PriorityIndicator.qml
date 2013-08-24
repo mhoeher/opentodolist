@@ -43,6 +43,8 @@ Item {
         anchors {
             fill: parent
         }
+        sourceSize.width: width
+        sourceSize.height: height
         source: "image://primitives/pie/percentage=100,fill=" +
                 ( helper.noColorSelected() ? Utils.PriorityColors[priority] :
                                             helper.hoveredColor )
@@ -83,6 +85,8 @@ Item {
                 Image {
                     width: parent.width
                     height: parent.width
+                    sourceSize.width: width
+                    sourceSize.height: height
                     source: "image://primitives/pie/percentage=100,fill=" +
                             text.color
                 }
@@ -91,6 +95,8 @@ Item {
                     height: parent.width -4
                     x: 2
                     y: 2
+                    sourceSize.width: width
+                    sourceSize.height: height
                     source: "image://primitives/pie/percentage=100,fill=" +
                             Utils.PriorityColors[index-1]
                 }

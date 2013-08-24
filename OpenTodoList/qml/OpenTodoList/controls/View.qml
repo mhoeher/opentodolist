@@ -27,13 +27,14 @@ Rectangle {
     clip: true
     color: colors.window
     
-    property alias toolButtons: toolbarContent.children
+    property alias toolButtons: toolbar.children
     property bool hidden: true
     property bool active: false
-    property alias clientWidth: contentsFlickable.width
-    property alias clientHeight: contentsFlickable.height
-    default property alias content: contentsFlickable.children
+    property alias clientWidth: contents.width
+    property alias clientHeight: contents.height
+    default property alias content: contents.children
     property string title: "View"
+    property int padding: 20
 
     onHiddenChanged: {
         if ( parent ){
@@ -47,52 +48,58 @@ Rectangle {
         anchors.fill: parent
         onClicked:;
     }
-    
+
     Rectangle {
-        id: toolbar
-        height: toolbarContent.childrenRect.height
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        clip: true
+        id: toolbarOuter
         color: colors.primary
-        
+        height: childrenRect.height
+        clip: true
+        radius: 5
+        anchors { left: parent.left; right: parent.right; top: parent.top
+            leftMargin: padding; rightMargin: padding; topMargin: padding }
         Flickable {
-            anchors.top: parent.top
-            anchors.left: parent.left
-            width: parent.width
-            height: childrenRect.height
-            
-            contentWidth: toolbarContent.childrenRect.width
-            
+            clip: true
+            anchors { left: parent.left; right: parent.right;
+                margins: parent.radius }
+            height: toolbar.childrenRect.height
+            contentWidth: toolbar.childrenRect.width
+            contentHeight: toolbar.childrenRect.height
             Row {
-                id: toolbarContent
-                
-                //TODO: Will not work! Views remain unhidden even if they are not topmost!
-                property bool disabled: !view.active
-                
-                Component.onCompleted: {
-                    for ( var i = 0; i < children.length; ++i ) {
-                        children[i].sourceIndex = i;
-                    }
-                }
+                id: toolbar
+                anchors.left: parent.left
+                anchors.leftMargin: spacing / 2
+                spacing: layout.minimumButtonHeight / 2
             }
         }
     }
-    
+
     Item {
-        anchors.top: toolbar.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        
-        Flickable {
-            id: contentsFlickable
-            anchors { fill: parent; margins: 0 }
-            clip: true
-            contentWidth: contentItem.childrenRect.width
-            contentHeight: contentItem.childrenRect.height
+        id: toolbarDecorationOuter
+        anchors { left: parent.left; right: parent.right; top: toolbarOuter.bottom;
+            leftMargin: padding * 2; rightMargin: padding }
+        height: childrenRect.height
+        Item {
+            width: 30
+            height: 30
+            Image {
+                sourceSize.width: width
+                sourceSize.height: height
+                anchors.fill: parent
+                source:"image://primitives/polygon/color=" + colors.primary +
+                       ",fill=" + colors.primary +
+                       ",points=0:0-15:30-30:0"
+            }
         }
+    }
+
+    Rectangle {
+        id: contents
+        color: colors.view
+        clip: true
+
+        anchors { left: parent.left; right: parent.right;
+                  top: toolbarDecorationOuter.bottom; bottom: parent.bottom;
+                  leftMargin: padding; rightMargin: padding; bottomMargin: padding }
     }
     
     states: [

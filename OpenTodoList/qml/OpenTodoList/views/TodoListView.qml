@@ -75,14 +75,12 @@ View {
             onClicked: newTodoListView.hidden = false
         },
         ToolButton {
-            label: "\uf002"
-            font.family: symbolFont.name
+            symbol: "\uf002"
 
             onClicked: todoListView.showSearch()
         },
         ToolButton {
-            label: "\uf014"
-            font.family: symbolFont.name
+            symbol: "\uf014"
             enabled: todoListView.currentList !== null
 
             onClicked: if ( todoListView.currentList ) {
@@ -90,8 +88,7 @@ View {
                        }
         },
         ToolButton {
-            font.family: symbolFont.name
-            label: "\uf011"
+            symbol: "\uf011"
 
             onClicked: Qt.quit()
         }

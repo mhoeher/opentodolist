@@ -14,6 +14,7 @@ public:
 private:
 
     static void renderPie( QPixmap* pixmap, QString params );
+    static void renderPolygon( QPixmap* pixmap, QString params );
     
 };
 
