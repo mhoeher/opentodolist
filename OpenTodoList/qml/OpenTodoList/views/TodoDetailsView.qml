@@ -158,6 +158,13 @@ View {
                     spacing: 10
                     width: parent.width
                     anchors.horizontalCenter: parent.horizontalCenter
+                    move: Transition {
+                        NumberAnimation {
+                            properties: "x,y"
+                            duration: 200
+                        }
+                    }
+
                     ProgressIndicator {
                         id: progressIndicator
                         percentage: todoDetailsView.todo ? todoDetailsView.todo.progress : 0
@@ -168,7 +175,7 @@ View {
                     PriorityIndicator {
                         id: priorityIndicator
                         width: progressIndicator.width
-                        height: progressIndicator.height
+                        //height: progressIndicator.height // implicitly bound to width
                         priority: todoDetailsView.todo ? todoDetailsView.todo.priority : -1
 
                         onSelectedPriority: todoDetailsView.todo.priority = priority

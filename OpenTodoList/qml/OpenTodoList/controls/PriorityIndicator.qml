@@ -22,32 +22,33 @@ import "../js/Utils.js" as Utils
 Item {
     id: indicator
 
-    width: 100
-    height: 100
-
     property int priority: 0
+    property int sizeOnFocus: layout.minimumButtonHeight * 4
 
     signal selectedPriority(int priority)
 
     Keys.onEscapePressed: focus = false
+
+    width: text.width + text.height
+    height: width
 
     Item {
         id: helper
         readonly property color noColor: "#00000000"
         property color hoveredColor: noColor
         function noColorSelected() { return hoveredColor === noColor; }
-        Behavior on hoveredColor { ColorAnimation { duration: 200 } }
+        Behavior on hoveredColor { ColorAnimation { duration: 50 } }
     }
 
     Image {
+        property color color: Utils.PriorityColors[priority]
+
         anchors {
             fill: parent
         }
-        sourceSize.width: width
-        sourceSize.height: height
-        source: "image://primitives/pie/percentage=100,fill=" +
-                ( helper.noColorSelected() ? Utils.PriorityColors[priority] :
-                                            helper.hoveredColor )
+        sourceSize.width: indicator.sizeOnFocus
+        sourceSize.height: indicator.sizeOnFocus
+        source: "image://primitives/pie/percentage=100,fill=" + color
     }
 
     MouseArea {
@@ -59,34 +60,36 @@ Item {
 
     Text {
         id: text
-        opacity: indicator.focus ? 0 : 1
+        opacity: 1.0 - inner.opacity
         anchors.centerIn: parent
         text: indicator.priority >= 0 ? "Priority " + indicator.priority : "No Priority"
         font.pointSize: fonts.p
         color: colors.fontColorFor( Utils.PriorityColors[indicator.priority] )
-        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
 
     Item {
+        id: inner
+
+        opacity: 0
         anchors {
             fill: parent
             margins: 5
         }
+
         Repeater {
             model: 12
             Item {
-                opacity: indicator.focus ? 1 : 0
+                opacity: inner.opacity
                 visible: opacity !== 0
                 width: indicator.width / 6
                 height: indicator.height * 9 / 10
                 rotation: index * 360 / 12
                 anchors.horizontalCenter: parent.horizontalCenter
-                Behavior on opacity { NumberAnimation { duration: 300 } }
                 Image {
                     width: parent.width
                     height: parent.width
-                    sourceSize.width: width
-                    sourceSize.height: height
+                    sourceSize.width: layout.minimumButtonHeight
+                    sourceSize.height: layout.minimumButtonHeight
                     source: "image://primitives/pie/percentage=100,fill=" +
                             text.color
                 }
@@ -95,8 +98,8 @@ Item {
                     height: parent.width -4
                     x: 2
                     y: 2
-                    sourceSize.width: width
-                    sourceSize.height: height
+                    sourceSize.width: layout.minimumButtonHeight
+                    sourceSize.height: layout.minimumButtonHeight
                     source: "image://primitives/pie/percentage=100,fill=" +
                             Utils.PriorityColors[index-1]
                 }
@@ -116,4 +119,40 @@ Item {
             }
         }
     }
+
+    states: [
+        State {
+            name: "focused"
+            when: indicator.focus
+            PropertyChanges {
+                target: indicator
+                width: indicator.sizeOnFocus
+            }
+            PropertyChanges {
+                target: inner
+                opacity: 1.0
+            }
+        }
+    ]
+
+
+    transitions: [
+        Transition {
+            from: ""
+            to: "focused"
+            reversible: true
+            SequentialAnimation {
+                NumberAnimation {
+                    target: indicator
+                    property: "width"
+                    duration: 200
+                }
+                NumberAnimation {
+                    target: inner
+                    property: "opacity"
+                    duration: 200
+                }
+            }
+        }
+    ]
 }

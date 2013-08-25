@@ -39,8 +39,22 @@ Item {
     }
 
     Behavior on percentage { SmoothedAnimation { velocity: 120 } }
-    width: 150
-    height: 150
+
+    width: row.width + 50
+    height: width
+
+    Image {
+        source: "image://primitives/pie/fill=" +
+                indicator.innerColor + ",percentage=100"
+        width: indicator.width
+        height: indicator.height
+
+        Component.onCompleted: {
+            // Initialize once to avoid flickering during resize
+            sourceSize.width = width;
+            sourceSize.height = height;
+        }
+    }
 
     Image {
         source: "image://primitives/pie/fill=" +
@@ -48,8 +62,11 @@ Item {
                 ",percentage=" + indicator.percentage
         width: indicator.width
         height: indicator.height
-        sourceSize.width: width
-        sourceSize.height: height
+        Component.onCompleted: {
+            // Initialize once to avoid flickering during resize
+            sourceSize.width = width;
+            sourceSize.height = height;
+        }
     }
 
     Image {
@@ -63,36 +80,35 @@ Item {
         sourceSize.height: height
     }
 
-    SymbolButton {
-        id: decreaseButton
-        text: "\uf068"
-        font.pointSize: fonts.p
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        anchors.leftMargin: indicator.indicatorBorder * 2
-        color: colors.fontColorFor( indicator.innerColor )
-
-        onClicked: indicator.decreasePressed()
-    }
-
-    Text {
+    Row {
+        id: row
+        spacing: decreaseButton.height
         anchors.centerIn: parent
-        text: indicator.percentage + "%"
-        font.pointSize: fonts.p
-        color: colors.fontColorFor( indicator.innerColor )
-    }
+        SymbolButton {
+            id: decreaseButton
+            text: "\uf068"
+            font.pointSize: fonts.h2
+            anchors.verticalCenter: parent.verticalCenter
+            color: colors.fontColorFor( indicator.innerColor )
 
-    SymbolButton {
-        id: increaseButton
-        text: "\uf067"
-        font.pointSize: fonts.p
-        color: colors.fontColorFor( indicator.innerColor )
-        anchors {
-            verticalCenter: parent.verticalCenter
-            right: parent.right
-            rightMargin: indicator.indicatorBorder * 2
+            onClicked: indicator.decreasePressed()
         }
 
-        onClicked: indicator.increasePressed()
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            text: indicator.percentage + "%"
+            font.pointSize: fonts.h2
+            color: colors.fontColorFor( indicator.innerColor )
+        }
+
+        SymbolButton {
+            id: increaseButton
+            text: "\uf067"
+            font.pointSize: fonts.h2
+            color: colors.fontColorFor( indicator.innerColor )
+            anchors.verticalCenter: parent.verticalCenter
+
+            onClicked: indicator.increasePressed()
+        }
     }
 }

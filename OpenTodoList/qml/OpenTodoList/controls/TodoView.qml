@@ -42,6 +42,7 @@ Item {
     Item {
         id: list
         anchors { top: controls.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+
         ListView {
             id: listView
             anchors.fill: parent

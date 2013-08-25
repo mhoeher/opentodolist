@@ -189,7 +189,7 @@ View {
     
     TodoListContents {
         anchors.left: sideBar.right
-        anchors.leftMargin: 10
+        //anchors.leftMargin: 10
         anchors.right: parent.right
         height: parent.height
 

@@ -1,17 +1,17 @@
 /*
  *  OpenTodoListDesktopQml - Desktop QML frontend for OpenTodoList
  *  Copyright (C) 2013  Martin Höher <martin@rpdev.net>
- * 
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -20,7 +20,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import "../js/Utils.js" as Utils;
 
-Item {
+Rectangle {
     id: entry
     
     property QtObject todo: null
@@ -36,6 +36,8 @@ Item {
     signal clicked
 
     height: childrenRect.height + 2*padding
+    color: "transparent"
+    border.color: entry.todo.priority >= 0 ? priorityHint.color : "gray"
 
     MouseArea {
         id: mouseArea
@@ -45,22 +47,35 @@ Item {
         onClicked: entry.clicked()
     }
 
+    Image {
+        id: priorityHint
+
+        property color color: Utils.PriorityColors[entry.todo.priority]
+        property int size: layout.minimumButtonHeight / 4
+
+        visible: entry.todo.priority >= 0
+        source:"image://primitives/polygon/color=" + color +
+               ",fill=" + color +
+               ",points=0:0-1:0-1:1"
+        width: size
+        height: size
+        anchors.right: parent.right
+        anchors.top: parent.top
+    }
+
     RowLayout {
         id: entryContent
         anchors.left: parent.left
-        anchors.leftMargin: 4
+        anchors.leftMargin: + priorityHint.width
         anchors.right: parent.right
-        anchors.rightMargin: 4
+        anchors.rightMargin: 4 + priorityHint.width
+        spacing: 10
         y: padding
 
         Item {
             width: childrenRect.width
             height: childrenRect.height
             anchors.verticalCenter: parent.verticalCenter
-            SymbolButton {
-                text: "\uf0c8"
-                color: Utils.PriorityColors[entry.todo.priority]
-            }
             SymbolButton {
                 id: checkMark
 
@@ -106,11 +121,5 @@ Item {
             color: fontColor
             onClicked: entry.todo.deleted = !entry.todo.deleted;
         }
-    }
-
-    Rectangle {
-        height: entry.hasNext ? 2 : 0
-        border.color: "#50000000"
-        anchors { left: parent.left; right: parent.right; top: entryContent.bottom; topMargin: entry.padding }
     }
 }
