@@ -48,12 +48,9 @@ LocalXmlTodoList::~LocalXmlTodoList()
 
 QObject* LocalXmlTodoList::addTodo()
 {
-    int i = 0;
-    QString todoKey;
-    while ( QFile::exists( todoKey = m_dir + QString( "/todos/%1.xml" ).arg( i ) ) ) {
-        ++i;
-    }
-    LocalXmlTodo* todo = new LocalXmlTodo( todoKey, this );
+    QUuid id = QUuid::createUuid();
+    QString todoFile = m_dir + "/todos/" + id.toString() + ".xml";
+    LocalXmlTodo* todo = new LocalXmlTodo( id, todoFile, this );
     appendTodo( todo );
     return todo;
 }
@@ -103,7 +100,9 @@ void LocalXmlTodoList::load()
                 foreach ( QString entry, dir.entryList(
                               QStringList() << "*.xml", QDir::Files ) ) {
                     LocalXmlTodo* todo = new LocalXmlTodo(
-                                dir.absolutePath() + "/" + entry, this );
+                                QUuid(), // going to be set to proper value when restoring
+                                dir.absolutePath() + "/" + entry,
+                                this );
                     appendTodo( todo );
                 }
             }

@@ -29,13 +29,14 @@ class LocalXmlTodo : public AbstractTodo
     
 public:
     
-    explicit LocalXmlTodo(const QString& key, AbstractTodoList* parent = 0);
+    explicit LocalXmlTodo( QUuid id, const QString& configFile, AbstractTodoList* parent = 0);
     virtual ~LocalXmlTodo();
     
 private:
     
-    QString m_key;
-    QString m_parentKey;
+    QString m_configFile;
+    QUuid m_parentId;
+    QString m_parentConfigFile;
     
 private slots:
     

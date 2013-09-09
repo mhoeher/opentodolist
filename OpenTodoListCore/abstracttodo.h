@@ -24,12 +24,14 @@
 
 #include <QDate>
 #include <QObject>
+#include <QUuid>
 
 class AbstractTodoList;
 
 class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY( QUuid id READ id CONSTANT )
     Q_PROPERTY( QString title READ title WRITE setTitle NOTIFY titleChanged )
     Q_PROPERTY( QString description READ description WRITE setDescription NOTIFY descriptionChanged )
     Q_PROPERTY( int progress READ progress WRITE setProgress NOTIFY progressChanged )
@@ -42,8 +44,10 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
     Q_PROPERTY( bool isCompleted READ isCompleted NOTIFY progressChanged() )
 
 public:
-    explicit AbstractTodo(AbstractTodoList *parent = 0);
+    explicit AbstractTodo( QUuid id, AbstractTodoList *parent = 0);
     
+    QUuid id() const;
+
     QString title() const;
     void setTitle(const QString &title);
 
@@ -79,6 +83,7 @@ public:
     
 signals:
     
+    void idChanged();
     void titleChanged();
     void descriptionChanged();
     void progressChanged();
@@ -92,8 +97,13 @@ signals:
     
 public slots:
 
+protected:
+
+    void setId( QUuid id );
+
 private:
 
+    QUuid               m_id;
     QString             m_title;
     QString             m_description;
     int                 m_progress;

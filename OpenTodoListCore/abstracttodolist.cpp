@@ -66,7 +66,7 @@ TodoSortFilterModel *AbstractTodoList::deletedTodos() const
 
 QObject *AbstractTodoList::addTodo()
 {
-    AbstractTodo* todo = new AbstractTodo( this );
+    AbstractTodo* todo = new AbstractTodo( QUuid::createUuid(), this );
     appendTodo( todo );
     return todo;
 }

@@ -29,10 +29,10 @@
 #include <QTextStream>
 #include <QTimer>
 
-LocalXmlTodo::LocalXmlTodo(const QString& key, AbstractTodoList* parent): 
-    AbstractTodo( parent ),
-    m_key( key ),
-    m_parentKey( QString() )
+LocalXmlTodo::LocalXmlTodo(QUuid id, const QString& configFile, AbstractTodoList* parent): 
+    AbstractTodo( id, parent ),
+    m_configFile( configFile ),
+    m_parentId( QUuid() )
 {
     load();
     connect( this, SIGNAL(changed()), this, SLOT(save()) );
@@ -45,7 +45,7 @@ LocalXmlTodo::~LocalXmlTodo()
 void LocalXmlTodo::save()
 {
     // TODO: If XML already exists, update!
-    QFileInfo fi( m_key );
+    QFileInfo fi( m_configFile );
     QDir dir = fi.absoluteDir();
     if ( dir.exists() || dir.mkpath( dir.absolutePath() ) ) {
         QDomDocument xml;
@@ -55,6 +55,7 @@ void LocalXmlTodo::save()
         xml.appendChild(xmlDeclaration);
         QDomElement root = xml.createElement( "todo" );
         xml.appendChild( root );
+        root.setAttribute( "id", id().toString() );
         root.setAttribute( "title", title() );
         root.setAttribute( "progress", QString::number( progress() ) );
         root.setAttribute( "priority", QString::number( priority() ) );
@@ -66,13 +67,13 @@ void LocalXmlTodo::save()
         }
         LocalXmlTodo* parentTodoItem = qobject_cast< LocalXmlTodo* >( parentTodo() );
         if ( parentTodoItem ) {
-            root.setAttribute( "parent", parentTodoItem->m_key );
+            root.setAttribute( "parent", parentTodoItem->id().toString() );
         }
         QDomElement descriptionElement = xml.createElement( "description" );
         QDomText descriptionText = xml.createTextNode( description() );
         descriptionElement.appendChild( descriptionText );
         root.appendChild( descriptionElement );
-        QFile file( m_key );
+        QFile file( m_configFile );
         if ( file.open( QIODevice::WriteOnly ) ) {
             QTextStream stream( &file );
             stream.setCodec( "UTF-8" );
@@ -84,11 +85,17 @@ void LocalXmlTodo::save()
 
 void LocalXmlTodo::load()
 {
-    QFile file( m_key );
+    QFile file( m_configFile );
     if ( file.open( QIODevice::ReadOnly ) ) {
         QDomDocument xml;
         if ( xml.setContent( file.readAll() ) ) {
             QDomElement root = xml.documentElement();
+            if ( root.hasAttribute( "id" ) ) {
+                setId( QUuid( root.attribute( "id" ) ) );
+            } else {
+                setId( QUuid::createUuid() ); // Import from old format - generate new ID
+                QTimer::singleShot( 0, this, SLOT(save()) ); // to make sure we write back our ID immediately :)
+            }
             setTitle( root.attribute( "title" ) );
             setProgress( root.attribute( "progress", "0" ).toInt() );
             setPriority( root.attribute( "priority", "-1" ).toInt() );
@@ -98,8 +105,17 @@ void LocalXmlTodo::load()
             } else {
                 setDueDate( QDateTime::fromString( root.attribute( "dueDate" ) ) );
             }
-            m_parentKey = root.attribute( "parent", QString() );
-            if ( !m_parentKey.isEmpty() ) {
+            QString parentIdString = root.attribute( "parent" );
+            if ( !parentIdString.isEmpty() ) {
+                QUuid parentId( parentIdString );
+                if ( parentId.isNull() ) {
+                    // Import from previous implementation
+                    m_parentConfigFile = parentIdString;
+                } else {
+                    m_parentId = parentId;
+                }
+            }
+            if ( !m_parentId.isNull() || !m_parentConfigFile.isEmpty() ) {
                 QTimer::singleShot( 0, this, SLOT(updateParentTodo() ) );
             }
             QDomNodeList descriptionElements = root.elementsByTagName( "description" );
@@ -113,12 +129,17 @@ void LocalXmlTodo::load()
 
 void LocalXmlTodo::updateParentTodo()
 {
-    if ( !m_parentKey.isEmpty() ) {
+    if ( !m_parentId.isNull() || !m_parentConfigFile.isEmpty() ) {
         foreach ( AbstractTodo* todo, parent()->todos()->data() ) {
             LocalXmlTodo* xmlTodo = qobject_cast< LocalXmlTodo* >( todo );
             if ( xmlTodo ) {
-                if ( xmlTodo->m_key == m_parentKey ) {
+                if ( !m_parentId.isNull() && m_parentId == xmlTodo->id() ) {
                     setParentTodo( xmlTodo );
+                    return;
+                }
+                if ( !m_parentConfigFile.isEmpty() && xmlTodo->m_configFile == m_parentConfigFile ) {
+                    setParentTodo( xmlTodo );
+                    return;
                 }
             }
         }

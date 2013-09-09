@@ -15,8 +15,9 @@
  * @brief Constructor
  * @param parent The parent object to use for the todo
  */
-AbstractTodo::AbstractTodo(AbstractTodoList *parent) :
-QObject(parent),
+AbstractTodo::AbstractTodo(QUuid id, AbstractTodoList *parent) :
+    QObject(parent),
+    m_id( id ),
     m_title( QString() ),
     m_description( QString() ),
     m_progress( 0 ),
@@ -31,9 +32,10 @@ QObject(parent),
     m_subTodosModel->setFilterMode( TodoSortFilterModel::SubTodos | TodoSortFilterModel::HideDeleted );
     m_subTodosModel->sort( 0 );
     
-    connect( m_subTodosModel, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), 
+    connect( m_subTodosModel, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),
              this, SLOT(childDataChanged()) );
     
+    connect( this, SIGNAL(idChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(progressChanged()), this, SIGNAL(changed()) );
@@ -41,6 +43,17 @@ QObject(parent),
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()));
+}
+
+/**
+   @brief The globally unique ID of the todo
+
+   A globally unique ID that can be used to identify a todo even across
+   networks.
+ */
+QUuid AbstractTodo::id() const
+{
+    return m_id;
 }
 
 int AbstractTodo::priority() const
@@ -59,9 +72,9 @@ int AbstractTodo::progress() const
     if ( m_subTodosModel->rowCount() > 0 ) {
         int result = 0;
         for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-            AbstractTodo* subTodo = qobject_cast< AbstractTodo* >( 
-            m_subTodosModel->index( i, 0 ).data( 
-            TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
+            AbstractTodo* subTodo = qobject_cast< AbstractTodo* >(
+                        m_subTodosModel->index( i, 0 ).data(
+                            TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
             result += subTodo->progress();
         }
         return result / m_subTodosModel->rowCount();
@@ -150,4 +163,20 @@ void AbstractTodo::childDataChanged()
     if ( m_subTodosModel->rowCount() > 0 ) {
         emit progressChanged();
     }
+}
+
+/**
+   @brief Overrides the ID of the todo
+
+   This overrides the @p id of the todo. Note that you do not usually want to use
+   this method as it internally changes the identity of the todo. In fact, the
+   only real use case is when the todo is restored when restarting the
+   application and there is no "sane" way for the todo list to
+   know the ID upfront the todo is created and can read the ID back on it's own
+   (e.g. from external memory or the network).
+ */
+void AbstractTodo::setId(QUuid id)
+{
+    m_id = id;
+    emit idChanged();
 }
