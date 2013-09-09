@@ -45,13 +45,15 @@ public:
 
     typedef ObjectModel< AbstractTodo > TodoList;
 
-    explicit AbstractTodoList( const QString& key, const QString &type, QObject *parent = 0);
+    explicit AbstractTodoList( const QString& key, const QString &type, const QVariant &settings = QVariant(), QObject *parent = 0);
     
     TodoList *todos() const;
     TodoSortFilterModel* topLevelTodos() const;
     TodoSortFilterModel* deletedTodos() const;
     Q_INVOKABLE virtual QObject *addTodo();
     Q_INVOKABLE QObject* addTodo( const QString& title, QObject* parentTodo );
+    virtual QVariant settings();
+
     
     const QString& name() const;
     void setName( const QString& name );
@@ -84,6 +86,7 @@ private:
     QString m_name;
     QString m_type;
     QString m_key;
+    QString m_dir;
     
 private slots:
     

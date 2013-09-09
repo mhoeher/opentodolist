@@ -23,7 +23,6 @@
 #include <QPluginLoader>
 #include <QSet>
 
-
 PluginsLoader::PluginsLoader(QObject *parent) :
     QObject(parent),
     m_backends( new Backends( this ) ),

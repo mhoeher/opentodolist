@@ -32,11 +32,25 @@ class OPENTODOLISTCORESHARED_EXPORT TodoListFactory : public QObject
 public:
     explicit TodoListFactory(const QString& type, QObject *parent = 0);
 
-    virtual AbstractTodoList* createTodoList( QObject *parent = 0, const QString& key = QString() ) const = 0;
+    /**
+       @brief Creates a new todo list
+
+       This will create a new todo list or restore one. The todo list will be
+       made a child of the given @p parent. In case of a new list is created,
+       both @p key and @p settings will be invalid values. Upon restoration,
+       the key will be set to the previously generated key of the todo list and
+       settings will be set to whatever has been returned from the
+       AbstractTodoList::settings() method.
+     */
+    virtual AbstractTodoList* createTodoList( QObject *parent = 0,
+                                              const QString& key = QString(),
+                                              const QVariant &settings = QVariant() ) const = 0;
     
     const QString& type() const {
         return m_type;
     }
+
+    QString localStorageLocation() const;
     
 signals:
     

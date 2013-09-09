@@ -25,6 +25,7 @@
 #include <QDir>
 #include <QFile>
 #include <QStandardPaths>
+#include <QUuid>
 
 LocalXmlTodoListFactory::LocalXmlTodoListFactory(const QString& type, QObject* parent) : 
     TodoListFactory( type, parent)
@@ -32,27 +33,21 @@ LocalXmlTodoListFactory::LocalXmlTodoListFactory(const QString& type, QObject* p
 
 }
 
-AbstractTodoList* LocalXmlTodoListFactory::createTodoList(QObject* parent, const QString& key ) const
+AbstractTodoList* LocalXmlTodoListFactory::createTodoList(QObject* parent, const QString& key , const QVariant &settings) const
 {
-    QString lkey = key;
-    if ( lkey.isNull() ) {
-        QStringList locations = QStandardPaths::standardLocations( QStandardPaths::ConfigLocation );
-        QString baseDir;
-        foreach ( QString location, locations ) {
-            QDir dir( location + "/" + QCoreApplication::organizationName() + "/OpenTodoList/LocalXmlBackend" );
-            if ( !dir.exists() ) {
-                dir.mkpath( dir.absolutePath() );
+    QVariantMap map = settings.toMap();
+    QUuid uuid( key );
+    if ( uuid.isNull() ) {
+        uuid = QUuid::createUuid();
+        if ( !key.isNull() ) {
+            // Import from previous approach (key == dir):
+            if ( !map.contains( "dir" ) ) {
+                map.insert( "dir", key );
             }
-            if ( dir.exists() ) {
-                baseDir = dir.absolutePath();
-                break;
-            }
-        }
-        int i = 0;
-        while ( QFile::exists( ( lkey = QString( "%1/%2" ).arg( baseDir ).arg( i ) ) ) ) {
-            ++i;
         }
     }
-    return new LocalXmlTodoList( lkey, type(), parent );
+
+    return new LocalXmlTodoList( uuid.toString(), type(), map,
+                                 localStorageLocation(), parent );
 }
 

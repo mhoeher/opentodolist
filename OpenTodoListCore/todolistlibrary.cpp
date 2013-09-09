@@ -87,6 +87,10 @@ void TodoListLibrary::saveSettings()
         AbstractTodoList* list = m_lists->data().at( i );
         settings.setValue( "type", list->type() );
         settings.setValue( "key", list->key() );
+        QVariant listSettings = list->settings();
+        if ( listSettings.isValid() ) {
+            settings.setValue( "settings", listSettings );
+        }
     }
     for ( int i = 0; i < m_nonLoadableLists.size(); ++i ) {
         settings.setArrayIndex( m_lists->data().size() + i );
@@ -107,7 +111,10 @@ void TodoListLibrary::restoreSettings()
         settings.setArrayIndex( i );
         OpenTodoListBackend* backend = backendByTypeName( settings.value( "type" ).toString() );
         if ( backend ) {
-            AbstractTodoList* list = backend->factory()->createTodoList( this, settings.value( "key" ).toString() );
+            AbstractTodoList* list = backend->factory()->createTodoList(
+                        this,
+                        settings.value( "key" ).toString(),
+                        settings.value( "settings", QVariant() ) );
             if ( list ) {
                 m_lists->append( list );
                 m_todos->appendList( list->todos() );

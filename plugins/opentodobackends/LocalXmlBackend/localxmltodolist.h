@@ -30,15 +30,23 @@ class LocalXmlTodoList : public AbstractTodoList
     
 public:
     
-    explicit LocalXmlTodoList(const QString& key, const QString& type, QObject* parent = 0);
+    explicit LocalXmlTodoList(const QString& key, const QString& type,
+                              QVariant settings, QString localStorageLocation,
+                              QObject* parent = 0);
     virtual ~LocalXmlTodoList();
     
     Q_INVOKABLE virtual QObject *addTodo();
+
+    virtual QVariant settings();
     
 private slots:
     
     void save();
     void load();
+
+private:
+
+    QString m_dir;
     
 };
 

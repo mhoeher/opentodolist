@@ -20,7 +20,17 @@
 
 #include "abstracttodo.h"
 
-AbstractTodoList::AbstractTodoList(const QString& key, const QString& type, QObject* parent) :
+/**
+   @brief Constructor
+
+   Creates a new todo list. The @p key and @p settings arguments are either
+   invalid values (in case the todo list is created) or some meaningful
+   values in case the list is restored. The @p parent will take ownership
+   of this object. The @p type is the type ID of the todo list factory
+   creating this object.
+ */
+AbstractTodoList::AbstractTodoList(const QString& key, const QString& type,
+                                   const QVariant &settings, QObject* parent) :
     QObject(parent),
     m_todos( new TodoList( this ) ),
     m_topLevelTodos( new TodoSortFilterModel( this ) ),
@@ -28,6 +38,7 @@ AbstractTodoList::AbstractTodoList(const QString& key, const QString& type, QObj
     m_type( type ),
     m_key( key )
 {
+    Q_UNUSED( settings );
     m_topLevelTodos->setFilterMode( TodoSortFilterModel::TodoListEntries | TodoSortFilterModel::HideDeleted );
     m_topLevelTodos->setSortMode( TodoSortFilterModel::PrioritySort );
     m_topLevelTodos->setSourceModel( m_todos );
@@ -68,6 +79,34 @@ QObject* AbstractTodoList::addTodo(const QString& title, QObject* parentTodo)
         result->setParentTodo( static_cast< AbstractTodo* >( parentTodo ) );
     }
     return result;
+}
+
+/**
+   @brief Store additional settings of the todo list
+
+   This method can be overridden to return additional settings of the todo
+   list that shall be saved in the application settings.
+
+   By default, it is up to the concrete storage backend to store the settings of
+   the todo list. However, some settings might need to be stored inside the
+   application settings.
+
+   In a subclass of AbstractTodoList, overriding this function should include
+   the (potential) settings of the base class (if any):
+
+   @code
+   QVariant MyTodoList::settings() {
+     QVariantMap result;
+     result.insert( "myValue", 42 );
+     QVariant baseSettings = AbstractTodoList::settings();
+     result.insert( "base", baseSettings );
+     return result;
+   }
+   @endcode
+ */
+QVariant AbstractTodoList::settings()
+{
+    return QVariant();
 }
 
 const QString& AbstractTodoList::name() const
