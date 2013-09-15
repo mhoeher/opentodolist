@@ -36,11 +36,13 @@ View {
     property TodoSortFilterModel dueTodayModel : TodoSortFilterModel {
         sourceModel: library.todos
         maxDueDate: new Date()
+        filterMode: TodoSortFilterModel.HideDeleted
     }
 
     property TodoSortFilterModel dueThisWeekModel : TodoSortFilterModel {
         sourceModel: library.todos
         maxDueDate: Utils.getLastDateOfWeek()
+        filterMode: TodoSortFilterModel.HideDeleted
     }
 
     property TodoSortFilterModel model : TodoSortFilterModel {
