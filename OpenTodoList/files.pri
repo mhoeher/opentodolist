@@ -14,6 +14,7 @@ OTHER_FILES += \
   qml/OpenTodoList/controls/ViewContainer.qml\
   qml/OpenTodoList/controls/ToolButton.qml\
   qml/OpenTodoList/controls/DatePicker.qml\
+  qml/OpenTodoList/controls/LinkLabel.qml\
   qml/OpenTodoList/controls/Button.qml\
   qml/OpenTodoList/controls/Popup.qml\
   qml/OpenTodoList/controls/SymbolButton.qml\
@@ -31,5 +32,4 @@ OTHER_FILES += \
   qml/OpenTodoList/views/TodoListContentsView.qml\
   qml/OpenTodoList/views/DeletedTodosView.qml\
   qml/OpenTodoList/views/TodoListView.qml\
-  qml/OpenTodoList/views/NewTodoListView.qml \
-    qml/OpenTodoList/controls/LinkLabel.qml
+  qml/OpenTodoList/views/NewTodoListView.qml

@@ -119,7 +119,7 @@ View {
                     Behavior on height { NumberAnimation { duration: 300 } }
                 }
 
-                Item {
+                /*Item {
                     width: parent.width
                     height: childrenRect.height
 
@@ -152,6 +152,22 @@ View {
                         anchors.right: parent.right
                         Behavior on opacity { NumberAnimation { duration: 300 } }
                     }
+                }*/
+
+                LinkLabel {
+                    id: todoDetailsViewTitleEdit
+                    x: breadCrump.model ? ( breadCrump.model.length + 1 ) * 20 : 0
+                    label: todoDetailsView.todo ? todoDetailsView.todo.title : ""
+                    font.bold: true
+                    font.pointSize: fonts.h1
+                    width: parent.width - x
+                    editable: true
+
+                    onEditFinished: {
+                        todoDetailsView.todo.title = todoDetailsViewTitleEdit.label;
+                    }
+
+                    Behavior on x { NumberAnimation { duration: 300 } }
                 }
 
                 Flow {
@@ -175,7 +191,6 @@ View {
                     PriorityIndicator {
                         id: priorityIndicator
                         width: progressIndicator.width
-                        //height: progressIndicator.height // implicitly bound to width
                         priority: todoDetailsView.todo ? todoDetailsView.todo.priority : -1
 
                         onSelectedPriority: todoDetailsView.todo.priority = priority

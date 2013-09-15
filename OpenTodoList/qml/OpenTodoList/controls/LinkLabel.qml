@@ -23,30 +23,61 @@ Item {
 
     property alias label: text.text
     property alias font: text.font
-    property color color: "black"
+    property color color: colors.complementaryColorLighter2
     property color activeColor: colors.primaryLighter2
     property bool active: false
+    property bool editable: false
 
     signal clicked
+    signal editFinished
 
     width: 100
-    height: text.height
+    height: flow.height
 
-    Text {
-        id: text
-
-        font.pointSize: fonts.h3
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        width: label.width
-        color: label.active ? label.activeColor : label.color
-    }
+    onEditFinished: text.focus = false
 
     MouseArea {
         id: mouseArea
 
-        anchors.fill: label
+        anchors.fill: flow
         cursorShape: Qt.PointingHandCursor
 
-        onClicked: label.clicked()
+        onClicked: label.editable ? text.focus = true : label.clicked()
+    }
+
+    Row {
+        id: flow
+        width: parent.width
+
+        TextInput {
+            id: text
+
+            font.pointSize: fonts.h3
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: parent.width - ( label.editable ? saveButton.width - flow.spacing : 0 )
+            color: label.active ? label.activeColor : label.color
+            enabled: label.editable
+
+            Keys.onEnterPressed: label.editFinished()
+            Keys.onReturnPressed: label.editFinished()
+            Keys.onEscapePressed: text.focus = false
+            Keys.onBackPressed: text.focus = fase
+
+            Behavior on color { ColorAnimation { duration: 200 } }
+        }
+
+        Button {
+            id: saveButton
+
+            label: "Save"
+            opacity: label.editable && text.focus ? 1 : 0
+            visible: opacity > 0
+
+            onClicked: label.editFinished()
+
+            Behavior on opacity { NumberAnimation { duration: 200 } }
+        }
+
+        Behavior on height { SmoothedAnimation { duration: 200 } }
     }
 }

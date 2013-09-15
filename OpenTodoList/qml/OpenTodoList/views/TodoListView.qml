@@ -121,17 +121,15 @@ View {
         }
         
         Flickable {
-            width: parent.width
-            anchors.top: parent.top
-            anchors.bottom: linkToWebPage.top
+            anchors { left: parent.left; right: parent.right; top: parent.top; bottom: linkToWebPage.top;
+                      margins: 5 }
             contentWidth: width
             contentHeight: todoListColumn.height
             clip: true
 
             Column {
                 id: todoListColumn
-                width: parent.width - 20
-                x: 10
+                width: parent.width
                 spacing: showAllTodosButton.font.pixelSize / 2
 
                 LinkLabel {
@@ -197,7 +195,6 @@ View {
     
     TodoListContents {
         anchors.left: sideBar.right
-        //anchors.leftMargin: 10
         anchors.right: parent.right
         height: parent.height
 

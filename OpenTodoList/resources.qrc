@@ -16,6 +16,7 @@
     <file>qml/OpenTodoList/controls/ViewContainer.qml</file>
     <file>qml/OpenTodoList/controls/ToolButton.qml</file>
     <file>qml/OpenTodoList/controls/DatePicker.qml</file>
+    <file>qml/OpenTodoList/controls/LinkLabel.qml</file>
     <file>qml/OpenTodoList/controls/Button.qml</file>
     <file>qml/OpenTodoList/controls/Popup.qml</file>
     <file>qml/OpenTodoList/controls/SymbolButton.qml</file>

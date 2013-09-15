@@ -33,6 +33,39 @@ Item {
         spacing: 5
         height: childrenRect.height
 
+        LinkLabel {
+            id: todoListName
+
+            label: todoListView.currentList ? todoListView.currentList.name : ""
+            width: parent.width
+            editable: true
+
+            onEditFinished: todoListView.currentList.name = todoListName.label
+
+            states: [
+                State {
+                    name: "hidden"
+                    when: !todoListView.currentList
+                    PropertyChanges {
+                        target: todoListName
+                        height: 0
+                    }
+                }
+            ]
+
+            transitions: [
+                Transition {
+                    from: ""
+                    to: "hidden"
+                    reversible: true
+                    NumberAnimation {
+                        properties: "height"
+                        duration: 200
+                    }
+                }
+            ]
+        }
+
         Item {
             height: todoListView.currentList ? Math.max( newTodoTitle.height, addNewTodoButton.height ) : 0
             width: todoListContents.width
