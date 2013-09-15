@@ -31,4 +31,5 @@ OTHER_FILES += \
   qml/OpenTodoList/views/TodoListContentsView.qml\
   qml/OpenTodoList/views/DeletedTodosView.qml\
   qml/OpenTodoList/views/TodoListView.qml\
-  qml/OpenTodoList/views/NewTodoListView.qml
+  qml/OpenTodoList/views/NewTodoListView.qml \
+    qml/OpenTodoList/controls/LinkLabel.qml

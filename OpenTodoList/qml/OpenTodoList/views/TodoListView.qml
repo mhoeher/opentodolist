@@ -130,13 +130,16 @@ View {
 
             Column {
                 id: todoListColumn
-                width: parent.width
+                width: parent.width - 20
+                x: 10
+                spacing: showAllTodosButton.font.pixelSize / 2
 
-                Button {
+                LinkLabel {
                     id: showAllTodosButton
                     label: "All Todos"
-                    down: todoListView.model.sourceModel === todoListView.allTopLevelTodos
+                    active: todoListView.model.sourceModel === todoListView.allTopLevelTodos
                     width: parent.width
+                    color: "white"
 
                     onClicked: {
                         todoListView.currentList = null;
@@ -145,11 +148,12 @@ View {
                     }
                 }
 
-                Button {
+                LinkLabel {
                     id: showTodosDueToday
                     label: "Due Today"
-                    down: todoListView.model.sourceModel === todoListView.dueTodayModel
+                    active: todoListView.model.sourceModel === todoListView.dueTodayModel
                     width: parent.width
+                    color: "white"
 
                     onClicked: {
                         todoListView.currentList = null;
@@ -158,11 +162,12 @@ View {
                     }
                 }
 
-                Button {
+                LinkLabel {
                     id: showTodosDueThisWeek
                     label: "Due This Week"
-                    down: todoListView.model.sourceModel === todoListView.dueThisWeekModel
+                    active: todoListView.model.sourceModel === todoListView.dueThisWeekModel
                     width: parent.width
+                    color: "white"
 
                     onClicked: {
                         todoListView.currentList = null;
@@ -173,10 +178,11 @@ View {
 
                 Repeater {
                     model: library.todoLists
-                    delegate: Button {
+                    delegate: LinkLabel {
                         width: parent.width
-                        label: object.name
-                        down: todoListView.currentList == object
+                        label: object.name === "" ? "[Unnamed List]" : object.name
+                        active: todoListView.currentList == object
+                        color: "white"
 
                         onClicked: {
                             todoListView.currentList = object
