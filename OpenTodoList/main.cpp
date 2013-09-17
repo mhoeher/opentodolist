@@ -153,23 +153,39 @@ int main(int argc, char *argv[])
     TodoListLibrary* library = new TodoListLibrary( &app );
 
     // Prepare an object holding various "settings" to be passed into QML
-    QObject* settings = new QObject( &app );
+    QObject* settingsObject = new QObject( &app );
     // Use "debug" mode in QML (used occasionally to make development in "debug" mode easier)
 #ifdef QT_DEBUG
-    settings->setProperty( "debug", true );
+    settingsObject->setProperty( "debug", true );
 #else
-    settings->setProperty( "debug", false );
+    settingsObject->setProperty( "debug", false );
 #endif
 
     qmlRegisterType<TodoSortFilterModel>("net.rpdev.OpenTodoList", 1, 0, "TodoSortFilterModel");
     
     ApplicationViewer viewer;
+
+    QSettings settings;
+    settings.beginGroup( "ApplicationViewer" );
+    viewer.setPosition( settings.value( "position", viewer.position() ).toPoint() );
+    viewer.resize( settings.value( "geometry", viewer.geometry() ).toSize() );
+    if ( settings.value( "maximized", false ).toBool() ) {
+        viewer.setVisibility( QWindow::Maximized );
+    }
+
     viewer.addImportPath( QUrl( basePath ).toString() );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("library"), library );
-    viewer.engine()->rootContext()->setContextProperty( QStringLiteral("settings"), settings );
+    viewer.engine()->rootContext()->setContextProperty( QStringLiteral("settings"), settingsObject );
     viewer.engine()->rootContext()->setContextProperty( QStringLiteral("os"), getOsMap() );
     viewer.setMainFile( QUrl( basePath + "/main.qml" ).toString() );
     viewer.showExpanded();
     
-    return app.exec();
+    int result =  app.exec();
+
+    settings.setValue( "geometry", viewer.size() );
+    settings.setValue( "position", viewer.position() );
+    settings.setValue( "maximized", viewer.visibility() == QWindow::Maximized );
+    settings.endGroup();
+
+    return result;
 }
