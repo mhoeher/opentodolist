@@ -18,33 +18,12 @@ class QtQuick2ApplicationViewerPrivate
 {
     QString mainQmlFile;
     friend class QtQuick2ApplicationViewer;
-    static QString adjustPath(const QString &path);
 };
 
-QString QtQuick2ApplicationViewerPrivate::adjustPath(const QString &path)
-{
-#if defined(Q_OS_MAC)
-    if (!QDir::isAbsolutePath(path))
-        return QString::fromLatin1("%1/../Resources/%2")
-                .arg(QCoreApplication::applicationDirPath(), path);
-#elif defined(Q_OS_QNX)
-    if (!QDir::isAbsolutePath(path))
-        return QString::fromLatin1("app/native/%1").arg(path);
-#elif defined(Q_OS_UNIX) && !defined(Q_OS_ANDROID)
-    const QString pathInInstallDir =
-            QString::fromLatin1("%1/../%2").arg(QCoreApplication::applicationDirPath(), path);
-    if (QFileInfo(pathInInstallDir).exists())
-        return pathInInstallDir;
-#endif
-    return path;
-}
-
-QtQuick2ApplicationViewer::QtQuick2ApplicationViewer(QWindow *parent)
-    : QQuickView(parent)
+QtQuick2ApplicationViewer::QtQuick2ApplicationViewer(QObject *parent)
+    : QQmlApplicationEngine(parent)
     , d(new QtQuick2ApplicationViewerPrivate())
 {
-    connect(engine(), SIGNAL(quit()), SLOT(close()));
-    setResizeMode(QQuickView::SizeRootObjectToView);
 }
 
 QtQuick2ApplicationViewer::~QtQuick2ApplicationViewer()
@@ -54,20 +33,6 @@ QtQuick2ApplicationViewer::~QtQuick2ApplicationViewer()
 
 void QtQuick2ApplicationViewer::setMainQmlFile(const QString &file)
 {
-    d->mainQmlFile = QtQuick2ApplicationViewerPrivate::adjustPath(file);
-    setSource( QUrl( d->mainQmlFile ) );
-}
-
-void QtQuick2ApplicationViewer::addImportPath(const QString &path)
-{
-    engine()->addImportPath(QtQuick2ApplicationViewerPrivate::adjustPath(path));
-}
-
-void QtQuick2ApplicationViewer::showExpanded()
-{
-#if defined(Q_WS_SIMULATOR) || defined(Q_OS_QNX)
-    showFullScreen();
-#else
-    show();
-#endif
+    d->mainQmlFile = file;
+    load( d->mainQmlFile );
 }

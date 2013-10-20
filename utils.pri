@@ -26,14 +26,10 @@ defineTest(copyToDestDir) {
 
 defineTest(pluginConfig) {
     type = $$1
-    macx|android {
-        CONFIG += static
-    } else {
-        DESTDIR = ../../../OpenTodoList/plugins/$$type
-    }
+    DESTDIR = ../../../OpenTodoList/plugins/$$type
 
     INCLUDEPATH += $$PWD/../../../OpenTodoListCore
-    LIBS += -L../../../OpenTodoListCore -lOpenTodoListCore
+    LIBS += -L../../../OpenTodoList -lOpenTodoListCore
 
     target.path = $$INSTALL_PREFIX/lib/OpenTodoList/plugins/$$type
     INSTALLS += target

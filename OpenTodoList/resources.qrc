@@ -1,39 +1,59 @@
 <?xml version="1.0"?>
 <RCC>
   <qresource prefix="/">
-    <file>qml/OpenTodoList/main.qml</file>
     <file>qml/OpenTodoList/res/fontawesome-webfont.license.txt</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_24.png</file>
     <file>qml/OpenTodoList/res/rpdevlogo_webheader.png</file>
     <file>qml/OpenTodoList/res/description.png</file>
     <file>qml/OpenTodoList/res/description.svg</file>
+    <file>qml/OpenTodoList/res/OpenTodoList.svg</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_64.png</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_80.png</file>
     <file>qml/OpenTodoList/res/fontawesome-webfont.ttf</file>
     <file>qml/OpenTodoList/res/description.sci</file>
-    <file>qml/OpenTodoList/helper/FontLayout.qml</file>
-    <file>qml/OpenTodoList/helper/Layout.qml</file>
-    <file>qml/OpenTodoList/helper/ColorScheme.qml</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_32.png</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_16.png</file>
+    <file>qml/OpenTodoList/styles/neutral/info.json</file>
+    <file>qml/OpenTodoList/styles/neutral/main.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/helper/FontLayout.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/helper/Layout.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/helper/ColorScheme.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/TodoView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/ViewContainer.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/ToolButton.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/DatePicker.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/LinkLabel.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/Button.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/Popup.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/SymbolButton.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/IconButton.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/PriorityIndicator.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/SimpleTextInput.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/ProgressIndicator.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/View.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/TodoListEntry.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/Calendar.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/ProgressBar.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/TodoListContents.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/SearchView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/TodoDetailsView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/TodoListContentsView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/DeletedTodosView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/TodoListView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/NewTodoListView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/SettingsView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/info.json</file>
+    <file>qml/OpenTodoList/styles/widget/main.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/DatePickerDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/StyleSelectionDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/TodoListEditDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/NewTodoListDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/components/DateEdit.qml</file>
+    <file>qml/OpenTodoList/styles/widget/components/TodoTableView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/components/Calendar.qml</file>
+    <file>qml/OpenTodoList/styles/widget/views/TodoDetailsView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/views/TodoListsView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/views/TodosView.qml</file>
     <file>qml/OpenTodoList/js/Utils.js</file>
-    <file>qml/OpenTodoList/controls/TodoView.qml</file>
-    <file>qml/OpenTodoList/controls/ViewContainer.qml</file>
-    <file>qml/OpenTodoList/controls/ToolButton.qml</file>
-    <file>qml/OpenTodoList/controls/DatePicker.qml</file>
-    <file>qml/OpenTodoList/controls/LinkLabel.qml</file>
-    <file>qml/OpenTodoList/controls/Button.qml</file>
-    <file>qml/OpenTodoList/controls/Popup.qml</file>
-    <file>qml/OpenTodoList/controls/SymbolButton.qml</file>
-    <file>qml/OpenTodoList/controls/IconButton.qml</file>
-    <file>qml/OpenTodoList/controls/PriorityIndicator.qml</file>
-    <file>qml/OpenTodoList/controls/SimpleTextInput.qml</file>
-    <file>qml/OpenTodoList/controls/ProgressIndicator.qml</file>
-    <file>qml/OpenTodoList/controls/View.qml</file>
-    <file>qml/OpenTodoList/controls/TodoListEntry.qml</file>
-    <file>qml/OpenTodoList/controls/Calendar.qml</file>
-    <file>qml/OpenTodoList/controls/ProgressBar.qml</file>
-    <file>qml/OpenTodoList/views/TodoListContents.qml</file>
-    <file>qml/OpenTodoList/views/SearchView.qml</file>
-    <file>qml/OpenTodoList/views/TodoDetailsView.qml</file>
-    <file>qml/OpenTodoList/views/TodoListContentsView.qml</file>
-    <file>qml/OpenTodoList/views/DeletedTodosView.qml</file>
-    <file>qml/OpenTodoList/views/TodoListView.qml</file>
-    <file>qml/OpenTodoList/views/NewTodoListView.qml</file>
   </qresource>
 </RCC>

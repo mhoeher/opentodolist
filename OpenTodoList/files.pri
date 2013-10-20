@@ -1,35 +1,55 @@
 OTHER_FILES += \
-  qml/OpenTodoList/main.qml\
   qml/OpenTodoList/res/fontawesome-webfont.license.txt\
+  qml/OpenTodoList/res/OpenTodoList_24.png\
   qml/OpenTodoList/res/rpdevlogo_webheader.png\
   qml/OpenTodoList/res/description.png\
   qml/OpenTodoList/res/description.svg\
+  qml/OpenTodoList/res/OpenTodoList.svg\
+  qml/OpenTodoList/res/OpenTodoList_64.png\
+  qml/OpenTodoList/res/OpenTodoList_80.png\
   qml/OpenTodoList/res/fontawesome-webfont.ttf\
   qml/OpenTodoList/res/description.sci\
-  qml/OpenTodoList/helper/FontLayout.qml\
-  qml/OpenTodoList/helper/Layout.qml\
-  qml/OpenTodoList/helper/ColorScheme.qml\
-  qml/OpenTodoList/js/Utils.js\
-  qml/OpenTodoList/controls/TodoView.qml\
-  qml/OpenTodoList/controls/ViewContainer.qml\
-  qml/OpenTodoList/controls/ToolButton.qml\
-  qml/OpenTodoList/controls/DatePicker.qml\
-  qml/OpenTodoList/controls/LinkLabel.qml\
-  qml/OpenTodoList/controls/Button.qml\
-  qml/OpenTodoList/controls/Popup.qml\
-  qml/OpenTodoList/controls/SymbolButton.qml\
-  qml/OpenTodoList/controls/IconButton.qml\
-  qml/OpenTodoList/controls/PriorityIndicator.qml\
-  qml/OpenTodoList/controls/SimpleTextInput.qml\
-  qml/OpenTodoList/controls/ProgressIndicator.qml\
-  qml/OpenTodoList/controls/View.qml\
-  qml/OpenTodoList/controls/TodoListEntry.qml\
-  qml/OpenTodoList/controls/Calendar.qml\
-  qml/OpenTodoList/controls/ProgressBar.qml\
-  qml/OpenTodoList/views/TodoListContents.qml\
-  qml/OpenTodoList/views/SearchView.qml\
-  qml/OpenTodoList/views/TodoDetailsView.qml\
-  qml/OpenTodoList/views/TodoListContentsView.qml\
-  qml/OpenTodoList/views/DeletedTodosView.qml\
-  qml/OpenTodoList/views/TodoListView.qml\
-  qml/OpenTodoList/views/NewTodoListView.qml
+  qml/OpenTodoList/res/OpenTodoList_32.png\
+  qml/OpenTodoList/res/OpenTodoList_16.png\
+  qml/OpenTodoList/styles/neutral/info.json\
+  qml/OpenTodoList/styles/neutral/main.qml\
+  qml/OpenTodoList/styles/neutral/helper/FontLayout.qml\
+  qml/OpenTodoList/styles/neutral/helper/Layout.qml\
+  qml/OpenTodoList/styles/neutral/helper/ColorScheme.qml\
+  qml/OpenTodoList/styles/neutral/controls/TodoView.qml\
+  qml/OpenTodoList/styles/neutral/controls/ViewContainer.qml\
+  qml/OpenTodoList/styles/neutral/controls/ToolButton.qml\
+  qml/OpenTodoList/styles/neutral/controls/DatePicker.qml\
+  qml/OpenTodoList/styles/neutral/controls/LinkLabel.qml\
+  qml/OpenTodoList/styles/neutral/controls/Button.qml\
+  qml/OpenTodoList/styles/neutral/controls/Popup.qml\
+  qml/OpenTodoList/styles/neutral/controls/SymbolButton.qml\
+  qml/OpenTodoList/styles/neutral/controls/IconButton.qml\
+  qml/OpenTodoList/styles/neutral/controls/PriorityIndicator.qml\
+  qml/OpenTodoList/styles/neutral/controls/SimpleTextInput.qml\
+  qml/OpenTodoList/styles/neutral/controls/ProgressIndicator.qml\
+  qml/OpenTodoList/styles/neutral/controls/View.qml\
+  qml/OpenTodoList/styles/neutral/controls/TodoListEntry.qml\
+  qml/OpenTodoList/styles/neutral/controls/Calendar.qml\
+  qml/OpenTodoList/styles/neutral/controls/ProgressBar.qml\
+  qml/OpenTodoList/styles/neutral/views/TodoListContents.qml\
+  qml/OpenTodoList/styles/neutral/views/SearchView.qml\
+  qml/OpenTodoList/styles/neutral/views/TodoDetailsView.qml\
+  qml/OpenTodoList/styles/neutral/views/TodoListContentsView.qml\
+  qml/OpenTodoList/styles/neutral/views/DeletedTodosView.qml\
+  qml/OpenTodoList/styles/neutral/views/TodoListView.qml\
+  qml/OpenTodoList/styles/neutral/views/NewTodoListView.qml\
+  qml/OpenTodoList/styles/neutral/views/SettingsView.qml\
+  qml/OpenTodoList/styles/widget/info.json\
+  qml/OpenTodoList/styles/widget/main.qml\
+  qml/OpenTodoList/styles/widget/dialogs/DatePickerDialog.qml\
+  qml/OpenTodoList/styles/widget/dialogs/StyleSelectionDialog.qml\
+  qml/OpenTodoList/styles/widget/dialogs/TodoListEditDialog.qml\
+  qml/OpenTodoList/styles/widget/dialogs/NewTodoListDialog.qml\
+  qml/OpenTodoList/styles/widget/components/DateEdit.qml\
+  qml/OpenTodoList/styles/widget/components/TodoTableView.qml\
+  qml/OpenTodoList/styles/widget/components/Calendar.qml\
+  qml/OpenTodoList/styles/widget/views/TodoDetailsView.qml\
+  qml/OpenTodoList/styles/widget/views/TodoListsView.qml\
+  qml/OpenTodoList/styles/widget/views/TodosView.qml\
+  qml/OpenTodoList/js/Utils.js

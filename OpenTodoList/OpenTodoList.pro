@@ -3,24 +3,23 @@ TEMPLATE = app
 
 INCLUDEPATH += ../OpenTodoListCore
 
-# Note: Plugins need to come BEFORE the core libraries in order for the
-#       linker to find all symbols correctly.
-android:LIBS += -L../plugins/opentodobackends/LocalXmlBackend -lLocalXmlBackend
-android:QT += xml
+DESTDIR = .
 
-LIBS += -L../OpenTodoListCore -lOpenTodoListCore
+LIBS += -L$$DESTDIR -lOpenTodoListCore
 
 
 QT += quick
 
 HEADERS += \
     applicationviewer.h \
-    imageprovider.h
+    imageprovider.h \
+    settings.h
 
 SOURCES += \
     main.cpp \
     applicationviewer.cpp \
-    imageprovider.cpp
+    imageprovider.cpp \
+    settings.cpp
 
 RESOURCES += \
     resources.qrc

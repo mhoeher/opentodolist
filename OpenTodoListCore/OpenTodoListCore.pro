@@ -1,6 +1,6 @@
 TARGET = OpenTodoListCore
 TEMPLATE = lib
-CONFIG += static
+VERSION = 0.0.0
 
 QT += core
 
@@ -28,3 +28,5 @@ SOURCES = \
     todosortfiltermodel.cpp
 
 DEFINES +=  OPENTODOLISTCORE_LIBRARY
+
+DESTDIR = ../OpenTodoList

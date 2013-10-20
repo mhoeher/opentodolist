@@ -1,5 +1,5 @@
 /*
- *  OpenTodoListDesktopQml - Desktop QML frontend for OpenTodoList
+ *  OpenTodoList - A todo and task manager
  *  Copyright (C) 2013  Martin Höher <martin@rpdev.net>
  * 
  *  This program is free software: you can redistribute it and/or modify
@@ -22,26 +22,55 @@
 #include "qtquick2applicationviewer/qtquick2applicationviewer.h"
 
 #include <QFileSystemWatcher>
+#include <QVariantMap>
 
 class ApplicationViewer : public QtQuick2ApplicationViewer
 {
     Q_OBJECT
+    Q_PROPERTY( QVariantList styleInfo READ styleInfo CONSTANT )
+    Q_PROPERTY( QString basePath READ basePath CONSTANT )
+    Q_PROPERTY( QString platformDefaultStyle READ platformDefaultStyle CONSTANT )
+    Q_PROPERTY( QString currentStyle READ currentStyle WRITE setCurrentStyle NOTIFY currentStyleChanged )
+
     
 public:
     
-    explicit ApplicationViewer(QWindow *parent = 0);
+    explicit ApplicationViewer(const QString& basePath, QObject *parent = 0);
+    virtual ~ApplicationViewer();
     
     void addImportPath( const QString& path );
-    void setMainFile( const QString& mainFile );
+
+    QString basePath() const;
+
+    QVariantList styleInfo() const;
+
+    QString platformDefaultStyle() const;
+
+    QString currentStyle() const;
+    void setCurrentStyle(const QString &currentStyle);
+
+signals:
+
+    void beforeReload();
+    void reloaded();
+    void currentStyleChanged();
+
+public slots:
+
+    void reload();
+    void loadSettings();
+    void saveSettings();
     
 private:
 
     QFileSystemWatcher* m_watcher;    
-    QString m_mainFile;
-    
+    QString m_basePath;
+    QVariantList m_styleInfo;
+    QString m_currentStyle;
+
+    static QVariantList loadStyleInfo( const QString& stylesDir );
+
 private slots:
-    
-    void reload();
     
 };
 
