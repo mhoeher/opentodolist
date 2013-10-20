@@ -4,6 +4,8 @@ VERSION = 0.0.0
 
 QT += core
 
+macx:CONFIG += lib_bundle
+
 HEADERS = \
     abstracttodo.h \
     abstracttodolist.h \
@@ -29,4 +31,8 @@ SOURCES = \
 
 DEFINES +=  OPENTODOLISTCORE_LIBRARY
 
-DESTDIR = ../OpenTodoList
+macx {
+    DESTDIR = ../OpenTodoList/OpenTodoList.app/Contents/Frameworks
+} else {
+    DESTDIR = ../OpenTodoList
+}

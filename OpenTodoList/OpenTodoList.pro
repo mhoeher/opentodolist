@@ -5,8 +5,12 @@ INCLUDEPATH += ../OpenTodoListCore
 
 DESTDIR = .
 
-LIBS += -L$$DESTDIR -lOpenTodoListCore
-
+macx {
+    LIBS += -F$$DESTDIR/OpenTodoList.app/Contents/Frameworks -framework OpenTodoListCore
+    QMAKE_LFLAGS += -Wl,-rpath,@loader_path -Wl,-rpath,@executable_path
+} else {
+    LIBS += -L$$DESTDIR -lOpenTodoListCore
+}
 
 QT += quick
 

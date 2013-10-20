@@ -26,10 +26,15 @@ defineTest(copyToDestDir) {
 
 defineTest(pluginConfig) {
     type = $$1
-    DESTDIR = ../../../OpenTodoList/plugins/$$type
 
     INCLUDEPATH += $$PWD/../../../OpenTodoListCore
-    LIBS += -L../../../OpenTodoList -lOpenTodoListCore
+    macx {
+        DESTDIR = ../../../OpenTodoList/OpenTodoList.app/Contents/MacOs/plugins/$$type
+        LIBS += -F$$DESTDIR/../../../Frameworks -framework OpenTodoListCore
+    } else {
+        DESTDIR = ../../../OpenTodoList/plugins/$$type
+        LIBS += -L../../../OpenTodoList -lOpenTodoListCore
+    }
 
     target.path = $$INSTALL_PREFIX/lib/OpenTodoList/plugins/$$type
     INSTALLS += target

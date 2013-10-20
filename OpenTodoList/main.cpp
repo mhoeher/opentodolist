@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
     
     QGuiApplication app(argc, argv);
     
-    QString basePath = "qrc:///qml/OpenTodoList";
+    QString basePath = ":/qml/OpenTodoList";
     QString style;
     bool showHelp = false;
 

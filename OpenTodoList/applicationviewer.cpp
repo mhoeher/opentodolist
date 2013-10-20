@@ -102,9 +102,13 @@ void ApplicationViewer::reload()
         style = platformDefaultStyle();
     }
     QString mainFileDir = QDir( m_basePath ).absoluteFilePath( style );
-    QUrl mainFileUrl( QDir( mainFileDir ).absoluteFilePath( "main.qml" ) );
+    QString mainFileUrl( QDir( mainFileDir ).absoluteFilePath( "main.qml" ) );
     addImportPath( m_basePath );
-    load( mainFileUrl );
+    if ( mainFileDir.startsWith( ":" ) ) {
+        load( QUrl( "qrc" + mainFileUrl ) );
+    } else {
+        load( mainFileUrl );
+    }
     emit reloaded();
 }
 
