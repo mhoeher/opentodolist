@@ -5,9 +5,13 @@ INCLUDEPATH += ../OpenTodoListCore
 
 DESTDIR = .
 
-macx {
-    LIBS += -F$$DESTDIR/OpenTodoList.app/Contents/Frameworks -framework OpenTodoListCore
-    QMAKE_LFLAGS += -Wl,-rpath,@loader_path -Wl,-rpath,@executable_path
+mac {
+    LIBS += -L$$DESTDIR/OpenTodoList.app/Contents/Frameworks -lOpenTodoListCore
+    QMAKE_POST_LINK = install_name_tool -change libOpenTodoListCore.0.dylib \
+                      @executable_path/../Frameworks/libOpenTodoListCore.0.dylib \
+                      $$DESTDIR/OpenTodoList.app/Contents/MacOs/OpenTodoList
+    ICON = OpenTodoList.icns
+
 } else {
     LIBS += -L$$DESTDIR -lOpenTodoListCore
 }

@@ -30,7 +30,10 @@ defineTest(pluginConfig) {
     INCLUDEPATH += $$PWD/../../../OpenTodoListCore
     macx {
         DESTDIR = ../../../OpenTodoList/OpenTodoList.app/Contents/MacOs/plugins/$$type
-        LIBS += -F$$DESTDIR/../../../Frameworks -framework OpenTodoListCore
+        LIBS += -L$$DESTDIR/../../../Frameworks -lOpenTodoListCore
+        QMAKE_POST_LINK = install_name_tool -change libOpenTodoListCore.0.dylib \
+                      @executable_path/../Frameworks/libOpenTodoListCore.0.dylib \
+                      $$DESTDIR/${TARGET}
     } else {
         DESTDIR = ../../../OpenTodoList/plugins/$$type
         LIBS += -L../../../OpenTodoList -lOpenTodoListCore
@@ -45,4 +48,5 @@ defineTest(pluginConfig) {
     export(LIBS)
     export(target)
     export(INSTALLS)
+    export(QMAKE_POST_LINK)
 }

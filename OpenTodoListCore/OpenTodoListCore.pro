@@ -4,7 +4,7 @@ VERSION = 0.0.0
 
 QT += core
 
-macx:CONFIG += lib_bundle
+#macx:CONFIG += lib_bundle
 
 HEADERS = \
     abstracttodo.h \
