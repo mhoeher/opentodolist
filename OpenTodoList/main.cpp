@@ -32,7 +32,9 @@
 
 #include <iostream>
 
+// FIXME: Remove this as soon as we can load plugins dynamically
 #ifdef Q_OS_ANDROID
+#include <QtPlugin>
 Q_IMPORT_PLUGIN(LocalXmlBackend)
 #endif
 
@@ -184,6 +186,9 @@ int main(int argc, char *argv[])
     }
     
     QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() + "/plugins" );
+#ifdef Q_OS_ANDROID
+    QCoreApplication::addLibraryPath( "assets:/plugins" );
+#endif
     
     TodoListLibrary* library = new TodoListLibrary( &app );
 
@@ -210,6 +215,8 @@ int main(int argc, char *argv[])
     viewer.loadSettings();
     if ( !style.isEmpty() && style != viewer.currentStyle() ) {
         viewer.setCurrentStyle( style );
+    } else {
+        viewer.reload();
     }
 
     int result = app.exec();

@@ -50,7 +50,7 @@ Rectangle {
     Image {
         id: priorityHint
 
-        property color color: Utils.PriorityColors[entry.todo.priority]
+        property color color: Utils.colorForPriority( entry.todo.priority )
         property int size: layout.minimumButtonHeight / 4
 
         visible: entry.todo.priority >= 0

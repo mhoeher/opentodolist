@@ -80,7 +80,12 @@ OpenTodoListBackend* TodoListLibrary::backendByTypeName(const QString& type)
 
 void TodoListLibrary::saveSettings()
 {
+#ifdef Q_OS_ANDROID
+    QSettings settings( TodoListFactory::androidExtStorageLocation() +
+               "/config.ini", QSettings::IniFormat );
+#else
     QSettings settings;
+#endif
     settings.beginWriteArray( "todoLists", m_lists->data().size() + m_nonLoadableLists.size() );
     for ( int i = 0; i < m_lists->data().size(); ++i ) {
         settings.setArrayIndex( i );
@@ -105,7 +110,12 @@ void TodoListLibrary::saveSettings()
 
 void TodoListLibrary::restoreSettings()
 {
+#ifdef Q_OS_ANDROID
+    QSettings settings( TodoListFactory::androidExtStorageLocation() +
+               "/config.ini", QSettings::IniFormat );
+#else
     QSettings settings;
+#endif
     int numLists = settings.beginReadArray( "todoLists" );
     for ( int i = 0; i < numLists; ++i ) {
         settings.setArrayIndex( i );

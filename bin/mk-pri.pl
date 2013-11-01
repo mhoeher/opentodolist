@@ -10,13 +10,19 @@ use File::Basename;
 
 my $dir = getcwd();
 my $pri;
+my $base;
 my $help;
 
 GetOptions( "dir=s" => \$dir,
             "output=s" => \$pri,
+            "base=s" => \$base,
             "help" => \$help ) || pod2usage( -exit => 2, -verbose => 1 );
 
 pod2usage( -exit => 1, -verbose => 2 ) if $help;
+
+if ( !$base ) {
+	$base = $dir;
+}
 
 $dir = File::Spec->rel2abs( $dir );
 
@@ -30,7 +36,7 @@ if ( $pri ) {
 print $file "OTHER_FILES += ";
 
 find( sub { if ( -f $File::Find::name ) {
-            my $relPath = File::Spec->abs2rel( $File::Find::name, dirname( $dir ) );
+            my $relPath = File::Spec->abs2rel( $File::Find::name, dirname( $base ) );
             print $file "\\\n  $relPath";
 } }, $dir );
 
@@ -51,6 +57,11 @@ mk-pri.pl
 =item B<--dir DIR> Search DIR recursively for files
 
 =item B<--output FILE> Write output to FILE
+
+=item B<--base DIR> Generate file paths in output file relative to DIR.
+
+Omitting this option will cause paths to be relative to the location specified by the
+B<--dir> option.
 
 =item B<--help> Show help
 

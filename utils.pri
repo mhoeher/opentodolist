@@ -39,14 +39,25 @@ defineTest(pluginConfig) {
         LIBS += -L../../../OpenTodoList -lOpenTodoListCore
     }
 
-    target.path = $$INSTALL_PREFIX/lib/OpenTodoList/plugins/$$type
-    INSTALLS += target
+    android {
+        x86 {
+            target.path = /libs/x86/plugins/$$type
+        } else:armeabi {
+            target.path = /libs/armeabi/plugins/$$type
+        } else {
+            target.path = /libs/armeabi-v7a/plugins/$$type
+        }
+        INSTALLS += target
+
+        # FIXME: Ideally, make plugins also *.so files but for now compile them statically
+        CONFIG += static
+    }
 
     export(CONFIG)
     export(DESTDIR)
     export(INCLUDEPATH)
     export(LIBS)
-    export(target)
+    export(target.path)
     export(INSTALLS)
     export(QMAKE_POST_LINK)
 }

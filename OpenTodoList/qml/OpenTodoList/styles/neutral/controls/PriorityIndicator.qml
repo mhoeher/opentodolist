@@ -41,7 +41,7 @@ Item {
     }
 
     Image {
-        property color color: Utils.PriorityColors[priority]
+        property color color: Utils.colorForPriority( priority )
 
         anchors {
             fill: parent
@@ -64,7 +64,7 @@ Item {
         anchors.centerIn: parent
         text: indicator.priority >= 0 ? "Priority " + indicator.priority : "No Priority"
         font.pointSize: fonts.p
-        color: colors.fontColorFor( Utils.PriorityColors[indicator.priority] )
+        color: colors.fontColorFor( Utils.colorForPriority( indicator.priority ) )
     }
 
     Item {
@@ -101,7 +101,7 @@ Item {
                     sourceSize.width: layout.minimumButtonHeight
                     sourceSize.height: layout.minimumButtonHeight
                     source: "image://primitives/pie/percentage=100,fill=" +
-                            Utils.PriorityColors[index-1]
+                            Utils.colorForPriority( index - 1 )
                 }
                 MouseArea {
                     width: parent.width
@@ -113,7 +113,7 @@ Item {
                     }
                     onContainsMouseChanged: helper.hoveredColor =
                                             containsMouse ?
-                                                Utils.PriorityColors[index-1] :
+                                                Utils.colorForPriority( index - 1 ) :
                                                 helper.noColor
                 }
             }

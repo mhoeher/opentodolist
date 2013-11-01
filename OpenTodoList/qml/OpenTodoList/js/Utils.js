@@ -16,25 +16,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var PriorityColors = [
-    "#00E508",
-    "#24E100",
-    "#4FDD00",
-    "#78D900",
-    "#A0D500",
-    "#C6D200",
-    "#CEB000",
-    "#CA8500",
-    "#C65C00",
-    "#C23400",
-    "#BF0E00" ];
-PriorityColors[-1] = "#00000000";
+function colorForPriority( priority ) {
+    switch ( priority ) {
+    case 0: return "#00E508";
+    case 1: return "#24E100";
+    case 2: return "#4FDD00";
+    case 3: return "#78D900";
+    case 4: return "#A0D500";
+    case 5: return "#C6D200";
+    case 6: return "#CEB000";
+    case 7: return "#CA8500";
+    case 8: return "#C65C00";
+    case 9: return "#C23400";
+    case 10: return "#BF0E00";
+    default: return "#00000000";
+    }
+}
 
 function tintPriority( color, priority ) {
     if ( priority < 0 ) {
         return color;
     }
-    return Qt.tint( color, "#30" + PriorityColors[priority].substr( 1 ) );
+    return Qt.tint( color, "#30" + colorForPriority( priority ).substr( 1 ) );
 }
 
 function tint( base, overlay, alpha ) {

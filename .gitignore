@@ -3,3 +3,4 @@
 *.user
 *.kdev4
 android/*
+*.pro.user.*

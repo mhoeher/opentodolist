@@ -27,6 +27,58 @@ TodoListFactory::TodoListFactory(const QString& type, QObject* parent) :
 {
 }
 
+#ifdef Q_OS_ANDROID
+/**
+   @brief Returns the external data location on Android
+
+   This returns a directory where data can be put on Android that shall
+   remain intact even when the application is uninstalled and installed later
+   on.
+
+   @todo Hardcoded package name - this is not portable.
+
+   @return The external storage location on Android
+ */
+QString TodoListFactory::androidExtStorageLocation()
+{
+    QString s( qgetenv( "EXTERNAL_STORAGE" ) );
+    QDir dir( s+ "/data/net.rpdev.opentodolist/" );
+    return dir.absolutePath();
+}
+#endif
+
+/**
+   @brief Returns a local directory where the todo lists of a specific type can be saved
+
+   This will return a path where todo list data of lists of a certain @p type
+   can be stored. The path includes the type specifier of the factory
+   so each factory has a dedicated location where to store data. The returned
+   path is guaranteed to be writable and it exists unless an empty string is
+   returned.
+
+   @return A location where todo lists for the given @p type can be stored or an empty string
+           if no fitting location could be found.
+ */
+QString TodoListFactory::localStorageLocation(const QString &type)
+{
+    QStringList locations = QStandardPaths::standardLocations( QStandardPaths::DataLocation );
+
+#ifdef Q_OS_ANDROID
+    locations.insert( 0, androidExtStorageLocation() );
+#endif
+
+    foreach ( QString location, locations ) {
+        QDir dir( location + "/" + type );
+        if ( !dir.exists() ) {
+            dir.mkpath( dir.absolutePath() );
+        }
+        if ( dir.exists() ) {
+            return dir.path();
+        }
+    }
+    return QString();
+}
+
 /**
    @brief Returns a local directory where the todo list data can be stored
 
@@ -41,15 +93,5 @@ TodoListFactory::TodoListFactory(const QString& type, QObject* parent) :
  */
 QString TodoListFactory::localStorageLocation() const
 {
-    QStringList locations = QStandardPaths::standardLocations( QStandardPaths::DataLocation );
-    foreach ( QString location, locations ) {
-        QDir dir( location + "/" + m_type );
-        if ( !dir.exists() ) {
-            dir.mkpath( dir.absolutePath() );
-        }
-        if ( dir.exists() ) {
-            return dir.path();
-        }
-    }
-    return QString();
+    return localStorageLocation( m_type );
 }

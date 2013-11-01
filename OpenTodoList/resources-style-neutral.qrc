@@ -1,18 +1,6 @@
 <?xml version="1.0"?>
 <RCC>
   <qresource prefix="/">
-    <file>qml/OpenTodoList/res/fontawesome-webfont.license.txt</file>
-    <file>qml/OpenTodoList/res/OpenTodoList_24.png</file>
-    <file>qml/OpenTodoList/res/rpdevlogo_webheader.png</file>
-    <file>qml/OpenTodoList/res/description.png</file>
-    <file>qml/OpenTodoList/res/description.svg</file>
-    <file>qml/OpenTodoList/res/OpenTodoList.svg</file>
-    <file>qml/OpenTodoList/res/OpenTodoList_64.png</file>
-    <file>qml/OpenTodoList/res/OpenTodoList_80.png</file>
-    <file>qml/OpenTodoList/res/fontawesome-webfont.ttf</file>
-    <file>qml/OpenTodoList/res/description.sci</file>
-    <file>qml/OpenTodoList/res/OpenTodoList_32.png</file>
-    <file>qml/OpenTodoList/res/OpenTodoList_16.png</file>
     <file>qml/OpenTodoList/styles/neutral/info.json</file>
     <file>qml/OpenTodoList/styles/neutral/main.qml</file>
     <file>qml/OpenTodoList/styles/neutral/helper/FontLayout.qml</file>
@@ -42,18 +30,5 @@
     <file>qml/OpenTodoList/styles/neutral/views/TodoListView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/NewTodoListView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/SettingsView.qml</file>
-    <file>qml/OpenTodoList/styles/widget/info.json</file>
-    <file>qml/OpenTodoList/styles/widget/main.qml</file>
-    <file>qml/OpenTodoList/styles/widget/dialogs/DatePickerDialog.qml</file>
-    <file>qml/OpenTodoList/styles/widget/dialogs/StyleSelectionDialog.qml</file>
-    <file>qml/OpenTodoList/styles/widget/dialogs/TodoListEditDialog.qml</file>
-    <file>qml/OpenTodoList/styles/widget/dialogs/NewTodoListDialog.qml</file>
-    <file>qml/OpenTodoList/styles/widget/components/DateEdit.qml</file>
-    <file>qml/OpenTodoList/styles/widget/components/TodoTableView.qml</file>
-    <file>qml/OpenTodoList/styles/widget/components/Calendar.qml</file>
-    <file>qml/OpenTodoList/styles/widget/views/TodoDetailsView.qml</file>
-    <file>qml/OpenTodoList/styles/widget/views/TodoListsView.qml</file>
-    <file>qml/OpenTodoList/styles/widget/views/TodosView.qml</file>
-    <file>qml/OpenTodoList/js/Utils.js</file>
   </qresource>
 </RCC>

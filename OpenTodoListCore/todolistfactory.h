@@ -50,6 +50,10 @@ public:
         return m_type;
     }
 
+#ifdef Q_OS_ANDROID
+    static QString androidExtStorageLocation();
+#endif
+    static QString localStorageLocation( const QString &type );
     QString localStorageLocation() const;
     
 signals:

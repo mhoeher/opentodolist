@@ -28,11 +28,13 @@ PluginsLoader::PluginsLoader(QObject *parent) :
     m_backends( new Backends( this ) ),
     m_loadedBackends( NameSet() )
 {
+    // load static instanced
+    foreach ( QObject* instance, QPluginLoader::staticInstances() ) {
+        addBackend( instance );
+    }
+
     foreach ( QString libraryPath, QCoreApplication::libraryPaths() ) {
         // Load backends
-        foreach ( QObject* instance, QPluginLoader::staticInstances() ) {
-            addBackend( instance );
-        }
         QDir dir( libraryPath + "/opentodobackends" );
         foreach ( QString entry, dir.entryList( QDir::Files ) ) {
             QString pluginPath = dir.absolutePath() + "/" + entry;

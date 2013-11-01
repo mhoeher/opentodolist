@@ -11,13 +11,21 @@ use File::Basename;
 
 my $dir = getcwd();
 my $qrc;
+my $prefix = "/";
+my $base;
 my $help;
 
 GetOptions( "dir=s" => \$dir,
             "output=s" => \$qrc,
+            "prefix=s" => \$prefix,
+            "base=s" => \$base,
             "help" => \$help ) || pod2usage( -exit => 2, -verbose => 1 );
 
 pod2usage( -exit => 1, -verbose => 2 ) if $help;
+
+if ( ! $base ) {
+    $base = $dir;
+}
 
 $dir = File::Spec->rel2abs( $dir );
 
@@ -25,12 +33,12 @@ my $doc = XML::LibXML::Document->new();
 my $root = $doc->createElement( "RCC" );
 $doc->setDocumentElement( $root );
 my $resource = $doc->createElement( "qresource" );
-$resource->setAttribute( "prefix", "/" );
+$resource->setAttribute( "prefix", $prefix );
 $root->appendChild( $resource );
 
 find( sub { if ( -f $File::Find::name ) {
             my $file = $doc->createElement( "file" );
-            my $relPath = File::Spec->abs2rel( $File::Find::name, dirname( $dir ) );
+            my $relPath = File::Spec->abs2rel( $File::Find::name, dirname( $base ) );
             $file->appendText( $relPath );
             $resource->appendChild( $file );
 } }, $dir );
@@ -52,6 +60,13 @@ mk-qrc.pl
 =item B<--dir DIR> Search DIR recursively for files
 
 =item B<--output FILE> Write output to FILE
+
+=item B<--prefix PREFIX> Put all found resources under PREFIX
+
+=item B<--base DIR> Make paths relative to DIR
+
+If this option is omitted, then instead paths will be relative to
+the location pointed to by B<--dir>.
 
 =item B<--help> Show help
 

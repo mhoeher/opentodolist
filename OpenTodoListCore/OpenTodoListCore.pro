@@ -36,3 +36,14 @@ macx {
 } else {
     DESTDIR = ../OpenTodoList
 }
+
+android {
+    x86 {
+        target.path = /libs/x86
+    } else:armeabi {
+        target.path = /libs/armeabi
+    } else {
+        target.path = /libs/armeabi-v7a
+    }
+    INSTALLS += target
+}

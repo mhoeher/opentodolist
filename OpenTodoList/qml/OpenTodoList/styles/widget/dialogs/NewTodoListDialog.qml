@@ -101,7 +101,7 @@ Window {
 
                 Button {
                     text: qsTr( "OK" )
-                    enabled: nameEdit.text != "" &&
+                    enabled: nameEdit.text !== "" &&
                              dialog.selectedBackend
 
                     onClicked: {

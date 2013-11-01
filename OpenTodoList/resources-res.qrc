@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<RCC>
+  <qresource prefix="/">
+    <file>qml/OpenTodoList/res/fontawesome-webfont.license.txt</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_24.png</file>
+    <file>qml/OpenTodoList/res/rpdevlogo_webheader.png</file>
+    <file>qml/OpenTodoList/res/description.png</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_64.png</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_80.png</file>
+    <file>qml/OpenTodoList/res/fontawesome-webfont.ttf</file>
+    <file>qml/OpenTodoList/res/description.sci</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_32.png</file>
+    <file>qml/OpenTodoList/res/OpenTodoList_16.png</file>
+  </qresource>
+</RCC>

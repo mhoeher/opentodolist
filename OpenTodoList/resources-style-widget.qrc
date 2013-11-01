@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<RCC>
+  <qresource prefix="/">
+    <file>qml/OpenTodoList/styles/widget/info.json</file>
+    <file>qml/OpenTodoList/styles/widget/main.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/DatePickerDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/StyleSelectionDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/TodoListEditDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/dialogs/NewTodoListDialog.qml</file>
+    <file>qml/OpenTodoList/styles/widget/components/DateEdit.qml</file>
+    <file>qml/OpenTodoList/styles/widget/components/TodoTableView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/components/Calendar.qml</file>
+    <file>qml/OpenTodoList/styles/widget/views/TodoDetailsView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/views/TodoListsView.qml</file>
+    <file>qml/OpenTodoList/styles/widget/views/TodosView.qml</file>
+  </qresource>
+</RCC>

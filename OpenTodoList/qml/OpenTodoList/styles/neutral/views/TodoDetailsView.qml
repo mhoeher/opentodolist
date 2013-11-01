@@ -69,7 +69,7 @@ View {
 
     Flickable {
         anchors.fill: parent
-        contentWidth: detailsContents.width
+        contentWidth: parent.width
         contentHeight: detailsContents.height
 
         Item {
@@ -118,41 +118,6 @@ View {
                     }
                     Behavior on height { NumberAnimation { duration: 300 } }
                 }
-
-                /*Item {
-                    width: parent.width
-                    height: childrenRect.height
-
-                    TextInput {
-                        id: todoDetailsViewTitleEdit
-                        x: breadCrump.model ? ( breadCrump.model.length + 1 ) * 20 : 0
-                        text: todoDetailsView.todo ? todoDetailsView.todo.title : ""
-                        font.bold: true
-                        font.pointSize: fonts.h1
-                        width: parent.width - saveTitleButton.width
-                        wrapMode: Text.Wrap
-
-                        function saveTitle() {
-                            todoDetailsView.todo.title = todoDetailsViewTitleEdit.text;
-                            todoDetailsViewTitleEdit.focus = false;
-                        }
-
-                        Keys.onEnterPressed: saveTitle()
-                        Keys.onReturnPressed: saveTitle()
-
-                        Behavior on x { NumberAnimation { duration: 300 } }
-                    }
-
-                    Button {
-                        id: saveTitleButton
-                        label: "Save"
-                        onClicked: todoDetailsViewTitleEdit.saveTitle()
-                        opacity: todoDetailsViewTitleEdit.focus ? 1 : 0
-                        visible: opacity !== 0
-                        anchors.right: parent.right
-                        Behavior on opacity { NumberAnimation { duration: 300 } }
-                    }
-                }*/
 
                 LinkLabel {
                     id: todoDetailsViewTitleEdit
@@ -257,7 +222,7 @@ View {
                     BorderImage {
                         width: todoDescriptionEditContains.width
                         height: todoDescriptionEditContains.height
-                        source: "../res/description.sci"
+                        source: "../../../res/description.sci"
                         cache: !settings.debug
                     }
 
