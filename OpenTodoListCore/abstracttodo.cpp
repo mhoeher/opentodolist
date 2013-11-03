@@ -43,6 +43,7 @@ AbstractTodo::AbstractTodo(QUuid id, AbstractTodoList *parent) :
     m_parentTodo( 0 ),
     m_deleted( false ),
     m_dueDate( QDateTime() ),
+    m_lastProgress( -1 ),
     m_subTodosModel( new TodoSortFilterModel( this ) )
 {
     m_subTodosModel->setParentTodo( this );
@@ -103,6 +104,7 @@ int AbstractTodo::progress() const
 
 void AbstractTodo::setProgress(int progress)
 {
+    m_lastProgress = m_progress;
     m_progress = qBound( 0, progress, 100 );
     emit progressChanged();
 }
@@ -180,6 +182,20 @@ void AbstractTodo::childDataChanged()
     // emulate a change of progress to propagate any changes up the tree
     if ( m_subTodosModel->rowCount() > 0 ) {
         emit progressChanged();
+    }
+}
+
+void AbstractTodo::toggleCompleted(int newProgress) {
+    if ( newProgress >= 0 ) {
+        // set to new progress regardless of our current state
+        setProgress( newProgress );
+    } else {
+        // toggle
+        if ( m_progress == 100 ) {
+            setProgress( m_lastProgress < 0 ? 0 : m_lastProgress );
+        } else {
+            setProgress( 100 );
+        }
     }
 }
 

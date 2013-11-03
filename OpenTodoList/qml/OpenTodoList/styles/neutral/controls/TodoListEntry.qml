@@ -100,8 +100,7 @@ Rectangle {
                                popup.result.connect( checkMark.handleResult )
                                popup.show( options )
                            } else {
-                               entry.todo.progress =
-                                       ( entry.todo.progress === 100 ? 0 : 100 )
+                               Utils.toggleTodoChecked( entry.todo );
                            }
             }
         }

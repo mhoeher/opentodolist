@@ -44,17 +44,6 @@ function tint( base, overlay, alpha ) {
     return Qt.tint( base, Qt.rgba( overlay.r, overlay.g, overlay.b, alpha ) )
 }
 
-var ToolButtonImages = [
-    "toolbutton_1.png",
-    "toolbutton_2.png",
-    "toolbutton_4.png",
-    "toolbutton_3.png"
-];
-
-function getToolButtonImage( index ) {
-    return ToolButtonImages[ index % ToolButtonImages.length ];
-}
-
 function initViewList() {
     return [];
 }
@@ -79,6 +68,48 @@ function hideView( list, view ) {
     }
     return list;
 }
+
+/*
+  Used to "remember" the last progress of a todo
+*/
+var todoListProgressStates = {}
+
+/*
+  Toggle the "completed" state of a todo
+*/
+function toggleTodoChecked( todo, targetValue ) {
+    todo.toggleCompleted( targetValue ? targetValue : -1 );
+}
+
+/*
+  Applies a given function on each todo in the given model. This is useful
+  as due to changing a todo, the ordering on the list of todos might change.
+  This is taken into account by this function.
+  */
+function applyToTodos( model, func ) {
+    var todos = [];
+    var i;
+    for ( i = 0; i < model.itemCount(); ++i ) {
+        todos.push( model.getItem( i ).object );
+    }
+    for ( i = 0; i < todos.length; ++i ) {
+        func( todos[ i ] );
+    }
+}
+
+/*
+  Recursively sets the progress of todos
+  */
+function recursiveSetTodoProgress( todo, progress ) {
+    if ( todo.hasSubTodos() ) {
+        applyToTodos( todo.subTodos, function( todo ) {
+            recursiveSetTodoProgress( todo, progress );
+        } );
+    } else {
+        toggleTodoChecked( todo, progress );
+    }
+}
+
 
 var DayNamesShort = [ "So", "Mo", "Tu", "We", "Th", "Fr", "Sa" ];
 var MonthNames = [ "January", "February", "March",
@@ -126,27 +157,3 @@ function formatDate( date, defaultLabel ) {
                 defaultLabel;
 }
 
-/*
-  Applies a given function on each todo in the given model. This is useful
-  as due to changing a todo, the ordering on the list of todos might change.
-  This is taken into account by this function.
-  */
-function applyToTodos( model, func ) {
-    var todos = [];
-    for ( var i = 0; i < model.itemCount(); ++i ) {
-        todos.push( model.getItem( i ).object );
-    }
-    for ( var i = 0; i < todos.length; ++i ) {
-        func( todos[ i ] );
-    }
-}
-
-function recursiveSetTodoProgress( todo, progress ) {
-    if ( todo.hasSubTodos() ) {
-        applyToTodos( todo.subTodos, function( todo ) {
-            recursiveSetTodoProgress( todo, progress );
-        } );
-    } else {
-        todo.progress = progress;
-    }
-}

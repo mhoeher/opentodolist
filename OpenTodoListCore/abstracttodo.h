@@ -92,10 +92,13 @@ signals:
     void deletedChanged();
     void dueDateChanged();
     void hasSubTodosChanged();
+    void attachedPropertiesChanged();
     
     void changed();
     
 public slots:
+
+    void toggleCompleted( int newProgress = -1 );
 
 protected:
 
@@ -111,6 +114,8 @@ private:
     AbstractTodo        *m_parentTodo;
     bool                m_deleted;
     QDateTime           m_dueDate;
+
+    int                 m_lastProgress;
     
     TodoSortFilterModel *m_subTodosModel;
     
