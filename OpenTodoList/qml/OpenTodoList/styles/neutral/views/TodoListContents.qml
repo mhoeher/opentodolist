@@ -24,99 +24,48 @@ Item {
 
     clip: true
 
-    property alias filterText: filterText.text
-
     signal todoSelected(QtObject todo)
 
-    Column {
-        id: controlsColumns
-        spacing: 5
-        height: childrenRect.height
+    LinkLabel {
+        id: todoListName
 
-        LinkLabel {
-            id: todoListName
+        label: todoListView.currentList ? todoListView.currentList.name : ""
+        width: parent.width
+        editable: true
 
-            label: todoListView.currentList ? todoListView.currentList.name : ""
-            width: parent.width
-            editable: true
+        onEditFinished: todoListView.currentList.name = todoListName.label
 
-            onEditFinished: todoListView.currentList.name = todoListName.label
-
-            states: [
-                State {
-                    name: "hidden"
-                    when: !todoListView.currentList
-                    PropertyChanges {
-                        target: todoListName
-                        height: 0
-                    }
-                }
-            ]
-
-            transitions: [
-                Transition {
-                    from: ""
-                    to: "hidden"
-                    reversible: true
-                    NumberAnimation {
-                        properties: "height"
-                        duration: 200
-                    }
-                }
-            ]
-        }
-
-        Item {
-            height: todoListView.currentList ? Math.max( newTodoTitle.height, addNewTodoButton.height ) : 0
-            width: todoListContents.width
-            SimpleTextInput {
-                id: newTodoTitle
-                anchors { left: parent.left; right: parent.right; rightMargin: addNewTodoButton.width + 10 }
-                text: ""
-                placeholderText: "Add new todo"
-
-                onApply: addNewTodoButton.createNewTodo()
-            }
-            Button {
-                id: addNewTodoButton
-                label: "\uf067"
-                font.family: symbolFont.name
-
-                anchors.right: parent.right
-
-                onClicked: createNewTodo()
-
-                function createNewTodo() {
-                    if ( newTodoTitle.text != "" ) {
-                        var todo = todoListView.currentList.addTodo();
-                        todo.title = newTodoTitle.text;
-                        newTodoTitle.text = "";
-                    }
+        states: [
+            State {
+                name: "hidden"
+                when: !todoListView.currentList
+                PropertyChanges {
+                    target: todoListName
+                    height: 0
                 }
             }
-            Behavior on height { SmoothedAnimation { velocity: 120 } }
-        }
+        ]
 
-        Item {
-            id: filterItem
-            height: childrenRect.height
-            width: todoListContents.width
-            SimpleTextInput {
-                id: filterText
-                anchors { left: parent.left; right: parent.right }
-                text: ""
-                placeholderText: "Filter todos"
-
-                onTextChanged: todoListView.filterText = text
+        transitions: [
+            Transition {
+                from: ""
+                to: "hidden"
+                reversible: true
+                NumberAnimation {
+                    properties: "height"
+                    duration: 200
+                }
             }
-        }
+        ]
     }
 
     TodoView {
         width: todoListContents.width
-        anchors.top: controlsColumns.bottom
+        anchors.top: todoListName.bottom
         anchors.bottom: parent.bottom
         model: todoListView.model
+        todoList: todoListView.currentList
+        allowAddTodos: true
 
         onTodoSelected: todoListContents.todoSelected(todo)
     }

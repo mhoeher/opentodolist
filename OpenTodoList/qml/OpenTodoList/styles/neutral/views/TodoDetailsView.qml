@@ -26,13 +26,9 @@ View {
     hidden: todo ? false : true
     
     property QtObject todo: null
-    property TodoSortFilterModel model: TodoSortFilterModel {
-        sourceModel: todo ? todo.subTodos : null
-        searchString: filterText.text
-    }
+    property TodoSortFilterModel model: todo ? todo.subTodos : null
 
     onTodoChanged: {
-        filterText.text = "";
         if ( todo ) {
             todoDueDateEdit.date = todo.dueDate;
         } else {
@@ -174,44 +170,12 @@ View {
                     }
                 }
 
-                Row {
-                    width: parent.width
-
-                    SimpleTextInput {
-                        id: newSubTodoTitle
-                        text: ""
-                        placeholderText: "Add new subtodo"
-                        width: parent.width - addNewSubTodoButton.width
-
-                        onApply: addNewSubTodoButton.createNewSubTodo()
-                    }
-
-                    Button {
-                        id: addNewSubTodoButton
-                        label: "\uf067"
-                        font.family: symbolFont.name
-                        onClicked: createNewSubTodo()
-
-                        function createNewSubTodo() {
-                            var todo = todoDetailsView.todo.todoList.addTodo();
-                            todo.title = newSubTodoTitle.text;
-                            todo.parentTodo = todoDetailsView.todo;
-                            newSubTodoTitle.text = "";
-                        }
-                    }
-                }
-
-                SimpleTextInput {
-                    id: filterText
-                    placeholderText: "Filter subtodos"
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                }
-
                 TodoView {
                     autoSize: true
                     width: parent.width
                     model: todoDetailsView.model
+                    allowAddTodos: true
+                    parentTodo: todoDetailsView.todo
                     onTodoSelected: todoDetailsView.todo = todo
                 }
 

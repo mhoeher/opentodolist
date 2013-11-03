@@ -24,8 +24,13 @@ Item {
 
     property int spacing: 4
     property QtObject model: null
+    property QtObject todoList: null
+    property QtObject parentTodo: null
     property bool autoSize: false
     property int contentHeight: controls.childrenRect.height + listView.contentHeight
+    property bool allowAddTodos: false
+    property bool allowFiltering: true
+    property bool useSearchMode: false
 
     signal todoSelected(QtObject todo)
 
@@ -37,19 +42,79 @@ Item {
         id: controls
         anchors { top: parent.top; left: parent.left; right: parent.right }
         height: childrenRect.height
+
+        Column {
+
+            SimpleTextInput {
+                id: filterEdit
+                placeholderText: root.useSearchMode ? qsTr( "Search todos..." ) : qsTr( "Filter todos..." )
+                text: ""
+                width: controls.width
+                visible: root.allowFiltering
+            }
+
+            Item {
+                id: addTodoControl
+                visible: root.allowAddTodos && ( root.todoList || root.parentTodo )
+                width: controls.width
+                height: childrenRect.height
+
+                SimpleTextInput {
+                    id: newTodoTitle
+                    text: ""
+                    placeholderText: qsTr( "Add new todo..." )
+                    anchors {
+                        left: parent.left
+                        right: addNewTodoButton.left
+                    }
+                    onApply: addNewTodoButton.createTodo()
+                }
+
+                SymbolButton {
+                    id: addNewTodoButton
+                    text: "+"
+                    anchors {
+                        right: parent.right
+                    }
+
+                    onClicked: createTodo()
+
+                    function createTodo() {
+                        if ( newTodoTitle.text !== "" ) {
+                            var todoList;
+                            if ( root.parentTodo ) {
+                                todoList = root.parentTodo.todoList;
+                            } else {
+                                todoList = root.todoList;
+                            }
+                            var todo = todoList.addTodo();
+                            todo.title = newTodoTitle.text;
+                            if ( root.parentTodo ) {
+                                todo.parentTodo = root.parentTodo;
+                            }
+                            newTodoTitle.text = "";
+                        }
+                    }
+                }
+            }
+        }
+
         Behavior on height { SmoothedAnimation { duration: 500 } }
     }
+
     Item {
         id: list
         anchors { top: controls.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+        clip: true
 
         ListView {
             id: listView
             anchors.fill: parent
             interactive: !root.autoSize
             model: TodoSortFilterModel {
-                sourceModel: root.model
+                sourceModel: !root.useSearchMode || filterEdit.text !== "" ? root.model : null
                 sortMode: TodoSortFilterModel.PrioritySort
+                searchString: filterEdit.text
             }
 
             delegate: TodoListEntry {

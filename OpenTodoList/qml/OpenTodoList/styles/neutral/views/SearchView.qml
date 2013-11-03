@@ -39,24 +39,13 @@ View {
 
     ]
 
-    Item {
+    TodoView {
         width: searchView.clientWidth
         height: searchView.clientHeight
+        anchors.bottom: parent.bottom
+        model: searchView.model
+        useSearchMode: true
 
-        SimpleTextInput {
-            id: search
-            text: ""
-            width: parent.width
-
-            onTextChanged: searchView.model.searchString = text
-        }
-
-        TodoView {
-            anchors.top: search.bottom
-            anchors.bottom: parent.bottom
-            width: parent.width
-            model: search.text == "" ? null : searchView.model
-            onTodoSelected: todoDetailsView.todo = todo
-        }
+        onTodoSelected: todoDetailsView.todo = todo
     }
 }
