@@ -38,6 +38,10 @@ Item {
     width: 100
     height: autoSize ? contentHeight : 100
 
+    onModelChanged: filterEdit.text = ""
+    onParentTodoChanged: filterEdit.text = ""
+    onTodoListChanged: filterEdit.text = ""
+
     Item {
         id: controls
         anchors { top: parent.top; left: parent.left; right: parent.right }
