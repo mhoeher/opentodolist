@@ -213,12 +213,11 @@ int main(int argc, char *argv[])
     viewer.rootContext()->setContextProperty( QStringLiteral("os"), getOsMap() );
     viewer.rootContext()->setContextProperty( QStringLiteral("applicationViewer"), &viewer );
     viewer.loadSettings();
-    if ( !style.isEmpty() && style != viewer.currentStyle() ) {
+    if ( !style.isEmpty() ) {
         viewer.setCurrentStyle( style );
-    } else {
-        viewer.reload();
     }
 
+    viewer.show();
     int result = app.exec();
     viewer.saveSettings();
     return result;

@@ -32,12 +32,10 @@ ApplicationViewer::ApplicationViewer(const QString &basePath, QObject *parent) :
     m_watcher( new QFileSystemWatcher( this ) ),
     m_basePath( basePath ),
     m_styleInfo( loadStyleInfo( basePath ) ),
-    m_currentStyle()
+    m_currentStyle(),
+    m_showing( false )
 {
     addImageProvider( "primitives", new ImageProvider() );
-    connect( m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(reload()) );
-    connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
-    connect( this, SIGNAL(currentStyleChanged()), this, SLOT(reload()) );
 }
 
 ApplicationViewer::~ApplicationViewer()
@@ -77,6 +75,17 @@ void ApplicationViewer::setCurrentStyle(const QString &currentStyle)
         m_currentStyle = currentStyle;
         emit currentStyleChanged();
     }
+}
+
+void ApplicationViewer::show()
+{
+    if ( !m_showing ) {
+        m_showing = true;
+        connect( m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(reload()) );
+        connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
+        connect( this, SIGNAL(currentStyleChanged()), this, SLOT(reload()) );
+    }
+    reload();
 }
 
 QString ApplicationViewer::platformDefaultStyle() const

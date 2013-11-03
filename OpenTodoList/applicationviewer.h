@@ -57,6 +57,7 @@ signals:
 
 public slots:
 
+    void show();
     void reload();
     void loadSettings();
     void saveSettings();
@@ -67,6 +68,7 @@ private:
     QString m_basePath;
     QVariantList m_styleInfo;
     QString m_currentStyle;
+    bool m_showing;
 
     static QVariantList loadStyleInfo( const QString& stylesDir );
 

@@ -24,29 +24,34 @@ import "views"
 import "controls"
 
 Window {
-    width: 800
-    height: 600
+    id: window
 
     property Settings settings : Settings {
         groups: [ "ApplicationViewer", "neutral" ]
     }
 
     Component.onCompleted: {
-        width = settings.getValue( "width", width );
-        height = settings.getValue( "height", height );
-        x = settings.getValue( "x", x );
-        y = settings.getValue( "y", y );
-        applicationViewer.onBeforeReload.connect( close );
-        show();
+        if ( layout.isTouchDevice ) {
+            showMaximized();
+        } else {
+            width = settings.getValue( "width", 800 );
+            height = settings.getValue( "height", 600 );
+            x = settings.getValue( "x", x );
+            y = settings.getValue( "y", y );
+            applicationViewer.onBeforeReload.connect( close );
+            onClosing.connect( saveWindowGeometry );
+            show();
+        }
     }
 
-    onClosing: {
-        settings.setValue( "width", width );
-        settings.setValue( "height", height );
-        settings.setValue( "x", x );
-        settings.setValue( "y", y );
+    function saveWindowGeometry() {
+        if ( !layout.isTouchDevice ) {
+            settings.setValue( "width", width );
+            settings.setValue( "height", height );
+            settings.setValue( "x", x );
+            settings.setValue( "y", y );
+        }
     }
-
 
     ViewContainer {
         id: root
