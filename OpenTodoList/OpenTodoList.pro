@@ -3,7 +3,7 @@ TEMPLATE = app
 
 INCLUDEPATH += ../OpenTodoListCore
 
-DESTDIR = .
+DESTDIR = $$OUT_PWD
 
 mac {
     LIBS += -L$$DESTDIR/OpenTodoList.app/Contents/Frameworks -lOpenTodoListCore
@@ -51,6 +51,8 @@ RESOURCES += \
     resources-js.qrc \
     resources-res.qrc \
     resources-style-neutral.qrc
+
+win32:RC_FILE = OpenTodoList.rc
 
 include(files-js.pri)
 include(files-res.pri)

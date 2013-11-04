@@ -93,7 +93,7 @@ QString ApplicationViewer::platformDefaultStyle() const
 #ifdef Q_OS_ANDROID
     return "neutral";
 #else
-    return "widget";
+    return "neutral";
 #endif
 }
 
