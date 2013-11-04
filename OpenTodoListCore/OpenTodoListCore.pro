@@ -1,10 +1,13 @@
 TARGET = OpenTodoListCore
 TEMPLATE = lib
-VERSION = 0.0.0
+
+# Build without version in file name:
+!win32:VERSION = 0.0.0
 
 QT += core
 
 #macx:CONFIG += lib_bundle
+
 
 HEADERS = \
     abstracttodo.h \
