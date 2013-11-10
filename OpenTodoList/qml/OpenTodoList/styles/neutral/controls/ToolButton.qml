@@ -28,6 +28,7 @@ Item {
     property alias label: textLabel.text
     property alias containsMouse: mouseArea.containsMouse
     property bool enabled: true
+    property bool isBackButton: false
 
     width: enabled ? childrenRect.width : 0
     height: contents.height * 2

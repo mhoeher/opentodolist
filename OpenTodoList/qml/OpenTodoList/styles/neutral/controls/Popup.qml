@@ -18,52 +18,69 @@
 
 import QtQuick 2.0
 
-Rectangle {
-    id: popup
+FocusScope {
+    id: component
 
     property bool showing: false
 
     function show( options ) {
+        component.focus = true;
         repeater.model = options
         showing = true
     }
 
     function hide( result ) {
+        component.focus = false;
         showing = false
-        popup.result( result )
+        component.result( result )
+        component.close()
     }
 
     signal result( variant id )
-
-    Keys.onEscapePressed: hide()
-    Keys.onBackPressed: hide()
-    focus: true
+    signal close()
 
     anchors.fill: parent
-    color: colors.popup
-    opacity: showing ? 1 : 0
-    visible: opacity != 0
 
-    Behavior on opacity { NumberAnimation { duration: 200 } }
+    Rectangle {
+        id: popup
 
-    MouseArea {
+        Keys.onReleased: {
+            switch ( event.key ) {
+            case Qt.Key_Escape:
+            case Qt.Key_Back:
+                component.hide();
+                event.accepted = true;
+            }
+        }
+
+        focus: true
+
         anchors.fill: parent
-        onClicked: popup.hide()
-    }
+        color: colors.popup
+        opacity: component.showing ? 1 : 0
+        visible: opacity != 0
 
-    Column {
-        anchors.centerIn: parent
-        spacing: 10
-        Repeater {
-            id: repeater
-            Button {
-                label: modelData.label
-                color: Qt.darker( colors.primaryLighter1, 1.2 )
-                highlightColor: Qt.lighter( colors.primaryLighter1, 1.1 )
-                padding: 10
-                onClicked: popup.hide( modelData.id )
-                width: popup.width / 2
-                autoSize: true
+        Behavior on opacity { NumberAnimation { duration: 200 } }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: component.hide()
+        }
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 10
+            Repeater {
+                id: repeater
+                Button {
+                    label: modelData.label
+                    color: Qt.darker( colors.primaryLighter1, 1.2 )
+                    highlightColor: Qt.lighter( colors.primaryLighter1, 1.1 )
+                    padding: 10
+                    onClicked: component.hide( modelData.id )
+                    width: popup.width / 2
+                    autoSize: true
+                }
             }
         }
     }

@@ -33,7 +33,8 @@ View {
 
     toolButtons: [
         ToolButton {
-            label: "Back"
+            symbol: "\uf060"
+            isBackButton: true
 
             onClicked: settingsView.hidden = true
         },

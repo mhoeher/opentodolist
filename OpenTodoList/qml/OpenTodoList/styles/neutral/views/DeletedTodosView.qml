@@ -34,6 +34,7 @@ View {
     toolButtons: [
         ToolButton {
             symbol: "\uf060"
+            isBackButton: true
 
             onClicked: deletedTodosView.todoList = null
         }

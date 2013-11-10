@@ -28,6 +28,7 @@ Rectangle {
     
     property alias text: textInput.text
     property string placeholderText: ""
+    property bool active: false
 
     // Indicates that return or enter has been pressed.
     // Useful to implement a "default" action or
@@ -35,12 +36,27 @@ Rectangle {
     // next to the input).
     signal apply()
 
-    Keys.onEnterPressed: apply();
-    Keys.onReturnPressed: apply();
+    onActiveChanged: {
+        if ( active ) {
+            textInput.focus = true;
+        }
+    }
+
+    Keys.onReleased: {
+        if ( input.active ) {
+            switch ( event.key ) {
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+                apply();
+                event.accepted = true;
+                break;
+            }
+        }
+    }
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { textInput.focus = true; }
+        onClicked: input.active = true
     }
 
     Text {
@@ -64,7 +80,16 @@ Rectangle {
         text: "Simple Text Input"
         color: colors.fontColorFor( input.color )
         font.pointSize: fonts.p
-        Keys.onEscapePressed: focus = false
-        Keys.onBackPressed: focus = false
+
+        Keys.onReleased: {
+            switch ( event.key ) {
+            case Qt.Key_Escape:
+            case Qt.Key_Back:
+                input.active = false;
+                input.focus = true;
+                event.accepted = true;
+                break;
+            }
+        }
     }
 }

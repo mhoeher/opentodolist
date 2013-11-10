@@ -56,6 +56,7 @@ Window {
     ViewContainer {
         id: root
         anchors.fill: parent
+        focus: true
 
         Layout {
             id: layout
@@ -125,10 +126,11 @@ Window {
         SettingsView {
             id: settingsView
         }
+    }
 
-        Popup {
-            id: popup
-        }
+    Popup {
+        id: popup
+        onClose: root.focus = true;
     }
 
 }

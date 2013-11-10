@@ -18,7 +18,7 @@
 
 import QtQuick 2.0
 
-Item {
+FocusScope {
     id: label
 
     property alias label: text.text
@@ -34,7 +34,13 @@ Item {
     width: 100
     height: flow.height
 
-    onEditFinished: text.focus = false
+    onEditFinished: {
+        text.focus = false;
+    }
+
+    onLabelChanged: if ( !text.focus ) {
+                        text.backupText = label.label;
+                    }
 
     MouseArea {
         id: mouseArea
@@ -42,7 +48,13 @@ Item {
         anchors.fill: flow
         cursorShape: Qt.PointingHandCursor
 
-        onClicked: label.editable ? text.focus = true : label.clicked()
+        onClicked: {
+            if ( label.editable ) {
+                text.focus = true;
+            } else {
+                label.clicked();
+            }
+        }
     }
 
     Row {
@@ -58,18 +70,30 @@ Item {
             color: label.active ? label.activeColor : label.color
             enabled: label.editable
 
-            Keys.onEnterPressed: label.editFinished()
-            Keys.onReturnPressed: label.editFinished()
-            Keys.onEscapePressed: text.focus = false
-            Keys.onBackPressed: text.focus = fase
+            property string backupText: ""
+
+            Keys.onReleased: {
+                switch ( event.key ) {
+                case Qt.Key_Escape:
+                case Qt.Key_Back:
+                    text.focus = false;
+                    text.text = text.backupText;
+                    event.accepted = true;
+                    break;
+                case Qt.Key_Enter:
+                case Qt.Key_Return:
+                    label.editFinished();
+                    event.accepted = true;
+                    break;
+                }
+            }
 
             Behavior on color { ColorAnimation { duration: 200 } }
         }
 
-        Button {
+        SymbolButton {
             id: saveButton
-
-            label: "Save"
+            text: "\uf0c7"
             opacity: label.editable && text.focus ? 1 : 0
             visible: opacity > 0
 

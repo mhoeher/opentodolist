@@ -50,7 +50,7 @@ Item {
                 Text {
                     font.pixelSize: root.baseHeight * 0.2
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: Utils.formatDate( root.date, "No Due Date" )
+                    text: Utils.formatDate( root.date, qsTr( "No Due Date" ) )
                 }
             }
             MouseArea {
@@ -74,18 +74,18 @@ Item {
                 Row {
                     spacing: 5
                     Button {
-                        label: "OK"
+                        label: qsTr( "OK" )
                         onClicked: {
                             root.date = calendar.selectedDate
                             root.selecting = false
                         }
                     }
                     Button {
-                        label: "Cancel"
+                        label: qsTr("Cancel")
                         onClicked: root.selecting = false
                     }
                     Button {
-                        label: "Reset"
+                        label: qsTr("Reset")
                         onClicked: {
                             root.date = Utils.getNullDate()
                             root.selecting = false

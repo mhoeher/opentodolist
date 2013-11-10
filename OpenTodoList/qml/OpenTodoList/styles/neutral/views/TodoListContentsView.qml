@@ -29,6 +29,7 @@ View {
     toolButtons: [
         ToolButton {
             symbol: "\uf060"
+            isBackButton: true
 
             onClicked: todoListContentsView.showIfCompactView = false
         }

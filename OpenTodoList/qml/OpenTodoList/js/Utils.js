@@ -111,11 +111,11 @@ function recursiveSetTodoProgress( todo, progress ) {
 }
 
 
-var DayNamesShort = [ "So", "Mo", "Tu", "We", "Th", "Fr", "Sa" ];
-var MonthNames = [ "January", "February", "March",
-                   "April", "May", "June", "July",
-                  "August", "September", "October",
-                  "November", "December" ];
+var DayNamesShort = [ qsTr("So"), qsTr("Mo"), qsTr("Tu"), qsTr("We"), qsTr("Th"), qsTr("Fr"), qsTr("Sa") ];
+var MonthNames = [ qsTr("January"), qsTr("February"), qsTr("March"),
+                   qsTr("April"), qsTr("May"), qsTr("June"), qsTr("July"),
+                  qsTr("August"), qsTr("September"), qsTr("October"),
+                  qsTr("November"), qsTr("December") ];
 
 function getLastDateOfWeek() {
     var current = new Date();

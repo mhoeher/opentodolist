@@ -33,7 +33,6 @@ Item {
         id: text
         font.pointSize: 20
         font.family: symbolFont.name
-        text: "Button"
     }
 
     MouseArea {

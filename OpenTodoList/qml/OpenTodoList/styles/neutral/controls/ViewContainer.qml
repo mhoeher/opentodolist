@@ -19,9 +19,12 @@
 import QtQuick 2.0
 import "../../../js/Utils.js" as Utils
 
-Rectangle {
-    color: colors.window
-
+FocusScope {
     property variant activeViews: Utils.initViewList()
 
+    Rectangle {
+        focus: true
+        color: colors.window
+        anchors.fill: parent
+    }
 }

@@ -28,10 +28,12 @@ View {
     toolButtons: [
         ToolButton {
             symbol: "\uf060"
+            isBackButton: true
+
             onClicked: newTodoListView.hidden = true
         },
         ToolButton {
-            label: "Create"
+            symbol: "\uf016"
 
             onClicked: {
                 if ( newTodoListView.name != "" &&

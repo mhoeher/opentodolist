@@ -72,7 +72,7 @@ View {
 
     toolButtons: [
         ToolButton {
-            label: "New List"
+            symbol: "\uf016"
 
             onClicked: newTodoListView.hidden = false
         },

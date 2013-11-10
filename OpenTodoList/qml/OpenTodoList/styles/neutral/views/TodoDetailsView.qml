@@ -56,6 +56,7 @@ View {
     toolButtons: [
         ToolButton {
             symbol: "\uf060"
+            isBackButton: true
 
             onClicked: {
                 todoDetailsView.todo = todoDetailsView.todo.parentTodo

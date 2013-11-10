@@ -19,15 +19,25 @@
 import QtQuick 2.0
 import "../../../js/Utils.js" as Utils
 
-Item {
+FocusScope {
     id: indicator
 
     property int priority: 0
-    property int sizeOnFocus: layout.minimumButtonHeight * 4
+    property int sizeOnActive: layout.minimumButtonHeight * 4
 
     signal selectedPriority(int priority)
 
-    Keys.onEscapePressed: focus = false
+    Keys.onReleased: {
+        switch ( event.key ) {
+        case Qt.Key_Escape:
+        case Qt.Key_Back:
+            if ( helper.active ) {
+                helper.active = false;
+                event.accepted = true;
+            }
+            break;
+        }
+    }
 
     width: text.width + text.height
     height: width
@@ -36,7 +46,12 @@ Item {
         id: helper
         readonly property color noColor: "#00000000"
         property color hoveredColor: noColor
+        property bool active: false
+
         function noColorSelected() { return hoveredColor === noColor; }
+
+        onActiveChanged: indicator.focus = true;
+
         Behavior on hoveredColor { ColorAnimation { duration: 50 } }
     }
 
@@ -46,8 +61,8 @@ Item {
         anchors {
             fill: parent
         }
-        sourceSize.width: indicator.sizeOnFocus
-        sourceSize.height: indicator.sizeOnFocus
+        sourceSize.width: indicator.sizeOnActive
+        sourceSize.height: indicator.sizeOnActive
         source: "image://primitives/pie/percentage=100,fill=" + color
     }
 
@@ -55,7 +70,10 @@ Item {
         id: indicatorMouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: indicator.focus = !indicator.focus
+        onClicked: {
+            helper.active = !helper.active
+        }
+        cursorShape: Qt.PointingHandCursor
     }
 
     Text {
@@ -109,7 +127,7 @@ Item {
                     hoverEnabled: true
                     onClicked: {
                         indicator.selectedPriority( index - 1 )
-                        indicator.focus = false;
+                        helper.active = false;
                     }
                     onContainsMouseChanged: helper.hoveredColor =
                                             containsMouse ?
@@ -123,10 +141,10 @@ Item {
     states: [
         State {
             name: "focused"
-            when: indicator.focus
+            when: helper.active
             PropertyChanges {
                 target: indicator
-                width: indicator.sizeOnFocus
+                width: indicator.sizeOnActive
             }
             PropertyChanges {
                 target: inner
