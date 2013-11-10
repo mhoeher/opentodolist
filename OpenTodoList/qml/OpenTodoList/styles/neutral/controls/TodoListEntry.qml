@@ -26,7 +26,7 @@ Rectangle {
     property QtObject todo: null
     property alias containsMouse: mouseArea.containsMouse
     property color fontColor: "black"
-    property int padding: 4
+    property int padding: layout.minimumButtonHeight / 10
     property bool hasNext: true
 
     readonly property string checkActionApplyAll: "all"
@@ -35,13 +35,14 @@ Rectangle {
     
     signal clicked
 
-    height: childrenRect.height + 2*padding
+    height: Math.max( childrenRect.height + 2*padding, layout.minimumButtonHeight )
     color: "transparent"
     border.color: entry.todo.priority >= 0 ? priorityHint.color : "gray"
 
     MouseArea {
         id: mouseArea
-        anchors.fill: entryContent
+        width: entryContent.width
+        height: entryInfo.y + entryInfo.height
         hoverEnabled: true
         
         onClicked: entry.clicked()
@@ -69,8 +70,8 @@ Rectangle {
         anchors.leftMargin: + priorityHint.width
         anchors.right: parent.right
         anchors.rightMargin: 4 + priorityHint.width
-        spacing: 10
         y: padding
+        spacing: 10
 
         Item {
             width: childrenRect.width
@@ -107,9 +108,9 @@ Rectangle {
 
         Text {
             id: label
-            text: entry.todo.title
+            text: entry.todo.title !== "" ? entry.todo.title : qsTr( "[Untitled Todo]" )
             color: fontColor
-            font.pointSize: 12
+            font.pointSize: fonts.p
             wrapMode: Text.Wrap
             Layout.fillWidth: true
         }
@@ -120,5 +121,30 @@ Rectangle {
             color: fontColor
             onClicked: entry.todo.deleted = !entry.todo.deleted;
         }
+    }
+
+    Flow {
+        id: entryInfo
+        anchors {
+            top: entryContent.bottom
+            topMargin: height > 0 ? 10 : 0
+            left: parent.left
+            leftMargin: label.x + entryContent.x
+            right: parent.right
+        }
+        spacing: 20
+
+        InfoLabel {
+            property bool showInfo: todo.subTodos.count > 0
+            symbol: showInfo ? "\uf0ae" : ""
+            text: showInfo ? ( todo.numTodos - todo.numOpenTodos ) + "/" + todo.numTodos : ""
+        }
+
+        InfoLabel {
+            property bool showInfo: Utils.isValidDate( todo.dueDate )
+            symbol: showInfo ? "\uf073" : ""
+            text: Utils.formatDate( todo.dueDate, "" )
+        }
+
     }
 }

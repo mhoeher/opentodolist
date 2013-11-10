@@ -4,6 +4,7 @@ OTHER_FILES += \
   qml/OpenTodoList/styles/neutral/helper/FontLayout.qml\
   qml/OpenTodoList/styles/neutral/helper/Layout.qml\
   qml/OpenTodoList/styles/neutral/helper/ColorScheme.qml\
+  qml/OpenTodoList/styles/neutral/controls/InfoLabel.qml\
   qml/OpenTodoList/styles/neutral/controls/TodoView.qml\
   qml/OpenTodoList/styles/neutral/controls/ViewContainer.qml\
   qml/OpenTodoList/styles/neutral/controls/ToolButton.qml\

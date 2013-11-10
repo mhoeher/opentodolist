@@ -62,6 +62,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: Utils.MonthNames[ calendar.viewDate.getMonth() ] + " " +
                       calendar.viewDate.getFullYear()
+                font.pointSize: fonts.h3
             }
 
             Button {

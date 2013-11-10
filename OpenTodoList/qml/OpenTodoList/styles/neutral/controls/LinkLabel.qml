@@ -64,7 +64,7 @@ FocusScope {
         TextInput {
             id: text
 
-            font.pointSize: fonts.h3
+            font.pointSize: fonts.h1
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width - ( label.editable ? saveButton.width - flow.spacing : 0 )
             color: label.active ? label.activeColor : label.color

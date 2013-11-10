@@ -27,7 +27,7 @@ Item {
     property QtObject todoList: null
     property QtObject parentTodo: null
     property bool autoSize: false
-    property int contentHeight: controls.childrenRect.height + listView.contentHeight
+    property int contentHeight: controls.height + listView.contentHeight + list.anchors.topMargin
     property bool allowAddTodos: false
     property bool allowFiltering: true
     property bool useSearchMode: false
@@ -44,10 +44,11 @@ Item {
 
     Item {
         id: controls
-        anchors { top: parent.top; left: parent.left; right: parent.right }
+        anchors { top: parent.top; left: parent.left; right: parent.right; margins: 10 }
         height: childrenRect.height
 
         Column {
+            spacing: 10
 
             SimpleTextInput {
                 id: filterEdit
@@ -108,7 +109,7 @@ Item {
 
     Item {
         id: list
-        anchors { top: controls.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+        anchors { top: controls.bottom; topMargin: layout.minimumButtonHeight / 2; left: parent.left; right: parent.right; bottom: parent.bottom }
         clip: true
 
         ListView {

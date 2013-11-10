@@ -21,7 +21,7 @@ import QtQuick 2.0
 Rectangle {
     id: input
     color: colors.input
-    height: textInput.height + 10
+    height: textInput.height + margin * 2
     clip: true
     border.width: 1
     border.color: Qt.darker( colors.button )
@@ -29,6 +29,7 @@ Rectangle {
     property alias text: textInput.text
     property string placeholderText: ""
     property bool active: false
+    property int margin: layout.minimumButtonHeight / 4
 
     // Indicates that return or enter has been pressed.
     // Useful to implement a "default" action or
@@ -66,7 +67,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: 5
+        anchors.margins: input.margin
         font.pointSize: fonts.p
         Behavior on opacity { NumberAnimation { duration: 300 } }
     }
@@ -76,7 +77,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: 5
+        anchors.margins: input.margin
         text: "Simple Text Input"
         color: colors.fontColorFor( input.color )
         font.pointSize: fonts.p
@@ -88,6 +89,10 @@ Rectangle {
                 input.active = false;
                 input.focus = true;
                 event.accepted = true;
+                break;
+            case Qt.Key_Return:
+            case Qt.Key_Enter:
+                input.apply();
                 break;
             }
         }

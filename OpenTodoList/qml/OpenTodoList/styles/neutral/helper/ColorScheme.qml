@@ -47,6 +47,7 @@ Item {
     property color popup: "#C0000000"
     property color button: Qt.darker( colorScheme.window, 1.5 )
     property color input: Qt.lighter( colorScheme.window, 1.5 )
+    property color infoText: "silver"
 
     // See: http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-blackdepending-on-background-color
     // This function selects a font color depending on the given background color.

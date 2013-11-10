@@ -89,7 +89,7 @@ FocusScope {
                     id: toolbar
                     anchors.left: parent.left
                     anchors.leftMargin: spacing / 2
-                    spacing: layout.minimumButtonHeight / 2
+                    spacing: childrenRect.height / 2
                 }
             }
         }

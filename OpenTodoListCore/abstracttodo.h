@@ -42,6 +42,8 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
     Q_PROPERTY( QObject* todoList READ todoList CONSTANT )
     Q_PROPERTY( QObject* subTodos READ subTodos CONSTANT )
     Q_PROPERTY( bool isCompleted READ isCompleted NOTIFY progressChanged() )
+    Q_PROPERTY( int numTodos READ numTodos NOTIFY numTodosChanged )
+    Q_PROPERTY( int numOpenTodos READ numOpenTodos NOTIFY numOpenTodosChanged )
 
 public:
     explicit AbstractTodo( QUuid id, AbstractTodoList *parent = 0);
@@ -80,6 +82,9 @@ public:
     Q_INVOKABLE bool hasSubTodos() const {
         return m_subTodosModel->rowCount() > 0;
     }
+
+    int numTodos() const;
+    int numOpenTodos() const;
     
 signals:
     
@@ -93,6 +98,8 @@ signals:
     void dueDateChanged();
     void hasSubTodosChanged();
     void attachedPropertiesChanged();
+    void numTodosChanged();
+    void numOpenTodosChanged();
     
     void changed();
     

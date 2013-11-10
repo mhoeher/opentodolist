@@ -20,6 +20,8 @@ import QtQuick 2.0
 
 Item {
 
+    Component.onCompleted: console.debug( minimumButtonHeight )
+
     /*
       Shall we use compact layout? This is an approximation to decide on
       whether to use wide or compact layout. In case of compact layout,
@@ -33,7 +35,7 @@ Item {
       that each button or other click/tapable component should get to be easily
       usable (esp. on touch devices).
       */
-    property int minimumButtonHeight: helper.height * 2
+    property int minimumButtonHeight: isTouchDevice ? helper.height * 2 : helper.height * 1.2
 
     /*
       Are we on a touch device?
@@ -53,7 +55,7 @@ Item {
     Text {
         id: helper
         visible: false
-        font.pointSize: 22
+        font.pointSize: fonts.h1
         text: "Helper"
     }
 }

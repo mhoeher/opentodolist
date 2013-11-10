@@ -20,8 +20,8 @@ import QtQuick 2.0
 
 Item {
     id: button
-    width: childrenRect.width
-    height: childrenRect.height
+    width: childrenRect.width + layout.minimumButtonHeight / 2
+    height: childrenRect.height + layout.minimumButtonHeight / 2
 
     property alias text: text.text
     property alias color: text.color
@@ -31,7 +31,9 @@ Item {
 
     Text {
         id: text
-        font.pointSize: 20
+        x: layout.minimumButtonHeight / 4
+        y: layout.minimumButtonHeight / 4
+        font.pointSize: fonts.h1
         font.family: symbolFont.name
     }
 

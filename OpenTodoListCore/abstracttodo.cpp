@@ -53,6 +53,9 @@ AbstractTodo::AbstractTodo(QUuid id, AbstractTodoList *parent) :
     
     connect( m_subTodosModel, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),
              this, SLOT(childDataChanged()) );
+
+    connect( m_subTodosModel, SIGNAL(itemCountChanged()), this, SIGNAL(numTodosChanged()) );
+    connect( m_subTodosModel, SIGNAL(itemCountChanged()), this, SIGNAL(numOpenTodosChanged()) );
     
     connect( this, SIGNAL(idChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
@@ -177,12 +180,53 @@ AbstractTodoList* AbstractTodo::parent() const
     return qobject_cast< AbstractTodoList* >( QObject::parent() );
 }
 
+/**
+   @brief Returns the number of sub todos
+
+   Returns the number of sub todos of this todo. Deleted todos are not
+   included in this.
+ */
+int AbstractTodo::numTodos() const
+{
+    int result = 0;
+    for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
+        AbstractTodo* todo = qobject_cast< AbstractTodo* >(
+                    m_subTodosModel->index( i, 0 ).data( ObjectModel<AbstractTodo>::ObjectRole )
+                    .value< QObject* >() );
+        if ( todo && !todo->isDeleted() ) {
+            ++result;
+        }
+    }
+    return result;
+}
+
+/**
+   @brief Returns the number of open sub todos
+
+   This returns the number of open sub todos of this todo. Deleted todos
+   are not included in this.
+ */
+int AbstractTodo::numOpenTodos() const
+{
+    int result = 0;
+    for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
+        AbstractTodo* todo = qobject_cast< AbstractTodo* >(
+                    m_subTodosModel->index( i, 0 ).data( ObjectModel<AbstractTodo>::ObjectRole )
+                    .value< QObject* >() );
+        if ( todo && !todo->isDeleted() && !todo->isCompleted() ) {
+            ++result;
+        }
+    }
+    return result;
+}
+
 void AbstractTodo::childDataChanged()
 {
     // emulate a change of progress to propagate any changes up the tree
     if ( m_subTodosModel->rowCount() > 0 ) {
         emit progressChanged();
     }
+    emit numOpenTodosChanged();
 }
 
 void AbstractTodo::toggleCompleted(int newProgress) {

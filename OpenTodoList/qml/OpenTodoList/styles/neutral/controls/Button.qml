@@ -48,7 +48,7 @@ Rectangle {
         color: colors.fontColorFor( button.color )
         x: button.autoSize ?  ( button.width - width ) / 2 : button.padding * 2
         y: button.padding
-        font.pointSize: fonts.p
+        font.pointSize: fonts.h3
     }
     
     MouseArea {

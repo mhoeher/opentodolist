@@ -48,7 +48,7 @@ Item {
                     text: Utils.isValidDate( root.date ) ? "\uf073" : "\uf133"
                 }
                 Text {
-                    font.pixelSize: root.baseHeight * 0.2
+                    font.pointSize: fonts.h1
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: Utils.formatDate( root.date, qsTr( "No Due Date" ) )
                 }

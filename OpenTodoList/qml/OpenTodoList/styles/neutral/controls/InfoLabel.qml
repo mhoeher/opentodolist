@@ -18,12 +18,28 @@
 
 import QtQuick 2.0
 
-Item {
-    id: fontLayout
+Flow {
+    id: root
 
-    property int h1: layout.isTouchDevice ? 24 : 16
-    property int h2: layout.isTouchDevice ? 18 : 14
-    property int h3: layout.isTouchDevice ? 16 : 12
-    property int p: layout.isTouchDevice ? 14 : 10
+    property alias color: symbol.color
+    property alias symbol: symbol.text
+    property alias text: text.text
+    property alias pointSize: symbol.font.pointSize
 
+    height: childrenRect.height
+    spacing: 10
+
+    Text {
+        id: symbol
+        font.family: symbolFont.name
+        font.pointSize: fonts.p
+        color: colors.infoText
+    }
+
+    Text {
+        id: text
+        font.pointSize: symbol.font.pointSize
+        color: symbol.color
+        text: "Info"
+    }
 }

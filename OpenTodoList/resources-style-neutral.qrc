@@ -6,6 +6,7 @@
     <file>qml/OpenTodoList/styles/neutral/helper/FontLayout.qml</file>
     <file>qml/OpenTodoList/styles/neutral/helper/Layout.qml</file>
     <file>qml/OpenTodoList/styles/neutral/helper/ColorScheme.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/InfoLabel.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/TodoView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/ViewContainer.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/ToolButton.qml</file>

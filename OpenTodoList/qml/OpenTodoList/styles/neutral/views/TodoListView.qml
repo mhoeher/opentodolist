@@ -135,7 +135,7 @@ View {
             Column {
                 id: todoListColumn
                 width: parent.width
-                spacing: showAllTodosButton.font.pixelSize / 2
+                spacing: layout.minimumButtonHeight / 2
 
                 LinkLabel {
                     id: showAllTodosButton
