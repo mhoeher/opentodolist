@@ -204,6 +204,11 @@ void ObjectModelBase::onSubRowsRemoved(const QModelIndex &parent, int start, int
     emit endRemoveRows();
 }
 
+void ObjectModelBase::onObjectDeleted(QObject *object)
+{
+    removeObject( object );
+}
+
 int ObjectModelBase::subListEntryCount() const
 {
     int result = 0;

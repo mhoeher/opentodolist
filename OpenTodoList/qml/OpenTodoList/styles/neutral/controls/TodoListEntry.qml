@@ -116,6 +116,13 @@ Rectangle {
         }
 
         SymbolButton {
+            id: permanentlyDeleteButton
+            visible: entry.todo.deleted
+            text: "\uf014"
+            onClicked: entry.todo.dispose()
+        }
+
+        SymbolButton {
             id: deleteTodoButton
             text: entry.todo.deleted ? "\uf0e2" : "\uf014"
             color: fontColor

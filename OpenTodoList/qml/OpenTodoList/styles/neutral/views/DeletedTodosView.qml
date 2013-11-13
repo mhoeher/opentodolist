@@ -37,7 +37,37 @@ View {
             isBackButton: true
 
             onClicked: deletedTodosView.todoList = null
+        },
+        ToolButton {
+            id: emptyTrashButton
+            symbol: "\uf014"
+            visible: model.count > 0
+
+            onClicked: {
+                if ( model.count > 0 ) {
+                    var options = [
+                                { label: qsTr( "Empty Trash"), id: "emptyTrash" },
+                                { label: qsTr( "Cancel" ), id: "cancel" }
+                            ];
+                    popup.result.connect( emptyTrashButton.handleResult )
+                    popup.show( options )
+                }
+            }
+
+            function handleResult( result ) {
+                popup.result.disconnect( emptyTrashButton.handleResult )
+                if ( result === "emptyTrash" ) {
+                    var todos = [];
+                    for ( var i = 0; i < model.count; ++i ) {
+                        todos.push( model.getItem( i ).object );
+                    }
+                    for ( var i = 0; i < todos.length; ++i ) {
+                        todos[ i ].dispose();
+                    }
+                }
+            }
         }
+
     ]
 
     TodoView {

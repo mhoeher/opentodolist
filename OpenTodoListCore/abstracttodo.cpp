@@ -244,6 +244,42 @@ void AbstractTodo::toggleCompleted(int newProgress) {
 }
 
 /**
+   @brief Deletes the todo
+
+   This will delete the todo. Internally, the following actions will be
+   done:
+
+   <ol>
+   <li>For each child todo, call its dispose() method.</li>
+   <li>The aboutToBeDisposed() signal is emitted to let other objects know what
+       we are planning to do.</li>
+   <li>The destroy() method of the todo is called to do any cleanup. Sub-classes
+       ob AbstractTodo should implement this method to whatever might be
+       required.</li>
+   <li>Finally, we are calling deleteLater() to schedule deletion of the todo
+       for when we are returning to the event loop.</li>
+   </ul>
+ */
+void AbstractTodo::dispose()
+{
+    QList< AbstractTodo* > todos;
+    for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
+        AbstractTodo* todo = qobject_cast< AbstractTodo* >(
+                    m_subTodosModel->index( i, 0 ).data(
+                        TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
+        if ( todo ) {
+            todos.append( todo );
+        }
+    }
+    foreach (  AbstractTodo* todo, todos ) {
+        todo->dispose();
+    }
+    emit aboutToBeDisposed( this );
+    destroy();
+    deleteLater();
+}
+
+/**
    @brief Overrides the ID of the todo
 
    This overrides the @p id of the todo. Note that you do not usually want to use

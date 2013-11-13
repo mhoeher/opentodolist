@@ -32,11 +32,17 @@ public:
     explicit LocalXmlTodo( QUuid id, const QString& configFile, AbstractTodoList* parent = 0);
     virtual ~LocalXmlTodo();
     
+
+protected:
+
+    virtual void destroy();
+
 private:
     
     QString m_configFile;
     QUuid m_parentId;
     QString m_parentConfigFile;
+    bool m_disposed;
     
 private slots:
     
@@ -44,7 +50,7 @@ private slots:
     void load();
     
     void updateParentTodo();
-    
+
 };
 
 #endif // LOCALXMLTODO_H

@@ -59,6 +59,8 @@ protected:
 
     int subListEntryCount() const;
 
+    virtual void removeObject( QObject* object ) { Q_UNUSED( object ); }
+
 protected slots:
 
     void setThisItemCount( int thisItemCount );
@@ -92,6 +94,8 @@ private slots:
                         int sourceEnd, const QModelIndex & destinationParent,
                         int destinationRow);
     void onSubRowsRemoved(const QModelIndex & parent, int start, int end);
+
+    void onObjectDeleted( QObject* object );
 
 };
 
@@ -152,6 +156,8 @@ public:
         list << item;
         endInsertRows();
         this->setThisItemCount( list.size() );
+        connect( item, SIGNAL(destroyed(QObject*)),
+                 this, SLOT(onObjectDeleted(QObject*)) );
     }
     
     const List& data() const {
@@ -163,6 +169,17 @@ public:
         if ( idx >= 0 ) {
             emit dataChanged( index( idx, 0 ), index( idx, 0 ) );
         }
+    }
+
+protected:
+
+    virtual void removeObject( QObject* object ) {
+        ObjectType *o = reinterpret_cast< ObjectType* >( object );
+        int index = list.indexOf( o );
+        emit beginRemoveRows( QModelIndex(), index, index );
+        list.removeAt( index );
+        emit endRemoveRows();
+        setThisItemCount( list.size() );
     }
     
 private:

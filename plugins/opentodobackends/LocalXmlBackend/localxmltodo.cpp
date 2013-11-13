@@ -21,6 +21,7 @@
 
 #include "localxmltodolist.h"
 
+#include <QDebug>
 #include <QDomDocument>
 #include <QDir>
 #include <QFile>
@@ -32,7 +33,8 @@
 LocalXmlTodo::LocalXmlTodo(QUuid id, const QString& configFile, AbstractTodoList* parent): 
     AbstractTodo( id, parent ),
     m_configFile( configFile ),
-    m_parentId( QUuid() )
+    m_parentId( QUuid() ),
+    m_disposed( false )
 {
     load();
     connect( this, SIGNAL(changed()), this, SLOT(save()) );
@@ -42,8 +44,22 @@ LocalXmlTodo::~LocalXmlTodo()
 {
 }
 
+void LocalXmlTodo::destroy()
+{
+    m_disposed = true;
+    QFile f( m_configFile );
+    if ( !f.remove() ) {
+        qWarning() << "Unable to remove config file of todo" << title()
+                   << "because of:" << f.errorString();
+    }
+}
+
 void LocalXmlTodo::save()
 {
+    if ( m_disposed ) {
+        // Already disposed... do not save back
+        return;
+    }
     // TODO: If XML already exists, update!
     QFileInfo fi( m_configFile );
     QDir dir = fi.absoluteDir();

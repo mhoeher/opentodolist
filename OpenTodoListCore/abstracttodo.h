@@ -85,7 +85,7 @@ public:
 
     int numTodos() const;
     int numOpenTodos() const;
-    
+
 signals:
     
     void idChanged();
@@ -102,14 +102,34 @@ signals:
     void numOpenTodosChanged();
     
     void changed();
+
+    /**
+       @brief The todo is about to be disposed
+
+       This signal is emitted by a todo as soon as it is about to be
+       disposed. The @p todo parameter carries along the todo itself.
+       @param todo
+     */
+    void aboutToBeDisposed( QObject* todo );
     
 public slots:
 
     void toggleCompleted( int newProgress = -1 );
+    void dispose();
 
 protected:
 
     void setId( QUuid id );
+
+    /**
+       @brief Destroies the todo
+
+       Calling this method will cause the todo object being destroyed.
+       This method will do nothing. Sub-classes can override it to do cleanup
+       (e.g. removing locally allocated resources that were used to
+       persist the todo).
+     */
+    virtual void destroy() {}
 
 private:
 
