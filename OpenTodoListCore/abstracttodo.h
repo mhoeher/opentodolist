@@ -86,6 +86,10 @@ public:
     int numTodos() const;
     int numOpenTodos() const;
 
+    Q_INVOKABLE bool canMoveTo(QObject *newParent ) const;
+
+    Q_INVOKABLE virtual void cloneFrom( QObject *otherTodo );
+
 signals:
     
     void idChanged();

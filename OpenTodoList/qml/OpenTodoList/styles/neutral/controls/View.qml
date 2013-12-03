@@ -27,6 +27,8 @@ FocusScope {
     height: parent.height
     focus: active
 
+    signal stateChangeFinished()
+
     property alias toolButtons: toolbar.children
     property bool hidden: true
     property bool active: false
@@ -35,6 +37,13 @@ FocusScope {
     default property alias content: contents.children
     property string title: "View"
     property int padding: 20
+
+    readonly property int stateChangeTime: 500
+
+    function hideAndDestroy() {
+        hidden = true;
+        destroy( stateChangeTime );
+    }
 
     onFocusChanged: view.focus = true
 
@@ -89,7 +98,6 @@ FocusScope {
                     id: toolbar
                     anchors.left: parent.left
                     anchors.leftMargin: spacing / 2
-                    spacing: childrenRect.height / 2
                 }
             }
         }
@@ -143,7 +151,7 @@ FocusScope {
             reversible: true
             NumberAnimation {
                 properties: "x"
-                duration: 500
+                duration: stateChangeTime
                 easing.type: Easing.InOutQuad
             }
         }

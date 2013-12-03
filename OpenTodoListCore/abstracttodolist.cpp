@@ -76,7 +76,7 @@ QObject* AbstractTodoList::addTodo(const QString& title, QObject* parentTodo)
     AbstractTodo* result = qobject_cast< AbstractTodo* >( addTodo() );
     if ( result ) {
         result->setTitle( title );
-        result->setParentTodo( static_cast< AbstractTodo* >( parentTodo ) );
+        result->setParentTodo( qobject_cast< AbstractTodo* >( parentTodo ) );
     }
     return result;
 }

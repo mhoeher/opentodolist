@@ -4,11 +4,13 @@
     <file>qml/OpenTodoList/styles/neutral/info.json</file>
     <file>qml/OpenTodoList/styles/neutral/main.qml</file>
     <file>qml/OpenTodoList/styles/neutral/helper/FontLayout.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/helper/DeviceInfo.qml</file>
     <file>qml/OpenTodoList/styles/neutral/helper/Layout.qml</file>
     <file>qml/OpenTodoList/styles/neutral/helper/ColorScheme.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/InfoLabel.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/TodoView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/ViewContainer.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/controls/TodoSelector.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/ToolButton.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/DatePicker.qml</file>
     <file>qml/OpenTodoList/styles/neutral/controls/LinkLabel.qml</file>
@@ -27,6 +29,7 @@
     <file>qml/OpenTodoList/styles/neutral/views/SearchView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/TodoDetailsView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/TodoListContentsView.qml</file>
+    <file>qml/OpenTodoList/styles/neutral/views/TodoSelectorView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/DeletedTodosView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/TodoListView.qml</file>
     <file>qml/OpenTodoList/styles/neutral/views/NewTodoListView.qml</file>

@@ -20,7 +20,7 @@ import QtQuick 2.0
 import net.rpdev.OpenTodoList 1.0
 
 Item {
-    id: root
+    id: todoView
 
     property int spacing: 4
     property QtObject model: null
@@ -52,15 +52,15 @@ Item {
 
             SimpleTextInput {
                 id: filterEdit
-                placeholderText: root.useSearchMode ? qsTr( "Search todos..." ) : qsTr( "Filter todos..." )
+                placeholderText: todoView.useSearchMode ? qsTr( "Search todos..." ) : qsTr( "Filter todos..." )
                 text: ""
                 width: controls.width
-                visible: root.allowFiltering
+                visible: todoView.allowFiltering
             }
 
             Item {
                 id: addTodoControl
-                visible: root.allowAddTodos && ( root.todoList || root.parentTodo )
+                visible: todoView.allowAddTodos && ( todoView.todoList || todoView.parentTodo )
                 width: controls.width
                 height: childrenRect.height
 
@@ -87,15 +87,15 @@ Item {
                     function createTodo() {
                         if ( newTodoTitle.text !== "" ) {
                             var todoList;
-                            if ( root.parentTodo ) {
-                                todoList = root.parentTodo.todoList;
+                            if ( todoView.parentTodo ) {
+                                todoList = todoView.parentTodo.todoList;
                             } else {
-                                todoList = root.todoList;
+                                todoList = todoView.todoList;
                             }
                             var todo = todoList.addTodo();
                             todo.title = newTodoTitle.text;
-                            if ( root.parentTodo ) {
-                                todo.parentTodo = root.parentTodo;
+                            if ( todoView.parentTodo ) {
+                                todo.parentTodo = todoView.parentTodo;
                             }
                             newTodoTitle.text = "";
                         }
@@ -115,9 +115,9 @@ Item {
         ListView {
             id: listView
             anchors.fill: parent
-            interactive: !root.autoSize
+            interactive: !todoView.autoSize
             model: TodoSortFilterModel {
-                sourceModel: !root.useSearchMode || filterEdit.text !== "" ? root.model : null
+                sourceModel: !todoView.useSearchMode || filterEdit.text !== "" ? todoView.model : null
                 sortMode: TodoSortFilterModel.PrioritySort
                 searchString: filterEdit.text
             }
@@ -125,9 +125,9 @@ Item {
             delegate: TodoListEntry {
                 todo: object
                 width: listView.width
-                hasNext: root.model && index !== root.model.count - 1
+                hasNext: todoView.model && index !== todoView.model.count - 1
                 onClicked: {
-                    root.todoSelected( object )
+                    todoView.todoSelected( object )
                 }
             }
         }

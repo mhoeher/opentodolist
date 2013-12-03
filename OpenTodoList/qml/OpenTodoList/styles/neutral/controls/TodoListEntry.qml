@@ -116,6 +116,46 @@ Rectangle {
         }
 
         SymbolButton {
+            id: moveTodoButton
+            visible: !entry.todo.deleted
+            text: "\uf03b"
+            onClicked: {
+                var component = Qt.createComponent( "../views/TodoSelectorView.qml" );
+                var view = component.createObject( root );
+                view.hidden = false;
+                if ( entry.todo.parentTodo ) {
+                    view.showTodo( entry.todo.parentTodo );
+                } else {
+                    view.showTodoList( entry.todo.todoList );
+                }
+
+                view.onFinished.connect( function(object) {
+                    var newTodo;
+                    if ( object ) {
+                        if ( object.title ) {
+                            // it is a todo
+                            if ( entry.todo.todoList === object.todoList ) {
+                                entry.todo.parentTodo = object;
+                            } else {
+                                newTodo = object.todoList.addTodo( entry.todo.title );
+                                newTodo.parentTodo = object;
+                                newTodo.cloneFrom( entry.todo );
+                            }
+                        } else {
+                            if ( entry.todo.todoList === object ) {
+                                entry.todo.parentTodo = null;
+                            } else {
+                                newTodo = object.addTodo( entry.todo.title );
+                                newTodo.cloneFrom( entry.todo );
+                            }
+                        }
+                    }
+                    view.hideAndDestroy();
+                } );
+            }
+        }
+
+        SymbolButton {
             id: permanentlyDeleteButton
             visible: entry.todo.deleted
             text: "\uf014"

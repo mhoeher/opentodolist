@@ -19,11 +19,21 @@
 import QtQuick 2.0
 
 Item {
-    id: fontLayout
 
-    property int h1: 18
-    property int h2: 16
-    property int h3: 14
-    property int p: 12
+    readonly property bool isAndroid: Qt.platform.os === "android"
+    readonly property bool isBlackberry: Qt.platform.os === "blackberry"
+    readonly property bool isIOS: Qt.platform.os === "ios"
+    readonly property bool isLinux: Qt.platform.os === "linux"
+    readonly property bool isOSX: Qt.platform.os === "osx"
+    readonly property bool isUnix: Qt.platform.os === "unix"
+    readonly property bool isWindows: Qt.platform.os === "windows"
+    readonly property bool isWinCE: Qt.platform.os === "wince"
 
+
+    /*
+      Are we on a touch device?
+      For some design decisions, this fact is used as an input for decision.
+      For "guessing" this, we're checking the current operating system.
+      */
+    property bool isTouchDevice: isAndroid || isIOS || isBlackberry || isWinCE
 }

@@ -58,16 +58,20 @@ Window {
         anchors.fill: parent
         focus: true
 
+        DeviceInfo {
+            id: deviceInfo
+        }
+
+        FontLayout {
+            id: fonts
+        }
+
         Layout {
             id: layout
         }
 
         ColorScheme {
             id: colors
-        }
-
-        FontLayout {
-            id: fonts
         }
 
         FontLoader {
@@ -132,5 +136,4 @@ Window {
         id: popup
         onClose: root.focus = true;
     }
-
 }

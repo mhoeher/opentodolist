@@ -17,10 +17,9 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Window 2.0
 
 Item {
-
-    Component.onCompleted: console.debug( minimumButtonHeight )
 
     /*
       Shall we use compact layout? This is an approximation to decide on
@@ -28,29 +27,21 @@ Item {
       views shall display their content in a way that makes it easy to use
       on devices with rather small screens.
       */
-    property bool useCompactLayout: root.width < helper.width * 6
+    property bool useCompactLayout: root.width < helper.width * 8
 
     /*
       The minimum button height to use. This is an approximate minimal height
       that each button or other click/tapable component should get to be easily
       usable (esp. on touch devices).
       */
-    property int minimumButtonHeight: isTouchDevice ? helper.height * 2 : helper.height * 1.2
-
-    /*
-      Are we on a touch device?
-      For some design decisions, this fact is used as an input for decision.
-      For "guessing" this, we're checking the current operating system.
-      Note: double negation is to convert undefined values to false.
-      */
-    property bool isTouchDevice: !!os.ANDROID
+    property int minimumButtonHeight: deviceInfo.isTouchDevice ? helper.height * 2 : helper.height * 1.2
 
     /**
       Disable hover effects?
       On some devices (esp. touch devices) hover effects work out quite badly.
       This property indicates whether hover effects should be turned off.
       */
-    property bool disableHover: isTouchDevice
+    property bool disableHover: deviceInfo.isTouchDevice
 
     Text {
         id: helper

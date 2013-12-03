@@ -26,23 +26,30 @@ Item {
     
     property alias symbol: symbolLabel.text
     property alias label: textLabel.text
-    property alias containsMouse: mouseArea.containsMouse
+    property alias containsMouse: contents.containsMouse
     property bool enabled: true
     property bool isBackButton: false
 
-    width: enabled ? childrenRect.width : 0
+    width: enabled ? contents.width : 0
     height: contents.height * 2
     clip: true
 
     Behavior on width { NumberAnimation { duration: 200 } }
 
-    Item {
+    MouseArea {
         id: contents
-        width: childrenRect.width
-        height: childrenRect.height
+
+        hoverEnabled: true
+        cursorShape: button.state == "disabled" ? Qt.ArrowCursor : Qt.PointingHandCursor
+        onClicked: if ( button.state != "disabled" ) parent.clicked()
+        width: row.width * 2.5
+        height: row.height
         anchors.verticalCenter: parent.verticalCenter
+
         Row {
+            id: row
             spacing: symbolLabel.height / 2
+            anchors.horizontalCenter: parent.horizontalCenter
             Text {
                 id: symbolLabel
                 font.family: symbolFont.name
@@ -57,14 +64,6 @@ Item {
                 color: "white"
             }
         }
-    }
-
-    MouseArea {
-        id: mouseArea
-        anchors.fill: contents
-        hoverEnabled: true
-        cursorShape: button.state == "disabled" ? Qt.ArrowCursor : Qt.PointingHandCursor
-        onClicked: if ( button.state != "disabled" ) parent.clicked()
     }
 
 }

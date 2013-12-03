@@ -21,6 +21,10 @@
 #include "abstracttodolist.h"
 #include "todosortfiltermodel.h"
 
+#include <QDebug>
+#include <QQueue>
+#include <QSet>
+
 /**
  * @class AbstractTodo
  * @brief Base class for all todos
@@ -141,14 +145,14 @@ AbstractTodo* AbstractTodo::parentTodo() const
 
 void AbstractTodo::setParentTodo(QObject* parentTodo)
 {
+    // parent todo must be null or we must have common todo list
     if ( !parentTodo || parentTodo->parent() == parent() ) {
-        AbstractTodo* p = static_cast< AbstractTodo* >( parentTodo );
-        while ( p && p != this ) {
-            p = p->parentTodo();
-        }
-        if ( p != this ) {
-            m_parentTodo = static_cast< AbstractTodo* >( parentTodo );
-            emit parentTodoChanged();
+        // Check for cycles...
+        if ( canMoveTo( parentTodo ) ) {
+            if ( parentTodo != m_parentTodo ) {
+                m_parentTodo = static_cast< AbstractTodo* >( parentTodo );
+                emit parentTodoChanged();
+            }
         }
     }
 }
@@ -218,6 +222,69 @@ int AbstractTodo::numOpenTodos() const
         }
     }
     return result;
+}
+
+/**
+   @brief Check if the todo can be moved to another parent.
+
+   This method can be used to check whether this todo can be made a child
+   todo of the @p newParent. If this is the case, true is returned; otherwise,
+   false. This method is used internally when setting the parent of a todo
+   to ensure that no cyclic parent chains are built.
+
+ */
+bool AbstractTodo::canMoveTo(QObject *newParent) const
+{
+    QSet< const AbstractTodo* > allChildren;
+    QQueue< const AbstractTodo* > queue;
+    queue.enqueue( this );
+    allChildren.insert( this );
+    while ( !queue.isEmpty() ) {
+        const AbstractTodo *nextTodo = queue.dequeue();
+        if ( nextTodo == newParent ) {
+            // the new parent is a child item of the current one - cannot move!
+            return false;
+        }
+        for ( int i = 0; i < nextTodo->subTodos()->rowCount(); ++i ) {
+            AbstractTodo *todo = qobject_cast< AbstractTodo* >(
+                        nextTodo->subTodos()->index( i, 0 ).data(
+                        TodoSortFilterModel::TodoModel::ObjectRole )
+                    .value< QObject* >() );
+            if ( todo && !allChildren.contains( todo ) ) {
+                allChildren.insert( todo );
+                queue.enqueue( todo );
+            }
+        }
+    }
+    return true;
+}
+
+/**
+   @brief Clones properties from another todo
+
+   Copies over attributes from @p otherTodo. The todo copied from will
+   be scheduled for deletion afterwards, so after calling this, do not
+   access the other todo anymore.
+ */
+void AbstractTodo::cloneFrom(QObject *otherTodo)
+{
+    if ( otherTodo ) {
+        AbstractTodo *asTodo = qobject_cast< AbstractTodo* >( otherTodo );
+        if ( asTodo ) {
+            m_deleted = asTodo->m_deleted;
+            m_description = asTodo->m_description;
+            m_dueDate = asTodo->m_dueDate;
+            m_id = asTodo->m_id;
+            m_lastProgress = asTodo->m_lastProgress;
+            m_priority = asTodo->m_priority;
+            m_progress = asTodo->m_progress;
+            m_title = asTodo->m_title;
+            emit changed();
+            asTodo->dispose();
+        } else {
+            qWarning() << otherTodo << "is not a AbstractTodo";
+        }
+    }
 }
 
 void AbstractTodo::childDataChanged()

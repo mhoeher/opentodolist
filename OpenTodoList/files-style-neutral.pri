@@ -2,11 +2,13 @@ OTHER_FILES += \
   qml/OpenTodoList/styles/neutral/info.json\
   qml/OpenTodoList/styles/neutral/main.qml\
   qml/OpenTodoList/styles/neutral/helper/FontLayout.qml\
+  qml/OpenTodoList/styles/neutral/helper/DeviceInfo.qml\
   qml/OpenTodoList/styles/neutral/helper/Layout.qml\
   qml/OpenTodoList/styles/neutral/helper/ColorScheme.qml\
   qml/OpenTodoList/styles/neutral/controls/InfoLabel.qml\
   qml/OpenTodoList/styles/neutral/controls/TodoView.qml\
   qml/OpenTodoList/styles/neutral/controls/ViewContainer.qml\
+  qml/OpenTodoList/styles/neutral/controls/TodoSelector.qml\
   qml/OpenTodoList/styles/neutral/controls/ToolButton.qml\
   qml/OpenTodoList/styles/neutral/controls/DatePicker.qml\
   qml/OpenTodoList/styles/neutral/controls/LinkLabel.qml\
@@ -25,6 +27,7 @@ OTHER_FILES += \
   qml/OpenTodoList/styles/neutral/views/SearchView.qml\
   qml/OpenTodoList/styles/neutral/views/TodoDetailsView.qml\
   qml/OpenTodoList/styles/neutral/views/TodoListContentsView.qml\
+  qml/OpenTodoList/styles/neutral/views/TodoSelectorView.qml\
   qml/OpenTodoList/styles/neutral/views/DeletedTodosView.qml\
   qml/OpenTodoList/styles/neutral/views/TodoListView.qml\
   qml/OpenTodoList/styles/neutral/views/NewTodoListView.qml\
