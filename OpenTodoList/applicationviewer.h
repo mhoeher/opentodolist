@@ -34,7 +34,7 @@ class ApplicationViewer : public QtQuick2ApplicationViewer
     
 public:
     
-    explicit ApplicationViewer(const QString& basePath, QObject *parent = 0);
+    explicit ApplicationViewer(const QString& basePath, QWindow *parent = 0);
     virtual ~ApplicationViewer();
     
     void addImportPath( const QString& path );

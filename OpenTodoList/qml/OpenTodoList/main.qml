@@ -23,7 +23,7 @@ import "helper"
 import "views"
 import "controls"
 
-Window {
+Item {
     id: window
 
     property Settings settings : Settings {
@@ -31,7 +31,7 @@ Window {
     }
 
     Component.onCompleted: {
-        if ( layout.isTouchDevice ) {
+        /*if ( layout.isTouchDevice ) {
             showMaximized();
         } else {
             width = settings.getValue( "width", 800 );
@@ -41,7 +41,7 @@ Window {
             applicationViewer.onBeforeReload.connect( close );
             onClosing.connect( saveWindowGeometry );
             show();
-        }
+        }*/
     }
 
     function saveWindowGeometry() {

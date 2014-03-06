@@ -29,12 +29,12 @@
 #include <QQmlEngine>
 #include <QSettings>
 
-ApplicationViewer::ApplicationViewer(const QString &basePath, QObject *parent) :
+ApplicationViewer::ApplicationViewer(const QString &basePath, QWindow *parent) :
     QtQuick2ApplicationViewer(parent),
     m_watcher( new QFileSystemWatcher( this ) ),
     m_basePath( basePath )
 {
-    addImageProvider( "primitives", new ImageProvider() );
+    engine()->addImageProvider( "primitives", new ImageProvider() );
 }
 
 ApplicationViewer::~ApplicationViewer()
@@ -100,19 +100,20 @@ void ApplicationViewer::show()
         connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
     }
     reload();
+    QtQuick2ApplicationViewer::show();
 }
 
 void ApplicationViewer::reload()
 {
     emit beforeReload();
-    clearComponentCache();
+    engine()->clearComponentCache();
     QDir mainFileDir( m_basePath );
     QString mainFileUrl( mainFileDir.absoluteFilePath( "main.qml" ) );
     addImportPath( m_basePath );
     if ( m_basePath.startsWith( ":" ) ) {
-        load( QUrl( "qrc" + mainFileUrl ) );
+        setMainQmlFile( "qrc" + mainFileUrl );
     } else {
-        load( mainFileUrl );
+        setMainQmlFile( mainFileUrl );
     }
     emit reloaded();
 }
@@ -121,6 +122,10 @@ void ApplicationViewer::loadSettings()
 {
     QSettings settings;
     settings.beginGroup( "ApplicationViewer" );
+    setWidth( settings.value( "width", width() ).toInt() );
+    setHeight( settings.value( "height", height() ).toInt() );
+    setPosition( settings.value( "x", x() ).toInt(),
+                 settings.value( "y", y() ).toInt() );
     settings.endGroup();
 }
 
@@ -128,5 +133,9 @@ void ApplicationViewer::saveSettings()
 {
     QSettings settings;
     settings.beginGroup( "ApplicationViewer" );
+    settings.setValue( "width", width() );
+    settings.setValue( "height", height() );
+    settings.setValue( "x", x() );
+    settings.setValue( "y", y() );
     settings.endGroup();
 }
