@@ -17,10 +17,7 @@
  */
 
 import QtQuick 2.0
-import QtQuick.Controls 1.0
-import QtQuick.Layouts 1.0
-
-import "../../../js/Utils.js" as Utils
+import "../js/Utils.js" as Utils
 
 
 Item {
@@ -47,7 +44,7 @@ Item {
             width: calendarGrid.width
             Button {
                 id: prevYearButton
-                text: "<<"
+                label: "<<"
                 onClicked: calendar.viewDate =
                            new Date( calendar.viewDate.getFullYear() - 1,
                                      calendar.viewDate.getMonth(), 1 )
@@ -56,22 +53,23 @@ Item {
                 id: prevMonthButton
                 anchors.left: prevYearButton.right
                 anchors.leftMargin: 10
-                text: "<"
+                label: "<"
                 onClicked: calendar.viewDate =
                            new Date( calendar.viewDate.getFullYear(),
                                     calendar.viewDate.getMonth() - 1, 1 )
             }
-            Label {
+            Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: Utils.MonthNames[ calendar.viewDate.getMonth() ] + " " +
                       calendar.viewDate.getFullYear()
+                font.pointSize: fonts.h3
             }
 
             Button {
                 id: nextMonthButton
                 anchors.right: nextYearButton.left
                 anchors.rightMargin: 10
-                text: ">"
+                label: ">"
                 onClicked: calendar.viewDate =
                            new Date( calendar.viewDate.getFullYear(),
                                     calendar.viewDate.getMonth() + 1, 1 )
@@ -79,7 +77,7 @@ Item {
             Button {
                 id: nextYearButton
                 anchors.right: parent.right
-                text: ">>"
+                label: ">>"
                 onClicked: calendar.viewDate =
                            new Date( calendar.viewDate.getFullYear() + 1,
                                      calendar.viewDate.getMonth(), 1 )
@@ -96,7 +94,7 @@ Item {
 
             Repeater {
                 model: 7
-                Label {
+                Text {
                     text: Utils.DayNamesShort[ index ]
                 }
             }
@@ -110,8 +108,8 @@ Item {
                     height: childrenRect.height
 
                     Button {
-                        text: index - calendar.firstDay + 1
-                        //down: Utils.areDatesEqual( thisDate, calendar.selectedDate )
+                        label: index - calendar.firstDay + 1
+                        down: Utils.areDatesEqual( thisDate, calendar.selectedDate )
                         property date thisDate: new Date(
                                                     calendar.viewDate.getFullYear(),
                                                     calendar.viewDate.getMonth(),

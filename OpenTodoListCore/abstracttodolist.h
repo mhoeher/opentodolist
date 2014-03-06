@@ -35,6 +35,7 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodoList : public QObject
     Q_OBJECT
 
     Q_PROPERTY( QString name READ name WRITE setName NOTIFY nameChanged )
+    Q_PROPERTY( QString displayName READ displayName NOTIFY nameChanged )
     Q_PROPERTY( QObject* todos READ todos CONSTANT )
     Q_PROPERTY( QObject* entries READ topLevelTodos CONSTANT )
     Q_PROPERTY( QObject* deletedTodos READ deletedTodos CONSTANT )
@@ -57,6 +58,8 @@ public:
     
     const QString& name() const;
     void setName( const QString& name );
+
+    QString displayName() const;
     
     const QString& type() const {
         return m_type;

@@ -18,7 +18,7 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
-import "../../../js/Utils.js" as Utils;
+import "../js/Utils.js" as Utils;
 
 Rectangle {
     id: entry

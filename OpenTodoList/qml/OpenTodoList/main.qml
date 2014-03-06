@@ -76,7 +76,7 @@ Window {
 
         FontLoader {
             id: symbolFont
-            source: "../../res/fontawesome-webfont.ttf"
+            source: "res/fontawesome-webfont.ttf"
         }
 
         TodoListView {
@@ -127,9 +127,6 @@ Window {
             id: deletedTodosView
         }
 
-        SettingsView {
-            id: settingsView
-        }
     }
 
     Popup {

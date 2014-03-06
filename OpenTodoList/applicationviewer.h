@@ -27,11 +27,10 @@
 class ApplicationViewer : public QtQuick2ApplicationViewer
 {
     Q_OBJECT
-    Q_PROPERTY( QVariantList styleInfo READ styleInfo CONSTANT )
     Q_PROPERTY( QString basePath READ basePath CONSTANT )
-    Q_PROPERTY( QString platformDefaultStyle READ platformDefaultStyle CONSTANT )
-    Q_PROPERTY( QString currentStyle READ currentStyle WRITE setCurrentStyle NOTIFY currentStyleChanged )
-
+    Q_PROPERTY( int mWidth READ mWidth CONSTANT )
+    Q_PROPERTY( int mHeight READ mHeight CONSTANT )
+    Q_PROPERTY( bool isDebug READ isDebug CONSTANT )
     
 public:
     
@@ -42,18 +41,14 @@ public:
 
     QString basePath() const;
 
-    QVariantList styleInfo() const;
-
-    QString platformDefaultStyle() const;
-
-    QString currentStyle() const;
-    void setCurrentStyle(const QString &currentStyle);
+    int mWidth() const;
+    int mHeight() const;
+    bool isDebug() const;
 
 signals:
 
     void beforeReload();
     void reloaded();
-    void currentStyleChanged();
 
 public slots:
 
@@ -66,11 +61,7 @@ private:
 
     QFileSystemWatcher* m_watcher;    
     QString m_basePath;
-    QVariantList m_styleInfo;
-    QString m_currentStyle;
     bool m_showing;
-
-    static QVariantList loadStyleInfo( const QString& stylesDir );
 
 private slots:
     

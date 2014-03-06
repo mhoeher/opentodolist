@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<RCC>
-  <qresource prefix="/">
-    <file>qml/OpenTodoList/js/Utils.js</file>
-  </qresource>
-</RCC>

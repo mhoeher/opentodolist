@@ -120,6 +120,21 @@ void AbstractTodoList::setName(const QString& name)
     emit nameChanged();
 }
 
+/**
+   @brief The display name of the todo list
+
+   Returns the name of the todo list for displaying. Usually, this will be the
+   same as name(). In case the name is empty, a default string is returned.
+ */
+QString AbstractTodoList::displayName() const
+{
+    if ( m_name.isEmpty() ) {
+        return tr( "[Unnamed Todo List]" );
+    } else {
+        return m_name;
+    }
+}
+
 void AbstractTodoList::appendTodo(AbstractTodo* todo)
 {
     m_todos->append( todo );

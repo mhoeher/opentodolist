@@ -18,7 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList 1.0
-import "../../../js/Utils.js" as Utils
+import "../js/Utils.js" as Utils
 import "../controls"
 
 View {
@@ -113,7 +113,7 @@ View {
 
         Image {
             id: linkToWebPage
-            source: "../../../res/rpdevlogo_webheader.png"
+            source: "../res/rpdevlogo_webheader.png"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter

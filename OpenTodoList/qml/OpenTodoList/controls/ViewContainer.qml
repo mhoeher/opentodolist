@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import "../../../js/Utils.js" as Utils
+import "../js/Utils.js" as Utils
 
 FocusScope {
     property variant activeViews: Utils.initViewList()

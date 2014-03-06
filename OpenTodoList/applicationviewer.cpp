@@ -23,6 +23,8 @@
 #include <QDebug>
 #include <QDir>
 #include <QFile>
+#include <QFontMetrics>
+#include <QGuiApplication>
 #include <QJsonDocument>
 #include <QQmlEngine>
 #include <QSettings>
@@ -30,10 +32,7 @@
 ApplicationViewer::ApplicationViewer(const QString &basePath, QObject *parent) :
     QtQuick2ApplicationViewer(parent),
     m_watcher( new QFileSystemWatcher( this ) ),
-    m_basePath( basePath ),
-    m_styleInfo( loadStyleInfo( basePath ) ),
-    m_currentStyle(),
-    m_showing( false )
+    m_basePath( basePath )
 {
     addImageProvider( "primitives", new ImageProvider() );
 }
@@ -64,17 +63,33 @@ QString ApplicationViewer::basePath() const
     return m_basePath;
 }
 
-QString ApplicationViewer::currentStyle() const
+// inspired by http://vizzzion.org/blog/2014/02/reasonable-dpi-in-plasma-next/
+// to let application know currently set font metrics
+int ApplicationViewer::mWidth() const
 {
-    return m_currentStyle;
+    return QFontMetrics( QGuiApplication::font() ).boundingRect( "M" ).width();
 }
 
-void ApplicationViewer::setCurrentStyle(const QString &currentStyle)
+// inspired by http://vizzzion.org/blog/2014/02/reasonable-dpi-in-plasma-next/
+// to let application know currently set font metrics
+int ApplicationViewer::mHeight() const
 {
-    if ( m_currentStyle != currentStyle || m_currentStyle.isEmpty() ) {
-        m_currentStyle = currentStyle;
-        emit currentStyleChanged();
-    }
+    return QFontMetrics( QGuiApplication::font() ).boundingRect( "M" ).height();
+}
+
+/**
+   @brief Returns whether the application is build in debug mode
+
+   This returns true in case the application has been built
+   in debug mode or false otherwise.
+ */
+bool ApplicationViewer::isDebug() const
+{
+#ifdef QT_DEBUG
+    return true;
+#else
+    return false;
+#endif
 }
 
 void ApplicationViewer::show()
@@ -83,37 +98,18 @@ void ApplicationViewer::show()
         m_showing = true;
         connect( m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(reload()) );
         connect( m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(reload()));
-        connect( this, SIGNAL(currentStyleChanged()), this, SLOT(reload()) );
     }
     reload();
-}
-
-QString ApplicationViewer::platformDefaultStyle() const
-{
-#ifdef Q_OS_ANDROID
-    return "neutral";
-#else
-    return "neutral";
-#endif
-}
-
-QVariantList ApplicationViewer::styleInfo() const
-{
-    return m_styleInfo;
 }
 
 void ApplicationViewer::reload()
 {
     emit beforeReload();
     clearComponentCache();
-    QString style = currentStyle();
-    if ( style.isEmpty() ) {
-        style = platformDefaultStyle();
-    }
-    QString mainFileDir = QDir( m_basePath ).absoluteFilePath( style );
-    QString mainFileUrl( QDir( mainFileDir ).absoluteFilePath( "main.qml" ) );
+    QDir mainFileDir( m_basePath );
+    QString mainFileUrl( mainFileDir.absoluteFilePath( "main.qml" ) );
     addImportPath( m_basePath );
-    if ( mainFileDir.startsWith( ":" ) ) {
+    if ( m_basePath.startsWith( ":" ) ) {
         load( QUrl( "qrc" + mainFileUrl ) );
     } else {
         load( mainFileUrl );
@@ -125,9 +121,6 @@ void ApplicationViewer::loadSettings()
 {
     QSettings settings;
     settings.beginGroup( "ApplicationViewer" );
-    settings.beginGroup( "Settings" );
-    setCurrentStyle( settings.value( "currentStyle", m_currentStyle ).toString());
-    settings.endGroup();
     settings.endGroup();
 }
 
@@ -135,30 +128,5 @@ void ApplicationViewer::saveSettings()
 {
     QSettings settings;
     settings.beginGroup( "ApplicationViewer" );
-    settings.beginGroup( "Settings" );
-    settings.setValue( "currentStyle", m_currentStyle );
     settings.endGroup();
-    settings.endGroup();
-}
-
-QVariantList ApplicationViewer::loadStyleInfo(const QString &stylesDir)
-{
-    QVariantList result;
-    QDir dir( stylesDir );
-    foreach ( QString entry, dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot ) ) {
-        QFile file( dir.absoluteFilePath( entry + "/info.json" ) );
-        if ( file.exists() && file.open( QIODevice::ReadOnly ) ) {
-          QJsonParseError error;
-          QJsonDocument doc = QJsonDocument::fromJson( file.readAll(), &error );
-          if ( doc.isNull() ) {
-              qWarning() << "Failed to load style info:" << error.errorString();
-          } else {
-              QVariantMap data = doc.toVariant().toMap();
-              data.insert( "id", entry );
-              result.append( data );
-          }
-          file.close();
-        }
-    }
-    return result;
 }

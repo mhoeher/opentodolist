@@ -49,19 +49,15 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     
     QString basePath = ":/qml/OpenTodoList";
-    QString style;
     bool showHelp = false;
 
     foreach ( QString arg, app.arguments() ) {
 
         static const QRegExp basePathRE( "^--base-path=(.*)$" );
-        static const QRegExp styleRE( "^--style=(.*)$" );
         static const QRegExp helpRE( "^(--help|-h|/h|/\\?)$" );
 
         if ( basePathRE.indexIn( arg ) == 0 ) {
             basePath = basePathRE.cap( 1 );   
-        } else if ( styleRE.indexIn( arg ) == 0 ) {
-            style = styleRE.cap( 1 );
         } else if ( helpRE.indexIn( arg ) == 0 ) {
             showHelp = true;
         }
@@ -77,9 +73,6 @@ int main(int argc, char *argv[])
              << std::endl
              << "    --base-path=PATH Sets the search path for resource files." << std::endl
              << "                     This is for development purpose." << std::endl
-             << "    --style=STYLE    Sets the style to use. Possible values are:" << std::endl
-             << "                     widget - Use Widget style (for typical Desktop environments)" << std::endl
-             << "                     neutral - Use a platform/OS agnostic touch enabled style." << std::endl
              << "    --help -h /h /?  Shows this help" << std::endl
              << std::endl
              << "For further information, please check the project website at:" << std::endl
@@ -95,29 +88,15 @@ int main(int argc, char *argv[])
     
     TodoListLibrary* library = new TodoListLibrary( &app );
 
-    // Prepare an object holding various "settings" to be passed into QML
-    QObject* settingsObject = new QObject( &app );
-
-    // Use "debug" mode in QML (used occasionally to make development in "debug" mode easier)
-#ifdef QT_DEBUG
-    settingsObject->setProperty( "debug", true );
-#else
-    settingsObject->setProperty( "debug", false );
-#endif
-
     qmlRegisterType<TodoSortFilterModel>("net.rpdev.OpenTodoList", 1, 0, "TodoSortFilterModel");
     qmlRegisterType<Settings>("net.rpdev.OpenTodoList", 1, 0, "Settings" );
     
-    ApplicationViewer viewer( basePath + "/styles/" );
+    ApplicationViewer viewer( basePath );
 
     viewer.addImportPath( basePath );
     viewer.rootContext()->setContextProperty( "library", library );
-    viewer.rootContext()->setContextProperty( "settings", settingsObject );
     viewer.rootContext()->setContextProperty( "applicationViewer", &viewer );
     viewer.loadSettings();
-    if ( !style.isEmpty() ) {
-        viewer.setCurrentStyle( style );
-    }
 
     viewer.show();
     int result = app.exec();

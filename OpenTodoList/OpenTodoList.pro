@@ -48,20 +48,11 @@ SOURCES += \
     settings.cpp
 
 RESOURCES += \
-    resources-js.qrc \
-    resources-res.qrc \
-    resources-style-neutral.qrc
+    resources.qrc
 
 win32:RC_FILE = OpenTodoList.rc
 
-include(files-js.pri)
-include(files-res.pri)
-include(files-style-neutral.pri)
-
-!android {
-    RESOURCES += resources-style-widget.qrc
-    include(files-style-widget.pri)
-}
+include(files.pri)
 
 
 
@@ -80,18 +71,12 @@ qtcAddDeployment()
 # Extra Target for updating the resources.qrc file:
 update_qrc.target = update_qrc
 update_qrc.commands = \
-    perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml/OpenTodoList/js -o $$PWD/resources-js.qrc -b $$PWD/qml && \
-    perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml/OpenTodoList/res -o $$PWD/resources-res.qrc -b $$PWD/qml && \
-    perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml/OpenTodoList/styles/neutral -o $$PWD/resources-style-neutral.qrc -b $$PWD/qml && \
-    perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml/OpenTodoList/styles/widget -o $$PWD/resources-style-widget.qrc -b $$PWD/qml
+    perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml/ -o $$PWD/resources.qrc -b $$PWD/qml
 QMAKE_EXTRA_TARGETS += update_qrc
 
 update_pri.target = update_pri
 update_pri.commands = \
-    perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml/OpenTodoList/js -o $$PWD/files-js.pri -b $$PWD/qml && \
-    perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml/OpenTodoList/res -o $$PWD/files-res.pri -b $$PWD/qml && \
-    perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml/OpenTodoList/styles/neutral -o $$PWD/files-style-neutral.pri -b $$PWD/qml && \
-    perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml/OpenTodoList/styles/widget -o $$PWD/files-style-widget.pri -b $$PWD/qml
+    perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml -o $$PWD/files.pri -b $$PWD/qml
 QMAKE_EXTRA_TARGETS += update_pri
 
 update.depends = update_qrc update_pri
