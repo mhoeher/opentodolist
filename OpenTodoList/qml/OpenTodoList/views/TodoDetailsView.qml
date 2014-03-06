@@ -187,7 +187,7 @@ View {
                     BorderImage {
                         width: todoDescriptionEditContains.width
                         height: todoDescriptionEditContains.height
-                        source: "../../../res/description.sci"
+                        source: "../res/description.sci"
                         cache: !settings.debug
                     }
 
