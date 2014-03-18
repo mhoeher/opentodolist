@@ -21,7 +21,7 @@
 
 #include "opentodolistcore_global.h"
 
-#include "abstracttodo.h"
+#include "todo.h"
 #include "objectmodel.h"
 #include "todosortfiltermodel.h"
 
@@ -29,7 +29,7 @@
 #include <QObject>
 #include <QObjectList>
 
-class OPENTODOLISTCORESHARED_EXPORT AbstractTodoList : public QObject
+class OPENTODOLISTCORESHARED_EXPORT TodoList : public QObject
 {
 
     Q_OBJECT
@@ -44,11 +44,11 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodoList : public QObject
     
 public:
 
-    typedef ObjectModel< AbstractTodo > TodoList;
+    typedef ObjectModel< Todo > TodosList;
 
-    explicit AbstractTodoList( const QString& key, const QString &type, const QVariant &settings = QVariant(), QObject *parent = 0);
+    explicit TodoList( const QString& key, const QString &type, const QVariant &settings = QVariant(), QObject *parent = 0);
     
-    TodoList *todos() const;
+    TodosList *todos() const;
     TodoSortFilterModel* topLevelTodos() const;
     TodoSortFilterModel* deletedTodos() const;
     Q_INVOKABLE virtual QObject *addTodo();
@@ -79,11 +79,11 @@ public slots:
     
 protected:
     
-    void appendTodo( AbstractTodo* todo );
+    void appendTodo( Todo* todo );
 
 private:
 
-    TodoList *m_todos;
+    TodosList *m_todos;
     TodoSortFilterModel *m_topLevelTodos;
     TodoSortFilterModel *m_deletedTodos;
     QString m_name;

@@ -1,0 +1,2 @@
+module net.rpdev.OpenTodoList.Core
+plugin OpenTodoListCore

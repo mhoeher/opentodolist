@@ -30,8 +30,8 @@
 #include <QTextStream>
 #include <QTimer>
 
-LocalXmlTodo::LocalXmlTodo(QUuid id, const QString& configFile, AbstractTodoList* parent): 
-    AbstractTodo( id, parent ),
+LocalXmlTodo::LocalXmlTodo(QUuid id, const QString& configFile, TodoList* parent): 
+    Todo( id, parent ),
     m_configFile( configFile ),
     m_parentId( QUuid() ),
     m_disposed( false )
@@ -146,7 +146,7 @@ void LocalXmlTodo::load()
 void LocalXmlTodo::updateParentTodo()
 {
     if ( !m_parentId.isNull() || !m_parentConfigFile.isEmpty() ) {
-        foreach ( AbstractTodo* todo, parent()->todos()->data() ) {
+        foreach ( Todo* todo, parent()->todos()->data() ) {
             LocalXmlTodo* xmlTodo = qobject_cast< LocalXmlTodo* >( todo );
             if ( xmlTodo ) {
                 if ( !m_parentId.isNull() && m_parentId == xmlTodo->id() ) {

@@ -1,17 +1,12 @@
-TARGET = OpenTodoListCore
+TARGET = $$qtLibraryTarget(OpenTodoListCore)
 TEMPLATE = lib
 
-# Build without version in file name:
-!win32:VERSION = 0.0.0
-
-QT += core
+QT += core qml
+CONFIG += plugin
 
 #macx:CONFIG += lib_bundle
 
-
 HEADERS = \
-    abstracttodo.h \
-    abstracttodolist.h \
     objectmodel.h \
     opentodolistcore_global.h \
     opentodolistcore.h \
@@ -19,25 +14,32 @@ HEADERS = \
     pluginsloader.h \
     todolistfactory.h \
     todolistlibrary.h \
-    todosortfiltermodel.h
+    todosortfiltermodel.h \
+    todolist.h \
+    todo.h \
+    opentodolistcoreqmlplugin.h \
+    settings.h \
+    opentodolistcoreinterfaces.h
 
 SOURCES = \
-    abstracttodo.cpp \
-    abstracttodolist.cpp \
     objectmodel.cpp \
     opentodolistcore.cpp \
     opentodolistinterfaces.cpp \
     pluginsloader.cpp \
     todolistfactory.cpp \
     todolistlibrary.cpp \
-    todosortfiltermodel.cpp
+    todosortfiltermodel.cpp \
+    todolist.cpp \
+    todo.cpp \
+    opentodolistcoreqmlplugin.cpp \
+    settings.cpp
 
 DEFINES +=  OPENTODOLISTCORE_LIBRARY
 
 macx {
-    DESTDIR = ../OpenTodoList/OpenTodoList.app/Contents/Frameworks
+    DESTDIR = ../OpenTodoList/OpenTodoList.app/Contents/Frameworks/imports/net/rpdev/OpenTodoList/Core
 } else {
-    DESTDIR = ../OpenTodoList
+    DESTDIR = ../OpenTodoList/imports/net/rpdev/OpenTodoList/Core
 }
 
 android {
@@ -50,3 +52,8 @@ android {
     }
     INSTALLS += target
 }
+
+OTHER_FILES += \
+    qmldir
+
+QMAKE_POST_LINK += $$QMAKE_COPY $$replace($$list($$quote($$PWD/qmldir) $$DESTDIR), /, $$QMAKE_DIR_SEP)

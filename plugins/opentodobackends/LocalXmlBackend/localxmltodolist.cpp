@@ -30,7 +30,7 @@ LocalXmlTodoList::LocalXmlTodoList(const QString& key,
                                    QVariant settings,
                                    QString localStorageLocation,
                                    QObject* parent):
-    AbstractTodoList(key, type, settings.toMap().value( "baseSettings" ), parent)
+    TodoList(key, type, settings.toMap().value( "baseSettings" ), parent)
 {
     QVariantMap map = settings.toMap();
     if ( map.contains( "dir" ) ) {
@@ -59,7 +59,7 @@ QVariant LocalXmlTodoList::settings()
 {
     QVariantMap result;
     result.insert( "dir", m_dir );
-    QVariant baseSettings = AbstractTodoList::settings();
+    QVariant baseSettings = TodoList::settings();
     if ( baseSettings.isValid() ) {
         result.insert( "baseSettings", baseSettings );
     }

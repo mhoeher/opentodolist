@@ -18,7 +18,7 @@
 
 #include "todosortfiltermodel.h"
 
-#include "abstracttodo.h"
+#include "todo.h"
 
 TodoSortFilterModel::TodoSortFilterModel(QObject* parent): 
     QSortFilterProxyModel(parent),
@@ -60,7 +60,7 @@ void TodoSortFilterModel::setSourceModel(QObject *sourceModel)
     emit sourceModelChanged();
 }
 
-void TodoSortFilterModel::setParentTodo(AbstractTodo* todo)
+void TodoSortFilterModel::setParentTodo(Todo* todo)
 {
     if ( m_filterMode == SubTodos ) {
         emit beginResetModel();
@@ -84,7 +84,7 @@ QVariantMap TodoSortFilterModel::getItem(int index) const
 bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
 {
     bool result = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
-    AbstractTodo* todo = qobject_cast< AbstractTodo* >(
+    Todo* todo = qobject_cast< Todo* >(
                 sourceModel()->index( source_row, 0 ).data(
                     TodoModel::ObjectRole ).value< QObject* >() );
     if ( todo ) {
@@ -120,9 +120,9 @@ bool TodoSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& so
 
 bool TodoSortFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
-    AbstractTodo* leftTodo = qobject_cast< AbstractTodo* >(
+    Todo* leftTodo = qobject_cast< Todo* >(
                 left.data( TodoModel::ObjectRole ).value<QObject*>());
-    AbstractTodo* rightTodo = qobject_cast< AbstractTodo* >(
+    Todo* rightTodo = qobject_cast< Todo* >(
                 right.data( TodoModel::ObjectRole ).value< QObject* >());
     if ( m_sortMode != NoSort ) {
         if ( leftTodo && rightTodo ) {

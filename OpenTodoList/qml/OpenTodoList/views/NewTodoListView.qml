@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import net.rpdev.OpenTodoList.Core 1.0
 import "../controls"
 
 View {
@@ -65,7 +66,7 @@ View {
             color: newTodoListView.type ? "black" : "red"
         }
         ListView {
-            model: library.plugins.backends
+            model: TodoListLibrary.plugins.backends
             clip: true
             width: parent.width * 0.8
             height: 400

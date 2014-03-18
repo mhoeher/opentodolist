@@ -30,7 +30,7 @@ class LocalXmlTodoListFactory : public TodoListFactory
 public:
     
     explicit LocalXmlTodoListFactory(const QString& type, QObject* parent = 0);
-    virtual AbstractTodoList* createTodoList(QObject* parent = 0,
+    virtual TodoList* createTodoList(QObject* parent = 0,
                                              const QString& key = QString(),
                                              const QVariant &settings = QVariant() ) const;
 };

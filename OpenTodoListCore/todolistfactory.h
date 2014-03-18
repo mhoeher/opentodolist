@@ -21,7 +21,7 @@
 
 #include "opentodolistcore_global.h"
 
-#include "abstracttodolist.h"
+#include "todolist.h"
 
 #include <QObject>
 
@@ -42,7 +42,7 @@ public:
        settings will be set to whatever has been returned from the
        AbstractTodoList::settings() method.
      */
-    virtual AbstractTodoList* createTodoList( QObject *parent = 0,
+    virtual TodoList* createTodoList( QObject *parent = 0,
                                               const QString& key = QString(),
                                               const QVariant &settings = QVariant() ) const = 0;
     

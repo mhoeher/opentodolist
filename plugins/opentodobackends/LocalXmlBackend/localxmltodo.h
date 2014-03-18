@@ -19,17 +19,17 @@
 #ifndef LOCALXMLTODO_H
 #define LOCALXMLTODO_H
 
-#include <abstracttodo.h>
+#include "todo.h"
 
 
-class LocalXmlTodo : public AbstractTodo
+class LocalXmlTodo : public Todo
 {
 
     Q_OBJECT
     
 public:
     
-    explicit LocalXmlTodo( QUuid id, const QString& configFile, AbstractTodoList* parent = 0);
+    explicit LocalXmlTodo( QUuid id, const QString& configFile, TodoList* parent = 0);
     virtual ~LocalXmlTodo();
     
 

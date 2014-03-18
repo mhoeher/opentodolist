@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import net.rpdev.OpenTodoList 1.0
+import net.rpdev.OpenTodoList.Core 1.0
 import "../js/Utils.js" as Utils
 import "../controls"
 
@@ -29,18 +29,18 @@ View {
     property string filterText
 
     property TodoSortFilterModel allTopLevelTodos : TodoSortFilterModel {
-        sourceModel: library.todos
+        sourceModel: TodoListLibrary.todos
         filterMode: TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted
     }
 
     property TodoSortFilterModel dueTodayModel : TodoSortFilterModel {
-        sourceModel: library.todos
+        sourceModel: TodoListLibrary.todos
         maxDueDate: new Date()
         filterMode: TodoSortFilterModel.HideDeleted
     }
 
     property TodoSortFilterModel dueThisWeekModel : TodoSortFilterModel {
-        sourceModel: library.todos
+        sourceModel: TodoListLibrary.todos
         maxDueDate: Utils.getLastDateOfWeek()
         filterMode: TodoSortFilterModel.HideDeleted
     }
@@ -180,7 +180,7 @@ View {
                 }
 
                 Repeater {
-                    model: library.todoLists
+                    model: TodoListLibrary.todoLists
                     delegate: LinkLabel {
                         width: parent.width
                         label: object.name === "" ? "[Unnamed List]" : object.name

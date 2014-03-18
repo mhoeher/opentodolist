@@ -20,7 +20,7 @@
 #define TODOLISTLIBRARY_H
 
 #include "opentodolistcore_global.h"
-#include "abstracttodolist.h"
+#include "todolist.h"
 #include "pluginsloader.h"
 #include "objectmodel.h"
 #include "opentodolistinterfaces.h"
@@ -35,7 +35,7 @@ class OPENTODOLISTCORESHARED_EXPORT TodoListLibrary : public QObject
     Q_PROPERTY( QObject* todos READ todos CONSTANT )
 public:
     
-    typedef ObjectModel< AbstractTodoList > TodoLists;
+    typedef ObjectModel< TodoList > TodoLists;
     
     explicit TodoListLibrary(QObject *parent = 0);
     virtual ~TodoListLibrary();
@@ -43,7 +43,7 @@ public:
     PluginsLoader *plugins() const;
     TodoLists* todoLists() const;
 
-    AbstractTodoList::TodoList* todos() const;
+    TodoList::TodosList* todos() const;
     
     Q_INVOKABLE bool createTodoList( const QString& name, OpenTodoListBackend* type );
 
@@ -57,7 +57,7 @@ private:
     TodoLists                       *m_lists;
 
     QList<QVariantMap>               m_nonLoadableLists;
-    AbstractTodoList::TodoList      *m_todos;
+    TodoList::TodosList             *m_todos;
     
     OpenTodoListBackend* backendByTypeName( const QString& type );
     

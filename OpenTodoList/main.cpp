@@ -19,11 +19,6 @@
 #include <QtGui/QGuiApplication>
 #include "applicationviewer.h"
 
-#include "todolistlibrary.h"
-#include "todosortfiltermodel.h"
-
-#include "settings.h"
-
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QRegExp>
@@ -86,15 +81,10 @@ int main(int argc, char *argv[])
     QCoreApplication::addLibraryPath( "assets:/plugins" );
 #endif
     
-    TodoListLibrary* library = new TodoListLibrary( &app );
-
-    qmlRegisterType<TodoSortFilterModel>("net.rpdev.OpenTodoList", 1, 0, "TodoSortFilterModel");
-    qmlRegisterType<Settings>("net.rpdev.OpenTodoList", 1, 0, "Settings" );
-    
     ApplicationViewer viewer( basePath );
 
     viewer.addImportPath( basePath );
-    viewer.rootContext()->setContextProperty( "library", library );
+    viewer.addImportPath( QCoreApplication::applicationDirPath() + "/imports" );
     viewer.rootContext()->setContextProperty( "applicationViewer", &viewer );
     viewer.loadSettings();
 

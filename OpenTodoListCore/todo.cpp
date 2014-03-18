@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "abstracttodo.h"
+#include "todo.h"
 
-#include "abstracttodolist.h"
+#include "todolist.h"
 #include "todosortfiltermodel.h"
 
 #include <QDebug>
@@ -37,7 +37,7 @@
  * @brief Constructor
  * @param parent The parent object to use for the todo
  */
-AbstractTodo::AbstractTodo(QUuid id, AbstractTodoList *parent) :
+Todo::Todo(QUuid id, TodoList *parent) :
     QObject(parent),
     m_id( id ),
     m_title( QString() ),
@@ -77,28 +77,28 @@ AbstractTodo::AbstractTodo(QUuid id, AbstractTodoList *parent) :
    A globally unique ID that can be used to identify a todo even across
    networks.
  */
-QUuid AbstractTodo::id() const
+QUuid Todo::id() const
 {
     return m_id;
 }
 
-int AbstractTodo::priority() const
+int Todo::priority() const
 {
     return m_priority;
 }
 
-void AbstractTodo::setPriority(int priority)
+void Todo::setPriority(int priority)
 {
     m_priority = qBound( -1, priority, 10 );
     emit priorityChanged();
 }
 
-int AbstractTodo::progress() const
+int Todo::progress() const
 {
     if ( m_subTodosModel->rowCount() > 0 ) {
         int result = 0;
         for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-            AbstractTodo* subTodo = qobject_cast< AbstractTodo* >(
+            Todo* subTodo = qobject_cast< Todo* >(
                         m_subTodosModel->index( i, 0 ).data(
                             TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
             result += subTodo->progress();
@@ -109,79 +109,79 @@ int AbstractTodo::progress() const
     }
 }
 
-void AbstractTodo::setProgress(int progress)
+void Todo::setProgress(int progress)
 {
     m_lastProgress = m_progress;
     m_progress = qBound( 0, progress, 100 );
     emit progressChanged();
 }
 
-QString AbstractTodo::description() const
+QString Todo::description() const
 {
     return m_description;
 }
 
-void AbstractTodo::setDescription(const QString &description)
+void Todo::setDescription(const QString &description)
 {
     m_description = description;
     emit descriptionChanged();
 }
 
-QString AbstractTodo::title() const
+QString Todo::title() const
 {
     return m_title;
 }
 
-void AbstractTodo::setTitle(const QString &title)
+void Todo::setTitle(const QString &title)
 {
     m_title = title;
     emit titleChanged();
 }
 
-AbstractTodo* AbstractTodo::parentTodo() const
+Todo* Todo::parentTodo() const
 {
     return m_parentTodo;
 }
 
-void AbstractTodo::setParentTodo(QObject* parentTodo)
+void Todo::setParentTodo(QObject* parentTodo)
 {
     // parent todo must be null or we must have common todo list
     if ( !parentTodo || parentTodo->parent() == parent() ) {
         // Check for cycles...
         if ( canMoveTo( parentTodo ) ) {
             if ( parentTodo != m_parentTodo ) {
-                m_parentTodo = static_cast< AbstractTodo* >( parentTodo );
+                m_parentTodo = static_cast< Todo* >( parentTodo );
                 emit parentTodoChanged();
             }
         }
     }
 }
 
-bool AbstractTodo::isDeleted() const
+bool Todo::isDeleted() const
 {
     return m_deleted;
 }
 
-void AbstractTodo::setDeleted(bool deleted)
+void Todo::setDeleted(bool deleted)
 {
     m_deleted = deleted;
     emit deletedChanged();
 }
 
-QDateTime AbstractTodo::dueDate() const
+QDateTime Todo::dueDate() const
 {
     return m_dueDate;
 }
 
-void AbstractTodo::setDueDate(const QDateTime &dateTime)
+void Todo::setDueDate(const QDateTime &dateTime)
 {
     m_dueDate = dateTime;
     emit dueDateChanged();
 }
 
-AbstractTodoList* AbstractTodo::parent() const
+TodoList* Todo::parent() const
 {
-    return qobject_cast< AbstractTodoList* >( QObject::parent() );
+    return qobject_cast< TodoList* >( QObject::parent() );
 }
 
 /**
@@ -190,12 +190,12 @@ AbstractTodoList* AbstractTodo::parent() const
    Returns the number of sub todos of this todo. Deleted todos are not
    included in this.
  */
-int AbstractTodo::numTodos() const
+int Todo::numTodos() const
 {
     int result = 0;
     for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-        AbstractTodo* todo = qobject_cast< AbstractTodo* >(
-                    m_subTodosModel->index( i, 0 ).data( ObjectModel<AbstractTodo>::ObjectRole )
+        Todo* todo = qobject_cast< Todo* >(
+                    m_subTodosModel->index( i, 0 ).data( ObjectModel<Todo>::ObjectRole )
                     .value< QObject* >() );
         if ( todo && !todo->isDeleted() ) {
             ++result;
@@ -210,12 +210,12 @@ int AbstractTodo::numTodos() const
    This returns the number of open sub todos of this todo. Deleted todos
    are not included in this.
  */
-int AbstractTodo::numOpenTodos() const
+int Todo::numOpenTodos() const
 {
     int result = 0;
     for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-        AbstractTodo* todo = qobject_cast< AbstractTodo* >(
-                    m_subTodosModel->index( i, 0 ).data( ObjectModel<AbstractTodo>::ObjectRole )
+        Todo* todo = qobject_cast< Todo* >(
+                    m_subTodosModel->index( i, 0 ).data( ObjectModel<Todo>::ObjectRole )
                     .value< QObject* >() );
         if ( todo && !todo->isDeleted() && !todo->isCompleted() ) {
             ++result;
@@ -233,20 +233,20 @@ int AbstractTodo::numOpenTodos() const
    to ensure that no cyclic parent chains are built.
 
  */
-bool AbstractTodo::canMoveTo(QObject *newParent) const
+bool Todo::canMoveTo(QObject *newParent) const
 {
-    QSet< const AbstractTodo* > allChildren;
-    QQueue< const AbstractTodo* > queue;
+    QSet< const Todo* > allChildren;
+    QQueue< const Todo* > queue;
     queue.enqueue( this );
     allChildren.insert( this );
     while ( !queue.isEmpty() ) {
-        const AbstractTodo *nextTodo = queue.dequeue();
+        const Todo *nextTodo = queue.dequeue();
         if ( nextTodo == newParent ) {
             // the new parent is a child item of the current one - cannot move!
             return false;
         }
         for ( int i = 0; i < nextTodo->subTodos()->rowCount(); ++i ) {
-            AbstractTodo *todo = qobject_cast< AbstractTodo* >(
+            Todo *todo = qobject_cast< Todo* >(
                         nextTodo->subTodos()->index( i, 0 ).data(
                         TodoSortFilterModel::TodoModel::ObjectRole )
                     .value< QObject* >() );
@@ -266,10 +266,10 @@ bool AbstractTodo::canMoveTo(QObject *newParent) const
    be scheduled for deletion afterwards, so after calling this, do not
    access the other todo anymore.
  */
-void AbstractTodo::cloneFrom(QObject *otherTodo)
+void Todo::cloneFrom(QObject *otherTodo)
 {
     if ( otherTodo ) {
-        AbstractTodo *asTodo = qobject_cast< AbstractTodo* >( otherTodo );
+        Todo *asTodo = qobject_cast< Todo* >( otherTodo );
         if ( asTodo ) {
             m_deleted = asTodo->m_deleted;
             m_description = asTodo->m_description;
@@ -287,7 +287,7 @@ void AbstractTodo::cloneFrom(QObject *otherTodo)
     }
 }
 
-void AbstractTodo::childDataChanged()
+void Todo::childDataChanged()
 {
     // emulate a change of progress to propagate any changes up the tree
     if ( m_subTodosModel->rowCount() > 0 ) {
@@ -296,7 +296,7 @@ void AbstractTodo::childDataChanged()
     emit numOpenTodosChanged();
 }
 
-void AbstractTodo::toggleCompleted(int newProgress) {
+void Todo::toggleCompleted(int newProgress) {
     if ( newProgress >= 0 ) {
         // set to new progress regardless of our current state
         setProgress( newProgress );
@@ -327,18 +327,18 @@ void AbstractTodo::toggleCompleted(int newProgress) {
        for when we are returning to the event loop.</li>
    </ul>
  */
-void AbstractTodo::dispose()
+void Todo::dispose()
 {
-    QList< AbstractTodo* > todos;
+    QList< Todo* > todos;
     for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-        AbstractTodo* todo = qobject_cast< AbstractTodo* >(
+        Todo* todo = qobject_cast< Todo* >(
                     m_subTodosModel->index( i, 0 ).data(
                         TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
         if ( todo ) {
             todos.append( todo );
         }
     }
-    foreach (  AbstractTodo* todo, todos ) {
+    foreach (  Todo* todo, todos ) {
         todo->dispose();
     }
     emit aboutToBeDisposed( this );
@@ -356,7 +356,7 @@ void AbstractTodo::dispose()
    know the ID upfront the todo is created and can read the ID back on it's own
    (e.g. from external memory or the network).
  */
-void AbstractTodo::setId(QUuid id)
+void Todo::setId(QUuid id)
 {
     m_id = id;
     emit idChanged();

@@ -16,9 +16,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "abstracttodolist.h"
+#include "todolist.h"
 
-#include "abstracttodo.h"
+#include "todo.h"
 
 /**
    @brief Constructor
@@ -29,10 +29,10 @@
    of this object. The @p type is the type ID of the todo list factory
    creating this object.
  */
-AbstractTodoList::AbstractTodoList(const QString& key, const QString& type,
+TodoList::TodoList(const QString& key, const QString& type,
                                    const QVariant &settings, QObject* parent) :
     QObject(parent),
-    m_todos( new TodoList( this ) ),
+    m_todos( new TodosList( this ) ),
     m_topLevelTodos( new TodoSortFilterModel( this ) ),
     m_deletedTodos( new TodoSortFilterModel( this ) ),
     m_type( type ),
@@ -49,34 +49,34 @@ AbstractTodoList::AbstractTodoList(const QString& key, const QString& type,
     connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
 }
 
-AbstractTodoList::TodoList* AbstractTodoList::todos() const
+TodoList::TodosList* TodoList::todos() const
 {
     return m_todos;
 }
 
-TodoSortFilterModel* AbstractTodoList::topLevelTodos() const
+TodoSortFilterModel* TodoList::topLevelTodos() const
 {
     return m_topLevelTodos;
 }
 
-TodoSortFilterModel *AbstractTodoList::deletedTodos() const
+TodoSortFilterModel *TodoList::deletedTodos() const
 {
     return m_deletedTodos;
 }
 
-QObject *AbstractTodoList::addTodo()
+QObject *TodoList::addTodo()
 {
-    AbstractTodo* todo = new AbstractTodo( QUuid::createUuid(), this );
+    Todo* todo = new Todo( QUuid::createUuid(), this );
     appendTodo( todo );
     return todo;
 }
 
-QObject* AbstractTodoList::addTodo(const QString& title, QObject* parentTodo)
+QObject* TodoList::addTodo(const QString& title, QObject* parentTodo)
 {
-    AbstractTodo* result = qobject_cast< AbstractTodo* >( addTodo() );
+    Todo* result = qobject_cast< Todo* >( addTodo() );
     if ( result ) {
         result->setTitle( title );
-        result->setParentTodo( qobject_cast< AbstractTodo* >( parentTodo ) );
+        result->setParentTodo( qobject_cast< Todo* >( parentTodo ) );
     }
     return result;
 }
@@ -104,17 +104,17 @@ QObject* AbstractTodoList::addTodo(const QString& title, QObject* parentTodo)
    }
    @endcode
  */
-QVariant AbstractTodoList::settings()
+QVariant TodoList::settings()
 {
     return QVariant();
 }
 
-const QString& AbstractTodoList::name() const
+const QString& TodoList::name() const
 {
     return m_name;
 }
 
-void AbstractTodoList::setName(const QString& name)
+void TodoList::setName(const QString& name)
 {
     m_name = name;
     emit nameChanged();
@@ -126,7 +126,7 @@ void AbstractTodoList::setName(const QString& name)
    Returns the name of the todo list for displaying. Usually, this will be the
    same as name(). In case the name is empty, a default string is returned.
  */
-QString AbstractTodoList::displayName() const
+QString TodoList::displayName() const
 {
     if ( m_name.isEmpty() ) {
         return tr( "[Unnamed Todo List]" );
@@ -135,15 +135,15 @@ QString AbstractTodoList::displayName() const
     }
 }
 
-void AbstractTodoList::appendTodo(AbstractTodo* todo)
+void TodoList::appendTodo(Todo* todo)
 {
     m_todos->append( todo );
     connect( todo, SIGNAL(changed()), this, SLOT(todoParentChanged()) );
 }
 
-void AbstractTodoList::todoParentChanged()
+void TodoList::todoParentChanged()
 {
-    AbstractTodo* todo = qobject_cast< AbstractTodo* >( sender() );
+    Todo* todo = qobject_cast< Todo* >( sender() );
     if ( todo ) {
         m_todos->notifyObjectChanged( todo );
     }

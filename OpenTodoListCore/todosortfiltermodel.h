@@ -26,7 +26,7 @@
 #include <QDateTime>
 #include <QSortFilterProxyModel>
 
-class AbstractTodo;
+class Todo;
 
 class OPENTODOLISTCORESHARED_EXPORT TodoSortFilterModel : public QSortFilterProxyModel
 {
@@ -58,7 +58,7 @@ public:
         ProgressSort
     } SortMode;
     
-    typedef ObjectModel< AbstractTodo > TodoModel;
+    typedef ObjectModel< Todo > TodoModel;
     
     explicit TodoSortFilterModel( QObject* parent = 0 );
     
@@ -87,7 +87,7 @@ public:
         emit sortModeChanged();
     }
     
-    AbstractTodo* parentTodo() const {
+    Todo* parentTodo() const {
         return m_parentTodo;
     }
 
@@ -121,7 +121,7 @@ public:
         emit minDueDateChanged();
     }
     
-    void setParentTodo( AbstractTodo* todo );
+    void setParentTodo( Todo* todo );
     
     virtual QHash< int, QByteArray > roleNames() const {
         return sourceModel() ? sourceModel()->roleNames() : QAbstractProxyModel::roleNames();
@@ -153,7 +153,7 @@ private:
     
     int m_filterMode;
     SortMode m_sortMode;
-    AbstractTodo *m_parentTodo;
+    Todo *m_parentTodo;
     QString m_searchString;
     QDateTime m_maxDueDate;
     QDateTime m_minDueDate;

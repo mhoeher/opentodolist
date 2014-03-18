@@ -19,6 +19,7 @@
 #include "pluginsloader.h"
 
 #include <QCoreApplication>
+#include <QDebug>
 #include <QDir>
 #include <QPluginLoader>
 #include <QSet>
@@ -41,6 +42,8 @@ PluginsLoader::PluginsLoader(QObject *parent) :
             QPluginLoader* loader = new QPluginLoader( pluginPath, this );
             if ( loader->load() ) {
                 addBackend( loader->instance() );
+            } else {
+                qDebug() << "Failed to load" << loader->fileName() << "because of:" << loader->errorString();
             }
         }
     }

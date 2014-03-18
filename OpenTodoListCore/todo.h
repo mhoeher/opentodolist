@@ -26,9 +26,9 @@
 #include <QObject>
 #include <QUuid>
 
-class AbstractTodoList;
+class TodoList;
 
-class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
+class OPENTODOLISTCORESHARED_EXPORT Todo : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QUuid id READ id CONSTANT )
@@ -46,7 +46,7 @@ class OPENTODOLISTCORESHARED_EXPORT AbstractTodo : public QObject
     Q_PROPERTY( int numOpenTodos READ numOpenTodos NOTIFY numOpenTodosChanged )
 
 public:
-    explicit AbstractTodo( QUuid id, AbstractTodoList *parent = 0);
+    explicit Todo( QUuid id, TodoList *parent = 0);
     
     QUuid id() const;
 
@@ -62,7 +62,7 @@ public:
     int priority() const;
     void setPriority(int priority);
     
-    AbstractTodo* parentTodo() const;
+    Todo* parentTodo() const;
     void setParentTodo( QObject* parentTodo );
 
     bool isDeleted() const;
@@ -73,7 +73,7 @@ public:
 
     bool isCompleted() const { return progress() == 100; }
     
-    AbstractTodoList* parent() const;
+    TodoList* parent() const;
     
     TodoSortFilterModel* subTodos() const {
         return m_subTodosModel;
@@ -142,7 +142,7 @@ private:
     QString             m_description;
     int                 m_progress;
     int                 m_priority;
-    AbstractTodo        *m_parentTodo;
+    Todo        *m_parentTodo;
     bool                m_deleted;
     QDateTime           m_dueDate;
 

@@ -6,14 +6,14 @@ INCLUDEPATH += ../OpenTodoListCore
 DESTDIR = $$OUT_PWD
 
 mac {
-    LIBS += -L$$DESTDIR/OpenTodoList.app/Contents/Frameworks -lOpenTodoListCore
-    QMAKE_POST_LINK = install_name_tool -change libOpenTodoListCore.0.dylib \
-                      @executable_path/../Frameworks/libOpenTodoListCore.0.dylib \
-                      $$DESTDIR/OpenTodoList.app/Contents/MacOs/OpenTodoList
+    #LIBS += -L$$DESTDIR/OpenTodoList.app/Contents/Frameworks -lOpenTodoListCore
+    #QMAKE_POST_LINK = install_name_tool -change libOpenTodoListCore.0.dylib \
+    #                  @executable_path/../Frameworks/libOpenTodoListCore.0.dylib \
+    #                  $$DESTDIR/OpenTodoList.app/Contents/MacOs/OpenTodoList
     ICON = OpenTodoList.icns
 
 } else {
-    LIBS += -L$$DESTDIR -lOpenTodoListCore
+    #LIBS += -L$$DESTDIR -lOpenTodoListCore
 }
 
 # Seems that does not help... :(
@@ -38,14 +38,12 @@ CONFIG+=qml_debug
 
 HEADERS += \
     applicationviewer.h \
-    imageprovider.h \
-    settings.h
+    imageprovider.h
 
 SOURCES += \
     main.cpp \
     applicationviewer.cpp \
-    imageprovider.cpp \
-    settings.cpp
+    imageprovider.cpp
 
 RESOURCES += \
     resources.qrc
@@ -57,7 +55,7 @@ include(files.pri)
 
 
 # Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH = imports $$OUT_PWD/imports
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.

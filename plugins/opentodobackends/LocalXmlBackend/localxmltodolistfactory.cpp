@@ -33,7 +33,7 @@ LocalXmlTodoListFactory::LocalXmlTodoListFactory(const QString& type, QObject* p
 
 }
 
-AbstractTodoList* LocalXmlTodoListFactory::createTodoList(QObject* parent, const QString& key , const QVariant &settings) const
+TodoList* LocalXmlTodoListFactory::createTodoList(QObject* parent, const QString& key , const QVariant &settings) const
 {
     QVariantMap map = settings.toMap();
     QUuid uuid( key );

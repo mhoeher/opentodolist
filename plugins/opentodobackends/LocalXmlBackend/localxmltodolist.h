@@ -20,10 +20,10 @@
 #ifndef LOCALXMLTODOLIST_H
 #define LOCALXMLTODOLIST_H
 
-#include "abstracttodolist.h"
+#include "todolist.h"
 
 
-class LocalXmlTodoList : public AbstractTodoList
+class LocalXmlTodoList : public TodoList
 {
 
     Q_OBJECT

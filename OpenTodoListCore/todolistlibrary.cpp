@@ -18,8 +18,8 @@
 
 #include "todolistlibrary.h"
 
-#include "abstracttodo.h"
-#include "abstracttodolist.h"
+#include "todo.h"
+#include "todolist.h"
 #include "todolistfactory.h"
 
 #include <QCoreApplication>
@@ -31,7 +31,7 @@ TodoListLibrary::TodoListLibrary(QObject *parent) :
     m_plugins( new PluginsLoader( this ) ),
     m_lists( new TodoLists( this ) ),
     m_nonLoadableLists(),
-    m_todos( new AbstractTodoList::TodoList( this ) )
+    m_todos( new TodoList::TodosList( this ) )
 {
     restoreSettings();
     connect( QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(saveSettings()) );
@@ -51,7 +51,7 @@ TodoListLibrary::TodoLists* TodoListLibrary::todoLists() const
     return m_lists;
 }
 
-AbstractTodoList::TodoList *TodoListLibrary::todos() const
+TodoList::TodosList *TodoListLibrary::todos() const
 {
     return m_todos;
 }
@@ -59,7 +59,7 @@ AbstractTodoList::TodoList *TodoListLibrary::todos() const
 bool TodoListLibrary::createTodoList(const QString& name, OpenTodoListBackend* type)
 {
     if ( !name.isEmpty() && type ) {
-        AbstractTodoList* list = type->factory()->createTodoList( this );
+        TodoList* list = type->factory()->createTodoList( this );
         list->setName( name );
         m_lists->append( list );
         m_todos->appendList( list->todos() );
@@ -89,7 +89,7 @@ void TodoListLibrary::saveSettings()
     settings.beginWriteArray( "todoLists", m_lists->data().size() + m_nonLoadableLists.size() );
     for ( int i = 0; i < m_lists->data().size(); ++i ) {
         settings.setArrayIndex( i );
-        AbstractTodoList* list = m_lists->data().at( i );
+        TodoList* list = m_lists->data().at( i );
         settings.setValue( "type", list->type() );
         settings.setValue( "key", list->key() );
         QVariant listSettings = list->settings();
@@ -121,7 +121,7 @@ void TodoListLibrary::restoreSettings()
         settings.setArrayIndex( i );
         OpenTodoListBackend* backend = backendByTypeName( settings.value( "type" ).toString() );
         if ( backend ) {
-            AbstractTodoList* list = backend->factory()->createTodoList(
+            TodoList* list = backend->factory()->createTodoList(
                         this,
                         settings.value( "key" ).toString(),
                         settings.value( "settings", QVariant() ) );

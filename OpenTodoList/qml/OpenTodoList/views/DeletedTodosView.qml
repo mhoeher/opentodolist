@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import net.rpdev.OpenTodoList 1.0
+import net.rpdev.OpenTodoList.Core 1.0
 import "../controls"
 
 View {
