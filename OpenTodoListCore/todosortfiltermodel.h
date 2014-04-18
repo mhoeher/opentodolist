@@ -21,14 +21,13 @@
 #define TODOSORTFILTERMODEL_H
 
 #include "objectmodel.h"
-#include "opentodolistcore_global.h"
 
 #include <QDateTime>
 #include <QSortFilterProxyModel>
 
 class Todo;
 
-class OPENTODOLISTCORESHARED_EXPORT TodoSortFilterModel : public QSortFilterProxyModel
+class TodoSortFilterModel : public QSortFilterProxyModel
 {
     
     Q_OBJECT

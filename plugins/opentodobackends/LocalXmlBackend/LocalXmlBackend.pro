@@ -8,15 +8,9 @@ pluginConfig(opentodobackends)
 QT += xml
 
 SOURCES += \
-    localxmlbackend.cpp \
-    localxmltodolistfactory.cpp \
-    localxmltodolist.cpp \
-    localxmltodo.cpp
+    localxmlbackend.cpp
 
 HEADERS += \
-    localxmltodolistfactory.h \
-    localxmltodolist.h \
-    localxmltodo.h \
     localxmlbackend.h
 
 OTHER_FILES += \

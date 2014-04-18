@@ -19,8 +19,6 @@
 #ifndef ABSTRACTTODOLIST_H
 #define ABSTRACTTODOLIST_H
 
-#include "opentodolistcore_global.h"
-
 #include "todo.h"
 #include "objectmodel.h"
 #include "todosortfiltermodel.h"
@@ -29,7 +27,7 @@
 #include <QObject>
 #include <QObjectList>
 
-class OPENTODOLISTCORESHARED_EXPORT TodoList : public QObject
+class TodoList : public QObject
 {
 
     Q_OBJECT

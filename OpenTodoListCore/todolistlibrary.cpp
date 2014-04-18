@@ -23,22 +23,32 @@
 #include "todolistfactory.h"
 
 #include <QCoreApplication>
-#include <QStringList>
+#include <QDebug>
 #include <QSettings>
 
 TodoListLibrary::TodoListLibrary(QObject *parent) :
     QObject(parent),
     m_plugins( new PluginsLoader( this ) ),
+    m_backendRunner( new BackendRunner( this, this ) ),
     m_lists( new TodoLists( this ) ),
-    m_nonLoadableLists(),
+    m_storage( new TodoListStorage( this ) ),
     m_todos( new TodoList::TodosList( this ) )
 {
+    // register basic types for thread communication
+    qRegisterMetaType< TodoListStruct >( "TodoListStruct" );
+    qRegisterMetaType< TodoStruct >( "TodoStruct" );
+
     restoreSettings();
     connect( QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(saveSettings()) );
+
+    // start backends
+    m_backendRunner->start();
 }
 
 TodoListLibrary::~TodoListLibrary()
 {
+    // stop backends
+    m_backendRunner->stop();
 }
 
 PluginsLoader *TodoListLibrary::plugins() const
@@ -68,6 +78,30 @@ bool TodoListLibrary::createTodoList(const QString& name, OpenTodoListBackend* t
     return false;
 }
 
+bool TodoListLibrary::insertTodoList(const BackendInterface* backend,
+                                     const TodoListStruct &list)
+{
+    return m_storage->insertTodoList(backend->id(), list );
+}
+
+bool TodoListLibrary::insertTodo(const BackendInterface *backend,
+                                 const TodoStruct &todo)
+{
+    return m_storage->insertTodo( backend->id(), todo );
+}
+
+bool TodoListLibrary::deleteTodoList(const BackendInterface *backend,
+                                     const TodoListStruct &list)
+{
+    return m_storage->deleteTodoList( backend->id(), list );
+}
+
+bool TodoListLibrary::deleteTodo(const BackendInterface *backend,
+                                 const TodoStruct &todo)
+{
+    return m_storage->deleteTodo( backend->id(), todo );
+}
+
 OpenTodoListBackend* TodoListLibrary::backendByTypeName(const QString& type)
 {
     foreach ( OpenTodoListBackend* backend, m_plugins->backends()->data() ) {
@@ -80,62 +114,25 @@ OpenTodoListBackend* TodoListLibrary::backendByTypeName(const QString& type)
 
 void TodoListLibrary::saveSettings()
 {
+    /*
 #ifdef Q_OS_ANDROID
     QSettings settings( TodoListFactory::androidExtStorageLocation() +
                "/config.ini", QSettings::IniFormat );
 #else
     QSettings settings;
 #endif
-    settings.beginWriteArray( "todoLists", m_lists->data().size() + m_nonLoadableLists.size() );
-    for ( int i = 0; i < m_lists->data().size(); ++i ) {
-        settings.setArrayIndex( i );
-        TodoList* list = m_lists->data().at( i );
-        settings.setValue( "type", list->type() );
-        settings.setValue( "key", list->key() );
-        QVariant listSettings = list->settings();
-        if ( listSettings.isValid() ) {
-            settings.setValue( "settings", listSettings );
-        }
-    }
-    for ( int i = 0; i < m_nonLoadableLists.size(); ++i ) {
-        settings.setArrayIndex( m_lists->data().size() + i );
-        QVariantMap backup = m_nonLoadableLists.at( i );
-        foreach ( QString key, backup.keys() ) {
-            settings.setValue( key, backup.value( key ) );
-        }
-    }
-    settings.endArray();
     settings.sync();
+    */
 }
 
 void TodoListLibrary::restoreSettings()
 {
+    /*
 #ifdef Q_OS_ANDROID
     QSettings settings( TodoListFactory::androidExtStorageLocation() +
                "/config.ini", QSettings::IniFormat );
 #else
     QSettings settings;
 #endif
-    int numLists = settings.beginReadArray( "todoLists" );
-    for ( int i = 0; i < numLists; ++i ) {
-        settings.setArrayIndex( i );
-        OpenTodoListBackend* backend = backendByTypeName( settings.value( "type" ).toString() );
-        if ( backend ) {
-            TodoList* list = backend->factory()->createTodoList(
-                        this,
-                        settings.value( "key" ).toString(),
-                        settings.value( "settings", QVariant() ) );
-            if ( list ) {
-                m_lists->append( list );
-                m_todos->appendList( list->todos() );
-            }
-        } else {
-            QVariantMap backupData;
-            foreach ( QString key, settings.allKeys() ) {
-                backupData.insert( key, settings.value( key ) );
-            }
-            m_nonLoadableLists << backupData;
-        }
-    }
-    settings.endArray();
+    */
 }

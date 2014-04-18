@@ -19,7 +19,6 @@
 #ifndef ABSTRACTTODO_H
 #define ABSTRACTTODO_H
 
-#include "opentodolistcore_global.h"
 #include "todosortfiltermodel.h"
 
 #include <QDate>
@@ -28,7 +27,7 @@
 
 class TodoList;
 
-class OPENTODOLISTCORESHARED_EXPORT Todo : public QObject
+class Todo : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QUuid id READ id CONSTANT )

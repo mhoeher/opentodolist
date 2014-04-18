@@ -19,13 +19,11 @@
 #ifndef TODOLISTFACTORY_H
 #define TODOLISTFACTORY_H
 
-#include "opentodolistcore_global.h"
-
 #include "todolist.h"
 
 #include <QObject>
 
-class OPENTODOLISTCORESHARED_EXPORT TodoListFactory : public QObject
+class TodoListFactory : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QString type READ type CONSTANT )

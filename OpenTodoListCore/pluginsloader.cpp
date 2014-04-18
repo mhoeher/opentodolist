@@ -31,7 +31,9 @@ PluginsLoader::PluginsLoader(QObject *parent) :
 {
     // load static instanced
     foreach ( QObject* instance, QPluginLoader::staticInstances() ) {
+        instance->setParent( this );
         addBackend( instance );
+        addBackendInterface( instance );
     }
 
     foreach ( QString libraryPath, QCoreApplication::libraryPaths() ) {
@@ -41,7 +43,9 @@ PluginsLoader::PluginsLoader(QObject *parent) :
             QString pluginPath = dir.absolutePath() + "/" + entry;
             QPluginLoader* loader = new QPluginLoader( pluginPath, this );
             if ( loader->load() ) {
+                loader->instance()->setParent( this );
                 addBackend( loader->instance() );
+                addBackendInterface( loader->instance() );
             } else {
                 qDebug() << "Failed to load" << loader->fileName() << "because of:" << loader->errorString();
             }
@@ -54,6 +58,11 @@ PluginsLoader::Backends* PluginsLoader::backends() const
     return m_backends;
 }
 
+PluginsLoader::BackendInterfaces PluginsLoader::backendInterfaces() const
+{
+    return m_backendInterfaces;
+}
+
 void PluginsLoader::addBackend(QObject *o)
 {
     OpenTodoListBackend *backend =
@@ -61,5 +70,14 @@ void PluginsLoader::addBackend(QObject *o)
     if ( backend && !m_loadedBackends.contains( backend->type() ) ) {
         m_loadedBackends.insert( backend->type() );
         m_backends->append( backend );
+    }
+}
+
+void PluginsLoader::addBackendInterface(QObject *plugin)
+{
+    BackendInterface *backend = qobject_cast< BackendInterface* >( plugin );
+    if ( backend ) {
+        m_backendInterfaces.append( backend );
+        qDebug() << "Added backend" << backend->name() << "(" << backend->id() << ")";
     }
 }

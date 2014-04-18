@@ -19,15 +19,16 @@
 #ifndef TODOLISTLIBRARY_H
 #define TODOLISTLIBRARY_H
 
-#include "opentodolistcore_global.h"
 #include "todolist.h"
 #include "pluginsloader.h"
 #include "objectmodel.h"
 #include "opentodolistinterfaces.h"
+#include "backendrunner.h"
+#include "todoliststorage.h"
 
 #include <QObject>
 
-class OPENTODOLISTCORESHARED_EXPORT TodoListLibrary : public QObject
+class TodoListLibrary : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QObject* plugins READ plugins CONSTANT )
@@ -47,6 +48,16 @@ public:
     
     Q_INVOKABLE bool createTodoList( const QString& name, OpenTodoListBackend* type );
 
+    // TodoListDatabase wrapper interface
+    bool insertTodoList(const BackendInterface *backend,
+                        const TodoListStruct &list);
+    bool insertTodo(const BackendInterface *backend,
+                    const TodoStruct &todo);
+    bool deleteTodoList(const BackendInterface *backend,
+                        const TodoListStruct &list);
+    bool deleteTodo(const BackendInterface *backend,
+                    const TodoStruct &todo);
+
 signals:
     
 public slots:
@@ -54,13 +65,14 @@ public slots:
 private:
 
     PluginsLoader                   *m_plugins;
+    BackendRunner                   *m_backendRunner;
     TodoLists                       *m_lists;
+    TodoListStorage                 *m_storage;
 
-    QList<QVariantMap>               m_nonLoadableLists;
     TodoList::TodosList             *m_todos;
-    
+
     OpenTodoListBackend* backendByTypeName( const QString& type );
-    
+
 private slots:
     
     void saveSettings();

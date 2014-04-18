@@ -20,13 +20,11 @@
 #ifndef OBJECTMODEL_H
 #define OBJECTMODEL_H
 
-#include "opentodolistcore_global.h"
-
 #include <QObject>
 #include <QAbstractListModel>
 #include <QHash>
 
-class OPENTODOLISTCORESHARED_EXPORT ObjectModelBase : public QAbstractListModel
+class ObjectModelBase : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY( int count READ itemCount NOTIFY itemCountChanged )
@@ -100,7 +98,7 @@ private slots:
 };
 
 template< typename ObjectType >
-class OPENTODOLISTCORESHARED_EXPORT ObjectModel : public ObjectModelBase
+class ObjectModel : public ObjectModelBase
 {
 
 public:

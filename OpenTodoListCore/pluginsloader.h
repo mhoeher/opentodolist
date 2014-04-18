@@ -35,10 +35,14 @@ public:
     
     typedef QSet< QString > NameSet;
     typedef ObjectModel<OpenTodoListBackend> Backends;
+
+    typedef QVector<BackendInterface*> BackendInterfaces;
     
     explicit PluginsLoader(QObject *parent = 0);
     
     Backends* backends() const;
+
+    BackendInterfaces backendInterfaces() const;
 
 signals:
     
@@ -49,8 +53,11 @@ private:
     Backends* m_backends;
     NameSet   m_loadedBackends;
 
+    BackendInterfaces m_backendInterfaces;
+
 
     void addBackend( QObject* o );
+    void addBackendInterface( QObject* plugin );
     
 };
 

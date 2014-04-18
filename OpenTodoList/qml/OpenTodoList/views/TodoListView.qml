@@ -90,11 +90,6 @@ View {
                        }
         },
         ToolButton {
-            symbol: "\uf085"
-
-            onClicked: settingsView.hidden = false
-        },
-        ToolButton {
             symbol: "\uf011"
 
             onClicked: Qt.quit()
