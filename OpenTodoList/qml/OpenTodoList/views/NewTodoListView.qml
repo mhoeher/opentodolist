@@ -66,7 +66,7 @@ View {
             color: newTodoListView.type ? "black" : "red"
         }
         ListView {
-            model: TodoListLibrary.plugins.backends
+            model: window.library.plugins.backends
             clip: true
             width: parent.width * 0.8
             height: 400

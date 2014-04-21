@@ -116,10 +116,11 @@ Item {
             id: listView
             anchors.fill: parent
             interactive: !todoView.autoSize
-            model: TodoSortFilterModel {
-                sourceModel: !todoView.useSearchMode || filterEdit.text !== "" ? todoView.model : null
-                sortMode: TodoSortFilterModel.PrioritySort
-                searchString: filterEdit.text
+            model: TodoModel {
+                library: window.library
+                //sourceModel: !todoView.useSearchMode || filterEdit.text !== "" ? todoView.model : null
+                //sortMode: TodoSortFilterModel.PrioritySort
+                //searchString: filterEdit.text
             }
 
             delegate: TodoListEntry {

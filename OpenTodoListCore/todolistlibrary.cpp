@@ -20,7 +20,6 @@
 
 #include "todo.h"
 #include "todolist.h"
-#include "todolistfactory.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -30,10 +29,10 @@ TodoListLibrary::TodoListLibrary(QObject *parent) :
     QObject(parent),
     m_plugins( new PluginsLoader( this ) ),
     m_backendRunner( new BackendRunner( this, this ) ),
-    m_lists( new TodoLists( this ) ),
-    m_storage( new TodoListStorage( this ) ),
-    m_todos( new TodoList::TodosList( this ) )
+    m_storage( new TodoListStorage( this ) )
 {
+    qDebug() << "Creating todo list library";
+
     // register basic types for thread communication
     qRegisterMetaType< TodoListStruct >( "TodoListStruct" );
     qRegisterMetaType< TodoStruct >( "TodoStruct" );
@@ -48,6 +47,7 @@ TodoListLibrary::TodoListLibrary(QObject *parent) :
 TodoListLibrary::~TodoListLibrary()
 {
     // stop backends
+    qDebug() << "Deleting todo list library";
     m_backendRunner->stop();
 }
 
@@ -56,26 +56,13 @@ PluginsLoader *TodoListLibrary::plugins() const
     return m_plugins;
 }
 
-TodoListLibrary::TodoLists* TodoListLibrary::todoLists() const
+/**
+   @brief The application storage object
+   @return
+ */
+TodoListStorage *TodoListLibrary::storage() const
 {
-    return m_lists;
-}
-
-TodoList::TodosList *TodoListLibrary::todos() const
-{
-    return m_todos;
-}
-
-bool TodoListLibrary::createTodoList(const QString& name, OpenTodoListBackend* type)
-{
-    if ( !name.isEmpty() && type ) {
-        TodoList* list = type->factory()->createTodoList( this );
-        list->setName( name );
-        m_lists->append( list );
-        m_todos->appendList( list->todos() );
-        return true;
-    }
-    return false;
+    return m_storage;
 }
 
 bool TodoListLibrary::insertTodoList(const BackendInterface* backend,
@@ -100,16 +87,6 @@ bool TodoListLibrary::deleteTodo(const BackendInterface *backend,
                                  const TodoStruct &todo)
 {
     return m_storage->deleteTodo( backend->id(), todo );
-}
-
-OpenTodoListBackend* TodoListLibrary::backendByTypeName(const QString& type)
-{
-    foreach ( OpenTodoListBackend* backend, m_plugins->backends()->data() ) {
-        if ( backend->type() == type ) {
-            return backend;
-        }
-    }
-    return 0;
 }
 
 void TodoListLibrary::saveSettings()

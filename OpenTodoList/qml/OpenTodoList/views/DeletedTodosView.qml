@@ -24,9 +24,10 @@ View {
     id: deletedTodosView
 
     property QtObject todoList: null
-    property TodoSortFilterModel model: TodoSortFilterModel {
-        sourceModel: todoList ? todoList.todos : null
-        filterMode: TodoSortFilterModel.HideNonDeleted
+    property TodoModel model: TodoModel {
+        library: window.library
+        //sourceModel: todoList ? todoList.todos : null
+        //filterMode: TodoSortFilterModel.HideNonDeleted
     }
 
     hidden: !todoList

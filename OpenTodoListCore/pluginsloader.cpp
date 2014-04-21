@@ -26,13 +26,11 @@
 
 PluginsLoader::PluginsLoader(QObject *parent) :
     QObject(parent),
-    m_backends( new Backends( this ) ),
-    m_loadedBackends( NameSet() )
+    m_backendInterfaces()
 {
     // load static instanced
     foreach ( QObject* instance, QPluginLoader::staticInstances() ) {
-        instance->setParent( this );
-        addBackend( instance );
+        //instance->setParent( this ); // static instances already have parent!
         addBackendInterface( instance );
     }
 
@@ -44,7 +42,6 @@ PluginsLoader::PluginsLoader(QObject *parent) :
             QPluginLoader* loader = new QPluginLoader( pluginPath, this );
             if ( loader->load() ) {
                 loader->instance()->setParent( this );
-                addBackend( loader->instance() );
                 addBackendInterface( loader->instance() );
             } else {
                 qDebug() << "Failed to load" << loader->fileName() << "because of:" << loader->errorString();
@@ -53,24 +50,9 @@ PluginsLoader::PluginsLoader(QObject *parent) :
     }
 }
 
-PluginsLoader::Backends* PluginsLoader::backends() const
-{
-    return m_backends;
-}
-
 PluginsLoader::BackendInterfaces PluginsLoader::backendInterfaces() const
 {
     return m_backendInterfaces;
-}
-
-void PluginsLoader::addBackend(QObject *o)
-{
-    OpenTodoListBackend *backend =
-            qobject_cast< OpenTodoListBackend* >( o );
-    if ( backend && !m_loadedBackends.contains( backend->type() ) ) {
-        m_loadedBackends.insert( backend->type() );
-        m_backends->append( backend );
-    }
 }
 
 void PluginsLoader::addBackendInterface(QObject *plugin)

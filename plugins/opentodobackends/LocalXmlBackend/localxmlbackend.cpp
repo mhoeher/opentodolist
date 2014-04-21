@@ -32,18 +32,21 @@ LocalXmlBackend::LocalXmlBackend(QObject *parent) :
     m_database( 0 ),
     m_localStorageDirectory( QString() )
 {
+    qDebug() << "Creating LocalXmlBackend";
+}
 
+LocalXmlBackend::~LocalXmlBackend()
+{
+    qDebug() << "Deleting LocalXmlBackend";
 }
 
 void LocalXmlBackend::setDatabase(TodoListDatabase *database)
 {
-    Q_ASSERT( m_database == 0 );
     m_database = database;
 }
 
 void LocalXmlBackend::setLocalStorageDirectory(const QString &directory)
 {
-    Q_ASSERT( m_localStorageDirectory.isNull() );
     m_localStorageDirectory = directory;
     qDebug() << "Set local storage directory of" << id() << "to" << directory;
 }
@@ -93,11 +96,15 @@ bool LocalXmlBackend::stop()
 
 bool LocalXmlBackend::notifyTodoListChanged(const TodoListStruct &list)
 {
+    // TODO: implement me
+    Q_UNUSED( list );
     return true;
 }
 
 bool LocalXmlBackend::notifyTodoChanged(const TodoStruct &todo)
 {
+    // TODO: Implement me
+    Q_UNUSED( todo );
     return true;
 }
 
@@ -214,12 +221,16 @@ TodoStruct LocalXmlBackend::todoFromFile(const QString &fileName, double weight 
 
 bool LocalXmlBackend::todoListToFile(const TodoListStruct &todoList)
 {
-
+    // TODO: Implement me
+    Q_UNUSED( todoList );
+    return false;
 }
 
 bool LocalXmlBackend::todoToFile(const TodoStruct &todo)
 {
-
+    // TODO: Implement me
+    Q_UNUSED( todo );
+    return false;
 }
 
 #if QT_VERSION < 0x050000

@@ -18,346 +18,197 @@
 
 #include "todo.h"
 
-#include "todolist.h"
-#include "todosortfiltermodel.h"
-
-#include <QDebug>
-#include <QQueue>
-#include <QSet>
+#include "todolistlibrary.h"
 
 /**
- * @class AbstractTodo
- * @brief Base class for all todos
- *
- * This is the base class for all todos. Depending on the platform, this
- * class get's subclassed to provide e.g. platform specific storage.
- */
+   @brief Constructor
 
-/**
- * @brief Constructor
- * @param parent The parent object to use for the todo
+   Creates a new todo object for the @p backend wrapping around the
+   @p todo struct. The @p library will be used to querying
+   data from the application database. The object will be made a child
+   of the @p parent.
  */
-Todo::Todo(QUuid id, TodoList *parent) :
-    QObject(parent),
-    m_id( id ),
-    m_title( QString() ),
-    m_description( QString() ),
-    m_progress( 0 ),
-    m_priority( -1 ),
-    m_parentTodo( 0 ),
-    m_deleted( false ),
-    m_dueDate( QDateTime() ),
-    m_lastProgress( -1 ),
-    m_subTodosModel( new TodoSortFilterModel( this ) )
+Todo::Todo(const QString &backend,
+           const TodoStruct &todo,
+           TodoListLibrary *library,
+           QObject *parent = 0) :
+    QObject( parent ),
+    m_backend( backend ),
+    m_struct( todo ),
+    m_library( library )
 {
-    m_subTodosModel->setParentTodo( this );
-    m_subTodosModel->setSourceModel( parent->todos() );
-    m_subTodosModel->setFilterMode( TodoSortFilterModel::SubTodos | TodoSortFilterModel::HideDeleted );
-    m_subTodosModel->sort( 0 );
-    
-    connect( m_subTodosModel, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),
-             this, SLOT(childDataChanged()) );
-
-    connect( m_subTodosModel, SIGNAL(itemCountChanged()), this, SIGNAL(numTodosChanged()) );
-    connect( m_subTodosModel, SIGNAL(itemCountChanged()), this, SIGNAL(numOpenTodosChanged()) );
-    
-    connect( this, SIGNAL(idChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
+    Q_ASSERT( library != 0 );
+    connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(progressChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()));
 }
 
 /**
-   @brief The globally unique ID of the todo
-
-   A globally unique ID that can be used to identify a todo even across
-   networks.
+   @brief Destructor
  */
-QUuid Todo::id() const
+Todo::~Todo()
 {
-    return m_id;
 }
 
-int Todo::priority() const
+/**
+   @brief The backend ID the todo belongs to
+ */
+QString Todo::backend() const
 {
-    return m_priority;
+    return m_backend;
 }
 
-void Todo::setPriority(int priority)
+/**
+   @brief The unique ID of the todo
+ */
+QString Todo::id() const
 {
-    m_priority = qBound( -1, priority, 10 );
-    emit priorityChanged();
+    return m_struct.id.toString();
 }
 
+/**
+   @brief The weight of the todo
+ */
+double Todo::weight() const
+{
+    return m_struct.weight;
+}
+
+/**
+   @brief Sets the weight of the todo
+ */
+void Todo::setWeight(double weight)
+{
+    m_struct.weight = weight;
+    emit weightChanged();
+}
+
+/**
+   @brief The progress of the todo
+ */
 int Todo::progress() const
 {
-    if ( m_subTodosModel->rowCount() > 0 ) {
-        int result = 0;
-        for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-            Todo* subTodo = qobject_cast< Todo* >(
-                        m_subTodosModel->index( i, 0 ).data(
-                            TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
-            result += subTodo->progress();
-        }
-        return result / m_subTodosModel->rowCount();
-    } else {
-        return m_progress;
-    }
+    return qBound( 0, m_struct.progress, 100 );
 }
 
+/**
+   @brief Sets the progress of the todo
+ */
 void Todo::setProgress(int progress)
 {
-    m_lastProgress = m_progress;
-    m_progress = qBound( 0, progress, 100 );
+    m_struct.progress = qBound( 0, progress, 100 );
     emit progressChanged();
 }
 
-QString Todo::description() const
+/**
+   @brief The priority of the todo (from -1 to 10)
+ */
+int Todo::priority() const
 {
-    return m_description;
+    return qBound( -1, m_struct.priority, 10 );
 }
 
-void Todo::setDescription(const QString &description)
+/**
+   @brief Sets the priority of the todo.
+ */
+void Todo::setPriority(int priority)
 {
-    m_description = description;
-    emit descriptionChanged();
+    m_struct.priority = qBound( -1, priority, 10 );
+    emit priorityChanged();
 }
 
-QString Todo::title() const
+/**
+   @brief The ID of the parent todo
+ */
+QString Todo::parentTodoId() const
 {
-    return m_title;
+    return m_struct.parentTodoId.toString();
 }
 
-void Todo::setTitle(const QString &title)
+/**
+   @brief The ID of the todo list
+ */
+QString Todo::todoListId() const
 {
-    m_title = title;
-    emit titleChanged();
+    return m_struct.todoListId.toString();
 }
 
-Todo* Todo::parentTodo() const
-{
-    return m_parentTodo;
-}
-
-void Todo::setParentTodo(QObject* parentTodo)
-{
-    // parent todo must be null or we must have common todo list
-    if ( !parentTodo || parentTodo->parent() == parent() ) {
-        // Check for cycles...
-        if ( canMoveTo( parentTodo ) ) {
-            if ( parentTodo != m_parentTodo ) {
-                m_parentTodo = static_cast< Todo* >( parentTodo );
-                emit parentTodoChanged();
-            }
-        }
-    }
-}
-
-bool Todo::isDeleted() const
-{
-    return m_deleted;
-}
-
-void Todo::setDeleted(bool deleted)
-{
-    m_deleted = deleted;
-    emit deletedChanged();
-}
-
+/**
+   @brief The due date of the todo
+ */
 QDateTime Todo::dueDate() const
 {
-    return m_dueDate;
+    return m_struct.dueDate;
 }
 
-void Todo::setDueDate(const QDateTime &dateTime)
+/**
+   @brief Sets the due date of the todo
+ */
+void Todo::setDueDate(const QDateTime &dueDate)
 {
-    m_dueDate = dateTime;
+    m_struct.dueDate = dueDate;
     emit dueDateChanged();
 }
 
-TodoList* Todo::parent() const
+/**
+   @brief The title of the todo
+ */
+QString Todo::title() const
 {
-    return qobject_cast< TodoList* >( QObject::parent() );
+    return m_struct.title;
 }
 
 /**
-   @brief Returns the number of sub todos
-
-   Returns the number of sub todos of this todo. Deleted todos are not
-   included in this.
+   @brief Sets the title of the todo
  */
-int Todo::numTodos() const
+void Todo::setTitle(const QString &title)
 {
-    int result = 0;
-    for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-        Todo* todo = qobject_cast< Todo* >(
-                    m_subTodosModel->index( i, 0 ).data( ObjectModel<Todo>::ObjectRole )
-                    .value< QObject* >() );
-        if ( todo && !todo->isDeleted() ) {
-            ++result;
-        }
-    }
-    return result;
+    m_struct.title = title;
+    emit titleChanged();
 }
 
 /**
-   @brief Returns the number of open sub todos
-
-   This returns the number of open sub todos of this todo. Deleted todos
-   are not included in this.
+   @brief The description of the todo
  */
-int Todo::numOpenTodos() const
+QString Todo::description() const
 {
-    int result = 0;
-    for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-        Todo* todo = qobject_cast< Todo* >(
-                    m_subTodosModel->index( i, 0 ).data( ObjectModel<Todo>::ObjectRole )
-                    .value< QObject* >() );
-        if ( todo && !todo->isDeleted() && !todo->isCompleted() ) {
-            ++result;
-        }
-    }
-    return result;
+    return m_struct.description;
 }
 
 /**
-   @brief Check if the todo can be moved to another parent.
-
-   This method can be used to check whether this todo can be made a child
-   todo of the @p newParent. If this is the case, true is returned; otherwise,
-   false. This method is used internally when setting the parent of a todo
-   to ensure that no cyclic parent chains are built.
-
+   @brief Sets the description of the todo
  */
-bool Todo::canMoveTo(QObject *newParent) const
+void Todo::setDescription(const QString &description)
 {
-    QSet< const Todo* > allChildren;
-    QQueue< const Todo* > queue;
-    queue.enqueue( this );
-    allChildren.insert( this );
-    while ( !queue.isEmpty() ) {
-        const Todo *nextTodo = queue.dequeue();
-        if ( nextTodo == newParent ) {
-            // the new parent is a child item of the current one - cannot move!
-            return false;
-        }
-        for ( int i = 0; i < nextTodo->subTodos()->rowCount(); ++i ) {
-            Todo *todo = qobject_cast< Todo* >(
-                        nextTodo->subTodos()->index( i, 0 ).data(
-                        TodoSortFilterModel::TodoModel::ObjectRole )
-                    .value< QObject* >() );
-            if ( todo && !allChildren.contains( todo ) ) {
-                allChildren.insert( todo );
-                queue.enqueue( todo );
-            }
-        }
-    }
-    return true;
+    m_struct.description = description;
+    emit descriptionChanged();
 }
 
 /**
-   @brief Clones properties from another todo
-
-   Copies over attributes from @p otherTodo. The todo copied from will
-   be scheduled for deletion afterwards, so after calling this, do not
-   access the other todo anymore.
+   @brief Returns whether the todo is flagged as deleted
  */
-void Todo::cloneFrom(QObject *otherTodo)
+bool Todo::isDeleted() const
 {
-    if ( otherTodo ) {
-        Todo *asTodo = qobject_cast< Todo* >( otherTodo );
-        if ( asTodo ) {
-            m_deleted = asTodo->m_deleted;
-            m_description = asTodo->m_description;
-            m_dueDate = asTodo->m_dueDate;
-            m_id = asTodo->m_id;
-            m_lastProgress = asTodo->m_lastProgress;
-            m_priority = asTodo->m_priority;
-            m_progress = asTodo->m_progress;
-            m_title = asTodo->m_title;
-            emit changed();
-            asTodo->dispose();
-        } else {
-            qWarning() << otherTodo << "is not a AbstractTodo";
-        }
-    }
-}
-
-void Todo::childDataChanged()
-{
-    // emulate a change of progress to propagate any changes up the tree
-    if ( m_subTodosModel->rowCount() > 0 ) {
-        emit progressChanged();
-    }
-    emit numOpenTodosChanged();
-}
-
-void Todo::toggleCompleted(int newProgress) {
-    if ( newProgress >= 0 ) {
-        // set to new progress regardless of our current state
-        setProgress( newProgress );
-    } else {
-        // toggle
-        if ( m_progress == 100 ) {
-            setProgress( m_lastProgress < 0 ? 0 : m_lastProgress );
-        } else {
-            setProgress( 100 );
-        }
-    }
+    return m_struct.deleted;
 }
 
 /**
-   @brief Deletes the todo
-
-   This will delete the todo. Internally, the following actions will be
-   done:
-
-   <ol>
-   <li>For each child todo, call its dispose() method.</li>
-   <li>The aboutToBeDisposed() signal is emitted to let other objects know what
-       we are planning to do.</li>
-   <li>The destroy() method of the todo is called to do any cleanup. Sub-classes
-       ob AbstractTodo should implement this method to whatever might be
-       required.</li>
-   <li>Finally, we are calling deleteLater() to schedule deletion of the todo
-       for when we are returning to the event loop.</li>
-   </ul>
+   @brief Sets the deleted flag of the todo
  */
-void Todo::dispose()
+void Todo::setDeleted(bool deleted)
 {
-    QList< Todo* > todos;
-    for ( int i = 0; i < m_subTodosModel->rowCount(); ++i ) {
-        Todo* todo = qobject_cast< Todo* >(
-                    m_subTodosModel->index( i, 0 ).data(
-                        TodoSortFilterModel::TodoModel::ObjectRole ).value< QObject* >() );
-        if ( todo ) {
-            todos.append( todo );
-        }
-    }
-    foreach (  Todo* todo, todos ) {
-        todo->dispose();
-    }
-    emit aboutToBeDisposed( this );
-    destroy();
-    deleteLater();
+    m_struct.deleted = deleted;
+    emit deletedChanged();
 }
 
 /**
-   @brief Overrides the ID of the todo
-
-   This overrides the @p id of the todo. Note that you do not usually want to use
-   this method as it internally changes the identity of the todo. In fact, the
-   only real use case is when the todo is restored when restarting the
-   application and there is no "sane" way for the todo list to
-   know the ID upfront the todo is created and can read the ID back on it's own
-   (e.g. from external memory or the network).
+   @brief The library the todo belongs to
  */
-void Todo::setId(QUuid id)
+TodoListLibrary *Todo::library() const
 {
-    m_id = id;
-    emit idChanged();
+    return m_library;
 }

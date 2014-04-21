@@ -2,17 +2,16 @@ TARGET = $$qtLibraryTarget(OpenTodoListCore)
 TEMPLATE = lib
 
 QT += core qml sql
-CONFIG += plugin
+CONFIG += plugin static
 
 #macx:CONFIG += lib_bundle
 
+QMAKE_MOC_OPTIONS += -Muri=net.rpdev.OpenTodoList.Core
+
 HEADERS = \
-    objectmodel.h \
     opentodolistinterfaces.h \
     pluginsloader.h \
-    todolistfactory.h \
     todolistlibrary.h \
-    todosortfiltermodel.h \
     todolist.h \
     todo.h \
     opentodolistcoreqmlplugin.h \
@@ -20,15 +19,13 @@ HEADERS = \
     backendwrapper.h \
     backendrunner.h \
     todoliststorage.h \
-    todoliststoragequery.h
+    todoliststoragequery.h \
+    todolistmodel.h \
+    todomodel.h
 
 SOURCES = \
-    objectmodel.cpp \
-    opentodolistinterfaces.cpp \
     pluginsloader.cpp \
-    todolistfactory.cpp \
     todolistlibrary.cpp \
-    todosortfiltermodel.cpp \
     todolist.cpp \
     todo.cpp \
     opentodolistcoreqmlplugin.cpp \
@@ -36,28 +33,36 @@ SOURCES = \
     backendwrapper.cpp \
     backendrunner.cpp \
     todoliststorage.cpp \
-    todoliststoragequery.cpp
+    todoliststoragequery.cpp \
+    todolistmodel.cpp \
+    todomodel.cpp
 
 DEFINES +=  OPENTODOLISTCORE_LIBRARY
 
-macx {
-    DESTDIR = ../OpenTodoList/OpenTodoList.app/Contents/Frameworks/imports/net/rpdev/OpenTodoList/Core
-} else {
-    DESTDIR = ../OpenTodoList/imports/net/rpdev/OpenTodoList/Core
-}
+#macx {
+#    QML_MOD_PATH = ../OpenTodoList/OpenTodoList.app/Contents/Frameworks/imports/net/rpdev/OpenTodoList/Core
+#} else {
+#    QML_MOD_PATH = ../OpenTodoList/imports/net/rpdev/OpenTodoList/Core
+#}
 
-android {
-    x86 {
-        target.path = /libs/x86
-    } else:armeabi {
-        target.path = /libs/armeabi
-    } else {
-        target.path = /libs/armeabi-v7a
-    }
-    INSTALLS += target
-}
+#android {
+#    x86 {
+#        target.path = /libs/x86
+#    } else:armeabi {
+#        target.path = /libs/armeabi
+#    } else {
+#        target.path = /libs/armeabi-v7a
+#    }
+#    INSTALLS += target
+#}
+
+#OTHER_FILES += \
+#    qmldir
+
+#QMAKE_POST_LINK += $$QMAKE_COPY $$replace($$list($$quote($$PWD/qmldir) $$OUT_PWD/../OpenTodoList/imports/net/rpdev/OpenTodoList/Core), /, $$QMAKE_DIR_SEP)
 
 OTHER_FILES += \
-    qmldir
+    OpenTodoListCorePlugin.json imports/net/rpdev/OpenTodoList/Core/qmldir
 
-QMAKE_POST_LINK += $$QMAKE_COPY $$replace($$list($$quote($$PWD/qmldir) $$DESTDIR), /, $$QMAKE_DIR_SEP)
+RESOURCES += \
+    OpenTodoListCore.qrc

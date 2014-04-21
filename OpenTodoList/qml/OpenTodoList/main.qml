@@ -30,6 +30,10 @@ Item {
         groups: [ "ApplicationViewer", "neutral" ]
     }
 
+    property TodoListLibrary library : TodoListLibrary {
+
+    }
+
     Component.onCompleted: {
         /*if ( layout.isTouchDevice ) {
             showMaximized();

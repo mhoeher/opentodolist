@@ -7,9 +7,11 @@
 #include <QObject>
 #include <QStandardPaths>
 #include <QThread>
+#include <QVector>
 
 // forward declarations:
 class TodoListLibrary;
+class BackendWrapper;
 
 class BackendRunner : public QObject
 {

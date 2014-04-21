@@ -19,23 +19,39 @@
 #include <QtGui/QGuiApplication>
 #include "applicationviewer.h"
 
-#include <QQmlEngine>
 #include <QQmlContext>
+#include <QQmlEngine>
 #include <QRegExp>
 #include <QString>
+#include <QtPlugin>
 #include <QtQml>
 #include <QVariantMap>
 
+#include <QDirIterator>
+
+
 #include <iostream>
 
-// FIXME: Remove this as soon as we can load plugins dynamically
-#ifdef Q_OS_ANDROID
-#include <QtPlugin>
+///////////////////////////////////////////////////////////////////////////////
+// Import plugins:
+///////////////////////////////////////////////////////////////////////////////
+
+// backends:
 Q_IMPORT_PLUGIN(LocalXmlBackend)
-#endif
+
+// QML:
+Q_IMPORT_PLUGIN(OpenTodoListCoreQmlPlugin)
+
+
+///////////////////////////////////////////////////////////////////////////////
+// main()
+///////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[])
 {   
+    // Initialize resources from static libraries
+    Q_INIT_RESOURCE(OpenTodoListCore);
+
     QCoreApplication::setApplicationName( "OpenTodoList" );
     QCoreApplication::setApplicationVersion( "0.0.0" );
     QCoreApplication::setOrganizationDomain( "www.rpdev.net" );
@@ -80,11 +96,17 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_ANDROID
     QCoreApplication::addLibraryPath( "assets:/plugins" );
 #endif
+
+    QDirIterator it( ":/", QDirIterator::Subdirectories );
+    while ( it.hasNext() ) {
+        qDebug() << it.next();
+    }
     
     ApplicationViewer viewer( basePath );
 
     viewer.addImportPath( basePath );
-    viewer.addImportPath( QCoreApplication::applicationDirPath() + "/imports" );
+    //viewer.addImportPath( QCoreApplication::applicationDirPath() + "/imports" );
+    viewer.addImportPath( ":/OpenTodoList/imports" );
     viewer.rootContext()->setContextProperty( "applicationViewer", &viewer );
     viewer.loadSettings();
 

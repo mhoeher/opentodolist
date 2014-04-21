@@ -1,8 +1,6 @@
 TARGET = OpenTodoList
 TEMPLATE = app
 
-INCLUDEPATH += ../OpenTodoListCore
-
 DESTDIR = $$OUT_PWD
 
 mac {
@@ -26,15 +24,17 @@ mac {
 #}
 
 # FIXME: Do not statically link plugins as soon as this works
-android {
-    QT += xml
-    LIBS += -L$$OUT_PWD/plugins/opentodobackends -lLocalXmlBackend
-}
+#android {
+#    QT += xml
+#    LIBS += -L$$OUT_PWD/plugins/opentodobackends -lLocalXmlBackend
+#}
 
-QT += qml quick widgets
+LIBS += -L$$OUT_PWD/../plugins/opentodobackends/LocalXmlBackend -lLocalXmlBackend \
+        -L$$OUT_PWD/../OpenTodoListCore -lOpenTodoListCore
 
-# TODO: Remove me!
-CONFIG+=qml_debug
+QT += qml quick widgets sql xml
+
+debug:CONFIG+=qml_debug
 
 HEADERS += \
     applicationviewer.h \
@@ -55,7 +55,7 @@ include(files.pri)
 
 
 # Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH = imports $$OUT_PWD/imports
+QML_IMPORT_PATH = $$PWD/../OpenTodoListCore/imports
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.

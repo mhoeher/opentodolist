@@ -19,79 +19,58 @@
 #ifndef ABSTRACTTODOLIST_H
 #define ABSTRACTTODOLIST_H
 
+#include "opentodolistinterfaces.h"
 #include "todo.h"
-#include "objectmodel.h"
-#include "todosortfiltermodel.h"
 
 #include <QList>
 #include <QObject>
 #include <QObjectList>
+#include <QVariant>
+#include <QVariantMap>
+
+class TodoListLibrary;
 
 class TodoList : public QObject
 {
 
     Q_OBJECT
 
+    Q_PROPERTY( QString backend READ backend CONSTANT )
+    Q_PROPERTY( QString id READ id CONSTANT )
     Q_PROPERTY( QString name READ name WRITE setName NOTIFY nameChanged )
-    Q_PROPERTY( QString displayName READ displayName NOTIFY nameChanged )
-    Q_PROPERTY( QObject* todos READ todos CONSTANT )
-    Q_PROPERTY( QObject* entries READ topLevelTodos CONSTANT )
-    Q_PROPERTY( QObject* deletedTodos READ deletedTodos CONSTANT )
-    Q_PROPERTY( QString type READ type CONSTANT )
-    Q_PROPERTY( QString key READ key CONSTANT )
+    Q_PROPERTY( TodoListLibrary* library READ library CONSTANT )
     
 public:
 
-    typedef ObjectModel< Todo > TodosList;
+    explicit TodoList( const QString &backend,
+                       const TodoListStruct &list,
+                       TodoListLibrary *library,
+                       QObject *parent = 0);
+    virtual ~TodoList();
 
-    explicit TodoList( const QString& key, const QString &type, const QVariant &settings = QVariant(), QObject *parent = 0);
-    
-    TodosList *todos() const;
-    TodoSortFilterModel* topLevelTodos() const;
-    TodoSortFilterModel* deletedTodos() const;
-    Q_INVOKABLE virtual QObject *addTodo();
-    Q_INVOKABLE QObject* addTodo( const QString& title, QObject* parentTodo );
-    virtual QVariant settings();
+    QString backend() const;
+    QString id() const;
+    QString name() const;
+    void setName( const QString &name );
 
+    TodoListLibrary* library() const;
     
-    const QString& name() const;
-    void setName( const QString& name );
-
-    QString displayName() const;
-    
-    const QString& type() const {
-        return m_type;
-    }
-    
-    const QString& key() const {
-        return m_key;
-    }
-
 signals:
     
     void nameChanged();
-    
     void changed();
     
 public slots:
     
 protected:
     
-    void appendTodo( Todo* todo );
-
 private:
 
-    TodosList *m_todos;
-    TodoSortFilterModel *m_topLevelTodos;
-    TodoSortFilterModel *m_deletedTodos;
-    QString m_name;
-    QString m_type;
-    QString m_key;
-    QString m_dir;
+    QString          m_backend;
+    TodoListStruct   m_struct;
+    TodoListLibrary *m_library;
     
 private slots:
-    
-    void todoParentChanged();
     
 };
 

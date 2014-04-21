@@ -23,9 +23,10 @@ import "../controls"
 View {
     id: searchView
 
-    property TodoSortFilterModel model : TodoSortFilterModel {
-        sourceModel: TodoListLibrary.todos
-        filterMode: TodoSortFilterModel.HideDeleted
+    property TodoModel model : TodoModel {
+        library: window.library
+        //sourceModel: TodoListLibrary.todos
+        //filterMode: TodoSortFilterModel.HideDeleted
     }
 
     signal todoSelected(QtObject todo)

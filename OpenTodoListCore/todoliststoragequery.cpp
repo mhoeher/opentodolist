@@ -67,3 +67,35 @@ void TodoListStorageQuery::endRun()
 {
 
 }
+
+/**
+   @brief Helper method: Create a TodoListStruct from a @p record from the DB
+ */
+TodoListStruct TodoListStorageQuery::todoListFromRecord(const QVariantMap &record)
+{
+    TodoListStruct result;
+    result.id = record.value( "id", QUuid().toString() ).toString();
+    result.meta = record.value( "meta", QVariantMap() ).toMap();
+    result.name = record.value( "name", QString() ).toString();
+    return result;
+}
+
+/**
+   @brief Helper method: Create a TodoStruct from a @p record from the DB
+ */
+TodoStruct TodoListStorageQuery::todoFromRecord(const QVariantMap &record)
+{
+    TodoStruct result;
+    result.deleted = record.value( "deleted", false ).toBool();
+    result.description = record.value( "description", QString() ).toString();
+    result.dueDate = record.value( "dueDate", QDateTime() ).toDateTime();
+    result.id = record.value( "id", QUuid().toString() ).toString();
+    result.meta = record.value( "meta", QVariantMap() ).toMap();
+    result.parentTodoId = record.value( "parentTodo", QUuid().toString() ).toString();
+    result.priority = record.value( "prioritity", -1 ).toInt();
+    result.progress = record.value( "progress", 0 ).toInt();
+    result.title = record.value( "title", QString() ).toString();
+    result.todoListId = record.value( "todoList", QUuid().toString() ).toString();
+    result.weight = record.value( "weight", 0.0 ).toDouble();
+    return result;
+}

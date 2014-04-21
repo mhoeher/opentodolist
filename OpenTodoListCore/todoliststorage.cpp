@@ -6,6 +6,7 @@
 #include <QJsonDocument>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <QStringList>
 #include <QVariantMap>
 
@@ -15,9 +16,7 @@
 TodoListStorage::TodoListStorage(QObject *parent) :
     QObject(parent),
     m_thread(),
-    m_worker( new TodoListStorageWorker() ),
-    m_queries(),
-    m_queriesLock()
+    m_worker( new TodoListStorageWorker() )
 {
     m_thread.start();
     m_worker->moveToThread( &m_thread );
@@ -43,9 +42,8 @@ TodoListStorage::~TodoListStorage()
  */
 void TodoListStorage::runQuery(TodoListStorageQuery *query)
 {
-    QMutexLocker l( &m_queriesLock );
     query->moveToThread( &m_thread );
-    m_queries.enqueue( query );
+    m_worker->run( query );
 }
 
 /**
@@ -120,7 +118,9 @@ TodoListStorageWorker::TodoListStorageWorker() :
     QObject(),
     m_dataBase(),
     m_dataBaseFile(),
-    m_initialized( false )
+    m_initialized( false ),
+    m_queue(),
+    m_queueLock()
 {
 }
 
@@ -132,6 +132,18 @@ TodoListStorageWorker::~TodoListStorageWorker() {
     qDebug() << "Closed database";
     m_dataBaseFile.close();
     qDebug() << "Deleted database";
+}
+
+/**
+   @brief Actually runs a query
+ */
+void TodoListStorageWorker::run(TodoListStorageQuery *query)
+{
+    QMutexLocker l( &m_queueLock );
+    if ( query ) {
+        m_queue.enqueue( query );
+        QMetaObject::invokeMethod( this, "next", Qt::QueuedConnection );
+    }
 }
 
 /**
@@ -308,5 +320,45 @@ void TodoListStorageWorker::deleteRow(const QString &tableName, const QVariantMa
     if ( !query.exec() ) {
         qCritical() << "Failed to remove row:"
                     << query.lastError().text();
+    }
+}
+
+/**
+   @brief Executes the next query in the queue
+ */
+void TodoListStorageWorker::next()
+{
+    QMutexLocker l( &m_queueLock );
+    TodoListStorageQuery *query = 0;
+    if ( !m_queue.isEmpty() ) {
+        query = m_queue.dequeue();
+    }
+    if ( query ) {
+        query->beginRun();
+        QString queryStr;
+        QVariantMap values;
+        bool validQuery = query->query( queryStr, values );
+        if ( validQuery ) {
+            QSqlQuery q( m_dataBase );
+            q.prepare( queryStr );
+            foreach ( QString key, values.keys() ) {
+                q.bindValue( ":" + key, values.value( key ) );
+            }
+            if ( q.exec() ) {
+                while ( q.next() ) {
+                    QVariantMap recordData;
+                    for ( int i = 0; i < q.record().count(); ++i ) {
+                        recordData.insert( q.record().fieldName( i ),
+                                           q.record().value( i ) );
+                    }
+                    query->recordAvailable( recordData );
+                }
+            } else {
+                qWarning() << q.lastError().text();
+                qWarning() << q.executedQuery();
+            }
+        }
+        query->endRun();
+        delete query;
     }
 }

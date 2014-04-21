@@ -17,134 +17,74 @@
  */
 
 #include "todolist.h"
+#include "todolistlibrary.h"
 
-#include "todo.h"
 
 /**
    @brief Constructor
 
-   Creates a new todo list. The @p key and @p settings arguments are either
-   invalid values (in case the todo list is created) or some meaningful
-   values in case the list is restored. The @p parent will take ownership
-   of this object. The @p type is the type ID of the todo list factory
-   creating this object.
+   Creates a new TodoList object. The object is created for the
+   @p backend and using the information from the @p list structure. The
+   @p library is used to interact with the application database. The list
+   will be made a child of @p parent.
  */
-TodoList::TodoList(const QString& key, const QString& type,
-                                   const QVariant &settings, QObject* parent) :
-    QObject(parent),
-    m_todos( new TodosList( this ) ),
-    m_topLevelTodos( new TodoSortFilterModel( this ) ),
-    m_deletedTodos( new TodoSortFilterModel( this ) ),
-    m_type( type ),
-    m_key( key )
+TodoList::TodoList(const QString &backend,
+                   const TodoListStruct &list,
+                   TodoListLibrary *library, QObject *parent) :
+    QObject( parent ),
+    m_backend( backend ),
+    m_struct( list ),
+    m_library( library )
 {
-    Q_UNUSED( settings );
-    m_topLevelTodos->setFilterMode( TodoSortFilterModel::TodoListEntries | TodoSortFilterModel::HideDeleted );
-    m_topLevelTodos->setSortMode( TodoSortFilterModel::PrioritySort );
-    m_topLevelTodos->setSourceModel( m_todos );
-
-    m_deletedTodos->setFilterMode( TodoSortFilterModel::HideNonDeleted );
-    m_deletedTodos->setSourceModel( m_todos );
-    
+    Q_ASSERT( library != 0 );
     connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
 }
 
-TodoList::TodosList* TodoList::todos() const
+/**
+   @brief Destructor
+ */
+TodoList::~TodoList()
 {
-    return m_todos;
-}
 
-TodoSortFilterModel* TodoList::topLevelTodos() const
-{
-    return m_topLevelTodos;
-}
-
-TodoSortFilterModel *TodoList::deletedTodos() const
-{
-    return m_deletedTodos;
-}
-
-QObject *TodoList::addTodo()
-{
-    Todo* todo = new Todo( QUuid::createUuid(), this );
-    appendTodo( todo );
-    return todo;
-}
-
-QObject* TodoList::addTodo(const QString& title, QObject* parentTodo)
-{
-    Todo* result = qobject_cast< Todo* >( addTodo() );
-    if ( result ) {
-        result->setTitle( title );
-        result->setParentTodo( qobject_cast< Todo* >( parentTodo ) );
-    }
-    return result;
 }
 
 /**
-   @brief Store additional settings of the todo list
-
-   This method can be overridden to return additional settings of the todo
-   list that shall be saved in the application settings.
-
-   By default, it is up to the concrete storage backend to store the settings of
-   the todo list. However, some settings might need to be stored inside the
-   application settings.
-
-   In a subclass of AbstractTodoList, overriding this function should include
-   the (potential) settings of the base class (if any):
-
-   @code
-   QVariant MyTodoList::settings() {
-     QVariantMap result;
-     result.insert( "myValue", 42 );
-     QVariant baseSettings = AbstractTodoList::settings();
-     result.insert( "base", baseSettings );
-     return result;
-   }
-   @endcode
+   @brief The ID of the backend this todo list belongs to
  */
-QVariant TodoList::settings()
+QString TodoList::backend() const
 {
-    return QVariant();
+    return m_backend;
 }
 
-const QString& TodoList::name() const
+/**
+   @brief The ID of the todo list
+ */
+QString TodoList::id() const
 {
-    return m_name;
+    return m_struct.id.toString();
 }
 
-void TodoList::setName(const QString& name)
+/**
+   @brief The name of the todo list
+ */
+QString TodoList::name() const
 {
-    m_name = name;
+    return m_struct.name;
+}
+
+/**
+   @brief Sets the name of the todo list
+ */
+void TodoList::setName(const QString &name)
+{
+    m_struct.name = name;
     emit nameChanged();
 }
 
 /**
-   @brief The display name of the todo list
-
-   Returns the name of the todo list for displaying. Usually, this will be the
-   same as name(). In case the name is empty, a default string is returned.
+   @brief The library the todo list belong to
  */
-QString TodoList::displayName() const
+TodoListLibrary *TodoList::library() const
 {
-    if ( m_name.isEmpty() ) {
-        return tr( "[Unnamed Todo List]" );
-    } else {
-        return m_name;
-    }
-}
-
-void TodoList::appendTodo(Todo* todo)
-{
-    m_todos->append( todo );
-    connect( todo, SIGNAL(changed()), this, SLOT(todoParentChanged()) );
-}
-
-void TodoList::todoParentChanged()
-{
-    Todo* todo = qobject_cast< Todo* >( sender() );
-    if ( todo ) {
-        m_todos->notifyObjectChanged( todo );
-    }
+    return m_library;
 }

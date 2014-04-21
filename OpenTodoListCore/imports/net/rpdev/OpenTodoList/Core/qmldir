@@ -1,2 +1,3 @@
 module net.rpdev.OpenTodoList.Core
 plugin OpenTodoListCore
+classname OpenTodoListCoreQmlPlugin

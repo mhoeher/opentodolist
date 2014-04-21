@@ -14,7 +14,7 @@ BackendRunner::BackendRunner(TodoListLibrary *library, QObject *parent) :
         wrapper->setLocalStorageDirectory( localStorageLocation( wrapper->id() ) );
         wrapper->moveToThread( &m_thread );
         connect( this, SIGNAL(startBackends()), wrapper, SLOT(doStart()) );
-        connect( this, SIGNAL(stopBackends()), wrapper, SLOT(doStop()) );
+        connect( this, SIGNAL(stopBackends()), wrapper, SLOT(doStop()), Qt::BlockingQueuedConnection );
         m_backends << wrapper;
     }
 }
@@ -50,7 +50,7 @@ void BackendRunner::stop()
 
    @return The external storage location on Android
  */
-QString TodoListFactory::androidExtStorageLocation()
+QString BackendRunner::androidExtStorageLocation()
 {
     QString s( qgetenv( "EXTERNAL_STORAGE" ) );
     QDir dir( s + "/data/net.rpdev.opentodolist/" );

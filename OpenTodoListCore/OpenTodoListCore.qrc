@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/OpenTodoList">
+        <file>imports/net/rpdev/OpenTodoList/Core/qmldir</file>
+    </qresource>
+</RCC>

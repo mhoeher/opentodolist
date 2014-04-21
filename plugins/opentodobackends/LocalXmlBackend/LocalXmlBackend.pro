@@ -1,11 +1,13 @@
 TEMPLATE = lib
 TARGET = LocalXmlBackend
-CONFIG += plugin
+CONFIG += plugin static
 
-include(../../../utils.pri)
-pluginConfig(opentodobackends)
+#include(../../../utils.pri)
+#pluginConfig(opentodobackends)
 
 QT += xml
+
+INCLUDEPATH += ../../../OpenTodoListCore
 
 SOURCES += \
     localxmlbackend.cpp

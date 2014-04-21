@@ -26,7 +26,8 @@ View {
     hidden: todo ? false : true
     
     property QtObject todo: null
-    property TodoSortFilterModel model: todo ? todo.subTodos : null
+    property TodoModel model: null
+
 
     onTodoChanged: {
         if ( todo ) {

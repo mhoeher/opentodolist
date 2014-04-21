@@ -28,27 +28,31 @@ View {
 
     property string filterText
 
-    property TodoSortFilterModel allTopLevelTodos : TodoSortFilterModel {
-        sourceModel: TodoListLibrary.todos
-        filterMode: TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted
+    property TodoModel allTopLevelTodos : TodoModel {
+        library: window.library
+        //sourceModel: TodoListLibrary.todos
+        //filterMode: TodoSortFilterModel.TodoListEntries | TodoSortFilterModel.HideDeleted
     }
 
-    property TodoSortFilterModel dueTodayModel : TodoSortFilterModel {
-        sourceModel: TodoListLibrary.todos
-        maxDueDate: new Date()
-        filterMode: TodoSortFilterModel.HideDeleted
+    property TodoModel dueTodayModel : TodoModel {
+        library: window.library
+        //sourceModel: TodoListLibrary.todos
+        //maxDueDate: new Date()
+        //filterMode: TodoSortFilterModel.HideDeleted
     }
 
-    property TodoSortFilterModel dueThisWeekModel : TodoSortFilterModel {
-        sourceModel: TodoListLibrary.todos
-        maxDueDate: Utils.getLastDateOfWeek()
-        filterMode: TodoSortFilterModel.HideDeleted
+    property TodoModel dueThisWeekModel : TodoModel {
+        library: window.library
+        //sourceModel: TodoListLibrary.todos
+        //maxDueDate: Utils.getLastDateOfWeek()
+        //filterMode: TodoSortFilterModel.HideDeleted
     }
 
-    property TodoSortFilterModel model : TodoSortFilterModel {
-        sourceModel: layout.useCompactLayout ? null : allTopLevelTodos
-        searchString: filterText
-        sortMode: TodoSortFilterModel.PrioritySort
+    property TodoModel model : TodoModel {
+        library: window.library
+        //sourceModel: layout.useCompactLayout ? null : allTopLevelTodos
+        //searchString: filterText
+        //sortMode: TodoSortFilterModel.PrioritySort
     }
 
     signal resetFilter()
@@ -175,17 +179,21 @@ View {
                 }
 
                 Repeater {
-                    model: TodoListLibrary.todoLists
+                    model: TodoListModel {
+                        library: window.library
+                    }
                     delegate: LinkLabel {
                         width: parent.width
-                        label: object.name === "" ? "[Unnamed List]" : object.name
-                        active: todoListView.currentList == object
+                        label: display.name === "" ? "[Unnamed List]" : display.name
+                        active: todoListView.currentList == display
                         color: "white"
 
                         onClicked: {
-                            todoListView.currentList = object
-                            todoListView.model.sourceModel = object.entries
-                            todoListView.todoListClicked( object )
+                            //todoListView.currentList = object
+                            //todoListView.model.sourceModel = object.entries
+                            //todoListView.todoListClicked( object )
+                            todosModel.backend = display.backend;
+                            todosModel.todoListId = display.id;
                         }
                     }
                 }
@@ -193,12 +201,25 @@ View {
         }
     }
     
-    TodoListContents {
+    /*TodoListContents {
         anchors.left: sideBar.right
         anchors.right: parent.right
         height: parent.height
 
         onTodoSelected: todoListView.todoSelected( todo )
+    }*/
+
+    ListView {
+        anchors.left: sideBar.right
+        anchors.right: parent.right
+        height: parent.height
+        model: TodoModel {
+            id: todosModel
+            library: window.library
+        }
+        delegate: Text {
+            text: display.title
+        }
     }
 
     Item {

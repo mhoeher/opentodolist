@@ -51,8 +51,6 @@ private:
 
     QThread                         m_thread;
     TodoListStorageWorker          *m_worker;
-    QQueue< TodoListStorageQuery* > m_queries;
-    QMutex                          m_queriesLock;
 };
 
 /**
@@ -82,9 +80,15 @@ private:
     QSqlDatabase                    m_dataBase;
     QTemporaryFile                  m_dataBaseFile;
     bool                            m_initialized;
+    QQueue< TodoListStorageQuery* > m_queue;
+    QMutex                          m_queueLock;
 
     void insertRow( const QString &tableName, const QVariantMap &row );
     void deleteRow( const QString &tableName, const QVariantMap &row );
+
+private slots:
+
+    void next();
 };
 
 #endif // TODOLISTSTORAGE_H

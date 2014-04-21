@@ -21,7 +21,6 @@
 
 #include "todolist.h"
 #include "pluginsloader.h"
-#include "objectmodel.h"
 #include "opentodolistinterfaces.h"
 #include "backendrunner.h"
 #include "todoliststorage.h"
@@ -32,21 +31,13 @@ class TodoListLibrary : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QObject* plugins READ plugins CONSTANT )
-    Q_PROPERTY( QObject* todoLists READ todoLists CONSTANT )
-    Q_PROPERTY( QObject* todos READ todos CONSTANT )
 public:
-    
-    typedef ObjectModel< TodoList > TodoLists;
     
     explicit TodoListLibrary(QObject *parent = 0);
     virtual ~TodoListLibrary();
     
     PluginsLoader *plugins() const;
-    TodoLists* todoLists() const;
-
-    TodoList::TodosList* todos() const;
-    
-    Q_INVOKABLE bool createTodoList( const QString& name, OpenTodoListBackend* type );
+    TodoListStorage *storage() const;
 
     // TodoListDatabase wrapper interface
     bool insertTodoList(const BackendInterface *backend,
@@ -66,12 +57,7 @@ private:
 
     PluginsLoader                   *m_plugins;
     BackendRunner                   *m_backendRunner;
-    TodoLists                       *m_lists;
     TodoListStorage                 *m_storage;
-
-    TodoList::TodosList             *m_todos;
-
-    OpenTodoListBackend* backendByTypeName( const QString& type );
 
 private slots:
     
