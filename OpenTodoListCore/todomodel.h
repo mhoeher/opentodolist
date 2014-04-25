@@ -6,6 +6,7 @@
 #include "todoliststoragequery.h"
 
 #include <QAbstractListModel>
+#include <QPointer>
 #include <QSet>
 #include <QVector>
 
@@ -22,12 +23,20 @@ class TodoListLibrary;
 class TodoModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_ENUMS( QueryType )
     Q_PROPERTY( TodoListLibrary* library READ library WRITE setLibrary NOTIFY libraryChanged )
-    Q_PROPERTY( QString backend READ backend WRITE setBackend NOTIFY backendChanged)
-    Q_PROPERTY( QString todoListId READ todoListId WRITE setTodoListId NOTIFY todoListIdChanged)
-    Q_PROPERTY( QString parentTodoId READ parentTodoId WRITE setParentTodoId NOTIFY parentTodoIdChanged)
+    Q_PROPERTY( QueryType queryType READ queryType WRITE setQueryType NOTIFY queryTypeChanged )
+    Q_PROPERTY( TodoList* todoList READ todoList WRITE setTodoList NOTIFY todoListChanged)
+    Q_PROPERTY( Todo* parentTodo READ parentTodo WRITE setParentTodo NOTIFY parentTodoChanged)
+    Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
 
 public:
+
+    enum QueryType {
+        InvalidQuery,
+        QueryTopLevelTodosInTodoList
+    };
+
     explicit TodoModel(QObject *parent = 0);
     virtual ~TodoModel();
 
@@ -38,22 +47,23 @@ public:
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
 
-    QString backend() const;
-    void setBackend(const QString &backend);
+    QueryType queryType() const;
+    void setQueryType(const QueryType &queryType);
 
-    QString todoListId() const;
-    void setTodoListId(const QString &todoListId);
+    TodoList *todoList() const;
+    void setTodoList(TodoList *todoList);
 
-    QString parentTodoId() const;
-    void setParentTodoId(const QString &parentTodoId);
+    Todo *parentTodo() const;
+    void setParentTodo(Todo *parentTodo);
 
 signals:
 
     void libraryChanged();
-    void backendChanged();
-    void todoListIdChanged();
-    void parentTodoIdChanged();
+    void queryTypeChanged();
+    void todoListChanged();
+    void parentTodoChanged();
     void changed();
+    void countChanged();
 
 public slots:
 
@@ -61,14 +71,14 @@ public slots:
 
 private:
 
-    QVector< Todo* > m_todos;
-    TodoListLibrary *m_library;
-    QSet< QString >  m_loadedTodos;
-    QSet< QString >  m_newLoadedTodos;
+    QueryType                 m_queryType;
+    QVector< Todo* >          m_todos;
+    QPointer<TodoListLibrary> m_library;
+    QSet< QString >           m_loadedTodos;
+    QSet< QString >           m_newLoadedTodos;
 
-    QString m_backend;
-    QString m_todoListId;
-    QString m_parentTodoId;
+    QPointer<TodoList> m_todoList;
+    QPointer<Todo>     m_parentTodo;
 
     static QString idForTodo( const QString &backend, const QString &todoId );
 
@@ -88,6 +98,9 @@ class TodoStorageQuery : public TodoListStorageQuery
     Q_OBJECT
 public:
 
+    explicit TodoStorageQuery();
+    virtual ~TodoStorageQuery();
+
     QString backend() const;
     void setBackend(const QString &backend);
 
@@ -96,6 +109,9 @@ public:
 
     QString parentTodoId() const;
     void setParentTodoId(const QString &parentTodoId);
+
+    TodoModel::QueryType queryType() const;
+    void setQueryType(const TodoModel::QueryType &queryType);
 
     // TodoListStorageQuery interface
     virtual void beginRun();
@@ -110,9 +126,10 @@ signals:
 
 private:
 
-    QString m_backend;
-    QString m_todoListId;
-    QString m_parentTodoId;
+    TodoModel::QueryType m_queryType;
+    QString              m_backend;
+    QString              m_todoListId;
+    QString              m_parentTodoId;
 
 };
 

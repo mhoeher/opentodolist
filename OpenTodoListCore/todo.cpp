@@ -20,6 +20,23 @@
 
 #include "todolistlibrary.h"
 
+
+/**
+   @brief Creates a new invalid Todo
+
+   This creates a new Todo which is invalid.
+
+   @sa isNull()
+ */
+Todo::Todo(QObject *parent) :
+    QObject( parent ),
+    m_isNull( true ),
+    m_backend(),
+    m_struct(),
+    m_library( 0 )
+{
+}
+
 /**
    @brief Constructor
 
@@ -33,6 +50,7 @@ Todo::Todo(const QString &backend,
            TodoListLibrary *library,
            QObject *parent = 0) :
     QObject( parent ),
+    m_isNull( false ),
     m_backend( backend ),
     m_struct( todo ),
     m_library( library )
@@ -212,3 +230,15 @@ TodoListLibrary *Todo::library() const
 {
     return m_library;
 }
+
+/**
+   @brief Is the todo valid or "empty"
+
+   Returns false if the todo is valid. If the todo has been created
+   via the default constructor, this returns true.
+ */
+bool Todo::isNull() const
+{
+    return m_isNull;
+}
+

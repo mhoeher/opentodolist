@@ -1,90 +1,49 @@
-TARGET = OpenTodoList
-TEMPLATE = app
+# Add more folders to ship with the application, here
+qml_main.source = qml/OpenTodoList
+qml_main.target = qml
 
-DESTDIR = $$OUT_PWD
+qml_components.source = qml/net/rpdev/OpenTodoList/Components
+qml_components.target = qml/net/rpdev/OpenTodoList
 
-mac {
-    #LIBS += -L$$DESTDIR/OpenTodoList.app/Contents/Frameworks -lOpenTodoListCore
-    #QMAKE_POST_LINK = install_name_tool -change libOpenTodoListCore.0.dylib \
-    #                  @executable_path/../Frameworks/libOpenTodoListCore.0.dylib \
-    #                  $$DESTDIR/OpenTodoList.app/Contents/MacOs/OpenTodoList
-    ICON = OpenTodoList.icns
+qml_theme.source = qml/net/rpdev/OpenTodoList/Theme
+qml_theme.target = qml/net/rpdev/OpenTodoList
 
-} else {
-    #LIBS += -L$$DESTDIR -lOpenTodoListCore
-}
+qml_views.source = qml/net/rpdev/OpenTodoList/Views
+qml_views.target = qml/net/rpdev/OpenTodoList
 
-# Seems that does not help... :(
-# The assets seem to remain in the *.apk and thus cannot
-# be loaded directly.
-#android {
-#    plugins_backends_folder.source = $$OUT_PWD/plugins/
-#    plugins_backends_folder.path = .
-#    DEPLOYMENTFOLDERS += plugins_backends_folder
-#}
-
-# FIXME: Do not statically link plugins as soon as this works
-#android {
-#    QT += xml
-#    LIBS += -L$$OUT_PWD/plugins/opentodobackends -lLocalXmlBackend
-#}
-
-LIBS += -L$$OUT_PWD/../plugins/opentodobackends/LocalXmlBackend -lLocalXmlBackend \
-        -L$$OUT_PWD/../OpenTodoListCore -lOpenTodoListCore
-
-QT += qml quick widgets sql xml
-
-debug:CONFIG+=qml_debug
-
-HEADERS += \
-    applicationviewer.h \
-    imageprovider.h
-
-SOURCES += \
-    main.cpp \
-    applicationviewer.cpp \
-    imageprovider.cpp
-
-RESOURCES += \
-    resources.qrc
-
-win32:RC_FILE = OpenTodoList.rc
-
-include(files.pri)
-
-
+DEPLOYMENTFOLDERS = qml_main qml_components qml_theme qml_views
 
 # Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH = $$PWD/../OpenTodoListCore/imports
+QML_IMPORT_PATH = $$PWD/../OpenTodoListCore/imports $$PWD/qml
 
-# If your application uses the Qt Mobility libraries, uncomment the following
-# lines and add the respective components to the MOBILITY variable.
-# CONFIG += mobility
-# MOBILITY +=
+# Icons for various platforms
+mac:ICON = OpenTodoList.icns
+win32:RC_FILE = OpenTodoList.rc
+
+# Qt dependencies
+QT += sql xml
+
+# The .cpp file which was generated for your project. Feel free to hack it.
+SOURCES += main.cpp
+
+# Link against libraries/plugins:
+LIBS += -L../OpenTodoListCore -lOpenTodoListCore \
+        -L../plugins/opentodobackends/LocalXmlBackend -lLocalXmlBackend
+
+# Installation path
+# target.path =
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
-# Extra Target for updating the resources.qrc file:
-update_qrc.target = update_qrc
-update_qrc.commands = \
-    perl $$PWD/../bin/mk-qrc.pl -d $$PWD/qml/ -o $$PWD/resources.qrc -b $$PWD/qml
-QMAKE_EXTRA_TARGETS += update_qrc
-
-update_pri.target = update_pri
-update_pri.commands = \
-    perl $$PWD/../bin/mk-pri.pl -d $$PWD/qml -o $$PWD/files.pri -b $$PWD/qml
-QMAKE_EXTRA_TARGETS += update_pri
-
-update.depends = update_qrc update_pri
-update.target = update
-QMAKE_EXTRA_TARGETS += update
-
+# Android specific:
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ANDROID_PACKAGE = net.rpdev.opentodolist
 ANDROID_APP_NAME = Open Todo List
-ANDROID_EXTRA_LIBS = $$OUT_PWD/libOpenTodoListCore.so
-
 OTHER_FILES += \
-    android/AndroidManifest.xml
+    android/AndroidManifest.xml \
+    qml/net/rpdev/OpenTodoList/Components/qmldir \
+    qml/net/rpdev/OpenTodoList/Theme/qmldir \
+    qml/net/rpdev/OpenTodoList/Views/qmldir \
+    qml/net/rpdev/OpenTodoList/Views/TodoListView.qml

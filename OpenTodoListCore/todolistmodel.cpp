@@ -10,6 +10,10 @@ TodoListModel::TodoListModel(QObject *parent) :
     m_loadedTodoLists()
 {
     connect( this, SIGNAL(libraryChanged()), this, SLOT(update()) );
+    connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
+             this, SIGNAL(countChanged()) );
+    connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+             this, SIGNAL(countChanged()) );
 }
 
 TodoListModel::~TodoListModel()
@@ -18,7 +22,7 @@ TodoListModel::~TodoListModel()
 
 TodoListLibrary *TodoListModel::library() const
 {
-    return m_library;
+    return m_library.data();
 }
 
 void TodoListModel::setLibrary(TodoListLibrary *library)
@@ -77,7 +81,7 @@ void TodoListModel::addTodoList(const QString &backend, const TodoListStruct &li
     QString id = todoListId( backend, list );
     m_newTodoLists.insert( id );
     if ( !m_loadedTodoLists.contains( id ) ) {
-        TodoList *todoList = new TodoList( backend, list, m_library, this );
+        TodoList *todoList = new TodoList( backend, list, m_library.data(), this );
         if ( todoList ) {
             emit beginInsertRows( QModelIndex(), rowCount(), rowCount() );
             m_todoLists.append( todoList );

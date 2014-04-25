@@ -1,6 +1,6 @@
 /*
  *  OpenTodoList - A todo and task manager
- *  Copyright (C) 2013  Martin Höher <martin@rpdev.net>
+ *  Copyright (C) 2014  Martin Höher <martin@rpdev.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,125 +16,85 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.1
-import QtQuick.Window 2.1
+import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import net.rpdev.OpenTodoList.Core 1.0
-import "helper"
-import "views"
-import "controls"
+import net.rpdev.OpenTodoList.Components 1.0
+import net.rpdev.OpenTodoList.Views 1.0
+import net.rpdev.OpenTodoList.Theme 1.0
 
-Item {
-    id: window
+Rectangle {
+    id: root
 
-    property Settings settings : Settings {
-        groups: [ "ApplicationViewer", "neutral" ]
+    width: 360
+    height: 360
+    focus: true
+    color: Colors.window
+
+    Keys.onEscapePressed: Qt.quit()
+    Keys.onBackPressed: Qt.quit()
+
+    TodoListLibrary {
+        id: todoListLibrary
     }
 
-    property TodoListLibrary library : TodoListLibrary {
-
-    }
-
-    Component.onCompleted: {
-        /*if ( layout.isTouchDevice ) {
-            showMaximized();
-        } else {
-            width = settings.getValue( "width", 800 );
-            height = settings.getValue( "height", 600 );
-            x = settings.getValue( "x", x );
-            y = settings.getValue( "y", y );
-            applicationViewer.onBeforeReload.connect( close );
-            onClosing.connect( saveWindowGeometry );
-            show();
-        }*/
-    }
-
-    function saveWindowGeometry() {
-        if ( !layout.isTouchDevice ) {
-            settings.setValue( "width", width );
-            settings.setValue( "height", height );
-            settings.setValue( "x", x );
-            settings.setValue( "y", y );
-        }
-    }
-
-    ViewContainer {
-        id: root
+    TabView {
+        id: tabView
         anchors.fill: parent
-        focus: true
+        tabs: [
+            Tab {
+                id: todoListTab
 
-        DeviceInfo {
-            id: deviceInfo
-        }
+                name: qsTr( "Todo Lists" )
 
-        FontLayout {
-            id: fonts
-        }
+                TodoModel {
+                    id: todoModel
+                    library: todoListLibrary
+                    queryType: TodoModel.QueryTopLevelTodosInTodoList
+                }
 
-        Layout {
-            id: layout
-        }
+                TodoListView {
+                    id: todoListView
 
-        ColorScheme {
-            id: colors
-        }
+                    library: todoListLibrary
+                    showTodosInline: todoListTab.width < Measures.minimumPageWidth * 2
+                    anchors {
+                        left: parent.left
+                        right: todoView.left
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
 
-        FontLoader {
-            id: symbolFont
-            source: "res/fontawesome-webfont.ttf"
-        }
+                    onTodoListSelected: {
+                        todoModel.todoList = todoList;
+                        todoModel.update();
+                    }
+                }
+                TodoView {
+                    id: todoView
 
-        TodoListView {
-            id: todoListView
+                    anchors {
+                        right: parent.right
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
+                    width: todoModel.count > 0 && parent.width > 2 * Measures.minimumPageWidth ?
+                               parent.width - Measures.minimumPageWidth : 0
+                    model: width > 0 ? todoModel : null
 
-            title: "Todo Lists"
-
-            onTodoSelected: {
-                todoDetailsView.todo = todo;
+                    Behavior on width { SmoothedAnimation { velocity: 1500 } }
+                }
+            },
+            Tab {
+                name: qsTr( "DevUtils" )
+                Column {
+                    anchors.fill: parent
+                    Button {
+                        text: qsTr( "Reload Todo Lists" )
+                        onClicked: todoListView.update()
+                    }
+                }
             }
-            onTodoListClicked: todoListContentsView.showIfCompactView = true
-            onShowTrashForList: deletedTodosView.todoList = list
-            onShowSearch: searchView.hidden = false
-            Component.onCompleted: hidden = false
-        }
-
-        TodoListContentsView {
-            id: todoListContentsView
-
-            onTodoSelected: {
-                todoDetailsView.todo = todo;
-            }
-            hidden: !(showIfCompactView && layout.useCompactLayout)
-        }
-
-        NewTodoListView {
-            id: newTodoListView
-
-            title: "New Todo List"
-        }
-
-        SearchView {
-            id: searchView
-
-            title: "Search"
-            hidden: true
-
-            onTodoSelected: todoDetailsView.todo = todo
-        }
-
-        TodoDetailsView {
-            id: todoDetailsView
-
-            title: "Todo"
-        }
-
-        DeletedTodosView {
-            id: deletedTodosView
-        }
-
-    }
-
-    Popup {
-        id: popup
-        onClose: root.focus = true;
+        ]
     }
 }

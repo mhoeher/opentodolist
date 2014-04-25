@@ -4,19 +4,20 @@
 
 TodoModel::TodoModel(QObject *parent) :
     QAbstractListModel(parent),
+    m_queryType( InvalidQuery ),
     m_todos(),
     m_library( 0 ),
     m_loadedTodos(),
     m_newLoadedTodos(),
-    m_backend(),
-    m_todoListId(),
-    m_parentTodoId()
+    m_todoList( 0 ),
+    m_parentTodo( 0 )
 {
-    connect( this, SIGNAL(backendChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(todoListIdChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(parentTodoIdChanged()), this, SIGNAL(changed()) );
-
-    connect( this, SIGNAL(changed()), this, SLOT(update()) );
+    connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
+             this, SIGNAL(countChanged()) );
+    connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+             this, SIGNAL(countChanged()) );
 }
 
 TodoModel::~TodoModel()
@@ -25,7 +26,7 @@ TodoModel::~TodoModel()
 
 TodoListLibrary *TodoModel::library() const
 {
-    return m_library;
+    return m_library.data();
 }
 
 void TodoModel::setLibrary(TodoListLibrary *library)
@@ -53,58 +54,80 @@ QVariant TodoModel::data(const QModelIndex &index, int role) const
     }
     return QVariant();
 }
-QString TodoModel::backend() const
+
+/**
+   @brief The type of content this model displays
+ */
+TodoModel::QueryType TodoModel::queryType() const
 {
-    return m_backend;
+    return m_queryType;
 }
 
-void TodoModel::setBackend(const QString &backend)
+/**
+   @brief Sets what is shown by the model
+ */
+void TodoModel::setQueryType(const QueryType &queryType)
 {
-    if ( m_backend != backend ) {
-        m_backend = backend;
-        emit backendChanged();
-    }
-}
-QString TodoModel::todoListId() const
-{
-    return m_todoListId;
+    m_queryType = queryType;
+    emit queryTypeChanged();
 }
 
-void TodoModel::setTodoListId(const QString &todoListId)
-{
-    if ( m_todoListId != todoListId ) {
-        m_todoListId = todoListId;
-        emit todoListIdChanged();
-    }
-}
+/**
+   @brief Updates the model
 
-QString TodoModel::parentTodoId() const
-{
-    return m_parentTodoId;
-}
-
-void TodoModel::setParentTodoId(const QString &parentTodoId)
-{
-    if ( m_parentTodoId != parentTodoId ) {
-        m_parentTodoId = parentTodoId;
-        emit parentTodoIdChanged();
-    }
-}
-
+   This refreshes the model after updating the query properties of the model.
+ */
 void TodoModel::update()
 {
-    if ( m_library ) {
+    if ( m_library && m_queryType != InvalidQuery ) {
         TodoStorageQuery *query = new TodoStorageQuery();
-        query->setBackend( m_backend );
-        query->setTodoListId( m_todoListId );
-        query->setParentTodoId( m_parentTodoId );
-        connect( query, SIGNAL(todoAvailable(QString,TodoStruct)),
-                 this, SLOT(addTodo(QString,TodoStruct)), Qt::QueuedConnection );
-        connect( query, SIGNAL(finished()),
-                 this, SLOT(removeExtraneousTodos()), Qt::QueuedConnection );
-        m_library->storage()->runQuery( query );
+        query->setQueryType( m_queryType );
+        bool queryIsValid = true;
+
+        switch ( m_queryType ) {
+        case QueryTopLevelTodosInTodoList:
+            if ( m_todoList ) {
+                query->setBackend( m_todoList->backend() );
+                query->setTodoListId( m_todoList->id() );
+            }
+            break;
+
+        default:
+            queryIsValid = false;
+            break;
+        }
+
+        if ( queryIsValid ) {
+            connect( query, SIGNAL(todoAvailable(QString,TodoStruct)),
+                     this, SLOT(addTodo(QString,TodoStruct)), Qt::QueuedConnection );
+            connect( query, SIGNAL(finished()),
+                     this, SLOT(removeExtraneousTodos()), Qt::QueuedConnection );
+            m_library->storage()->runQuery( query );
+        } else {
+            delete query;
+        }
     }
 }
+Todo *TodoModel::parentTodo() const
+{
+    return m_parentTodo.data();
+}
+
+void TodoModel::setParentTodo(Todo *parentTodo)
+{
+    m_parentTodo = parentTodo;
+}
+
+TodoList *TodoModel::todoList() const
+{
+    return m_todoList.data();
+}
+
+void TodoModel::setTodoList(TodoList *todoList)
+{
+    m_todoList = todoList;
+}
+
 
 QString TodoModel::idForTodo(const QString &backend, const QString &todoId)
 {
@@ -144,6 +167,15 @@ void TodoModel::removeExtraneousTodos()
     m_newLoadedTodos.clear();
 }
 
+TodoStorageQuery::TodoStorageQuery() :
+    TodoListStorageQuery()
+{
+}
+
+TodoStorageQuery::~TodoStorageQuery()
+{
+}
+
 QString TodoStorageQuery::backend() const
 {
     return m_backend;
@@ -170,6 +202,16 @@ QString TodoStorageQuery::parentTodoId() const
 void TodoStorageQuery::setParentTodoId(const QString &parentTodoId)
 {
     m_parentTodoId = parentTodoId;
+}
+
+TodoModel::QueryType TodoStorageQuery::queryType() const
+{
+    return m_queryType;
+}
+
+void TodoStorageQuery::setQueryType(const TodoModel::QueryType &queryType)
+{
+    m_queryType = queryType;
 }
 
 void TodoStorageQuery::beginRun()
@@ -209,5 +251,7 @@ void TodoStorageQuery::endRun()
 {
     emit finished();
 }
+
+
 
 

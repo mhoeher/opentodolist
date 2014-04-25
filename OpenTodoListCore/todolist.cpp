@@ -21,6 +21,22 @@
 
 
 /**
+   @brief Creates a new invalid TodoList
+
+   This will create a new invalid todo list.
+
+   @sa isNull
+ */
+TodoList::TodoList(QObject *parent) :
+    QObject( parent ),
+    m_isNull( true ),
+    m_backend(),
+    m_struct(),
+    m_library( 0 )
+{
+}
+
+/**
    @brief Constructor
 
    Creates a new TodoList object. The object is created for the
@@ -32,6 +48,7 @@ TodoList::TodoList(const QString &backend,
                    const TodoListStruct &list,
                    TodoListLibrary *library, QObject *parent) :
     QObject( parent ),
+    m_isNull( false ),
     m_backend( backend ),
     m_struct( list ),
     m_library( library )
@@ -88,3 +105,17 @@ TodoListLibrary *TodoList::library() const
 {
     return m_library;
 }
+
+/**
+   @brief Is the todo list valid?
+
+   If the todo list has been created via the default constructor (which creates
+   empty todo lists) this will return true. If the todo list has been created
+   by the other constructor, it is valid and isNull is false.
+ */
+bool TodoList::isNull() const
+{
+    return m_isNull;
+}
+
+

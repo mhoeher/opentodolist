@@ -8,6 +8,7 @@
 #include "todoliststoragequery.h"
 
 #include <QAbstractListModel>
+#include <QPointer>
 #include <QSet>
 #include <QVariantMap>
 
@@ -17,6 +18,8 @@ class TodoListModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY( TodoListLibrary* library READ library WRITE setLibrary NOTIFY libraryChanged )
+    Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
+
 public:
     explicit TodoListModel(QObject *parent = 0);
     virtual ~TodoListModel();
@@ -33,6 +36,7 @@ signals:
     void libraryChanged();
     void beginUpdate();
     void endUpdate();
+    void countChanged();
 
 public slots:
 
@@ -41,7 +45,7 @@ public slots:
 private:
 
     QVector< TodoList* >      m_todoLists;
-    TodoListLibrary*          m_library;
+    QPointer<TodoListLibrary> m_library;
     QSet< QString >           m_newTodoLists;
     QSet< QString >           m_loadedTodoLists;
 

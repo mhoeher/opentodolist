@@ -35,6 +35,7 @@ class TodoList : public QObject
 
     Q_OBJECT
 
+    Q_PROPERTY(bool isNull READ isNull CONSTANT)
     Q_PROPERTY( QString backend READ backend CONSTANT )
     Q_PROPERTY( QString id READ id CONSTANT )
     Q_PROPERTY( QString name READ name WRITE setName NOTIFY nameChanged )
@@ -42,6 +43,7 @@ class TodoList : public QObject
     
 public:
 
+    explicit TodoList( QObject *parent = 0 );
     explicit TodoList( const QString &backend,
                        const TodoListStruct &list,
                        TodoListLibrary *library,
@@ -55,6 +57,9 @@ public:
 
     TodoListLibrary* library() const;
     
+    bool isNull() const;
+    void setIsNull(bool isNull);
+
 signals:
     
     void nameChanged();
@@ -66,6 +71,7 @@ protected:
     
 private:
 
+    bool             m_isNull;
     QString          m_backend;
     TodoListStruct   m_struct;
     TodoListLibrary *m_library;

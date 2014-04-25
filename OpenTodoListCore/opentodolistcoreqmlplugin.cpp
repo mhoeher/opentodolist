@@ -30,13 +30,10 @@ OpenTodoListCoreQmlPlugin::OpenTodoListCoreQmlPlugin(QObject *parent) :
 void OpenTodoListCoreQmlPlugin::registerTypes(const char *uri)
 {
     //@uri net.rpdev.OpenTodoList.Core
-    qmlRegisterUncreatableType< Todo >(
-                uri, 1, 0, "Todo",
-                "Todos should be created via factory method of TodoList" );
-    qmlRegisterUncreatableType< TodoList >(
-                uri, 1, 0, "TodoList",
-                "TodoList should be created via factory method in TodoListLibrary" );
-
+    qmlRegisterType< Todo >(
+                uri, 1, 0, "Todo" );
+    qmlRegisterType< TodoList >(
+                uri, 1, 0, "TodoList" );
     qmlRegisterType< TodoListLibrary >(
                 uri, 1, 0, "TodoListLibrary" );
 

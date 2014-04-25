@@ -30,6 +30,7 @@ class TodoListLibrary;
 class Todo : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY( bool isNull READ isNull CONSTANT )
     Q_PROPERTY( QString backend READ backend CONSTANT )
     Q_PROPERTY( QString id READ id CONSTANT )
     Q_PROPERTY( double weight READ weight WRITE setWeight NOTIFY weightChanged )
@@ -45,6 +46,7 @@ class Todo : public QObject
 
 
 public:
+    explicit Todo( QObject* parent = 0 );
     explicit Todo(const QString &backend,
                    const TodoStruct &todo,
                    TodoListLibrary* library , QObject *parent);
@@ -71,6 +73,8 @@ public:
 
     TodoListLibrary *library() const;
 
+    bool isNull() const;
+
 signals:
 
     void weightChanged();
@@ -89,6 +93,7 @@ protected:
 
 private:
 
+    bool             m_isNull;
     QString          m_backend;
     TodoStruct       m_struct;
     TodoListLibrary* m_library;
