@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Components 1.0
 
 FocusScope {
     id: tabView
@@ -26,10 +27,16 @@ FocusScope {
 
     property string currentSource
     property Component currentComponent
-    property alias tabs: tabModel.children
+    default property alias tabs: tabModel.children
     property alias currentTabIndex: headerBar.currentIndex
+    property alias showActionButton: headerBar.showActionButton
+    property alias actionButtonTitle: headerBar.actionButtonTitle
+
+    signal actionButtonClicked()
 
     onTabsChanged: updateTabBar()
+
+    Keys.onPressed: console.debug( "Key pressed in TabView" )
 
     function updateTabBar() {
         var tabItems = [];
@@ -45,6 +52,8 @@ FocusScope {
     HeaderBar {
         id: headerBar
         anchors { left: parent.left; right: parent.right; top: parent.top }
+
+        onActionButtonClicked: tabView.actionButtonClicked()
     }
 
     Rectangle {

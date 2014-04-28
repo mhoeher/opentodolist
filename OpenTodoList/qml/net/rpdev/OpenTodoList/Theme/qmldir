@@ -2,3 +2,4 @@ net.rpdev.OpenTodoList.Theme 1.0
 singleton Colors 1.0 Colors.qml
 singleton Measures 1.0 Measures.qml
 singleton Fonts 1.0 Fonts.qml
+singleton Symbols 1.0 Symbols.qml

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<RCC>
+  <qresource prefix="/OpenTodoList">
+    <file>qml/net/rpdev/OpenTodoList/Components/HeaderBar.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/LineEditDialog.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/SymbolLabel.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/Tab.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/Label.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/Symbol.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/qmldir</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/TabView.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/Button.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/SingleLineTextInput.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/Overlay.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/PageStack.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/Page.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Components/HeaderBarItem.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Views/TodoView.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Views/TodoViewDelegate.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Views/qmldir</file>
+    <file>qml/net/rpdev/OpenTodoList/Views/TodoListViewDelegate.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Views/TodoListView.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.license.txt</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/Symbols.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/Measures.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/qmldir</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/Colors.qml</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.ttf</file>
+    <file>qml/net/rpdev/OpenTodoList/Theme/Fonts.qml</file>
+    <file>qml/OpenTodoList/TodoPage.qml</file>
+    <file>qml/OpenTodoList/TodoListsPage.qml</file>
+    <file>qml/OpenTodoList/main.qml</file>
+    <file>qml/OpenTodoList/qmldir</file>
+    <file>qml/OpenTodoList/TestSingleton.qml</file>
+  </qresource>
+</RCC>

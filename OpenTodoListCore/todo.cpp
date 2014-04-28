@@ -33,7 +33,8 @@ Todo::Todo(QObject *parent) :
     m_isNull( true ),
     m_backend(),
     m_struct(),
-    m_library( 0 )
+    m_library( 0 ),
+    m_previousProgress( -1 )
 {
 }
 
@@ -53,7 +54,8 @@ Todo::Todo(const QString &backend,
     m_isNull( false ),
     m_backend( backend ),
     m_struct( todo ),
-    m_library( library )
+    m_library( library ),
+    m_previousProgress( -1 )
 {
     Q_ASSERT( library != 0 );
     connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
@@ -118,8 +120,11 @@ int Todo::progress() const
  */
 void Todo::setProgress(int progress)
 {
-    m_struct.progress = qBound( 0, progress, 100 );
-    emit progressChanged();
+    if ( progress != m_struct.progress ) {
+        m_previousProgress = m_struct.progress;
+        m_struct.progress = qBound( 0, progress, 100 );
+        emit progressChanged();
+    }
 }
 
 /**
@@ -240,5 +245,31 @@ TodoListLibrary *Todo::library() const
 bool Todo::isNull() const
 {
     return m_isNull;
+}
+
+/**
+   @brief Is the todo completed?
+
+   Returns true if the todo is completed (i.e. the progress is 100%) or
+   false otherwise.
+ */
+bool Todo::isDone() const
+{
+    return m_struct.progress >= 100;
+}
+
+/**
+   @brief Toggles the state of the todo between "done" and "not done"
+
+   @sa setProgress
+ */
+void Todo::toggle()
+{
+    if ( m_struct.progress == 100 ) {
+        setProgress( m_previousProgress >= 0 && m_previousProgress < 100 ?
+                         m_previousProgress : 0 );
+    } else {
+        setProgress( 100 );
+    }
 }
 

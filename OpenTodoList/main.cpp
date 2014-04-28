@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QtQuick2ApplicationViewer viewer;
-    viewer.addImportPath(QStringLiteral("qml"));
     viewer.addImportPath(QStringLiteral("qrc:/OpenTodoList/imports"));
-    viewer.setMainQmlFile(QStringLiteral("qml/OpenTodoList/main.qml"));
+    viewer.addImportPath( QStringLiteral("qrc:/OpenTodoList/qml"));
+    viewer.setMainQmlFile("qrc:/OpenTodoList/qml/OpenTodoList/main.qml");
     viewer.showExpanded();
 
     return app.exec();

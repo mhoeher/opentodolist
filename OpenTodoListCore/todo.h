@@ -42,6 +42,7 @@ class Todo : public QObject
     Q_PROPERTY( QString title READ title WRITE setTitle NOTIFY titleChanged )
     Q_PROPERTY( QString description READ description WRITE setDescription NOTIFY descriptionChanged )
     Q_PROPERTY( bool isDeleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
+    Q_PROPERTY( bool isDone READ isDone NOTIFY progressChanged )
     Q_PROPERTY( TodoListLibrary* library READ library CONSTANT )
 
 
@@ -74,6 +75,7 @@ public:
     TodoListLibrary *library() const;
 
     bool isNull() const;
+    bool isDone() const;
 
 signals:
 
@@ -89,6 +91,8 @@ signals:
     
 public slots:
 
+    void toggle();
+
 protected:
 
 private:
@@ -97,6 +101,7 @@ private:
     QString          m_backend;
     TodoStruct       m_struct;
     TodoListLibrary* m_library;
+    int              m_previousProgress;
 
 };
 

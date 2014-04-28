@@ -28,56 +28,28 @@ Item {
 
     signal clicked()
 
-    height: rectangle.height + 2 * Measures.tinySpace
+    height: label.height + Measures.smallSpace + Measures.tinySpace
     anchors {
         left: parent.left
         right: parent.right
+        margins: Measures.smallSpace
     }
 
-    Rectangle {
-        id: rectangle
+    SymbolLabel {
+        id: label
+
+        symbol: todo && todo.isDone ? Symbols.checkedBox : Symbols.uncheckedBox
+        text: todo ? todo.title : ""
+        placeholder: qsTr( "Untitled Todo" )
+        useSymbolButton: true
         anchors {
             left: parent.left
             right: parent.right
             top: parent.top
             margins: Measures.tinySpace
         }
-        height: label.height + Measures.tinySpace * 2
-        color: Colors.listItem
 
-        Symbol {
-            id: checkMark
-            symbol: todo && todo.progress >= 100 ? checkedBox : uncheckedBox
-            anchors {
-                left: parent.left
-                verticalCenter: label.verticalCenter
-            }
-        }
-
-        Label {
-            id: label
-            text: todo ? todo.title : ""
-            font.strikeout: todo && todo.isDeleted ? true : false
-            anchors {
-                left: checkMark.right
-                right: parent.right
-                top: parent.top
-                margins: Measures.tinySpace
-            }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        }
-        Label {
-            id: placeholder
-            visible: label.text === ""
-            text: qsTr( "Untitled Todo" )
-            font.strikeout: label.font.strikeout
-            color: Colors.midText
-            anchors.fill: label
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        }
-    }
-    MouseArea {
-        anchors.fill: rectangle
         onClicked: delegate.clicked()
+        onSymbolClicked: if ( todo ) todo.toggle()
     }
 }

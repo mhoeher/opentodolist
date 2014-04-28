@@ -17,7 +17,6 @@
  */
 
 import QtQuick 2.0
-import QtQuick.Layouts 1.1
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Views 1.0
@@ -26,75 +25,53 @@ import net.rpdev.OpenTodoList.Theme 1.0
 Rectangle {
     id: root
 
-    width: 360
-    height: 360
-    focus: true
+    width: 800
+    height: 600
     color: Colors.window
 
-    Keys.onEscapePressed: Qt.quit()
-    Keys.onBackPressed: Qt.quit()
+    onFocusChanged: {
+        // required to give back focus to the page stack whenever a
+        // overlay has been displayed
+        if ( focus ) {
+            pageStack.focus = true
+        }
+    }
+
+    Component.onCompleted: {
+        width = settings.getValue( "width", width );
+        height = settings.getValue( "height", height );
+    }
+
+    onWidthChanged: settings.setValue( "width", width )
+    onHeightChanged: settings.setValue( "height", height )
 
     TodoListLibrary {
         id: todoListLibrary
     }
 
-    TabView {
-        id: tabView
+    Settings {
+        id: settings
+        groups: ["Window", "Geometry"]
+    }
+
+    PageStack {
+        id: pageStack
+
         anchors.fill: parent
-        tabs: [
-            Tab {
-                id: todoListTab
+        focus: true
 
-                name: qsTr( "Todo Lists" )
+        onLastPageClosing: Qt.quit()
 
-                TodoModel {
-                    id: todoModel
-                    library: todoListLibrary
-                    queryType: TodoModel.QueryTopLevelTodosInTodoList
-                }
+        TodoListsPage {
+            library: todoListLibrary
 
-                TodoListView {
-                    id: todoListView
-
-                    library: todoListLibrary
-                    showTodosInline: todoListTab.width < Measures.minimumPageWidth * 2
-                    anchors {
-                        left: parent.left
-                        right: todoView.left
-                        top: parent.top
-                        bottom: parent.bottom
-                    }
-
-                    onTodoListSelected: {
-                        todoModel.todoList = todoList;
-                        todoModel.update();
-                    }
-                }
-                TodoView {
-                    id: todoView
-
-                    anchors {
-                        right: parent.right
-                        top: parent.top
-                        bottom: parent.bottom
-                    }
-                    width: todoModel.count > 0 && parent.width > 2 * Measures.minimumPageWidth ?
-                               parent.width - Measures.minimumPageWidth : 0
-                    model: width > 0 ? todoModel : null
-
-                    Behavior on width { SmoothedAnimation { velocity: 1500 } }
-                }
-            },
-            Tab {
-                name: qsTr( "DevUtils" )
-                Column {
-                    anchors.fill: parent
-                    Button {
-                        text: qsTr( "Reload Todo Lists" )
-                        onClicked: todoListView.update()
-                    }
-                }
+            onTodoSelected: {
+                var component = Qt.createComponent( "TodoPage.qml" );
+                var page = component.createObject( pageStack );
+                page.todo = todo;
+                pageStack.showPage( page );
             }
-        ]
+        }
+
     }
 }

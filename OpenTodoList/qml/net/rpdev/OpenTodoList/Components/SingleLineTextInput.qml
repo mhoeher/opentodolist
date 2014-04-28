@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Components 1.0
 
 FocusScope {
     id: edit
@@ -25,11 +26,15 @@ FocusScope {
     property alias text: input.text
     property alias placeholder: placeholderLabel.text
 
+    signal accept()
+
     width: Measures.mWidth * 20
     height: Measures.mHeight * 2
 
     Keys.onEscapePressed: focus = false
     Keys.onBackPressed: focus = false
+    Keys.onEnterPressed: edit.accept()
+    Keys.onReturnPressed: edit.accept()
 
     Rectangle {
         anchors.fill: parent
@@ -63,7 +68,7 @@ FocusScope {
         }
         Symbol {
             id: clear
-            symbol: deleteText
+            symbol: Symbols.deleteText
             visible: input.text !== ""
             anchors {
                 right: parent.right;
@@ -71,7 +76,6 @@ FocusScope {
                 bottom: parent.bottom;
                 margins: Measures.tinySpace
             }
-            verticalAlignment: Text.AlignVCenter
         }
         MouseArea {
             anchors.fill: clear

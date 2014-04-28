@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Components 1.0
 
 Rectangle {
     id: headerBar
@@ -27,13 +28,62 @@ Rectangle {
     color: Colors.primary
     property list<HeaderBarItem> items
     property alias currentIndex: view.currentIndex
+    property bool showActionButton: false
+    property string actionButtonTitle
+
+    signal actionButtonClicked()
+
+    Item {
+        id: actionButton
+
+        visible: headerBar.showActionButton
+        width: visible ? ( buttonRow.width + Measures.tinySpace * 2 ) : 0
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+
+        Row {
+            id: buttonRow
+            spacing: Measures.tinySpace
+            anchors {
+                left: parent.left
+                leftMargin: Measures.tinySpace
+                verticalCenter: parent.verticalCenter
+            }
+
+            Symbol {
+                symbol: Symbols.doubleLeft
+                anchors.verticalCenter: parent.verticalCenter
+                color: Colors.lightText
+            }
+
+            Label {
+                id: actionLabel
+                anchors.verticalCenter: parent.verticalCenter
+                text: headerBar.actionButtonTitle
+                color: Colors.lightText
+            }
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: headerBar.actionButtonClicked()
+        }
+    }
 
     ListView {
         id: view
         model: headerBar.items
         orientation: Qt.Horizontal
-        anchors.fill: parent
-        focus: true
+        clip: true
+        anchors {
+            left: actionButton.right
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+        }
+
         highlightFollowsCurrentItem: true
 
         delegate: Item {
@@ -44,7 +94,6 @@ Rectangle {
                 text: itemText
                 anchors.centerIn: parent
                 color: Colors.lightText
-                font.bold: true
             }
             MouseArea {
                 anchors.fill: parent

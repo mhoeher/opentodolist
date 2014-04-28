@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Components 1.0
 
 Rectangle {
     id: button
@@ -36,7 +37,7 @@ Rectangle {
             position: 1.0
         }
     }
-    width: label.width * 1.5
+    width: label.width + 2 * Measures.midSpace
     height: label.height * 2
     border { color: Colors.border; width: Measures.midBorderWidth }
     radius: Measures.extraTinySpace
@@ -44,9 +45,10 @@ Rectangle {
     Label {
         id: label
         text: qsTr( "Button" )
-        x: width * 0.25
+        x: Measures.midSpace
         y: height * 0.5
     }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent

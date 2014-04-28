@@ -20,6 +20,7 @@ import QtQuick 2.0
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Views 1.0
 
 ListView {
     id: todoListView
@@ -27,11 +28,14 @@ ListView {
     property TodoListLibrary library
     property TodoList currentTodoList
     property bool showTodosInline: false
+    property bool highlightCurrentTodoList: false
 
     signal todoListSelected( TodoList todoList )
+    signal todoSelected( Todo todo )
 
     highlightMoveDuration: 200
     currentIndex: -1
+    highlightResizeDuration: 200
 
     model: todoListModel
 
@@ -39,6 +43,8 @@ ListView {
         todoList: display
         maxHeight: todoListView.height
         drawDivider: index < todoListModel.count - 1
+        useHighlight: highlightCurrentTodoList && currentIndex == index
+        anchors.leftMargin: Measures.tinySpace
         onClicked: {
             currentIndex = index;
             currentTodoList = display;
@@ -49,16 +55,17 @@ ListView {
                 showTodos = Qt.binding( function() { return showTodosInline && currentIndex == index; } );
             }
         }
+        onTodoSelected: todoListView.todoSelected( todo )
     }
 
     highlight: Item {
         width: parent.width
         Rectangle {
+            id: highlightBar
             anchors {
                 left: parent.left
                 top: parent.top
                 bottom: parent.bottom
-                bottomMargin: Measures.tinySpace * 2
             }
             width: Measures.tinySpace
             gradient: Gradient {

@@ -11,7 +11,8 @@ qml_theme.target = qml/net/rpdev/OpenTodoList
 qml_views.source = qml/net/rpdev/OpenTodoList/Views
 qml_views.target = qml/net/rpdev/OpenTodoList
 
-DEPLOYMENTFOLDERS = qml_main qml_components qml_theme qml_views
+# Workaround: This yields a better view in Qt Creator ;)
+debug:DEPLOYMENTFOLDERS = qml_main qml_components qml_theme qml_views
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH = $$PWD/../OpenTodoListCore/imports $$PWD/qml
@@ -42,8 +43,6 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ANDROID_PACKAGE = net.rpdev.opentodolist
 ANDROID_APP_NAME = Open Todo List
 OTHER_FILES += \
-    android/AndroidManifest.xml \
-    qml/net/rpdev/OpenTodoList/Components/qmldir \
-    qml/net/rpdev/OpenTodoList/Theme/qmldir \
-    qml/net/rpdev/OpenTodoList/Views/qmldir \
-    qml/net/rpdev/OpenTodoList/Views/TodoListView.qml
+    android/AndroidManifest.xml
+
+RESOURCES += OpenTodoList.qrc

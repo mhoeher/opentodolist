@@ -1,9 +1,14 @@
 module net.rpdev.OpenTodoList.Components
-Label 1.0 Label.qml
 Button 1.0 Button.qml
 HeaderBar 1.0 HeaderBar.qml
 HeaderBarItem 1.0 HeaderBarItem.qml
-TabView 1.0 TabView.qml
-Tab 1.0 Tab.qml
+Label 1.0 Label.qml
+LineEditDialog 1.0 LineEditDialog.qml
+Overlay 1.0 Overlay.qml
+Page 1.0 Page.qml
+PageStack 1.0 PageStack.qml
 SingleLineTextInput 1.0 SingleLineTextInput.qml
 Symbol 1.0 Symbol.qml
+SymbolLabel 1.0 SymbolLabel.qml
+Tab 1.0 Tab.qml
+TabView 1.0 TabView.qml

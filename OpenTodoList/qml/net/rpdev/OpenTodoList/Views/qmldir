@@ -1,3 +1,5 @@
 net.rpdev.OpenTodoList.Views 1.0
 TodoListView 1.0 TodoListView.qml
+TodoListViewDelegate 1.0 TodoListViewDelegate.qml
 TodoView 1.0 TodoView.qml
+TodoViewDelegate 1.0 TodoViewDelegate.qml

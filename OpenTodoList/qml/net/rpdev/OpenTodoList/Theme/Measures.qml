@@ -17,9 +17,9 @@
  */
 
 pragma Singleton
-import QtQuick 2.0
+import QtQuick 2.2
 
-Item {
+QtObject {
     id: measures
 
     readonly property int mWidth: hiddenText.width
@@ -40,8 +40,9 @@ Item {
 
     readonly property int minimumPageWidth: 30 * mWidth
 
-    Text {
+    property Text hiddenText: Text {
         id: hiddenText
         text: qsTr("M")
     }
+
 }

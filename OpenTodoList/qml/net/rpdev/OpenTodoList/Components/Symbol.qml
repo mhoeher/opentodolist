@@ -18,16 +18,24 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Components 1.0
 
-Label {
-    id: symbol
+Item {
+    id: component
 
     property alias symbol: symbol.text
+    property alias color: symbol.color
+    property alias font: symbol.font
+    property alias text: symbol.text
 
-    readonly property string deleteText: "\uf057"
-    readonly property string uncheckedBox: "\uf096"
-    readonly property string checkedBox: "\uf046"
+    width: Math.max( symbol.width, symbol.height, Measures.mHeight )
+    height: width
 
-    font.family: Fonts.symbols.name
-    font.pixelSize: Measures.mHeight * 1.5
+    Label {
+        id: symbol
+
+        font.family: Fonts.symbols.name
+        font.pixelSize: Measures.mHeight * 1.1
+        anchors.centerIn: parent
+    }
 }

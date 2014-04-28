@@ -18,13 +18,13 @@
 
 pragma Singleton
 
-import QtQuick 2.0
+import QtQuick 2.2
 
-Item {
+QtObject {
     id: colors
 
     readonly property color window: "#eee"
-    readonly property color button: palette.button
+    readonly property color button: "#ddd"
     readonly property color text: "black"
     readonly property color midText: "#aaa"
     readonly property color lightText: "white"
@@ -49,8 +49,4 @@ Item {
     readonly property color secondary2Light2: "#c37d58"
     readonly property color secondary2Dark1: "#653419"
     readonly property color secondary2Dark2: "#571f00"
-
-    SystemPalette {
-        id: palette
-    }
 }

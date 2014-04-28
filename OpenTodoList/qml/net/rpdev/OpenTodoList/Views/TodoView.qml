@@ -19,26 +19,41 @@
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Views 1.0
 
-ListView {
-    id: view
+Item {
+    id: todoView
 
     property TodoModel todos
+    property alias currentIndex: view.currentIndex
+    property alias color: background.color
+    property alias backgroundVisible: background.visible
 
-    model: todos
-    currentIndex: -1
-    highlightMoveDuration: 200
+    signal todoSelected( Todo todo )
 
-    delegate: TodoViewDelegate {
-        todo: display
-        onClicked: currentIndex = index
+    Rectangle {
+        id: background
+        anchors.fill: parent
+        color: Colors.listItem
+        visible: false
     }
 
-    highlight: Item {
-        width: parent ? parent.width : 0
-        Rectangle {
-            anchors.fill: parent
-            color: Colors.listItemActive
+    ListView {
+        id: view
+
+        model: todoView.todos
+        currentIndex: -1
+        highlightMoveDuration: 200
+        anchors.fill: parent
+
+        delegate: TodoViewDelegate {
+            todo: display
+            onClicked: {
+                currentIndex = index;
+                todoView.todoSelected( display )
+            }
         }
+
     }
+
 }

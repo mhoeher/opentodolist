@@ -20,19 +20,23 @@ import QtQuick 2.0
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
+import net.rpdev.OpenTodoList.Views 1.0
 
-Item {
+FocusScope {
     id: delegate
 
     property TodoList todoList: null
     property bool showTodos: false
     property int maxHeight: 0
     property bool drawDivider: false
+    property alias highlightColor: background.color
+    property bool useHighlight: false
 
     signal clicked()
+    signal todoSelected( Todo todo )
 
     anchors { left: parent.left; right: parent.right }
-    height: childrenRect.height + Measures.tinySpace * 2
+    height: showTodos ? maxHeight : label.height + Measures.smallSpace
     clip: showTodos
 
     onShowTodosChanged: {
@@ -42,71 +46,70 @@ Item {
             model.todoList = todoList;
             model.queryType = TodoModel.QueryTopLevelTodosInTodoList;
             model.update();
-            todosView.model = model;
+            todosView.todos = model;
         }
     }
 
-    Item {
+    Rectangle {
         id: background
+        anchors.fill: parent
+        opacity: useHighlight ? 1.0 : 0.0
+        visible: opacity > 0
+        color: Colors.listItem
+
+        Behavior on opacity { NumberAnimation { duration: 200 } }
+    }
+
+    SymbolLabel {
+        id: label
+
         anchors {
             left: parent.left
             right: parent.right
             top: parent.top
             margins: Measures.tinySpace
         }
-        height: showTodos ? parent.maxHeight : label.height + Measures.tinySpace * ( delegate.drawDivider ? 3 : 2 )
+        symbol: showTodos ? Symbols.doubleUp : ""
+        text: todoList.name
+        placeholder: qsTr( "Untitled Todo List" )
 
-        Label {
-            id: label
-            text: todoList.name
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            anchors {
-                margins: Measures.tinySpace
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-        }
-
-        Label {
-            anchors.fill: label
-            visible: todoList.name === ""
-            color: Colors.midText
-            text: qsTr( "Untitled Todo List" )
-            font.italic: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: delegate.clicked()
-        }
-
-        TodoView {
-            id: todosView
-            clip: true
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: label.bottom
-                bottom: parent.bottom
-                margins: Measures.tinySpace
-                leftMargin: Measures.smallSpace
-            }
-        }
-
-        Rectangle {
-            visible: delegate.drawDivider
-            anchors {
-                left: parent.left
-                right: parent.right
-                bottom: parent.bottom
-            }
-
-            height: Measures.smallBorderWidth
-            color: Colors.listItem
-        }
-
-        Behavior on height { SmoothedAnimation { velocity: 500 } }
+        onClicked: delegate.clicked()
     }
+
+
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: delegate.clicked()
+    }
+
+    TodoView {
+        id: todosView
+        clip: true
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: label.bottom
+            bottom: parent.bottom
+            margins: Measures.tinySpace
+            leftMargin: Measures.smallSpace
+        }
+
+        onTodoSelected: delegate.todoSelected( todo )
+    }
+
+    Rectangle {
+        visible: delegate.drawDivider
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        height: Measures.smallBorderWidth
+        color: Colors.listItem
+    }
+
+    Behavior on height { NumberAnimation { duration: 200 } }
+
 }

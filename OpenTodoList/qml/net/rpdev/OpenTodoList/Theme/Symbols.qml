@@ -16,12 +16,15 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import net.rpdev.OpenTodoList.Theme 1.0
-import net.rpdev.OpenTodoList.Components 1.0
+pragma Singleton
+import QtQuick 2.2
 
-ListElement {
-    id: headerBarItem
-
-    property string itemText: qsTr( "Header Bar Item" )
+QtObject {
+    readonly property string deleteText: "\uf057"
+    readonly property string uncheckedBox: "\uf096"
+    readonly property string checkedBox: "\uf046"
+    readonly property string doubleLeft: "\uf100"
+    readonly property string doubleRight: "\uf101"
+    readonly property string doubleUp: "\uf102"
+    readonly property string doubleDown: "\uf103"
 }
