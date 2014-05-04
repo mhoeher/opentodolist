@@ -29,11 +29,15 @@ public slots:
 
     void start();
     void stop();
+    void notifyTodoListChanged( const QString &backend, const TodoListStruct &list );
+    void notifyTodoChanged( const QString &backend, const TodoStruct &todo );
 
 private:
 
     QThread m_thread;
     QVector< BackendWrapper* > m_backends;
+
+    BackendWrapper* backendByName( const QString &backend ) const;
 
 #ifdef Q_OS_ANDROID
     static QString androidExtStorageLocation();

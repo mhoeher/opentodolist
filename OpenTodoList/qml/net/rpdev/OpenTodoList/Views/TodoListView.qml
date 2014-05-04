@@ -22,7 +22,7 @@ import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Views 1.0
 
-ListView {
+AnimatedListView {
     id: todoListView
 
     property TodoListLibrary library

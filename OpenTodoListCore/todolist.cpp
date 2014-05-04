@@ -32,7 +32,8 @@ TodoList::TodoList(QObject *parent) :
     m_isNull( true ),
     m_backend(),
     m_struct(),
-    m_library( 0 )
+    m_library( 0 ),
+    m_disablePersisting( false )
 {
 }
 
@@ -51,10 +52,18 @@ TodoList::TodoList(const QString &backend,
     m_isNull( false ),
     m_backend( backend ),
     m_struct( list ),
-    m_library( library )
+    m_library( library ),
+    m_disablePersisting( false )
 {
     Q_ASSERT( library != 0 );
     connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
+
+    connect( this, SIGNAL(changed()), this, SLOT(persist()) );
+
+    connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+             this, SLOT(handleTodoListUpdated(QString,TodoListStruct)) );
+    connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
+             this, SLOT(handleTodoListRemoved(QString,TodoListStruct)) );
 }
 
 /**
@@ -94,8 +103,10 @@ QString TodoList::name() const
  */
 void TodoList::setName(const QString &name)
 {
-    m_struct.name = name;
-    emit nameChanged();
+    if ( m_struct.name != name ) {
+        m_struct.name = name;
+        emit nameChanged();
+    }
 }
 
 /**
@@ -103,7 +114,7 @@ void TodoList::setName(const QString &name)
  */
 TodoListLibrary *TodoList::library() const
 {
-    return m_library;
+    return m_library.data();
 }
 
 /**
@@ -116,6 +127,31 @@ TodoListLibrary *TodoList::library() const
 bool TodoList::isNull() const
 {
     return m_isNull;
+}
+
+void TodoList::handleTodoListUpdated(const QString &backend, const TodoListStruct &list)
+{
+    if ( backend == m_backend && list.id == m_struct.id ) {
+        m_disablePersisting = true;
+        setName( list.name );
+        m_struct.meta = list.meta;
+        m_disablePersisting = false;
+    }
+}
+
+void TodoList::handleTodoListRemoved(const QString &backend, const TodoListStruct &list)
+{
+    if ( backend == m_backend && list.id == m_struct.id ) {
+        deleteLater();
+    }
+}
+
+void TodoList::persist()
+{
+    if ( !m_disablePersisting && m_library ) {
+        m_library->storage()->insertTodoList( m_backend, m_struct );
+        m_library->notifyTodoListChanged( m_backend, m_struct );
+    }
 }
 
 

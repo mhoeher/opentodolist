@@ -38,5 +38,6 @@
         <file>qml/net/rpdev/OpenTodoList/Components/Calendar.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Components/DateSelectionDialog.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Components/TextEditor.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Views/AnimatedListView.qml</file>
     </qresource>
 </RCC>

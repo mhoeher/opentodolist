@@ -25,6 +25,7 @@
 #include <QList>
 #include <QObject>
 #include <QObjectList>
+#include <QPointer>
 #include <QVariant>
 #include <QVariantMap>
 
@@ -71,12 +72,17 @@ protected:
     
 private:
 
-    bool             m_isNull;
-    QString          m_backend;
-    TodoListStruct   m_struct;
-    TodoListLibrary *m_library;
+    bool                      m_isNull;
+    QString                   m_backend;
+    TodoListStruct            m_struct;
+    QPointer<TodoListLibrary> m_library;
+    bool                      m_disablePersisting;
     
 private slots:
+
+    void handleTodoListUpdated( const QString &backend, const TodoListStruct &list );
+    void handleTodoListRemoved( const QString &backend, const TodoListStruct &list );
+    void persist();
     
 };
 

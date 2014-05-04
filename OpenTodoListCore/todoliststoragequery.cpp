@@ -1,5 +1,7 @@
 #include "todoliststoragequery.h"
 
+#include <QJsonDocument>
+
 /**
    @brief Constructor
  */
@@ -75,7 +77,7 @@ TodoListStruct TodoListStorageQuery::todoListFromRecord(const QVariantMap &recor
 {
     TodoListStruct result;
     result.id = record.value( "id", QUuid().toString() ).toString();
-    result.meta = record.value( "meta", QVariantMap() ).toMap();
+    result.meta = QJsonDocument::fromJson( record.value( "meta", QByteArray() ).toByteArray() ).toVariant().toMap();
     result.name = record.value( "name", QString() ).toString();
     return result;
 }
@@ -90,7 +92,7 @@ TodoStruct TodoListStorageQuery::todoFromRecord(const QVariantMap &record)
     result.description = record.value( "description", QString() ).toString();
     result.dueDate = record.value( "dueDate", QDateTime() ).toDateTime();
     result.id = record.value( "id", QUuid().toString() ).toString();
-    result.meta = record.value( "meta", QVariantMap() ).toMap();
+    result.meta = QJsonDocument::fromJson( record.value( "meta", QByteArray() ).toByteArray() ).toVariant().toMap();
     result.parentTodoId = record.value( "parentTodo", QUuid().toString() ).toString();
     result.priority = record.value( "prioritity", -1 ).toInt();
     result.progress = record.value( "progress", 0 ).toInt();

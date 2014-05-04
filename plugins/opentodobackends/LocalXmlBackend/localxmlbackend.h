@@ -21,6 +21,8 @@
 
 #include "opentodolistinterfaces.h"
 
+#include <QDomDocument>
+
 class LocalXmlBackend : public QObject, public BackendInterface
 {
     Q_OBJECT
@@ -54,11 +56,20 @@ private:
 
     TodoListStruct todoListFromFile( const QString &fileName );
     TodoStruct todoFromFile(const QString &fileName , double weight);
+
     static bool todoListToFile( const TodoListStruct &todoList );
     static bool todoToFile( const TodoStruct &todo );
 
+    static bool listToDom( const TodoListStruct &list, QDomDocument &doc );
+    static bool domToList( const QDomDocument &doc, TodoListStruct &list );
+    static bool todoToDom( const TodoStruct &todo, QDomDocument &doc );
+    static bool domToTodo( const QDomDocument &doc, TodoStruct &todo );
+
     static const QString TodoListConfigFileName;
     static const QString TodoDirectoryName;
+
+    static const QString TodoListMetaFileName;
+    static const QString TodoMetaFileName;
 
 };
 

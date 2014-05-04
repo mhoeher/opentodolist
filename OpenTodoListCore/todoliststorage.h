@@ -40,6 +40,11 @@ public:
 
 signals:
 
+    void todoListInserted( const QString &backend, const TodoListStruct &list );
+    void todoListRemoved( const QString &backend, const TodoListStruct &list );
+    void todoInserted( const QString &backend, const TodoStruct &todo );
+    void todoRemoved( const QString &backend, const TodoStruct &todo );
+
 public slots:
 
     bool insertTodoList( const QString &backend, const TodoListStruct &list );
@@ -51,6 +56,7 @@ private:
 
     QThread                         m_thread;
     TodoListStorageWorker          *m_worker;
+
 };
 
 /**
@@ -72,8 +78,15 @@ public slots:
     void init();
     void insertTodoList( const QString &backend, const TodoListStruct &list );
     void insertTodo( const QString &backend, const TodoStruct &todo );
-    void deleteTodoList( const QString &backend, const TodoListStruct &list );
-    void deleteTodo( const QString &backend, const TodoStruct &todo );
+    void deleteTodoList( const QString &backend, const TodoListStruct &list, bool update = false );
+    void deleteTodo( const QString &backend, const TodoStruct &todo,  bool update = false );
+
+signals:
+
+    void todoListInserted( const QString &backend, const TodoListStruct &list );
+    void todoListRemoved( const QString &backend, const TodoListStruct &list );
+    void todoInserted( const QString &backend, const TodoStruct &todo );
+    void todoRemoved( const QString &backend, const TodoStruct &todo );
 
 private:
 

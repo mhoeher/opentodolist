@@ -39,7 +39,7 @@ Item {
         visible: false
     }
 
-    ListView {
+    AnimatedListView {
         id: view
 
         model: todoView.todos
@@ -54,7 +54,5 @@ Item {
                 todoView.todoSelected( display )
             }
         }
-
     }
-
 }

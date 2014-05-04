@@ -48,6 +48,7 @@ private:
     QPointer<TodoListLibrary> m_library;
     QSet< QString >           m_newTodoLists;
     QSet< QString >           m_loadedTodoLists;
+    bool                      m_updateNeeded;
 
     static QString todoListId(const QString &backend, const TodoListStruct &list );
     static QString todoListId( const TodoList *list );
@@ -55,6 +56,9 @@ private:
 
 private slots:
 
+    void handleTodoListDeleted( QObject *list );
+
+    void triggerUpdate();
     void addTodoList( const QString &backend, const TodoListStruct &list );
     void removeExtraLists();
 

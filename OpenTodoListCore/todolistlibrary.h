@@ -53,6 +53,9 @@ signals:
     
 public slots:
 
+    void notifyTodoListChanged( const QString &backend, const TodoListStruct &list );
+    void notifyTodoChanged( const QString &backend, const TodoStruct &todo );
+
 private:
 
     PluginsLoader                   *m_plugins;

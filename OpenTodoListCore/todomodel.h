@@ -32,10 +32,13 @@ class TodoModel : public QAbstractListModel
 
 public:
 
+    /**
+       @brief The type of listing the model shows
+     */
     enum QueryType {
-        InvalidQuery,
-        QueryTopLevelTodosInTodoList,
-        QuerySubTodosOfTodo
+        InvalidQuery, //!< The model shows nothing
+        QueryTopLevelTodosInTodoList, //!< The model shows top level todos in a todo list
+        QuerySubTodosOfTodo //!< The model shows sub-todos of a given todo
     };
 
     explicit TodoModel(QObject *parent = 0);
@@ -77,6 +80,7 @@ private:
     QPointer<TodoListLibrary> m_library;
     QSet< QString >           m_loadedTodos;
     QSet< QString >           m_newLoadedTodos;
+    bool                      m_needUpdate;
 
     QPointer<TodoList> m_todoList;
     QPointer<Todo>     m_parentTodo;
@@ -85,8 +89,11 @@ private:
 
 private slots:
 
+    void triggerUpdate();
     void addTodo( const QString &backend, const TodoStruct &todo );
     void removeExtraneousTodos();
+
+    void handleTodoDeleted( QObject *todo );
 
 
 };

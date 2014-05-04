@@ -27,6 +27,9 @@
 const QString LocalXmlBackend::TodoListConfigFileName = "config.xml";
 const QString LocalXmlBackend::TodoDirectoryName = "todos";
 
+const QString LocalXmlBackend::TodoListMetaFileName = "LocalXmlBackend::TodoList::fileName";
+const QString LocalXmlBackend::TodoMetaFileName = "LocalXmlBackend::Todo::fileName";
+
 LocalXmlBackend::LocalXmlBackend(QObject *parent) :
     QObject( parent ),
     m_database( 0 ),
@@ -96,16 +99,12 @@ bool LocalXmlBackend::stop()
 
 bool LocalXmlBackend::notifyTodoListChanged(const TodoListStruct &list)
 {
-    // TODO: implement me
-    Q_UNUSED( list );
-    return true;
+    return todoListToFile( list );
 }
 
 bool LocalXmlBackend::notifyTodoChanged(const TodoStruct &todo)
 {
-    // TODO: Implement me
-    Q_UNUSED( todo );
-    return true;
+    return todoToFile( todo );
 }
 
 /**
@@ -151,14 +150,9 @@ TodoListStruct LocalXmlBackend::todoListFromFile(const QString &fileName)
         QString errorMessage;
         int errorLine, errorColumn;
         if ( doc.setContent( &file, &errorMessage, &errorLine, &errorColumn ) ) {
-            QDomElement root = doc.documentElement();
-            if ( root.hasAttribute( "name" ) ) {
-                result.name = root.attribute( "name" );
-            }
-            if ( root.hasAttribute( "id" ) ) {
-                result.id = QUuid( root.attribute( "id" ) );
-            } else {
-                result.id = QUuid::createUuid();
+            if ( !domToList( doc, result ) ) {
+                qWarning() << "File" << fileName << "is not a valid todo list XML";
+                return m_database->nullTodoList();
             }
         } else {
             qWarning() << "Error reading todo list from" << fileName << ":"
@@ -170,13 +164,14 @@ TodoListStruct LocalXmlBackend::todoListFromFile(const QString &fileName)
                    << file.errorString();
     }
 
-    result.meta.insert( "LocalXmlBackend::TodoList::fileName", fileName );
+    result.meta.insert( TodoListMetaFileName, fileName );
     return result;
 }
 
 TodoStruct LocalXmlBackend::todoFromFile(const QString &fileName, double weight )
 {
     TodoStruct result = m_database->nullTodo();
+    result.weight = weight;
 
     QFile file( fileName );
     if ( file.open( QIODevice::ReadOnly ) ) {
@@ -184,26 +179,9 @@ TodoStruct LocalXmlBackend::todoFromFile(const QString &fileName, double weight 
         QString errorString;
         int errorLine, errorColumn;
         if ( doc.setContent(  &file, &errorString, &errorLine, &errorColumn  ) ) {
-            QDomElement root = doc.documentElement();
-            if ( root.hasAttribute( "id" ) ) {
-                result.id = root.attribute( "id" );
-            } else {
-                result.id = QUuid::createUuid();
-            }
-            result.title = root.attribute( "title" );
-            result.progress = qBound( 0, root.attribute( "progress", "0" ).toInt(), 100 );
-            result.priority = qBound( -1, root.attribute( "priority", "-1" ).toInt(), 10 );
-            result.deleted = root.attribute( "deleted", "false" ) == "true";
-            if ( root.hasAttribute( "dueDate" ) ) {
-                result.dueDate = QDateTime::fromString( root.attribute( "dueDate" ) );
-            }
-            if ( root.hasAttribute( "parent" ) ) {
-                result.parentTodoId = QUuid( root.attribute( "parent" ) );
-            }
-            result.weight = root.attribute( "weight", QString::number( weight ) ).toDouble();
-            QDomElement description = root.firstChildElement( "description" );
-            if ( description.isElement() ) {
-                result.description = description.text();
+            if ( !domToTodo( doc, result ) ) {
+                qWarning() << "File" << fileName << "is not a valid todo XML file";
+                return m_database->nullTodo();
             }
         } else {
             qWarning() << "Error loading todo from" << fileName << ":"
@@ -215,22 +193,180 @@ TodoStruct LocalXmlBackend::todoFromFile(const QString &fileName, double weight 
                    << file.errorString();
     }
 
-    result.meta.insert( "LocalXmlBackend::Todo::fileName", fileName );
+    result.meta.insert( TodoMetaFileName, fileName );
     return result;
 }
 
 bool LocalXmlBackend::todoListToFile(const TodoListStruct &todoList)
 {
-    // TODO: Implement me
-    Q_UNUSED( todoList );
-    return false;
+    QDomDocument dom;
+    QString fileName = todoList.meta.value( TodoListMetaFileName ).toString();
+    QFileInfo fi( fileName );
+    if ( fi.exists() && fi.isReadable() ) {
+        QFile inFile( fileName );
+        if ( inFile.open( QIODevice::ReadOnly ) ) {
+            QString errorMessage;
+            int errorLine, errorColumn;
+            if ( !dom.setContent( &inFile, &errorMessage, &errorLine, &errorColumn ) ) {
+                qWarning() << "File" << inFile.fileName() << "is not a valid todo list file";
+                inFile.close();
+                return false;
+            }
+        } else {
+            qWarning() << "Failed to open" << inFile.fileName();
+            qWarning() << inFile.errorString();
+            return false;
+        }
+    }
+
+    if ( !listToDom( todoList, dom ) ) {
+        qWarning() << "Failed to persist todo list to DOM";
+        return false;
+    }
+
+    QFile outFile( fileName );
+    if ( outFile.open( QIODevice::WriteOnly ) ) {
+        outFile.write( dom.toString().toUtf8() );
+        outFile.close();
+        return true;
+    } else {
+        qWarning() << "Failed to open" << fileName << "for writing:" << outFile.errorString();
+        return false;
+    }
 }
 
 bool LocalXmlBackend::todoToFile(const TodoStruct &todo)
 {
-    // TODO: Implement me
-    Q_UNUSED( todo );
-    return false;
+    QDomDocument dom;
+    QString fileName = todo.meta.value( TodoMetaFileName ).toString();
+    QFileInfo fi( fileName );
+    if ( fi.exists() && fi.isReadable() ) {
+        QFile inFile( fileName );
+        if ( inFile.open( QIODevice::ReadOnly ) ) {
+            QString errorMessage;
+            int errorLine, errorColumn;
+            if ( !dom.setContent( &inFile, &errorMessage, &errorLine, &errorColumn ) ) {
+                qWarning() << "File" << inFile.fileName() << "is not a valid todo file";
+                inFile.close();
+                return false;
+            }
+        } else {
+            qWarning() << "Failed to open" << inFile.fileName();
+            qWarning() << inFile.errorString();
+            return false;
+        }
+    }
+
+    if ( !todoToDom( todo, dom ) ) {
+        qWarning() << "Failed to persist todo to DOM";
+        return false;
+    }
+
+    QFile outFile( fileName );
+    if ( outFile.open( QIODevice::WriteOnly ) ) {
+        outFile.write( dom.toString().toUtf8() );
+        outFile.close();
+        return true;
+    } else {
+        qWarning() << "Failed to open" << fileName << "for writing:" << outFile.errorString();
+        return false;
+    }
+}
+
+bool LocalXmlBackend::listToDom(const TodoListStruct &list, QDomDocument &doc)
+{
+    QDomElement root = doc.documentElement();
+    if ( !root.isElement() ) {
+        doc.createElement( "todoList" );
+        doc.appendChild( root );
+    }
+    root.setAttribute( "id", list.id.toString() );
+    root.setAttribute( "name", list.name );
+    return true;
+}
+
+bool LocalXmlBackend::domToList(const QDomDocument &doc, TodoListStruct &list)
+{
+    QDomElement root = doc.documentElement();
+    if ( !root.isElement() ) {
+        return false;
+    }
+    if ( !root.hasAttribute( "id" ) ) {
+        list.id = QUuid::createUuid();
+    } else {
+        list.id = root.attribute( "id", list.id.toString() );
+    }
+    list.name = root.attribute( "name", list.name );
+    return true;
+}
+
+bool LocalXmlBackend::todoToDom(const TodoStruct &todo, QDomDocument &doc)
+{
+    QDomElement root = doc.documentElement();
+    if ( !root.isElement() ) {
+        root = doc.createElement( "todo" );
+        doc.appendChild( root );
+    }
+    root.setAttribute( "id", todo.id.toString() );
+    root.setAttribute( "title", todo.title );
+    root.setAttribute( "progress", todo.progress );
+    root.setAttribute( "priority", todo.priority );
+    root.setAttribute( "deleted", todo.deleted ? "true" : "false" );
+    root.setAttribute( "weight", todo.weight );
+    if ( todo.dueDate.isValid() ) {
+        root.setAttribute( "dueDate", todo.dueDate.toString() );
+    } else {
+        root.removeAttribute( "dueDate" );
+    }
+    if ( todo.parentTodoId.isNull() ) {
+        root.removeAttribute( "parent" );
+    } else {
+        root.setAttribute( "parent", todo.parentTodoId.toString() );
+    }
+    QDomElement descriptionElement = root.firstChildElement( "description" );
+    if ( !descriptionElement.isElement() ) {
+        descriptionElement = doc.createElement( "description" );
+        root.appendChild( descriptionElement );
+    }
+    descriptionElement.setNodeValue( todo.description );
+    return true;
+}
+
+bool LocalXmlBackend::domToTodo(const QDomDocument &doc, TodoStruct &todo)
+{
+    QDomElement root = doc.documentElement();
+
+    if ( !root.isElement() ) {
+        return false;
+    }
+
+    if ( root.hasAttribute( "id" ) ) {
+        todo.id = root.attribute( "id" );
+    } else {
+        todo.id = QUuid::createUuid();
+    }
+    todo.title = root.attribute( "title" );
+    todo.progress = qBound( 0, root.attribute( "progress", QString::number(todo.progress) ).toInt(), 100 );
+    todo.priority = qBound( -1, root.attribute( "priority", QString::number(todo.priority) ).toInt(), 10 );
+    todo.deleted = root.attribute( "deleted", todo.deleted ? "true" : "false" ) == "true";
+    if ( root.hasAttribute( "dueDate" ) ) {
+        todo.dueDate = QDateTime::fromString( root.attribute( "dueDate" ) );
+    } else {
+        todo.dueDate = QDateTime();
+    }
+    if ( root.hasAttribute( "parent" ) ) {
+        todo.parentTodoId = QUuid( root.attribute( "parent" ) );
+    } else {
+        todo.parentTodoId = QString();
+    }
+    todo.weight = root.attribute( "weight", QString::number( todo.weight ) ).toDouble();
+    QDomElement description = root.firstChildElement( "description" );
+    if ( description.isElement() ) {
+        todo.description = description.text();
+    } else {
+        todo.description = QString();
+    }
+    return true;
 }
 
 #if QT_VERSION < 0x050000

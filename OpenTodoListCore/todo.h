@@ -22,6 +22,7 @@
 #include "opentodolistinterfaces.h"
 
 #include <QObject>
+#include <QPointer>
 
 
 class TodoList;
@@ -97,11 +98,18 @@ protected:
 
 private:
 
-    bool             m_isNull;
-    QString          m_backend;
-    TodoStruct       m_struct;
-    TodoListLibrary* m_library;
-    int              m_previousProgress;
+    bool                      m_isNull;
+    QString                   m_backend;
+    TodoStruct                m_struct;
+    QPointer<TodoListLibrary> m_library;
+    int                       m_previousProgress;
+    bool                      m_disablePersisting;
+
+private slots:
+
+    void persist();
+    void handleTodoUpdates( const QString &backend, const TodoStruct &todo );
+    void handleTodoRemoved( const QString &backend, const TodoStruct &todo );
 
 };
 

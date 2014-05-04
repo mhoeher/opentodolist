@@ -20,6 +20,8 @@
 
 #include "todolistlibrary.h"
 
+#include <QDebug>
+
 
 /**
    @brief Creates a new invalid Todo
@@ -34,7 +36,8 @@ Todo::Todo(QObject *parent) :
     m_backend(),
     m_struct(),
     m_library( 0 ),
-    m_previousProgress( -1 )
+    m_previousProgress( -1 ),
+    m_disablePersisting( false )
 {
 }
 
@@ -55,7 +58,8 @@ Todo::Todo(const QString &backend,
     m_backend( backend ),
     m_struct( todo ),
     m_library( library ),
-    m_previousProgress( -1 )
+    m_previousProgress( -1 ),
+    m_disablePersisting( false )
 {
     Q_ASSERT( library != 0 );
     connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
@@ -65,6 +69,12 @@ Todo::Todo(const QString &backend,
     connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
+
+    connect( this, SIGNAL(changed()), this, SLOT(persist()) );
+    connect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
+            this, SLOT(handleTodoUpdates(QString,TodoStruct)) );
+    connect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
+            this, SLOT(handleTodoRemoved(QString,TodoStruct)) );
 }
 
 /**
@@ -103,8 +113,10 @@ double Todo::weight() const
  */
 void Todo::setWeight(double weight)
 {
-    m_struct.weight = weight;
-    emit weightChanged();
+    if ( m_struct.weight != weight ) {
+        m_struct.weight = weight;
+        emit weightChanged();
+    }
 }
 
 /**
@@ -140,8 +152,10 @@ int Todo::priority() const
  */
 void Todo::setPriority(int priority)
 {
-    m_struct.priority = qBound( -1, priority, 10 );
-    emit priorityChanged();
+    if ( m_struct.priority != priority ) {
+        m_struct.priority = qBound( -1, priority, 10 );
+        emit priorityChanged();
+    }
 }
 
 /**
@@ -173,8 +187,10 @@ QDateTime Todo::dueDate() const
  */
 void Todo::setDueDate(const QDateTime &dueDate)
 {
-    m_struct.dueDate = dueDate;
-    emit dueDateChanged();
+    if ( m_struct.dueDate != dueDate ) {
+        m_struct.dueDate = dueDate;
+        emit dueDateChanged();
+    }
 }
 
 /**
@@ -190,8 +206,10 @@ QString Todo::title() const
  */
 void Todo::setTitle(const QString &title)
 {
-    m_struct.title = title;
-    emit titleChanged();
+    if ( m_struct.title != title ) {
+        m_struct.title = title;
+        emit titleChanged();
+    }
 }
 
 /**
@@ -207,8 +225,10 @@ QString Todo::description() const
  */
 void Todo::setDescription(const QString &description)
 {
-    m_struct.description = description;
-    emit descriptionChanged();
+    if ( m_struct.description != description ) {
+        m_struct.description = description;
+        emit descriptionChanged();
+    }
 }
 
 /**
@@ -224,8 +244,10 @@ bool Todo::isDeleted() const
  */
 void Todo::setDeleted(bool deleted)
 {
-    m_struct.deleted = deleted;
-    emit deletedChanged();
+    if ( m_struct.deleted != deleted ) {
+        m_struct.deleted = deleted;
+        emit deletedChanged();
+    }
 }
 
 /**
@@ -233,7 +255,7 @@ void Todo::setDeleted(bool deleted)
  */
 TodoListLibrary *Todo::library() const
 {
-    return m_library;
+    return m_library.data();
 }
 
 /**
@@ -270,6 +292,39 @@ void Todo::toggle()
                          m_previousProgress : 0 );
     } else {
         setProgress( 100 );
+    }
+}
+
+/**
+   @brief Saves back any changes of the todo into the
+ */
+void Todo::persist()
+{
+    if ( !m_disablePersisting && m_library ) {
+        m_library->storage()->insertTodo( m_backend, m_struct );
+        m_library->notifyTodoChanged( m_backend, m_struct );
+    }
+}
+
+void Todo::handleTodoUpdates(const QString &backend, const TodoStruct &todo)
+{
+    if ( backend == m_backend && todo.id == m_struct.id ) {
+        m_disablePersisting = true;
+        setWeight( todo.weight );
+        setProgress( todo.progress );
+        setPriority( todo.priority );
+        setDueDate( todo.dueDate );
+        setTitle( todo.title );
+        setDescription( todo.description );
+        setDeleted( todo.deleted );
+        m_disablePersisting = false;
+    }
+}
+
+void Todo::handleTodoRemoved(const QString &backend, const TodoStruct &todo)
+{
+    if ( backend == m_backend && todo.id == m_struct.id ) {
+        deleteLater();
     }
 }
 

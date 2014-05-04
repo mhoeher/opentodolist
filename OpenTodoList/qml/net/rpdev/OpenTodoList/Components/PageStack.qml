@@ -34,6 +34,7 @@ FocusScope {
     function initChildren() {
         for ( var i = 0; i < children.length; ++i ) {
             var child = children[i];
+            child.pageStack = pageStack;
             if ( i === 0 ) {
                 child.state = "default";
             } else {

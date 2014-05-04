@@ -60,7 +60,6 @@ Page {
 
                 onTodoListSelected: {
                     todoModel.todoList = todoList;
-                    todoModel.update();
                 }
 
                 onTodoSelected: page.todoSelected( todo )
@@ -74,9 +73,9 @@ Page {
                     top: parent.top
                     bottom: parent.bottom
                 }
-                width: todoModel.count > 0 && parent.width > 2 * Measures.minimumPageWidth ?
+                width: todoModel.todoList !== null && parent.width > 2 * Measures.minimumPageWidth ?
                            parent.width - Measures.minimumPageWidth : 0
-                todos: width > 0 ? todoModel : null
+                todos: todoModel
                 backgroundVisible: true
 
                 onTodoSelected: page.todoSelected( todo )
@@ -90,7 +89,7 @@ Page {
                 anchors.fill: parent
                 Button {
                     text: qsTr( "Reload Todo Lists" )
-                    onClicked: todoListView.update()
+                    onClicked: todoListView.model.update()
                 }
             }
         }

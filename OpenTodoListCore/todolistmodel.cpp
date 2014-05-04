@@ -1,19 +1,22 @@
 #include "todolistmodel.h"
 
 #include <QDebug>
+#include <QTimer>
 
 TodoListModel::TodoListModel(QObject *parent) :
     QAbstractListModel(parent),
     m_todoLists(),
     m_library( 0 ),
     m_newTodoLists(),
-    m_loadedTodoLists()
+    m_loadedTodoLists(),
+    m_updateNeeded( false )
 {
     connect( this, SIGNAL(libraryChanged()), this, SLOT(update()) );
     connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
              this, SIGNAL(countChanged()) );
     connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),
              this, SIGNAL(countChanged()) );
+
 }
 
 TodoListModel::~TodoListModel()
@@ -27,8 +30,22 @@ TodoListLibrary *TodoListModel::library() const
 
 void TodoListModel::setLibrary(TodoListLibrary *library)
 {
-    m_library = library;
-    emit libraryChanged();
+    if ( m_library != library ) {
+        if ( m_library ) {
+            disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+                        this, SLOT(update()) );
+            disconnect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
+                        this, SLOT(update()) );
+        }
+        m_library = library;
+        if ( m_library ) {
+            connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+                        this, SLOT(update()) );
+            connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
+                        this, SLOT(update()) );
+        }
+        emit libraryChanged();
+    }
 }
 
 int TodoListModel::rowCount(const QModelIndex &parent) const
@@ -53,6 +70,36 @@ QVariant TodoListModel::data(const QModelIndex &index, int role) const
 
 void TodoListModel::update()
 {
+    m_updateNeeded = true;
+    QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
+}
+
+QString TodoListModel::todoListId(const QString &backend, const TodoListStruct &list)
+{
+    return backend + "." + list.id.toString();
+}
+
+QString TodoListModel::todoListId(const TodoList *list)
+{
+    return list->backend() + "." + list->id();
+}
+
+void TodoListModel::handleTodoListDeleted(QObject *list)
+{
+    int index = m_todoLists.indexOf( static_cast< TodoList* >( list ) );
+    if ( index >= 0 && index < m_todoLists.size() ) {
+        beginRemoveRows( QModelIndex(), index, index );
+        m_todoLists.removeAt( index );
+        endRemoveRows();
+    }
+}
+
+void TodoListModel::triggerUpdate()
+{
+    if ( !m_updateNeeded ) {
+        return;
+    }
+
     if ( m_library ) {
         emit beginUpdate();
         TodoListQuery *query = new TodoListQuery();
@@ -64,16 +111,8 @@ void TodoListModel::update()
                  this, SIGNAL(endUpdate()), Qt::QueuedConnection );
         m_library->storage()->runQuery( query );
     }
-}
 
-QString TodoListModel::todoListId(const QString &backend, const TodoListStruct &list)
-{
-    return backend + "." + list.id.toString();
-}
-
-QString TodoListModel::todoListId(const TodoList *list)
-{
-    return list->backend() + "." + list->id();
+    m_updateNeeded = false;
 }
 
 void TodoListModel::addTodoList(const QString &backend, const TodoListStruct &list)
@@ -97,9 +136,9 @@ void TodoListModel::removeExtraLists()
         TodoList *list = m_todoLists.at( i );
         QString id = todoListId( list );
         if ( !m_newTodoLists.contains( id ) ) {
-            emit beginRemoveRows( QModelIndex(), i, i );
+            beginRemoveRows( QModelIndex(), i, i );
             m_todoLists.removeAt( i );
-            emit endRemoveRows();
+            endRemoveRows();
             m_loadedTodoLists.remove( id );
             list->deleteLater();
         }

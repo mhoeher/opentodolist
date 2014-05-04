@@ -89,6 +89,16 @@ bool TodoListLibrary::deleteTodo(const BackendInterface *backend,
     return m_storage->deleteTodo( backend->id(), todo );
 }
 
+void TodoListLibrary::notifyTodoListChanged(const QString &backend, const TodoListStruct &list)
+{
+    m_backendRunner->notifyTodoListChanged( backend, list );
+}
+
+void TodoListLibrary::notifyTodoChanged(const QString &backend, const TodoStruct &todo)
+{
+    m_backendRunner->notifyTodoChanged( backend, todo );
+}
+
 void TodoListLibrary::saveSettings()
 {
     /*

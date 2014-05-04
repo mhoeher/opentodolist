@@ -21,6 +21,14 @@ TodoListStorage::TodoListStorage(QObject *parent) :
     m_thread.start();
     m_worker->moveToThread( &m_thread );
     QMetaObject::invokeMethod( m_worker, "init", Qt::QueuedConnection );
+    connect( m_worker, SIGNAL(todoListInserted(QString,TodoListStruct)),
+             this, SIGNAL(todoListInserted(QString,TodoListStruct)) );
+    connect( m_worker, SIGNAL(todoInserted(QString,TodoStruct)),
+             this, SIGNAL(todoInserted(QString,TodoStruct)) );
+    connect( m_worker, SIGNAL(todoListRemoved(QString,TodoListStruct)),
+             this, SIGNAL(todoListRemoved(QString,TodoListStruct)) );
+    connect( m_worker, SIGNAL(todoRemoved(QString,TodoStruct)),
+             this, SIGNAL(todoRemoved(QString,TodoStruct)) );
 }
 
 /**
@@ -109,7 +117,6 @@ bool TodoListStorage::deleteTodo(const QString &backend, const TodoStruct &todo)
                 Q_ARG( QString, backend ),
                 Q_ARG( TodoStruct, todo ) );
 }
-
 
 /**
    @brief Constructor
@@ -208,7 +215,7 @@ void TodoListStorageWorker::init() {
  */
 void TodoListStorageWorker::insertTodoList(const QString &backend, const TodoListStruct &list) {
     // ensure previous instance - if it exists - is removed
-    deleteTodoList( backend, list );
+    deleteTodoList( backend, list, true );
 
     QVariantMap values;
     values.insert( "backend", backend );
@@ -219,6 +226,7 @@ void TodoListStorageWorker::insertTodoList(const QString &backend, const TodoLis
                        QJsonDocument::fromVariant( list.meta ).toJson() );
     }
     insertRow( "todoList", values );
+    emit todoListInserted( backend, list );
 }
 
 /**
@@ -226,7 +234,7 @@ void TodoListStorageWorker::insertTodoList(const QString &backend, const TodoLis
  */
 void TodoListStorageWorker::insertTodo(const QString &backend, const TodoStruct &todo) {
     // ensure previous instance - if it exists - is removed
-    deleteTodo( backend, todo );
+    deleteTodo( backend, todo, true );
 
     QVariantMap values;
     values.insert( "backend", backend );
@@ -252,26 +260,33 @@ void TodoListStorageWorker::insertTodo(const QString &backend, const TodoStruct 
                        .toJson() );
     }
     insertRow( "todo", values );
+    emit todoInserted( backend, todo );
 }
 
 /**
    @brief Removes a todo @p list of the @p backend from the database
  */
-void TodoListStorageWorker::deleteTodoList(const QString &backend, const TodoListStruct &list) {
+void TodoListStorageWorker::deleteTodoList(const QString &backend, const TodoListStruct &list, bool update) {
     QVariantMap row;
     row.insert( "backend", backend );
-    row.insert( "id", list.id );
+    row.insert( "id", list.id.toString() );
     deleteRow( "todoList", row );
+    if ( !update ) {
+        emit todoListRemoved( backend, list );
+    }
 }
 
 /**
    @brief Removes a @p todo of the @p backend from the database
  */
-void TodoListStorageWorker::deleteTodo(const QString &backend, const TodoStruct &todo) {
+void TodoListStorageWorker::deleteTodo(const QString &backend, const TodoStruct &todo, bool update) {
     QVariantMap row;
     row.insert( "backend", backend );
-    row.insert( "id", todo.id );
+    row.insert( "id", todo.id.toString() );
     deleteRow( "todo", row );
+    if ( !update ) {
+        emit todoRemoved( backend, todo );
+    }
 }
 
 /**
@@ -315,7 +330,7 @@ void TodoListStorageWorker::deleteRow(const QString &tableName, const QVariantMa
                    .arg( tableName )
                    .arg( values.join( " AND " ) ) );
     foreach ( const QString &key, row.keys() ) {
-        query.bindValue( key, row.value( key ) );
+        query.bindValue( ":" + key, row.value( key ) );
     }
     if ( !query.exec() ) {
         qCritical() << "Failed to remove row:"

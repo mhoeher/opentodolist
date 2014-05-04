@@ -44,8 +44,8 @@ public:
     virtual QString description() const;
     virtual bool start();
     virtual bool stop();
-    virtual bool notifyTodoListChanged(const TodoListStruct &list);
-    virtual bool notifyTodoChanged(const TodoStruct &todo);
+    Q_INVOKABLE virtual bool notifyTodoListChanged(const TodoListStruct &list);
+    Q_INVOKABLE virtual bool notifyTodoChanged(const TodoStruct &todo);
 
 signals:
 

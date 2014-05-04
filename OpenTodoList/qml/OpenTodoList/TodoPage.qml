@@ -196,18 +196,29 @@ Page {
                             }
                         }
                     }
+
                     TodoView {
                         id: subTodosView
 
                         Layout.columnSpan: 2
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 200
+                        Layout.preferredHeight: contentItem.height
+                        backgroundVisible: true
                         todos: TodoModel {
-                            parentTodo: page.todo
-                            library: page.todo ? page.todo.library : null
+                            id: subTodosModel
                             queryType: TodoModel.QuerySubTodosOfTodo
+                            parentTodo: page.todo ? page.todo : null
+                        }
 
-                            onParentTodoChanged: update()
+                        onTodoSelected: {
+                            var component = Qt.createComponent( "TodoPage.qml" );
+                            if ( component.status === Component.Ready ) {
+                                var newPage = component.createObject( page.pageStack );
+                                newPage.todo = todo;
+                                page.pageStack.showPage( newPage );
+                            } else {
+                                console.error( component.errorString() );
+                            }
                         }
                     }
                 }

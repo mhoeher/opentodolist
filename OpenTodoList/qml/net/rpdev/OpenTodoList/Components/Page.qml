@@ -24,6 +24,7 @@ Item {
     id: page
 
     property string name: qsTr( "Page" )
+    property PageStack pageStack: null
     default property alias children: inner.children
 
     function close() {
