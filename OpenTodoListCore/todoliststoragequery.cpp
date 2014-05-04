@@ -94,7 +94,7 @@ TodoStruct TodoListStorageQuery::todoFromRecord(const QVariantMap &record)
     result.id = record.value( "id", QUuid().toString() ).toString();
     result.meta = QJsonDocument::fromJson( record.value( "meta", QByteArray() ).toByteArray() ).toVariant().toMap();
     result.parentTodoId = record.value( "parentTodo", QUuid().toString() ).toString();
-    result.priority = record.value( "prioritity", -1 ).toInt();
+    result.priority = record.value( "priority", -1 ).toInt();
     result.progress = record.value( "progress", 0 ).toInt();
     result.title = record.value( "title", QString() ).toString();
     result.todoListId = record.value( "todoList", QUuid().toString() ).toString();

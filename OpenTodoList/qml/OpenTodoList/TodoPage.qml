@@ -184,12 +184,17 @@ Page {
                                     anchors.fill: parent
 
                                     property Component dialog: RichTextEditDialog {
-                                        text: page.todo ? page.todo.description : ""
-                                        onAccept: if ( page.todo ) page.todo.description = text
+                                        onAccept: {
+                                            if ( page.todo )
+                                                page.todo.description = this.text;
+                                        }
                                     }
 
                                     onClicked: {
                                         var d = dialog.createObject( this );
+                                        if ( page.todo ) {
+                                            d.text = page.todo.description;
+                                        }
                                         d.show();
                                     }
                                 }

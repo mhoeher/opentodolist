@@ -366,7 +366,11 @@ bool LocalXmlBackend::todoToDom(const TodoStruct &todo, QDomDocument &doc)
         descriptionElement = doc.createElement( "description" );
         root.appendChild( descriptionElement );
     }
-    descriptionElement.setNodeValue( todo.description );
+    while ( !descriptionElement.firstChild().isNull() ) {
+        descriptionElement.removeChild( descriptionElement.firstChild() );
+    }
+    QDomText descriptionText = doc.createTextNode( todo.description );
+    descriptionElement.appendChild( descriptionText );
     return true;
 }
 
