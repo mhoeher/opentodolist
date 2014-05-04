@@ -19,6 +19,7 @@
 #include "todo.h"
 
 #include "todolistlibrary.h"
+#include "todoliststoragequery.h"
 
 #include <QDebug>
 
@@ -34,7 +35,8 @@ Todo::Todo(QObject *parent) :
     QObject( parent ),
     m_isNull( true ),
     m_backend(),
-    m_struct(),
+    m_struct( BackendWrapper::NullTodo ),
+    m_todoList( BackendWrapper::NullTodoList ),
     m_library( 0 ),
     m_previousProgress( -1 ),
     m_disablePersisting( false )
@@ -57,6 +59,7 @@ Todo::Todo(const QString &backend,
     m_isNull( false ),
     m_backend( backend ),
     m_struct( todo ),
+    m_todoList( BackendWrapper::NullTodoList ),
     m_library( library ),
     m_previousProgress( -1 ),
     m_disablePersisting( false )
@@ -75,6 +78,15 @@ Todo::Todo(const QString &backend,
             this, SLOT(handleTodoUpdates(QString,TodoStruct)) );
     connect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
             this, SLOT(handleTodoRemoved(QString,TodoStruct)) );
+    connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+            this, SLOT(handleTodoListUpdated(QString,TodoListStruct)) );
+
+    if ( m_library ) {
+        TodoListByIdQuery *query = new TodoListByIdQuery( m_backend, m_struct.todoListId.toString() );
+        connect( query, SIGNAL(todoListAvailable(QString,TodoListStruct)),
+                 this, SLOT(handleTodoListAvailable(QString,TodoListStruct)) );
+        m_library->storage()->runQuery( query );
+    }
 }
 
 /**
@@ -281,6 +293,22 @@ bool Todo::isDone() const
 }
 
 /**
+   @brief Can new sub-todos be created within this todo
+
+   This returns true in case new sub-todos can be created within this todo
+ */
+bool Todo::canCreateTodos() const
+{
+    if ( m_todoList.id.isNull() ) {
+        return false;
+    }
+    if ( m_library ) {
+        return m_library->canAddTodo( m_backend, m_todoList, m_struct );
+    }
+    return false;
+}
+
+/**
    @brief Toggles the state of the todo between "done" and "not done"
 
    @sa setProgress
@@ -292,6 +320,18 @@ void Todo::toggle()
                          m_previousProgress : 0 );
     } else {
         setProgress( 100 );
+    }
+}
+
+/**
+   @brief Adds a new sub-todo with the given @p title to this todo
+ */
+void Todo::addTodo(const QString &title)
+{
+    if ( m_library && !isNull() && !m_todoList.id.isNull() ) {
+        TodoStruct newTodo = BackendWrapper::NullTodo;
+        newTodo.title = title;
+        m_library->addTodo( m_backend, newTodo, m_todoList, m_struct );
     }
 }
 
@@ -325,6 +365,22 @@ void Todo::handleTodoRemoved(const QString &backend, const TodoStruct &todo)
 {
     if ( backend == m_backend && todo.id == m_struct.id ) {
         deleteLater();
+    }
+}
+
+void Todo::handleTodoListUpdated(const QString &backend, const TodoListStruct &list)
+{
+    if ( backend == m_backend && list.id == m_todoList.id ) {
+        m_todoList = list;
+        emit canCreateTodosChanged();
+    }
+}
+
+void Todo::handleTodoListAvailable(const QString &backend, const TodoListStruct &list)
+{
+    if ( backend == m_backend ) {
+        m_todoList = list;
+        emit canCreateTodosChanged();
     }
 }
 

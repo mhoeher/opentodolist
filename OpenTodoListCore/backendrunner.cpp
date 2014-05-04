@@ -28,6 +28,37 @@ BackendRunner::~BackendRunner()
     }
 }
 
+/**
+   @brief Check whether new todos can be added
+
+   Returns true of a new todo can be created within the given @p list and using the specified
+   parent @p todo in the @p backend. If the parent todo is an invalid todo structure, this returns
+   whether adding new top level todos is supported.
+ */
+bool BackendRunner::canAddTodo(const QString &backend, const TodoListStruct &list, const TodoStruct &todo)
+{
+    BackendInterface *b = backendByName( backend );
+    if ( b ) {
+        return b->canAddTodo( list, todo );
+    }
+    return false;
+}
+
+/**
+   @brief Requests creation of a todo
+
+   Requests createn of the @p newTodo in the given todo @p list in the @p backend.
+   If set to a valid structure, the todo is created as a sub-todo of the parent @p todo.
+ */
+void BackendRunner::addTodo(const QString &backend, TodoStruct &newTodo,
+                            const TodoListStruct &list, const TodoStruct &todo)
+{
+    BackendInterface *b = backendByName( backend );
+    if ( b ) {
+        b->addTodo( newTodo, list, todo );
+    }
+}
+
 void BackendRunner::start()
 {
     emit startBackends();

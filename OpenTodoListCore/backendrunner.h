@@ -20,6 +20,11 @@ public:
     explicit BackendRunner(TodoListLibrary *library, QObject *parent = 0);
     virtual ~BackendRunner();
 
+    bool canAddTodo( const QString &backend, const TodoListStruct &list,
+                     const TodoStruct &todo = BackendWrapper::NullTodo );
+    void addTodo( const QString &backend, TodoStruct &newTodo, const TodoListStruct &list,
+                  const TodoStruct &todo = BackendWrapper::NullTodo );
+
 signals:
 
     void startBackends();

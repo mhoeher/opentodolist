@@ -20,6 +20,7 @@ import QtQuick 2.0
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Views 1.0
+import net.rpdev.OpenTodoList.Components 1.0
 
 Item {
     id: todoView
@@ -31,6 +32,38 @@ Item {
     property alias contentItem: view.contentItem
 
     signal todoSelected( Todo todo )
+
+    QtObject {
+        id: d
+
+        property bool canCreateTodos: {
+            if ( todos ) {
+                switch ( todos.queryType ) {
+                case TodoModel.QueryTopLevelTodosInTodoList:
+                    return todos.todoList && todos.todoList.canCreateTodos;
+                case TodoModel.QuerySubTodosOfTodo:
+                    return todos.parentTodo && todos.parentTodo.canCreateTodos;
+                default: return false;
+                }
+            }
+            return false;
+        }
+
+        function createTodo( title ) {
+            if ( todos ) {
+                switch ( todos.queryType ) {
+                case TodoModel.QueryTopLevelTodosInTodoList:
+                    todos.todoList.addTodo( title );
+                    break;
+                case TodoModel.QuerySubTodosOfTodo:
+                    todos.parentTodo.addTodo( title );
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
 
     Rectangle {
         id: background
@@ -47,12 +80,54 @@ Item {
         highlightMoveDuration: 200
         anchors.fill: parent
 
+        Component {
+            id: headerComponent
+            Item {
+                width: view.width
+                height: childrenRect.height + Measures.tinySpace * 2
+
+                function add() {
+                    if ( newTodoTitle.text !== "" ) {
+                        d.createTodo( newTodoTitle.text );
+                        newTodoTitle.text = "";
+                    }
+                }
+
+                SingleLineTextInput {
+                    id: newTodoTitle
+
+                    anchors {
+                        left: parent.left
+                        right: addTodoButton.left
+                        top: parent.top
+                        margins: Measures.tinySpace
+                    }
+                    placeholder: qsTr( "Type to add new todo" )
+
+                    onAccept: add()
+                }
+                SymbolButton {
+                    id: addTodoButton
+
+                    symbol: qsTr( "Add" )
+                    anchors {
+                        right: parent.right
+                        top: parent.top
+                        margins: Measures.tinySpace
+                    }
+
+                    onClicked: add()
+                }
+            }
+        }
+
         delegate: TodoViewDelegate {
             todo: display
             onClicked: {
                 currentIndex = index;
-                todoView.todoSelected( display )
+                todoView.todoSelected( display );
             }
         }
+        header: d.canCreateTodos ? headerComponent : null
     }
 }

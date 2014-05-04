@@ -65,6 +65,30 @@ TodoListStorage *TodoListLibrary::storage() const
     return m_storage;
 }
 
+/**
+   @brief Check whether we can add new todos
+
+   This returns true of adding todos to the todo @p list is supported in the given @p backend. If
+   set to valid, this additionally checks whether the todo can be created as a sub-todo of the
+   given parent @p todo.
+ */
+bool TodoListLibrary::canAddTodo(const QString &backend, const TodoListStruct &list, const TodoStruct &todo)
+{
+    return m_backendRunner->canAddTodo( backend, list, todo );
+}
+
+/**
+   @brief Creates a new todo
+
+   This creates a @p newTodo in the @p backend below the specified todo @p list and (if specified)
+   as a sub-todo of the given parent @p todo.
+ */
+void TodoListLibrary::addTodo(const QString &backend, TodoStruct &newTodo,
+                              const TodoListStruct &list, const TodoStruct &todo)
+{
+    m_backendRunner->addTodo( backend, newTodo, list, todo );
+}
+
 bool TodoListLibrary::insertTodoList(const BackendInterface* backend,
                                      const TodoListStruct &list)
 {

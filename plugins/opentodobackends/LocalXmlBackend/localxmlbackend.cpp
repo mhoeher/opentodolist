@@ -107,6 +107,44 @@ bool LocalXmlBackend::notifyTodoChanged(const TodoStruct &todo)
     return todoToFile( todo );
 }
 
+bool LocalXmlBackend::canAddTodo(const TodoListStruct &list, const TodoStruct &todo)
+{
+    if ( list.id.isNull() ) {
+        return false;
+    }
+    if ( todo.id.isNull() ) {
+        return true;
+    } else {
+        if ( todo.todoListId == list.id ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void LocalXmlBackend::addTodo(TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo)
+{
+    if ( canAddTodo( list, todo ) ) {
+        newTodo.id = QUuid::createUuid();
+        if ( !todo.id.isNull() ) {
+            newTodo.parentTodoId = todo.id;
+        }
+        newTodo.todoListId = list.id;
+
+        QString todoListFileName = list.meta.value( TodoListMetaFileName ).toString();
+        QFileInfo fi( todoListFileName );
+        QDir dir = fi.absoluteDir();
+        if ( dir.exists() || dir.mkpath( dir.absolutePath() ) ) {
+            dir.cd( TodoDirectoryName );
+            if ( dir.exists() || dir.mkpath( dir.absolutePath() ) ) {
+                newTodo.meta.insert( TodoMetaFileName, dir.absoluteFilePath( newTodo.id.toString() + ".xml" ) );
+                todoToFile( newTodo );
+                m_database->insertTodo( newTodo );
+            }
+        }
+    }
+}
+
 /**
    @brief Automatically locate todo lists
 

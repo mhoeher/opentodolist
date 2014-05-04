@@ -41,6 +41,7 @@ class TodoList : public QObject
     Q_PROPERTY( QString id READ id CONSTANT )
     Q_PROPERTY( QString name READ name WRITE setName NOTIFY nameChanged )
     Q_PROPERTY( TodoListLibrary* library READ library CONSTANT )
+    Q_PROPERTY( bool canCreateTodos READ canCreateTodos CONSTANT )
     
 public:
 
@@ -61,12 +62,16 @@ public:
     bool isNull() const;
     void setIsNull(bool isNull);
 
+    bool canCreateTodos() const;
+
 signals:
     
     void nameChanged();
     void changed();
     
 public slots:
+
+    void addTodo( const QString &title );
     
 protected:
     

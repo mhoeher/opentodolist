@@ -39,6 +39,11 @@ public:
     PluginsLoader *plugins() const;
     TodoListStorage *storage() const;
 
+    bool canAddTodo( const QString &backend, const TodoListStruct &list,
+                     const TodoStruct &todo = BackendWrapper::NullTodo );
+    void addTodo(const QString &backend, TodoStruct &newTodo,
+                  const TodoListStruct &list, const TodoStruct &todo = BackendWrapper::NullTodo );
+
     // TodoListDatabase wrapper interface
     bool insertTodoList(const BackendInterface *backend,
                         const TodoListStruct &list);

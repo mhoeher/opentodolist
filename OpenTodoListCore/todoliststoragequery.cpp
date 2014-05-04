@@ -101,3 +101,29 @@ TodoStruct TodoListStorageQuery::todoFromRecord(const QVariantMap &record)
     result.weight = record.value( "weight", 0.0 ).toDouble();
     return result;
 }
+
+
+TodoListByIdQuery::TodoListByIdQuery(const QString &backend, const QString &todoListId, QObject *parent) :
+    TodoListStorageQuery( parent ),
+    m_backend( backend ),
+    m_todoListId( todoListId )
+{
+}
+
+TodoListByIdQuery::~TodoListByIdQuery()
+{
+}
+
+bool TodoListByIdQuery::query(QString &query, QVariantMap &args)
+{
+    query = "SELECT * FROM todoList WHERE id=:id AND backend=:backend;";
+    args.insert( "backend", m_backend );
+    args.insert( "id", m_todoListId );
+    return true;
+}
+
+void TodoListByIdQuery::recordAvailable(const QVariantMap &record)
+{
+    TodoListStruct list = todoListFromRecord( record );
+    emit todoListAvailable( m_backend, list );
+}

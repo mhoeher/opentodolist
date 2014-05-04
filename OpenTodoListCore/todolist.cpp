@@ -31,7 +31,7 @@ TodoList::TodoList(QObject *parent) :
     QObject( parent ),
     m_isNull( true ),
     m_backend(),
-    m_struct(),
+    m_struct( BackendWrapper::NullTodoList ),
     m_library( 0 ),
     m_disablePersisting( false )
 {
@@ -127,6 +127,30 @@ TodoListLibrary *TodoList::library() const
 bool TodoList::isNull() const
 {
     return m_isNull;
+}
+
+/**
+   @brief Returns whether new todos can be created in the list
+ */
+bool TodoList::canCreateTodos() const
+{
+    if ( m_library ) {
+        return m_library->canAddTodo( m_backend, m_struct );
+    }
+    return false;
+}
+
+/**
+   @brief Adds a new todo to the list with the given @p title
+ */
+void TodoList::addTodo(const QString &title)
+{
+    if ( m_library && !isNull() ) {
+        TodoStruct newTodo = BackendWrapper::NullTodo;
+        newTodo.title = title;
+        //TODO: add to end of list by selecting an appropriate weight
+        m_library->addTodo( m_backend, newTodo, m_struct );
+    }
 }
 
 void TodoList::handleTodoListUpdated(const QString &backend, const TodoListStruct &list)

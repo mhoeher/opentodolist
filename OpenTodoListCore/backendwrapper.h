@@ -22,6 +22,9 @@ public:
         Running
     };
 
+    static const TodoListStruct NullTodoList;
+    static const TodoStruct NullTodo;
+
     explicit BackendWrapper(TodoListLibrary* library,
                             BackendInterface *backend,
                             QObject *parent = 0);
@@ -46,6 +49,8 @@ public:
     virtual bool stop();
     Q_INVOKABLE virtual bool notifyTodoListChanged(const TodoListStruct &list);
     Q_INVOKABLE virtual bool notifyTodoChanged(const TodoStruct &todo);
+    Q_INVOKABLE virtual bool canAddTodo( const TodoListStruct &list, const TodoStruct &todo );
+    Q_INVOKABLE virtual void addTodo( TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo );
 
 signals:
 

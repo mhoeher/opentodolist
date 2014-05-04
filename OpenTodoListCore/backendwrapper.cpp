@@ -4,6 +4,39 @@
 
 #include <QDebug>
 
+namespace BackendWrapperFuncs {
+
+TodoListStruct nullTodoList()
+{
+    TodoListStruct result;
+    result.id = QUuid();
+    result.meta = QVariantMap();
+    result.name = QString();
+    return result;
+}
+
+TodoStruct nullTodo()
+{
+    TodoStruct result;
+    result.deleted = false;
+    result.description = QString();
+    result.dueDate = QDateTime();
+    result.id = QUuid();
+    result.meta = QVariantMap();
+    result.parentTodoId = QUuid();
+    result.priority = -1;
+    result.progress = 0;
+    result.title = QString();
+    result.todoListId = QUuid();
+    result.weight = 0.0;
+    return result;
+}
+
+}
+
+const TodoListStruct BackendWrapper::NullTodoList = BackendWrapperFuncs::nullTodoList();
+const TodoStruct BackendWrapper::NullTodo = BackendWrapperFuncs::nullTodo();
+
 BackendWrapper::BackendWrapper(TodoListLibrary* library, BackendInterface *backend, QObject *parent) :
     QObject(parent),
     m_library( library ),
@@ -45,28 +78,12 @@ bool BackendWrapper::deleteTodo(const TodoStruct &todo)
 
 TodoListStruct BackendWrapper::nullTodoList()
 {
-    TodoListStruct result;
-    result.id = QUuid();
-    result.meta = QVariantMap();
-    result.name = QString();
-    return result;
+    return NullTodoList;
 }
 
 TodoStruct BackendWrapper::nullTodo()
 {
-    TodoStruct result;
-    result.deleted = false;
-    result.description = QString();
-    result.dueDate = QDateTime();
-    result.id = QUuid();
-    result.meta = QVariantMap();
-    result.parentTodoId = QUuid();
-    result.priority = -1;
-    result.progress = 0;
-    result.title = QString();
-    result.todoListId = QUuid();
-    result.weight = 0.0;
-    return result;
+    return NullTodo;
 }
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)
@@ -129,6 +146,16 @@ bool BackendWrapper::notifyTodoListChanged(const TodoListStruct &list)
 bool BackendWrapper::notifyTodoChanged(const TodoStruct &todo)
 {
     return m_backend->notifyTodoChanged( todo );
+}
+
+bool BackendWrapper::canAddTodo(const TodoListStruct &list, const TodoStruct &todo)
+{
+    return m_backend->canAddTodo( list, todo );
+}
+
+void BackendWrapper::addTodo( TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo)
+{
+    m_backend->addTodo( newTodo, list, todo );
 }
 
 void BackendWrapper::doStart()
