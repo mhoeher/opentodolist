@@ -92,6 +92,14 @@ void TodoModel::update()
             }
             break;
 
+        case QuerySubTodosOfTodo:
+            if ( m_parentTodo ) {
+                query->setBackend( m_parentTodo->backend() );
+                query->setTodoListId( m_parentTodo->todoListId() );
+                query->setParentTodoId( m_parentTodo->id() );
+            }
+            break;
+
         default:
             queryIsValid = false;
             break;
@@ -219,25 +227,26 @@ void TodoStorageQuery::beginRun()
     // nothing to be done here
 }
 
+#include <QDebug>
 bool TodoStorageQuery::query(QString &query, QVariantMap &args)
 {
-    QStringList conditions;
-    if ( !( m_backend.isEmpty() || m_todoListId.isEmpty() ) ) {
-        conditions.append( "backend=:backend" );
-        args.insert( "backend", m_backend );
-        conditions.append( "todoList=:todoList" );
+    switch ( m_queryType ) {
+    case TodoModel::QueryTopLevelTodosInTodoList:
+        query = "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend ORDER BY title ASC;";
         args.insert( "todoList", m_todoListId );
-    }
-    if ( !m_parentTodoId.isEmpty() ) {
-        conditions.append( "parentTodo=:parentTodo" );
-        args.insert( "parentTodo", m_parentTodoId );
-    }
-    if ( conditions.isEmpty() ) {
-        return false;
-    } else {
-        query = QString( "SELECT * FROM todo WHERE %1;" ).arg(
-                    conditions.join( " AND " ) );
+        args.insert( "backend", m_backend );
         return true;
+
+    case TodoModel::QuerySubTodosOfTodo:
+        query = "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend ORDER BY title ASC;";
+        args.insert( "todoList", m_todoListId );
+        args.insert( "parentTodo", m_parentTodoId );
+        args.insert( "backend", m_backend );
+        qDebug() << query << args;
+        return true;
+
+    default:
+        return false;
     }
 }
 

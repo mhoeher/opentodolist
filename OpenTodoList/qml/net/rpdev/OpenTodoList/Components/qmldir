@@ -1,5 +1,8 @@
 module net.rpdev.OpenTodoList.Components
+AutoHide 1.0 AutoHide.qml
 Button 1.0 Button.qml
+Calendar 1.0 Calendar.qml
+DateSelectionDialog 1.0 DateSelectionDialog.qml
 HeaderBar 1.0 HeaderBar.qml
 HeaderBarItem 1.0 HeaderBarItem.qml
 Label 1.0 Label.qml
@@ -7,8 +10,15 @@ LineEditDialog 1.0 LineEditDialog.qml
 Overlay 1.0 Overlay.qml
 Page 1.0 Page.qml
 PageStack 1.0 PageStack.qml
+RichTextEditDialog 1.0 RichTextEditDialog.qml
+RichtTextEditor 1.0 RichTextEditor.qml
+ScrollBar 1.0 ScrollBar.qml
 SingleLineTextInput 1.0 SingleLineTextInput.qml
+Slider 1.0 Slider.qml
 Symbol 1.0 Symbol.qml
+SymbolButton 1.0 SymbolButton.qml
 SymbolLabel 1.0 SymbolLabel.qml
 Tab 1.0 Tab.qml
 TabView 1.0 TabView.qml
+TextEditor 1.0 TextEditor.qml
+

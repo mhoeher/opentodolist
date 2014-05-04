@@ -28,6 +28,7 @@ Item {
     property alias currentIndex: view.currentIndex
     property alias color: background.color
     property alias backgroundVisible: background.visible
+    property alias contentItem: view.contentItem
 
     signal todoSelected( Todo todo )
 

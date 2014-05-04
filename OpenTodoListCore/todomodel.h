@@ -34,7 +34,8 @@ public:
 
     enum QueryType {
         InvalidQuery,
-        QueryTopLevelTodosInTodoList
+        QueryTopLevelTodosInTodoList,
+        QuerySubTodosOfTodo
     };
 
     explicit TodoModel(QObject *parent = 0);

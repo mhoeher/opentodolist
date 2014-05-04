@@ -23,6 +23,8 @@ FocusScope {
     id: overlay
     state: "available"
 
+    property bool autoClose: false
+
     function show() {
         while ( parent.parent && parent.parent.parent ) {
             parent = parent.parent
@@ -51,7 +53,7 @@ FocusScope {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: close()
+        onClicked: if ( overlay.autoClose ) close()
     }
 
     states: [

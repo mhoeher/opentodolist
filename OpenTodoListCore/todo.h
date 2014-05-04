@@ -38,7 +38,7 @@ class Todo : public QObject
     Q_PROPERTY( int priority READ priority WRITE setPriority NOTIFY priorityChanged )
     Q_PROPERTY( QString parentTodoId READ parentTodoId CONSTANT )
     Q_PROPERTY( QString todoListId READ todoListId CONSTANT )
-    Q_PROPERTY( QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY titleChanged )
+    Q_PROPERTY( QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
     Q_PROPERTY( QString title READ title WRITE setTitle NOTIFY titleChanged )
     Q_PROPERTY( QString description READ description WRITE setDescription NOTIFY descriptionChanged )
     Q_PROPERTY( bool isDeleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )

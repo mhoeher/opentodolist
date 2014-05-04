@@ -29,7 +29,7 @@ FocusScope {
     signal accept()
 
     width: Measures.mWidth * 20
-    height: Measures.mHeight * 2
+    height: input.height * 2
 
     Keys.onEscapePressed: focus = false
     Keys.onBackPressed: focus = false
@@ -50,9 +50,8 @@ FocusScope {
             clip: true
             anchors {
                 left: parent.left;
-                top: parent.top;
-                bottom: parent.bottom;
                 right: clear.left;
+                verticalCenter: parent.verticalCenter
                 margins: Measures.tinySpace
             }
             verticalAlignment: TextInput.AlignVCenter
@@ -63,7 +62,13 @@ FocusScope {
             text: ""
             clip: true
             visible: input.text === "" && !edit.focus
-            anchors { fill: input; margins: input.anchors.margins }
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: Measures.tinySpace
+                verticalCenter: parent.verticalCenter
+            }
+
             verticalAlignment: Text.AlignVCenter
         }
         Symbol {

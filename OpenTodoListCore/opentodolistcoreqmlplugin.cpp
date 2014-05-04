@@ -1,5 +1,6 @@
 #include "opentodolistcoreqmlplugin.h"
 
+#include "documentformatter.h"
 #include "settings.h"
 #include "todo.h"
 #include "todolist.h"
@@ -38,9 +39,7 @@ void OpenTodoListCoreQmlPlugin::registerTypes(const char *uri)
                 uri, 1, 0, "TodoListLibrary" );
 
     qmlRegisterType<Settings>( uri, 1, 0, "Settings" );
-    /*qmlRegisterSingletonType( uri, 1, 0, "TodoListLibraryInstance",
-                              net_rpdev_opentodolist_core_TodoListLibrary );*/
-
+    qmlRegisterType<DocumentFormatter>( uri, 1, 0, "DocumentFormatter" );
     qmlRegisterType< TodoListModel >( uri, 1, 0, "TodoListModel" );
     qmlRegisterType< TodoModel >( uri, 1, 0, "TodoModel" );
 }

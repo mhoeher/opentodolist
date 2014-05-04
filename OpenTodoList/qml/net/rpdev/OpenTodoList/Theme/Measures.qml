@@ -38,7 +38,7 @@ QtObject {
     readonly property int largeSpace: mWidth * 4
     readonly property int extraLargeSpace: mWidth * 8
 
-    readonly property int minimumPageWidth: 30 * mWidth
+    readonly property int minimumPageWidth: 15 * mWidth
 
     property Text hiddenText: Text {
         id: hiddenText

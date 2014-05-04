@@ -21,10 +21,35 @@ import QtQuick 2.2
 
 QtObject {
     readonly property string deleteText: "\uf057"
+
     readonly property string uncheckedBox: "\uf096"
     readonly property string checkedBox: "\uf046"
+
     readonly property string doubleLeft: "\uf100"
     readonly property string doubleRight: "\uf101"
     readonly property string doubleUp: "\uf102"
     readonly property string doubleDown: "\uf103"
+    readonly property string singleLeft: "\uf104"
+    readonly property string singleRight: "\uf105"
+    readonly property string singleUp: "\uf106"
+    readonly property string singleDown: "\uf107"
+
+    readonly property string textEditBold: "\uf032"
+    readonly property string textEditItalic: "\uf033"
+    readonly property string textEditUnderline: "\uf0cd"
+    readonly property string textEditStrikethrough: "\uf0cc"
+    readonly property string textEditAlignLeft: "\uf036"
+    readonly property string textEditCenter: "\uf037"
+    readonly property string textEditAlignRight: "\uf038"
+    readonly property string textEditJustify: "\uf039"
+    readonly property string textEditCopy: "\uf0c5"
+    readonly property string textEditCut: "\uf0c4"
+    readonly property string textEditPaste: "\uf0ea"
+    readonly property string textEditUnorderedList: "\uf0ca"
+    readonly property string textEditOrderedList: "\uf0cb"
+    readonly property string textEditUndo: "\uf0e2"
+    readonly property string textEditRedo: "\uf01e"
+
+    readonly property string calendarFull: "\uf073"
+    readonly property string calendarEmpty: "\uf133"
 }

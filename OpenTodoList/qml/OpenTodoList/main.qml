@@ -67,11 +67,14 @@ Rectangle {
 
             onTodoSelected: {
                 var component = Qt.createComponent( "TodoPage.qml" );
-                var page = component.createObject( pageStack );
-                page.todo = todo;
-                pageStack.showPage( page );
+                if ( component.status === Component.Ready ) {
+                    var page = component.createObject( pageStack );
+                    page.todo = todo;
+                    pageStack.showPage( page );
+                } else {
+                    console.error( component.errorString() );
+                }
             }
         }
-
     }
 }

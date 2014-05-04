@@ -24,34 +24,48 @@ Rectangle {
     id: button
 
     property alias text: label.text
+    property alias font: label.font
+    property bool compact: false
+    property bool checked: false
+    property bool mouseDown: false
+    readonly property bool active: checked || mouseDown
 
     signal clicked()
 
     gradient: Gradient {
         GradientStop {
-            color: Colors.button
+            color: button.active ? Colors.activeButton : Colors.button
             position: 0.0
+
+            Behavior on color { ColorAnimation { duration: 100 } }
         }
         GradientStop {
-            color: Qt.darker( Colors.button )
+            color: Qt.darker( Colors.button, 1.2 )
             position: 1.0
         }
     }
-    width: label.width + 2 * Measures.midSpace
+    width: compact ? ( Math.max( label.width, label.height ) * 2 ) : ( label.width + 2 * Measures.midSpace )
     height: label.height * 2
-    border { color: Colors.border; width: Measures.midBorderWidth }
+    border {
+        color: button.active ? Colors.activeBorder : Colors.border
+        width: Measures.midBorderWidth
+
+        Behavior on color { ColorAnimation { duration: 100 } }
+    }
     radius: Measures.extraTinySpace
 
     Label {
         id: label
         text: qsTr( "Button" )
-        x: Measures.midSpace
-        y: height * 0.5
+        anchors.centerIn: parent
     }
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         onClicked: button.clicked()
+        onPressed: button.mouseDown = true
+        onReleased: button.mouseDown = false
+        onCanceled: button.mouseDown = false
     }
 }

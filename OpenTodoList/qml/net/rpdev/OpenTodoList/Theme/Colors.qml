@@ -25,10 +25,13 @@ QtObject {
 
     readonly property color window: "#eee"
     readonly property color button: "#ddd"
+    readonly property color activeButton: "#b08ea9"
+
     readonly property color text: "black"
     readonly property color midText: "#aaa"
     readonly property color lightText: "white"
-    readonly property color border: Qt.darker( button )
+    readonly property color border: Qt.darker( button, 1.3 )
+    readonly property color activeBorder: secondary1
     readonly property color listItem: Qt.darker( window, 1.05 )
     readonly property color listItemActive: Qt.darker( window, 1.5 )
 
@@ -49,4 +52,17 @@ QtObject {
     readonly property color secondary2Light2: "#c37d58"
     readonly property color secondary2Dark1: "#653419"
     readonly property color secondary2Dark2: "#571f00"
+
+    function colorForPriority( priority, defaultColor ) {
+        if ( priority >= 0 && priority <= 10 ) {
+            var blendColor = Qt.rgba(
+                        secondary2.r,
+                        secondary2.g,
+                        secondary2.b,
+                        priority / 10.0 );
+            return Qt.tint( primary, blendColor );
+        } else {
+            return defaultColor || "black";
+        }
+    }
 }

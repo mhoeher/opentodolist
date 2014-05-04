@@ -1,7 +1,7 @@
 TARGET = $$qtLibraryTarget(OpenTodoListCore)
 TEMPLATE = lib
 
-QT += core qml sql
+QT += core qml quick sql
 CONFIG += plugin static
 
 #macx:CONFIG += lib_bundle
@@ -21,7 +21,8 @@ HEADERS = \
     todoliststorage.h \
     todoliststoragequery.h \
     todolistmodel.h \
-    todomodel.h
+    todomodel.h \
+    documentformatter.h
 
 SOURCES = \
     pluginsloader.cpp \
@@ -35,7 +36,8 @@ SOURCES = \
     todoliststorage.cpp \
     todoliststoragequery.cpp \
     todolistmodel.cpp \
-    todomodel.cpp
+    todomodel.cpp \
+    documentformatter.cpp
 
 DEFINES +=  OPENTODOLISTCORE_LIBRARY
 

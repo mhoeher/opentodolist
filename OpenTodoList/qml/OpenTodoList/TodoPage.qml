@@ -41,6 +41,7 @@ Page {
             name: page.name
 
             Flickable {
+                id: flick
                 anchors.fill: parent
                 anchors.margins: Measures.smallSpace
                 contentWidth: width
@@ -84,39 +85,135 @@ Page {
                         text: qsTr( "Progress:" )
                         font.bold: true
                     }
-                    Label {
-                        text: page.todo ? page.todo.progress + "%" : ""
+                    Slider {
+                        minimum: 0
+                        maximum: 100
+                        value: page.todo ? page.todo.progress : 0
                         Layout.fillWidth: true
+                        Layout.maximumWidth: Measures.minimumPageWidth
+
+                        onValueChanged: if ( page.todo ) todo.progress = value
                     }
 
                     Label {
                         text: qsTr( "Priority:" )
                         font.bold: true
                     }
-                    Label {
-                        text: page.todo ?
-                                  ( page.todo.priority >= 0 ?
-                                              page.todo.priority :
-                                              qsTr( "None specified" ) ) :
-                                  ""
+                    Slider {
+                        minimum: -1
+                        maximum: 10
+                        value: page.todo ? page.todo.priority : -1
                         Layout.fillWidth: true
+                        Layout.maximumWidth: Measures.minimumPageWidth
+                        color: Colors.colorForPriority( page.todo ? todo.priority : -1 )
+
+                        onValueChanged: if ( page.todo ) todo.priority = value;
                     }
 
-                    Label {
-                        text: qsTr( "Due to: " )
-                        font.bold: true
-                    }
-                    Label {
-                        text: page.todo ? Qt.formatDateTime( page.todo.dueDate ) : ""
+                    SymbolLabel {
                         Layout.fillWidth: true
-                    }
-
-                    Label {
-                        text: page.todo ? page.todo.description : ""
                         Layout.columnSpan: 2
-                        textFormat: Text.RichText
+                        text: page.todo ? Qt.formatDate( page.todo.dueDate ) : ""
+                        placeholder: qsTr( "No due date selected" )
+                        symbol: text === "" ? Symbols.calendarEmpty : Symbols.calendarFull
+
+                        property Component datePickerDialog: DateSelectionDialog {
+                            onDateSelected: if ( page.todo ) page.todo.dueDate = selectedDate
+                            onDateCleared:  if ( page.todo ) page.todo.dueDate = new Date( NaN, NaN, NaN );
+                        }
+
+                        onClicked: {
+                            var dialog = datePickerDialog.createObject( this );
+                            var currentDate = page.todo ? page.todo.dueDate : new Date();
+                            if ( isNaN( currentDate.getFullYear() ) || isNaN( currentDate.getMonth() ) ||
+                                    isNaN( currentDate.getDate() ) ) {
+                                currentDate = new Date();
+                            }
+                            dialog.focusDate = currentDate;
+                            if ( page.todo ) {
+                                dialog.highlightDates = [ page.todo.dueDate ];
+                            }
+                            dialog.show();
+                        }
+                    }
+
+                    Item {
+                        Layout.columnSpan: 2
+                        Layout.preferredHeight: notesBackground.height + 2 * Measures.smallSpace
+                        Layout.fillWidth: true
+
+                        Rectangle {
+                            id: notesBackground
+
+                            gradient: Gradient {
+                                GradientStop {
+                                    position: 0.0
+                                    color: Qt.tint( Colors.primary, "#ddffffff" )
+                                }
+                                GradientStop {
+                                    position: 1.0
+                                    color: Qt.tint( Colors.primary, "#bbffffff" )
+                                }
+                            }
+                            border {
+                                color: Qt.tint( Colors.primary, "#ccffffff" )
+                                width: Measures.smallBorderWidth
+                            }
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                                top: parent.top
+                                margins: Measures.smallSpace
+                            }
+                            height: notesLabel.height + 2 * Measures.tinySpace
+
+                            Label {
+                                id: notesLabel
+
+                                text: page.todo ? page.todo.description : ""
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                    top: parent.top
+                                    margins: Measures.tinySpace
+                                }
+                                textFormat: Text.RichText
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+                                MouseArea {
+                                    anchors.fill: parent
+
+                                    property Component dialog: RichTextEditDialog {
+                                        text: page.todo ? page.todo.description : ""
+                                        onAccept: if ( page.todo ) page.todo.description = text
+                                    }
+
+                                    onClicked: {
+                                        var d = dialog.createObject( this );
+                                        d.show();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    TodoView {
+                        id: subTodosView
+
+                        Layout.columnSpan: 2
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 200
+                        todos: TodoModel {
+                            parentTodo: page.todo
+                            library: page.todo ? page.todo.library : null
+                            queryType: TodoModel.QuerySubTodosOfTodo
+
+                            onParentTodoChanged: update()
+                        }
                     }
                 }
+            }
+            ScrollBar {
+                target: flick
             }
         }
     }
