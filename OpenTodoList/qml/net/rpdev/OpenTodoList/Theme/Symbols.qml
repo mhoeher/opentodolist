@@ -52,4 +52,13 @@ QtObject {
 
     readonly property string calendarFull: "\uf073"
     readonly property string calendarEmpty: "\uf133"
+
+    readonly property string verticalEllipsis: "\uf142"
+    readonly property string horizontalEllipsis: "\uf141"
+
+    readonly property string thrash: "\uf014"
+    readonly property string move: "\uf047"
+
+    readonly property string plus: "\uf067"
+    readonly property string minus: "\uf068"
 }

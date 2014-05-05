@@ -27,6 +27,8 @@ Item {
     property alias text: label.text
     property alias placeholder: placeholderLabel.text
     property bool useSymbolButton: false
+    property alias strikeOut: label.font.strikeout
+    property int minHeight: 0
 
     signal symbolClicked()
     signal clicked()
@@ -34,7 +36,8 @@ Item {
     height: Math.max(
                 symbolLabel.height,
                 label.height,
-                placeholderLabel.height )
+                placeholderLabel.height,
+                minHeight )
 
     MouseArea {
         anchors.fill: parent
@@ -108,5 +111,8 @@ Item {
         font.italic: true
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         visible: label.text === ""
+        font {
+            strikeout: label.font.strikeout
+        }
     }
 }

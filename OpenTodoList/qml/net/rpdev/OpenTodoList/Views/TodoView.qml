@@ -109,7 +109,7 @@ Item {
                 SymbolButton {
                     id: addTodoButton
 
-                    symbol: qsTr( "Add" )
+                    symbol: Symbols.plus
                     anchors {
                         right: parent.right
                         top: parent.top

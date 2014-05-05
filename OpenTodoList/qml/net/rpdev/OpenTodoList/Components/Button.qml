@@ -25,6 +25,7 @@ Rectangle {
 
     property alias text: label.text
     property alias font: label.font
+    property alias fontColor: label.color
     property bool compact: false
     property bool checked: false
     property bool mouseDown: false

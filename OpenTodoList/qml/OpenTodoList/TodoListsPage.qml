@@ -77,20 +77,11 @@ Page {
                            parent.width - Measures.minimumPageWidth : 0
                 todos: todoModel
                 backgroundVisible: true
+                clip: true
 
                 onTodoSelected: page.todoSelected( todo )
 
                 Behavior on width { SmoothedAnimation { velocity: 1500 } }
-            }
-        }
-        Tab {
-            name: qsTr( "DevUtils" )
-            Column {
-                anchors.fill: parent
-                Button {
-                    text: qsTr( "Reload Todo Lists" )
-                    onClicked: todoListView.model.update()
-                }
             }
         }
     }
