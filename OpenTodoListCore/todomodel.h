@@ -28,6 +28,9 @@ class TodoModel : public QAbstractListModel
     Q_PROPERTY( QueryType queryType READ queryType WRITE setQueryType NOTIFY queryTypeChanged )
     Q_PROPERTY( TodoList* todoList READ todoList WRITE setTodoList NOTIFY todoListChanged)
     Q_PROPERTY( Todo* parentTodo READ parentTodo WRITE setParentTodo NOTIFY parentTodoChanged)
+    Q_PROPERTY( QString filter READ filter WRITE setFilter NOTIFY filterChanged )
+    Q_PROPERTY( bool showDone READ showDone WRITE setShowDone NOTIFY showDoneChanged )
+    Q_PROPERTY( bool showDeleted READ showDeleted WRITE setShowDeleted NOTIFY showDeletedChanged )
     Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
 
 public:
@@ -38,7 +41,8 @@ public:
     enum QueryType {
         InvalidQuery, //!< The model shows nothing
         QueryTopLevelTodosInTodoList, //!< The model shows top level todos in a todo list
-        QuerySubTodosOfTodo //!< The model shows sub-todos of a given todo
+        QuerySubTodosOfTodo, //!< The model shows sub-todos of a given todo
+        QuerySearchTodos //!< Search within all todos
     };
 
     explicit TodoModel(QObject *parent = 0);
@@ -60,12 +64,24 @@ public:
     Todo *parentTodo() const;
     void setParentTodo(Todo *parentTodo);
 
+    QString filter() const;
+    void setFilter(const QString &filter);
+
+    bool showDone() const;
+    void setShowDone(bool showDone);
+
+    bool showDeleted() const;
+    void setShowDeleted(bool showDeleted);
+
 signals:
 
     void libraryChanged();
     void queryTypeChanged();
     void todoListChanged();
     void parentTodoChanged();
+    void filterChanged();
+    void showDoneChanged();
+    void showDeletedChanged();
     void changed();
     void countChanged();
 
@@ -84,6 +100,9 @@ private:
 
     QPointer<TodoList> m_todoList;
     QPointer<Todo>     m_parentTodo;
+    QString            m_filter;
+    bool               m_showDone;
+    bool               m_showDeleted;
 
     static QString idForTodo( const QString &backend, const QString &todoId );
 
@@ -121,11 +140,21 @@ public:
     TodoModel::QueryType queryType() const;
     void setQueryType(const TodoModel::QueryType &queryType);
 
+    QString filter() const;
+    void setFilter(const QString &filter);
+
     // TodoListStorageQuery interface
     virtual void beginRun();
     virtual bool query(QString &query, QVariantMap &args);
     virtual void recordAvailable(const QVariantMap &record);
     virtual void endRun();
+
+
+    bool showDone() const;
+    void setShowDone(bool showDone);
+
+    bool showDeleted() const;
+    void setShowDeleted(bool showDeleted);
 
 signals:
 
@@ -138,6 +167,9 @@ private:
     QString              m_backend;
     QString              m_todoListId;
     QString              m_parentTodoId;
+    QString              m_filter;
+    bool                 m_showDone;
+    bool                 m_showDeleted;
 
 };
 

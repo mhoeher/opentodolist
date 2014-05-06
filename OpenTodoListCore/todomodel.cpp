@@ -13,12 +13,16 @@ TodoModel::TodoModel(QObject *parent) :
     m_newLoadedTodos(),
     m_needUpdate( false ),
     m_todoList( 0 ),
-    m_parentTodo( 0 )
+    m_parentTodo( 0 ),
+    m_filter( QString() )
 {
     connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(libraryChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(queryTypeChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(filterChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(showDoneChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(showDeletedChanged()), this, SIGNAL(changed()) );
 
     connect( this, SIGNAL(changed()), this, SLOT(update()) );
 
@@ -116,6 +120,45 @@ void TodoModel::update()
     m_needUpdate = true;
     QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
 }
+bool TodoModel::showDeleted() const
+{
+    return m_showDeleted;
+}
+
+void TodoModel::setShowDeleted(bool showDeleted)
+{
+    if ( m_showDeleted != showDeleted ) {
+        m_showDeleted = showDeleted;
+        emit showDeletedChanged();
+    }
+}
+
+bool TodoModel::showDone() const
+{
+    return m_showDone;
+}
+
+void TodoModel::setShowDone(bool showDone)
+{
+    if ( m_showDone != showDone ) {
+        m_showDone = showDone;
+        emit showDoneChanged();
+    }
+}
+
+QString TodoModel::filter() const
+{
+    return m_filter;
+}
+
+void TodoModel::setFilter(const QString &filter)
+{
+    if ( m_filter != filter ) {
+        m_filter = filter;
+        emit filterChanged();
+    }
+}
+
 
 Todo *TodoModel::parentTodo() const
 {
@@ -158,6 +201,9 @@ void TodoModel::triggerUpdate()
     if ( m_queryType != InvalidQuery ) {
         TodoStorageQuery *query = new TodoStorageQuery();
         query->setQueryType( m_queryType );
+        query->setFilter( m_filter );
+        query->setShowDone( m_showDone );
+        query->setShowDeleted( m_showDeleted );
         bool queryIsValid = true;
 
         switch ( m_queryType ) {
@@ -176,6 +222,10 @@ void TodoModel::triggerUpdate()
                 query->setTodoListId( m_parentTodo->todoListId() );
                 query->setParentTodoId( m_parentTodo->id() );
             }
+            break;
+
+        case QuerySearchTodos:
+            // nothing left todo 8) Just break to avoid setting queryIsValid to false
             break;
 
         default:
@@ -242,7 +292,14 @@ void TodoModel::handleTodoDeleted(QObject *todo)
 }
 
 TodoStorageQuery::TodoStorageQuery() :
-    TodoListStorageQuery()
+    TodoListStorageQuery(),
+    m_queryType( TodoModel::InvalidQuery ),
+    m_backend( QString() ),
+    m_todoListId( QString() ),
+    m_parentTodoId( QString() ),
+    m_filter( QString() ),
+    m_showDone( false ),
+    m_showDeleted( false )
 {
 }
 
@@ -295,18 +352,41 @@ void TodoStorageQuery::beginRun()
 
 bool TodoStorageQuery::query(QString &query, QVariantMap &args)
 {
+    QStringList filterPart;
+    if ( !m_filter.isEmpty() ) {
+        filterPart << "( title LIKE :titleFilter OR description LIKE :descriptionFilter ) ";
+        args.insert( "titleFilter", "%" + m_filter + "%" );
+        args.insert( "descriptionFilter", "%" + m_filter + "%" );
+    }
+    if ( !m_showDone ) {
+        filterPart << "progress < 100 ";
+    }
+    if ( !m_showDeleted ) {
+        filterPart << "deleted = 0 ";
+    }
+
     switch ( m_queryType ) {
     case TodoModel::QueryTopLevelTodosInTodoList:
-        query = "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend ORDER BY title ASC;";
+        query = QString( "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend %1 ORDER BY title ASC;" )
+                .arg( " AND " + filterPart.join( " AND " ) );
         args.insert( "todoList", m_todoListId );
         args.insert( "backend", m_backend );
         return true;
 
     case TodoModel::QuerySubTodosOfTodo:
-        query = "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend ORDER BY title ASC;";
+        query = QString( "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend %1 ORDER BY title ASC;" )
+                .arg( " AND " + filterPart.join( " AND " ) );
         args.insert( "todoList", m_todoListId );
         args.insert( "parentTodo", m_parentTodoId );
         args.insert( "backend", m_backend );
+        return true;
+
+    case TodoModel::QuerySearchTodos:
+        if ( m_filter.isEmpty() ) {
+            return false;
+        }
+        query = QString( "SELECT * FROM todo WHERE %1 ORDER BY title ASC;" )
+                .arg( filterPart.join( " AND " ) );
         return true;
 
     default:
@@ -324,6 +404,36 @@ void TodoStorageQuery::endRun()
 {
     emit finished();
 }
+bool TodoStorageQuery::showDone() const
+{
+    return m_showDone;
+}
+
+void TodoStorageQuery::setShowDone(bool showDone)
+{
+    m_showDone = showDone;
+}
+bool TodoStorageQuery::showDeleted() const
+{
+    return m_showDeleted;
+}
+
+void TodoStorageQuery::setShowDeleted(bool showDeleted)
+{
+    m_showDeleted = showDeleted;
+}
+
+
+QString TodoStorageQuery::filter() const
+{
+    return m_filter;
+}
+
+void TodoStorageQuery::setFilter(const QString &filter)
+{
+    m_filter = filter;
+}
+
 
 
 

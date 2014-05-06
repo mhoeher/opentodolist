@@ -84,5 +84,22 @@ Page {
                 Behavior on width { SmoothedAnimation { velocity: 1500 } }
             }
         }
+        Tab {
+            id: searchTab
+
+            name: qsTr( "Search" )
+
+            TodoView {
+                id: searchView
+
+                anchors.fill: parent
+                todos: TodoModel {
+                    library: page.library
+                    queryType: TodoModel.QuerySearchTodos
+                }
+
+                onTodoSelected: page.todoSelected( todo )
+            }
+        }
     }
 }
