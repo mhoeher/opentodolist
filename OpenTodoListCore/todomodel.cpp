@@ -379,10 +379,10 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
         args.insert( "descriptionFilter", "%" + m_filter + "%" );
     }
     if ( !m_showDone ) {
-        filterPart << "progress < 100 ";
+        filterPart << " progress < 100 ";
     }
     if ( !m_showDeleted ) {
-        filterPart << "deleted = 0 ";
+        filterPart << " deleted = 0 ";
     }
     if ( m_maxDueDate.isValid() ) {
         filterPart << " dueDate IS NOT NULL AND dueDate<=:maxDueDate ";
@@ -392,14 +392,14 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
     switch ( m_queryType ) {
     case TodoModel::QueryTopLevelTodosInTodoList:
         query = QString( "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend %1 ORDER BY title ASC;" )
-                .arg( " AND " + filterPart.join( " AND " ) );
+                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) );
         args.insert( "todoList", m_todoListId );
         args.insert( "backend", m_backend );
         return true;
 
     case TodoModel::QuerySubTodosOfTodo:
         query = QString( "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend %1 ORDER BY title ASC;" )
-                .arg( " AND " + filterPart.join( " AND " ) );
+                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) );
         args.insert( "todoList", m_todoListId );
         args.insert( "parentTodo", m_parentTodoId );
         args.insert( "backend", m_backend );
