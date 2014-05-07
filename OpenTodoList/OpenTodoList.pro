@@ -46,3 +46,5 @@ OTHER_FILES += \
     android/AndroidManifest.xml
 
 RESOURCES += OpenTodoList.qrc
+
+DESTDIR = $$OUT_PWD

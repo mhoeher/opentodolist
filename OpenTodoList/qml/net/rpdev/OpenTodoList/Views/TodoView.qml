@@ -96,7 +96,7 @@ Item {
                 Item {
                     id: newTodoInputPane
                     width: parent.width
-                    height: d.canCreateTodos ? hildrenRect.height : 0
+                    height: d.canCreateTodos ? childrenRect.height : 0
                     anchors.top: parent.top
                     visible: height > 0
 

@@ -68,3 +68,5 @@ OTHER_FILES += \
 
 RESOURCES += \
     OpenTodoListCore.qrc
+
+DESTDIR = $$OUT_PWD
