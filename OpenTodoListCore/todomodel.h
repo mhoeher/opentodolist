@@ -31,6 +31,7 @@ class TodoModel : public QAbstractListModel
     Q_PROPERTY( QString filter READ filter WRITE setFilter NOTIFY filterChanged )
     Q_PROPERTY( bool showDone READ showDone WRITE setShowDone NOTIFY showDoneChanged )
     Q_PROPERTY( bool showDeleted READ showDeleted WRITE setShowDeleted NOTIFY showDeletedChanged )
+    Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged)
     Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
 
 public:
@@ -42,7 +43,8 @@ public:
         InvalidQuery, //!< The model shows nothing
         QueryTopLevelTodosInTodoList, //!< The model shows top level todos in a todo list
         QuerySubTodosOfTodo, //!< The model shows sub-todos of a given todo
-        QuerySearchTodos //!< Search within all todos
+        QuerySearchTodos, //!< Search within all todos
+        QueryFilterTodos //!< Like search but do not produce empty lists when search string is empty
     };
 
     explicit TodoModel(QObject *parent = 0);
@@ -73,6 +75,9 @@ public:
     bool showDeleted() const;
     void setShowDeleted(bool showDeleted);
 
+    QDateTime maxDueDate() const;
+    void setMaxDueDate(const QDateTime &maxDueDate);
+
 signals:
 
     void libraryChanged();
@@ -82,6 +87,7 @@ signals:
     void filterChanged();
     void showDoneChanged();
     void showDeletedChanged();
+    void maxDueDateChanged();
     void changed();
     void countChanged();
 
@@ -103,6 +109,7 @@ private:
     QString            m_filter;
     bool               m_showDone;
     bool               m_showDeleted;
+    QDateTime          m_maxDueDate;
 
     static QString idForTodo( const QString &backend, const QString &todoId );
 
@@ -143,18 +150,20 @@ public:
     QString filter() const;
     void setFilter(const QString &filter);
 
-    // TodoListStorageQuery interface
-    virtual void beginRun();
-    virtual bool query(QString &query, QVariantMap &args);
-    virtual void recordAvailable(const QVariantMap &record);
-    virtual void endRun();
-
-
     bool showDone() const;
     void setShowDone(bool showDone);
 
     bool showDeleted() const;
     void setShowDeleted(bool showDeleted);
+
+    QDateTime maxDueDate() const;
+    void setMaxDueDate(const QDateTime &maxDueDate);
+
+    // TodoListStorageQuery interface
+    virtual void beginRun();
+    virtual bool query(QString &query, QVariantMap &args);
+    virtual void recordAvailable(const QVariantMap &record);
+    virtual void endRun();
 
 signals:
 
@@ -170,6 +179,7 @@ private:
     QString              m_filter;
     bool                 m_showDone;
     bool                 m_showDeleted;
+    QDateTime            m_maxDueDate;
 
 };
 

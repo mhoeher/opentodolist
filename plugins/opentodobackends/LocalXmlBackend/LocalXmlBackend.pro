@@ -18,4 +18,4 @@ HEADERS += \
 OTHER_FILES += \
     LocalXmlBackend.json
 
-DESTDIR = $$OUT_PWD
+win32:DESTDIR = $$OUT_PWD

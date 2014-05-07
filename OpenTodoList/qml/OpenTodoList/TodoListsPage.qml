@@ -101,5 +101,59 @@ Page {
                 onTodoSelected: page.todoSelected( todo )
             }
         }
+        Tab {
+            id: dueTodayTab
+
+            name: qsTr( "Due Today" )
+
+            TodoView {
+                id: dueTodayView
+
+                anchors.fill: parent
+                todos: TodoModel {
+                    library: page.library
+                    queryType: TodoModel.QueryFilterTodos
+                    maxDueDate: new Date()
+                }
+
+                onTodoSelected: page.todoSelected( todo )
+            }
+            Timer {
+                interval: 1000 * 60 * 60
+                running: true
+                repeat: true
+                onTriggered: dueTodayView.todos.maxDueDate = new Date()
+            }
+        }
+        Tab {
+            id: dueThisWeekTab
+
+            name: qsTr( "Due This Week" )
+
+            TodoView {
+                id: dueThisWeekView
+
+                function lastDayThisWeek() {
+                    var result = new Date();
+                    result.setDate( result.getDate() - result.getDay() + Qt.locale().firstDayOfWeek + 6 );
+                    return result;
+                }
+
+                anchors.fill: parent
+                todos: TodoModel {
+                    library: page.library
+                    queryType: TodoModel.QueryFilterTodos
+                    maxDueDate: dueThisWeekView.lastDayThisWeek()
+                }
+
+                onTodoSelected: page.todoSelected( todo )
+            }
+            Timer {
+                interval: 1000 * 60 * 60
+                running: true
+                repeat: true
+                onTriggered: dueThisWeekView.todos.maxDueDate = dueThisWeekView.lastDayThisWeek()
+            }
+        }
     }
 }

@@ -14,7 +14,10 @@ TodoModel::TodoModel(QObject *parent) :
     m_needUpdate( false ),
     m_todoList( 0 ),
     m_parentTodo( 0 ),
-    m_filter( QString() )
+    m_filter( QString() ),
+    m_showDone( false ),
+    m_showDeleted( false ),
+    m_maxDueDate( QDateTime() )
 {
     connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
@@ -23,6 +26,7 @@ TodoModel::TodoModel(QObject *parent) :
     connect( this, SIGNAL(filterChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(showDoneChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(showDeletedChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(maxDueDateChanged()), this, SIGNAL(changed()) );
 
     connect( this, SIGNAL(changed()), this, SLOT(update()) );
 
@@ -120,6 +124,19 @@ void TodoModel::update()
     m_needUpdate = true;
     QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
 }
+QDateTime TodoModel::maxDueDate() const
+{
+    return m_maxDueDate;
+}
+
+void TodoModel::setMaxDueDate(const QDateTime &maxDueDate)
+{
+    if ( m_maxDueDate != maxDueDate ) {
+        m_maxDueDate = maxDueDate;
+        emit maxDueDateChanged();
+    }
+}
+
 bool TodoModel::showDeleted() const
 {
     return m_showDeleted;
@@ -204,6 +221,7 @@ void TodoModel::triggerUpdate()
         query->setFilter( m_filter );
         query->setShowDone( m_showDone );
         query->setShowDeleted( m_showDeleted );
+        query->setMaxDueDate( m_maxDueDate );
         bool queryIsValid = true;
 
         switch ( m_queryType ) {
@@ -225,6 +243,7 @@ void TodoModel::triggerUpdate()
             break;
 
         case QuerySearchTodos:
+        case QueryFilterTodos:
             // nothing left todo 8) Just break to avoid setting queryIsValid to false
             break;
 
@@ -299,7 +318,8 @@ TodoStorageQuery::TodoStorageQuery() :
     m_parentTodoId( QString() ),
     m_filter( QString() ),
     m_showDone( false ),
-    m_showDeleted( false )
+    m_showDeleted( false ),
+    m_maxDueDate( QDateTime() )
 {
 }
 
@@ -364,6 +384,10 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
     if ( !m_showDeleted ) {
         filterPart << "deleted = 0 ";
     }
+    if ( m_maxDueDate.isValid() ) {
+        filterPart << " dueDate IS NOT NULL AND dueDate<=:maxDueDate ";
+        args.insert( "maxDueDate", m_maxDueDate );
+    }
 
     switch ( m_queryType ) {
     case TodoModel::QueryTopLevelTodosInTodoList:
@@ -385,6 +409,9 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
         if ( m_filter.isEmpty() ) {
             return false;
         }
+        // fall through to....
+
+    case TodoModel::QueryFilterTodos:
         query = QString( "SELECT * FROM todo WHERE %1 ORDER BY title ASC;" )
                 .arg( filterPart.join( " AND " ) );
         return true;
@@ -422,6 +449,16 @@ void TodoStorageQuery::setShowDeleted(bool showDeleted)
 {
     m_showDeleted = showDeleted;
 }
+QDateTime TodoStorageQuery::maxDueDate() const
+{
+    return m_maxDueDate;
+}
+
+void TodoStorageQuery::setMaxDueDate(const QDateTime &maxDueDate)
+{
+    m_maxDueDate = maxDueDate;
+}
+
 
 
 QString TodoStorageQuery::filter() const

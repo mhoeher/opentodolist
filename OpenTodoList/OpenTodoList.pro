@@ -47,4 +47,4 @@ OTHER_FILES += \
 
 RESOURCES += OpenTodoList.qrc
 
-DESTDIR = $$OUT_PWD
+win32:DESTDIR = $$OUT_PWD

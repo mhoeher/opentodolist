@@ -96,7 +96,7 @@ Item {
                 Item {
                     id: newTodoInputPane
                     width: parent.width
-                    height: d.canCreateTodos ? childrenRect.height : 0
+                    height: childrenRect.height
                     anchors.top: parent.top
                     visible: height > 0
 
@@ -106,9 +106,9 @@ Item {
                         anchors {
                             left: parent.left
                             right: addTodoButton.left
-                            top: parent.top
                             margins: Measures.tinySpace
                         }
+                        y: Measures.tinySpace
                         placeholder: qsTr( "Type to add new todo" )
 
                         onAccept: add()
@@ -119,11 +119,20 @@ Item {
                         symbol: Symbols.plus
                         anchors {
                             right: parent.right
-                            top: parent.top
                             margins: Measures.tinySpace
                         }
+                        y: Measures.tinySpace
 
                         onClicked: add()
+                    }
+
+                    states: State {
+                        name: "hidden"
+                        when: !d.canCreateTodos
+                        PropertyChanges {
+                            target: newTodoInputPane
+                            height: 0
+                        }
                     }
                 }
 
