@@ -85,6 +85,252 @@ AnimatedListView {
         }
     }
 
+    header: Item {
+        id: header
+
+        width: parent.width
+        height: childrenRect.height + Measures.tinySpace * 2
+        visible: height > 0
+
+        QtObject {
+            id: d
+
+            function writableBackends() {
+                var writableBackends = [];
+                var backends = library.backends;
+                for ( var i = 0; i < backends.length; ++i ) {
+                    var backend = backends[i];
+                    if ( backend.canAddTodoList() ) {
+                        writableBackends.push( backend );
+                    }
+                }
+                return writableBackends;
+            }
+
+            function addTodoList() {
+                if ( newTodoListNameEdit.text !== "" ) {
+                    var dialog = backendSelectionDialog.createObject( todoListView );
+                    dialog.backends = writableBackends();
+                    dialog.newListName = newTodoListNameEdit.text;
+                    dialog.onAccept.connect( function() {
+                        library.addTodoList( dialog.selectedBackend.id, dialog.newListName );
+                    } );
+                    dialog.show();
+                    newTodoListNameEdit.text = "";
+                }
+            }
+
+            property Component dialog: Component {
+                id: backendSelectionDialog
+
+                Overlay {
+                    id: overlay
+
+                    property list<BackendWrapper> backends
+                    property BackendWrapper selectedBackend: null
+                    property string newListName
+
+                    signal accept()
+
+                    Rectangle {
+                        anchors.fill: parent
+                        anchors.margins: Measures.tinySpace
+                        color: Colors.window
+                        border {
+                            width: Measures.smallBorderWidth
+                            color: Colors.border
+                        }
+
+                        Label {
+                            id: inputPromtLabel
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                                top: parent.top
+                                margins: Measures.tinySpace
+                            }
+                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            text: qsTr( "Please select a type for the new todo list:" )
+                        }
+
+                        ListView {
+                            id: backendView
+                            model: backends
+                            anchors {
+                                top: inputPromtLabel.bottom
+                                left: parent.left
+                                right: parent.right
+                                bottom: cancelButton.top
+                                margins: Measures.tinySpace
+                            }
+                            highlightFollowsCurrentItem: true
+                            currentIndex: -1
+
+                            highlight: Item {
+                                Rectangle {
+                                    width: overlay.selectedBackend ? Measures.tinySpace : 0
+                                    height: parent.height - Measures.tinySpace
+                                    y: Measures.tinySpace
+                                    color: Colors.secondary1
+                                }
+                            }
+
+                            delegate: Item {
+                                width: parent.width
+                                height: childrenRect.height + Measures.tinySpace
+
+                                MouseArea {
+                                    anchors.fill: itemBackground
+                                    onClicked: {
+                                        overlay.selectedBackend = backends[index]
+                                        backendView.currentIndex = index
+                                    }
+
+                                }
+
+                                Rectangle {
+                                    id: itemBackground
+                                    anchors {
+                                        left: parent.left
+                                        right: parent.right
+                                        top: parent.top
+                                        margins: Measures.tinySpace
+                                    }
+
+                                    height: childrenRect.height + Measures.smallSpace * 2
+                                    color: overlay.selectedBackend === backends[index] ? Colors.listItem : Colors.window
+
+                                    Label {
+                                        id: backendNameLabel
+                                        anchors {
+                                            left: parent.left
+                                            right: parent.right
+                                            top: parent.top
+                                            margins: Measures.tinySpace
+                                            topMargin: Measures.smallSpace
+                                        }
+                                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                                        text: backends[index].name
+                                        font.bold: true
+                                    }
+
+                                    Item {
+                                        id: detailsItem
+                                        visible: height > 0
+                                        clip: true
+                                        anchors {
+                                            left: parent.left
+                                            right: parent.right
+                                            top: backendNameLabel.bottom
+                                            margins: Measures.tinySpace
+                                        }
+                                        height: 0
+                                        opacity: 0.0
+
+                                        Label {
+                                            id: descriptionLabel
+                                            width: parent.width
+                                            text: backends[index].description
+                                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                                        }
+
+                                        states: State {
+                                            name: "shown"
+                                            when: overlay.selectedBackend === backends[index]
+                                            PropertyChanges {
+                                                target: detailsItem
+                                                height: descriptionLabel.height + Measures.tinySpace * 2
+                                                opacity: 1.0
+                                            }
+                                        }
+
+                                        transitions: Transition {
+                                            from: "shown"
+                                            to: ""
+                                            reversible: true
+                                            SequentialAnimation {
+                                                NumberAnimation {
+                                                    target: detailsItem
+                                                    property: "opacity"
+                                                    duration: 100
+                                                }
+                                                NumberAnimation {
+                                                    target: detailsItem
+                                                    property: "height"
+                                                    duration: 100
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Button {
+                            id: okButton
+                            text: qsTr( "Create" )
+                            enabled: overlay.selectedBackend && overlay.selectedBackend.valid
+                            anchors {
+                                bottom: parent.bottom
+                                right: parent.right
+                                margins: Measures.tinySpace
+                            }
+                            onClicked: {
+                                if ( overlay.selectedBackend ) {
+                                    overlay.accept( overlay.selectedBackend );
+                                    overlay.close();
+                                }
+                            }
+                        }
+                        Button {
+                            id: cancelButton
+                            text: qsTr( "Cancel" )
+                            anchors {
+                                bottom: parent.bottom
+                                right: okButton.left
+                                margins: Measures.tinySpace
+                            }
+                            onClicked: overlay.close()
+                        }
+                    }
+                }
+            }
+        }
+
+        SingleLineTextInput {
+            id: newTodoListNameEdit
+            anchors {
+                left: parent.left
+                top: parent.top
+                right: addNewTodoListButton.left
+                margins: Measures.tinySpace
+            }
+            placeholder: qsTr( "Add new list..." )
+
+            onAccept: d.addTodoList()
+        }
+        SymbolButton {
+            id: addNewTodoListButton
+            anchors {
+                right: parent.right
+                top: parent.top
+                margins: Measures.tinySpace
+            }
+            symbol: Symbols.plus
+
+            onClicked: d.addTodoList()
+        }
+
+        states: State {
+            name: "hidden"
+            when: d.writableBackends().length === 0
+            PropertyChanges {
+                target: header
+                height: 0
+            }
+        }
+    }
+
     TodoListModel {
         id: todoListModel
         library: todoListView.library

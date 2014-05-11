@@ -37,7 +37,7 @@ BackendRunner::~BackendRunner()
  */
 bool BackendRunner::canAddTodo(const QString &backend, const TodoListStruct &list, const TodoStruct &todo)
 {
-    BackendInterface *b = backendByName( backend );
+    BackendWrapper *b = backendByName( backend );
     if ( b ) {
         return b->canAddTodo( list, todo );
     }
@@ -53,10 +53,49 @@ bool BackendRunner::canAddTodo(const QString &backend, const TodoListStruct &lis
 void BackendRunner::addTodo(const QString &backend, TodoStruct &newTodo,
                             const TodoListStruct &list, const TodoStruct &todo)
 {
-    BackendInterface *b = backendByName( backend );
+    BackendWrapper *b = backendByName( backend );
     if ( b ) {
-        b->addTodo( newTodo, list, todo );
+        QMetaObject::invokeMethod( b, "addTodo", Qt::QueuedConnection,
+                                   Q_ARG( TodoStruct, newTodo ),
+                                   Q_ARG( TodoListStruct, list ),
+                                   Q_ARG( TodoStruct, todo ) );
     }
+}
+
+/**
+   @brief Check if a new todo list can be created
+
+   Check if we can create todo lists in the @p backend. If so, return true or false otherwise.
+ */
+bool BackendRunner::canAddTodoList(const QString &backend)
+{
+    BackendWrapper *b = backendByName( backend );
+    if ( b ) {
+        return b->canAddTodoList();
+    }
+    return false;
+}
+
+/**
+   @brief Create a new todo list
+
+   Requests creation of a @p newList in the @p backend.
+ */
+void BackendRunner::addTodoList(const QString &backend, TodoListStruct newList)
+{
+    BackendWrapper *b = backendByName( backend );
+    if ( b ) {
+        QMetaObject::invokeMethod( b, "addTodoList", Qt::QueuedConnection,
+                                   Q_ARG( TodoListStruct, newList ) );
+    }
+}
+
+/**
+   @brief The backends maintained by the runner
+ */
+QVector<BackendWrapper*> BackendRunner::backends() const
+{
+    return m_backends;
 }
 
 void BackendRunner::start()

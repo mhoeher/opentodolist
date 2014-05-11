@@ -24,4 +24,6 @@ Text {
     id: label
     text: qsTr("Label")
     color: Colors.text
+
+    Behavior on color { ColorAnimation { duration: 200 } }
 }

@@ -36,8 +36,6 @@ FocusScope {
 
     onTabsChanged: updateTabBar()
 
-    Keys.onPressed: console.debug( "Key pressed in TabView" )
-
     function updateTabBar() {
         var tabItems = [];
         for ( var i = 0; i < tabs.length; ++i ) {

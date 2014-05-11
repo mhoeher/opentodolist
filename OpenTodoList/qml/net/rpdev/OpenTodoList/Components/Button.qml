@@ -29,6 +29,7 @@ Rectangle {
     property bool compact: false
     property bool checked: false
     property bool mouseDown: false
+    property bool enabled: true
     readonly property bool active: checked || mouseDown
 
     signal clicked()
@@ -59,12 +60,13 @@ Rectangle {
         id: label
         text: qsTr( "Button" )
         anchors.centerIn: parent
+        color: button.enabled ? Colors.text : Colors.midText
     }
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onClicked: button.clicked()
+        onClicked: if ( button.enabled ) button.clicked()
         onPressed: button.mouseDown = true
         onReleased: button.mouseDown = false
         onCanceled: button.mouseDown = false

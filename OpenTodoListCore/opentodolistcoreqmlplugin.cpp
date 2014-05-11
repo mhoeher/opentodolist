@@ -7,6 +7,7 @@
 #include "todolistlibrary.h"
 #include "todolistmodel.h"
 #include "todomodel.h"
+#include "backendwrapper.h"
 
 #include <qqml.h>
 #include <QJSEngine>
@@ -37,6 +38,8 @@ void OpenTodoListCoreQmlPlugin::registerTypes(const char *uri)
                 uri, 1, 0, "TodoList" );
     qmlRegisterType< TodoListLibrary >(
                 uri, 1, 0, "TodoListLibrary" );
+    qmlRegisterType< BackendWrapper >(
+                uri, 1, 0, "BackendWrapper" );
 
     qmlRegisterType<Settings>( uri, 1, 0, "Settings" );
     qmlRegisterType<DocumentFormatter>( uri, 1, 0, "DocumentFormatter" );

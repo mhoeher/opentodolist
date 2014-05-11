@@ -37,6 +37,15 @@ TodoStruct nullTodo()
 const TodoListStruct BackendWrapper::NullTodoList = BackendWrapperFuncs::nullTodoList();
 const TodoStruct BackendWrapper::NullTodo = BackendWrapperFuncs::nullTodo();
 
+BackendWrapper::BackendWrapper(QObject *parent) :
+    QObject( parent ),
+    m_library( 0 ),
+    m_backend( 0 ),
+    m_status( Invalid )
+{
+
+}
+
 BackendWrapper::BackendWrapper(TodoListLibrary* library, BackendInterface *backend, QObject *parent) :
     QObject(parent),
     m_library( library ),
@@ -58,22 +67,22 @@ BackendWrapper::~BackendWrapper()
 
 bool BackendWrapper::insertTodoList(const TodoListStruct &list)
 {
-    return m_library->insertTodoList( m_backend, list );
+    return m_status != Invalid && m_library->insertTodoList( m_backend, list );
 }
 
 bool BackendWrapper::insertTodo(const TodoStruct &todo)
 {
-    return m_library->insertTodo( m_backend, todo );
+    return m_status != Invalid && m_library->insertTodo( m_backend, todo );
 }
 
 bool BackendWrapper::deleteTodoList(const TodoListStruct &list)
 {
-    return m_library->deleteTodoList( m_backend, list );
+    return m_status != Invalid && m_library->deleteTodoList( m_backend, list );
 }
 
 bool BackendWrapper::deleteTodo(const TodoStruct &todo)
 {
-    return m_library->deleteTodo( m_backend, todo );
+    return m_status != Invalid && m_library->deleteTodo( m_backend, todo );
 }
 
 TodoListStruct BackendWrapper::nullTodoList()
@@ -88,31 +97,39 @@ TodoStruct BackendWrapper::nullTodo()
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)
 {
-    m_backend->setLocalStorageDirectory( directory );
+    if ( m_status != Invalid )
+        m_backend->setLocalStorageDirectory( directory );
 }
 
 QString BackendWrapper::id() const
 {
-    return m_backend->id();
+    if ( m_status != Invalid )
+        return m_backend->id();
+    return QString();
 }
 
 QString BackendWrapper::name() const
 {
-    return m_backend->name();
+    if ( m_status != Invalid )
+        return m_backend->name();
+    return QString();
 }
 
 QString BackendWrapper::description() const
 {
-    return m_backend->description();
+    if ( m_status != Invalid )
+        return m_backend->description();
+    return QString();
 }
 
 bool BackendWrapper::start()
 {
     switch ( m_status ) {
+    case Invalid: return false;
     case Running: return true;
     case Stopped:
         if ( m_backend->start() ) {
-            m_status = Running;
+            setStatus( Running );
             return true;
         } else {
             return false;
@@ -125,10 +142,11 @@ bool BackendWrapper::start()
 bool BackendWrapper::stop()
 {
     switch ( m_status ) {
+    case Invalid: return false;
     case Stopped: return true;
     case Running:
         if ( m_backend->stop() ) {
-            m_status = Stopped;
+            setStatus( Stopped );
             return true;
         } else {
             return false;
@@ -140,22 +158,34 @@ bool BackendWrapper::stop()
 
 bool BackendWrapper::notifyTodoListChanged(const TodoListStruct &list)
 {
-    return m_backend->notifyTodoListChanged( list );
+    return m_status != Invalid && m_backend->notifyTodoListChanged( list );
 }
 
 bool BackendWrapper::notifyTodoChanged(const TodoStruct &todo)
 {
-    return m_backend->notifyTodoChanged( todo );
+    return m_status != Invalid && m_backend->notifyTodoChanged( todo );
 }
 
 bool BackendWrapper::canAddTodo(const TodoListStruct &list, const TodoStruct &todo)
 {
-    return m_backend->canAddTodo( list, todo );
+    return m_status != Invalid && m_backend->canAddTodo( list, todo );
 }
 
 void BackendWrapper::addTodo( TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo)
 {
-    m_backend->addTodo( newTodo, list, todo );
+    if ( m_status != Invalid )
+        m_backend->addTodo( newTodo, list, todo );
+}
+
+bool BackendWrapper::canAddTodoList()
+{
+    return m_status != Invalid && m_backend->canAddTodoList();
+}
+
+void BackendWrapper::addTodoList(TodoListStruct newList)
+{
+    if ( m_status != Invalid )
+        m_backend->addTodoList( newList );
 }
 
 void BackendWrapper::doStart()
@@ -180,4 +210,12 @@ void BackendWrapper::setDatabase(TodoListDatabase *database)
 {
     Q_ASSERT( false );
     Q_UNUSED( database );
+}
+
+void BackendWrapper::setStatus(BackendWrapper::Status newStatus)
+{
+    if ( m_status != newStatus ) {
+        m_status = newStatus;
+        emit statusChanged();
+    }
 }

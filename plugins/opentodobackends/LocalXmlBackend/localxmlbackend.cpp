@@ -145,6 +145,29 @@ void LocalXmlBackend::addTodo(TodoStruct newTodo, const TodoListStruct &list, co
     }
 }
 
+bool LocalXmlBackend::canAddTodoList()
+{
+    return true;
+}
+
+void LocalXmlBackend::addTodoList(TodoListStruct newList)
+{
+    newList.id = QUuid::createUuid();
+
+    QDir dir( m_localStorageDirectory );
+    if ( dir.mkdir( newList.id.toString() ) ) {
+        dir.cd( newList.id.toString() );
+        newList.meta.insert( TodoListMetaFileName, dir.absoluteFilePath( TodoListConfigFileName ) );
+        if ( todoListToFile( newList ) ) {
+            m_database->insertTodoList( newList );
+        } else {
+            qWarning() << "Failed to create new todo list in file system";
+        }
+    } else {
+        qWarning() << "Unable to create directory for new todo list";
+    }
+}
+
 /**
    @brief Automatically locate todo lists
 
@@ -315,7 +338,7 @@ bool LocalXmlBackend::listToDom(const TodoListStruct &list, QDomDocument &doc)
 {
     QDomElement root = doc.documentElement();
     if ( !root.isElement() ) {
-        doc.createElement( "todoList" );
+        root = doc.createElement( "todoList" );
         doc.appendChild( root );
     }
     root.setAttribute( "id", list.id.toString() );

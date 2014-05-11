@@ -47,6 +47,8 @@ public:
     virtual bool notifyTodoChanged(const TodoStruct &todo);
     virtual bool canAddTodo( const TodoListStruct &list, const TodoStruct &todo );
     virtual void addTodo( TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo );
+    virtual bool canAddTodoList();
+    virtual void addTodoList(TodoListStruct newList);
 
 private:
 

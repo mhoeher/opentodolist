@@ -5,6 +5,7 @@
 
 #include <QDir>
 #include <QObject>
+#include <QObjectList>
 #include <QStandardPaths>
 #include <QThread>
 #include <QVector>
@@ -24,6 +25,9 @@ public:
                      const TodoStruct &todo = BackendWrapper::NullTodo );
     void addTodo( const QString &backend, TodoStruct &newTodo, const TodoListStruct &list,
                   const TodoStruct &todo = BackendWrapper::NullTodo );
+    bool canAddTodoList( const QString &backend );
+    void addTodoList( const QString &backend, TodoListStruct newList );
+    QVector<BackendWrapper *> backends() const;
 
 signals:
 

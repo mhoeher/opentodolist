@@ -89,6 +89,37 @@ void TodoListLibrary::addTodo(const QString &backend, TodoStruct &newTodo,
     m_backendRunner->addTodo( backend, newTodo, list, todo );
 }
 
+/**
+   @brief The list of available backends
+ */
+QQmlListProperty<BackendWrapper> TodoListLibrary::backends()
+{
+    return QQmlListProperty<BackendWrapper>( this, this, backendCountFunction, backendAtFunction );
+}
+
+/**
+   @brief Check whether we can add new todo lists
+
+   Returns true in case new todo lists can be created in the @p backend.
+ */
+bool TodoListLibrary::canAddTodoList(const QString &backend)
+{
+    return m_backendRunner->canAddTodoList( backend );
+}
+
+/**
+   @brief Create a new todo list
+
+   Creates a @p newList in the given @p backend.
+ */
+void TodoListLibrary::addTodoList(const QString &backend, const QString &todoListName)
+{
+    TodoListStruct listStruct;
+    listStruct.id = QUuid();
+    listStruct.name = todoListName;
+    m_backendRunner->addTodoList( backend, listStruct );
+}
+
 bool TodoListLibrary::insertTodoList(const BackendInterface* backend,
                                      const TodoListStruct &list)
 {
@@ -121,6 +152,24 @@ void TodoListLibrary::notifyTodoListChanged(const QString &backend, const TodoLi
 void TodoListLibrary::notifyTodoChanged(const QString &backend, const TodoStruct &todo)
 {
     m_backendRunner->notifyTodoChanged( backend, todo );
+}
+
+int TodoListLibrary::backendCountFunction(QQmlListProperty<BackendWrapper> *property)
+{
+    TodoListLibrary* library = qobject_cast< TodoListLibrary* >( property->object );
+    if ( library ) {
+        return library->m_backendRunner->backends().size();
+    }
+    return 0;
+}
+
+BackendWrapper *TodoListLibrary::backendAtFunction(QQmlListProperty<BackendWrapper> *property, int index)
+{
+    TodoListLibrary* library = qobject_cast< TodoListLibrary* >( property->object );
+    if ( library && index >= 0 && index < library->m_backendRunner->backends().size() ) {
+        return library->m_backendRunner->backends().at( index );
+    }
+    return 0;
 }
 
 void TodoListLibrary::saveSettings()

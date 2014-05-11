@@ -26,11 +26,14 @@
 #include "todoliststorage.h"
 
 #include <QObject>
+#include <QObjectList>
+#include <QQmlListProperty>
 
 class TodoListLibrary : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QObject* plugins READ plugins CONSTANT )
+    Q_PROPERTY( QQmlListProperty<BackendWrapper> backends READ backends CONSTANT )
 public:
     
     explicit TodoListLibrary(QObject *parent = 0);
@@ -43,6 +46,9 @@ public:
                      const TodoStruct &todo = BackendWrapper::NullTodo );
     void addTodo(const QString &backend, TodoStruct &newTodo,
                   const TodoListStruct &list, const TodoStruct &todo = BackendWrapper::NullTodo );
+    QQmlListProperty<BackendWrapper> backends();
+    Q_INVOKABLE bool canAddTodoList( const QString &backend );
+    Q_INVOKABLE void addTodoList( const QString &backend, const QString &todoListName );
 
     // TodoListDatabase wrapper interface
     bool insertTodoList(const BackendInterface *backend,
@@ -66,6 +72,9 @@ private:
     PluginsLoader                   *m_plugins;
     BackendRunner                   *m_backendRunner;
     TodoListStorage                 *m_storage;
+
+    static int backendCountFunction( QQmlListProperty<BackendWrapper> *property );
+    static BackendWrapper* backendAtFunction(QQmlListProperty<BackendWrapper>* property, int index );
 
 private slots:
     

@@ -15,9 +15,16 @@ class BackendWrapper :
 {
     Q_OBJECT
     Q_INTERFACES(BackendInterface)
+    Q_ENUMS(Status)
+    Q_PROPERTY( QString id READ id CONSTANT)
+    Q_PROPERTY( QString name READ name CONSTANT)
+    Q_PROPERTY( QString description READ description CONSTANT)
+    Q_PROPERTY( Status status READ status CONSTANT )
+    Q_PROPERTY( bool valid READ valid CONSTANT )
 public:
 
     enum Status {
+        Invalid,
         Stopped,
         Running
     };
@@ -25,12 +32,14 @@ public:
     static const TodoListStruct NullTodoList;
     static const TodoStruct NullTodo;
 
+    explicit BackendWrapper( QObject *parent = 0 );
     explicit BackendWrapper(TodoListLibrary* library,
                             BackendInterface *backend,
                             QObject *parent = 0);
     virtual ~BackendWrapper();
 
     Status status() const { return m_status; }
+    bool valid() const { return m_status != Invalid; }
 
     // TodoListDatabase interface
     virtual bool insertTodoList(const TodoListStruct &list);
@@ -51,8 +60,12 @@ public:
     Q_INVOKABLE virtual bool notifyTodoChanged(const TodoStruct &todo);
     Q_INVOKABLE virtual bool canAddTodo( const TodoListStruct &list, const TodoStruct &todo );
     Q_INVOKABLE virtual void addTodo( TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo );
+    Q_INVOKABLE virtual bool canAddTodoList();
+    Q_INVOKABLE virtual void addTodoList( TodoListStruct newList );
 
 signals:
+
+    void statusChanged();
 
 public slots:
 
@@ -67,6 +80,8 @@ private:
 
     // BackendInterface interface
     virtual void setDatabase(TodoListDatabase *database);
+
+    void setStatus( Status newStatus );
 
 };
 

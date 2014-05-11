@@ -92,6 +92,11 @@ FocusScope {
             margins: Measures.tinySpace
             leftMargin: Measures.smallSpace
         }
+        todos: TodoModel {
+            queryType: TodoModel.InvalidQuery
+            todoList: delegate.showTodos ? delegate.todoList : null
+        }
+        visible: delegate.showTodos
 
         onTodoSelected: delegate.todoSelected( todo )
     }
