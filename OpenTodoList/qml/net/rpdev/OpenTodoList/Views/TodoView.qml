@@ -141,7 +141,7 @@ Item {
                     width: parent.width
                     height: childrenRect.height
                     anchors.top: newTodoInputPane.bottom
-                    anchors.margins: Measures.tinySpace
+                    anchors.margins: d.canCreateTodos ? Measures.tinySpace : 0
 
                     SingleLineTextInput {
                         anchors {
