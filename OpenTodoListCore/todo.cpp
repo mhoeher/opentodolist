@@ -64,30 +64,9 @@ Todo::Todo(const QString &backend,
     m_previousProgress( -1 ),
     m_disablePersisting( false )
 {
-    Q_ASSERT( library != 0 );
-    connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(progressChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
-
-    connect( this, SIGNAL(changed()), this, SLOT(persist()) );
-    connect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
-            this, SLOT(handleTodoUpdates(QString,TodoStruct)) );
-    connect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
-            this, SLOT(handleTodoRemoved(QString,TodoStruct)) );
-    connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
-            this, SLOT(handleTodoListUpdated(QString,TodoListStruct)) );
-
-    if ( m_library ) {
-        TodoListByIdQuery *query = new TodoListByIdQuery( m_backend, m_struct.todoListId.toString() );
-        connect( query, SIGNAL(todoListAvailable(QString,TodoListStruct)),
-                 this, SLOT(handleTodoListAvailable(QString,TodoListStruct)) );
-        m_library->storage()->runQuery( query );
-    }
+    setupTodo();
 }
+
 
 /**
    @brief Destructor
@@ -309,6 +288,30 @@ bool Todo::canCreateTodos() const
 }
 
 /**
+   @brief Mimics another todo
+
+   This method can be used to "clone" a todo: First, create a new null-Todo using
+   the default constructor. Then, call shadow() with a valid other todo to mimic it.
+
+   @note You can shadow() only once: Calling it on a non-null todo has no effect.
+ */
+void Todo::shadow(Todo *other)
+{
+    if ( m_isNull && other ) {
+        m_isNull = other->m_isNull;
+        m_backend = other->m_backend;
+        m_struct = other->m_struct;
+        m_todoList = other->m_todoList;
+        m_library = other->m_library;
+        m_previousProgress = other->m_previousProgress;
+        if ( !m_isNull ) {
+            setupTodo();
+        }
+        emit reset();
+    }
+}
+
+/**
    @brief Toggles the state of the todo between "done" and "not done"
 
    @sa setProgress
@@ -332,6 +335,42 @@ void Todo::addTodo(const QString &title)
         TodoStruct newTodo = BackendWrapper::NullTodo;
         newTodo.title = title;
         m_library->addTodo( m_backend, newTodo, m_todoList, m_struct );
+    }
+}
+
+void Todo::setupTodo()
+{
+    Q_ASSERT( m_library != 0 );
+    connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(progressChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
+
+    connect( this, SIGNAL(reset()), this, SIGNAL(weightChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(progressChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(priorityChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(dueDateChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(titleChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(descriptionChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(deletedChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(canCreateTodosChanged()) );
+
+    connect( this, SIGNAL(changed()), this, SLOT(persist()) );
+    connect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
+            this, SLOT(handleTodoUpdates(QString,TodoStruct)) );
+    connect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
+            this, SLOT(handleTodoRemoved(QString,TodoStruct)) );
+    connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+            this, SLOT(handleTodoListUpdated(QString,TodoListStruct)) );
+
+    if ( m_library ) {
+        TodoListByIdQuery *query = new TodoListByIdQuery( m_backend, m_struct.todoListId.toString() );
+        connect( query, SIGNAL(todoListAvailable(QString,TodoListStruct)),
+                 this, SLOT(handleTodoListAvailable(QString,TodoListStruct)) );
+        m_library->storage()->runQuery( query );
     }
 }
 

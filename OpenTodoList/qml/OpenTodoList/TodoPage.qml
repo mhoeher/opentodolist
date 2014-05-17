@@ -26,9 +26,9 @@ import net.rpdev.OpenTodoList.Views 1.0
 Page {
     id: page
 
-    property Todo todo
+    property Todo todo: Todo {}
 
-    name: todo && todo.title !== "" ? todo.title : qsTr( "Untitled Todo" )
+    name: todo.title !== "" ? todo.title : qsTr( "Untitled Todo" )
 
     TabView {
         anchors.fill: parent
@@ -58,15 +58,15 @@ Page {
 
                     SymbolLabel {
                         id: titleLabel
-                        symbol: page.todo && page.todo.isDone ? Symbols.checkedBox : Symbols.uncheckedBox
-                        text: page.todo ? page.todo.title : ""
+                        symbol: page.todo.isDone ? Symbols.checkedBox : Symbols.uncheckedBox
+                        text: page.todo.title
                         placeholder: qsTr( "Untitled Todo" )
                         useSymbolButton: true
                         Layout.columnSpan: 2
                         Layout.fillWidth: true
                         Layout.preferredHeight: height
 
-                        onSymbolClicked: if ( page.todo ) page.todo.toggle()
+                        onSymbolClicked: page.todo.toggle()
                         onClicked: {
                             var dialog = editor.createObject( this );
                             dialog.show();
@@ -76,7 +76,7 @@ Page {
                             LineEditDialog {
                                 inputLabel: qsTr( "Rename Todo:" )
                                 text: todo.title
-                                onTextAvailable: if ( page.todo ) page.todo.title = text
+                                onTextAvailable: page.todo.title = text
                             }
                         }
                     }
@@ -88,11 +88,11 @@ Page {
                     Slider {
                         minimum: 0
                         maximum: 100
-                        value: page.todo ? page.todo.progress : 0
+                        value: page.todo.progress
                         Layout.fillWidth: true
                         Layout.maximumWidth: Measures.minimumPageWidth
 
-                        onValueChanged: if ( page.todo ) todo.progress = value
+                        onValueChanged: todo.progress = value
                     }
 
                     Label {
@@ -102,37 +102,35 @@ Page {
                     Slider {
                         minimum: -1
                         maximum: 10
-                        value: page.todo ? page.todo.priority : -1
+                        value: page.todo.priority
                         Layout.fillWidth: true
                         Layout.maximumWidth: Measures.minimumPageWidth
-                        color: Colors.colorForPriority( page.todo ? todo.priority : -1 )
+                        color: Colors.colorForPriority( todo.priority )
 
-                        onValueChanged: if ( page.todo ) todo.priority = value;
+                        onValueChanged: todo.priority = value;
                     }
 
                     SymbolLabel {
                         Layout.fillWidth: true
                         Layout.columnSpan: 2
-                        text: page.todo ? Qt.formatDate( page.todo.dueDate ) : ""
+                        text: Qt.formatDate( page.todo.dueDate )
                         placeholder: qsTr( "No due date selected" )
                         symbol: text === "" ? Symbols.calendarEmpty : Symbols.calendarFull
 
                         property Component datePickerDialog: DateSelectionDialog {
-                            onDateSelected: if ( page.todo ) page.todo.dueDate = selectedDate
-                            onDateCleared:  if ( page.todo ) page.todo.dueDate = new Date( NaN, NaN, NaN );
+                            onDateSelected: page.todo.dueDate = selectedDate
+                            onDateCleared:  page.todo.dueDate = new Date( NaN, NaN, NaN );
                         }
 
                         onClicked: {
                             var dialog = datePickerDialog.createObject( this );
-                            var currentDate = page.todo ? page.todo.dueDate : new Date();
+                            var currentDate = page.todo.dueDate
                             if ( isNaN( currentDate.getFullYear() ) || isNaN( currentDate.getMonth() ) ||
                                     isNaN( currentDate.getDate() ) ) {
                                 currentDate = new Date();
                             }
                             dialog.focusDate = currentDate;
-                            if ( page.todo ) {
-                                dialog.highlightDates = [ page.todo.dueDate ];
-                            }
+                            dialog.highlightDates = [ page.todo.dueDate ];
                             dialog.show();
                         }
                     }
@@ -170,7 +168,7 @@ Page {
                             Label {
                                 id: notesLabel
 
-                                text: page.todo ? page.todo.description : ""
+                                text: page.todo.description
                                 anchors {
                                     left: parent.left
                                     right: parent.right
@@ -184,17 +182,12 @@ Page {
                                     anchors.fill: parent
 
                                     property Component dialog: RichTextEditDialog {
-                                        onAccept: {
-                                            if ( page.todo )
-                                                page.todo.description = this.text;
-                                        }
+                                        onAccept: page.todo.description = this.text;
                                     }
 
                                     onClicked: {
                                         var d = dialog.createObject( this );
-                                        if ( page.todo ) {
-                                            d.text = page.todo.description;
-                                        }
+                                        d.text = page.todo.description;
                                         d.show();
                                     }
                                 }
@@ -212,14 +205,14 @@ Page {
                         todos: TodoModel {
                             id: subTodosModel
                             queryType: TodoModel.QuerySubTodosOfTodo
-                            parentTodo: page.todo ? page.todo : null
+                            parentTodo: page.todo
                         }
 
                         onTodoSelected: {
                             var component = Qt.createComponent( "TodoPage.qml" );
                             if ( component.status === Component.Ready ) {
                                 var newPage = component.createObject( page.pageStack );
-                                newPage.todo = todo;
+                                newPage.todo.shadow( todo );
                                 page.pageStack.showPage( newPage );
                             } else {
                                 console.error( component.errorString() );

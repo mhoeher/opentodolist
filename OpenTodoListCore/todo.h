@@ -80,6 +80,9 @@ public:
     bool isDone() const;
     bool canCreateTodos() const;
 
+
+    Q_INVOKABLE void shadow( Todo *other );
+
 signals:
 
     void weightChanged();
@@ -90,9 +93,11 @@ signals:
     void descriptionChanged();
     void deletedChanged();
 
-    void changed();
-
     void canCreateTodosChanged();
+
+    void changed();
+    void reset();
+
     
 public slots:
 
@@ -110,6 +115,8 @@ private:
     QPointer<TodoListLibrary> m_library;
     int                       m_previousProgress;
     bool                      m_disablePersisting;
+
+    void setupTodo();
 
 private slots:
 
