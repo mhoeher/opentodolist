@@ -231,6 +231,11 @@ Page {
 
                             Label {
                                 text: qsTr( "You cannot undo this operation. Do you want to continue?" )
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                    margins: Measures.tinySpace
+                                }
                                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                             }
 
