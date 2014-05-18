@@ -66,6 +66,8 @@ public slots:
 
     void notifyTodoListChanged( const QString &backend, const TodoListStruct &list );
     void notifyTodoChanged( const QString &backend, const TodoStruct &todo );
+    void notifyTodoListDeleted( const QString &backend, const TodoListStruct &list );
+    void notifyTodoDeleted( const QString &backend, const TodoStruct &todo );
 
 private:
 

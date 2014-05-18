@@ -84,16 +84,6 @@ QString TodoListModel::todoListId(const TodoList *list)
     return list->backend() + "." + list->id();
 }
 
-void TodoListModel::handleTodoListDeleted(QObject *list)
-{
-    int index = m_todoLists.indexOf( static_cast< TodoList* >( list ) );
-    if ( index >= 0 && index < m_todoLists.size() ) {
-        beginRemoveRows( QModelIndex(), index, index );
-        m_todoLists.removeAt( index );
-        endRemoveRows();
-    }
-}
-
 void TodoListModel::triggerUpdate()
 {
     if ( !m_updateNeeded ) {
@@ -126,6 +116,7 @@ void TodoListModel::addTodoList(const QString &backend, const TodoListStruct &li
             m_todoLists.append( todoList );
             m_loadedTodoLists.insert( id );
             emit endInsertRows();
+            connect( todoList, SIGNAL(destroyed(QObject*)), this, SLOT(handleTodoListDeleted(QObject*)) );
         }
     }
 }
@@ -144,6 +135,16 @@ void TodoListModel::removeExtraLists()
         }
     }
     m_newTodoLists.clear();
+}
+
+void TodoListModel::handleTodoListDeleted(QObject *list)
+{
+    int index = m_todoLists.indexOf( static_cast< TodoList* >( list ) );
+    if ( index >= 0 && index < m_todoLists.size() ) {
+        beginRemoveRows( QModelIndex(), index, index );
+        m_todoLists.removeAt( index );
+        endRemoveRows();
+    }
 }
 
 TodoListQuery::TodoListQuery() :

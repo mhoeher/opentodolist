@@ -338,6 +338,22 @@ void Todo::addTodo(const QString &title)
     }
 }
 
+/**
+   @brief Disposes the todo
+
+   Deletes this and any sub-todo (recursively).
+ */
+void Todo::dispose()
+{
+    if ( m_library && !isNull() ) {
+        RecursiveDeleteTodoQuery *query = new RecursiveDeleteTodoQuery( m_backend, m_struct );
+        connect( query, SIGNAL(notifyTodoDeleted(QString,TodoStruct)),
+                 m_library.data(), SLOT(notifyTodoDeleted(QString,TodoStruct)),
+                 Qt::QueuedConnection );
+        m_library->storage()->runQuery( query );
+    }
+}
+
 void Todo::setupTodo()
 {
     Q_ASSERT( m_library != 0 );
@@ -369,7 +385,8 @@ void Todo::setupTodo()
     if ( m_library ) {
         TodoListByIdQuery *query = new TodoListByIdQuery( m_backend, m_struct.todoListId.toString() );
         connect( query, SIGNAL(todoListAvailable(QString,TodoListStruct)),
-                 this, SLOT(handleTodoListAvailable(QString,TodoListStruct)) );
+                 this, SLOT(handleTodoListAvailable(QString,TodoListStruct)),
+                 Qt::QueuedConnection );
         m_library->storage()->runQuery( query );
     }
 }

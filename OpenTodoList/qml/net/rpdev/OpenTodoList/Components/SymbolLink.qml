@@ -18,25 +18,29 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.Theme 1.0
-import net.rpdev.OpenTodoList.Components 1.0
 
-Text {
-    id: label
+Item {
+    id: link
 
-    property bool autoSize: false
+    property alias color: symbolLabel.color
+    property alias symbol: symbolLabel.symbol
+    property int minWidth: Measures.mHeight * 2
+    property int minHeight: Measures.mHeight * 2
 
-    text: qsTr("Label")
-    color: Colors.text
+    signal clicked()
 
-    Behavior on color { ColorAnimation { duration: 200 } }
+    width: Math.max( symbolLabel.width, minWidth )
+    height: Math.max( symbolLabel.height, minHeight )
 
-    states: State {
-        name: "autoSizing"
-        when: autoSize
-        PropertyChanges {
-            target: label
-            wrapMode: Text.NoWrap
-            width: contentWidth
-        }
+    Symbol {
+        id: symbolLabel
+        color: Colors.midText
+        anchors.centerIn: parent
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: link.clicked()
     }
 }
+

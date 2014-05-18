@@ -17,26 +17,11 @@
  */
 
 import QtQuick 2.0
-import net.rpdev.OpenTodoList.Theme 1.0
-import net.rpdev.OpenTodoList.Components 1.0
 
-Text {
-    id: label
+QtObject {
+    id: model
 
-    property bool autoSize: false
+    property list<ContextMenuEntry> menuEntries
+    default property alias children: model.menuEntries
 
-    text: qsTr("Label")
-    color: Colors.text
-
-    Behavior on color { ColorAnimation { duration: 200 } }
-
-    states: State {
-        name: "autoSizing"
-        when: autoSize
-        PropertyChanges {
-            target: label
-            wrapMode: Text.NoWrap
-            width: contentWidth
-        }
-    }
 }

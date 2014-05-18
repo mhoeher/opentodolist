@@ -166,6 +166,20 @@ bool BackendWrapper::notifyTodoChanged(const TodoStruct &todo)
     return m_status != Invalid && m_backend->notifyTodoChanged( todo );
 }
 
+void BackendWrapper::notifyTodoListDeleted(const TodoListStruct &list)
+{
+    if ( m_status != Invalid ) {
+        m_backend->notifyTodoListDeleted( list );
+    }
+}
+
+void BackendWrapper::notifyTodoDeleted(const TodoStruct &todo)
+{
+    if ( m_status != Invalid ) {
+        m_backend->notifyTodoDeleted( todo );
+    }
+}
+
 bool BackendWrapper::canAddTodo(const TodoListStruct &list, const TodoStruct &todo)
 {
     return m_status != Invalid && m_backend->canAddTodo( list, todo );

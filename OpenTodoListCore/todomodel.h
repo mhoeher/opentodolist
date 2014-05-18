@@ -31,6 +31,7 @@ class TodoModel : public QAbstractListModel
     Q_PROPERTY( QString filter READ filter WRITE setFilter NOTIFY filterChanged )
     Q_PROPERTY( bool showDone READ showDone WRITE setShowDone NOTIFY showDoneChanged )
     Q_PROPERTY( bool showDeleted READ showDeleted WRITE setShowDeleted NOTIFY showDeletedChanged )
+    Q_PROPERTY( bool hideUndeleted READ hideUndeleted WRITE setHideUndeleted NOTIFY hideUndeletedChanged)
     Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged)
     Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
 
@@ -78,6 +79,11 @@ public:
     QDateTime maxDueDate() const;
     void setMaxDueDate(const QDateTime &maxDueDate);
 
+    bool hideUndeleted() const;
+    void setHideUndeleted(bool hideUndeleted);
+
+    Q_INVOKABLE Todo* get( int index ) const;
+
 signals:
 
     void libraryChanged();
@@ -87,6 +93,7 @@ signals:
     void filterChanged();
     void showDoneChanged();
     void showDeletedChanged();
+    void hideUndeletedChanged();
     void maxDueDateChanged();
     void changed();
     void countChanged();
@@ -109,6 +116,7 @@ private:
     QString            m_filter;
     bool               m_showDone;
     bool               m_showDeleted;
+    bool               m_hideUndeleted;
     QDateTime          m_maxDueDate;
 
     static QString idForTodo( const QString &backend, const QString &todoId );
@@ -159,11 +167,15 @@ public:
     QDateTime maxDueDate() const;
     void setMaxDueDate(const QDateTime &maxDueDate);
 
+    bool hideUndeleted() const;
+    void setHideUndeleted(bool hideUndeleted);
+
     // TodoListStorageQuery interface
     virtual void beginRun();
     virtual bool query(QString &query, QVariantMap &args);
     virtual void recordAvailable(const QVariantMap &record);
     virtual void endRun();
+
 
 signals:
 
@@ -179,6 +191,7 @@ private:
     QString              m_filter;
     bool                 m_showDone;
     bool                 m_showDeleted;
+    bool                 m_hideUndeleted;
     QDateTime            m_maxDueDate;
 
 };

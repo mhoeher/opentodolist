@@ -72,6 +72,7 @@ signals:
 public slots:
 
     void addTodo( const QString &title );
+    void dispose();
     
 protected:
     

@@ -103,6 +103,7 @@ public slots:
 
     void toggle();
     void addTodo( const QString &title );
+    void dispose();
 
 protected:
 

@@ -126,6 +126,24 @@ void BackendRunner::notifyTodoChanged(const QString &backend, const TodoStruct &
     }
 }
 
+void BackendRunner::notifyTodoListDeleted(const QString &backend, const TodoListStruct &list)
+{
+    BackendWrapper *b = backendByName( backend );
+    if ( b ) {
+        QMetaObject::invokeMethod(
+                    b, "notifyTodoListDeleted", Qt::QueuedConnection, Q_ARG(TodoListStruct, list ) );
+    }
+}
+
+void BackendRunner::notifyTodoDeleted(const QString &backend, const TodoStruct &todo)
+{
+    BackendWrapper *b = backendByName( backend );
+    if ( b ) {
+        QMetaObject::invokeMethod(
+                    b, "notifyTodoDeleted", Qt::QueuedConnection, Q_ARG(TodoStruct, todo ) );
+    }
+}
+
 BackendWrapper *BackendRunner::backendByName(const QString &backend) const
 {
     for ( int i = 0; i < m_backends.size(); ++i ) {

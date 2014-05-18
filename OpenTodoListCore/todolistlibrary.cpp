@@ -154,6 +154,16 @@ void TodoListLibrary::notifyTodoChanged(const QString &backend, const TodoStruct
     m_backendRunner->notifyTodoChanged( backend, todo );
 }
 
+void TodoListLibrary::notifyTodoListDeleted(const QString &backend, const TodoListStruct &list)
+{
+    m_backendRunner->notifyTodoListDeleted( backend, list );
+}
+
+void TodoListLibrary::notifyTodoDeleted(const QString &backend, const TodoStruct &todo)
+{
+    m_backendRunner->notifyTodoDeleted( backend, todo );
+}
+
 int TodoListLibrary::backendCountFunction(QQmlListProperty<BackendWrapper> *property)
 {
     TodoListLibrary* library = qobject_cast< TodoListLibrary* >( property->object );

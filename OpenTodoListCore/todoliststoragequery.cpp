@@ -1,5 +1,7 @@
 #include "todoliststoragequery.h"
 
+#include "todoliststorage.h"
+
 #include <QJsonDocument>
 
 /**
@@ -71,6 +73,34 @@ void TodoListStorageQuery::endRun()
 }
 
 /**
+   @brief Is the query finished?
+
+   This method can be used to implement a multi-step query. The default implementation
+   returns false, that means the sequence of method calls is:
+
+   1. beginRun()
+   2. query()
+   3. recordAvailable() (for every record that might be returned)
+   4. endRun()
+
+   Sometimes it might be required to continue with another query after a
+   first successful one. For this, you can re-implement this method and return true
+   as long as you have another query to be made. The sequence of calls would then change
+   to:
+
+   1. beginRun()
+   2. query()
+   3. recordAvailable() (for every record that might be returned)
+   4. endRun()
+   5. if hasNext() goto 1
+
+ */
+bool TodoListStorageQuery::hasNext() const
+{
+    return false;
+}
+
+/**
    @brief Helper method: Create a TodoListStruct from a @p record from the DB
  */
 TodoListStruct TodoListStorageQuery::todoListFromRecord(const QVariantMap &record)
@@ -107,6 +137,14 @@ TodoStruct TodoListStorageQuery::todoFromRecord(const QVariantMap &record)
     return result;
 }
 
+/**
+   @brief The worker that is processing the query.
+ */
+TodoListStorageWorker *TodoListStorageQuery::worker() const
+{
+    return m_worker;
+}
+
 
 TodoListByIdQuery::TodoListByIdQuery(const QString &backend, const QString &todoListId, QObject *parent) :
     TodoListStorageQuery( parent ),
@@ -131,4 +169,84 @@ void TodoListByIdQuery::recordAvailable(const QVariantMap &record)
 {
     TodoListStruct list = todoListFromRecord( record );
     emit todoListAvailable( m_backend, list );
+}
+
+
+RecursiveDeleteTodoQuery::RecursiveDeleteTodoQuery(const QString &backend, const TodoStruct &todo, QObject *parent) :
+    TodoListStorageQuery( parent ),
+    m_backend( backend ),
+    m_currentTodo(),
+    m_todosToDelete()
+{
+    m_todosToDelete.enqueue( todo );
+}
+
+void RecursiveDeleteTodoQuery::beginRun()
+{
+    m_currentTodo = m_todosToDelete.dequeue();
+    emit notifyTodoDeleted( m_backend, m_currentTodo );
+}
+
+bool RecursiveDeleteTodoQuery::query(QString &query, QVariantMap &args)
+{
+    query = "SELECT * FROM todo WHERE backend=:backend AND parentTodo=:parentTodo;";
+    args.insert( "backend", m_backend );
+    args.insert( "parentTodo", m_currentTodo.id.toString() );
+    return true;
+}
+
+void RecursiveDeleteTodoQuery::recordAvailable(const QVariantMap &record)
+{
+    TodoStruct todo = todoFromRecord( record );
+    m_todosToDelete.enqueue( todo );
+}
+
+bool RecursiveDeleteTodoQuery::hasNext() const
+{
+    return !m_todosToDelete.isEmpty();
+}
+
+void RecursiveDeleteTodoQuery::endRun()
+{
+    worker()->deleteTodo( m_backend, m_currentTodo );
+}
+
+
+RecursiveDeleteTodoListQuery::RecursiveDeleteTodoListQuery(const QString &backend,
+                                                           const TodoListStruct &list,
+                                                           QObject *parent) :
+    TodoListStorageQuery( parent ),
+    m_backend( backend ),
+    m_todoList( list ),
+    m_todosToDelete()
+{
+}
+
+void RecursiveDeleteTodoListQuery::beginRun()
+{
+    emit notifyTodoListDeleted( m_backend, m_todoList );
+}
+
+bool RecursiveDeleteTodoListQuery::query(QString &query, QVariantMap &args)
+{
+    query = "SELECT * FROM todo WHERE backend=:backend AND todoList=:todoList;";
+    args.insert( "backend", m_backend );
+    args.insert( "todoList", m_todoList.id.toString() );
+    return true;
+}
+
+void RecursiveDeleteTodoListQuery::recordAvailable(const QVariantMap &record)
+{
+    TodoStruct todo = todoFromRecord( record );
+    emit notifyTodoDeleted( m_backend, todo );
+    m_todosToDelete.enqueue( todo );
+}
+
+void RecursiveDeleteTodoListQuery::endRun()
+{
+    worker()->deleteTodoList( m_backend, m_todoList );
+    while ( !m_todosToDelete.isEmpty() ) {
+        TodoStruct todo = m_todosToDelete.dequeue();
+        worker()->deleteTodo( m_backend, todo );
+    }
 }

@@ -24,6 +24,7 @@ FocusScope {
     state: "available"
 
     property bool autoClose: false
+    property alias backgroundOpacity: rectangle.opacity
 
     function show() {
         while ( parent.parent && parent.parent.parent ) {

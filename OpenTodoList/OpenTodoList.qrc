@@ -39,5 +39,9 @@
         <file>qml/net/rpdev/OpenTodoList/Components/DateSelectionDialog.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Components/TextEditor.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Views/AnimatedListView.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Components/SymbolLink.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Components/ContextMenu.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Components/ContextMenuEntry.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Components/ContextMenuModel.qml</file>
     </qresource>
 </RCC>

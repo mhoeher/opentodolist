@@ -349,31 +349,36 @@ void TodoListStorageWorker::next()
         query = m_queue.dequeue();
     }
     if ( query ) {
-        query->beginRun();
-        QString queryStr;
-        QVariantMap values;
-        bool validQuery = query->query( queryStr, values );
-        if ( validQuery ) {
-            QSqlQuery q( m_dataBase );
-            q.prepare( queryStr );
-            foreach ( QString key, values.keys() ) {
-                q.bindValue( ":" + key, values.value( key ) );
-            }
-            if ( q.exec() ) {
-                while ( q.next() ) {
-                    QVariantMap recordData;
-                    for ( int i = 0; i < q.record().count(); ++i ) {
-                        recordData.insert( q.record().fieldName( i ),
-                                           q.record().value( i ) );
-                    }
-                    query->recordAvailable( recordData );
+        do {
+            query->m_worker = this;
+            query->beginRun();
+            QString queryStr;
+            QVariantMap values;
+            bool validQuery = query->query( queryStr, values );
+            if ( validQuery ) {
+                QSqlQuery q( m_dataBase );
+                q.prepare( queryStr );
+                foreach ( QString key, values.keys() ) {
+                    q.bindValue( ":" + key, values.value( key ) );
                 }
-            } else {
-                qWarning() << q.lastError().text();
-                qWarning() << q.executedQuery();
+                if ( q.exec() ) {
+                    while ( q.next() ) {
+                        QVariantMap recordData;
+                        for ( int i = 0; i < q.record().count(); ++i ) {
+                            recordData.insert( q.record().fieldName( i ),
+                                               q.record().value( i ) );
+                        }
+                        query->recordAvailable( recordData );
+                    }
+                } else {
+                    qWarning() << q.lastError().text();
+                    qWarning() << q.executedQuery();
+                    qWarning() << queryStr;
+                    qWarning() << values;
+                }
             }
-        }
-        query->endRun();
+            query->endRun();
+        } while ( query->hasNext() );
         delete query;
     }
 }

@@ -107,6 +107,26 @@ bool LocalXmlBackend::notifyTodoChanged(const TodoStruct &todo)
     return todoToFile( todo );
 }
 
+void LocalXmlBackend::notifyTodoListDeleted(const TodoListStruct &list)
+{
+    QString fileName = list.meta.value( TodoListMetaFileName, QString() ).toString();
+    QFileInfo fi( fileName );
+    if ( fi.exists() ) {
+        QDir dir = fi.absoluteDir();
+        dir.removeRecursively();
+    }
+}
+
+void LocalXmlBackend::notifyTodoDeleted(const TodoStruct &todo)
+{
+    QString fileName = todo.meta.value( TodoMetaFileName, QString() ).toString();
+    QFileInfo fi( fileName );
+    if ( fi.exists() ) {
+        QFile file( fileName );
+        file.remove();
+    }
+}
+
 bool LocalXmlBackend::canAddTodo(const TodoListStruct &list, const TodoStruct &todo)
 {
     if ( list.id.isNull() ) {

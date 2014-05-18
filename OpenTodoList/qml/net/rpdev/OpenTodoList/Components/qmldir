@@ -21,4 +21,7 @@ SymbolLabel 1.0 SymbolLabel.qml
 Tab 1.0 Tab.qml
 TabView 1.0 TabView.qml
 TextEditor 1.0 TextEditor.qml
-
+SymbolLink 1.0 SymbolLink.qml
+ContextMenu 1.0 ContextMenu.qml
+ContextMenuModel 1.0 ContextMenuModel.qml
+ContextMenuEntry 1.0 ContextMenuEntry.qml

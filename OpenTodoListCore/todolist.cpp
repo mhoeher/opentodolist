@@ -18,7 +18,7 @@
 
 #include "todolist.h"
 #include "todolistlibrary.h"
-
+#include "todoliststoragequery.h"
 
 /**
    @brief Creates a new invalid TodoList
@@ -71,7 +71,6 @@ TodoList::TodoList(const QString &backend,
  */
 TodoList::~TodoList()
 {
-
 }
 
 /**
@@ -150,6 +149,20 @@ void TodoList::addTodo(const QString &title)
         newTodo.title = title;
         //TODO: add to end of list by selecting an appropriate weight
         m_library->addTodo( m_backend, newTodo, m_struct );
+    }
+}
+
+void TodoList::dispose()
+{
+    if ( !isNull() && m_library ) {
+        RecursiveDeleteTodoListQuery *query = new RecursiveDeleteTodoListQuery( m_backend, m_struct );
+        connect( query, SIGNAL(notifyTodoListDeleted(QString,TodoListStruct)),
+                m_library.data(), SLOT(notifyTodoListDeleted(QString,TodoListStruct)),
+                Qt::QueuedConnection );
+        connect( query, SIGNAL(notifyTodoDeleted(QString,TodoStruct)),
+                 m_library.data(), SLOT(notifyTodoDeleted(QString,TodoStruct)),
+                 Qt::QueuedConnection );
+        m_library->storage()->runQuery( query );
     }
 }
 

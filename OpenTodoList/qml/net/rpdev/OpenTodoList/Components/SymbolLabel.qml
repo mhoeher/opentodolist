@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 
@@ -29,6 +30,8 @@ Item {
     property bool useSymbolButton: false
     property alias strikeOut: label.font.strikeout
     property int minHeight: 0
+    property bool autoSize: false
+    property bool noAnimations: false
 
     signal symbolClicked()
     signal clicked()
@@ -38,6 +41,7 @@ Item {
                 label.height,
                 placeholderLabel.height,
                 minHeight )
+    width: autoSize ? symbolLabel.width + Math.max( label.width, placeholderLabel.width ) + Measures.smallSpace : 0
 
     MouseArea {
         anchors.fill: parent
@@ -53,6 +57,7 @@ Item {
         }
 
         Behavior on text {
+            enabled: !noAnimations
             SequentialAnimation {
                 NumberAnimation {
                     target: symbolLabel
@@ -74,14 +79,9 @@ Item {
     }
 
     MouseArea {
+        enabled: useSymbolButton
         anchors.fill: symbolLabel
-        onClicked: {
-            if ( useSymbolButton ) {
-                component.symbolClicked();
-            } else {
-                component.clicked();
-            }
-        }
+        onClicked: component.symbolClicked()
     }
 
     Label {
@@ -89,12 +89,13 @@ Item {
 
         anchors {
             left: symbolLabel.right
-            right: parent.right
+            right: autoSize ? undefined : parent.right
             leftMargin: Measures.smallSpace
             verticalCenter: parent.verticalCenter
         }
         text: qsTr( "SymbolLabel" )
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        autoSize: component.autoSize
     }
 
     Label {
@@ -102,7 +103,7 @@ Item {
 
         anchors {
             left: symbolLabel.right
-            right: parent.right
+            right: autoSize ? undefined : parent.right
             leftMargin: Measures.smallSpace
             verticalCenter: parent.verticalCenter
         }
@@ -110,6 +111,7 @@ Item {
         color: Colors.midText
         font.italic: true
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        autoSize: component.autoSize
         visible: label.text === ""
         font {
             strikeout: label.font.strikeout

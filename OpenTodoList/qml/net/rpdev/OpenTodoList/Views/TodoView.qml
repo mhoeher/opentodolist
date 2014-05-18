@@ -181,7 +181,7 @@ Item {
                             top: parent.top
                             margins: Measures.tinySpace
                         }
-                        symbol: Symbols.thrash
+                        symbol: Symbols.trash
                         checked: todoView.todos && todoView.todos.showDeleted
                         onClicked: {
                             if ( todoView.todos ) {

@@ -58,6 +58,8 @@ public:
     virtual bool stop();
     Q_INVOKABLE virtual bool notifyTodoListChanged(const TodoListStruct &list);
     Q_INVOKABLE virtual bool notifyTodoChanged(const TodoStruct &todo);
+    Q_INVOKABLE virtual void notifyTodoListDeleted( const TodoListStruct &list );
+    Q_INVOKABLE virtual void notifyTodoDeleted( const TodoStruct &todo );
     Q_INVOKABLE virtual bool canAddTodo( const TodoListStruct &list, const TodoStruct &todo );
     Q_INVOKABLE virtual void addTodo( TodoStruct newTodo, const TodoListStruct &list, const TodoStruct &todo );
     Q_INVOKABLE virtual bool canAddTodoList();

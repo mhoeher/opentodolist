@@ -342,6 +342,30 @@ public:
     virtual bool notifyTodoChanged( const TodoStruct& todo ) = 0;
 
     /**
+       @brief Delete a todo list
+
+       This is called to notify that the user decided to delete a todo list. The backend
+       should delete any resources belonging to the list as well.
+
+       @note The backend will receive subsequent notifyTodoDeleted() calls for any
+       todo in the list. These calls might safely be ignored if any resources occupied
+       by these todos already get disposed when the deletion of the list is handled.
+     */
+    virtual void notifyTodoListDeleted( const TodoListStruct &list ) = 0;
+
+    /**
+       @brief Delete a todo
+
+       This is called to notify that the user decided to delete a todo list. The backend
+       shall delete any resources belonging to the todo.
+
+       @note The backend will receive subsequent notifyTodoDeleted() calls for
+       any (recursive) sub-todo of the todo. These calls might be ignored if deletion of resources
+       already happens in this call.
+     */
+    virtual void notifyTodoDeleted( const TodoStruct &todo ) = 0;
+
+    /**
        @brief Test whether we can add a todo
 
        This method shall return true if new todos can be created within the given @p list and below

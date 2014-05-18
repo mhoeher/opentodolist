@@ -85,23 +85,6 @@ Page {
             }
         }
         Tab {
-            id: searchTab
-
-            name: qsTr( "Search" )
-
-            TodoView {
-                id: searchView
-
-                anchors.fill: parent
-                todos: TodoModel {
-                    library: page.library
-                    queryType: TodoModel.QuerySearchTodos
-                }
-
-                onTodoSelected: page.todoSelected( todo )
-            }
-        }
-        Tab {
             id: dueTodayTab
 
             name: qsTr( "Due Today" )
@@ -153,6 +136,139 @@ Page {
                 running: true
                 repeat: true
                 onTriggered: dueThisWeekView.todos.maxDueDate = dueThisWeekView.lastDayThisWeek()
+            }
+        }
+        Tab {
+            id: searchTab
+
+            name: qsTr( "Search" )
+
+            TodoView {
+                id: searchView
+
+                anchors.fill: parent
+                todos: TodoModel {
+                    library: page.library
+                    queryType: TodoModel.QuerySearchTodos
+                }
+
+                onTodoSelected: page.todoSelected( todo )
+            }
+        }
+        Tab {
+            id: trashTab
+
+            name: qsTr( "Trash" )
+
+            TodoView {
+                id: trashView
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    bottom: emptyTrashButton.top
+                    bottomMargin: Measures.tinySpace
+                }
+
+                todos: TodoModel {
+                    id: trashModel
+                    library: page.library
+                    queryType: TodoModel.QueryFilterTodos
+                    showDeleted: true
+                    hideUndeleted: true
+                }
+
+                onTodoSelected: page.todoSelected( todo )
+            }
+            Button {
+                id: emptyTrashButton
+                text: qsTr( "Empty Trash" )
+                anchors {
+                    right: parent.right
+                    bottom: parent.bottom
+                    margins: Measures.tinySpace
+                }
+                onClicked: {
+                    var dialog = confirmEmptyTrashDialog.createObject( this );
+                    dialog.show();
+                }
+            }
+
+            Component {
+                id: confirmEmptyTrashDialog
+
+                Overlay {
+                    Rectangle {
+                        color: Colors.window
+                        border {
+                            width: Measures.smallBorderWidth
+                            color: Colors.border
+                        }
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                            margins: Measures.tinySpace
+                        }
+                        height: childrenRect.height + Measures.tinySpace * 2
+
+                        Column {
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                                top: parent.top
+                                margins: Measures.tinySpace
+                            }
+                            spacing: Measures.tinySpace
+
+                            Label {
+                                text: qsTr( "Empty Trash?" )
+                                width: parent.width
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                                font.bold: true
+                            }
+
+                            Label {
+                                text: qsTr( "You cannot undo this operation. Do you want to continue?" )
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            }
+
+                            Item {
+                                width: parent.width
+                                height: childrenRect.height
+
+                                Button {
+                                    id: continueEmptyTrashButton
+                                    text: qsTr( "Cancel" )
+                                    anchors {
+                                        right: parent.right
+                                    }
+
+                                    onClicked: close()
+                                }
+                                Button {
+                                    text: qsTr( "Continue" )
+                                    anchors {
+                                        right: continueEmptyTrashButton.left
+                                        margins: Measures.tinySpace
+                                    }
+
+                                    onClicked: {
+                                        var todos = [];
+                                        for ( var i = 0; i < trashModel.count; ++i ) {
+                                            todos.push( trashModel.get( i ) );
+                                        }
+                                        for ( var i = 0; i < todos.length; ++i ) {
+                                            todos[ i ].dispose();
+                                        }
+                                        close();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -17,6 +17,7 @@ TodoModel::TodoModel(QObject *parent) :
     m_filter( QString() ),
     m_showDone( false ),
     m_showDeleted( false ),
+    m_hideUndeleted( false ),
     m_maxDueDate( QDateTime() )
 {
     connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
@@ -26,6 +27,7 @@ TodoModel::TodoModel(QObject *parent) :
     connect( this, SIGNAL(filterChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(showDoneChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(showDeletedChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(hideUndeletedChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(maxDueDateChanged()), this, SIGNAL(changed()) );
 
     connect( this, SIGNAL(changed()), this, SLOT(update()) );
@@ -124,6 +126,27 @@ void TodoModel::update()
     m_needUpdate = true;
     QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
 }
+bool TodoModel::hideUndeleted() const
+{
+    return m_hideUndeleted;
+}
+
+void TodoModel::setHideUndeleted(bool hideUndeleted)
+{
+    if ( m_hideUndeleted != hideUndeleted ) {
+        m_hideUndeleted = hideUndeleted;
+        emit hideUndeletedChanged();
+    }
+}
+
+Todo *TodoModel::get(int index) const
+{
+    if ( index >= 0 && index < m_todos.size() ) {
+        return m_todos.at( index );
+    }
+    return 0;
+}
+
 QDateTime TodoModel::maxDueDate() const
 {
     return m_maxDueDate;
@@ -221,6 +244,7 @@ void TodoModel::triggerUpdate()
         query->setFilter( m_filter );
         query->setShowDone( m_showDone );
         query->setShowDeleted( m_showDeleted );
+        query->setHideUndeleted( m_hideUndeleted );
         query->setMaxDueDate( m_maxDueDate );
         bool queryIsValid = true;
 
@@ -384,6 +408,9 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
     if ( !m_showDeleted ) {
         filterPart << " deleted = 0 ";
     }
+    if ( m_hideUndeleted ) {
+        filterPart << " deleted = 1 ";
+    }
     if ( m_maxDueDate.isValid() ) {
         filterPart << " dueDate IS NOT NULL AND dueDate<=:maxDueDate ";
         args.insert( "maxDueDate", m_maxDueDate );
@@ -431,6 +458,16 @@ void TodoStorageQuery::endRun()
 {
     emit finished();
 }
+bool TodoStorageQuery::hideUndeleted() const
+{
+    return m_hideUndeleted;
+}
+
+void TodoStorageQuery::setHideUndeleted(bool hideUndeleted)
+{
+    m_hideUndeleted = hideUndeleted;
+}
+
 bool TodoStorageQuery::showDone() const
 {
     return m_showDone;

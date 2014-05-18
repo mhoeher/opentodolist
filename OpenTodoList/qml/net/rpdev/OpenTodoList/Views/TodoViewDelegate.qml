@@ -28,11 +28,34 @@ Item {
 
     signal clicked()
 
-    height: childrenRect.height + Measures.tinySpace
+    height: childrenRect.height + Measures.tinySpace * 2
     anchors {
         left: parent.left
         right: parent.right
         margins: Measures.smallSpace
+    }
+
+    Component {
+        id: contextMenu
+
+        ContextMenu {
+            property Todo todo: Todo {}
+
+            model: ContextMenuModel {
+                ContextMenuEntry {
+                    name: todo.isDeleted ? qsTr( "Restore" ) : qsTr( "Delete" )
+                    symbol: todo.isDeleted ? Symbols.textEditUndo : Symbols.trash
+                }
+            }
+
+            onClicked: {
+                switch ( index ) {
+                case 0:
+                    todo.isDeleted = !todo.isDeleted
+                    break;
+                }
+            }
+        }
     }
 
     SymbolLabel {
@@ -54,14 +77,10 @@ Item {
         onSymbolClicked: if ( todo ) todo.toggle()
     }
 
-    SymbolButton {
+    SymbolLink {
         id: menu
         symbol: Symbols.verticalEllipsis
-        color: "transparent"
-        gradient: null
-        border.width: 0
-        fontColor: Colors.midText
-        compact: true
+        minHeight: label.height
         anchors {
             right: parent.right
             top: parent.top
@@ -69,76 +88,9 @@ Item {
         }
 
         onClicked: {
-            if ( buttonBox.state === "" ) {
-                buttonBox.state = "visible";
-            } else {
-                buttonBox.state = "";
-            }
-        }
-    }
-
-    Item {
-        id: buttonBox
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: label.bottom
-            margins: Measures.tinySpace
-            leftMargin: Measures.midSpace
-        }
-        height: 0
-        clip: height < childrenRect.height
-        visible: height > 0
-
-        Column {
-            id: column
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-            }
-
-            SymbolLabel {
-                symbol: Symbols.thrash
-                text: qsTr( "Delete" )
-                visible: todo && !todo.isDeleted
-                width: parent.width
-                minHeight: Measures.mHeight * 2
-                onClicked: if ( todo ) todo.isDeleted = true
-            }
-            SymbolLabel {
-                symbol: Symbols.textEditUndo
-                text: qsTr( "Restore" )
-                visible: todo && todo.isDeleted
-                width: parent.width
-                minHeight: Measures.mHeight * 2
-                onClicked: if ( todo ) todo.isDeleted = false
-            }
-            /*SymbolLabel {
-                symbol: Symbols.move
-                width: parent.width
-                text: qsTr( "Move" )
-                minHeight: Measures.mHeight * 2
-            }*/
-        }
-
-
-        states: State {
-            name: "visible"
-            PropertyChanges {
-                target: buttonBox
-                height: column.height
-            }
-        }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            NumberAnimation {
-                property: "height"
-                duration: 200
-            }
+            var ctxMenu = contextMenu.createObject( this );
+            ctxMenu.todo.shadow( delegate.todo );
+            ctxMenu.popup( this );
         }
     }
 }

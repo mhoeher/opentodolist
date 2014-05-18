@@ -36,7 +36,7 @@ FocusScope {
     signal todoSelected( Todo todo )
 
     anchors { left: parent.left; right: parent.right }
-    height: showTodos ? maxHeight : label.height + Measures.smallSpace
+    height: showTodos ? maxHeight : titlePane.height + Measures.smallSpace
     clip: showTodos
 
     onShowTodosChanged: {
@@ -58,27 +58,161 @@ FocusScope {
         Behavior on opacity { NumberAnimation { duration: 200 } }
     }
 
-    SymbolLabel {
-        id: label
+    MouseArea {
+        anchors.fill: parent
+        onClicked: delegate.clicked()
+    }
+
+    Item {
+        id: titlePane
 
         anchors {
             left: parent.left
             right: parent.right
             top: parent.top
-            margins: Measures.tinySpace
         }
-        symbol: showTodos ? Symbols.doubleUp : ""
-        text: todoList.name
-        placeholder: qsTr( "Untitled Todo List" )
+        height: childrenRect.height
 
-        onClicked: delegate.clicked()
-    }
+        Component {
+            id: contextMenu
 
+            ContextMenu {
+                model: ContextMenuModel {
+                    ContextMenuEntry {
+                        name: qsTr( "Rename" )
+                    }
+                    ContextMenuEntry {
+                        name: qsTr( "Delete" )
+                        symbol: Symbols.trash
+                    }
+                }
 
+                onClicked: {
+                    var dialog;
+                    switch ( index ) {
+                    case 0:
+                        dialog = renameDialog.createObject( delegate );
+                        dialog.show();
+                        break;
+                    case 1:
+                        dialog = deleteDialog.createObject( delegate );
+                        dialog.show();
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+        }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: delegate.clicked()
+        Component {
+            id: renameDialog
+
+            LineEditDialog {
+                inputLabel: qsTr( "Please specify a new name for the todo list:" )
+                text: todoList.name
+                onTextAvailable: todoList.name = text
+            }
+        }
+
+        Component {
+            id: deleteDialog
+
+            Overlay {
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: Measures.tinySpace
+                    color: Colors.window
+                    border {
+                        color: Colors.border
+                        width: Measures.smallBorderWidth
+                    }
+
+                    Label {
+                        id: deleteCaption
+                        font.bold: true
+                        text: qsTr( "Do you want to delete this todo list?" )
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            top: parent.top
+                            margins: Measures.tinySpace
+                        }
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    }
+
+                    Label {
+                        text: qsTr( "Deleting a todo list will also delete any todos contained in it. " +
+                                    "Note that this cannot be undone. Do you want to proceed?" )
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            top: deleteCaption.bottom
+                            margins: Measures.tinySpace
+                        }
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    }
+
+                    Button {
+                        id: cancelDeleteButton
+                        text: qsTr( "Cancel" )
+                        anchors {
+                            right: parent.right
+                            bottom: parent.bottom
+                            margins: Measures.tinySpace
+                        }
+
+                        onClicked: close()
+                    }
+
+                    Button {
+                        text: qsTr( "Delete" )
+                        anchors {
+                            right: cancelDeleteButton.left
+                            bottom: parent.bottom
+                            margins: Measures.tinySpace
+                        }
+                        onClicked: {
+                            todoList.dispose();
+                            close();
+                        }
+                    }
+                }
+            }
+        }
+
+        SymbolLabel {
+            id: label
+
+            anchors {
+                left: parent.left
+                right: menuButton.left
+                top: parent.top
+                margins: Measures.tinySpace
+            }
+            symbol: showTodos ? Symbols.doubleUp : ""
+            text: todoList.name
+            placeholder: qsTr( "Untitled Todo List" )
+
+            onClicked: delegate.clicked()
+        }
+
+        SymbolLink {
+            id: menuButton
+
+            anchors {
+                right: parent.right
+                top: parent.top
+                margins: Measures.tinySpace
+            }
+            minHeight: label.height
+            symbol: Symbols.verticalEllipsis
+
+            onClicked: {
+                var menu = contextMenu.createObject( this );
+                menu.popup( menuButton );
+            }
+        }
     }
 
     TodoView {
@@ -87,7 +221,7 @@ FocusScope {
         anchors {
             left: parent.left
             right: parent.right
-            top: label.bottom
+            top: titlePane.bottom
             bottom: parent.bottom
             margins: Measures.tinySpace
             leftMargin: Measures.smallSpace
