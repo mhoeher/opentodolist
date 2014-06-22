@@ -43,5 +43,7 @@
         <file>qml/net/rpdev/OpenTodoList/Components/ContextMenu.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Components/ContextMenuEntry.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Components/ContextMenuModel.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Views/ViewSettings.qml</file>
+        <file>qml/net/rpdev/OpenTodoList/Views/TodoViewHeader.qml</file>
     </qresource>
 </RCC>

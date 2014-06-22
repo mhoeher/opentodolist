@@ -45,6 +45,15 @@ class TodoList : public QObject
     
 public:
 
+    /**
+       @brief Compares two TodoList objects
+     */
+    class Comparator {
+    public:
+        Comparator() {}
+        int operator () ( TodoList* const &first, TodoList* const &second ) const;
+    };
+
     explicit TodoList( QObject *parent = 0 );
     explicit TodoList( const QString &backend,
                        const TodoListStruct &list,

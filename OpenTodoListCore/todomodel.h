@@ -34,6 +34,7 @@ class TodoModel : public QAbstractListModel
     Q_PROPERTY( bool hideUndeleted READ hideUndeleted WRITE setHideUndeleted NOTIFY hideUndeletedChanged)
     Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged)
     Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
+    Q_PROPERTY( Todo::TodoSortMode sortMode READ sortMode WRITE setSortMode NOTIFY sortModeChanged )
 
 public:
 
@@ -57,6 +58,7 @@ public:
     // QAbstractItemModel interface
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
+    virtual void sort(int column, Qt::SortOrder order);
 
     QueryType queryType() const;
     void setQueryType(const QueryType &queryType);
@@ -84,6 +86,9 @@ public:
 
     Q_INVOKABLE Todo* get( int index ) const;
 
+    Todo::TodoSortMode sortMode() const;
+    void setSortMode(const Todo::TodoSortMode &sortMode);
+
 signals:
 
     void libraryChanged();
@@ -97,10 +102,12 @@ signals:
     void maxDueDateChanged();
     void changed();
     void countChanged();
+    void sortModeChanged();
 
 public slots:
 
     void update();
+    void sort();
 
 private:
 
@@ -118,6 +125,7 @@ private:
     bool               m_showDeleted;
     bool               m_hideUndeleted;
     QDateTime          m_maxDueDate;
+    Todo::TodoSortMode m_sortMode;
 
     static QString idForTodo( const QString &backend, const QString &todoId );
 
@@ -128,8 +136,6 @@ private slots:
     void removeExtraneousTodos();
 
     void handleTodoDeleted( QObject *todo );
-
-
 };
 
 /**

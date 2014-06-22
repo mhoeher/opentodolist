@@ -206,7 +206,9 @@ Page {
                             id: subTodosModel
                             queryType: TodoModel.QuerySubTodosOfTodo
                             parentTodo: page.todo
+                            sortMode: root.sortMode
                         }
+                        clip: true
 
                         onTodoSelected: {
                             var component = Qt.createComponent( "TodoPage.qml" );

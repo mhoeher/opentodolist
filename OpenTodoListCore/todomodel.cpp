@@ -1,5 +1,6 @@
 #include "todomodel.h"
 
+#include "listutils.h"
 #include "todolistlibrary.h"
 
 #include <QTimer>
@@ -18,7 +19,8 @@ TodoModel::TodoModel(QObject *parent) :
     m_showDone( false ),
     m_showDeleted( false ),
     m_hideUndeleted( false ),
-    m_maxDueDate( QDateTime() )
+    m_maxDueDate( QDateTime() ),
+    m_sortMode( Todo::SortTodoByName )
 {
     connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
@@ -95,6 +97,34 @@ QVariant TodoModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+void TodoModel::sort(int column, Qt::SortOrder order)
+{
+    Q_UNUSED( column );
+    Q_UNUSED( order );
+    Todo::Comparator c( m_sortMode );
+    for ( int i = 0; i < m_todos.size() - 1; ++i ) {
+        for ( int j = i + 1; j < m_todos.size(); ++j ) {
+            if ( c( m_todos[i], m_todos[j] ) > 0 ) {
+                Todo *first = m_todos[i];
+                Todo *second = m_todos[j];
+
+                beginMoveRows( QModelIndex(), i, i, QModelIndex(), j + 1 );
+                m_todos.removeAt(i);
+                m_todos.insert( j, first );
+                endMoveRows();
+
+                if ( j - i > 1 ) {
+                    beginMoveRows( QModelIndex(), j-1, j-1, QModelIndex(), i );
+                    m_todos.removeAt(j-1);
+                    m_todos.insert( i, second );
+                    endMoveRows();
+                }
+
+            }
+        }
+    }
+}
+
 /**
    @brief The type of content this model displays
  */
@@ -126,6 +156,25 @@ void TodoModel::update()
     m_needUpdate = true;
     QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
 }
+
+void TodoModel::sort()
+{
+    sort(0, Qt::AscendingOrder);
+}
+Todo::TodoSortMode TodoModel::sortMode() const
+{
+    return m_sortMode;
+}
+
+void TodoModel::setSortMode(const Todo::TodoSortMode &sortMode)
+{
+    if ( m_sortMode != sortMode ) {
+        m_sortMode = sortMode;
+        sort();
+        emit sortModeChanged();
+    }
+}
+
 bool TodoModel::hideUndeleted() const
 {
     return m_hideUndeleted;
@@ -297,11 +346,14 @@ void TodoModel::addTodo(const QString &backend, const TodoStruct &todo)
     if ( !m_loadedTodos.contains( id ) ) {
         Todo *newTodo = new Todo( backend, todo, m_library, this );
         if ( newTodo ) {
-            beginInsertRows( QModelIndex(), rowCount(), rowCount() );
-            m_todos << newTodo;
+            int index = OpenTodoList::ListUtils::findInsertIndex(
+                        m_todos, newTodo, Todo::Comparator( m_sortMode ) );
+            beginInsertRows( QModelIndex(), index, index );
+            m_todos.insert( index, newTodo );
             endInsertRows();
             m_loadedTodos.insert( id );
             connect( newTodo, SIGNAL(destroyed(QObject*)), this, SLOT(handleTodoDeleted(QObject*)) );
+            connect( newTodo, SIGNAL(changed()), this, SLOT(sort()) );
         }
     }
 }

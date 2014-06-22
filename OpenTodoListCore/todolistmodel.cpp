@@ -1,5 +1,7 @@
 #include "todolistmodel.h"
 
+#include "listutils.h"
+
 #include <QDebug>
 #include <QTimer>
 
@@ -40,9 +42,9 @@ void TodoListModel::setLibrary(TodoListLibrary *library)
         m_library = library;
         if ( m_library ) {
             connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
-                        this, SLOT(update()) );
+                     this, SLOT(update()) );
             connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                        this, SLOT(update()) );
+                     this, SLOT(update()) );
         }
         emit libraryChanged();
     }
@@ -68,10 +70,45 @@ QVariant TodoListModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+void TodoListModel::sort(int column, Qt::SortOrder order)
+{
+    Q_UNUSED( column );
+    Q_UNUSED( order );
+    TodoList::Comparator c;
+    for ( int i = 0; i < m_todoLists.size() - 1; ++i ) {
+        for ( int j = i + 1; j < m_todoLists.size(); ++j ) {
+            qDebug() << m_todoLists[i]->name() << "<" << m_todoLists[j]->name();
+            if ( c( m_todoLists[i], m_todoLists[j] ) > 0 ) {
+                qDebug() << "False";
+                TodoList *first = m_todoLists[i];
+                TodoList *second = m_todoLists[j];
+
+                beginMoveRows( QModelIndex(), i, i, QModelIndex(), j + 1 );
+                m_todoLists.removeAt(i);
+                m_todoLists.insert( j, first );
+                endMoveRows();
+
+                if ( j - i > 1 ) {
+                    beginMoveRows( QModelIndex(), j-1, j-1, QModelIndex(), i );
+                    m_todoLists.removeAt(j-1);
+                    m_todoLists.insert( i, second );
+                    endMoveRows();
+                }
+
+            }
+        }
+    }
+}
+
 void TodoListModel::update()
 {
     m_updateNeeded = true;
     QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
+}
+
+void TodoListModel::sort()
+{
+    sort(0, Qt::AscendingOrder);
 }
 
 QString TodoListModel::todoListId(const QString &backend, const TodoListStruct &list)
@@ -112,11 +149,13 @@ void TodoListModel::addTodoList(const QString &backend, const TodoListStruct &li
     if ( !m_loadedTodoLists.contains( id ) ) {
         TodoList *todoList = new TodoList( backend, list, m_library.data(), this );
         if ( todoList ) {
-            emit beginInsertRows( QModelIndex(), rowCount(), rowCount() );
-            m_todoLists.append( todoList );
+            int index = OpenTodoList::ListUtils::findInsertIndex( m_todoLists, todoList, TodoList::Comparator() );
+            emit beginInsertRows( QModelIndex(), index, index );
+            m_todoLists.insert( index, todoList );
             m_loadedTodoLists.insert( id );
             emit endInsertRows();
             connect( todoList, SIGNAL(destroyed(QObject*)), this, SLOT(handleTodoListDeleted(QObject*)) );
+            connect( todoList, SIGNAL(changed()), this, SLOT(sort()) );
         }
     }
 }

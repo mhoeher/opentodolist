@@ -31,6 +31,7 @@ class TodoListLibrary;
 class Todo : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(TodoSortMode)
     Q_PROPERTY( bool isNull READ isNull CONSTANT )
     Q_PROPERTY( QString backend READ backend CONSTANT )
     Q_PROPERTY( QString id READ id CONSTANT )
@@ -49,6 +50,25 @@ class Todo : public QObject
 
 
 public:
+
+    enum TodoSortMode {
+        SortTodoByName,
+        SortTodoByPriority,
+        SortTodoByPercentageDone,
+        SortTodoByDueDate
+    };
+
+    /**
+       @brief Compares two TodoList objects
+     */
+    class Comparator {
+    public:
+        explicit Comparator(TodoSortMode sortMode);
+        int operator () ( Todo* const &first, Todo* const &second ) const;
+    private:
+        TodoSortMode m_sortMode;
+    };
+
     explicit Todo( QObject* parent = 0 );
     explicit Todo(const QString &backend,
                    const TodoStruct &todo,

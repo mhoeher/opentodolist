@@ -43,7 +43,8 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ANDROID_PACKAGE = net.rpdev.opentodolist
 ANDROID_APP_NAME = Open Todo List
 OTHER_FILES += \
-    android/AndroidManifest.xml
+    android/AndroidManifest.xml \
+    qml/net/rpdev/OpenTodoList/Views/TodoViewHeader.qml
 
 RESOURCES += OpenTodoList.qrc
 

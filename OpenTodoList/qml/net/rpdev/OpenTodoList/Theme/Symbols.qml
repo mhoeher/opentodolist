@@ -61,4 +61,12 @@ QtObject {
 
     readonly property string plus: "\uf067"
     readonly property string minus: "\uf068"
+
+    readonly property string sortByName: "\uf15d"
+    readonly property string sortByValue: "\uf160"
+    readonly property string exclamationMark: "\uf12a"
+    readonly property string tasks: "\uf0ae"
+
+    readonly property string search: "\uf002"
+    readonly property string close: "\uf00d"
 }

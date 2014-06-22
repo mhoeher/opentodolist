@@ -22,7 +22,8 @@ HEADERS = \
     todoliststoragequery.h \
     todolistmodel.h \
     todomodel.h \
-    documentformatter.h
+    documentformatter.h \
+    listutils.h
 
 SOURCES = \
     pluginsloader.cpp \

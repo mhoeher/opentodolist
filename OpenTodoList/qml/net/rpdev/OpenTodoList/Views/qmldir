@@ -3,4 +3,6 @@ AnimatedListView 1.0 AnimatedListView.qml
 TodoListView 1.0 TodoListView.qml
 TodoListViewDelegate 1.0 TodoListViewDelegate.qml
 TodoView 1.0 TodoView.qml
+TodoViewHeader 1.0 TodoViewHeader.qml
 TodoViewDelegate 1.0 TodoViewDelegate.qml
+singleton ViewSettings 1.0 ViewSettings.qml

@@ -192,3 +192,16 @@ void TodoList::persist()
 }
 
 
+
+/**
+   @brief Compares two TodoList objects
+
+   Returns a value less than, equal to or greater than 0 depending whether the
+   names of the todo lists are less than, equal to or greater than.
+ */
+int TodoList::Comparator::operator ()(TodoList * const &first, TodoList * const &second) const {
+    if ( first && second ) {
+        return first->name().localeAwareCompare( second->name() );
+    }
+    return 0;
+}

@@ -162,6 +162,8 @@ Page {
 
             TodoView {
                 id: trashView
+                clip: true
+                trashView: true
 
                 anchors {
                     left: parent.left

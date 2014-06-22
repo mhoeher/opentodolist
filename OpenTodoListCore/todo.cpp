@@ -440,3 +440,60 @@ void Todo::handleTodoListAvailable(const QString &backend, const TodoListStruct 
     }
 }
 
+
+
+Todo::Comparator::Comparator(Todo::TodoSortMode sortMode) :
+    m_sortMode( sortMode )
+{
+
+}
+
+int Todo::Comparator::operator ()(Todo * const &first, Todo * const &second) const
+{
+    if ( first && second ) {
+        // always show open todos before done ones:
+        if ( first->isDone() && !second->isDone() ) {
+            return -1;
+        }
+        if ( second->isDone() && !first->isDone() ) {
+            return 1;
+        }
+
+        // sort depending on mode
+        switch ( m_sortMode ) {
+
+        // "default" sorting ;) Applied everywhere
+        case SortTodoByName:
+        //    return first->title().localeAwareCompare( second->title() ) <= 0;
+            break;
+
+        case SortTodoByPriority:
+            if ( first->priority() != second->priority() ) {
+                return second->priority() - first->priority();
+            }
+            break;
+
+        case SortTodoByPercentageDone:
+            if ( first->progress() != second->progress() ) {
+                return second->progress() - first->progress();
+            }
+            break;
+
+        case SortTodoByDueDate:
+            if ( first->dueDate() != second->dueDate() ) {
+                if ( !first->dueDate().isValid() ) {
+                    return 1;
+                }
+                if ( !second->dueDate().isValid() ) {
+                    return -1;
+                }
+                return first->dueDate() < second->dueDate() ? -1 : 1;
+            }
+            break;
+        }
+
+        // compare everything else by title
+        return first->title().localeAwareCompare( second->title() );
+    }
+    return 0;
+}

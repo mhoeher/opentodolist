@@ -30,38 +30,15 @@ Item {
     property alias color: background.color
     property alias backgroundVisible: background.visible
     property alias contentItem: view.contentItem
+    property bool trashView: false
 
     signal todoSelected( Todo todo )
 
-    QtObject {
-        id: d
-
-        property bool canCreateTodos: {
-            if ( todos ) {
-                switch ( todos.queryType ) {
-                case TodoModel.QueryTopLevelTodosInTodoList:
-                    return todos.todoList && todos.todoList.canCreateTodos;
-                case TodoModel.QuerySubTodosOfTodo:
-                    return todos.parentTodo && todos.parentTodo.canCreateTodos;
-                default: return false;
-                }
-            }
-            return false;
-        }
-
-        function createTodo( title ) {
-            if ( todos ) {
-                switch ( todos.queryType ) {
-                case TodoModel.QueryTopLevelTodosInTodoList:
-                    todos.todoList.addTodo( title );
-                    break;
-                case TodoModel.QuerySubTodosOfTodo:
-                    todos.parentTodo.addTodo( title );
-                    break;
-                default:
-                    break;
-                }
-            }
+    onTodosChanged: {
+        if ( todos ) {
+            todos.sortMode = Qt.binding( function() { return ViewSettings.todoSortMode; } );
+            todos.showDone = Qt.binding( function() { return trashView ? true : ViewSettings.showDoneTodos; } );
+            todos.showDeleted = Qt.binding( function() { return trashView ? true : ViewSettings.showDeletedTodos; } );
         }
     }
 
@@ -72,125 +49,28 @@ Item {
         visible: false
     }
 
+    TodoViewHeader {
+        id: header
+        anchors {
+            left: parent.left
+            top: parent.top
+            right: parent.right
+        }
+        todos: todoView.todos
+        trashView: todoView.trashView
+    }
+
     AnimatedListView {
         id: view
 
         model: todoView.todos
         currentIndex: -1
         highlightMoveDuration: 200
-        anchors.fill: parent
-
-        Component {
-            id: headerComponent
-            Item {
-                width: view.width
-                height: childrenRect.height + Measures.tinySpace * 2
-
-                function add() {
-                    if ( newTodoTitle.text !== "" ) {
-                        d.createTodo( newTodoTitle.text );
-                        newTodoTitle.text = "";
-                    }
-                }
-
-                Item {
-                    id: newTodoInputPane
-                    width: parent.width
-                    height: childrenRect.height
-                    anchors.top: parent.top
-                    visible: height > 0
-
-                    SingleLineTextInput {
-                        id: newTodoTitle
-
-                        anchors {
-                            left: parent.left
-                            right: addTodoButton.left
-                            margins: Measures.tinySpace
-                        }
-                        y: Measures.tinySpace
-                        placeholder: qsTr( "Type to add new todo" )
-
-                        onAccept: add()
-                    }
-                    SymbolButton {
-                        id: addTodoButton
-
-                        symbol: Symbols.plus
-                        anchors {
-                            right: parent.right
-                            margins: Measures.tinySpace
-                        }
-                        y: Measures.tinySpace
-
-                        onClicked: add()
-                    }
-
-                    states: State {
-                        name: "hidden"
-                        when: !d.canCreateTodos
-                        PropertyChanges {
-                            target: newTodoInputPane
-                            height: 0
-                        }
-                    }
-                }
-
-                Item {
-                    id: filterTodoPane
-                    width: parent.width
-                    height: childrenRect.height
-                    anchors.top: newTodoInputPane.bottom
-                    anchors.margins: d.canCreateTodos ? Measures.tinySpace : 0
-
-                    SingleLineTextInput {
-                        anchors {
-                            left: parent.left
-                            right: showDone.left
-                            top: parent.top
-                            margins: Measures.tinySpace
-                        }
-                        placeholder: qsTr( "Type to filter todos..." )
-                        onTextChanged: {
-                            if ( todoView.todos ) {
-                                todoView.todos.filter = text;
-                            }
-                        }
-                    }
-
-                    SymbolButton {
-                        id: showDone
-                        anchors {
-                            right: showDeleted.left
-                            top: parent.top
-                            margins: Measures.tinySpace
-                        }
-                        symbol: Symbols.checkedBox
-                        checked: todoView.todos && todoView.todos.showDone
-                        onClicked: {
-                            if ( todoView.todos ) {
-                                todoView.todos.showDone = !todoView.todos.showDone
-                            }
-                        }
-                    }
-
-                    SymbolButton {
-                        id: showDeleted
-                        anchors {
-                            right: parent.right
-                            top: parent.top
-                            margins: Measures.tinySpace
-                        }
-                        symbol: Symbols.trash
-                        checked: todoView.todos && todoView.todos.showDeleted
-                        onClicked: {
-                            if ( todoView.todos ) {
-                                todoView.todos.showDeleted = !todoView.todos.showDeleted
-                            }
-                        }
-                    }
-                }
-            }
+        anchors {
+            left: parent.left
+            top: header.bottom
+            right: parent.right
+            bottom: parent.bottom
         }
 
         delegate: TodoViewDelegate {
@@ -200,6 +80,5 @@ Item {
                 todoView.todoSelected( display );
             }
         }
-        header: headerComponent
     }
 }

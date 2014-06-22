@@ -30,6 +30,7 @@ public:
     // QAbstractItemModel interface
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
+    virtual void sort(int column, Qt::SortOrder order);
 
 signals:
 
@@ -41,6 +42,7 @@ signals:
 public slots:
 
     void update();
+    void sort();
 
 private:
 
@@ -52,7 +54,6 @@ private:
 
     static QString todoListId(const QString &backend, const TodoListStruct &list );
     static QString todoListId( const TodoList *list );
-
 
 private slots:
 

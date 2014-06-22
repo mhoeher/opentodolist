@@ -29,6 +29,12 @@ Rectangle {
     height: 600
     color: Colors.window
 
+    function saveViewSettings() {
+        settings.setValue( "ViewSettings.todoSortMode", ViewSettings.todoSortMode );
+        settings.setValue( "ViewSettings.showDoneTodos", ViewSettings.showDoneTodos );
+        settings.setValue( "ViewSettings.showDeletedTodos", ViewSettings.showDeletedTodos );
+    }
+
     onFocusChanged: {
         // required to give back focus to the page stack whenever a
         // overlay has been displayed
@@ -40,6 +46,11 @@ Rectangle {
     Component.onCompleted: {
         width = settings.getValue( "width", width );
         height = settings.getValue( "height", height );
+        ViewSettings.todoSortMode = settings.getValue( "ViewSettings.todoSortMode", ViewSettings.todoSortMode );
+        ViewSettings.showDoneTodos = settings.getValue( "ViewSettings.showDoneTodos", ViewSettings.showDoneTodos );
+        ViewSettings.showDeletedTodos = settings.getValue( "ViewSettings.showDeletedTodos", ViewSettings.showDeletedTodos );
+
+        ViewSettings.onSettingsChanged.connect( saveViewSettings );
     }
 
     onWidthChanged: settings.setValue( "width", width )
