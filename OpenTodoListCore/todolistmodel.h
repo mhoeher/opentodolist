@@ -11,6 +11,7 @@
 #include <QPointer>
 #include <QSet>
 #include <QVariantMap>
+#include <QVector>
 
 class TodoListLibrary;
 
