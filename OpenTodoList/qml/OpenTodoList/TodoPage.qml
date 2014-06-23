@@ -200,7 +200,7 @@ Page {
 
                         Layout.columnSpan: 2
                         Layout.fillWidth: true
-                        Layout.preferredHeight: contentItem.height
+                        Layout.preferredHeight: contentItem.height + headerHeight
                         backgroundVisible: true
                         todos: TodoModel {
                             id: subTodosModel

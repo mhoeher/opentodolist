@@ -30,6 +30,7 @@ Item {
     property alias color: background.color
     property alias backgroundVisible: background.visible
     property alias contentItem: view.contentItem
+    property alias headerHeight: header.height
     property bool trashView: false
 
     signal todoSelected( Todo todo )
