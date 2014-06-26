@@ -94,10 +94,11 @@ Page {
                 id: recentTodosTabFlickable
                 anchors.fill: parent
                 contentWidth: width
-                contentHeight: contentItem.childrenRect.height
+                contentHeight: schueduledTodosColumn.height
                 clip: true
 
                 Column {
+                    id: schueduledTodosColumn
                     spacing: Measures.tinySpace
                     x: Measures.tinySpace
                     width: recentTodosTabFlickable.width - Measures.tinySpace * 2
