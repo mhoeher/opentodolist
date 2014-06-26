@@ -94,12 +94,14 @@ Page {
                 id: recentTodosTabFlickable
                 anchors.fill: parent
                 contentWidth: width
-                contentHeight: contentItem.height
+                contentHeight: contentItem.childrenRect.height
+                clip: true
 
                 Column {
                     spacing: Measures.tinySpace
                     x: Measures.tinySpace
                     width: recentTodosTabFlickable.width - Measures.tinySpace * 2
+                    height: childrenRect.height
 
                     TodoView {
                         id: dueTodayView
