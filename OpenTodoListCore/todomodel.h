@@ -33,8 +33,12 @@ class TodoModel : public QAbstractListModel
     Q_PROPERTY( bool showDeleted READ showDeleted WRITE setShowDeleted NOTIFY showDeletedChanged )
     Q_PROPERTY( bool hideUndeleted READ hideUndeleted WRITE setHideUndeleted NOTIFY hideUndeletedChanged)
     Q_PROPERTY( QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate NOTIFY maxDueDateChanged)
+    Q_PROPERTY( QDateTime minDueDate READ minDueDate WRITE setMinDueDate NOTIFY minDueDateChanged)
     Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
     Q_PROPERTY( Todo::TodoSortMode sortMode READ sortMode WRITE setSortMode NOTIFY sortModeChanged )
+    Q_PROPERTY( Todo::TodoSortMode backendSortMode READ backendSortMode WRITE setBackendSortMode NOTIFY backendSortModeChanged)
+    Q_PROPERTY( int limitOffset READ limitOffset WRITE setLimitOffset NOTIFY limitOffsetChanged)
+    Q_PROPERTY( int limitCount READ limitCount WRITE setLimitCount NOTIFY limitCountChanged)
 
 public:
 
@@ -81,6 +85,9 @@ public:
     QDateTime maxDueDate() const;
     void setMaxDueDate(const QDateTime &maxDueDate);
 
+    QDateTime minDueDate() const;
+    void setMinDueDate(const QDateTime &minDueDate);
+
     bool hideUndeleted() const;
     void setHideUndeleted(bool hideUndeleted);
 
@@ -88,6 +95,15 @@ public:
 
     Todo::TodoSortMode sortMode() const;
     void setSortMode(const Todo::TodoSortMode &sortMode);
+
+    Todo::TodoSortMode backendSortMode() const;
+    void setBackendSortMode(const Todo::TodoSortMode &backendSortMode);
+
+    int limitOffset() const;
+    void setLimitOffset(int limitOffset);
+
+    int limitCount() const;
+    void setLimitCount(int limitCount);
 
 signals:
 
@@ -100,9 +116,13 @@ signals:
     void showDeletedChanged();
     void hideUndeletedChanged();
     void maxDueDateChanged();
+    void minDueDateChanged();
     void changed();
     void countChanged();
     void sortModeChanged();
+    void backendSortModeChanged();
+    void limitOffsetChanged();
+    void limitCountChanged();
 
 public slots:
 
@@ -125,7 +145,11 @@ private:
     bool               m_showDeleted;
     bool               m_hideUndeleted;
     QDateTime          m_maxDueDate;
+    QDateTime          m_minDueDate;
     Todo::TodoSortMode m_sortMode;
+    Todo::TodoSortMode m_backendSortMode;
+    int                m_limitOffset;
+    int                m_limitCount;
 
     static QString idForTodo( const QString &backend, const QString &todoId );
 
@@ -173,6 +197,9 @@ public:
     QDateTime maxDueDate() const;
     void setMaxDueDate(const QDateTime &maxDueDate);
 
+    QDateTime minDueDate() const;
+    void setMinDueDate(const QDateTime &minDueDate);
+
     bool hideUndeleted() const;
     void setHideUndeleted(bool hideUndeleted);
 
@@ -182,6 +209,14 @@ public:
     virtual void recordAvailable(const QVariantMap &record);
     virtual void endRun();
 
+    Todo::TodoSortMode backendSortMode() const;
+    void setBackendSortMode(const Todo::TodoSortMode &backendSortMode);
+
+    int limitOffset() const;
+    void setLimitOffset(int limitOffset);
+
+    int limitCount() const;
+    void setLimitCount(int limitCount);
 
 signals:
 
@@ -199,6 +234,10 @@ private:
     bool                 m_showDeleted;
     bool                 m_hideUndeleted;
     QDateTime            m_maxDueDate;
+    QDateTime            m_minDueDate;
+    Todo::TodoSortMode   m_backendSortMode;
+    int                  m_limitOffset;
+    int                  m_limitCount;
 
 };
 

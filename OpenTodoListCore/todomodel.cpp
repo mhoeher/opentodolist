@@ -20,7 +20,11 @@ TodoModel::TodoModel(QObject *parent) :
     m_showDeleted( false ),
     m_hideUndeleted( false ),
     m_maxDueDate( QDateTime() ),
-    m_sortMode( Todo::SortTodoByName )
+    m_minDueDate( QDateTime() ),
+    m_sortMode( Todo::SortTodoByName ),
+    m_backendSortMode( Todo::SortTodoByName ),
+    m_limitOffset( -1 ),
+    m_limitCount( -1 )
 {
     connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
@@ -31,6 +35,11 @@ TodoModel::TodoModel(QObject *parent) :
     connect( this, SIGNAL(showDeletedChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(hideUndeletedChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(maxDueDateChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(minDueDateChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(sortModeChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(backendSortModeChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(limitOffsetChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(limitCountChanged()), this, SIGNAL(changed()) );
 
     connect( this, SIGNAL(changed()), this, SLOT(update()) );
 
@@ -161,6 +170,58 @@ void TodoModel::sort()
 {
     sort(0, Qt::AscendingOrder);
 }
+int TodoModel::limitCount() const
+{
+    return m_limitCount;
+}
+
+void TodoModel::setLimitCount(int limitCount)
+{
+    if ( m_limitCount != limitCount ) {
+        m_limitCount = limitCount;
+        emit limitCountChanged();
+    }
+}
+
+int TodoModel::limitOffset() const
+{
+    return m_limitOffset;
+}
+
+void TodoModel::setLimitOffset(int limitOffset)
+{
+    if ( m_limitOffset != limitOffset ) {
+        m_limitOffset = limitOffset;
+        emit limitOffsetChanged();
+    }
+}
+
+Todo::TodoSortMode TodoModel::backendSortMode() const
+{
+    return m_backendSortMode;
+}
+
+void TodoModel::setBackendSortMode(const Todo::TodoSortMode &backendSortMode)
+{
+    if ( m_backendSortMode != backendSortMode ) {
+        m_backendSortMode = backendSortMode;
+        emit backendSortModeChanged();
+    }
+}
+
+QDateTime TodoModel::minDueDate() const
+{
+    return m_minDueDate;
+}
+
+void TodoModel::setMinDueDate(const QDateTime &minDueDate)
+{
+    if ( m_minDueDate != minDueDate ) {
+        m_minDueDate = minDueDate;
+        emit minDueDateChanged();
+    }
+}
+
 Todo::TodoSortMode TodoModel::sortMode() const
 {
     return m_sortMode;
@@ -295,6 +356,10 @@ void TodoModel::triggerUpdate()
         query->setShowDeleted( m_showDeleted );
         query->setHideUndeleted( m_hideUndeleted );
         query->setMaxDueDate( m_maxDueDate );
+        query->setMinDueDate( m_minDueDate );
+        query->setBackendSortMode( m_backendSortMode );
+        query->setLimitOffset( m_limitOffset );
+        query->setLimitCount( m_limitCount );
         bool queryIsValid = true;
 
         switch ( m_queryType ) {
@@ -395,7 +460,11 @@ TodoStorageQuery::TodoStorageQuery() :
     m_filter( QString() ),
     m_showDone( false ),
     m_showDeleted( false ),
-    m_maxDueDate( QDateTime() )
+    m_maxDueDate( QDateTime() ),
+    m_minDueDate( QDateTime() ),
+    m_backendSortMode( Todo::SortTodoByName ),
+    m_limitOffset( -1 ),
+    m_limitCount( -1 )
 {
 }
 
@@ -449,6 +518,8 @@ void TodoStorageQuery::beginRun()
 bool TodoStorageQuery::query(QString &query, QVariantMap &args)
 {
     QStringList filterPart;
+    QString limitPart;
+    QString orderPart;
     if ( !m_filter.isEmpty() ) {
         filterPart << "( title LIKE :titleFilter OR description LIKE :descriptionFilter ) ";
         args.insert( "titleFilter", "%" + m_filter + "%" );
@@ -467,18 +538,40 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
         filterPart << " dueDate IS NOT NULL AND dueDate<=:maxDueDate ";
         args.insert( "maxDueDate", m_maxDueDate );
     }
+    if ( m_minDueDate.isValid() ) {
+        filterPart << " dueDate IS NOT NULL AND dueDate>=:minDueDate ";
+        args.insert( "minDueDate", m_minDueDate );
+    }
+
+    if ( m_limitCount > 0 ) {
+        limitPart = " LIMIT " + QString::number( m_limitCount );
+    }
+    if ( m_limitOffset > 0 ) {
+        limitPart += " OFFSET " + QString::number( m_limitOffset );
+    }
+
+    switch ( m_backendSortMode ) {
+    case Todo::SortTodoByDueDate: orderPart = "dueDate"; break;
+    case Todo::SortTodoByPercentageDone: orderPart = "progress"; break;
+    case Todo::SortTodoByPriority: orderPart = "progress"; break;
+    case Todo::SortTodoByName: orderPart = "title"; break;
+    }
 
     switch ( m_queryType ) {
     case TodoModel::QueryTopLevelTodosInTodoList:
-        query = QString( "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend %1 ORDER BY title ASC;" )
-                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) );
+        query = QString( "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend %1 ORDER BY %3 ASC %2;" )
+                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) )
+                .arg( limitPart )
+                .arg( orderPart );
         args.insert( "todoList", m_todoListId );
         args.insert( "backend", m_backend );
         return true;
 
     case TodoModel::QuerySubTodosOfTodo:
-        query = QString( "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend %1 ORDER BY title ASC;" )
-                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) );
+        query = QString( "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend %1 ORDER BY %3 ASC %2;" )
+                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) )
+                .arg( limitPart )
+                .arg( orderPart );
         args.insert( "todoList", m_todoListId );
         args.insert( "parentTodo", m_parentTodoId );
         args.insert( "backend", m_backend );
@@ -491,8 +584,10 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
         // fall through to....
 
     case TodoModel::QueryFilterTodos:
-        query = QString( "SELECT * FROM todo WHERE %1 ORDER BY title ASC;" )
-                .arg( filterPart.join( " AND " ) );
+        query = QString( "SELECT * FROM todo WHERE %1 ORDER BY %3 ASC %2;" )
+                .arg( filterPart.join( " AND " ) )
+                .arg( limitPart )
+                .arg( orderPart );
         return true;
 
     default:
@@ -510,6 +605,46 @@ void TodoStorageQuery::endRun()
 {
     emit finished();
 }
+Todo::TodoSortMode TodoStorageQuery::backendSortMode() const
+{
+    return m_backendSortMode;
+}
+
+void TodoStorageQuery::setBackendSortMode(const Todo::TodoSortMode &backendSortMode)
+{
+    m_backendSortMode = backendSortMode;
+}
+int TodoStorageQuery::limitOffset() const
+{
+    return m_limitOffset;
+}
+
+void TodoStorageQuery::setLimitOffset(int limitOffset)
+{
+    m_limitOffset = limitOffset;
+}
+int TodoStorageQuery::limitCount() const
+{
+    return m_limitCount;
+}
+
+void TodoStorageQuery::setLimitCount(int limitCount)
+{
+    m_limitCount = limitCount;
+}
+
+
+
+QDateTime TodoStorageQuery::minDueDate() const
+{
+    return m_minDueDate;
+}
+
+void TodoStorageQuery::setMinDueDate(const QDateTime &minDueDate)
+{
+    m_minDueDate = minDueDate;
+}
+
 bool TodoStorageQuery::hideUndeleted() const
 {
     return m_hideUndeleted;

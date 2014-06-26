@@ -32,6 +32,9 @@ Item {
     property alias contentItem: view.contentItem
     property alias headerHeight: header.height
     property bool trashView: false
+    property alias interactive: view.interactive
+    property alias headerLabel: header.headerText
+    property alias headerFont: header.headerFont
 
     signal todoSelected( Todo todo )
 

@@ -84,60 +84,106 @@ Page {
                 Behavior on width { SmoothedAnimation { velocity: 1500 } }
             }
         }
+
         Tab {
-            id: dueTodayTab
+            id: recentTodosTab
 
-            name: qsTr( "Due Today" )
+            name: qsTr( "Upcoming Todos" )
 
-            TodoView {
-                id: dueTodayView
-
+            Flickable {
+                id: recentTodosTabFlickable
                 anchors.fill: parent
-                todos: TodoModel {
-                    library: page.library
-                    queryType: TodoModel.QueryFilterTodos
-                    maxDueDate: new Date()
-                }
+                contentWidth: width
+                contentHeight: contentItem.height
 
-                onTodoSelected: page.todoSelected( todo )
+                Column {
+                    spacing: Measures.tinySpace
+                    x: Measures.tinySpace
+                    width: recentTodosTabFlickable.width - Measures.tinySpace * 2
+
+                    TodoView {
+                        id: dueTodayView
+
+                        headerLabel: qsTr( "Due Today" )
+                        height: contentItem.height + headerHeight
+                        width: parent.width
+                        clip: true
+                        interactive: false
+                        todos: TodoModel {
+                            library: page.library
+                            queryType: TodoModel.QueryFilterTodos
+                            maxDueDate: new Date()
+                        }
+
+                        onTodoSelected: page.todoSelected( todo )
+                    }
+
+                    Item {
+                        width: Measures.tinySpace
+                        height: Measures.tinySpace
+                    }
+
+                    TodoView {
+                        id: dueThisWeekView
+
+                        function lastDayThisWeek() {
+                            var result = new Date();
+                            result.setDate( result.getDate() - result.getDay() + Qt.locale().firstDayOfWeek + 6 );
+                            return result;
+                        }
+
+                        headerLabel: qsTr( "Due this Week" )
+                        height: contentItem.height + headerHeight
+                        width: parent.width
+                        clip: true
+                        interactive: false
+                        todos: TodoModel {
+                            library: page.library
+                            queryType: TodoModel.QueryFilterTodos
+                            maxDueDate: dueThisWeekView.lastDayThisWeek()
+                            minDueDate: dueTodayView.todos.maxDueDate
+                        }
+
+                        onTodoSelected: page.todoSelected( todo )
+                    }
+
+                    Item {
+                        width: Measures.tinySpace
+                        height: Measures.tinySpace
+                    }
+
+                    TodoView {
+                        id: scheduledLaterView
+
+                        headerLabel: qsTr( "Scheduled for Later" )
+                        height: contentItem.height + headerHeight
+                        width: parent.width
+                        clip: true
+                        interactive: false
+                        todos: TodoModel {
+                            library: page.library
+                            queryType: TodoModel.QueryFilterTodos
+                            minDueDate: dueThisWeekView.todos.maxDueDate
+                            limitCount: 10
+                            backendSortMode: Todo.SortTodoByDueDate
+                        }
+
+                        onTodoSelected: page.todoSelected( todo )
+                    }
+                }
             }
+
             Timer {
                 interval: 1000 * 60 * 60
                 running: true
                 repeat: true
-                onTriggered: dueTodayView.todos.maxDueDate = new Date()
+                onTriggered: {
+                    dueTodayView.todos.maxDueDate = new Date();
+                    dueThisWeekView.todos.maxDueDate = dueThisWeekView.lastDayThisWeek();
+                }
             }
         }
-        Tab {
-            id: dueThisWeekTab
 
-            name: qsTr( "Due This Week" )
-
-            TodoView {
-                id: dueThisWeekView
-
-                function lastDayThisWeek() {
-                    var result = new Date();
-                    result.setDate( result.getDate() - result.getDay() + Qt.locale().firstDayOfWeek + 6 );
-                    return result;
-                }
-
-                anchors.fill: parent
-                todos: TodoModel {
-                    library: page.library
-                    queryType: TodoModel.QueryFilterTodos
-                    maxDueDate: dueThisWeekView.lastDayThisWeek()
-                }
-
-                onTodoSelected: page.todoSelected( todo )
-            }
-            Timer {
-                interval: 1000 * 60 * 60
-                running: true
-                repeat: true
-                onTriggered: dueThisWeekView.todos.maxDueDate = dueThisWeekView.lastDayThisWeek()
-            }
-        }
         Tab {
             id: searchTab
 

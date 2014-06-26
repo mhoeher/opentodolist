@@ -27,6 +27,8 @@ Item {
 
     property TodoModel todos
     property bool trashView: false
+    property alias headerText: barLabel.text
+    property alias headerFont: barLabel.font
 
     function add() {
         if ( newTodoName.text !== "" ) {
@@ -81,8 +83,23 @@ Item {
                     filterBar.height,
                     sortBar.height) + Measures.tinySpace * 2
 
+        Label {
+            id: barLabel
+            font.bold: true
+            text: ""
+            x: Measures.tinySpace
+            y: Measures.tinySpace
+            width: parent.width - 3 * Measures.tinySpace - showSortBarButton.width
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            height: buttonFlow.height
+            verticalAlignment: Text.AlignVCenter
+        }
+
         Flow {
-            width: parent.width
+            id: buttonFlow
+
+            width: Math.max( parent.width - barLabel.contentWidth - 2 * Measures.tinySpace,
+                            showSortBarButton.width + 2 * Measures.tinySpace )
             anchors.right: parent.right
             anchors.top: parent.top
             spacing: Measures.tinySpace
@@ -90,25 +107,32 @@ Item {
             layoutDirection: Qt.RightToLeft
 
             SymbolLink {
+                id: showSortBarButton
                 symbol: Symbols.sortByValue
                 onClicked: {
-                    buttonBar.state = "hidden";
-                    sortBar.state = "showing";
+                    if ( buttonBar.state === "" ) {
+                        buttonBar.state = "hidden";
+                        sortBar.state = "showing";
+                    }
                 }
             }
             SymbolLink {
                 symbol: Symbols.search
                 onClicked: {
-                    buttonBar.state = "hidden";
-                    filterBar.state = "showing";
+                    if ( buttonBar.state === "" ) {
+                        buttonBar.state = "hidden";
+                        filterBar.state = "showing";
+                    }
                 }
             }
             SymbolLink {
                 symbol: Symbols.plus
                 visible: d.canCreateTodos
                 onClicked: {
-                    buttonBar.state = "hidden";
-                    addTodoBar.state = "showing";
+                    if ( buttonBar.state === "" ) {
+                        buttonBar.state = "hidden";
+                        addTodoBar.state = "showing";
+                    }
                 }
             }
         }
