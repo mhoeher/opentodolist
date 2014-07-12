@@ -5,4 +5,5 @@ VERSION=0.0.0
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
 OTHER_FILES += \
-    ../templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js
+    ../templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
+    ../bin/linux-deploy-qt.pl
