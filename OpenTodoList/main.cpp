@@ -3,6 +3,8 @@
 
 #include <QtPlugin>
 
+#include <iostream>
+
 ///////////////////////////////////////////////////////////////////////////////
 // Import plugins:
 ///////////////////////////////////////////////////////////////////////////////
@@ -26,10 +28,22 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    if ( app.arguments().contains( "-version" ) ||
+         app.arguments().contains( "--version" ) ) {
+        std::cout << "OpenTodoList version " << VERSION << std::endl;
+        return 0;
+    }
+
     QtQuick2ApplicationViewer viewer;
     viewer.addImportPath(QStringLiteral("qrc:/OpenTodoList/imports"));
+#ifdef Q_OS_ANDROID
     viewer.addImportPath( QStringLiteral("qrc:/OpenTodoList/qml"));
     viewer.setMainQmlFile("qrc:/OpenTodoList/qml/OpenTodoList/main.qml");
+#else
+    QString basePath = app.applicationDirPath();
+    viewer.addImportPath( basePath + "/../share/OpenTodoList/qml" );
+    viewer.setMainQmlFile( basePath + "/../share/OpenTodoList/qml/OpenTodoList/main.qml" );
+#endif
     viewer.showExpanded();
 
     return app.exec();

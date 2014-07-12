@@ -1,3 +1,5 @@
+include(../config.pri)
+
 TARGET = $$qtLibraryTarget(OpenTodoListCore)
 TEMPLATE = lib
 

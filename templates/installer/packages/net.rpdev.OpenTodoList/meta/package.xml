@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>OpenTodoList</DisplayName>
+    <Description>The OpenTodoList application.</Description>
+    <Version>$Version</Version>
+    <ReleaseDate>$ReleaseDate</ReleaseDate>
+    <Name>net.rpdev.OpenTodoList</Name>
+    <Licenses>
+        <License name="GNU GPL v3" file="COPYING" />
+    </Licenses>
+    <Default>true</Default>
+    <Script>script.js</Script>
+    <ForcedInstallation>true</ForcedInstallation>
+</Package>

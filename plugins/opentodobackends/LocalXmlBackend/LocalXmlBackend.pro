@@ -1,3 +1,5 @@
+include(../../../config.pri)
+
 TEMPLATE = lib
 TARGET = LocalXmlBackend
 CONFIG += plugin static

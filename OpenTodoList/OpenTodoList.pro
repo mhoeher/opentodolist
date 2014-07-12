@@ -1,18 +1,26 @@
-# Add more folders to ship with the application, here
+include(../config.pri)
+
+# Add basic folders for deploymend
 qml_main.source = qml/OpenTodoList
-qml_main.target = qml
+qml_main.target = ../share/OpenTodoList/qml
 
 qml_components.source = qml/net/rpdev/OpenTodoList/Components
-qml_components.target = qml/net/rpdev/OpenTodoList
+qml_components.target = ../share/OpenTodoList/qml/net/rpdev/OpenTodoList
 
 qml_theme.source = qml/net/rpdev/OpenTodoList/Theme
-qml_theme.target = qml/net/rpdev/OpenTodoList
+qml_theme.target = ../share/OpenTodoList/qml/net/rpdev/OpenTodoList
 
 qml_views.source = qml/net/rpdev/OpenTodoList/Views
-qml_views.target = qml/net/rpdev/OpenTodoList
+qml_views.target = ../share/OpenTodoList/qml/net/rpdev/OpenTodoList
 
-# Workaround: This yields a better view in Qt Creator ;)
-debug:DEPLOYMENTFOLDERS = qml_main qml_components qml_theme qml_views
+DEPLOYMENTFOLDERS = qml_main qml_components qml_theme qml_views
+
+# Install Application Icons on UNIX:
+unix {
+    unix_icons.source = icons
+    unix_icons.target = ../share/OpenTodoList
+    DEPLOYMENTFOLDERS += unix_icons
+}
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH = $$PWD/../OpenTodoListCore/imports $$PWD/qml
@@ -32,7 +40,7 @@ LIBS += -L../OpenTodoListCore -lOpenTodoListCore \
         -L../plugins/opentodobackends/LocalXmlBackend -lLocalXmlBackend
 
 # Installation path
-# target.path =
+target.path = /OpenTodoList/bin
 
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
@@ -44,8 +52,10 @@ ANDROID_PACKAGE = net.rpdev.opentodolist
 ANDROID_APP_NAME = Open Todo List
 OTHER_FILES += \
     android/AndroidManifest.xml \
-    qml/net/rpdev/OpenTodoList/Views/TodoViewHeader.qml
+    ../templates/installer/config/config.xml \
+    ../templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
+    ../bin/mk-installer.pl
 
-RESOURCES += OpenTodoList.qrc
+android:RESOURCES += OpenTodoList.qrc
 
-win32:DESTDIR = $$OUT_PWD
+DESTDIR = ../bin
