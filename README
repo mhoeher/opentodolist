@@ -83,9 +83,10 @@ PROVIDING INSTALLERS
            Note: You have to create a sub-directory OpenTodoList within
            this directory and put the copied directories there.
         3. Run windeployqt.exe on the OpenTodoList.exe
+        4. "cd" into C:\path\to\dist
         4. Create installers and only repository:
              perl %OTLSOURCEDIR%\bin\mk-installer.pl \
-             --installDir C:\path\to\dist \
+             --installDir . \
              --targetDir C:\path\to\installersdir \
              --os windows --arch ARCH_OF_CREATED_BINARIES
 
