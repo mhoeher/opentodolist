@@ -205,6 +205,14 @@ Rectangle {
          }
      }
 
+    Shadow {
+        anchors {
+            top: toolBar.bottom
+            left: parent.left
+            right: parent.right
+        }
+    }
+
     DocumentFormatter {
         id: formatter
 

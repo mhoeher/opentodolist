@@ -54,21 +54,6 @@ FocusScope {
         onActionButtonClicked: tabView.actionButtonClicked()
     }
 
-    Rectangle {
-        id: shadow
-        anchors { left: parent.left; right: parent.right; top: headerBar.bottom }
-        height: Measures.largeBorderWidth
-        gradient: Gradient {
-            GradientStop {
-                color: Colors.secondary1Dark1
-                position: 0.0
-            }
-            GradientStop {
-                color: Colors.window
-                position: 1.0
-            }
-        }
-    }
 
     VisualItemModel {
         id: tabModel
@@ -77,7 +62,7 @@ FocusScope {
     ListView {
         id: view
 
-        anchors { left: parent.left; right: parent.right; top: shadow.bottom; bottom: parent.bottom }
+        anchors { left: parent.left; right: parent.right; top: headerBar.bottom; bottom: parent.bottom }
         model: tabModel
         currentIndex: headerBar.currentIndex
         orientation: Qt.Horizontal
@@ -94,6 +79,10 @@ FocusScope {
             }
         }
 
+    }
+
+    Shadow {
+        anchors { left: parent.left; right: parent.right; top: headerBar.bottom }
     }
 
 }

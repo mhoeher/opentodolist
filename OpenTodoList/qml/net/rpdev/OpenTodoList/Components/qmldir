@@ -13,6 +13,7 @@ PageStack 1.0 PageStack.qml
 RichTextEditDialog 1.0 RichTextEditDialog.qml
 RichtTextEditor 1.0 RichTextEditor.qml
 ScrollBar 1.0 ScrollBar.qml
+Shadow 1.0 Shadow.qml
 SingleLineTextInput 1.0 SingleLineTextInput.qml
 Slider 1.0 Slider.qml
 Symbol 1.0 Symbol.qml

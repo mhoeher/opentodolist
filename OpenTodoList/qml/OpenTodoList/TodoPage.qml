@@ -161,7 +161,7 @@ Page {
                                 left: parent.left
                                 right: parent.right
                                 top: parent.top
-                                margins: Measures.smallSpace
+                                topMargin: Measures.smallSpace
                             }
                             height: notesLabel.height + 2 * Measures.tinySpace
 
