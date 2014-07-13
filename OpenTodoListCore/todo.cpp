@@ -472,12 +472,20 @@ Todo::Comparator::Comparator(Todo::TodoSortMode sortMode) :
 int Todo::Comparator::operator ()(Todo * const &first, Todo * const &second) const
 {
     if ( first && second ) {
-        // always show open todos before done ones:
-        if ( first->isDone() && !second->isDone() ) {
+        // always show deleted todos after non-deleted ones
+        if ( first->isDeleted() && !second->isDeleted() ) {
+            return 1;
+        }
+        if ( second->isDeleted() && !first->isDeleted() ) {
             return -1;
         }
-        if ( second->isDone() && !first->isDone() ) {
+
+        // always show open todos before done ones:
+        if ( first->isDone() && !second->isDone() ) {
             return 1;
+        }
+        if ( second->isDone() && !first->isDone() ) {
+            return -1;
         }
 
         // sort depending on mode
