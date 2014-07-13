@@ -209,6 +209,7 @@ Page {
                             sortMode: root.sortMode
                         }
                         clip: true
+                        interactive: false
 
                         onTodoSelected: {
                             var component = Qt.createComponent( "TodoPage.qml" );

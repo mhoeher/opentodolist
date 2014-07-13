@@ -70,6 +70,7 @@ Item {
         model: todoView.todos
         currentIndex: -1
         highlightMoveDuration: 200
+        clip: true
         anchors {
             left: parent.left
             top: header.bottom
