@@ -62,6 +62,15 @@ Shows the scripts manual page.
 
 my $man;
 
+=item --offline
+
+Create the offline installer as offline-only.
+(Use this for debugging.)
+
+=cut
+
+my $offlineOnly;
+
 =item --os OS
 
 Specifies the operating system to build the repository for. Will be used in some file names.
@@ -134,6 +143,7 @@ GetOptions(
             "help" => \$help,
             "installDir=s" => \$installDir,
             "man" => \$man,
+            "offline-only" => \$offlineOnly,
             "os=s" => \$os,
             "sourceDir=s" => \$sourceDir,
             "targetDir=s" => \$targetDir,
@@ -150,6 +160,9 @@ $argParseError = "No installDir specified!" if !defined( $installDir );
 $argParseError = "No os specified!" if !defined( $os );
 $argParseError = "No targetDir specified!" if !defined( $targetDir );
 
+$argParseError = "The installDir does not exist!" if ! -d $installDir;
+$argParseError = "The targetDir does not exist!" if ! -d $targetDir;
+
 if ( defined($argParseError) ) {
     pod2usage( -exitval => 1,
                -verbose => 1,
@@ -161,12 +174,26 @@ if ( !$tempDir ) {
 }
 
 # Get OpenTodoList version
+printf( "Getting current OpenTodoList version...\n" );
 my $openTodoListApp = File::Spec->catfile( $installDir, "OpenTodoList", "bin", "OpenTodoList" );
 my $openTodoListVersion = `$openTodoListApp --version`;
 if ( $openTodoListVersion =~ m/^OpenTodoList\s*version\s*(.*)$/ ) {
     $openTodoListVersion = $1;
 } else {
-    die( "Unable to get OpenTodoList version!" );
+    # Okay, we are in Windows... try to read from config.pri instead:
+    open( CONFIG, "<", File::Spec->catfile( $sourceDir, "..", "..", "config.pri" ) )
+        || die( $! );
+    $openTodoListVersion = undef;
+    while ( <CONFIG> ) {
+        if ( $_ =~ m/^\s*VERSION\s*=\s*([^\s]+)\s*$/ ) {
+            $openTodoListVersion = $1;
+            last;
+        }
+    }
+    close( CONFIG );
+    if ( !$openTodoListVersion ) {
+        die( "Unable to get OpenTodoList version!" );
+    }
 }
 
 # Prepare typical input arguments
@@ -176,7 +203,8 @@ my $exeSuffix = $Config{_exe};
 my $onlineRepositoryUrl = "http://www.rpdev.net/public/repositories/qtifw/OpenTodoList-$os-$arch";
 
 # Get current date and format for use in installer's config files
-my $releaseDate = strftime( '%F', localtime( $^T ) );
+printf( "Generating release date string...\n" );
+my $releaseDate = strftime( '%Y-%m-%d', localtime( time ) );
 
 # Create directory structure in temporary directory
 mkdir( File::Spec->catfile( $tempDir, "config" ) );
@@ -217,20 +245,25 @@ createTargetConfig(
       '\$ReleaseDate' => $releaseDate } );
 
 # Create data file
+printf( "Creating OpenTodoList core package...\n" );
 my $openTodoListDataFile = File::Spec->catfile( $tempDir, "packages", "net.rpdev.OpenTodoList",
   "data", "OpenTodoList.7z" );
 my $inputDir = File::Spec->catfile( $installDir, "OpenTodoList" );
 qx(archivegen "$openTodoListDataFile" "$inputDir");
 
 # Create offline installer
+printf( "Creating offline installer...\n" );
+my $offlineOnlyArg = $offlineOnly ? "--offline-only" : "";
 my $offlineInstallerBinary = File::Spec->catfile( $targetDir, "OpenTodoList-offline-$os-$arch-$openTodoListVersion$exeSuffix" );
-qx(binarycreator -c $configFile -p $packagesDir $offlineInstallerBinary);
+qx(binarycreator -c $configFile -p $packagesDir $offlineOnlyArg $offlineInstallerBinary);
 
 # Create Repository
+printf( "Creating repository...\n" );
 my $onlineRepositoryDir = File::Spec->catfile( $targetDir, "OpenTodoList-$os-$arch" );
 qx(repogen -c $configFile -p $packagesDir $onlineRepositoryDir);
 
 # Create online installer
+printf( "Creating online only installer...\n" );
 my $onlineInstallerBinary = File::Spec->catfile( $targetDir, "OpenTodoList-online-$os-$arch-$openTodoListVersion$exeSuffix" );
 my $updateArg = $update ? "-u $onlineRepositoryUrl" : "";
 qx(binarycreator -c $configFile -p $packagesDir --online-only $updateArg $onlineInstallerBinary);

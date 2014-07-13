@@ -4,7 +4,7 @@ OpenTodoList - Todo Management Application
 ABOUT
 
     OpenTodoList is an application to manage todos within lists. It
-    is build on top of Qt5 which means it is available in a variety of
+    is build on top of Qt5 which means it is available on a variety of
     different operating systems. Furthermore, the used plugin system allows
     to easily integrate different sources where todos can be stored.
 
@@ -12,21 +12,20 @@ ABOUT
 BUILDING
 
     In order to build OpenTodoList, you will need:
-    - Qt5 5.0 or higher
+    - Qt5 (tested with Qt 5.3)
     - An appropriate C++ compiler
     
-    Assuming you have downloaded a cooy of OpenTodoList to 
-    /home/myself/OpenTodoList, do the following to build the application:
+    Assuming you have downloaded a copy of OpenTodoList to
+    /home/myself/opentodolist, do the following to build the application:
     
         cd /home/myself
-        mkdir OpenTodoList-build
-        cd OpenTodoList-build
-        qmake ../OpenTodoList
+        mkdir opentodolist-build
+        cd opentodolist-build
+        qmake ../opentodolist
         make
 
-    You should end up with a dedicated subdirectory "build" within
-    /home/myself/OpenTodoList-build. Just execute the contained executable
-    to run OpenTodoList.
+    During the build process, a sub-directory "bin" within opentodolist-build
+    will be created. Execute the contained executable to start OpenTodoList.
 
 
 BACKENDS
@@ -35,36 +34,58 @@ BACKENDS
     store data. This is the list of existing plugins:
     
     LocalXmlBackend
-        Stores data in XML files on the local hard disk.
+        Stores data in XML files on the local hard disk. Todo lists of this
+        type can be used if no synchronization between several devices is
+        wanted (or not allowed).
 
 
 FRONTENDS
 
-    For different platforms, different "frontends" are used to present the data
-    appropriately. Here is a list of frontends:
-    
-    OpenTodoListDesktopQml
-        QML based desktop applications for typical desktop systems as
-        KDE, GNOME, MacOC or Windows.
+    OpenTodoList strictly partitions business logic and UI from each other.
+    This allows (in theory) writing different UIs for different form factory
+    (i.e. we could use another UI for touch devices compared to
+    traditional desktop systems). Currently (due to the lack of resources)
+    only one UI is supported, which is mainly tailored towards touch devices
+    but should also work out well on a desktop system.
 
 
 DEVELOPING OPENTODOLIST
 
     OpenTodoList is developed using Qt Creator and qmake. However, other IDEs (as
     long as they support qmake) should work as well.
+
     
-    Here are some things to consider when developing OpenTodoList further:
+PROVIDING INSTALLERS
 
-    FAST QML PROTOTYPING
+    OpenTodoList comes with tools that allow to use the Qt Installer Framework (QtIFW)
+    to provide both only as well as offline installers. In the following, the
+    steps to create these installers are described per platform.
 
-        When hacking the QML frontends, you probably want to avoid to "make" the
-        application after each change in the QML files. This is supported by the --base-path
-        command line option:
+    LINUX
 
-            cd /home/myself/OpenTodoList-build/bin
-            ./OpenTodoListDesktopQml --base-path=../../OpenTodoList/OpenTodoListDesktopQml/qml/OpenTodoListDesktopQml
+        1. Build OpenTodoList
+        2. Install it using
+             make install INSTALL_ROOT=/path/to/installdir
+        3. Deploy Qt libraries:
+            perl $OTLSOURCEDIR/bin/linux-deploy-qt.pl \
+            --qt /path/to/qt --exe $INSTALL_ROOT/OpenTodoList/bin/OpenTodoList
+        4. Create installers and online repository:
+            perl $OTLSOURCEDIR/bin/mk-installer.pl \
+                --installDir $INSTALL_ROOT \
+                --targetDir /path/to/where/installers/shall/be/saved \
+                --os linux --arch ARCH_OF_CREATED_BINARIES
 
-        The above would start the compiled QML frontend in the build directory, however, it forces
-        it to use the QML files in the source directory. Whenever you change one of the files
-        there, this will trigger the to reload the QML parts, so neither you have to restart nor
-        rebuild it.
+    WINDOWS
+
+        1. Build OpenTodoList
+        2. Copy the directories for distribution (bin, share) from the build
+           directory into a directory C:\path\to\dist
+           Note: You have to create a sub-directory OpenTodoList within
+           this directory and put the copied directories there.
+        3. Run windeployqt.exe on the OpenTodoList.exe
+        4. Create installers and only repository:
+             perl %OTLSOURCEDIR%\bin\mk-installer.pl \
+             --installDir C:\path\to\dist \
+             --targetDir C:\path\to\installersdir \
+             --os windows --arch ARCH_OF_CREATED_BINARIES
+
