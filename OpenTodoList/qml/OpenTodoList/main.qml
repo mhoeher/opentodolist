@@ -30,9 +30,10 @@ Rectangle {
     color: Colors.window
 
     function saveViewSettings() {
-        settings.setValue( "ViewSettings.todoSortMode", ViewSettings.todoSortMode );
-        settings.setValue( "ViewSettings.showDoneTodos", ViewSettings.showDoneTodos );
-        settings.setValue( "ViewSettings.showDeletedTodos", ViewSettings.showDeletedTodos );
+        console.debug( "SaveViewSettings" );
+        settings.setValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
+        settings.setValue( "OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos );
+        settings.setValue( "OpenTodoList/ViewSettings/showDeletedTodos", ViewSettings.showDeletedTodos );
     }
 
     onFocusChanged: {
@@ -44,17 +45,17 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        width = settings.getValue( "width", width );
-        height = settings.getValue( "height", height );
-        ViewSettings.todoSortMode = settings.getValue( "ViewSettings.todoSortMode", ViewSettings.todoSortMode );
-        ViewSettings.showDoneTodos = settings.getValue( "ViewSettings.showDoneTodos", ViewSettings.showDoneTodos );
-        ViewSettings.showDeletedTodos = settings.getValue( "ViewSettings.showDeletedTodos", ViewSettings.showDeletedTodos );
+        width = settings.getValue( "OpenTodoList/Window/width", width );
+        height = settings.getValue( "OpenTodoList/Window/height", height );
+        ViewSettings.todoSortMode = settings.getValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
+        ViewSettings.showDoneTodos = settings.getValue( "OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos ) === "true";
+        ViewSettings.showDeletedTodos = settings.getValue( "OpenTodoList/ViewSettings/showDeletedTodos", ViewSettings.showDeletedTodos ) === "true";
 
         ViewSettings.onSettingsChanged.connect( saveViewSettings );
     }
 
-    onWidthChanged: settings.setValue( "width", width )
-    onHeightChanged: settings.setValue( "height", height )
+    onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
+    onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
 
     TodoListLibrary {
         id: todoListLibrary
@@ -62,7 +63,6 @@ Rectangle {
 
     Settings {
         id: settings
-        groups: ["Window", "Geometry"]
     }
 
     PageStack {
