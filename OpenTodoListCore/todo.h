@@ -103,6 +103,8 @@ public:
 
     Q_INVOKABLE void shadow( Todo *other );
 
+    static TodoStruct fromVariant(const QVariantMap &properties);
+
 signals:
 
     void weightChanged();
@@ -122,7 +124,7 @@ signals:
 public slots:
 
     void toggle();
-    void addTodo( const QString &title );
+    void addTodo(const QVariantMap &properties );
     void dispose();
 
 protected:

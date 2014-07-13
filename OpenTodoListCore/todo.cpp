@@ -312,6 +312,28 @@ void Todo::shadow(Todo *other)
 }
 
 /**
+   @brief Creates a TodoStruct from a variant map
+
+   This static method takes as an input a list of @p properties and
+   puts them into a TodoStruct structure which is returned afterwards.
+
+ */
+TodoStruct Todo::fromVariant( const QVariantMap &properties )
+{
+    TodoStruct result = BackendWrapper::NullTodo;
+    result.deleted = properties.value( "deleted", result.deleted ).toBool();
+    result.description = properties.value( "description", result.description ).toString();
+    result.dueDate = properties.value( "dueDate", result.dueDate ).toDateTime();
+    result.parentTodoId = properties.value( "parentTodoId", result.parentTodoId ).toUuid();
+    result.priority = properties.value( "priority", result.priority ).toInt();
+    result.progress = properties.value( "progress", result.progress ).toInt();
+    result.title = properties.value( "title", result.title ).toString();
+    result.todoListId = properties.value( "todoListId", result.todoListId ).toUuid();
+    result.weight = properties.value( "weight", result.weight ).toDouble();
+    return result;
+}
+
+/**
    @brief Toggles the state of the todo between "done" and "not done"
 
    @sa setProgress
@@ -327,13 +349,12 @@ void Todo::toggle()
 }
 
 /**
-   @brief Adds a new sub-todo with the given @p title to this todo
+   @brief Adds a new sub-todo with the given @p properties to this todo
  */
-void Todo::addTodo(const QString &title)
+void Todo::addTodo(const QVariantMap &properties )
 {
     if ( m_library && !isNull() && !m_todoList.id.isNull() ) {
-        TodoStruct newTodo = BackendWrapper::NullTodo;
-        newTodo.title = title;
+        TodoStruct newTodo = fromVariant( properties );
         m_library->addTodo( m_backend, newTodo, m_todoList, m_struct );
     }
 }

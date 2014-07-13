@@ -57,14 +57,62 @@ Item {
             return false;
         }
 
+        function inputToTodoProperties( input ) {
+            var properties = {};
+            if ( input.length === 0 ) {
+                return;
+            }
+            var dueTodayRegExp = new RegExp( qsTr( "^\\s*(?:due|until)?\\s*today\\s*:\\s*(.+)$" ), "i" );
+            var dueThisWeekRegExp = new RegExp( qsTr( "^\\s*(?:(?:due|until)\\s+)?this\\s+week\\s*:\\s*(.+)$" ), "i" );
+            var dueNextWeekRegExp = new RegExp( qsTr( "^\\s*(?:(?:due|until)\\s+)?next\\s+week\\s*:\\s*(.+)$" ), "i" );
+            var dueToRegExp = new RegExp( qsTr( "^(?:(?:due|until)\\s+)?([^:]+):\\s*(.+)$" ), "i" );
+
+            var match = dueTodayRegExp.exec( input );
+            if ( match ) {
+                properties.dueDate = new Date();
+                properties.title = match[1];
+                return properties;
+            }
+
+            match = dueThisWeekRegExp.exec( input );
+            if ( match ) {
+                var lastDayThisWeek = new Date();
+                lastDayThisWeek.setDate( lastDayThisWeek.getDate() - lastDayThisWeek.getDay() + Qt.locale().firstDayOfWeek + 6 );
+                properties.dueDate = lastDayThisWeek;
+                properties.title = match[1];
+                return properties;
+            }
+
+            match = dueNextWeekRegExp.exec( input );
+            if ( match ) {
+                var lastDayNextWeek = new Date();
+                lastDayNextWeek.setDate( lastDayNextWeek.getDate() - lastDayNextWeek.getDay() + Qt.locale().firstDayOfWeek + 13 );
+                properties.dueDate = lastDayNextWeek;
+                properties.title = match[1];
+                return properties;
+            }
+
+            match = dueToRegExp.exec( input );
+            if ( match ) {
+                var dueDate =new Date( Date.parse( match[1] ) );
+                properties.dueDate = dueDate;
+                properties.title = match[2];
+                return properties;
+            }
+
+            properties.title = input;
+            return properties;
+        }
+
         function createTodo( title ) {
-            if ( todos ) {
+            var properties = inputToTodoProperties( title );
+            if ( todos && properties ) {
                 switch ( todos.queryType ) {
                 case TodoModel.QueryTopLevelTodosInTodoList:
-                    todos.todoList.addTodo( title );
+                    todos.todoList.addTodo( properties );
                     break;
                 case TodoModel.QuerySubTodosOfTodo:
-                    todos.parentTodo.addTodo( title );
+                    todos.parentTodo.addTodo( properties );
                     break;
                 default:
                     break;

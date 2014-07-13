@@ -80,7 +80,7 @@ signals:
     
 public slots:
 
-    void addTodo( const QString &title );
+    void addTodo( const QVariantMap &properties );
     void dispose();
     
 protected:

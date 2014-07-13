@@ -142,11 +142,10 @@ bool TodoList::canCreateTodos() const
 /**
    @brief Adds a new todo to the list with the given @p title
  */
-void TodoList::addTodo(const QString &title)
+void TodoList::addTodo(const QVariantMap &properties)
 {
     if ( m_library && !isNull() ) {
-        TodoStruct newTodo = BackendWrapper::NullTodo;
-        newTodo.title = title;
+        TodoStruct newTodo = Todo::fromVariant( properties );
         //TODO: add to end of list by selecting an appropriate weight
         m_library->addTodo( m_backend, newTodo, m_struct );
     }
