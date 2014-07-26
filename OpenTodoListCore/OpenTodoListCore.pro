@@ -1,6 +1,10 @@
 include(../config.pri)
 
-TARGET = $$qtLibraryTarget(OpenTodoListCore)
+macx {
+    TARGET = OpenTodoListCore
+} else {
+    TARGET = $$qtLibraryTarget(OpenTodoListCore)
+}
 TEMPLATE = lib
 
 QT += core qml quick sql

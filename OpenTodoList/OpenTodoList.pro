@@ -58,4 +58,4 @@ OTHER_FILES += \
 
 android:RESOURCES += OpenTodoList.qrc
 
-DESTDIR = ../bin
+!macx:DESTDIR = ../bin
