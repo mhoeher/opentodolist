@@ -37,6 +37,24 @@ like "i686" or "x86_64".
 
 my $arch;
 
+=item --copy-qt-menu-nib
+
+MacOS Fix: Copy qt_menu.nib from Qt Installer Framework
+installation directory. This tries to find the QtIFW by searching
+in your PATH.
+
+=cut
+
+my $copyQtMenuNib;
+
+=item --dmg
+
+MacOS: Create Disk Images (*.dmg).
+
+=cut
+
+my $dmg;
+
 =item --help
 
 Shows the build in help.
@@ -140,6 +158,8 @@ my $argParseError;
 
 GetOptions(
             "arch=s" => \$arch,
+            "copy-qt-menu-nib" => \$copyQtMenuNib,
+            "dmg" => \$dmg,
             "help" => \$help,
             "installDir=s" => \$installDir,
             "man" => \$man,
@@ -176,7 +196,12 @@ if ( !$tempDir ) {
 # Get OpenTodoList version
 printf( "Getting current OpenTodoList version...\n" );
 my $openTodoListApp = File::Spec->catfile( $installDir, "OpenTodoList", "bin", "OpenTodoList" );
-my $openTodoListVersion = `$openTodoListApp --version`;
+if ( ! -f $openTodoListApp ) {
+    # Could we be on a Mac? Try app bundle:
+    $openTodoListApp = File::Spec->catfile( $installDir,
+      "Contents", "MacOS", "OpenTodoList" );
+}
+my $openTodoListVersion = ( -f $openTodoListApp ? `$openTodoListApp --version` : undef );
 if ( $openTodoListVersion =~ m/^OpenTodoList\s*version\s*(.*)$/ ) {
     $openTodoListVersion = $1;
 } else {
@@ -249,6 +274,10 @@ printf( "Creating OpenTodoList core package...\n" );
 my $openTodoListDataFile = File::Spec->catfile( $tempDir, "packages", "net.rpdev.OpenTodoList",
   "data", "OpenTodoList.7z" );
 my $inputDir = File::Spec->catfile( $installDir, "OpenTodoList" );
+#Check if we are on Mac OS and apply fix:
+if ( ! -d $inputDir && -f File::Spec->catfile( $installDir, "Contents", "MacOS", "OpenTodoList" ) ) {
+    $inputDir = $installDir;
+}
 qx(archivegen "$openTodoListDataFile" "$inputDir");
 
 # Create offline installer
@@ -267,3 +296,27 @@ printf( "Creating online only installer...\n" );
 my $onlineInstallerBinary = File::Spec->catfile( $targetDir, "OpenTodoList-online-$os-$arch-$openTodoListVersion$exeSuffix" );
 my $updateArg = $update ? "-u $onlineRepositoryUrl" : "";
 qx(binarycreator -c $configFile -p $packagesDir --online-only $updateArg $onlineInstallerBinary);
+
+if ( $copyQtMenuNib ) {
+    printf( "Copying qt_menu.nib...\n" );
+    my $binaryCreatorBin = dirname( `which binarycreator` );
+    my $qtMenuNib = File::Spec->catfile( $binaryCreatorBin,
+     "..", "Uninstaller.app", "Contents", "Resources", "qt_menu.nib" );
+
+    `cp -a $qtMenuNib $offlineInstallerBinary.app/Contents/Resources`;
+    `cp -a $qtMenuNib $onlineInstallerBinary.app/Contents/Resources`;
+}
+
+if ( $dmg ) {
+    printf( "Creating MacOS Disk Images...\n" );
+    my $offlineInstallerBaseName = basename($offlineInstallerBinary);
+    my $onlineInstallerBaseName = basename($onlineInstallerBinary);
+    my $offlineInstallerDmg = File::Spec->catfile( $targetDir, "OpenTodoList-offline-$os-$arch-$openTodoListVersion.dmg" );
+    my $onlineInstallerDmg = File::Spec->catfile( $targetDir, "OpenTodoList-online-$os-$arch-$openTodoListVersion.dmg" );
+    `mkdir $tempDir/$offlineInstallerBaseName`;
+    `cp -R $offlineInstallerBinary.app/ $tempDir/$offlineInstallerBaseName`;
+    `hdiutil create $offlineInstallerDmg -srcfolder $tempDir/$offlineInstallerBaseName`;
+    `mkdir $tempDir/$onlineInstallerBaseName`;
+    `cp -R $onlineInstallerBinary.app/ $tempDir/$onlineInstallerBaseName`;
+    `hdiutil create $onlineInstallerDmg -srcfolder $tempDir/$onlineInstallerBaseName`;
+}

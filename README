@@ -75,6 +75,18 @@ PROVIDING INSTALLERS
                 --targetDir /path/to/where/installers/shall/be/saved \
                 --os linux --arch ARCH_OF_CREATED_BINARIES
 
+    MAC OS
+
+        1. Build OpenTodoList
+	2. Run macdeployqt tool to copy Qt binaries into the app bundle:
+           macdeployqt OpenTodoList.app qmldir=/path/to/opentodolist/OpenTodoList/qml
+        3. Create installers and online repository:
+		perl $OTLSOURCEDIR/bin/mk-installer.pl \
+                --installDir /path/to/OpenTodoList.app \
+                --targetDir /path/to/where/installers/shall/be/saved \
+                --os maces --arch ARCH_OF_CREATED_BINARIES \
+		--copy-qt-menu-nib --dmg
+
     WINDOWS
 
         1. Build OpenTodoList
