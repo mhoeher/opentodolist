@@ -327,5 +327,42 @@ Page {
                 }
             }
         }
+
+        Tab {
+            id: aboutApplicationTab
+            name: qsTr("About")
+
+            Column {
+                anchors.fill: parent
+                anchors.margins: Measures.midSpace
+                spacing: Measures.midSpace
+
+                Label {
+                    text: qsTr( "OpenTodoList") + " " + library.applicationVersion
+                    font.bold: true
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    text: qsTr( "An Open Source todo and task management application.")
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    text: qsTr( "Copyright 2013 - 2014, Martin Hoeher" )
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    text: "<a href='http://www.rpdev.net/home/project/opentodolist'>http://www.rpdev.net/home/project/opentodolist</a>"
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+            }
+        }
     }
 }

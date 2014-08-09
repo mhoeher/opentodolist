@@ -34,6 +34,7 @@ class TodoListLibrary : public QObject
     Q_OBJECT
     Q_PROPERTY( QObject* plugins READ plugins CONSTANT )
     Q_PROPERTY( QQmlListProperty<BackendWrapper> backends READ backends CONSTANT )
+    Q_PROPERTY( QString applicationVersion READ applicationVersion CONSTANT )
 public:
     
     explicit TodoListLibrary(QObject *parent = 0);
@@ -49,6 +50,8 @@ public:
     QQmlListProperty<BackendWrapper> backends();
     Q_INVOKABLE bool canAddTodoList( const QString &backend );
     Q_INVOKABLE void addTodoList( const QString &backend, const QString &todoListName );
+
+    QString applicationVersion() const;
 
     // TodoListDatabase wrapper interface
     bool insertTodoList(const BackendInterface *backend,

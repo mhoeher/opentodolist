@@ -120,6 +120,11 @@ void TodoListLibrary::addTodoList(const QString &backend, const QString &todoLis
     m_backendRunner->addTodoList( backend, listStruct );
 }
 
+QString TodoListLibrary::applicationVersion() const
+{
+    return VERSION;
+}
+
 bool TodoListLibrary::insertTodoList(const BackendInterface* backend,
                                      const TodoListStruct &list)
 {
