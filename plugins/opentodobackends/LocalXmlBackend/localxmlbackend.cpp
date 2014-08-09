@@ -212,11 +212,12 @@ QStringList LocalXmlBackend::locateTodos(const QString &todoList) const
 {
     QFileInfo fi( todoList );
     QDir dir = fi.dir();
-    dir.cd( TodoDirectoryName );
-    QStringList entries = dir.entryList( QStringList() << "*.xml", QDir::Files );
     QStringList result;
-    foreach ( const QString &entry, entries ) {
-        result << dir.absoluteFilePath( entry );
+    if ( dir.cd( TodoDirectoryName ) ) {
+        QStringList entries = dir.entryList( QStringList() << "*.xml", QDir::Files );
+        foreach ( const QString &entry, entries ) {
+            result << dir.absoluteFilePath( entry );
+        }
     }
     return result;
 }
