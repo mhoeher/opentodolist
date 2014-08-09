@@ -95,9 +95,13 @@ Item {
             match = dueToRegExp.exec( input );
             if ( match ) {
                 var dueDate =new Date( Date.parse( match[1] ) );
-                properties.dueDate = dueDate;
-                properties.title = match[2];
-                return properties;
+                if ( !isNaN(dueDate.getFullYear()) &&
+                        !isNaN(dueDate.getMonth()) &&
+                        !isNaN(dueDate.getDate()) ) {
+                    properties.dueDate = dueDate;
+                    properties.title = match[2];
+                    return properties;
+                }
             }
 
             properties.title = input;
