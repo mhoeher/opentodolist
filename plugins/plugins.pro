@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = opentodobackends
+SUBDIRS = opentodolist opentodobackends

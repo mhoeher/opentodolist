@@ -1,15 +1,9 @@
 include(../../../config.pri)
+setupPlugin(LocalXmlBackend,opentodobackends)
 
-TEMPLATE = lib
-TARGET = LocalXmlBackend
-CONFIG += plugin static
-
-#include(../../../utils.pri)
-#pluginConfig(opentodobackends)
+qtcAddDeployment()
 
 QT += xml
-
-INCLUDEPATH += ../../../OpenTodoListCore
 
 SOURCES += \
     localxmlbackend.cpp
@@ -19,5 +13,3 @@ HEADERS += \
 
 OTHER_FILES += \
     LocalXmlBackend.json
-
-win32:DESTDIR = $$OUT_PWD

@@ -28,16 +28,27 @@ PluginsLoader::PluginsLoader(QObject *parent) :
     QObject(parent),
     m_backendInterfaces()
 {
-    // load static instanced
+    // load static instances
     foreach ( QObject* instance, QPluginLoader::staticInstances() ) {
         //instance->setParent( this ); // static instances already have parent!
         addBackendInterface( instance );
     }
 
     foreach ( QString libraryPath, QCoreApplication::libraryPaths() ) {
+
+        QStringList entries;
         // Load backends
+#ifdef Q_OS_ANDROID
+        QDir dir( libraryPath );
+        entries = dir.entryList(
+                    QStringList() << "*net_rpdev_opentodolist_plugins_opentodobackends*",
+                    QDir::Files );
+#else
         QDir dir( libraryPath + "/opentodobackends" );
-        foreach ( QString entry, dir.entryList( QDir::Files ) ) {
+        entries = dir.entryList( QDir::Files );
+#endif
+
+        foreach ( QString entry, entries ) {
             QString pluginPath = dir.absolutePath() + "/" + entry;
             QPluginLoader* loader = new QPluginLoader( pluginPath, this );
             if ( loader->load() ) {

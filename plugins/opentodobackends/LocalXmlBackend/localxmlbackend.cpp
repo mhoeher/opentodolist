@@ -155,8 +155,7 @@ void LocalXmlBackend::addTodo(TodoStruct newTodo, const TodoListStruct &list, co
         QFileInfo fi( todoListFileName );
         QDir dir = fi.absoluteDir();
         if ( dir.exists() || dir.mkpath( dir.absolutePath() ) ) {
-            dir.cd( TodoDirectoryName );
-            if ( dir.exists() || dir.mkpath( dir.absolutePath() ) ) {
+            if ( dir.cd( TodoDirectoryName ) || dir.mkdir( TodoDirectoryName ) ) {
                 newTodo.meta.insert( TodoMetaFileName, dir.absoluteFilePath( newTodo.id.toString() + ".xml" ) );
                 todoToFile( newTodo );
                 m_database->insertTodo( newTodo );

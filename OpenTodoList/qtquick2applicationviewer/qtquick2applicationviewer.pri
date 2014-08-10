@@ -163,7 +163,9 @@ android-no-sdk {
             QMAKE_EXTRA_TARGETS += first copydeploymentfolders
         }
     }
-    !isEmpty(target.path) {
+    !isEmpty(target.installBase) {
+        installPrefix = $${target.installBase}
+    } else:!isEmpty(target.path) {
         installPrefix = $${target.path}
     } else {
         installPrefix = /opt/$${TARGET}

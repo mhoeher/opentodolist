@@ -1,16 +1,15 @@
-include(../config.pri)
+include(../../../config.pri)
+setupPlugin(OpenTodoListCore,opentodolist)
 
-macx {
-    TARGET = OpenTodoListCore
-} else {
-    TARGET = $$qtLibraryTarget(OpenTodoListCore)
-}
-TEMPLATE = lib
+# Add basic folders for deploymend
+core_main.source = qml/net/rpdev/OpenTodoList/Core
+core_main.target = $${assets_prefix}OpenTodoList/qml/net/rpdev/OpenTodoList
+
+DEPLOYMENTFOLDERS += core_main
+
+qtcAddDeployment()
 
 QT += core qml quick sql
-CONFIG += plugin static
-
-#macx:CONFIG += lib_bundle
 
 QMAKE_MOC_OPTIONS += -Muri=net.rpdev.OpenTodoList.Core
 
@@ -71,9 +70,7 @@ DEFINES +=  OPENTODOLISTCORE_LIBRARY
 #QMAKE_POST_LINK += $$QMAKE_COPY $$replace($$list($$quote($$PWD/qmldir) $$OUT_PWD/../OpenTodoList/imports/net/rpdev/OpenTodoList/Core), /, $$QMAKE_DIR_SEP)
 
 OTHER_FILES += \
-    OpenTodoListCorePlugin.json imports/net/rpdev/OpenTodoList/Core/qmldir
+    OpenTodoListCorePlugin.json qml/net/rpdev/OpenTodoList/Core/qmldir
 
 RESOURCES += \
     OpenTodoListCore.qrc
-
-win32:DESTDIR = $$OUT_PWD

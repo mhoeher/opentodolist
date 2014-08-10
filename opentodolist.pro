@@ -1,5 +1,2 @@
 TEMPLATE = subdirs
-CONFIG += ordered
-SUBDIRS = OpenTodoListCore plugins OpenTodoList
-
-OpenTodoList.depends += OpenTodoListCore plugins
+SUBDIRS = plugins OpenTodoList
