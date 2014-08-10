@@ -33,9 +33,10 @@ AnimatedListView {
     signal todoListSelected( TodoList todoList )
     signal todoSelected( Todo todo )
 
+    highlightFollowsCurrentItem: true
     highlightMoveDuration: 200
-    currentIndex: -1
     highlightResizeDuration: 200
+    currentIndex: -1
 
     model: todoListModel
 
