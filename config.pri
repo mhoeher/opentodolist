@@ -1,8 +1,8 @@
 # The application version
-VERSION=0.1.0
+OPENTODOLIST_VERSION=0.1.0
 
 # Pass in values via defines
-DEFINES += VERSION=\\\"$$VERSION\\\"
+DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 
 include(OpenTodoList/qtquick2applicationviewer/qtquick2applicationviewer.pri)
 
@@ -39,7 +39,7 @@ name = $$1
 type = $$2
 
 # Location where to store assets (Depending on target platform):
-android { # Android: Automatically put into assets/ directry; leave blank
+android { # Android: Automatically put into assets/ directory; leave blank
     assets_prefix =
 } else { # All other: Save relative to application binary
     assets_prefix = ../../../share/
