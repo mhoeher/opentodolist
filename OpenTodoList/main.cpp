@@ -31,15 +31,15 @@ int main(int argc, char *argv[])
     QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() );
     viewer.engine()->addPluginPath( QCoreApplication::applicationDirPath() );
 #else
-    QDirIterator di( app.applicationDirPath(), QDirIterator::Subdirectories );
-    while ( di.hasNext() ) {
-        qDebug() << di.next();
-    }
-
     QString basePath = app.applicationDirPath();
+#ifdef Q_OS_MACX
+    QString pluginsDirName = "PlugIns";
+#else
+    QString pluginsDirName = "plugins";
+#endif
     QDir baseDir( basePath );
     if ( baseDir.cdUp() ) {
-        if ( baseDir.cd( "plugins" ) ) {
+        if ( baseDir.cd( pluginsDirName ) ) {
             QCoreApplication::addLibraryPath( baseDir.absolutePath() );
             foreach ( QString entry, baseDir.entryList( QDir::Dirs ) ) {
                 viewer.engine()->addPluginPath( baseDir.absoluteFilePath( entry ) );

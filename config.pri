@@ -41,6 +41,8 @@ type = $$2
 # Location where to store assets (Depending on target platform):
 android { # Android: Automatically put into assets/ directory; leave blank
     assets_prefix =
+} macx { # Mac OS: Store inside app bundle
+    assets_prefix = ../../../../../../OpenTodoList/OpenTodoList.app/Contents/share/
 } else { # All other: Save relative to application binary
     assets_prefix = ../../../share/
 }
@@ -57,7 +59,7 @@ INCLUDEPATH += ../../opentodolist/OpenTodoListCore
 
 # Set destination path
 macx {
-DESTDIR = $$OUT_PWD/../OpenTodoList/OpenTodoList.app/Contents/Plugins
+DESTDIR = $$OUT_PWD/../../../OpenTodoList/OpenTodoList.app/Contents/PlugIns/$$type
 } else {
 DESTDIR = $$OUT_PWD/../
 }
