@@ -35,7 +35,7 @@ unix {
 qtcAddDeployment()
 
 # Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH = $$PWD/../OpenTodoListCore/imports $$PWD/qml
+QML_IMPORT_PATH = $$PWD/qml
 
 # Icons for various platforms
 mac:ICON = OpenTodoList.icns
@@ -58,17 +58,51 @@ qtHaveModule(KNotifications) {
 # Android special handling: Needs to depend also on all used Qt modules
 QT += core qml quick sql xml
 
+INCLUDEPATH += \
+    inc \
+    inc/net.rpdev.OpenTodoList.Core \
+    src \
+    src/net.rpdev.OpenTodoList.Core
+
 HEADERS += \
-    applicationinstance.h \
-    statusnotifiericon.h \
-    commandhandler.h
+    src/applicationinstance.h \
+    src/commandhandler.h \
+    src/statusnotifiericon.h \
+    src/net.rpdev.OpenTodoList.Core/opentodolistcoreqmlplugin.h \
+    src/net.rpdev.OpenTodoList.Core/pluginsloader.h \
+    src/net.rpdev.OpenTodoList.Core/settings.h \
+    src/net.rpdev.OpenTodoList.Core/todo.h \
+    src/net.rpdev.OpenTodoList.Core/todolist.h \
+    src/net.rpdev.OpenTodoList.Core/todolistlibrary.h \
+    src/net.rpdev.OpenTodoList.Core/todolistmodel.h \
+    src/net.rpdev.OpenTodoList.Core/todoliststorage.h \
+    src/net.rpdev.OpenTodoList.Core/todoliststoragequery.h \
+    src/net.rpdev.OpenTodoList.Core/todomodel.h \
+    src/net.rpdev.OpenTodoList.Core/backendrunner.h \
+    src/net.rpdev.OpenTodoList.Core/backendwrapper.h \
+    src/net.rpdev.OpenTodoList.Core/documentformatter.h \
+    src/net.rpdev.OpenTodoList.Core/listutils.h \
+    inc/net.rpdev.OpenTodoList.Core/opentodolistinterfaces.h
 
 
 SOURCES += \
-    applicationinstance.cpp \
-    main.cpp \
-    statusnotifiericon.cpp \
-    commandhandler.cpp
+    src/applicationinstance.cpp \
+    src/commandhandler.cpp \
+    src/main.cpp \
+    src/statusnotifiericon.cpp \
+    src/net.rpdev.OpenTodoList.Core/opentodolistcoreqmlplugin.cpp \
+    src/net.rpdev.OpenTodoList.Core/pluginsloader.cpp \
+    src/net.rpdev.OpenTodoList.Core/settings.cpp \
+    src/net.rpdev.OpenTodoList.Core/todo.cpp \
+    src/net.rpdev.OpenTodoList.Core/todolist.cpp \
+    src/net.rpdev.OpenTodoList.Core/todolistlibrary.cpp \
+    src/net.rpdev.OpenTodoList.Core/todolistmodel.cpp \
+    src/net.rpdev.OpenTodoList.Core/todoliststorage.cpp \
+    src/net.rpdev.OpenTodoList.Core/todoliststoragequery.cpp \
+    src/net.rpdev.OpenTodoList.Core/todomodel.cpp \
+    src/net.rpdev.OpenTodoList.Core/backendrunner.cpp \
+    src/net.rpdev.OpenTodoList.Core/backendwrapper.cpp \
+    src/net.rpdev.OpenTodoList.Core/documentformatter.cpp
 
 
 # Android specific:

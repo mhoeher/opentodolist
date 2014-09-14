@@ -10,6 +10,7 @@
 #include "commandhandler.h"
 #include "qtquick2applicationviewer.h"
 #include "statusnotifiericon.h"
+#include "opentodolistcoreqmlplugin.h"
 
 #include <iostream>
 
@@ -45,6 +46,10 @@ int main(int argc, char *argv[])
         instance.sendMessage( CommandHandler::show() );
         return 0;
     }
+
+    // Register "Core" plugin:
+    OpenTodoListCoreQmlPlugin corePlugin;
+    corePlugin.registerTypes( "net.rpdev.OpenTodoList.Core" );
 
     QtQuick2ApplicationViewer viewer;
 

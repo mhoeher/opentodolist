@@ -55,7 +55,7 @@ android:!equals(type,"opentodolist") {
 TEMPLATE = lib
 CONFIG += plugin
 macx:CONFIG -= lib_bundle
-INCLUDEPATH += ../../opentodolist/OpenTodoListCore
+INCLUDEPATH += ../../../OpenTodoList/inc/net.rpdev.OpenTodoList.Core
 
 # Set destination path
 macx {

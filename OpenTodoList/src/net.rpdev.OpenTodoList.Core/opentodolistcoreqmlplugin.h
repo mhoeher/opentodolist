@@ -6,7 +6,6 @@
 class OpenTodoListCoreQmlPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "net.rpdev.opentodolist.core" FILE "OpenTodoListCorePlugin.json")
 
 public:
     explicit OpenTodoListCoreQmlPlugin(QObject *parent = 0);
