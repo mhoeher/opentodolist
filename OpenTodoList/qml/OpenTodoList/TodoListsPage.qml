@@ -129,12 +129,6 @@ Page {
                     TodoView {
                         id: dueThisWeekView
 
-                        function lastDayThisWeek() {
-                            var result = new Date();
-                            result.setDate( result.getDate() - result.getDay() + Qt.locale().firstDayOfWeek + 6 );
-                            return result;
-                        }
-
                         headerLabel: qsTr( "Due this Week" )
                         height: contentItem.height + headerHeight
                         width: parent.width
@@ -143,7 +137,13 @@ Page {
                         todos: TodoModel {
                             library: page.library
                             queryType: TodoModel.QueryFilterTodos
-                            maxDueDate: dueThisWeekView.lastDayThisWeek()
+                            maxDueDate: {
+                                var result = new Date( dueTodayView.todos.maxDueDate );
+                                var date = result.getDate();
+                                var offset = ( 6 - result.getDay() + Qt.locale().firstDayOfWeek ) % 7;
+                                result.setDate( date + offset );
+                                return result;
+                            }
                             minDueDate: dueTodayView.todos.maxDueDate
                         }
 
@@ -182,7 +182,6 @@ Page {
                 repeat: true
                 onTriggered: {
                     dueTodayView.todos.maxDueDate = new Date();
-                    dueThisWeekView.todos.maxDueDate = dueThisWeekView.lastDayThisWeek();
                 }
             }
         }

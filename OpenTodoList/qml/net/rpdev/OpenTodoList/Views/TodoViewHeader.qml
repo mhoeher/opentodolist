@@ -63,9 +63,13 @@ Item {
                 return;
             }
             var dueTodayRegExp = new RegExp( qsTr( "^\\s*(?:due|until)?\\s*today\\s*:\\s*(.+)$" ), "i" );
+            var dueTomorrowRegExp = new RegExp( qsTr( "^\\s*(?:due|until)?\\s*tomorrow\\s*:\\s*(.+)$" ), "i" );
             var dueThisWeekRegExp = new RegExp( qsTr( "^\\s*(?:(?:due|until)\\s+)?this\\s+week\\s*:\\s*(.+)$" ), "i" );
             var dueNextWeekRegExp = new RegExp( qsTr( "^\\s*(?:(?:due|until)\\s+)?next\\s+week\\s*:\\s*(.+)$" ), "i" );
             var dueToRegExp = new RegExp( qsTr( "^(?:(?:due|until)\\s+)?([^:]+):\\s*(.+)$" ), "i" );
+
+            var date;
+            var off;
 
             var match = dueTodayRegExp.exec( input );
             if ( match ) {
@@ -74,10 +78,21 @@ Item {
                 return properties;
             }
 
+            match = dueTomorrowRegExp.exec( input );
+            if ( match ) {
+                date = new Date();
+                date.setDate( date.getDate() + 1 );
+                properties.dueDate = date;
+                properties.title = match[1];
+                return properties;
+            }
+
             match = dueThisWeekRegExp.exec( input );
             if ( match ) {
                 var lastDayThisWeek = new Date();
-                lastDayThisWeek.setDate( lastDayThisWeek.getDate() - lastDayThisWeek.getDay() + Qt.locale().firstDayOfWeek + 6 );
+                date = lastDayThisWeek.getDate();
+                off = ( 6 - lastDayThisWeek.getDay() + Qt.locale().firstDayOfWeek ) % 7;
+                lastDayThisWeek.setDate( date + off );
                 properties.dueDate = lastDayThisWeek;
                 properties.title = match[1];
                 return properties;
@@ -86,7 +101,9 @@ Item {
             match = dueNextWeekRegExp.exec( input );
             if ( match ) {
                 var lastDayNextWeek = new Date();
-                lastDayNextWeek.setDate( lastDayNextWeek.getDate() - lastDayNextWeek.getDay() + Qt.locale().firstDayOfWeek + 13 );
+                date = lastDayNextWeek.getDate();
+                off = ( 6 - lastDayNextWeek.getDay() + Qt.locale().firstDayOfWeek ) % 7;
+                lastDayNextWeek.setDate( date + off + 7 );
                 properties.dueDate = lastDayNextWeek;
                 properties.title = match[1];
                 return properties;
