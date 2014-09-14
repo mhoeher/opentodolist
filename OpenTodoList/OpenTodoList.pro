@@ -42,13 +42,34 @@ mac:ICON = OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
 
 # Qt dependencies
-QT +=
+QT += network
+
+# Handling of status notifiers / system tray icons
+qtHaveModule(KNotifications) {
+    QT += KNotifications
+    DEFINES += HAS_KNOTIFICATIONS HAS_QT_WIDGETS
+} else {
+    win32|macx|unix {
+        QT += widgets
+        DEFINES += HAS_QSYSTEM_TRAY_ICON HAS_QT_WIDGETS
+    }
+}
 
 # Android special handling: Needs to depend also on all used Qt modules
 QT += core qml quick sql xml
 
-# The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+HEADERS += \
+    applicationinstance.h \
+    statusnotifiericon.h \
+    commandhandler.h
+
+
+SOURCES += \
+    applicationinstance.cpp \
+    main.cpp \
+    statusnotifiericon.cpp \
+    commandhandler.cpp
+
 
 # Android specific:
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -63,3 +84,4 @@ OTHER_FILES += \
     ../templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js
 
 android:RESOURCES += OpenTodoList.qrc
+

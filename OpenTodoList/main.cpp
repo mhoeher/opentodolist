@@ -1,7 +1,15 @@
 #include <QDir>
+#ifdef HAS_QT_WIDGETS
+#include <QApplication>
+#else
 #include <QtGui/QGuiApplication>
+#endif
 #include <QQmlEngine>
+#include <QQmlContext>
+#include "applicationinstance.h"
+#include "commandhandler.h"
 #include "qtquick2applicationviewer.h"
+#include "statusnotifiericon.h"
 
 #include <iostream>
 
@@ -15,7 +23,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain( "www.rpdev.net" );
     QCoreApplication::setOrganizationName( "RPdev" );
 
+#ifdef HAS_QT_WIDGETS
+    QApplication app(argc, argv);
+#else
     QGuiApplication app(argc, argv);
+#endif
+
+#ifndef Q_OS_ANDROID
+    app.setQuitOnLastWindowClosed( false );
+#endif
 
     if ( app.arguments().contains( "-version" ) ||
          app.arguments().contains( "--version" ) ) {
@@ -23,8 +39,19 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    ApplicationInstance instance( QCoreApplication::applicationName() );
+    if ( instance.state() == ApplicationInstance::InstanceIsSecondary ) {
+        qDebug() << "Running secondary instance. Contacting server and quitting...";
+        instance.sendMessage( CommandHandler::show() );
+        return 0;
+    }
 
     QtQuick2ApplicationViewer viewer;
+
+    CommandHandler commandHandler;
+    commandHandler.setApplicationWindow( &viewer );
+    QObject::connect( &instance, SIGNAL(receivedMessage(QString)),
+                      &commandHandler, SLOT(handleMessage(QString)) );
 
     // Add plugin search paths for QML plugins
 #ifdef Q_OS_ANDROID
@@ -47,6 +74,26 @@ int main(int argc, char *argv[])
         }
     }
 #endif
+
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACX)
+    app.setWindowIcon( QIcon( basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
+#endif
+
+    StatusNotifierIcon statusNotifier( &commandHandler );
+    statusNotifier.setApplicationTitle( app.applicationName() );
+#ifdef Q_OS_ANDROID
+    statusNotifier.setApplicationIcon( QIcon( "qrc:/icons/OpenTodoList80.png" ) );
+#else
+    statusNotifier.setApplicationIcon(
+                QIcon( basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
+#endif
+    statusNotifier.show();
+
+    viewer.engine()->rootContext()->setContextProperty(
+                QStringLiteral( "statusNotifier" ), &statusNotifier );
+    viewer.engine()->rootContext()->setContextProperty(
+                QStringLiteral( "commandHandler" ), &commandHandler );
+
 
 #ifdef Q_OS_ANDROID
     viewer.addImportPath( QStringLiteral("qrc:/OpenTodoList/qml"));

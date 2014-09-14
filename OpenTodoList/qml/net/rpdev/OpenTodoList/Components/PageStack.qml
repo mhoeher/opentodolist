@@ -47,11 +47,12 @@ FocusScope {
     }
 
     function back() {
-        var name = "";
-        if ( children.length > 0 ) {
-            name = children[ children.length - 1 ].name;
+        if ( children.length > 1 ) {
             children[ children.length - 1 ].close();
+        } else if ( children.length === 1 ) {
+            lastPageClosing();
         }
+
     }
 
     function close() {

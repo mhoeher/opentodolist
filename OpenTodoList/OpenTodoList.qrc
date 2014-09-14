@@ -47,4 +47,8 @@
         <file>qml/net/rpdev/OpenTodoList/Views/TodoViewHeader.qml</file>
         <file>qml/net/rpdev/OpenTodoList/Components/Shadow.qml</file>
     </qresource>
+    <qresource prefix="/">
+        <file>icons/OpenTodoList64.png</file>
+        <file>icons/OpenTodoList80.png</file>
+    </qresource>
 </RCC>

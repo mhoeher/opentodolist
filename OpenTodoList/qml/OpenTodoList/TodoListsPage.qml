@@ -364,5 +364,20 @@ Page {
                 }
             }
         }
+
+        Tab {
+            id: settingsTab
+            name: qsTr( "Settings" )
+
+            Button {
+                anchors {
+                    bottom: parent.bottom
+                    right: parent.right
+                    margins: Measures.tinySpace
+                }
+                text: qsTr( "Quit" )
+                onClicked: commandHandler.terminateApplication()
+            }
+        }
     }
 }

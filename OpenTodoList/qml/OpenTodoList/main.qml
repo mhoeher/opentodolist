@@ -71,7 +71,11 @@ Rectangle {
         anchors.fill: parent
         focus: true
 
-        onLastPageClosing: Qt.quit()
+        onLastPageClosing: {
+            if ( Qt.os === "android" ) {
+                commandHandler.hideWindow();
+            }
+        }
 
         TodoListsPage {
             library: todoListLibrary
