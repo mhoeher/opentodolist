@@ -25,16 +25,11 @@ FocusScope {
 
     signal lastPageClosing()
 
-    function showPage( page ) {
-        // Current behavior: Ensure least recently added page
-        // is visible. Could be changed if required in the future
-        initChildren();
-    }
+    readonly property Page topmostPage: null
 
     function initChildren() {
         for ( var i = 0; i < children.length; ++i ) {
             var child = children[i];
-            child.pageStack = pageStack;
             if ( i === 0 ) {
                 child.state = "default";
             } else {
@@ -42,6 +37,9 @@ FocusScope {
             }
             if ( i === children.length - 1 ) {
                 child.focus = true;
+                child.isTopmostPage = true;
+            } else {
+                child.isTopmostPage = false;
             }
         }
     }
@@ -52,15 +50,21 @@ FocusScope {
         } else if ( children.length === 1 ) {
             lastPageClosing();
         }
-
     }
 
     function close() {
         lastPageClosing();
     }
 
+    onChildrenChanged: timer.restart()
+
     Keys.onEscapePressed: back()
     Keys.onBackPressed: back();
 
-    Component.onCompleted: initChildren()
+    Timer {
+        id: timer
+        interval: 10
+
+        onTriggered: pageStack.initChildren()
+    }
 }

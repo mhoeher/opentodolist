@@ -85,7 +85,6 @@ Rectangle {
                 if ( component.status === Component.Ready ) {
                     var page = component.createObject( pageStack );
                     page.todo.shadow( todo );
-                    pageStack.showPage( page );
                 } else {
                     console.error( component.errorString() );
                 }

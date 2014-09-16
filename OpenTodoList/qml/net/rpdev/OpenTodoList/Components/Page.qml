@@ -24,7 +24,8 @@ Item {
     id: page
 
     property string name: qsTr( "Page" )
-    property PageStack pageStack: null
+    property bool isTopmostPage: false
+
     default property alias children: inner.children
 
     function close() {
@@ -43,6 +44,12 @@ Item {
         id: inner
         anchors.fill: parent
         color: Colors.window
+    }
+
+    // Catch mouse input while we are visible but not active
+    MouseArea {
+        anchors.fill: page
+        enabled: !page.isTopmostPage
     }
 
     states: [

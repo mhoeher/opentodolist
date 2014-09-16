@@ -214,9 +214,8 @@ Page {
                         onTodoSelected: {
                             var component = Qt.createComponent( "TodoPage.qml" );
                             if ( component.status === Component.Ready ) {
-                                var newPage = component.createObject( page.pageStack );
+                                var newPage = component.createObject( page.parent );
                                 newPage.todo.shadow( todo );
-                                page.pageStack.showPage( newPage );
                             } else {
                                 console.error( component.errorString() );
                             }
