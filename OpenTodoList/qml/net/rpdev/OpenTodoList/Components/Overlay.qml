@@ -24,6 +24,7 @@ FocusScope {
     state: "available"
 
     property bool autoClose: false
+    property bool closeOnBackPressed: true
     property alias backgroundOpacity: rectangle.opacity
 
     function show() {
@@ -40,8 +41,8 @@ FocusScope {
         parent.focus = true;
     }
 
-    Keys.onEscapePressed: close()
-    Keys.onBackPressed: close()
+    Keys.onEscapePressed: if ( closeOnBackPressed ) close()
+    Keys.onBackPressed: if ( closeOnBackPressed ) close()
 
     opacity: 0.0
 

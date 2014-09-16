@@ -314,7 +314,7 @@ Page {
                                         for ( var i = 0; i < trashModel.count; ++i ) {
                                             todos.push( trashModel.get( i ) );
                                         }
-                                        for ( var i = 0; i < todos.length; ++i ) {
+                                        for ( i = 0; i < todos.length; ++i ) {
                                             todos[ i ].dispose();
                                         }
                                         close();

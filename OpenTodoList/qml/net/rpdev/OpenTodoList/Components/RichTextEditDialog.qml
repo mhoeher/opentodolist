@@ -27,6 +27,9 @@ Overlay {
 
     signal accept()
 
+    closeOnBackPressed: false
+
+
     RichTextEditor {
         id: editor
 

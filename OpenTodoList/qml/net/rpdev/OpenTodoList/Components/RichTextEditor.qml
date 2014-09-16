@@ -202,6 +202,7 @@ Rectangle {
              height: Math.max( paintedHeight, editorFlickable.height )
              textFormat: TextEdit.RichText
              onCursorRectangleChanged: editorFlickable.ensureVisible(cursorRectangle)
+             focus: true
          }
      }
 
