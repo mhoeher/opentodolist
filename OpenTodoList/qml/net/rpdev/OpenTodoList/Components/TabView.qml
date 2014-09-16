@@ -70,8 +70,14 @@ FocusScope {
         highlightRangeMode: ListView.StrictlyEnforceRange
         focus: true
         clip: true
-        flickDeceleration: 500
+        flickDeceleration: 1000
         highlightMoveDuration: 200
+        interactive: switch ( Qt.os ) {
+                     case "android": return true;
+                     case "ios": return true;
+                     case "blackberry": return true;
+                     default: return false;
+                     }
 
         onCurrentIndexChanged: {
             if ( headerBar.currentIndex !== currentIndex ) {
