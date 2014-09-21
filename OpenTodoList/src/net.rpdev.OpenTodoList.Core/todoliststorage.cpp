@@ -50,6 +50,7 @@ TodoListStorage::~TodoListStorage()
  */
 void TodoListStorage::runQuery(TodoListStorageQuery *query)
 {
+    qDebug() << "Scheduling query" << query << "for execution";
     query->moveToThread( &m_thread );
     m_worker->run( query );
 }

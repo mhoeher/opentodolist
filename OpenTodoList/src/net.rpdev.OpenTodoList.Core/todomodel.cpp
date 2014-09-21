@@ -12,7 +12,7 @@ TodoModel::TodoModel(QObject *parent) :
     m_library( 0 ),
     m_loadedTodos(),
     m_newLoadedTodos(),
-    m_needUpdate( false ),
+    m_updateTimer( new QTimer( this ) ),
     m_todoList( 0 ),
     m_parentTodo( 0 ),
     m_filter( QString() ),
@@ -26,6 +26,9 @@ TodoModel::TodoModel(QObject *parent) :
     m_limitOffset( -1 ),
     m_limitCount( -1 )
 {
+    m_updateTimer->setInterval( 1000 );
+    connect( m_updateTimer, SIGNAL(timeout()), this, SLOT(triggerUpdate()) );
+
     connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(libraryChanged()), this, SIGNAL(changed()) );
@@ -162,8 +165,8 @@ void TodoModel::setQueryType(const QueryType &queryType)
  */
 void TodoModel::update()
 {
-    m_needUpdate = true;
-    QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
+    m_updateTimer->stop();
+    m_updateTimer->start();
 }
 
 void TodoModel::sort()
@@ -344,9 +347,7 @@ QString TodoModel::idForTodo(const QString &backend, const QString &todoId)
 
 void TodoModel::triggerUpdate()
 {
-    if ( !m_needUpdate ) {
-        return;
-    }
+    m_updateTimer->stop();
 
     if ( m_queryType != InvalidQuery ) {
         TodoStorageQuery *query = new TodoStorageQuery();
@@ -400,8 +401,6 @@ void TodoModel::triggerUpdate()
             delete query;
         }
     }
-
-    m_needUpdate = false;
 }
 
 void TodoModel::addTodo(const QString &backend, const TodoStruct &todo)
@@ -694,8 +693,3 @@ void TodoStorageQuery::setFilter(const QString &filter)
 {
     m_filter = filter;
 }
-
-
-
-
-

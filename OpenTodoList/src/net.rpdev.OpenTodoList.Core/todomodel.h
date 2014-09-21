@@ -8,6 +8,7 @@
 #include <QAbstractListModel>
 #include <QPointer>
 #include <QSet>
+#include <QTimer>
 #include <QVector>
 
 class TodoListLibrary;
@@ -136,7 +137,7 @@ private:
     QPointer<TodoListLibrary> m_library;
     QSet< QString >           m_loadedTodos;
     QSet< QString >           m_newLoadedTodos;
-    bool                      m_needUpdate;
+    QTimer                   *m_updateTimer;
 
     QPointer<TodoList> m_todoList;
     QPointer<Todo>     m_parentTodo;
