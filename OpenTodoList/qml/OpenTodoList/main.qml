@@ -16,8 +16,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import net.rpdev.OpenTodoList.Core 1.0
+import net.rpdev.OpenTodoList.Widgets 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Views 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
@@ -53,6 +54,8 @@ Rectangle {
 
         ViewSettings.onSettingsChanged.connect( saveViewSettings );
     }
+
+
 
     onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
     onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
@@ -90,5 +93,10 @@ Rectangle {
                 }
             }
         }
+    }
+
+    Shortcut {
+        keySequence: fromStandardKey( StandardKey.Quit )
+        onTriggered: commandHandler.terminateApplication()
     }
 }

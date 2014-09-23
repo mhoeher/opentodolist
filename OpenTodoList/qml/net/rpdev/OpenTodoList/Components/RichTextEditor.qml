@@ -16,8 +16,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import net.rpdev.OpenTodoList.Core 1.0
+import net.rpdev.OpenTodoList.Widgets 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 
 Rectangle {
@@ -225,5 +226,20 @@ Rectangle {
 
     ScrollBar {
         target: editorFlickable
+    }
+
+    Shortcut {
+        keySequence: fromStandardKey( StandardKey.Bold )
+        onTriggered: formatter.bold = !formatter.bold
+    }
+
+    Shortcut {
+        keySequence: fromStandardKey( StandardKey.Italic )
+        onTriggered: formatter.italic = !formatter.italic
+    }
+
+    Shortcut {
+        keySequence: fromStandardKey( StandardKey.Underline )
+        onTriggered: formatter.underline = !formatter.underline
     }
 }

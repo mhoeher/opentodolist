@@ -62,7 +62,8 @@ INCLUDEPATH += \
     inc \
     inc/net.rpdev.OpenTodoList.Core \
     src \
-    src/net.rpdev.OpenTodoList.Core
+    src/net.rpdev.OpenTodoList.Core \
+    src/net.rpdev.OpenTodoList.Widgets
 
 HEADERS += \
     src/applicationinstance.h \
@@ -82,7 +83,9 @@ HEADERS += \
     src/net.rpdev.OpenTodoList.Core/backendwrapper.h \
     src/net.rpdev.OpenTodoList.Core/documentformatter.h \
     src/net.rpdev.OpenTodoList.Core/listutils.h \
-    inc/net.rpdev.OpenTodoList.Core/opentodolistinterfaces.h
+    inc/net.rpdev.OpenTodoList.Core/opentodolistinterfaces.h \
+    src/net.rpdev.OpenTodoList.Widgets/shortcut.h \
+    src/net.rpdev.OpenTodoList.Widgets/opentodolistwidgetsqmlplugin.h
 
 
 SOURCES += \
@@ -102,7 +105,9 @@ SOURCES += \
     src/net.rpdev.OpenTodoList.Core/todomodel.cpp \
     src/net.rpdev.OpenTodoList.Core/backendrunner.cpp \
     src/net.rpdev.OpenTodoList.Core/backendwrapper.cpp \
-    src/net.rpdev.OpenTodoList.Core/documentformatter.cpp
+    src/net.rpdev.OpenTodoList.Core/documentformatter.cpp \
+    src/net.rpdev.OpenTodoList.Widgets/shortcut.cpp \
+    src/net.rpdev.OpenTodoList.Widgets/opentodolistwidgetsqmlplugin.cpp
 
 
 # Android specific:

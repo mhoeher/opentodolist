@@ -16,9 +16,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtQuick.Layouts 1.1
 import net.rpdev.OpenTodoList.Core 1.0
+import net.rpdev.OpenTodoList.Widgets 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Views 1.0
@@ -228,4 +229,62 @@ Page {
             }
         }
     }
+
+    resources: [
+        Shortcut {
+            keySequence: fromStandardKey( StandardKey.Close )
+            onTriggered: page.close()
+            enabled: page.isTopmostPage
+        },
+        Shortcut {
+            keySequence: qsTr( "Ctrl++")
+            onTriggered: if ( todo ) todo.progress = todo.progress + 10
+            enabled: page.isTopmostPage
+        },
+        Shortcut {
+            keySequence: qsTr( "Ctrl+-")
+            onTriggered: if ( todo ) todo.progress = todo.progress - 10
+            enabled: page.isTopmostPage
+        },
+        Shortcut {
+            keySequence: qsTr( "Ctrl+Up")
+            onTriggered: if ( todo ) todo.priority = todo.priority + 1
+            enabled: page.isTopmostPage
+        },
+        Shortcut {
+            keySequence: qsTr( "Ctrl+Down")
+            onTriggered: if ( todo ) todo.priority = todo.priority - 1
+            enabled: page.isTopmostPage
+        },
+        Shortcut {
+            keySequence: qsTr( "Ctrl+Left")
+            onTriggered: {
+                if ( todo ) {
+                    var date = todo.dueDate;
+                    if ( !isNaN(date.getDate()) ) {
+                        date.setDate( date.getDate() - 1 );
+                        todo.dueDate = date;
+                    } else {
+                        todo.dueDate = new Date();
+                    }
+                }
+            }
+            enabled: page.isTopmostPage
+        },
+        Shortcut {
+            keySequence: qsTr( "Ctrl+Right")
+            onTriggered: {
+                if ( todo ) {
+                    var date = todo.dueDate;
+                    if ( !isNaN(date.getDate()) ) {
+                        date.setDate( date.getDate() + 1 );
+                        todo.dueDate = date;
+                    } else {
+                        todo.dueDate = new Date();
+                    }
+                }
+            }
+            enabled: page.isTopmostPage
+        }
+    ]
 }
