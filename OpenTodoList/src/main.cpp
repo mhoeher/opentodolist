@@ -6,18 +6,24 @@
 #endif
 #include <QQmlEngine>
 #include <QQmlContext>
-#include "applicationinstance.h"
-#include "commandhandler.h"
 #include "qtquick2applicationviewer.h"
-#include "statusnotifiericon.h"
 
-#include "opentodolistcoreqmlplugin.h"
-#include "opentodolistwidgetsqmlplugin.h"
+#include "systemintegration/applicationinstance.h"
+#include "systemintegration/commandhandler.h"
+#include "systemintegration/statusnotifiericon.h"
+
+#include "core/coreplugin.h"
+#include "datamodel/datamodelplugin.h"
+#include "database/databaseplugin.h"
+#include "models/modelsplugin.h"
+#include "systemintegration/systemintegrationplugin.h"
 
 #include <iostream>
 
 #include <QDirIterator>
 #include <QDebug>
+
+using namespace OpenTodoList;
 
 int main(int argc, char *argv[])
 {
@@ -42,24 +48,36 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    ApplicationInstance instance( QCoreApplication::applicationName() );
-    if ( instance.state() == ApplicationInstance::InstanceIsSecondary ) {
+    SystemIntegration::ApplicationInstance instance( QCoreApplication::applicationName() );
+    if ( instance.state() == SystemIntegration::ApplicationInstance::InstanceIsSecondary ) {
         qDebug() << "Running secondary instance. Contacting server and quitting...";
-        instance.sendMessage( CommandHandler::show() );
+        instance.sendMessage( SystemIntegration::CommandHandler::show() );
         return 0;
     }
 
     // Register "Core" plugin:
-    OpenTodoListCoreQmlPlugin corePlugin;
+    OpenTodoList::Core::Plugin corePlugin;
     corePlugin.registerTypes( "net.rpdev.OpenTodoList.Core" );
 
-    // Register "Widgets" plugin:
-    OpenTodoListWidgetsQmlPlugin widgetsPlugin;
-    widgetsPlugin.registerTypes( "net.rpdev.OpenTodoList.Widgets" );
+    // Register "DataModel" plugin:
+    OpenTodoList::DataModel::Plugin dataModelPlugin;
+    dataModelPlugin.registerTypes( "net.rpdev.OpenTodoList.DataModel" );
+
+    // Register "DataBase" plugin:
+    OpenTodoList::DataBase::Plugin dataBasePlugin;
+    dataBasePlugin.registerTypes( "net.rpdev.OpenTodoList.DataBase" );
+
+    // Register "Models" plugin:
+    OpenTodoList::Models::Plugin modelsPlugin;
+    modelsPlugin.registerTypes( "net.rpdev.OpenTodoList.Models" );
+
+    // Register "SystemIntegration" plugin:
+    OpenTodoList::SystemIntegration::Plugin systemIntegrationPlugin;
+    systemIntegrationPlugin.registerTypes( "net.rpdev.OpenTodoList.SystemIntegration" );
 
     QtQuick2ApplicationViewer viewer;
 
-    CommandHandler commandHandler;
+    SystemIntegration::CommandHandler commandHandler;
     commandHandler.setApplicationWindow( &viewer );
     QObject::connect( &instance, SIGNAL(receivedMessage(QString)),
                       &commandHandler, SLOT(handleMessage(QString)) );
@@ -86,11 +104,11 @@ int main(int argc, char *argv[])
     }
 #endif
 
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MACX)
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACX) && !defined(Q_OS_ANDROID)
     app.setWindowIcon( QIcon( basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
 #endif
 
-    StatusNotifierIcon statusNotifier( &commandHandler );
+    SystemIntegration::StatusNotifierIcon statusNotifier( &commandHandler );
     statusNotifier.setApplicationTitle( app.applicationName() );
 #ifdef Q_OS_ANDROID
     statusNotifier.setApplicationIcon( QIcon( "qrc:/icons/OpenTodoList80.png" ) );
@@ -102,18 +120,10 @@ int main(int argc, char *argv[])
 
     viewer.engine()->rootContext()->setContextProperty(
                 QStringLiteral( "statusNotifier" ), &statusNotifier );
-    viewer.engine()->rootContext()->setContextProperty(
-                QStringLiteral( "commandHandler" ), &commandHandler );
+    viewer.engine()->rootContext()->setContextProperty( QStringLiteral( "commandHandler" ), &commandHandler );
 
-
-#ifdef Q_OS_ANDROID
-    viewer.addImportPath( QStringLiteral("qrc:/OpenTodoList/qml"));
-    viewer.addImportPath( QStringLiteral("assets:/OpenTodoList/qml"));
-    viewer.setMainQmlFile("qrc:/OpenTodoList/qml/OpenTodoList/main.qml");
-#else
-    viewer.addImportPath( basePath + "/../share/OpenTodoList/qml" );
-    viewer.setMainQmlFile( basePath + "/../share/OpenTodoList/qml/OpenTodoList/main.qml" );
-#endif
+    viewer.addImportPath( QStringLiteral("qrc:/qml") );
+    viewer.setMainQmlFile("qrc:/qml/OpenTodoList/main.qml");
     viewer.showExpanded();
 
     return app.exec();

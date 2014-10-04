@@ -4,32 +4,13 @@ TEMPLATE = app
 include(../config.pri)
 setupApplication()
 
-# On Android, prefer QRC deployment
-!android {
-
-# Add basic folders for deploymend
-qml_main.source = qml/OpenTodoList
-qml_main.files = $$files($$qml_main.source/*)
-qml_main.target = $${assets_prefix}OpenTodoList/qml
-
-qml_components.source = qml/net/rpdev/OpenTodoList/Components
-qml_components.target = $${assets_prefix}OpenTodoList/qml/net/rpdev/OpenTodoList
-
-qml_theme.source = qml/net/rpdev/OpenTodoList/Theme
-qml_theme.target = $${assets_prefix}OpenTodoList/qml/net/rpdev/OpenTodoList
-
-qml_views.source = qml/net/rpdev/OpenTodoList/Views
-qml_views.target = $${assets_prefix}OpenTodoList/qml/net/rpdev/OpenTodoList
-
-DEPLOYMENTFOLDERS = qml_main qml_components qml_theme qml_views
-
 # Install Application Icons on UNIX:
+!android {
 unix {
     unix_icons.source = icons
     unix_icons.target = $${assets_prefix}OpenTodoList
     DEPLOYMENTFOLDERS += unix_icons
 }
-
 }
 
 qtcAddDeployment()
@@ -60,54 +41,67 @@ QT += core qml quick sql xml
 
 INCLUDEPATH += \
     inc \
-    inc/net.rpdev.OpenTodoList.Core \
-    src \
-    src/net.rpdev.OpenTodoList.Core \
-    src/net.rpdev.OpenTodoList.Widgets
+    src
 
 HEADERS += \
-    src/applicationinstance.h \
-    src/commandhandler.h \
-    src/statusnotifiericon.h \
-    src/net.rpdev.OpenTodoList.Core/opentodolistcoreqmlplugin.h \
-    src/net.rpdev.OpenTodoList.Core/pluginsloader.h \
-    src/net.rpdev.OpenTodoList.Core/settings.h \
-    src/net.rpdev.OpenTodoList.Core/todo.h \
-    src/net.rpdev.OpenTodoList.Core/todolist.h \
-    src/net.rpdev.OpenTodoList.Core/todolistlibrary.h \
-    src/net.rpdev.OpenTodoList.Core/todolistmodel.h \
-    src/net.rpdev.OpenTodoList.Core/todoliststorage.h \
-    src/net.rpdev.OpenTodoList.Core/todoliststoragequery.h \
-    src/net.rpdev.OpenTodoList.Core/todomodel.h \
-    src/net.rpdev.OpenTodoList.Core/backendrunner.h \
-    src/net.rpdev.OpenTodoList.Core/backendwrapper.h \
-    src/net.rpdev.OpenTodoList.Core/documentformatter.h \
-    src/net.rpdev.OpenTodoList.Core/listutils.h \
-    inc/net.rpdev.OpenTodoList.Core/opentodolistinterfaces.h \
-    src/net.rpdev.OpenTodoList.Widgets/shortcut.h \
-    src/net.rpdev.OpenTodoList.Widgets/opentodolistwidgetsqmlplugin.h
-
+    inc/core/opentodolistinterfaces.h \
+    src/listutils.h \
+    src/pluginsloader.h \
+    src/core/documentformatter.h \
+    src/core/settings.h \
+    src/database/backendwrapper.h \
+    src/datamodel/todo.h \
+    src/datamodel/todolist.h \
+    src/datamodel/todolistlibrary.h \
+    src/models/todolistmodel.h \
+    src/models/todomodel.h \
+    src/systemintegration/shortcut.h \
+    src/systemintegration/applicationinstance.h \
+    src/systemintegration/commandhandler.h \
+    src/systemintegration/statusnotifiericon.h \
+    src/core/coreplugin.h \
+    src/database/databaseplugin.h \
+    src/datamodel/datamodelplugin.h \
+    src/models/modelsplugin.h \
+    src/systemintegration/systemintegrationplugin.h \
+    src/database/databaseworker.h \
+    src/database/database.h \
+    src/database/storagequery.h \
+    src/datamodel/account.h \
 
 SOURCES += \
-    src/applicationinstance.cpp \
-    src/commandhandler.cpp \
     src/main.cpp \
-    src/statusnotifiericon.cpp \
-    src/net.rpdev.OpenTodoList.Core/opentodolistcoreqmlplugin.cpp \
-    src/net.rpdev.OpenTodoList.Core/pluginsloader.cpp \
-    src/net.rpdev.OpenTodoList.Core/settings.cpp \
-    src/net.rpdev.OpenTodoList.Core/todo.cpp \
-    src/net.rpdev.OpenTodoList.Core/todolist.cpp \
-    src/net.rpdev.OpenTodoList.Core/todolistlibrary.cpp \
-    src/net.rpdev.OpenTodoList.Core/todolistmodel.cpp \
-    src/net.rpdev.OpenTodoList.Core/todoliststorage.cpp \
-    src/net.rpdev.OpenTodoList.Core/todoliststoragequery.cpp \
-    src/net.rpdev.OpenTodoList.Core/todomodel.cpp \
-    src/net.rpdev.OpenTodoList.Core/backendrunner.cpp \
-    src/net.rpdev.OpenTodoList.Core/backendwrapper.cpp \
-    src/net.rpdev.OpenTodoList.Core/documentformatter.cpp \
-    src/net.rpdev.OpenTodoList.Widgets/shortcut.cpp \
-    src/net.rpdev.OpenTodoList.Widgets/opentodolistwidgetsqmlplugin.cpp
+    src/core/documentformatter.cpp \
+    src/core/settings.cpp \
+    src/database/backendwrapper.cpp \
+    src/datamodel/todo.cpp \
+    src/datamodel/todolist.cpp \
+    src/datamodel/todolistlibrary.cpp \
+    src/models/todolistmodel.cpp \
+    src/models/todomodel.cpp \
+    src/systemintegration/shortcut.cpp \
+    src/systemintegration/applicationinstance.cpp \
+    src/systemintegration/commandhandler.cpp \
+    src/systemintegration/statusnotifiericon.cpp \
+    src/core/coreplugin.cpp \
+    src/database/databaseplugin.cpp \
+    src/datamodel/datamodelplugin.cpp \
+    src/models/modelsplugin.cpp \
+    src/systemintegration/systemintegrationplugin.cpp \
+    src/database/databaseworker.cpp \
+    src/database/database.cpp \
+    src/database/storagequery.cpp \
+    src/datamodel/account.cpp \
+
+RESOURCES += OpenTodoList.qrc
+
+# To let QML files appear in project browser in Qt Creator
+OTHER_FILES += \
+    qml/net/rpdev/OpenTodoList/Components/*.* \
+    qml/net/rpdev/OpenTodoList/Theme/*.* \
+    qml/net/rpdev/OpenTodoList/Views/*.* \
+    qml/OpenTodoList/*.* \
+    ../bin/mk-qrc.pl
 
 
 # Android specific:
@@ -121,6 +115,3 @@ OTHER_FILES += \
     ../templates/installer/config/config.xml \
     ../templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
     ../templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js
-
-android:RESOURCES += OpenTodoList.qrc
-

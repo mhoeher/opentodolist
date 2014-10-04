@@ -16,21 +16,35 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-pragma Singleton
+#include "datamodel/datamodelplugin.h"
 
-import QtQuick 2.2
-import net.rpdev.OpenTodoList.DataModel 1.0
+#include "datamodel/todo.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todolistlibrary.h"
 
-QtObject {
-    id: settings
+#include <qqml.h>
+#include <QJSEngine>
 
-    property int todoSortMode: Todo.SortTodoByPriority
-    property bool showDoneTodos: false
-    property bool showDeletedTodos: false
+namespace OpenTodoList {
 
-    signal settingsChanged()
+namespace DataModel {
 
-    onTodoSortModeChanged: settingsChanged()
-    onShowDoneTodosChanged: settingsChanged()
-    onShowDeletedTodosChanged: settingsChanged()
+Plugin::Plugin(QObject *parent) :
+    QQmlExtensionPlugin(parent)
+{
 }
+
+void Plugin::registerTypes(const char *uri)
+{
+    //@uri net.rpdev.OpenTodoList.DataModel
+    qmlRegisterType< Todo >(
+                uri, 1, 0, "Todo" );
+    qmlRegisterType< TodoList >(
+                uri, 1, 0, "TodoList" );
+    qmlRegisterType< TodoListLibrary >(
+                uri, 1, 0, "TodoListLibrary" );
+}
+
+} /* DataModel */
+
+} /* OpenTodoList */

@@ -16,21 +16,32 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-pragma Singleton
+#ifndef OPENTODOLISTDATAMODELQMLPLUGIN_H
+#define OPENTODOLISTDATAMODELQMLPLUGIN_H
 
-import QtQuick 2.2
-import net.rpdev.OpenTodoList.DataModel 1.0
+#include <QQmlExtensionPlugin>
 
-QtObject {
-    id: settings
+namespace OpenTodoList {
 
-    property int todoSortMode: Todo.SortTodoByPriority
-    property bool showDoneTodos: false
-    property bool showDeletedTodos: false
+namespace DataModel {
 
-    signal settingsChanged()
+class Plugin : public QQmlExtensionPlugin
+{
+    Q_OBJECT
 
-    onTodoSortModeChanged: settingsChanged()
-    onShowDoneTodosChanged: settingsChanged()
-    onShowDeletedTodosChanged: settingsChanged()
-}
+public:
+    explicit Plugin(QObject *parent = 0);
+
+    virtual void registerTypes( const char *uri );
+
+signals:
+
+public slots:
+
+};
+
+} /* DataModel */
+
+} /* OpenTodoList */
+
+#endif // OPENTODOLISTDATAMODELQMLPLUGIN_H

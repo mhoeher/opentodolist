@@ -17,7 +17,8 @@
  */
 
 import QtQuick 2.0
-import net.rpdev.OpenTodoList.Core 1.0
+import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.Models 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Views 1.0

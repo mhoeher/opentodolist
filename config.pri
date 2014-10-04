@@ -9,6 +9,9 @@ include(OpenTodoList/qtquick2applicationviewer/qtquick2applicationviewer.pri)
 # Function to setup applications
 defineTest(setupApplication) {
 
+# Enable C++11:
+CONFIG += c++11
+
 # Location where to store assets (Depending on target platform):
 android { # Android: Automatically put into assets/ directry; leave blank
     assets_prefix =
@@ -26,6 +29,7 @@ DESTDIR = $$OUT_PWD
 # Setup path (relative to install root) where to install files via make install
 target.path = /bin
 
+export(CONFIG)
 export(DESTDIR)
 export(target.path)
 export(assets_prefix)
@@ -53,9 +57,9 @@ android:!equals(type,"opentodolist") {
     TARGET = $$qtLibraryTarget($$name)
 }
 TEMPLATE = lib
-CONFIG += plugin
+CONFIG += plugin c++11
 macx:CONFIG -= lib_bundle
-INCLUDEPATH += ../../../OpenTodoList/inc/net.rpdev.OpenTodoList.Core
+INCLUDEPATH += ../../../OpenTodoList/inc/core
 
 # Set destination path
 macx {
