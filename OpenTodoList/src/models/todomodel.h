@@ -56,7 +56,6 @@ public:
     enum TodoSortMode {
         SortTodoByName,
         SortTodoByPriority,
-        SortTodoByPercentageDone,
         SortTodoByDueDate
     };
 

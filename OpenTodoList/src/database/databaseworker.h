@@ -13,28 +13,43 @@ namespace OpenTodoList {
 namespace DataBase {
 
 class StorageQuery;
-class DatabaseWorker;
+class Database;
 
 /**
-   @brief Executes tasks of the storage in a backgroung thread
+   @brief Maintains the todo storage database
+
+   The DatabaseWorker class is maintaining the SQL database used to store
+   todo data in the application. The assumption is that the class is run in a dedicated
+   database thread.
+
+   The DatabaseWorker class is used internally by the Database class. It hence marks
+   this one as a friend, so that the APIs can only be accessed by that class.
  */
 class DatabaseWorker : public QObject
 {
     Q_OBJECT
+
+    friend class Database;
 
 public:
 
     explicit DatabaseWorker();
     virtual ~DatabaseWorker();
 
+
+    // Interface used by Database class:
+private:
     void run( StorageQuery *query );
+    void schedule( StorageQuery *query );
 
-public slots:
-
+private slots:
     void init();
 
 signals:
 
+    void initialized();
+
+    // Private area:
 private:
 
     QSqlDatabase                    m_dataBase;
@@ -42,8 +57,10 @@ private:
     bool                            m_initialized;
     QQueue< StorageQuery* >         m_queue;
     QMutex                          m_queueLock;
+    QMutex                          m_runLock;
 
     void runSimpleQuery(const QString &query , const QString &errorMsg);
+    void runQuery( StorageQuery *query );
 
 private slots:
 

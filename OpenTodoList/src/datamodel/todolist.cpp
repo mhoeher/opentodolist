@@ -34,8 +34,6 @@ TodoList::TodoList(QObject *parent) :
     m_uuid( QUuid() ),
     m_name( QString() ),
     m_metaAttributes(),
-    m_deleted( false ),
-    m_disposed( false ),
     m_lastModificationTime()
 
 {
@@ -76,47 +74,15 @@ void TodoList::setName(const QString &name)
     }
 }
 
-const QStringList TodoList::metaAttributeKeys() const
+QVariantMap TodoList::metaAttributes() const
 {
-    return m_metaAttributes.keys();
+    return m_metaAttributes;
 }
 
-const QVariant TodoList::metaAttribute(const QString &key) const
+void TodoList::setMetaAttributes(const QVariantMap &metaAttributes)
 {
-    return m_metaAttributes.value( key );
-}
-
-void TodoList::setMetaAttribute(const QString &key, const QVariant &value)
-{
-    m_metaAttributes.insert( key, value );
-}
-
-bool TodoList::hasMetaAttribute(const QString &key) const
-{
-    return m_metaAttributes.contains( key );
-}
-
-void TodoList::deleteMetaAttribute(const QString &key)
-{
-    m_metaAttributes.remove( key );
-}
-
-bool TodoList::deleted() const
-{
-    return m_deleted;
-}
-
-void TodoList::setDeleted(bool deleted)
-{
-    if ( m_deleted != deleted ) {
-        m_deleted = deleted;
-        emit deletedChanged();
-    }
-}
-
-bool TodoList::disposed() const
-{
-    return m_disposed;
+    m_metaAttributes = metaAttributes;
+    emit metaAttributesChanged();
 }
 
 QDateTime TodoList::lastModificationTime() const
@@ -128,6 +94,18 @@ void TodoList::setLastModificationTime(const QDateTime &dateTime)
 {
     if ( m_lastModificationTime != dateTime ) {
         m_lastModificationTime = dateTime;
+    }
+}
+
+QUuid TodoList::accountUuid() const
+{
+    return m_accountUuid;
+}
+
+void TodoList::setAccountUuid(const QUuid &uuid)
+{
+    if ( m_accountUuid != uuid ) {
+        m_accountUuid = uuid;
     }
 }
 

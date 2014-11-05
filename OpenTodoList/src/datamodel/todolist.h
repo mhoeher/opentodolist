@@ -52,30 +52,25 @@ public:
     void setUuid(const QUuid &uuid) override;
     const QString &name() const override;
     void setName(const QString &name) override;
-    const QStringList metaAttributeKeys() const override;
-    const QVariant metaAttribute(const QString &key) const override;
-    void setMetaAttribute(const QString &key, const QVariant &value) override;
-    bool hasMetaAttribute(const QString &key) const override;
-    void deleteMetaAttribute(const QString &key) override;
-    bool deleted() const override;
-    void setDeleted(bool deleted) override;
-    bool disposed() const override;
+    QVariantMap metaAttributes() const override;
+    void setMetaAttributes( const QVariantMap &metaAttributes ) override;
     QDateTime lastModificationTime() const override;
     void setLastModificationTime(const QDateTime &dateTime) override;
+    QUuid accountUuid() const;
+    void setAccountUuid(const QUuid &uuid);
 
 private:
     QUuid m_uuid;
     QString m_name;
     QVariantMap m_metaAttributes;
-    bool m_deleted;
-    bool m_disposed;
     QDateTime m_lastModificationTime;
-
+    QUuid m_accountUuid;
 
 signals:
     
     void nameChanged();
     void deletedChanged();
+    void metaAttributesChanged();
     void changed();
     
 public slots:

@@ -32,15 +32,13 @@ class Todo : public QObject, public ITodo
 {
     Q_OBJECT
     Q_PROPERTY( double weight READ weight WRITE setWeight NOTIFY weightChanged )
-    Q_PROPERTY( int progress READ progress WRITE setProgress NOTIFY progressChanged )
+    Q_PROPERTY( bool isDone READ done WRITE setDone NOTIFY doneChanged )
     Q_PROPERTY( int priority READ priority WRITE setPriority NOTIFY priorityChanged )
-    Q_PROPERTY( QUuid parentTodoUuid READ parentTodoUuid CONSTANT )
     Q_PROPERTY( QUuid todoListUuid READ todoListUuid CONSTANT )
     Q_PROPERTY( QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
     Q_PROPERTY( QString title READ title WRITE setTitle NOTIFY titleChanged )
     Q_PROPERTY( QString description READ description WRITE setDescription NOTIFY descriptionChanged )
     Q_PROPERTY( bool isDeleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
-    Q_PROPERTY( bool isDone READ isDone NOTIFY progressChanged )
     Q_PROPERTY( QDateTime lastModificationTime READ lastModificationTime WRITE setLastModificationTime NOTIFY lastModificationTimeChanged)
 
 public:
@@ -57,12 +55,10 @@ public:
     void setUuid(const QUuid &uuid) override;
     double weight() const override;
     void setWeight(double weight) override;
-    int progress() const override;
-    void setProgress(int progress) override;
+    bool done() const override;
+    void setDone(bool done) override;
     int priority() const override;
     void setPriority(int priority) override;
-    const QUuid& parentTodoUuid() const override;
-    void setParentTodoUuid(const QUuid &uuid) override;
     const QUuid& todoListUuid() const override;
     void setTodoListUuid(const QUuid &uuid) override;
     const QDateTime &dueDate() const override;
@@ -73,21 +69,16 @@ public:
     void setDescription(const QString &description) override;
     bool isDeleted() const override;
     void setDeleted(bool isDeleted) override;
-    const QStringList metaAttributeKeys() const override;
-    const QVariant metaAttribute(const QString &key) const override;
-    void setMetaAttribute(const QString &key, const QVariant &value) override;
-    bool hasMetaAttribute(const QString &key) const override;
-    void deleteMetaAttribute(const QString &key) override;
+    QVariantMap metaAttributes() const override;
+    void setMetaAttributes( const QVariantMap &metaAttributes ) override;
     QDateTime lastModificationTime() const override;
     void setLastModificationTime(const QDateTime &dateTime) override;
-    bool disposed() const override;
-
 
 signals:
 
     void uuidChanged();
     void weightChanged();
-    void progressChanged();
+    void doneChanged();
     void priorityChanged();
     void dueDateChanged();
     void titleChanged();
@@ -107,8 +98,6 @@ protected:
 
 private:
 
-    int                       m_previousProgress;
-
     void setupTodo();
 
 private:
@@ -116,9 +105,8 @@ private:
     // ITodo properties
     QUuid                   m_uuid;
     double                  m_weight;
-    int                     m_progress;
+    bool                    m_done;
     int                     m_priority;
-    QUuid                   m_parentUuid;
     QUuid                   m_todoListUuid;
     QDateTime               m_dueDate;
     QString                 m_title;
@@ -126,7 +114,6 @@ private:
     bool                    m_deleted;
     QVariantMap             m_metaAttributes;
     QDateTime               m_lastModificationTime;
-    bool                    m_isPermanentlyDeleted;
 
 };
 

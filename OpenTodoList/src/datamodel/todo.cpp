@@ -34,20 +34,17 @@ namespace DataModel {
  */
 Todo::Todo(QObject *parent) :
     QObject( parent ),
-    m_previousProgress( -1 ),
     m_uuid( QUuid() ),
     m_weight(0.0),
-    m_progress( 0 ),
+    m_done( false ),
     m_priority( -1 ),
-    m_parentUuid( QUuid() ),
     m_todoListUuid( QUuid() ),
     m_dueDate( QDateTime() ),
     m_title( QString() ),
     m_description( QString() ),
     m_deleted( false ),
     m_metaAttributes( QVariantMap() ),
-    m_lastModificationTime( QDateTime() ),
-    m_isPermanentlyDeleted( false )
+    m_lastModificationTime( QDateTime() )
 {
     setupTodo();
 }
@@ -57,17 +54,6 @@ Todo::Todo(QObject *parent) :
  */
 Todo::~Todo()
 {
-}
-
-/**
-   @brief Is the todo completed?
-
-   Returns true if the todo is completed (i.e. the progress is 100%) or
-   false otherwise.
- */
-bool Todo::isDone() const
-{
-    return m_progress == 100;
 }
 
 const QUuid &Todo::uuid() const
@@ -97,17 +83,16 @@ void Todo::setWeight(double weight)
     }
 }
 
-int Todo::progress() const
+bool Todo::done() const
 {
-    return qBound( 0, m_progress, 100 );
+    return m_done;
 }
 
-void Todo::setProgress(int progress)
+void Todo::setDone(bool done)
 {
-    if ( m_progress != progress ) {
-        m_previousProgress = m_progress;
-        m_progress = progress;
-        emit progressChanged();
+    if ( m_done != done ) {
+        m_done = done;
+        emit doneChanged();
     }
 }
 
@@ -121,19 +106,6 @@ void Todo::setPriority(int priority)
     if ( m_priority != priority ) {
         m_priority = priority;
         emit priorityChanged();
-    }
-}
-
-const QUuid &Todo::parentTodoUuid() const
-{
-    return m_parentUuid;
-}
-
-void Todo::setParentTodoUuid(const QUuid &uuid)
-{
-    // TODO: How to handle this properly?
-    if ( m_parentUuid != uuid ) {
-        m_parentUuid = uuid;
     }
 }
 
@@ -202,30 +174,14 @@ void Todo::setDeleted(bool isDeleted)
     }
 }
 
-const QStringList Todo::metaAttributeKeys() const
+QVariantMap Todo::metaAttributes() const
 {
-    return m_metaAttributes.keys();
+    return m_metaAttributes;
 }
 
-const QVariant Todo::metaAttribute(const QString &key) const
+void Todo::setMetaAttributes(const QVariantMap &metaAttributes)
 {
-    return m_metaAttributes.value( key );
-}
-
-void Todo::setMetaAttribute(const QString &key, const QVariant &value)
-{
-    // TODO: How to handle this properly?
-    m_metaAttributes.insert( key, value );
-}
-
-bool Todo::hasMetaAttribute(const QString &key) const
-{
-    return m_metaAttributes.contains( key );
-}
-
-void Todo::deleteMetaAttribute(const QString &key)
-{
-    m_metaAttributes.remove( key );
+    m_metaAttributes = metaAttributes;
 }
 
 QDateTime Todo::lastModificationTime() const
@@ -241,11 +197,6 @@ void Todo::setLastModificationTime(const QDateTime &dateTime)
     }
 }
 
-bool Todo::disposed() const
-{
-    return m_isPermanentlyDeleted;
-}
-
 /**
    @brief Toggles the state of the todo between "done" and "not done"
 
@@ -253,18 +204,13 @@ bool Todo::disposed() const
  */
 void Todo::toggle()
 {
-    if ( m_progress == 100 ) {
-        setProgress( m_previousProgress >= 0 && m_previousProgress < 100 ?
-                         m_previousProgress : 0 );
-    } else {
-        setProgress( 100 );
-    }
+    setDone( !done() );
 }
 
 void Todo::setupTodo()
 {
     connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(progressChanged()), this, SIGNAL(changed()) );
+    connect( this, SIGNAL(doneChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()) );
     connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
@@ -272,13 +218,12 @@ void Todo::setupTodo()
     connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
 
     connect( this, SIGNAL(reset()), this, SIGNAL(weightChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(progressChanged()) );
+    connect( this, SIGNAL(reset()), this, SIGNAL(doneChanged()) );
     connect( this, SIGNAL(reset()), this, SIGNAL(priorityChanged()) );
     connect( this, SIGNAL(reset()), this, SIGNAL(dueDateChanged()) );
     connect( this, SIGNAL(reset()), this, SIGNAL(titleChanged()) );
     connect( this, SIGNAL(reset()), this, SIGNAL(descriptionChanged()) );
     connect( this, SIGNAL(reset()), this, SIGNAL(deletedChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(canCreateTodosChanged()) );
 }
 
 } /* DataModel */

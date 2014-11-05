@@ -69,25 +69,25 @@ void TodoModel::setLibrary(DataModel::TodoListLibrary *library)
 {
     if ( m_library != library ) {
         if ( m_library ) {
-            disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+            /*disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
                         this, SLOT(update()) );
             disconnect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
                         this, SLOT(update()) );
             disconnect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
                         this, SLOT(update()) );
             disconnect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
-                        this, SLOT(update()) );
+                        this, SLOT(update()) );*/
         }
         m_library = library;
         if ( m_library ) {
-            connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+            /*connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
                         this, SLOT(update()) );
             connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
                         this, SLOT(update()) );
             connect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
                         this, SLOT(update()) );
             connect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
-                        this, SLOT(update()) );
+                        this, SLOT(update()) );*/
         }
         emit libraryChanged();
     }
@@ -397,11 +397,11 @@ void TodoModel::triggerUpdate()
         }
 
         if ( queryIsValid && m_library ) {
-            connect( query, SIGNAL(todoAvailable(QString,TodoStruct)),
+            /*connect( query, SIGNAL(todoAvailable(QString,TodoStruct)),
                      this, SLOT(addTodo(QString,TodoStruct)), Qt::QueuedConnection );
             connect( query, SIGNAL(finished()),
-                     this, SLOT(removeExtraneousTodos()), Qt::QueuedConnection );
-            m_library->storage()->runQuery( query );
+                     this, SLOT(removeExtraneousTodos()), Qt::QueuedConnection );*/
+            m_library->storage()->scheduleQuery( query );
         } else {
             delete query;
         }
@@ -485,10 +485,10 @@ int TodoModel::Comparator::operator ()(DataModel::Todo * const &first, DataModel
         }
 
         // always show open todos before done ones:
-        if ( first->isDone() && !second->isDone() ) {
+        if ( first->done() && !second->done() ) {
             return 1;
         }
-        if ( second->isDone() && !first->isDone() ) {
+        if ( second->done() && !first->done() ) {
             return -1;
         }
 
@@ -503,12 +503,6 @@ int TodoModel::Comparator::operator ()(DataModel::Todo * const &first, DataModel
         case SortTodoByPriority:
             if ( first->priority() != second->priority() ) {
                 return second->priority() - first->priority();
-            }
-            break;
-
-        case SortTodoByPercentageDone:
-            if ( first->progress() != second->progress() ) {
-                return second->progress() - first->progress();
             }
             break;
 
@@ -637,8 +631,7 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
 
     switch ( m_backendSortMode ) {
     case TodoModel::SortTodoByDueDate: orderPart = "dueDate"; break;
-    case TodoModel::SortTodoByPercentageDone: orderPart = "progress"; break;
-    case TodoModel::SortTodoByPriority: orderPart = "progress"; break;
+    case TodoModel::SortTodoByPriority: orderPart = "priority"; break;
     case TodoModel::SortTodoByName: orderPart = "title"; break;
     }
 

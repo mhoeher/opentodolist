@@ -20,7 +20,8 @@ DatabaseWorker::DatabaseWorker() :
     m_dataBaseFile(),
     m_initialized( false ),
     m_queue(),
-    m_queueLock()
+    m_queueLock(),
+    m_runLock()
 {
 }
 
@@ -35,9 +36,23 @@ DatabaseWorker::~DatabaseWorker() {
 }
 
 /**
-   @brief Actually runs a query
+   @brief Runs a query
+
+   This will run the @p query. Execution happens in the calling thread. The query will not be
+   deleted after execution (in contrary to using DatabaseWorker::schedule()).
  */
 void DatabaseWorker::run(StorageQuery *query)
+{
+    runQuery( query );
+}
+
+/**
+   @brief Schedules a query
+
+   Calling this method will enqueue the @p query and execute it later in the
+   Database worker's thread.
+ */
+void DatabaseWorker::schedule(StorageQuery *query)
 {
     QMutexLocker l( &m_queueLock );
     if ( query ) {
@@ -70,8 +85,8 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE backend ("
                         " id INTEGER NOT NULL,"
                         " name VARCHAR NOT NULL,"
-                        " title VARCHAR NOT NULL,"
-                        " description VARCHAR NOT NULL,"
+                        " title VARCHAR,"
+                        " description VARCHAR,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( name )"
                         ");",
@@ -81,10 +96,10 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE account ("
                         " id INTEGER NOT NULL,"
                         " uuid VARCHAR NOT NULL,"
-                        " name VARCHAR NOT NULL,"
+                        " name VARCHAR,"
                         " backend INTEGER NOT NULL,"
-                        " dirty BOOLEAN NOT NULL,"
-                        " disposed BOOLEAN NOT NULL,"
+                        " dirty BOOLEAN,"
+                        " disposed BOOLEAN,"
                         " lastModificationTime DATETIME,"
                         " PRIMARY KEY (id),"
                         " FOREIGN KEY (backend) REFERENCES backend ( id ),"
@@ -101,7 +116,7 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE accountMetaAttribute ("
                         " account INTEGER NOT NULL,"
                         " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR NOT NULL,"
+                        " value VARCHAR,"
                         " PRIMARY KEY ( account, attributeName ),"
                         " FOREIGN KEY ( account ) REFERENCES account ( id ),"
                         " FOREIGN KEY ( attributeName ) REFERENCES accountMetaAttributeName ( id )"
@@ -113,9 +128,9 @@ void DatabaseWorker::init() {
                         " id INTEGER NOT NULL,"
                         " uuid VARCHAR NOT NULL,"
                         " account INTEGER NOT NULL,"
-                        " name TEXT NOT NULL,"
-                        " dirty BOOLEAN NOT NULL,"
-                        " disposed BOOLEAN NOT NULL,"
+                        " name TEXT,"
+                        " dirty BOOLEAN,"
+                        " disposed BOOLEAN,"
                         " lastModificationDate DATETIME,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
@@ -132,7 +147,7 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE todoListMetaAttribute ("
                         " todoList INTEGER NOT NULL,"
                         " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR NOT NULL,"
+                        " value VARCHAR,"
                         " PRIMARY KEY ( todoList, attributeName ),"
                         " FOREIGN KEY ( todoList ) REFERENCES todoList ( id ),"
                         " FOREIGN KEY ( attributeName ) REFERENCES todoListMetaAttributeName ( id )"
@@ -143,22 +158,20 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE todo ("
                         " id INTEGER NOT NULL,"
                         " uuid VARCHAR NOT NULL,"
-                        " weight DOUBLE NOT NULL,"
-                        " progress INT NOT NULL,"
+                        " weight DOUBLE,"
+                        " done BOOLEAN,"
                         " priority INT,"
                         " dueDate DATETIME,"
                         " title TEXT,"
                         " description LONGTEXT,"
-                        " deleted UNSIGNED BIT NOT NULL,"
-                        " dirty BOOLEAN NOT NULL,"
-                        " disposed BOOLEAN NOT NULL,"
+                        " deleted BOOLEAN,"
+                        " dirty BOOLEAN,"
+                        " disposed BOOLEAN,"
                         " todoList INTEGER NOT NULL,"
-                        " parentTodo INTEGER,"
                         " lastModificationDate DATETIME,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
-                        " FOREIGN KEY ( todoList ) REFERENCES todoList ( id ),"
-                        " FOREIGN KEY ( parentTodo ) REFERENCES todo ( id )"
+                        " FOREIGN KEY ( todoList ) REFERENCES todoList ( id )"
                         ");",
                         "Failed to create table todo" );
         runSimpleQuery( "CREATE TABLE todoMetaAttributeName ("
@@ -171,15 +184,51 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE todoMetaAttribute ("
                         " todo INTEGER NOT NULL,"
                         " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR NOT NULL,"
+                        " value VARCHAR,"
                         " PRIMARY KEY ( todo, attributeName ),"
                         " FOREIGN KEY ( todo ) REFERENCES todo ( id ),"
                         " FOREIGN KEY ( attributeName ) REFERENCES todoMetaAttributeName ( id )"
                         ");",
                         "Failed to create table todoMetaAttribute" );
+
+        // Tables for storing task information:
+        runSimpleQuery( "CREATE TABLE task ("
+                        " id INTEGER NOT NULL,"
+                        " uuid VARCHAR NOT NULL,"
+                        " weight DOUBLE,"
+                        " done BOOLEAN,"
+                        " title TEXT,"
+                        " deleted BOOLEAN,"
+                        " dirty BOOLEAN,"
+                        " disposed BOOLEAN,"
+                        " todo INTEGER NOT NULL,"
+                        " lastModificationDate DATETIME,"
+                        " PRIMARY KEY ( id ),"
+                        " UNIQUE ( uuid ),"
+                        " FOREIGN KEY ( todo ) REFERENCES todo ( id )"
+                        ");",
+                        "Failed to create table todo" );
+        runSimpleQuery( "CREATE TABLE taskMetaAttributeName ("
+                        " id INTEGER NOT NULL,"
+                        " name VARCHAR NOT NULL,"
+                        " PRIMARY KEY ( id ),"
+                        " UNIQUE ( name )"
+                        ");",
+                        "Failed to create table taskMetaAttributeName" );
+        runSimpleQuery( "CREATE TABLE taskMetaAttribute ("
+                        " task INTEGER NOT NULL,"
+                        " attributeName INTEGER NOT NULL,"
+                        " value VARCHAR,"
+                        " PRIMARY KEY ( task, attributeName ),"
+                        " FOREIGN KEY ( task ) REFERENCES task ( id ),"
+                        " FOREIGN KEY ( attributeName ) REFERENCES taskMetaAttributeName ( id )"
+                        ");",
+                        "Failed to create table taskMetaAttribute" );
     }
 
     m_initialized = true;
+
+    emit initialized();
 }
 
 void DatabaseWorker::runSimpleQuery(const QString &query, const QString &errorMsg )
@@ -192,7 +241,47 @@ void DatabaseWorker::runSimpleQuery(const QString &query, const QString &errorMs
 }
 
 /**
+   @brief Runs the @p query
+ */
+void DatabaseWorker::runQuery(StorageQuery *query)
+{
+    QMutexLocker l( &m_runLock );
+    do {
+        query->m_worker = this;
+        query->beginRun();
+        QString queryStr;
+        QVariantMap values;
+        bool validQuery = query->query( queryStr, values );
+        if ( validQuery ) {
+            QSqlQuery q( m_dataBase );
+            q.prepare( queryStr );
+            foreach ( QString key, values.keys() ) {
+                q.bindValue( ":" + key, values.value( key ) );
+            }
+            if ( q.exec() ) {
+                while ( q.next() ) {
+                    QVariantMap recordData;
+                    for ( int i = 0; i < q.record().count(); ++i ) {
+                        recordData.insert( q.record().fieldName( i ),
+                                           q.record().value( i ) );
+                    }
+                    query->recordAvailable( recordData );
+                }
+            } else {
+                qWarning() << q.lastError().text();
+                qWarning() << q.executedQuery();
+                qWarning() << queryStr;
+                qWarning() << values;
+            }
+        }
+        query->endRun();
+    } while ( query->hasNext() );
+}
+
+/**
    @brief Executes the next query in the queue
+
+   This will run the next query from the queue and delete it after the run.
  */
 void DatabaseWorker::next()
 {
@@ -202,36 +291,7 @@ void DatabaseWorker::next()
         query = m_queue.dequeue();
     }
     if ( query ) {
-        do {
-            query->m_worker = this;
-            query->beginRun();
-            QString queryStr;
-            QVariantMap values;
-            bool validQuery = query->query( queryStr, values );
-            if ( validQuery ) {
-                QSqlQuery q( m_dataBase );
-                q.prepare( queryStr );
-                foreach ( QString key, values.keys() ) {
-                    q.bindValue( ":" + key, values.value( key ) );
-                }
-                if ( q.exec() ) {
-                    while ( q.next() ) {
-                        QVariantMap recordData;
-                        for ( int i = 0; i < q.record().count(); ++i ) {
-                            recordData.insert( q.record().fieldName( i ),
-                                               q.record().value( i ) );
-                        }
-                        query->recordAvailable( recordData );
-                    }
-                } else {
-                    qWarning() << q.lastError().text();
-                    qWarning() << q.executedQuery();
-                    qWarning() << queryStr;
-                    qWarning() << values;
-                }
-            }
-            query->endRun();
-        } while ( query->hasNext() );
+        runQuery( query );
         delete query;
     }
 }

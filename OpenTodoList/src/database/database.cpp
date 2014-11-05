@@ -1,7 +1,10 @@
 #include "database/database.h"
-
 #include "database/storagequery.h"
 #include "database/databaseworker.h"
+
+#include "database/queries/insertbackend.h"
+
+#include "datamodel/backend.h"
 
 #include <QDebug>
 #include <QJsonDocument>
@@ -32,31 +35,19 @@ Database::Database(QObject *parent) :
 
     qDebug() << "Initialiying database";
     m_worker->moveToThread( &m_workerThread );
-    connect( m_worker, SIGNAL(todoListInserted(QString,TodoListStruct)),
-             this, SIGNAL(todoListInserted(QString,TodoListStruct)) );
-    connect( m_worker, SIGNAL(todoInserted(QString,TodoStruct)),
-             this, SIGNAL(todoInserted(QString,TodoStruct)) );
-    connect( m_worker, SIGNAL(todoListRemoved(QString,TodoListStruct)),
-             this, SIGNAL(todoListRemoved(QString,TodoListStruct)) );
-    connect( m_worker, SIGNAL(todoRemoved(QString,TodoStruct)),
-             this, SIGNAL(todoRemoved(QString,TodoStruct)) );
+    connect( m_worker, &DatabaseWorker::initialized, this, &Database::startBackends, Qt::QueuedConnection );
     QMetaObject::invokeMethod( m_worker, "init", Qt::QueuedConnection );
 
     qDebug() << "Initialiying backends...";
     m_backends.reserve( m_backendPlugins->plugins().size() );
     m_backendsThread.start();
     for ( IBackend *interface : m_backendPlugins->plugins() ) {
-        qDebug() << "Initializing backend" << interface->name();
+        qDebug() << "Initializing backend" << interface->title();
         BackendWrapper *wrapper = new BackendWrapper( this, interface );
-        wrapper->setLocalStorageDirectory( localStorageLocation( wrapper->id() ) );
+        wrapper->setLocalStorageDirectory( localStorageLocation( wrapper->name() ) );
         wrapper->moveToThread( &m_backendsThread );
-        connect( this, SIGNAL(startBackends()), wrapper, SLOT(doStart()) );
-        connect( this, SIGNAL(stopBackends()), wrapper, SLOT(doStop()), Qt::BlockingQueuedConnection );
         m_backends << wrapper;
     }
-
-    qDebug() << "Starting backends";
-    start();
 }
 
 /**
@@ -65,7 +56,12 @@ Database::Database(QObject *parent) :
 Database::~Database()
 {
     qDebug() << "Stopping Backends";
-    stop();
+    for ( BackendWrapper* wrapper : m_backends ) {
+        qDebug() << "Stopping backend" << wrapper->name();
+        if ( !QMetaObject::invokeMethod( wrapper, "doStop", Qt::BlockingQueuedConnection ) ) {
+            qWarning() << "Failed to stop backend" << wrapper->name();
+        }
+    }
 
     qDebug() << "Stopping Backends Thread";
     m_backendsThread.quit();
@@ -85,91 +81,31 @@ Database::~Database()
 }
 
 /**
+   @brief Runs a @p query
+
+   This will run the query in the current thread. Note that this might block the current thread
+   (hence avoid usage in the front end). Parentship of the query remains untouched - the Database
+   object will not free the query after running the query finished.
+ */
+void Database::runQuery(StorageQuery *query)
+{
+    qDebug() << "Running query" << query;
+    Q_ASSERT( query != nullptr );
+    m_worker->run( query );
+}
+
+/**
    @brief Schedules the @p query for execution
 
    This schedules the given query for execution in the data base background
    thread. The Database object takes over ownership of the query.
    Hence, upon running it, the query will automatically be deleted.
  */
-void Database::runQuery(StorageQuery *query)
+void Database::scheduleQuery(StorageQuery *query)
 {
     qDebug() << "Scheduling query" << query << "for execution";
     query->moveToThread( &m_workerThread );
-    m_worker->run( query );
-}
-
-/**
-   @brief Inserts a todo list
-   @param backend The backend the list belongs to
-   @param list The todo list to insert
-   @return True if a query to insert the todo has been scheduled successfully
- */
-bool Database::insertTodoList(const QString &backend, const ITodoList *list)
-{
-    return QMetaObject::invokeMethod(
-                m_worker,
-                "insertTodoList",
-                Qt::QueuedConnection,
-                Q_ARG( QString, backend ),
-                Q_ARG( const ITodoList*, list ) );
-}
-
-/**
-   @brief Inserts a todo
-   @param backend The backend the todo belongs to
-   @param todo The todo to insert
-   @return True of a query to insert the todo has been scheduled successfully
- */
-bool Database::insertTodo(const QString &backend, const ITodo *todo)
-{
-    return QMetaObject::invokeMethod(
-                m_worker,
-                "insertTodo",
-                Qt::QueuedConnection,
-                Q_ARG( QString, backend ),
-                Q_ARG( const ITodo*, todo ) );
-}
-
-/**
-   @brief Removes a todo list
-   @param backend The backend the list belongs to
-   @param list The list to remove
-   @return True of a query to remove the list has been scheduled successfully
- */
-bool Database::deleteTodoList(const QString &backend, const ITodoList *list)
-{
-    return QMetaObject::invokeMethod(
-                m_worker,
-                "deleteTodoList",
-                Qt::QueuedConnection,
-                Q_ARG( QString, backend ),
-                Q_ARG( const ITodoList*, list ) );
-}
-
-/**
-   @brief Removes a todo
-   @param backend The backend the todo belongs to
-   @param todo The todo to remove
-   @return True if a query to remove the todo has been scheduled successfully
- */
-bool Database::deleteTodo(const QString &backend, const ITodo *todo)
-{
-    return QMetaObject::invokeMethod(
-                m_worker,
-                "deleteTodo",
-                Qt::QueuedConnection,
-                Q_ARG( QString, backend ),
-                Q_ARG( const ITodo*, todo ) );
-}
-
-void Database::start()
-{
-    emit startBackends();
-}
-
-void Database::stop()
-{
-    emit stopBackends();
+    m_worker->schedule( query );
 }
 
 #ifdef Q_OS_ANDROID
@@ -219,6 +155,26 @@ QString Database::localStorageLocation(const QString &type)
         }
     }
     return QString();
+}
+
+void Database::startBackends()
+{
+    qDebug() << "Starting backends";
+    for ( BackendWrapper* wrapper : m_backends ) {
+        qDebug() << "Inserting/updating backend data in DB";
+        DataModel::Backend *backend = new DataModel::Backend();
+        backend->setName( wrapper->name() );
+        backend->setTitle( wrapper->title() );
+        backend->setDescription( wrapper->description() );
+        Queries::InsertBackend *query = new Queries::InsertBackend( backend );
+        m_worker->run( query );
+        delete query;
+
+        qDebug() << "Starting backend" << wrapper->name();
+        if ( !QMetaObject::invokeMethod( wrapper, "doStart", Qt::QueuedConnection ) ) {
+            qWarning() << "Failed to start backend" << wrapper->name();
+        }
+    }
 }
 
 } /* DataBase */

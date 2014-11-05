@@ -30,8 +30,8 @@ class BackendWrapper :
     Q_OBJECT
     Q_INTERFACES(OpenTodoList::IBackend)
     Q_ENUMS(Status)
-    Q_PROPERTY( QString id READ id CONSTANT)
     Q_PROPERTY( QString name READ name CONSTANT)
+    Q_PROPERTY( QString title READ title CONSTANT)
     Q_PROPERTY( QString description READ description CONSTANT)
     Q_PROPERTY( Status status READ status CONSTANT )
     Q_PROPERTY( bool valid READ valid CONSTANT )
@@ -56,17 +56,20 @@ public:
     bool insertAccount(const IAccount *account) override;
     bool insertTodoList(const ITodoList *list) override;
     bool insertTodo(const ITodo *todo) override;
+    bool insertTask(const ITask *task) override;
     bool deleteAccount(const IAccount *account) override;
     bool deleteTodoList(const ITodoList *list) override;
     bool deleteTodo(const ITodo *todo) override;
+    bool deleteTask(const ITask *task) override;
     IAccount* createAccount() override;
     ITodoList* createTodoList() override;
     ITodo* createTodo() override;
+    ITask *createTask() override;
 
     // IBackend interface
     void setLocalStorageDirectory(const QString &directory) override;
-    QString id() const  override;
     QString name() const  override;
+    QString title() const  override;
     QString description() const  override;
     bool start() override;
     bool stop() override;

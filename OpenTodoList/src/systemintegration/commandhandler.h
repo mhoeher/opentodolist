@@ -46,7 +46,6 @@ private:
     static const QString TerminateApplicationCommand;
 
     QWindow *m_applicationWindow;
-
 };
 
 } /* SystemIntegration */

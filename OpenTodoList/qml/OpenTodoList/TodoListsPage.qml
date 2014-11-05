@@ -376,7 +376,7 @@ Page {
                     margins: Measures.tinySpace
                 }
                 text: qsTr( "Quit" )
-                onClicked: commandHandler.terminateApplication()
+                onClicked: application.handler.terminateApplication()
             }
         }
     }

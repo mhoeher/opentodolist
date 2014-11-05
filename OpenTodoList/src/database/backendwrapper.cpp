@@ -1,10 +1,12 @@
 #include "backendwrapper.h"
 
 #include "datamodel/todolistlibrary.h"
-
 #include "datamodel/account.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"
+#include "datamodel/task.h"
+
+#include "database/queries/insertaccount.h"
 
 #include <QDebug>
 
@@ -18,7 +20,6 @@ BackendWrapper::BackendWrapper(QObject *parent) :
     m_backend( 0 ),
     m_status( Invalid )
 {
-
 }
 
 BackendWrapper::BackendWrapper(Database *database, IBackend *backend, QObject *parent) :
@@ -42,8 +43,10 @@ BackendWrapper::~BackendWrapper()
 
 bool BackendWrapper::insertAccount(const IAccount *account)
 {
-    // TODO: Implement me
-    return false;
+    const DataModel::Account *acc = static_cast< const DataModel::Account* >( account );
+    Q_ASSERT( acc != nullptr );
+    Queries::InsertAccount q( acc, Queries::InsertAccount::NoFlags, StorageQuery::CallerIsOwner );
+    m_database->runQuery( &q );
 }
 
 bool BackendWrapper::insertTodoList(const ITodoList *list)
@@ -58,6 +61,12 @@ bool BackendWrapper::insertTodo(const ITodo *todo)
     //return m_status != Invalid && m_database->insertTodo( m_backend->id(), todo );
 }
 
+bool BackendWrapper::insertTask(const ITask *task)
+{
+    return false;
+    // TODO: Implement me
+}
+
 bool BackendWrapper::deleteAccount(const IAccount *account)
 {
     // TODO: Implement me
@@ -65,18 +74,27 @@ bool BackendWrapper::deleteAccount(const IAccount *account)
 
 bool BackendWrapper::deleteTodoList(const ITodoList *list)
 {
-    return m_status != Invalid && m_database->deleteTodoList( m_backend->id(), list );
+    // TODO: Implement me
 }
 
 bool BackendWrapper::deleteTodo(const ITodo *todo)
 {
-    return m_status != Invalid && m_database->deleteTodo( m_backend->id(), todo );
+    // TODO: Implement me
+}
+
+bool BackendWrapper::deleteTask(const ITask *task)
+{
+    return false;
+    // TODO: Implement me
 }
 
 IAccount *BackendWrapper::createAccount()
 {
     // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
-    return new DataModel::Account();
+
+    DataModel::Account *account = new DataModel::Account();
+    account->setBackend( name() ); // inject our name
+    return account;
 }
 
 ITodoList *BackendWrapper::createTodoList()
@@ -91,23 +109,29 @@ ITodo *BackendWrapper::createTodo()
     return new DataModel::Todo();
 }
 
+ITask *BackendWrapper::createTask()
+{
+    // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
+    return new DataModel::Task();
+}
+
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)
 {
     if ( m_status != Invalid )
         m_backend->setLocalStorageDirectory( directory );
 }
 
-QString BackendWrapper::id() const
-{
-    if ( m_status != Invalid )
-        return m_backend->id();
-    return QString();
-}
-
 QString BackendWrapper::name() const
 {
     if ( m_status != Invalid )
         return m_backend->name();
+    return QString();
+}
+
+QString BackendWrapper::title() const
+{
+    if ( m_status != Invalid )
+        return m_backend->title();
     return QString();
 }
 
@@ -155,18 +179,18 @@ bool BackendWrapper::stop()
 void BackendWrapper::doStart()
 {
     if ( !start() ) {
-        qWarning() << "Failed to start backend" << name();
+        qWarning() << "Failed to start backend" << title();
     } else {
-        qDebug() << "Started backend" << name();
+        qDebug() << "Started backend" << title();
     }
 }
 
 void BackendWrapper::doStop()
 {
     if ( !stop() ) {
-        qWarning() << "Failed to stop backend" << name();
+        qWarning() << "Failed to stop backend" << title();
     } else {
-        qDebug() << "Stopped backend" << name();
+        qDebug() << "Stopped backend" << title();
     }
 }
 

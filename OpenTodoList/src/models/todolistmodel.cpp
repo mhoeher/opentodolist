@@ -38,17 +38,17 @@ void TodoListModel::setLibrary(DataModel::TodoListLibrary *library)
 {
     if ( m_library != library ) {
         if ( m_library ) {
-            disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+            /*disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
                         this, SLOT(update()) );
             disconnect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                        this, SLOT(update()) );
+                        this, SLOT(update()) );*/
         }
         m_library = library;
         if ( m_library ) {
-            connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
+            /*connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
                      this, SLOT(update()) );
             connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                     this, SLOT(update()) );
+                     this, SLOT(update()) );*/
         }
         emit libraryChanged();
     }
@@ -122,6 +122,7 @@ void TodoListModel::triggerUpdate()
     }
 
     if ( m_library ) {
+        /*
         emit beginUpdate();
         TodoListQuery *query = new TodoListQuery();
         connect( query, SIGNAL(addTodoList(QString,TodoListStruct)),
@@ -131,6 +132,7 @@ void TodoListModel::triggerUpdate()
         connect( query, SIGNAL(finished()),
                  this, SIGNAL(endUpdate()), Qt::QueuedConnection );
         m_library->storage()->runQuery( query );
+        */
     }
 
     m_updateNeeded = false;

@@ -99,6 +99,8 @@ Rectangle {
 
     Shortcut {
         keySequence: fromStandardKey( StandardKey.Quit )
-        onTriggered: commandHandler.terminateApplication()
+        onTriggered: {
+            application.handler.terminateApplication()
+        }
     }
 }

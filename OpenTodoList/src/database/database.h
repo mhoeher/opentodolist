@@ -17,20 +17,17 @@ class StorageQuery;
 class DatabaseWorker;
 
 /**
-   @brief The storage used to hold all user objects in the todo list application
+   @brief Provides the todo list storage for the application
 
-   This class is used to encapsulate the internally used storage database and
-   provide thread-safe access to it.
+   This class is responsible to provide the todo list storage for the application. Internally,
+   it will start an instance of the DatabaseWorker class to maintain a SQL database which is used
+   for permanent object storage. The database is well hidden. The front end uses a high level
+   API to add new object to the database, update existing ones or schedule objects for permanent
+   deletion from the database.
 
-   Two types of APIs are provided:
-
-   The high level API provides a slot based approach for inserting/updating
-   and removing objects.
-
-   The lower level query API allows to run more complex queries.
-
-   Boths APIs are run in a separate thread, so the GUI thread won't block even
-   when more complex processing needs to be done.
+   This class also is responsible to load the various backends (i.e. plugins implementing
+   the IBackend interface). Backends are used for external todo data storage, i.e. they can
+   bridge from the application to any external service that allows to store todo list information.
  */
 class Database : public QObject
 {
@@ -40,26 +37,7 @@ public:
     virtual ~Database();
 
     void runQuery( StorageQuery *query );
-
-signals:
-
-    void todoListInserted( const QString &backend, const ITodoList *list );
-    void todoListRemoved( const QString &backend, const ITodoList *list );
-    void todoInserted( const QString &backend, const ITodo *todo );
-    void todoRemoved( const QString &backend, const ITodo *todo );
-
-    void startBackends();
-    void stopBackends();
-
-public slots:
-
-    bool insertTodoList( const QString &backend, const ITodoList *list );
-    bool insertTodo( const QString &backend, const ITodo *todo );
-    bool deleteTodoList( const QString &backend, const ITodoList *list );
-    bool deleteTodo( const QString &backend, const ITodo *todo );
-
-    void start();
-    void stop();
+    void scheduleQuery( StorageQuery *query );
 
 private:
 
@@ -76,6 +54,10 @@ private:
     static QString androidExtStorageLocation();
 #endif
     static QString localStorageLocation( const QString &type );
+
+private slots:
+
+    void startBackends();
 
 };
 

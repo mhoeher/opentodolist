@@ -38,8 +38,8 @@ public:
     // BackendInterface interface
     void setDatabase(OpenTodoList::IDatabase *database) override;
     void setLocalStorageDirectory(const QString &directory) override;
-    QString id() const override;
     QString name() const override;
+    QString title() const override;
     QString description() const override;
     bool start() override;
     bool stop() override;
@@ -47,13 +47,16 @@ public:
 private:
 
     OpenTodoList::IDatabase         *m_database;
-    QString                   m_localStorageDirectory;
+    QString                          m_localStorageDirectory;
+
+    OpenTodoList::IAccount          *m_account;
 
     QStringList locateTodoLists() const;
     QStringList locateTodos( const QString &todoList ) const;
 
     OpenTodoList::ITodoList* todoListFromFile( const QString &fileName );
     OpenTodoList::ITodo* todoFromFile(const QString &fileName , double weight);
+
 
     static bool todoListToFile( const OpenTodoList::ITodoList *todoList );
     static bool todoToFile( const OpenTodoList::ITodo *todo );

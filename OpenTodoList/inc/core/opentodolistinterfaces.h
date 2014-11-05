@@ -20,6 +20,7 @@
 #define OPENTODOLISTINTERFACES_H
 
 #include <QDateTime>
+#include <QList>
 #include <QObject>
 #include <QUuid>
 #include <QVariantMap>
@@ -49,22 +50,14 @@ public:
     virtual const QUuid& uuid() const = 0;
 
     /**
+       @brief Sets the @p uuid of the account
+     */
+    virtual void setUuid( const QUuid &uuid ) = 0;
+
+    /**
        @brief The name of the account
      */
     virtual const QString& name() const = 0;
-
-    /**
-       @brief Returns whether the account has been permanently deleted.
-
-       This is intended to be used by the backend managing the account. If this returns true,
-       the backend should remove any connection to the appropriate account. Depending on the
-       concrete backend, this might mean that either physical data of the account has to be
-       deleted or only the connection to a remote service is removed (but the data maintained
-       on the server remains intact).
-
-       Upon completion, the backend should call IDatabase::accountDeletionFinished().
-     */
-    virtual bool disposed() const = 0;
 
     /**
        @brief Sets the account name
@@ -72,23 +65,12 @@ public:
     virtual void setName( const QString &name ) = 0;
 
     /**
-       @brief Returns whether this is the backend's default account.
-
-       This returns whether the account is the default account for the backend. A default account
-       is usually used when a backend supports no accounts. In this case, the default account
-       acts as a virtual account. In such a scenario, certain actions are not allowed on the
-       account, such as deleting it (as this would implicitly mean deletion of the backend).
+       @brief Returns the name of the backend the account belongs to.
      */
-    virtual bool isBackendAccount() const = 0;
+    virtual QString backend() const = 0;
 
     /**
-       @brief Sets or unsets this as an backend account
-       @sa isBackendAccount()
-     */
-    virtual void setBackendAccount( bool backendAccount ) = 0;
-
-    /**
-       @brief The date and time when the account has been modified the last time
+       @brief The date and time when the account has been modified the last time.
      */
     virtual QDateTime lastModificationTime() const = 0;
 
@@ -96,6 +78,16 @@ public:
        @brief Sets the date and time of the last modification to @p dateTime
      */
     virtual void setLastModificationTime( const QDateTime &dateTime ) = 0;
+
+    /**
+       @brief The meta attributes of the account
+     */
+    virtual QVariantMap metaAttributes() const = 0;
+
+    /**
+       @brief Sets the @p metaAttributes of the account
+     */
+    virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
 
 };
 
@@ -125,6 +117,16 @@ public:
     virtual void setUuid( const QUuid &uuid ) = 0;
 
     /**
+       @brief Returns the UUID of the account the todo list belongs to
+     */
+    virtual QUuid accountUuid() const = 0;
+
+    /**
+       @brief Sets the @p uuid of the account the toto list belongs to
+     */
+    virtual void setAccountUuid( const QUuid &uuid ) = 0;
+
+    /**
        @brief The name of the todo list.
      */
     virtual const QString& name() const = 0;
@@ -135,47 +137,6 @@ public:
     virtual void setName( const QString &name ) = 0;
 
     /**
-       @brief Returns whether todo list is marked as deleted
-     */
-    virtual bool deleted() const = 0;
-
-    /**
-       @brief Mark the todo list as deleted
-     */
-    virtual void setDeleted( bool deleted ) = 0;
-
-    /**
-       @brief Returns whether the todo list has been deleted permanently.
-
-       This is supposed to be used by the backend maintaining the
-       todo list. If this returns true, the backend shall permanently remove
-       the todo list (and any contained todos) and after that, call
-       IDatabase::todoListDeletionFinished().
-     */
-    virtual bool disposed() const = 0;
-
-    /**
-       @brief Returns the list of meta attributes of the todo list.
-     */
-    virtual const QStringList metaAttributeKeys() const = 0;
-    /**
-       @brief Returns the value of the meta attribute @p key
-     */
-    virtual const QVariant metaAttribute( const QString &key ) const = 0;
-    /**
-       @brief Sets the value of the meta attribute @p key to @p value
-     */
-    virtual void setMetaAttribute( const QString &key, const QVariant &value ) = 0;
-    /**
-       @brief Returns true if the todo list has the meta attribute @p key
-     */
-    virtual bool hasMetaAttribute( const QString &key ) const = 0;
-    /**
-       @brief Removes the meta attribute @p key from the todo list.
-     */
-    virtual void deleteMetaAttribute( const QString &key ) = 0;
-
-    /**
        @brief The date and time when the account has been modified the last time
      */
     virtual QDateTime lastModificationTime() const = 0;
@@ -184,6 +145,16 @@ public:
        @brief Sets the date and time of the last modification to @p dateTime
      */
     virtual void setLastModificationTime( const QDateTime &dateTime ) = 0;
+
+    /**
+       @brief The meta attributes of the todo list
+     */
+    virtual QVariantMap metaAttributes() const = 0;
+
+    /**
+       @brief Sets the @p metaAttributes of the todo list
+     */
+    virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
 
 };
 
@@ -204,6 +175,7 @@ public:
        @brief Returns the universally unique ID of the todo.
      */
     virtual const QUuid& uuid() const = 0;
+
     /**
        @brief Sets the universally unique ID of the todo to @p uuid.
      */
@@ -216,22 +188,21 @@ public:
        The weight is used for manually ordering todos within their todo list or parent todo.
      */
     virtual double weight() const = 0;
+
     /**
        @brief Sets the @p weight of the todo.
      */
     virtual void setWeight( double weight ) = 0;
 
     /**
-       @brief Returns the progress of the todo.
+       @brief Returns whether the todo is marked as done
+     */
+    virtual bool done() const = 0;
 
-       The progress is a value between 0 and 100, where 100 means the todo
-       is done and values between 0 and 99 inclusively that the todo is not yet finished.
-     */
-    virtual int progress() const = 0;
     /**
-       @brief Sets the @p progress of the todo.
+       @brief Marks the todo as @p done
      */
-    virtual void setProgress( int progress ) = 0;
+    virtual void setDone( bool done ) = 0;
 
     /**
        @brief Returns the priority of the todo.
@@ -246,24 +217,6 @@ public:
        @brief Sets the @p priority of the todo.
      */
     virtual void setPriority( int priority ) = 0;
-
-    /**
-       @brief Returns the uuid of the parent todo (or a null one if the todo has no parent todo).
-     */
-    virtual const QUuid& parentTodoUuid() const = 0;
-    /**
-       @brief Makes this todo a child of the todo with the given @p uuid.
-     */
-    virtual void setParentTodoUuid( const QUuid &uuid ) = 0;
-
-    /**
-       @brief Returns the uuid of the todo list the todo is in.
-     */
-    virtual const QUuid& todoListUuid() const = 0;
-    /**
-       @brief Sets the @p uuid of the todo list the todo is in.
-     */
-    virtual void setTodoListUuid( const QUuid &uuid ) = 0;
 
     /**
        @brief Return the date and time the todo is due on.
@@ -302,36 +255,6 @@ public:
     virtual void setDeleted( bool isDeleted ) = 0;
 
     /**
-       @brief Returns whether the todo is deleted permanently.
-
-       If this returns true, the backend shall delete all references to the
-       todo (including any sub-todo) and afterwards call
-       IDatabase::todoDeletionFinished().
-     */
-    virtual bool disposed() const = 0;
-
-    /**
-       @brief Returns the list of meta attributes of the todo.
-     */
-    virtual const QStringList metaAttributeKeys() const = 0;
-    /**
-       @brief Returns the value of the meta attribute @p key.
-     */
-    virtual const QVariant metaAttribute( const QString &key ) const = 0;
-    /**
-       @brief Sets the value of the meta attribute @p key to @p value
-     */
-    virtual void setMetaAttribute( const QString &key, const QVariant &value ) = 0;
-    /**
-       @brief Returns true if the todo has the meta attribute @p key
-     */
-    virtual bool hasMetaAttribute( const QString &key ) const = 0;
-    /**
-       @brief Removes the meta attribute @p key from the todo .
-     */
-    virtual void deleteMetaAttribute( const QString &key ) = 0;
-
-    /**
        @brief The date and time when the account has been modified the last time
      */
     virtual QDateTime lastModificationTime() const = 0;
@@ -341,6 +264,98 @@ public:
      */
     virtual void setLastModificationTime( const QDateTime &dateTime ) = 0;
 
+    /**
+       @brief Returns the uuid of the todo list the todo is in.
+     */
+    virtual const QUuid& todoListUuid() const = 0;
+    /**
+       @brief Sets the @p uuid of the todo list the todo is in.
+     */
+    virtual void setTodoListUuid( const QUuid &uuid ) = 0;
+
+    /**
+       @brief The meta attributes of the todo
+     */
+    virtual QVariantMap metaAttributes() const = 0;
+
+    /**
+       @brief Sets the @p metaAttributes of the todo
+     */
+    virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
+};
+
+/**
+   @brief An interface describing sub-task of a todo
+ */
+class ITask {
+public:
+
+    /**
+       @brief Destructor
+       @note Required to keep some compilers from complaining.
+     */
+    virtual ~ITask() {}
+
+    /**
+       @brief The UUID of the task
+     */
+    virtual QUuid uuid() const = 0;
+
+    /**
+       @brief Sets the tasks @p uuid
+     */
+    virtual void setUuid( const QUuid &uuid ) = 0;
+
+    /**
+       @brief The title of the task
+     */
+    virtual QString title() const = 0;
+
+    /**
+       @brief Sets the tasks @p title
+     */
+    virtual void setTitle( const QString &title ) = 0;
+
+    /**
+       @brief Returns whether the task is marked as done
+     */
+    virtual bool done() const = 0;
+
+    /**
+       @brief Mark the task as @p done
+     */
+    virtual void setDone( bool done ) = 0;
+
+    /**
+       @brief The weight of the task
+       @note The weight is used to order tasks
+     */
+    virtual double weight() const = 0;
+
+    /**
+       @brief Sets the @p weight of the task
+     */
+    virtual void setWeight( double weight ) = 0;
+
+    /**
+       @brief The meta attributes of the task
+     */
+    virtual QVariantMap metaAttributes() const = 0;
+
+    /**
+       @brief Sets the @p metaAttributes of the task
+     */
+    virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
+
+    /**
+       @brief Returns the UUID of the todo the task belongs to
+     */
+    virtual QUuid todoUuid() const = 0;
+
+    /**
+       @brief Sets the @p uuid of the todo this task belongs to
+     */
+    virtual void setTodoUuid( const QUuid &uuid ) = 0;
 };
 
 /**
@@ -385,6 +400,11 @@ public:
     virtual bool insertTodo( const ITodo *todo ) = 0;
 
     /**
+       @brief Inserts or updates a @p task into the database
+     */
+    virtual bool insertTask( const ITask *task ) = 0;
+
+    /**
        @brief Deletes the @p account from the database.
      */
     virtual bool deleteAccount( const IAccount *account ) = 0;
@@ -402,10 +422,15 @@ public:
        @brief Removes a todo from the database
 
        This removes the @p todo from the database. The todo is identified by its
-       TodoStruct::id.
+       TodoStruct::uuid.
        @return True if the operation was successfull or false otherwise.
      */
     virtual bool deleteTodo( const ITodo *todo ) = 0;
+
+    /**
+       @brief Removes a @p task from the database
+     */
+    virtual bool deleteTask( const ITask *task ) = 0;
 
     /**
        @brief Creates a temporary account
@@ -434,6 +459,17 @@ public:
        @note The caller of this method is responsible to delete the created object.
      */
     virtual ITodo* createTodo() = 0;
+
+    /**
+       @brief Creates a new task
+
+       This method is supposed to be used by storage backends. It allows creation of new
+       task objects that later can be written to the database.
+
+       @note The caller of the method is responsible to delete the returned object.
+     */
+    virtual ITask* createTask() = 0;
+
 };
 
 /**
@@ -489,7 +525,7 @@ public:
        Returns a string that identifies the backend. Two different backends
        must use different IDs.
      */
-    virtual QString id() const = 0;
+    virtual QString name() const = 0;
 
     /**
        @brief The name of the backend
@@ -497,7 +533,7 @@ public:
        Returns the name of the interface. This is used when presenting the
        backend in listings.
      */
-    virtual QString name() const = 0;
+    virtual QString title() const = 0;
 
     /**
        @brief Returns a description for the backend

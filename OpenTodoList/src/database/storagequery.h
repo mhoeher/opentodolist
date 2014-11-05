@@ -13,11 +13,30 @@ namespace DataBase {
 
 class DatabaseWorker;
 
+/**
+   @brief Base class for all database queries
+
+   This class is used as the base for all database queries. In order to query or manipulate the
+   database, one has to subclass this class and pass an instance of it to the OpenTodoList::Database
+   class.
+ */
 class StorageQuery : public QObject
 {
     Q_OBJECT
     friend class DatabaseWorker;
 public:
+
+    /**
+       @brief Used to resource management
+
+       This enum is used in some concrete storage queries to determine ownership of
+       resources.
+     */
+    enum ResourceOwnership {
+        QueryIsOwner, //!< The StorageQuery object takes over ownership of the resources and releases them upon destruction
+        CallerIsOwner //!< The caller remains owner of any resources used by the query
+    };
+
     explicit StorageQuery(QObject *parent = 0);
     virtual ~StorageQuery();
 

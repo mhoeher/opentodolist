@@ -33,7 +33,8 @@ const QString LocalXmlBackend::TodoMetaFileName = "LocalXmlBackend::Todo::fileNa
 LocalXmlBackend::LocalXmlBackend(QObject *parent) :
     QObject( parent ),
     m_database( 0 ),
-    m_localStorageDirectory( QString() )
+    m_localStorageDirectory( QString() ),
+    m_account( 0 )
 {
     qDebug() << "Creating LocalXmlBackend";
 }
@@ -51,15 +52,15 @@ void LocalXmlBackend::setDatabase(OpenTodoList::IDatabase *database)
 void LocalXmlBackend::setLocalStorageDirectory(const QString &directory)
 {
     m_localStorageDirectory = directory;
-    qDebug() << "Set local storage directory of" << id() << "to" << directory;
+    qDebug() << "Set local storage directory of" << name() << "to" << directory;
 }
 
-QString LocalXmlBackend::id() const
+QString LocalXmlBackend::name() const
 {
     return "LocalXmlDirectory";
 }
 
-QString LocalXmlBackend::name() const
+QString LocalXmlBackend::title() const
 {
     return tr( "Todo List in local files (XML format)" );
 }
@@ -72,6 +73,16 @@ QString LocalXmlBackend::description() const
 
 bool LocalXmlBackend::start()
 {
+    // TODO: Get existing account from DB before creating new one
+    m_account = m_database->createAccount();
+    m_account->setUuid( QUuid::createUuid() );
+    m_account->setName( tr( "Local Todo Lists" ) );
+    QVariantMap metaAttrs;
+    metaAttrs.insert( "test1", "Hello World" );
+    metaAttrs.insert( "test2", "Foo" );
+    m_account->setMetaAttributes( metaAttrs );
+    m_database->insertAccount( m_account );
+
     QStringList todoLists = locateTodoLists();
     foreach ( const QString &todoList, todoLists ) {
         OpenTodoList::ITodoList *list = todoListFromFile( todoList );
@@ -253,7 +264,9 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
             return 0;
         }
 
-        result->setMetaAttribute( TodoListMetaFileName, fileName );
+        QVariantMap metaAttributes = result->metaAttributes();
+        metaAttributes.insert( TodoListMetaFileName, fileName );
+        result->setMetaAttributes( metaAttributes );
 
         // TODO: Remove me in final release:
         if ( result->uuid().isNull() ) {
@@ -298,7 +311,9 @@ OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, doub
             return 0;
         }
 
-        result->setMetaAttribute( TodoMetaFileName, fileName );
+        QVariantMap metaAttributes = result->metaAttributes();
+        metaAttributes.insert( TodoMetaFileName, fileName );
+        result->setMetaAttributes( metaAttributes );
         return result;
     }
     return result;
@@ -308,7 +323,7 @@ bool LocalXmlBackend::todoListToFile(const OpenTodoList::ITodoList *todoList)
 {
     if ( todoList ) {
         QDomDocument dom;
-        QString fileName = todoList->metaAttribute( TodoListMetaFileName ).toString();
+        QString fileName = todoList->metaAttributes().value( TodoListMetaFileName ).toString();
         QFileInfo fi( fileName );
         if ( fi.exists() && fi.isReadable() ) {
             QFile inFile( fileName );
@@ -349,7 +364,7 @@ bool LocalXmlBackend::todoToFile(const OpenTodoList::ITodo *todo)
 {
     if ( todo ) {
         QDomDocument dom;
-        QString fileName = todo->metaAttribute( TodoMetaFileName ).toString();
+        QString fileName = todo->metaAttributes().value( TodoMetaFileName ).toString();
         QFileInfo fi( fileName );
         if ( fi.exists() && fi.isReadable() ) {
             QFile inFile( fileName );
@@ -423,7 +438,7 @@ bool LocalXmlBackend::todoToDom(const OpenTodoList::ITodo *todo, QDomDocument &d
     }
     root.setAttribute( "id", todo->uuid().toString() );
     root.setAttribute( "title", todo->title() );
-    root.setAttribute( "progress", todo->progress() );
+    root.setAttribute( "done", todo->done() ? "true" : "false" );
     root.setAttribute( "priority", todo->priority() );
     root.setAttribute( "deleted", todo->isDeleted() ? "true" : "false" );
     root.setAttribute( "weight", todo->weight() );
@@ -431,11 +446,6 @@ bool LocalXmlBackend::todoToDom(const OpenTodoList::ITodo *todo, QDomDocument &d
         root.setAttribute( "dueDate", todo->dueDate().toString() );
     } else {
         root.removeAttribute( "dueDate" );
-    }
-    if ( todo->parentTodoUuid().isNull() ) {
-        root.removeAttribute( "parent" );
-    } else {
-        root.setAttribute( "parent", todo->parentTodoUuid().toString() );
     }
     root.setAttribute( "lastModificationDate", todo->lastModificationTime().toString() );
     QDomElement descriptionElement = root.firstChildElement( "description" );
@@ -463,14 +473,11 @@ bool LocalXmlBackend::domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *to
         todo->setUuid( QUuid( root.attribute( "id" ) ) );
     }
     todo->setTitle( root.attribute( "title" ) );
-    todo->setProgress( qBound( 0, root.attribute( "progress", QString::number(todo->progress()) ).toInt(), 100 ) );
+    todo->setDone( root.attribute( "done", "true" ) == "true" );
     todo->setPriority( qBound( -1, root.attribute( "priority", QString::number(todo->priority()) ).toInt(), 10 ) );
     todo->setDeleted( root.attribute( "deleted", todo->isDeleted() ? "true" : "false" ) == "true" );
     if ( root.hasAttribute( "dueDate" ) ) {
         todo->setDueDate( QDateTime::fromString( root.attribute( "dueDate" ) ) );
-    }
-    if ( root.hasAttribute( "parent" ) ) {
-        todo->setParentTodoUuid( QUuid( root.attribute( "parent" ) ) );
     }
     todo->setWeight( root.attribute( "weight", QString::number( todo->weight() ) ).toDouble() );
     if ( root.hasAttribute( "lastModificationTime" ) ) {
