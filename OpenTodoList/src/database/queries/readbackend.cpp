@@ -15,9 +15,8 @@ namespace Queries {
          readBackend() signal to collect the backends read from the database. Otherwise, the
          created objects will remain in memory.
  */
-ReadBackend::ReadBackend(bool parentizeBackends) :
-    StorageQuery(),
-    m_parentizeBackends( parentizeBackends )
+ReadBackend::ReadBackend() :
+    StorageQuery()
 {
 }
 
@@ -38,12 +37,12 @@ bool ReadBackend::query(QString &query, QVariantMap &args)
 
 void ReadBackend::recordAvailable(const QVariantMap &record)
 {
-    DataModel::Backend *backend = new DataModel::Backend( m_parentizeBackends ? this : nullptr );
+    DataModel::Backend *backend = new DataModel::Backend( this );
     backend->setId( record.value( "id", -1 ).toInt() );
     backend->setName( record.value( "name", QString() ).toString() );
     backend->setTitle( record.value( "title", QString() ).toString() );
     backend->setDescription( record.value( "description", QString() ).toString() );
-    emit readBackend( backend );
+    emit readBackend( backend->toVariant() );
     m_backends << backend;
 }
 

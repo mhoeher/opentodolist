@@ -53,10 +53,10 @@ public:
     bool valid() const { return m_status != Invalid; }
 
     // IDatabase interface
-    bool insertAccount(const IAccount *account) override;
-    bool insertTodoList(const ITodoList *list) override;
-    bool insertTodo(const ITodo *todo) override;
-    bool insertTask(const ITask *task) override;
+    bool insertAccount(IAccount *account) override;
+    bool insertTodoList(ITodoList *list) override;
+    bool insertTodo(ITodo *todo) override;
+    bool insertTask(ITask *task) override;
     bool deleteAccount(const IAccount *account) override;
     bool deleteTodoList(const ITodoList *list) override;
     bool deleteTodo(const ITodo *todo) override;

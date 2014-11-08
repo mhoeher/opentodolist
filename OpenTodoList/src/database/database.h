@@ -39,6 +39,12 @@ public:
     void runQuery( StorageQuery *query );
     void scheduleQuery( StorageQuery *query );
 
+signals:
+
+    void backendChanged( const QVariant &backend );
+    void accountChanged( const QVariant &account );
+    void todoListChanged( const QVariant &todoList );
+
 private:
 
     QThread                          m_workerThread;

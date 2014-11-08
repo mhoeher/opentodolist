@@ -41,21 +41,12 @@ public:
     explicit TodoListLibrary(QObject *parent = 0);
     virtual ~TodoListLibrary();
     
-    DataBase::Database *storage() const;
-
     QString applicationVersion() const;
 
 signals:
     
 private:
 
-    DataBase::Database       *m_storage;
-
-private slots:
-    
-    void saveSettings();
-    void restoreSettings();
-    
 };
 
 } /* DataModel */

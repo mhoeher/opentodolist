@@ -20,7 +20,7 @@ class ReadBackend : public StorageQuery
 {
     Q_OBJECT
 public:
-    explicit ReadBackend( bool parentizeBackends = true );
+    explicit ReadBackend();
 
     QList<DataModel::Backend*> backends() const;
 
@@ -28,15 +28,23 @@ public:
     bool query(QString &query, QVariantMap &args);
     void recordAvailable(const QVariantMap &record);
 
+    QThread *targetThread() const;
+    void setTargetThread(QThread *targetThread);
+
 signals:
 
-    void readBackend( OpenTodoList::DataModel::Backend* backend );
+    /**
+       @brief A backend has been read
+
+       This signal is emitted for every @p backend read from the database. Use Backend::fromVariant()
+       to get a Backend object from the variant.
+     */
+    void readBackend( const QVariant &backend );
 
 public slots:
 
 private:
     QList< DataModel::Backend* >    m_backends;
-    bool                            m_parentizeBackends;
 };
 
 } // namespace Queries

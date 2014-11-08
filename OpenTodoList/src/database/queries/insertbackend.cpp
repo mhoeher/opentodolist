@@ -40,6 +40,18 @@ bool InsertBackend::query(QString &query, QVariantMap &args)
     return true;
 }
 
+void InsertBackend::newIdAvailable(const QVariant &id)
+{
+    if ( id.isValid() ) {
+        m_backend->setId( id.toInt() );
+    }
+}
+
+void InsertBackend::endRun()
+{
+    emit backendChanged( m_backend->toVariant() );
+}
+
 } // namespace Queries
 } // namespace DataBase
 } // namespace OpenTodoList

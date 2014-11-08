@@ -401,7 +401,7 @@ void TodoModel::triggerUpdate()
                      this, SLOT(addTodo(QString,TodoStruct)), Qt::QueuedConnection );
             connect( query, SIGNAL(finished()),
                      this, SLOT(removeExtraneousTodos()), Qt::QueuedConnection );*/
-            m_library->storage()->scheduleQuery( query );
+            //m_library->storage()->scheduleQuery( query );
         } else {
             delete query;
         }

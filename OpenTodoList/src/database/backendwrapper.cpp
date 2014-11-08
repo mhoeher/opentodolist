@@ -7,6 +7,7 @@
 #include "datamodel/task.h"
 
 #include "database/queries/insertaccount.h"
+#include "database/queries/inserttodolist.h"
 
 #include <QDebug>
 
@@ -41,27 +42,31 @@ BackendWrapper::~BackendWrapper()
     //delete m_backend;
 }
 
-bool BackendWrapper::insertAccount(const IAccount *account)
+bool BackendWrapper::insertAccount(IAccount *account)
 {
-    const DataModel::Account *acc = static_cast< const DataModel::Account* >( account );
+    DataModel::Account *acc = static_cast< DataModel::Account* >( account );
     Q_ASSERT( acc != nullptr );
     Queries::InsertAccount q( acc, Queries::InsertAccount::NoFlags, StorageQuery::CallerIsOwner );
     m_database->runQuery( &q );
+    return true;
 }
 
-bool BackendWrapper::insertTodoList(const ITodoList *list)
+bool BackendWrapper::insertTodoList(ITodoList *list)
 {
-    return false;
-    //return m_status != Invalid && m_database->insertTodoList( m_backend->id(), list );
+    DataModel::TodoList *todoList = static_cast< DataModel::TodoList* >( list );
+    Q_ASSERT( todoList != nullptr );
+    Queries::InsertTodoList q( todoList );
+    m_database->runQuery( &q );
+    return true;
 }
 
-bool BackendWrapper::insertTodo(const ITodo *todo)
+bool BackendWrapper::insertTodo(ITodo *todo)
 {
     return false;
     //return m_status != Invalid && m_database->insertTodo( m_backend->id(), todo );
 }
 
-bool BackendWrapper::insertTask(const ITask *task)
+bool BackendWrapper::insertTask(ITask *task)
 {
     return false;
     // TODO: Implement me

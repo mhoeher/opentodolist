@@ -26,6 +26,8 @@ public:
 
     // StorageQuery interface
     bool query(QString &query, QVariantMap &args) override;
+    void newIdAvailable(const QVariant &id) override;
+    void endRun() override;
 
 signals:
 

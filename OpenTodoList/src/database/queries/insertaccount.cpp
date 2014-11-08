@@ -14,12 +14,13 @@ namespace Queries {
    @note By default, the query takes over ownership of the account. Pass
          StorageQuery::CallerIsOwner as @p ownership to keep ownership untouched.
  */
-InsertAccount::InsertAccount(const DataModel::Account *account, InsertFlags flags, ResourceOwnership ownership) :
+InsertAccount::InsertAccount(DataModel::Account *account, InsertFlags flags, ResourceOwnership ownership) :
     OpenTodoList::DataBase::StorageQuery(),
     m_account( account ),
     m_state( InsertAccountState ),
     m_flags( flags ),
-    m_ownership( ownership )
+    m_ownership( ownership ),
+    m_waitForId( true )
 {
     Q_ASSERT( account != nullptr );
 }
@@ -36,10 +37,12 @@ InsertAccount::~InsertAccount()
 
 bool InsertAccount::query(QString &query, QVariantMap &args)
 {
+    m_waitForId = false;
     switch ( m_state ) {
 
     case InsertAccountState:
     {
+        m_waitForId = true;
         query = "WITH "
                 "  accInfo ( id ) as ( VALUES ( %1 ) ), "
                 "  backendInfo ( id ) as ( VALUES ( ( SELECT id FROM backend WHERE name = :backend ) ) ) "
@@ -192,6 +195,22 @@ bool InsertAccount::query(QString &query, QVariantMap &args)
 bool InsertAccount::hasNext() const
 {
     return m_state != DoneState;
+}
+
+void InsertAccount::newIdAvailable(const QVariant &id)
+{
+    if ( m_waitForId ) {
+        if ( id.isValid() ) {
+            m_account->setId( id.toInt() );
+        }
+    }
+}
+
+void InsertAccount::endRun()
+{
+    if ( m_state = DoneState ) {
+        emit accountChanged( m_account->toVariant() );
+    }
 }
 
 } // namespace Queries

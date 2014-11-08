@@ -19,6 +19,7 @@ Application::Application(int &argc, char *argv[]) :
     m_handler( nullptr ),
     m_viewer( nullptr ),
     m_notifier( nullptr ),
+    m_database( nullptr ),
     m_pluginsRegistered( false )
 {
     // keep app open in background
@@ -49,6 +50,9 @@ Application::Application(int &argc, char *argv[]) :
         setWindowIcon( QIcon( m_basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
 #endif
     }
+
+    // start database
+    m_database = new DataBase::Database( this );
 }
 
 Application::~Application()
@@ -74,6 +78,14 @@ QtQuick2ApplicationViewer *Application::viewer() const
 StatusNotifierIcon *Application::notifierIcon() const
 {
     return m_notifier;
+}
+
+/**
+   @brief The application wide todo database
+ */
+DataBase::Database *Application::database() const
+{
+    return m_database;
 }
 
 void Application::registerPlugins()

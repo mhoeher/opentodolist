@@ -43,6 +43,7 @@ public:
     virtual void beginRun();
     virtual bool query( QString &query, QVariantMap &args );
     virtual void recordAvailable( const QVariantMap &record );
+    virtual void newIdAvailable( const QVariant &id );
     virtual void endRun();
     virtual bool hasNext() const;
 
@@ -50,6 +51,33 @@ public:
     static ITodo* todoFromRecord( const QVariantMap &record );
 
 signals:
+
+    /**
+       @brief A backend has been inserted or updated
+
+       A query shall emit this signal to indicate that a backend has been updated in the
+       database. This signal is later on broadcasted in the application, allowing registered
+       clients to update their data on-the-fly.
+     */
+    void backendChanged( const QVariant &backend );
+
+    /**
+       @brief An account has been inserted or changed
+
+       A query shall emit this signal to indicate that an account has been inserted
+       or updated in the database. The signal will be broadcasted into the application,
+       allowing registered clients to update on-the-fly.
+     */
+    void accountChanged( const QVariant &account );
+
+    /**
+       @brief A todo list has been inserted or updated
+
+       A query shall emit this signal to indicate that a @p todoList has been added or updated in the
+       database. The signal is broadcasted into the application, allowing clients to update
+       on-the-fly.
+     */
+    void todoListChanged( const QVariant &todoList );
 
 public slots:
 

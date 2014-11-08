@@ -134,5 +134,53 @@ void Account::setMetaAttributes(const QVariantMap &metaAttributes)
     emit metaAttributesChanged();
 }
 
+/**
+   @brief Saves the Account object to a QVariant
+
+   This returns a QVariant representation of the Account object.
+
+   @sa fromVariant()
+ */
+QVariant Account::toVariant() const
+{
+    QVariantMap result;
+    result.insert( "backend", m_backend );
+    result.insert( "dirty", m_dirty );
+    result.insert( "disposed", m_disposed );
+    if ( m_hasId ) {
+        result.insert( "id", m_id );
+    }
+    result.insert( "lastModificationTime", m_lastModificationTime );
+    result.insert( "metaAttributes", m_metaAttributes );
+    result.insert( "name", m_name );
+    result.insert( "uuid", m_uuid );
+    return result;
+}
+
+/**
+   @brief Restores the Account from a QVariant representation
+   @sa toVariant()
+ */
+void Account::fromVariant(const QVariant &account)
+{
+    QVariantMap map = account.toMap();
+
+    // Special handling for id: Only update if identify changes
+    if ( m_uuid != map.value( "uuid", QUuid() ).toUuid() || !m_hasId ) {
+        m_hasId = map.contains( "id" );
+        if ( m_hasId ) {
+            setId( map.value( "id", m_id ).toInt() );
+        }
+    }
+
+    setBackend( map.value( "backend", m_backend ).toString() );
+    m_dirty = map.value( "dirty", m_dirty ).toBool();
+    m_disposed = map.value( "disposed", m_disposed ).toBool();
+    setLastModificationTime( map.value( "lastModificationTime", m_lastModificationTime ).toDateTime() );
+    setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
+    setName( map.value( "name", m_name ).toString() );
+    setUuid( map.value( "uuid", m_uuid ).toUuid() );
+}
+
 } /* namespace DataModel */
 } /* namespace OpenTodoList */

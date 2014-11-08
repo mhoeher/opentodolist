@@ -23,6 +23,8 @@ import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Views 1.0
 
+import net.rpdev.OpenTodoList.SystemIntegration 1.0
+
 Page {
     id: page
 
@@ -35,6 +37,49 @@ Page {
     TabView {
         id: tabView
         anchors.fill: parent
+
+        Tab {
+            id: backendsTab
+            name: qsTr( "Backends" )
+
+            ListView {
+                model: BackendModel {
+                    id: backendModel
+                    database: application.database
+                }
+
+                delegate: Text {
+                    text: {
+                        var result = "";
+                        for ( var member in display ) {
+                            result += member + " = " + display[member] + "\n";
+                        }
+                        return result;
+                    }
+                }
+            }
+        }
+
+        Tab {
+            id: accountsTab
+            name: qsTr( "Accounts" )
+            ListView {
+                model: AccountModel {
+                    id: accountModel
+                    database: application.database
+                }
+                delegate: Text {
+                    text: {
+                        var result = "";
+                        for ( var member in display ) {
+                            result += member + " = " + display[member] + "\n";
+                        }
+                        return result;
+                    }
+                }
+            }
+        }
+
         Tab {
             id: todoListTab
 

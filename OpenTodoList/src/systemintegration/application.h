@@ -7,6 +7,8 @@
 #include <QGuiApplication>
 #endif
 
+#include "database/database.h"
+
 #include "systemintegration/applicationinstance.h"
 #include "systemintegration/commandhandler.h"
 #include "systemintegration/statusnotifiericon.h"
@@ -29,6 +31,7 @@ class Application : public ApplicationBase
     Q_PROPERTY(OpenTodoList::SystemIntegration::CommandHandler* handler READ handler CONSTANT)
     Q_PROPERTY(QtQuick2ApplicationViewer* viewer READ viewer CONSTANT)
     Q_PROPERTY(OpenTodoList::SystemIntegration::StatusNotifierIcon* notifierIcon READ notifierIcon CONSTANT)
+    Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database CONSTANT)
 
 public:
     explicit Application(int &argc, char *argv[]);
@@ -38,6 +41,7 @@ public:
     CommandHandler* handler() const;
     QtQuick2ApplicationViewer* viewer() const;
     StatusNotifierIcon* notifierIcon() const;
+    DataBase::Database* database() const;
 
     void showWindow();
 
@@ -52,6 +56,8 @@ private:
     QtQuick2ApplicationViewer   *m_viewer;
     StatusNotifierIcon          *m_notifier;
     QString                      m_basePath;
+
+    DataBase::Database          *m_database;
 
     bool                         m_pluginsRegistered;
 

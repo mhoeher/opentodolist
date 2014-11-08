@@ -30,17 +30,13 @@ namespace OpenTodoList {
 namespace DataModel {
 
 TodoListLibrary::TodoListLibrary(QObject *parent) :
-    QObject(parent),
-    m_storage( new DataBase::Database( this ) )
+    QObject(parent)
 {
     qDebug() << "Creating todo list library";
 
     // register basic types for thread communication
     qRegisterMetaType< ITodoList* >( "ITodoList*" );
     qRegisterMetaType< ITodo* >( "ITodo*" );
-
-    restoreSettings();
-    connect( QCoreApplication::instance(), SIGNAL(aboutToQuit()), this, SLOT(saveSettings()) );
 }
 
 TodoListLibrary::~TodoListLibrary()
@@ -48,43 +44,9 @@ TodoListLibrary::~TodoListLibrary()
     qDebug() << "Deleting todo list library";
 }
 
-/**
-   @brief The application storage object
-   @return
- */
-DataBase::Database *TodoListLibrary::storage() const
-{
-    return m_storage;
-}
-
 QString TodoListLibrary::applicationVersion() const
 {
     return VERSION;
-}
-
-void TodoListLibrary::saveSettings()
-{
-    /*
-#ifdef Q_OS_ANDROID
-    QSettings settings( TodoListFactory::androidExtStorageLocation() +
-               "/config.ini", QSettings::IniFormat );
-#else
-    QSettings settings;
-#endif
-    settings.sync();
-    */
-}
-
-void TodoListLibrary::restoreSettings()
-{
-    /*
-#ifdef Q_OS_ANDROID
-    QSettings settings( TodoListFactory::androidExtStorageLocation() +
-               "/config.ini", QSettings::IniFormat );
-#else
-    QSettings settings;
-#endif
-    */
 }
 
 } /* DataModel */

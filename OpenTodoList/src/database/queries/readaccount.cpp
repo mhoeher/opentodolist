@@ -11,11 +11,10 @@ namespace Queries {
    of the created account objects. Otherwise, either use accounts() or connect to readAccount()
    to collect the created accounts.
  */
-ReadAccount::ReadAccount(bool parentizeAccounts) :
+ReadAccount::ReadAccount() :
     StorageQuery(),
     m_accounts(),
-    m_currentAccount( nullptr ),
-    m_parentizeAccounts( parentizeAccounts )
+    m_currentAccount( nullptr )
 {
 }
 
@@ -51,9 +50,9 @@ void ReadAccount::recordAvailable(const QVariantMap &record)
 {
     if ( !m_currentAccount || m_currentAccount->id() != record.value( "id" ).toInt() ) {
         m_accounts << m_currentAccount;
-        emit readAccount( m_currentAccount );
+        emit readAccount( m_currentAccount->toVariant() );
 
-        m_currentAccount = new DataModel::Account( m_parentizeAccounts ? this : nullptr );
+        m_currentAccount = new DataModel::Account( this );
         m_currentAccount->setId( record.value( "id" ).toInt() );
         m_currentAccount->setUuid( record.value( "uuid" ).toUuid() );
         m_currentAccount->setName( record.value( "name" ).toString() );
@@ -77,7 +76,7 @@ void ReadAccount::endRun()
 {
     if ( m_currentAccount ) {
         m_accounts << m_currentAccount;
-        emit readAccount( m_currentAccount );
+        emit readAccount( m_currentAccount->toVariant() );
     }
 }
 

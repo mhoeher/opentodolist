@@ -336,6 +336,6 @@ AnimatedListView {
 
     TodoListModel {
         id: todoListModel
-        library: todoListView.library
+        database: application.database
     }
 }

@@ -1,5 +1,8 @@
 #include "backend.h"
 
+#include "QVariant"
+#include "QVariantMap"
+
 namespace OpenTodoList {
 namespace DataModel {
 
@@ -72,18 +75,48 @@ void Backend::setDescription(const QString &description)
 }
 
 /**
-   @brief Clones the Backend
+   @brief Persists the Backend object to a QVariant
 
-   This returns a copy of the Backend object, which is owned by @p parent.
+   This returns a representation of the Backend object as a QVariant. Use Backend::fromVariant
+   to create a Backend object from such a representation.
  */
-Backend *Backend::clone(QObject *parent) const
+QVariant Backend::toVariant() const
 {
-    Backend *result = new Backend( parent );
-    result->m_description   = m_description;
-    result->m_hasId         = m_hasId;
-    result->m_id            = m_id;
-    result->m_name          = m_name;
-    result->m_title         = m_title;
+    QVariantMap result;
+    result.insert( "description", m_description );
+    if ( m_hasId ) {
+        result.insert( "id", m_id );
+    }
+    result.insert( "name", m_name );
+    result.insert( "title", m_title );
+    return result;
+}
+
+/**
+   @brief Restores a @p backend from persisted storage
+
+   Use this to restore a Backend object from a representation as QVariant produced by the
+   Backend::toVariant() method.
+ */
+void Backend::fromVariant(const QVariant &backend)
+{
+    QVariantMap map = backend.toMap();
+
+    // Special handling for id: Only update if identify changes
+    if ( m_name != map.value( "name", QString() ).toString() || !m_hasId ) {
+        m_hasId = map.contains( "id" );
+        if ( m_hasId ) {
+            setId( map.value( "id", m_id ).toInt() );
+        }
+    }
+
+    setDescription( map.value( "description", m_description ).toString() );
+    m_hasId = map.contains( "id" );
+    if ( m_hasId ) {
+        setId( map.value( "id", m_id ).toInt() );
+    }
+    setName( map.value( "name", m_name ).toString() );
+    setTitle( map.value( "title", m_title ).toString() );
 }
 
 } // namespace DataModel

@@ -131,7 +131,7 @@ void DatabaseWorker::init() {
                         " name TEXT,"
                         " dirty BOOLEAN,"
                         " disposed BOOLEAN,"
-                        " lastModificationDate DATETIME,"
+                        " lastModificationTime DATETIME,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
                         " FOREIGN KEY ( account ) REFERENCES account ( id )"
@@ -147,7 +147,7 @@ void DatabaseWorker::init() {
         runSimpleQuery( "CREATE TABLE todoListMetaAttribute ("
                         " todoList INTEGER NOT NULL,"
                         " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR,"
+                        " value VARCHAR NOT NULL,"
                         " PRIMARY KEY ( todoList, attributeName ),"
                         " FOREIGN KEY ( todoList ) REFERENCES todoList ( id ),"
                         " FOREIGN KEY ( attributeName ) REFERENCES todoListMetaAttributeName ( id )"
@@ -168,7 +168,7 @@ void DatabaseWorker::init() {
                         " dirty BOOLEAN,"
                         " disposed BOOLEAN,"
                         " todoList INTEGER NOT NULL,"
-                        " lastModificationDate DATETIME,"
+                        " lastModificationTime DATETIME,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
                         " FOREIGN KEY ( todoList ) REFERENCES todoList ( id )"
@@ -202,7 +202,7 @@ void DatabaseWorker::init() {
                         " dirty BOOLEAN,"
                         " disposed BOOLEAN,"
                         " todo INTEGER NOT NULL,"
-                        " lastModificationDate DATETIME,"
+                        " lastModificationTime DATETIME,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
                         " FOREIGN KEY ( todo ) REFERENCES todo ( id )"
@@ -247,6 +247,12 @@ void DatabaseWorker::runQuery(StorageQuery *query)
 {
     QMutexLocker l( &m_runLock );
     do {
+        connect( query, &StorageQuery::backendChanged,
+                 this, &DatabaseWorker::backendChanged, Qt::QueuedConnection );
+        connect( query, &StorageQuery::accountChanged,
+                 this, &DatabaseWorker::accountChanged, Qt::QueuedConnection );
+        connect( query, &StorageQuery::todoListChanged,
+                 this, &DatabaseWorker::todoListChanged, Qt::QueuedConnection );
         query->m_worker = this;
         query->beginRun();
         QString queryStr;
@@ -266,6 +272,9 @@ void DatabaseWorker::runQuery(StorageQuery *query)
                                            q.record().value( i ) );
                     }
                     query->recordAvailable( recordData );
+                }
+                if ( q.lastInsertId().isValid() ) {
+                    query->newIdAvailable( q.lastInsertId() );
                 }
             } else {
                 qWarning() << q.lastError().text();

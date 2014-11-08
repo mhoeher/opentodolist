@@ -12,14 +12,12 @@ class Account : public QObject, public IAccount
 {
     Q_OBJECT
     Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
-    Q_PROPERTY(int id READ id WRITE setId NOTIFY idChanged)
-    Q_PROPERTY(QUuid uuid READ uuid WRITE setUuid NOTIFY uuidChanged)
+    Q_PROPERTY(int id READ id NOTIFY idChanged)
+    Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(QString backend READ backend WRITE setBackend NOTIFY backendChanged)
-    Q_PROPERTY(bool dirty READ dirty NOTIFY dirtyChanged)
-    Q_PROPERTY(bool disposed READ disposed NOTIFY disposedChanged)
-    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime WRITE setLastModificationTime NOTIFY lastModificationTimeChanged)
-    Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes WRITE setMetaAttributes NOTIFY metaAttributesChanged)
+    Q_PROPERTY(QString backend READ backend NOTIFY backendChanged)
+    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime NOTIFY lastModificationTimeChanged)
+    Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
 public:
     explicit Account(QObject *parent = 0);
 
@@ -42,6 +40,9 @@ public:
     void setLastModificationTime(const QDateTime &dateTime) override;
     QVariantMap metaAttributes() const override;
     void setMetaAttributes(const QVariantMap &metaAttributes) override;
+
+    QVariant toVariant() const;
+    void fromVariant(const QVariant &account );
 
 
 signals:

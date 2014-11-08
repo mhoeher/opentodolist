@@ -378,7 +378,7 @@ public:
     /**
        @brief Adds or updates the @p account in the database
      */
-    virtual bool insertAccount( const IAccount *account ) = 0;
+    virtual bool insertAccount( IAccount *account ) = 0;
 
     /**
        @brief Adds or updates a todo list
@@ -387,7 +387,7 @@ public:
        a list with the same TodoListStruct::id is already in the database).
        @return True if the operation was successfull or false otherwise.
      */
-    virtual bool insertTodoList( const ITodoList *list ) = 0;
+    virtual bool insertTodoList( ITodoList *list ) = 0;
 
     /**
        @brief Adds or updates a todo
@@ -397,12 +397,12 @@ public:
        database).
        @return True if the operation was successfull or false otherwise.
      */
-    virtual bool insertTodo( const ITodo *todo ) = 0;
+    virtual bool insertTodo( ITodo *todo ) = 0;
 
     /**
        @brief Inserts or updates a @p task into the database
      */
-    virtual bool insertTask( const ITask *task ) = 0;
+    virtual bool insertTask( ITask *task ) = 0;
 
     /**
        @brief Deletes the @p account from the database.

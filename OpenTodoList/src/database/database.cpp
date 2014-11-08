@@ -38,7 +38,12 @@ Database::Database(QObject *parent) :
     connect( m_worker, &DatabaseWorker::initialized, this, &Database::startBackends, Qt::QueuedConnection );
     QMetaObject::invokeMethod( m_worker, "init", Qt::QueuedConnection );
 
-    qDebug() << "Initialiying backends...";
+    // setup event broadcasting
+    connect( m_worker, &DatabaseWorker::backendChanged, this, &Database::backendChanged );
+    connect( m_worker, &DatabaseWorker::accountChanged, this, &Database::accountChanged );
+    connect( m_worker, &DatabaseWorker::todoListChanged, this, &Database::todoListChanged );
+
+    qDebug() << "Initializing backends...";
     m_backends.reserve( m_backendPlugins->plugins().size() );
     m_backendsThread.start();
     for ( IBackend *interface : m_backendPlugins->plugins() ) {
@@ -104,6 +109,7 @@ void Database::runQuery(StorageQuery *query)
 void Database::scheduleQuery(StorageQuery *query)
 {
     qDebug() << "Scheduling query" << query << "for execution";
+    Q_ASSERT( query != nullptr );
     query->moveToThread( &m_workerThread );
     m_worker->schedule( query );
 }

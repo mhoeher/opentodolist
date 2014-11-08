@@ -1,11 +1,10 @@
 #ifndef TODOLISTMODEL_H
 #define TODOLISTMODEL_H
 
-#include "datamodel/todolistlibrary.h"
 #include "core/opentodolistinterfaces.h"
 #include "datamodel/todolist.h"
 
-#include "database/storagequery.h"
+#include "database/database.h"
 
 #include <QAbstractListModel>
 #include <QPointer>
@@ -23,92 +22,46 @@ namespace OpenTodoList {
 
 namespace Models {
 
+using namespace DataModel;
+using namespace DataBase;
+
 class TodoListModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY( OpenTodoList::DataModel::TodoListLibrary* library READ library WRITE setLibrary NOTIFY libraryChanged )
     Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
+    Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
 
 public:
 
-    /**
-       @brief Compares two TodoList objects
-     */
-    class Comparator {
-    public:
-        Comparator() {}
-        int operator () ( DataModel::TodoList* const &first,
-                          DataModel::TodoList* const &second ) const;
-    };
-
     explicit TodoListModel(QObject *parent = 0);
     virtual ~TodoListModel();
-
-    DataModel::TodoListLibrary *library() const;
-    void setLibrary( DataModel::TodoListLibrary* library );
 
     // QAbstractItemModel interface
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual void sort(int column, Qt::SortOrder order);
 
+    Database *database() const;
+    void setDatabase(Database *database);
+
 signals:
 
-    void libraryChanged();
-    void beginUpdate();
-    void endUpdate();
     void countChanged();
+    void databaseChanged();
 
 public slots:
 
-    void update();
+    void refresh();
     void sort();
 
 private:
 
-    QVector< DataModel::TodoList* >      m_todoLists;
-    QPointer<DataModel::TodoListLibrary> m_library;
-    QSet< QString >           m_newTodoLists;
-    QSet< QString >           m_loadedTodoLists;
-    bool                      m_updateNeeded;
-
-    //static QString todoListId(const QString &backend, const TodoListStruct &list );
+    Database                       *m_database;
+    QVector< DataModel::TodoList* > m_todoLists;
 
 private slots:
 
-    void handleTodoListDeleted( QObject *list );
-
-    void triggerUpdate();
-    //void addTodoList( const QString &backend, const TodoListStruct &list );
-    void removeExtraLists();
-
-};
-
-/**
-   @brief Query all todo lists
-
-   This query is used to get all todo lists from the database.
- */
-class TodoListQuery : public DataBase::StorageQuery
-{
-    Q_OBJECT
-
-public:
-
-    explicit TodoListQuery();
-    virtual ~TodoListQuery();
-
-    // TodoListStorageQuery interface
-    virtual void beginRun();
-    virtual bool query(QString &query, QVariantMap &args);
-    virtual void recordAvailable(const QVariantMap &record);
-    virtual void endRun();
-
-signals:
-
-    void clearList();
-    //void addTodoList( const QString &backend, const TodoListStruct &list );
-    void finished();
+    void addTodoList( const QVariant &todoList );
 
 };
 

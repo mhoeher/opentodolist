@@ -38,8 +38,13 @@ class TodoListLibrary;
 class TodoList : public QObject, public ITodoList
 {
     Q_OBJECT
-    Q_PROPERTY( QUuid uuid READ uuid CONSTANT )
-    Q_PROPERTY( QString name READ name WRITE setName NOTIFY nameChanged )
+    Q_PROPERTY(int id READ id NOTIFY idChanged)
+    Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
+    Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
+    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime NOTIFY lastModificationTimeChanged)
+    Q_PROPERTY(QUuid accountUuid READ accountUuid NOTIFY accountUuidChanged)
     
 public:
 
@@ -47,7 +52,6 @@ public:
     virtual ~TodoList();
 
     // ITodoList interface
-public:
     const QUuid &uuid() const override;
     void setUuid(const QUuid &uuid) override;
     const QString &name() const override;
@@ -59,19 +63,32 @@ public:
     QUuid accountUuid() const;
     void setAccountUuid(const QUuid &uuid);
 
+    int id() const;
+    void setId( int id );
+    bool hasId() const;
+
+    QVariant toVariant() const;
+    void fromVariant( const QVariant &todolist );
+
+signals:
+
+    void idChanged();
+    void uuidChanged();
+    void nameChanged();
+    void metaAttributesChanged();
+    void lastModificationTimeChanged();
+    void accountUuidChanged();
+
+    void changed();
+
 private:
+    int m_id;
+    bool m_hasId;
     QUuid m_uuid;
     QString m_name;
     QVariantMap m_metaAttributes;
     QDateTime m_lastModificationTime;
     QUuid m_accountUuid;
-
-signals:
-    
-    void nameChanged();
-    void deletedChanged();
-    void metaAttributesChanged();
-    void changed();
     
 public slots:
 

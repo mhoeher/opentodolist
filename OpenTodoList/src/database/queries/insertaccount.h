@@ -33,13 +33,15 @@ public:
 
     Q_DECLARE_FLAGS( InsertFlags, InsertFlag )
 
-    explicit InsertAccount( const DataModel::Account *account, InsertFlags flags = NoFlags,
+    explicit InsertAccount( DataModel::Account *account, InsertFlags flags = NoFlags,
                             ResourceOwnership ownership = QueryIsOwner );
     virtual ~InsertAccount();
 
     // StorageQuery interface
     bool query(QString &query, QVariantMap &args) override;
     bool hasNext() const override;
+    void newIdAvailable(const QVariant &id) override;
+    void endRun() override;
 
 signals:
 
@@ -55,10 +57,12 @@ private:
         DoneState
     };
 
-    const DataModel::Account *m_account;
+    DataModel::Account *m_account;
     State               m_state;
     InsertFlags         m_flags;
     ResourceOwnership   m_ownership;
+    bool                m_waitForId;
+
 
 };
 

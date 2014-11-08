@@ -15,7 +15,7 @@ class ReadAccount : public StorageQuery
 {
     Q_OBJECT
 public:
-    explicit ReadAccount( bool parentizeAccounts );
+    explicit ReadAccount();
 
     QList< DataModel::Account* > accounts() const;
 
@@ -26,7 +26,13 @@ public:
 
 signals:
 
-    void readAccount( DataModel::Account *account );
+    /**
+       @brief An account has been read from the database
+
+       This signal is emitted for every @p account read from the database. Use
+       Account::fromVariant() to convert the variant to an Account object.
+     */
+    void readAccount( const QVariant &account );
 
 public slots:
 
@@ -34,8 +40,6 @@ private:
 
     QList< DataModel::Account* >    m_accounts;
     DataModel::Account*             m_currentAccount;
-
-    bool                            m_parentizeAccounts;
 
 };
 

@@ -31,14 +31,16 @@ namespace DataModel {
  */
 TodoList::TodoList(QObject *parent) :
     QObject( parent ),
+    m_id( -1 ),
+    m_hasId( false ),
     m_uuid( QUuid() ),
     m_name( QString() ),
     m_metaAttributes(),
-    m_lastModificationTime()
+    m_lastModificationTime(),
+    m_accountUuid( QUuid() )
 
 {
-    connect( this, SIGNAL(nameChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
+    connect( this, &TodoList::nameChanged, this, &TodoList::changed );
 }
 
 /**
@@ -55,9 +57,9 @@ const QUuid &TodoList::uuid() const
 
 void TodoList::setUuid(const QUuid &uuid)
 {
-    // TODO: How to handle this properly?
     if ( m_uuid != uuid ) {
         m_uuid = uuid;
+        emit uuidChanged();
     }
 }
 
@@ -94,6 +96,7 @@ void TodoList::setLastModificationTime(const QDateTime &dateTime)
 {
     if ( m_lastModificationTime != dateTime ) {
         m_lastModificationTime = dateTime;
+        emit lastModificationTimeChanged();
     }
 }
 
@@ -106,7 +109,75 @@ void TodoList::setAccountUuid(const QUuid &uuid)
 {
     if ( m_accountUuid != uuid ) {
         m_accountUuid = uuid;
+        emit accountUuidChanged();
     }
+}
+
+/**
+   @brief The ID of the todo list in the database
+   @sa hasId()
+ */
+int TodoList::id() const
+{
+    return m_id;
+}
+
+void TodoList::setId(int id)
+{
+    m_hasId = true;
+    if ( m_id != id ) {
+        m_id = id;
+        emit idChanged();
+    }
+}
+
+bool TodoList::hasId() const
+{
+    return m_hasId;
+}
+
+/**
+   @brief Saves the todo list into a QVariant
+
+   Use this to convert the todo list into a QVariant representation.
+
+   @sa fromVariant()
+ */
+QVariant TodoList::toVariant() const
+{
+    QVariantMap result;
+    result.insert( "accountUuid", m_accountUuid );
+    if ( m_hasId ) {
+        result.insert( "id", m_id );
+    }
+    result.insert( "lastModificationTime", m_lastModificationTime );
+    result.insert( "metaAttributes", m_metaAttributes );
+    result.insert( "name", m_name );
+    result.insert( "uuid", m_uuid );
+    return result;
+}
+
+/**
+   @brief Restore a todo list from a QVariant representation
+   @sa toVariant()
+ */
+void TodoList::fromVariant(const QVariant &todolist)
+{
+    QVariantMap map = todolist.toMap();
+
+    // Special handling for id: Only update if identify changes
+    if ( m_uuid != map.value( "uuid", QUuid() ).toUuid() || !m_hasId ) {
+        m_hasId = map.contains( "id" );
+        if ( m_hasId ) {
+            setId( map.value( "id", m_id ).toInt() );
+        }
+    }
+
+    setAccountUuid( map.value( "accountUuid", m_accountUuid ).toUuid() );
+    setLastModificationTime( map.value( "lastModificationTime", m_lastModificationTime ).toDateTime() );
+    setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
+    setName( map.value( "name", m_name ).toString() );
+    setUuid( map.value( "uuid", m_uuid ).toUuid() );
 }
 
 } /* DataModel */

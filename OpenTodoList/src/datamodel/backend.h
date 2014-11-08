@@ -16,7 +16,7 @@ class Backend : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
-    Q_PROPERTY(int id READ id WRITE setId NOTIFY idChanged)
+    Q_PROPERTY(int id READ id NOTIFY idChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
@@ -33,7 +33,8 @@ public:
     QString description() const;
     void setDescription( const QString &description );
 
-    Backend* clone( QObject* parent = 0 ) const;
+    QVariant toVariant() const;
+    void fromVariant( const QVariant &backend );
 
 signals:
 

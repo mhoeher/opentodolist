@@ -239,6 +239,7 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
 {
     OpenTodoList::ITodoList *result = m_database->createTodoList();
     if ( result ) {
+        result->setAccountUuid( m_account->uuid() );
         QFile file( fileName );
         if ( file.open( QIODevice::ReadOnly ) ) {
             QDomDocument doc;

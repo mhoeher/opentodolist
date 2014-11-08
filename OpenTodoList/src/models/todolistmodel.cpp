@@ -1,6 +1,6 @@
 #include "models/todolistmodel.h"
 
-#include "listutils.h"
+#include "database/queries/readtodolist.h"
 
 #include <QDebug>
 #include <QTimer>
@@ -12,12 +12,9 @@ namespace Models {
 TodoListModel::TodoListModel(QObject *parent) :
     QAbstractListModel(parent),
     m_todoLists(),
-    m_library( 0 ),
-    m_newTodoLists(),
-    m_loadedTodoLists(),
-    m_updateNeeded( false )
+    m_database( nullptr )
 {
-    connect( this, SIGNAL(libraryChanged()), this, SLOT(update()) );
+    connect( this, SIGNAL(libraryChanged()), this, SLOT(refresh()) );
     connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
              this, SIGNAL(countChanged()) );
     connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),
@@ -27,31 +24,6 @@ TodoListModel::TodoListModel(QObject *parent) :
 
 TodoListModel::~TodoListModel()
 {
-}
-
-DataModel::TodoListLibrary *TodoListModel::library() const
-{
-    return m_library.data();
-}
-
-void TodoListModel::setLibrary(DataModel::TodoListLibrary *library)
-{
-    if ( m_library != library ) {
-        if ( m_library ) {
-            /*disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
-                        this, SLOT(update()) );
-            disconnect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                        this, SLOT(update()) );*/
-        }
-        m_library = library;
-        if ( m_library ) {
-            /*connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
-                     this, SLOT(update()) );
-            connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                     this, SLOT(update()) );*/
-        }
-        emit libraryChanged();
-    }
 }
 
 int TodoListModel::rowCount(const QModelIndex &parent) const
@@ -76,6 +48,7 @@ QVariant TodoListModel::data(const QModelIndex &index, int role) const
 
 void TodoListModel::sort(int column, Qt::SortOrder order)
 {
+    /*
     Q_UNUSED( column );
     Q_UNUSED( order );
     Comparator c;
@@ -101,13 +74,17 @@ void TodoListModel::sort(int column, Qt::SortOrder order)
 
             }
         }
-    }
+    }*/
 }
 
-void TodoListModel::update()
+void TodoListModel::refresh()
 {
-    m_updateNeeded = true;
-    QTimer::singleShot( 0, this, SLOT(triggerUpdate()) );
+    if ( m_database ) {
+        Queries::ReadTodoList *q = new Queries::ReadTodoList();
+        connect( q, &Queries::ReadTodoList::readTodoList,
+                 this, &TodoListModel::addTodoList, Qt::QueuedConnection );
+        m_database->scheduleQuery( q );
+    }
 }
 
 void TodoListModel::sort()
@@ -115,139 +92,45 @@ void TodoListModel::sort()
     sort(0, Qt::AscendingOrder);
 }
 
-void TodoListModel::triggerUpdate()
+void TodoListModel::addTodoList(const QVariant &todoList)
 {
-    if ( !m_updateNeeded ) {
-        return;
-    }
+    TodoList *tl = new TodoList( this );
+    tl->fromVariant( todoList );
 
-    if ( m_library ) {
-        /*
-        emit beginUpdate();
-        TodoListQuery *query = new TodoListQuery();
-        connect( query, SIGNAL(addTodoList(QString,TodoListStruct)),
-                 this, SLOT(addTodoList(QString,TodoListStruct)), Qt::QueuedConnection );
-        connect( query, SIGNAL(finished()),
-                 this, SLOT(removeExtraLists()), Qt::QueuedConnection );
-        connect( query, SIGNAL(finished()),
-                 this, SIGNAL(endUpdate()), Qt::QueuedConnection );
-        m_library->storage()->runQuery( query );
-        */
-    }
-
-    m_updateNeeded = false;
-}
-
-//void TodoListModel::addTodoList(const QString &backend, const TodoListStruct &list)
-//{
-    // TODO: Implement me!
-    /*
-    QString id = todoListId( backend, list );
-    m_newTodoLists.insert( id );
-    if ( !m_loadedTodoLists.contains( id ) ) {
-        auto *todoList = new DataModel::TodoList( backend, list, m_library.data(), this );
-        if ( todoList ) {
-            int index = OpenTodoList::ListUtils::findInsertIndex( m_todoLists, todoList, DataModel::TodoList::Comparator() );
-            emit beginInsertRows( QModelIndex(), index, index );
-            m_todoLists.insert( index, todoList );
-            m_loadedTodoLists.insert( id );
-            emit endInsertRows();
-            connect( todoList, SIGNAL(destroyed(QObject*)), this, SLOT(handleTodoListDeleted(QObject*)) );
-            connect( todoList, SIGNAL(changed()), this, SLOT(sort()) );
+    // check if we already know this one and update
+    for ( TodoList *existingTodoList : m_todoLists ) {
+        if ( existingTodoList->uuid() == tl->uuid() ) {
+            existingTodoList->fromVariant( todoList );
+            delete tl;
+            return;
         }
     }
-    */
-//}
 
-void TodoListModel::removeExtraLists()
+    beginInsertRows( QModelIndex(), m_todoLists.size(), m_todoLists.size() );
+    m_todoLists << tl;
+    endInsertRows();
+    emit countChanged();
+}
+
+Database *TodoListModel::database() const
 {
-    for ( int i = rowCount() - 1; i >= 0; --i ) {
-        auto list = m_todoLists.at( i );
-        QString id = list->uuid().toString();
-        if ( !m_newTodoLists.contains( id ) ) {
-            beginRemoveRows( QModelIndex(), i, i );
-            m_todoLists.removeAt( i );
-            endRemoveRows();
-            m_loadedTodoLists.remove( id );
-            list->deleteLater();
+    return m_database;
+}
+
+void TodoListModel::setDatabase(Database *database)
+{
+    if ( m_database != database ) {
+        if ( m_database ) {
+            disconnect( m_database, &Database::todoListChanged,
+                        this, &TodoListModel::addTodoList );
+        }
+        m_database = database;
+        if ( m_database ) {
+            connect( m_database, &Database::todoListChanged,
+                     this, &TodoListModel::addTodoList );
         }
     }
-    m_newTodoLists.clear();
 }
-
-void TodoListModel::handleTodoListDeleted(QObject *list)
-{
-    int index = m_todoLists.indexOf( static_cast< DataModel::TodoList* >( list ) );
-    if ( index >= 0 && index < m_todoLists.size() ) {
-        beginRemoveRows( QModelIndex(), index, index );
-        m_todoLists.removeAt( index );
-        endRemoveRows();
-    }
-}
-
-TodoListQuery::TodoListQuery() :
-    StorageQuery()
-{
-}
-
-TodoListQuery::~TodoListQuery()
-{
-
-}
-
-void TodoListQuery::beginRun()
-{
-    emit clearList();
-}
-
-bool TodoListQuery::query(QString &query, QVariantMap &args)
-{
-    Q_UNUSED( args );
-    query = "SELECT * FROM todoList ORDER BY name;";
-    return true;
-}
-
-void TodoListQuery::recordAvailable(const QVariantMap &record)
-{
-}
-
-void TodoListQuery::endRun()
-{
-    emit finished();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
-   @brief Compares two TodoList objects
-
-   Returns a value less than, equal to or greater than 0 depending whether the
-   names of the todo lists are less than, equal to or greater than.
- */
-int TodoListModel::Comparator::operator ()(DataModel::TodoList * const &first,
-                                           DataModel::TodoList * const &second) const {
-    if ( first && second ) {
-        return first->name().localeAwareCompare( second->name() );
-    }
-    return 0;
-}
-
-
 
 
 } /* Models */

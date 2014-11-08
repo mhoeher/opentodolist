@@ -68,6 +68,19 @@ void StorageQuery::recordAvailable(const QVariantMap &record)
 }
 
 /**
+   @brief A new insert ID is available
+
+   This method is called after queries that insert rows in a database. If supported, the
+   @p id of the last record inserted is passed to this method.
+
+   @note This method is only called, of a new ID has been generated.
+ */
+void StorageQuery::newIdAvailable(const QVariant &id)
+{
+    Q_UNUSED( id );
+}
+
+/**
    @brief Running the query has finished
 
    This method is called when running the query is done.
