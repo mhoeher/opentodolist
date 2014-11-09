@@ -89,7 +89,7 @@ Rectangle {
                 var component = Qt.createComponent( "TodoPage.qml" );
                 if ( component.status === Component.Ready ) {
                     var page = component.createObject( pageStack );
-                    page.todo.shadow( todo );
+                    page.todo.assign( todo );
                 } else {
                     console.error( component.errorString() );
                 }

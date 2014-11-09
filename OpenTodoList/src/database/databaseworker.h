@@ -52,6 +52,7 @@ signals:
     void backendChanged( const QVariant &backend );
     void accountChanged( const QVariant &account );
     void todoListChanged( const QVariant &todoList );
+    void todoChanged( const QVariant &todo );
 
     // Private area:
 private:

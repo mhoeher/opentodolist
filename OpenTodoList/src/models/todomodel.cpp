@@ -1,7 +1,8 @@
 #include "models/todomodel.h"
 
 #include "listutils.h"
-#include "datamodel/todolistlibrary.h"
+#include "datamodel/todo.h"
+#include "database/queries/readtodo.h"
 
 #include <QTimer>
 
@@ -11,9 +12,8 @@ namespace Models {
 
 TodoModel::TodoModel(QObject *parent) :
     QAbstractListModel(parent),
-    m_queryType( InvalidQuery ),
+    m_database( nullptr ),
     m_todos(),
-    m_library( 0 ),
     m_loadedTodos(),
     m_newLoadedTodos(),
     m_updateTimer( new QTimer( this ) ),
@@ -31,24 +31,15 @@ TodoModel::TodoModel(QObject *parent) :
     m_limitCount( -1 )
 {
     m_updateTimer->setInterval( 1000 );
-    connect( m_updateTimer, SIGNAL(timeout()), this, SLOT(triggerUpdate()) );
 
-    connect( this, SIGNAL(todoListChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(parentTodoChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(libraryChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(queryTypeChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(filterChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(showDoneChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(showDeletedChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(hideUndeletedChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(maxDueDateChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(minDueDateChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(sortModeChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(backendSortModeChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(limitOffsetChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(limitCountChanged()), this, SIGNAL(changed()) );
-
-    connect( this, SIGNAL(changed()), this, SLOT(update()) );
+    connect( this, &TodoModel::todoListChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::queryTypeChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::filterChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::showDoneChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::showDeletedChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::hideUndeletedChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::maxDueDateChanged, this, &TodoModel::refilter );
+    connect( this, &TodoModel::minDueDateChanged, this, &TodoModel::refilter );
 
     connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
              this, SIGNAL(countChanged()) );
@@ -58,39 +49,6 @@ TodoModel::TodoModel(QObject *parent) :
 
 TodoModel::~TodoModel()
 {
-}
-
-DataModel::TodoListLibrary *TodoModel::library() const
-{
-    return m_library.data();
-}
-
-void TodoModel::setLibrary(DataModel::TodoListLibrary *library)
-{
-    if ( m_library != library ) {
-        if ( m_library ) {
-            /*disconnect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
-                        this, SLOT(update()) );
-            disconnect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                        this, SLOT(update()) );
-            disconnect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
-                        this, SLOT(update()) );
-            disconnect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
-                        this, SLOT(update()) );*/
-        }
-        m_library = library;
-        if ( m_library ) {
-            /*connect( m_library->storage(), SIGNAL(todoListInserted(QString,TodoListStruct)),
-                        this, SLOT(update()) );
-            connect( m_library->storage(), SIGNAL(todoListRemoved(QString,TodoListStruct)),
-                        this, SLOT(update()) );
-            connect( m_library->storage(), SIGNAL(todoInserted(QString,TodoStruct)),
-                        this, SLOT(update()) );
-            connect( m_library->storage(), SIGNAL(todoRemoved(QString,TodoStruct)),
-                        this, SLOT(update()) );*/
-        }
-        emit libraryChanged();
-    }
 }
 
 int TodoModel::rowCount(const QModelIndex &parent) const
@@ -141,42 +99,110 @@ void TodoModel::sort(int column, Qt::SortOrder order)
     }
 }
 
-/**
-   @brief The type of content this model displays
- */
-TodoModel::QueryType TodoModel::queryType() const
-{
-    return m_queryType;
-}
-
-/**
-   @brief Sets what is shown by the model
- */
-void TodoModel::setQueryType(const QueryType &queryType)
-{
-    if ( m_queryType != queryType ) {
-        m_queryType = queryType;
-        emit queryTypeChanged();
-    }
-}
-
-
-/**
-   @brief Updates the model
-
-   This refreshes the model after updating the query properties of the model. Usually, it should
-   not be necessary to call this manually.
- */
-void TodoModel::update()
-{
-    m_updateTimer->stop();
-    m_updateTimer->start();
-}
-
 void TodoModel::sort()
 {
     sort(0, Qt::AscendingOrder);
 }
+
+void TodoModel::refresh()
+{
+    if ( m_database ) {
+        Queries::ReadTodo *query = new Queries::ReadTodo();
+        if ( !m_todoList.isNull() ) {
+            query->setTodoListUuid( m_todoList->uuid() );
+        }
+        //query->setMinDueDate( m_minDueDate );
+        //query->setMaxDueDate( m_maxDueDate );
+        //query->setShowDone( m_showDone );
+        //query->setShowDeleted( m_showDeleted );
+        //query->setHideUndeleted( m_hideUndeleted );
+        connect( query, &Queries::ReadTodo::readTodo, this, &TodoModel::addTodo, Qt::QueuedConnection );
+        m_database->scheduleQuery( query );
+    }
+}
+
+Database *TodoModel::database() const
+{
+    return m_database;
+}
+
+void TodoModel::setDatabase(Database *database)
+{
+    if ( m_database != database ) {
+        if ( m_database ) {
+            disconnect( m_database, &Database::todoChanged,
+                        this, &TodoModel::addTodo );
+        }
+        m_database = database;
+        if ( m_database ) {
+            disconnect( m_database, &Database::todoChanged,
+                        this, &TodoModel::addTodo );
+        }
+    }
+}
+
+
+bool TodoModel::todoIsVisible(const Todo *todo) const
+{
+    if ( !m_showDeleted && todo->isDeleted() ) {
+        return false;
+    }
+    if ( !m_todoList.isNull() && m_todoList->uuid() != todo->todoListUuid() ) {
+        return false;
+    }
+    if ( m_hideUndeleted && !todo->isDeleted() ) {
+        return false;
+    }
+    if ( m_maxDueDate.isValid() && m_maxDueDate < todo->dueDate() ) {
+        return false;
+    }
+    if ( m_minDueDate.isValid() && m_minDueDate > todo->dueDate() ) {
+        return false;
+    }
+    if ( !m_showDone && todo->done() ) {
+        return false;
+    }
+    return true;
+}
+
+void TodoModel::addTodo(const QVariant &todo)
+{
+    Todo *t = new Todo( this );
+    t->fromVariant( todo );
+
+    // check if we already have this one:
+    for ( Todo *existingTodo : m_todos ) {
+        if ( existingTodo->uuid() == t->uuid() ) {
+            existingTodo->fromVariant( todo );
+            delete t;
+            return;
+        }
+    }
+
+    // Append:
+    if ( todoIsVisible( t ) ) {
+        beginInsertRows( QModelIndex(), m_todos.size(), m_todos.size() );
+        m_todos.append( t );
+        endInsertRows();
+    } else {
+        delete t;
+    }
+}
+
+void TodoModel::refilter()
+{
+    for ( int i = m_todos.size() - 1; i >= 0; --i ) {
+        Todo* t = m_todos.at( i );
+        if ( !todoIsVisible( t ) ) {
+            beginRemoveRows( QModelIndex(), i, i );
+            m_todos.removeAt( i );
+            endRemoveRows();
+            t->deleteLater();
+        }
+    }
+    refresh();
+}
+
 int TodoModel::limitCount() const
 {
     return m_limitCount;
@@ -316,20 +342,6 @@ void TodoModel::setFilter(const QString &filter)
     }
 }
 
-
-DataModel::Todo *TodoModel::parentTodo() const
-{
-    return m_parentTodo.data();
-}
-
-void TodoModel::setParentTodo(DataModel::Todo *parentTodo)
-{
-    if ( m_parentTodo != parentTodo ) {
-        m_parentTodo = parentTodo;
-        emit parentTodoChanged();
-    }
-}
-
 DataModel::TodoList *TodoModel::todoList() const
 {
     return m_todoList.data();
@@ -340,124 +352,6 @@ void TodoModel::setTodoList(DataModel::TodoList *todoList)
     if ( m_todoList != todoList ) {
         m_todoList = todoList;
         emit todoListChanged();
-    }
-}
-
-
-QString TodoModel::idForTodo(const QString &backend, const QString &todoId)
-{
-    return backend + "." + todoId;
-}
-
-void TodoModel::triggerUpdate()
-{
-    m_updateTimer->stop();
-
-    if ( m_queryType != InvalidQuery ) {
-        TodoStorageQuery *query = new TodoStorageQuery();
-        query->setQueryType( m_queryType );
-        query->setFilter( m_filter );
-        query->setShowDone( m_showDone );
-        query->setShowDeleted( m_showDeleted );
-        query->setHideUndeleted( m_hideUndeleted );
-        query->setMaxDueDate( m_maxDueDate );
-        query->setMinDueDate( m_minDueDate );
-        query->setBackendSortMode( m_backendSortMode );
-        query->setLimitOffset( m_limitOffset );
-        query->setLimitCount( m_limitCount );
-        bool queryIsValid = true;
-
-        switch ( m_queryType ) {
-        case QueryTopLevelTodosInTodoList:
-            if ( m_todoList ) {
-                // TODO: Implement me
-                //setLibrary( m_todoList->library() );
-                //query->setBackend( m_todoList->backend() );
-                //query->setTodoListId( m_todoList->id() );
-            }
-            break;
-
-        case QuerySubTodosOfTodo:
-            if ( m_parentTodo ) {
-                // TODO: Implement me
-                //setLibrary( m_parentTodo->library() );
-                query->setTodoListId( m_parentTodo->todoListUuid().toString() );
-                //query->setParentTodoId( m_parentTodo->id() );
-            }
-            break;
-
-        case QuerySearchTodos:
-        case QueryFilterTodos:
-            // nothing left todo 8) Just break to avoid setting queryIsValid to false
-            break;
-
-        default:
-            queryIsValid = false;
-            break;
-        }
-
-        if ( queryIsValid && m_library ) {
-            /*connect( query, SIGNAL(todoAvailable(QString,TodoStruct)),
-                     this, SLOT(addTodo(QString,TodoStruct)), Qt::QueuedConnection );
-            connect( query, SIGNAL(finished()),
-                     this, SLOT(removeExtraneousTodos()), Qt::QueuedConnection );*/
-            //m_library->storage()->scheduleQuery( query );
-        } else {
-            delete query;
-        }
-    }
-}
-
-void TodoModel::addTodo(const QString &backend, const ITodo *todo)
-{
-    // TODO: Implement me!
-    /*
-    QString id = idForTodo( backend, todo.id.toString() );
-    m_newLoadedTodos.insert( id );
-    if ( !m_loadedTodos.contains( id ) ) {
-        auto newTodo = new DataModel::Todo( backend, todo, m_library, this );
-        if ( newTodo ) {
-            int index = OpenTodoList::ListUtils::findInsertIndex(
-                        m_todos, newTodo, DataModel::Todo::Comparator( m_sortMode ) );
-            beginInsertRows( QModelIndex(), index, index );
-            m_todos.insert( index, newTodo );
-            endInsertRows();
-            m_loadedTodos.insert( id );
-            connect( newTodo, SIGNAL(destroyed(QObject*)), this, SLOT(handleTodoDeleted(QObject*)) );
-            connect( newTodo, SIGNAL(changed()), this, SLOT(sort()) );
-        }
-    }
-    */
-}
-
-void TodoModel::removeExtraneousTodos()
-{
-    // TODO: Implement me!
-    /*
-    for ( int i = rowCount() - 1; i >= 0; --i ) {
-        auto todo = m_todos.at( i );
-        if ( todo ) {
-            QString id = idForTodo( todo->backend(), todo->id() );
-            if ( !m_newLoadedTodos.contains( id ) ) {
-                beginRemoveRows( QModelIndex(), i, i );
-                m_todos.remove( i );
-                endRemoveRows();
-                m_loadedTodos.remove( id );
-                todo->deleteLater();
-            }
-        }
-    }
-    m_newLoadedTodos.clear();
-    */
-}
-
-void TodoModel::handleTodoDeleted(QObject *todo)
-{
-    int index = m_todos.indexOf( static_cast< DataModel::Todo* >( todo ) );
-    if ( index >= 0 && index < m_todos.size() ) {
-        beginRemoveRows( QModelIndex(), index, index );
-        m_todos.removeAt( index );
-        endRemoveRows();
     }
 }
 
@@ -517,6 +411,9 @@ int TodoModel::Comparator::operator ()(DataModel::Todo * const &first, DataModel
                 return first->dueDate() < second->dueDate() ? -1 : 1;
             }
             break;
+
+        case SortTodoByWeight:
+            return ( first->weight() < second->weight() );
         }
 
         // compare everything else by title
@@ -530,9 +427,10 @@ int TodoModel::Comparator::operator ()(DataModel::Todo * const &first, DataModel
 
 
 
+// TODO: Remove this (kept for quick reference of prev. implementation)
+/*
 TodoStorageQuery::TodoStorageQuery() :
     StorageQuery(),
-    m_queryType( TodoModel::InvalidQuery ),
     m_backend( QString() ),
     m_todoListId( QString() ),
     m_parentTodoId( QString() ),
@@ -577,16 +475,6 @@ QString TodoStorageQuery::parentTodoId() const
 void TodoStorageQuery::setParentTodoId(const QString &parentTodoId)
 {
     m_parentTodoId = parentTodoId;
-}
-
-TodoModel::QueryType TodoStorageQuery::queryType() const
-{
-    return m_queryType;
-}
-
-void TodoStorageQuery::setQueryType(const TodoModel::QueryType &queryType)
-{
-    m_queryType = queryType;
 }
 
 void TodoStorageQuery::beginRun()
@@ -635,6 +523,7 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
     case TodoModel::SortTodoByName: orderPart = "title"; break;
     }
 
+
     switch ( m_queryType ) {
     case TodoModel::QueryTopLevelTodosInTodoList:
         query = QString( "SELECT * FROM todo WHERE parentTodo IS NULL AND todoList=:todoList AND backend=:backend %1 ORDER BY %3 ASC %2;" )
@@ -642,16 +531,6 @@ bool TodoStorageQuery::query(QString &query, QVariantMap &args)
                 .arg( limitPart )
                 .arg( orderPart );
         args.insert( "todoList", m_todoListId );
-        args.insert( "backend", m_backend );
-        return true;
-
-    case TodoModel::QuerySubTodosOfTodo:
-        query = QString( "SELECT * FROM todo WHERE todoList=:todoList AND parentTodo=:parentTodo AND backend=:backend %1 ORDER BY %3 ASC %2;" )
-                .arg( filterPart.isEmpty() ? "" : " AND " + filterPart.join( " AND " ) )
-                .arg( limitPart )
-                .arg( orderPart );
-        args.insert( "todoList", m_todoListId );
-        args.insert( "parentTodo", m_parentTodoId );
         args.insert( "backend", m_backend );
         return true;
 
@@ -677,11 +556,6 @@ void TodoStorageQuery::recordAvailable(const QVariantMap &record)
 {
     //TodoStruct todo = todoFromRecord( record );
     //emit todoAvailable( record.value( "backend" ).toString(), todo );
-}
-
-void TodoStorageQuery::endRun()
-{
-    emit finished();
 }
 
 TodoModel::TodoSortMode TodoStorageQuery::backendSortMode() const
@@ -773,6 +647,8 @@ void TodoStorageQuery::setFilter(const QString &filter)
 {
     m_filter = filter;
 }
+
+*/
 
 } /* Models */
 

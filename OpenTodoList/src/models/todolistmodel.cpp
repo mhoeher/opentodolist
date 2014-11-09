@@ -14,7 +14,6 @@ TodoListModel::TodoListModel(QObject *parent) :
     m_todoLists(),
     m_database( nullptr )
 {
-    connect( this, SIGNAL(libraryChanged()), this, SLOT(refresh()) );
     connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
              this, SIGNAL(countChanged()) );
     connect( this, SIGNAL(rowsRemoved(QModelIndex,int,int)),

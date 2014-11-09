@@ -44,7 +44,7 @@ bool InsertAccount::query(QString &query, QVariantMap &args)
     {
         m_waitForId = true;
         query = "WITH "
-                "  accInfo ( id ) as ( VALUES ( %1 ) ), "
+                "  accInfo ( id ) AS ( VALUES ( %1 ) ), "
                 "  backendInfo ( id ) as ( VALUES ( ( SELECT id FROM backend WHERE name = :backend ) ) ) "
                 "INSERT OR REPLACE INTO account ( %2 ) "
                 "VALUES ( %3 );";

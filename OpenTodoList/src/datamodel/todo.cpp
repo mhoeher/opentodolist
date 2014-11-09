@@ -34,6 +34,8 @@ namespace DataModel {
  */
 Todo::Todo(QObject *parent) :
     QObject( parent ),
+    m_id( -1 ),
+    m_hasId( false ),
     m_uuid( QUuid() ),
     m_weight(0.0),
     m_done( false ),
@@ -116,9 +118,9 @@ const QUuid &Todo::todoListUuid() const
 
 void Todo::setTodoListUuid(const QUuid &uuid)
 {
-    // TODO: How to handle this properly?
     if ( m_todoListUuid != uuid ) {
         m_todoListUuid = uuid;
+        emit todoListUuidChanged();
     }
 }
 
@@ -182,6 +184,7 @@ QVariantMap Todo::metaAttributes() const
 void Todo::setMetaAttributes(const QVariantMap &metaAttributes)
 {
     m_metaAttributes = metaAttributes;
+    emit metaAttributesChanged();
 }
 
 QDateTime Todo::lastModificationTime() const
@@ -198,6 +201,63 @@ void Todo::setLastModificationTime(const QDateTime &dateTime)
 }
 
 /**
+   @brief Creates a representation of the todo as QVariant
+
+   This converts the Todo to a QVariant. Use Todo::fromVariant() to reverse the operation.
+ */
+QVariant Todo::toVariant() const
+{
+    QVariantMap result;
+    result.insert( "deleted", m_deleted );
+    result.insert( "description", m_description );
+    result.insert( "done", m_done );
+    result.insert( "dueDate", m_dueDate );
+    if ( m_hasId ) {
+        result.insert( "id", m_id );
+    }
+    result.insert( "lastModificationTime", m_lastModificationTime );
+    result.insert( "metaAttributes", m_metaAttributes );
+    result.insert( "priority", m_priority );
+    result.insert( "title", m_title );
+    result.insert( "todoListUuid", m_todoListUuid );
+    result.insert( "uuid", m_uuid );
+    result.insert( "weight", m_weight );
+    return result;
+}
+
+/**
+   @brief Restore a Todo from a QVariant
+
+   Restores the @p todo from a QVariant representation.
+
+   @sa toVariant()
+ */
+void Todo::fromVariant(const QVariant &todo)
+{
+    QVariantMap map = todo.toMap();
+
+    // special handling for ID: Only override on identify change
+    if ( map.value( "uuid" ).toUuid() != m_uuid || !m_hasId ) {
+        if ( map.contains( "id" ) ) {
+            setId( map.value( "id" ).toInt() );
+        }
+    }
+
+    // restore properties
+    setDeleted( map.value( "deleted", m_deleted ).toBool() );
+    setDescription( map.value( "description", m_description ).toString() );
+    setDone( map.value( "done", m_done ).toBool() );
+    setDueDate( map.value( "dueDate", m_dueDate ).toDateTime() );
+    setLastModificationTime( map.value( "lastModificationTime", m_lastModificationTime ).toDateTime() );
+    setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
+    setPriority( map.value( "priority", m_priority ).toInt() );
+    setTitle( map.value( "title", m_title ).toString() );
+    setTodoListUuid( map.value( "todoListUuid", m_todoListUuid ).toUuid() );
+    setUuid( map.value( "uuid", m_uuid ).toUuid() );
+    setWeight( map.value( "weight", m_weight ).toDouble() );
+}
+
+/**
    @brief Toggles the state of the todo between "done" and "not done"
 
    @sa setProgress
@@ -207,24 +267,49 @@ void Todo::toggle()
     setDone( !done() );
 }
 
+/**
+   @brief Mimic the identity of another @p todo
+
+   Use this to let a todo mimic the identity of another todo.
+ */
+void Todo::assign(Todo *todo)
+{
+    if ( todo ) {
+        fromVariant( todo->toVariant() );
+    }
+}
+
 void Todo::setupTodo()
 {
-    connect( this, SIGNAL(weightChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(doneChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(priorityChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(dueDateChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(titleChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(descriptionChanged()), this, SIGNAL(changed()) );
-    connect( this, SIGNAL(deletedChanged()), this, SIGNAL(changed()) );
-
-    connect( this, SIGNAL(reset()), this, SIGNAL(weightChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(doneChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(priorityChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(dueDateChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(titleChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(descriptionChanged()) );
-    connect( this, SIGNAL(reset()), this, SIGNAL(deletedChanged()) );
+    connect( this, &Todo::weightChanged, this, &Todo::changed );
+    connect( this, &Todo::doneChanged, this, &Todo::changed );
+    connect( this, &Todo::priorityChanged, this, &Todo::changed );
+    connect( this, &Todo::dueDateChanged, this, &Todo::changed );
+    connect( this, &Todo::titleChanged, this, &Todo::changed );
+    connect( this, &Todo::descriptionChanged, this, &Todo::changed );
+    connect( this, &Todo::deletedChanged, this, &Todo::changed );
+    connect( this, &Todo::lastModificationTimeChanged, this, &Todo::changed );
 }
+
+bool Todo::hasId() const
+{
+    return m_hasId;
+}
+
+int Todo::id() const
+{
+    return m_id;
+}
+
+void Todo::setId(int id)
+{
+    m_hasId = true;
+    if ( m_id != id ) {
+        m_id = id;
+        emit idChanged();
+    }
+}
+
 
 } /* DataModel */
 

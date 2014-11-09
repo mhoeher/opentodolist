@@ -84,20 +84,6 @@ Page {
                     }
 
                     Label {
-                        text: qsTr( "Progress:" )
-                        font.bold: true
-                    }
-                    Slider {
-                        minimum: 0
-                        maximum: 100
-                        value: page.todo.progress
-                        Layout.fillWidth: true
-                        Layout.maximumWidth: Measures.minimumPageWidth
-
-                        onValueChanged: todo.progress = value
-                    }
-
-                    Label {
                         text: qsTr( "Priority:" )
                         font.bold: true
                     }
@@ -204,12 +190,12 @@ Page {
                         Layout.fillWidth: true
                         Layout.preferredHeight: contentItem.height + headerHeight
                         backgroundVisible: true
-                        todos: TodoModel {
+                        /*todos: TodoModel {
                             id: subTodosModel
                             queryType: TodoModel.QuerySubTodosOfTodo
                             parentTodo: page.todo
                             sortMode: root.sortMode
-                        }
+                        }*/
                         clip: true
                         interactive: false
 

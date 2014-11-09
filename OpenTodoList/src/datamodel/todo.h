@@ -31,26 +31,30 @@ namespace DataModel {
 class Todo : public QObject, public ITodo
 {
     Q_OBJECT
-    Q_PROPERTY( double weight READ weight WRITE setWeight NOTIFY weightChanged )
-    Q_PROPERTY( bool isDone READ done WRITE setDone NOTIFY doneChanged )
-    Q_PROPERTY( int priority READ priority WRITE setPriority NOTIFY priorityChanged )
-    Q_PROPERTY( QUuid todoListUuid READ todoListUuid CONSTANT )
-    Q_PROPERTY( QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
-    Q_PROPERTY( QString title READ title WRITE setTitle NOTIFY titleChanged )
-    Q_PROPERTY( QString description READ description WRITE setDescription NOTIFY descriptionChanged )
-    Q_PROPERTY( bool isDeleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
-    Q_PROPERTY( QDateTime lastModificationTime READ lastModificationTime WRITE setLastModificationTime NOTIFY lastModificationTimeChanged)
+    Q_PROPERTY(int id READ id NOTIFY idChanged)
+    Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
+    Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
+    Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged )
+    Q_PROPERTY(bool isDone READ done WRITE setDone NOTIFY doneChanged )
+    Q_PROPERTY(int priority READ priority WRITE setPriority NOTIFY priorityChanged )
+    Q_PROPERTY(QUuid todoListUuid READ todoListUuid NOTIFY todoListUuidChanged )
+    Q_PROPERTY(QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
+    Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged )
+    Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged )
+    Q_PROPERTY(bool isDeleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
+    Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
+    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime WRITE setLastModificationTime NOTIFY lastModificationTimeChanged)
 
 public:
 
     explicit Todo( QObject* parent = 0 );
     virtual ~Todo();
 
-    bool isNull() const;
-    bool isDone() const;
+    int id() const;
+    void setId(int id);
+    bool hasId() const;
 
     // ITodo interface
-public:
     const QUuid &uuid() const override;
     void setUuid(const QUuid &uuid) override;
     double weight() const override;
@@ -74,8 +78,12 @@ public:
     QDateTime lastModificationTime() const override;
     void setLastModificationTime(const QDateTime &dateTime) override;
 
+    QVariant toVariant() const;
+    void fromVariant( const QVariant &todo );
+
 signals:
 
+    void idChanged();
     void uuidChanged();
     void weightChanged();
     void doneChanged();
@@ -84,15 +92,16 @@ signals:
     void titleChanged();
     void descriptionChanged();
     void deletedChanged();
+    void todoListUuidChanged();
+    void metaAttributesChanged();
     void lastModificationTimeChanged();
 
     void changed();
-    void reset();
-
     
 public slots:
 
     void toggle();
+    void assign( OpenTodoList::DataModel::Todo *todo );
 
 protected:
 
@@ -103,6 +112,8 @@ private:
 private:
 
     // ITodo properties
+    int                     m_id;
+    bool                    m_hasId;
     QUuid                   m_uuid;
     double                  m_weight;
     bool                    m_done;

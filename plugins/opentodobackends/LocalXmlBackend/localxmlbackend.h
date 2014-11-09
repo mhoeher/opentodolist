@@ -64,7 +64,7 @@ private:
     static bool listToDom( const OpenTodoList::ITodoList *list, QDomDocument &doc );
     static bool domToList( const QDomDocument &doc, OpenTodoList::ITodoList *list );
     static bool todoToDom( const OpenTodoList::ITodo *todo, QDomDocument &doc );
-    static bool domToTodo( const QDomDocument &doc, OpenTodoList::ITodo *todo );
+    static bool domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *todo , bool &writeBack);
 
     static const QString TodoListConfigFileName;
     static const QString TodoDirectoryName;

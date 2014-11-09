@@ -283,6 +283,8 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
 
 OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, double weight )
 {
+    // TODO: Remove writeBack in final release
+    bool writeBack;
     OpenTodoList::ITodo *result = m_database->createTodo();
     result->setWeight( weight );
 
@@ -293,7 +295,7 @@ OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, doub
             QString errorString;
             int errorLine, errorColumn;
             if ( doc.setContent(  &file, &errorString, &errorLine, &errorColumn  ) ) {
-                if ( !domToTodo( doc, result ) ) {
+                if ( !domToTodo( doc, result, writeBack ) ) {
                     qWarning() << "File" << fileName << "is not a valid todo XML file";
                     delete result;
                     return 0;
@@ -315,7 +317,16 @@ OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, doub
         QVariantMap metaAttributes = result->metaAttributes();
         metaAttributes.insert( TodoMetaFileName, fileName );
         result->setMetaAttributes( metaAttributes );
-        return result;
+
+        // TODO: Remove in final version
+        if ( result->uuid().isNull() ) {
+            result->setUuid( QUuid::createUuid() );
+            writeBack = true;
+        }
+        if ( writeBack ) {
+            result->setLastModificationTime( QDateTime::currentDateTime() );
+            todoToFile( result );
+        }
     }
     return result;
 }
@@ -462,7 +473,7 @@ bool LocalXmlBackend::todoToDom(const OpenTodoList::ITodo *todo, QDomDocument &d
     return true;
 }
 
-bool LocalXmlBackend::domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *todo)
+bool LocalXmlBackend::domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *todo, bool &writeBack)
 {
     QDomElement root = doc.documentElement();
 
@@ -474,13 +485,23 @@ bool LocalXmlBackend::domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *to
         todo->setUuid( QUuid( root.attribute( "id" ) ) );
     }
     todo->setTitle( root.attribute( "title" ) );
-    todo->setDone( root.attribute( "done", "true" ) == "true" );
+    // TODO: Remove this in final release
+    if ( root.hasAttribute( "done" ) ) {
+        todo->setDone( root.attribute( "done", "true" ) == "true" );
+    } else {
+        todo->setDone( root.attribute( "progress", 0 ).toInt() >= 100 );
+    }
     todo->setPriority( qBound( -1, root.attribute( "priority", QString::number(todo->priority()) ).toInt(), 10 ) );
     todo->setDeleted( root.attribute( "deleted", todo->isDeleted() ? "true" : "false" ) == "true" );
     if ( root.hasAttribute( "dueDate" ) ) {
         todo->setDueDate( QDateTime::fromString( root.attribute( "dueDate" ) ) );
     }
-    todo->setWeight( root.attribute( "weight", QString::number( todo->weight() ) ).toDouble() );
+    if ( root.hasAttribute( "weight" ) ) {
+        todo->setWeight( root.attribute( "weight", QString::number( todo->weight() ) ).toDouble() );
+    } else {
+        // TODO: Remove in final version
+        writeBack = true;
+    }
     if ( root.hasAttribute( "lastModificationTime" ) ) {
         todo->setLastModificationTime( QDateTime::fromString( root.attribute( "lastModificationTime" ) ) );
     }

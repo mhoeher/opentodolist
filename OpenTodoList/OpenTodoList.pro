@@ -78,7 +78,9 @@ HEADERS += \
     src/models/backendmodel.h \
     src/models/accountmodel.h \
     src/database/queries/inserttodolist.h \
-    src/database/queries/readtodolist.h
+    src/database/queries/readtodolist.h \
+    src/database/queries/inserttodo.h \
+    src/database/queries/readtodo.h
 
 SOURCES += \
     src/main.cpp \
@@ -113,7 +115,9 @@ SOURCES += \
     src/models/backendmodel.cpp \
     src/models/accountmodel.cpp \
     src/database/queries/inserttodolist.cpp \
-    src/database/queries/readtodolist.cpp
+    src/database/queries/readtodolist.cpp \
+    src/database/queries/inserttodo.cpp \
+    src/database/queries/readtodo.cpp
 
 RESOURCES += OpenTodoList.qrc
 

@@ -10,7 +10,7 @@ using namespace OpenTodoList;
 
 int startService( int &argc, char *argv[] ) {
     QCoreApplication::setApplicationName( "OpenTodoList" );
-    QCoreApplication::setApplicationVersion( "0.0.0" );
+    QCoreApplication::setApplicationVersion( VERSION );
     QCoreApplication::setOrganizationDomain( "www.rpdev.net" );
     QCoreApplication::setOrganizationName( "RPdev" );
 

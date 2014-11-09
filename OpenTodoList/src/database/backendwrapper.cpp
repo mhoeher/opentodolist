@@ -8,6 +8,7 @@
 
 #include "database/queries/insertaccount.h"
 #include "database/queries/inserttodolist.h"
+#include "database/queries/inserttodo.h"
 
 #include <QDebug>
 
@@ -45,7 +46,6 @@ BackendWrapper::~BackendWrapper()
 bool BackendWrapper::insertAccount(IAccount *account)
 {
     DataModel::Account *acc = static_cast< DataModel::Account* >( account );
-    Q_ASSERT( acc != nullptr );
     Queries::InsertAccount q( acc, Queries::InsertAccount::NoFlags, StorageQuery::CallerIsOwner );
     m_database->runQuery( &q );
     return true;
@@ -54,7 +54,6 @@ bool BackendWrapper::insertAccount(IAccount *account)
 bool BackendWrapper::insertTodoList(ITodoList *list)
 {
     DataModel::TodoList *todoList = static_cast< DataModel::TodoList* >( list );
-    Q_ASSERT( todoList != nullptr );
     Queries::InsertTodoList q( todoList );
     m_database->runQuery( &q );
     return true;
@@ -62,8 +61,10 @@ bool BackendWrapper::insertTodoList(ITodoList *list)
 
 bool BackendWrapper::insertTodo(ITodo *todo)
 {
-    return false;
-    //return m_status != Invalid && m_database->insertTodo( m_backend->id(), todo );
+    DataModel::Todo *t = static_cast< DataModel::Todo* >( todo );
+    Queries::InsertTodo q( t );
+    m_database->runQuery( &q );
+    return true;
 }
 
 bool BackendWrapper::insertTask(ITask *task)

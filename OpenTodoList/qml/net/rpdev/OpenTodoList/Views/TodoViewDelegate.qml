@@ -89,7 +89,7 @@ Item {
 
         onClicked: {
             var ctxMenu = contextMenu.createObject( this );
-            ctxMenu.todo.shadow( delegate.todo );
+            ctxMenu.todo.assign( delegate.todo );
             ctxMenu.popup( this );
         }
     }

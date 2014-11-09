@@ -38,16 +38,14 @@ Page {
         id: tabView
         anchors.fill: parent
 
-        Tab {
+        /*Tab {
             id: backendsTab
             name: qsTr( "Backends" )
-
             ListView {
                 model: BackendModel {
                     id: backendModel
                     database: application.database
                 }
-
                 delegate: Text {
                     text: {
                         var result = "";
@@ -58,9 +56,9 @@ Page {
                     }
                 }
             }
-        }
+        }*/
 
-        Tab {
+        /*Tab {
             id: accountsTab
             name: qsTr( "Accounts" )
             ListView {
@@ -78,7 +76,7 @@ Page {
                     }
                 }
             }
-        }
+        }*/
 
         Tab {
             id: todoListTab
@@ -87,8 +85,7 @@ Page {
 
             TodoModel {
                 id: todoModel
-                library: page.library
-                queryType: TodoModel.QueryTopLevelTodosInTodoList
+                database: application.database
             }
 
             TodoListView {
@@ -131,6 +128,7 @@ Page {
             }
         }
 
+
         Tab {
             id: recentTodosTab
 
@@ -159,8 +157,7 @@ Page {
                         clip: true
                         interactive: false
                         todos: TodoModel {
-                            library: page.library
-                            queryType: TodoModel.QueryFilterTodos
+                            database: application.database
                             maxDueDate: new Date()
                         }
 
@@ -181,8 +178,7 @@ Page {
                         clip: true
                         interactive: false
                         todos: TodoModel {
-                            library: page.library
-                            queryType: TodoModel.QueryFilterTodos
+                            database: application.database
                             maxDueDate: {
                                 var result = new Date( dueTodayView.todos.maxDueDate );
                                 var date = result.getDate();
@@ -210,11 +206,10 @@ Page {
                         clip: true
                         interactive: false
                         todos: TodoModel {
-                            library: page.library
-                            queryType: TodoModel.QueryFilterTodos
+                            database: application.database
                             minDueDate: dueThisWeekView.todos.maxDueDate
                             limitCount: 10
-                            backendSortMode: Todo.SortTodoByDueDate
+                            backendSortMode: TodoModel.SortTodoByDueDate
                         }
 
                         onTodoSelected: page.todoSelected( todo )
@@ -242,8 +237,7 @@ Page {
 
                 anchors.fill: parent
                 todos: TodoModel {
-                    library: page.library
-                    queryType: TodoModel.QuerySearchTodos
+                    database: application.database
                 }
 
                 onTodoSelected: page.todoSelected( todo )
@@ -269,8 +263,7 @@ Page {
 
                 todos: TodoModel {
                     id: trashModel
-                    library: page.library
-                    queryType: TodoModel.QueryFilterTodos
+                    database: application.database
                     showDeleted: true
                     hideUndeleted: true
                 }
@@ -383,7 +376,7 @@ Page {
                 spacing: Measures.midSpace
 
                 Label {
-                    text: qsTr( "OpenTodoList") + " " + library.applicationVersion
+                    text: qsTr( "OpenTodoList") + " " + application.applicationVersion
                     font.bold: true
                     width: parent.width
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere

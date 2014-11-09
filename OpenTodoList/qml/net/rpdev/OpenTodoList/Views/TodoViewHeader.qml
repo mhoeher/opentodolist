@@ -49,9 +49,7 @@ Item {
             if ( todos ) {
                 switch ( todos.queryType ) {
                 case TodoModel.QueryTopLevelTodosInTodoList:
-                    return todos.todoList && todos.todoList.canCreateTodos;
-                case TodoModel.QuerySubTodosOfTodo:
-                    return todos.parentTodo && todos.parentTodo.canCreateTodos;
+                    return todos.todoList !== null;
                 default: return false;
                 }
             }
