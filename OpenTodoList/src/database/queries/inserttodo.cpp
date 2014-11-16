@@ -131,7 +131,7 @@ bool InsertTodo::query(QString &query, QVariantMap &args)
             args.insert( "todoUuid", m_todo->uuid().toString() );
         }
         if ( m_todo->metaAttributes().isEmpty() ) {
-            stream << "DELETE FROM todoMetaAttribute WHERE todo = ( SELECT id FROM todoInfo.id );";
+            stream << "DELETE FROM todoMetaAttribute WHERE todo = ( SELECT id FROM todoInfo );";
         } else {
             stream << "DELETE FROM todoMetaAttribute "
                    << "WHERE "

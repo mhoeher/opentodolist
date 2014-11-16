@@ -96,8 +96,23 @@ bool LocalXmlBackend::start()
                     weight = todoObj->weight() + 1.0;
                     todoObj->setTodoListUuid( list->uuid() );
                     m_database->insertTodo( todoObj );
+                    OpenTodoList::ITask *task = m_database->createTask();
+                    if ( task ) {
+                        task->setDone( false );
+                        task->setTitle( "A task" );
+                        task->setTodoUuid( todoObj->uuid() );
+                        task->setUuid( QUuid::createUuid() );
+                        task->setWeight(0.0);
+                        QVariantMap attrs;
+                        attrs.insert( "Hello", "World" );
+                        task->setMetaAttributes( attrs );
+                        m_database->insertTask( task );
+                        delete task;
+                    }
+                    delete todoObj;
                 }
             }
+            delete list;
         }
     }
     return true;
@@ -250,6 +265,9 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
                     qWarning() << "File" << fileName << "is not a valid todo list XML";
                     delete result;
                     return 0;
+                } else {
+                    QFileInfo fi( fileName );
+                    result->setLastModificationTime( fi.lastModified() );
                 }
             } else {
                 qWarning() << "Error reading todo list from" << fileName << ":"
@@ -299,6 +317,9 @@ OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, doub
                     qWarning() << "File" << fileName << "is not a valid todo XML file";
                     delete result;
                     return 0;
+                } else {
+                    QFileInfo fi( fileName );
+                    result->setLastModificationTime( fi.lastModified() );
                 }
             } else {
                 qWarning() << "Error loading todo from" << fileName << ":"

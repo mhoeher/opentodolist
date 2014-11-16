@@ -88,6 +88,15 @@ signals:
      */
     void todoChanged( const QVariant &todo );
 
+    /**
+       @brief A task has been inserted or updated
+
+       A query shall emit this signal to indicate that a @p task has been
+       added or updated in the database. The signal is broadcasted into
+       the application, allowing clients to update on-the-fly.
+     */
+    void taskChanged( const QVariant &task );
+
 public slots:
 
 protected:

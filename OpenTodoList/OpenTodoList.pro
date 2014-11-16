@@ -80,7 +80,8 @@ HEADERS += \
     src/database/queries/inserttodolist.h \
     src/database/queries/readtodolist.h \
     src/database/queries/inserttodo.h \
-    src/database/queries/readtodo.h
+    src/database/queries/readtodo.h \
+    src/database/queries/inserttask.h
 
 SOURCES += \
     src/main.cpp \
@@ -117,7 +118,8 @@ SOURCES += \
     src/database/queries/inserttodolist.cpp \
     src/database/queries/readtodolist.cpp \
     src/database/queries/inserttodo.cpp \
-    src/database/queries/readtodo.cpp
+    src/database/queries/readtodo.cpp \
+    src/database/queries/inserttask.cpp
 
 RESOURCES += OpenTodoList.qrc
 

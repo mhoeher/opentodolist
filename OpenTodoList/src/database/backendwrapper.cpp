@@ -9,6 +9,7 @@
 #include "database/queries/insertaccount.h"
 #include "database/queries/inserttodolist.h"
 #include "database/queries/inserttodo.h"
+#include "database/queries/inserttask.h"
 
 #include <QDebug>
 
@@ -69,8 +70,10 @@ bool BackendWrapper::insertTodo(ITodo *todo)
 
 bool BackendWrapper::insertTask(ITask *task)
 {
-    return false;
-    // TODO: Implement me
+    DataModel::Task *t = static_cast< DataModel::Task* >( task );
+    Queries::InsertTask q( t );
+    m_database->runQuery( &q );
+    return true;
 }
 
 bool BackendWrapper::deleteAccount(const IAccount *account)

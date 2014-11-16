@@ -43,6 +43,7 @@ Database::Database(QObject *parent) :
     connect( m_worker, &DatabaseWorker::accountChanged, this, &Database::accountChanged );
     connect( m_worker, &DatabaseWorker::todoListChanged, this, &Database::todoListChanged );
     connect( m_worker, &DatabaseWorker::todoChanged, this, &Database::todoChanged );
+    connect( m_worker, &DatabaseWorker::taskChanged, this, &Database::taskChanged );
 
     qDebug() << "Initializing backends...";
     m_backends.reserve( m_backendPlugins->plugins().size() );

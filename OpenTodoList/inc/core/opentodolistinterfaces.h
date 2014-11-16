@@ -356,6 +356,7 @@ public:
        @brief Sets the @p uuid of the todo this task belongs to
      */
     virtual void setTodoUuid( const QUuid &uuid ) = 0;
+
 };
 
 /**

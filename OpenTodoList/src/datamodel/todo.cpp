@@ -236,7 +236,7 @@ void Todo::fromVariant(const QVariant &todo)
 {
     QVariantMap map = todo.toMap();
 
-    // special handling for ID: Only override on identify change
+    // special handling for ID: Only override on identity change
     if ( map.value( "uuid" ).toUuid() != m_uuid || !m_hasId ) {
         if ( map.contains( "id" ) ) {
             setId( map.value( "id" ).toInt() );

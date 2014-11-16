@@ -45,6 +45,7 @@ signals:
     void accountChanged( const QVariant &account );
     void todoListChanged( const QVariant &todoList );
     void todoChanged( const QVariant &todo );
+    void taskChanged( const QVariant &task );
 
 private:
 

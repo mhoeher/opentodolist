@@ -198,11 +198,9 @@ void DatabaseWorker::init() {
                         " weight DOUBLE,"
                         " done BOOLEAN,"
                         " title TEXT,"
-                        " deleted BOOLEAN,"
                         " dirty BOOLEAN,"
                         " disposed BOOLEAN,"
                         " todo INTEGER NOT NULL,"
-                        " lastModificationTime DATETIME,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
                         " FOREIGN KEY ( todo ) REFERENCES todo ( id )"
@@ -255,6 +253,8 @@ void DatabaseWorker::runQuery(StorageQuery *query)
                  this, &DatabaseWorker::todoListChanged, Qt::QueuedConnection );
         connect( query, &StorageQuery::todoChanged,
                  this, &DatabaseWorker::todoChanged, Qt::QueuedConnection );
+        connect( query, &StorageQuery::taskChanged,
+                 this, &DatabaseWorker::taskChanged, Qt::QueuedConnection );
         query->m_worker = this;
         query->beginRun();
         QString queryStr;

@@ -12,8 +12,21 @@ namespace DataModel {
 class Task : public QObject, public ITask
 {
     Q_OBJECT
+    Q_PROPERTY(int id READ id NOTIFY idChanged)
+    Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
+    Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
+    Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
+    Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
+    Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
+    Q_PROPERTY(QUuid todoUuid READ todoUuid NOTIFY todoUuidChanged)
+
 public:
     explicit Task(QObject *parent = 0);
+
+    int id() const;
+    void setId( int id );
+    bool hasId() const;
 
     // ITask interface
     QUuid uuid() const override;
@@ -29,17 +42,25 @@ public:
     QUuid todoUuid() const override;
     void setTodoUuid( const QUuid &uuid ) override;
 
+    QVariant toVariant() const;
+    void fromVariant( const QVariant &task );
+
 signals:
 
+    void idChanged();
+    void uuidChanged();
     void titleChanged();
     void doneChanged();
     void weightChanged();
     void metaAttributesChanged();
+    void todoUuidChanged();
 
 public slots:
 
 private:
 
+    int   m_id;
+    bool m_hasId;
     QUuid m_uuid;
     QString m_title;
     bool m_done;
