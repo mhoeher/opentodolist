@@ -78,8 +78,8 @@ public:
     QDateTime lastModificationTime() const override;
     void setLastModificationTime(const QDateTime &dateTime) override;
 
-    QVariant toVariant() const;
-    void fromVariant( const QVariant &todo );
+    Q_INVOKABLE QVariant toVariant() const;
+    Q_INVOKABLE void fromVariant( const QVariant &todo );
 
 signals:
 
@@ -101,7 +101,6 @@ signals:
 public slots:
 
     void toggle();
-    void assign( OpenTodoList::DataModel::Todo *todo );
 
 protected:
 

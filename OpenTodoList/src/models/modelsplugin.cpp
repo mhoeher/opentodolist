@@ -4,6 +4,7 @@
 #include "models/backendmodel.h"
 #include "models/todolistmodel.h"
 #include "models/todomodel.h"
+#include "models/taskmodel.h"
 
 #include <qqml.h>
 #include <QJSEngine>
@@ -24,6 +25,7 @@ void Plugin::registerTypes(const char *uri)
     qmlRegisterType< BackendModel >( uri, 1, 0, "BackendModel" );
     qmlRegisterType< TodoListModel >( uri, 1, 0, "TodoListModel" );
     qmlRegisterType< TodoModel >( uri, 1, 0, "TodoModel" );
+    qmlRegisterType< TaskModel >( uri, 1, 0, "TaskModel" );
 }
 
 } /* Models */

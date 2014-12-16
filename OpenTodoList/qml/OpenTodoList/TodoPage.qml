@@ -183,32 +183,23 @@ Page {
                         }
                     }
 
-                    TodoView {
-                        id: subTodosView
+                    TaskView {
+                        id: tasksView
 
                         Layout.columnSpan: 2
                         Layout.fillWidth: true
-                        Layout.preferredHeight: contentItem.height + headerHeight
-                        backgroundVisible: true
-                        /*todos: TodoModel {
-                            id: subTodosModel
-                            queryType: TodoModel.QuerySubTodosOfTodo
-                            parentTodo: page.todo
-                            sortMode: root.sortMode
-                        }*/
+                        Layout.preferredHeight: contentItem.height
+
+                        tasks: TaskModel {
+                            id: taskModel
+                            todo: page.todo
+                            database: application.database
+                        }
+
                         clip: true
                         interactive: false
-
-                        onTodoSelected: {
-                            var component = Qt.createComponent( "TodoPage.qml" );
-                            if ( component.status === Component.Ready ) {
-                                var newPage = component.createObject( page.parent );
-                                newPage.todo.shadow( todo );
-                            } else {
-                                console.error( component.errorString() );
-                            }
-                        }
                     }
+
                 }
             }
             ScrollBar {

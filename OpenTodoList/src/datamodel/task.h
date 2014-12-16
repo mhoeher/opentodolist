@@ -42,8 +42,8 @@ public:
     QUuid todoUuid() const override;
     void setTodoUuid( const QUuid &uuid ) override;
 
-    QVariant toVariant() const;
-    void fromVariant( const QVariant &task );
+    Q_INVOKABLE QVariant toVariant() const;
+    Q_INVOKABLE void fromVariant( const QVariant &task );
 
 signals:
 

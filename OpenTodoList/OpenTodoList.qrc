@@ -1,52 +1,59 @@
+<?xml version="1.0"?>
 <RCC>
-    <qresource prefix="/">
-        <file>icons/OpenTodoList64.png</file>
-        <file>icons/OpenTodoList80.png</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/AutoHide.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Button.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Calendar.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/ContextMenu.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/ContextMenuEntry.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/ContextMenuModel.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/DateSelectionDialog.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/HeaderBar.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/HeaderBarItem.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Label.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/LineEditDialog.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Overlay.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Page.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/PageStack.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/RichTextEditDialog.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/RichTextEditor.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/ScrollBar.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Shadow.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/SingleLineTextInput.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Slider.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Symbol.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/SymbolButton.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/SymbolLabel.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/SymbolLink.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/Tab.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/TabView.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/TextEditor.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/Colors.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.license.txt</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.ttf</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/Fonts.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/Measures.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/Symbols.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/AnimatedListView.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/TodoListView.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/TodoListViewDelegate.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/TodoView.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/TodoViewDelegate.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/TodoViewHeader.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/ViewSettings.qml</file>
-        <file>qml/OpenTodoList/main.qml</file>
-        <file>qml/OpenTodoList/TodoListsPage.qml</file>
-        <file>qml/OpenTodoList/TodoPage.qml</file>
-        <file>qml/net/rpdev/OpenTodoList/Components/qmldir</file>
-        <file>qml/net/rpdev/OpenTodoList/Theme/qmldir</file>
-        <file>qml/net/rpdev/OpenTodoList/Views/qmldir</file>
-    </qresource>
+  <qresource prefix="/qml/net/rpdev/OpenTodoList/Components">
+    <file alias="ContextMenu.qml">qml/net/rpdev/OpenTodoList/Components/ContextMenu.qml</file>
+    <file alias="HeaderBar.qml">qml/net/rpdev/OpenTodoList/Components/HeaderBar.qml</file>
+    <file alias="ContextMenuEntry.qml">qml/net/rpdev/OpenTodoList/Components/ContextMenuEntry.qml</file>
+    <file alias="LineEditDialog.qml">qml/net/rpdev/OpenTodoList/Components/LineEditDialog.qml</file>
+    <file alias="SymbolLink.qml">qml/net/rpdev/OpenTodoList/Components/SymbolLink.qml</file>
+    <file alias="DateSelectionDialog.qml">qml/net/rpdev/OpenTodoList/Components/DateSelectionDialog.qml</file>
+    <file alias="SymbolLabel.qml">qml/net/rpdev/OpenTodoList/Components/SymbolLabel.qml</file>
+    <file alias="Shadow.qml">qml/net/rpdev/OpenTodoList/Components/Shadow.qml</file>
+    <file alias="Tab.qml">qml/net/rpdev/OpenTodoList/Components/Tab.qml</file>
+    <file alias="Label.qml">qml/net/rpdev/OpenTodoList/Components/Label.qml</file>
+    <file alias="Symbol.qml">qml/net/rpdev/OpenTodoList/Components/Symbol.qml</file>
+    <file alias="ContextMenuModel.qml">qml/net/rpdev/OpenTodoList/Components/ContextMenuModel.qml</file>
+    <file alias="qmldir">qml/net/rpdev/OpenTodoList/Components/qmldir</file>
+    <file alias="TabView.qml">qml/net/rpdev/OpenTodoList/Components/TabView.qml</file>
+    <file alias="Button.qml">qml/net/rpdev/OpenTodoList/Components/Button.qml</file>
+    <file alias="SymbolButton.qml">qml/net/rpdev/OpenTodoList/Components/SymbolButton.qml</file>
+    <file alias="TextEditor.qml">qml/net/rpdev/OpenTodoList/Components/TextEditor.qml</file>
+    <file alias="RichTextEditor.qml">qml/net/rpdev/OpenTodoList/Components/RichTextEditor.qml</file>
+    <file alias="SingleLineTextInput.qml">qml/net/rpdev/OpenTodoList/Components/SingleLineTextInput.qml</file>
+    <file alias="ScrollBar.qml">qml/net/rpdev/OpenTodoList/Components/ScrollBar.qml</file>
+    <file alias="Overlay.qml">qml/net/rpdev/OpenTodoList/Components/Overlay.qml</file>
+    <file alias="PageStack.qml">qml/net/rpdev/OpenTodoList/Components/PageStack.qml</file>
+    <file alias="AutoHide.qml">qml/net/rpdev/OpenTodoList/Components/AutoHide.qml</file>
+    <file alias="RichTextEditDialog.qml">qml/net/rpdev/OpenTodoList/Components/RichTextEditDialog.qml</file>
+    <file alias="Page.qml">qml/net/rpdev/OpenTodoList/Components/Page.qml</file>
+    <file alias="Calendar.qml">qml/net/rpdev/OpenTodoList/Components/Calendar.qml</file>
+    <file alias="Slider.qml">qml/net/rpdev/OpenTodoList/Components/Slider.qml</file>
+    <file alias="HeaderBarItem.qml">qml/net/rpdev/OpenTodoList/Components/HeaderBarItem.qml</file>
+  </qresource>
+  <qresource prefix="/qml/net/rpdev/OpenTodoList/Views">
+    <file alias="TodoViewHeader.qml">qml/net/rpdev/OpenTodoList/Views/TodoViewHeader.qml</file>
+    <file alias="TodoView.qml">qml/net/rpdev/OpenTodoList/Views/TodoView.qml</file>
+    <file alias="TodoViewDelegate.qml">qml/net/rpdev/OpenTodoList/Views/TodoViewDelegate.qml</file>
+    <file alias="qmldir">qml/net/rpdev/OpenTodoList/Views/qmldir</file>
+    <file alias="TodoListViewDelegate.qml">qml/net/rpdev/OpenTodoList/Views/TodoListViewDelegate.qml</file>
+    <file alias="ViewSettings.qml">qml/net/rpdev/OpenTodoList/Views/ViewSettings.qml</file>
+    <file alias="AnimatedListView.qml">qml/net/rpdev/OpenTodoList/Views/AnimatedListView.qml</file>
+    <file alias="TodoListView.qml">qml/net/rpdev/OpenTodoList/Views/TodoListView.qml</file>
+    <file alias="TaskView.qml">qml/net/rpdev/OpenTodoList/Views/TaskView.qml</file>
+    <file alias="TaskViewDelegate.qml">qml/net/rpdev/OpenTodoList/Views/TaskViewDelegate.qml</file>
+  </qresource>
+  <qresource prefix="/qml/net/rpdev/OpenTodoList/Theme">
+    <file alias="fontawesome-webfont.license.txt">qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.license.txt</file>
+    <file alias="Symbols.qml">qml/net/rpdev/OpenTodoList/Theme/Symbols.qml</file>
+    <file alias="Measures.qml">qml/net/rpdev/OpenTodoList/Theme/Measures.qml</file>
+    <file alias="qmldir">qml/net/rpdev/OpenTodoList/Theme/qmldir</file>
+    <file alias="Colors.qml">qml/net/rpdev/OpenTodoList/Theme/Colors.qml</file>
+    <file alias="fontawesome-webfont.ttf">qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.ttf</file>
+    <file alias="Fonts.qml">qml/net/rpdev/OpenTodoList/Theme/Fonts.qml</file>
+  </qresource>
+  <qresource prefix="/qml/OpenTodoList">
+    <file alias="TodoPage.qml">qml/OpenTodoList/TodoPage.qml</file>
+    <file alias="TodoListsPage.qml">qml/OpenTodoList/TodoListsPage.qml</file>
+    <file alias="main.qml">qml/OpenTodoList/main.qml</file>
+  </qresource>
 </RCC>

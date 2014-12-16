@@ -267,18 +267,6 @@ void Todo::toggle()
     setDone( !done() );
 }
 
-/**
-   @brief Mimic the identity of another @p todo
-
-   Use this to let a todo mimic the identity of another todo.
- */
-void Todo::assign(Todo *todo)
-{
-    if ( todo ) {
-        fromVariant( todo->toVariant() );
-    }
-}
-
 void Todo::setupTodo()
 {
     connect( this, &Todo::weightChanged, this, &Todo::changed );
@@ -309,7 +297,6 @@ void Todo::setId(int id)
         emit idChanged();
     }
 }
-
 
 } /* DataModel */
 

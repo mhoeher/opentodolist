@@ -18,6 +18,7 @@
 
 #include "datamodel/datamodelplugin.h"
 
+#include "datamodel/task.h"
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todolistlibrary.h"
@@ -30,19 +31,21 @@ namespace OpenTodoList {
 namespace DataModel {
 
 Plugin::Plugin(QObject *parent) :
-    QQmlExtensionPlugin(parent)
+  QQmlExtensionPlugin(parent)
 {
 }
 
 void Plugin::registerTypes(const char *uri)
 {
-    //@uri net.rpdev.OpenTodoList.DataModel
-    qmlRegisterType< Todo >(
-                uri, 1, 0, "Todo" );
-    qmlRegisterType< TodoList >(
-                uri, 1, 0, "TodoList" );
-    qmlRegisterType< TodoListLibrary >(
-                uri, 1, 0, "TodoListLibrary" );
+  //@uri net.rpdev.OpenTodoList.DataModel
+  qmlRegisterType< Task >(
+        uri, 1, 0, "Task" );
+  qmlRegisterType< Todo >(
+        uri, 1, 0, "Todo" );
+  qmlRegisterType< TodoList >(
+        uri, 1, 0, "TodoList" );
+  qmlRegisterType< TodoListLibrary >(
+        uri, 1, 0, "TodoListLibrary" );
 }
 
 } /* DataModel */

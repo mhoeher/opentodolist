@@ -81,7 +81,9 @@ HEADERS += \
     src/database/queries/readtodolist.h \
     src/database/queries/inserttodo.h \
     src/database/queries/readtodo.h \
-    src/database/queries/inserttask.h
+    src/database/queries/inserttask.h \
+    src/database/queries/readtask.h \
+    src/models/taskmodel.h
 
 SOURCES += \
     src/main.cpp \
@@ -119,16 +121,14 @@ SOURCES += \
     src/database/queries/readtodolist.cpp \
     src/database/queries/inserttodo.cpp \
     src/database/queries/readtodo.cpp \
-    src/database/queries/inserttask.cpp
+    src/database/queries/inserttask.cpp \
+    src/database/queries/readtask.cpp \
+    src/models/taskmodel.cpp
 
 RESOURCES += OpenTodoList.qrc
 
 # To let QML files appear in project browser in Qt Creator
 OTHER_FILES += \
-    qml/net/rpdev/OpenTodoList/Components/*.* \
-    qml/net/rpdev/OpenTodoList/Theme/*.* \
-    qml/net/rpdev/OpenTodoList/Views/*.* \
-    qml/OpenTodoList/*.* \
     ../bin/mk-qrc.pl
 
 
