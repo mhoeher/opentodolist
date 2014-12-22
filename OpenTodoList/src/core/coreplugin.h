@@ -5,6 +5,12 @@
 
 namespace OpenTodoList {
 
+/**
+ * @brief Encapsulates core functionality of the application
+ *
+ * This namespace is used for generic functionality required within the application. This
+ * functionality is either in the form of "helper functions" or bridging C++ with QML.
+ */
 namespace Core {
 
 class Plugin : public QQmlExtensionPlugin

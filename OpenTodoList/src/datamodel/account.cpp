@@ -11,35 +11,12 @@ Account::Account(QObject *parent) :
     m_uuid( QUuid() ),
     m_name( QString() ),
     m_backend( QString() ),
-    m_dirty( false ),
+    m_dirty( 0 ),
     m_disposed( false ),
-    m_lastModificationTime( QDateTime() ),
     m_metaAttributes( QVariantMap() )
 {
     connect( this, &Account::nameChanged, this, &Account::changed );
-    connect( this, &Account::lastModificationTimeChanged, this, &Account::changed );
     connect( this, &Account::metaAttributesChanged, this, &Account::changed );
-}
-
-/**
-   @brief Returns a clone of the Account object
-
-   This will create and return a clone of the account object. The returned object
-   will be a child of @p parent.
- */
-Account *Account::clone(QObject *parent) const
-{
-    Account *result = new Account( parent );
-    result->m_backend = m_backend;
-    result->m_dirty = m_dirty;
-    result->m_disposed = m_disposed;
-    result->m_hasId = m_hasId;
-    result->m_id = m_id;
-    result->m_lastModificationTime = m_lastModificationTime;
-    result->m_metaAttributes = m_metaAttributes;
-    result->m_name = m_name;
-    result->m_uuid = m_uuid;
-    return result;
 }
 
 bool Account::hasId() const
@@ -61,14 +38,24 @@ void Account::setId(int id)
     }
 }
 
-bool Account::dirty() const
+int Account::dirty() const
 {
-    return m_dirty;
+  return m_dirty;
+}
+
+void Account::setDirty(int dirty)
+{
+  m_dirty = dirty;
 }
 
 bool Account::disposed() const
 {
-    return m_disposed;
+  return m_disposed;
+}
+
+void Account::setDisposed(bool disposed)
+{
+  m_disposed = disposed;
 }
 
 void Account::setBackend(const QString &backend)
@@ -105,19 +92,6 @@ void Account::setName(const QString &name)
     }
 }
 
-QDateTime Account::lastModificationTime() const
-{
-    return m_lastModificationTime;
-}
-
-void Account::setLastModificationTime(const QDateTime &dateTime)
-{
-    if ( m_lastModificationTime != dateTime ) {
-        m_lastModificationTime = dateTime;
-        emit lastModificationTimeChanged();
-    }
-}
-
 QString Account::backend() const
 {
     return m_backend;
@@ -150,7 +124,6 @@ QVariant Account::toVariant() const
     if ( m_hasId ) {
         result.insert( "id", m_id );
     }
-    result.insert( "lastModificationTime", m_lastModificationTime );
     result.insert( "metaAttributes", m_metaAttributes );
     result.insert( "name", m_name );
     result.insert( "uuid", m_uuid );
@@ -174,9 +147,8 @@ void Account::fromVariant(const QVariant &account)
     }
 
     setBackend( map.value( "backend", m_backend ).toString() );
-    m_dirty = map.value( "dirty", m_dirty ).toBool();
+    m_dirty = map.value( "dirty", m_dirty ).toInt();
     m_disposed = map.value( "disposed", m_disposed ).toBool();
-    setLastModificationTime( map.value( "lastModificationTime", m_lastModificationTime ).toDateTime() );
     setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
     setName( map.value( "name", m_name ).toString() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );

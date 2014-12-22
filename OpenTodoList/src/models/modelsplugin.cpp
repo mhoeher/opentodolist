@@ -11,6 +11,13 @@
 
 namespace OpenTodoList {
 
+/**
+ * @brief Models (implementing QAbstractItemModel) bridging into the application model
+ *
+ * This namespace provides several classes that make the objects defines in the
+ * OpenTodoList::DataModel and stored in the OpenTodoList::DataBase available
+ * in the application via a well defined interface described by QAbstractItemModel.
+ */
 namespace Models {
 
 Plugin::Plugin(QObject *parent) :

@@ -33,7 +33,7 @@ bool InsertTodo::query(QString &query, QVariantMap &args)
             args.insert( "searchUuid", m_todo->uuid().toString() );
         }
         stream << "INSERT OR REPLACE INTO todo "
-               << " ( id, uuid, weight, done, priority, dueDate, title, description, deleted, todoList, lastModificationTime ) "
+               << " ( id, uuid, weight, done, priority, dueDate, title, description, todoList ) "
                << "VALUES ("
                << " (SELECT id FROM todoInfo),"
                << " :uuid,"
@@ -43,9 +43,7 @@ bool InsertTodo::query(QString &query, QVariantMap &args)
                << " :dueDate,"
                << " :title,"
                << " :description,"
-               << " :deleted,"
-               << " (SELECT id FROM todoList WHERE uuid = :todoListUuid),"
-               << " :lastModificationTime"
+               << " (SELECT id FROM todoList WHERE uuid = :todoListUuid)"
                << ");";
         args.insert( "uuid", m_todo->uuid().toString() );
         args.insert( "weight", m_todo->weight() );
@@ -54,9 +52,7 @@ bool InsertTodo::query(QString &query, QVariantMap &args)
         args.insert( "dueDate", m_todo->dueDate() );
         args.insert( "title", m_todo->title() );
         args.insert( "description", m_todo->description() );
-        args.insert( "deleted", m_todo->isDeleted() );
         args.insert( "todoListUuid", m_todo->todoListUuid().toString() );
-        args.insert( "lastModificationTime", m_todo->lastModificationTime() );
 
         m_state = m_todo->metaAttributes().isEmpty() ? RemoveExtraneousMetaAttributesState : InsertMetaAttributeNameState;
         return true;

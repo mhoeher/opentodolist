@@ -23,6 +23,11 @@
 
 namespace OpenTodoList {
 
+/**
+ * @brief Data modelling classes
+ *
+ * This namespace provides classes that are used to model the objects used within the application.
+ */
 namespace DataModel {
 
 class Plugin : public QQmlExtensionPlugin

@@ -43,7 +43,6 @@ class TodoList : public QObject, public ITodoList
     Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
-    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime NOTIFY lastModificationTimeChanged)
     Q_PROPERTY(QUuid accountUuid READ accountUuid NOTIFY accountUuidChanged)
     
 public:
@@ -58,8 +57,6 @@ public:
     void setName(const QString &name) override;
     QVariantMap metaAttributes() const override;
     void setMetaAttributes( const QVariantMap &metaAttributes ) override;
-    QDateTime lastModificationTime() const override;
-    void setLastModificationTime(const QDateTime &dateTime) override;
     QUuid accountUuid() const;
     void setAccountUuid(const QUuid &uuid);
 
@@ -70,13 +67,18 @@ public:
     QVariant toVariant() const;
     void fromVariant( const QVariant &todolist );
 
+    int dirty() const;
+    void setDirty(int dirty);
+
+    bool disposed() const;
+    void setDisposed(bool disposed);
+
 signals:
 
     void idChanged();
     void uuidChanged();
     void nameChanged();
     void metaAttributesChanged();
-    void lastModificationTimeChanged();
     void accountUuidChanged();
 
     void changed();
@@ -87,8 +89,9 @@ private:
     QUuid m_uuid;
     QString m_name;
     QVariantMap m_metaAttributes;
-    QDateTime m_lastModificationTime;
     QUuid m_accountUuid;
+    int m_dirty;
+    bool m_disposed;
     
 public slots:
 

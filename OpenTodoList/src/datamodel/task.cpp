@@ -13,7 +13,9 @@ Task::Task(QObject *parent) :
     m_done(),
     m_weigth( 0.0 ),
     m_metaAttributes(),
-    m_todoUuid()
+    m_todoUuid(),
+    m_dirty( 0 ),
+    m_disposed( false )
 {
 }
 
@@ -120,6 +122,8 @@ QVariant Task::toVariant() const
     result.insert( "todoUuid", m_todoUuid );
     result.insert( "uuid", m_uuid );
     result.insert( "weight", m_weigth );
+    result.insert( "dirty", m_dirty );
+    result.insert( "disposed", m_disposed );
 
     return result;
 }
@@ -141,7 +145,29 @@ void Task::fromVariant(const QVariant &task)
     setTodoUuid( map.value( "todoUuid", m_todoUuid ).toUuid() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );
     setWeight( map.value( "weight", m_weigth ).toDouble() );
+    setDirty( map.value( "dirty", m_dirty ).toInt() );
+    setDisposed( map.value( "disposed", m_disposed ).toBool() );
 }
+int Task::dirty() const
+{
+    return m_dirty;
+}
+
+void Task::setDirty(int dirty)
+{
+    m_dirty = dirty;
+}
+bool Task::disposed() const
+{
+    return m_disposed;
+}
+
+void Task::setDisposed(bool disposed)
+{
+    m_disposed = disposed;
+}
+
+
 
 } // namespace DataModel
 } // namespace OpenTodoList

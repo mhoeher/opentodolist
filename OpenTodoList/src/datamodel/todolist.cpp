@@ -36,8 +36,9 @@ TodoList::TodoList(QObject *parent) :
     m_uuid( QUuid() ),
     m_name( QString() ),
     m_metaAttributes(),
-    m_lastModificationTime(),
-    m_accountUuid( QUuid() )
+    m_accountUuid( QUuid() ),
+    m_dirty( 0 ),
+    m_disposed( false )
 
 {
     connect( this, &TodoList::nameChanged, this, &TodoList::changed );
@@ -85,19 +86,6 @@ void TodoList::setMetaAttributes(const QVariantMap &metaAttributes)
 {
     m_metaAttributes = metaAttributes;
     emit metaAttributesChanged();
-}
-
-QDateTime TodoList::lastModificationTime() const
-{
-    return m_lastModificationTime;
-}
-
-void TodoList::setLastModificationTime(const QDateTime &dateTime)
-{
-    if ( m_lastModificationTime != dateTime ) {
-        m_lastModificationTime = dateTime;
-        emit lastModificationTimeChanged();
-    }
 }
 
 QUuid TodoList::accountUuid() const
@@ -150,10 +138,11 @@ QVariant TodoList::toVariant() const
     if ( m_hasId ) {
         result.insert( "id", m_id );
     }
-    result.insert( "lastModificationTime", m_lastModificationTime );
     result.insert( "metaAttributes", m_metaAttributes );
     result.insert( "name", m_name );
     result.insert( "uuid", m_uuid );
+    result.insert( "dirty", m_dirty );
+    result.insert( "disposed", m_disposed );
     return result;
 }
 
@@ -174,11 +163,32 @@ void TodoList::fromVariant(const QVariant &todolist)
     }
 
     setAccountUuid( map.value( "accountUuid", m_accountUuid ).toUuid() );
-    setLastModificationTime( map.value( "lastModificationTime", m_lastModificationTime ).toDateTime() );
     setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
     setName( map.value( "name", m_name ).toString() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );
+    setDirty( map.value( "dirty", m_dirty ).toInt() );
+    setDisposed( map.value( "disposed", m_disposed ).toBool() );
 }
+int TodoList::dirty() const
+{
+    return m_dirty;
+}
+
+void TodoList::setDirty(int dirty)
+{
+    m_dirty = dirty;
+}
+bool TodoList::disposed() const
+{
+    return m_disposed;
+}
+
+void TodoList::setDisposed(bool disposed)
+{
+    m_disposed = disposed;
+}
+
+
 
 } /* DataModel */
 

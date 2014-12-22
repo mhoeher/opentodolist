@@ -8,6 +8,12 @@
 
 namespace OpenTodoList {
 
+/**
+ * @brief Classes integrating the application into the host system
+ *
+ * This namespace contains various classes that are used to integrate the application into
+ * the host operating system and desktop environment.
+ */
 namespace SystemIntegration {
 
 Plugin::Plugin(QObject *parent) :

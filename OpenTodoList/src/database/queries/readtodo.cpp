@@ -13,9 +13,7 @@ ReadTodo::ReadTodo() :
     m_todoListUuid( QUuid() ),
     m_minDueDate( QDateTime() ),
     m_maxDueDate( QDateTime() ),
-    m_showDone( true ),
-    m_showDeleted( true ),
-    m_hideUndeleted( false )
+    m_showDone( true )
 {
 }
 
@@ -31,9 +29,7 @@ bool ReadTodo::query(QString &query, QVariantMap &args)
               " todo.dueDate AS dueDate,"
               " todo.title AS title,"
               " todo.description AS description,"
-              " todo.deleted AS deleted,"
               " todoList.uuid as todoListUuid,"
-              " todo.lastModificationTime AS lastModificationTime,"
               " todoMetaAttributeName.name AS metaAttributeName,"
               " todoMetaAttribute.value AS metaAttributeValue "
               "FROM "
@@ -58,12 +54,6 @@ bool ReadTodo::query(QString &query, QVariantMap &args)
     }
     if ( !m_showDone ) {
         conditions.append( " (todo.done) " );
-    }
-    if ( !m_showDeleted ) {
-        conditions.append( " NOT ( todo.deleted ) " );
-    }
-    if ( m_hideUndeleted ) {
-        conditions.append( " NOT ( todo.deleted ) " );
     }
     if ( !conditions.isEmpty() ) {
         stream << " WHERE " << conditions.join( " AND " );
@@ -90,9 +80,7 @@ void ReadTodo::recordAvailable(const QVariantMap &record)
         m_currentTodo->setDueDate( record.value( "dueDate" ).toDateTime() );
         m_currentTodo->setTitle( record.value( "title" ).toString() );
         m_currentTodo->setDescription( record.value( "description" ).toString() );
-        m_currentTodo->setDeleted( record.value( "deleted" ).toBool() );
         m_currentTodo->setTodoListUuid( record.value( "todoListUuid" ).toUuid() );
-        m_currentTodo->setLastModificationTime( record.value( "lastModificationTime" ).toDateTime() );
     }
     if ( record.contains( "metaAttributeName" ) ) {
         QVariantMap attrs = m_currentTodo->metaAttributes();
@@ -153,30 +141,6 @@ void ReadTodo::setShowDone(bool showDone)
 {
     m_showDone = showDone;
 }
-bool ReadTodo::showDeleted() const
-{
-    return m_showDeleted;
-}
-
-void ReadTodo::setShowDeleted(bool showDeleted)
-{
-    m_showDeleted = showDeleted;
-}
-bool ReadTodo::hideUndeleted() const
-{
-    return m_hideUndeleted;
-}
-
-void ReadTodo::setHideUndeleted(bool hideUndeleted)
-{
-    m_hideUndeleted = hideUndeleted;
-}
-
-
-
-
-
-
 
 } // namespace Queries
 } // namespace DataBase

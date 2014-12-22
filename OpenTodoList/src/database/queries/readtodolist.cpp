@@ -23,7 +23,6 @@ bool ReadTodoList::query(QString &query, QVariantMap &args)
             " todoList.uuid AS uuid,"
             " account.uuid AS accountUuid,"
             " todoList.name AS name,"
-            " todoList.lastModificationTime AS lastModificationTime,"
             " todoListMetaAttributeName.name AS metaAttributeName,"
             " todoListMetaAttribute.value AS metaAttributeValue "
             "FROM"
@@ -50,7 +49,6 @@ void ReadTodoList::recordAvailable(const QVariantMap &record)
         m_currentTodoList->setUuid( record.value( "uuid" ).toUuid() );
         m_currentTodoList->setAccountUuid( record.value( "accountUuid" ).toUuid() );
         m_currentTodoList->setName( record.value( "name" ).toString() );
-        m_currentTodoList->setLastModificationTime( record.value( "lastModificationTime" ).toDateTime() );
     }
     if ( !record.value( "metaAttributeName").isNull() ) {
         QVariantMap metaAttributes = m_currentTodoList->metaAttributes();

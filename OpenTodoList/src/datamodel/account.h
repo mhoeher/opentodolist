@@ -16,18 +16,17 @@ class Account : public QObject, public IAccount
     Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString backend READ backend NOTIFY backendChanged)
-    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime NOTIFY lastModificationTimeChanged)
     Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
 public:
     explicit Account(QObject *parent = 0);
 
-    Account *clone( QObject *parent = nullptr ) const;
-
     bool hasId() const;
     int id() const;
     void setId( int id );
-    bool dirty() const;
+    int dirty() const;
+    void setDirty( int dirty );
     bool disposed() const;
+    void setDisposed( bool disposed );
     void setBackend( const QString &backend );
 
     // IAccount interface
@@ -36,8 +35,6 @@ public:
     const QString &name() const override;
     void setName(const QString &name) override;
     QString backend() const override;
-    QDateTime lastModificationTime() const override;
-    void setLastModificationTime(const QDateTime &dateTime) override;
     QVariantMap metaAttributes() const override;
     void setMetaAttributes(const QVariantMap &metaAttributes) override;
 
@@ -51,9 +48,6 @@ signals:
     void uuidChanged();
     void nameChanged();
     void backendChanged();
-    void dirtyChanged();
-    void disposedChanged();
-    void lastModificationTimeChanged();
     void metaAttributesChanged();
 
     /**
@@ -74,9 +68,8 @@ private:
     QUuid       m_uuid;
     QString     m_name;
     QString     m_backend;
-    bool        m_dirty;
+    int         m_dirty;
     bool        m_disposed;
-    QDateTime   m_lastModificationTime;
     QVariantMap m_metaAttributes;
 
 };

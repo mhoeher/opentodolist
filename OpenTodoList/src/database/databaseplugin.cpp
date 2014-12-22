@@ -6,6 +6,13 @@
 #include <qqml.h>
 #include <QJSEngine>
 
+/**
+ * @namespace OpenTodoList::DataBase::Queries
+ * @brief Database queries
+ *
+ * This namespace is holding various queries that are used to modify or read the
+ * application database.
+ */
 namespace OpenTodoList {
 
 namespace DataBase {

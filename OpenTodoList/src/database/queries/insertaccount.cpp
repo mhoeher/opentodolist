@@ -94,11 +94,6 @@ bool InsertAccount::query(QString &query, QVariantMap &args)
             args.insert( "disposed", true );
         }
 
-        // insert last modification time
-        names << "lastModificationTime";
-        values << ":lastModificationTime";
-        args.insert( "lastModificationTime", m_account->lastModificationTime() );
-
         query = query.arg( names.join( ", " ) ).arg( values.join( ", " ) );
 
         m_state = m_account->metaAttributes().isEmpty() ? RemoveExtraMetaState : InsertMetaNameState;

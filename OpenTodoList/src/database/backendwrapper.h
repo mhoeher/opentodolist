@@ -65,6 +65,22 @@ public:
     ITodoList* createTodoList() override;
     ITodo* createTodo() override;
     ITask *createTask() override;
+    IAccount *getAccount(const QUuid &uuid) override;
+    ITodoList *getTodoList(const QUuid &uuid) override;
+    ITodo *getTodo(const QUuid &uuid) override;
+    ITask *getTask(const QUuid &uuid) override;
+    QList<IAccount *> getModifiedAccounts(int maxAccounts) override;
+    QList<ITodoList *> getModifiedTodoLists(int maxTodoLists) override;
+    QList<ITodo *> getModifiedTodos(int maxTodos) override;
+    QList<ITask *> getModifiedTasks(int maxTasks) override;
+    bool onAccountSaved(IAccount *account) override;
+    bool onTodoListSaved(ITodoList *todoList) override;
+    bool onTodoSaved(ITodo *todo) override;
+    bool onTaskSaved(ITask *task) override;
+    QList<IAccount *> getDeletedAccounts(int maxAccounts) override;
+    QList<ITodoList *> getDeletedTodoLists(int maxTodoLists) override;
+    QList<ITodo *> getDeletedTodos(int maxTodos) override;
+    QList<ITask *> getDeletedTasks(int maxTasks) override;
 
     // IBackend interface
     void setLocalStorageDirectory(const QString &directory) override;

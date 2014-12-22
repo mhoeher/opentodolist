@@ -129,7 +129,11 @@ RESOURCES += OpenTodoList.qrc
 
 # To let QML files appear in project browser in Qt Creator
 OTHER_FILES += \
-    ../bin/mk-qrc.pl
+    ../bin/mk-qrc.pl \
+    OpenTodoList.dox \
+    doc/databaseproto.dox \
+    doc/doxygen-opentodolist.css \
+    ../Doxyfile
 
 
 # Android specific:

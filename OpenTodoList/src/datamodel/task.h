@@ -45,6 +45,12 @@ public:
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant( const QVariant &task );
 
+    int dirty() const;
+    void setDirty(int dirty);
+
+    bool disposed() const;
+    void setDisposed(bool disposed);
+
 signals:
 
     void idChanged();
@@ -67,6 +73,8 @@ private:
     double m_weigth;
     QVariantMap m_metaAttributes;
     QUuid m_todoUuid;
+    int m_dirty;
+    bool m_disposed;
 
 
 };

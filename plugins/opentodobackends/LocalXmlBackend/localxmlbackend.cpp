@@ -265,9 +265,6 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
                     qWarning() << "File" << fileName << "is not a valid todo list XML";
                     delete result;
                     return 0;
-                } else {
-                    QFileInfo fi( fileName );
-                    result->setLastModificationTime( fi.lastModified() );
                 }
             } else {
                 qWarning() << "Error reading todo list from" << fileName << ":"
@@ -290,7 +287,6 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
         // TODO: Remove me in final release:
         if ( result->uuid().isNull() ) {
             result->setUuid( QUuid::createUuid() );
-            result->setLastModificationTime( QDateTime::currentDateTime() );
             todoListToFile( result );
         }
 
@@ -317,9 +313,6 @@ OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, doub
                     qWarning() << "File" << fileName << "is not a valid todo XML file";
                     delete result;
                     return 0;
-                } else {
-                    QFileInfo fi( fileName );
-                    result->setLastModificationTime( fi.lastModified() );
                 }
             } else {
                 qWarning() << "Error loading todo from" << fileName << ":"
@@ -345,7 +338,6 @@ OpenTodoList::ITodo *LocalXmlBackend::todoFromFile(const QString &fileName, doub
             writeBack = true;
         }
         if ( writeBack ) {
-            result->setLastModificationTime( QDateTime::currentDateTime() );
             todoToFile( result );
         }
     }
@@ -443,7 +435,6 @@ bool LocalXmlBackend::listToDom(const OpenTodoList::ITodoList *list, QDomDocumen
     }
     root.setAttribute( "id", list->uuid().toString() );
     root.setAttribute( "name", list->name() );
-    root.setAttribute( "lastModificationTime", list->lastModificationTime().toString() );
     return true;
 }
 
@@ -457,8 +448,6 @@ bool LocalXmlBackend::domToList(const QDomDocument &doc, OpenTodoList::ITodoList
         list->setUuid( QUuid( root.attribute( "id", list->uuid().toString() ) ) );
     }
     list->setName( root.attribute( "name", list->name() ) );
-    list->setLastModificationTime(
-                QDateTime::fromString( root.attribute( list->lastModificationTime().toString() ) ) );
     return true;
 }
 
@@ -473,14 +462,12 @@ bool LocalXmlBackend::todoToDom(const OpenTodoList::ITodo *todo, QDomDocument &d
     root.setAttribute( "title", todo->title() );
     root.setAttribute( "done", todo->done() ? "true" : "false" );
     root.setAttribute( "priority", todo->priority() );
-    root.setAttribute( "deleted", todo->isDeleted() ? "true" : "false" );
     root.setAttribute( "weight", todo->weight() );
     if ( todo->dueDate().isValid() ) {
         root.setAttribute( "dueDate", todo->dueDate().toString() );
     } else {
         root.removeAttribute( "dueDate" );
     }
-    root.setAttribute( "lastModificationDate", todo->lastModificationTime().toString() );
     QDomElement descriptionElement = root.firstChildElement( "description" );
     if ( !descriptionElement.isElement() ) {
         descriptionElement = doc.createElement( "description" );
@@ -513,7 +500,6 @@ bool LocalXmlBackend::domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *to
         todo->setDone( root.attribute( "progress", 0 ).toInt() >= 100 );
     }
     todo->setPriority( qBound( -1, root.attribute( "priority", QString::number(todo->priority()) ).toInt(), 10 ) );
-    todo->setDeleted( root.attribute( "deleted", todo->isDeleted() ? "true" : "false" ) == "true" );
     if ( root.hasAttribute( "dueDate" ) ) {
         todo->setDueDate( QDateTime::fromString( root.attribute( "dueDate" ) ) );
     }
@@ -522,9 +508,6 @@ bool LocalXmlBackend::domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *to
     } else {
         // TODO: Remove in final version
         writeBack = true;
-    }
-    if ( root.hasAttribute( "lastModificationTime" ) ) {
-        todo->setLastModificationTime( QDateTime::fromString( root.attribute( "lastModificationTime" ) ) );
     }
     QDomElement description = root.firstChildElement( "description" );
     if ( description.isElement() ) {

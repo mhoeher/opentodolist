@@ -36,12 +36,6 @@ public:
     bool showDone() const;
     void setShowDone(bool showDone);
 
-    bool showDeleted() const;
-    void setShowDeleted(bool showDeleted);
-
-    bool hideUndeleted() const;
-    void setHideUndeleted(bool hideUndeleted);
-
 signals:
 
     void readTodo( const QVariant &todo );
@@ -57,8 +51,6 @@ private:
     QDateTime m_minDueDate;
     QDateTime m_maxDueDate;
     bool m_showDone;
-    bool m_showDeleted;
-    bool m_hideUndeleted;
 
 };
 

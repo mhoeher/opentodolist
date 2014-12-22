@@ -5,6 +5,11 @@
 
 namespace OpenTodoList {
 
+/**
+ * @brief Provides the applications database
+ *
+ * This namespace contains the classes used to model the applications database.
+ */
 namespace DataBase {
 
 class Plugin : public QQmlExtensionPlugin

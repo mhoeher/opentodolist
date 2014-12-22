@@ -37,7 +37,6 @@ bool ReadAccount::query(QString &query, QVariantMap &args)
             " backend.name AS backend,"
             " account.dirty AS dirty,"
             " account.disposed AS disposed,"
-            " account.lastModificationTime AS lastModificationTime,"
             " accountMetaAttributeName.name AS attributeName,"
             " accountMetaAttribute.value AS attributeValue "
             " FROM account JOIN backend ON account.backend = backend.id"
@@ -57,7 +56,6 @@ void ReadAccount::recordAvailable(const QVariantMap &record)
         m_currentAccount->setUuid( record.value( "uuid" ).toUuid() );
         m_currentAccount->setName( record.value( "name" ).toString() );
         m_currentAccount->setBackend( record.value( "backend" ).toString() );
-        m_currentAccount->setLastModificationTime( record.value( "lastModificationTime" ).toDateTime() );
         if ( record.value( "attributeName" ).isValid() ) {
             QVariantMap attributes;
             attributes.insert( record.value( "attributeName" ).toString(),

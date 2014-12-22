@@ -121,7 +121,95 @@ ITodo *BackendWrapper::createTodo()
 ITask *BackendWrapper::createTask()
 {
     // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
-    return new DataModel::Task();
+  return new DataModel::Task();
+}
+
+IAccount *BackendWrapper::getAccount(const QUuid &uuid)
+{
+  // TODO: Implement me
+  return nullptr;
+}
+
+ITodoList *BackendWrapper::getTodoList(const QUuid &uuid)
+{
+  // TODO: Implement me
+  return nullptr;
+}
+
+ITodo *BackendWrapper::getTodo(const QUuid &uuid)
+{
+  // TODO: Implement me
+  return nullptr;
+}
+
+ITask *BackendWrapper::getTask(const QUuid &uuid)
+{
+  // TODO: Implement me
+  return nullptr;
+}
+
+QList<IAccount *> BackendWrapper::getModifiedAccounts(int maxAccounts)
+{
+  // TODO: implement me
+  return QList<IAccount*>();
+}
+
+QList<ITodoList *> BackendWrapper::getModifiedTodoLists(int maxTodoLists)
+{
+  //TODO: Implement me
+  return QList<ITodoList*>();
+}
+
+QList<ITodo *> BackendWrapper::getModifiedTodos(int maxTodos)
+{
+  //TODO: Implement me
+  return QList<ITodo*>();
+}
+
+QList<ITask *> BackendWrapper::getModifiedTasks(int maxTasks)
+{
+  //TODO: Implement me
+  return QList<ITask*>();
+}
+
+bool BackendWrapper::onAccountSaved(IAccount *account)
+{
+  //TODO: Implement me
+}
+
+bool BackendWrapper::onTodoListSaved(ITodoList *todoList)
+{
+  //TODO: Implement me
+}
+
+bool BackendWrapper::onTodoSaved(ITodo *todo)
+{
+  //TODO: Implement me
+}
+
+bool BackendWrapper::onTaskSaved(ITask *task)
+{
+  //TODO: Implement me
+}
+
+QList<IAccount *> BackendWrapper::getDeletedAccounts(int maxAccounts)
+{
+  //TODO: Implement me
+}
+
+QList<ITodoList *> BackendWrapper::getDeletedTodoLists(int maxTodoLists)
+{
+  //TODO: Implement me
+}
+
+QList<ITodo *> BackendWrapper::getDeletedTodos(int maxTodos)
+{
+  //TODO: Implement me
+}
+
+QList<ITask *> BackendWrapper::getDeletedTasks(int maxTasks)
+{
+  //TODO: Implement me
 }
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)

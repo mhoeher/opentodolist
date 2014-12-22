@@ -44,9 +44,9 @@ Todo::Todo(QObject *parent) :
     m_dueDate( QDateTime() ),
     m_title( QString() ),
     m_description( QString() ),
-    m_deleted( false ),
     m_metaAttributes( QVariantMap() ),
-    m_lastModificationTime( QDateTime() )
+    m_dirty( 0 ),
+    m_disposed( false )
 {
     setupTodo();
 }
@@ -163,19 +163,6 @@ void Todo::setDescription(const QString &description)
     }
 }
 
-bool Todo::isDeleted() const
-{
-    return m_deleted;
-}
-
-void Todo::setDeleted(bool isDeleted)
-{
-    if ( m_deleted != isDeleted ) {
-        m_deleted = isDeleted;
-        emit deletedChanged();
-    }
-}
-
 QVariantMap Todo::metaAttributes() const
 {
     return m_metaAttributes;
@@ -187,19 +174,6 @@ void Todo::setMetaAttributes(const QVariantMap &metaAttributes)
     emit metaAttributesChanged();
 }
 
-QDateTime Todo::lastModificationTime() const
-{
-    return m_lastModificationTime;
-}
-
-void Todo::setLastModificationTime(const QDateTime &dateTime)
-{
-    if ( m_lastModificationTime != dateTime ) {
-        m_lastModificationTime = dateTime;
-        emit lastModificationTimeChanged();
-    }
-}
-
 /**
    @brief Creates a representation of the todo as QVariant
 
@@ -208,20 +182,20 @@ void Todo::setLastModificationTime(const QDateTime &dateTime)
 QVariant Todo::toVariant() const
 {
     QVariantMap result;
-    result.insert( "deleted", m_deleted );
     result.insert( "description", m_description );
     result.insert( "done", m_done );
     result.insert( "dueDate", m_dueDate );
     if ( m_hasId ) {
         result.insert( "id", m_id );
     }
-    result.insert( "lastModificationTime", m_lastModificationTime );
     result.insert( "metaAttributes", m_metaAttributes );
     result.insert( "priority", m_priority );
     result.insert( "title", m_title );
     result.insert( "todoListUuid", m_todoListUuid );
     result.insert( "uuid", m_uuid );
     result.insert( "weight", m_weight );
+    result.insert( "dirty", m_dirty );
+    result.insert( "disposed", m_disposed );
     return result;
 }
 
@@ -244,17 +218,17 @@ void Todo::fromVariant(const QVariant &todo)
     }
 
     // restore properties
-    setDeleted( map.value( "deleted", m_deleted ).toBool() );
     setDescription( map.value( "description", m_description ).toString() );
     setDone( map.value( "done", m_done ).toBool() );
     setDueDate( map.value( "dueDate", m_dueDate ).toDateTime() );
-    setLastModificationTime( map.value( "lastModificationTime", m_lastModificationTime ).toDateTime() );
     setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
     setPriority( map.value( "priority", m_priority ).toInt() );
     setTitle( map.value( "title", m_title ).toString() );
     setTodoListUuid( map.value( "todoListUuid", m_todoListUuid ).toUuid() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );
     setWeight( map.value( "weight", m_weight ).toDouble() );
+    setDirty( map.value( "dirty", m_dirty ).toInt() );
+    setDisposed( map.value( "disposed", m_disposed ).toBool() );
 }
 
 /**
@@ -275,18 +249,36 @@ void Todo::setupTodo()
     connect( this, &Todo::dueDateChanged, this, &Todo::changed );
     connect( this, &Todo::titleChanged, this, &Todo::changed );
     connect( this, &Todo::descriptionChanged, this, &Todo::changed );
-    connect( this, &Todo::deletedChanged, this, &Todo::changed );
-    connect( this, &Todo::lastModificationTimeChanged, this, &Todo::changed );
 }
+bool Todo::disposed() const
+{
+  return m_disposed;
+}
+
+void Todo::setDisposed(bool disposed)
+{
+  m_disposed = disposed;
+}
+
+int Todo::dirty() const
+{
+  return m_dirty;
+}
+
+void Todo::setDirty(int dirty)
+{
+  m_dirty = dirty;
+}
+
 
 bool Todo::hasId() const
 {
-    return m_hasId;
+  return m_hasId;
 }
 
 int Todo::id() const
 {
-    return m_id;
+  return m_id;
 }
 
 void Todo::setId(int id)

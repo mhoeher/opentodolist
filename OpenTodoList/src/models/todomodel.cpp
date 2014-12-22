@@ -144,13 +144,7 @@ void TodoModel::setDatabase(Database *database)
 
 bool TodoModel::todoIsVisible(const Todo *todo) const
 {
-    if ( !m_showDeleted && todo->isDeleted() ) {
-        return false;
-    }
     if ( !m_todoList.isNull() && m_todoList->uuid() != todo->todoListUuid() ) {
-        return false;
-    }
-    if ( m_hideUndeleted && !todo->isDeleted() ) {
         return false;
     }
     if ( m_maxDueDate.isValid() && m_maxDueDate < todo->dueDate() ) {
@@ -370,14 +364,6 @@ TodoModel::Comparator::Comparator(TodoSortMode sortMode) :
 int TodoModel::Comparator::operator ()(DataModel::Todo * const &first, DataModel::Todo * const &second) const
 {
     if ( first && second ) {
-        // always show deleted todos after non-deleted ones
-        if ( first->isDeleted() && !second->isDeleted() ) {
-            return 1;
-        }
-        if ( second->isDeleted() && !first->isDeleted() ) {
-            return -1;
-        }
-
         // always show open todos before done ones:
         if ( first->done() && !second->done() ) {
             return 1;

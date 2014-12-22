@@ -41,9 +41,7 @@ class Todo : public QObject, public ITodo
     Q_PROPERTY(QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged )
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged )
-    Q_PROPERTY(bool isDeleted READ isDeleted WRITE setDeleted NOTIFY deletedChanged )
     Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
-    Q_PROPERTY(QDateTime lastModificationTime READ lastModificationTime WRITE setLastModificationTime NOTIFY lastModificationTimeChanged)
 
 public:
 
@@ -71,15 +69,17 @@ public:
     void setTitle(const QString &title) override;
     const QString &description() const override;
     void setDescription(const QString &description) override;
-    bool isDeleted() const override;
-    void setDeleted(bool isDeleted) override;
     QVariantMap metaAttributes() const override;
     void setMetaAttributes( const QVariantMap &metaAttributes ) override;
-    QDateTime lastModificationTime() const override;
-    void setLastModificationTime(const QDateTime &dateTime) override;
 
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant( const QVariant &todo );
+
+    int dirty() const;
+    void setDirty(int dirty);
+
+    bool disposed() const;
+    void setDisposed(bool disposed);
 
 signals:
 
@@ -91,10 +91,8 @@ signals:
     void dueDateChanged();
     void titleChanged();
     void descriptionChanged();
-    void deletedChanged();
     void todoListUuidChanged();
     void metaAttributesChanged();
-    void lastModificationTimeChanged();
 
     void changed();
     
@@ -121,9 +119,9 @@ private:
     QDateTime               m_dueDate;
     QString                 m_title;
     QString                 m_description;
-    bool                    m_deleted;
     QVariantMap             m_metaAttributes;
-    QDateTime               m_lastModificationTime;
+    int                     m_dirty;
+    bool                    m_disposed;
 
 };
 

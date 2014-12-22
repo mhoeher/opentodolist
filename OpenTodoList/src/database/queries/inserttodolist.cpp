@@ -23,19 +23,17 @@ bool InsertTodoList::query(QString &query, QVariantMap &args)
     {
         m_waitForId = true;
         query = "INSERT OR REPLACE INTO todoList "
-                " ( id, uuid, account, name, lastModificationTime ) "
+                " ( id, uuid, account, name ) "
                 " VALUES ( "
                 "  ( SELECT id FROM todoList WHERE uuid = :searchUuid ),"
                 "  :uuid, "
                 "  ( SELECT id FROM account WHERE uuid = :searchAccountUuid ),"
-                "  :name,"
-                "  :lastModificationTime"
+                "  :name"
                 " );";
         args.insert( "searchUuid", m_todoList->uuid().toString() );
         args.insert( "uuid", m_todoList->uuid().toString() );
         args.insert( "searchAccountUuid", m_todoList->accountUuid().toString() );
         args.insert( "name", m_todoList->name() );
-        args.insert( "lastModificationTime", m_todoList->lastModificationTime() );
 
         m_state = m_todoList->metaAttributes().isEmpty() ?
                     RemoveExtraneousMetaAttributeValuesState :
