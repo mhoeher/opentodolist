@@ -144,7 +144,7 @@ void TodoModel::setDatabase(Database *database)
 
 bool TodoModel::todoIsVisible(const Todo *todo) const
 {
-    if ( !m_todoList.isNull() && m_todoList->uuid() != todo->todoListUuid() ) {
+    if ( !m_todoList.isNull() && m_todoList->uuid() != todo->todoList() ) {
         return false;
     }
     if ( m_maxDueDate.isValid() && m_maxDueDate < todo->dueDate() ) {

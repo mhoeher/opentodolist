@@ -65,7 +65,6 @@ Item {
         text: task ? task.title : ""
         placeholder: qsTr( "Untitled Task" )
         useSymbolButton: true
-        strikeOut: task && task.isDeleted
         anchors {
             left: parent.left
             right: menu.left

@@ -98,12 +98,12 @@ void Task::setMetaAttributes(const QVariantMap &metaAttributes)
     emit metaAttributesChanged();
 }
 
-QUuid Task::todoUuid() const
+QUuid Task::todo() const
 {
     return m_todoUuid;
 }
 
-void Task::setTodoUuid(const QUuid &uuid)
+void Task::setTodo(const QUuid &uuid)
 {
     if ( m_todoUuid != uuid ) {
         m_todoUuid = uuid;
@@ -142,7 +142,7 @@ void Task::fromVariant(const QVariant &task)
     setDone( map.value( "done", m_done ).toBool() );
     setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
     setTitle( map.value( "title", m_title ).toString() );
-    setTodoUuid( map.value( "todoUuid", m_todoUuid ).toUuid() );
+    setTodo( map.value( "todoUuid", m_todoUuid ).toUuid() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );
     setWeight( map.value( "weight", m_weigth ).toDouble() );
     setDirty( map.value( "dirty", m_dirty ).toInt() );

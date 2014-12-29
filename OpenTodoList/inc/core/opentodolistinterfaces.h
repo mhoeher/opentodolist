@@ -114,12 +114,12 @@ public:
   /**
        @brief Returns the UUID of the account the todo list belongs to
      */
-  virtual QUuid accountUuid() const = 0;
+  virtual QUuid account() const = 0;
 
   /**
        @brief Sets the @p uuid of the account the toto list belongs to
      */
-  virtual void setAccountUuid( const QUuid &uuid ) = 0;
+  virtual void setAccount( const QUuid &uuid ) = 0;
 
   /**
        @brief The name of the todo list.
@@ -233,11 +233,11 @@ public:
   /**
        @brief Returns the uuid of the todo list the todo is in.
      */
-  virtual const QUuid& todoListUuid() const = 0;
+  virtual const QUuid& todoList() const = 0;
   /**
        @brief Sets the @p uuid of the todo list the todo is in.
      */
-  virtual void setTodoListUuid( const QUuid &uuid ) = 0;
+  virtual void setTodoList( const QUuid &uuid ) = 0;
 
   /**
        @brief The meta attributes of the todo
@@ -316,12 +316,12 @@ public:
   /**
        @brief Returns the UUID of the todo the task belongs to
      */
-  virtual QUuid todoUuid() const = 0;
+  virtual QUuid todo() const = 0;
 
   /**
        @brief Sets the @p uuid of the todo this task belongs to
      */
-  virtual void setTodoUuid( const QUuid &uuid ) = 0;
+  virtual void setTodo( const QUuid &uuid ) = 0;
 
 };
 

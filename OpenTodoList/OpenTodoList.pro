@@ -83,7 +83,8 @@ HEADERS += \
     src/database/queries/readtodo.h \
     src/database/queries/inserttask.h \
     src/database/queries/readtask.h \
-    src/models/taskmodel.h
+    src/models/taskmodel.h \
+    src/database/queries/private/insertobject.h
 
 SOURCES += \
     src/main.cpp \

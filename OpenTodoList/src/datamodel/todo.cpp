@@ -111,12 +111,12 @@ void Todo::setPriority(int priority)
     }
 }
 
-const QUuid &Todo::todoListUuid() const
+const QUuid &Todo::todoList() const
 {
     return m_todoListUuid;
 }
 
-void Todo::setTodoListUuid(const QUuid &uuid)
+void Todo::setTodoList(const QUuid &uuid)
 {
     if ( m_todoListUuid != uuid ) {
         m_todoListUuid = uuid;
@@ -224,7 +224,7 @@ void Todo::fromVariant(const QVariant &todo)
     setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
     setPriority( map.value( "priority", m_priority ).toInt() );
     setTitle( map.value( "title", m_title ).toString() );
-    setTodoListUuid( map.value( "todoListUuid", m_todoListUuid ).toUuid() );
+    setTodoList( map.value( "todoListUuid", m_todoListUuid ).toUuid() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );
     setWeight( map.value( "weight", m_weight ).toDouble() );
     setDirty( map.value( "dirty", m_dirty ).toInt() );

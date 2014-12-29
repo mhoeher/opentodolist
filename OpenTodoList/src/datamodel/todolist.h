@@ -43,7 +43,7 @@ class TodoList : public QObject, public ITodoList
     Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
-    Q_PROPERTY(QUuid accountUuid READ accountUuid NOTIFY accountUuidChanged)
+    Q_PROPERTY(QUuid account READ account NOTIFY accountUuidChanged)
     
 public:
 
@@ -57,8 +57,8 @@ public:
     void setName(const QString &name) override;
     QVariantMap metaAttributes() const override;
     void setMetaAttributes( const QVariantMap &metaAttributes ) override;
-    QUuid accountUuid() const;
-    void setAccountUuid(const QUuid &uuid);
+    QUuid account() const;
+    void setAccount(const QUuid &uuid);
 
     int id() const;
     void setId( int id );

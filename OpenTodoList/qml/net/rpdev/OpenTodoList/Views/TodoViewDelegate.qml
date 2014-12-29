@@ -65,7 +65,6 @@ Item {
         text: todo ? todo.title : ""
         placeholder: qsTr( "Untitled Todo" )
         useSymbolButton: true
-        strikeOut: todo && todo.isDeleted
         anchors {
             left: parent.left
             right: menu.left

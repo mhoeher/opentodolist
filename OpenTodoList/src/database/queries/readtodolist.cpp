@@ -18,6 +18,7 @@ QList<TodoList *> ReadTodoList::todoLists() const
 
 bool ReadTodoList::query(QString &query, QVariantMap &args)
 {
+  Q_UNUSED( args );
     query = "SELECT"
             " todoList.id AS id,"
             " todoList.uuid AS uuid,"
@@ -31,7 +32,7 @@ bool ReadTodoList::query(QString &query, QVariantMap &args)
             " account ON todoList.account = account.id "
             "LEFT OUTER JOIN"
             " todoListMetaAttribute ON todoList.id = todoListMetaAttribute.todoList "
-            "JOIN"
+            "LEFT OUTER JOIN"
             " todoListMetaAttributeName ON todoListMetaAttribute.attributeName = todoListMetaAttributeName.id;";
     return true;
 }
@@ -47,7 +48,7 @@ void ReadTodoList::recordAvailable(const QVariantMap &record)
         m_currentTodoList = new TodoList( this );
         m_currentTodoList->setId( record.value( "id" ).toInt() );
         m_currentTodoList->setUuid( record.value( "uuid" ).toUuid() );
-        m_currentTodoList->setAccountUuid( record.value( "accountUuid" ).toUuid() );
+        m_currentTodoList->setAccount( record.value( "accountUuid" ).toUuid() );
         m_currentTodoList->setName( record.value( "name" ).toString() );
     }
     if ( !record.value( "metaAttributeName").isNull() ) {

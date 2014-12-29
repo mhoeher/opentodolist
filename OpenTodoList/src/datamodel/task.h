@@ -19,7 +19,7 @@ class Task : public QObject, public ITask
     Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
     Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
     Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
-    Q_PROPERTY(QUuid todoUuid READ todoUuid NOTIFY todoUuidChanged)
+    Q_PROPERTY(QUuid todo READ todo NOTIFY todoUuidChanged)
 
 public:
     explicit Task(QObject *parent = 0);
@@ -39,8 +39,8 @@ public:
     void setWeight(double weight) override;
     QVariantMap metaAttributes() const override;
     void setMetaAttributes(const QVariantMap &metaAttributes) override;
-    QUuid todoUuid() const override;
-    void setTodoUuid( const QUuid &uuid ) override;
+    QUuid todo() const override;
+    void setTodo( const QUuid &uuid ) override;
 
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant( const QVariant &task );

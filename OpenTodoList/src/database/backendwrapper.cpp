@@ -47,7 +47,7 @@ BackendWrapper::~BackendWrapper()
 bool BackendWrapper::insertAccount(IAccount *account)
 {
     DataModel::Account *acc = static_cast< DataModel::Account* >( account );
-    Queries::InsertAccount q( acc, Queries::InsertAccount::NoFlags, StorageQuery::CallerIsOwner );
+    Queries::InsertAccount q( acc, false );
     m_database->runQuery( &q );
     return true;
 }
@@ -55,7 +55,7 @@ bool BackendWrapper::insertAccount(IAccount *account)
 bool BackendWrapper::insertTodoList(ITodoList *list)
 {
     DataModel::TodoList *todoList = static_cast< DataModel::TodoList* >( list );
-    Queries::InsertTodoList q( todoList );
+    Queries::InsertTodoList q( todoList, false );
     m_database->runQuery( &q );
     return true;
 }
@@ -63,7 +63,7 @@ bool BackendWrapper::insertTodoList(ITodoList *list)
 bool BackendWrapper::insertTodo(ITodo *todo)
 {
     DataModel::Todo *t = static_cast< DataModel::Todo* >( todo );
-    Queries::InsertTodo q( t );
+    Queries::InsertTodo q( t, false );
     m_database->runQuery( &q );
     return true;
 }
@@ -71,7 +71,7 @@ bool BackendWrapper::insertTodo(ITodo *todo)
 bool BackendWrapper::insertTask(ITask *task)
 {
     DataModel::Task *t = static_cast< DataModel::Task* >( task );
-    Queries::InsertTask q( t );
+    Queries::InsertTask q( t, false );
     m_database->runQuery( &q );
     return true;
 }
@@ -79,22 +79,29 @@ bool BackendWrapper::insertTask(ITask *task)
 bool BackendWrapper::deleteAccount(const IAccount *account)
 {
     // TODO: Implement me
+  Q_UNUSED( account );
+  return false;
 }
 
 bool BackendWrapper::deleteTodoList(const ITodoList *list)
 {
     // TODO: Implement me
+  Q_UNUSED( list );
+  return false;
 }
 
 bool BackendWrapper::deleteTodo(const ITodo *todo)
 {
     // TODO: Implement me
+  Q_UNUSED( todo );
+  return false;
 }
 
 bool BackendWrapper::deleteTask(const ITask *task)
 {
-    return false;
-    // TODO: Implement me
+  Q_UNUSED( task );
+  return false;
+  // TODO: Implement me
 }
 
 IAccount *BackendWrapper::createAccount()
@@ -127,89 +134,113 @@ ITask *BackendWrapper::createTask()
 IAccount *BackendWrapper::getAccount(const QUuid &uuid)
 {
   // TODO: Implement me
+  Q_UNUSED( uuid );
   return nullptr;
 }
 
 ITodoList *BackendWrapper::getTodoList(const QUuid &uuid)
 {
   // TODO: Implement me
+  Q_UNUSED( uuid );
   return nullptr;
 }
 
 ITodo *BackendWrapper::getTodo(const QUuid &uuid)
 {
   // TODO: Implement me
+  Q_UNUSED( uuid );
   return nullptr;
 }
 
 ITask *BackendWrapper::getTask(const QUuid &uuid)
 {
   // TODO: Implement me
+  Q_UNUSED( uuid );
   return nullptr;
 }
 
 QList<IAccount *> BackendWrapper::getModifiedAccounts(int maxAccounts)
 {
   // TODO: implement me
+  Q_UNUSED( maxAccounts );
   return QList<IAccount*>();
 }
 
 QList<ITodoList *> BackendWrapper::getModifiedTodoLists(int maxTodoLists)
 {
   //TODO: Implement me
+  Q_UNUSED( maxTodoLists );
   return QList<ITodoList*>();
 }
 
 QList<ITodo *> BackendWrapper::getModifiedTodos(int maxTodos)
 {
   //TODO: Implement me
+  Q_UNUSED( maxTodos );
   return QList<ITodo*>();
 }
 
 QList<ITask *> BackendWrapper::getModifiedTasks(int maxTasks)
 {
   //TODO: Implement me
+  Q_UNUSED( maxTasks );
   return QList<ITask*>();
 }
 
 bool BackendWrapper::onAccountSaved(IAccount *account)
 {
   //TODO: Implement me
+  Q_UNUSED( account );
+  return false;
 }
 
 bool BackendWrapper::onTodoListSaved(ITodoList *todoList)
 {
   //TODO: Implement me
+  Q_UNUSED( todoList );
+  return false;
 }
 
 bool BackendWrapper::onTodoSaved(ITodo *todo)
 {
   //TODO: Implement me
+  Q_UNUSED( todo );
+  return true;
 }
 
 bool BackendWrapper::onTaskSaved(ITask *task)
 {
   //TODO: Implement me
+  Q_UNUSED( task );
+  return false;
 }
 
 QList<IAccount *> BackendWrapper::getDeletedAccounts(int maxAccounts)
 {
   //TODO: Implement me
+  Q_UNUSED( maxAccounts );
+  return QList<IAccount*>();
 }
 
 QList<ITodoList *> BackendWrapper::getDeletedTodoLists(int maxTodoLists)
 {
   //TODO: Implement me
+  Q_UNUSED( maxTodoLists );
+  return QList<ITodoList*>();
 }
 
 QList<ITodo *> BackendWrapper::getDeletedTodos(int maxTodos)
 {
   //TODO: Implement me
+  Q_UNUSED( maxTodos );
+  return QList<ITodo*>();
 }
 
 QList<ITask *> BackendWrapper::getDeletedTasks(int maxTasks)
 {
   //TODO: Implement me
+  Q_UNUSED( maxTasks );
+  return QList<ITask*>();
 }
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)

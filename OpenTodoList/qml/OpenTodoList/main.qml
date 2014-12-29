@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.2
+
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
 import net.rpdev.OpenTodoList.Models 1.0
@@ -39,6 +40,7 @@ Rectangle {
         settings.setValue( "OpenTodoList/ViewSettings/showDeletedTodos", ViewSettings.showDeletedTodos );
     }
 
+
     onFocusChanged: {
         // required to give back focus to the page stack whenever a
         // overlay has been displayed
@@ -56,8 +58,6 @@ Rectangle {
 
         ViewSettings.onSettingsChanged.connect( saveViewSettings );
     }
-
-
 
     onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
     onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
@@ -105,3 +105,4 @@ Rectangle {
     }
 
 }
+

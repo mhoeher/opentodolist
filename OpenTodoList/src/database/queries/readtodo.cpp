@@ -36,7 +36,7 @@ bool ReadTodo::query(QString &query, QVariantMap &args)
               " todo "
               "INNER JOIN todoList ON todo.todoList = todoList.id "
               "LEFT OUTER JOIN todoMetaAttribute ON todo.id = todoMetaAttribute.todo "
-              "INNER JOIN todoMetaAttributeName ON todoMetaAttribute.attributeName = todoMetaAttributeName.id ";
+              "LEFT OUTER JOIN todoMetaAttributeName ON todoMetaAttribute.attributeName = todoMetaAttributeName.id ";
 
     // Filtering:
     QStringList conditions;
@@ -80,7 +80,7 @@ void ReadTodo::recordAvailable(const QVariantMap &record)
         m_currentTodo->setDueDate( record.value( "dueDate" ).toDateTime() );
         m_currentTodo->setTitle( record.value( "title" ).toString() );
         m_currentTodo->setDescription( record.value( "description" ).toString() );
-        m_currentTodo->setTodoListUuid( record.value( "todoListUuid" ).toUuid() );
+        m_currentTodo->setTodoList( record.value( "todoListUuid" ).toUuid() );
     }
     if ( record.contains( "metaAttributeName" ) ) {
         QVariantMap attrs = m_currentTodo->metaAttributes();

@@ -88,12 +88,12 @@ void TodoList::setMetaAttributes(const QVariantMap &metaAttributes)
     emit metaAttributesChanged();
 }
 
-QUuid TodoList::accountUuid() const
+QUuid TodoList::account() const
 {
     return m_accountUuid;
 }
 
-void TodoList::setAccountUuid(const QUuid &uuid)
+void TodoList::setAccount(const QUuid &uuid)
 {
     if ( m_accountUuid != uuid ) {
         m_accountUuid = uuid;
@@ -162,7 +162,7 @@ void TodoList::fromVariant(const QVariant &todolist)
         }
     }
 
-    setAccountUuid( map.value( "accountUuid", m_accountUuid ).toUuid() );
+    setAccount( map.value( "accountUuid", m_accountUuid ).toUuid() );
     setMetaAttributes( map.value( "metaAttributes", m_metaAttributes ).toMap() );
     setName( map.value( "name", m_name ).toString() );
     setUuid( map.value( "uuid", m_uuid ).toUuid() );

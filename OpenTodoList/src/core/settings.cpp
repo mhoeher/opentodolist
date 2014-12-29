@@ -25,23 +25,23 @@ namespace OpenTodoList {
 namespace Core {
 
 Settings::Settings(QStringList groups, QObject *parent) :
-    QObject( parent ),
-    m_settings( new QSettings() ),
-    m_groups()
+  QObject( parent ),
+  m_settings( new QSettings() ),
+  m_groups()
 {
-    setGroups( groups );
+  setGroups( groups );
 }
 
 Settings::Settings(QObject *parent) :
-    QObject( parent ),
-    m_settings( new QSettings() ),
-    m_groups()
+  QObject( parent ),
+  m_settings( new QSettings() ),
+  m_groups()
 {
 }
 
 Settings::~Settings()
 {
-    delete m_settings;
+  delete m_settings;
 }
 
 /**
@@ -55,7 +55,7 @@ Settings::~Settings()
  */
 const QStringList &Settings::groups() const
 {
-    return m_groups;
+  return m_groups;
 }
 
 /**
@@ -66,7 +66,11 @@ const QStringList &Settings::groups() const
  */
 void Settings::setValue(const QString &name, QVariant value)
 {
-    m_settings->setValue( name, value );
+  // TODO: This hangs since updating to Qt 5.4.0 :( Check what's wrong here
+  Q_UNUSED( name );
+  Q_UNUSED( value );
+  //m_settings->setValue( name, value );
+  //m_settings->sync(); //< !Hangs!
 }
 
 /**
@@ -78,7 +82,7 @@ void Settings::setValue(const QString &name, QVariant value)
  */
 QVariant Settings::getValue(const QString &name, QVariant defaultValue)
 {
-    return m_settings->value( name, defaultValue );
+  return m_settings->value( name, defaultValue );
 }
 
 /**
@@ -89,7 +93,7 @@ QVariant Settings::getValue(const QString &name, QVariant defaultValue)
  */
 void Settings::deleteValue(const QString &name)
 {
-    m_settings->remove( name );
+  m_settings->remove( name );
 }
 
 /**
@@ -97,14 +101,14 @@ void Settings::deleteValue(const QString &name)
  */
 void Settings::setGroups(const QStringList &groups)
 {
-    for ( int i = 0; i < m_groups.size(); ++i ) {
-        m_settings->endGroup();
-    }
-    m_groups = groups;
-    foreach ( QString group, m_groups ) {
-        m_settings->beginGroup( group );
-    }
-    emit groupsChanged();
+  for ( int i = 0; i < m_groups.size(); ++i ) {
+    m_settings->endGroup();
+  }
+  m_groups = groups;
+  foreach ( QString group, m_groups ) {
+    m_settings->beginGroup( group );
+  }
+  emit groupsChanged();
 }
 
 } /* Core */

@@ -30,7 +30,7 @@ bool ReadTask::query(QString &query, QVariantMap &args)
          << "FROM task "
          << "LEFT OUTER JOIN taskMetaAttribute "
          << " ON task.id = taskMetaAttribute.task "
-         << "INNER JOIN taskMetaAttributeName "
+         << "LEFT OUTER JOIN taskMetaAttributeName "
          << " ON taskMetaAttributeName.id = taskMetaAttribute.attributeName ";
   if ( m_todoId >= 0 ) {
     conditions << "(todo = :todoId)";

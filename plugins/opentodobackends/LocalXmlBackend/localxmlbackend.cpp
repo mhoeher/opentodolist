@@ -94,13 +94,13 @@ bool LocalXmlBackend::start()
                 OpenTodoList::ITodo *todoObj = todoFromFile( todo, weight );
                 if ( todoObj ) {
                     weight = todoObj->weight() + 1.0;
-                    todoObj->setTodoListUuid( list->uuid() );
+                    todoObj->setTodoList( list->uuid() );
                     m_database->insertTodo( todoObj );
                     OpenTodoList::ITask *task = m_database->createTask();
                     if ( task ) {
                         task->setDone( false );
                         task->setTitle( "A task" );
-                        task->setTodoUuid( todoObj->uuid() );
+                        task->setTodo( todoObj->uuid() );
                         task->setUuid( QUuid::createUuid() );
                         task->setWeight(0.0);
                         QVariantMap attrs;
@@ -254,7 +254,7 @@ OpenTodoList::ITodoList *LocalXmlBackend::todoListFromFile(const QString &fileNa
 {
     OpenTodoList::ITodoList *result = m_database->createTodoList();
     if ( result ) {
-        result->setAccountUuid( m_account->uuid() );
+        result->setAccount( m_account->uuid() );
         QFile file( fileName );
         if ( file.open( QIODevice::ReadOnly ) ) {
             QDomDocument doc;

@@ -52,7 +52,9 @@ Application::Application(int &argc, char *argv[]) :
     }
 
     // start database
-    m_database = new DataBase::Database( this );
+    if ( m_instance->state() == ApplicationInstance::InstanceIsPrimary ) {
+      m_database = new DataBase::Database( this );
+    }
 }
 
 Application::~Application()

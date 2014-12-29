@@ -41,7 +41,7 @@ bool ReadAccount::query(QString &query, QVariantMap &args)
             " accountMetaAttribute.value AS attributeValue "
             " FROM account JOIN backend ON account.backend = backend.id"
             "              LEFT OUTER JOIN accountMetaAttribute ON account.id = accountMetaAttribute.account"
-            "              JOIN accountMetaAttributeName ON accountMetaAttribute.attributeName = accountMetaAttributeName.id;";
+            "              LEFT OUTER JOIN accountMetaAttributeName ON accountMetaAttribute.attributeName = accountMetaAttributeName.id;";
     return true;
 }
 

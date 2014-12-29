@@ -37,7 +37,7 @@ class Todo : public QObject, public ITodo
     Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged )
     Q_PROPERTY(bool isDone READ done WRITE setDone NOTIFY doneChanged )
     Q_PROPERTY(int priority READ priority WRITE setPriority NOTIFY priorityChanged )
-    Q_PROPERTY(QUuid todoListUuid READ todoListUuid NOTIFY todoListUuidChanged )
+    Q_PROPERTY(QUuid todoList READ todoList NOTIFY todoListUuidChanged )
     Q_PROPERTY(QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged )
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged )
@@ -61,8 +61,8 @@ public:
     void setDone(bool done) override;
     int priority() const override;
     void setPriority(int priority) override;
-    const QUuid& todoListUuid() const override;
-    void setTodoListUuid(const QUuid &uuid) override;
+    const QUuid& todoList() const override;
+    void setTodoList(const QUuid &uuid) override;
     const QDateTime &dueDate() const override;
     void setDueDate(const QDateTime &dueOn) override;
     const QString &title() const override;

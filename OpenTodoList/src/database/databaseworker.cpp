@@ -81,6 +81,12 @@ void DatabaseWorker::init() {
         qDebug() << "Opened temporary SQlite database"
                  << m_dataBaseFile.fileName();
 
+        // Table for storing application data
+        runSimpleQuery( "CREATE TABLE applicationInfo ( "
+                        " key VARCHAR NOT NULL,"
+                        " value VARCHAR NOT NULL )",
+                        "Failed to create table applicationInfo" );
+
         // Tables for storing backend information:
         runSimpleQuery( "CREATE TABLE backend ("
                         " id INTEGER NOT NULL,"
@@ -98,7 +104,7 @@ void DatabaseWorker::init() {
                         " uuid VARCHAR NOT NULL,"
                         " name VARCHAR,"
                         " backend INTEGER NOT NULL,"
-                        " dirty BOOLEAN,"
+                        " dirty INTEGER,"
                         " disposed BOOLEAN,"
                         " PRIMARY KEY (id),"
                         " FOREIGN KEY (backend) REFERENCES backend ( id ),"
@@ -128,7 +134,7 @@ void DatabaseWorker::init() {
                         " uuid VARCHAR NOT NULL,"
                         " account INTEGER NOT NULL,"
                         " name TEXT,"
-                        " dirty BOOLEAN,"
+                        " dirty INTEGER,"
                         " disposed BOOLEAN,"
                         " PRIMARY KEY ( id ),"
                         " UNIQUE ( uuid ),"
@@ -162,7 +168,7 @@ void DatabaseWorker::init() {
                         " dueDate DATETIME,"
                         " title TEXT,"
                         " description LONGTEXT,"
-                        " dirty BOOLEAN,"
+                        " dirty INTEGER,"
                         " disposed BOOLEAN,"
                         " todoList INTEGER NOT NULL,"
                         " PRIMARY KEY ( id ),"
@@ -194,7 +200,7 @@ void DatabaseWorker::init() {
                         " weight DOUBLE,"
                         " done BOOLEAN,"
                         " title TEXT,"
-                        " dirty BOOLEAN,"
+                        " dirty INTEGER,"
                         " disposed BOOLEAN,"
                         " todo INTEGER NOT NULL,"
                         " PRIMARY KEY ( id ),"

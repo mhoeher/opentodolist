@@ -11,8 +11,8 @@ namespace Models {
 
 TodoListModel::TodoListModel(QObject *parent) :
     QAbstractListModel(parent),
-    m_todoLists(),
-    m_database( nullptr )
+    m_database( nullptr ),
+    m_todoLists()
 {
     connect( this, SIGNAL(rowsInserted(QModelIndex,int,int)),
              this, SIGNAL(countChanged()) );
@@ -47,9 +47,9 @@ QVariant TodoListModel::data(const QModelIndex &index, int role) const
 
 void TodoListModel::sort(int column, Qt::SortOrder order)
 {
-    /*
     Q_UNUSED( column );
     Q_UNUSED( order );
+  /*
     Comparator c;
     for ( int i = 0; i < m_todoLists.size() - 1; ++i ) {
         for ( int j = i + 1; j < m_todoLists.size(); ++j ) {
