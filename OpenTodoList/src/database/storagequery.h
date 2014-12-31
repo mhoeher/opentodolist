@@ -53,6 +53,14 @@ public:
 signals:
 
     /**
+       @brief This signal is emitted when the query is fully done
+
+       This signal is emitted as soon as the query has been processed and will be deleted next
+       by the scheduler.
+     */
+    void queryFinished();
+
+    /**
        @brief A backend has been inserted or updated
 
        A query shall emit this signal to indicate that a backend has been updated in the
@@ -96,6 +104,12 @@ signals:
        the application, allowing clients to update on-the-fly.
      */
     void taskChanged( const QVariant &task );
+
+    void accountDeleted( const QVariant &account );
+    void todoListDeleted( const QVariant &todoList );
+    void todoDeleted( const QVariant &todo );
+    void taskDeleted( const QVariant &task );
+
 
 public slots:
 

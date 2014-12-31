@@ -81,149 +81,31 @@ void DatabaseWorker::init() {
         qDebug() << "Opened temporary SQlite database"
                  << m_dataBaseFile.fileName();
 
-        // Table for storing application data
-        runSimpleQuery( "CREATE TABLE applicationInfo ( "
-                        " key VARCHAR NOT NULL,"
-                        " value VARCHAR NOT NULL )",
-                        "Failed to create table applicationInfo" );
+        // Various settings
+        // NOTE: Needs to be run on every connection to the database (not just once when
+        //       creating the tables).
+        runSimpleQuery( "PRAGMA foreign_keys=ON;", "Failed to enable foreign key support" );
 
-        // Tables for storing backend information:
-        runSimpleQuery( "CREATE TABLE backend ("
-                        " id INTEGER NOT NULL,"
-                        " name VARCHAR NOT NULL,"
-                        " title VARCHAR,"
-                        " description VARCHAR,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( name )"
-                        ");",
-                        "Failed to create table backend" );
+        // Read schema version
+        QSqlQuery readSchemaVersionQuery( m_dataBase );
+        int version = -1;
+        if ( readSchemaVersionQuery.exec( "SELECT version FROM schemaVersion LIMIT 1;" ) &&
+             readSchemaVersionQuery.next() ) {
+          version = readSchemaVersionQuery.record().value( "version" ).toInt();
+          readSchemaVersionQuery.finish();
+        }
 
-        // Tables for storing account information:
-        runSimpleQuery( "CREATE TABLE account ("
-                        " id INTEGER NOT NULL,"
-                        " uuid VARCHAR NOT NULL,"
-                        " name VARCHAR,"
-                        " backend INTEGER NOT NULL,"
-                        " dirty INTEGER,"
-                        " disposed BOOLEAN,"
-                        " PRIMARY KEY (id),"
-                        " FOREIGN KEY (backend) REFERENCES backend ( id ),"
-                        " UNIQUE ( uuid )"
-                        ");",
-                        "Failed to create table account" );
-        runSimpleQuery( "CREATE TABLE accountMetaAttributeName ("
-                        " id INTEGER NOT NULL,"
-                        " name VARCHAR NOT NULL,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( name )"
-                        ");",
-                        "Failed to create table accountMetaAttributeName" );
-        runSimpleQuery( "CREATE TABLE accountMetaAttribute ("
-                        " account INTEGER NOT NULL,"
-                        " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR,"
-                        " PRIMARY KEY ( account, attributeName ),"
-                        " FOREIGN KEY ( account ) REFERENCES account ( id ),"
-                        " FOREIGN KEY ( attributeName ) REFERENCES accountMetaAttributeName ( id )"
-                        ")",
-                        "Failed to create table accountMetaAttribute" );
+        switch ( version ) {
+        case -1:
+          updateToSchemaVersion0();
+          break;
 
-        // Tables for storing todo list information:
-        runSimpleQuery( "CREATE TABLE todoList ("
-                        " id INTEGER NOT NULL,"
-                        " uuid VARCHAR NOT NULL,"
-                        " account INTEGER NOT NULL,"
-                        " name TEXT,"
-                        " dirty INTEGER,"
-                        " disposed BOOLEAN,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( uuid ),"
-                        " FOREIGN KEY ( account ) REFERENCES account ( id )"
-                        ");",
-                        "Failed to create table todoList" );
-        runSimpleQuery( "CREATE TABLE todoListMetaAttributeName ("
-                        " id INTEGER NOT NULL,"
-                        " name VARCHAR NOT NULL,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( name )"
-                        ");",
-                        "Failed to create table todoListMetaAttributeName" );
-        runSimpleQuery( "CREATE TABLE todoListMetaAttribute ("
-                        " todoList INTEGER NOT NULL,"
-                        " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR NOT NULL,"
-                        " PRIMARY KEY ( todoList, attributeName ),"
-                        " FOREIGN KEY ( todoList ) REFERENCES todoList ( id ),"
-                        " FOREIGN KEY ( attributeName ) REFERENCES todoListMetaAttributeName ( id )"
-                        ");",
-                        "Failed to create table todoListMetaAttribute" );
-
-        // Tables for storing todo information:
-        runSimpleQuery( "CREATE TABLE todo ("
-                        " id INTEGER NOT NULL,"
-                        " uuid VARCHAR NOT NULL,"
-                        " weight DOUBLE,"
-                        " done BOOLEAN,"
-                        " priority INT,"
-                        " dueDate DATETIME,"
-                        " title TEXT,"
-                        " description LONGTEXT,"
-                        " dirty INTEGER,"
-                        " disposed BOOLEAN,"
-                        " todoList INTEGER NOT NULL,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( uuid ),"
-                        " FOREIGN KEY ( todoList ) REFERENCES todoList ( id )"
-                        ");",
-                        "Failed to create table todo" );
-        runSimpleQuery( "CREATE TABLE todoMetaAttributeName ("
-                        " id INTEGER NOT NULL,"
-                        " name VARCHAR NOT NULL,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( name )"
-                        ");",
-                        "Failed to create table todoMetaAttributeName" );
-        runSimpleQuery( "CREATE TABLE todoMetaAttribute ("
-                        " todo INTEGER NOT NULL,"
-                        " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR,"
-                        " PRIMARY KEY ( todo, attributeName ),"
-                        " FOREIGN KEY ( todo ) REFERENCES todo ( id ),"
-                        " FOREIGN KEY ( attributeName ) REFERENCES todoMetaAttributeName ( id )"
-                        ");",
-                        "Failed to create table todoMetaAttribute" );
-
-        // Tables for storing task information:
-        runSimpleQuery( "CREATE TABLE task ("
-                        " id INTEGER NOT NULL,"
-                        " uuid VARCHAR NOT NULL,"
-                        " weight DOUBLE,"
-                        " done BOOLEAN,"
-                        " title TEXT,"
-                        " dirty INTEGER,"
-                        " disposed BOOLEAN,"
-                        " todo INTEGER NOT NULL,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( uuid ),"
-                        " FOREIGN KEY ( todo ) REFERENCES todo ( id )"
-                        ");",
-                        "Failed to create table todo" );
-        runSimpleQuery( "CREATE TABLE taskMetaAttributeName ("
-                        " id INTEGER NOT NULL,"
-                        " name VARCHAR NOT NULL,"
-                        " PRIMARY KEY ( id ),"
-                        " UNIQUE ( name )"
-                        ");",
-                        "Failed to create table taskMetaAttributeName" );
-        runSimpleQuery( "CREATE TABLE taskMetaAttribute ("
-                        " task INTEGER NOT NULL,"
-                        " attributeName INTEGER NOT NULL,"
-                        " value VARCHAR,"
-                        " PRIMARY KEY ( task, attributeName ),"
-                        " FOREIGN KEY ( task ) REFERENCES task ( id ),"
-                        " FOREIGN KEY ( attributeName ) REFERENCES taskMetaAttributeName ( id )"
-                        ");",
-                        "Failed to create table taskMetaAttribute" );
+        default:
+          qCritical() << "The used database appears to use schema version" << version
+                      << "of the application. This version belongs to a future version of"
+                      << "the application! Please update the application.";
+          break;
+        }
     }
 
     m_initialized = true;
@@ -289,6 +171,159 @@ void DatabaseWorker::runQuery(StorageQuery *query)
         }
         query->endRun();
     } while ( query->hasNext() );
+    emit query->queryFinished();
+}
+
+/**
+   @brief Updates the database to schema version 0
+ */
+void DatabaseWorker::updateToSchemaVersion0()
+{
+  // Table for storing application data
+  runSimpleQuery( "CREATE TABLE schemaVersion ( "
+                  " version INTEGER NOT NULL );",
+                  "Failed to create table schemaVersion" );
+
+  // Tables for storing backend information:
+  runSimpleQuery( "CREATE TABLE backend ("
+                  " id INTEGER NOT NULL,"
+                  " name VARCHAR NOT NULL,"
+                  " title VARCHAR,"
+                  " description VARCHAR,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( name )"
+                  ");",
+                  "Failed to create table backend" );
+
+  // Tables for storing account information:
+  runSimpleQuery( "CREATE TABLE account ("
+                  " id INTEGER NOT NULL,"
+                  " uuid VARCHAR NOT NULL,"
+                  " name VARCHAR,"
+                  " backend INTEGER NOT NULL,"
+                  " dirty INTEGER,"
+                  " disposed BOOLEAN,"
+                  " PRIMARY KEY (id),"
+                  " FOREIGN KEY (backend) REFERENCES backend ( id ) ON DELETE CASCADE,"
+                  " UNIQUE ( uuid )"
+                  ");",
+                  "Failed to create table account" );
+  runSimpleQuery( "CREATE TABLE accountMetaAttributeName ("
+                  " id INTEGER NOT NULL,"
+                  " name VARCHAR NOT NULL,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( name )"
+                  ");",
+                  "Failed to create table accountMetaAttributeName" );
+  runSimpleQuery( "CREATE TABLE accountMetaAttribute ("
+                  " account INTEGER NOT NULL,"
+                  " attributeName INTEGER NOT NULL,"
+                  " value VARCHAR,"
+                  " PRIMARY KEY ( account, attributeName ),"
+                  " FOREIGN KEY ( account ) REFERENCES account ( id ) ON DELETE CASCADE,"
+                  " FOREIGN KEY ( attributeName ) REFERENCES accountMetaAttributeName ( id ) ON DELETE CASCADE"
+                  ")",
+                  "Failed to create table accountMetaAttribute" );
+
+  // Tables for storing todo list information:
+  runSimpleQuery( "CREATE TABLE todoList ("
+                  " id INTEGER NOT NULL,"
+                  " uuid VARCHAR NOT NULL,"
+                  " account INTEGER NOT NULL,"
+                  " name TEXT,"
+                  " dirty INTEGER,"
+                  " disposed BOOLEAN,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( uuid ),"
+                  " FOREIGN KEY ( account ) REFERENCES account ( id )  ON DELETE CASCADE"
+                  ");",
+                  "Failed to create table todoList" );
+  runSimpleQuery( "CREATE TABLE todoListMetaAttributeName ("
+                  " id INTEGER NOT NULL,"
+                  " name VARCHAR NOT NULL,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( name )"
+                  ");",
+                  "Failed to create table todoListMetaAttributeName" );
+  runSimpleQuery( "CREATE TABLE todoListMetaAttribute ("
+                  " todoList INTEGER NOT NULL,"
+                  " attributeName INTEGER NOT NULL,"
+                  " value VARCHAR NOT NULL,"
+                  " PRIMARY KEY ( todoList, attributeName ),"
+                  " FOREIGN KEY ( todoList ) REFERENCES todoList ( id ) ON DELETE CASCADE,"
+                  " FOREIGN KEY ( attributeName ) REFERENCES todoListMetaAttributeName ( id ) ON DELETE CASCADE"
+                  ");",
+                  "Failed to create table todoListMetaAttribute" );
+
+  // Tables for storing todo information:
+  runSimpleQuery( "CREATE TABLE todo ("
+                  " id INTEGER NOT NULL,"
+                  " uuid VARCHAR NOT NULL,"
+                  " weight DOUBLE,"
+                  " done BOOLEAN,"
+                  " priority INT,"
+                  " dueDate DATETIME,"
+                  " title TEXT,"
+                  " description LONGTEXT,"
+                  " dirty INTEGER,"
+                  " disposed BOOLEAN,"
+                  " todoList INTEGER NOT NULL,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( uuid ),"
+                  " FOREIGN KEY ( todoList ) REFERENCES todoList ( id ) ON DELETE CASCADE"
+                  ");",
+                  "Failed to create table todo" );
+  runSimpleQuery( "CREATE TABLE todoMetaAttributeName ("
+                  " id INTEGER NOT NULL,"
+                  " name VARCHAR NOT NULL,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( name )"
+                  ");",
+                  "Failed to create table todoMetaAttributeName" );
+  runSimpleQuery( "CREATE TABLE todoMetaAttribute ("
+                  " todo INTEGER NOT NULL,"
+                  " attributeName INTEGER NOT NULL,"
+                  " value VARCHAR,"
+                  " PRIMARY KEY ( todo, attributeName ),"
+                  " FOREIGN KEY ( todo ) REFERENCES todo ( id ) ON DELETE CASCADE,"
+                  " FOREIGN KEY ( attributeName ) REFERENCES todoMetaAttributeName ( id ) ON DELETE CASCADE"
+                  ");",
+                  "Failed to create table todoMetaAttribute" );
+
+  // Tables for storing task information:
+  runSimpleQuery( "CREATE TABLE task ("
+                  " id INTEGER NOT NULL,"
+                  " uuid VARCHAR NOT NULL,"
+                  " weight DOUBLE,"
+                  " done BOOLEAN,"
+                  " title TEXT,"
+                  " dirty INTEGER,"
+                  " disposed BOOLEAN,"
+                  " todo INTEGER NOT NULL,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( uuid ),"
+                  " FOREIGN KEY ( todo ) REFERENCES todo ( id ) ON DELETE CASCADE"
+                  ");",
+                  "Failed to create table todo" );
+  runSimpleQuery( "CREATE TABLE taskMetaAttributeName ("
+                  " id INTEGER NOT NULL,"
+                  " name VARCHAR NOT NULL,"
+                  " PRIMARY KEY ( id ),"
+                  " UNIQUE ( name )"
+                  ");",
+                  "Failed to create table taskMetaAttributeName" );
+  runSimpleQuery( "CREATE TABLE taskMetaAttribute ("
+                  " task INTEGER NOT NULL,"
+                  " attributeName INTEGER NOT NULL,"
+                  " value VARCHAR,"
+                  " PRIMARY KEY ( task, attributeName ),"
+                  " FOREIGN KEY ( task ) REFERENCES task ( id ) ON DELETE CASCADE,"
+                  " FOREIGN KEY ( attributeName ) REFERENCES taskMetaAttributeName ( id ) ON DELETE CASCADE"
+                  ");",
+                  "Failed to create table taskMetaAttribute" );
+
+  runSimpleQuery( "INSERT INTO schemaVersion  (version) VALUES ( 0 );",
+                  "Failed to save current schema version" );
 }
 
 /**

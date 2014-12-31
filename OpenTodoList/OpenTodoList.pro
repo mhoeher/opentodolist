@@ -43,6 +43,17 @@ INCLUDEPATH += \
     inc \
     src
 
+DEPENDPATH += \
+  inc/core \
+  src \
+  src/core \
+  src/database \
+  src/database/queries \
+  src/database/queries/private \
+  src/datamodel \
+  src/models \
+  src/systemintegration
+
 HEADERS += \
     inc/core/opentodolistinterfaces.h \
     src/listutils.h \
@@ -84,7 +95,14 @@ HEADERS += \
     src/database/queries/inserttask.h \
     src/database/queries/readtask.h \
     src/models/taskmodel.h \
-    src/database/queries/private/insertobject.h
+    src/database/queries/private/insertobject.h \
+    src/database/queries/private/readobject.h \
+    src/datamodel/objectinfo.h \
+    src/database/queries/deleteaccount.h \
+    src/database/queries/private/deleteobject.h \
+    src/database/queries/deletetodolist.h \
+    src/database/queries/deletetodo.h \
+    src/database/queries/deletetask.h
 
 SOURCES += \
     src/main.cpp \
@@ -124,7 +142,11 @@ SOURCES += \
     src/database/queries/readtodo.cpp \
     src/database/queries/inserttask.cpp \
     src/database/queries/readtask.cpp \
-    src/models/taskmodel.cpp
+    src/models/taskmodel.cpp \
+    src/database/queries/deleteaccount.cpp \
+    src/database/queries/deletetodolist.cpp \
+    src/database/queries/deletetodo.cpp \
+    src/database/queries/deletetask.cpp
 
 RESOURCES += OpenTodoList.qrc
 

@@ -1,6 +1,7 @@
 #ifndef OPENTODOLIST_DATABASE_QUERIES_READTASK_H
 #define OPENTODOLIST_DATABASE_QUERIES_READTASK_H
 
+#include "database/queries/private/readobject.h"
 #include "database/storagequery.h"
 
 #include "datamodel/task.h"
@@ -11,18 +12,14 @@ namespace OpenTodoList {
 namespace DataBase {
 namespace Queries {
 
+using namespace Private;
 using namespace DataModel;
 
-class ReadTask : public StorageQuery
+class ReadTask : public ReadObject<Task>
 {
   Q_OBJECT
 public:
   explicit ReadTask();
-
-  // StorageQuery interface
-  bool query(QString &query, QVariantMap &args) override;
-  void recordAvailable(const QVariantMap &record) override;
-  void endRun() override;
 
   QList<Task *> tasks() const;
 
@@ -36,11 +33,6 @@ signals:
 public slots:
 
 private:
-
-  QList<Task *> m_tasks;
-  int           m_todoId;
-
-  Task         *m_currentTask;
 
 };
 

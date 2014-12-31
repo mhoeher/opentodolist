@@ -57,10 +57,10 @@ public:
     bool insertTodoList(ITodoList *list) override;
     bool insertTodo(ITodo *todo) override;
     bool insertTask(ITask *task) override;
-    bool deleteAccount(const IAccount *account) override;
-    bool deleteTodoList(const ITodoList *list) override;
-    bool deleteTodo(const ITodo *todo) override;
-    bool deleteTask(const ITask *task) override;
+    bool deleteAccount(IAccount *account) override;
+    bool deleteTodoList(ITodoList *list) override;
+    bool deleteTodo(ITodo *todo) override;
+    bool deleteTask(ITask *task) override;
     IAccount* createAccount() override;
     ITodoList* createTodoList() override;
     ITodo* createTodo() override;

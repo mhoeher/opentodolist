@@ -6,10 +6,18 @@
 #include "datamodel/todo.h"
 #include "datamodel/task.h"
 
+#include "database/queries/deleteaccount.h"
+#include "database/queries/deletetask.h"
+#include "database/queries/deletetodo.h"
+#include "database/queries/deletetodolist.h"
 #include "database/queries/insertaccount.h"
 #include "database/queries/inserttodolist.h"
 #include "database/queries/inserttodo.h"
 #include "database/queries/inserttask.h"
+#include "database/queries/readaccount.h"
+#include "database/queries/readtask.h"
+#include "database/queries/readtodo.h"
+#include "database/queries/readtodolist.h"
 
 #include <QDebug>
 
@@ -76,38 +84,40 @@ bool BackendWrapper::insertTask(ITask *task)
     return true;
 }
 
-bool BackendWrapper::deleteAccount(const IAccount *account)
+bool BackendWrapper::deleteAccount(IAccount *account)
 {
-    // TODO: Implement me
-  Q_UNUSED( account );
-  return false;
+  DataModel::Account *t = static_cast<DataModel::Account*>( account );
+  Queries::DeleteAccount q( t );
+  m_database->runQuery( &q );
+  return true;
 }
 
-bool BackendWrapper::deleteTodoList(const ITodoList *list)
+bool BackendWrapper::deleteTodoList(ITodoList *list)
 {
-    // TODO: Implement me
-  Q_UNUSED( list );
-  return false;
+  DataModel::TodoList *t = static_cast<DataModel::TodoList*>( list );
+  Queries::DeleteTodoList q( t );
+  m_database->runQuery( &q );
+  return true;
 }
 
-bool BackendWrapper::deleteTodo(const ITodo *todo)
+bool BackendWrapper::deleteTodo(ITodo *todo)
 {
-    // TODO: Implement me
-  Q_UNUSED( todo );
-  return false;
+  DataModel::Todo *t = static_cast<DataModel::Todo*>( todo );
+  Queries::DeleteTodo q( t );
+  m_database->runQuery( &q );
+  return true;
 }
 
-bool BackendWrapper::deleteTask(const ITask *task)
+bool BackendWrapper::deleteTask(ITask *task)
 {
-  Q_UNUSED( task );
-  return false;
-  // TODO: Implement me
+  DataModel::Task *t = static_cast<DataModel::Task*>( task );
+  Queries::DeleteTask q( t );
+  m_database->runQuery( &q );
+  return true;
 }
 
 IAccount *BackendWrapper::createAccount()
 {
-    // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
-
     DataModel::Account *account = new DataModel::Account();
     account->setBackend( name() ); // inject our name
     return account;
@@ -115,76 +125,149 @@ IAccount *BackendWrapper::createAccount()
 
 ITodoList *BackendWrapper::createTodoList()
 {
-    // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
     return new DataModel::TodoList();
 }
 
 ITodo *BackendWrapper::createTodo()
 {
-    // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
     return new DataModel::Todo();
 }
 
 ITask *BackendWrapper::createTask()
 {
-    // TODO: Check whether we want to use the DataBase object to be the one and only factory for this
   return new DataModel::Task();
 }
 
 IAccount *BackendWrapper::getAccount(const QUuid &uuid)
 {
-  // TODO: Implement me
-  Q_UNUSED( uuid );
-  return nullptr;
+  Queries::ReadAccount q;
+  q.setUuid( uuid );
+  m_database->runQuery( &q );
+  if ( q.objects().isEmpty() ) {
+    return nullptr;
+  } else {
+    IAccount *result = createAccount();
+    static_cast<DataModel::Account*>(result)->fromVariant( q.objects().first()->toVariant());
+    return result;
+  }
 }
 
 ITodoList *BackendWrapper::getTodoList(const QUuid &uuid)
 {
-  // TODO: Implement me
-  Q_UNUSED( uuid );
-  return nullptr;
+  Queries::ReadTodoList q;
+  q.setUuid( uuid );
+  m_database->runQuery( &q );
+  if ( q.objects().isEmpty() ) {
+    return nullptr;
+  } else {
+    ITodoList *result = createTodoList();
+    static_cast<DataModel::TodoList*>(result)->fromVariant( q.objects().first()->toVariant());
+    return result;
+  }
 }
 
 ITodo *BackendWrapper::getTodo(const QUuid &uuid)
 {
-  // TODO: Implement me
-  Q_UNUSED( uuid );
-  return nullptr;
+  Queries::ReadTodo q;
+  q.setUuid( uuid );
+  m_database->runQuery( &q );
+  if ( q.objects().isEmpty() ) {
+    return nullptr;
+  } else {
+    ITodo *result = createTodo();
+    static_cast<DataModel::Todo*>(result)->fromVariant( q.objects().first()->toVariant());
+    return result;
+  }
 }
 
 ITask *BackendWrapper::getTask(const QUuid &uuid)
 {
-  // TODO: Implement me
-  Q_UNUSED( uuid );
-  return nullptr;
+  Queries::ReadTask q;
+  q.setUuid( uuid );
+  m_database->runQuery( &q );
+  if ( q.objects().isEmpty() ) {
+    return nullptr;
+  } else {
+    ITask *result = createTask();
+    static_cast<DataModel::Task*>(result)->fromVariant( q.objects().first()->toVariant());
+    return result;
+  }
 }
 
 QList<IAccount *> BackendWrapper::getModifiedAccounts(int maxAccounts)
 {
-  // TODO: implement me
-  Q_UNUSED( maxAccounts );
-  return QList<IAccount*>();
+  Queries::ReadAccount q;
+  q.setOnlyModified( true );
+  q.setLimit( maxAccounts );
+  Queries::ReadAccount::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<IAccount*> result;
+  for ( DataModel::Account *account : q.objects() ) {
+    IAccount *a = createAccount();
+    static_cast<DataModel::Account*>( a )->fromVariant( account->toVariant() );
+    result << a;
+  }
+  return result;
 }
 
 QList<ITodoList *> BackendWrapper::getModifiedTodoLists(int maxTodoLists)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxTodoLists );
-  return QList<ITodoList*>();
+  Queries::ReadTodoList q;
+  q.setOnlyModified( true );
+  q.setLimit( maxTodoLists );
+  Queries::ReadTodoList::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<ITodoList*> result;
+  for ( DataModel::TodoList *todoList : q.objects() ) {
+    ITodoList *tl = createTodoList();
+    static_cast<DataModel::TodoList*>( tl )->fromVariant( todoList->toVariant() );
+    result << tl;
+  }
+  return result;
 }
 
 QList<ITodo *> BackendWrapper::getModifiedTodos(int maxTodos)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxTodos );
-  return QList<ITodo*>();
+  Queries::ReadTodo q;
+  q.setOnlyModified( true );
+  q.setLimit( maxTodos );
+  Queries::ReadTodo::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<ITodo*> result;
+  for ( DataModel::Todo *todo : q.objects() ) {
+    ITodo *t = createTodo();
+    static_cast<DataModel::Todo*>( t )->fromVariant( todo->toVariant() );
+    result << t;
+  }
+  return result;
 }
 
 QList<ITask *> BackendWrapper::getModifiedTasks(int maxTasks)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxTasks );
-  return QList<ITask*>();
+  Queries::ReadTask q;
+  q.setOnlyModified( true );
+  q.setLimit( maxTasks );
+  Queries::ReadTask::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<ITask*> result;
+  for ( DataModel::Task *task : q.objects() ) {
+    ITask *t = createTask();
+    static_cast<DataModel::Task*>( t )->fromVariant( task->toVariant() );
+    result << t;
+  }
+  return result;
 }
 
 bool BackendWrapper::onAccountSaved(IAccount *account)
@@ -217,30 +300,78 @@ bool BackendWrapper::onTaskSaved(ITask *task)
 
 QList<IAccount *> BackendWrapper::getDeletedAccounts(int maxAccounts)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxAccounts );
-  return QList<IAccount*>();
+  Queries::ReadAccount q;
+  q.setOnlyDeleted( true );
+  q.setLimit( maxAccounts );
+  Queries::ReadAccount::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<IAccount*> result;
+  for ( DataModel::Account *account : q.objects() ) {
+    IAccount *a = createAccount();
+    static_cast<DataModel::Account*>( a )->fromVariant( account->toVariant() );
+    result << a;
+  }
+  return result;
 }
 
 QList<ITodoList *> BackendWrapper::getDeletedTodoLists(int maxTodoLists)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxTodoLists );
-  return QList<ITodoList*>();
+  Queries::ReadTodoList q;
+  q.setOnlyDeleted( true );
+  q.setLimit( maxTodoLists );
+  Queries::ReadTodoList::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<ITodoList*> result;
+  for ( DataModel::TodoList *todoList : q.objects() ) {
+    ITodoList *tl = createTodoList();
+    static_cast<DataModel::TodoList*>( tl )->fromVariant( todoList->toVariant() );
+    result << tl;
+  }
+  return result;
 }
 
 QList<ITodo *> BackendWrapper::getDeletedTodos(int maxTodos)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxTodos );
-  return QList<ITodo*>();
+  Queries::ReadTodo q;
+  q.setOnlyDeleted( true );
+  q.setLimit( maxTodos );
+  Queries::ReadTodo::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<ITodo*> result;
+  for ( DataModel::Todo *todo : q.objects() ) {
+    ITodo *t = createTodo();
+    static_cast<DataModel::Todo*>( t )->fromVariant( todo->toVariant() );
+    result << t;
+  }
+  return result;
 }
 
 QList<ITask *> BackendWrapper::getDeletedTasks(int maxTasks)
 {
-  //TODO: Implement me
-  Q_UNUSED( maxTasks );
-  return QList<ITask*>();
+  Queries::ReadTask q;
+  q.setOnlyDeleted( true );
+  q.setLimit( maxTasks );
+  Queries::ReadTask::Condition c;
+  c.condition = "backend.name=:searchBackendName";
+  c.arguments.insert( "searchBackendName", m_backend->name() );
+  q.addCondition(c);
+  m_database->runQuery(&q);
+  QList<ITask*> result;
+  for ( DataModel::Task *task : q.objects() ) {
+    ITask *t = createTask();
+    static_cast<DataModel::Task*>( t )->fromVariant( task->toVariant() );
+    result << t;
+  }
+  return result;
 }
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)

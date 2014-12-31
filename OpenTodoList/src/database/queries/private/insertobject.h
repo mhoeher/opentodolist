@@ -3,16 +3,18 @@
 
 #include "database/storagequery.h"
 
+#include "datamodel/objectinfo.h"
+
 #include <QString>
 #include <QTextStream>
 #include <QVariantMap>
-
-#include <functional>
 
 namespace OpenTodoList {
 namespace DataBase {
 namespace Queries {
 namespace Private {
+
+using namespace OpenTodoList::DataModel;
 
 /**
   @brief Inserts a complex object into the database
@@ -20,32 +22,35 @@ namespace Private {
   This class provides a generic way to insert objects into the database. Complex objects
   are supposed to fulfill the following requirements:
 
-  - They have properties which can be accessed via the Meta Object System
-  - They have meta attributes which are exposed via a metaAttributes() method
-  - They belong to a parent object
+  - They have properties which can be accessed via the Meta Object System. These properties,
+    together with the properties for implementing the database sync protocol, are saved in a
+    table which has the same name as the class that is saved without any namespace and the first
+    character in lower case (called the base table).
+  - They have meta attributes which are exposed via a metaAttributes() method. These are saved in
+    tables starting with the base table name and having "MetaAttribute" and "MetaAttributeName"
+    appended.
+  - They belong to a parent object.
 
   This template class implements a basic protocol that will insert such objects
-  into the database.
+  into the database. It supports two modes of insertion: The first is insertion from backend
+  (i.e. the dirty and disposed flags both will be reset after the operation) as well as an
+  update operation where the object will be marked as modified by incrementing the
+  dirty flag by one. The latter mode can be enabled by passing update=true in the constructor.
+
+
  */
 template<typename T>
 class InsertObject : public StorageQuery
 {
 public:
-  explicit InsertObject(T* object,
-                         const QString &baseTable,
-                         const QString &attributeNameTable,
-                         const QString &attributeValueTable,
+  explicit InsertObject( T* object,
                          const QStringList &attributes,
-                         bool update,
-                         std::function<void()> finishedCallback,
-                         const QString &parentAttribute,
-                         const QString &parentIdAttribute );
+                         bool update );
   ~InsertObject();
 
   // StorageQuery interface
   bool query(QString &query, QVariantMap &args) override;
   void newIdAvailable(const QVariant &id) override;
-  void endRun() override;
   bool hasNext() const override;
 
 private:
@@ -66,7 +71,6 @@ private:
   QString     m_attributeValueTable;
   QStringList m_attributes;
   bool        m_update;
-  std::function<void()> m_finishedCallback;
   QString     m_parentAttribute;
   QString     m_parentIdAttribute;
 
@@ -76,7 +80,6 @@ private:
   void queryRemoveExtraMeta(QTextStream &stream, QVariantMap &args );
 
   void insertObjectInfo( QTextStream &stream, QVariantMap &args );
-
 
 };
 
@@ -103,26 +106,19 @@ private:
  */
 template<typename T>
 InsertObject<T>::InsertObject(T* object,
-                           const QString &baseTable,
-                           const QString &attributeNameTable,
-                           const QString &attributeValueTable,
-                           const QStringList &attributes,
-                           bool update,
-                           std::function<void()> finishedCallback,
-                           const QString &parentAttribute,
-                           const QString &parentIdAttribute) :
+                              const QStringList &attributes,
+                              bool update ) :
   StorageQuery(),
   m_state( InsertObjectState ),
   m_object( object ),
   m_waitingForId( false ),
-  m_baseTable( baseTable ),
-  m_attributeNameTable( attributeNameTable ),
-  m_attributeValueTable( attributeValueTable ),
+  m_baseTable( ObjectInfo<T>::classNameLowerFirst() ),
+  m_attributeNameTable( ObjectInfo<T>::classNameLowerFirst() + "MetaAttributeName" ),
+  m_attributeValueTable( ObjectInfo<T>::classNameLowerFirst() + "MetaAttribute" ),
   m_attributes( attributes ),
   m_update( update ),
-  m_finishedCallback( finishedCallback ),
-  m_parentAttribute( parentAttribute ),
-  m_parentIdAttribute( parentIdAttribute )
+  m_parentAttribute( ObjectInfo< typename T::ContainerType >::classNameLowerFirst() ),
+  m_parentIdAttribute( ObjectInfo< typename T::ContainerType >::classUuidProperty() )
 {
   Q_ASSERT( m_object != nullptr );
   Q_ASSERT( !m_baseTable.isEmpty() );
@@ -184,14 +180,6 @@ void InsertObject<T>::newIdAvailable(const QVariant &id)
 {
   if ( m_waitingForId && id.isValid() ) {
     m_object->setId( id.toInt() );
-  }
-}
-
-template<typename T>
-void InsertObject<T>::endRun()
-{
-  if ( m_state == FinishedState ) {
-    m_finishedCallback();
   }
 }
 

@@ -9,15 +9,11 @@ namespace Queries {
 InsertTodo::InsertTodo(Todo *todo, bool update ) :
   InsertObject<Todo>(
     todo,
-    "todo",
-    "todoMetaAttributeName",
-    "todoMetaAttribute",
     { "uuid", "weight", "done", "priority", "dueDate", "title", "description" },
-    update,
-    [this,todo] { emit this->todoChanged( todo->toVariant() ); },
-    "todoList",
-    "uuid" )
+    update )
 {
+  connect( this, &InsertTodo::queryFinished,
+           [this,todo] { emit this->todoChanged( todo->toVariant() ); } );
 }
 
 } // namespace Queries

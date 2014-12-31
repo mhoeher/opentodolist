@@ -17,16 +17,11 @@ namespace Queries {
 InsertAccount::InsertAccount(Account *account, bool update) :
     OpenTodoList::DataBase::Queries::Private::InsertObject<Account>(
       account,
-      "account",
-      "accountMetaAttributeName",
-      "accountMetaAttribute",
       { "uuid", "name" },
-      update,
-      [this, account] () {
-        emit this->accountChanged( account->toVariant() ); },
-      "backend",
-      "name" )
+      update )
 {
+  connect( this, &InsertAccount::queryFinished,
+           [this,account] { emit this->accountChanged( account->toVariant() ); } );
 }
 
 /**

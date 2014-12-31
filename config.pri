@@ -60,6 +60,7 @@ TEMPLATE = lib
 CONFIG += plugin c++11
 macx:CONFIG -= lib_bundle
 INCLUDEPATH += ../../../OpenTodoList/inc/core
+DEPENDPATH += ../../../OpenTodoList/inc/core
 
 # Set destination path
 macx {
@@ -76,6 +77,7 @@ export(TARGET)
 export(TEMPLATE)
 export(CONFIG)
 export(INCLUDEPATH)
+export(DEPENDPATH)
 export(DESTDIR)
 export(target.path)
 export(target.installBase)

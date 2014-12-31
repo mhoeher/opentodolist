@@ -4,6 +4,7 @@
 #include "datamodel/account.h"
 
 #include "database/storagequery.h"
+#include "database/queries/private/readobject.h"
 
 #include <QList>
 
@@ -11,18 +12,16 @@ namespace OpenTodoList {
 namespace DataBase {
 namespace Queries {
 
-class ReadAccount : public StorageQuery
+using namespace Private;
+using namespace DataModel;
+
+class ReadAccount : public ReadObject<Account>
 {
     Q_OBJECT
 public:
     explicit ReadAccount();
 
     QList< DataModel::Account* > accounts() const;
-
-    // StorageQuery interface
-    bool query(QString &query, QVariantMap &args) override;
-    void recordAvailable(const QVariantMap &record) override;
-    void endRun();
 
 signals:
 
@@ -37,9 +36,6 @@ signals:
 public slots:
 
 private:
-
-    QList< DataModel::Account* >    m_accounts;
-    DataModel::Account*             m_currentAccount;
 
 };
 

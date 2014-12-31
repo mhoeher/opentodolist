@@ -4,25 +4,22 @@
 #include "datamodel/todolist.h"
 
 #include "database/storagequery.h"
+#include "database/queries/private/readobject.h"
 
 namespace OpenTodoList {
 namespace DataBase {
 namespace Queries {
 
+using namespace Private;
 using namespace DataModel;
 
-class ReadTodoList : public StorageQuery
+class ReadTodoList : public ReadObject<TodoList>
 {
     Q_OBJECT
 public:
     explicit ReadTodoList();
 
     QList<TodoList *> todoLists() const;
-
-    // StorageQuery interface
-    bool query(QString &query, QVariantMap &args) override;
-    void recordAvailable(const QVariantMap &record) override;
-    void endRun() override;
 
 signals:
 
@@ -31,9 +28,6 @@ signals:
 public slots:
 
 private:
-
-    QList<TodoList*> m_todoLists;
-    TodoList        *m_currentTodoList;
 
 };
 

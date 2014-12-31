@@ -595,28 +595,28 @@ public:
 
        This will remove the @p account and all todo lists belonging to it from the database.
      */
-  virtual bool deleteAccount( const IAccount *account ) = 0;
+  virtual bool deleteAccount( IAccount *account ) = 0;
 
   /**
        @brief Removes a todo list from the database
 
        This will remove the todo @p list and all contained todos from the database.
      */
-  virtual bool deleteTodoList( const ITodoList *list ) = 0;
+  virtual bool deleteTodoList( ITodoList *list ) = 0;
 
   /**
        @brief Removes a todo from the database
 
        This removes the @p todo and all contained tasks from the database.
      */
-  virtual bool deleteTodo( const ITodo *todo ) = 0;
+  virtual bool deleteTodo( ITodo *todo ) = 0;
 
   /**
        @brief Removes a @p task from the database
 
        This removed the @p task from the database.
      */
-  virtual bool deleteTask( const ITask *task ) = 0;
+  virtual bool deleteTask( ITask *task ) = 0;
 
 };
 

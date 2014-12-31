@@ -9,15 +9,11 @@ namespace Queries {
 InsertTask::InsertTask(Task *task, bool update) :
     InsertObject<Task>(
       task,
-      "task",
-      "taskMetaAttributeName",
-      "taskMetaAttribute",
       { "uuid", "weight", "done", "title" },
-      update,
-      [this, task] { emit this->taskChanged( task->toVariant()); },
-      "todo",
-      "uuid" )
+      update )
 {
+  connect( this, &InsertTask::queryFinished,
+           [this,task] { emit this->taskChanged( task->toVariant() ); } );
 }
 
 } // namespace Queries

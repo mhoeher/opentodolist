@@ -7,15 +7,11 @@ namespace Queries {
 InsertTodoList::InsertTodoList( TodoList *todoList, bool update ) :
     InsertObject<TodoList>(
       todoList,
-      "todoList",
-      "todoListMetaAttributeName",
-      "todoListMetaAttribute",
       { "uuid", "name" },
-      update,
-      [this,todoList] { emit this->todoListChanged( todoList->toVariant() ); },
-      "account",
-      "uuid" )
+      update )
 {
+  connect( this, &InsertTodoList::queryFinished,
+           [this,todoList] { emit this->todoListChanged( todoList->toVariant() ) ; } );
 }
 
 } // namespace Queries

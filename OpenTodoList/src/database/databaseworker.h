@@ -68,6 +68,8 @@ private:
     void runSimpleQuery(const QString &query , const QString &errorMsg);
     void runQuery( StorageQuery *query );
 
+    void updateToSchemaVersion0();
+
 private slots:
 
     void next();

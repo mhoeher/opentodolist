@@ -3,6 +3,8 @@
 
 #include "core/opentodolistinterfaces.h"
 
+#include "datamodel/todo.h"
+
 #include <QObject>
 
 namespace OpenTodoList {
@@ -11,70 +13,77 @@ namespace DataModel {
 
 class Task : public QObject, public ITask
 {
-    Q_OBJECT
-    Q_PROPERTY(int id READ id NOTIFY idChanged)
-    Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
-    Q_PROPERTY(QUuid uuid READ uuid NOTIFY uuidChanged)
-    Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
-    Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
-    Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
-    Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
-    Q_PROPERTY(QUuid todo READ todo NOTIFY todoUuidChanged)
+  Q_OBJECT
+  Q_CLASSINFO( "id", "id" ) //!< The name of the ID property
+  Q_CLASSINFO( "uuid", "uuid" ) //!< The name of the UUID property
+  Q_PROPERTY(int id READ id NOTIFY idChanged)
+  Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
+  Q_PROPERTY(QUuid uuid READ uuid WRITE setUuid NOTIFY uuidChanged)
+  Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+  Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
+  Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
+  Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
+  Q_PROPERTY(QUuid todo READ todo WRITE setTodo NOTIFY todoUuidChanged)
 
 public:
-    explicit Task(QObject *parent = 0);
+  /**
+     @brief The type of objects containing tasks
+   */
+  typedef Todo ContainerType;
 
-    int id() const;
-    void setId( int id );
-    bool hasId() const;
+  explicit Task(QObject *parent = 0);
 
-    // ITask interface
-    QUuid uuid() const override;
-    void setUuid(const QUuid &uuid) override;
-    QString title() const override;
-    void setTitle(const QString &title) override;
-    bool done() const override;
-    void setDone(bool done) override;
-    double weight() const override;
-    void setWeight(double weight) override;
-    QVariantMap metaAttributes() const override;
-    void setMetaAttributes(const QVariantMap &metaAttributes) override;
-    QUuid todo() const override;
-    void setTodo( const QUuid &uuid ) override;
+  int id() const;
+  void setId( int id );
+  bool hasId() const;
 
-    Q_INVOKABLE QVariant toVariant() const;
-    Q_INVOKABLE void fromVariant( const QVariant &task );
+  // ITask interface
+  QUuid uuid() const override;
+  void setUuid(const QUuid &uuid) override;
+  QString title() const override;
+  void setTitle(const QString &title) override;
+  bool done() const override;
+  void setDone(bool done) override;
+  double weight() const override;
+  void setWeight(double weight) override;
+  QVariantMap metaAttributes() const override;
+  void setMetaAttributes(const QVariantMap &metaAttributes) override;
+  QUuid todo() const override;
+  void setTodo( const QUuid &uuid ) override;
 
-    int dirty() const;
-    void setDirty(int dirty);
+  Q_INVOKABLE QVariant toVariant() const;
+  Q_INVOKABLE void fromVariant( const QVariant &task );
 
-    bool disposed() const;
-    void setDisposed(bool disposed);
+  int dirty() const;
+  void setDirty(int dirty);
+
+  bool disposed() const;
+  void setDisposed(bool disposed);
 
 signals:
 
-    void idChanged();
-    void uuidChanged();
-    void titleChanged();
-    void doneChanged();
-    void weightChanged();
-    void metaAttributesChanged();
-    void todoUuidChanged();
+  void idChanged();
+  void uuidChanged();
+  void titleChanged();
+  void doneChanged();
+  void weightChanged();
+  void metaAttributesChanged();
+  void todoUuidChanged();
 
 public slots:
 
 private:
 
-    int   m_id;
-    bool m_hasId;
-    QUuid m_uuid;
-    QString m_title;
-    bool m_done;
-    double m_weigth;
-    QVariantMap m_metaAttributes;
-    QUuid m_todoUuid;
-    int m_dirty;
-    bool m_disposed;
+  int   m_id;
+  bool m_hasId;
+  QUuid m_uuid;
+  QString m_title;
+  bool m_done;
+  double m_weigth;
+  QVariantMap m_metaAttributes;
+  QUuid m_todoUuid;
+  int m_dirty;
+  bool m_disposed;
 
 
 };

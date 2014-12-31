@@ -7,102 +7,26 @@ namespace DataBase {
 namespace Queries {
 
 ReadTodo::ReadTodo() :
-    StorageQuery(),
-    m_todos(),
-    m_currentTodo( nullptr ),
+    ReadObject<Todo>(
+      { "uuid", "weight", "done", "priority", "dueDate", "title", "description" } ),
     m_todoListUuid( QUuid() ),
     m_minDueDate( QDateTime() ),
     m_maxDueDate( QDateTime() ),
     m_showDone( true )
 {
-}
-
-bool ReadTodo::query(QString &query, QVariantMap &args)
-{
-    QTextStream stream( &query );
-    stream << "SELECT"
-              " todo.id AS id,"
-              " todo.uuid AS uuid,"
-              " todo.weight AS weight,"
-              " todo.done AS done,"
-              " todo.priority AS priority,"
-              " todo.dueDate AS dueDate,"
-              " todo.title AS title,"
-              " todo.description AS description,"
-              " todoList.uuid as todoListUuid,"
-              " todoMetaAttributeName.name AS metaAttributeName,"
-              " todoMetaAttribute.value AS metaAttributeValue "
-              "FROM "
-              " todo "
-              "INNER JOIN todoList ON todo.todoList = todoList.id "
-              "LEFT OUTER JOIN todoMetaAttribute ON todo.id = todoMetaAttribute.todo "
-              "LEFT OUTER JOIN todoMetaAttributeName ON todoMetaAttribute.attributeName = todoMetaAttributeName.id ";
-
-    // Filtering:
-    QStringList conditions;
-    if ( !m_todoListUuid.isNull() ) {
-        conditions.append( " (todoList.uuid = :filterTodoListUuid) ");
-        args.insert( "filterTodoListUuid", m_todoListUuid );
+  connect( this, &ReadTodo::queryFinished,
+           [this] {
+    for ( Todo* todo : this->objects() ) {
+      emit this->readTodo( todo->toVariant() );
     }
-    if ( m_minDueDate.isValid() ) {
-        conditions.append( " (todo.dueDate >= :filterMinDueDate) " );
-        args.insert( "filterMinDueDate", m_minDueDate );
-    }
-    if ( m_maxDueDate.isValid() ) {
-        conditions.append( " (todo.dueDate <= :filterMaxDueDate) " );
-        args.insert( "filterMaxDueDate", m_maxDueDate );
-    }
-    if ( !m_showDone ) {
-        conditions.append( " (todo.done) " );
-    }
-    if ( !conditions.isEmpty() ) {
-        stream << " WHERE " << conditions.join( " AND " );
-    }
-
-    stream << ";";
-    return true;
-}
-
-void ReadTodo::recordAvailable(const QVariantMap &record)
-{
-    if ( m_currentTodo && m_currentTodo->id() != record.value( "id" ).toInt() ) {
-        m_todos << m_currentTodo;
-        emit readTodo( m_currentTodo->toVariant() );
-        m_currentTodo = nullptr;
-    }
-    if ( !m_currentTodo ) {
-        m_currentTodo = new Todo( this );
-        m_currentTodo->setId( record.value( "id" ).toInt() );
-        m_currentTodo->setUuid( record.value( "uuid" ).toUuid() );
-        m_currentTodo->setWeight( record.value( "weight" ).toDouble() );
-        m_currentTodo->setDone( record.value( "done" ).toBool() );
-        m_currentTodo->setPriority( record.value( "priority" ).toInt() );
-        m_currentTodo->setDueDate( record.value( "dueDate" ).toDateTime() );
-        m_currentTodo->setTitle( record.value( "title" ).toString() );
-        m_currentTodo->setDescription( record.value( "description" ).toString() );
-        m_currentTodo->setTodoList( record.value( "todoListUuid" ).toUuid() );
-    }
-    if ( record.contains( "metaAttributeName" ) ) {
-        QVariantMap attrs = m_currentTodo->metaAttributes();
-        attrs.insert( record.value( "metaAttributeName" ).toString(),
-                      record.value( "metaAttributeValue" ).toString() );
-        m_currentTodo->setMetaAttributes( attrs );
-    }
-}
-
-void ReadTodo::endRun()
-{
-    if ( m_currentTodo ) {
-        m_todos << m_currentTodo;
-        emit readTodo( m_currentTodo->toVariant() );
-        m_currentTodo = nullptr;
-    }
+  });
 }
 
 QList<Todo *> ReadTodo::todos() const
 {
-    return m_todos;
+    return objects();
 }
+
 QUuid ReadTodo::todoListUuid() const
 {
     return m_todoListUuid;
