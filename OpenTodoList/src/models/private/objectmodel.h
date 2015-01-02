@@ -8,6 +8,7 @@
 #include <QObjectList>
 #include <QQmlListProperty>
 #include <QSet>
+#include <QTimer>
 #include <QVariant>
 
 namespace OpenTodoList {
@@ -28,6 +29,7 @@ public:
   // QAbstractItemModel interface
   int rowCount(const QModelIndex &parent) const override;
   QVariant data(const QModelIndex &index, int role) const override;
+  void sort(int column, Qt::SortOrder order) override;
 
   Database *database() const;
   void setDatabase(Database *database);
@@ -37,6 +39,8 @@ public:
 public slots:
 
   void refresh();
+  void clear();
+  void sort();
 
 signals:
 
@@ -49,16 +53,15 @@ protected:
   virtual void connectToDatabase() = 0;
   virtual void disconnectFromDatabase() = 0;
   virtual StorageQuery* createQuery() const = 0;
-
-  void addObject( QObject *object, int index = -1 );
-  void removeObject( QObject *object );
+  virtual bool objectFilter( QObject* object ) const;
+  virtual int compareObjects( QObject *left, QObject *right ) const;
 
   template<typename T>
   void addObject( const QVariant &data, int index = -1 ) {
     T *tmp = new T( this );
     tmp->fromVariant( data );
 
-    if ( tmp->disposed() ) {
+    if ( tmp->disposed() || !objectFilter( tmp ) ) {
       this->removeObject( tmp );
       delete tmp;
       return;
@@ -69,10 +72,12 @@ protected:
         dynamic_cast< T* >( o )->fromVariant( data );
         m_readObjects.insert( o->property( m_uuidPropertyName ).toString() );
         delete tmp;
+        sort();
         return;
       }
     }
     this->addObject( tmp, index );
+    sort();
   }
 
   template<typename T>
@@ -93,6 +98,11 @@ private:
   QObjectList    m_objects;
   const char    *m_uuidPropertyName;
   QSet<QString> m_readObjects;
+  QTimer        m_updateTimer;
+  QTimer        m_sortTimer;
+
+  void addObject( QObject *object, int index = -1 );
+  void removeObject( QObject *object );
 
 private slots:
 
@@ -101,6 +111,7 @@ private slots:
   void queryStarted();
   void queryFinished();
 
+  void delayedSort();
 };
 
 } // namespace Private

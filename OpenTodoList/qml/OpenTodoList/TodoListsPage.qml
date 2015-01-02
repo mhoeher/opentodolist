@@ -194,7 +194,8 @@ Page {
 
                 anchors.fill: parent
                 todos: TodoModel {
-                    database: application.database
+                    database: searchView.filter !== "" ? application.database : null
+                    onDatabaseChanged: clear()
                 }
 
                 onTodoSelected: page.todoSelected( todo )

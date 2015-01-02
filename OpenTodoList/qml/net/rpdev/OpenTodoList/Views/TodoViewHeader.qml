@@ -31,6 +31,7 @@ Item {
     property bool trashView: false
     property alias headerText: barLabel.text
     property alias headerFont: barLabel.font
+    property alias filter: filterTodosEdit.text
 
     function add() {
         if ( newTodoName.text !== "" ) {
@@ -407,24 +408,19 @@ Item {
             }
 
             SymbolButton {
-                checked: ViewSettings.todoSortMode === Todo.SortTodoByPercentageDone
-                onClicked: ViewSettings.todoSortMode = Todo.SortTodoByPercentageDone
-                symbol: Symbols.tasks
-            }
-            SymbolButton {
-                checked: ViewSettings.todoSortMode === Todo.SortTodoByDueDate
+                checked: ViewSettings.todoSortMode === TodoModel.SortTodoByDueDate
                 symbol: Symbols.calendarFull
-                onClicked: ViewSettings.todoSortMode = Todo.SortTodoByDueDate
+                onClicked: ViewSettings.todoSortMode = TodoModel.SortTodoByDueDate
             }
             SymbolButton {
-                checked: ViewSettings.todoSortMode === Todo.SortTodoByPriority
+                checked: ViewSettings.todoSortMode === TodoModel.SortTodoByPriority
                 symbol: Symbols.exclamationMark
-                onClicked: ViewSettings.todoSortMode = Todo.SortTodoByPriority
+                onClicked: ViewSettings.todoSortMode = TodoModel.SortTodoByPriority
             }
             SymbolButton {
-                checked: ViewSettings.todoSortMode === Todo.SortTodoByName
+                checked: ViewSettings.todoSortMode === TodoModel.SortTodoByName
                 symbol: Symbols.sortByName
-                onClicked: ViewSettings.todoSortMode = Todo.SortTodoByName
+                onClicked: ViewSettings.todoSortMode = TodoModel.SortTodoByName
             }
         }
 

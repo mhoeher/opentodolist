@@ -55,22 +55,8 @@ public:
         SortTodoByWeight
     };
 
-    /**
-       @brief Compares two TodoList objects
-     */
-    class Comparator {
-    public:
-        explicit Comparator(TodoSortMode sortMode);
-        int operator () ( DataModel::Todo* const &first, DataModel::Todo* const &second ) const;
-    private:
-        TodoSortMode m_sortMode;
-    };
-
     explicit TodoModel(QObject *parent = 0);
     virtual ~TodoModel();
-
-    // QAbstractItemModel interface
-    virtual void sort(int column, Qt::SortOrder order);
 
     QString filter() const;
     void setFilter(const QString &filter);
@@ -113,15 +99,13 @@ signals:
     void limitOffsetChanged();
     void limitCountChanged();
 
-public slots:
-
-    void sort();
-
-    // ObjectModel interface
 protected:
-    void connectToDatabase();
-    void disconnectFromDatabase();
-    StorageQuery *createQuery() const;
+    // ObjectModel interface
+    void connectToDatabase() override;
+    void disconnectFromDatabase() override;
+    StorageQuery *createQuery() const override;
+    bool objectFilter(QObject *object) const override;
+    int compareObjects(QObject *left, QObject *right) const override;
 
 private:
 

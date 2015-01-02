@@ -9,7 +9,6 @@ namespace Queries {
 ReadTodo::ReadTodo() :
     ReadObject<Todo>(
       { "uuid", "weight", "done", "priority", "dueDate", "title", "description" } ),
-    m_todoListUuid( QUuid() ),
     m_minDueDate( QDateTime() ),
     m_maxDueDate( QDateTime() ),
     m_showDone( true )
@@ -25,16 +24,6 @@ ReadTodo::ReadTodo() :
 QList<Todo *> ReadTodo::todos() const
 {
     return objects();
-}
-
-QUuid ReadTodo::todoListUuid() const
-{
-    return m_todoListUuid;
-}
-
-void ReadTodo::setTodoListUuid(const QUuid &todoListUuid)
-{
-    m_todoListUuid = todoListUuid;
 }
 
 QDateTime ReadTodo::minDueDate() const
@@ -63,7 +52,47 @@ bool ReadTodo::showDone() const
 
 void ReadTodo::setShowDone(bool showDone)
 {
-    m_showDone = showDone;
+  m_showDone = showDone;
+}
+
+ReadTodo::ConditionList ReadTodo::generatedConditions() const
+{
+  ConditionList result;
+  if ( m_minDueDate.isValid() ) {
+    Condition c;
+    c.condition = "(dueDate IS NOT NULL AND dueDate >= :readTodoMinDueDate)";
+    c.arguments.insert( "readTodoMinDueDate", m_minDueDate );
+    result.append( c );
+  }
+  if ( m_maxDueDate.isValid() ) {
+    Condition c;
+    c.condition = "(dueDate IS NOT NULL AND dueDate <= :readTodoMaxDueDate)";
+    c.arguments.insert( "readTodoMaxDueDate", m_maxDueDate );
+    result.append( c );
+  }
+  if ( !m_showDone ) {
+    Condition c;
+    c.condition = "(NOT done)";
+    result.append( c );
+  }
+  if ( !m_filter.isEmpty() ) {
+    Condition c;
+    c.condition = "( title LIKE '%:readTodoFilterInTitle%' OR "
+                    "description LIKE '%:readTodoFilterInDescription%' )";
+    c.arguments.insert( "readTodoFilterInTitle", m_filter );
+    c.arguments.insert( "readTodoFilterInDescription", m_filter );
+  }
+  return result;
+}
+
+QString ReadTodo::filter() const
+{
+  return m_filter;
+}
+
+void ReadTodo::setFilter(const QString &filter)
+{
+  m_filter = filter;
 }
 
 } // namespace Queries

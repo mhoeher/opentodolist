@@ -51,40 +51,6 @@ TodoModel::~TodoModel()
 {
 }
 
-void TodoModel::sort(int column, Qt::SortOrder order)
-{
-    Q_UNUSED( column );
-    Q_UNUSED( order );
-    // TODO: Move to generic ObjectModel class
-    /*Comparator c( m_sortMode );
-    for ( int i = 0; i < m_todos.size() - 1; ++i ) {
-        for ( int j = i + 1; j < m_todos.size(); ++j ) {
-            if ( c( m_todos[i], m_todos[j] ) > 0 ) {
-                DataModel::Todo *first = m_todos[i];
-                DataModel::Todo *second = m_todos[j];
-
-                beginMoveRows( QModelIndex(), i, i, QModelIndex(), j + 1 );
-                m_todos.removeAt(i);
-                m_todos.insert( j, first );
-                endMoveRows();
-
-                if ( j - i > 1 ) {
-                    beginMoveRows( QModelIndex(), j-1, j-1, QModelIndex(), i );
-                    m_todos.removeAt(j-1);
-                    m_todos.insert( i, second );
-                    endMoveRows();
-                }
-
-            }
-        }
-    }*/
-}
-
-void TodoModel::sort()
-{
-    sort(0, Qt::AscendingOrder);
-}
-
 void TodoModel::connectToDatabase()
 {
   connect( database(), &Database::todoChanged, this, &TodoModel::addTodo );
@@ -112,8 +78,71 @@ StorageQuery *TodoModel::createQuery() const
   query->setMinDueDate( m_minDueDate );
   query->setMaxDueDate( m_maxDueDate );
   query->setShowDone( m_showDone );
+  query->setFilter( m_filter );
   connect( query, &Queries::ReadTodo::readTodo, this, &TodoModel::addTodo, Qt::QueuedConnection );
   return query;
+}
+
+bool TodoModel::objectFilter(QObject *object) const
+{
+  Todo *todo = dynamic_cast< Todo* >( object );
+  if ( todo ) {
+    return ( !m_minDueDate.isValid() ||  ( todo->dueDate().isValid() && m_minDueDate <= todo->dueDate() ) ) &&
+           ( !m_maxDueDate.isValid() || ( todo->dueDate().isValid() && todo->dueDate() <= m_maxDueDate ) ) &&
+           ( m_showDone || !todo->done() ) &&
+           ( m_filter.isEmpty() || todo->title().contains( m_filter, Qt::CaseInsensitive )
+                                   || todo->description().contains( m_filter, Qt::CaseInsensitive ) );
+  }
+  return false;
+}
+
+int TodoModel::compareObjects(QObject *left, QObject *right) const
+{
+  Todo* leftTodo = dynamic_cast<Todo*>( left );
+  Todo* rightTodo = dynamic_cast<Todo*>( right );
+  if ( leftTodo && rightTodo ) {
+      // always show open todos before done ones:
+      if ( leftTodo->done() && !rightTodo->done() ) {
+          return 1;
+      }
+      if ( rightTodo->done() && !leftTodo->done() ) {
+          return -1;
+      }
+
+      // sort depending on mode
+      switch ( m_sortMode ) {
+
+      // "default" sorting ;) Applied everywhere
+      case SortTodoByName:
+          //return leftTodo->title().localeAwareCompare( rightTodo->title() ) <= 0;
+          break;
+
+      case SortTodoByPriority:
+          if ( leftTodo->priority() != rightTodo->priority() ) {
+              return rightTodo->priority() - leftTodo->priority();
+          }
+          break;
+
+      case SortTodoByDueDate:
+          if ( leftTodo->dueDate() != rightTodo->dueDate() ) {
+              if ( !leftTodo->dueDate().isValid() ) {
+                  return 1;
+              }
+              if ( !rightTodo->dueDate().isValid() ) {
+                  return -1;
+              }
+              return leftTodo->dueDate() < rightTodo->dueDate() ? -1 : 1;
+          }
+          break;
+
+      case SortTodoByWeight:
+          return ( leftTodo->weight() < rightTodo->weight() );
+      }
+
+      // compare everything else by title
+      return leftTodo->title().localeAwareCompare( rightTodo->title() );
+  }
+  return 0;
 }
 
 void TodoModel::addTodo(const QVariant &todo)
@@ -242,65 +271,6 @@ void TodoModel::setTodoList(DataModel::TodoList *todoList)
         m_todoList = todoList;
         emit todoListChanged();
     }
-}
-
-
-
-
-
-
-
-TodoModel::Comparator::Comparator(TodoSortMode sortMode) :
-    m_sortMode( sortMode )
-{
-
-}
-
-int TodoModel::Comparator::operator ()(DataModel::Todo * const &first, DataModel::Todo * const &second) const
-{
-    if ( first && second ) {
-        // always show open todos before done ones:
-        if ( first->done() && !second->done() ) {
-            return 1;
-        }
-        if ( second->done() && !first->done() ) {
-            return -1;
-        }
-
-        // sort depending on mode
-        switch ( m_sortMode ) {
-
-        // "default" sorting ;) Applied everywhere
-        case SortTodoByName:
-        //    return first->title().localeAwareCompare( second->title() ) <= 0;
-            break;
-
-        case SortTodoByPriority:
-            if ( first->priority() != second->priority() ) {
-                return second->priority() - first->priority();
-            }
-            break;
-
-        case SortTodoByDueDate:
-            if ( first->dueDate() != second->dueDate() ) {
-                if ( !first->dueDate().isValid() ) {
-                    return 1;
-                }
-                if ( !second->dueDate().isValid() ) {
-                    return -1;
-                }
-                return first->dueDate() < second->dueDate() ? -1 : 1;
-            }
-            break;
-
-        case SortTodoByWeight:
-            return ( first->weight() < second->weight() );
-        }
-
-        // compare everything else by title
-        return first->title().localeAwareCompare( second->title() );
-    }
-    return 0;
 }
 
 } /* Models */

@@ -39,11 +39,11 @@ protected:
   void connectToDatabase() override;
   void disconnectFromDatabase() override;
   StorageQuery *createQuery() const override;
+  int compareObjects(QObject *left, QObject *right) const;
 
 private slots:
   void addTask( const QVariant &task );
   void removeTask( const QVariant &task );
-
 };
 
 } // namespace Models

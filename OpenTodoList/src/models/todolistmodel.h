@@ -38,6 +38,7 @@ protected:
     void connectToDatabase();
     void disconnectFromDatabase();
     StorageQuery *createQuery() const;
+    int compareObjects(QObject *left, QObject *right) const;
 
 private:
 
@@ -48,8 +49,6 @@ private slots:
 
     void addTodoList( const QVariant &todoList );
     void removeTodoList( const QVariant &todoList );
-
-
 };
 
 } /* Models */

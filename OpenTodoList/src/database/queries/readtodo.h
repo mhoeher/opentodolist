@@ -21,9 +21,6 @@ public:
 
     QList<Todo *> todos() const;
 
-    QUuid todoListUuid() const;
-    void setTodoListUuid(const QUuid &todoListUuid);
-
     QDateTime minDueDate() const;
     void setMinDueDate(const QDateTime &minDueDate);
 
@@ -33,19 +30,27 @@ public:
     bool showDone() const;
     void setShowDone(bool showDone);
 
+    QString filter() const;
+    void setFilter(const QString &filter);
+
 signals:
 
     void readTodo( const QVariant &todo );
 
 public slots:
 
+protected:
+    // ReadObject interface
+    ConditionList generatedConditions() const;
+
 private:
 
     // Filtering
-    QUuid m_todoListUuid;
     QDateTime m_minDueDate;
     QDateTime m_maxDueDate;
     bool m_showDone;
+    QString m_filter;
+
 
 };
 

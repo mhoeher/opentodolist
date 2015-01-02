@@ -36,6 +36,7 @@ Item {
     property alias interactive: view.interactive
     property alias headerLabel: header.headerText
     property alias headerFont: header.headerFont
+    property alias filter: header.filter
 
     signal todoSelected( Todo todo )
 

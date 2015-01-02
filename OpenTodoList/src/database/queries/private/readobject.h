@@ -70,6 +70,17 @@ public:
   int offset() const;
   void setOffset(int offset);
 
+protected:
+
+  /**
+     @brief Returns "generated" additional conditions
+
+     This method can be implemented by sub classes to return additional conditions from
+     any additional members these classes might have. The contained conditions will be treated
+     the very same as such returned by the conditions() method.
+   */
+  virtual ConditionList generatedConditions() const { return ConditionList(); }
+
 private:
 
   QString                   m_baseTable;
@@ -179,7 +190,10 @@ bool ReadObject<T>::query(QString &query, QVariantMap &args)
   } else {
     conditions << QString( " (NOT %1.disposed) " ).arg( m_baseTable );
   }
-  for ( const Condition &condition : m_conditions ) {
+  ConditionList additionalConditions;
+  additionalConditions.append( m_conditions );
+  additionalConditions.append( generatedConditions() );
+  for ( const Condition &condition : additionalConditions ) {
     conditions << ("(" + condition.condition + ")");
     for ( const QString &key : condition.arguments.keys() ) {
       args.insert( key, condition.arguments.value( key ) );

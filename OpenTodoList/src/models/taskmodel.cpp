@@ -70,6 +70,16 @@ StorageQuery *TaskModel::createQuery() const
   return query;
 }
 
+int TaskModel::compareObjects(QObject *left, QObject *right) const
+{
+  Task *leftTask = dynamic_cast< Task* >( left );
+  Task *rightTask = dynamic_cast< Task* >( right );
+  if ( leftTask && rightTask ) {
+    return leftTask->title().localeAwareCompare( rightTask->title() );
+  }
+  return 0;
+}
+
 void TaskModel::addTask(const QVariant &task)
 {
   addObject<Task>( task );

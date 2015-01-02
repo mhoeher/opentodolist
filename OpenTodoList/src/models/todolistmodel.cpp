@@ -53,6 +53,16 @@ StorageQuery *TodoListModel::createQuery() const
   return q;
 }
 
+int TodoListModel::compareObjects(QObject *left, QObject *right) const
+{
+  TodoList *leftTodoList = dynamic_cast< TodoList* >( left );
+  TodoList *rightTodoList = dynamic_cast< TodoList* >( right );
+  if ( leftTodoList && rightTodoList ) {
+    return leftTodoList->name().localeAwareCompare( rightTodoList->name() );
+  }
+  return 0;
+}
+
 void TodoListModel::addTodoList(const QVariant &todoList)
 {
   addObject<TodoList>( todoList );
