@@ -12,8 +12,8 @@ ABOUT
 BUILDING
 
     In order to build OpenTodoList, you will need:
-    - Qt5 (tested with Qt 5.3)
-    - An appropriate C++ compiler
+    - Qt5 (tested with Qt 5.4)
+    - An appropriate C++ compiler (has to be C++11 capable)
     
     Assuming you have downloaded a copy of OpenTodoList to
     /home/myself/opentodolist, do the following to build the application:

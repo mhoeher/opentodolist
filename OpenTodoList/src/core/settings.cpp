@@ -1,6 +1,6 @@
 /*
  *  OpenTodoList - A todo and task manager
- *  Copyright (C) 2013  Martin Höher <martin@rpdev.net>
+ *  Copyright (C) 2014 - 2015 Martin Höher <martin@rpdev.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

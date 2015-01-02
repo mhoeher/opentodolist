@@ -57,7 +57,6 @@ DEPENDPATH += \
 
 HEADERS += \
     inc/core/opentodolistinterfaces.h \
-    src/listutils.h \
     src/pluginsloader.h \
     src/core/documentformatter.h \
     src/core/settings.h \
