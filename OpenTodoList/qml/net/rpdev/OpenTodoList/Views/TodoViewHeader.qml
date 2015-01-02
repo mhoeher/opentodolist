@@ -332,7 +332,7 @@ Item {
 
             symbol: Symbols.checkedBox
             anchors {
-                right: showDeletedTodos.left
+                right: closeFilterBar.left
                 top: parent.top
                 margins: Measures.tinySpace
             }
@@ -340,21 +340,6 @@ Item {
             visible: !trashView
 
             onClicked: ViewSettings.showDoneTodos = !ViewSettings.showDoneTodos
-        }
-
-        SymbolButton {
-            id: showDeletedTodos
-
-            symbol: Symbols.trash
-            anchors {
-                right: closeFilterBar.left
-                top: parent.top
-                margins: Measures.tinySpace
-            }
-            checked: ViewSettings.showDeletedTodos
-            visible: !trashView
-
-            onClicked: ViewSettings.showDeletedTodos = !ViewSettings.showDeletedTodos
         }
 
         SymbolLink {

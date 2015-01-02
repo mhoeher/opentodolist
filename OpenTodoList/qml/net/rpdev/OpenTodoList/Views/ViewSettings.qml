@@ -26,11 +26,9 @@ QtObject {
 
     property int todoSortMode: Todo.SortTodoByPriority
     property bool showDoneTodos: false
-    property bool showDeletedTodos: false
 
     signal settingsChanged()
 
     onTodoSortModeChanged: settingsChanged()
     onShowDoneTodosChanged: settingsChanged()
-    onShowDeletedTodosChanged: settingsChanged()
 }

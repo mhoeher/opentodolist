@@ -43,15 +43,16 @@ Item {
 
             model: ContextMenuModel {
                 ContextMenuEntry {
-                    name: todo.isDeleted ? qsTr( "Restore" ) : qsTr( "Delete" )
-                    symbol: todo.isDeleted ? Symbols.textEditUndo : Symbols.trash
+                    name: qsTr( "Delete" )
+                    symbol: Symbols.trash
                 }
             }
 
             onClicked: {
                 switch ( index ) {
                 case 0:
-                    todo.isDeleted = !todo.isDeleted
+                    // TODO: Delete todo
+                    //todo.isDeleted = !todo.isDeleted
                     break;
                 }
             }
@@ -88,7 +89,7 @@ Item {
 
         onClicked: {
             var ctxMenu = contextMenu.createObject( this );
-            ctxMenu.todo.assign( delegate.todo );
+            ctxMenu.todo.fromVariant( delegate.todo.toVariant() );
             ctxMenu.popup( this );
         }
     }

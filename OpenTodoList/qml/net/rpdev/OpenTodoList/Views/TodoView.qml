@@ -43,7 +43,6 @@ Item {
         if ( todos ) {
             todos.sortMode = Qt.binding( function() { return ViewSettings.todoSortMode; } );
             todos.showDone = Qt.binding( function() { return trashView ? true : ViewSettings.showDoneTodos; } );
-            todos.showDeleted = Qt.binding( function() { return trashView ? true : ViewSettings.showDeletedTodos; } );
         }
     }
 

@@ -37,7 +37,6 @@ Rectangle {
         console.debug( "SaveViewSettings" );
         settings.setValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
         settings.setValue( "OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos );
-        settings.setValue( "OpenTodoList/ViewSettings/showDeletedTodos", ViewSettings.showDeletedTodos );
     }
 
 
@@ -54,7 +53,6 @@ Rectangle {
         height = settings.getValue( "OpenTodoList/Window/height", height );
         ViewSettings.todoSortMode = settings.getValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
         ViewSettings.showDoneTodos = settings.getValue( "OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos ) === "true";
-        ViewSettings.showDeletedTodos = settings.getValue( "OpenTodoList/ViewSettings/showDeletedTodos", ViewSettings.showDeletedTodos ) === "true";
 
         ViewSettings.onSettingsChanged.connect( saveViewSettings );
     }
