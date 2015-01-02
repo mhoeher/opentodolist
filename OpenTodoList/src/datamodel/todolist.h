@@ -99,8 +99,12 @@ private:
   QUuid m_accountUuid;
   int m_dirty;
   bool m_disposed;
+  bool m_loading;
 
 public slots:
+
+private slots:
+  void emitChanged();
 
 };
 

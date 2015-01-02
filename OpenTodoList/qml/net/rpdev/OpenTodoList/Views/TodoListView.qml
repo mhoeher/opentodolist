@@ -27,7 +27,6 @@ import net.rpdev.OpenTodoList.Views 1.0
 AnimatedListView {
     id: todoListView
 
-    property TodoListLibrary library
     property TodoList currentTodoList
     property bool showTodosInline: false
     property bool highlightCurrentTodoList: false
@@ -112,11 +111,13 @@ AnimatedListView {
 
             function addTodoList() {
                 if ( newTodoListNameEdit.text !== "" ) {
-                    var dialog = backendSelectionDialog.createObject( todoListView );
-                    dialog.backends = writableBackends();
+                    var dialog = accountSelectionDialog.createObject( todoListView );
                     dialog.newListName = newTodoListNameEdit.text;
                     dialog.onAccept.connect( function() {
-                        library.addTodoList( dialog.selectedBackend.id, dialog.newListName );
+                        dialog.todoList.name = dialog.newListName;
+                        dialog.todoList.account = dialog.selectedAccount.uuid;
+                        dialog.dbConnection.database = application.database;
+                        dialog.dbConnection.insertTodoList( dialog.todoList );
                     } );
                     dialog.show();
                     newTodoListNameEdit.text = "";
@@ -124,14 +125,25 @@ AnimatedListView {
             }
 
             property Component dialog: Component {
-                id: backendSelectionDialog
+                id: accountSelectionDialog
 
                 Overlay {
                     id: overlay
 
-                    property list<BackendWrapper> backends
-                    property BackendWrapper selectedBackend: null
+                    property Account selectedAccount: null
                     property string newListName
+                    property TodoList todoList : TodoList {}
+                    property DatabaseConnection dbConnection : DatabaseConnection {
+                        database: application.database
+                    }
+
+                    Keys.onPressed: {
+                        if ( ( event.key === Qt.Key_Enter || event.key === Qt.Key_Return ) &&
+                                selectedAccount ) {
+                            accept();
+                            close();
+                        }
+                    }
 
                     signal accept()
 
@@ -153,12 +165,15 @@ AnimatedListView {
                                 margins: Measures.tinySpace
                             }
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                            text: qsTr( "Please select a type for the new todo list:" )
+                            text: qsTr( "Please select in which account to create the new todo list:" )
                         }
 
                         ListView {
-                            id: backendView
-                            model: backends
+                            id: accountView
+                            model: AccountModel {
+                                database: application.database
+                            }
+
                             anchors {
                                 top: inputPromtLabel.bottom
                                 left: parent.left
@@ -171,7 +186,7 @@ AnimatedListView {
 
                             highlight: Item {
                                 Rectangle {
-                                    width: overlay.selectedBackend ? Measures.tinySpace : 0
+                                    width: overlay.selectedAccount ? Measures.tinySpace : 0
                                     height: parent.height - Measures.tinySpace
                                     y: Measures.tinySpace
                                     color: Colors.secondary1
@@ -185,8 +200,8 @@ AnimatedListView {
                                 MouseArea {
                                     anchors.fill: itemBackground
                                     onClicked: {
-                                        overlay.selectedBackend = backends[index]
-                                        backendView.currentIndex = index
+                                        overlay.selectedAccount = display
+                                        accountView.currentIndex = index
                                     }
 
                                 }
@@ -201,10 +216,10 @@ AnimatedListView {
                                     }
 
                                     height: childrenRect.height + Measures.smallSpace * 2
-                                    color: overlay.selectedBackend === backends[index] ? Colors.listItem : Colors.window
+                                    color: overlay.selectedAccount === display ? Colors.listItem : Colors.window
 
                                     Label {
-                                        id: backendNameLabel
+                                        id: accountNameLabel
                                         anchors {
                                             left: parent.left
                                             right: parent.right
@@ -213,57 +228,8 @@ AnimatedListView {
                                             topMargin: Measures.smallSpace
                                         }
                                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                                        text: backends[index].name
+                                        text: display.name
                                         font.bold: true
-                                    }
-
-                                    Item {
-                                        id: detailsItem
-                                        visible: height > 0
-                                        clip: true
-                                        anchors {
-                                            left: parent.left
-                                            right: parent.right
-                                            top: backendNameLabel.bottom
-                                            margins: Measures.tinySpace
-                                        }
-                                        height: 0
-                                        opacity: 0.0
-
-                                        Label {
-                                            id: descriptionLabel
-                                            width: parent.width
-                                            text: backends[index].description
-                                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                                        }
-
-                                        states: State {
-                                            name: "shown"
-                                            when: overlay.selectedBackend === backends[index]
-                                            PropertyChanges {
-                                                target: detailsItem
-                                                height: descriptionLabel.height + Measures.tinySpace * 2
-                                                opacity: 1.0
-                                            }
-                                        }
-
-                                        transitions: Transition {
-                                            from: "shown"
-                                            to: ""
-                                            reversible: true
-                                            SequentialAnimation {
-                                                NumberAnimation {
-                                                    target: detailsItem
-                                                    property: "opacity"
-                                                    duration: 100
-                                                }
-                                                NumberAnimation {
-                                                    target: detailsItem
-                                                    property: "height"
-                                                    duration: 100
-                                                }
-                                            }
-                                        }
                                     }
                                 }
                             }
@@ -272,17 +238,15 @@ AnimatedListView {
                         Button {
                             id: okButton
                             text: qsTr( "Create" )
-                            enabled: overlay.selectedBackend && overlay.selectedBackend.valid
+                            enabled: overlay.selectedAccount
                             anchors {
                                 bottom: parent.bottom
                                 right: parent.right
                                 margins: Measures.tinySpace
                             }
                             onClicked: {
-                                if ( overlay.selectedBackend ) {
-                                    overlay.accept( overlay.selectedBackend );
-                                    overlay.close();
-                                }
+                                overlay.accept( overlay.selectedAccount );
+                                overlay.close();
                             }
                         }
                         Button {

@@ -44,6 +44,10 @@ Database::Database(QObject *parent) :
     connect( m_worker, &DatabaseWorker::todoListChanged, this, &Database::todoListChanged );
     connect( m_worker, &DatabaseWorker::todoChanged, this, &Database::todoChanged );
     connect( m_worker, &DatabaseWorker::taskChanged, this, &Database::taskChanged );
+    connect( m_worker, &DatabaseWorker::accountDeleted, this, &Database::accountDeleted );
+    connect( m_worker, &DatabaseWorker::todoListDeleted, this, &Database::todoListDeleted );
+    connect( m_worker, &DatabaseWorker::todoDeleted, this, &Database::todoDeleted );
+    connect( m_worker, &DatabaseWorker::taskDeleted, this, &Database::taskDeleted );
 
     qDebug() << "Initializing backends...";
     m_backends.reserve( m_backendPlugins->plugins().size() );

@@ -46,6 +46,10 @@ signals:
     void todoListChanged( const QVariant &todoList );
     void todoChanged( const QVariant &todo );
     void taskChanged( const QVariant &task );
+    void accountDeleted( const QVariant &account );
+    void todoListDeleted( const QVariant &todoList );
+    void todoDeleted( const QVariant &todo );
+    void taskDeleted( const QVariant &task );
 
 private:
 

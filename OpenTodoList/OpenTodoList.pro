@@ -52,6 +52,7 @@ DEPENDPATH += \
   src/database/queries/private \
   src/datamodel \
   src/models \
+  src/models/private \
   src/systemintegration
 
 HEADERS += \
@@ -63,7 +64,6 @@ HEADERS += \
     src/database/backendwrapper.h \
     src/datamodel/todo.h \
     src/datamodel/todolist.h \
-    src/datamodel/todolistlibrary.h \
     src/models/todolistmodel.h \
     src/models/todomodel.h \
     src/systemintegration/shortcut.h \
@@ -102,7 +102,19 @@ HEADERS += \
     src/database/queries/private/deleteobject.h \
     src/database/queries/deletetodolist.h \
     src/database/queries/deletetodo.h \
-    src/database/queries/deletetask.h
+    src/database/queries/deletetask.h \
+    src/database/queries/private/saveobject.h \
+    src/database/queries/saveaccount.h \
+    src/database/queries/savetodolist.h \
+    src/database/queries/savetodo.h \
+    src/database/queries/savetask.h \
+    src/database/queries/private/disposeobject.h \
+    src/database/queries/disposeaccount.h \
+    src/database/queries/disposetodolist.h \
+    src/database/queries/disposetodo.h \
+    src/database/queries/disposetask.h \
+    src/database/databaseconnection.h \
+    src/models/private/objectmodel.h
 
 SOURCES += \
     src/main.cpp \
@@ -111,7 +123,6 @@ SOURCES += \
     src/database/backendwrapper.cpp \
     src/datamodel/todo.cpp \
     src/datamodel/todolist.cpp \
-    src/datamodel/todolistlibrary.cpp \
     src/models/todolistmodel.cpp \
     src/models/todomodel.cpp \
     src/systemintegration/shortcut.cpp \
@@ -146,7 +157,17 @@ SOURCES += \
     src/database/queries/deleteaccount.cpp \
     src/database/queries/deletetodolist.cpp \
     src/database/queries/deletetodo.cpp \
-    src/database/queries/deletetask.cpp
+    src/database/queries/deletetask.cpp \
+    src/database/queries/saveaccount.cpp \
+    src/database/queries/savetodolist.cpp \
+    src/database/queries/savetodo.cpp \
+    src/database/queries/savetask.cpp \
+    src/database/queries/disposeaccount.cpp \
+    src/database/queries/disposetodolist.cpp \
+    src/database/queries/disposetodo.cpp \
+    src/database/queries/disposetask.cpp \
+    src/database/databaseconnection.cpp \
+    src/models/private/objectmodel.cpp
 
 RESOURCES += OpenTodoList.qrc
 

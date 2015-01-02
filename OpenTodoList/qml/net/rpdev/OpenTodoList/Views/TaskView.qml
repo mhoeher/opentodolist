@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.DataBase 1.0
 import net.rpdev.OpenTodoList.Models 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Views 1.0
@@ -34,7 +35,30 @@ Item {
     property bool trashView: false
     property alias interactive: view.interactive
 
-    signal todoSelected( Todo todo )
+    QtObject {
+        id: d
+
+        property Component newTaskHelperComponent : Component {
+            id: newTaskHelper
+
+            Item {
+                property Task task : Task {}
+                property DatabaseConnection dbConnection : DatabaseConnection {
+                    database: application.database
+                }
+            }
+        }
+
+        function addTask( title ) {
+            if ( title !== "" && tasks.todo ) {
+                var helper = newTaskHelperComponent.createObject( taskView );
+                helper.task.title = title;
+                helper.task.todo = tasks.todo.uuid;
+                helper.dbConnection.insertTask( helper.task );
+                helper.destroy();
+            }
+        }
+    }
 
     Rectangle {
         id: background
@@ -52,12 +76,41 @@ Item {
         clip: true
         anchors.fill: parent
 
+        header: Item {
+            width: view.width
+            height: childrenRect.height + Measures.tinySpace
+
+            SingleLineTextInput {
+                id: newTaskTitle
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: addTaskButton.left
+                    margins: Measures.tinySpace
+                }
+                placeholder: qsTr( "Add new task..." )
+                onAccept: {
+                    d.addTask( newTaskTitle.text );
+                    newTaskTitle.text = "";
+                }
+            }
+            SymbolButton {
+                id: addTaskButton
+                symbol: Symbols.plus
+                anchors {
+                    top: parent.top
+                    right: parent.right
+                    margins: Measures.tinySpace
+                }
+                onClicked: {
+                    d.addTask( newTaskTitle.text );
+                    newTaskTitle.text = "";
+                }
+            }
+        }
+
         delegate: TaskViewDelegate {
             task: display
-            onClicked: {
-                currentIndex = index;
-                taskView.todoSelected( display );
-            }
         }
     }
 }

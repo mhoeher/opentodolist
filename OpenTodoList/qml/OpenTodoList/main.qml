@@ -62,10 +62,6 @@ Rectangle {
     onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
     onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
 
-    TodoListLibrary {
-        id: todoListLibrary
-    }
-
     Settings {
         id: settings
     }
@@ -83,8 +79,6 @@ Rectangle {
         }
 
         TodoListsPage {
-            library: todoListLibrary
-
             onTodoSelected: {
                 var component = Qt.createComponent( "TodoPage.qml" );
                 if ( component.status === Component.Ready ) {

@@ -84,6 +84,11 @@ private:
   bool        m_disposed;
   QVariantMap m_metaAttributes;
 
+  bool        m_loading;
+
+private slots:
+  void emitChanged();
+
 };
 
 } /* namespace DataModel */

@@ -196,22 +196,30 @@ void InsertObject<T>::queryInsertObject(QTextStream &stream, QVariantMap &args)
   if ( !m_object->hasId() ) {
     m_waitingForId = true;
   }
+  stream << ", protoInfo ( dirty, disposed ) AS ( ";
   if ( m_update ) {
-    stream << "WITH protoInfo ( dirty, disposed ) AS ( "
-           << "SELECT COALESCE(dirty,0) + 1, COALESCE(disposed,false) FROM "
-           << m_baseTable << " WHERE ";
+    stream << "VALUES ( "
+           << " COALESCE( ( SELECT dirty FROM " << m_baseTable << " WHERE ";
     if ( m_object->hasId() ) {
-      stream << "id = :searchId";
-      args.insert( "searchId", m_object->id() );
+      stream << " id = :protoInfoSearchId1 ";
+      args.insert( "protoInfoSearchId1", m_object->id() );
     } else {
-      stream << "uuid = :searchUuid2";
-      args.insert( "searchUuid2", m_object->uuid() );
+      stream << " uuid = :protoInfoSearchUuid1 ";
+      args.insert( "protoInfoSearchUuid1", m_object->uuid() );
     }
-    stream << " ) ";
+    stream << "), 0 ) + 1, COALESCE( ( SELECT disposed FROM " << m_baseTable << " WHERE ";
+    if ( m_object->hasId() ) {
+      stream << " id = :protoInfoSearchId2 ";
+      args.insert( "protoInfoSearchId2", m_object->id() );
+    } else {
+      stream << " uuid = :protoInfoSearchUuid2 ";
+      args.insert( "protoInfoSearchUuid2", m_object->uuid() );
+    }
+    stream << " ), 0 ) ) ";
   } else {
-    stream << ", protoInfo ( dirty, disposed ) AS ( "
-           << " VALUES ( 0, 0 ) ) ";
+    stream << " VALUES ( 0, 0 ) ";
   }
+  stream << " ) ";
   stream << "INSERT OR REPLACE INTO " << m_baseTable << " "
          << " ( id, dirty, disposed, " << m_parentAttribute << ", "
          << m_attributes.join( ", " ) << " ) "

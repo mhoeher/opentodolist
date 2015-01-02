@@ -95,9 +95,9 @@ backing service.
 @note For "container objects" (such as todo lists which contain todos), modifying the container
       itself only will cause the dirty flag to be set on the container, not the contained objects.
 
-To query all modified objects, the methods OpenTodoList::IDatabase::getModifiedAccounts(),
-OpenTodoList::IDatabase::getModifiedTodoLists(), OpenTodoList::IDatabase::getModifiedTodos()
-and OpenTodoList::IDatabase::getModifiedTasks() are available. They return either all modified
+To query all modified objects, the methods OpenTodoList::IDatabase::getAccounts(),
+OpenTodoList::IDatabase::getTodoLists(), OpenTodoList::IDatabase::getTodos()
+and OpenTodoList::IDatabase::getTasks() are available. They return either all modified
 objects of a kind or - on request - up to a maximum value specified in the call. For each of the
 returned objects, the backend shall first save the current version of the object, and then call
 one of the methods and OpenTodoList::IDatabase::onAccountSaved(),
@@ -112,7 +112,7 @@ chart:
 
 @msc
 IDatabase,IBackend;
-IDatabase<=IBackend [label="getModifiedTodos()"];
+IDatabase<=IBackend [label="getTodos(IDatabase::QueryDirty)"];
 IDatabase>>IBackend [label="return todos"];
 IBackend box IBackend [label="for each todo in todos"];
 IBackend=>IBackend [label="save todo"];
@@ -131,9 +131,9 @@ but its @b disposed flag is set to true to indicate this.
 @note For "container objects", deleting the container only causes the flag to be set for the
       container, not for the contained objects.
 
-The backend can use one of the methods OpenTodoList::IDatabase::getDeletedAccounts(),
-OpenTodoList::IDatabase::getDeletedTodoLists(), OpenTodoList::IDatabase::getDeletedTodos() and
-OpenTodoList::IDatabase::getDeletedTasks() to get objects marked for deletion per type. The backend
+The backend can use one of the methods OpenTodoList::IDatabase::getAccounts(),
+OpenTodoList::IDatabase::getTodoLists(), OpenTodoList::IDatabase::getTodos() and
+OpenTodoList::IDatabase::getTasks() to get objects marked for deletion per type. The backend
 then shall first delete the appropriate object in its backing service, before calling
 one of OpenTodoList::IDatabase::deleteAccount(), OpenTodoList::IDatabase::deleteTodoList(),
 OpenTodoList::IDatabase::deleteTodo() or OpenTodoList::IDatabase::deleteTask().
@@ -148,7 +148,7 @@ The whole procedure is shown in the following message sequence chart for the cas
 
 @msc
 IDatabase,IBackend;
-IDatabase<=IBackend [label="getDeletedTodos()"];
+IDatabase<=IBackend [label="getTodos(IDatabase::QueryDisposed)"];
 IDatabase>>IBackend [label="return todos"];
 IBackend box IBackend [label="for each todo in todos"];
 IBackend=>IBackend [label="delete todo in backing service"];

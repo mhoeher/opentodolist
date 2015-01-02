@@ -32,9 +32,9 @@ const QString LocalXmlBackend::TodoMetaFileName = "LocalXmlBackend::Todo::fileNa
 
 LocalXmlBackend::LocalXmlBackend(QObject *parent) :
     QObject( parent ),
-    m_database( 0 ),
+    m_database( nullptr ),
     m_localStorageDirectory( QString() ),
-    m_account( 0 )
+    m_account( nullptr )
 {
     qDebug() << "Creating LocalXmlBackend";
 }
@@ -42,6 +42,9 @@ LocalXmlBackend::LocalXmlBackend(QObject *parent) :
 LocalXmlBackend::~LocalXmlBackend()
 {
     qDebug() << "Deleting LocalXmlBackend";
+    if ( m_account ) {
+      delete m_account;
+    }
 }
 
 void LocalXmlBackend::setDatabase(OpenTodoList::IDatabase *database)
@@ -73,15 +76,16 @@ QString LocalXmlBackend::description() const
 
 bool LocalXmlBackend::start()
 {
-    // TODO: Get existing account from DB before creating new one
-    m_account = m_database->createAccount();
-    m_account->setUuid( QUuid::createUuid() );
-    m_account->setName( tr( "Local Todo Lists" ) );
-    QVariantMap metaAttrs;
-    metaAttrs.insert( "test1", "Hello World" );
-    metaAttrs.insert( "test2", "Foo" );
-    m_account->setMetaAttributes( metaAttrs );
-    m_database->insertAccount( m_account );
+    QList<OpenTodoList::IAccount*> accounts = m_database->getAccounts(
+          OpenTodoList::IDatabase::QueryAny, 1 );
+    if ( accounts.isEmpty() ) {
+      m_account = m_database->createAccount();
+      m_account->setUuid( QUuid::createUuid() );
+      m_account->setName( tr( "Local Todo Lists" ) );
+      m_database->insertAccount( m_account );
+    } else {
+      m_account = accounts.first();
+    }
 
     QStringList todoLists = locateTodoLists();
     foreach ( const QString &todoList, todoLists ) {
@@ -96,19 +100,6 @@ bool LocalXmlBackend::start()
                     weight = todoObj->weight() + 1.0;
                     todoObj->setTodoList( list->uuid() );
                     m_database->insertTodo( todoObj );
-                    OpenTodoList::ITask *task = m_database->createTask();
-                    if ( task ) {
-                        task->setDone( false );
-                        task->setTitle( "A task" );
-                        task->setTodo( todoObj->uuid() );
-                        task->setUuid( QUuid::createUuid() );
-                        task->setWeight(0.0);
-                        QVariantMap attrs;
-                        attrs.insert( "Hello", "World" );
-                        task->setMetaAttributes( attrs );
-                        m_database->insertTask( task );
-                        delete task;
-                    }
                     delete todoObj;
                 }
             }

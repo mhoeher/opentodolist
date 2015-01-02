@@ -23,7 +23,7 @@ class Task : public QObject, public ITask
   Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
   Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
   Q_PROPERTY(QVariantMap metaAttributes READ metaAttributes NOTIFY metaAttributesChanged)
-  Q_PROPERTY(QUuid todo READ todo WRITE setTodo NOTIFY todoUuidChanged)
+  Q_PROPERTY(QUuid todo READ todo WRITE setTodo NOTIFY todoChanged)
 
 public:
   /**
@@ -68,9 +68,13 @@ signals:
   void doneChanged();
   void weightChanged();
   void metaAttributesChanged();
-  void todoUuidChanged();
+  void todoChanged();
+
+  void changed();
 
 public slots:
+
+  void toggle();
 
 private:
 
@@ -84,6 +88,11 @@ private:
   QUuid m_todoUuid;
   int m_dirty;
   bool m_disposed;
+
+  bool m_loading;
+
+private slots:
+  void emitChanged();
 
 
 };

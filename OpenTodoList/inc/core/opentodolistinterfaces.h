@@ -339,6 +339,15 @@ class IDatabase {
 public:
 
   /**
+     @brief Specify which objects to query
+   */
+  enum QueryFlags {
+    QueryAny      = 0,    //!< If no flag is set, all objects will be retrieved
+    QueryDisposed = 0x1,  //!< Only objects with the disposed flag set to true are retrieved
+    QueryDirty    = 0x02  //!< Only objects with the dirty flag greater than 0 are retrieved
+  };
+
+  /**
        @brief Destructor
 
        Required for some compilers.
@@ -414,6 +423,70 @@ public:
   virtual ITask* getTask( const QUuid &uuid ) = 0;
 
   /**
+     @brief Gets accounts from the database
+
+     This retrieves accounts from the database. The @p flags allow to filter the retrieved
+     objects (e.g. whether to retrieve only modified or disposed objects). If @p maxAccounts
+     is greater than 0, then at most maxAccounts accounts are returned, otherwise all matching
+     accounts are returned. If @p offset is greater or equal to 0, then from all matching accounts,
+     objects starting at the given offset are returned.
+
+     @note The backend is responsible to delete the returned objects.
+   */
+  virtual QList<IAccount*> getAccounts(
+      QueryFlags flags = QueryAny,
+      int maxAccounts = 0,
+      int offset = 0 ) = 0;
+
+  /**
+     @brief Gets todo lists from the database
+
+     This retrieves todo lists from the database. The @p flags allow to filter the retrieved
+     objects (e.g. whether to retrieve only modified or disposed objects). If @p maxTodoLists
+     is greater than 0, then at most maxTodoLists todo lists are returned, otherwise all matching
+     todo lists are returned. If @p offset is greater or equal to 0, then from all matching todo lists,
+     objects starting at the given offset are returned.
+
+     @note The backend is responsible to delete the returned objects.
+   */
+  virtual QList<ITodoList*> getTodoLists(
+      QueryFlags flags = QueryAny,
+      int maxTodoLists = 0,
+      int offset = 0 ) = 0;
+
+  /**
+     @brief Gets todos from the database
+
+     This retrieves todos from the database. The @p flags allow to filter the retrieved
+     objects (e.g. whether to retrieve only modified or disposed objects). If @p maxTodos
+     is greater than 0, then at most maxTodos todos are returned, otherwise all matching
+     todos are returned. If @p offset is greater or equal to 0, then from all matching todos,
+     objects starting at the given offset are returned.
+
+     @note The backend is responsible to delete the returned objects.
+   */
+  virtual QList<ITodo*> getTodos(
+      QueryFlags flags = QueryAny,
+      int maxTodos = 0,
+      int offset = 0 ) = 0;
+
+  /**
+     @brief Gets tasks from the database
+
+     This retrieves tasks from the database. The @p flags allow to filter the retrieved
+     objects (e.g. whether to retrieve only modified or disposed objects). If @p maxTasks
+     is greater than 0, then at most maxTasks accounts are returned, otherwise all matching
+     accounts are returned. If @p offset is greater or equal to 0, then from all matching tasks,
+     objects starting at the given offset are returned.
+
+     @note The backend is responsible to delete the returned objects.
+   */
+  virtual QList<ITask*> getTasks(
+      QueryFlags flags = QueryAny,
+      int maxTasks = 0,
+      int offset = 0 ) = 0;
+
+  /**
        @brief Insert or update an account
 
        This method is used to insert or update an @p account into the database. If there is no
@@ -466,55 +539,11 @@ public:
   virtual bool insertTask( ITask *task ) = 0;
 
   /**
-   * @brief Returns accounts marked as modified
-   *
-   * Returns accounts where the @b dirty flag is greater than zero. If @p maxAccounts
-   * is greater than zero, up to maxAccounts will be returned. Otherwise, all modified accounts
-   * are returned. The backend shall delete the returned objects once it is done.
-   *
-   * @sa onAccountSaved()
-   */
-  virtual QList<IAccount*> getModifiedAccounts( int maxAccounts = 0 ) = 0;
-
-  /**
-     @brief Returns todo lists marked as modified
-
-     This returns todo lists where the @b dirty flag is greater than zero. If @p maxTodoLists
-     is greater than zero, up to maxTodoLists are returned. Otherwise, all todo lists marked as
-     modified are returned. The backend shall delete the objects returned once it is done.
-
-     @sa onTodoListSaved()
-   */
-  virtual QList<ITodoList*> getModifiedTodoLists( int maxTodoLists = 0 ) = 0;
-
-  /**
-     @brief Returns todos marked as modified
-
-     This returns todos where the @b dirty flag is greater than zero. If @p maxTodos is greater than
-     zero, this returns up to maxTodos todos. Otherwise, all todos marked as modified are returned.
-     The backend shall delete the returned objects once it is done.
-
-     @sa onTodoSaved()
-   */
-  virtual QList<ITodo*> getModifiedTodos( int maxTodos = 0 ) = 0;
-
-  /**
-     @brief Returns modified tasks
-
-     Returns tasks where the @b dirty flag is greater than zero. If @p maxTasks are greater than
-     zero, than up to maxTasks tasks are returned. Otherwise, all modified tasks are returned.
-     The backend shall delete the returned objects once it is done.
-
-     @sa onTaskSaved()
-   */
-  virtual QList<ITask*> getModifiedTasks( int maxTasks = 0 ) = 0;
-
-  /**
      @brief Mark an account as saved
 
      This shall be called after the backend saved an modified @p account in its backing service.
 
-     @sa getModifiedAccounts()
+     @sa getAccounts()
    */
   virtual bool onAccountSaved( IAccount *account ) = 0;
 
@@ -524,7 +553,7 @@ public:
      This shall be called for a modified @p todoList after saving it in the backend's
      backing service.
 
-     @sa getModifiedTodoLists()
+     @sa getTodoLists()
    */
   virtual bool onTodoListSaved( ITodoList *todoList ) = 0;
 
@@ -533,7 +562,7 @@ public:
 
      This shall be called after a backend saved a modified @p todo in its backing service.
 
-     @sa getModifiedTodos()
+     @sa getTodos()
    */
   virtual bool onTodoSaved( ITodo *todo ) = 0;
 
@@ -542,53 +571,9 @@ public:
 
      A backend shall call this method after saving a modified @p task in its backing service.
 
-     @sa getModifiedTasks()
+     @sa getTasks()
    */
   virtual bool onTaskSaved( ITask *task ) = 0;
-
-  /**
-     @brief Gets accounts marked as deleted
-
-     This returns accounts where the @b disposed flag is set to true. If @p maxAccounts
-     is greater than zero, than up to maxAccounts accounts are returned. Otherwise, all accounts
-     are returned. The backend shall delete the returned objects after it is done.
-
-     @sa deleteAccount()
-   */
-  virtual QList<IAccount*> getDeletedAccounts( int maxAccounts = 0 ) = 0;
-
-  /**
-     @brief Gets todo lists marked as deleted
-
-     This returns todo lists where the @b disposed flag is set to true. If @p maxTodoLists is
-     greater than zero, than up to maxTodoLists todo lists is returned. Otherwise, all todo lists
-     are returned. The backend shall delete the returned objects once it is done.
-
-     @sa deleteTodoList()
-   */
-  virtual QList<ITodoList*> getDeletedTodoLists( int maxTodoLists = 0 ) = 0;
-
-  /**
-     @brief Returns todos marked as deleted
-
-     Returns todos where the @b disposed flag is set to true. If @p maxTodos is greater than
-     zero, then up to maxTodos todos are returned. Otherwise, all todos are returned.
-     The backend shall delete the returned objects after it is done.
-
-     @sa deleteTodo()
-   */
-  virtual QList<ITodo*> getDeletedTodos( int maxTodos = 0 ) = 0;
-
-  /**
-     @brief Get tasks marked as deleted
-
-     This returns tasks where the @b disposed flag is set to true. If @p maxTasks is greater than
-     zero, up to maxTasks tasks are returned. Otherwise, all tasks are returned.
-     The backend shall delete the returned objects after it is done.
-
-     @sa deleteTask()
-   */
-  virtual QList<ITask*> getDeletedTasks( int maxTasks = 0 ) = 0;
 
   /**
        @brief Deletes the @p account from the database

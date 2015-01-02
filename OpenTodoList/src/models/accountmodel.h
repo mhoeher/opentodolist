@@ -3,6 +3,8 @@
 
 #include "datamodel/account.h"
 
+#include "models/private/objectmodel.h"
+
 #include "database/database.h"
 #include "database/queries/readaccount.h"
 
@@ -14,37 +16,31 @@ namespace Models {
 
 using namespace DataModel;
 using namespace DataBase;
+using namespace Models::Private;
 
-class AccountModel : public QAbstractListModel
+class AccountModel : public ObjectModel
 {
     Q_OBJECT
-    Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
 public:
     explicit AccountModel(QObject *parent = 0);
 
-    Database *database() const;
-    void setDatabase(Database *database);
-
-    // QAbstractItemModel interface
-    int rowCount(const QModelIndex &parent) const;
-    QVariant data(const QModelIndex &index, int role) const;
-
 signals:
 
-    void databaseChanged();
 
 public slots:
 
-    void refresh();
+    // ObjectModel interface
+protected:
+    void connectToDatabase();
+    void disconnectFromDatabase();
+    StorageQuery *createQuery() const;
 
 private:
-
-    Database           *m_database;
-    QList<Account*>     m_accounts;
 
 private slots:
 
     void addAccount( const QVariant &account );
+    void removeAccount( const QVariant &account );
 
 };
 

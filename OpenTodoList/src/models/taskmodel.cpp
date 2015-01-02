@@ -1,31 +1,32 @@
 #include "taskmodel.h"
 
+#include "datamodel/objectinfo.h"
+
 #include "database/queries/readtask.h"
+#include "database/databaseconnection.h"
 
 namespace OpenTodoList {
 namespace Models {
 
 TaskModel::TaskModel(QObject *parent) :
-  QAbstractListModel(parent),
-  m_database( nullptr ),
-  m_tasks(),
+  ObjectModel(ObjectInfo<Task>::classUuidProperty(), parent),
   m_todo()
 {
   connect( this, &TaskModel::databaseChanged, this, &TaskModel::refresh );
   connect( this, &TaskModel::todoChanged, this, &TaskModel::refresh );
-}
 
-Database *TaskModel::database() const
-{
-  return m_database;
-}
-
-void TaskModel::setDatabase(Database *database)
-{
-  if ( m_database != database ) {
-    m_database = database;
-    emit databaseChanged();
-  }
+  connect( this, &TaskModel::objectAdded, [this] (QObject *object) {
+    Task *task = dynamic_cast< Task* >( object );
+    if ( task ) {
+      this->connect( task, &Task::changed, [task,this] {
+        if ( this->database() ) {
+          DatabaseConnection conn;
+          conn.setDatabase( this->database() );
+          conn.insertTask( task );
+        }
+      });
+    }
+  });
 }
 
 Todo *TaskModel::todo() const
@@ -47,58 +48,36 @@ void TaskModel::setTodo(Todo *todo)
   }
 }
 
-int TaskModel::rowCount(const QModelIndex &parent) const
+void TaskModel::connectToDatabase()
 {
-  if ( parent.isValid() ) {
-    return 0;
-  } else {
-    return m_tasks.size();
-  }
+  connect( database(), &Database::taskChanged, this, &TaskModel::addTask );
+  connect( database(), &Database::taskDeleted, this, &TaskModel::removeTask );
 }
 
-QVariant TaskModel::data(const QModelIndex &index, int role) const
+void TaskModel::disconnectFromDatabase()
 {
-  if ( index.isValid() && index.row() < m_tasks.size() ) {
-    switch ( role ) {
-    case Qt::DisplayRole:
-      return QVariant::fromValue< QObject* >( m_tasks.at( index.row() ) );
-    default:
-      break;
-    }
-  }
-  return QVariant();
+  connect( database(), &Database::taskChanged, this, &TaskModel::addTask );
+  connect( database(), &Database::taskDeleted, this, &TaskModel::removeTask );
 }
 
-void TaskModel::refresh()
+StorageQuery *TaskModel::createQuery() const
 {
-  if ( m_database && ( m_todo.isNull() || m_todo->hasId() ) ) {
-    Queries::ReadTask *query = new Queries::ReadTask();
-    if ( !m_todo.isNull() ) {
-      query->setTodoId( m_todo->id() );
-    }
-    connect( query, &Queries::ReadTask::readTask, this, &TaskModel::addTask );
-    m_database->scheduleQuery( query );
+  Queries::ReadTask *query = new Queries::ReadTask();
+  if ( !m_todo.isNull() ) {
+    query->setTodoId( m_todo->id() );
   }
+  connect( query, &Queries::ReadTask::readTask, this, &TaskModel::addTask );
+  return query;
 }
 
 void TaskModel::addTask(const QVariant &task)
 {
-  Task *t = new Task( this );
-  t->fromVariant( task );
+  addObject<Task>( task );
+}
 
-  // check if we already have this one:
-  for ( Task *existingTask : m_tasks ) {
-    if ( existingTask->uuid() == t->uuid() ) {
-      existingTask->fromVariant( task );
-      delete t;
-      return;
-    }
-  }
-
-  // Append:
-  beginInsertRows( QModelIndex(), m_tasks.size(), m_tasks.size() );
-  m_tasks.append( t );
-  endInsertRows();
+void TaskModel::removeTask(const QVariant &task)
+{
+  removeObject<Task>( task );
 }
 
 

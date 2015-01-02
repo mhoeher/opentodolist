@@ -43,7 +43,7 @@ public:
   /**
      @brief The name of the ID property of the class
    */
-  static QString classIdProperty() {
+  static const char* classIdProperty() {
     QMetaObject mo = T::staticMetaObject;
     return mo.classInfo( mo.indexOfClassInfo( "id" ) ).value();
   }
@@ -51,7 +51,7 @@ public:
   /**
      @brief The name of the UUID property of the class
    */
-  static QString classUuidProperty() {
+  static const char* classUuidProperty() {
     QMetaObject mo = T::staticMetaObject;
     return mo.classInfo( mo.indexOfClassInfo( "uuid" ) ).value();
   }

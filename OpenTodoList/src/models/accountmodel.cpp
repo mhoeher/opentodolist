@@ -1,81 +1,60 @@
 #include "accountmodel.h"
 
+#include "datamodel/objectinfo.h"
+#include "database/databaseconnection.h"
+
 namespace OpenTodoList {
 namespace Models {
 
 AccountModel::AccountModel(QObject *parent) :
-    QAbstractListModel(parent)
+    ObjectModel(ObjectInfo<Account>::classUuidProperty(), parent)
 {
-}
-Database *AccountModel::database() const
-{
-    return m_database;
-}
-
-void AccountModel::setDatabase(Database *database)
-{
-    if ( m_database != database ) {
-        if ( m_database ) {
-            disconnect( m_database, &Database::accountChanged,
-                        this, &AccountModel::addAccount );
+  connect( this, &AccountModel::objectAdded, [this] (QObject *object) {
+    Account *account = dynamic_cast< Account* >( object );
+    if ( account ) {
+      this->connect( account, &Account::changed, [account,this] {
+        if ( this->database() ) {
+          DatabaseConnection conn;
+          conn.setDatabase( this->database() );
+          conn.insertAccount( account );
         }
-        m_database = database;
-        if ( m_database ) {
-            connect( m_database, &Database::accountChanged,
-                     this, &AccountModel::addAccount );
-        }
-        emit databaseChanged();
+      });
     }
+  });
 }
 
-int AccountModel::rowCount(const QModelIndex &parent) const
+void AccountModel::connectToDatabase()
 {
-    if ( parent.isValid() ) {
-        return 0;
-    }
-    return m_accounts.size();
+  connect( database(), &Database::accountChanged,
+           this, &AccountModel::addAccount );
+  connect( database(), &Database::accountDeleted,
+           this, &AccountModel::removeAccount );
 }
 
-QVariant AccountModel::data(const QModelIndex &index, int role) const
+void AccountModel::disconnectFromDatabase()
 {
-    if ( index.isValid() && index.row() < m_accounts.size() ) {
-        switch ( role ) {
-        case Qt::DisplayRole: return QVariant::fromValue< QObject* >( m_accounts.at( index.row() ) );
-        default:
-            break;
-        }
-    }
-    return QVariant();
+  disconnect( database(), &Database::accountChanged,
+              this, &AccountModel::addAccount );
+  disconnect( database(), &Database::accountDeleted,
+              this, &AccountModel::removeAccount );
 }
 
-void AccountModel::refresh()
+StorageQuery *AccountModel::createQuery() const
 {
-    if ( m_database ) {
-        Queries::ReadAccount *query = new Queries::ReadAccount();
-        connect( query, &Queries::ReadAccount::readAccount,
-                 this, &AccountModel::addAccount, Qt::QueuedConnection );
-        m_database->scheduleQuery( query );
-    }
+  Queries::ReadAccount *query = new Queries::ReadAccount();
+  connect( query, &Queries::ReadAccount::readAccount,
+           this, &AccountModel::addAccount, Qt::QueuedConnection );
+  return query;
 }
 
 void AccountModel::addAccount(const QVariant &account)
 {
-    Account *a = new Account( this );
-    a->fromVariant( account );
+  this->addObject<Account>( account );
+}
 
-    // check if the already have the account and update it
-    for ( Account *existingAccount : m_accounts ) {
-        if ( existingAccount->uuid() == a->uuid() ) {
-            existingAccount->fromVariant( account );
-            delete a;
-            return;
-        }
-    }
-
-    // append account to end of list
-    beginInsertRows( QModelIndex(), m_accounts.size(), m_accounts.size() );
-    m_accounts.append( a );
-    endInsertRows();
+void AccountModel::removeAccount(const QVariant &account)
+{
+  this->removeObject<Account>(account);
 }
 
 

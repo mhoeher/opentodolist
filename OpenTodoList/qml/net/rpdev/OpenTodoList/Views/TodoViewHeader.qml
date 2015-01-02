@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.DataBase 1.0
 import net.rpdev.OpenTodoList.Models 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 import net.rpdev.OpenTodoList.Components 1.0
@@ -42,18 +43,25 @@ Item {
     height: buttonBar.height + Measures.tinySpace
     clip: true
 
+    Component {
+        id: createTodoHelper
+        Item {
+            property Todo todo : Todo {}
+            property DatabaseConnection dbConnection : DatabaseConnection {
+                database: application.database
+            }
+        }
+    }
+
     QtObject {
         id: d
 
         property bool canCreateTodos: {
-            if ( todos ) {
-                switch ( todos.queryType ) {
-                case TodoModel.QueryTopLevelTodosInTodoList:
-                    return todos.todoList !== null;
-                default: return false;
-                }
+            if ( todos.todoList ) {
+                return true;
+            } else {
+                return false;
             }
-            return false;
         }
 
         function inputToTodoProperties( input ) {
@@ -127,16 +135,14 @@ Item {
         function createTodo( title ) {
             var properties = inputToTodoProperties( title );
             if ( todos && properties ) {
-                switch ( todos.queryType ) {
-                case TodoModel.QueryTopLevelTodosInTodoList:
-                    todos.todoList.addTodo( properties );
-                    break;
-                case TodoModel.QuerySubTodosOfTodo:
-                    todos.parentTodo.addTodo( properties );
-                    break;
-                default:
-                    break;
+                var helper = createTodoHelper.createObject( header );
+                helper.todo.title = properties.title;
+                helper.todo.todoList = todos.todoList.uuid;
+                if ( properties.dueDate ) {
+                    helper.todo.dueDate = properties.dueDate;
                 }
+                helper.dbConnection.insertTodo( helper.todo );
+                helper.destroy();
             }
         }
     }

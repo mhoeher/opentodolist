@@ -110,7 +110,6 @@ signals:
     void todoDeleted( const QVariant &todo );
     void taskDeleted( const QVariant &task );
 
-
 public slots:
 
 protected:

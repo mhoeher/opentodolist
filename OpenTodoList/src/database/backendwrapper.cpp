@@ -1,10 +1,11 @@
 #include "backendwrapper.h"
 
-#include "datamodel/todolistlibrary.h"
 #include "datamodel/account.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"
 #include "datamodel/task.h"
+
+#include "database/database.h"
 
 #include "database/queries/deleteaccount.h"
 #include "database/queries/deletetask.h"
@@ -18,6 +19,10 @@
 #include "database/queries/readtask.h"
 #include "database/queries/readtodo.h"
 #include "database/queries/readtodolist.h"
+#include "database/queries/saveaccount.h"
+#include "database/queries/savetask.h"
+#include "database/queries/savetodo.h"
+#include "database/queries/savetodolist.h"
 
 #include <QDebug>
 
@@ -194,11 +199,17 @@ ITask *BackendWrapper::getTask(const QUuid &uuid)
   }
 }
 
-QList<IAccount *> BackendWrapper::getModifiedAccounts(int maxAccounts)
+QList<IAccount *> BackendWrapper::getAccounts(QueryFlags flags, int maxAccounts, int offset)
 {
   Queries::ReadAccount q;
-  q.setOnlyModified( true );
+  if ( flags & QueryDirty ) {
+    q.setOnlyModified( true );
+  }
+  if ( flags & QueryDisposed ) {
+    q.setOnlyDeleted( true );
+  }
   q.setLimit( maxAccounts );
+  q.setOffset( offset );
   Queries::ReadAccount::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -213,11 +224,17 @@ QList<IAccount *> BackendWrapper::getModifiedAccounts(int maxAccounts)
   return result;
 }
 
-QList<ITodoList *> BackendWrapper::getModifiedTodoLists(int maxTodoLists)
+QList<ITodoList *> BackendWrapper::getTodoLists(QueryFlags flags, int maxTodoLists, int offset)
 {
   Queries::ReadTodoList q;
-  q.setOnlyModified( true );
+  if ( flags & QueryDirty ) {
+    q.setOnlyModified( true );
+  }
+  if ( flags & QueryDisposed ) {
+    q.setOnlyDeleted( true );
+  }
   q.setLimit( maxTodoLists );
+  q.setOffset( offset );
   Queries::ReadTodoList::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -232,11 +249,17 @@ QList<ITodoList *> BackendWrapper::getModifiedTodoLists(int maxTodoLists)
   return result;
 }
 
-QList<ITodo *> BackendWrapper::getModifiedTodos(int maxTodos)
+QList<ITodo *> BackendWrapper::getTodos(QueryFlags flags, int maxTodos, int offset)
 {
   Queries::ReadTodo q;
-  q.setOnlyModified( true );
+  if ( flags & QueryDirty ) {
+    q.setOnlyModified( true );
+  }
+  if ( flags & QueryDisposed ) {
+    q.setOnlyDeleted( true );
+  }
   q.setLimit( maxTodos );
+  q.setOffset( offset );
   Queries::ReadTodo::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -251,11 +274,17 @@ QList<ITodo *> BackendWrapper::getModifiedTodos(int maxTodos)
   return result;
 }
 
-QList<ITask *> BackendWrapper::getModifiedTasks(int maxTasks)
+QList<ITask *> BackendWrapper::getTasks(QueryFlags flags, int maxTasks, int offset)
 {
   Queries::ReadTask q;
-  q.setOnlyModified( true );
+  if ( flags & QueryDirty ) {
+    q.setOnlyModified( true );
+  }
+  if ( flags & QueryDisposed ) {
+    q.setOnlyDeleted( true );
+  }
   q.setLimit( maxTasks );
+  q.setOffset( offset );
   Queries::ReadTask::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -272,106 +301,34 @@ QList<ITask *> BackendWrapper::getModifiedTasks(int maxTasks)
 
 bool BackendWrapper::onAccountSaved(IAccount *account)
 {
-  //TODO: Implement me
-  Q_UNUSED( account );
-  return false;
+  DataModel::Account *tmp = static_cast< DataModel::Account* >( account );
+  Queries::SaveAccount q( tmp );
+  m_database->runQuery( &q );
+  return true;
 }
 
 bool BackendWrapper::onTodoListSaved(ITodoList *todoList)
 {
-  //TODO: Implement me
-  Q_UNUSED( todoList );
-  return false;
+  DataModel::TodoList *tmp = static_cast< DataModel::TodoList* >( todoList );
+  Queries::SaveTodoList q( tmp );
+  m_database->runQuery( &q );
+  return true;
 }
 
 bool BackendWrapper::onTodoSaved(ITodo *todo)
 {
-  //TODO: Implement me
-  Q_UNUSED( todo );
+  DataModel::Todo *tmp = static_cast< DataModel::Todo* >( todo );
+  Queries::SaveTodo q( tmp );
+  m_database->runQuery( &q );
   return true;
 }
 
 bool BackendWrapper::onTaskSaved(ITask *task)
 {
-  //TODO: Implement me
-  Q_UNUSED( task );
-  return false;
-}
-
-QList<IAccount *> BackendWrapper::getDeletedAccounts(int maxAccounts)
-{
-  Queries::ReadAccount q;
-  q.setOnlyDeleted( true );
-  q.setLimit( maxAccounts );
-  Queries::ReadAccount::Condition c;
-  c.condition = "backend.name=:searchBackendName";
-  c.arguments.insert( "searchBackendName", m_backend->name() );
-  q.addCondition(c);
-  m_database->runQuery(&q);
-  QList<IAccount*> result;
-  for ( DataModel::Account *account : q.objects() ) {
-    IAccount *a = createAccount();
-    static_cast<DataModel::Account*>( a )->fromVariant( account->toVariant() );
-    result << a;
-  }
-  return result;
-}
-
-QList<ITodoList *> BackendWrapper::getDeletedTodoLists(int maxTodoLists)
-{
-  Queries::ReadTodoList q;
-  q.setOnlyDeleted( true );
-  q.setLimit( maxTodoLists );
-  Queries::ReadTodoList::Condition c;
-  c.condition = "backend.name=:searchBackendName";
-  c.arguments.insert( "searchBackendName", m_backend->name() );
-  q.addCondition(c);
-  m_database->runQuery(&q);
-  QList<ITodoList*> result;
-  for ( DataModel::TodoList *todoList : q.objects() ) {
-    ITodoList *tl = createTodoList();
-    static_cast<DataModel::TodoList*>( tl )->fromVariant( todoList->toVariant() );
-    result << tl;
-  }
-  return result;
-}
-
-QList<ITodo *> BackendWrapper::getDeletedTodos(int maxTodos)
-{
-  Queries::ReadTodo q;
-  q.setOnlyDeleted( true );
-  q.setLimit( maxTodos );
-  Queries::ReadTodo::Condition c;
-  c.condition = "backend.name=:searchBackendName";
-  c.arguments.insert( "searchBackendName", m_backend->name() );
-  q.addCondition(c);
-  m_database->runQuery(&q);
-  QList<ITodo*> result;
-  for ( DataModel::Todo *todo : q.objects() ) {
-    ITodo *t = createTodo();
-    static_cast<DataModel::Todo*>( t )->fromVariant( todo->toVariant() );
-    result << t;
-  }
-  return result;
-}
-
-QList<ITask *> BackendWrapper::getDeletedTasks(int maxTasks)
-{
-  Queries::ReadTask q;
-  q.setOnlyDeleted( true );
-  q.setLimit( maxTasks );
-  Queries::ReadTask::Condition c;
-  c.condition = "backend.name=:searchBackendName";
-  c.arguments.insert( "searchBackendName", m_backend->name() );
-  q.addCondition(c);
-  m_database->runQuery(&q);
-  QList<ITask*> result;
-  for ( DataModel::Task *task : q.objects() ) {
-    ITask *t = createTask();
-    static_cast<DataModel::Task*>( t )->fromVariant( task->toVariant() );
-    result << t;
-  }
-  return result;
+  DataModel::Task *tmp = static_cast< DataModel::Task* >( task );
+  Queries::SaveTask q( tmp );
+  m_database->runQuery( &q );
+  return true;
 }
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)

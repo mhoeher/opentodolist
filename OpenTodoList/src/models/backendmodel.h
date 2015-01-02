@@ -1,6 +1,8 @@
 #ifndef OPENTODOLIST_MODELS_BACKENDMODEL_H
 #define OPENTODOLIST_MODELS_BACKENDMODEL_H
 
+#include "models/private/objectmodel.h"
+
 #include "datamodel/backend.h"
 
 #include "database/database.h"
@@ -13,32 +15,25 @@ namespace Models {
 using namespace DataModel;
 using namespace DataBase;
 
-class BackendModel : public QAbstractListModel
+using namespace Models::Private;
+
+class BackendModel : public ObjectModel
 {
     Q_OBJECT
-    Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
 public:
     explicit BackendModel(QObject *parent = 0);
 
-    Database *database() const;
-    void setDatabase(Database *database);
-
-    // QAbstractItemModel interface
-    int rowCount(const QModelIndex &parent) const;
-    QVariant data(const QModelIndex &index, int role) const;
-
 signals:
-
-    void databaseChanged();
 
 public slots:
 
-    void refresh();
+    // ObjectModel interface
+protected:
+    void connectToDatabase();
+    void disconnectFromDatabase();
+    StorageQuery *createQuery() const;
 
 private:
-
-    QList<Backend*> m_backends;
-    Database       *m_database;
 
 private slots:
 

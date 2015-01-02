@@ -39,7 +39,7 @@ class Todo : public QObject, public ITodo
   Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
   Q_PROPERTY(QUuid uuid READ uuid WRITE setUuid NOTIFY uuidChanged)
   Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged )
-  Q_PROPERTY(bool isDone READ done WRITE setDone NOTIFY doneChanged )
+  Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged )
   Q_PROPERTY(int priority READ priority WRITE setPriority NOTIFY priorityChanged )
   Q_PROPERTY(QUuid todoList READ todoList WRITE setTodoList NOTIFY todoListUuidChanged )
   Q_PROPERTY(QDateTime dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged )
@@ -83,6 +83,7 @@ public:
 
   Q_INVOKABLE QVariant toVariant() const;
   Q_INVOKABLE void fromVariant( const QVariant &todo );
+  Q_INVOKABLE bool isValid();
 
   int dirty() const;
   void setDirty(int dirty);
@@ -113,9 +114,6 @@ protected:
 
 private:
 
-  void setupTodo();
-
-private:
 
   // ITodo properties
   int                     m_id;
@@ -131,6 +129,14 @@ private:
   QVariantMap             m_metaAttributes;
   int                     m_dirty;
   bool                    m_disposed;
+
+  bool                    m_loading;
+
+  void setupTodo();
+
+private slots:
+
+  void emitChanged();
 
 };
 

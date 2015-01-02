@@ -44,6 +44,14 @@ public:
   QString description() const;
   void setDescription( const QString &description );
 
+  /**
+     @brief Whether the backend has been disposed
+
+     @note This is for convenience. This method returns always false (as backends are supposed to be
+           non-disposable).
+   */
+  bool disposed() const { return false; }
+
   QVariant toVariant() const;
   void fromVariant( const QVariant &backend );
 
@@ -54,6 +62,8 @@ signals:
   void titleChanged();
   void descriptionChanged();
 
+  void changed();
+
 public slots:
 
 private:
@@ -63,6 +73,11 @@ private:
   QString m_name;
   QString m_title;
   QString m_description;
+
+  bool    m_loading;
+
+private slots:
+  void emitChanged();
 
 };
 

@@ -2,6 +2,7 @@
 
 #include "database/database.h"
 #include "database/backendwrapper.h"
+#include "database/databaseconnection.h"
 
 #include <qqml.h>
 #include <QJSEngine>
@@ -28,6 +29,7 @@ void Plugin::registerTypes(const char *uri)
     qmlRegisterType< BackendWrapper >(
                 uri, 1, 0, "BackendWrapper" );
     qmlRegisterUncreatableType< Database >( uri, 1, 0, "Database", "Use application.database!" );
+    qmlRegisterType< DatabaseConnection >( uri, 1, 0, "DatabaseConnection" );
 }
 
 } /* DataBase */

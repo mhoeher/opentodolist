@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import QtQuick.Layouts 1.1
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.DataBase 1.0
 import net.rpdev.OpenTodoList.Models 1.0
 import net.rpdev.OpenTodoList.SystemIntegration 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
@@ -28,7 +29,16 @@ import net.rpdev.OpenTodoList.Views 1.0
 Page {
     id: page
 
-    property Todo todo: Todo {}
+    property Todo todo: Todo {
+        onChanged: {
+            if ( todo.isValid() ) {
+                dbConnection.insertTodo( todo );
+            }
+        }
+    }
+    property DatabaseConnection dbConnection : DatabaseConnection {
+        database: application.database
+    }
 
     name: todo.title !== "" ? todo.title : qsTr( "Untitled Todo" )
 
@@ -60,7 +70,7 @@ Page {
 
                     SymbolLabel {
                         id: titleLabel
-                        symbol: page.todo.isDone ? Symbols.checkedBox : Symbols.uncheckedBox
+                        symbol: page.todo.done ? Symbols.checkedBox : Symbols.uncheckedBox
                         text: page.todo.title
                         placeholder: qsTr( "Untitled Todo" )
                         useSymbolButton: true

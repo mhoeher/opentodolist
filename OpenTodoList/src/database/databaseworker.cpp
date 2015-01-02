@@ -139,6 +139,14 @@ void DatabaseWorker::runQuery(StorageQuery *query)
                  this, &DatabaseWorker::todoChanged, Qt::QueuedConnection );
         connect( query, &StorageQuery::taskChanged,
                  this, &DatabaseWorker::taskChanged, Qt::QueuedConnection );
+        connect( query, &StorageQuery::accountDeleted,
+                 this, &DatabaseWorker::accountDeleted, Qt::QueuedConnection );
+        connect( query, &StorageQuery::todoListDeleted,
+                 this, &DatabaseWorker::todoListDeleted, Qt::QueuedConnection );
+        connect( query, &StorageQuery::todoDeleted,
+                 this, &DatabaseWorker::todoDeleted, Qt::QueuedConnection );
+        connect( query, &StorageQuery::taskDeleted,
+                 this, &DatabaseWorker::taskDeleted, Qt::QueuedConnection );
         query->m_worker = this;
         query->beginRun();
         QString queryStr;

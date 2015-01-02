@@ -67,6 +67,9 @@ public:
   int limit() const;
   void setLimit(int limit);
 
+  int offset() const;
+  void setOffset(int offset);
+
 private:
 
   QString                   m_baseTable;
@@ -87,6 +90,7 @@ private:
   bool                      m_onlyDeleted;
   ConditionList             m_conditions;
   int                       m_limit;
+  int                       m_offset;
 
 
 };
@@ -111,7 +115,8 @@ ReadObject<T>::ReadObject( const QStringList &attributes ) :
   m_onlyModified( false ),
   m_onlyDeleted( false ),
   m_conditions(),
-  m_limit(0)
+  m_limit( 0 ),
+  m_offset( 0 )
 {
 }
 
@@ -184,11 +189,7 @@ bool ReadObject<T>::query(QString &query, QVariantMap &args)
     stream << " WHERE " << conditions.join( " AND " );
   }
 
-  if ( m_limit > 0 ) {
-    stream << " LIMIT " << m_limit;
-  }
-
-  stream << ";";
+  stream << " LIMIT " << ( m_limit > 0 ? m_limit : -1 ) << " OFFSET " << m_offset << ";";
   return true;
 }
 
@@ -447,6 +448,33 @@ void ReadObject<T>::setLimit(int limit)
 {
   m_limit = limit;
 }
+
+/**
+  @brief Sets the offset to return objects from
+
+  If this is greater or equal to zero, then from the list of all matching objects in the database,
+  objects are returned starting at the configured offset. Otherwise, objects are returned from
+  the beginning of the list (i.e. offset 0).
+
+  @sa setOffset()
+ */
+template<typename T>
+int ReadObject<T>::offset() const
+{
+  return m_offset;
+}
+
+/**
+  @brief Sets the offset to return objects from
+
+  @sa offset()
+ */
+template<typename T>
+void ReadObject<T>::setOffset(int offset)
+{
+  m_offset = offset;
+}
+
 
 
 

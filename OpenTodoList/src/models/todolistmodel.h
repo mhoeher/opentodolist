@@ -1,6 +1,8 @@
 #ifndef TODOLISTMODEL_H
 #define TODOLISTMODEL_H
 
+#include "models/private/objectmodel.h"
+
 #include "core/opentodolistinterfaces.h"
 #include "datamodel/todolist.h"
 
@@ -13,46 +15,29 @@
 #include <QVector>
 
 namespace OpenTodoList {
-namespace DataModel {
-class TodoListLibrary;
-}
-}
-
-namespace OpenTodoList {
 
 namespace Models {
 
+using namespace Models::Private;
 using namespace DataModel;
 using namespace DataBase;
 
-class TodoListModel : public QAbstractListModel
+class TodoListModel : public ObjectModel
 {
     Q_OBJECT
-    Q_PROPERTY( int count READ rowCount NOTIFY countChanged )
-    Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
 
 public:
 
     explicit TodoListModel(QObject *parent = 0);
     virtual ~TodoListModel();
 
-    // QAbstractItemModel interface
-    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    virtual QVariant data(const QModelIndex &index, int role) const;
-    virtual void sort(int column, Qt::SortOrder order);
-
-    Database *database() const;
-    void setDatabase(Database *database);
-
-signals:
-
-    void countChanged();
-    void databaseChanged();
-
 public slots:
 
-    void refresh();
-    void sort();
+    // ObjectModel interface
+protected:
+    void connectToDatabase();
+    void disconnectFromDatabase();
+    StorageQuery *createQuery() const;
 
 private:
 
@@ -62,6 +47,8 @@ private:
 private slots:
 
     void addTodoList( const QVariant &todoList );
+    void removeTodoList( const QVariant &todoList );
+
 
 };
 

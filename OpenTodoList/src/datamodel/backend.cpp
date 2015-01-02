@@ -7,71 +7,76 @@ namespace OpenTodoList {
 namespace DataModel {
 
 Backend::Backend(QObject *parent) :
-    QObject(parent),
-    m_hasId( false ),
-    m_id( -1 ),
-    m_name(),
-    m_title(),
-    m_description()
+  QObject(parent),
+  m_hasId( false ),
+  m_id( -1 ),
+  m_name(),
+  m_title(),
+  m_description(),
+  m_loading( false )
 {
+  connect( this, &Backend::idChanged, this, &Backend::emitChanged );
+  connect( this, &Backend::nameChanged, this, &Backend::emitChanged );
+  connect( this, &Backend::descriptionChanged, this, &Backend::emitChanged );
+  connect( this, &Backend::titleChanged, this, &Backend::emitChanged );
 }
 
 bool Backend::hasId() const
 {
-    return m_hasId;
+  return m_hasId;
 }
 
 int Backend::id() const
 {
-    return m_id;
+  return m_id;
 }
 
 void Backend::setId(int id)
 {
-    m_hasId = true;
-    if ( m_id != id ) {
-        m_id = id;
-        emit idChanged();
-    }
+  m_hasId = true;
+  if ( m_id != id ) {
+    m_id = id;
+    emit idChanged();
+  }
 }
 
 QString Backend::name() const
 {
-    return m_name;
+  return m_name;
 }
 
 void Backend::setName(const QString &name)
 {
-    if ( m_name != name ) {
-        m_name = name;
-        emit nameChanged();
-    }
+  if ( m_name != name ) {
+    m_name = name;
+    emit nameChanged();
+  }
 }
 
 QString Backend::title() const
 {
-    return m_title;
+  return m_title;
 }
 
 void Backend::setTitle(const QString &title)
 {
-    if ( m_title != title ) {
-        m_title = title;
-        emit titleChanged();
-    }
+  if ( m_title != title ) {
+    m_title = title;
+    emit titleChanged();
+  }
 }
 
 QString Backend::description() const
 {
-    return m_description;
+  return m_description;
 }
 
 void Backend::setDescription(const QString &description)
 {
-    if ( m_description != description ) {
-        m_description = description;
-        emit descriptionChanged();
-    }
+  if ( m_description != description ) {
+    m_description = description;
+    emit descriptionChanged();
+  }
 }
 
 /**
@@ -82,14 +87,14 @@ void Backend::setDescription(const QString &description)
  */
 QVariant Backend::toVariant() const
 {
-    QVariantMap result;
-    result.insert( "description", m_description );
-    if ( m_hasId ) {
-        result.insert( "id", m_id );
-    }
-    result.insert( "name", m_name );
-    result.insert( "title", m_title );
-    return result;
+  QVariantMap result;
+  result.insert( "description", m_description );
+  if ( m_hasId ) {
+    result.insert( "id", m_id );
+  }
+  result.insert( "name", m_name );
+  result.insert( "title", m_title );
+  return result;
 }
 
 /**
@@ -100,23 +105,33 @@ QVariant Backend::toVariant() const
  */
 void Backend::fromVariant(const QVariant &backend)
 {
-    QVariantMap map = backend.toMap();
+  m_loading = true;
+  QVariantMap map = backend.toMap();
 
-    // Special handling for id: Only update if identify changes
-    if ( m_name != map.value( "name", QString() ).toString() || !m_hasId ) {
-        m_hasId = map.contains( "id" );
-        if ( m_hasId ) {
-            setId( map.value( "id", m_id ).toInt() );
-        }
-    }
-
-    setDescription( map.value( "description", m_description ).toString() );
+  // Special handling for id: Only update if identify changes
+  if ( m_name != map.value( "name", QString() ).toString() || !m_hasId ) {
     m_hasId = map.contains( "id" );
     if ( m_hasId ) {
-        setId( map.value( "id", m_id ).toInt() );
+      setId( map.value( "id", m_id ).toInt() );
     }
-    setName( map.value( "name", m_name ).toString() );
-    setTitle( map.value( "title", m_title ).toString() );
+  }
+
+  setDescription( map.value( "description", m_description ).toString() );
+  m_hasId = map.contains( "id" );
+  if ( m_hasId ) {
+    setId( map.value( "id", m_id ).toInt() );
+  }
+  setName( map.value( "name", m_name ).toString() );
+  setTitle( map.value( "title", m_title ).toString() );
+
+  m_loading = false;
+}
+
+void Backend::emitChanged()
+{
+  if ( !m_loading ) {
+    emit changed();
+  }
 }
 
 } // namespace DataModel

@@ -61,7 +61,7 @@ Item {
     SymbolLabel {
         id: label
 
-        symbol: todo && todo.isDone ? Symbols.checkedBox : Symbols.uncheckedBox
+        symbol: todo && todo.done ? Symbols.checkedBox : Symbols.uncheckedBox
         text: todo ? todo.title : ""
         placeholder: qsTr( "Untitled Todo" )
         useSymbolButton: true
