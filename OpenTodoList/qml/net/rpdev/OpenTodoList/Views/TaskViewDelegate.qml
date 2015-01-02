@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.DataBase 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 
@@ -51,9 +52,14 @@ Item {
             onClicked: {
                 switch ( index ) {
                 case 0:
-                    // TODO: delete the task here
+                    dbConnection.disposeTask( task );
                     break;
                 }
+            }
+
+            DatabaseConnection {
+                id: dbConnection
+                database: application.database
             }
         }
     }

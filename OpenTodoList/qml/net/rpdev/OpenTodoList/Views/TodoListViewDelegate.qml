@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.DataBase 1.0
 import net.rpdev.OpenTodoList.Models 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
@@ -174,8 +175,13 @@ FocusScope {
                             margins: Measures.tinySpace
                         }
                         onClicked: {
-                            todoList.dispose();
+                            dbConnection.disposeTodoList( todoList );
                             close();
+                        }
+
+                        DatabaseConnection {
+                            id: dbConnection
+                            database: application.database
                         }
                     }
                 }
@@ -192,7 +198,7 @@ FocusScope {
                 margins: Measures.tinySpace
             }
             symbol: showTodos ? Symbols.doubleUp : ""
-            text: todoList.name
+            text: todoList ? todoList.name : ""
             placeholder: qsTr( "Untitled Todo List" )
 
             onClicked: delegate.clicked()

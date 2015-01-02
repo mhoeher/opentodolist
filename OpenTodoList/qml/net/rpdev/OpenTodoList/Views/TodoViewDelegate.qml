@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.DataBase 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 
@@ -51,10 +52,13 @@ Item {
             onClicked: {
                 switch ( index ) {
                 case 0:
-                    // TODO: Delete todo
-                    //todo.isDeleted = !todo.isDeleted
+                    dbConnection.disposeTodo( todo )
                     break;
                 }
+            }
+            DatabaseConnection {
+                id: dbConnection
+                database: application.database
             }
         }
     }

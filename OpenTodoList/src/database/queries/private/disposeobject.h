@@ -48,7 +48,7 @@ bool DisposeObject<T>::query(QString &query, QVariantMap &args)
 {
   QTextStream stream( &query );
   stream << "UPDATE OR FAIL " << ObjectInfo<T>::classNameLowerFirst()
-         << " SET disposed = 1 WHERE id = :seearchId;";
+         << " SET disposed = 1 WHERE id = :searchId;";
   args.insert( "searchId", m_object->id() );
   return true;
 }
