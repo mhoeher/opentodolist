@@ -18,6 +18,7 @@
 
 #include "systemintegration/statusnotifiericon.h"
 
+#include <QIcon>
 #include <QDebug>
 
 namespace OpenTodoList {
@@ -25,31 +26,29 @@ namespace OpenTodoList {
 namespace SystemIntegration {
 
 StatusNotifierIcon::StatusNotifierIcon(CommandHandler *handler, QObject *parent) :
-    QObject(parent)
+  QObject(parent),
+  m_commandHandler( handler ),
+  m_applicationTitle(),
+  m_applicationIcon()
+
 {
-    m_commandHandler = handler;
-
 #ifdef QT_WIDGETS_LIB
-#ifdef HAS_KNOTIFICATIONS
-    m_statusNotifier = new KStatusNotifierItem( this );
-    m_contextMenu = m_statusNotifier->contextMenu();
-#else
-    m_contextMenu = new QMenu();
-#endif
-    m_quitApplicationAction = m_contextMenu->addAction( tr( "Quit" ) );
-    connect( m_quitApplicationAction, SIGNAL(triggered()), qApp, SLOT(quit()) );
-#endif
 
 #ifdef HAS_KNOTIFICATIONS
-    m_statusNotifier->setCategory( KStatusNotifierItem::ApplicationStatus );
-    m_statusNotifier->setContextMenu( m_contextMenu );
-    connect( m_statusNotifier, SIGNAL(activateRequested(bool,QPoint)),
-             this, SLOT(applicationActivationRequested()) );
-#elif HAS_QSYSTEM_TRAY_ICON
-    m_trayIcon = new QSystemTrayIcon( this );
-    if ( !QSystemTrayIcon::isSystemTrayAvailable() ) {
-        qWarning() << "Using System Tray Icon API but desktop does not have system tray!";
-    }
+  m_statusNotifier = new KStatusNotifierItem(this);
+  connect( m_statusNotifier, &KStatusNotifierItem::activateRequested,
+           [this](bool,QPoint) {
+    m_commandHandler->toggleWindow();
+  });
+#endif
+
+#ifdef HAS_QSYSTEM_TRAY_ICON
+  m_trayIcon = new QSystemTrayIcon(this);
+  connect( m_trayIcon, &QSystemTrayIcon::activated, [this] (QSystemTrayIcon::ActivationReason) {
+    this->m_commandHandler->toggleWindow();
+  });
+#endif
+
 #endif
 }
 
@@ -59,49 +58,52 @@ StatusNotifierIcon::~StatusNotifierIcon()
 
 QString StatusNotifierIcon::applicationTitle() const
 {
-    return m_applicationTitle;
+  return m_applicationTitle;
 }
 
 void StatusNotifierIcon::setApplicationTitle(const QString &applicationTitle)
 {
-    if ( m_applicationTitle != applicationTitle ) {
-        m_applicationTitle = applicationTitle;
+  if ( m_applicationTitle != applicationTitle ) {
+    m_applicationTitle = applicationTitle;
 #ifdef HAS_KNOTIFICATIONS
-        m_statusNotifier->setTitle( applicationTitle );
-        m_statusNotifier->setToolTipTitle( applicationTitle );
+    m_statusNotifier->setTitle( applicationTitle );
+    m_statusNotifier->setToolTipTitle( applicationTitle );
 #elif HAS_QSYSTEM_TRAY_ICON
-        m_trayIcon->setToolTip( applicationTitle );
+    m_trayIcon->setToolTip( applicationTitle );
 #endif
-        emit applicationTitleChanged();
-    }
+    emit applicationTitleChanged();
+  }
 }
 
-QIcon StatusNotifierIcon::applicationIcon() const
+QString StatusNotifierIcon::applicationIcon() const
 {
-    return m_applicationIcon;
+  return m_applicationIcon;
 }
 
-void StatusNotifierIcon::setApplicationIcon(const QIcon &icon)
+void StatusNotifierIcon::setApplicationIcon(const QString &icon)
 {
+  if ( m_applicationIcon != icon ) {
     m_applicationIcon = icon;
+    qDebug() << m_applicationIcon;
+
 #ifdef HAS_KNOTIFICATIONS
-    m_statusNotifier->setIconByPixmap( icon );
+    m_statusNotifier->setIconByName( m_applicationIcon );
+    m_statusNotifier->setToolTipIconByName( m_applicationIcon );
 #elif HAS_QSYSTEM_TRAY_ICON
+    QPixmap bmp( m_applicationIcon );
+    QIcon icon;
+    icon.addPixmap( bmp );
     m_trayIcon->setIcon( icon );
 #endif
     emit applicationIconChanged();
+  }
 }
 
 void StatusNotifierIcon::show()
 {
 #ifdef HAS_QSYSTEM_TRAY_ICON
-    m_trayIcon->show();
+  m_trayIcon->show();
 #endif
-}
-
-void StatusNotifierIcon::applicationActivationRequested()
-{
-    m_commandHandler->toggleWindow();
 }
 
 } /* SystemIntegration */

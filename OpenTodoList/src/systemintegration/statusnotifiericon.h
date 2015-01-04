@@ -49,7 +49,7 @@ class StatusNotifierIcon : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString applicationTitle READ applicationTitle WRITE setApplicationTitle NOTIFY applicationTitleChanged)
-    Q_PROPERTY(QIcon applicationIcon READ applicationIcon WRITE setApplicationIcon NOTIFY applicationIconChanged)
+    Q_PROPERTY(QString applicationIcon READ applicationIcon WRITE setApplicationIcon NOTIFY applicationIconChanged)
 public:
     explicit StatusNotifierIcon( CommandHandler *handler, QObject *parent = 0);
     virtual ~StatusNotifierIcon();
@@ -57,8 +57,8 @@ public:
     QString applicationTitle() const;
     void setApplicationTitle( const QString &applicationTitle );
 
-    QIcon applicationIcon() const;
-    void setApplicationIcon( const QIcon &icon );
+    QString applicationIcon() const;
+    void setApplicationIcon( const QString &icon );
 
 
 signals:
@@ -74,23 +74,12 @@ private:
 
     CommandHandler *m_commandHandler;
     QString m_applicationTitle;
-    QIcon m_applicationIcon;
+    QString m_applicationIcon;
 
 #ifdef HAS_KNOTIFICATIONS
     KStatusNotifierItem *m_statusNotifier;
 #elif HAS_QSYSTEM_TRAY_ICON
     QSystemTrayIcon *m_trayIcon;
-#endif
-#ifdef QT_WIDGETS_LIB
-    QAction *m_toggleApplicationWindowAction;
-    QAction *m_quitApplicationAction;
-    QMenu *m_contextMenu;
-#endif
-
-private slots:
-
-#ifdef QT_WIDGETS_LIB
-    void applicationActivationRequested();
 #endif
 
 };

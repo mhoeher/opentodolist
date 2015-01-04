@@ -5,12 +5,10 @@ include(../config.pri)
 setupApplication()
 
 # Install Application Icons on UNIX:
-!android {
-unix {
-    unix_icons.source = icons
-    unix_icons.target = $${assets_prefix}OpenTodoList
-    DEPLOYMENTFOLDERS += unix_icons
-}
+!android|!macx|!ios {
+    icons.source = icons
+    icons.target = $${assets_prefix}OpenTodoList
+    DEPLOYMENTFOLDERS += icons
 }
 
 qtcAddDeployment()

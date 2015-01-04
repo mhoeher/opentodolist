@@ -25,6 +25,7 @@
 #include "systemintegration/systemintegrationplugin.h"
 
 #include <QDir>
+#include <QProcess>
 #include <QQmlEngine>
 #include <QQmlContext>
 
@@ -32,72 +33,72 @@ namespace OpenTodoList {
 namespace SystemIntegration {
 
 Application::Application(int &argc, char *argv[]) :
-    ApplicationBase(argc, argv),
-    m_instance( nullptr ),
-    m_handler( nullptr ),
-    m_viewer( nullptr ),
-    m_notifier( nullptr ),
-    m_database( nullptr ),
-    m_pluginsRegistered( false )
+  ApplicationBase(argc, argv),
+  m_instance( nullptr ),
+  m_handler( nullptr ),
+  m_viewer( nullptr ),
+  m_notifier( nullptr ),
+  m_database( nullptr ),
+  m_pluginsRegistered( false )
 {
-    // keep app open in background
+  // keep app open in background
 #ifndef Q_OS_ANDROID
-    setQuitOnLastWindowClosed( false );
+  setQuitOnLastWindowClosed( false );
 #endif
 
-    m_viewer = new QtQuick2ApplicationViewer();
+  m_viewer = new QtQuick2ApplicationViewer();
 
-    m_handler = new CommandHandler( this );
-    m_handler->setApplicationWindow( m_viewer );
+  m_handler = new CommandHandler( this );
+  m_handler->setApplicationWindow( m_viewer );
 
-    // ensure app is running at most once
-    m_instance = new ApplicationInstance( QCoreApplication::applicationName() );
-    if ( m_instance->state() == ApplicationInstance::InstanceIsSecondary ) {
-        qDebug() << "Running secondary instance. Contacting server and quitting...";
-        m_instance->sendMessage( SystemIntegration::CommandHandler::show() );
-    } else {
-        // process incoming requests in command handler:
-        connect( m_instance, &ApplicationInstance::receivedMessage,
-                 m_handler, &CommandHandler::handleMessage );
+  // ensure app is running at most once
+  m_instance = new ApplicationInstance( QCoreApplication::applicationName() );
+  if ( m_instance->state() == ApplicationInstance::InstanceIsSecondary ) {
+    qDebug() << "Running secondary instance. Contacting server and quitting...";
+    m_instance->sendMessage( SystemIntegration::CommandHandler::show() );
+  } else {
+    // process incoming requests in command handler:
+    connect( m_instance, &ApplicationInstance::receivedMessage,
+             m_handler, &CommandHandler::handleMessage );
 
-        // further setup:
-        setupPaths();
-        showNotifierIcon();
+    // further setup:
+    setupPaths();
+    showNotifierIcon();
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACX) && !defined(Q_OS_ANDROID)
-        setWindowIcon( QIcon( m_basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
+    setWindowIcon( QIcon( m_basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
 #endif
-    }
+  }
 
-    // start database
-    if ( m_instance->state() == ApplicationInstance::InstanceIsPrimary ) {
-      m_database = new DataBase::Database( this );
-    }
+  // start database
+  if ( m_instance->state() == ApplicationInstance::InstanceIsPrimary ) {
+    m_database = new DataBase::Database( this );
+  }
 }
 
 Application::~Application()
 {
-    delete m_viewer;
+  delete m_viewer;
 }
 
 ApplicationInstance *Application::instance() const
 {
-    return m_instance;
+  return m_instance;
 }
 
 CommandHandler *Application::handler() const
 {
-    return m_handler;
+  return m_handler;
 }
 
 QtQuick2ApplicationViewer *Application::viewer() const
 {
-    return m_viewer;
+  return m_viewer;
 }
 
 StatusNotifierIcon *Application::notifierIcon() const
 {
-    return m_notifier;
+  return m_notifier;
 }
 
 /**
@@ -105,82 +106,82 @@ StatusNotifierIcon *Application::notifierIcon() const
  */
 DataBase::Database *Application::database() const
 {
-    return m_database;
+  return m_database;
 }
 
 void Application::registerPlugins()
 {
-    if ( !m_pluginsRegistered ) {
-        // Register "Core" plugin:
-        OpenTodoList::Core::Plugin corePlugin;
-        corePlugin.registerTypes( "net.rpdev.OpenTodoList.Core" );
+  if ( !m_pluginsRegistered ) {
+    // Register "Core" plugin:
+    OpenTodoList::Core::Plugin corePlugin;
+    corePlugin.registerTypes( "net.rpdev.OpenTodoList.Core" );
 
-        // Register "DataModel" plugin:
-        OpenTodoList::DataModel::Plugin dataModelPlugin;
-        dataModelPlugin.registerTypes( "net.rpdev.OpenTodoList.DataModel" );
+    // Register "DataModel" plugin:
+    OpenTodoList::DataModel::Plugin dataModelPlugin;
+    dataModelPlugin.registerTypes( "net.rpdev.OpenTodoList.DataModel" );
 
-        // Register "DataBase" plugin:
-        OpenTodoList::DataBase::Plugin dataBasePlugin;
-        dataBasePlugin.registerTypes( "net.rpdev.OpenTodoList.DataBase" );
+    // Register "DataBase" plugin:
+    OpenTodoList::DataBase::Plugin dataBasePlugin;
+    dataBasePlugin.registerTypes( "net.rpdev.OpenTodoList.DataBase" );
 
-        // Register "Models" plugin:
-        OpenTodoList::Models::Plugin modelsPlugin;
-        modelsPlugin.registerTypes( "net.rpdev.OpenTodoList.Models" );
+    // Register "Models" plugin:
+    OpenTodoList::Models::Plugin modelsPlugin;
+    modelsPlugin.registerTypes( "net.rpdev.OpenTodoList.Models" );
 
-        // Register "SystemIntegration" plugin:
-        OpenTodoList::SystemIntegration::Plugin systemIntegrationPlugin;
-        systemIntegrationPlugin.registerTypes( "net.rpdev.OpenTodoList.SystemIntegration" );
+    // Register "SystemIntegration" plugin:
+    OpenTodoList::SystemIntegration::Plugin systemIntegrationPlugin;
+    systemIntegrationPlugin.registerTypes( "net.rpdev.OpenTodoList.SystemIntegration" );
 
-        m_pluginsRegistered = true;
-    }
+    m_pluginsRegistered = true;
+  }
 }
 
 void Application::showWindow()
 {
-    registerPlugins();
-    m_viewer->engine()->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
-    m_viewer->addImportPath( QStringLiteral("qrc:/qml") );
-    m_viewer->setMainQmlFile("qrc:/qml/OpenTodoList/main.qml");
-    m_viewer->showExpanded();
+  registerPlugins();
+  m_viewer->engine()->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
+  m_viewer->addImportPath( QStringLiteral("qrc:/qml") );
+  m_viewer->setMainQmlFile("qrc:/qml/OpenTodoList/main.qml");
+  m_viewer->showExpanded();
 }
 
 void Application::setupPaths()
 {
-    // Add plugin search paths for QML plugins
+  // Add plugin search paths for QML plugins
 #ifdef Q_OS_ANDROID
-    QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() );
-    m_viewer->engine()->addPluginPath( QCoreApplication::applicationDirPath() );
-    m_basePath = applicationDirPath();
+  QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() );
+  m_viewer->engine()->addPluginPath( QCoreApplication::applicationDirPath() );
+  m_basePath = applicationDirPath();
 #else
-    QString m_basePath = applicationDirPath();
+  QString m_basePath = applicationDirPath();
 #ifdef Q_OS_MACX
-    QString pluginsDirName = "PlugIns";
+  QString pluginsDirName = "PlugIns";
 #else
-    QString pluginsDirName = "plugins";
+  QString pluginsDirName = "plugins";
 #endif
-    QDir baseDir( m_basePath );
-    if ( baseDir.cdUp() ) {
-        if ( baseDir.cd( pluginsDirName ) ) {
-            QCoreApplication::addLibraryPath( baseDir.absolutePath() );
-            foreach ( QString entry, baseDir.entryList( QDir::Dirs ) ) {
-                m_viewer->engine()->addPluginPath( baseDir.absoluteFilePath( entry ) );
-            }
-        }
+  QDir baseDir( m_basePath );
+  if ( baseDir.cdUp() ) {
+    if ( baseDir.cd( pluginsDirName ) ) {
+      QCoreApplication::addLibraryPath( baseDir.absolutePath() );
+      foreach ( QString entry, baseDir.entryList( QDir::Dirs ) ) {
+        m_viewer->engine()->addPluginPath( baseDir.absoluteFilePath( entry ) );
+      }
     }
+  }
 #endif
 }
 
 void Application::showNotifierIcon()
 {
-    m_notifier = new StatusNotifierIcon( m_handler );
-    m_notifier->setApplicationTitle( applicationName() );
-#ifdef Q_OS_ANDROID
-    m_notifier->setApplicationIcon( QIcon( "qrc:/icons/OpenTodoList80.png" ) );
+  m_notifier = new StatusNotifierIcon( m_handler );
+  m_notifier->setApplicationTitle( applicationName() );
+#if !defined(Q_OS_MACX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
+  m_notifier->setApplicationIcon( QCoreApplication::applicationDirPath() +
+                                  "/../share/OpenTodoList/icons/OpenTodoList80.png" );
 #else
-    m_notifier->setApplicationIcon(
-                QIcon( m_basePath + "/../share/OpenTodoList/icons/OpenTodoList80.png" ) );
+  m_notifier->setApplicationIcon( "qrc:/qml/OpenTodoList/OpenTodoList.png" );
 #endif
-    m_notifier->show();
+  m_notifier->show();
 }
 
 } // SystemIntegration

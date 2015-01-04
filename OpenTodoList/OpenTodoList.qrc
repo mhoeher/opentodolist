@@ -53,6 +53,7 @@
   </qresource>
   <qresource prefix="/qml/OpenTodoList">
     <file alias="TodoPage.qml">qml/OpenTodoList/TodoPage.qml</file>
+    <file alias="OpenTodoList.png">qml/OpenTodoList/OpenTodoList.png</file>
     <file alias="TodoListsPage.qml">qml/OpenTodoList/TodoListsPage.qml</file>
     <file alias="main.qml">qml/OpenTodoList/main.qml</file>
   </qresource>
