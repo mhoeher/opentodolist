@@ -80,6 +80,9 @@ public:
   void setDescription(const QString &description) override;
   QVariantMap metaAttributes() const override;
   void setMetaAttributes( const QVariantMap &metaAttributes ) override;
+  void insertMetaAttribute(const QString &name, const QVariant &value) override;
+  bool hasMetaAttribute(const QString &name) const override;
+  void removeMetaAttribute(const QString &name) override;
 
   Q_INVOKABLE QVariant toVariant() const;
   Q_INVOKABLE void fromVariant( const QVariant &todo );

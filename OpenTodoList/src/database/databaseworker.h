@@ -51,7 +51,7 @@ class DatabaseWorker : public QObject
 
 public:
 
-    explicit DatabaseWorker();
+    explicit DatabaseWorker( const QString &dbLocation );
     virtual ~DatabaseWorker();
 
 
@@ -81,13 +81,13 @@ signals:
 private:
 
     QSqlDatabase                    m_dataBase;
-    QTemporaryFile                  m_dataBaseFile;
+    QFile                           m_dataBaseFile;
     bool                            m_initialized;
     QQueue< StorageQuery* >         m_queue;
     QMutex                          m_queueLock;
     QMutex                          m_runLock;
 
-    void runSimpleQuery(const QString &query , const QString &errorMsg);
+    void runSimpleQuery(const QString &query , const QString &errorMsg = QString() );
     void runQuery( StorageQuery *query );
 
     void updateToSchemaVersion0();

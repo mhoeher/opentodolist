@@ -66,6 +66,9 @@ public:
   void setWeight(double weight) override;
   QVariantMap metaAttributes() const override;
   void setMetaAttributes(const QVariantMap &metaAttributes) override;
+  void insertMetaAttribute(const QString &name, const QVariant &value) override;
+  bool hasMetaAttribute(const QString &name) const override;
+  void removeMetaAttribute(const QString &name) override;
   QUuid todo() const override;
   void setTodo( const QUuid &uuid ) override;
 

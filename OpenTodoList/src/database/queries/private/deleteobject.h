@@ -47,7 +47,7 @@ public:
   explicit DeleteObject( T *object );
 
   // StorageQuery interface
-  bool query(QString &query, QVariantMap &args) override;
+  bool query(QString &query, QVariantMap &args, int &options) override;
 
 private:
 
@@ -64,8 +64,10 @@ DeleteObject<T>::DeleteObject(T *object) :
 }
 
 template<typename T>
-bool DeleteObject<T>::query(QString &query, QVariantMap &args)
+bool DeleteObject<T>::query(QString &query, QVariantMap &args, int &options )
 {
+  Q_UNUSED(options);
+
   QTextStream stream( &query );
   stream << "DELETE FROM " << ObjectInfo<T>::classNameLowerFirst() << " WHERE ";
   if ( m_object->hasId() ) {

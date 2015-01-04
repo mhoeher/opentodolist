@@ -43,7 +43,7 @@ public:
     virtual ~InsertBackend();
 
     // StorageQuery interface
-    bool query(QString &query, QVariantMap &args) override;
+    bool query(QString &query, QVariantMap &args, int &options) override;
     void newIdAvailable(const QVariant &id) override;
     void endRun() override;
 

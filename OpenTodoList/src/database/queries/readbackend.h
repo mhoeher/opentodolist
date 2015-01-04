@@ -43,11 +43,8 @@ public:
     QList<DataModel::Backend*> backends() const;
 
     // StorageQuery interface
-    bool query(QString &query, QVariantMap &args);
-    void recordAvailable(const QVariantMap &record);
-
-    QThread *targetThread() const;
-    void setTargetThread(QThread *targetThread);
+    bool query(QString &query, QVariantMap &args, int &options ) override;
+    void recordAvailable(const QVariantMap &record) override;
 
 signals:
 

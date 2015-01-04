@@ -175,6 +175,8 @@ bool ObjectModel::objectFilter(QObject *object) const
  */
 int ObjectModel::compareObjects(QObject *left, QObject *right) const
 {
+  Q_UNUSED( left );
+  Q_UNUSED( right );
   return 0;
 }
 

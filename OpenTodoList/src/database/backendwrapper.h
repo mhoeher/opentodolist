@@ -22,6 +22,7 @@
 #include "core/opentodolistinterfaces.h"
 
 #include <QObject>
+#include <QTimer>
 
 
 namespace OpenTodoList {
@@ -115,6 +116,10 @@ public:
     QString description() const  override;
     bool start() override;
     bool stop() override;
+    void sync() override;
+
+    IBackend *backend() const;
+    void setBackend(IBackend *backend);
 
 signals:
 
@@ -127,9 +132,10 @@ public slots:
 
 private:
 
-    Database*  m_database;
-    IBackend* m_backend;
-    Status            m_status;
+    Database  *m_database;
+    IBackend  *m_backend;
+    Status     m_status;
+    QTimer    *m_syncTimer;
 
     // BackendInterface interface
     void setDatabase(IDatabase *database) override;

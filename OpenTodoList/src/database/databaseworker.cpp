@@ -32,14 +32,14 @@ namespace DataBase {
 /**
    @brief Constructor
  */
-DatabaseWorker::DatabaseWorker() :
-    QObject(),
-    m_dataBase(),
-    m_dataBaseFile(),
-    m_initialized( false ),
-    m_queue(),
-    m_queueLock(),
-    m_runLock()
+DatabaseWorker::DatabaseWorker(const QString &dbLocation) :
+  QObject(),
+  m_dataBase(),
+  m_dataBaseFile( dbLocation ),
+  m_initialized( false ),
+  m_queue(),
+  m_queueLock(),
+  m_runLock()
 {
 }
 
@@ -47,10 +47,10 @@ DatabaseWorker::DatabaseWorker() :
    @brief Destructor
  */
 DatabaseWorker::~DatabaseWorker() {
-    m_dataBase.close();
-    qDebug() << "Closed database";
-    m_dataBaseFile.close();
-    qDebug() << "Deleted database";
+  m_dataBase.close();
+  qDebug() << "Closed database";
+  m_dataBaseFile.close();
+  qDebug() << "Closed database file";
 }
 
 /**
@@ -61,7 +61,7 @@ DatabaseWorker::~DatabaseWorker() {
  */
 void DatabaseWorker::run(StorageQuery *query)
 {
-    runQuery( query );
+  runQuery( query );
 }
 
 /**
@@ -72,72 +72,81 @@ void DatabaseWorker::run(StorageQuery *query)
  */
 void DatabaseWorker::schedule(StorageQuery *query)
 {
-    QMutexLocker l( &m_queueLock );
-    if ( query ) {
-        m_queue.enqueue( query );
-        QMetaObject::invokeMethod( this, "next", Qt::QueuedConnection );
-    }
+  QMutexLocker l( &m_queueLock );
+  if ( query ) {
+    m_queue.enqueue( query );
+    QMetaObject::invokeMethod( this, "next", Qt::QueuedConnection );
+  }
 }
 
 /**
    @brief Initialize the worker's resources
  */
 void DatabaseWorker::init() {
-    if ( m_initialized ) {
-        return;
-    }
+  if ( m_initialized ) {
+    return;
+  }
 
-    m_dataBase = QSqlDatabase::addDatabase( "QSQLITE" );
-    m_dataBaseFile.open();
+  m_dataBase = QSqlDatabase::addDatabase( "QSQLITE" );
 
-    m_dataBaseFile.open();
+  if ( !m_dataBaseFile.open( QIODevice::ReadWrite ) ) {
+    qWarning() << "Failed to open" << m_dataBaseFile.fileName()
+               << "because of:" << m_dataBaseFile.errorString();
+  } else {
     m_dataBase.setDatabaseName( m_dataBaseFile.fileName() );
     if ( !m_dataBase.open() ) {
-        qCritical() << "Failed to open SQlite Database:"
-                    << m_dataBaseFile.fileName();
+      qCritical() << "Failed to open SQlite Database:"
+                  << m_dataBaseFile.fileName();
     } else {
-        qDebug() << "Opened temporary SQlite database"
-                 << m_dataBaseFile.fileName();
+      qDebug() << "Opened temporary SQlite database"
+               << m_dataBaseFile.fileName();
 
-        // Various settings
-        // NOTE: Needs to be run on every connection to the database (not just once when
-        //       creating the tables).
-        runSimpleQuery( "PRAGMA foreign_keys=ON;", "Failed to enable foreign key support" );
+      // Various settings
+      // NOTE: Needs to be run on every connection to the database (not just once when
+      //       creating the tables).
+      runSimpleQuery( "PRAGMA foreign_keys=ON;", "Failed to enable foreign key support" );
 
-        // Read schema version
-        QSqlQuery readSchemaVersionQuery( m_dataBase );
-        int version = -1;
-        if ( readSchemaVersionQuery.exec( "SELECT version FROM schemaVersion LIMIT 1;" ) &&
-             readSchemaVersionQuery.next() ) {
-          version = readSchemaVersionQuery.record().value( "version" ).toInt();
-          readSchemaVersionQuery.finish();
-        }
+      // Read schema version
+      QSqlQuery readSchemaVersionQuery( m_dataBase );
+      int version = -1;
+      if ( readSchemaVersionQuery.exec( "SELECT version FROM schemaVersion LIMIT 1;" ) &&
+           readSchemaVersionQuery.next() ) {
+        version = readSchemaVersionQuery.record().value( "version" ).toInt();
+        readSchemaVersionQuery.finish();
+      }
 
-        switch ( version ) {
-        case -1:
-          updateToSchemaVersion0();
-          break;
+      switch ( version ) {
+      case -1:
+        updateToSchemaVersion0();
+        break;
 
-        default:
-          qCritical() << "The used database appears to use schema version" << version
-                      << "of the application. This version belongs to a future version of"
-                      << "the application! Please update the application.";
-          break;
-        }
+      case 0:
+        qDebug() << "DB uses schema version 0. Nothing to be done to upgrade.";
+        break;
+
+      default:
+        qCritical() << "The used database appears to use schema version" << version
+                    << "of the application. This version belongs to a future version of"
+                    << "the application! Please update the application.";
+        break;
+      }
     }
 
     m_initialized = true;
+  }
 
-    emit initialized();
+  emit initialized();
 }
 
-void DatabaseWorker::runSimpleQuery(const QString &query, const QString &errorMsg )
+void DatabaseWorker::runSimpleQuery(const QString &query, const QString &errorMsg)
 {
-    QSqlQuery q( query, m_dataBase );
-    if ( q.lastError().isValid() ) {
-        qCritical() << errorMsg
-                    << q.lastError().text();
+  QSqlQuery q( query, m_dataBase );
+  if ( q.lastError().isValid() ) {
+    if ( !errorMsg.isEmpty() ) {
+      qCritical() << errorMsg;
     }
+    qCritical() << q.lastError().text();
+  }
 }
 
 /**
@@ -145,59 +154,66 @@ void DatabaseWorker::runSimpleQuery(const QString &query, const QString &errorMs
  */
 void DatabaseWorker::runQuery(StorageQuery *query)
 {
-    QMutexLocker l( &m_runLock );
-    do {
-        connect( query, &StorageQuery::backendChanged,
-                 this, &DatabaseWorker::backendChanged, Qt::QueuedConnection );
-        connect( query, &StorageQuery::accountChanged,
-                 this, &DatabaseWorker::accountChanged, Qt::QueuedConnection );
-        connect( query, &StorageQuery::todoListChanged,
-                 this, &DatabaseWorker::todoListChanged, Qt::QueuedConnection );
-        connect( query, &StorageQuery::todoChanged,
-                 this, &DatabaseWorker::todoChanged, Qt::QueuedConnection );
-        connect( query, &StorageQuery::taskChanged,
-                 this, &DatabaseWorker::taskChanged, Qt::QueuedConnection );
-        connect( query, &StorageQuery::accountDeleted,
-                 this, &DatabaseWorker::accountDeleted, Qt::QueuedConnection );
-        connect( query, &StorageQuery::todoListDeleted,
-                 this, &DatabaseWorker::todoListDeleted, Qt::QueuedConnection );
-        connect( query, &StorageQuery::todoDeleted,
-                 this, &DatabaseWorker::todoDeleted, Qt::QueuedConnection );
-        connect( query, &StorageQuery::taskDeleted,
-                 this, &DatabaseWorker::taskDeleted, Qt::QueuedConnection );
-        query->m_worker = this;
-        query->beginRun();
-        QString queryStr;
-        QVariantMap values;
-        bool validQuery = query->query( queryStr, values );
-        if ( validQuery ) {
-            QSqlQuery q( m_dataBase );
-            q.prepare( queryStr );
-            foreach ( QString key, values.keys() ) {
-                q.bindValue( ":" + key, values.value( key ) );
-            }
-            if ( q.exec() ) {
-                while ( q.next() ) {
-                    QVariantMap recordData;
-                    for ( int i = 0; i < q.record().count(); ++i ) {
-                        recordData.insert( q.record().fieldName( i ),
-                                           q.record().value( i ) );
-                    }
-                    query->recordAvailable( recordData );
-                }
-                if ( q.lastInsertId().isValid() ) {
-                    query->newIdAvailable( q.lastInsertId() );
-                }
-            } else {
-                qWarning() << q.lastError().text();
-                qWarning() << q.executedQuery();
-                qWarning() << queryStr;
-                qWarning() << values;
-            }
+  QMutexLocker l( &m_runLock );
+  do {
+    connect( query, &StorageQuery::backendChanged,
+             this, &DatabaseWorker::backendChanged, Qt::QueuedConnection );
+    connect( query, &StorageQuery::accountChanged,
+             this, &DatabaseWorker::accountChanged, Qt::QueuedConnection );
+    connect( query, &StorageQuery::todoListChanged,
+             this, &DatabaseWorker::todoListChanged, Qt::QueuedConnection );
+    connect( query, &StorageQuery::todoChanged,
+             this, &DatabaseWorker::todoChanged, Qt::QueuedConnection );
+    connect( query, &StorageQuery::taskChanged,
+             this, &DatabaseWorker::taskChanged, Qt::QueuedConnection );
+    connect( query, &StorageQuery::accountDeleted,
+             this, &DatabaseWorker::accountDeleted, Qt::QueuedConnection );
+    connect( query, &StorageQuery::todoListDeleted,
+             this, &DatabaseWorker::todoListDeleted, Qt::QueuedConnection );
+    connect( query, &StorageQuery::todoDeleted,
+             this, &DatabaseWorker::todoDeleted, Qt::QueuedConnection );
+    connect( query, &StorageQuery::taskDeleted,
+             this, &DatabaseWorker::taskDeleted, Qt::QueuedConnection );
+    query->m_worker = this;
+    query->beginRun();
+    QString queryStr;
+    QVariantMap values;
+    int options = 0;
+    bool validQuery = query->query( queryStr, values, options );
+    if ( validQuery ) {
+      if ( options & StorageQuery::QueryIsUpdateQuery ) {
+        runSimpleQuery( "PRAGMA foreign_keys=0;" );
+      }
+      QSqlQuery q( m_dataBase );
+      q.prepare( queryStr );
+      foreach ( QString key, values.keys() ) {
+        q.bindValue( ":" + key, values.value( key ) );
+      }
+      if ( q.exec() ) {
+        while ( q.next() ) {
+          QVariantMap recordData;
+          for ( int i = 0; i < q.record().count(); ++i ) {
+            recordData.insert( q.record().fieldName( i ),
+                               q.record().value( i ) );
+          }
+          query->recordAvailable( recordData );
         }
-        query->endRun();
-    } while ( query->hasNext() );
-    emit query->queryFinished();
+        if ( q.lastInsertId().isValid() ) {
+          query->newIdAvailable( q.lastInsertId() );
+        }
+      } else {
+        qWarning() << q.lastError().text();
+        qWarning() << q.executedQuery();
+        qWarning() << queryStr;
+        qWarning() << values;
+      }
+      if ( options & StorageQuery::QueryIsUpdateQuery ) {
+        runSimpleQuery( "PRAGMA foreign_keys=1;" );
+      }
+    }
+    query->endRun();
+  } while ( query->hasNext() );
+  emit query->queryFinished();
 }
 
 /**
@@ -359,15 +375,15 @@ void DatabaseWorker::updateToSchemaVersion0()
  */
 void DatabaseWorker::next()
 {
-    QMutexLocker l( &m_queueLock );
-    StorageQuery *query = 0;
-    if ( !m_queue.isEmpty() ) {
-        query = m_queue.dequeue();
-    }
-    if ( query ) {
-        runQuery( query );
-        delete query;
-    }
+  QMutexLocker l( &m_queueLock );
+  StorageQuery *query = 0;
+  if ( !m_queue.isEmpty() ) {
+    query = m_queue.dequeue();
+  }
+  if ( query ) {
+    runQuery( query );
+    delete query;
+  }
 }
 
 } /* DataBase */

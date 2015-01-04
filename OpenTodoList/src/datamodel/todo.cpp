@@ -169,6 +169,25 @@ void Todo::setMetaAttributes(const QVariantMap &metaAttributes)
   emit metaAttributesChanged();
 }
 
+void Todo::insertMetaAttribute(const QString &name, const QVariant &value)
+{
+  m_metaAttributes.insert( name, value );
+  emit metaAttributesChanged();
+}
+
+bool Todo::hasMetaAttribute(const QString &name) const
+{
+  return m_metaAttributes.contains( name );
+}
+
+void Todo::removeMetaAttribute(const QString &name)
+{
+  if ( hasMetaAttribute( name ) ) {
+    m_metaAttributes.remove( name );
+    emit metaAttributesChanged();
+  }
+}
+
 /**
    @brief Creates a representation of the todo as QVariant
 

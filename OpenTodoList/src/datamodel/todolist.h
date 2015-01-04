@@ -64,8 +64,11 @@ public:
   void setName(const QString &name) override;
   QVariantMap metaAttributes() const override;
   void setMetaAttributes( const QVariantMap &metaAttributes ) override;
-  QUuid account() const;
-  void setAccount(const QUuid &uuid);
+  void insertMetaAttribute(const QString &name, const QVariant &value) override;
+  bool hasMetaAttribute(const QString &name) const override;
+  void removeMetaAttribute(const QString &name) override;
+  QUuid account() const override;
+  void setAccount(const QUuid &uuid) override;
 
   int id() const;
   void setId( int id );

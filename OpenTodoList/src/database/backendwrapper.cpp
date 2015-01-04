@@ -49,62 +49,63 @@ namespace OpenTodoList {
 namespace DataBase {
 
 BackendWrapper::BackendWrapper(QObject *parent) :
-    QObject( parent ),
-    m_database( 0 ),
-    m_backend( 0 ),
-    m_status( Invalid )
+  QObject( parent ),
+  m_database( 0 ),
+  m_backend( 0 ),
+  m_status( Invalid ),
+  m_syncTimer( nullptr )
 {
 }
 
 BackendWrapper::BackendWrapper(Database *database, IBackend *backend, QObject *parent) :
-    QObject(parent),
-    m_database( database ),
-    m_backend( backend ),
-    m_status( Stopped )
+  QObject(parent),
+  m_database( database ),
+  m_backend( backend ),
+  m_status( Stopped )
 {
-    Q_ASSERT( m_database );
-    Q_ASSERT( m_backend );
+  Q_ASSERT( m_database );
+  Q_ASSERT( m_backend );
 
-    m_backend->setDatabase( this );
+  m_backend->setDatabase( this );
 }
 
 BackendWrapper::~BackendWrapper()
 {
-    // Don't do this! The actual backend is released when the plugin's
-    // QObject instance is destroyed!
-    //delete m_backend;
+  // Don't do this! The actual backend is released when the plugin's
+  // QObject instance is destroyed!
+  //delete m_backend;
 }
 
 bool BackendWrapper::insertAccount(IAccount *account)
 {
-    DataModel::Account *acc = static_cast< DataModel::Account* >( account );
-    Queries::InsertAccount q( acc, false );
-    m_database->runQuery( &q );
-    return true;
+  DataModel::Account *acc = static_cast< DataModel::Account* >( account );
+  Queries::InsertAccount q( acc, false );
+  m_database->runQuery( &q );
+  return true;
 }
 
 bool BackendWrapper::insertTodoList(ITodoList *list)
 {
-    DataModel::TodoList *todoList = static_cast< DataModel::TodoList* >( list );
-    Queries::InsertTodoList q( todoList, false );
-    m_database->runQuery( &q );
-    return true;
+  DataModel::TodoList *todoList = static_cast< DataModel::TodoList* >( list );
+  Queries::InsertTodoList q( todoList, false );
+  m_database->runQuery( &q );
+  return true;
 }
 
 bool BackendWrapper::insertTodo(ITodo *todo)
 {
-    DataModel::Todo *t = static_cast< DataModel::Todo* >( todo );
-    Queries::InsertTodo q( t, false );
-    m_database->runQuery( &q );
-    return true;
+  DataModel::Todo *t = static_cast< DataModel::Todo* >( todo );
+  Queries::InsertTodo q( t, false );
+  m_database->runQuery( &q );
+  return true;
 }
 
 bool BackendWrapper::insertTask(ITask *task)
 {
-    DataModel::Task *t = static_cast< DataModel::Task* >( task );
-    Queries::InsertTask q( t, false );
-    m_database->runQuery( &q );
-    return true;
+  DataModel::Task *t = static_cast< DataModel::Task* >( task );
+  Queries::InsertTask q( t, false );
+  m_database->runQuery( &q );
+  return true;
 }
 
 bool BackendWrapper::deleteAccount(IAccount *account)
@@ -141,19 +142,19 @@ bool BackendWrapper::deleteTask(ITask *task)
 
 IAccount *BackendWrapper::createAccount()
 {
-    DataModel::Account *account = new DataModel::Account();
-    account->setBackend( name() ); // inject our name
-    return account;
+  DataModel::Account *account = new DataModel::Account();
+  account->setBackend( name() ); // inject our name
+  return account;
 }
 
 ITodoList *BackendWrapper::createTodoList()
 {
-    return new DataModel::TodoList();
+  return new DataModel::TodoList();
 }
 
 ITodo *BackendWrapper::createTodo()
 {
-    return new DataModel::Todo();
+  return new DataModel::Todo();
 }
 
 ITask *BackendWrapper::createTask()
@@ -351,95 +352,122 @@ bool BackendWrapper::onTaskSaved(ITask *task)
 
 void BackendWrapper::setLocalStorageDirectory(const QString &directory)
 {
-    if ( m_status != Invalid )
-        m_backend->setLocalStorageDirectory( directory );
+  if ( m_status != Invalid )
+    m_backend->setLocalStorageDirectory( directory );
 }
 
 QString BackendWrapper::name() const
 {
-    if ( m_status != Invalid )
-        return m_backend->name();
-    return QString();
+  if ( m_status != Invalid )
+    return m_backend->name();
+  return QString();
 }
 
 QString BackendWrapper::title() const
 {
-    if ( m_status != Invalid )
-        return m_backend->title();
-    return QString();
+  if ( m_status != Invalid )
+    return m_backend->title();
+  return QString();
 }
 
 QString BackendWrapper::description() const
 {
-    if ( m_status != Invalid )
-        return m_backend->description();
-    return QString();
+  if ( m_status != Invalid )
+    return m_backend->description();
+  return QString();
 }
 
 bool BackendWrapper::start()
 {
-    switch ( m_status ) {
-    case Invalid: return false;
-    case Running: return true;
-    case Stopped:
-        if ( m_backend->start() ) {
-            setStatus( Running );
-            return true;
-        } else {
-            return false;
-        }
+  switch ( m_status ) {
+  case Invalid: return false;
+  case Running: return true;
+  case Stopped:
+    if ( m_backend->start() ) {
+      setStatus( Running );
+      m_syncTimer = new QTimer( this );
+      // TODO: Look for more intelligent ways of syncing
+      m_syncTimer->setInterval( 10 * 60 * 1000 ); // Save every 10 minutes
+      m_syncTimer->setSingleShot( true );
+      connect( m_syncTimer, &QTimer::timeout, [this] { this->sync(); } );
+      m_syncTimer->start();
+      return true;
+    } else {
+      return false;
     }
-    qWarning() << "Unhandled status in BackendWrapper::start():" << m_status;
-    return false;
+  }
+  qWarning() << "Unhandled status in BackendWrapper::start():" << m_status;
+  return false;
 }
 
 bool BackendWrapper::stop()
 {
-    switch ( m_status ) {
-    case Invalid: return false;
-    case Stopped: return true;
-    case Running:
-        if ( m_backend->stop() ) {
-            setStatus( Stopped );
-            return true;
-        } else {
-            return false;
-        }
+  switch ( m_status ) {
+  case Invalid: return false;
+  case Stopped: return true;
+  case Running:
+    delete m_syncTimer;
+    m_syncTimer = nullptr;
+    if ( m_backend->stop() ) {
+      setStatus( Stopped );
+      return true;
+    } else {
+      return false;
     }
-    qWarning() << "Unhandled status in BackendWrapper::stop():" << m_status;
-    return false;
+  }
+  qWarning() << "Unhandled status in BackendWrapper::stop():" << m_status;
+  return false;
+}
+
+void BackendWrapper::sync()
+{
+  qDebug() << "Sync tick in backend" << m_backend->name() << "started";
+  m_backend->sync();
+  m_syncTimer->start();
+  qDebug() << "Sync tick in backend" << m_backend->name() << "finished";
 }
 
 void BackendWrapper::doStart()
 {
-    if ( !start() ) {
-        qWarning() << "Failed to start backend" << title();
-    } else {
-        qDebug() << "Started backend" << title();
-    }
+  if ( !start() ) {
+    qWarning() << "Failed to start backend" << title();
+  } else {
+    qDebug() << "Started backend" << title();
+  }
 }
 
 void BackendWrapper::doStop()
 {
-    if ( !stop() ) {
-        qWarning() << "Failed to stop backend" << title();
-    } else {
-        qDebug() << "Stopped backend" << title();
-    }
+  if ( !stop() ) {
+    qWarning() << "Failed to stop backend" << title();
+  } else {
+    qDebug() << "Stopped backend" << title();
+  }
 }
+
+IBackend *BackendWrapper::backend() const
+{
+  return m_backend;
+}
+
+void BackendWrapper::setBackend(IBackend *backend)
+{
+  m_backend = backend;
+}
+
 
 void BackendWrapper::setDatabase(IDatabase *database)
 {
-    Q_ASSERT( false );
-    Q_UNUSED( database );
+  Q_ASSERT( false );
+  Q_UNUSED( database );
 }
 
 void BackendWrapper::setStatus(BackendWrapper::Status newStatus)
 {
-    if ( m_status != newStatus ) {
-        m_status = newStatus;
-        emit statusChanged();
-    }
+  if ( m_status != newStatus ) {
+    m_status = newStatus;
+    emit statusChanged();
+  }
 }
 
 } /* DataBase */

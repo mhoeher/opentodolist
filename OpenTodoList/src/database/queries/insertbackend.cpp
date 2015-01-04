@@ -33,10 +33,10 @@ namespace Queries {
    @note The query takes over ownership of the backend.
  */
 InsertBackend::InsertBackend( Backend *backend ) :
-    OpenTodoList::DataBase::StorageQuery(),
-    m_backend( backend )
+  OpenTodoList::DataBase::StorageQuery(),
+  m_backend( backend )
 {
-    Q_ASSERT( backend != nullptr );
+  Q_ASSERT( backend != nullptr );
 }
 
 /**
@@ -44,30 +44,31 @@ InsertBackend::InsertBackend( Backend *backend ) :
  */
 InsertBackend::~InsertBackend()
 {
-    delete m_backend;
+  delete m_backend;
 }
 
-bool InsertBackend::query(QString &query, QVariantMap &args)
+bool InsertBackend::query(QString &query, QVariantMap &args, int &options)
 {
-    query = "INSERT OR REPLACE INTO backend ( id, name, title, description ) "
-            "VALUES ( (SELECT id FROM backend WHERE name = :searchName ), :name, :title, :description );";
-    args.insert( "searchName", m_backend->name() );
-    args.insert( "name", m_backend->name() );
-    args.insert( "title", m_backend->title() );
-    args.insert( "description", m_backend->description() );
-    return true;
+  options = StorageQuery::QueryIsUpdateQuery;
+  query = "INSERT OR REPLACE INTO backend ( id, name, title, description ) "
+          "VALUES ( (SELECT id FROM backend WHERE name = :searchName ), :name, :title, :description );";
+  args.insert( "searchName", m_backend->name() );
+  args.insert( "name", m_backend->name() );
+  args.insert( "title", m_backend->title() );
+  args.insert( "description", m_backend->description() );
+  return true;
 }
 
 void InsertBackend::newIdAvailable(const QVariant &id)
 {
-    if ( id.isValid() ) {
-        m_backend->setId( id.toInt() );
-    }
+  if ( id.isValid() ) {
+    m_backend->setId( id.toInt() );
+  }
 }
 
 void InsertBackend::endRun()
 {
-    emit backendChanged( m_backend->toVariant() );
+  emit backendChanged( m_backend->toVariant() );
 }
 
 } // namespace Queries

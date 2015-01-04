@@ -43,7 +43,7 @@ namespace DataBase {
 Database::Database(QObject *parent) :
     QObject(parent),
     m_workerThread(),
-    m_worker( new DatabaseWorker() ),
+    m_worker( new DatabaseWorker( localStorageLocation() + "/database.db") ),
     m_backendPlugins( new PluginsLoader<IBackend>( "opentodobackends", this ) ),
     m_backendsThread(),
     m_backends()

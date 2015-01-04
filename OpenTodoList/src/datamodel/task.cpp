@@ -121,6 +121,25 @@ void Task::setMetaAttributes(const QVariantMap &metaAttributes)
   emit metaAttributesChanged();
 }
 
+void Task::insertMetaAttribute(const QString &name, const QVariant &value)
+{
+  m_metaAttributes.insert( name, value );
+  emit metaAttributesChanged();
+}
+
+bool Task::hasMetaAttribute(const QString &name) const
+{
+  return m_metaAttributes.contains( name );
+}
+
+void Task::removeMetaAttribute(const QString &name)
+{
+  if ( hasMetaAttribute( name ) ) {
+    m_metaAttributes.remove( name );
+    emit metaAttributesChanged();
+  }
+}
+
 QUuid Task::todo() const
 {
   return m_todoUuid;

@@ -23,6 +23,8 @@
 
 #include <QDomDocument>
 
+using namespace OpenTodoList;
+
 class LocalXmlBackend : public QObject, public OpenTodoList::IBackend
 {
     Q_OBJECT
@@ -43,6 +45,7 @@ public:
     QString description() const override;
     bool start() override;
     bool stop() override;
+    void sync() override;
 
 private:
 
@@ -53,24 +56,43 @@ private:
 
     QStringList locateTodoLists() const;
     QStringList locateTodos( const QString &todoList ) const;
-
-    OpenTodoList::ITodoList* todoListFromFile( const QString &fileName );
-    OpenTodoList::ITodo* todoFromFile(const QString &fileName , double weight);
-
+    QStringList locateTasks( const QString &todo ) const;
 
     static bool todoListToFile( const OpenTodoList::ITodoList *todoList );
     static bool todoToFile( const OpenTodoList::ITodo *todo );
+    static bool taskToFile( const OpenTodoList::ITask *task );
 
-    static bool listToDom( const OpenTodoList::ITodoList *list, QDomDocument &doc );
-    static bool domToList( const QDomDocument &doc, OpenTodoList::ITodoList *list );
+    static bool todoListToDom( const OpenTodoList::ITodoList *list, QDomDocument &doc );
+    static bool domToTodoList( const QDomDocument &doc, OpenTodoList::ITodoList *list );
     static bool todoToDom( const OpenTodoList::ITodo *todo, QDomDocument &doc );
-    static bool domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *todo , bool &writeBack);
+    static bool domToTodo(const QDomDocument &doc, OpenTodoList::ITodo *todo );
+    static bool taskToDom( const OpenTodoList::ITask *task, QDomDocument &doc );
+    static bool domToTask( const QDomDocument &doc, OpenTodoList::ITask *task );
+
+    void deleteTodoLists();
+    void deleteTodos();
+    void deleteTasks();
+
+    void saveTodoLists();
+    void saveTodos();
+    void saveTasks();
+
+    void saveTodoList(OpenTodoList::ITodoList *todoList);
+    void saveTodo(OpenTodoList::ITodo *todo);
+    void saveTask(OpenTodoList::ITask *task);
+
+    void fixTodoList( const QString &todoList );
+    void fixTodo( const QString &todo );
+
+    QDomDocument documentForFile( const QString &fileName ) const;
+    void documentToFile( const QDomDocument &doc, const QString &fileName ) const;
 
     static const QString TodoListConfigFileName;
     static const QString TodoDirectoryName;
 
     static const QString TodoListMetaFileName;
     static const QString TodoMetaFileName;
+    static const QString TaskMetaFileName;
 
 };
 

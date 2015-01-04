@@ -31,7 +31,7 @@ namespace DataBase {
    @brief Constructor
  */
 StorageQuery::StorageQuery(QObject *parent) :
-    QObject(parent)
+  QObject(parent)
 {
 }
 
@@ -50,7 +50,7 @@ StorageQuery::~StorageQuery()
  */
 void StorageQuery::beginRun()
 {
-    // nothing to be done here
+  // nothing to be done here
 }
 
 /**
@@ -61,15 +61,20 @@ void StorageQuery::beginRun()
    user specified values, they can be put into the @p args map. When executing
    the query, the args will be inserted into the query string in a safe way.
 
+   Certain queries might have additional prerequisites for their execution. These can be expressed
+   by setting flags in the @p queryOptions which are specified in the QueryOptions enum. These
+   flags influence the execution of the query.
+
    @return True in case everything is okay. In that case, the query will next
      be run on the database. If this returns false, nothing happens and
      execution will stop (but endRun() will still be called.
  */
-bool StorageQuery::query(QString &query, QVariantMap &args)
+bool StorageQuery::query(QString &query, QVariantMap &args, int &queryOptions)
 {
-    Q_UNUSED( query );
-    Q_UNUSED( args );
-    return false;
+  Q_UNUSED( query );
+  Q_UNUSED( args );
+  Q_UNUSED( queryOptions );
+  return false;
 }
 
 /**
@@ -82,7 +87,7 @@ bool StorageQuery::query(QString &query, QVariantMap &args)
  */
 void StorageQuery::recordAvailable(const QVariantMap &record)
 {
-    Q_UNUSED( record );
+  Q_UNUSED( record );
 }
 
 /**
@@ -95,7 +100,7 @@ void StorageQuery::recordAvailable(const QVariantMap &record)
  */
 void StorageQuery::newIdAvailable(const QVariant &id)
 {
-    Q_UNUSED( id );
+  Q_UNUSED( id );
 }
 
 /**
@@ -133,7 +138,7 @@ void StorageQuery::endRun()
  */
 bool StorageQuery::hasNext() const
 {
-    return false;
+  return false;
 }
 
 
@@ -143,7 +148,7 @@ bool StorageQuery::hasNext() const
  */
 DatabaseWorker *StorageQuery::worker() const
 {
-    return m_worker;
+  return m_worker;
 }
 
 } /* DataBase */

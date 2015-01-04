@@ -54,7 +54,7 @@ public:
   explicit ReadObject( const QStringList &attributes );
 
   // StorageQuery interface
-  bool query(QString &query, QVariantMap &args) override;
+  bool query(QString &query, QVariantMap &args, int &options) override;
   void recordAvailable(const QVariantMap &record) override;
   void endRun() override;
 
@@ -150,9 +150,9 @@ ReadObject<T>::ReadObject( const QStringList &attributes ) :
 }
 
 template<typename T>
-bool ReadObject<T>::query(QString &query, QVariantMap &args)
+bool ReadObject<T>::query(QString &query, QVariantMap &args, int &options )
 {
-  Q_UNUSED( args );
+  Q_UNUSED( options );
 
   QTextStream stream( &query );
   stream << "SELECT " << m_baseTable << ".id AS id, "
@@ -244,7 +244,7 @@ void ReadObject<T>::recordAvailable(const QVariantMap &record)
     m_currentObject->setProperty( m_parentAttribute.toUtf8().constData(),
                                   record.value( m_parentAttribute ) );
   }
-  if ( record.contains( "metaAttributeName" ) ) {
+  if ( record.contains( "metaAttributeName" ) && !record.value( "metaAttributeName" ).isNull() ) {
     QVariantMap metaAttributes = m_currentObject->metaAttributes();
     metaAttributes.insert( record.value( "metaAttributeName" ).toString(),
                            record.value( "metaAttributeValue" ) );

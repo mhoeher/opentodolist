@@ -44,7 +44,7 @@ public:
   explicit DisposeObject( T *object );
 
   // StorageQuery interface
-  bool query(QString &query, QVariantMap &args) override;
+  bool query(QString &query, QVariantMap &args, int &options) override;
 
 private:
 
@@ -62,8 +62,9 @@ DisposeObject<T>::DisposeObject(T *object) :
 }
 
 template<typename T>
-bool DisposeObject<T>::query(QString &query, QVariantMap &args)
+bool DisposeObject<T>::query(QString &query, QVariantMap &args, int &options )
 {
+  Q_UNUSED( options );
   QTextStream stream( &query );
   stream << "UPDATE OR FAIL " << ObjectInfo<T>::classNameLowerFirst()
          << " SET disposed = 1 WHERE id = :searchId;";

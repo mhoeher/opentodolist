@@ -34,7 +34,7 @@ namespace Queries {
          created objects will remain in memory.
  */
 ReadBackend::ReadBackend() :
-    StorageQuery()
+  StorageQuery()
 {
 }
 
@@ -43,25 +43,26 @@ ReadBackend::ReadBackend() :
  */
 QList<DataModel::Backend *> ReadBackend::backends() const
 {
-    return m_backends;
+  return m_backends;
 }
 
-bool ReadBackend::query(QString &query, QVariantMap &args)
+bool ReadBackend::query(QString &query, QVariantMap &args, int &options )
 {
-    Q_UNUSED( args );
-    query = "SELECT id, name, title, description FROM backend;";
-    return true;
+  Q_UNUSED( args );
+  Q_UNUSED( options );
+  query = "SELECT id, name, title, description FROM backend;";
+  return true;
 }
 
 void ReadBackend::recordAvailable(const QVariantMap &record)
 {
-    DataModel::Backend *backend = new DataModel::Backend( this );
-    backend->setId( record.value( "id", -1 ).toInt() );
-    backend->setName( record.value( "name", QString() ).toString() );
-    backend->setTitle( record.value( "title", QString() ).toString() );
-    backend->setDescription( record.value( "description", QString() ).toString() );
-    emit readBackend( backend->toVariant() );
-    m_backends << backend;
+  DataModel::Backend *backend = new DataModel::Backend( this );
+  backend->setId( record.value( "id", -1 ).toInt() );
+  backend->setName( record.value( "name", QString() ).toString() );
+  backend->setTitle( record.value( "title", QString() ).toString() );
+  backend->setDescription( record.value( "description", QString() ).toString() );
+  emit readBackend( backend->toVariant() );
+  m_backends << backend;
 }
 
 } // namespace Queries

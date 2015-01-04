@@ -141,6 +141,27 @@ public:
      */
   virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
 
+  /**
+     @brief Insert a meta attribute
+
+     This inserts the meta attribute @p name with the given @p value.
+   */
+  virtual void insertMetaAttribute( const QString &name, const QVariant &value ) = 0;
+
+  /**
+     @brief Check for existence of a meta attribute
+
+     This returns true of there is a meta attribute with the given @p name.
+   */
+  virtual bool hasMetaAttribute( const QString &name ) const = 0;
+
+  /**
+     @brief Remove a meta attribute
+
+     This removes the meta attribute with the given @p name if it exists.
+   */
+  virtual void removeMetaAttribute( const QString &name ) = 0;
+
 };
 
 /**
@@ -248,6 +269,27 @@ public:
        @brief Sets the @p metaAttributes of the todo
      */
   virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
+
+  /**
+     @brief Insert a meta attribute
+
+     This inserts the meta attribute @p name with the given @p value.
+   */
+  virtual void insertMetaAttribute( const QString &name, const QVariant &value ) = 0;
+
+  /**
+     @brief Check for existence of a meta attribute
+
+     This returns true of there is a meta attribute with the given @p name.
+   */
+  virtual bool hasMetaAttribute( const QString &name ) const = 0;
+
+  /**
+     @brief Remove a meta attribute
+
+     This removes the meta attribute with the given @p name if it exists.
+   */
+  virtual void removeMetaAttribute( const QString &name ) = 0;
 };
 
 /**
@@ -312,6 +354,27 @@ public:
        @brief Sets the @p metaAttributes of the task
      */
   virtual void setMetaAttributes( const QVariantMap &metaAttributes ) = 0;
+
+  /**
+     @brief Insert a meta attribute
+
+     This inserts the meta attribute @p name with the given @p value.
+   */
+  virtual void insertMetaAttribute( const QString &name, const QVariant &value ) = 0;
+
+  /**
+     @brief Check for existence of a meta attribute
+
+     This returns true of there is a meta attribute with the given @p name.
+   */
+  virtual bool hasMetaAttribute( const QString &name ) const = 0;
+
+  /**
+     @brief Remove a meta attribute
+
+     This removes the meta attribute with the given @p name if it exists.
+   */
+  virtual void removeMetaAttribute( const QString &name ) = 0;
 
   /**
        @brief Returns the UUID of the todo the task belongs to
@@ -697,6 +760,23 @@ public:
                otherwise.
      */
   virtual bool stop() = 0;
+
+  /**
+     @brief Gives the backend a hint for synchronization
+
+     Unless backends have other means for synchronizing their external data with the internal
+     database, they shall implement any syncing in this method. The application will regularly call
+     this method.
+
+     If a backend does implement its synchronization solely on its own, it has to provide an
+     empty implementation.
+
+     @note It is adviced to use this method to do any expensive syncing instead of implementing
+           own means. This is because the application might hook into the host operating system
+           to provide ideal points in time for synchronization and hence save e.g. battery when
+           running on mobile devices.
+   */
+  virtual void sync() = 0;
 
 };
 

@@ -67,7 +67,7 @@ public:
   ~InsertObject();
 
   // StorageQuery interface
-  bool query(QString &query, QVariantMap &args) override;
+  bool query(QString &query, QVariantMap &args, int &options) override;
   void newIdAvailable(const QVariant &id) override;
   bool hasNext() const override;
 
@@ -153,7 +153,7 @@ InsertObject<T>::~InsertObject()
 }
 
 template<typename T>
-bool InsertObject<T>::query(QString &query, QVariantMap &args)
+bool InsertObject<T>::query(QString &query, QVariantMap &args, int &options )
 {
   Q_ASSERT( m_state <= RemoveExtraMetaValuesState );
 
@@ -165,6 +165,7 @@ bool InsertObject<T>::query(QString &query, QVariantMap &args)
 
   case InsertObjectState:
   {
+    options = QueryIsUpdateQuery;
     queryInsertObject( stream, args );
     return true;
   }

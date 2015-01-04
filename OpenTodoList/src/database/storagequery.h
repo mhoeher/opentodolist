@@ -45,21 +45,26 @@ class StorageQuery : public QObject
 public:
 
     /**
-       @brief Used to resource management
+       @brief Used to customize execution of a single query
 
-       This enum is used in some concrete storage queries to determine ownership of
-       resources.
+       This type is used to customize the execution of a single query by
+       allowing to specify flags that might influence how a query is executed.
      */
-    enum ResourceOwnership {
-        QueryIsOwner, //!< The StorageQuery object takes over ownership of the resources and releases them upon destruction
-        CallerIsOwner //!< The caller remains owner of any resources used by the query
+    enum QueryOptions {
+      QueryNoOptions      = 0, //!< No special handling for the query is required
+
+      /**
+        If this flag is set, the query is supposed to be an "update" query (e.g. INSERT OR REPLACE).
+        For the execution of the query, delete triggers will be disabled.
+        */
+      QueryIsUpdateQuery  = 0x01
     };
 
     explicit StorageQuery(QObject *parent = 0);
     virtual ~StorageQuery();
 
     virtual void beginRun();
-    virtual bool query( QString &query, QVariantMap &args );
+    virtual bool query( QString &query, QVariantMap &args, int &queryOptions );
     virtual void recordAvailable( const QVariantMap &record );
     virtual void newIdAvailable( const QVariant &id );
     virtual void endRun();
