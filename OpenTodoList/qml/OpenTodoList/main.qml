@@ -72,7 +72,9 @@ Rectangle {
 
         onLastPageClosing: {
             if ( Qt.os === "android" ) {
-                commandHandler.hideWindow();
+                // TODO: Proper "main window hiding" on Android
+                //commandHandler.hideWindow();
+                Qt.quit()
             }
         }
 

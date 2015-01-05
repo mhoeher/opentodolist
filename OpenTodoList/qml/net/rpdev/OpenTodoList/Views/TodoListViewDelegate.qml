@@ -43,10 +43,9 @@ FocusScope {
 
     onShowTodosChanged: {
         if ( showTodos ) {
-            var model = Qt.createQmlObject( "import net.rpdev.OpenTodoList.Core 1.0; TodoModel {}", this );
-            model.todoList = todoList;
-            model.queryType = TodoModel.QueryTopLevelTodosInTodoList;
-            todosView.todos = model;
+            todosView.todos.database = application.database;
+        } else {
+            todosView.todos.database = null;
         }
     }
 

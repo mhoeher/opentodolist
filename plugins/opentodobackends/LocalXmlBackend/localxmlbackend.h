@@ -86,13 +86,22 @@ private:
 
     QDomDocument documentForFile( const QString &fileName ) const;
     void documentToFile( const QDomDocument &doc, const QString &fileName ) const;
+    QByteArray hashForFile( const QString &fileName ) const;
+
+    bool todoListNeedsUpdate( OpenTodoList::ITodoList *todoList, const QString &fileName, QByteArray &hash ) const;
+    bool todoNeedsUpdate( OpenTodoList::ITodo *todo, const QString &fileName, QByteArray &hash ) const;
+    bool taskNeedsUpdate( OpenTodoList::ITask *task, const QString &fileName, QByteArray &hash ) const;
+
 
     static const QString TodoListConfigFileName;
     static const QString TodoDirectoryName;
 
     static const QString TodoListMetaFileName;
+    static const QString TodoListMetaHash;
     static const QString TodoMetaFileName;
+    static const QString TodoMetaHash;
     static const QString TaskMetaFileName;
+    static const QString TaskMetaHash;
 
 };
 

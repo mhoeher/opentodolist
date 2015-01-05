@@ -18,6 +18,7 @@
 
 #include "localxmlbackend.h"
 
+#include <QCryptographicHash>
 #include <QDebug>
 #include <QDirIterator>
 #include <QDomDocument>
@@ -28,8 +29,11 @@ const QString LocalXmlBackend::TodoListConfigFileName = "config.xml";
 const QString LocalXmlBackend::TodoDirectoryName = "todos";
 
 const QString LocalXmlBackend::TodoListMetaFileName = "LocalXmlBackend::TodoList::fileName";
+const QString LocalXmlBackend::TodoListMetaHash = "LocalXmlBackend::TodoList::hash";
 const QString LocalXmlBackend::TodoMetaFileName = "LocalXmlBackend::Todo::fileName";
+const QString LocalXmlBackend::TodoMetaHash = "LocalXmlBackend::Todo::hash";
 const QString LocalXmlBackend::TaskMetaFileName = "LocalXmlBackend::Task::fileName";
+const QString LocalXmlBackend::TaskMetaHash = "LocalXmlBackend::Task::hash";
 
 LocalXmlBackend::LocalXmlBackend(QObject *parent) :
   QObject( parent ),
@@ -94,8 +98,10 @@ bool LocalXmlBackend::start()
     fixTodoList( todoListFile );
     ITodoList *todoList = m_database->createTodoList();
     QDomDocument doc = documentForFile( todoListFile );
-    if ( domToTodoList( doc, todoList ) ) {
+    QByteArray todoListHash;
+    if ( domToTodoList( doc, todoList ) && todoListNeedsUpdate( todoList, todoListFile, todoListHash ) ) {
       todoList->insertMetaAttribute( TodoListMetaFileName, todoListFile );
+      todoList->insertMetaAttribute( TodoListMetaHash, todoListHash );
       todoList->setAccount( m_account->uuid() );
       m_database->insertTodoList( todoList );
     }
@@ -105,8 +111,10 @@ bool LocalXmlBackend::start()
       fixTodo( todoFile );
       ITodo *todo = m_database->createTodo();
       doc = documentForFile( todoFile );
-      if ( domToTodo( doc, todo ) ) {
+      QByteArray todoHash;
+      if ( domToTodo( doc, todo ) && todoNeedsUpdate( todo, todoFile, todoHash )) {
         todo->insertMetaAttribute( TodoMetaFileName, todoFile );
+        todo->insertMetaAttribute( TodoMetaHash, todoHash );
         todo->setTodoList( todoList->uuid() );
         m_database->insertTodo( todo );
       }
@@ -115,8 +123,10 @@ bool LocalXmlBackend::start()
       for ( const QString &taskFile : tasks ) {
         ITask *task = m_database->createTask();
         doc = documentForFile( taskFile );
-        if ( domToTask( doc, task ) ) {
+        QByteArray taskHash;
+        if ( domToTask( doc, task ) && taskNeedsUpdate( task, taskFile, taskHash ) ) {
           task->insertMetaAttribute( TaskMetaFileName, taskFile );
+          task->insertMetaAttribute( TaskMetaHash, taskHash );
           task->setTodo( todo->uuid() );
           m_database->insertTask( task );
         }
@@ -475,6 +485,7 @@ void LocalXmlBackend::saveTodoList(ITodoList *todoList)
     QDomDocument doc = documentForFile( fileName );
     if ( todoListToDom( todoList, doc ) ) {
       documentToFile( doc, fileName );
+      todoList->insertMetaAttribute( TodoListMetaHash, hashForFile( fileName ) );
     }
   }
 }
@@ -486,6 +497,7 @@ void LocalXmlBackend::saveTodo(ITodo *todo)
     QDomDocument doc = documentForFile( fileName );
     if ( todoToDom( todo, doc ) ) {
       documentToFile( doc, fileName );
+      todo->insertMetaAttribute( TodoMetaHash, hashForFile( fileName ) );
     }
   }
 }
@@ -497,6 +509,7 @@ void LocalXmlBackend::saveTask(ITask *task)
     QDomDocument doc = documentForFile( fileName );
     if ( taskToDom( task, doc ) ) {
       documentToFile( doc, fileName );
+      task->insertMetaAttribute( TaskMetaHash, hashForFile( fileName ) );
     }
   }
 }
@@ -536,7 +549,7 @@ void LocalXmlBackend::fixTodo(const QString &todo)
     root.setAttribute( "weight",  ( qrand() % 10000 / 100.0 )  );
     changed = true;
   }
-  if ( !changed ) {
+  if ( changed ) {
     documentToFile( doc, todo );
   }
 }
@@ -575,4 +588,53 @@ void LocalXmlBackend::documentToFile(const QDomDocument &doc, const QString &fil
   } else {
     qWarning() << "Failed to open file" << fullName << "for writing:" << file.errorString();
   }
+}
+
+QByteArray LocalXmlBackend::hashForFile(const QString &fileName) const
+{
+  QString fullName = m_localStorageDirectory + "/" + fileName;
+  QFile file( fullName );
+  if ( file.open( QIODevice::ReadOnly ) ) {
+    QCryptographicHash hash( QCryptographicHash::Sha3_512 );
+    hash.addData( &file );
+    file.close();
+    return hash.result().toHex();
+  }
+  return QByteArray();
+}
+
+bool LocalXmlBackend::todoListNeedsUpdate(ITodoList *todoList, const QString &fileName, QByteArray &hash) const
+{
+  bool result = true;
+  hash = hashForFile( fileName );
+  ITodoList *existingTodoList = m_database->getTodoList( todoList->uuid() );
+  if ( existingTodoList ) {
+    result = hash != existingTodoList->metaAttributes().value( TodoListMetaHash ).toByteArray();
+    delete existingTodoList;
+  }
+  return result;
+}
+
+bool LocalXmlBackend::todoNeedsUpdate(ITodo *todo, const QString &fileName, QByteArray &hash) const
+{
+  bool result = true;
+  hash = hashForFile( fileName );
+  ITodo *existingTodo = m_database->getTodo( todo->uuid() );
+  if ( existingTodo ) {
+    result = existingTodo->metaAttributes().value( TodoMetaHash ).toByteArray() != hash;
+    delete existingTodo;
+  }
+  return result;
+}
+
+bool LocalXmlBackend::taskNeedsUpdate(ITask *task, const QString &fileName, QByteArray &hash) const
+{
+  bool result = true;
+  hash = hashForFile( fileName );
+  ITask *existingTask = m_database->getTask( task->uuid() );
+  if ( existingTask ) {
+    result = existingTask->metaAttributes().value( TaskMetaHash ).toByteArray() != hash;
+    delete existingTask;
+  }
+  return result;
 }
