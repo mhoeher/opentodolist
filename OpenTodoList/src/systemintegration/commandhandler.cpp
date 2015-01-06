@@ -20,6 +20,10 @@
 
 #include <QCoreApplication>
 
+#ifdef Q_OS_ANDROID
+#include <QtAndroidExtras/QAndroidJniObject>
+#endif
+
 namespace OpenTodoList {
 
 namespace SystemIntegration {
@@ -119,9 +123,14 @@ void CommandHandler::showWindow()
  */
 void CommandHandler::hideWindow()
 {
+#ifdef Q_OS_ANDROID
+  QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/Activity",
+                                            "minimizeActivity");
+#else
     if ( m_applicationWindow ) {
         m_applicationWindow->hide();
     }
+#endif
 }
 
 /**

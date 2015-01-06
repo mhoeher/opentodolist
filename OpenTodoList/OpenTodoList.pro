@@ -23,6 +23,9 @@ win32:RC_FILE = OpenTodoList.rc
 # Qt dependencies
 QT += network
 
+# On Android, pull in extra stuff:
+android:QT += androidextras
+
 # Handling of status notifiers / system tray icons
 qtHaveModule(KNotifications) {
     QT += KNotifications
@@ -188,3 +191,7 @@ OTHER_FILES += \
     ../templates/installer/config/config.xml \
     ../templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
     ../templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js
+
+DISTFILES += \
+    android/src/net/rpdev/OpenTodoList/Activity.java \
+    android/src/net/rpdev/OpenTodoList/Service.java

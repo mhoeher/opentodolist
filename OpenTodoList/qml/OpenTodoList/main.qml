@@ -71,10 +71,9 @@ Rectangle {
         focus: true
 
         onLastPageClosing: {
-            if ( Qt.os === "android" ) {
-                // TODO: Proper "main window hiding" on Android
-                //commandHandler.hideWindow();
-                Qt.quit()
+            if ( Qt.platform.os === "android" ) {
+                // TODO: Stop main activity here
+                application.handler.hideWindow()
             }
         }
 
