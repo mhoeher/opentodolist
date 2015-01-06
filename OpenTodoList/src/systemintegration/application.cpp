@@ -93,7 +93,7 @@ CommandHandler *Application::handler() const
   return m_handler;
 }
 
-QtQuick2ApplicationViewer *Application::viewer() const
+QQmlApplicationEngine *Application::viewer() const
 {
   return m_viewer;
 }
@@ -148,13 +148,13 @@ void Application::hideWindow()
   QMetaObject::invokeMethod( this, "hideWindowImplementation", Qt::QueuedConnection );
 }
 
-void Application::setupPaths( QtQuick2ApplicationViewer *viewer )
+void Application::setupPaths(QQmlApplicationEngine *viewer )
 {
   // Add plugin search paths for QML plugins
 #ifdef Q_OS_ANDROID
   QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() );
   if ( viewer ) {
-    viewer->engine()->addPluginPath( QCoreApplication::applicationDirPath() );
+    viewer->addPluginPath( QCoreApplication::applicationDirPath() );
   }
   m_basePath = applicationDirPath();
 #else
@@ -171,7 +171,7 @@ void Application::setupPaths( QtQuick2ApplicationViewer *viewer )
         QCoreApplication::addLibraryPath( baseDir.absolutePath() );
       } else {
         foreach ( QString entry, baseDir.entryList( QDir::Dirs ) ) {
-          viewer->engine()->addPluginPath( baseDir.absoluteFilePath( entry ) );
+          viewer->addPluginPath( baseDir.absoluteFilePath( entry ) );
         }
       }
     }
@@ -195,14 +195,15 @@ void Application::showNotifierIcon()
 void Application::showWindowImplementation()
 {
   if ( !m_viewer ) {
-    m_viewer = new QtQuick2ApplicationViewer();
+    m_viewer = new QQmlApplicationEngine(this);
     m_handler->setApplicationWindow( m_viewer );
     setupPaths(m_viewer);
     registerPlugins();
-    m_viewer->engine()->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
+    m_viewer->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
     m_viewer->addImportPath( QStringLiteral("qrc:/qml") );
-    m_viewer->setMainQmlFile("qrc:/qml/OpenTodoList/main.qml");
-    m_viewer->showExpanded();
+    m_viewer->load(QUrl("qrc:/qml/OpenTodoList/main.qml"));
+    //m_viewer->showExpanded();
+    m_handler->showWindow();
     emit viewerChanged();
   }
 }

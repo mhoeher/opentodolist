@@ -31,7 +31,7 @@
 #include "systemintegration/commandhandler.h"
 #include "systemintegration/statusnotifiericon.h"
 
-#include "qtquick2applicationviewer.h"
+#include <QQmlApplicationEngine>
 
 namespace OpenTodoList {
 namespace SystemIntegration {
@@ -47,7 +47,7 @@ class Application : public ApplicationBase
     Q_OBJECT
     Q_PROPERTY(OpenTodoList::SystemIntegration::ApplicationInstance* instance READ instance CONSTANT)
     Q_PROPERTY(OpenTodoList::SystemIntegration::CommandHandler* handler READ handler CONSTANT)
-    Q_PROPERTY(QtQuick2ApplicationViewer* viewer READ viewer NOTIFY viewerChanged )
+    Q_PROPERTY(QQmlApplicationEngine* viewer READ viewer NOTIFY viewerChanged )
     Q_PROPERTY(OpenTodoList::SystemIntegration::StatusNotifierIcon* notifierIcon READ notifierIcon CONSTANT)
     Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database CONSTANT)
 
@@ -59,7 +59,7 @@ public:
 
     ApplicationInstance* instance() const;
     CommandHandler* handler() const;
-    QtQuick2ApplicationViewer* viewer() const;
+    QQmlApplicationEngine* viewer() const;
     StatusNotifierIcon* notifierIcon() const;
     DataBase::Database* database() const;
 
@@ -76,7 +76,7 @@ private:
 
     ApplicationInstance         *m_instance;
     CommandHandler              *m_handler;
-    QtQuick2ApplicationViewer   *m_viewer;
+    QQmlApplicationEngine       *m_viewer;
     StatusNotifierIcon          *m_notifier;
     QString                      m_basePath;
 
@@ -85,7 +85,7 @@ private:
     bool                         m_pluginsRegistered;
 
     void registerPlugins();
-    void setupPaths(QtQuick2ApplicationViewer *viewer = nullptr);
+    void setupPaths(QQmlApplicationEngine *viewer = nullptr);
     void showNotifierIcon();
 
 private slots:

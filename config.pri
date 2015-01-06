@@ -4,7 +4,7 @@ OPENTODOLIST_VERSION=0.1.0
 # Pass in values via defines
 DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 
-include(OpenTodoList/qtquick2applicationviewer/qtquick2applicationviewer.pri)
+include(OpenTodoList/deploy.pri)
 
 # Function to setup applications
 defineTest(setupApplication) {

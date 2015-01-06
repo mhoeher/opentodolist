@@ -4,6 +4,11 @@ TEMPLATE = app
 include(../config.pri)
 setupApplication()
 
+debug {
+  qml.source = qml
+  DEPLOYMENTFOLDERS += qml
+}
+
 # Install Application Icons on UNIX:
 !android|!macx|!ios {
     icons.source = icons

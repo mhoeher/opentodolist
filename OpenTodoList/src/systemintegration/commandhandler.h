@@ -20,7 +20,9 @@
 #define PRIMARYINSTANCECOMMANDHANDLER_H
 
 #include <QObject>
-#include "QWindow"
+#include <QQmlApplicationEngine>
+
+class QWindow;
 
 namespace OpenTodoList {
 
@@ -40,13 +42,16 @@ public:
     static QString toggle();
     static QString terminate();
 
-    QWindow *applicationWindow() const;
-    void setApplicationWindow(QWindow *applicationWindow);
+    QQmlApplicationEngine *applicationWindow() const;
+    void setApplicationWindow(QQmlApplicationEngine *applicationWindow);
 
 signals:
 
     void customCommandReceived( const QString command );
     void requestCreateWindow();
+    void requestShow();
+    void requestHide();
+    void requestToggleWindow();
 
 public slots:
 
@@ -64,7 +69,7 @@ private:
     static const QString ToggleWindowCommand;
     static const QString TerminateApplicationCommand;
 
-    QWindow *m_applicationWindow;
+    QQmlApplicationEngine *m_applicationWindow;
 };
 
 } /* SystemIntegration */

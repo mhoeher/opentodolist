@@ -19,6 +19,7 @@
 #include "systemintegration/commandhandler.h"
 
 #include <QCoreApplication>
+#include <QWindow>
 
 #ifdef Q_OS_ANDROID
 #include <QtAndroidExtras/QAndroidJniObject>
@@ -39,8 +40,8 @@ const QString CommandHandler::TerminateApplicationCommand = "application.termina
    @brief Constructor
  */
 CommandHandler::CommandHandler(QObject *parent) :
-    QObject(parent),
-    m_applicationWindow( 0 )
+  QObject(parent),
+  m_applicationWindow( 0 )
 {
 }
 
@@ -49,7 +50,7 @@ CommandHandler::CommandHandler(QObject *parent) :
  */
 QString CommandHandler::show()
 {
-    return ShowWindowCommand;
+  return ShowWindowCommand;
 }
 
 /**
@@ -57,7 +58,7 @@ QString CommandHandler::show()
  */
 QString CommandHandler::hide()
 {
-    return HideWindowCommand;
+  return HideWindowCommand;
 }
 
 /**
@@ -65,7 +66,7 @@ QString CommandHandler::hide()
  */
 QString CommandHandler::toggle()
 {
-    return ToggleWindowCommand;
+  return ToggleWindowCommand;
 }
 
 /**
@@ -73,7 +74,7 @@ QString CommandHandler::toggle()
  */
 QString CommandHandler::terminate()
 {
-    return TerminateApplicationCommand;
+  return TerminateApplicationCommand;
 }
 
 /**
@@ -87,21 +88,21 @@ QString CommandHandler::terminate()
  */
 void CommandHandler::handleMessage(const QString &message)
 {
-    QStringList list = message.split( "\n" );
-    if ( list.count() > 0 ) {
-        QString commandName = list.at( 0 );
-        if ( commandName == ShowWindowCommand ) {
-            showWindow();
-        } else if (commandName == HideWindowCommand ) {
-            hideWindow();
-        } else if ( commandName == ToggleWindowCommand ) {
-            toggleWindow();
-        } else if ( commandName == TerminateApplicationCommand ) {
-            terminate();
-        } else {
-            emit customCommandReceived( message );
-        }
+  QStringList list = message.split( "\n" );
+  if ( list.count() > 0 ) {
+    QString commandName = list.at( 0 );
+    if ( commandName == ShowWindowCommand ) {
+      showWindow();
+    } else if (commandName == HideWindowCommand ) {
+      hideWindow();
+    } else if ( commandName == ToggleWindowCommand ) {
+      toggleWindow();
+    } else if ( commandName == TerminateApplicationCommand ) {
+      terminate();
+    } else {
+      emit customCommandReceived( message );
     }
+  }
 }
 
 /**
@@ -109,13 +110,11 @@ void CommandHandler::handleMessage(const QString &message)
  */
 void CommandHandler::showWindow()
 {
-    if ( m_applicationWindow ) {
-        m_applicationWindow->hide();
-        m_applicationWindow->show();
-        m_applicationWindow->raise();
-    } else {
-      emit requestCreateWindow();
-    }
+  if ( m_applicationWindow ) {
+    emit requestShow();
+  } else {
+    emit requestCreateWindow();
+  }
 }
 
 /**
@@ -127,9 +126,9 @@ void CommandHandler::hideWindow()
   QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/Activity",
                                             "minimizeActivity");
 #else
-    if ( m_applicationWindow ) {
-        m_applicationWindow->hide();
-    }
+  if ( m_applicationWindow ) {
+    emit requestHide();
+  }
 #endif
 }
 
@@ -138,39 +137,34 @@ void CommandHandler::hideWindow()
  */
 void CommandHandler::toggleWindow()
 {
-    if ( m_applicationWindow ) {
-        if ( m_applicationWindow->visibility() == QWindow::Hidden ||
-             m_applicationWindow->visibility() == QWindow::Minimized ) {
-            showWindow();
-        } else {
-            hideWindow();
-        }
-    } else {
-      showWindow();
-    }
+  if ( m_applicationWindow ) {
+    emit requestToggleWindow();
+  } else {
+    showWindow();
+  }
 }
 
 void CommandHandler::terminateApplication()
 {
-    QCoreApplication::quit();
+  QCoreApplication::quit();
 }
 
 /**
    @brief The application's main window.
    @sa setApplicationWindow()
  */
-QWindow *CommandHandler::applicationWindow() const
+QQmlApplicationEngine *CommandHandler::applicationWindow() const
 {
-    return m_applicationWindow;
+  return m_applicationWindow;
 }
 
 /**
    @brief Sets the application's main window
    @sa applicationWindow()
  */
-void CommandHandler::setApplicationWindow(QWindow *applicationWindow)
+void CommandHandler::setApplicationWindow(QQmlApplicationEngine *applicationWindow)
 {
-    m_applicationWindow = applicationWindow;
+  m_applicationWindow = applicationWindow;
 }
 
 } /* SystemIntegration */

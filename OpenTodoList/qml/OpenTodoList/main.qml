@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.2
+import QtQuick.Window 2.0
 
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
@@ -26,8 +27,9 @@ import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Views 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
 
-Rectangle {
+Window {
     id: root
+    objectName: mainWindow
 
     width: 800
     height: 600
@@ -40,15 +42,27 @@ Rectangle {
     }
 
 
-    onFocusChanged: {
+    /*onFocusChanged: {
         // required to give back focus to the page stack whenever a
         // overlay has been displayed
         if ( focus ) {
             pageStack.focus = true
         }
-    }
+    }*/
 
     Component.onCompleted: {
+        application.handler.requestShow.connect( function() { show(); raise(); } );
+        application.handler.requestHide.connect( function() { hide(); } );
+        application.handler.requestToggleWindow.connect( function() {
+            if ( visible ) {
+                hide();
+            } else {
+                show();
+                raise();
+            }
+        } );
+
+
         width = settings.getValue( "OpenTodoList/Window/width", width );
         height = settings.getValue( "OpenTodoList/Window/height", height );
         ViewSettings.todoSortMode = settings.getValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
@@ -96,6 +110,5 @@ Rectangle {
             application.handler.terminateApplication()
         }
     }
-
 }
 
