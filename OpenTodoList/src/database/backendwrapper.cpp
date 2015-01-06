@@ -387,7 +387,7 @@ bool BackendWrapper::start()
       setStatus( Running );
       m_syncTimer = new QTimer( this );
       // TODO: Look for more intelligent ways of syncing
-      m_syncTimer->setInterval( 10 * 60 * 1000 ); // Save every 10 minutes
+      m_syncTimer->setInterval( 1 ); // Save as soon as we reach event loop
       m_syncTimer->setSingleShot( true );
       connect( m_syncTimer, &QTimer::timeout, [this] { this->sync(); } );
       m_syncTimer->start();
@@ -423,6 +423,7 @@ void BackendWrapper::sync()
 {
   qDebug() << "Sync tick in backend" << m_backend->name() << "started";
   m_backend->sync();
+  m_syncTimer->setInterval( 10 * 60 * 1000 ); // Save every 10 minutes
   m_syncTimer->start();
   qDebug() << "Sync tick in backend" << m_backend->name() << "finished";
 }
