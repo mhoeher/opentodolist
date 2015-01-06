@@ -46,6 +46,7 @@ public:
 signals:
 
     void customCommandReceived( const QString command );
+    void requestCreateWindow();
 
 public slots:
 

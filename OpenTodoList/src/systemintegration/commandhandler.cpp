@@ -109,6 +109,8 @@ void CommandHandler::showWindow()
         m_applicationWindow->hide();
         m_applicationWindow->show();
         m_applicationWindow->raise();
+    } else {
+      emit requestCreateWindow();
     }
 }
 
@@ -134,6 +136,8 @@ void CommandHandler::toggleWindow()
         } else {
             hideWindow();
         }
+    } else {
+      showWindow();
     }
 }
 

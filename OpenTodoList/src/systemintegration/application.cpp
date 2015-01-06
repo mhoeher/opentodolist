@@ -41,15 +41,22 @@ Application::Application(int &argc, char *argv[]) :
   m_database( nullptr ),
   m_pluginsRegistered( false )
 {
-  // keep app open in background
-#ifndef Q_OS_ANDROID
-  setQuitOnLastWindowClosed( false );
-#endif
+}
 
-  m_viewer = new QtQuick2ApplicationViewer();
+Application::~Application()
+{
+  if ( m_viewer ) {
+    delete m_viewer;
+  }
+}
+
+void Application::prepare()
+{
+  // keep app open in background
+  setQuitOnLastWindowClosed( false );
 
   m_handler = new CommandHandler( this );
-  m_handler->setApplicationWindow( m_viewer );
+  connect( m_handler, &CommandHandler::requestCreateWindow, [this] { showWindow(); } );
 
   // ensure app is running at most once
   m_instance = new ApplicationInstance( QCoreApplication::applicationName() );
@@ -74,11 +81,6 @@ Application::Application(int &argc, char *argv[]) :
   if ( m_instance->state() == ApplicationInstance::InstanceIsPrimary ) {
     m_database = new DataBase::Database( this );
   }
-}
-
-Application::~Application()
-{
-  delete m_viewer;
 }
 
 ApplicationInstance *Application::instance() const
@@ -138,19 +140,22 @@ void Application::registerPlugins()
 
 void Application::showWindow()
 {
-  registerPlugins();
-  m_viewer->engine()->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
-  m_viewer->addImportPath( QStringLiteral("qrc:/qml") );
-  m_viewer->setMainQmlFile("qrc:/qml/OpenTodoList/main.qml");
-  m_viewer->showExpanded();
+  QMetaObject::invokeMethod( this, "showWindowImplementation", Qt::QueuedConnection );
 }
 
-void Application::setupPaths()
+void Application::hideWindow()
+{
+  QMetaObject::invokeMethod( this, "hideWindowImplementation", Qt::QueuedConnection );
+}
+
+void Application::setupPaths( QtQuick2ApplicationViewer *viewer )
 {
   // Add plugin search paths for QML plugins
 #ifdef Q_OS_ANDROID
   QCoreApplication::addLibraryPath( QCoreApplication::applicationDirPath() );
-  m_viewer->engine()->addPluginPath( QCoreApplication::applicationDirPath() );
+  if ( viewer ) {
+    viewer->engine()->addPluginPath( QCoreApplication::applicationDirPath() );
+  }
   m_basePath = applicationDirPath();
 #else
   QString m_basePath = applicationDirPath();
@@ -162,9 +167,12 @@ void Application::setupPaths()
   QDir baseDir( m_basePath );
   if ( baseDir.cdUp() ) {
     if ( baseDir.cd( pluginsDirName ) ) {
-      QCoreApplication::addLibraryPath( baseDir.absolutePath() );
-      foreach ( QString entry, baseDir.entryList( QDir::Dirs ) ) {
-        m_viewer->engine()->addPluginPath( baseDir.absoluteFilePath( entry ) );
+      if ( !viewer ) {
+        QCoreApplication::addLibraryPath( baseDir.absolutePath() );
+      } else {
+        foreach ( QString entry, baseDir.entryList( QDir::Dirs ) ) {
+          viewer->engine()->addPluginPath( baseDir.absoluteFilePath( entry ) );
+        }
       }
     }
   }
@@ -182,6 +190,30 @@ void Application::showNotifierIcon()
   m_notifier->setApplicationIcon( "qrc:/qml/OpenTodoList/OpenTodoList.png" );
 #endif
   m_notifier->show();
+}
+
+void Application::showWindowImplementation()
+{
+  if ( !m_viewer ) {
+    m_viewer = new QtQuick2ApplicationViewer();
+    m_handler->setApplicationWindow( m_viewer );
+    setupPaths(m_viewer);
+    registerPlugins();
+    m_viewer->engine()->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
+    m_viewer->addImportPath( QStringLiteral("qrc:/qml") );
+    m_viewer->setMainQmlFile("qrc:/qml/OpenTodoList/main.qml");
+    m_viewer->showExpanded();
+    emit viewerChanged();
+  }
+}
+
+void Application::hideWindowImplementation()
+{
+  if ( m_viewer ) {
+    m_viewer->deleteLater();
+    m_viewer = nullptr;
+    emit viewerChanged();
+  }
 }
 
 } // SystemIntegration

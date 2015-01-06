@@ -47,13 +47,15 @@ class Application : public ApplicationBase
     Q_OBJECT
     Q_PROPERTY(OpenTodoList::SystemIntegration::ApplicationInstance* instance READ instance CONSTANT)
     Q_PROPERTY(OpenTodoList::SystemIntegration::CommandHandler* handler READ handler CONSTANT)
-    Q_PROPERTY(QtQuick2ApplicationViewer* viewer READ viewer CONSTANT)
+    Q_PROPERTY(QtQuick2ApplicationViewer* viewer READ viewer NOTIFY viewerChanged )
     Q_PROPERTY(OpenTodoList::SystemIntegration::StatusNotifierIcon* notifierIcon READ notifierIcon CONSTANT)
     Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database CONSTANT)
 
 public:
     explicit Application(int &argc, char *argv[]);
     virtual ~Application();
+
+  void prepare();
 
     ApplicationInstance* instance() const;
     CommandHandler* handler() const;
@@ -62,8 +64,11 @@ public:
     DataBase::Database* database() const;
 
     void showWindow();
+    void hideWindow();
 
 signals:
+
+    void viewerChanged();
 
 public slots:
 
@@ -80,8 +85,13 @@ private:
     bool                         m_pluginsRegistered;
 
     void registerPlugins();
-    void setupPaths();
+    void setupPaths(QtQuick2ApplicationViewer *viewer = nullptr);
     void showNotifierIcon();
+
+private slots:
+
+    void showWindowImplementation();
+    void hideWindowImplementation();
 
 };
 
