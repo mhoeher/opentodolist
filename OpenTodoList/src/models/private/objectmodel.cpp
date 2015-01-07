@@ -29,7 +29,8 @@ ObjectModel::ObjectModel(const char *uuidPropertyName, QObject *parent) :
   m_uuidPropertyName(uuidPropertyName),
   m_readObjects(),
   m_updateTimer(),
-  m_sortTimer()
+  m_sortTimer(),
+  m_textProperty( "objectName" )
 {
   connect( this, &ObjectModel::databaseChanged, this, &ObjectModel::refresh );
 
@@ -70,6 +71,7 @@ QVariant ObjectModel::data(const QModelIndex &index, int role) const
   if ( index.isValid() && index.row() < m_objects.size() ) {
     switch ( role ) {
     case Qt::DisplayRole: return QVariant::fromValue<QObject*>( m_objects.at( index.row() ) );
+    case ObjectTextRole: return m_objects.at(index.row())->property(m_textProperty);
     default:
       break;
     }
@@ -104,6 +106,13 @@ void ObjectModel::sort(int column, Qt::SortOrder order)
       }
     }
   }
+}
+
+QHash<int, QByteArray> ObjectModel::roleNames() const
+{
+  auto result = QAbstractListModel::roleNames();
+  result.insert( ObjectTextRole, "text" );
+  return result;
 }
 
 Database *ObjectModel::database() const
@@ -181,8 +190,32 @@ int ObjectModel::compareObjects(QObject *left, QObject *right) const
 }
 
 /**
-   @brief Adds an object to the model
+   @brief The name of the "text" property of the objects
 
+   This is used to specify which propery shall be returned when
+   the object is requested as "text" using the ObjectTextRole role.
+
+   @sa setTextProperty()
+ */
+const char *ObjectModel::textProperty() const
+{
+    return m_textProperty;
+}
+
+/**
+   @brief Sets the text role propery name
+
+   @sa textProperty()
+ */
+void ObjectModel::setTextProperty(const char *textProperty)
+{
+    m_textProperty = textProperty;
+}
+
+
+/**
+   @brief Adds an object to the model
+   
    This adds the @p object to the model, inserting it at position @p index.
    If the index is either smaller than 0 or greater than the size of lists of
    already contained objects, the object will be appended to the list.
@@ -218,9 +251,32 @@ void ObjectModel::removeObject(QObject *object)
   }
 }
 
-QObjectList ObjectModel::objects() const
+int ObjectModel::objectsCountFn(QQmlListProperty<QObject> *prop)
 {
-  return m_objects;
+  ObjectModel *model = dynamic_cast<ObjectModel*>( prop->object );
+  if ( model ) {
+    return model->m_objects.size();
+  }
+  return 0;
+}
+
+QObject *ObjectModel::objectsAtFn(QQmlListProperty<QObject> *prop, int index)
+{
+  ObjectModel *model = dynamic_cast<ObjectModel*>( prop->object );
+  if ( model ) {
+    if ( index >= 0 && index < model->m_objects.size() ) {
+      return model->m_objects.at( index );
+    }
+  }
+  return nullptr;
+}
+
+QQmlListProperty<QObject> ObjectModel::objects()
+{
+  return QQmlListProperty<QObject>( this,
+                                    this,
+                                    &ObjectModel::objectsCountFn,
+                                    &ObjectModel::objectsAtFn );
 }
 
 void ObjectModel::objectDestroyed(QObject *obj)

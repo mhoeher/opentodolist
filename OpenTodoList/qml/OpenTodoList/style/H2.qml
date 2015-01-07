@@ -1,6 +1,6 @@
 /*
  *  OpenTodoList - A todo and task manager
- *  Copyright (C) 2014 - 2015 Martin Höher <martin@rpdev.net>
+ *  Copyright (C) 2015 Martin Höher <martin@rpdev.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,15 +16,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-pragma Singleton
+import QtQuick 2.0
+import "." as Style
 
-import QtQuick 2.2
-
-QtObject {
-    id: fonts
-
-    property FontLoader symbols: FontLoader {
-        id: symbolsFont
-        source: "fontawesome-webfont.ttf"
-    }
+Text {
+    id: h2
+    font.pointSize: Style.Fonts.h2
+    font.bold: true
 }
+

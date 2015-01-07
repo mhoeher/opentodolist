@@ -30,6 +30,7 @@ TaskModel::TaskModel(QObject *parent) :
   ObjectModel(ObjectInfo<Task>::classUuidProperty(), parent),
   m_todo()
 {
+  setTextProperty( "title" );
   connect( this, &TaskModel::databaseChanged, this, &TaskModel::refresh );
   connect( this, &TaskModel::todoChanged, this, &TaskModel::refresh );
 

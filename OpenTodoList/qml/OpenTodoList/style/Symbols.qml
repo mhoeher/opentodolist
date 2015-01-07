@@ -55,6 +55,8 @@ QtObject {
 
     readonly property string verticalEllipsis: "\uf142"
     readonly property string horizontalEllipsis: "\uf141"
+    readonly property string bars: "\uf0c9"
+
 
     readonly property string trash: "\uf014"
     readonly property string move: "\uf047"

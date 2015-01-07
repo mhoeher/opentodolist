@@ -27,6 +27,7 @@ namespace Models {
 AccountModel::AccountModel(QObject *parent) :
     ObjectModel(ObjectInfo<Account>::classUuidProperty(), parent)
 {
+  setTextProperty( "name" );
   connect( this, &AccountModel::objectAdded, [this] (QObject *object) {
     Account *account = dynamic_cast< Account* >( object );
     if ( account ) {

@@ -1,0 +1,11 @@
+singleton Colors Colors.qml
+singleton Fonts Fonts.qml
+singleton Measures Measures.qml
+singleton Symbols Symbols.qml
+P P.qml
+H1 H1.qml
+H2 H2.qml
+H3 H3.qml
+H4 H4.qml
+H5 H5.qml
+H6 H6.qml

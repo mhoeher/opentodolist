@@ -39,8 +39,13 @@ class ObjectModel : public QAbstractListModel
 {
   Q_OBJECT
   Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
-  Q_PROPERTY(QObjectList objects READ objects NOTIFY objectsChanged)
+  Q_PROPERTY(QQmlListProperty<QObject> objects READ objects NOTIFY objectsChanged)
 public:
+
+  enum {
+    ObjectTextRole = Qt::UserRole + 1
+  };
+
   ObjectModel( const char *uuidPropertyName, QObject *parent = 0 );
   ~ObjectModel();
 
@@ -48,11 +53,15 @@ public:
   int rowCount(const QModelIndex &parent) const override;
   QVariant data(const QModelIndex &index, int role) const override;
   void sort(int column, Qt::SortOrder order) override;
+  QHash<int, QByteArray> roleNames() const override;
 
   Database *database() const;
   void setDatabase(Database *database);
 
-  QObjectList objects() const;
+  QQmlListProperty<QObject> objects();
+
+  const char *textProperty() const;
+  void setTextProperty(const char *textProperty);
 
 public slots:
 
@@ -118,9 +127,13 @@ private:
   QSet<QString> m_readObjects;
   QTimer        m_updateTimer;
   QTimer        m_sortTimer;
+  const char   *m_textProperty;
 
   void addObject( QObject *object, int index = -1 );
   void removeObject( QObject *object );
+
+  static int objectsCountFn( QQmlListProperty<QObject> *prop );
+  static QObject* objectsAtFn( QQmlListProperty<QObject> *prop, int index );
 
 private slots:
 

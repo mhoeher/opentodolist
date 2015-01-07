@@ -33,6 +33,7 @@ namespace Models {
 TodoListModel::TodoListModel(QObject *parent) :
     ObjectModel( ObjectInfo<TodoList>::classUuidProperty(), parent )
 {
+  setTextProperty("name");
   connect( this, &TodoListModel::objectAdded, [this] (QObject *object) {
     TodoList *todoList = dynamic_cast< TodoList* >( object );
     if ( todoList ) {

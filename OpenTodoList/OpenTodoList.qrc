@@ -43,18 +43,39 @@
     <file alias="TaskViewDelegate.qml">qml/net/rpdev/OpenTodoList/Views/TaskViewDelegate.qml</file>
   </qresource>
   <qresource prefix="/qml/net/rpdev/OpenTodoList/Theme">
-    <file alias="fontawesome-webfont.license.txt">qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.license.txt</file>
-    <file alias="Symbols.qml">qml/net/rpdev/OpenTodoList/Theme/Symbols.qml</file>
-    <file alias="Measures.qml">qml/net/rpdev/OpenTodoList/Theme/Measures.qml</file>
     <file alias="qmldir">qml/net/rpdev/OpenTodoList/Theme/qmldir</file>
-    <file alias="Colors.qml">qml/net/rpdev/OpenTodoList/Theme/Colors.qml</file>
-    <file alias="fontawesome-webfont.ttf">qml/net/rpdev/OpenTodoList/Theme/fontawesome-webfont.ttf</file>
-    <file alias="Fonts.qml">qml/net/rpdev/OpenTodoList/Theme/Fonts.qml</file>
   </qresource>
   <qresource prefix="/qml/OpenTodoList">
     <file alias="TodoPage.qml">qml/OpenTodoList/TodoPage.qml</file>
     <file alias="OpenTodoList.png">qml/OpenTodoList/OpenTodoList.png</file>
     <file alias="TodoListsPage.qml">qml/OpenTodoList/TodoListsPage.qml</file>
     <file alias="main.qml">qml/OpenTodoList/main.qml</file>
+  </qresource>
+  <qresource prefix="/qml/OpenTodoList/style">
+    <file alias="fontawesome-webfont.license.txt">qml/OpenTodoList/style/fontawesome-webfont.license.txt</file>
+    <file alias="H2.qml">qml/OpenTodoList/style/H2.qml</file>
+    <file alias="Symbols.qml">qml/OpenTodoList/style/Symbols.qml</file>
+    <file alias="Measures.qml">qml/OpenTodoList/style/Measures.qml</file>
+    <file alias="qmldir">qml/OpenTodoList/style/qmldir</file>
+    <file alias="H5.qml">qml/OpenTodoList/style/H5.qml</file>
+    <file alias="H6.qml">qml/OpenTodoList/style/H6.qml</file>
+    <file alias="H3.qml">qml/OpenTodoList/style/H3.qml</file>
+    <file alias="H4.qml">qml/OpenTodoList/style/H4.qml</file>
+    <file alias="Colors.qml">qml/OpenTodoList/style/Colors.qml</file>
+    <file alias="H1.qml">qml/OpenTodoList/style/H1.qml</file>
+    <file alias="P.qml">qml/OpenTodoList/style/P.qml</file>
+    <file alias="fontawesome-webfont.ttf">qml/OpenTodoList/style/fontawesome-webfont.ttf</file>
+    <file alias="Fonts.qml">qml/OpenTodoList/style/Fonts.qml</file>
+  </qresource>
+  <qresource prefix="/qml/OpenTodoList/components">
+    <file alias="HeaderBar.qml">qml/OpenTodoList/components/HeaderBar.qml</file>
+    <file alias="NavigationBar.qml">qml/OpenTodoList/components/NavigationBar.qml</file>
+    <file alias="qmldir">qml/OpenTodoList/components/qmldir</file>
+    <file alias="ItemBox.qml">qml/OpenTodoList/components/ItemBox.qml</file>
+    <file alias="Page.qml">qml/OpenTodoList/components/Page.qml</file>
+  </qresource>
+  <qresource prefix="/qml/OpenTodoList/pages">
+    <file alias="TodoListsPage.qml">qml/OpenTodoList/pages/TodoListsPage.qml</file>
+    <file alias="qmldir">qml/OpenTodoList/pages/qmldir</file>
   </qresource>
 </RCC>

@@ -43,6 +43,7 @@ TodoModel::TodoModel(QObject *parent) :
     m_limitOffset( -1 ),
     m_limitCount( -1 )
 {
+    setTextProperty("title");
     connect( this, &TodoModel::todoListChanged, this, &TodoModel::refresh );
     connect( this, &TodoModel::queryTypeChanged, this, &TodoModel::refresh );
     connect( this, &TodoModel::filterChanged, this, &TodoModel::refresh );

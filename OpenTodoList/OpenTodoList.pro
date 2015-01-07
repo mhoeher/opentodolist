@@ -199,4 +199,8 @@ OTHER_FILES += \
 
 DISTFILES += \
     android/src/net/rpdev/OpenTodoList/Activity.java \
-    android/src/net/rpdev/OpenTodoList/Service.java
+    android/src/net/rpdev/OpenTodoList/Service.java \
+    qml/OpenTodoList/style/qmldir \
+    qml/OpenTodoList/components/qmldir \
+    qml/OpenTodoList/pages/qmldir \
+    qml/OpenTodoList/app/qmldir

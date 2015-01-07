@@ -17,17 +17,127 @@
  */
 
 import QtQuick 2.2
-import QtQuick.Window 2.2
+import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.2
+import QtQuick.Layouts 1.1
 
 import net.rpdev.OpenTodoList.Core 1.0
+
+/*import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
 import net.rpdev.OpenTodoList.Models 1.0
 import net.rpdev.OpenTodoList.SystemIntegration 1.0
 import net.rpdev.OpenTodoList.Components 1.0
 import net.rpdev.OpenTodoList.Views 1.0
 import net.rpdev.OpenTodoList.Theme 1.0
+*/
 
-Window {
+import "style" as Style
+import "components" as Components
+import "pages" as Pages
+import "app" as App
+
+ApplicationWindow {
+    id: root
+
+    width: 800
+    height: 600
+
+    Component.onCompleted: {
+        application.handler.requestShow.connect( function() { show(); raise(); } );
+        application.handler.requestHide.connect( function() { hide(); } );
+        application.handler.requestToggleWindow.connect( function() {
+            if ( visible ) {
+                hide();
+            } else {
+                show();
+                raise();
+            }
+        } );
+
+        width = settings.getValue( "OpenTodoList/Window/width", width );
+        height = settings.getValue( "OpenTodoList/Window/height", height );
+    }
+
+    onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
+    onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
+
+    Settings {
+        id: settings
+    }
+
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr( "Todos" )
+            MenuItem {
+                text: qsTr( "Quit" )
+                shortcut: StandardKey.Quit
+                action: App.Actions.quit
+            }
+        }
+    }
+
+    toolBar: ToolBar {
+        style: ToolBarStyle {
+            background: Rectangle {
+                color: Style.Colors.primary
+            }
+        }
+
+        RowLayout {
+            anchors.fill: parent
+
+            ToolButton {
+                id: toggleNavButton
+                text: Style.Symbols.bars
+                onClicked: {
+                    navBar.state = ( navBar.state === "shown" ) ?
+                                "" : "shown";
+                }
+                style: ButtonStyle {
+                    label: Style.H1 {
+                        text: toggleNavButton.text
+                        color: Style.Colors.lightText
+                    }
+                    background: Item{}
+                }
+            }
+
+            Style.H1 {
+                text: todoListsPage.title
+                Layout.fillWidth: true
+                color: Style.Colors.lightText
+            }
+        }
+    }
+
+    Pages.TodoListsPage {
+        id: todoListsPage
+        anchors.fill: parent
+    }
+
+    Components.NavigationBar {
+        id: navBar
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: Math.min( Style.Measures.mWidth * 30, parent.width )
+        x: -width
+
+        states: State {
+            name: "shown"
+            PropertyChanges {
+                target: navBar
+                x: 0
+            }
+        }
+
+        Behavior on x { SmoothedAnimation { duration: 300 } }
+    }
+}
+
+/*Window {
     id: root
 
     width: 800
@@ -106,5 +216,10 @@ Window {
             application.handler.terminateApplication()
         }
     }
-}
+
+    Rectangle {
+        anchors.fill: parent
+        color: Style.Style.colors.
+    }
+}*/
 

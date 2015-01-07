@@ -23,6 +23,10 @@ import QtQuick 2.2
 QtObject {
     id: colors
 
+    readonly property color darkWindowBack: "#323232"
+    readonly property color darkWindowBackAlt: "#555555"
+
+
     readonly property color window: "#eee"
     readonly property color button: "#ddd"
     readonly property color activeButton: "#b08ea9"
@@ -32,7 +36,7 @@ QtObject {
     readonly property color lightText: "white"
     readonly property color border: Qt.darker( button, 1.3 )
     readonly property color activeBorder: secondary1
-    readonly property color listItem: Qt.darker( window, 1.05 )
+    readonly property color listItem: Qt.lighter( window, 1.05 )
     readonly property color listItemActive: Qt.darker( window, 1.5 )
 
     readonly property color primary: "#287500"

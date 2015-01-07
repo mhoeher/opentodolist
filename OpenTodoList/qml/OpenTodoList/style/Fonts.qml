@@ -17,32 +17,24 @@
  */
 
 pragma Singleton
+
 import QtQuick 2.2
+import "."
 
 QtObject {
-    id: measures
+    id: fonts
 
-    readonly property int mWidth: hiddenText.width
-    readonly property int mHeight: hiddenText.height
-
-    readonly property int smallBorderWidth: 1
-    readonly property int midBorderWidth: 2
-    readonly property int largeBorderWidth: 4
-    readonly property int extraLargeBorderWidth: 8
-
-
-    readonly property int extraTinySpace: mWidth * 0.25
-    readonly property int tinySpace: mWidth * 0.5
-    readonly property int smallSpace: mWidth
-    readonly property int midSpace: mWidth * 2
-    readonly property int largeSpace: mWidth * 4
-    readonly property int extraLargeSpace: mWidth * 8
-
-    readonly property int minimumPageWidth: 15 * mWidth
-
-    property Text hiddenText: Text {
-        id: hiddenText
-        text: qsTr("M")
+    property FontLoader symbols: FontLoader {
+        id: symbolsFont
+        source: "fontawesome-webfont.ttf"
     }
+
+    readonly property int p: Measures.fontPointSize
+    readonly property int h1: h2 * 1.1
+    readonly property int h2: h3 * 1.1
+    readonly property int h3: h4 * 1.1
+    readonly property int h4: h5 * 1.1
+    readonly property int h5: h6 * 1.1
+    readonly property int h6: p * 1.1
 
 }

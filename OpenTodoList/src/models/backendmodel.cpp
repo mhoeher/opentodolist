@@ -28,6 +28,7 @@ namespace Models {
 BackendModel::BackendModel(QObject *parent) :
     ObjectModel(ObjectInfo<Backend>::classUuidProperty(), parent)
 {
+  setTextProperty( "title" );
   connect( this, &BackendModel::databaseChanged, this, &BackendModel::refresh );
 }
 
