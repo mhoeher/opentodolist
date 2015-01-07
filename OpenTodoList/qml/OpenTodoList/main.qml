@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.2
-import QtQuick.Window 2.0
+import QtQuick.Window 2.2
 
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
@@ -29,7 +29,6 @@ import net.rpdev.OpenTodoList.Theme 1.0
 
 Window {
     id: root
-    objectName: mainWindow
 
     width: 800
     height: 600
@@ -42,13 +41,11 @@ Window {
     }
 
 
-    /*onFocusChanged: {
-        // required to give back focus to the page stack whenever a
-        // overlay has been displayed
-        if ( focus ) {
-            pageStack.focus = true
+    onActiveFocusItemChanged: {
+        if ( activeFocusItem === null ) {
+            pageStack.focus = true;
         }
-    }*/
+    }
 
     Component.onCompleted: {
         application.handler.requestShow.connect( function() { show(); raise(); } );
@@ -61,7 +58,6 @@ Window {
                 raise();
             }
         } );
-
 
         width = settings.getValue( "OpenTodoList/Window/width", width );
         height = settings.getValue( "OpenTodoList/Window/height", height );

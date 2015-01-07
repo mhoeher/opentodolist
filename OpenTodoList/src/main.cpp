@@ -80,10 +80,6 @@ int main(int argc, char *argv[])
 
   SystemIntegration::Application *app = new SystemIntegration::Application( argc, argv );
 
-  QCommandLineOption startInBackgroundOption( { "B", "startInBackground" },
-                                              QCoreApplication::translate(
-                                                "main",
-                                                "Start service but do not show the user interface" ) );
   QCommandLineOption helpOption( { "h", "help" },
                                  QCoreApplication::translate(
                                    "main",
@@ -92,10 +88,29 @@ int main(int argc, char *argv[])
                                     QCoreApplication::translate(
                                       "main",
                                       "Shows the application version" ) );
+  QCommandLineOption startInBackgroundOption( { "B", "startInBackground" },
+                                              QCoreApplication::translate(
+                                                "main",
+                                                "Start service but do not show the user interface" ) );
+  QCommandLineOption mainQmlFileOption( "qml",
+                                        QCoreApplication::translate(
+                                          "main",
+                                          "The main QML file to be loaded. This is for "
+                                          "development and allows to dynamically change "
+                                          "the QML parts of the application." ),
+                                        "file");
+  QCommandLineOption reloadQmlOnChangeOption( { "R", "reloadOnChange" },
+                                              QCoreApplication::translate(
+                                                "main",
+                                                "Try to detect changes in QML base directory and "
+                                                "if such a change is detected, reload the QML files. "
+                                                "This option is for development purposes only." ) );
   QCommandLineParser parser;
   parser.addOption( helpOption );
   parser.addOption( versionOption );
   parser.addOption( startInBackgroundOption );
+  parser.addOption( mainQmlFileOption );
+  parser.addOption( reloadQmlOnChangeOption );
 
   parser.process(*app);
 
@@ -108,6 +123,13 @@ int main(int argc, char *argv[])
     delete app;
     return 0;
   } else {
+    if ( parser.isSet( mainQmlFileOption ) ) {
+      QFileInfo fi( parser.value( mainQmlFileOption ) );
+      if ( fi.isFile() && fi.isReadable() ) {
+        app->setMainQmlFile( fi.absoluteFilePath() );
+      }
+    }
+    app->setReloadQmlOnChange(parser.isSet(reloadQmlOnChangeOption));
     if ( startService( argc, argv ) == 0 ) {
       if ( !parser.isSet( startInBackgroundOption ) ) {
         showWindow();

@@ -32,6 +32,7 @@
 #include "systemintegration/statusnotifiericon.h"
 
 #include <QQmlApplicationEngine>
+#include <QFileSystemWatcher>
 
 namespace OpenTodoList {
 namespace SystemIntegration {
@@ -66,6 +67,12 @@ public:
     void showWindow();
     void hideWindow();
 
+    QString mainQmlFile() const;
+    void setMainQmlFile(const QString &mainQmlFile);
+
+    bool reloadQmlOnChange() const;
+    void setReloadQmlOnChange(bool reloadQmlOnChange);
+
 signals:
 
     void viewerChanged();
@@ -84,14 +91,22 @@ private:
 
     bool                         m_pluginsRegistered;
 
+    QString                      m_mainQmlFile;
+    bool                         m_reloadQmlOnChange;
+
+    QFileSystemWatcher          *m_fileSystemWatcher;
+
     void registerPlugins();
     void setupPaths(QQmlApplicationEngine *viewer = nullptr);
     void showNotifierIcon();
+    void watchQmlFiles();
+    void unwatchQmlFiles();
 
 private slots:
 
     void showWindowImplementation();
     void hideWindowImplementation();
+    void reloadQml();
 
 };
 

@@ -25,6 +25,7 @@
 #include "systemintegration/systemintegrationplugin.h"
 
 #include <QDir>
+#include <QDirIterator>
 #include <QProcess>
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -39,8 +40,21 @@ Application::Application(int &argc, char *argv[]) :
   m_viewer( nullptr ),
   m_notifier( nullptr ),
   m_database( nullptr ),
-  m_pluginsRegistered( false )
+  m_pluginsRegistered( false ),
+  m_mainQmlFile( "qrc:/qml/OpenTodoList/main.qml" ),
+  m_reloadQmlOnChange( false ),
+  m_fileSystemWatcher( new QFileSystemWatcher(this) )
 {
+  connect( m_fileSystemWatcher, &QFileSystemWatcher::fileChanged, [this](const QString &file) {
+    Q_UNUSED( file );
+    reloadQml();
+    watchQmlFiles();
+  });
+  connect( m_fileSystemWatcher, &QFileSystemWatcher::directoryChanged, [this]( const QString &path) {
+    Q_UNUSED( path );
+    reloadQml();
+    watchQmlFiles();
+  });
 }
 
 Application::~Application()
@@ -147,6 +161,26 @@ void Application::hideWindow()
 {
   QMetaObject::invokeMethod( this, "hideWindowImplementation", Qt::QueuedConnection );
 }
+QString Application::mainQmlFile() const
+{
+  return m_mainQmlFile;
+}
+
+void Application::setMainQmlFile(const QString &mainQmlFile)
+{
+  m_mainQmlFile = mainQmlFile;
+}
+bool Application::reloadQmlOnChange() const
+{
+  return m_reloadQmlOnChange;
+}
+
+void Application::setReloadQmlOnChange(bool reloadQmlOnChange)
+{
+  m_reloadQmlOnChange = reloadQmlOnChange;
+}
+
+
 
 void Application::setupPaths(QQmlApplicationEngine *viewer )
 {
@@ -192,19 +226,55 @@ void Application::showNotifierIcon()
   m_notifier->show();
 }
 
+void Application::watchQmlFiles()
+{
+  qDebug() << m_mainQmlFile;
+  unwatchQmlFiles();
+  QFileInfo fi( m_mainQmlFile.startsWith( "qrc:" ) ? m_mainQmlFile.mid(3) : m_mainQmlFile );
+  QDir dir = fi.dir();
+  if ( dir.cdUp() ) {
+    QDirIterator it( dir, QDirIterator::Subdirectories );
+    while ( it.hasNext() ) {
+      QString entry = it.next();
+      m_fileSystemWatcher->addPath( entry );
+    }
+  } else {
+    qWarning() << "Cannot go to QML base directory. QML file watching will not work!";
+  }
+}
+
+void Application::unwatchQmlFiles()
+{
+  if ( !m_fileSystemWatcher->files().isEmpty() ) {
+    m_fileSystemWatcher->removePaths( m_fileSystemWatcher->files() );
+  }
+  if ( !m_fileSystemWatcher->directories().isEmpty() ) {
+    m_fileSystemWatcher->removePaths( m_fileSystemWatcher->directories() );
+  }
+}
+
 void Application::showWindowImplementation()
 {
+  unwatchQmlFiles();
   if ( !m_viewer ) {
     m_viewer = new QQmlApplicationEngine(this);
     m_handler->setApplicationWindow( m_viewer );
     setupPaths(m_viewer);
     registerPlugins();
     m_viewer->rootContext()->setContextProperty( "application", QVariant::fromValue< QObject* >( this ) );
-    m_viewer->addImportPath( QStringLiteral("qrc:/qml") );
-    m_viewer->load(QUrl("qrc:/qml/OpenTodoList/main.qml"));
-    //m_viewer->showExpanded();
+    QFileInfo fi( m_mainQmlFile.startsWith( "qrc:" ) ? m_mainQmlFile.mid(3) : m_mainQmlFile );
+    QDir dir = fi.dir();
+    if ( dir.cdUp() ) {
+      m_viewer->addImportPath( dir.absolutePath() );
+    } else {
+      qWarning() << "Unable to go to base QML directory";
+    }
+    m_viewer->load(QUrl(m_mainQmlFile));
     m_handler->showWindow();
     emit viewerChanged();
+    if ( m_reloadQmlOnChange ) {
+      watchQmlFiles();
+    }
   }
 }
 
@@ -215,6 +285,12 @@ void Application::hideWindowImplementation()
     m_viewer = nullptr;
     emit viewerChanged();
   }
+}
+
+void Application::reloadQml()
+{
+  hideWindowImplementation();
+  showWindowImplementation();
 }
 
 } // SystemIntegration
