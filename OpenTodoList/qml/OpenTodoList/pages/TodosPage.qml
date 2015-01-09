@@ -204,32 +204,22 @@ Components.Page {
                     verticalCenter: parent.verticalCenter
                     margins: Style.Measures.tinySpace
                 }
+                validator: RegExpValidator { regExp: /.+/ }
                 onAccepted: plusButtonMouseArea.clicked(null)
                 onEditingFinished: focus = false
             }
 
-            Style.H4 {
+            Components.Symbol {
                 id: plusButton
-                font.family: Style.Fonts.symbols.name
-                text: Style.Symbols.plus
+                symbol: Style.Symbols.plus
                 color: Style.Colors.lightText
+                font.pointSize: Style.Fonts.h4
                 anchors {
                     right: parent.right
                     margins: Style.Measures.tinySpace
                     verticalCenter: parent.verticalCenter
                 }
-            }
-
-            Component {
-                id: newTodoComponent
-                Todo {}
-            }
-
-            MouseArea {
-                id: plusButtonMouseArea
-                anchors.centerIn: plusButton
-                width: Style.Measures.optButtonHeight
-                height: Style.Measures.optButtonHeight
+                enabled: newTodoTitle.acceptableInput
                 onClicked: {
                     var newTitle = newTodoTitle.text;
                     var newTodoProperties = DateUtils.inputToTodoProperties(newTitle);
@@ -245,6 +235,11 @@ Components.Page {
                         newTodoTitle.text = "";
                     }
                 }
+            }
+
+            Component {
+                id: newTodoComponent
+                Todo {}
             }
 
             states: State {

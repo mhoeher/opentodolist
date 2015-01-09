@@ -172,21 +172,15 @@ ListView {
                 }
                 onAccepted: header.createTask()
             }
-            Style.P {
+            Components.Symbol {
                 id: addTaskButton
-                font.family: Style.Fonts.symbols.name
-                text: Style.Symbols.plus
+                symbol: Style.Symbols.plus
                 color: Style.Colors.lightText
                 anchors {
                     right: parent.right
                     margins: Style.Measures.smallSpace
                     verticalCenter: parent.verticalCenter
                 }
-            }
-            MouseArea {
-                anchors.centerIn: addTaskButton
-                width: Style.Measures.optButtonHeight
-                height: Style.Measures.optButtonHeight
                 onClicked: header.createTask()
             }
         }

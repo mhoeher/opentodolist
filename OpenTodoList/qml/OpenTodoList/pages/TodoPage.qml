@@ -33,7 +33,7 @@ Components.Page {
 
     property Todo todo: null
 
-    title: qsTr( "Todo" )
+    title: todoProperties.title
 
     onTodoChanged: {
         dbConnection.registerTodo(todo, DatabaseConnection.KeepSynced)
@@ -43,7 +43,7 @@ Components.Page {
         id: todoProperties
 
         property alias todo: todoPage.todo
-        property string title: todo ? todo.title : ""
+        property string title: todo ? todo.title : qsTr("Unnamed Todo")
         property bool done: todo ? todo.done : false
         property int priority: todo ? todo.priority : -1
         property string formattedDueDate: todo ? Qt.formatDate( todo.dueDate ) : ""
@@ -78,22 +78,16 @@ Components.Page {
                              todoTitle.height,
                              todoTitleEdit.height) +
                     Style.Measures.midSpace
-            Style.P {
+            Components.Symbol {
                 id: checkBox
-                font.family: Style.Fonts.symbols.name
-                text: todoProperties.done ?
-                          Style.Symbols.checkedBox :
-                          Style.Symbols.uncheckedBox
+                symbol: todoProperties.done ?
+                            Style.Symbols.checkedBox :
+                            Style.Symbols.uncheckedBox
                 anchors {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
                     margins: Style.Measures.tinySpace
                 }
-            }
-            MouseArea {
-                anchors.centerIn: checkBox
-                width: Style.Measures.optButtonHeight
-                height: Style.Measures.optButtonHeight
                 onClicked: {
                     todoPage.todo.done = !todoPage.todo.done;
                 }

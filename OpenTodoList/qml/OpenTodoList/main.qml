@@ -61,52 +61,66 @@ ApplicationWindow {
 
     menuBar: MenuBar {
         Menu {
-            title: Qt.application.name
-            MenuItem {
-                shortcut: StandardKey.Close
-                text: qsTr( "Close Window" )
-                onTriggered: application.handler.hideWindow()
+            id: applicationMenu
+            title: "&" + Qt.application.name
+            visible: menusVisible.checked || Qt.platform.os == "osx"
+            Menu {
+                title: qsTr( "&Navigate" )
+                MenuItem {
+                    text: qsTr( "Go &Back" )
+                    shortcut: StandardKey.Back
+                    onTriggered: stackView.pop()
+                }
+                MenuItem {
+                    text: qsTr( "Show &Navigation" )
+                    onTriggered: navBar.toggle()
+                }
             }
-            MenuItem {
-                shortcut: StandardKey.Quit
-                text: qsTr( "Quit" )
-                onTriggered: application.handler.terminateApplication()
+            Menu {
+                title: qsTr( "&View" )
+                MenuItem {
+                    id: menusVisible
+                    visible: Qt.platform.os !== "osx"
+                    text: qsTr( "Show Menu Bar" )
+                    checkable: true
+                    checked: false
+                    shortcut: qsTr( "Ctrl+M" )
+                }
             }
-        }
-        Menu {
-            title: qsTr( "&Navigate" )
-            MenuItem {
-                text: qsTr( "Go Back" )
-                shortcut: StandardKey.Back
-                onTriggered: stackView.pop()
-            }
-            MenuItem {
-                text: qsTr( "Show Navigation" )
-                onTriggered: navBar.toggle()
-            }
-        }
-        Menu {
-            title: qsTr( "&Development Tools" )
-            MenuItem {
-                text: qsTr( "Print Current Focus Item" )
-                shortcut: "Ctrl+Shift+P"
-                onTriggered: {
-                    var cFI = activeFocusItem;
-                    console.debug( "Current Focus item is " + cFI + "[" + cFI.objectName + "]" )
-                    while ( cFI.parent !== null ) {
-                        cFI = cFI.parent;
-                        console.debug( "  --> " + cFI + "[" + cFI.objectName + "]" )
+
+            Menu {
+                title: qsTr( "&Development Tools" )
+                MenuItem {
+                    text: qsTr( "Print Current Focus Item" )
+                    shortcut: "Ctrl+Shift+P"
+                    onTriggered: {
+                        var cFI = activeFocusItem;
+                        console.debug( "Current Focus item is " + cFI + "[" + cFI.objectName + "]" )
+                        while ( cFI.parent !== null ) {
+                            cFI = cFI.parent;
+                            console.debug( "  --> " + cFI + "[" + cFI.objectName + "]" )
+                        }
+                    }
+                }
+                MenuItem {
+                    text: qsTr( "Unset Current Focus Item" )
+                    onTriggered: {
+                        defaultFocusHandler.focus = true;
+                        defaultFocusHandler.forceActiveFocus()
+                        console.debug( "Current Focus Item: " +
+                                      root.activeFocusItem );
                     }
                 }
             }
             MenuItem {
-                text: qsTr( "Unset Current Focus Item" )
-                onTriggered: {
-                    defaultFocusHandler.focus = true;
-                    defaultFocusHandler.forceActiveFocus()
-                    console.debug( "Current Focus Item: " +
-                                  root.activeFocusItem );
-                }
+                shortcut: StandardKey.Close
+                text: qsTr( "&Close Window" )
+                onTriggered: application.handler.hideWindow()
+            }
+            MenuItem {
+                shortcut: StandardKey.Quit
+                text: qsTr( "&Quit" )
+                onTriggered: application.handler.terminateApplication()
             }
         }
     }
@@ -121,9 +135,11 @@ ApplicationWindow {
         RowLayout {
             anchors.fill: parent
 
-            ToolButton {
+            Components.Symbol {
                 id: toggleNavButton
-                text: stackView.depth === 1 ? Style.Symbols.bars : Style.Symbols.singleLeft
+                symbol: stackView.depth === 1 ? Style.Symbols.bars : Style.Symbols.singleLeft
+                font.pointSize: Style.Fonts.h1
+                color: Style.Colors.lightText
                 onClicked: {
                     if ( stackView.depth === 1 ) {
                         navBar.toggle()
@@ -131,20 +147,17 @@ ApplicationWindow {
                         stackView.pop()
                     }
                 }
-
-                style: ButtonStyle {
-                    label: Style.H1 {
-                        text: toggleNavButton.text
-                        color: Style.Colors.lightText
-                    }
-                    background: Item{}
-                }
             }
-
             Style.H1 {
                 text: stackView.currentItem ? stackView.currentItem.title : ""
                 Layout.fillWidth: true
                 color: Style.Colors.lightText
+            }
+            Components.Symbol {
+                symbol: Style.Symbols.verticalEllipsis
+                font.pointSize: Style.Fonts.h1
+                color: Style.Colors.lightText
+                onClicked: applicationMenu.popup()
             }
         }
     }

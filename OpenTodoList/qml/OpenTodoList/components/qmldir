@@ -1,1 +1,4 @@
 NavigationBar NavigationBar.qml
+ItemBox ItemBox.qml
+Page Page.qml
+Symbol Symbol.qml
