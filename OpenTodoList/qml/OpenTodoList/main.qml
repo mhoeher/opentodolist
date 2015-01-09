@@ -24,19 +24,9 @@ import QtQuick.Layouts 1.1
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
 
-/*import net.rpdev.OpenTodoList.Core 1.0
-import net.rpdev.OpenTodoList.DataModel 1.0
-import net.rpdev.OpenTodoList.Models 1.0
-import net.rpdev.OpenTodoList.SystemIntegration 1.0
-import net.rpdev.OpenTodoList.Components 1.0
-import net.rpdev.OpenTodoList.Views 1.0
-import net.rpdev.OpenTodoList.Theme 1.0
-*/
-
 import "style" as Style
 import "components" as Components
 import "pages" as Pages
-import "app" as App
 
 ApplicationWindow {
     id: root
@@ -63,11 +53,7 @@ ApplicationWindow {
     onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
     onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
 
-    onActiveFocusItemChanged: {
-        if ( activeFocusItem === null ) {
-            defaultFocusHandler.focus = true
-        }
-    }
+    onActiveFocusItemChanged: defaultFocusHandler.ensureAppIsHandlingKeys()
 
     Settings {
         id: settings
@@ -75,16 +61,25 @@ ApplicationWindow {
 
     menuBar: MenuBar {
         Menu {
-            title: qsTr( "&Todos" )
+            title: Qt.application.name
             MenuItem {
-                action: App.Actions.close
+                shortcut: StandardKey.Close
+                text: qsTr( "Close Window" )
+                onTriggered: application.handler.hideWindow()
             }
             MenuItem {
-                action: App.Actions.quit
+                shortcut: StandardKey.Quit
+                text: qsTr( "Quit" )
+                onTriggered: application.handler.terminateApplication()
             }
         }
         Menu {
             title: qsTr( "&Navigate" )
+            MenuItem {
+                text: qsTr( "Go Back" )
+                shortcut: StandardKey.Back
+                onTriggered: stackView.pop()
+            }
             MenuItem {
                 text: qsTr( "Show Navigation" )
                 onTriggered: navBar.toggle()
@@ -94,14 +89,21 @@ ApplicationWindow {
             title: qsTr( "&Development Tools" )
             MenuItem {
                 text: qsTr( "Print Current Focus Item" )
-                onTriggered: console.debug( "Current Focus Item: " +
-                                           root.activeFocusItem )
+                shortcut: "Ctrl+Shift+P"
+                onTriggered: {
+                    var cFI = activeFocusItem;
+                    console.debug( "Current Focus item is " + cFI + "[" + cFI.objectName + "]" )
+                    while ( cFI.parent !== null ) {
+                        cFI = cFI.parent;
+                        console.debug( "  --> " + cFI + "[" + cFI.objectName + "]" )
+                    }
+                }
             }
             MenuItem {
                 text: qsTr( "Unset Current Focus Item" )
                 onTriggered: {
                     defaultFocusHandler.focus = true;
-                    defaultFocusHandler.focus = false;
+                    defaultFocusHandler.forceActiveFocus()
                     console.debug( "Current Focus Item: " +
                                   root.activeFocusItem );
                 }
@@ -215,10 +217,33 @@ ApplicationWindow {
 
     Item {
         id: defaultFocusHandler
+        objectName: "defaultFocusHandler"
         focus: true
 
         Keys.onBackPressed: handleBack()
         Keys.onEscapePressed: handleBack()
+
+        /**
+          Helper function: Checks if the current focus is inside the root window and
+          if not ensures that the focus is returned to the window. This is required
+          to handle Back and Escape properly.
+          */
+        function ensureAppIsHandlingKeys() {
+            var contentItem = root.contentItem;
+            var currentFocusItem = root.activeFocusItem;
+            var isHandling = false;
+            while ( currentFocusItem !== null ) {
+                if ( currentFocusItem === contentItem ) {
+                    isHandling = true;
+                    break;
+                }
+                currentFocusItem = currentFocusItem.parent;
+            }
+            if ( !isHandling ) {
+                defaultFocusHandler.focus = true;
+                defaultFocusHandler.forceActiveFocus();
+            }
+        }
 
         function handleBack() {
             if ( stackView.depth > 1 ) {
