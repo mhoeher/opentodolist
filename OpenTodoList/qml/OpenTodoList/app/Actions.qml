@@ -23,7 +23,14 @@ import QtQuick.Controls 1.2
 
 QtObject {
     property Action quit: Action {
+        text: qsTr( "Quit")
+        shortcut: StandardKey.Quit
         onTriggered: application.handler.terminateApplication()
+    }
+    property Action close: Action {
+        text: qsTr( "Close" )
+        shortcut: StandardKey.Close
+        onTriggered: application.handler.hideWindow()
     }
 }
 

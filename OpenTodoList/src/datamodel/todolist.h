@@ -74,8 +74,8 @@ public:
   void setId( int id );
   bool hasId() const;
 
-  QVariant toVariant() const;
-  void fromVariant( const QVariant &todolist );
+  Q_INVOKABLE QVariant toVariant() const;
+  Q_INVOKABLE void fromVariant( const QVariant &todolist );
 
   int dirty() const;
   void setDirty(int dirty);

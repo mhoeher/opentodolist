@@ -17,11 +17,12 @@
  */
 
 import QtQuick 2.2
-import QtQuick.Controls 1.2
-import QtQuick.Controls.Styles 1.2
+import QtQuick.Controls 1.3
+import QtQuick.Controls.Styles 1.3
 import QtQuick.Layouts 1.1
 
 import net.rpdev.OpenTodoList.Core 1.0
+import net.rpdev.OpenTodoList.DataModel 1.0
 
 /*import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
@@ -62,17 +63,48 @@ ApplicationWindow {
     onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
     onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
 
+    onActiveFocusItemChanged: {
+        if ( activeFocusItem === null ) {
+            defaultFocusHandler.focus = true
+        }
+    }
+
     Settings {
         id: settings
     }
 
     menuBar: MenuBar {
         Menu {
-            title: qsTr( "Todos" )
+            title: qsTr( "&Todos" )
             MenuItem {
-                text: qsTr( "Quit" )
-                shortcut: StandardKey.Quit
+                action: App.Actions.close
+            }
+            MenuItem {
                 action: App.Actions.quit
+            }
+        }
+        Menu {
+            title: qsTr( "&Navigate" )
+            MenuItem {
+                text: qsTr( "Show Navigation" )
+                onTriggered: navBar.toggle()
+            }
+        }
+        Menu {
+            title: qsTr( "&Development Tools" )
+            MenuItem {
+                text: qsTr( "Print Current Focus Item" )
+                onTriggered: console.debug( "Current Focus Item: " +
+                                           root.activeFocusItem )
+            }
+            MenuItem {
+                text: qsTr( "Unset Current Focus Item" )
+                onTriggered: {
+                    defaultFocusHandler.focus = true;
+                    defaultFocusHandler.focus = false;
+                    console.debug( "Current Focus Item: " +
+                                  root.activeFocusItem );
+                }
             }
         }
     }
@@ -89,11 +121,15 @@ ApplicationWindow {
 
             ToolButton {
                 id: toggleNavButton
-                text: Style.Symbols.bars
+                text: stackView.depth === 1 ? Style.Symbols.bars : Style.Symbols.singleLeft
                 onClicked: {
-                    navBar.state = ( navBar.state === "shown" ) ?
-                                "" : "shown";
+                    if ( stackView.depth === 1 ) {
+                        navBar.toggle()
+                    } else {
+                        stackView.pop()
+                    }
                 }
+
                 style: ButtonStyle {
                     label: Style.H1 {
                         text: toggleNavButton.text
@@ -104,16 +140,48 @@ ApplicationWindow {
             }
 
             Style.H1 {
-                text: todoListsPage.title
+                text: stackView.currentItem ? stackView.currentItem.title : ""
                 Layout.fillWidth: true
                 color: Style.Colors.lightText
             }
         }
     }
 
-    Pages.TodoListsPage {
-        id: todoListsPage
+    StackView {
+        id: stackView
         anchors.fill: parent
+        initialItem: todoLists
+
+        Component {
+            id: todoLists
+            Pages.TodoListsPage {
+                onTodoListSelected: {
+                    var newTodoListPage = todos.createObject();
+                    newTodoListPage.todoList = todoList;
+                    stackView.push( newTodoListPage );
+                }
+            }
+        }
+
+        Component {
+            id: todos
+            Pages.TodosPage {
+                onTodoSelected: {
+                    var newTodoPage = todoPage.createObject();
+                    newTodoPage.newTodo.fromVariant(todo.toVariant());
+                    newTodoPage.todo = newTodoPage.newTodo
+                    stackView.push( newTodoPage );
+                }
+            }
+        }
+
+        Component {
+            id: todoPage
+            Pages.TodoPage {
+                property Todo newTodo: Todo {
+                }
+            }
+        }
     }
 
     Components.NavigationBar {
@@ -125,15 +193,46 @@ ApplicationWindow {
         width: Math.min( Style.Measures.mWidth * 30, parent.width )
         x: -width
 
+        function toggle() {
+            navBar.state = ( navBar.state === "shown" ) ?
+                        "" : "shown";
+        }
+
         states: State {
             name: "shown"
             PropertyChanges {
                 target: navBar
                 x: 0
+                focus: true
             }
         }
 
+        Keys.onEscapePressed: state = ""
+        Keys.onBackPressed: state = ""
+
         Behavior on x { SmoothedAnimation { duration: 300 } }
+    }
+
+    Item {
+        id: defaultFocusHandler
+        focus: true
+
+        Keys.onBackPressed: handleBack()
+        Keys.onEscapePressed: handleBack()
+
+        function handleBack() {
+            if ( stackView.depth > 1 ) {
+                stackView.pop();
+            } else {
+                switch ( Qt.platform.os ) {
+                case "android":
+                    application.handler.hideWindow();
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
     }
 }
 

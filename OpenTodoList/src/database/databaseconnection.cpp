@@ -30,7 +30,10 @@
 namespace OpenTodoList {
 namespace DataBase {
 
-DatabaseConnection::DatabaseConnection(QObject *parent) : QObject(parent)
+DatabaseConnection::DatabaseConnection(QObject *parent) :
+  QObject(parent),
+  m_database( nullptr ),
+  m_registeredObjects()
 {
 
 }
@@ -61,13 +64,35 @@ Database *DatabaseConnection::database() const
 void DatabaseConnection::setDatabase(Database *database)
 {
   if ( m_database != database ) {
+    if ( m_database ) {
+      disconnect( m_database, &Database::accountChanged,
+               this, &DatabaseConnection::onDatabaseAccountUpdate );
+      disconnect( m_database, &Database::todoListChanged,
+               this, &DatabaseConnection::onDatabaseTodoListUpdate );
+      disconnect( m_database, &Database::todoChanged,
+               this, &DatabaseConnection::onDatabaseTodoUpdate );
+      disconnect( m_database, &Database::taskChanged,
+               this, &DatabaseConnection::onDatabaseTaskUpdate );
+    }
     m_database = database;
+    if ( m_database ) {
+      connect( m_database, &Database::accountChanged,
+               this, &DatabaseConnection::onDatabaseAccountUpdate );
+      connect( m_database, &Database::todoListChanged,
+               this, &DatabaseConnection::onDatabaseTodoListUpdate );
+      connect( m_database, &Database::todoChanged,
+               this, &DatabaseConnection::onDatabaseTodoUpdate );
+      connect( m_database, &Database::taskChanged,
+               this, &DatabaseConnection::onDatabaseTaskUpdate );
+    }
     emit databaseChanged();
   }
 }
 
 /**
    @brief Writes the @p account into the database
+
+   @note If the UUID of the object is null, a new UUID will be generated.
  */
 void DatabaseConnection::insertAccount(Account *account)
 {
@@ -86,6 +111,8 @@ void DatabaseConnection::insertAccount(Account *account)
 
 /**
    @brief Writes the @p todoList into the database
+
+   @note If the UUID of the object is null, a new UUID will be generated.
  */
 void DatabaseConnection::insertTodoList(TodoList *todoList)
 {
@@ -104,6 +131,8 @@ void DatabaseConnection::insertTodoList(TodoList *todoList)
 
 /**
    @brief Writes the @p todo into the database
+
+   @note If the UUID of the object is null, a new UUID will be generated.
  */
 void DatabaseConnection::insertTodo(Todo *todo)
 {
@@ -122,6 +151,8 @@ void DatabaseConnection::insertTodo(Todo *todo)
 
 /**
    @brief Writes the @p task into the database
+
+   @note If the UUID of the object is null, a new UUID will be generated.
  */
 void DatabaseConnection::insertTask(Task *task)
 {
@@ -186,6 +217,102 @@ void DatabaseConnection::disposeTask(Task *task)
   }
 }
 
+/**
+   @brief Registers the account
+
+   This will register the @p account for updates to or from the
+   database, depending on the @p updateFlags.
+ */
+void DatabaseConnection::registerAccount(Account *account, DatabaseConnection::UpdateFlags updateFlags)
+{
+  registerObjectImpl( account, updateFlags );
+}
+
+/**
+   @brief Registers the todo list
+
+   This will register the @p todoList for updates to or from the
+   database, depending on the @p updateFlags.
+ */
+void DatabaseConnection::registerTodoList(TodoList *todoList, DatabaseConnection::UpdateFlags updateFlags)
+{
+  registerObjectImpl( todoList, updateFlags );
+}
+
+/**
+   @brief Registers the todo
+
+   This will register the @p todo for updates to or from the
+   database, depending on the @p updateFlags.
+ */
+void DatabaseConnection::registerTodo(Todo *todo, DatabaseConnection::UpdateFlags updateFlags)
+{
+  registerObjectImpl( todo, updateFlags );
+}
+
+/**
+   @brief Registers the task
+
+   This will register the @p task for updates to or from the
+   database, depending on the @p updateFlags.
+ */
+void DatabaseConnection::registerTask(Task *task, DatabaseConnection::UpdateFlags updateFlags)
+{
+  registerObjectImpl( task, updateFlags );
+}
+
+void DatabaseConnection::onObjectInstanceUpdate()
+{
+  if ( m_database ) {
+    if ( m_registeredObjects.value( sender() ) & ObjectToDatabase ) {
+      Account *account = qobject_cast<Account*>(sender());
+      if ( account ) {
+        insertAccount(account);
+        return;
+      }
+      TodoList *todoList = qobject_cast<TodoList*>(sender());
+      if ( todoList ) {
+        insertTodoList(todoList);
+        return;
+      }
+      Todo *todo = qobject_cast<Todo*>(sender());
+      if ( todo ) {
+        insertTodo(todo);
+        return;
+      }
+      Task *task = qobject_cast<Task*>(sender());
+      if ( task ) {
+        insertTask(task);
+        return;
+      }
+    }
+  }
+}
+
+void DatabaseConnection::onDatabaseAccountUpdate(const QVariant &account)
+{
+  onDatabaseUpdateImpl<Account>(account);
+}
+
+void DatabaseConnection::onDatabaseTodoListUpdate(const QVariant &todoList)
+{
+  onDatabaseUpdateImpl<TodoList>(todoList);
+}
+
+void DatabaseConnection::onDatabaseTodoUpdate(const QVariant &todo)
+{
+  onDatabaseUpdateImpl<Todo>(todo);
+}
+
+void DatabaseConnection::onDatabaseTaskUpdate(const QVariant &task)
+{
+  onDatabaseUpdateImpl<Task>(task);
+}
+
+void DatabaseConnection::onObjectDestroyed(QObject *o)
+{
+  m_registeredObjects.remove(o);
+}
 
 } // namespace DataBase
 } // namespace OpenTodoList

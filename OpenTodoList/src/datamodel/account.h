@@ -68,8 +68,8 @@ public:
   QVariantMap metaAttributes() const override;
   void setMetaAttributes(const QVariantMap &metaAttributes) override;
 
-  QVariant toVariant() const;
-  void fromVariant(const QVariant &account );
+  Q_INVOKABLE QVariant toVariant() const;
+  Q_INVOKABLE void fromVariant(const QVariant &account );
 
 
 signals:

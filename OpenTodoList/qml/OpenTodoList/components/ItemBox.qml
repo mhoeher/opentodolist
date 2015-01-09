@@ -24,6 +24,8 @@ import "../style" as Style
 Item {
     id: box
 
+    property alias color: background.color
+
     Rectangle {
         id: background
         color: Style.Colors.listItem

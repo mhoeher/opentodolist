@@ -86,10 +86,11 @@ Components.Page {
 
         Item {
             width: parent.width
-            height: Math.max( Style.Measures.optButtonHeight,
-                             label.height,
-                             edit.height) +
-                    Style.Measures.midSpace
+            height: Math.max(
+                        Math.max(
+                            label.height,
+                            edit.height ) + Style.Measures.midSpace,
+                        Style.Measures.optButtonHeight )
 
             Components.ItemBox {
                 id: background
@@ -104,6 +105,7 @@ Components.Page {
                     left: parent.left
                     right: parent.right
                     margins: Style.Measures.midSpace
+                    verticalCenter: parent.verticalCenter
                 }
                 visible: !edit.visible
             }
@@ -126,7 +128,6 @@ Components.Page {
                 }
                 onPressAndHold: d.showContextMenu(display)
             }
-
             TextField {
                 id: edit
                 text: display.name
@@ -136,8 +137,9 @@ Components.Page {
                     left: parent.left
                     right: parent.right
                     margins: Style.Measures.midSpace
+                    verticalCenter: parent.verticalCenter
                 }
-
+                validator: RegExpValidator { regExp: /.+/ }
                 onVisibleChanged: {
                     edit.focus = true;
                 }
@@ -154,10 +156,12 @@ Components.Page {
     Component {
         id: headerDelegate
 
-        Item {
+        Rectangle {
             id: header
             height: childrenRect.height + Style.Measures.midSpace
             width: parent.width
+            color: Style.Colors.primary
+            z: 2
             clip: true
 
             TextField {
@@ -179,6 +183,7 @@ Components.Page {
             Style.H6 {
                 id: accountSelectionLabel
                 text: qsTr( "Select an Account:" )
+                color: Style.Colors.lightText
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -243,35 +248,12 @@ Components.Page {
                 when: newTodoListTitle.text === ""
                 PropertyChanges {
                     target: header
-                    height: newTodoListTitle.y + newTodoListTitle.height
+                    height: newTodoListTitle.y + newTodoListTitle.height +
+                            Style.Measures.tinySpace
                 }
             }
 
-            transitions: [
-                Transition {
-                    from: "minimizedState"
-                    to: ""
-                    SequentialAnimation {
-                        SmoothedAnimation {
-                            target: header
-                            properties: "height"
-                            duration: 200
-                        }
-                        ScriptAction {
-                            script: listView.positionViewAtBeginning()
-                        }
-                    }
-                },
-                Transition {
-                    from: ""
-                    to: "minimizedState"
-                    SmoothedAnimation {
-                        target: header
-                        properties: "height"
-                        duration: 200
-                    }
-                }
-            ]
+            Behavior on height { SmoothedAnimation { duration: 200 } }
 
         }
     }
