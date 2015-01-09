@@ -26,6 +26,7 @@ Item {
     property alias symbol: label.text
     property alias color: label.color
     property alias enabled: mouseArea.enabled
+    property bool checked: false
 
     signal clicked()
 

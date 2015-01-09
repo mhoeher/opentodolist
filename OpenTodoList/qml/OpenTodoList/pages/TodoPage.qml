@@ -203,23 +203,40 @@ Components.Page {
             }
             Tab {
                 title: qsTr( "Description" )
-                TextArea {
-                    id: descriptionEdit
-                    property bool updatingTodo: false
+                Item {
                     anchors.fill: parent
-                    textFormat: TextEdit.RichText
-                    Component.onCompleted: {
-                        text = todoProperties.description;
-                        todoProperties.descriptionChanged.connect( function() {
-                            if ( !updatingTodo ) {
-                                descriptionEdit.text = todoProperties.description;
-                            }
-                        });
-                        textChanged.connect( function() {
-                            updatingTodo = true;
-                            todoPage.todo.description = text;
-                            updatingTodo = false;
-                        });
+                    Components.TextAreaToolBar {
+                        id: editorToolbar
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            top: parent.top
+                        }
+                        editor: descriptionEdit
+                    }
+                    TextArea {
+                        id: descriptionEdit
+                        property bool updatingTodo: false
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            top: editorToolbar.bottom
+                            bottom: parent.bottom
+                        }
+                        textFormat: TextEdit.RichText
+                        Component.onCompleted: {
+                            text = todoProperties.description;
+                            todoProperties.descriptionChanged.connect( function() {
+                                if ( !updatingTodo ) {
+                                    descriptionEdit.text = todoProperties.description;
+                                }
+                            });
+                            textChanged.connect( function() {
+                                updatingTodo = true;
+                                todoPage.todo.description = text;
+                                updatingTodo = false;
+                            });
+                        }
                     }
                 }
             }
