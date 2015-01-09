@@ -71,6 +71,18 @@ ApplicationWindow {
                     shortcut: StandardKey.Back
                     onTriggered: stackView.pop()
                 }
+                MenuSeparator {}
+                MenuItem {
+                    text: qsTr( "Todo Lists" )
+                    shortcut: qsTr( "Ctrl+L" )
+                    onTriggered: stackView.showTodoLists()
+                }
+                MenuItem {
+                    text: qsTr( "Search" )
+                    shortcut: StandardKey.Find
+                    onTriggered: stackView.showSearch()
+                }
+                MenuSeparator {}
                 MenuItem {
                     text: qsTr( "Show &Navigation" )
                     onTriggered: navBar.toggle()
@@ -95,7 +107,8 @@ ApplicationWindow {
                     shortcut: "Ctrl+Shift+P"
                     onTriggered: {
                         var cFI = activeFocusItem;
-                        console.debug( "Current Focus item is " + cFI + "[" + cFI.objectName + "]" )
+                        console.debug( "Current Focus item is " + cFI +
+                                      "[" + cFI.objectName + "]" )
                         while ( cFI.parent !== null ) {
                             cFI = cFI.parent;
                             console.debug( "  --> " + cFI + "[" + cFI.objectName + "]" )
@@ -151,7 +164,35 @@ ApplicationWindow {
             Style.H1 {
                 text: stackView.currentItem ? stackView.currentItem.title : ""
                 Layout.fillWidth: true
+                elide: Text.ElideRight
                 color: Style.Colors.lightText
+            }
+            TextField {
+                id: searchEdit
+                visible: activeFocus
+                placeholderText: qsTr( "Search..." )
+                onTextChanged: {
+                    if ( stackView.currentItem &&
+                         typeof(stackView.currentItem["searchString"]) === "string" ) {
+                        stackView.currentItem.searchString = text ? text : "";
+                    }
+                }
+            }
+            Components.Symbol {
+                symbol: Style.Symbols.search
+                font.pointSize: Style.Fonts.h1
+                color: Style.Colors.lightText
+                visible: stackView.currentItem &&
+                         typeof(stackView.currentItem["searchString"]) === "string"
+                onClicked: {
+                    if ( searchEdit.activeFocus ) {
+                        defaultFocusHandler.focus = true;
+                        defaultFocusHandler.forceActiveFocus();
+                    } else {
+                        searchEdit.focus = true;
+                        searchEdit.forceActiveFocus();
+                    }
+                }
             }
             Components.Symbol {
                 symbol: Style.Symbols.verticalEllipsis
@@ -167,6 +208,36 @@ ApplicationWindow {
         anchors.fill: parent
         initialItem: todoLists
 
+        function showTodoLists() {
+            clear();
+            push( todoLists );
+            navBar.state = "";
+        }
+
+        function showSearch() {
+            clear();
+            push( searchPage );
+            navBar.state = "";
+            searchEdit.focus = true;
+            searchEdit.forceActiveFocus();
+        }
+
+        function showTodo( todo ) {
+            var newTodoPage = todoPage.createObject();
+            newTodoPage.newTodo.fromVariant(todo.toVariant());
+            newTodoPage.todo = newTodoPage.newTodo
+            stackView.push( newTodoPage );
+        }
+
+        onCurrentItemChanged: {
+            if ( currentItem && typeof(currentItem["searchString" ]) === "string" ) {
+                searchEdit.text = currentItem.searchString;
+            } else {
+                searchEdit.text = "";
+                searchEdit.focus = false;
+            }
+        }
+
         Component {
             id: todoLists
             Pages.TodoListsPage {
@@ -181,12 +252,7 @@ ApplicationWindow {
         Component {
             id: todos
             Pages.TodosPage {
-                onTodoSelected: {
-                    var newTodoPage = todoPage.createObject();
-                    newTodoPage.newTodo.fromVariant(todo.toVariant());
-                    newTodoPage.todo = newTodoPage.newTodo
-                    stackView.push( newTodoPage );
-                }
+                onTodoSelected: stackView.showTodo( todo )
             }
         }
 
@@ -195,6 +261,16 @@ ApplicationWindow {
             Pages.TodoPage {
                 property Todo newTodo: Todo {
                 }
+            }
+        }
+
+        Component {
+            id: searchPage
+            Pages.TodosPage {
+                title: qsTr( "Search Todos" )
+                searching: true
+                searchString: searchEdit.text
+                onTodoSelected: stackView.showTodo( todo )
             }
         }
     }
@@ -207,6 +283,10 @@ ApplicationWindow {
         }
         width: Math.min( Style.Measures.mWidth * 30, parent.width )
         x: -width
+        items: navBarEntries
+        itemIdRole: "name"
+        itemTitleRole: "title"
+        itemGroupRole: "group"
 
         function toggle() {
             navBar.state = ( navBar.state === "shown" ) ?
@@ -225,7 +305,40 @@ ApplicationWindow {
         Keys.onEscapePressed: state = ""
         Keys.onBackPressed: state = ""
 
+        onItemSelected: {
+            switch ( itemId ) {
+            case "todoLists":
+                stackView.showTodoLists();
+                break;
+            case "search":
+                stackView.showSearch();
+                break;
+            case "quit":
+                application.handler.terminateApplication();
+                break;
+            }
+        }
+
         Behavior on x { SmoothedAnimation { duration: 300 } }
+    }
+
+    ListModel {
+        id: navBarEntries
+        ListElement {
+            name: "todoLists"
+            title: qsTr( "Todo Lists" )
+            group: qsTr( "Todos" )
+        }
+        ListElement {
+            name: "search"
+            title: qsTr( "Search" )
+            group: qsTr( "Todos" )
+        }
+        ListElement {
+            name: "quit"
+            title: qsTr( "Quit" )
+            group: qsTr( "Application" )
+        }
     }
 
     Item {
@@ -243,10 +356,12 @@ ApplicationWindow {
           */
         function ensureAppIsHandlingKeys() {
             var contentItem = root.contentItem;
+            var toolBarContentItem = root.toolBar.contentItem;
             var currentFocusItem = root.activeFocusItem;
             var isHandling = false;
             while ( currentFocusItem !== null ) {
-                if ( currentFocusItem === contentItem ) {
+                if ( currentFocusItem === contentItem ||
+                     currentFocusItem === toolBarContentItem ) {
                     isHandling = true;
                     break;
                 }
@@ -283,8 +398,10 @@ ApplicationWindow {
 
     function saveViewSettings() {
         console.debug( "SaveViewSettings" );
-        settings.setValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
-        settings.setValue( "OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos );
+        settings.setValue( "OpenTodoList/ViewSettings/todoSortMode",
+ViewSettings.todoSortMode );
+        settings.setValue( "OpenTodoList/ViewSettings/showDoneTodos",
+ViewSettings.showDoneTodos );
     }
 
 
@@ -308,8 +425,10 @@ ApplicationWindow {
 
         width = settings.getValue( "OpenTodoList/Window/width", width );
         height = settings.getValue( "OpenTodoList/Window/height", height );
-        ViewSettings.todoSortMode = settings.getValue( "OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
-        ViewSettings.showDoneTodos = settings.getValue( "OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos ) === "true";
+        ViewSettings.todoSortMode = settings.getValue(
+"OpenTodoList/ViewSettings/todoSortMode", ViewSettings.todoSortMode );
+        ViewSettings.showDoneTodos = settings.getValue(
+"OpenTodoList/ViewSettings/showDoneTodos", ViewSettings.showDoneTodos ) === "true";
 
         ViewSettings.onSettingsChanged.connect( saveViewSettings );
     }

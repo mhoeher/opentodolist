@@ -31,6 +31,8 @@ Components.Page {
     id: todosPage
 
     property TodoList todoList: null
+    property bool searching: false
+    property string searchString: ""
 
     signal todoSelected(Todo todo)
 
@@ -83,9 +85,17 @@ Components.Page {
 
     TodoModel {
         id: todoModel
-        database: application.database
+        database: (!searching || searchString !== "") ? application.database : null
         showDone: true
         todoList: todosPage.todoList
+        filter: searchString
+        onDatabaseChanged: {
+            if ( searching ) {
+                if ( database === null ) {
+                    clear();
+                }
+            }
+        }
     }
 
     Component {
@@ -123,8 +133,7 @@ Components.Page {
                     d.showContextMenu( display )
                 }
             }
-
-            Style.H5 {
+            Components.Symbol {
                 id:  checkBox
                 anchors {
                     left: parent.left
@@ -132,16 +141,9 @@ Components.Page {
                     verticalCenter: parent.verticalCenter
                 }
                 font.family: Style.Fonts.symbols.name
-                text: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
-            }
-
-            MouseArea {
-                anchors.centerIn: checkBox
-                width: Style.Measures.optButtonHeight
-                height: Style.Measures.optButtonHeight
+                symbol: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
                 onClicked: display.done = !display.done
             }
-
             Style.P {
                 id: label
                 visible: !edit.visible

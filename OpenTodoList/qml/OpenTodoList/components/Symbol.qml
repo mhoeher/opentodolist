@@ -37,6 +37,7 @@ Item {
     Style.P {
         id: label
         anchors.centerIn: parent
+        font.family: Style.Fonts.symbols.name
     }
 
     MouseArea {

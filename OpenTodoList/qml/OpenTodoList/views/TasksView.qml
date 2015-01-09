@@ -66,15 +66,16 @@ ListView {
             Components.ItemBox {
                 anchors.fill: parent
             }
-            Style.P {
+            Components.Symbol {
                 id: checkBox
                 font.family: Style.Fonts.symbols.name
-                text: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
+                symbol: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
                 anchors {
                     left: parent.left
                     margins: Style.Measures.smallSpace
                     verticalCenter: parent.verticalCenter
                 }
+                onClicked: display.done = !display.done
             }
             Style.P {
                 id: label
@@ -101,12 +102,6 @@ ListView {
                         break;
                     }
                 }
-            }
-            MouseArea {
-                anchors.centerIn: checkBox
-                width: Style.Measures.optButtonHeight
-                height: Style.Measures.optButtonHeight
-                onClicked: display.done = !display.done
             }
             TextField {
                 id: edit

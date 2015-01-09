@@ -207,6 +207,7 @@ Components.Page {
                     id: descriptionEdit
                     property bool updatingTodo: false
                     anchors.fill: parent
+                    textFormat: TextEdit.RichText
                     Component.onCompleted: {
                         text = todoProperties.description;
                         todoProperties.descriptionChanged.connect( function() {
