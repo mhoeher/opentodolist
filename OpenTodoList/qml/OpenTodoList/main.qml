@@ -82,6 +82,11 @@ ApplicationWindow {
                     shortcut: StandardKey.Find
                     onTriggered: stackView.showSearch()
                 }
+                MenuItem {
+                    text: qsTr( "About" )
+                    shortcut: StandardKey.HelpContents
+                    onTriggered: stackView.showAbout()
+                }
                 MenuSeparator {}
                 MenuItem {
                     text: qsTr( "Show &Navigation" )
@@ -222,6 +227,12 @@ ApplicationWindow {
             searchEdit.forceActiveFocus();
         }
 
+        function showAbout() {
+            clear();
+            push( aboutPage );
+            navBar.state = "";
+        }
+
         function showTodo( todo ) {
             var newTodoPage = todoPage.createObject();
             newTodoPage.newTodo.fromVariant(todo.toVariant());
@@ -273,6 +284,11 @@ ApplicationWindow {
                 onTodoSelected: stackView.showTodo( todo )
             }
         }
+
+        Component {
+            id: aboutPage
+            Pages.AboutPage {}
+        }
     }
 
     Components.NavigationBar {
@@ -313,6 +329,9 @@ ApplicationWindow {
             case "search":
                 stackView.showSearch();
                 break;
+            case "about":
+                stackView.showAbout();
+                break;
             case "quit":
                 application.handler.terminateApplication();
                 break;
@@ -333,6 +352,11 @@ ApplicationWindow {
             name: "search"
             title: qsTr( "Search" )
             group: qsTr( "Todos" )
+        }
+        ListElement {
+            name: "about"
+            title: qsTr( "About" )
+            group: qsTr( "Application" )
         }
         ListElement {
             name: "quit"
