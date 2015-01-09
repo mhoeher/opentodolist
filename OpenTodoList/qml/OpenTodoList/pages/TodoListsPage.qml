@@ -130,7 +130,6 @@ Components.Page {
             }
             TextField {
                 id: edit
-                text: display.name
                 visible: d.currentTodoList === display && d.renaming
                 y: Style.Measures.midSpace
                 anchors {
@@ -141,14 +140,18 @@ Components.Page {
                 }
                 validator: RegExpValidator { regExp: /.+/ }
                 onVisibleChanged: {
-                    edit.focus = true;
+                    if ( visible ) {
+                        edit.text = display.name;
+                        edit.focus = true;
+                        edit.forceActiveFocus();
+                    }
                 }
                 onAccepted: {
                     display.name = text;
                     text = Qt.binding( function() { return display.name; } );
                     d.renaming = false;
                 }
-                onEditingFinished: edit.visible = false
+                onEditingFinished: d.renaming = false
             }
         }
     }
@@ -225,6 +228,8 @@ Components.Page {
                     helper.dbConnection.insertTodoList(helper.todoList);
                     helper.destroy();
                     newTodoListTitle.text = "";
+                    newTodoListTitle.focus = true;
+                    newTodoListTitle.forceActiveFocus();
                 }
             }
 

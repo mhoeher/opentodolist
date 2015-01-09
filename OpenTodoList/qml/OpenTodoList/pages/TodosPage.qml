@@ -170,12 +170,14 @@ Components.Page {
                 validator: RegExpValidator { regExp: /.+/ }
 
                 onVisibleChanged: {
-                    text = display.title;
-                    focus = true;
+                    if ( visible ) {
+                        text = display.title;
+                        focus = true;
+                        forceActiveFocus();
+                    }
                 }
                 onEditingFinished: {
                     d.renaming = false;
-                    text = Qt.binding( function() { return display.title } );
                     focus = false;
                 }
                 onAccepted: {
@@ -207,7 +209,7 @@ Components.Page {
                     margins: Style.Measures.tinySpace
                 }
                 validator: RegExpValidator { regExp: /.+/ }
-                onAccepted: plusButtonMouseArea.clicked(null)
+                onAccepted: plusButton.createTodo()
                 onEditingFinished: focus = false
             }
 
@@ -222,7 +224,9 @@ Components.Page {
                     verticalCenter: parent.verticalCenter
                 }
                 enabled: newTodoTitle.acceptableInput
-                onClicked: {
+                onClicked: createTodo()
+
+                function createTodo() {
                     var newTitle = newTodoTitle.text;
                     var newTodoProperties = DateUtils.inputToTodoProperties(newTitle);
                     if ( todosPage.todoList && newTodoProperties.title !== "" ) {
@@ -236,6 +240,8 @@ Components.Page {
                         newTodo.destroy();
                         newTodoTitle.text = "";
                     }
+                    newTodoTitle.focus = true;
+                    newTodoTitle.forceActiveFocus();
                 }
             }
 

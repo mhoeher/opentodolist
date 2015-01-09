@@ -112,9 +112,12 @@ ListView {
                     margins: Style.Measures.smallSpace
                     verticalCenter: parent.verticalCenter
                 }
-
                 onVisibleChanged: {
-                    text = display.title;
+                    if ( visible ) {
+                        text = display.title;
+                        focus = true;
+                        forceActiveFocus();
+                    }
                 }
                 onAccepted: {
                     display.title = text;
@@ -141,9 +144,9 @@ ListView {
                     dbConnection.insertTask( task );
                     task.destroy();
                     newTaskTitle.text = "";
-                    newTaskTitle.focus = true;
-                    newTaskTitle.forceActiveFocus();
                 }
+                newTaskTitle.focus = true;
+                newTaskTitle.forceActiveFocus();
             }
 
             width: parent.width
