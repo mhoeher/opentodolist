@@ -202,6 +202,27 @@ ApplicationWindow {
                 elide: Text.ElideRight
                 color: Style.Colors.lightText
             }
+            Components.Symbol {
+                symbol: Style.Symbols.textEditCopy
+                font.pointSize: Style.Fonts.h1
+                color: Style.Colors.lightText
+                visible: !!activeFocusItem && !!activeFocusItem["copy"]
+                onClicked: activeFocusItem.copy()
+            }
+            Components.Symbol {
+                symbol: Style.Symbols.textEditCut
+                font.pointSize: Style.Fonts.h1
+                color: Style.Colors.lightText
+                visible: !!activeFocusItem && !!activeFocusItem["cut"]
+                onClicked: activeFocusItem.cut()
+            }
+            Components.Symbol {
+                symbol: Style.Symbols.textEditPaste
+                font.pointSize: Style.Fonts.h1
+                color: Style.Colors.lightText
+                visible: !!activeFocusItem && !!activeFocusItem["paste"]
+                onClicked: activeFocusItem.paste()
+            }
             TextField {
                 id: searchEdit
                 visible: activeFocus
@@ -273,7 +294,7 @@ ApplicationWindow {
             var newTodoPage = todoPage.createObject();
             newTodoPage.newTodo.fromVariant(todo.toVariant());
             newTodoPage.todo = newTodoPage.newTodo
-            stackView.push( newTodoPage );
+            stackView.push( { item: newTodoPage, destroyOnPop: true } );
         }
 
         onCurrentItemChanged: {

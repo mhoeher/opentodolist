@@ -42,32 +42,24 @@ Rectangle {
         selectionEnd: editor ? editor.selectionEnd : 0
     }
 
+    Action {
+        shortcut: StandardKey.Bold
+        onTriggered: formatter.bold = !formatter.bold
+    }
+    Action {
+        shortcut: StandardKey.Italic
+        onTriggered: formatter.italic = !formatter.italic
+    }
+    Action {
+        shortcut: StandardKey.Underline
+        onTriggered: formatter.underline = !formatter.underline
+    }
+
     Flow {
         //height: childrenRect.height
         width: parent.width
         flow: Flow.LeftToRight
         //spacing: Style.Measures.tinySpace
-
-        Symbol {
-            id: copyButton
-            symbol: Style.Symbols.textEditCopy
-            onClicked: editor.copy()
-        }
-        Symbol {
-            id: cutButton
-            symbol: Style.Symbols.textEditCut
-            onClicked: editor.cut()
-        }
-        Symbol {
-            id: pasteButton
-            symbol: Style.Symbols.textEditPaste
-            onClicked: editor.paste()
-        }
-
-        Item {
-            width: Style.Measures.tinySpace
-            height: 1
-        }
 
         Symbol {
             id: undoButton

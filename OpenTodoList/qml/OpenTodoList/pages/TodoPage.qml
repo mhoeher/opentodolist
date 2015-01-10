@@ -39,6 +39,49 @@ Components.Page {
         dbConnection.registerTodo(todo, DatabaseConnection.KeepSynced)
     }
 
+    Action {
+        shortcut: qsTr( "Ctrl+Left" )
+        onTriggered: {
+            if ( DateUtils.isValidDate( todoPage.todo.dueDate ) ) {
+                todoPage.todo.dueDate = DateUtils.previousDayForDate( todoPage.todo.dueDate );
+            } else {
+                todoPage.todo.dueDate = new Date();
+            }
+        }
+    }
+
+    Action {
+        shortcut: qsTr( "Ctrl+Right" )
+        onTriggered: {
+            if ( DateUtils.isValidDate( todoPage.todo.dueDate ) ) {
+                todoPage.todo.dueDate = DateUtils.nextDayForDate( todoPage.todo.dueDate );
+            } else {
+                todoPage.todo.dueDate = new Date();
+            }
+        }
+    }
+
+    Action {
+        shortcut: qsTr( "Ctrl+Up" )
+        onTriggered: ++todoPage.todo.priority
+    }
+
+    Action {
+        shortcut: qsTr( "Ctrl+Down" )
+        onTriggered: --todoPage.todo.priority
+    }
+
+    Action {
+        shortcut: qsTr( "Ctrl+T" )
+        onTriggered: tabView.currentIndex = 0
+    }
+
+    Action {
+        shortcut: qsTr( "Ctrl+D" )
+        onTriggered: tabView.currentIndex = 1
+    }
+
+
     QtObject {
         id: todoProperties
 
@@ -190,10 +233,12 @@ Components.Page {
             }
         }
         TabView { // Description and tasks
+            id: tabView
             Layout.fillHeight: true
             Layout.fillWidth: true
             frameVisible: true
             Tab {
+                id: tasksTab
                 title: "Tasks"
                 ScrollView {
                     Views.TasksView {
@@ -202,6 +247,7 @@ Components.Page {
                 }
             }
             Tab {
+                id: descriptionTab
                 title: qsTr( "Description" )
                 Item {
                     anchors.fill: parent

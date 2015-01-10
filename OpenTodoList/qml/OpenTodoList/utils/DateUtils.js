@@ -120,3 +120,11 @@ function previousDayForDate(forThis) {
     result.setDate( date );
     return result;
 }
+
+function nextDayForDate(forThis) {
+    var result = new Date( forThis );
+    var date = result.getDate();
+    ++date;
+    result.setDate( date );
+    return result;
+}
