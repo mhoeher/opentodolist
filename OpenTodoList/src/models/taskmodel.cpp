@@ -94,6 +94,13 @@ int TaskModel::compareObjects(QObject *left, QObject *right) const
   Task *leftTask = dynamic_cast< Task* >( left );
   Task *rightTask = dynamic_cast< Task* >( right );
   if ( leftTask && rightTask ) {
+    // Show done tasks at end of list
+    if ( leftTask->done() && !rightTask->done() ) {
+      return 1;
+    } else if ( !leftTask->done() && rightTask->done() ) {
+      return -1;
+    }
+    // Default: Sort by name
     return leftTask->title().localeAwareCompare( rightTask->title() );
   }
   return 0;
