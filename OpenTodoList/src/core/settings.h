@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QVariant>
+#include <QVariantMap>
 
 class QSettings;
 
@@ -38,15 +39,9 @@ namespace Core {
 class Settings : public QObject
 {
     Q_OBJECT
-
-    Q_PROPERTY( QStringList groups READ groups WRITE setGroups NOTIFY groupsChanged )
-
 public:
     explicit Settings( QObject *parent = 0 );
-    explicit Settings(QStringList groups, QObject *parent = 0);
     virtual ~Settings();
-
-    const QStringList &groups() const;
 
     Q_INVOKABLE void setValue( const QString &name, QVariant value );
     Q_INVOKABLE QVariant getValue( const QString &name, QVariant defaultValue = QVariant() );
@@ -54,15 +49,13 @@ public:
     
 signals:
     
-    void groupsChanged();
-
 public slots:
 
-    void setGroups( const QStringList& groups );
+  void sync();
 
 private:
-    QSettings* m_settings;
-    QStringList m_groups;
+    QVariantMap m_settings;
+    bool        m_dirty;
     
 };
 

@@ -18,44 +18,34 @@
 
 #include "settings.h"
 
+#include <QCoreApplication>
+#include <QFile>
+#include <QJsonDocument>
 #include <QSettings>
+
+// TODO: Move API for getting local storage dir into core module
+#include <database/database.h>
 
 namespace OpenTodoList {
 
 namespace Core {
 
-Settings::Settings(QStringList groups, QObject *parent) :
-  QObject( parent ),
-  m_settings( new QSettings() ),
-  m_groups()
-{
-  setGroups( groups );
-}
-
 Settings::Settings(QObject *parent) :
   QObject( parent ),
-  m_settings( new QSettings() ),
-  m_groups()
+  m_settings(),
+  m_dirty( false )
 {
+  QFile file( DataBase::Database::localStorageDir() + "/config.json" );
+  if ( file.open( QIODevice::ReadOnly ) ) {
+    QJsonDocument doc = QJsonDocument::fromJson( file.readAll() );
+    m_settings = doc.toVariant().toMap();
+    file.close();
+  }
 }
 
 Settings::~Settings()
 {
-  delete m_settings;
-}
-
-/**
-   @brief The groups we're currently writing to
-
-   The settings object should (at each point in time) be associated with a
-   given group to which settings are written. Such a groups list could be
-   [ "ApplicationViewer", "Android" ].
-
-   @sa setGroups
- */
-const QStringList &Settings::groups() const
-{
-  return m_groups;
+  sync();
 }
 
 /**
@@ -66,11 +56,8 @@ const QStringList &Settings::groups() const
  */
 void Settings::setValue(const QString &name, QVariant value)
 {
-  // TODO: This hangs since updating to Qt 5.4.0 :( Check what's wrong here
-  Q_UNUSED( name );
-  Q_UNUSED( value );
-  //m_settings->setValue( name, value );
-  //m_settings->sync(); //< !Hangs!
+  m_settings.insert( name, value );
+  m_dirty = true;
 }
 
 /**
@@ -82,7 +69,7 @@ void Settings::setValue(const QString &name, QVariant value)
  */
 QVariant Settings::getValue(const QString &name, QVariant defaultValue)
 {
-  return m_settings->value( name, defaultValue );
+  return m_settings.value( name, defaultValue );
 }
 
 /**
@@ -93,22 +80,24 @@ QVariant Settings::getValue(const QString &name, QVariant defaultValue)
  */
 void Settings::deleteValue(const QString &name)
 {
-  m_settings->remove( name );
+  m_settings.remove( name );
+  m_dirty = true;
 }
 
 /**
-   @brief Sets the groups to which we are writing to and reading from.
+   @brief Write out current settings to disk
  */
-void Settings::setGroups(const QStringList &groups)
+void Settings::sync()
 {
-  for ( int i = 0; i < m_groups.size(); ++i ) {
-    m_settings->endGroup();
+  if ( m_dirty ) {
+    QJsonDocument doc = QJsonDocument::fromVariant( m_settings );
+    QFile file( DataBase::Database::localStorageDir() + "/config.json" );
+    if ( file.open( QIODevice::WriteOnly ) ) {
+      file.write( doc.toJson() );
+      file.close();
+    }
+    m_dirty = false;
   }
-  m_groups = groups;
-  foreach ( QString group, m_groups ) {
-    m_settings->beginGroup( group );
-  }
-  emit groupsChanged();
 }
 
 } /* Core */

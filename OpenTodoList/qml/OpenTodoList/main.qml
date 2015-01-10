@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.2
+import QtQuick.Window 2.1
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 import QtQuick.Layouts 1.1
@@ -51,10 +52,31 @@ ApplicationWindow {
 
         width = settings.getValue( "OpenTodoList/Window/width", width );
         height = settings.getValue( "OpenTodoList/Window/height", height );
-    }
+        x = settings.getValue( "OpenTodoList/Window/x",  x);
+        y = settings.getValue( "OpenTodoList/Window/y", y );
+        App.GlobalSettings.defaultTodoSortMode = settings.getValue(
+                    "OpenTodoList/GlobalSettings/DefaultTodoSortMode",
+                    App.GlobalSettings.defaultTodoSortMode );
+        menusVisible.checked = settings.getValue( "OpenTodoList/Window/MenusVisible",
+                                                 menusVisible.checked );
 
-    onWidthChanged: settings.setValue( "OpenTodoList/Window/width", width )
-    onHeightChanged: settings.setValue( "OpenTodoList/Window/height", height )
+        widthChanged.connect( function() {
+            settings.setValue( "OpenTodoList/Window/width", width )
+        });
+        heightChanged.connect( function() {
+            settings.setValue( "OpenTodoList/Window/height", height )
+        });
+        xChanged.connect( function() {
+            settings.setValue( "OpenTodoList/Window/x", x )
+        });
+        yChanged.connect( function() {
+            settings.setValue( "OpenTodoList/Window/y", y )
+        });
+        App.GlobalSettings.defaultTodoSortModeChanged.connect( function() {
+            settings.setValue( "OpenTodoList/GlobalSettings/DefaultTodoSortMode",
+                              App.GlobalSettings.defaultTodoSortMode );
+        });
+    }
 
     onActiveFocusItemChanged: defaultFocusHandler.ensureAppIsHandlingKeys()
 
@@ -110,26 +132,35 @@ ApplicationWindow {
                     checkable: true
                     checked: false
                     shortcut: qsTr( "Ctrl+M" )
+                    onCheckedChanged: {
+                        settings.setValue( "OpenTodoList/Window/MenusVisible",
+                                                        menusVisible.checked )
+                        console.debug( "Test!" );
+                    }
                 }
                 Menu {
                     title: qsTr( "Sort Todos" )
                     MenuItem {
                         text: qsTr( "By Name" )
+                        checkable: true
                         checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByName
                         onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByName
                     }
                     MenuItem {
                         text: qsTr( "By Due Date" )
+                        checkable: true
                         checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByDueDate
                         onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByDueDate
                     }
                     MenuItem {
                         text: qsTr( "By Priority" )
+                        checkable: true
                         checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByPriority
                         onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByPriority
                     }
                     MenuItem {
                         text: qsTr( "Manually" )
+                        checkable: true
                         checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByWeight
                         onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByWeight
                     }
