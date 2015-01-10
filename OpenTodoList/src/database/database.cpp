@@ -138,6 +138,14 @@ void Database::scheduleQuery(StorageQuery *query)
     m_worker->schedule( query );
 }
 
+/**
+   @brief Returns the location where local data is stored
+ */
+QString Database::localStorageDir()
+{
+  return localStorageLocation();
+}
+
 #ifdef Q_OS_ANDROID
 /**
    @brief Returns the external data location on Android
@@ -175,6 +183,11 @@ QString Database::localStorageLocation(const QString &type)
     locations.insert( 0, androidExtStorageLocation() );
 #endif
 
+    QString overridePath( qgetenv( "OPENTODOLIST_LOCAL_STORAGE_LOCATION" ) );
+    if ( !overridePath.isEmpty() ) {
+      locations.insert( 0, overridePath );
+    }
+
     foreach ( QString location, locations ) {
         QDir dir( location + "/" + type );
         if ( !dir.exists() ) {
@@ -196,6 +209,7 @@ void Database::startBackends()
         backend->setName( wrapper->name() );
         backend->setTitle( wrapper->title() );
         backend->setDescription( wrapper->description() );
+        backend->setCapabilities( wrapper->capabilities() );
         Queries::InsertBackend *query = new Queries::InsertBackend( backend );
         m_worker->run( query );
         delete query;

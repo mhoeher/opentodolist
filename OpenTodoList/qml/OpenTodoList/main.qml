@@ -23,10 +23,13 @@ import QtQuick.Layouts 1.1
 
 import net.rpdev.OpenTodoList.Core 1.0
 import net.rpdev.OpenTodoList.DataModel 1.0
+import net.rpdev.OpenTodoList.Models 1.0
 
 import "style" as Style
 import "components" as Components
 import "pages" as Pages
+import "app" as App
+import "utils/DateUtils.js" as DateUtils
 
 ApplicationWindow {
     id: root
@@ -83,6 +86,11 @@ ApplicationWindow {
                     onTriggered: stackView.showSearch()
                 }
                 MenuItem {
+                    text: qsTr( "Scheduled Todos" )
+                    shortcut: qsTr( "Ctrl+Alt+S" )
+                    onTriggered: stackView.showScheduled()
+                }
+                MenuItem {
                     text: qsTr( "About" )
                     shortcut: StandardKey.HelpContents
                     onTriggered: stackView.showAbout()
@@ -103,8 +111,30 @@ ApplicationWindow {
                     checked: false
                     shortcut: qsTr( "Ctrl+M" )
                 }
+                Menu {
+                    title: qsTr( "Sort Todos" )
+                    MenuItem {
+                        text: qsTr( "By Name" )
+                        checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByName
+                        onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByName
+                    }
+                    MenuItem {
+                        text: qsTr( "By Due Date" )
+                        checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByDueDate
+                        onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByDueDate
+                    }
+                    MenuItem {
+                        text: qsTr( "By Priority" )
+                        checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByPriority
+                        onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByPriority
+                    }
+                    MenuItem {
+                        text: qsTr( "Manually" )
+                        checked: App.GlobalSettings.defaultTodoSortMode === TodoModel.SortTodoByWeight
+                        onTriggered: App.GlobalSettings.defaultTodoSortMode = TodoModel.SortTodoByWeight
+                    }
+                }
             }
-
             Menu {
                 title: qsTr( "&Development Tools" )
                 MenuItem {
@@ -227,6 +257,12 @@ ApplicationWindow {
             searchEdit.forceActiveFocus();
         }
 
+        function showScheduled() {
+            clear();
+            push( schedulePage );
+            navBar.state = "";
+        }
+
         function showAbout() {
             clear();
             push( aboutPage );
@@ -280,7 +316,35 @@ ApplicationWindow {
             Pages.TodosPage {
                 title: qsTr( "Search Todos" )
                 searching: true
-                searchString: searchEdit.text
+                onTodoSelected: stackView.showTodo( todo )
+            }
+        }
+
+        Component {
+            id: schedulePage
+            Pages.TodosPage {
+                title: qsTr( "Scheduled Todos" )
+                showOnlyScheduled: true
+                sortMode: TodoModel.SortTodoByDueDate
+                showDone: false
+                groupingFunction: function(todo) {
+                    if ( todo.done ) {
+                        return defaultGroupingFunction(todo);
+                    }
+                    var today = new Date();
+                    var yesterday = DateUtils.previousDayForDate(today);
+                    var endOfWeek = DateUtils.lastDayOfWeekForDate(today);
+                    if ( todo.dueDate < yesterday ) {
+                        return qsTr( "Overdue" )
+                    }
+                    if ( todo.dueDate < today ) {
+                        return qsTr( "Due Today" )
+                    }
+                    if ( todo.dueDate < endOfWeek ) {
+                        return qsTr( "Due this Week" )
+                    }
+                    return qsTr( "Scheduled for later" )
+                }
                 onTodoSelected: stackView.showTodo( todo )
             }
         }
@@ -329,6 +393,8 @@ ApplicationWindow {
             case "search":
                 stackView.showSearch();
                 break;
+            case "scheduled":
+                stackView.showScheduled();
             case "about":
                 stackView.showAbout();
                 break;
@@ -351,6 +417,11 @@ ApplicationWindow {
         ListElement {
             name: "search"
             title: qsTr( "Search" )
+            group: qsTr( "Todos" )
+        }
+        ListElement {
+            name: "scheduled"
+            title: qsTr( "Scheduled Todos" )
             group: qsTr( "Todos" )
         }
         ListElement {
@@ -410,6 +481,10 @@ ApplicationWindow {
                 }
             }
         }
+    }
+
+    BackendModel {
+        database: application.database
     }
 }
 

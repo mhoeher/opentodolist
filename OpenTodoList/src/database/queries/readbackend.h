@@ -45,6 +45,7 @@ public:
     // StorageQuery interface
     bool query(QString &query, QVariantMap &args, int &options ) override;
     void recordAvailable(const QVariantMap &record) override;
+    void endRun() override;
 
 signals:
 
@@ -60,6 +61,7 @@ public slots:
 
 private:
     QList< DataModel::Backend* >    m_backends;
+    DataModel::Backend             *m_currentBackend;
 };
 
 } // namespace Queries

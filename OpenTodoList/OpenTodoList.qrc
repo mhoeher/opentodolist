@@ -51,6 +51,10 @@
     <file alias="TodoListsPage.qml">qml/OpenTodoList/TodoListsPage.qml</file>
     <file alias="main.qml">qml/OpenTodoList/main.qml</file>
   </qresource>
+  <qresource prefix="/qml/OpenTodoList/app">
+    <file alias="qmldir">qml/OpenTodoList/app/qmldir</file>
+    <file alias="GlobalSettings.qml">qml/OpenTodoList/app/GlobalSettings.qml</file>
+  </qresource>
   <qresource prefix="/qml/OpenTodoList/style">
     <file alias="fontawesome-webfont.license.txt">qml/OpenTodoList/style/fontawesome-webfont.license.txt</file>
     <file alias="H2.qml">qml/OpenTodoList/style/H2.qml</file>
@@ -76,6 +80,7 @@
     <file alias="qmldir">qml/OpenTodoList/components/qmldir</file>
     <file alias="ItemBox.qml">qml/OpenTodoList/components/ItemBox.qml</file>
     <file alias="Page.qml">qml/OpenTodoList/components/Page.qml</file>
+    <file alias="TextAreaToolBar.qml">qml/OpenTodoList/components/TextAreaToolBar.qml</file>
   </qresource>
   <qresource prefix="/qml/OpenTodoList/views">
     <file alias="qmldir.txt">qml/OpenTodoList/views/qmldir.txt</file>
@@ -86,5 +91,6 @@
     <file alias="TodoListsPage.qml">qml/OpenTodoList/pages/TodoListsPage.qml</file>
     <file alias="qmldir">qml/OpenTodoList/pages/qmldir</file>
     <file alias="TodosPage.qml">qml/OpenTodoList/pages/TodosPage.qml</file>
+    <file alias="AboutPage.qml">qml/OpenTodoList/pages/AboutPage.qml</file>
   </qresource>
 </RCC>

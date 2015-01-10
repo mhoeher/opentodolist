@@ -23,6 +23,7 @@
 #include "database/storagequery.h"
 
 #include <QAbstractListModel>
+#include <QJSValue>
 #include <QObjectList>
 #include <QQmlListProperty>
 #include <QSet>
@@ -40,10 +41,12 @@ class ObjectModel : public QAbstractListModel
   Q_OBJECT
   Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
   Q_PROPERTY(QQmlListProperty<QObject> objects READ objects NOTIFY objectsChanged)
+  Q_PROPERTY(QJSValue groupingFunction READ groupingFunction WRITE setGroupingFunction NOTIFY groupingFunctionChanged)
 public:
 
   enum {
-    ObjectTextRole = Qt::UserRole + 1
+    ObjectTextRole = Qt::UserRole + 1,
+    GroupRole
   };
 
   ObjectModel( const char *uuidPropertyName, QObject *parent = 0 );
@@ -63,6 +66,9 @@ public:
   const char *textProperty() const;
   void setTextProperty(const char *textProperty);
 
+  QJSValue groupingFunction() const;
+  void setGroupingFunction(const QJSValue &groupingFunction);
+
 public slots:
 
   void refresh();
@@ -74,6 +80,7 @@ signals:
   void databaseChanged();
   void objectsChanged();
   void objectAdded( QObject *object );
+  void groupingFunctionChanged();
 
 protected:
 
@@ -121,13 +128,14 @@ protected:
 
 private:
 
-  Database      *m_database;
-  QObjectList    m_objects;
-  const char    *m_uuidPropertyName;
-  QSet<QString> m_readObjects;
-  QTimer        m_updateTimer;
-  QTimer        m_sortTimer;
-  const char   *m_textProperty;
+  Database        *m_database;
+  QObjectList      m_objects;
+  const char      *m_uuidPropertyName;
+  QSet<QString>    m_readObjects;
+  QTimer           m_updateTimer;
+  QTimer           m_sortTimer;
+  const char      *m_textProperty;
+  mutable QJSValue m_groupingFunction;
 
   void addObject( QObject *object, int index = -1 );
   void removeObject( QObject *object );

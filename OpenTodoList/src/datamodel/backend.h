@@ -19,6 +19,8 @@
 #ifndef OPENTODOLIST_DATAMODEL_BACKEND_H
 #define OPENTODOLIST_DATAMODEL_BACKEND_H
 
+#include "core/opentodolistinterfaces.h"
+
 #include <QObject>
 
 namespace OpenTodoList {
@@ -35,6 +37,7 @@ class Backend : public QObject
   Q_OBJECT
   Q_CLASSINFO( "id", "id" ) //!< The name of the ID property
   Q_CLASSINFO( "uuid", "name" ) //!< The name of the UUID property
+  Q_ENUMS(Capabilities)
   Q_PROPERTY(bool hasId READ hasId NOTIFY idChanged)
   Q_PROPERTY(int id READ id NOTIFY idChanged)
   Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
@@ -50,6 +53,8 @@ public:
    */
   typedef struct {} ContainerType;
 
+  typedef IBackend::Capabilities Capabilities;
+
   explicit Backend(QObject *parent = 0);
 
   bool hasId() const;
@@ -61,6 +66,8 @@ public:
   void setTitle( const QString &title );
   QString description() const;
   void setDescription( const QString &description );
+  QSet<Capabilities> capabilities() const;
+  void setCapabilities(const QSet<Capabilities> &capabilities);
 
   /**
      @brief Whether the backend has been disposed
@@ -79,6 +86,7 @@ signals:
   void nameChanged();
   void titleChanged();
   void descriptionChanged();
+  void capabilitiesChanged();
 
   void changed();
 
@@ -86,11 +94,12 @@ public slots:
 
 private:
 
-  bool    m_hasId;
-  int     m_id;
-  QString m_name;
-  QString m_title;
-  QString m_description;
+  bool                m_hasId;
+  int                 m_id;
+  QString             m_name;
+  QString             m_title;
+  QString             m_description;
+  QSet<Capabilities>  m_capabilities;
 
   bool    m_loading;
 

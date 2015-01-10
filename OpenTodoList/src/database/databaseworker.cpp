@@ -236,6 +236,12 @@ void DatabaseWorker::updateToSchemaVersion0()
                   " UNIQUE ( name )"
                   ");",
                   "Failed to create table backend" );
+  runSimpleQuery( "CREATE TABLE backendCapability ("
+                  " backend INTEGER NOT NULL,"
+                  " capability INTEGER NOT NULL,"
+                  " PRIMARY KEY(backend,capability),"
+                  " FOREIGN KEY (backend) REFERENCES backend ( id ) ON DELETE CASCADE);",
+                  "Failed to create table backendCapabilities!" );
 
   // Tables for storing account information:
   runSimpleQuery( "CREATE TABLE account ("

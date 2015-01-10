@@ -51,6 +51,9 @@ public:
     QString filter() const;
     void setFilter(const QString &filter);
 
+    bool showOnlyScheduled() const;
+    void setShowOnlyScheduled(bool showOnlyScheduled);
+
 signals:
 
     void readTodo( const QVariant &todo );
@@ -68,6 +71,7 @@ private:
     QDateTime m_maxDueDate;
     bool m_showDone;
     QString m_filter;
+    bool m_showOnlyScheduled;
 
 
 };

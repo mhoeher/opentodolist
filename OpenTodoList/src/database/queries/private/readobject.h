@@ -78,6 +78,9 @@ public:
   bool onlyDeleted() const;
   void setOnlyDeleted(bool onlyDeleted);
 
+  bool includeDeleted() const;
+  void setIncludeDeleted(bool includeDeleted);
+
   ConditionList conditions() const;
   void setConditions(const ConditionList &conditions);
   void addCondition( const Condition &condition );
@@ -117,6 +120,7 @@ private:
   QVariant                  m_parentName;
   bool                      m_onlyModified;
   bool                      m_onlyDeleted;
+  bool                      m_includeDeleted;
   ConditionList             m_conditions;
   int                       m_limit;
   int                       m_offset;
@@ -143,6 +147,7 @@ ReadObject<T>::ReadObject( const QStringList &attributes ) :
   m_parentName(),
   m_onlyModified( false ),
   m_onlyDeleted( false ),
+  m_includeDeleted( false ),
   m_conditions(),
   m_limit( 0 ),
   m_offset( 0 )
@@ -206,7 +211,9 @@ bool ReadObject<T>::query(QString &query, QVariantMap &args, int &options )
   if ( m_onlyDeleted ) {
     conditions << QString( " (%1.disposed) " ).arg( m_baseTable );
   } else {
-    conditions << QString( " (NOT %1.disposed) " ).arg( m_baseTable );
+    if ( !m_includeDeleted ) {
+      conditions << QString( " (NOT %1.disposed) " ).arg( m_baseTable );
+    }
   }
   ConditionList additionalConditions;
   additionalConditions.append( m_conditions );
@@ -416,6 +423,30 @@ void ReadObject<T>::setOnlyDeleted(bool onlyDeleted)
 }
 
 /**
+   @brief Include also deleted objects in query
+
+   If this is set to true, the query will also return objects marked as disposed. By default,
+   this is false.
+
+   @sa setIncludeDeleted()
+ */
+template<typename T>
+bool ReadObject<T>::includeDeleted() const
+{
+  return m_includeDeleted;
+}
+
+/**
+   @brief Sets whether to include deleted objects in results
+   @sa includeDeleted()
+ */
+template<typename T>
+void ReadObject<T>::setIncludeDeleted(bool includeDeleted)
+{
+  m_includeDeleted = includeDeleted;
+}
+
+/**
   @brief A list of additional conditions
 
   A list of additional conditions that are appended to the list of auto generated
@@ -506,15 +537,6 @@ void ReadObject<T>::setOffset(int offset)
 {
   m_offset = offset;
 }
-
-
-
-
-
-
-
-
-
 
 } // namespace Private
 } // namespace Queries

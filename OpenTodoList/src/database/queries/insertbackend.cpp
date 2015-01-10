@@ -34,7 +34,9 @@ namespace Queries {
  */
 InsertBackend::InsertBackend( Backend *backend ) :
   OpenTodoList::DataBase::StorageQuery(),
-  m_backend( backend )
+  m_backend( backend ),
+  m_state( InsertBackendState ),
+  m_waitForId( false )
 {
   Q_ASSERT( backend != nullptr );
 }
@@ -49,19 +51,63 @@ InsertBackend::~InsertBackend()
 
 bool InsertBackend::query(QString &query, QVariantMap &args, int &options)
 {
-  options = StorageQuery::QueryIsUpdateQuery;
-  query = "INSERT OR REPLACE INTO backend ( id, name, title, description ) "
-          "VALUES ( (SELECT id FROM backend WHERE name = :searchName ), :name, :title, :description );";
-  args.insert( "searchName", m_backend->name() );
-  args.insert( "name", m_backend->name() );
-  args.insert( "title", m_backend->title() );
-  args.insert( "description", m_backend->description() );
-  return true;
+  m_waitForId = false;
+  switch ( m_state ) {
+  case InsertBackendState:
+  {
+    options = StorageQuery::QueryIsUpdateQuery;
+    query = "INSERT OR REPLACE INTO backend ( id, name, title, description ) "
+            "VALUES ( (SELECT id FROM backend WHERE name = :searchName ), :name, :title, :description );";
+    args.insert( "searchName", m_backend->name() );
+    args.insert( "name", m_backend->name() );
+    args.insert( "title", m_backend->title() );
+    args.insert( "description", m_backend->description() );
+    m_state = RemoveCapabilitiesState;
+    m_waitForId = true;
+    return true;
+  }
+
+  case RemoveCapabilitiesState:
+  {
+    query = "DELETE FROM backendCapability WHERE backend = ("
+            "SELECT id FROM backend WHERE name = :name);";
+    args.insert( "name", m_backend->name() );
+    if ( m_backend->capabilities().isEmpty() ) {
+      m_state = FinishedState;
+    } else {
+      m_state = InsertCapabilitiesState;
+    }
+    return true;
+  }
+
+  case InsertCapabilitiesState:
+  {
+    query = "WITH backendInfo (id) AS ( SELECT id FROM backend WHERE name = :name ) "
+            "INSERT INTO backendCapability ( backend, capability ) "
+            "VALUES ";
+    args.insert( "name", m_backend->name() );
+    QStringList caps;
+    int i = 0;
+    for ( Backend::Capabilities cap : m_backend->capabilities() ) {
+      QString capName = QString( "capability%1" ).arg( ++i );
+      caps << QString("( (SELECT id FROM backendInfo), :%1)").arg( capName );
+      args.insert( capName, QVariant::fromValue<int>( cap ) );
+    }
+    query += caps.join( ", ") + ";";
+    m_state = FinishedState;
+    return true;
+  }
+
+  default:
+    return false;
+  }
+
+
 }
 
 void InsertBackend::newIdAvailable(const QVariant &id)
 {
-  if ( id.isValid() ) {
+  if ( m_waitForId && id.isValid() ) {
     m_backend->setId( id.toInt() );
   }
 }
@@ -69,6 +115,11 @@ void InsertBackend::newIdAvailable(const QVariant &id)
 void InsertBackend::endRun()
 {
   emit backendChanged( m_backend->toVariant() );
+}
+
+bool InsertBackend::hasNext() const
+{
+  return m_state != FinishedState;
 }
 
 } // namespace Queries

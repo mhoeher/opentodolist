@@ -57,6 +57,8 @@ public:
     void runQuery( StorageQuery *query );
     void scheduleQuery( StorageQuery *query );
 
+    static QString localStorageDir();
+
 signals:
 
     void backendChanged( const QVariant &backend );

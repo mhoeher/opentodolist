@@ -41,7 +41,8 @@ TodoModel::TodoModel(QObject *parent) :
     m_sortMode( TodoModel::SortTodoByName ),
     m_backendSortMode( TodoModel::SortTodoByName ),
     m_limitOffset( -1 ),
-    m_limitCount( -1 )
+    m_limitCount( -1 ),
+    m_showOnlyScheduled( false )
 {
     setTextProperty("title");
     connect( this, &TodoModel::todoListChanged, this, &TodoModel::refresh );
@@ -97,6 +98,7 @@ StorageQuery *TodoModel::createQuery() const
   query->setMaxDueDate( m_maxDueDate );
   query->setShowDone( m_showDone );
   query->setFilter( m_filter );
+  query->setShowOnlyScheduled( m_showOnlyScheduled );
   connect( query, &Queries::ReadTodo::readTodo, this, &TodoModel::addTodo, Qt::QueuedConnection );
   return query;
 }
@@ -162,6 +164,19 @@ int TodoModel::compareObjects(QObject *left, QObject *right) const
   }
   return 0;
 }
+bool TodoModel::showOnlyScheduled() const
+{
+  return m_showOnlyScheduled;
+}
+
+void TodoModel::setShowOnlyScheduled(bool showOnlyScheduled)
+{
+  if ( m_showOnlyScheduled != showOnlyScheduled ) {
+    m_showOnlyScheduled = showOnlyScheduled;
+    emit showOnlyScheduledChanged();
+  }
+}
+
 
 void TodoModel::addTodo(const QVariant &todo)
 {

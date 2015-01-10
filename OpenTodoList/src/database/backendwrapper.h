@@ -114,6 +114,7 @@ public:
     QString name() const  override;
     QString title() const  override;
     QString description() const  override;
+    QSet<Capabilities> capabilities() const override;
     bool start() override;
     bool stop() override;
     void sync() override;

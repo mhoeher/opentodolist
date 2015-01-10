@@ -166,6 +166,7 @@ IAccount *BackendWrapper::getAccount(const QUuid &uuid)
 {
   Queries::ReadAccount q;
   q.setUuid( uuid );
+  q.setIncludeDeleted(true);
   m_database->runQuery( &q );
   if ( q.objects().isEmpty() ) {
     return nullptr;
@@ -180,6 +181,7 @@ ITodoList *BackendWrapper::getTodoList(const QUuid &uuid)
 {
   Queries::ReadTodoList q;
   q.setUuid( uuid );
+  q.setIncludeDeleted(true);
   m_database->runQuery( &q );
   if ( q.objects().isEmpty() ) {
     return nullptr;
@@ -194,6 +196,7 @@ ITodo *BackendWrapper::getTodo(const QUuid &uuid)
 {
   Queries::ReadTodo q;
   q.setUuid( uuid );
+  q.setIncludeDeleted(true);
   m_database->runQuery( &q );
   if ( q.objects().isEmpty() ) {
     return nullptr;
@@ -208,6 +211,7 @@ ITask *BackendWrapper::getTask(const QUuid &uuid)
 {
   Queries::ReadTask q;
   q.setUuid( uuid );
+  q.setIncludeDeleted(true);
   m_database->runQuery( &q );
   if ( q.objects().isEmpty() ) {
     return nullptr;
@@ -229,6 +233,7 @@ QList<IAccount *> BackendWrapper::getAccounts(QueryFlags flags, int maxAccounts,
   }
   q.setLimit( maxAccounts );
   q.setOffset( offset );
+  q.setIncludeDeleted(true);
   Queries::ReadAccount::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -254,6 +259,7 @@ QList<ITodoList *> BackendWrapper::getTodoLists(QueryFlags flags, int maxTodoLis
   }
   q.setLimit( maxTodoLists );
   q.setOffset( offset );
+  q.setIncludeDeleted(true);
   Queries::ReadTodoList::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -279,6 +285,7 @@ QList<ITodo *> BackendWrapper::getTodos(QueryFlags flags, int maxTodos, int offs
   }
   q.setLimit( maxTodos );
   q.setOffset( offset );
+  q.setIncludeDeleted(true);
   Queries::ReadTodo::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -304,6 +311,7 @@ QList<ITask *> BackendWrapper::getTasks(QueryFlags flags, int maxTasks, int offs
   }
   q.setLimit( maxTasks );
   q.setOffset( offset );
+  q.setIncludeDeleted(true);
   Queries::ReadTask::Condition c;
   c.condition = "backend.name=:searchBackendName";
   c.arguments.insert( "searchBackendName", m_backend->name() );
@@ -375,6 +383,14 @@ QString BackendWrapper::description() const
   if ( m_status != Invalid )
     return m_backend->description();
   return QString();
+}
+
+QSet<IBackend::Capabilities> BackendWrapper::capabilities() const
+{
+  if ( m_status != Invalid ) {
+    return m_backend->capabilities();
+  }
+  return QSet<Capabilities>();
 }
 
 bool BackendWrapper::start()

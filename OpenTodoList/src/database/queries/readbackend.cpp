@@ -34,7 +34,9 @@ namespace Queries {
          created objects will remain in memory.
  */
 ReadBackend::ReadBackend() :
-  StorageQuery()
+  StorageQuery(),
+  m_backends(),
+  m_currentBackend(nullptr)
 {
 }
 
@@ -50,19 +52,45 @@ bool ReadBackend::query(QString &query, QVariantMap &args, int &options )
 {
   Q_UNUSED( args );
   Q_UNUSED( options );
-  query = "SELECT id, name, title, description FROM backend;";
+  query = "SELECT backend.id AS id, "
+                 "backend.name AS name, "
+                 "backend.title AS title, "
+                 "backend.description AS description, "
+                 "backendCapability.capability AS capability "
+          "FROM backend LEFT OUTER JOIN backendCapability "
+          "ON backend.id = backendCapability.backend;";
   return true;
 }
 
 void ReadBackend::recordAvailable(const QVariantMap &record)
 {
-  DataModel::Backend *backend = new DataModel::Backend( this );
-  backend->setId( record.value( "id", -1 ).toInt() );
-  backend->setName( record.value( "name", QString() ).toString() );
-  backend->setTitle( record.value( "title", QString() ).toString() );
-  backend->setDescription( record.value( "description", QString() ).toString() );
-  emit readBackend( backend->toVariant() );
-  m_backends << backend;
+  if ( m_currentBackend && m_currentBackend->id() != record.value( "id" ).toInt() ) {
+    m_backends << m_currentBackend;
+    emit readBackend( m_currentBackend->toVariant() );
+    m_currentBackend = nullptr;
+  }
+  if ( !m_currentBackend ) {
+    m_currentBackend = new DataModel::Backend( this );
+    m_currentBackend->setId( record.value( "id", -1 ).toInt() );
+    m_currentBackend->setName( record.value( "name", QString() ).toString() );
+    m_currentBackend->setTitle( record.value( "title", QString() ).toString() );
+    m_currentBackend->setDescription( record.value( "description", QString() ).toString() );
+  }
+  if ( record.contains( "capability" ) ) {
+    QSet<DataModel::Backend::Capabilities> caps = m_currentBackend->capabilities();
+    caps.insert( static_cast< DataModel::Backend::Capabilities>(
+                   record.value( "capability" ).toInt() ) );
+    m_currentBackend->setCapabilities( caps );
+  }
+}
+
+void ReadBackend::endRun()
+{
+  if ( m_currentBackend ) {
+    m_backends << m_currentBackend;
+    emit readBackend( m_currentBackend->toVariant() );
+    m_currentBackend = nullptr;
+  }
 }
 
 } // namespace Queries

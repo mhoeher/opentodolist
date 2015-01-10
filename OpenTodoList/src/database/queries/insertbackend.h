@@ -46,13 +46,22 @@ public:
     bool query(QString &query, QVariantMap &args, int &options) override;
     void newIdAvailable(const QVariant &id) override;
     void endRun() override;
+    bool hasNext() const override;
 
 signals:
 
 public slots:
 
 private:
+    enum State {
+      InsertBackendState,
+      RemoveCapabilitiesState,
+      InsertCapabilitiesState,
+      FinishedState
+    };
     Backend *m_backend;
+    State    m_state;
+    bool     m_waitForId;
 
 };
 

@@ -22,6 +22,7 @@ import QtQuick.Controls.Styles 1.2
 import QtQuick.Dialogs 1.2
 import "../components" as Components
 import "../style" as Style
+import "../app" as App
 import "../utils/DateUtils.js" as DateUtils
 import net.rpdev.OpenTodoList.DataModel 1.0
 import net.rpdev.OpenTodoList.DataBase 1.0
@@ -33,6 +34,16 @@ Components.Page {
     property TodoList todoList: null
     property bool searching: false
     property string searchString: ""
+    property alias groupingFunction: todoModel.groupingFunction
+    property alias showOnlyScheduled: todoModel.showOnlyScheduled
+    property alias sortMode: todoModel.sortMode
+    property alias showDone: todoModel.showDone
+
+    readonly property var defaultGroupingFunction: function( todo ) {
+        if ( todo.done ) {
+            return qsTr( "Completed Todos" )
+        }
+    }
 
     signal todoSelected(Todo todo)
 
@@ -89,6 +100,7 @@ Components.Page {
         showDone: true
         todoList: todosPage.todoList
         filter: searchString
+        sortMode: App.GlobalSettings.defaultTodoSortMode
         onDatabaseChanged: {
             if ( searching ) {
                 if ( database === null ) {
@@ -96,6 +108,7 @@ Components.Page {
                 }
             }
         }
+        groupingFunction: todosPage.defaultGroupingFunction
     }
 
     Component {
@@ -109,6 +122,7 @@ Components.Page {
                                   checkBox.height ) + Style.Measures.midSpace,
                         Style.Measures.optButtonHeight )
             opacity: display.done ? 0.5 : 1.0
+            z: 1
 
             Components.ItemBox {
                 id: background
@@ -189,13 +203,36 @@ Components.Page {
     }
 
     Component {
+        id: sectionHeaderDelegate
+        Item {
+            width: parent.width
+            height: Math.max( sectionLabel.height,
+                             Style.Measures.optButtonHeight ) +
+                    Style.Measures.midSpace
+            Style.H5 {
+                id: sectionLabel
+                z: 2
+                text: section
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Style.Measures.tinySpace
+                    verticalCenter: parent.verticalCenter
+                }
+
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+        }
+    }
+
+    Component {
         id: headerDelegate
         Rectangle {
             id: header
             width: parent.width
             clip: true
             color: Style.Colors.primary
-            z: 2
+            z: 3
             height: Math.max( newTodoTitle.height,
                              plusButton.height ) +
                     Style.Measures.midSpace
@@ -271,6 +308,10 @@ Components.Page {
             delegate: viewDelegate
             header: headerDelegate
             headerPositioning: ListView.PullBackHeader
+            section {
+                property: "group"
+                delegate: sectionHeaderDelegate
+            }
         }
     }
 

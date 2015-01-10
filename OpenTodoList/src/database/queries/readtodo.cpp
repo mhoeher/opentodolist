@@ -29,7 +29,8 @@ ReadTodo::ReadTodo() :
       { "uuid", "weight", "done", "priority", "dueDate", "title", "description" } ),
     m_minDueDate( QDateTime() ),
     m_maxDueDate( QDateTime() ),
-    m_showDone( true )
+    m_showDone( true ),
+    m_showOnlyScheduled( false )
 {
   connect( this, &ReadTodo::queryFinished,
            [this] {
@@ -76,15 +77,20 @@ void ReadTodo::setShowDone(bool showDone)
 ReadTodo::ConditionList ReadTodo::generatedConditions() const
 {
   ConditionList result;
+  if ( m_minDueDate.isValid() || m_maxDueDate.isValid() || m_showOnlyScheduled ) {
+    Condition c;
+    c.condition = "(dueDate IS NOT NULL)";
+    result.append(c);
+  }
   if ( m_minDueDate.isValid() ) {
     Condition c;
-    c.condition = "(dueDate IS NOT NULL AND dueDate >= :readTodoMinDueDate)";
+    c.condition = "(dueDate >= :readTodoMinDueDate)";
     c.arguments.insert( "readTodoMinDueDate", m_minDueDate );
     result.append( c );
   }
   if ( m_maxDueDate.isValid() ) {
     Condition c;
-    c.condition = "(dueDate IS NOT NULL AND dueDate <= :readTodoMaxDueDate)";
+    c.condition = "(dueDate <= :readTodoMaxDueDate)";
     c.arguments.insert( "readTodoMaxDueDate", m_maxDueDate );
     result.append( c );
   }
@@ -102,15 +108,25 @@ ReadTodo::ConditionList ReadTodo::generatedConditions() const
   }
   return result;
 }
+bool ReadTodo::showOnlyScheduled() const
+{
+    return m_showOnlyScheduled;
+}
+
+void ReadTodo::setShowOnlyScheduled(bool showOnlyScheduled)
+{
+    m_showOnlyScheduled = showOnlyScheduled;
+}
+
 
 QString ReadTodo::filter() const
 {
-  return m_filter;
+    return m_filter;
 }
 
 void ReadTodo::setFilter(const QString &filter)
 {
-  m_filter = filter;
+    m_filter = filter;
 }
 
 } // namespace Queries

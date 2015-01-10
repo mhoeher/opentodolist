@@ -31,6 +31,7 @@ Backend::Backend(QObject *parent) :
   m_name(),
   m_title(),
   m_description(),
+  m_capabilities(),
   m_loading( false )
 {
   connect( this, &Backend::idChanged, this, &Backend::emitChanged );
@@ -97,6 +98,17 @@ void Backend::setDescription(const QString &description)
   }
 }
 
+QSet<Backend::Capabilities> Backend::capabilities() const
+{
+  return m_capabilities;
+}
+
+void Backend::setCapabilities(const QSet<Capabilities> &capabilities)
+{
+  m_capabilities = capabilities;
+  emit capabilitiesChanged();
+}
+
 /**
    @brief Persists the Backend object to a QVariant
 
@@ -112,6 +124,12 @@ QVariant Backend::toVariant() const
   }
   result.insert( "name", m_name );
   result.insert( "title", m_title );
+  QVariantList caps;
+  for ( Capabilities cap : m_capabilities ) {
+    caps << QVariant::fromValue<int>(cap);
+  }
+  result.insert( "capabilities", caps );
+
   return result;
 }
 
@@ -141,6 +159,11 @@ void Backend::fromVariant(const QVariant &backend)
   }
   setName( map.value( "name", m_name ).toString() );
   setTitle( map.value( "title", m_title ).toString() );
+  m_capabilities.clear();
+  for ( QVariant cap : map.value( "capabilities" ).toList() ) {
+    m_capabilities.insert( static_cast< Capabilities >( cap.toInt() ) );
+  }
+  emit capabilitiesChanged();
 
   m_loading = false;
 }

@@ -18,6 +18,8 @@
 
 #include "objectmodel.h"
 
+#include <QJSEngine>
+
 namespace OpenTodoList {
 namespace Models {
 namespace Private {
@@ -30,7 +32,8 @@ ObjectModel::ObjectModel(const char *uuidPropertyName, QObject *parent) :
   m_readObjects(),
   m_updateTimer(),
   m_sortTimer(),
-  m_textProperty( "objectName" )
+  m_textProperty( "objectName" ),
+  m_groupingFunction(QJSValue())
 {
   connect( this, &ObjectModel::databaseChanged, this, &ObjectModel::refresh );
 
@@ -72,6 +75,15 @@ QVariant ObjectModel::data(const QModelIndex &index, int role) const
     switch ( role ) {
     case Qt::DisplayRole: return QVariant::fromValue<QObject*>( m_objects.at( index.row() ) );
     case ObjectTextRole: return m_objects.at(index.row())->property(m_textProperty);
+    case GroupRole: {
+      if ( m_groupingFunction.isCallable() && m_groupingFunction.engine() ) {
+        QJSValueList args;
+        args << m_groupingFunction.engine()->toScriptValue<QObject*>( m_objects.at( index.row() ) );
+        return m_groupingFunction.call( args ).toVariant();
+      } else {
+        return QVariant();
+      }
+    }
     default:
       break;
     }
@@ -112,6 +124,7 @@ QHash<int, QByteArray> ObjectModel::roleNames() const
 {
   auto result = QAbstractListModel::roleNames();
   result.insert( ObjectTextRole, "text" );
+  result.insert( GroupRole, "group" );
   return result;
 }
 
@@ -190,8 +203,36 @@ int ObjectModel::compareObjects(QObject *left, QObject *right) const
 }
 
 /**
-   @brief The name of the "text" property of the objects
+   @brief A dynamic grouping function
 
+   This property allows to register a custom JavaScript function in the model that is used
+   to calculate a "group" value from the contained objects. This grouping can be used for
+   sectioning in views in the user interface part.
+
+   @sa setGroupingFunction
+ */
+QJSValue ObjectModel::groupingFunction() const
+{
+    return m_groupingFunction;
+}
+
+/**
+   @brief Sets the grouping function
+   @sa groupingFunction()
+ */
+void ObjectModel::setGroupingFunction(const QJSValue &groupingFunction)
+{
+  m_groupingFunction = groupingFunction;
+  emit groupingFunctionChanged();
+  if ( !m_objects.isEmpty() ) {
+    emit dataChanged( index( 0 ), index( m_objects.size() - 1 ), QVector<int>() << GroupRole );
+  }
+}
+
+
+/**
+   @brief The name of the "text" property of the objects
+   
    This is used to specify which propery shall be returned when
    the object is requested as "text" using the ObjectTextRole role.
 

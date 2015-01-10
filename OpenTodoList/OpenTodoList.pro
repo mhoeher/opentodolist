@@ -203,4 +203,5 @@ DISTFILES += \
     qml/OpenTodoList/style/qmldir \
     qml/OpenTodoList/components/qmldir \
     qml/OpenTodoList/pages/qmldir \
+    qml/OpenTodoList/app/qmldir \
     qml/OpenTodoList/app/qmldir

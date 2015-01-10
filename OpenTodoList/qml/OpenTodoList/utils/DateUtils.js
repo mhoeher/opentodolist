@@ -104,3 +104,19 @@ function isValidDate(date) {
              isNaN( date.getMonth() ) ||
              isNaN( date.getDate() ) );
 }
+
+function lastDayOfWeekForDate(forThis) {
+    var result = new Date( forThis );
+    var date = result.getDate();
+    var offset = ( 6 - result.getDay() + Qt.locale().firstDayOfWeek ) % 7;
+    result.setDate( date + offset );
+    return result;
+}
+
+function previousDayForDate(forThis) {
+    var result = new Date( forThis );
+    var date = result.getDate();
+    --date;
+    result.setDate( date );
+    return result;
+}

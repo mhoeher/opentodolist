@@ -79,6 +79,18 @@ QString LocalXmlBackend::description() const
              "XML file format." );
 }
 
+QSet<IBackend::Capabilities> LocalXmlBackend::capabilities() const
+{
+  QSet<Capabilities> result;
+  result << CanCreateTodoList
+         << CanCreateTodo
+         << CanCreateTask
+         << CanDisposeTodoList
+         << CanDisposeTodo
+         << CanDisposeTask;
+  return result;
+}
+
 bool LocalXmlBackend::start()
 {
   qsrand( QDateTime::currentDateTime().toMSecsSinceEpoch() );
@@ -525,6 +537,7 @@ void LocalXmlBackend::fixTodoList(const QString &todoList)
   if ( !root.hasAttribute( "id" ) ) {
     root.setAttribute( "id", QUuid::createUuid().toString() );
     documentToFile( doc, todoList );
+    qDebug() << "Todo list" << todoList << "updated!";
   }
 }
 
@@ -551,6 +564,7 @@ void LocalXmlBackend::fixTodo(const QString &todo)
   }
   if ( changed ) {
     documentToFile( doc, todo );
+    qDebug() << "Todo" << todo << "updated!";
   }
 }
 

@@ -23,6 +23,7 @@
 #include <QList>
 #include <QObject>
 #include <QUuid>
+#include <QSet>
 #include <QVariantMap>
 
 namespace OpenTodoList {
@@ -686,6 +687,34 @@ class IBackend {
 public:
 
   /**
+     @brief The capabilities a backend supports
+
+     This enum describes the various optional capabilities that a backend might support.
+     A backend can use this in the capabilities() method to indicate to the application
+     which operations are allowed with this backend. For example, a backend might want to
+     omit the CanCreateAccount capability in case it supports only one locally created
+     connection to some service (in the simplest case, when a backend just saves the data
+     into a local directory in the file system). In such cases, the application might want to
+     create one single IAccount and use this for all todo lists. Similarly, in such a use
+     case a backend also wants to avoid a user deleting this account. So consequentially
+     the backend would omit the CanDisposeAccount capability as well.
+
+     @note Not all capabilities might get honoured in the front end! Defining a set of
+           capabilities does not mean that the backend does not need to do sanity checks on
+           the data it has to care for.
+   */
+  enum Capabilities {
+    CanCreateAccount = 0,
+    CanCreateTodoList,
+    CanCreateTodo,
+    CanCreateTask,
+    CanDisposeAccount,
+    CanDisposeTodoList,
+    CanDisposeTodo,
+    CanDisposeTask
+  };
+
+  /**
        @brief Destructor
 
        Required for some compilers.
@@ -737,6 +766,15 @@ public:
        the user creates new accounts.
      */
   virtual QString description() const = 0;
+
+  /**
+     @brief The capabilities the backend supports.
+
+     A backend has to implement this method and return the list of all supported capabilities.
+
+     @sa Capabilities
+   */
+  virtual QSet<Capabilities> capabilities() const = 0;
 
   /**
        @brief Start the backend

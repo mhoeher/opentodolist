@@ -105,12 +105,34 @@ int main(int argc, char *argv[])
                                                 "Try to detect changes in QML base directory and "
                                                 "if such a change is detected, reload the QML files. "
                                                 "This option is for development purposes only." ) );
+  QCommandLineOption getLocalStorageDirOption( "getLocalStorageDir",
+                                               QCoreApplication::translate(
+                                                 "main",
+                                                 "Print the location where local data is stored "
+                                                 "and exit" ) );
+  QCommandLineOption setLocalStorageDirOption( "setLocalStorageDir",
+                                               QCoreApplication::translate(
+                                                 "main",
+                                                 "Sets the location where local data of the "
+                                                 "application is stored. This can be useful for "
+                                                 "testing (in case you want to use a productive "
+                                                 "version in parallel). This is basically the "
+                                                 "same as setting the "
+                                                 "OPENTODOLIST_LOCAL_STORAGE_LOCATION environment "
+                                                 "variable (however, using this option "
+                                                 "overrides the value of the variable). If neither "
+                                                 "this option nor the variable are set, then a "
+                                                 "platform specific user writable directory "
+                                                 "will be selected automatically." ),
+                                               "dir" );
   QCommandLineParser parser;
   parser.addOption( helpOption );
   parser.addOption( versionOption );
   parser.addOption( startInBackgroundOption );
   parser.addOption( mainQmlFileOption );
   parser.addOption( reloadQmlOnChangeOption );
+  parser.addOption( getLocalStorageDirOption );
+  parser.addOption( setLocalStorageDirOption );
 
   parser.process(*app);
 
@@ -122,7 +144,14 @@ int main(int argc, char *argv[])
     std::cout << "OpenTodoList version " << VERSION << std::endl;
     delete app;
     return 0;
+  } else if ( parser.isSet( getLocalStorageDirOption ) ) {
+    std::cout << DataBase::Database::localStorageDir().toStdString() << std::endl;
+    return 0;
   } else {
+    if ( parser.isSet( setLocalStorageDirOption ) ) {
+      qputenv( "OPENTODOLIST_LOCAL_STORAGE_LOCATION",
+               parser.value( setLocalStorageDirOption ).toLocal8Bit() );
+    }
     if ( parser.isSet( mainQmlFileOption ) ) {
       QFileInfo fi( parser.value( mainQmlFileOption ) );
       if ( fi.isFile() && fi.isReadable() ) {
