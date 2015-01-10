@@ -108,6 +108,7 @@ Components.Page {
                                   edit.height,
                                   checkBox.height ) + Style.Measures.midSpace,
                         Style.Measures.optButtonHeight )
+            opacity: display.done ? 0.5 : 1.0
 
             Components.ItemBox {
                 id: background

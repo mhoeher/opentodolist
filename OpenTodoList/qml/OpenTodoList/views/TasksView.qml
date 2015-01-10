@@ -62,6 +62,7 @@ ListView {
                                   edit.height ) + Style.Measures.midSpace,
                         Style.Measures.optButtonHeight )
             width: parent.width
+            opacity: display.done ? 0.5 : 1.0
 
             Components.ItemBox {
                 anchors.fill: parent
@@ -81,6 +82,7 @@ ListView {
                 id: label
                 text: display.title
                 visible: !edit.visible
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 anchors {
                     left: checkBox.right
                     right: parent.right
@@ -89,7 +91,12 @@ ListView {
                 }
             }
             MouseArea {
-                anchors.fill: parent
+                anchors {
+                    left: checkBox.right
+                    top: parent.top
+                    right: parent.right
+                    bottom: parent.bottom
+                }
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onPressAndHold: contextMenu.showPopupMenu(display)
                 onClicked: {
