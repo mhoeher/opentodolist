@@ -82,7 +82,7 @@ PROVIDING INSTALLERS
 
         1. Build OpenTodoList
 	2. Run macdeployqt tool to copy Qt binaries into the app bundle:
-           macdeployqt OpenTodoList.app qmldir=/path/to/opentodolist/OpenTodoList/qml
+           macdeployqt OpenTodoList.app -qmldir=/path/to/opentodolist/OpenTodoList/qml
         3. Create installers and online repository:
 		perl $OTLSOURCEDIR/bin/mk-installer.pl \
                 --installDir /path/to/OpenTodoList.app \
