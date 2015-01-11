@@ -103,7 +103,7 @@ print( CONF "[Paths]\nPrefix=.." );
 close( CONF );
 
 # Copy required QML modules:
-for my $qmlModule ( "QtQuick", "QtQuick.2" ) {
+for my $qmlModule ( "QtQuick", "QtQuick.2", "QtGraphicalEffects" ) {
     rcopy(
         File::Spec->catfile( $qtDir, "qml", $qmlModule ),
         File::Spec->catfile( $qmlDir, $qmlModule ) );

@@ -135,6 +135,14 @@ Currently not working!
 
 my $update;
 
+=item --version VERSION
+
+Use VERSION as version (instead of getting it from the built binary).
+
+=cut
+
+my $version;
+
 =back
 
 =cut
@@ -169,6 +177,7 @@ GetOptions(
             "targetDir=s" => \$targetDir,
             "tempDir=s" => \$tempDir,
             "update" => \$update,
+            "version=s" => \$version,
             )
 || die( "Invalid arguments passed!" );
 
@@ -194,31 +203,34 @@ if ( !$tempDir ) {
 }
 
 # Get OpenTodoList version
-printf( "Getting current OpenTodoList version...\n" );
-my $openTodoListApp = File::Spec->catfile( $installDir, "OpenTodoList", "bin", "OpenTodoList" );
-if ( ! -f $openTodoListApp ) {
-    # Could we be on a Mac? Try app bundle:
-    $openTodoListApp = File::Spec->catfile( $installDir,
-      "Contents", "MacOS", "OpenTodoList" );
-}
-my $openTodoListVersion = ( -f $openTodoListApp ? `$openTodoListApp --version` : undef );
-if ( $openTodoListVersion =~ m/^OpenTodoList\s*version\s*(.*)$/ ) {
-    $openTodoListVersion = $1;
-} else {
-    # Okay, we are in Windows... try to read from config.pri instead:
-    open( CONFIG, "<", File::Spec->catfile( $sourceDir, "..", "..", "config.pri" ) )
-        || die( $! );
-    $openTodoListVersion = undef;
-    while ( <CONFIG> ) {
-        if ( $_ =~ m/^\s*VERSION\s*=\s*([^\s]+)\s*$/ ) {
-            $openTodoListVersion = $1;
-            last;
-        }
-    }
-    close( CONFIG );
-    if ( !$openTodoListVersion ) {
-        die( "Unable to get OpenTodoList version!" );
-    }
+my $openTodoListVersion = $version;
+if (!defined($openTodoListVersion)) {
+  printf( "Getting current OpenTodoList version...\n" );
+  my $openTodoListApp = File::Spec->catfile( $installDir, "OpenTodoList", "bin", "OpenTodoList" );
+  if ( ! -f $openTodoListApp ) {
+      # Could we be on a Mac? Try app bundle:
+      $openTodoListApp = File::Spec->catfile( $installDir,
+        "Contents", "MacOS", "OpenTodoList" );
+  }
+  $openTodoListVersion = ( -f $openTodoListApp ? `$openTodoListApp --version` : undef );
+  if ( $openTodoListVersion =~ m/^OpenTodoList\s*version\s*(.*)$/ ) {
+      $openTodoListVersion = $1;
+  } else {
+      # Okay, we are in Windows... try to read from config.pri instead:
+      open( CONFIG, "<", File::Spec->catfile( $sourceDir, "..", "..", "config.pri" ) )
+          || die( $! );
+      $openTodoListVersion = undef;
+      while ( <CONFIG> ) {
+          if ( $_ =~ m/^\s*VERSION\s*=\s*([^\s]+)\s*$/ ) {
+              $openTodoListVersion = $1;
+              last;
+          }
+      }
+      close( CONFIG );
+      if ( !$openTodoListVersion ) {
+          die( "Unable to get OpenTodoList version!" );
+      }
+  }
 }
 
 # Prepare typical input arguments

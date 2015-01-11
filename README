@@ -65,7 +65,10 @@ PROVIDING INSTALLERS
 
         1. Build OpenTodoList
         2. Install it using
-             make install INSTALL_ROOT=/path/to/installdir
+             make install INSTALL_ROOT=$INSTALL_ROOT/OpenTodoList
+           Note that $INSTALL_ROOT is an arbitrary location. You
+           must install however into another subdirectory called
+           OpenTodoList for the other scripts to work properly.
         3. Deploy Qt libraries:
             perl $OTLSOURCEDIR/bin/linux-deploy-qt.pl \
             --qt /path/to/qt --exe $INSTALL_ROOT/OpenTodoList/bin/OpenTodoList
