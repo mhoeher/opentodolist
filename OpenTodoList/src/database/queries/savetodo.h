@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class SaveTodo : public SaveObject<Todo>
+class SaveTodo : public SaveObject<DataModel::Todo>
 {
 public:
   SaveTodo( Todo *todo );

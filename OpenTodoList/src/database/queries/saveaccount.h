@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class SaveAccount : public SaveObject<Account>
+class SaveAccount : public SaveObject<DataModel::Account>
 {
 public:
   SaveAccount( Account *account );

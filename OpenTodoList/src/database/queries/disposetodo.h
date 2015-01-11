@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class DisposeTodo : public DisposeObject<Todo>
+class DisposeTodo : public DisposeObject<DataModel::Todo>
 {
 public:
   DisposeTodo( Todo *todo );

@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class DisposeAccount : public DisposeObject<Account>
+class DisposeAccount : public DisposeObject<DataModel::Account>
 {
 public:
   DisposeAccount( Account *account );

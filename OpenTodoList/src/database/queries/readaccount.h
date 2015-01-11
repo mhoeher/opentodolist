@@ -33,7 +33,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class ReadAccount : public ReadObject<Account>
+class ReadAccount : public ReadObject<DataModel::Account>
 {
     Q_OBJECT
 public:

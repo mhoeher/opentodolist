@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class DeleteAccount : public DeleteObject<Account>
+class DeleteAccount : public DeleteObject<DataModel::Account>
 {
 public:
   DeleteAccount( Account *account );

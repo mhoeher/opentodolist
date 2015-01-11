@@ -29,7 +29,7 @@ namespace Queries {
 using namespace DataModel;
 using namespace Private;
 
-class DeleteTask : public DeleteObject<Task>
+class DeleteTask : public DeleteObject<DataModel::Task>
 {
 public:
   DeleteTask( Task *task );

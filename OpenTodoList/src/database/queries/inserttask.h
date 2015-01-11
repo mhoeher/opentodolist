@@ -31,7 +31,7 @@ namespace Queries {
 using namespace DataModel;
 using namespace Private;
 
-class InsertTask : public InsertObject<Task>
+class InsertTask : public InsertObject<DataModel::Task>
 {
     Q_OBJECT
 public:

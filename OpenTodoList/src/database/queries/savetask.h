@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class SaveTask : public SaveObject<Task>
+class SaveTask : public SaveObject<DataModel::Task>
 {
 public:
   SaveTask( Task *task );

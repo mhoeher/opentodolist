@@ -31,7 +31,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class ReadTodo : public ReadObject<Todo>
+class ReadTodo : public ReadObject<DataModel::Todo>
 {
     Q_OBJECT
 public:

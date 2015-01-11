@@ -482,7 +482,7 @@ void ReadObject<T>::setConditions(const ConditionList &conditions)
    @sa conditions()
  */
 template<typename T>
-void ReadObject<T>::addCondition(const ReadObject::Condition &condition)
+void ReadObject<T>::addCondition(const typename ReadObject<T>::Condition &condition)
 {
   m_conditions.append( condition );
 }

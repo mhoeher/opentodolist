@@ -31,7 +31,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class InsertTodoList : public InsertObject<TodoList>
+class InsertTodoList : public InsertObject<DataModel::TodoList>
 {
     Q_OBJECT
 public:

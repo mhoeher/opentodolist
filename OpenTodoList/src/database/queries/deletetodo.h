@@ -29,7 +29,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class DeleteTodo : public DeleteObject<Todo>
+class DeleteTodo : public DeleteObject<DataModel::Todo>
 {
 public:
   DeleteTodo( Todo *todo );

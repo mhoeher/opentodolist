@@ -31,7 +31,7 @@ namespace Queries {
 using namespace Private;
 using namespace DataModel;
 
-class InsertTodo : public InsertObject<Todo>
+class InsertTodo : public InsertObject<DataModel::Todo>
 {
     Q_OBJECT
 public:

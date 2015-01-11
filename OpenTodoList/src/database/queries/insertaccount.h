@@ -38,7 +38,7 @@ using namespace DataModel;
 
    This query can be used to insert a single DataModel::Account object into the Database.
  */
-class InsertAccount : public InsertObject<Account>
+class InsertAccount : public InsertObject<DataModel::Account>
 {
     Q_OBJECT
 public:
