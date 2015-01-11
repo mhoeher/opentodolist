@@ -447,6 +447,7 @@ ApplicationWindow {
                 break;
             case "scheduled":
                 stackView.showScheduled();
+                break;
             case "about":
                 stackView.showAbout();
                 break;

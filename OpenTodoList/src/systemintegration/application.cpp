@@ -67,7 +67,9 @@ Application::~Application()
 void Application::prepare()
 {
   // keep app open in background
+#if !defined(Q_OS_ANDROID)
   setQuitOnLastWindowClosed( false );
+#endif
 
   m_handler = new CommandHandler( this );
   connect( m_handler, &CommandHandler::requestCreateWindow, [this] { showWindow(); } );
