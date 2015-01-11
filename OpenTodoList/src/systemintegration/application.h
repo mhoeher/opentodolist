@@ -45,68 +45,71 @@ typedef QGuiApplication ApplicationBase;
 
 class Application : public ApplicationBase
 {
-    Q_OBJECT
-    Q_PROPERTY(OpenTodoList::SystemIntegration::ApplicationInstance* instance READ instance CONSTANT)
-    Q_PROPERTY(OpenTodoList::SystemIntegration::CommandHandler* handler READ handler CONSTANT)
-    Q_PROPERTY(QQmlApplicationEngine* viewer READ viewer NOTIFY viewerChanged )
-    Q_PROPERTY(OpenTodoList::SystemIntegration::StatusNotifierIcon* notifierIcon READ notifierIcon CONSTANT)
-    Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database CONSTANT)
+  Q_OBJECT
+  Q_PROPERTY(OpenTodoList::SystemIntegration::ApplicationInstance* instance READ instance CONSTANT)
+  Q_PROPERTY(OpenTodoList::SystemIntegration::CommandHandler* handler READ handler CONSTANT)
+  Q_PROPERTY(QQmlApplicationEngine* viewer READ viewer NOTIFY viewerChanged )
+  Q_PROPERTY(OpenTodoList::SystemIntegration::StatusNotifierIcon* notifierIcon READ notifierIcon CONSTANT)
+  Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database CONSTANT)
+  Q_PROPERTY(bool isDebugBuild READ isDebugBuild CONSTANT)
 
 public:
-    explicit Application(int &argc, char *argv[]);
-    virtual ~Application();
+  explicit Application(int &argc, char *argv[]);
+  virtual ~Application();
 
   void prepare();
 
-    ApplicationInstance* instance() const;
-    CommandHandler* handler() const;
-    QQmlApplicationEngine* viewer() const;
-    StatusNotifierIcon* notifierIcon() const;
-    DataBase::Database* database() const;
+  ApplicationInstance* instance() const;
+  CommandHandler* handler() const;
+  QQmlApplicationEngine* viewer() const;
+  StatusNotifierIcon* notifierIcon() const;
+  DataBase::Database* database() const;
 
-    void showWindow();
-    Q_INVOKABLE void hideWindow();
+  void showWindow();
+  Q_INVOKABLE void hideWindow();
 
-    QString mainQmlFile() const;
-    void setMainQmlFile(const QString &mainQmlFile);
+  QString mainQmlFile() const;
+  void setMainQmlFile(const QString &mainQmlFile);
 
-    bool reloadQmlOnChange() const;
-    void setReloadQmlOnChange(bool reloadQmlOnChange);
+  bool reloadQmlOnChange() const;
+  void setReloadQmlOnChange(bool reloadQmlOnChange);
+
+  bool isDebugBuild() const;
 
 signals:
 
-    void viewerChanged();
+  void viewerChanged();
 
 public slots:
 
 private:
 
-    ApplicationInstance         *m_instance;
-    CommandHandler              *m_handler;
-    QQmlApplicationEngine       *m_viewer;
-    StatusNotifierIcon          *m_notifier;
-    QString                      m_basePath;
+  ApplicationInstance         *m_instance;
+  CommandHandler              *m_handler;
+  QQmlApplicationEngine       *m_viewer;
+  StatusNotifierIcon          *m_notifier;
+  QString                      m_basePath;
 
-    DataBase::Database          *m_database;
+  DataBase::Database          *m_database;
 
-    bool                         m_pluginsRegistered;
+  bool                         m_pluginsRegistered;
 
-    QString                      m_mainQmlFile;
-    bool                         m_reloadQmlOnChange;
+  QString                      m_mainQmlFile;
+  bool                         m_reloadQmlOnChange;
 
-    QFileSystemWatcher          *m_fileSystemWatcher;
+  QFileSystemWatcher          *m_fileSystemWatcher;
 
-    void registerPlugins();
-    void setupPaths(QQmlApplicationEngine *viewer = nullptr);
-    void showNotifierIcon();
-    void watchQmlFiles();
-    void unwatchQmlFiles();
+  void registerPlugins();
+  void setupPaths(QQmlApplicationEngine *viewer = nullptr);
+  void showNotifierIcon();
+  void watchQmlFiles();
+  void unwatchQmlFiles();
 
 private slots:
 
-    void showWindowImplementation();
-    void hideWindowImplementation();
-    void reloadQml();
+  void showWindowImplementation();
+  void hideWindowImplementation();
+  void reloadQml();
 
 };
 

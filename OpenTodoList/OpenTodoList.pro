@@ -9,6 +9,8 @@ debug {
   DEPLOYMENTFOLDERS += qml
 }
 
+CONFIG(debug,debug|release):DEFINES += OPENTODOLIST_DEBUG_BUILD
+
 # Install Application Icons on UNIX:
 !android|!macx|!ios {
     icons.source = icons

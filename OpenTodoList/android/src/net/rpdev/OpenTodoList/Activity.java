@@ -16,10 +16,12 @@ public class Activity extends org.qtproject.qt5.android.bindings.QtActivity
       startService( new Intent( this, Service.class ) );
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceData) {
       super.onCreate(savedInstanceData);
-      doStartService();
+      // TODO: Start service once we really make use of this
+      //doStartService();
     }
 
     @Override

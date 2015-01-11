@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.2
-import QtQuick.Window 2.1
+import QtQuick.Window 2.2
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 import QtQuick.Layouts 1.1
@@ -168,6 +168,7 @@ ApplicationWindow {
             }
             Menu {
                 title: qsTr( "&Development Tools" )
+                visible: application.isDebugBuild
                 MenuItem {
                     text: qsTr( "Print Current Focus Item" )
                     shortcut: "Ctrl+Shift+P"
@@ -286,6 +287,17 @@ ApplicationWindow {
                 font.pointSize: Style.Fonts.h1
                 color: Style.Colors.lightText
                 onClicked: applicationMenu.popup()
+            }
+        }
+    }
+
+    onClosing: {
+        if ( Qt.platform.os === "android" ) {
+            if ( stackView.depth > 1 ) {
+                defaultFocusHandler.handleBack();
+                close.accepted = false;
+            } else {
+                application.handler.terminateApplication();
             }
         }
     }

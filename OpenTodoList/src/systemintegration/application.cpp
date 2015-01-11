@@ -56,13 +56,14 @@ Application::Application(int &argc, char *argv[]) :
     watchQmlFiles();
   });
   connect( this, &QGuiApplication::applicationStateChanged, [this](Qt::ApplicationState state) {
-    qDebug() << "New App state is" << static_cast<int>(state);
     if ( state == Qt::ApplicationActive ) {
       if ( !m_viewer ) {
         showWindow();
       } else {
         m_handler->showWindow();
       }
+    } else if ( state == Qt::ApplicationSuspended ) {
+      hideWindow();
     }
   });
 }
@@ -190,6 +191,15 @@ bool Application::reloadQmlOnChange() const
 void Application::setReloadQmlOnChange(bool reloadQmlOnChange)
 {
   m_reloadQmlOnChange = reloadQmlOnChange;
+}
+
+bool Application::isDebugBuild() const
+{
+#ifdef OPENTODOLIST_DEBUG_BUILD
+  return true;
+#else
+  return false;
+#endif
 }
 
 
