@@ -65,7 +65,7 @@ public:
     DataBase::Database* database() const;
 
     void showWindow();
-    void hideWindow();
+    Q_INVOKABLE void hideWindow();
 
     QString mainQmlFile() const;
     void setMainQmlFile(const QString &mainQmlFile);

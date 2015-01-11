@@ -19,6 +19,7 @@
 #include "systemintegration/commandhandler.h"
 
 #include <QCoreApplication>
+#include <QDebug>
 #include <QWindow>
 
 #ifdef Q_OS_ANDROID
@@ -165,6 +166,12 @@ QQmlApplicationEngine *CommandHandler::applicationWindow() const
 void CommandHandler::setApplicationWindow(QQmlApplicationEngine *applicationWindow)
 {
   m_applicationWindow = applicationWindow;
+  if ( m_applicationWindow ) {
+    connect( m_applicationWindow, &QQmlApplicationEngine::destroyed, [this](QObject*) {
+      this->m_applicationWindow = nullptr;
+      qDebug() << "Destroyed QML App engine";
+    });
+  }
 }
 
 } /* SystemIntegration */

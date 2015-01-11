@@ -40,7 +40,7 @@ ApplicationWindow {
 
     Component.onCompleted: {
         application.handler.requestShow.connect( function() { show(); raise(); } );
-        application.handler.requestHide.connect( function() { hide(); } );
+        application.handler.requestHide.connect( function() { application.hideWindow(); } );
         application.handler.requestToggleWindow.connect( function() {
             if ( visible ) {
                 hide();

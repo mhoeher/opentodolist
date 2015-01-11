@@ -55,6 +55,16 @@ Application::Application(int &argc, char *argv[]) :
     reloadQml();
     watchQmlFiles();
   });
+  connect( this, &QGuiApplication::applicationStateChanged, [this](Qt::ApplicationState state) {
+    qDebug() << "New App state is" << static_cast<int>(state);
+    if ( state == Qt::ApplicationActive ) {
+      if ( !m_viewer ) {
+        showWindow();
+      } else {
+        m_handler->showWindow();
+      }
+    }
+  });
 }
 
 Application::~Application()
@@ -219,7 +229,7 @@ void Application::showNotifierIcon()
 {
   m_notifier = new StatusNotifierIcon( m_handler );
   m_notifier->setApplicationTitle( applicationName() );
-#if !defined(Q_OS_MACX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
   m_notifier->setApplicationIcon( QCoreApplication::applicationDirPath() +
                                   "/../share/OpenTodoList/icons/OpenTodoList80.png" );
 #else
