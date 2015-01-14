@@ -111,7 +111,6 @@ protected:
       }
     }
     this->addObject( tmp, index );
-    sort();
   }
 
   template<typename T>

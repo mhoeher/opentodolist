@@ -272,8 +272,15 @@ void ObjectModel::addObject(QObject *object, int index)
     m_objects.insert( index, object );
     endInsertRows();
   } else {
-    beginInsertRows( QModelIndex(), m_objects.size(), m_objects.size() );
-    m_objects.append( object );
+    index = m_objects.size();
+    for ( int i = 0; i < m_objects.size(); ++i ) {
+      if ( compareObjects( object, m_objects.at( i ) ) < 0 ) {
+           index = i;
+           break;
+      }
+    }
+    beginInsertRows( QModelIndex(), index, index );
+    m_objects.insert( index, object );
     endInsertRows();
   }
   connect( object, &QObject::destroyed, this, &ObjectModel::objectDestroyed );
