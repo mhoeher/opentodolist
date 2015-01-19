@@ -338,6 +338,13 @@ void ObjectModel::objectDestroyed(QObject *obj)
   }
 }
 
+void ObjectModel::objectUpdated(QObject *obj) {
+  int idx = m_objects.indexOf( obj );
+  if ( idx >= 0 ) {
+    emit dataChanged( index( idx, 0 ), index( idx, 0 ), { ObjectTextRole, GroupRole } );
+  }
+}
+
 void ObjectModel::queryStarted()
 {
   m_readObjects.clear();

@@ -104,6 +104,7 @@ protected:
     for ( QObject *o : m_objects ) {
       if ( o->property( m_uuidPropertyName ) == tmp->property( m_uuidPropertyName ) ) {
         dynamic_cast< T* >( o )->fromVariant( data );
+        objectUpdated( o );
         m_readObjects.insert( o->property( m_uuidPropertyName ).toString() );
         delete tmp;
         sort();
@@ -111,6 +112,7 @@ protected:
       }
     }
     this->addObject( tmp, index );
+    connect( tmp, &T::changed, [this] { objectUpdated( sender() ); } );
   }
 
   template<typename T>
@@ -145,6 +147,7 @@ private:
 private slots:
 
   void objectDestroyed( QObject *obj );
+  void objectUpdated( QObject *obj );
 
   void queryStarted();
   void queryFinished();
