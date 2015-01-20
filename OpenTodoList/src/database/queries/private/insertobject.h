@@ -71,6 +71,9 @@ public:
   void newIdAvailable(const QVariant &id) override;
   bool hasNext() const override;
 
+  bool weightAtEnd() const;
+  void setWeightAtEnd(bool weightAtEnd);
+
 private:
 
   enum State {
@@ -91,6 +94,7 @@ private:
   bool        m_update;
   QString     m_parentAttribute;
   QString     m_parentIdAttribute;
+  bool        m_weightAtEnd;
 
   void queryInsertObject(QTextStream &stream, QVariantMap &args );
   void queryInsertMetaName(QTextStream &stream, QVariantMap &args );
@@ -136,7 +140,8 @@ InsertObject<T>::InsertObject(T* object,
   m_attributes( attributes ),
   m_update( update ),
   m_parentAttribute( ObjectInfo< typename T::ContainerType >::classNameLowerFirst() ),
-  m_parentIdAttribute( ObjectInfo< typename T::ContainerType >::classUuidProperty() )
+  m_parentIdAttribute( ObjectInfo< typename T::ContainerType >::classUuidProperty() ),
+  m_weightAtEnd( false )
 {
   Q_ASSERT( m_object != nullptr );
   Q_ASSERT( !m_baseTable.isEmpty() );
@@ -208,6 +213,34 @@ bool InsertObject<T>::hasNext() const
   return m_state != FinishedState;
 }
 
+/**
+  @brief Put inserted objects at end of list by its weight
+
+  If this flag is set to true, then the insertion will select a weight for the
+  object such that the weight is greater than any other object in the list.
+  This has only an effect, if a property called weight is part of the attribute
+  list. The default is false.
+
+  @sa setWeightAtEnd()
+ */
+template<typename T>
+bool InsertObject<T>::weightAtEnd() const
+{
+  return m_weightAtEnd;
+}
+
+/**
+  @brief Sets whether the object shall be weighted to be at the end of the list
+
+  @sa weightAtEnd()
+ */
+template<typename T>
+void InsertObject<T>::setWeightAtEnd(bool weightAtEnd)
+{
+  m_weightAtEnd = weightAtEnd;
+}
+
+
 template<typename T>
 void InsertObject<T>::queryInsertObject(QTextStream &stream, QVariantMap &args)
 {
@@ -250,11 +283,22 @@ void InsertObject<T>::queryInsertObject(QTextStream &stream, QVariantMap &args)
          << " " << m_parentIdAttribute  << " = :parentRef ) ";
   args.insert( "parentRef", m_object->property( m_parentAttribute.toUtf8().constData() ) );
   for ( const QString &attribute : m_attributes ) {
-    stream << ", :" << attribute;
+    if ( attribute == "weight" && m_weightAtEnd ) {
+      stream << ", COALESCE( ( SELECT MAX(weight) FROM " << m_baseTable
+             << " WHERE " << m_parentAttribute << " = "
+             << "(SELECT id FROM " << m_parentAttribute << " WHERE "
+             << " " << m_parentIdAttribute  << " = :parentRefWeight ) "
+             << " ), 0 ) + 10 ";
+      args.insert( "parentRefWeight", args.value( "parentRef" ) );
+    } else {
+      stream << ", :" << attribute;
+    }
   }
   stream << " );";
   for ( const QString &attribute : m_attributes ) {
-    args.insert( attribute, m_object->property( attribute.toUtf8().constData() ) );
+    if ( !m_weightAtEnd || ( attribute != "weight" ) ) {
+      args.insert( attribute, m_object->property( attribute.toUtf8().constData() ) );
+    }
   }
   m_state = m_object->metaAttributes().isEmpty() ?
         RemoveExtraMetaValuesState : InsertObjectMetaNameState;

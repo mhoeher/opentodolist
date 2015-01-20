@@ -138,12 +138,15 @@ void DatabaseConnection::insertTodo(Todo *todo)
 {
   Q_ASSERT( todo );
   if ( m_database != nullptr ) {
+    bool weightAtEnd = false;
     if ( todo->uuid().isNull() ) {
       todo->setUuid( QUuid::createUuid() );
+      weightAtEnd = true;
     }
     auto tmp = new Todo();
     tmp->fromVariant( todo->toVariant() );
     auto q = new Queries::InsertTodo( tmp, true );
+    q->setWeightAtEnd( weightAtEnd );
     tmp->setParent( q );
     m_database->scheduleQuery( q );
   }
@@ -158,12 +161,15 @@ void DatabaseConnection::insertTask(Task *task)
 {
   Q_ASSERT( task );
   if ( m_database != nullptr ) {
+    bool weightAtEnd = false;
     if ( task->uuid().isNull() ) {
       task->setUuid( QUuid::createUuid() );
+      weightAtEnd = true;
     }
     auto tmp = new Task();
     tmp->fromVariant( task->toVariant() );
     auto q = new Queries::InsertTask( tmp, true );
+    q->setWeightAtEnd( weightAtEnd );
     tmp->setParent( q );
     m_database->scheduleQuery( q );
   }
