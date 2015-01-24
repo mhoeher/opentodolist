@@ -250,7 +250,6 @@ void Application::showNotifierIcon()
 
 void Application::watchQmlFiles()
 {
-  qDebug() << m_mainQmlFile;
   unwatchQmlFiles();
   QFileInfo fi( m_mainQmlFile.startsWith( "qrc:" ) ? m_mainQmlFile.mid(3) : m_mainQmlFile );
   QDir dir = fi.dir();
@@ -294,9 +293,9 @@ void Application::showWindowImplementation()
     m_viewer->load(QUrl(m_mainQmlFile));
     m_handler->showWindow();
     emit viewerChanged();
-    if ( m_reloadQmlOnChange ) {
-      watchQmlFiles();
-    }
+  }
+  if ( m_reloadQmlOnChange ) {
+    watchQmlFiles();
   }
 }
 
