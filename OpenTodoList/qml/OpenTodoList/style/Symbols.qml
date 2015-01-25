@@ -71,4 +71,7 @@ QtObject {
 
     readonly property string search: "\uf002"
     readonly property string close: "\uf00d"
+
+    readonly property string eye: "\uf06e"
+    readonly property string eyeSlash: "\uf070"
 }

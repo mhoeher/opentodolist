@@ -41,7 +41,7 @@ Components.Page {
 
     readonly property var defaultGroupingFunction: function( todo ) {
         if ( todo.done ) {
-            return qsTr( "Completed Todos" )
+            return strings.completedTodos
         }
     }
 
@@ -50,6 +50,11 @@ Components.Page {
     title: todoList ? todoList.name : qsTr( "Todos" )
     width: 100
     height: 62
+
+    QtObject {
+        id: strings
+        readonly property string completedTodos: qsTr( "Completed Todos" )
+    }
 
     Menu {
         id: contextMenu
@@ -117,9 +122,10 @@ Components.Page {
         DropArea {
             id: dropArea
             width: parent.width
-            height: item.height
+            height: !display.done || App.GlobalSettings.showDoneTodos ? item.height : 0
             keys: ["Todo." + todosPage.groupingFunction(display)]
             z: item.Drag.active ? 3 : 1
+            clip: !item.Drag.active
 
             function dropTodo( todo ) {
                 if ( drag.y < height / 2 ) {
@@ -248,7 +254,8 @@ Components.Page {
         Item {
             width: parent.width
             height: Math.max( sectionLabel.height,
-                             Style.Measures.optButtonHeight ) +
+                             Style.Measures.optButtonHeight,
+                             toggleShowDoneButton.height ) +
                     Style.Measures.midSpace
             Style.H5 {
                 id: sectionLabel
@@ -256,12 +263,25 @@ Components.Page {
                 text: section
                 anchors {
                     left: parent.left
-                    right: parent.right
+                    right: toggleShowDoneButton.left
                     margins: Style.Measures.tinySpace
                     verticalCenter: parent.verticalCenter
                 }
 
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+            Components.Symbol {
+                id: toggleShowDoneButton
+                enabled: section === strings.completedTodos
+                visible: enabled
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    right: parent.right
+                    margins: Style.Measures.tinySpace
+                }
+                symbol: App.GlobalSettings.showDoneTodos ?
+                            Style.Symbols.eye : Style.Symbols.eyeSlash
+                onClicked: App.GlobalSettings.showDoneTodos = !App.GlobalSettings.showDoneTodos
             }
         }
     }

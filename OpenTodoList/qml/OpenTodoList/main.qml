@@ -57,6 +57,8 @@ ApplicationWindow {
         App.GlobalSettings.defaultTodoSortMode = settings.getValue(
                     "OpenTodoList/GlobalSettings/DefaultTodoSortMode",
                     App.GlobalSettings.defaultTodoSortMode );
+        App.GlobalSettings.showDoneTodos = settings.getValue(
+                    "OpenTodoList/GlobalSettings/ShowDoneTodos", true );
         menusVisible.checked = settings.getValue( "OpenTodoList/Window/MenusVisible",
                                                  menusVisible.checked );
 
@@ -75,6 +77,10 @@ ApplicationWindow {
         App.GlobalSettings.defaultTodoSortModeChanged.connect( function() {
             settings.setValue( "OpenTodoList/GlobalSettings/DefaultTodoSortMode",
                               App.GlobalSettings.defaultTodoSortMode );
+        });
+        App.GlobalSettings.showDoneTodosChanged.connect( function() {
+            settings.setValue( "OpenTodoList/GlobalSettings/ShowDoneTodos",
+                              App.GlobalSettings.showDoneTodos );
         });
     }
 
@@ -137,6 +143,13 @@ ApplicationWindow {
                                                         menusVisible.checked )
                         console.debug( "Test!" );
                     }
+                }
+                MenuItem {
+                    text: qsTr( "Show Completed Todos" )
+                    shortcut: qsTr( "Ctrl+Alt+D")
+                    checkable: true
+                    checked: App.GlobalSettings.showDoneTodos
+                    onTriggered: App.GlobalSettings.showDoneTodos = !App.GlobalSettings.showDoneTodos
                 }
                 Menu {
                     title: qsTr( "Sort Todos" )

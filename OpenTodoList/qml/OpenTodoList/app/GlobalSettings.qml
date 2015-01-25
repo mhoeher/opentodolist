@@ -25,5 +25,6 @@ QtObject {
     id: globalSettings
 
     property int defaultTodoSortMode: TodoModel.SortTodoByName
+    property bool showDoneTodos: true
 }
 
