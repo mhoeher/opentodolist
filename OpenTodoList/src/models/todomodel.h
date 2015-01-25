@@ -54,6 +54,7 @@ class TodoModel : public ObjectModel
   Q_OBJECT
   Q_ENUMS(TodoSortMode)
   Q_ENUMS( QueryType )
+  Q_ENUMS( MoveTodoMode )
   Q_PROPERTY( OpenTodoList::DataModel::TodoList* todoList READ todoList WRITE setTodoList NOTIFY todoListChanged)
   Q_PROPERTY( QString filter READ filter WRITE setFilter NOTIFY filterChanged )
   Q_PROPERTY( bool showDone READ showDone WRITE setShowDone NOTIFY showDoneChanged )
@@ -72,6 +73,11 @@ public:
     SortTodoByPriority,
     SortTodoByDueDate,
     SortTodoByWeight
+  };
+
+  enum MoveTodoMode {
+    MoveTodoBefore,
+    MoveTodoAfter
   };
 
   explicit TodoModel(QObject *parent = 0);
@@ -121,6 +127,9 @@ signals:
   void limitOffsetChanged();
   void limitCountChanged();
   void showOnlyScheduledChanged();
+
+public slots:
+  void moveTodo( Todo *todo, MoveTodoMode mode, Todo *target );
 
 protected:
   // ObjectModel interface

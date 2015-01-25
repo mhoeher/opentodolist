@@ -67,6 +67,38 @@ void TaskModel::setTodo(Todo *todo)
   }
 }
 
+void TaskModel::moveTask(Task *task, TaskModel::MoveTaskMode mode, Task *target)
+{
+  if ( task && target ) {
+    int taskIndex = objectList().indexOf( task );
+    int targetIndex = objectList().indexOf( target );
+    if ( taskIndex != targetIndex ) {
+      int target2Index = -1;
+      if ( mode == MoveTaskBefore ) {
+        if ( targetIndex > 0 ) {
+          target2Index = targetIndex - 1;
+        } else {
+          task->setWeight( target->weight() - qrand() % 1000 / 1000.0 );
+          move( task, 0 );
+        }
+      } else {
+        if ( targetIndex < objectList().size() - 1 ) {
+          target2Index = targetIndex + 1;
+        } else {
+          task->setWeight( target->weight() + qrand() % 1000 / 1000.0 );
+          move( task, objectList().size() );
+        }
+      }
+      if ( target2Index >= 0 && target2Index != taskIndex ) {
+        auto w1 = target->weight();
+        auto w2 = qobject_cast<Task*>(objectList().at(target2Index) )->weight();
+        task->setWeight( ( w1 + w2 ) / 2.0 );
+        move( task, qMax( targetIndex, target2Index ) );
+      }
+    }
+  }
+}
+
 void TaskModel::connectToDatabase()
 {
   connect( database(), &Database::taskChanged, this, &TaskModel::addTask );
@@ -101,7 +133,8 @@ int TaskModel::compareObjects(QObject *left, QObject *right) const
       return -1;
     }
     // Default: Sort by name
-    return leftTask->title().localeAwareCompare( rightTask->title() );
+    return leftTask->weight() < rightTask->weight() ?
+          -1 : leftTask->weight() > rightTask->weight() ? 1 : 0;
   }
   return 0;
 }

@@ -26,9 +26,12 @@ Item {
     property alias symbol: label.text
     property alias color: label.color
     property alias enabled: mouseArea.enabled
+    property alias drag: mouseArea.drag
     property bool checked: false
 
     signal clicked()
+    signal released()
+    signal canceled()
 
     width: Math.max(label.width,
                     Style.Measures.optButtonHeight)
@@ -45,5 +48,7 @@ Item {
         id: mouseArea
         anchors.fill: parent
         onClicked: symbol.clicked()
+        onReleased: symbol.released()
+        onCanceled: symbol.canceled()
     }
 }

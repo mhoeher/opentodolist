@@ -165,9 +165,14 @@ void ObjectModel::clear()
 /**
    @brief Sorts the items in the model
  */
-void ObjectModel::sort()
+void ObjectModel::sort(SortTimeout timeout)
 {
-  m_sortTimer.start();
+  if ( timeout == SortDelayed ) {
+    m_sortTimer.start();
+  } else {
+    m_sortTimer.stop();
+    delayedSort();
+  }
 }
 
 /**
@@ -200,6 +205,24 @@ int ObjectModel::compareObjects(QObject *left, QObject *right) const
   Q_UNUSED( left );
   Q_UNUSED( right );
   return 0;
+}
+
+/**
+   @brief Moves an object to a new position
+
+   This will move the @p object to the specified @p index in the model.
+ */
+void ObjectModel::move(QObject *object, int index)
+{
+  if ( index >= 0 && index <= m_objects.size() ) {
+    int currentPos = m_objects.indexOf( object );
+    if ( currentPos >= 0 && currentPos != index ) {
+      beginMoveRows( QModelIndex(), currentPos, currentPos, QModelIndex(), index );
+      m_objects.removeAt( currentPos );
+      m_objects.insert( index < currentPos ? index : index - 1, object );
+      endMoveRows();
+    }
+  }
 }
 
 /**

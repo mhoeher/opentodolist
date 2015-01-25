@@ -156,7 +156,8 @@ int TodoModel::compareObjects(QObject *left, QObject *right) const
           break;
 
       case SortTodoByWeight:
-          return ( leftTodo->weight() < rightTodo->weight() );
+          return ( leftTodo->weight() < rightTodo->weight() ) ? -1 :
+                 ( leftTodo->weight() > rightTodo->weight() ? 1 : 0 );
       }
 
       // compare everything else by title
@@ -174,6 +175,48 @@ void TodoModel::setShowOnlyScheduled(bool showOnlyScheduled)
   if ( m_showOnlyScheduled != showOnlyScheduled ) {
     m_showOnlyScheduled = showOnlyScheduled;
     emit showOnlyScheduledChanged();
+  }
+}
+
+/**
+   @brief Moves a todo inside the list
+
+   This will move the @p todo either before or after the @p target todo, depending
+   on the @p mode.
+
+   @note This has no effect if the sort mode is different from SortTodoByWeight.
+ */
+void TodoModel::moveTodo(Todo *todo, TodoModel::MoveTodoMode mode, Todo *target)
+{
+  if ( m_sortMode == SortTodoByWeight ) {
+    if ( todo && target ) {
+      int todoIndex = objectList().indexOf( todo );
+      int targetIndex = objectList().indexOf( target );
+      if ( todoIndex != targetIndex ) {
+        int target2Index = -1;
+        if ( mode == MoveTodoBefore ) {
+          if ( targetIndex > 0 ) {
+            target2Index = targetIndex - 1;
+          } else {
+            todo->setWeight( target->weight() - qrand() % 1000 / 1000.0 );
+            move( todo, 0 );
+          }
+        } else {
+          if ( targetIndex < objectList().size() - 1 ) {
+            target2Index = targetIndex + 1;
+          } else {
+            todo->setWeight( target->weight() + qrand() % 1000 / 1000.0 );
+            move( todo, objectList().size() );
+          }
+        }
+        if ( target2Index >= 0 && target2Index != todoIndex ) {
+          auto w1 = target->weight();
+          auto w2 = qobject_cast<Todo*>(objectList().at(target2Index) )->weight();
+          todo->setWeight( ( w1 + w2 ) / 2.0 );
+          move( todo, qMax( targetIndex, target2Index ) );
+        }
+      }
+    }
   }
 }
 

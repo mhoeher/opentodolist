@@ -35,11 +35,27 @@ ListView {
     header: taskHeaderDelegate
     headerPositioning: ListView.PullBackHeader
     clip: true
+    displaced: Transition {
+        NumberAnimation {
+            properties: "y"
+            duration: 750
+            easing.type: Easing.OutBounce
+        }
+    }
+    section.property: "group"
+    section.delegate: sectionHeaderDelegate
 
     TaskModel {
         id: taskModel
         database: application.database
         todo:  view.todo
+        groupingFunction: function(task) {
+            if ( task.done ) {
+                return qsTr( "Completed Tasks" )
+            } else {
+                return "";
+            }
+        }
     }
 
     DatabaseConnection {
@@ -55,82 +71,120 @@ ListView {
     Component {
         id: taskDelegate
 
-        Item {
-            height: Math.max(
-                        Math.max( checkBox.height,
-                                  label.height,
-                                  edit.height ) + Style.Measures.midSpace,
-                        Style.Measures.optButtonHeight )
+        DropArea {
+            id: dropArea
             width: parent.width
-            opacity: display.done ? 0.5 : 1.0
+            height: item.height
+            keys: "Task." + taskModel.groupingFunction(display)
+            z: item.Drag.active ? 3 : 1
 
-            Components.ItemBox {
-                anchors.fill: parent
-            }
-            Components.Symbol {
-                id: checkBox
-                font.family: Style.Fonts.symbols.name
-                symbol: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
-                anchors {
-                    left: parent.left
-                    margins: Style.Measures.smallSpace
-                    verticalCenter: parent.verticalCenter
-                }
-                onClicked: display.done = !display.done
-            }
-            Style.P {
-                id: label
-                text: display.title
-                visible: !edit.visible
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                anchors {
-                    left: checkBox.right
-                    right: parent.right
-                    margins: Style.Measures.smallSpace
-                    verticalCenter: parent.verticalCenter
+            function dropTask( task ) {
+                if ( drag.y < height / 2 ) {
+                    taskModel.moveTask( task, TaskModel.MoveTaskBefore, display );
+                } else {
+                    taskModel.moveTask( task, TaskModel.MoveTaskAfter, display );
                 }
             }
-            MouseArea {
-                anchors {
-                    left: checkBox.right
-                    top: parent.top
-                    right: parent.right
-                    bottom: parent.bottom
+
+            Item {
+                id: item
+                height: Math.max(
+                            Math.max( checkBox.height,
+                                      label.height,
+                                      edit.height ) + Style.Measures.midSpace,
+                            Style.Measures.optButtonHeight )
+                width: parent.width
+                opacity: display.done ? 0.5 : 1.0
+                Drag.keys: "Task." + taskModel.groupingFunction(display)
+                Drag.active: dragger.drag.active
+                Drag.hotSpot.y: height / 2
+
+                Components.ItemBox {
+                    anchors.fill: parent
                 }
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
-                onPressAndHold: contextMenu.showPopupMenu(display)
-                onClicked: {
-                    switch ( mouse.button ) {
-                    case Qt.LeftButton:
-                        // TODO: Emit taskSelected signal
-                        break;
-                    case Qt.RightButton:
-                        contextMenu.showPopupMenu(display);
-                        break;
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                    onPressAndHold: contextMenu.showPopupMenu(display)
+                    onClicked: {
+                        switch ( mouse.button ) {
+                        case Qt.LeftButton:
+                            // TODO: Emit taskSelected signal
+                            break;
+                        case Qt.RightButton:
+                            contextMenu.showPopupMenu(display);
+                            break;
+                        }
                     }
                 }
-            }
-            TextField {
-                id: edit
-                visible: contextMenu.currentTask === display && contextMenu.renaming
-                anchors {
-                    left: checkBox.right
-                    right: parent.right
-                    margins: Style.Measures.smallSpace
-                    verticalCenter: parent.verticalCenter
+
+                Components.Symbol {
+                    id: checkBox
+                    font.family: Style.Fonts.symbols.name
+                    symbol: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
+                    anchors {
+                        left: parent.left
+                        margins: Style.Measures.smallSpace
+                        verticalCenter: parent.verticalCenter
+                    }
+                    onClicked: display.done = !display.done
                 }
-                onVisibleChanged: {
-                    if ( visible ) {
-                        text = display.title;
-                        focus = true;
-                        forceActiveFocus();
+                Style.P {
+                    id: label
+                    text: display.title
+                    visible: !edit.visible
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    anchors {
+                        left: checkBox.right
+                        right: dragger.left
+                        margins: Style.Measures.smallSpace
+                        verticalCenter: parent.verticalCenter
                     }
                 }
-                onAccepted: {
-                    display.title = text;
+                TextField {
+                    id: edit
+                    visible: contextMenu.currentTask === display && contextMenu.renaming
+                    anchors {
+                        left: checkBox.right
+                        right: dragger.left
+                        margins: Style.Measures.smallSpace
+                        verticalCenter: parent.verticalCenter
+                    }
+                    onVisibleChanged: {
+                        if ( visible ) {
+                            text = display.title;
+                            focus = true;
+                            forceActiveFocus();
+                        }
+                    }
+                    onAccepted: {
+                        display.title = text;
+                    }
+                    onEditingFinished: {
+                        contextMenu.renaming = false;
+                    }
                 }
-                onEditingFinished: {
-                    contextMenu.renaming = false;
+                Components.Symbol {
+                    id: dragger
+                    symbol: Style.Symbols.move
+                    color: Style.Colors.midText
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        margins: Style.Measures.smallSpace
+                    }
+                    drag.target: item
+                    drag.axis: Drag.YAxis
+                    onReleased: {
+                        item.y = 0;
+                        if ( item.Drag.target && item.Drag.target !== dropArea ) {
+                            item.Drag.target.dropTask( display )
+                        }
+                    }
+                    onCanceled: item.y = 0
                 }
             }
         }
@@ -187,6 +241,29 @@ ListView {
                     verticalCenter: parent.verticalCenter
                 }
                 onClicked: header.createTask()
+            }
+        }
+    }
+
+    Component {
+        id: sectionHeaderDelegate
+        Item {
+            width: parent.width
+            height: Math.max( sectionLabel.height,
+                             Style.Measures.optButtonHeight ) +
+                    Style.Measures.midSpace
+            Style.H5 {
+                id: sectionLabel
+                z: 2
+                text: section
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Style.Measures.tinySpace
+                    verticalCenter: parent.verticalCenter
+                }
+
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
         }
     }

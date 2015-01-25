@@ -114,89 +114,130 @@ Components.Page {
     Component {
         id: viewDelegate
 
-        Item {
+        DropArea {
+            id: dropArea
             width: parent.width
-            height: Math.max(
-                        Math.max( label.height,
-                                  edit.height,
-                                  checkBox.height ) + Style.Measures.midSpace,
-                        Style.Measures.optButtonHeight )
-            opacity: display.done ? 0.5 : 1.0
-            z: 1
+            height: item.height
+            keys: ["Todo." + todosPage.groupingFunction(display)]
+            z: item.Drag.active ? 3 : 1
 
-            Components.ItemBox {
-                id: background
-                anchors.fill: parent
+            function dropTodo( todo ) {
+                if ( drag.y < height / 2 ) {
+                    todoModel.moveTodo( todo, TodoModel.MoveTodoBefore, display );
+                } else {
+                    todoModel.moveTodo( todo, TodoModel.MoveTodoAfter, display );
+                }
             }
 
-            MouseArea {
-                anchors.fill: parent
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
-                onClicked: {
-                    switch ( mouse.button ) {
-                    case Qt.LeftButton:
-                        todosPage.todoSelected(display);
-                        break;
-                    case Qt.RightButton:
+            Item {
+                id: item
+                width: parent.width
+                height: Math.max(
+                            Math.max( label.height,
+                                      edit.height,
+                                      checkBox.height ) + Style.Measures.midSpace,
+                            Style.Measures.optButtonHeight )
+                opacity: display.done ? 0.5 : 1.0
+                Drag.keys: ["Todo." + todosPage.groupingFunction(display)]
+                Drag.active: dragger.drag.active
+                Drag.hotSpot.y: height / 2
+
+                Components.ItemBox {
+                    id: background
+                    anchors.fill: parent
+                }
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    onClicked: {
+                        switch ( mouse.button ) {
+                        case Qt.LeftButton:
+                            todosPage.todoSelected(display);
+                            break;
+                        case Qt.RightButton:
+                            d.showContextMenu( display )
+                            break;
+                        default:
+                            break;
+                        }
+                    }
+                    onPressAndHold: {
                         d.showContextMenu( display )
-                        break;
-                    default:
-                        break;
                     }
                 }
-                onPressAndHold: {
-                    d.showContextMenu( display )
+                Components.Symbol {
+                    id:  checkBox
+                    anchors {
+                        left: parent.left
+                        margins: Style.Measures.smallSpace
+                        verticalCenter: parent.verticalCenter
+                    }
+                    font.family: Style.Fonts.symbols.name
+                    symbol: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
+                    onClicked: display.done = !display.done
                 }
-            }
-            Components.Symbol {
-                id:  checkBox
-                anchors {
-                    left: parent.left
-                    margins: Style.Measures.smallSpace
-                    verticalCenter: parent.verticalCenter
+                Style.P {
+                    id: label
+                    visible: !edit.visible
+                    text: display.title
+                    anchors {
+                        left: checkBox.right
+                        right: dragger.left
+                        verticalCenter: parent.verticalCenter
+                        margins: Style.Measures.smallSpace
+                    }
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
-                font.family: Style.Fonts.symbols.name
-                symbol: display.done ? Style.Symbols.checkedBox : Style.Symbols.uncheckedBox
-                onClicked: display.done = !display.done
-            }
-            Style.P {
-                id: label
-                visible: !edit.visible
-                text: display.title
-                anchors {
-                    left: checkBox.right
-                    right: parent.right
-                    verticalCenter: parent.verticalCenter
-                    margins: Style.Measures.smallSpace
-                }
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
 
-            TextField {
-                id: edit
-                text: display.title
-                anchors {
-                    left: checkBox.right
-                    right: parent.right
-                    verticalCenter: parent.verticalCenter
-                    margins: Style.Measures.smallSpace
-                }
-                visible: d.currentTodo === display && d.renaming
-                validator: RegExpValidator { regExp: /.+/ }
+                TextField {
+                    id: edit
+                    text: display.title
+                    anchors {
+                        left: checkBox.right
+                        right: dragger.left
+                        verticalCenter: parent.verticalCenter
+                        margins: Style.Measures.smallSpace
+                    }
+                    visible: d.currentTodo === display && d.renaming
+                    validator: RegExpValidator { regExp: /.+/ }
 
-                onVisibleChanged: {
-                    if ( visible ) {
-                        text = display.title;
-                        focus = true;
-                        forceActiveFocus();
+                    onVisibleChanged: {
+                        if ( visible ) {
+                            text = display.title;
+                            focus = true;
+                            forceActiveFocus();
+                        }
+                    }
+                    onEditingFinished: {
+                        d.renaming = false;
+                        focus = false;
+                    }
+                    onAccepted: {
+                        display.title = edit.text;
                     }
                 }
-                onEditingFinished: {
-                    d.renaming = false;
-                    focus = false;
-                }
-                onAccepted: {
-                    display.title = edit.text;
+                Components.Symbol {
+                    id: dragger
+                    anchors {
+                        right: parent.right
+                        verticalCenter: parent.verticalCenter
+                        margins: Style.Measures.smallSpace
+                    }
+                    drag.target: item
+                    drag.axis: Drag.YAxis
+                    color: Style.Colors.midText
+                    symbol: enabled ? Style.Symbols.move : ""
+                    enabled: todoModel.sortMode === TodoModel.SortTodoByWeight
+
+                    onReleased: {
+                        item.y = 0;
+                        if ( item.Drag.target && item.Drag.target !== dropArea ) {
+                            item.Drag.target.dropTodo( display )
+                        }
+                    }
+                    onCanceled: item.y = 0;
                 }
             }
         }
@@ -311,6 +352,13 @@ Components.Page {
             section {
                 property: "group"
                 delegate: sectionHeaderDelegate
+            }
+            displaced: Transition {
+                NumberAnimation {
+                    properties: "y"
+                    duration: 750
+                    easing.type: Easing.OutBounce
+                }
             }
         }
     }

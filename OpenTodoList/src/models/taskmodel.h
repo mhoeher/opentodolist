@@ -35,8 +35,15 @@ using namespace Models::Private;
 class TaskModel : public ObjectModel
 {
   Q_OBJECT
+  Q_ENUMS(MoveTaskMode)
   Q_PROPERTY(OpenTodoList::DataModel::Todo* todo READ todo WRITE setTodo NOTIFY todoChanged)
 public:
+
+  enum MoveTaskMode {
+    MoveTaskBefore,
+    MoveTaskAfter
+  };
+
   explicit TaskModel(QObject *parent = 0);
 
   Todo* todo() const;
@@ -47,6 +54,7 @@ signals:
   void todoChanged();
 
 public slots:
+  void moveTask( Task *task, MoveTaskMode mode, Task *target );
 
 private:
 

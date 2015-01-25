@@ -39,6 +39,7 @@ using namespace DataBase;
 class ObjectModel : public QAbstractListModel
 {
   Q_OBJECT
+  Q_ENUMS( SortTimeout )
   Q_PROPERTY(OpenTodoList::DataBase::Database* database READ database WRITE setDatabase NOTIFY databaseChanged)
   Q_PROPERTY(QQmlListProperty<QObject> objects READ objects NOTIFY objectsChanged)
   Q_PROPERTY(QJSValue groupingFunction READ groupingFunction WRITE setGroupingFunction NOTIFY groupingFunctionChanged)
@@ -47,6 +48,11 @@ public:
   enum {
     ObjectTextRole = Qt::UserRole + 1,
     GroupRole
+  };
+
+  enum SortTimeout {
+    SortImmediately,
+    SortDelayed
   };
 
   ObjectModel( const char *uuidPropertyName, QObject *parent = 0 );
@@ -69,11 +75,13 @@ public:
   QJSValue groupingFunction() const;
   void setGroupingFunction(const QJSValue &groupingFunction);
 
+  const QObjectList &objectList() const { return m_objects; }
+
 public slots:
 
   void refresh();
   void clear();
-  void sort();
+  void sort( SortTimeout timeout = SortDelayed );
 
 signals:
 
@@ -89,6 +97,8 @@ protected:
   virtual StorageQuery* createQuery() const = 0;
   virtual bool objectFilter( QObject* object ) const;
   virtual int compareObjects( QObject *left, QObject *right ) const;
+
+  void move( QObject *object, int index );
 
   template<typename T>
   void addObject( const QVariant &data, int index = -1 ) {
