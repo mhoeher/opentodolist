@@ -176,6 +176,19 @@ void ObjectModel::sort(SortTimeout timeout)
 }
 
 /**
+   @brief Cause a rerun of the grouping function
+
+   This is a helper function that will trigger connected views to query the group
+   role per item again.
+ */
+void ObjectModel::rerunGroupingFunction()
+{
+  if ( m_objects.size() > 0 ) {
+    emit dataChanged( index( 0, 0 ), index( m_objects.size(), 0 ), { GroupRole } );
+  }
+}
+
+/**
    @brief Filter objects
 
    Sub classes can implement this function to have model side filtering of the objects.

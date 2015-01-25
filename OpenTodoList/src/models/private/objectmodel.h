@@ -82,6 +82,7 @@ public slots:
   void refresh();
   void clear();
   void sort( SortTimeout timeout = SortDelayed );
+  void rerunGroupingFunction();
 
 signals:
 

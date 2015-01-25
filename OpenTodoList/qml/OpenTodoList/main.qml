@@ -423,6 +423,12 @@ ApplicationWindow {
                     return qsTr( "Scheduled for later" )
                 }
                 onTodoSelected: stackView.showTodo( todo )
+
+                Timer {
+                    interval: 1000*60*5 // update every 5 minutes
+                    running: true
+                    onTriggered: { parent.refreshGroups(); console.debug( "Refreshed" ) }
+                }
             }
         }
 

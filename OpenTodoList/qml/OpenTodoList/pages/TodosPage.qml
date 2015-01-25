@@ -45,6 +45,10 @@ Components.Page {
         }
     }
 
+    function refreshGroups() {
+        todoModel.rerunGroupingFunction()
+    }
+
     signal todoSelected(Todo todo)
 
     title: todoList ? todoList.name : qsTr( "Todos" )
