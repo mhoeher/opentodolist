@@ -408,19 +408,7 @@ ApplicationWindow {
                     if ( todo.done ) {
                         return defaultGroupingFunction(todo);
                     }
-                    var today = new Date();
-                    var yesterday = DateUtils.previousDayForDate(today);
-                    var endOfWeek = DateUtils.lastDayOfWeekForDate(today);
-                    if ( todo.dueDate < yesterday ) {
-                        return qsTr( "Overdue" )
-                    }
-                    if ( todo.dueDate < today ) {
-                        return qsTr( "Due Today" )
-                    }
-                    if ( todo.dueDate < endOfWeek ) {
-                        return qsTr( "Due this Week" )
-                    }
-                    return qsTr( "Scheduled for later" )
+                    return DateUtils.todoScheduledText(todo);
                 }
                 onTodoSelected: stackView.showTodo( todo )
 

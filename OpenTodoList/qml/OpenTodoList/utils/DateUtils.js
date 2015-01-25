@@ -128,3 +128,62 @@ function nextDayForDate(forThis) {
     result.setDate( date );
     return result;
 }
+
+var ScheduleGroups = {
+    OverdueGroup: "overdue",
+    TodayGroup: "today",
+    ThisWeekGroup: "week",
+    LaterGroup: "later",
+
+    toText: function(group) {
+        switch ( group ) {
+        case ScheduleGroups.OverdueGroup: return qsTr( "Overdue" );
+        case ScheduleGroups.TodayGroup: return qsTr( "Due Today" );
+        case ScheduleGroups.ThisWeekGroup: return qsTr( "Due this Week" );
+        case ScheduleGroups.LaterGroup: return qsTr( "Scheduled for later" );
+        default: return null;
+        }
+    },
+
+    toColor: function(group,baseColor,altColor) {
+        switch ( group ) {
+        case ScheduleGroups.OverdueGroup: return baseColor;
+        case ScheduleGroups.TodayGroup: return Qt.darker(baseColor,1.1);
+        case ScheduleGroups.ThisWeekGroup: return Qt.darker(baseColor,1.2)
+        case ScheduleGroups.LaterGroup: return altColor;
+        default: return "black";
+        }
+    }
+}
+
+function todoScheduledGroup(todo,forToday) {
+    if ( !todo.done && isValidDate(todo.dueDate) ) {
+        var today = forToday ? forToday : new Date();
+        var yesterday = previousDayForDate(today);
+        var endOfWeek = lastDayOfWeekForDate(today);
+        if ( todo.dueDate < yesterday ) {
+            return ScheduleGroups.OverdueGroup
+        }
+        if ( todo.dueDate < today ) {
+            return ScheduleGroups.TodayGroup;
+        }
+        if ( todo.dueDate < endOfWeek ) {
+            return ScheduleGroups.ThisWeekGroup;
+        }
+        return ScheduleGroups.LaterGroup;
+    }
+    return null;
+}
+
+function todoScheduledText(todo,forToday,defaultFunction) {
+    var result = todoScheduledGroup(todo,forToday);
+    if ( !result ) {
+        if ( defaultFunction ) {
+            return defaultFunction( todo );
+        }
+    } else {
+        result = ScheduleGroups.toText( result );
+    }
+
+    return result;
+}

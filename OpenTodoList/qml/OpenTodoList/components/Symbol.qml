@@ -38,10 +38,11 @@ Item {
     height: Math.max(label.height,
                      Style.Measures.optButtonHeight)
 
-    Style.P {
+    Style.H3 {
         id: label
         anchors.centerIn: parent
         font.family: Style.Fonts.symbols.name
+        font.bold: false
     }
 
     MouseArea {
@@ -50,5 +51,14 @@ Item {
         onClicked: symbol.clicked()
         onReleased: symbol.released()
         onCanceled: symbol.canceled()
+    }
+
+    states: State {
+        when: !visible
+        PropertyChanges {
+            target: symbol
+            width: 0
+            height: 0
+        }
     }
 }

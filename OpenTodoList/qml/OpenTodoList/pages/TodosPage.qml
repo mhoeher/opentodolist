@@ -60,6 +60,12 @@ Components.Page {
         readonly property string completedTodos: qsTr( "Completed Todos" )
     }
 
+    Timer {
+        interval: 1000*60*5 // update "today" every 5 minutes
+        running: true
+        onTriggered: d.today = new Date()
+    }
+
     Menu {
         id: contextMenu
         title: qsTr( "Todo" )
@@ -110,6 +116,7 @@ Components.Page {
 
         property Todo currentTodo: null
         property bool renaming: false
+        property date today: new Date()
 
         function showContextMenu( todo ) {
             currentTodo = todo;
@@ -210,7 +217,7 @@ Components.Page {
                     text: display.title
                     anchors {
                         left: checkBox.right
-                        right: dragger.left
+                        right: overdueIndicator.left
                         verticalCenter: parent.verticalCenter
                         margins: Style.Measures.smallSpace
                     }
@@ -222,7 +229,7 @@ Components.Page {
                     text: display.title
                     anchors {
                         left: checkBox.right
-                        right: dragger.left
+                        right: overdueIndicator.left
                         verticalCenter: parent.verticalCenter
                         margins: Style.Measures.smallSpace
                     }
@@ -243,6 +250,23 @@ Components.Page {
                     onAccepted: {
                         display.title = edit.text;
                     }
+                }
+                Components.Symbol {
+                    id: overdueIndicator
+
+                    property var scheduledGroup: DateUtils.todoScheduledGroup(display,d.today)
+
+                    anchors {
+                        right: dragger.left
+                        verticalCenter: parent.verticalCenter
+                        margins: Style.Measures.tinySpace
+                    }
+                    visible: scheduledGroup
+                    color: DateUtils.ScheduleGroups.toColor(
+                               scheduledGroup,
+                               Style.Colors.secondary2,
+                               Style.Colors.primary)
+                    symbol: Style.Symbols.clock
                 }
                 Components.Symbol {
                     id: dragger
