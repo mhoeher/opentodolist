@@ -29,12 +29,14 @@ QtObject {
         source: "fontawesome-webfont.ttf"
     }
 
+    readonly property double fontStep: 0.5
+
     readonly property int p: Measures.fontPointSize
-    readonly property int h1: h2 * 1.1
-    readonly property int h2: h3 * 1.1
-    readonly property int h3: h4 * 1.1
-    readonly property int h4: h5 * 1.1
-    readonly property int h5: h6 * 1.1
-    readonly property int h6: p * 1.1
+    readonly property double h1: h2 + fontStep
+    readonly property double h2: h3 + fontStep
+    readonly property double h3: h4 + fontStep
+    readonly property double h4: h5 + fontStep
+    readonly property double h5: h6 + fontStep
+    readonly property double h6: p + fontStep
 
 }

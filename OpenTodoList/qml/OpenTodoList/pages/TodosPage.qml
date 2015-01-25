@@ -80,6 +80,22 @@ Components.Page {
         onYes: dbConnection.disposeTodo(d.currentTodo)
     }
 
+    MessageDialog {
+        id: confirmPurgeCompletedDialog
+        title: qsTr( "Purge Completed Todos")
+        text: qsTr( "Do you want to proceed to delete todos that are " +
+                   "marked as completed? Note that this cannot be undone." )
+        standardButtons: StandardButton.Ok | StandardButton.Cancel
+        onAccepted: {
+            for ( var i = 0; i < todoModel.objects.length; ++i ) {
+                var todo = todoModel.objects[i];
+                if ( todo.done ) {
+                    dbConnection.disposeTodo(todo);
+                }
+            }
+        }
+    }
+
     DatabaseConnection {
         id: dbConnection
         database: application.database
@@ -263,7 +279,7 @@ Components.Page {
                 text: section
                 anchors {
                     left: parent.left
-                    right: toggleShowDoneButton.left
+                    right: purgeCompletedTodosButton.left
                     margins: Style.Measures.tinySpace
                     verticalCenter: parent.verticalCenter
                 }
@@ -271,9 +287,24 @@ Components.Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
             Components.Symbol {
+                id: purgeCompletedTodosButton
+                enabled: section === strings.completedTodos
+                visible: enabled
+                font.pointSize: Style.Fonts.h5
+                color: Style.Colors.secondary2
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    right: toggleShowDoneButton.left
+                    margins: Style.Measures.tinySpace
+                }
+                symbol: Style.Symbols.trash
+                onClicked: confirmPurgeCompletedDialog.open()
+            }
+            Components.Symbol {
                 id: toggleShowDoneButton
                 enabled: section === strings.completedTodos
                 visible: enabled
+                font.pointSize: Style.Fonts.h5
                 anchors {
                     verticalCenter: parent.verticalCenter
                     right: parent.right
