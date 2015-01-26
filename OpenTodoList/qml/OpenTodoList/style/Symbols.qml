@@ -75,4 +75,6 @@ QtObject {
     readonly property string eye: "\uf06e"
     readonly property string eyeSlash: "\uf070"
     readonly property string clock: "\uf017"
+    readonly property string flag: "\uf024"
+    readonly property string flagO: "\uf11d"
 }

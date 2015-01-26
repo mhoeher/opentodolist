@@ -257,9 +257,8 @@ Components.Page {
                     property var scheduledGroup: DateUtils.todoScheduledGroup(display,d.today)
 
                     anchors {
-                        right: dragger.left
+                        right: priorityIndicator.left
                         verticalCenter: parent.verticalCenter
-                        margins: Style.Measures.tinySpace
                     }
                     visible: scheduledGroup
                     color: DateUtils.ScheduleGroups.toColor(
@@ -267,6 +266,18 @@ Components.Page {
                                Style.Colors.secondary2,
                                Style.Colors.primary)
                     symbol: Style.Symbols.clock
+                }
+                Components.OverlayedSymbol {
+                    id: priorityIndicator
+                    anchors {
+                        right: dragger.left
+                        verticalCenter: parent.verticalCenter
+                    }
+                    backSymbol: Style.Symbols.flag
+                    frontSymbol: Style.Symbols.flagO
+                    backColor: Qt.lighter(
+                                   Style.Colors.colorForPriority(display.priority) )
+                    visible: display.priority >= 0
                 }
                 Components.Symbol {
                     id: dragger
