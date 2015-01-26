@@ -75,6 +75,7 @@
     <file alias="DateUtils.js">qml/OpenTodoList/utils/DateUtils.js</file>
   </qresource>
   <qresource prefix="/qml/OpenTodoList/components">
+    <file alias="OverlayedSymbol.qml">qml/OpenTodoList/components/OverlayedSymbol.qml</file>
     <file alias="NavigationBar.qml">qml/OpenTodoList/components/NavigationBar.qml</file>
     <file alias="Symbol.qml">qml/OpenTodoList/components/Symbol.qml</file>
     <file alias="qmldir">qml/OpenTodoList/components/qmldir</file>

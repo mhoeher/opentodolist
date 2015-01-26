@@ -318,12 +318,19 @@ ApplicationWindow {
     StackView {
         id: stackView
         anchors.fill: parent
-        initialItem: todoLists
+        initialItem: {
+            switch ( settings.getValue( "OpenTodoList/LastPage" ) ) {
+            case "scheduled": return schedulePage;
+            default: return todoLists
+            }
+        }
 
         function showTodoLists() {
             clear();
             push( todoLists );
             navBar.state = "";
+            settings.setValue( "OpenTodoList/LastPage",
+                              "todoLists" );
         }
 
         function showSearch() {
@@ -338,6 +345,8 @@ ApplicationWindow {
             clear();
             push( schedulePage );
             navBar.state = "";
+            settings.setValue( "OpenTodoList/LastPage",
+                              "scheduled" );
         }
 
         function showAbout() {
