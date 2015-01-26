@@ -413,6 +413,7 @@ ApplicationWindow {
                 showOnlyScheduled: true
                 sortMode: TodoModel.SortTodoByDueDate
                 showDone: false
+                disableOverdueIndicator: true
                 groupingFunction: function(todo) {
                     if ( todo.done ) {
                         return defaultGroupingFunction(todo);

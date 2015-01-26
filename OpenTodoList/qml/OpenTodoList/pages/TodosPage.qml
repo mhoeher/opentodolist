@@ -38,6 +38,7 @@ Components.Page {
     property alias showOnlyScheduled: todoModel.showOnlyScheduled
     property alias sortMode: todoModel.sortMode
     property alias showDone: todoModel.showDone
+    property bool disableOverdueIndicator: false
 
     readonly property var defaultGroupingFunction: function( todo ) {
         if ( todo.done ) {
@@ -260,7 +261,7 @@ Components.Page {
                         right: priorityIndicator.left
                         verticalCenter: parent.verticalCenter
                     }
-                    visible: scheduledGroup
+                    visible: scheduledGroup && !todosPage.disableOverdueIndicator
                     color: DateUtils.ScheduleGroups.toColor(
                                scheduledGroup,
                                Style.Colors.secondary2,
@@ -291,6 +292,7 @@ Components.Page {
                     color: Style.Colors.midText
                     symbol: enabled ? Style.Symbols.move : ""
                     enabled: todoModel.sortMode === TodoModel.SortTodoByWeight
+                    visible: enabled
 
                     onReleased: {
                         item.y = 0;

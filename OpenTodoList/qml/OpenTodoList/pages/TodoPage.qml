@@ -270,6 +270,7 @@ Components.Page {
                             bottom: parent.bottom
                         }
                         textFormat: TextEdit.RichText
+                        inputMethodHints: Qt.ImhNoPredictiveText // TODO: Try to remove if possible
                         Component.onCompleted: {
                             text = todoProperties.description;
                             todoProperties.descriptionChanged.connect( function() {
