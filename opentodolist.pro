@@ -7,3 +7,9 @@ qrc.commands = perl $$PWD/bin/mk-qrc.pl \
                --base $$PWD/OpenTodoList/ \
                --out $$PWD/OpenTodoList/OpenTodoList.qrc
 QMAKE_EXTRA_TARGETS += qrc
+
+OTHER_FILES += \
+  README.md \
+  COPYING \
+  Doxyfile \
+  doc/installers-howto.md
