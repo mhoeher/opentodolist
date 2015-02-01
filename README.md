@@ -37,6 +37,15 @@ Get Help
 If you need some help with OpenTodoList, please visit us on [Google+
     ](https://plus.google.com/communities/106580508283710923527).
 
+Report Bugs
+-----------
+
+OpenTodoList is still a very young project which is on top developed as a freetime
+project. Hence, please bear with us if the app is not yet working perfectly fine.
+In case you found an issue, please head over to the [GitHub issue tracker
+of OpenTodoList](https://github.com/mhoeher/opentodolist/issues) and file a
+bug report there. Also make use of this if you want to request a new feature.
+
 Building
 --------
 
@@ -45,7 +54,7 @@ OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.4
 application might fail in this case). To get the latest sources, you furthermore
 require git. To download and build the application, run the following steps:
 
-    git clone https://gitorious.org/opentodolist/opentodolist.git
+    git clone https://github.com/mhoeher/opentodolist.git
     mkdir build-opentodolist
     cd build-opentodolist
     qmake ../opentodolist CONFIG+=release
