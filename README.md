@@ -10,6 +10,14 @@ contain todos. A todo has various attributes, such as a title, done state,
 due date and a priorty. Furthermore, they have a description and can have
 arbitrary many tasks.
 
+License
+-------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
 Download
 --------
 
