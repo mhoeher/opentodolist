@@ -21,12 +21,12 @@ the Free Software Foundation, either version 3 of the License, or
 Download
 --------
 
-###Linux, Mac OS X and Windows
+### Linux, Mac OS X and Windows
 
 You can find installers for various operating systems on the projects
 [homepage](http://www.rpdev.net/home/project/opentodolist).
 
-###Android
+### Android
 
 OpenTodoList is available from the Google Play Store for Android devices. However,
 due to its early development state, it is currently available as a beta only. In
@@ -50,8 +50,8 @@ Report Bugs
 
 OpenTodoList is still a very young project which is on top developed as a freetime
 project. Hence, please bear with us if the app is not yet working perfectly fine.
-In case you found an issue, please head over to the [GitHub issue tracker
-of OpenTodoList](https://github.com/mhoeher/opentodolist/issues) and file a
+In case you found an issue, please head over to the [GitLab issue tracker
+of OpenTodoList](https://gitlab.com/rpdev/opentodolist/issues) and file a
 bug report there. Also make use of this if you want to request a new feature.
 
 Building
@@ -62,7 +62,7 @@ OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.4
 application might fail in this case). To get the latest sources, you furthermore
 require git. To download and build the application, run the following steps:
 
-    git clone https://github.com/mhoeher/opentodolist.git
+    git clone https://gitlab.com/rpdev/opentodolist.git
     mkdir build-opentodolist
     cd build-opentodolist
     qmake ../opentodolist CONFIG+=release
@@ -75,7 +75,7 @@ OpenTodoList implements a plugin mechanism for its storage backends. A backend
 is any kind of *service* that allows you to store todos. Right now, the following
 backends are implemented:
 
-###Todos in local XML files
+### Todos in local XML files
 
 This backend stores your todos locally in a set of XML files. This makes it
 an ideal choice for sensible data that you do not want to store "in the cloud".
