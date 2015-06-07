@@ -5,3 +5,6 @@
 *.pro.user.*
 *.user
 android/*
+OpenTodoList/android/local.properties
+OpenTodoList/android/.idea/
+OpenTodoList/android/android.iml

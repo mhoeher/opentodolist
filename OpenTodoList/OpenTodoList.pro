@@ -206,4 +206,10 @@ DISTFILES += \
     qml/OpenTodoList/components/qmldir \
     qml/OpenTodoList/pages/qmldir \
     qml/OpenTodoList/app/qmldir \
-    qml/OpenTodoList/app/qmldir
+    qml/OpenTodoList/app/qmldir \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat
