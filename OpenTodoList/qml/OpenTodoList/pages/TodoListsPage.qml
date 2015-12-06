@@ -141,13 +141,13 @@ Components.Page {
                 validator: RegExpValidator { regExp: /.+/ }
                 onVisibleChanged: {
                     if ( visible ) {
-                        edit.text = display.name;
+                        edit.text = display.text;
                         edit.focus = true;
                         edit.forceActiveFocus();
                     }
                 }
                 onAccepted: {
-                    display.name = text;
+                    display.name = displayText;
                     text = Qt.binding( function() { return display.name; } );
                     d.renaming = false;
                 }
@@ -222,7 +222,7 @@ Components.Page {
 
                 onClicked: {
                     var helper = createTodoListHelper.createObject();
-                    helper.todoList.name = newTodoListTitle.text;
+                    helper.todoList.name = newTodoListTitle.displayText;
                     helper.todoList.account = newTodoListAccount.model.objects[
                             newTodoListAccount.currentIndex].uuid;
                     helper.dbConnection.insertTodoList(helper.todoList);

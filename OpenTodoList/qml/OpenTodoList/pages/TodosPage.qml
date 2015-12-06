@@ -249,7 +249,7 @@ Components.Page {
                         focus = false;
                     }
                     onAccepted: {
-                        display.title = edit.text;
+                        display.title = edit.displayText;
                     }
                 }
                 Components.Symbol {
@@ -398,7 +398,7 @@ Components.Page {
                 onClicked: createTodo()
 
                 function createTodo() {
-                    var newTitle = newTodoTitle.text;
+                    var newTitle = newTodoTitle.displayText;
                     var newTodoProperties = DateUtils.inputToTodoProperties(newTitle);
                     if ( todosPage.todoList && newTodoProperties.title !== "" ) {
                         var newTodo = newTodoComponent.createObject();

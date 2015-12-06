@@ -175,7 +175,7 @@ Components.Page {
                     visible = false;
                 }
                 onAccepted: {
-                    todoPage.todo.title = todoTitleEdit.text;
+                    todoPage.todo.title = todoTitleEdit.displayText;
                 }
             }
         }
@@ -274,7 +274,8 @@ Components.Page {
                         Component.onCompleted: {
                             text = todoProperties.description;
                             todoProperties.descriptionChanged.connect( function() {
-                                if ( !updatingTodo ) {
+                                if ( !updatingTodo &&
+                                        descriptionEdit.text !== todoProperties.description ) {
                                     descriptionEdit.text = todoProperties.description;
                                 }
                             });
