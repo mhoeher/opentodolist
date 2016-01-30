@@ -1,5 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS = plugins OpenTodoList
+CONFIG += ordered
+#SUBDIRS = plugins OpenTodoList
 
 qrc.depends =
 qrc.commands = perl $$PWD/bin/mk-qrc.pl \
@@ -13,3 +14,8 @@ OTHER_FILES += \
   COPYING \
   Doxyfile \
   doc/installers-howto.md
+
+SUBDIRS += \
+    app \
+    lib \
+    test
