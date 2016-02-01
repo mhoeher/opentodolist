@@ -16,10 +16,16 @@ SOURCES += \
     application.cpp \
     library.cpp \
     libraryfactory.cpp \
-    locallibraryfactory.cpp
+    locallibraryfactory.cpp \
+    item.cpp \
+    complexitem.cpp \
+    toplevelitem.cpp
 
 HEADERS += \
     application.h \
     library.h \
     libraryfactory.h \
-    locallibraryfactory.h
+    locallibraryfactory.h \
+    item.h \
+    complexitem.h \
+    toplevelitem.h

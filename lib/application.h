@@ -5,6 +5,7 @@
 #include "libraryfactory.h"
 
 #include <QObject>
+#include <QStringList>
 #include <QVector>
 
 
@@ -19,8 +20,24 @@
 class Application : public QObject
 {
   Q_OBJECT
+  Q_PROPERTY(LibraryFactories libraryFactories READ libraryFactories CONSTANT)
+  Q_PROPERTY(Libraries libraries READ libraries CONSTANT)
 public:
   explicit Application(QObject *parent = 0);
+  
+  /**
+     @brief The list of all registered LibraryFactory objects.
+   */
+  LibraryFactories libraryFactories() const { return m_libraryFactories; }
+  
+  /**
+     @brief The list of all Library objects present in the application.
+   */
+  Libraries libraries() const               { return m_libraries; }
+
+  QStringList libraryTypes() const;
+  LibraryFactory* libraryFactoryForType(const QString &factoryId) const;
+  
   
 signals:
   

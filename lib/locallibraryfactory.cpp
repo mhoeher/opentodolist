@@ -4,6 +4,11 @@
 
 
 /**
+   @brief The ID used by the LocalLibraryFactory class.
+ */
+const QString LocalLibraryFactory::ID = "LocalLibrary";
+
+/**
    @brief Implements LibraryFactory::createLibrary().
  */
 Library *LocalLibraryFactory::createLibrary(
@@ -19,7 +24,7 @@ Library *LocalLibraryFactory::createLibrary(
  */
 LocalLibraryFactory::LocalLibraryFactory(QObject *parent) : 
   LibraryFactory(tr( "Local Collection" ),
-                 "LocalLibrary",
+                 ID,
                  tr("A collection of items in a local directory."),
                  "CreateLocalLibraryComponent",
                  "EditLocalLibraryComponent",

@@ -24,6 +24,8 @@ class LocalLibraryFactory : public LibraryFactory
 
 public:
   
+  static const QString ID;
+  
   // LibraryFactory interface
   Library *createLibrary(const QString &name, const QString &directory, QObject *parent) const override;
   
