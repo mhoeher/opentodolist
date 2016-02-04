@@ -19,7 +19,10 @@ SOURCES += \
     locallibraryfactory.cpp \
     item.cpp \
     complexitem.cpp \
-    toplevelitem.cpp
+    toplevelitem.cpp \
+    note.cpp \
+    image.cpp \
+    task.cpp
 
 HEADERS += \
     application.h \
@@ -28,4 +31,7 @@ HEADERS += \
     locallibraryfactory.h \
     item.h \
     complexitem.h \
-    toplevelitem.h
+    toplevelitem.h \
+    note.h \
+    image.h \
+    task.h

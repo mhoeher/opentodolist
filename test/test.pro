@@ -5,4 +5,7 @@ SUBDIRS += \
     locallibraryfactory \
     item \
     complexitem \
-    toplevelitem
+    toplevelitem \
+    note \
+    image \
+    task
