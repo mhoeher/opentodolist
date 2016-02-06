@@ -90,7 +90,6 @@ void ComplexItem::setNotes(const QString &notes)
       file.write(m_notes.toUtf8());
       file.close();
     }
-    
   }
 }
 

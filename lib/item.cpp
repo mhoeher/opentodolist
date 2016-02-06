@@ -1,8 +1,10 @@
 #include "item.h"
 
 #include <QDebug>
+#include <QDir>
 #include <QFileInfo>
 #include <QJsonDocument>
+#include <QTimer>
 #include <QVariant>
 #include <QVariantMap>
 
@@ -34,9 +36,76 @@ Item::Item(const QString &directory, const QString &itemType, const QStringList 
   m_uid(),
   m_itemType(itemType),
   m_persistentProperties(persistentProperties + PersistentProperties),
-  m_loadingSettings(false)
+  m_loadingSettings(false),
+  m_modified(false),
+  m_deleted(false)
 {
   initializeItem();
+}
+
+Item::~Item()
+{
+}
+
+/**
+   @brief Saves the item data to disk.
+
+   This method is used to save the item information to disk. The base implementation writes to the
+   Item::persistenceFilename() file in the Item::directory(). All persistent properties passed in
+   the constructor call will be written to the file. Sub-classes should implement the
+   Item::saveItemData() method to write additional files as necessary.
+   
+   Usually, this method does not need to be called manually. It is either called directly or
+   indirectly (via an event) by saveItem(). However, in a test case it might be required
+   to manually flush any scheduled write operations before deleting an item.
+*/
+void Item::commitItem()
+{
+  if (m_modified && !m_deleted) {
+    if (!m_loadingSettings) {
+      QDir itemDir(m_directory);
+      if (!itemDir.exists()) {
+        itemDir.mkpath(m_directory);
+      }
+      QFile file(m_directory + "/" + persistenceFilename());
+      if (file.open(QIODevice::WriteOnly)) {
+        QVariantMap properties;
+        for (auto property : m_persistentProperties) {
+          properties[property] = this->property(qUtf8Printable(property));
+        }
+        properties["uid"] = m_uid;
+        QJsonDocument doc = QJsonDocument::fromVariant(properties);
+        file.write(doc.toJson());
+        file.close();
+        saveItemData();
+      } else {
+        qWarning().nospace()
+                   << "Failed to open " << file.fileName() << " for item" << this << ": " << 
+                      file.errorString();
+      }
+    }
+    m_modified = false;
+  }
+}
+
+/**
+   @brief Deletes the item permanently.
+   
+   This method can be used to permanently delete an item. Calling this will delete any data on
+   disk belonging to the item. After the call to this method, the item should be deleted (or at
+   least considered disposed).
+ */
+bool Item::deleteItem()
+{
+  if (!m_deleted) {
+    QDir dir(m_directory);
+    m_deleted = true;
+    emit itemDeleted(this);
+    if (dir.exists()) {
+      return dir.removeRecursively();
+    }
+  }
+  return false;
 }
 
 /**
@@ -49,6 +118,23 @@ void Item::setTitle(const QString &title)
     emit titleChanged();
     saveItem();
   }
+}
+
+/**
+   @brief Returns true of the @p directory is a storage of the given @p itemType.
+   
+   This method can be used to test if a given directory contains data of
+   a certain item type:
+   
+   @code
+   if (Item::isItemDirectory("/home/otl/sampletodo/", Todo::ItemType) {
+     // Load the todo...
+   }
+   @endcode
+ */
+bool Item::isItemDirectory(const QString &directory, const QString &itemType)
+{
+  return QFile::exists(directory + "/" + persistenceFilename(itemType));
 }
 
 /**
@@ -92,7 +178,7 @@ void Item::initializeItem()
     loadItem();
   } else {
     m_uid = QUuid::createUuid();
-    saveItem();
+    saveItem(SaveItemImmediately);
   }
 }
 
@@ -102,9 +188,13 @@ void Item::initializeItem()
    This method is used to restore item information from disk. Basically, this will open the file
    Item::persistenceFilename() in the Item::directory() and read the contained properties. The
    generic implementation will read back all persistent properties as given in the constructor of
-   the Item. Sub-classes can extend the functionality to read further files if required.
+   the Item.
+   
+   Sub-classes should implement the Item::loadItemData() to load additional data from the item's
+   directory.
    
    @sa Item::saveItem()
+   @sa Item::commitItem()
  */
 void Item::loadItem()
 {
@@ -126,6 +216,7 @@ void Item::loadItem()
         }
         m_uid = map.value("uid", m_uid).toUuid();
       }
+      loadItemData(); // Load further item data if required
     } else {
       qWarning().nospace() 
           << "Failed to load" << fi.filePath() << "of" << this
@@ -140,30 +231,58 @@ void Item::loadItem()
 /**
    @brief Saves the item data to disk.
    
-   This method is used to save the item information to disk. The base implementation writes to the
-   Item::persistenceFilename() file in the Item::directory(). All persistent properties passed in
-   the constructor call will be written to the file. Sub-classes can extend the functionality and
-   e.g. write to additional files.
+   This method triggers saving of the item to disk. It takes a @p strategy which determines how
+   the item is to be saved. If the strategy is Item::SaveItemImmediately, the item is
+   saved immediately. If the strategy is Item::SaveItemLater, then saving of the item
+   is delayed until control returns to the event loop. The default strategy is Item::SaveItemLater.
+   This allows to set multipe properties of an item instance and save them to disk in one operation
+   later on.
  */
-void Item::saveItem()
+void Item::saveItem(SaveItemStrategy strategy)
 {
-  if (!m_loadingSettings) {
-    QFile file(m_directory + "/" + persistenceFilename());
-    if (file.open(QIODevice::WriteOnly)) {
-      QVariantMap properties;
-      for (auto property : m_persistentProperties) {
-        properties[property] = this->property(qUtf8Printable(property));
-      }
-      properties["uid"] = m_uid;
-      QJsonDocument doc = QJsonDocument::fromVariant(properties);
-      file.write(doc.toJson());
-      file.close();
-    } else {
-      qWarning().nospace()
-                 << "Failed to open " << file.fileName() << " for item" << this << ": " << 
-                    file.errorString();
-    }
+  m_modified = true;
+  switch (strategy) {
+  case SaveItemImmediately:
+    commitItem();
+    break;
+  case SaveItemLater:
+    QTimer::singleShot(0, this, &Item::commitItem);
+    break;
+  default:
+    qFatal("Unexpected Item::SaveItemStrategy received: %d", strategy);
+    break;
   }
+}
+
+/**
+   @brief Returns a version of the @p title which can be used as directory name.
+ */
+QString Item::titleToDirectoryName(const QString &title)
+{
+  QString copy = title;
+  return copy.replace(QRegExp("[\\/:\\?]"), " ");
+}
+
+/**
+   @brief Load additional item data.
+   
+   This method is called by Item::loadItem(). Sub-classes of Item can override it to load additional
+   data when the item is loaded.
+ */
+void Item::loadItemData()
+{
+  // Nothing to be done here
+}
+
+/**
+   @brief Save additional item data.
+   
+   This method is called by Item::commitItem(). Sub-classes of Item can override it to save
+   additional data when the item is saved.
+ */
+void Item::saveItemData()
+{
+  // Nothing to be done here
 }
 
 /**

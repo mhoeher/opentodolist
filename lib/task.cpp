@@ -1,5 +1,8 @@
 #include "task.h"
 
+#include "todo.h"
+
+
 /**
    @brief The item type used by the Task class.
  */
@@ -15,7 +18,8 @@ const QStringList Task::PersistentProperties = {"done"};
  */
 Task::Task(const QString &directory, QObject *parent) : 
   Item(false, directory, ItemType, PersistentProperties, parent),
-  m_done(false)
+  m_done(false),
+  m_todo()
 {
   initializeItem();
 }
@@ -30,4 +34,22 @@ void Task::setDone(bool done)
     emit doneChanged();
     saveItem();
   }
+}
+
+/**
+   @brief The todo to which the task belongs.
+   
+   This is the todo to which the task belongs.
+ */
+Todo *Task::todo() const
+{
+  return m_todo.data();
+}
+
+/**
+   @brief Sets the todo to which the task belongs.
+ */
+void Task::setTodo(Todo *todo)
+{
+  m_todo = todo;
 }

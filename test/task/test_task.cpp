@@ -32,12 +32,15 @@ void TaskTest::testPersistence()
   QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
   auto task = new Task(dir.path());
   Q_CHECK_PTR(task);
+  QVERIFY2(!task->done(), "Expected task not to be done.");
   task->setDone(true);
+  task->commitItem();
   delete task;
   task = new Task(dir.path());
-  QVERIFY2(task->done(), "task.done() is false, expected true.");
+  QVERIFY2(task->done(), "Expected task to be done.");
   delete task;
 }
+
 
 QTEST_MAIN(TaskTest)
 #include "test_task.moc"

@@ -22,7 +22,9 @@ SOURCES += \
     toplevelitem.cpp \
     note.cpp \
     image.cpp \
-    task.cpp
+    task.cpp \
+    todo.cpp \
+    todolist.cpp
 
 HEADERS += \
     application.h \
@@ -34,4 +36,8 @@ HEADERS += \
     toplevelitem.h \
     note.h \
     image.h \
-    task.h
+    task.h \
+    todo.h \
+    tasklist.h \
+    todoslist.h \
+    todolist.h

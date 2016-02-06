@@ -32,6 +32,7 @@ void ImageTest::testPersistence()
   QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
   auto image = new Image(dir.path());
   image->setImage("test.png");
+  image->commitItem();
   delete image;
   image = new Image(dir.path());
   QCOMPARE(image->image(), QString("test.png"));

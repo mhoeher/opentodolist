@@ -26,6 +26,11 @@ public:
                 const QString &itemType = ItemType,
                 const QStringList &persistentProperties = QStringList(),
                 QObject *parent = 0);
+  virtual ~Item();
+  
+  void commitItem();
+  
+  Q_INVOKABLE bool deleteItem();
   
   /**
      @brief The title of the item as shown in the user interface.
@@ -49,9 +54,33 @@ public:
   QString itemType() const { return m_itemType; }
   
   /**
+     @brief The persistence file name used by items of the @p itemType.
+   */
+  static QString persistenceFilename(const QString &itemType) 
+    { return ".opentodolist" + itemType.toLower(); }
+  
+  /**
      @brief The persistence file name into which the item's properties are stored.
    */
-  QString persistenceFilename() const { return ".opentodolist" + m_itemType.toLower(); }
+  QString persistenceFilename() const { return Item::persistenceFilename(m_itemType); }
+  
+  static bool isItemDirectory(const QString &directory, const QString &itemType);
+  
+  /**
+    @brief Check if the @p directory is the data directory of a item type.
+    
+    This method can be used to test if a given directory is a data directory
+    of the item type T:
+    
+    @code
+    if (Item::isItemDirectory<Todo>(directory)) {
+      // Load the todo...
+    }
+    @endcode
+   */
+  template<typename T>
+  static bool isItemDirectory(const QString &directory) 
+    { return Item::isItemDirectory(directory, T::ItemType); }
   
 signals:
 
@@ -60,10 +89,19 @@ signals:
    */  
   void titleChanged();
   
-  
-public slots:
+  /**
+     @brief The item has been deleted.
+     
+     This signal is emitted when Item::deleteItem() is used to delete the item.
+   */
+  void itemDeleted(Item *item);
   
 protected:
+  
+  enum SaveItemStrategy {
+    SaveItemImmediately,
+    SaveItemLater
+  };
   
   explicit Item(bool loadItem,
                 const QString &directory = QString(),
@@ -72,9 +110,12 @@ protected:
                 QObject *parent = 0);
   void initializeItem();
   
-  virtual void loadItem();
-  virtual void saveItem();
+  void loadItem();
+  void saveItem(SaveItemStrategy strategy = SaveItemLater);
+  static QString titleToDirectoryName(const QString &title);
   
+  virtual void loadItemData();
+  virtual void saveItemData();
   
 private:
   
@@ -84,6 +125,8 @@ private:
   QString     m_itemType;
   QStringList m_persistentProperties;
   bool        m_loadingSettings;
+  bool        m_modified;
+  bool        m_deleted;
 };
 
 QDebug operator<<(QDebug debug, const Item *item);

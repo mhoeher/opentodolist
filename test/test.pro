@@ -8,4 +8,6 @@ SUBDIRS += \
     toplevelitem \
     note \
     image \
-    task
+    task \
+    todo \
+    todolist

@@ -34,6 +34,7 @@ void TopLevelItemTest::testPersistence()
   Q_CHECK_PTR(item);
   TopLevelItem::Color color = TopLevelItem::Green;
   item->setColor(color);
+  item->commitItem();
   delete item;
   item = new TopLevelItem(dir.path());
   Q_CHECK_PTR(item);

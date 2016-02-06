@@ -38,6 +38,7 @@ void ComplexItemTest::testPersistence()
   item->setNotes(notes);
   // Date times are stored only at a second basis, so read back:
   dueTo = item->dueTo();
+  item->commitItem();
   delete item;
   item = new ComplexItem(dir.path());
   Q_CHECK_PTR(item);
