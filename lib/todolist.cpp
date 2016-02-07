@@ -5,11 +5,11 @@
 #include <QDir>
 
 
-const QString TodoList::ItemTye = "TodoList";
+const QString TodoList::ItemType = "TodoList";
 const QStringList TodoList::PersistentProperties = {};
 
 TodoList::TodoList(const QString &directory, QObject *parent) :
-  TopLevelItem(false, directory, ItemTye, PersistentProperties, parent),
+  TopLevelItem(false, directory, ItemType, PersistentProperties, parent),
   m_todos(),
   m_todosLoaded(false)
 {

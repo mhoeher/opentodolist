@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QStringList>
 #include <QUuid>
 
 
@@ -17,6 +18,7 @@ class Item : public QObject
   Q_OBJECT
   Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
   Q_PROPERTY(QString directory READ directory CONSTANT)
+  
 public:
   
   static const QStringList PersistentProperties;
@@ -82,6 +84,8 @@ public:
   static bool isItemDirectory(const QString &directory) 
     { return Item::isItemDirectory(directory, T::ItemType); }
   
+  static QString titleToDirectoryName(const QString &title);
+  
 signals:
 
   /**
@@ -112,10 +116,10 @@ protected:
   
   void loadItem();
   void saveItem(SaveItemStrategy strategy = SaveItemLater);
-  static QString titleToDirectoryName(const QString &title);
   
   virtual void loadItemData();
   virtual void saveItemData();
+  
   
 private:
   

@@ -10,4 +10,5 @@ SUBDIRS += \
     image \
     task \
     todo \
-    todolist
+    todolist \
+    library

@@ -5,7 +5,9 @@
 #include "libraryfactory.h"
 
 #include <QObject>
+#include <QSettings>
 #include <QStringList>
+#include <QVariantMap>
 #include <QVector>
 
 
@@ -23,7 +25,9 @@ class Application : public QObject
   Q_PROPERTY(LibraryFactories libraryFactories READ libraryFactories CONSTANT)
   Q_PROPERTY(Libraries libraries READ libraries CONSTANT)
 public:
+  
   explicit Application(QObject *parent = 0);
+  explicit Application(QSettings *settings, QObject *parent = 0);
   
   /**
      @brief The list of all registered LibraryFactory objects.
@@ -37,6 +41,10 @@ public:
 
   QStringList libraryTypes() const;
   LibraryFactory* libraryFactoryForType(const QString &factoryId) const;
+  Q_INVOKABLE Library *addLibrary(const QString &factoryId,
+                                  const QString &name,
+                                  const QString &directory,
+                                  const QVariantMap &args = QVariantMap());
   
   
 signals:
@@ -47,6 +55,12 @@ private:
   
   Libraries               m_libraries;
   LibraryFactories        m_libraryFactories;
+  QSettings              *m_settings;
+  bool                    m_loadingLibraries;
+  
+  void createFactories();
+  void saveLibraries();
+  void loadLibraries();
   
 };
 

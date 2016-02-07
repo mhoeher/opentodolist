@@ -11,9 +11,9 @@ const QString LocalLibraryFactory::ID = "LocalLibrary";
 /**
    @brief Implements LibraryFactory::createLibrary().
  */
-Library *LocalLibraryFactory::createLibrary(
-    const QString &name, const QString &directory, QObject *parent) const
+Library *LocalLibraryFactory::createLibrary(const QString &name, const QString &directory, const QVariantMap &args, QObject *parent) const
 {
+  Q_UNUSED(args);
   return new Library(name, directory, this, parent);  
 }
 

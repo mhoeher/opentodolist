@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonDocument>
+#include <QtGlobal>
 #include <QTimer>
 #include <QVariant>
 #include <QVariantMap>

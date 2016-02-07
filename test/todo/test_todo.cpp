@@ -43,7 +43,9 @@ void TodoTest::testPersistence()
   todo->commitItem();
   delete todo;
   todo = new Todo(dir.path());
+  Q_CHECK_PTR(todo);
   QVERIFY2(todo->done(), "Expected todo to be done.");
+  delete todo;
 }
 
 void TodoTest::testAddTask()

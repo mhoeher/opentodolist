@@ -2,6 +2,7 @@
 #define LIBRARY_H
 
 #include "libraryfactory.h"
+#include "toplevelitemlist.h"
 
 #include <QObject>
 #include <QString>
@@ -9,7 +10,10 @@
 
 
 // Forward declaration:
+class Image;
 class LocalLibraryFactory;
+class Note;
+class TodoList;
 
 
 /**
@@ -45,11 +49,18 @@ public:
    */
   QString directory() const { return m_directory; }
   void setDirectory( const QString &directory );
+  
+  virtual QVariantMap saveArgs() const;
 
   /**
      @brief The factory which was used to create the library.
    */  
   const LibraryFactory* factory() const { return m_factory; }
+  
+  Q_INVOKABLE Note* addNote(const QString &title);
+  Q_INVOKABLE Image* addImage(const QString &title, const QString &image);
+  Q_INVOKABLE TodoList *addTodoList(const QString &title);
+  TopLevelItemList items();
   
 signals:
 
@@ -77,6 +88,17 @@ private:
   QString               m_name;
   QString               m_directory;
   const LibraryFactory *m_factory;
+  TopLevelItemList      m_items;
+  bool                  m_itemsLoaded;
+  
+  QString itemPathFromTitle(const QString &title) const;
+  void addItem(TopLevelItem *item);
+  void loadItems();
+  bool containsItem(const QUuid &uid) const;
+  
+private slots:
+  
+  void onTopLevelItemDeleted(Item *item);
   
 };
 

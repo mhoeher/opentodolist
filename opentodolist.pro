@@ -13,7 +13,8 @@ OTHER_FILES += \
   README.md \
   COPYING \
   Doxyfile \
-  doc/installers-howto.md
+  doc/installers-howto.md \
+  .gitlab-ci.yml
 
 SUBDIRS += \
     app \

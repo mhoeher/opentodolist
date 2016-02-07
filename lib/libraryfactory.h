@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QString>
+#include <QVariantMap>
 #include <QVector>
 
 // Forward declaration:
@@ -61,6 +62,7 @@ public:
    */
   virtual Library* createLibrary(const QString &name,
                                  const QString &directory,
+                                 const QVariantMap &args = QVariantMap(),
                                  QObject *parent = 0) const = 0;
   
 signals:

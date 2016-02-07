@@ -3,35 +3,38 @@
 #include "locallibraryfactory.h"
 
 #include <QObject>
+#include <QTemporaryDir>
 #include <QTest>
 
 class ApplicationTest : public QObject
 {
   Q_OBJECT
 
+  QTemporaryDir *m_appDir;
+  QSettings     *m_settings;
+  Application   *m_app;
+  
 private slots:  
-  void initTestCase();
-  void testDefaultConstructor();
+  void init();
   void testLibraryFactories();
   void testLibraryTypes();
   void testLibraryFactoryForType();
-  void cleanupTestCase();
+  void testAddLibrary();
+  void testAddLibraryWithWrongFactoryType();
+  void testLibraryPersistence();
+  void cleanup();
   
 };
 
-void ApplicationTest::initTestCase()
+void ApplicationTest::init()
 {
-  // Nothing to be done here
-}
-
-/**
-   @brief Ensure that the application is default-constructable.
- */
-void ApplicationTest::testDefaultConstructor()
-{
-  Application *app = new Application();
-  Q_CHECK_PTR(app);
-  delete app;
+  m_appDir = new QTemporaryDir();
+  Q_CHECK_PTR(m_appDir);
+  QVERIFY2(m_appDir->isValid(), "Failed to create temporary directory.");
+  m_settings = new QSettings(m_appDir->path() + "/settings.ini", QSettings::IniFormat);
+  Q_CHECK_PTR(m_settings);
+  m_app = new Application(m_settings);
+  Q_CHECK_PTR(m_app);
 }
 
 /**
@@ -39,8 +42,7 @@ void ApplicationTest::testDefaultConstructor()
  */
 void ApplicationTest::testLibraryFactories()
 {
-  Application app;
-  auto factories = app.libraryFactories();
+  auto factories = m_app->libraryFactories();
   bool localLibraryFactoryPresent = false;
   for (auto factory : factories) {
     if (dynamic_cast<LocalLibraryFactory*>(factory) != nullptr) {
@@ -55,8 +57,7 @@ void ApplicationTest::testLibraryFactories()
  */
 void ApplicationTest::testLibraryTypes()
 {
-  Application app;
-  auto ids = app.libraryTypes();
+  auto ids = m_app->libraryTypes();
   QCOMPARE(ids, QStringList({LocalLibraryFactory::ID}));
 }
 
@@ -65,16 +66,49 @@ void ApplicationTest::testLibraryTypes()
  */
 void ApplicationTest::testLibraryFactoryForType()
 {
-  Application app;
-  QVERIFY2(dynamic_cast<LocalLibraryFactory*>(app.libraryFactoryForType(LocalLibraryFactory::ID)),
+  QVERIFY2(dynamic_cast<LocalLibraryFactory*>(m_app->libraryFactoryForType(LocalLibraryFactory::ID)),
            "libraryFactoryForType(LocalLibraryFactory) does not return a LocalLibraryFactory.");
-  QVERIFY2(app.libraryFactoryForType("DefinitelyNonExistingId") == nullptr,
+  QVERIFY2(m_app->libraryFactoryForType("DefinitelyNonExistingId") == nullptr,
            "libraryFactoryForType(NonExistingType) does not return a nullptr.");
 }
 
-void ApplicationTest::cleanupTestCase()
+/**
+   @brief The Application shall be able to create a new library.
+ */
+void ApplicationTest::testAddLibrary()
 {
-  // Nothing to be done here
+  auto library = m_app->addLibrary(LocalLibraryFactory::ID, "New Library", m_appDir->path());
+  Q_CHECK_PTR(library);
+}
+
+/**
+   @brief If called with a non-existent factory type, addLibrary() shall return a nullptr.
+ */
+void ApplicationTest::testAddLibraryWithWrongFactoryType()
+{
+  auto library = m_app->addLibrary("", m_appDir->path(), "New Library");
+  QVERIFY2(!library, "Expected library to be nullptr.");
+}
+
+void ApplicationTest::testLibraryPersistence()
+{
+  auto library = m_app->addLibrary(LocalLibraryFactory::ID, "New Library", m_appDir->path());
+  Q_CHECK_PTR(library);
+  QCOMPARE(m_app->libraries().size(), 1);
+  delete m_app;
+  m_app = new Application(m_settings);
+  Q_CHECK_PTR(m_app);
+  QCOMPARE(m_app->libraries().size(), 1);
+  library = m_app->libraries().at(0);
+  Q_CHECK_PTR(library);
+  QCOMPARE(library->name(), QString("New Library"));
+}
+
+void ApplicationTest::cleanup()
+{
+  delete m_app;
+  delete m_settings;
+  delete m_appDir;
 }
 
 QTEST_MAIN(ApplicationTest)

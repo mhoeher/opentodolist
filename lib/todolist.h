@@ -11,7 +11,7 @@ class TodoList : public TopLevelItem
   Q_OBJECT
 public:
   
-  static const QString ItemTye;
+  static const QString ItemType;
   static const QStringList PersistentProperties;
   
   explicit TodoList(const QString &directory = QString(), QObject *parent = 0);

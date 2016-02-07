@@ -27,7 +27,10 @@ public:
   static const QString ID;
   
   // LibraryFactory interface
-  Library *createLibrary(const QString &name, const QString &directory, QObject *parent) const override;
+  Library *createLibrary(const QString &name,
+                         const QString &directory,
+                         const QVariantMap &args = QVariantMap(),
+                         QObject *parent = 0) const override;
   
 signals:
   

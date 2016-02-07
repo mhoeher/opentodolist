@@ -40,4 +40,5 @@ HEADERS += \
     todo.h \
     tasklist.h \
     todoslist.h \
-    todolist.h
+    todolist.h \
+    toplevelitemlist.h
