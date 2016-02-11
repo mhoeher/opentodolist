@@ -18,6 +18,8 @@ class Item : public QObject
   Q_OBJECT
   Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
   Q_PROPERTY(QString directory READ directory CONSTANT)
+  Q_PROPERTY(bool isValid READ isValid CONSTANT)
+  Q_PROPERTY(bool readonly READ readonly CONSTANT)
   
 public:
   
@@ -33,6 +35,16 @@ public:
   void commitItem();
   
   Q_INVOKABLE bool deleteItem();
+  
+  /**
+     @brief Returns true if the item is valid.
+   */
+  bool isValid() { return !m_directory.isEmpty(); }
+  
+  /**
+     @brief Returns true if the item is read-only.
+   */
+  bool readonly() { return m_readonly; }
   
   /**
      @brief The title of the item as shown in the user interface.
@@ -131,6 +143,9 @@ private:
   bool        m_loadingSettings;
   bool        m_modified;
   bool        m_deleted;
+  bool        m_readonly;
+  
+  QString itemMainSettingsFile() const;
 };
 
 QDebug operator<<(QDebug debug, const Item *item);

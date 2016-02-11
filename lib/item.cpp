@@ -29,6 +29,8 @@ const QString Item::ItemType = "Item";
    Creates a new Item which is stored in the given @p directory. When using Item::saveItem() and
    Item::loadItem() are used, the list of @p persistentProperties of the item instance is
    saved and loaded. The item will be a child of the given @p parent.
+   
+   @note To construct an invalid item, pass in an empty string.
  */
 Item::Item(const QString &directory, const QString &itemType, const QStringList &persistentProperties, QObject *parent) : 
   QObject(parent),
@@ -39,7 +41,8 @@ Item::Item(const QString &directory, const QString &itemType, const QStringList 
   m_persistentProperties(persistentProperties + PersistentProperties),
   m_loadingSettings(false),
   m_modified(false),
-  m_deleted(false)
+  m_deleted(false),
+  m_readonly(false)
 {
   initializeItem();
 }
@@ -62,27 +65,29 @@ Item::~Item()
 */
 void Item::commitItem()
 {
-  if (m_modified && !m_deleted) {
-    if (!m_loadingSettings) {
-      QDir itemDir(m_directory);
-      if (!itemDir.exists()) {
-        itemDir.mkpath(m_directory);
-      }
-      QFile file(m_directory + "/" + persistenceFilename());
-      if (file.open(QIODevice::WriteOnly)) {
-        QVariantMap properties;
-        for (auto property : m_persistentProperties) {
-          properties[property] = this->property(qUtf8Printable(property));
+  if (m_modified) {
+    if (!m_deleted && isValid() && !m_readonly) {
+      if (!m_loadingSettings) {
+        QDir itemDir(m_directory);
+        if (!itemDir.exists()) {
+          itemDir.mkpath(m_directory);
         }
-        properties["uid"] = m_uid;
-        QJsonDocument doc = QJsonDocument::fromVariant(properties);
-        file.write(doc.toJson());
-        file.close();
-        saveItemData();
-      } else {
-        qWarning().nospace()
-                   << "Failed to open " << file.fileName() << " for item" << this << ": " << 
-                      file.errorString();
+        QFile file(itemMainSettingsFile());
+        if (file.open(QIODevice::WriteOnly)) {
+          QVariantMap properties;
+          for (auto property : m_persistentProperties) {
+            properties[property] = this->property(qUtf8Printable(property));
+          }
+          properties["uid"] = m_uid;
+          QJsonDocument doc = QJsonDocument::fromVariant(properties);
+          file.write(doc.toJson());
+          file.close();
+          saveItemData();
+        } else {
+          qWarning().nospace()
+              << "Failed to open " << file.fileName() << " for item" << this << ": " << 
+                 file.errorString();
+        }
       }
     }
     m_modified = false;
@@ -98,7 +103,7 @@ void Item::commitItem()
  */
 bool Item::deleteItem()
 {
-  if (!m_deleted) {
+  if (!m_deleted && isValid() && !readonly()) {
     QDir dir(m_directory);
     m_deleted = true;
     emit itemDeleted(this);
@@ -156,7 +161,9 @@ Item::Item(bool loadItem,
   m_uid(),
   m_itemType(itemType),
   m_persistentProperties(persistentProperties + PersistentProperties),
-  m_loadingSettings(false)
+  m_loadingSettings(false),
+  m_deleted(false),
+  m_readonly(false)
 {
   if (loadItem) {
     initializeItem();
@@ -174,9 +181,10 @@ void Item::initializeItem()
 {
   Q_ASSERT(!m_itemType.contains(QRegExp("[^a-zA-Z]")));
   Q_ASSERT(!m_itemType.isEmpty());
-  QFileInfo fi(m_directory + "/" + persistenceFilename());
+  QFileInfo fi(itemMainSettingsFile());
   if (fi.exists()) {
     loadItem();
+    m_readonly = !fi.isWritable();
   } else {
     m_uid = QUuid::createUuid();
     saveItem(SaveItemImmediately);
@@ -199,34 +207,36 @@ void Item::initializeItem()
  */
 void Item::loadItem()
 {
-  m_loadingSettings = true;
-  QFileInfo fi(m_directory + "/" + persistenceFilename());
-  if (fi.exists()) {
-    QFile file(fi.filePath());
-    if (file.open(QIODevice::ReadOnly)) {
-      QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-      QVariant v = doc.toVariant();
-      if (v.type() != QVariant::Map) {
-        qWarning() << "Expected" << file.fileName() << "to be a map structure, but got" <<
-                      v.typeName();
-      } else {
-        QVariantMap map = v.toMap();
-        for (auto property : m_persistentProperties) {
-          setProperty(qUtf8Printable(property), 
-                      map.value(property, this->property(qUtf8Printable(property))));
+  if ( isValid() ) {
+    m_loadingSettings = true;
+    QFileInfo fi(itemMainSettingsFile());
+    if (fi.exists()) {
+      QFile file(fi.filePath());
+      if (file.open(QIODevice::ReadOnly)) {
+        QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+        QVariant v = doc.toVariant();
+        if (v.type() != QVariant::Map) {
+          qWarning() << "Expected" << file.fileName() << "to be a map structure, but got" <<
+                        v.typeName();
+        } else {
+          QVariantMap map = v.toMap();
+          for (auto property : m_persistentProperties) {
+            setProperty(qUtf8Printable(property), 
+                        map.value(property, this->property(qUtf8Printable(property))));
+          }
+          m_uid = map.value("uid", m_uid).toUuid();
         }
-        m_uid = map.value("uid", m_uid).toUuid();
+        loadItemData(); // Load further item data if required
+      } else {
+        qWarning().nospace() 
+            << "Failed to load" << fi.filePath() << "of" << this
+                   << ": " << file.errorString();
       }
-      loadItemData(); // Load further item data if required
     } else {
-      qWarning().nospace() 
-          << "Failed to load" << fi.filePath() << "of" << this
-                 << ": " << file.errorString();
+      qDebug() << "File" << fi.filePath() << "of" << this << "does not exist.";
     }
-  } else {
-    qDebug() << "File" << fi.filePath() << "of" << this << "does not exist.";
+    m_loadingSettings = false;
   }
-  m_loadingSettings = false;
 }
 
 /**
@@ -284,6 +294,14 @@ void Item::loadItemData()
 void Item::saveItemData()
 {
   // Nothing to be done here
+}
+
+/**
+   @brief Returns the file name of the main file where the item data is stored.
+ */
+QString Item::itemMainSettingsFile() const
+{
+  return m_directory + "/" + persistenceFilename();
 }
 
 /**

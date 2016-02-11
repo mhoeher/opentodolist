@@ -62,16 +62,18 @@ QString ComplexItem::notes()
 {
   if (!m_notesLoaded) {
     m_notesLoaded = true;
-    QFile file(directory() + "/notes.html");
-    if (file.exists()) {
-      if (file.open(QIODevice::ReadOnly)) {
-        m_notes = file.readAll();
-        file.close();
+    if (isValid()) {
+      QFile file(directory() + "/notes.html");
+      if (file.exists()) {
+        if (file.open(QIODevice::ReadOnly)) {
+          m_notes = file.readAll();
+          file.close();
+        } else {
+          qWarning() << "Failed to open" << file.fileName() << "of" << this;
+        }
       } else {
-        qWarning() << "Failed to open" << file.fileName() << "of" << this;
+        qDebug() << "The file notes.html of " << this << "does not exist.";
       }
-    } else {
-      qDebug() << "The file notes.html of " << this << "does not exist.";
     }
   }
   return m_notes;
@@ -85,10 +87,12 @@ void ComplexItem::setNotes(const QString &notes)
   if (m_notes != notes) {
     m_notes = notes;
     emit notesChanged();
-    QFile file(directory() + "/notes.html");
-    if (file.open(QIODevice::WriteOnly)) {
-      file.write(m_notes.toUtf8());
-      file.close();
+    if (isValid() && !readonly()) {
+      QFile file(directory() + "/notes.html");
+      if (file.open(QIODevice::WriteOnly)) {
+        file.write(m_notes.toUtf8());
+        file.close();
+      }
     }
   }
 }
