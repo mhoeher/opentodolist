@@ -91,10 +91,11 @@ private:
   TopLevelItemList      m_items;
   bool                  m_itemsLoaded;
   
-  QString itemPathFromTitle(const QString &title) const;
+  QString itemPathFromTitle(const QString &title, const QString &itemType) const;
   void addItem(TopLevelItem *item);
   void loadItems();
   bool containsItem(const QUuid &uid) const;
+  QString dirForItemType(const QString &itemType) const;
   
 private slots:
   

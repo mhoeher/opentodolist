@@ -47,7 +47,7 @@ QVariantMap Library::saveArgs() const
 
 Note *Library::addNote(const QString &title)
 {
-  auto result = new Note(itemPathFromTitle(title), this);
+  auto result = new Note(itemPathFromTitle(title, Note::ItemType), this);
   Q_CHECK_PTR(result);
   result->setTitle(title);
   addItem(result);
@@ -56,7 +56,7 @@ Note *Library::addNote(const QString &title)
 
 Image *Library::addImage(const QString &title, const QString &image)
 {
-  auto result = new Image(itemPathFromTitle(title), this);
+  auto result = new Image(itemPathFromTitle(title, Image::ItemType), this);
   Q_CHECK_PTR(result);
   result->setTitle(title);
   result->setImage(image);
@@ -66,7 +66,7 @@ Image *Library::addImage(const QString &title, const QString &image)
 
 TodoList *Library::addTodoList(const QString &title)
 {
-  auto result = new TodoList(itemPathFromTitle(title), this);
+  auto result = new TodoList(itemPathFromTitle(title, TodoList::ItemType), this);
   Q_CHECK_PTR(result);
   result->setTitle(title);
   addItem(result);
@@ -97,9 +97,10 @@ Library::Library(const QString &name,
 {
 }
 
-QString Library::itemPathFromTitle(const QString &title) const
+QString Library::itemPathFromTitle(const QString &title, const QString &itemType) const
 {
-  QString tpl = m_directory + "/" + Item::titleToDirectoryName(title);
+  QString baseDir = dirForItemType(itemType);
+  QString tpl = baseDir + "/" + Item::titleToDirectoryName(title);
   int i = 0;
   QString result = tpl;
   while (QDir(tpl).exists()) {
@@ -170,6 +171,22 @@ bool Library::containsItem(const QUuid &uid) const
     }
   }
   return false;
+}
+
+QString Library::dirForItemType(const QString &itemType) const
+{
+  QString baseDir = m_directory;
+  QString appDir = baseDir + "/OpenTodoList";
+  int i = 0;
+  while (QFile::exists(appDir)) {
+    appDir = baseDir + "/OpenTodoList - " + QString::number(i++);
+  }
+  QString typeDir = appDir + "/" + itemType;
+  i = 0;
+  while (QFile::exists(typeDir)) {
+    typeDir = appDir + "/" + itemType + " - " + QString::number(i);
+  }
+  return typeDir;
 }
 
 void Library::onTopLevelItemDeleted(Item *item)
