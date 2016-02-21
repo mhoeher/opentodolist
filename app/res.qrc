@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/OpenTodoList.icns</file>
+        <file>res/OpenTodoList.ico</file>
+        <file>res/OpenTodoList64.png</file>
+        <file>res/OpenTodoList80.png</file>
+        <file>res/OpenTodoList250.png</file>
+    </qresource>
+</RCC>

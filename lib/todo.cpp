@@ -81,12 +81,18 @@ TaskList Todo::tasks()
   return m_tasks;
 }
 
+QQmlListProperty<Task> Todo::taskList()
+{
+  return QQmlListProperty<Task>(this, nullptr, taskListCount, taskListAt);
+}
+
 void Todo::appendTask(Task *task)
 {
   Q_CHECK_PTR(task);
   task->setTodo(this);
   connect(task, &Task::itemDeleted, this, &Todo::onTaskDeleted);
   m_tasks.append(task);
+  emit tasksChanged();
 }
 
 void Todo::loadTasks()
@@ -128,6 +134,20 @@ void Todo::setTodoList(TodoList *todoList)
   m_todoList = todoList;
 }
 
+int Todo::taskListCount(QQmlListProperty<Task> *property)
+{
+  Todo *_this = dynamic_cast<Todo*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->tasks().size();
+}
+
+Task *Todo::taskListAt(QQmlListProperty<Task> *property, int index)
+{
+  Todo *_this = dynamic_cast<Todo*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->tasks().at(index);
+}
+
 void Todo::onTaskDeleted(Item *item)
 {
   Q_CHECK_PTR(item);
@@ -136,6 +156,7 @@ void Todo::onTaskDeleted(Item *item)
     if (task->uid() == item->uid()) {
       m_tasks.removeAt(i);
       task->deleteLater();
+      emit tasksChanged();
       break;
     }
   }

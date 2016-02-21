@@ -3,6 +3,7 @@
 #include "locallibraryfactory.h"
 
 #include <QCoreApplication>
+#include <QFileInfo>
 
 /**
    @brief Constructor.
@@ -82,11 +83,81 @@ Library *Application::addLibrary(const QString &factoryId,
     auto library = factory->createLibrary(name, directory, args, this);
     if (library) {
       m_libraries.append(library);
+      connect(library, &Library::libraryDeleted, this, &Application::onLibraryDeleted);
       saveLibraries();
+      emit librariesChanged();
       return library;
     }
   }
   return nullptr;
+}
+
+/**
+   @brief Add a local library.
+   
+   This is a convenience wrapper which calls addLibrary() with the ID LocalLibraryFactory::ID.
+   Hence, this basically adding a local directory of a library to the application.
+ */
+Library *Application::addLocalLibrary(const QString &name, const QString &directory)
+{
+  return addLibrary(LocalLibraryFactory::ID, name, directory);
+}
+
+/**
+   @brief Add a local library.
+   
+   This is an overloaded version of the addLocalLibrary() method. This version uses the directory
+   name of the @p directory also as name of the library.
+ */
+Library *Application::addLocalLibrary(const QString &directory)
+{
+  QFileInfo fi(directory);
+  return addLocalLibrary(fi.fileName(), directory);
+}
+
+/**
+   @brief Add a local library.
+   
+   This is an overloaded version of addLocalLibrary(), which takes the @p directory as a URL.
+ */
+Library *Application::addLocalLibrary(const QUrl &directory)
+{
+  return addLocalLibrary(directory.toLocalFile());
+}
+
+/**
+   @brief Returns the libraries as a QML list property.
+ */
+QQmlListProperty<Library> Application::libraryList()
+{
+  return QQmlListProperty<Library>(this, nullptr, librariesCount, librariesAt);
+}
+
+/**
+   @brief Save a value to the application settings
+   
+   This method is used to save a value to the application settings. Settings can be restored
+   (e.g. when the app restarts).
+ */
+void Application::saveValue(const QString &name, const QVariant &value)
+{
+  m_settings->beginGroup("ApplicationSettings");
+  m_settings->setValue(name, value);
+  m_settings->endGroup();
+}
+
+/**
+   @brief Read a persistent application value
+   
+   This method is used to read back persistent application settings which previously have been
+   written using saveValue().
+ */
+QVariant Application::loadValue(const QString &name, const QVariant &defaultValue)
+{
+  m_settings->beginGroup("ApplicationSettings");
+  QVariant result = m_settings->value(name, defaultValue);
+  m_settings->endGroup();
+  return result;
 }
 
 void Application::createFactories()
@@ -137,6 +208,29 @@ void Application::loadLibraries()
   }
   m_settings->endArray();
   m_loadingLibraries = false;
+}
+
+Library *Application::librariesAt(QQmlListProperty<Library> *property, int index)
+{
+  Application *_this = qobject_cast<Application*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->libraries().at(index);
+}
+
+int Application::librariesCount(QQmlListProperty<Library> *property)
+{
+  Application *_this = qobject_cast<Application*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->libraries().size();
+}
+
+void Application::onLibraryDeleted(Library *library)
+{
+  if (m_libraries.contains(library)) {
+    m_libraries.removeAll(library);
+  }
+  saveLibraries();
+  emit librariesChanged();
 }
 
 

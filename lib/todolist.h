@@ -5,10 +5,13 @@
 #include "toplevelitem.h"
 
 #include <QObject>
+#include <QQmlListProperty>
+
 
 class TodoList : public TopLevelItem
 {
   Q_OBJECT
+  Q_PROPERTY(QQmlListProperty<Todo> todos READ todoList NOTIFY todosChanged)
 public:
   
   static const QString ItemType;
@@ -18,8 +21,14 @@ public:
   
   Todo* addTodo(const QString &title);
   TodosList todos();
+  QQmlListProperty<Todo> todoList();
   
 signals:
+  
+  /**
+     @brief The list of todos changed.
+   */
+  void todosChanged();
   
 public slots:
   
@@ -31,6 +40,9 @@ private:
   void appendTodo(Todo *todo);
   bool containsTodo(const QUuid &uuid);
   void loadTodos();
+  
+  static int todoListCount(QQmlListProperty<Todo> *property);
+  static Todo* todoListAt(QQmlListProperty<Todo> *property, int index);
   
 private slots:
   

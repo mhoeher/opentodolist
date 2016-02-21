@@ -17,6 +17,6 @@ OTHER_FILES += \
   .gitlab-ci.yml
 
 SUBDIRS += \
-    app \
     lib \
+    app \
     test

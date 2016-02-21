@@ -79,6 +79,25 @@ TopLevelItemList Library::items()
   return m_items;
 }
 
+QQmlListProperty<TopLevelItem> Library::itemList()
+{
+  return QQmlListProperty<TopLevelItem>(this, nullptr, itemListCount, itemListAt);
+}
+
+/**
+   @brief Remove the library from the application.
+   
+   This method removes the library from the application. Basically, it emits the libraryDeleted()
+   signal and then schedules the Library object for deletion.
+   
+   However, this will not remove the files on disk belonging to the library.
+ */
+void Library::deleteLibrary()
+{
+  emit libraryDeleted(this);
+  deleteLater();
+}
+
 /**
    @brief Constructor.
    
@@ -114,6 +133,7 @@ void Library::addItem(TopLevelItem *item)
   item->commitItem();
   connect(item, &Item::itemDeleted, this, &Library::onTopLevelItemDeleted);
   m_items.append(item);
+  emit itemsChanged();
 }
 
 void Library::loadItems()
@@ -178,15 +198,29 @@ QString Library::dirForItemType(const QString &itemType) const
   QString baseDir = m_directory;
   QString appDir = baseDir + "/OpenTodoList";
   int i = 0;
-  while (QFile::exists(appDir)) {
+  while (QFile::exists(appDir) && !QDir(appDir).exists() && !QFileInfo(appDir).isWritable()) {
     appDir = baseDir + "/OpenTodoList - " + QString::number(i++);
   }
   QString typeDir = appDir + "/" + itemType;
   i = 0;
-  while (QFile::exists(typeDir)) {
+  while (QFile::exists(typeDir) && !QDir(appDir).exists() && !QFileInfo(appDir).isWritable()) {
     typeDir = appDir + "/" + itemType + " - " + QString::number(i);
   }
   return typeDir;
+}
+
+int Library::itemListCount(QQmlListProperty<TopLevelItem> *property)
+{
+  Library *_this = dynamic_cast<Library*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->items().size();
+}
+
+TopLevelItem* Library::itemListAt(QQmlListProperty<TopLevelItem> *property, int index)
+{
+  Library *_this = dynamic_cast<Library*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->items().at(index);
 }
 
 void Library::onTopLevelItemDeleted(Item *item)
@@ -196,6 +230,7 @@ void Library::onTopLevelItemDeleted(Item *item)
     if (m_items.at(i) == item) {
       m_items.removeAt(i);
       item->deleteLater();
+      emit itemsChanged();
       return;
     }
   }

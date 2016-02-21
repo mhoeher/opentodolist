@@ -4,12 +4,27 @@ OPENTODOLIST_VERSION=2.0.0
 # Pass in values via defines
 DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 
+CONFIG(release, debug|release) {
+    DEFINES += OPENTODOLIST_RELEASE
+}
+
+CONFIG(debug, debug|release) {
+    DEFINES += OPENTODOLIST_DEBUG
+}
+
 defineTest(setupApplication) {
     TEMPLATE = app
     CONFIG += c++11
+    INCLUDEPATH += $$PWD/../lib
+    LIBS += -L$$OUT_PWD/../lib -lopentodolist
+    win32:!win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../lib/opentodolist.lib
+    else:unix|win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../lib/libopentodolist.a
 
     export(TEMPLATE)
     export(CONFIG)
+    export(INCLUDEPATH)
+    export(LIBS)
+    export(PRE_TARGETDEPS)
 }
 
 defineTest(setupStaticLib) {
@@ -126,5 +141,7 @@ defineTest(setupTest) {
 #export(assets_prefix)
 
 #}
+
+RESOURCES +=
 
 

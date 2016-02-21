@@ -7,7 +7,7 @@
 include(../config.pri)
 setupStaticLib()
 
-QT       += qml xml
+QT       += qml quick xml
 QT       -= gui
 
 TARGET = opentodolist
@@ -24,7 +24,9 @@ SOURCES += \
     image.cpp \
     task.cpp \
     todo.cpp \
-    todolist.cpp
+    todolist.cpp \
+    opentodolistqmlextensionsplugin.cpp \
+    documentformatter.cpp
 
 HEADERS += \
     application.h \
@@ -41,4 +43,6 @@ HEADERS += \
     tasklist.h \
     todoslist.h \
     todolist.h \
-    toplevelitemlist.h
+    toplevelitemlist.h \
+    opentodolistqmlextensionsplugin.h \
+    documentformatter.h

@@ -32,7 +32,7 @@ public:
   static const QString ItemType;
   static const QStringList PersistentProperties;
   
-  explicit Task(const QString &directory, QObject *parent = 0);
+  explicit Task(const QString &directory = QString(), QObject *parent = 0);
 
   /**
      @brief Indicate whether the task is done or not.

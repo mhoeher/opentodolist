@@ -6,6 +6,7 @@
 
 #include <QObject>
 #include <QPointer>
+#include <QQmlListProperty>
 
 
 // Forward declaration:
@@ -24,6 +25,7 @@ class Todo : public ComplexItem
 {
   Q_OBJECT
   Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
+  Q_PROPERTY(QQmlListProperty<Task> tasks READ taskList NOTIFY tasksChanged)
   
   friend class TodoList;
   
@@ -44,6 +46,7 @@ public:
   
   Q_INVOKABLE Task* addTask(const QString &title);
   TaskList tasks();
+  QQmlListProperty<Task> taskList();
   
 signals:
 
@@ -51,6 +54,11 @@ signals:
      @brief The value of the done property has changed.
    */  
   void doneChanged();
+  
+  /**
+     @brief The list of tasks in the todo changed.
+   */
+  void tasksChanged();
   
 public slots:
   
@@ -65,6 +73,9 @@ private:
   void loadTasks();
   bool hasTask(const QUuid &uuid);
   void setTodoList(TodoList *todoList);
+  
+  static int taskListCount(QQmlListProperty<Task> *property);
+  static Task* taskListAt(QQmlListProperty<Task> *property, int index);
   
 private slots:
   

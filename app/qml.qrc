@@ -1,5 +1,38 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/Globals.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/qmldir</file>
+        <file>net/rpdev/OpenTodoList/UI/MainWindow.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/MainWindowLogic.js</file>
+        <file>net/rpdev/OpenTodoList/UI/Colors.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/Panel.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/LibrariesSideBar.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/ButtonContainer.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/fontawesome-license.txt</file>
+        <file>net/rpdev/OpenTodoList/UI/fontawesome-webfont.ttf</file>
+        <file>net/rpdev/OpenTodoList/UI/Fonts.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/SymbolButton.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/RichTextEditor.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/RichTextEditorFormatMenu.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/LibraryPage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/Symbol.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/LibraryPageLogic.js</file>
+        <file>net/rpdev/OpenTodoList/UI/NoteItem.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/NotePage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/StickyNote.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/ColorMenu.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/paper/COPYING</file>
+        <file>net/rpdev/OpenTodoList/UI/paper/paper_@2X.png</file>
+        <file>net/rpdev/OpenTodoList/UI/paper/paper.png</file>
+        <file>net/rpdev/OpenTodoList/UI/paper/readme.txt</file>
+        <file>net/rpdev/OpenTodoList/UI/cork_1/COPYING</file>
+        <file>net/rpdev/OpenTodoList/UI/cork_1/cork_1_@2X.png</file>
+        <file>net/rpdev/OpenTodoList/UI/cork_1/cork_1.png</file>
+        <file>net/rpdev/OpenTodoList/UI/cork_1/readme.txt</file>
+        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/COPYING</file>
+        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/lightpaperfibers_@2X.png</file>
+        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/lightpaperfibers.png</file>
+        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/readme.txt</file>
     </qresource>
 </RCC>

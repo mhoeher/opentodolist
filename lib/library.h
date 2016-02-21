@@ -5,6 +5,7 @@
 #include "toplevelitemlist.h"
 
 #include <QObject>
+#include <QQmlListProperty>
 #include <QString>
 #include <QVector>
 
@@ -33,6 +34,7 @@ class Library : public QObject
   Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
   Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged)
   Q_PROPERTY(const LibraryFactory* factory READ factory CONSTANT)
+  Q_PROPERTY(QQmlListProperty<TopLevelItem> items READ itemList NOTIFY itemsChanged)
   
   friend class LocalLibraryFactory;
  
@@ -61,6 +63,8 @@ public:
   Q_INVOKABLE Image* addImage(const QString &title, const QString &image);
   Q_INVOKABLE TodoList *addTodoList(const QString &title);
   TopLevelItemList items();
+  QQmlListProperty<TopLevelItem> itemList();
+  Q_INVOKABLE void deleteLibrary();
   
 signals:
 
@@ -73,6 +77,16 @@ signals:
      @brief The directory which the library encapsulates has changed.
    */
   void directoryChanged();
+  
+  /**
+     @brief The list of top level items in a library changed.
+   */
+  void itemsChanged();
+  
+  /**
+     @brief The library is deleted.
+   */
+  void libraryDeleted(Library *library);
   
 public slots:
   
@@ -96,6 +110,9 @@ private:
   void loadItems();
   bool containsItem(const QUuid &uid) const;
   QString dirForItemType(const QString &itemType) const;
+  
+  static int itemListCount(QQmlListProperty<TopLevelItem> *property);
+  static TopLevelItem *itemListAt(QQmlListProperty<TopLevelItem> *property, int index);
   
 private slots:
   

@@ -5,8 +5,10 @@
 #include "libraryfactory.h"
 
 #include <QObject>
+#include <QQmlListProperty>
 #include <QSettings>
 #include <QStringList>
+#include <QUrl>
 #include <QVariantMap>
 #include <QVector>
 
@@ -23,7 +25,7 @@ class Application : public QObject
 {
   Q_OBJECT
   Q_PROPERTY(LibraryFactories libraryFactories READ libraryFactories CONSTANT)
-  Q_PROPERTY(Libraries libraries READ libraries CONSTANT)
+  Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
 public:
   
   explicit Application(QObject *parent = 0);
@@ -45,9 +47,17 @@ public:
                                   const QString &name,
                                   const QString &directory,
                                   const QVariantMap &args = QVariantMap());
+  Q_INVOKABLE Library *addLocalLibrary(const QString &name, const QString &directory);
+  Q_INVOKABLE Library *addLocalLibrary(const QString &directory);
+  Q_INVOKABLE Library *addLocalLibrary(const QUrl &directory);
+  QQmlListProperty<Library> libraryList();
   
+  Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
+  Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
   
 signals:
+  
+  void librariesChanged();
   
 public slots:
   
@@ -61,6 +71,13 @@ private:
   void createFactories();
   void saveLibraries();
   void loadLibraries();
+  
+  static Library* librariesAt(QQmlListProperty<Library> *property, int index);
+  static int librariesCount(QQmlListProperty<Library> *property);
+  
+private slots:
+  
+  void onLibraryDeleted(Library *library);
   
 };
 

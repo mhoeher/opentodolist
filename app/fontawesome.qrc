@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>FontAwesome/black/check-square-o.svg</file>
+        <file>FontAwesome/black/image.svg</file>
+        <file>FontAwesome/black/sticky-note-o.svg</file>
+        <file>FontAwesome/black/folder-open-o.svg</file>
+        <file>FontAwesome/black/angle-left.svg</file>
+        <file>FontAwesome/black/check.svg</file>
+        <file>FontAwesome/black/trash-o.svg</file>
+        <file>FontAwesome/black/pencil-square-o.svg</file>
+    </qresource>
+</RCC>

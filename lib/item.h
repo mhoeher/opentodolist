@@ -17,6 +17,7 @@ class Item : public QObject
 {
   Q_OBJECT
   Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+  Q_PROPERTY(QString itemType READ itemType CONSTANT)
   Q_PROPERTY(QString directory READ directory CONSTANT)
   Q_PROPERTY(bool isValid READ isValid CONSTANT)
   Q_PROPERTY(bool readonly READ readonly CONSTANT)

@@ -7,6 +7,8 @@
 include(../../config.pri)
 setupTest(application)
 
+QT += qml
+
 SOURCES += \
     test_application.cpp
 

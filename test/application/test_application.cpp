@@ -20,8 +20,12 @@ private slots:
   void testLibraryTypes();
   void testLibraryFactoryForType();
   void testAddLibrary();
+  void testAddLocalLibrary();
+  void testAddLocalLibraryWithoutName();
+  void testLibraries();
   void testAddLibraryWithWrongFactoryType();
   void testLibraryPersistence();
+  void testDeleteLibrary();
   void cleanup();
   
 };
@@ -82,6 +86,36 @@ void ApplicationTest::testAddLibrary()
 }
 
 /**
+   @brief The Application shall be able to open a local directory as library.
+ */
+void ApplicationTest::testAddLocalLibrary()
+{
+  auto library = m_app->addLocalLibrary("New Library", m_appDir->path());
+  Q_CHECK_PTR(library);
+}
+
+/**
+   @brief The Application shall be able to open a local directory and create a name for it.
+ */
+void ApplicationTest::testAddLocalLibraryWithoutName()
+{
+  auto library = m_app->addLocalLibrary(m_appDir->path() + "/Test Library");
+  Q_CHECK_PTR(library);
+  QCOMPARE(library->name(), QString("Test Library"));
+}
+
+/**
+   @brief Make sure that the libraries() method returns the libraries we added.
+ */
+void ApplicationTest::testLibraries()
+{
+  auto library = m_app->addLibrary(LocalLibraryFactory::ID, "New Library", m_appDir->path());
+  Q_CHECK_PTR(library);
+  QCOMPARE(m_app->libraries().size(), 1);
+  QCOMPARE(m_app->libraries().at(0), library);
+}
+
+/**
    @brief If called with a non-existent factory type, addLibrary() shall return a nullptr.
  */
 void ApplicationTest::testAddLibraryWithWrongFactoryType()
@@ -102,6 +136,25 @@ void ApplicationTest::testLibraryPersistence()
   library = m_app->libraries().at(0);
   Q_CHECK_PTR(library);
   QCOMPARE(library->name(), QString("New Library"));
+}
+
+void ApplicationTest::testDeleteLibrary()
+{
+  auto library = m_app->addLibrary(LocalLibraryFactory::ID, "New Library", m_appDir->path());
+  Q_CHECK_PTR(library);
+  QCOMPARE(m_app->libraries().size(), 1);
+  delete m_app;
+  m_app = new Application(m_settings);
+  Q_CHECK_PTR(m_app);
+  QCOMPARE(m_app->libraries().size(), 1);
+  library = m_app->libraries().at(0);
+  Q_CHECK_PTR(library);
+  library->deleteLibrary();
+  QCOMPARE(m_app->libraries().length(), 0);
+  delete m_app;
+  m_app = new Application(m_settings);
+  Q_CHECK_PTR(m_app);
+  QCOMPARE(m_app->libraries().size(), 0);
 }
 
 void ApplicationTest::cleanup()

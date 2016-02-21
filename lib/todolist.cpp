@@ -39,12 +39,18 @@ TodosList TodoList::todos()
   return m_todos;
 }
 
+QQmlListProperty<Todo> TodoList::todoList()
+{
+  return QQmlListProperty<Todo>(this, nullptr, todoListCount, todoListAt);
+}
+
 void TodoList::appendTodo(Todo *todo)
 {
   Q_CHECK_PTR(todo);
   todo->setTodoList(this);
   connect(todo, &Item::itemDeleted, this, &TodoList::onTodoDeleted);
   m_todos.append(todo);
+  emit todosChanged();
 }
 
 bool TodoList::containsTodo(const QUuid &uuid)
@@ -77,6 +83,20 @@ void TodoList::loadTodos()
   }
 }
 
+int TodoList::todoListCount(QQmlListProperty<Todo> *property)
+{
+  TodoList *_this = dynamic_cast<TodoList*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->todos().size();
+}
+
+Todo *TodoList::todoListAt(QQmlListProperty<Todo> *property, int index)
+{
+  TodoList *_this = dynamic_cast<TodoList*>(property->object);
+  Q_CHECK_PTR(_this);
+  return _this->todos().at(index);
+}
+
 void TodoList::onTodoDeleted(Item *item)
 {
   Q_CHECK_PTR(item);
@@ -85,6 +105,7 @@ void TodoList::onTodoDeleted(Item *item)
     if (todo->uid() == item->uid()) {
       todo->deleteLater();
       m_todos.removeAt(i);
+      emit todosChanged();
       break;
     }
   }
