@@ -72,7 +72,7 @@ public:
      @brief The persistence file name used by items of the @p itemType.
    */
   static QString persistenceFilename(const QString &itemType) 
-    { return ".opentodolist" + itemType.toLower(); }
+    { return itemType.toLower() + ".opentodolist"; }
   
   /**
      @brief The persistence file name into which the item's properties are stored.

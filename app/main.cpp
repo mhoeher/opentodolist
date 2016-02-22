@@ -148,11 +148,13 @@ int main(int argc, char *argv[])
   
   
   engine.rootContext()->setContextProperty("debugMode",
+                                           QVariant(
                                        #ifdef OPENTODOLIST_DEBUG
                                          true
                                        #else
                                          false
                                        #endif
+                                               )
                                          );
   engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
   QString qmlBasePath = qmlBase;
