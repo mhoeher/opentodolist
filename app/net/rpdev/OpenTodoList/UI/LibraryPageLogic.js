@@ -13,6 +13,6 @@ function numberOfColumns(page) {
     return result;
 }
 
-function sizeOfColumns(page) {
-    return page.width / numberOfColumns(page);
+function sizeOfColumns(page, correction) {
+    return (page.width - correction) / numberOfColumns(page);
 }

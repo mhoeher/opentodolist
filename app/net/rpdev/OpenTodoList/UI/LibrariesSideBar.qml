@@ -24,7 +24,10 @@ Panel {
             cursorShape: Qt.PointingHandCursor
             
             onClicked: {
-                sidebar.currentLibrary = App.libraries[index]
+                var library = App.libraries[index];
+                if (currentLibrary !== library) {
+                    sidebar.currentLibrary = library;
+                }
                 libraryClicked(App.libraries[index])
             }
             

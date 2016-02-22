@@ -32,6 +32,7 @@ Item {
     width: 100
     height: 100
     
+    
     MessageDialog {
         id: confirmDeleteLibrary
         title: qsTr("Delete Library?")
@@ -87,14 +88,16 @@ Item {
         anchors.fill: parent
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         
+        
         Flow {
             width: scrollView.viewport.width
             flow: Flow.LeftToRight
             
             Repeater {
-                model: library.items
+                id: repeater
+                model: library ? library.items : null
                 delegate: Loader {
-                    width: Logic.sizeOfColumns(scrollView.viewport)
+                    width: Logic.sizeOfColumns(scrollView, Globals.minButtonHeight * 2)
                     height: width / 3 * 2
                     source: Globals.file("/net/rpdev/OpenTodoList/UI/" + 
                             library.items[index].itemType + "Item.qml")

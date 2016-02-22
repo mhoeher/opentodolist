@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Window 2.0
@@ -95,8 +95,11 @@ ApplicationWindow {
     }
     
     toolBar: ToolBar {
+        height: Globals.minButtonHeight * 1.5
+        
         RowLayout {
             width: parent.width
+            height: parent.height
             
             ComboBox {
                 id: libraryNavigator
@@ -104,38 +107,39 @@ ApplicationWindow {
                 editable: false
                 textRole: "name"
                 visible: !leftSideBar.visible
+                height: parent.height
                 onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
             }
 
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/angle-left.svg"
+            Symbol {
+                symbol: Fonts.symbols.faAngleLeft
                 visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
                 onClicked: Logic.cancelCurrent(stack)
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/folder-open-o.svg"
+            Symbol {
+                symbol: Fonts.symbols.faFolderOpenO
                 visible: addLocalLibraryItem.enabled
                 onClicked: addLocalLibraryItem.trigger()
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/sticky-note-o.svg"
+            Symbol {
+                symbol: Fonts.symbols.faStickyNoteO
                 visible: itemsMenu.visible && newNoteItem.enabled
                 onClicked: newNoteItem.trigger()
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/check-square-o.svg"
+            Symbol {
+                symbol: Fonts.symbols.faCheckSquareO
                 visible: itemsMenu.visible && newTodoListItem.enabled
                 onClicked: newImageItem.trigger()
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/image.svg"
+            Symbol {
+                symbol: Fonts.symbols.faPictureO
                 visible: itemsMenu.visible && newImageItem.enabled
                 onClicked: newTodoListItem.trigger()
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/pencil-square-o.svg"
+            Symbol {
+                symbol: Fonts.symbols.faPencilSquareO
                 menu: ColorMenu {
-                    id: toolbarColorMenu
+                    visible: colorMenu.visible
                     item: colorMenu.item
                 }
                 visible: menu.visible
@@ -143,13 +147,13 @@ ApplicationWindow {
             Item {
                 Layout.fillWidth: true
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/trash-o.svg"
+            Symbol {
+                symbol: Fonts.symbols.faTrashO
                 visible: stack.currentItem && typeof(stack.currentItem["deleteItem"]) === "function"
                 onClicked: stack.currentItem.deleteItem()
             }
-            ToolButton {
-                iconSource: "qrc:/FontAwesome/black/check.svg"
+            Symbol {
+                symbol: Fonts.symbols.faCheck
                 visible: stack.currentItem && typeof(stack.currentItem["save"]) === "function"
                 onClicked: Logic.saveCurrent(stack)
             }
@@ -158,26 +162,38 @@ ApplicationWindow {
     
     Component.onCompleted: {
         Globals.appWindow = window;
-        window.width = App.loadValue("width", width);
-        window.height = App.loadValue("height", height);
-        if (App.loadValue("maximized", false)) {
+        width = App.loadValue("width", width);
+        height = App.loadValue("height", height);
+        if (App.loadValue("maximized", "false") === "true") {
             window.visibility = Window.Maximized
         }
+        onVisibilityChanged.connect(function() {
+            App.saveValue("maximized", visibility === Window.Maximized);
+        });
+        onWidthChanged.connect(function() {
+            if (visibility === Window.Windowed) {
+                App.saveValue("width", width);
+            }
+        });
+        onHeightChanged.connect(function() {
+            if (visibility === Window.Windowed) {
+                App.saveValue("height", height);
+            }
+        });
     }
     
     onClosing: {
         if (Qt.platform.os == "android") {
-            if (stack.currentItem) {
+            if (stack.depth > 0) {
                 Logic.cancelCurrent(stack);
                 close.accepted = false;
+                console.error("Handled close request.");
                 return;
             }
         }
-        App.saveValue("width", width);
-        App.saveValue("height", height);
-        App.saveValue("maximized", visibility === Window.Maximized);
+        close.accepted = true;
     }
-
+    
     Item {
         id: rootItem
         
@@ -190,14 +206,14 @@ ApplicationWindow {
                 forceActiveFocus();
             }
         }
-        Keys.onEscapePressed: Logic.goBack(stack, event)
-        Keys.onBackPressed: Logic.goBack(stack, event)
+        Keys.onEscapePressed: Logic.goBack(stack)
+        Keys.onBackPressed: Logic.goBack(stack)
         
         FileDialog {
             id: openLocalLibraryDialog
             title: qsTr("Open Local Library")
             selectFolder: true
-            folder: shortcuts.home
+            //folder: shortcuts.home //TODO: Why is this not working?
             selectExisting: false
             onAccepted: leftSideBar.currentLibrary = App.addLocalLibrary(fileUrl)
         }
@@ -218,7 +234,6 @@ ApplicationWindow {
             edge: Qt.LeftEdge
             x: applicationWindow.width > Globals.fontPixelSize * 40 ? 0 : -width
             visible: x > -width
-            onLibraryClicked: Logic.viewLibrary(stack, currentLibrary, libraryPage)
             onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, libraryPage)
         }
         

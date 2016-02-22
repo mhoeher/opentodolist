@@ -31,6 +31,10 @@ Application::Application(QSettings *settings, QObject *parent) :
   loadLibraries();
 }
 
+Application::~Application()
+{
+}
+
 /**
    @brief Return the list of all library factory IDs.
    

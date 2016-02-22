@@ -31,6 +31,8 @@ public:
   explicit Application(QObject *parent = 0);
   explicit Application(QSettings *settings, QObject *parent = 0);
   
+  virtual ~Application();
+  
   /**
      @brief The list of all registered LibraryFactory objects.
    */

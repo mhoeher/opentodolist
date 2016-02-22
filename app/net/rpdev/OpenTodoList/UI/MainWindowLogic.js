@@ -30,11 +30,12 @@ function saveCurrent(stack) {
     stack.pop();
 }
 
-function goBack(stack, event) {
-    if (stack.currentItem) {
+function goBack(stack) {
+    if (stack.depth > 1) {
         cancelCurrent(stack);
-        event.accepted = true;
     } else {
-        event.accepted = false;
+        if (Qt.platform.os === "android") {
+            Qt.quit();
+        }
     }
 }
