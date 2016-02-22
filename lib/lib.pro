@@ -12,6 +12,8 @@ QT       -= gui
 
 TARGET = opentodolist
 
+win32:DESTDIR = $$OUT_PWD
+
 SOURCES += \
     application.cpp \
     library.cpp \
