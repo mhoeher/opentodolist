@@ -34,5 +34,13 @@
         <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/lightpaperfibers_@2X.png</file>
         <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/lightpaperfibers.png</file>
         <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/readme.txt</file>
+        <file>net/rpdev/OpenTodoList/UI/TodoListItem.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/TodoListPage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/TextInputBar.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/TodoListView.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/COPYING</file>
+        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/readme.txt</file>
+        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper_@2X.png</file>
+        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png</file>
     </qresource>
 </RCC>

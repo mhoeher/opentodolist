@@ -19,7 +19,7 @@ public:
   
   explicit TodoList(const QString &directory = QString(), QObject *parent = 0);
   
-  Todo* addTodo(const QString &title);
+  Q_INVOKABLE Todo* addTodo(const QString &title);
   TodosList todos();
   QQmlListProperty<Todo> todoList();
   

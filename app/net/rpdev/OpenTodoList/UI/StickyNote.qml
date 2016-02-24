@@ -1,4 +1,6 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 
 import net.rpdev.OpenTodoList.UI 1.0
@@ -9,13 +11,31 @@ MouseArea {
     property string title: qsTr("Sticky Note Title")
     property string text: qsTr("Note Content")
     property color backgroundColor: Colors.noteBackground
+    property var checkBoxList: null
+    property bool showCheckBoxList: false
     
     property int __shadowOffset: hoverEnabled && containsMouse ? Globals.defaultMargin : 0
     
     implicitWidth: 200
-    implicitHeight: titleLabel.height + contentLabel.height + Globals.defaultMargin * 6
+    implicitHeight: titleLabel.height + contentLabel.height +
+                    checkBockListView.height + Globals.defaultMargin * 6
     
     Behavior on __shadowOffset { SmoothedAnimation { duration: 500 } }
+    
+    Component {
+        id: checkBoxListItemDelegate
+        
+        RowLayout {
+            Text {
+                font.family: Fonts.symbols.name
+                text: done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+            }
+            Label {
+                text: title
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+        }
+    }
     
     Rectangle {
         id: shadow
@@ -95,6 +115,21 @@ MouseArea {
             elide: Text.ElideRight
         }
         
+        ListView {
+            id: checkBockListView
+            model: note.checkBoxList
+            visible: note.showCheckBoxList
+            delegate: checkBoxListItemDelegate
+            height: contentHeight
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: titleLabelBackground.bottom
+                margins: Globals.defaultMargin
+            }
+            interactive: false
+        }
+        
         Text {
             id: contentLabel
             
@@ -102,7 +137,7 @@ MouseArea {
             anchors {
                 left: parent.left
                 right: parent.right
-                top: titleLabelBackground.bottom
+                top: checkBockListView.bottom
                 margins: Globals.defaultMargin
             }
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere

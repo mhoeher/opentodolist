@@ -17,15 +17,19 @@ Item {
     signal itemClicked(TopLevelItem item)
     
     function newNote() {
-        newNoteTitle.forceActiveFocus();
-        newNoteTitle.text = "";
+        newNoteBar.edit.forceActiveFocus();
+        newNoteBar.edit.text = "";
+    }
+    
+    function newTodoList() {
+        newTodoListBar.edit.forceActiveFocus();
+        newTodoListBar.edit.text = "";
     }
     
     function deleteItem() {
         confirmDeleteLibrary.open();
     }
     
-    //function newTodoList() {}
     //function newImage() {}
     
     clip: true
@@ -45,42 +49,17 @@ Item {
             stackView.pop();
         }
     }
-
-    Rectangle {
-        anchors.fill: newNoteBar
-        color: Colors.headerBar
-        z: 1
+    
+    TextInputBar {
+        id: newNoteBar
+        placeholderText: qsTr("Note Title")
+        onAccepted: Logic.createNote(library, newNoteBar.edit)
     }
     
-    RowLayout {
-        id: newNoteBar
-        anchors {
-            left: parent.left
-            right: parent.right
-        }
-        y: newNoteTitle.focus ? 0 : -height
-        z: 1
-        height: childrenRect.height
-        
-        Behavior on y { SmoothedAnimation { duration: 500 } }
-        
-        TextField {
-            id: newNoteTitle
-            Layout.fillWidth: true
-            Keys.onEscapePressed: focus = false
-            Keys.onBackPressed: focus = false
-            Keys.onEnterPressed: Logic.createNote(library, newNoteTitle)
-            Keys.onReturnPressed: Logic.createNote(library, newNoteTitle)
-            placeholderText: qsTr("Note Title")
-        }
-        
-        Symbol {
-            id: addNoteButton
-            
-            symbol: Fonts.symbols.faPlus
-            enabled: newNoteTitle.text !== ""
-            onClicked: Logic.createNote(library, newNoteTitle)
-        }
+    TextInputBar {
+        id: newTodoListBar
+        placeholderText: qsTr("Todo List Title")
+        onAccepted: Logic.createTodoList(library, newTodoListBar.edit)
     }
     
     ScrollView {

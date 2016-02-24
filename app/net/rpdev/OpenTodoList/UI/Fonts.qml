@@ -15,6 +15,7 @@ QtObject {
         readonly property string faAngleLeft: "\uf104"
         readonly property string faFolderOpenO: "\uf115"
         readonly property string faCheckSquareO: "\uf046"
+        readonly property string faSquareO: "\uf096"
         readonly property string faPictureO: "\uf03e"
         readonly property string faPencilSquareO: "\uf044"
         readonly property string faTrashO: "\uf014"

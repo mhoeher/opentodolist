@@ -5,6 +5,12 @@ function createNote(library, edit) {
     edit.focus = false;
 }
 
+function createTodoList(library, edit) {
+    library.addTodoList(edit.displayText);
+    edit.text = "";
+    edit.focus = false;
+}
+
 function numberOfColumns(page) {
     var minWidth = Math.max(defaultFontPixelSize, 5) * 30;
     var result = page.width / minWidth;

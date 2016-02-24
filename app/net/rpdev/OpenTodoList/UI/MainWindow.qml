@@ -54,12 +54,21 @@ ApplicationWindow {
                 text: qsTr("New &Image")
                 shortcut: qsTr("Ctrl+Shift+I")
                 enabled: stack.currentItem && typeof(stack.currentItem["newImage"]) === "function"
+                onTriggered: stack.currentItem.newImage()
             }
             MenuItem {
                 id: newTodoListItem
                 text: qsTr("New &Todo List");
                 shortcut: qsTr("Ctrl+Shift+T")
                 enabled: stack.currentItem && typeof(stack.currentItem["newTodoList"]) === "function"
+                onTriggered: stack.currentItem.newTodoList()
+            }
+            MenuItem {
+                id: newTodoItem
+                text: qsTr("New T&odo");
+                shortcut: qsTr("Ctrl+Shift+O")
+                enabled: stack.currentItem && typeof(stack.currentItem["newTodo"]) === "function"
+                onTriggered: stack.currentItem.newTodo()
             }
         }
         
@@ -129,12 +138,17 @@ ApplicationWindow {
             Symbol {
                 symbol: Fonts.symbols.faCheckSquareO
                 visible: itemsMenu.visible && newTodoListItem.enabled
-                onClicked: newImageItem.trigger()
+                onClicked: newTodoListItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faCheckSquareO
+                visible: itemsMenu.visible && newTodoItem.enabled
+                onClicked: newTodoItem.trigger()
             }
             Symbol {
                 symbol: Fonts.symbols.faPictureO
                 visible: itemsMenu.visible && newImageItem.enabled
-                onClicked: newTodoListItem.trigger()
+                onClicked: newImageItem.trigger()
             }
             Symbol {
                 symbol: Fonts.symbols.faPencilSquareO
