@@ -156,6 +156,7 @@ int main(int argc, char *argv[])
                                        #endif
                                                )
                                          );
+  engine.rootContext()->setContextProperty("applicationVersion", QVariant(VERSION));
   engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
   engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
   engine.load(QUrl(qmlBase + "main.qml"));

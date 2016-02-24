@@ -14,7 +14,7 @@ ApplicationWindow {
     
     signal openLocalLibrary()
     
-    title: qsTr("OpenTodoList")
+    title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
     width: 640
     height: 480
