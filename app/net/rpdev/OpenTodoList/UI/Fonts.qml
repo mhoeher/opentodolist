@@ -21,6 +21,23 @@ QtObject {
         readonly property string faTrashO: "\uf014"
         readonly property string faCheck: "\uf00c"
         
+        readonly property string faBold: "\uf032"        
+        readonly property string faItalic: "\uf033"
+        readonly property string faUnderline: "\uf0cd"
+        readonly property string faStrikethrough: "\uf0cc"
+        
+        readonly property string faList: "\uf03a"
+        readonly property string faListOl: "\uf0cb"
+        
+        readonly property string faAlignLeft: "\uf036"
+        readonly property string faAlignRight: "\uf038"
+        readonly property string faAlignCenter: "\uf037"
+        readonly property string faAlignJustify: "\uf039"
+        
+        readonly property string faIndent: "\uf03c"
+        readonly property string faOutdent: "\uf03b"
+        
+        
         source: "fontawesome-webfont.ttf"
     }
 

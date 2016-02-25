@@ -18,12 +18,15 @@
 
 #include "documentformatter.h"
 
+#include <QTextBlockFormat>
+
 DocumentFormatter::DocumentFormatter(QObject *parent) :
   QObject(parent),
   m_target( 0 ),
   m_document( 0 ),
   m_selectionStart( 0 ),
-  m_selectionEnd( 0 )
+  m_selectionEnd( 0 ),
+  m_currentParagraphStyle(UnknownParagraphStyle)
 {
   connect(this, &DocumentFormatter::targetChanged, this, &DocumentFormatter::reset);
   connect(this, &DocumentFormatter::selectionStartChanged, this, &DocumentFormatter::reset);
@@ -222,12 +225,14 @@ void DocumentFormatter::setOrderedList(bool orderedList)
 
 DocumentFormatter::ParagraphStyle DocumentFormatter::paragraphStyle() const
 {
-  return Default;
+  return UnknownParagraphStyle;
 }
 
 void DocumentFormatter::setParagraphStyle(DocumentFormatter::ParagraphStyle paragraphStyle)
 {
-  if (m_document) {
+  m_currentParagraphStyle = paragraphStyle;
+  emit paragraphStyleChanged();
+  if (m_document && paragraphStyle != UnknownParagraphStyle) {
     QTextCursor cursor = blockCursor();
     if (!cursor.isNull()) {
       QString selectedText = cursor.selectedText();
@@ -253,6 +258,7 @@ void DocumentFormatter::setParagraphStyle(DocumentFormatter::ParagraphStyle para
 
 void DocumentFormatter::reset()
 {
+  m_currentParagraphStyle = UnknownParagraphStyle;
   emit boldChanged();
   emit italicChanged();
   emit underlineChanged();
@@ -264,6 +270,26 @@ void DocumentFormatter::reset()
   emit unorderedListChanged();
   emit orderedListChanged();
   emit paragraphStyleChanged();
+}
+
+void DocumentFormatter::increaseIndentation()
+{
+  if (m_document) {
+    QTextCursor cursor = this->cursor();
+    QTextBlockFormat format = cursor.blockFormat();
+    format.setIndent(format.indent() + 1);
+    cursor.mergeBlockFormat(format);
+  }
+}
+
+void DocumentFormatter::decreaseIndentation()
+{
+  if (m_document) {
+    QTextCursor cursor = this->cursor();
+    QTextBlockFormat format = cursor.blockFormat();
+    format.setIndent(format.indent() - 1);
+    cursor.mergeBlockFormat(format);
+  }
 }
 
 QTextCursor DocumentFormatter::cursor() const

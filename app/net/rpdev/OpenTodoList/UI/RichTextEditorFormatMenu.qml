@@ -9,6 +9,27 @@ Menu {
     id: formatMenu
     title: qsTr("Format")
     
+    property MenuItem boldItem: bold
+    property MenuItem italicItem: italic
+    property MenuItem underlineItem: underline
+    property MenuItem strikethroughItem: strikethrough
+    property MenuItem bulletListItem: bulletList
+    property MenuItem orderedListItem: orderedList
+    property MenuItem indentItem: indent
+    property MenuItem outdentItem: outdent
+    property MenuItem alignLeftItem: alignLeft
+    property MenuItem alignCenterItem: alignCenter
+    property MenuItem alignRightItem: alignRight
+    property MenuItem alignJustifyItem: alignJustify
+    
+    property int paragraphStyle: __formatter.paragraphStyle
+    
+    onParagraphStyleChanged: console.debug(paragraphStyle)
+    
+    function applyParagraphStyle(style) {
+        __formatter.paragraphStyle = style;
+    }
+    
     property var __item: activeFocusItem
     property var __itemFormatter: Logic.documentFormatterForItem(__item)
     
@@ -88,6 +109,7 @@ Menu {
     MenuSeparator {}
     
     MenuItem {
+        id: bold
         text: qsTr("Bold")
         shortcut: StandardKey.Bold
         checkable: true
@@ -96,6 +118,7 @@ Menu {
     }
     
     MenuItem {
+        id: italic
         text: qsTr("Italic")
         shortcut: StandardKey.Italic
         checkable: true
@@ -104,6 +127,7 @@ Menu {
     }
     
     MenuItem {
+        id: underline
         text: qsTr("Underline")
         shortcut: StandardKey.Underline
         checkable: true
@@ -112,6 +136,7 @@ Menu {
     }
     
     MenuItem {
+        id: strikethrough
         text: qsTr("Strikethrough")
         checkable: true
         checked: formatMenu.__formatter.strikethrough
@@ -121,11 +146,13 @@ Menu {
     MenuSeparator {}
     
     MenuItem {
+        id: bulletList
         text: qsTr("Bullet List")
         onTriggered: __formatter.unorderedList = !__formatter.unorderedList
     }
     
     MenuItem {
+        id: orderedList
         text: qsTr("Ordered List")
         onTriggered: __formatter.orderedList = !__formatter.orderedList
     }
@@ -133,6 +160,21 @@ Menu {
     MenuSeparator {}
     
     MenuItem {
+        id: indent
+        text: qsTr("Indent")
+        onTriggered: __formatter.increaseIndentation()
+    }
+    
+    MenuItem {
+        id: outdent
+        text: qsTr("Outdent")
+        onTriggered: __formatter.decreaseIndentation()
+    }
+    
+    MenuSeparator {}
+    
+    MenuItem {
+        id: alignLeft
         text: qsTr("Align Left")
         checkable: true
         checked: formatMenu.__formatter.alignLeft
@@ -140,6 +182,7 @@ Menu {
     }
     
     MenuItem {
+        id: alignCenter
         text: qsTr("Center")
         checkable: true
         checked: formatMenu.__formatter.alignCenter
@@ -147,6 +190,7 @@ Menu {
     }
     
     MenuItem {
+        id: alignRight
         text: qsTr("Align Right")
         checkable: true
         checked: formatMenu.__formatter.alignRight
@@ -154,6 +198,7 @@ Menu {
     }
     
     MenuItem {
+        id: alignJustify
         text: qsTr("Justify")
         checkable: true
         checked: formatMenu.__formatter.justify

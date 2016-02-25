@@ -38,5 +38,13 @@ FocusScope {
         tabChangesFocus: false
         backgroundVisible: false
         focus: true
+        Keys.onTabPressed: {
+            if (event.modifiers & Qt.ControlModifier) {
+                documentFormatter.decreaseIndentation();
+            } else {
+                documentFormatter.increaseIndentation();
+            }
+            event.accepted = true;
+        }
     }
 }

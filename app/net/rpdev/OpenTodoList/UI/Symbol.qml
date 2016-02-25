@@ -8,6 +8,7 @@ ButtonContainer {
     property alias symbol: label.text
     property alias label: label
     property Menu menu: null
+    property bool checked: false
     
     width: height
     
@@ -21,7 +22,7 @@ ButtonContainer {
         id: label
         font.family: Fonts.symbols.name
         font.bold: false
-        color: "black"
+        color: checked ? Colors.primary : "black"
         anchors.centerIn: parent
         text: Fonts.symbols.faPlus
     }

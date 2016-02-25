@@ -93,6 +93,15 @@ ApplicationWindow {
         
         RichTextEditorFormatMenu {
             id: formatMenu
+            onParagraphStyleChanged: {
+                for (var i = 0; i < styleComboBox.count; ++i) {
+                    if (styleComboBox.get(i).style === paragraphStyle) {
+                        styleComboBox.currentIndex = i;
+                        return;
+                    }
+                }
+                styleComboBox.currentIndex = 0;
+            }
         }
 
         Menu {
@@ -169,6 +178,124 @@ ApplicationWindow {
                     item: colorMenu.item
                 }
                 visible: menu.visible
+            }
+            ComboBox {
+                id: styleComboBox
+                visible: formatMenu.visible
+                model: ListModel {
+                    ListElement {
+                        label: ""
+                        style: DocumentFormatter.UnknownParagraphStyle
+                    }
+                    ListElement {
+                        label: "Default"
+                        style: DocumentFormatter.Default
+                    }
+                    ListElement {
+                        label: "Title 1"
+                        style: DocumentFormatter.H1
+                    }
+                    ListElement {
+                        label: "Title 2"
+                        style: DocumentFormatter.H2
+                    }
+                    ListElement {
+                        label: "Title 3"
+                        style: DocumentFormatter.H3
+                    }
+                    ListElement {
+                        label: "Title 4"
+                        style: DocumentFormatter.H4
+                    }
+                    ListElement {
+                        label: "Title 5"
+                        style: DocumentFormatter.H5
+                    }
+                    ListElement {
+                        label: "Title 6"
+                        style: DocumentFormatter.H6
+                    }
+                    ListElement {
+                        label: "Code"
+                        style: DocumentFormatter.Code
+                    }
+                }
+                textRole: "label"
+                onCurrentIndexChanged: {
+                    if (visible) {
+                        formatMenu.applyParagraphStyle(model.get(currentIndex).style);
+                    }
+                }
+            }
+            Symbol {
+                symbol: Fonts.symbols.faBold
+                visible: formatMenu.visible
+                checked: formatMenu.boldItem.checked
+                onClicked: formatMenu.boldItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faItalic
+                visible: formatMenu.visible
+                checked: formatMenu.italicItem.checked
+                onClicked: formatMenu.italicItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faUnderline
+                visible: formatMenu.visible
+                checked: formatMenu.underlineItem.checked
+                onClicked: formatMenu.underlineItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faStrikethrough
+                visible: formatMenu.visible
+                checked: formatMenu.strikethroughItem.checked
+                onClicked: formatMenu.strikethroughItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faList
+                visible: formatMenu.visible
+                checked: formatMenu.bulletListItem.checked
+                onClicked: formatMenu.bulletListItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faListOl
+                visible: formatMenu.visible
+                checked: formatMenu.orderedListItem.checked
+                onClicked: formatMenu.orderedListItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faIndent
+                visible: formatMenu.visible
+                onClicked: formatMenu.indentItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faOutdent
+                visible: formatMenu.visible
+                onClicked: formatMenu.outdentItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faAlignLeft
+                visible: formatMenu.visible
+                checked: formatMenu.alignLeftItem.checked
+                onClicked: formatMenu.alignLeftItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faAlignCenter
+                visible: formatMenu.visible
+                checked: formatMenu.alignCenterItem.checked
+                onClicked: formatMenu.alignCenterItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faAlignRight
+                visible: formatMenu.visible
+                checked: formatMenu.alignRightItem.checked
+                onClicked: formatMenu.alignRightItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faAlignJustify
+                visible: formatMenu.visible
+                checked: formatMenu.alignJustifyItem.checked
+                onClicked: formatMenu.alignJustifyItem.trigger()
             }
             Item {
                 Layout.fillWidth: true

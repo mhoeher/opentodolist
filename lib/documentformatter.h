@@ -53,6 +53,7 @@ class DocumentFormatter : public QObject
 public:
   
   enum ParagraphStyle {
+    UnknownParagraphStyle,
     Default,
     H1,
     H2,
@@ -129,6 +130,8 @@ signals:
 public slots:
   
   void reset();
+  void increaseIndentation();
+  void decreaseIndentation();
   
 private:
   
@@ -136,6 +139,7 @@ private:
   QTextDocument *m_document;
   int            m_selectionStart;
   int            m_selectionEnd;
+  ParagraphStyle m_currentParagraphStyle;
   
   QTextCursor cursor() const;
   QTextCursor wordCursor() const;
