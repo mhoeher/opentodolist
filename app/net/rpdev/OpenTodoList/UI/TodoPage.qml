@@ -106,6 +106,7 @@ Item {
                 
                 RichTextEditor {
                     onAccepted: page.todo.notes = text
+                    Component.onCompleted: forceActiveFocus()
                 }
             }
         }

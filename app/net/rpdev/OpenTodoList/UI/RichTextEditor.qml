@@ -37,5 +37,6 @@ FocusScope {
         textFormat: TextEdit.RichText
         tabChangesFocus: false
         backgroundVisible: false
+        focus: true
     }
 }
