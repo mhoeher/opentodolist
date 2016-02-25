@@ -8,17 +8,17 @@ import net.rpdev.OpenTodoList.UI 1.0
 Item {
     id: page
     
-    property TodoList item: TodoList {}
+    property Todo todo: Todo {}
     property StackView stack: null
     property bool __visible: Stack.status === Stack.Active
     
-    function newTodo() {
-        newTodoBar.edit.forceActiveFocus();
-        newTodoBar.edit.text = "";
+    function newTask() {
+        newTaskBar.edit.forceActiveFocus();
+        newTaskBar.edit.text = "";
     }
 
     function cancel() {
-        item.title = titleEdit.text;
+        todo.title = titleEdit.text;
     }
     
     function deleteItem() {
@@ -27,29 +27,23 @@ Item {
     
     MessageDialog {
         id: confirmDeleteDialog
-        title: qsTr("Delete Todo List?")
-        text: qsTr("Are you sure you want to delete the todo list <strong>%1</strong>? This action " +
-                   "cannot be undone.").arg(item.title)
+        title: qsTr("Delete Todo?")
+        text: qsTr("Are you sure you want to delete the todo <strong>%1</strong>? This action " +
+                   "cannot be undone.").arg(todo.title)
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: {
-            item.deleteItem();
+            todo.deleteItem();
             stack.pop();
         }
     }
     
     TextInputBar {
-        id: newTodoBar
-        placeholderText: qsTr("Todo Title")
+        id: newTaskBar
+        placeholderText: qsTr("Task Title")
         onAccepted: {
-            item.addTodo(newTodoBar.edit.text);
-            newTodoBar.edit.focus = false;
+            todo.addTask(newTaskBar.edit.text);
+            newTaskBar.edit.focus = false;
         }
-    }
-
-    Rectangle {
-        color: Qt.lighter(Colors.itemColor(item.color), 1.1)
-        opacity: 0.3
-        anchors.fill: parent
     }
     
     ScrollView {
@@ -64,7 +58,7 @@ Item {
             
             TextInput {
                 id: titleEdit
-                text: item.title
+                text: todo.title
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -82,16 +76,15 @@ Item {
                 Keys.onEnterPressed: focus = false
             }
             
-            TodoListView {
-                id: todos
-                model: item.todos
+            TaskListView {
+                id: tasks
+                model: todo.tasks
                 anchors {
                     left: parent.left
                     right: parent.right
                     top: titleEdit.bottom
                     margins: Globals.defaultMargin * 2
                 }
-                onTodoSelected: stack.push({item: todoPage, properties: { todo: todo } })
             }
             
             StickyNote {
@@ -99,28 +92,20 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: todos.bottom
+                    top: tasks.bottom
                     margins: Globals.defaultMargin
                 }
                 title: qsTr("Notes")
-                text: item.notes
-                backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
-                onClicked: stack.push({ item: notesEditor, properties: { text: item.notes }});
+                text: todo.notes
+                backgroundColor: Colors.itemYellow
+                onClicked: stack.push({ item: notesEditor, properties: { text: todo.notes }});
             }
             
             Component {
                 id: notesEditor
                 
                 RichTextEditor {
-                    onAccepted: page.item.notes = text
-                }
-            }
-            
-            Component {
-                id: todoPage
-                
-                TodoPage {
-                    stack: page.stack
+                    onAccepted: page.todo.notes = text
                 }
             }
         }

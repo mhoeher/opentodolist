@@ -70,6 +70,13 @@ ApplicationWindow {
                 enabled: stack.currentItem && typeof(stack.currentItem["newTodo"]) === "function"
                 onTriggered: stack.currentItem.newTodo()
             }
+            MenuItem {
+                id: newTaskItem
+                text: qsTr("New T&ask");
+                shortcut: qsTr("Ctrl+Shift+A")
+                enabled: stack.currentItem && typeof(stack.currentItem["newTask"]) === "function"
+                onTriggered: stack.currentItem.newTask()
+            }
         }
         
         Menu {
@@ -144,6 +151,11 @@ ApplicationWindow {
                 symbol: Fonts.symbols.faCheckSquareO
                 visible: itemsMenu.visible && newTodoItem.enabled
                 onClicked: newTodoItem.trigger()
+            }
+            Symbol {
+                symbol: Fonts.symbols.faCheckSquareO
+                visible: itemsMenu.visible && newTaskItem.enabled
+                onClicked: newTaskItem.trigger()
             }
             Symbol {
                 symbol: Fonts.symbols.faPictureO

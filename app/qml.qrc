@@ -42,5 +42,7 @@
         <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/readme.txt</file>
         <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper_@2X.png</file>
         <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png</file>
+        <file>net/rpdev/OpenTodoList/UI/TodoPage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/TaskListView.qml</file>
     </qresource>
 </RCC>

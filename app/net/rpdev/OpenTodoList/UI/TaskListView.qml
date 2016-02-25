@@ -9,22 +9,20 @@ import net.rpdev.OpenTodoList.UI 1.0
 Item {
     id: root
     
-    property list<Todo> model
-    
-    signal todoSelected(Todo todo)
+    property list<Task> model
     
     height: listView.contentHeight
     
     MessageDialog {
-        id: confirmDeleteTodoDialog
+        id: confirmDeleteTaskDialog
         
-        property Todo todo
+        property Task task
         
-        title: qsTr("Delete Todo?")
-        text: todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
-                          "This cannot be undone.").arg(todo.title) : ""
+        title: qsTr("Delete Task?")
+        text: task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
+                          "This cannot be undone.").arg(task.title) : ""
         standardButtons: StandardButton.Ok | StandardButton.Cancel
-        onAccepted: todo.deleteItem()
+        onAccepted: task.deleteItem()
     }
 
     Component {
@@ -33,11 +31,6 @@ Item {
         Item {
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
-            
-            MouseArea {
-                anchors.fill: parent
-                onClicked: todoSelected(root.model[index])
-            }
             
             RowLayout {
                 id: row
@@ -50,12 +43,16 @@ Item {
                     onClicked: done = !done
                 }
                 
-                Label {
+                TextEdit {
                     text: title
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAnywhere
+                    Keys.onEnterPressed: focus = false
+                    Keys.onReturnPressed: focus = false
+                    Keys.onEscapePressed: focus = false
+                    Keys.onBackPressed: focus = false
+                    onFocusChanged: root.model[index].title = text
                 }
-                
                 Symbol {
                     symbol: Fonts.symbols.faTrashO
                     onClicked: {
