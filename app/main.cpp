@@ -10,8 +10,11 @@
 #include <QFont>
 #include <QFontInfo>
 #include <QIcon>
+#include <QLoggingCategory>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+
+#include <iostream>
 
 
 
@@ -100,6 +103,12 @@ private:
 
 int main(int argc, char *argv[])
 {
+  qSetMessagePattern("%{file}(%{line}): %{message}");
+#if OPENTODOLIST_DEBUG
+  QLoggingCategory(0).setEnabled(QtDebugMsg, true);
+#endif
+  
+  
   QApplication app(argc, argv);
   
   QCoreApplication::setApplicationName("OpenTodoList");

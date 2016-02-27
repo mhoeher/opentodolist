@@ -26,6 +26,7 @@ class Application : public QObject
   Q_OBJECT
   Q_PROPERTY(LibraryFactories libraryFactories READ libraryFactories CONSTANT)
   Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
+  Q_PROPERTY(Library* defaultLibrary READ defaultLibrary NOTIFY defaultLibraryChanged)
 public:
   
   explicit Application(QObject *parent = 0);
@@ -57,18 +58,23 @@ public:
   Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
   Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
   
+  Library *defaultLibrary();
+  
 signals:
   
   void librariesChanged();
+  void defaultLibraryChanged();
   
 public slots:
   
 private:
   
   Libraries               m_libraries;
+  Library                *m_defaultLibrary;
   LibraryFactories        m_libraryFactories;
   QSettings              *m_settings;
   bool                    m_loadingLibraries;
+  bool                    m_isInCustomLocation;
   
   void createFactories();
   void saveLibraries();
@@ -76,6 +82,9 @@ private:
   
   static Library* librariesAt(QQmlListProperty<Library> *property, int index);
   static int librariesCount(QQmlListProperty<Library> *property);
+  
+  QString defaultLibraryLocation() const;
+  void runMigrations();
   
 private slots:
   

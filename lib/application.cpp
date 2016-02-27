@@ -2,8 +2,12 @@
 
 #include "locallibraryfactory.h"
 
+#include "migrator_1_x_to_2_x.h"
+
 #include <QCoreApplication>
+#include <QDir>
 #include <QFileInfo>
+#include <QStandardPaths>
 
 /**
    @brief Constructor.
@@ -11,10 +15,12 @@
    Creates a new Application object. The instance will be a child of the given @p parent.
  */
 Application::Application(QObject *parent) : QObject(parent),
+  m_defaultLibrary(nullptr),
   m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
                            QCoreApplication::organizationName(),
                            QCoreApplication::applicationName(), this)),
-  m_loadingLibraries(false)
+  m_loadingLibraries(false),
+  m_isInCustomLocation(false)
 {
   Q_CHECK_PTR(m_settings);
   createFactories();
@@ -24,7 +30,8 @@ Application::Application(QObject *parent) : QObject(parent),
 Application::Application(QSettings *settings, QObject *parent) :
   QObject(parent),
   m_settings(settings),
-  m_loadingLibraries(false)
+  m_loadingLibraries(false),
+  m_isInCustomLocation(true)
 {
   Q_CHECK_PTR(m_settings);
   createFactories();
@@ -164,6 +171,14 @@ QVariant Application::loadValue(const QString &name, const QVariant &defaultValu
   return result;
 }
 
+/**
+   @brief Returns the default library of the application.
+ */
+Library *Application::defaultLibrary()
+{
+  return m_defaultLibrary;
+}
+
 void Application::createFactories()
 {
   m_libraryFactories << new LocalLibraryFactory(this);
@@ -212,6 +227,22 @@ void Application::loadLibraries()
   }
   m_settings->endArray();
   m_loadingLibraries = false;
+  
+  if (!m_isInCustomLocation) {
+    QString defaultLibLocation = defaultLibraryLocation();
+    QFileInfo defaultLibraryLocationFI(defaultLibLocation);
+    for (Library* lib : m_libraries) {
+      if (QFileInfo(lib->directory()) == defaultLibraryLocationFI) {
+        m_defaultLibrary = lib;
+        emit defaultLibraryChanged();
+        runMigrations();
+        return;
+      }
+    }
+    m_defaultLibrary = addLocalLibrary(defaultLibLocation);
+    emit defaultLibraryChanged();
+    runMigrations();
+  }
 }
 
 Library *Application::librariesAt(QQmlListProperty<Library> *property, int index)
@@ -226,6 +257,34 @@ int Application::librariesCount(QQmlListProperty<Library> *property)
   Application *_this = qobject_cast<Application*>(property->object);
   Q_CHECK_PTR(_this);
   return _this->libraries().size();
+}
+
+/**
+   @brief Returns the location of the default library.
+ */
+QString Application::defaultLibraryLocation() const
+{
+#ifdef Q_OS_ANDROID
+  QString s( qgetenv( "EXTERNAL_STORAGE" ) );
+  QDir dir( s + "/data/net.rpdev.opentodolist/" );
+  return dir.absolutePath();
+#else
+  QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+  result += "/Inbox/";
+  return QDir(result).absolutePath();
+#endif
+}
+
+void Application::runMigrations()
+{
+  if (m_defaultLibrary) {
+    m_settings->beginGroup("Migrations");
+    if (!m_settings->value("1_x_to_2_0_run", false).toBool()) {
+      Migrator_1_x_to_2_x(m_defaultLibrary).migrate();
+      m_settings->setValue("1_x_to_2_0_run", true);
+    }
+    m_settings->endGroup();
+  }
 }
 
 void Application::onLibraryDeleted(Library *library)

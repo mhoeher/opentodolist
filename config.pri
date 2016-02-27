@@ -49,7 +49,7 @@ defineTest(setupTest) {
     TEMPLATE = app
     DEFINES += SRCDIR=\\\"$$PWD/\\\"
     DEFINES += SRCBINDIR=\\\"$$OUT_PWD/\\\"
-    QT += testlib
+    QT += testlib xml
     QT -= gui
     INCLUDEPATH += $$PWD/../../lib
     LIBS += -L$$OUT_PWD/../../lib -lopentodolist

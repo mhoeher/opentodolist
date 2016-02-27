@@ -26,9 +26,10 @@ Item {
         newTodoListBar.edit.text = "";
     }
     
-    function deleteItem() {
-        confirmDeleteLibrary.open();
-    }
+    property var deleteItem: library === App.defaultLibrary ? null :
+                                                              function deleteItem() {
+                                                                  confirmDeleteLibrary.open();
+                                                              }
     
     //function newImage() {}
     
