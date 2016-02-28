@@ -3,7 +3,7 @@ setupApplication()
 
 TARGET = OpenTodoList
 
-QT += qml quick widgets svg xml
+QT += qml quick widgets svg xml concurrent
 
 SOURCES += main.cpp
 

@@ -43,5 +43,7 @@
         <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/3rdpartyinfo.json</file>
         <file>net/rpdev/OpenTodoList/UI/AboutThirdPartyPage.qml</file>
         <file>3rdpartyinfo/qt/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/ImageItem.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/ImagePage.qml</file>
     </qresource>
 </RCC>

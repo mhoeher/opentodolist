@@ -29,7 +29,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterSingletonType<Application>(uri, 1, 0, "App",
                                         OpenTodoListQmlExtensionsPlugin::createApplication);
   qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
-  qmlRegisterType<Image>(uri, 1, 0, "ImageItem");
+  qmlRegisterType<Image>(uri, 1, 0, "ImageTopLevelItem");
   qmlRegisterType<Item>(uri, 1, 0, "BasicItem");
   qmlRegisterType<DocumentFormatter>(uri, 1, 0, "DocumentFormatter");
   qmlRegisterUncreatableType<Library>(uri, 1, 0, "Library",

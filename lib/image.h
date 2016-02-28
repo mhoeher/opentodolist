@@ -9,6 +9,8 @@ class Image : public TopLevelItem
 {
   Q_OBJECT
   Q_PROPERTY(QString image READ image WRITE setImage NOTIFY imageChanged)
+  Q_PROPERTY(bool busy READ busy WRITE setBusy NOTIFY busyChanged)
+  Q_PROPERTY(bool validImage READ validImage NOTIFY imageChanged)
 public:
   static const QString ItemType;
   static const QStringList PersistentProperties;
@@ -21,6 +23,13 @@ public:
   QString image() const { return m_image; }
   void setImage(const QString &image);
   
+  bool validImage() const;
+  
+  /**
+     @brief Returns whether the image is performing some background task.
+   */
+  bool busy() const { return m_busy; }
+  
 signals:
   
   /**
@@ -28,11 +37,24 @@ signals:
    */
   void imageChanged();
   
+  /**
+     @brief The busy status of the image changed.
+   */
+  void busyChanged();
+  
 public slots:
   
 private:
   
   QString m_image;
+  bool    m_busy;
+  
+  void setBusy(bool busy);
+  
+  QString findLocalFileName(const QString &image) const;
+  
+  static void copyImage(const QString &imgFrom, const QString &imgTo);
+  static void removeImage(const QString &image);
   
 };
 

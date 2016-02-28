@@ -28,6 +28,7 @@ private slots:
   void init();
   void testAddNote();
   void testAddImage();
+  void testAddImageWithoutTitle();
   void testAddTodoList();
   void testNotePersistence();
   void testImagePersistence();
@@ -71,6 +72,17 @@ void LibraryTest::testAddImage()
   Q_CHECK_PTR(image);
   QCOMPARE(image->title(), QString("Test Image"));
   QCOMPARE(image->image(), QString("image.png"));
+  QCOMPARE(m_library->items().size(), 1);
+  Q_CHECK_PTR(m_library->items().at(0));
+  QCOMPARE(m_library->items().at(0), image);
+}
+
+void LibraryTest::testAddImageWithoutTitle()
+{
+  auto image = m_library->addImage("test/image.png");
+  Q_CHECK_PTR(image);
+  QCOMPARE(image->title(), QString("image.png"));
+  QCOMPARE(image->image(), QString("test/image.png"));
   QCOMPARE(m_library->items().size(), 1);
   Q_CHECK_PTR(m_library->items().at(0));
   QCOMPARE(m_library->items().at(0), image);

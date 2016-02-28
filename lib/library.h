@@ -61,6 +61,9 @@ public:
   
   Q_INVOKABLE Note* addNote(const QString &title);
   Q_INVOKABLE Image* addImage(const QString &title, const QString &image);
+  Q_INVOKABLE Image* addImage(const QString &title, const QUrl &image);
+  Q_INVOKABLE Image* addImage(const QString &image);
+  Q_INVOKABLE Image* addImage(const QUrl &image);
   Q_INVOKABLE TodoList *addTodoList(const QString &title);
   TopLevelItemList items();
   QQmlListProperty<TopLevelItem> itemList();

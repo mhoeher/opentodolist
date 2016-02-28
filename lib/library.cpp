@@ -5,8 +5,10 @@
 #include "todolist.h"
 
 #include <QDir>
-#include <QSet>
 #include <QQueue>
+#include <QSet>
+#include <QUrl>
+
 
 /**
    @brief Set the name of the library.
@@ -62,6 +64,22 @@ Image *Library::addImage(const QString &title, const QString &image)
   result->setImage(image);
   addItem(result);
   return result;
+}
+
+Image *Library::addImage(const QString &title, const QUrl &image)
+{
+  return addImage(title, image.toLocalFile());
+}
+
+Image *Library::addImage(const QString &image)
+{
+  QFileInfo fi(image);
+  return addImage(fi.fileName(), image);
+}
+
+Image *Library::addImage(const QUrl &image)
+{
+  return addImage(image.toLocalFile());
 }
 
 TodoList *Library::addTodoList(const QString &title)

@@ -13,6 +13,7 @@ MouseArea {
     property color backgroundColor: Colors.noteBackground
     property var checkBoxList: null
     property bool showCheckBoxList: false
+    property string image: ""
     
     property int __shadowOffset: hoverEnabled && containsMouse ? Globals.defaultMargin : 0
     
@@ -132,6 +133,20 @@ MouseArea {
             }
         }
         
+        Image {
+            id: image
+            source: note.image
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: checkBockListView.bottom
+                margins: Globals.defaultMargin
+            }
+            fillMode: Image.PreserveAspectFit
+            visible: note.image !== ""
+            asynchronous: true
+        }
+        
         Text {
             id: contentLabel
             
@@ -139,7 +154,7 @@ MouseArea {
             anchors {
                 left: parent.left
                 right: parent.right
-                top: checkBockListView.bottom
+                top: image.bottom
                 margins: Globals.defaultMargin
             }
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere

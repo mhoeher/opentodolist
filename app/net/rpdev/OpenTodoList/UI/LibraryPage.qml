@@ -26,6 +26,10 @@ Item {
         newTodoListBar.edit.text = "";
     }
     
+    function newImage() {
+        openImageDialog.open();
+    }
+    
     property var deleteItem: library === App.defaultLibrary ? null :
                                                               function deleteItem() {
                                                                   confirmDeleteLibrary.open();
@@ -49,6 +53,16 @@ Item {
             library.deleteLibrary();
             stackView.pop();
         }
+    }
+    
+    FileDialog {
+        id: openImageDialog
+        title: qsTr("Add Image")
+        selectExisting: true
+        selectFolder: false
+        selectMultiple: false
+        folder: shortcuts.pictures
+        onAccepted: library.addImage(fileUrl)
     }
     
     TextInputBar {

@@ -7,7 +7,7 @@
 include(../config.pri)
 setupStaticLib()
 
-QT       += qml quick xml
+QT       += qml quick xml concurrent
 QT       -= gui
 
 TARGET = opentodolist
