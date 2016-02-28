@@ -82,6 +82,10 @@ Item {
                 onClicked: stack.push({ item: notesEditor, properties: { text: item.notes }});
             }
             
+            Item {
+                height: Globals.defaultMargin
+            }
+            
             Component {
                 id: notesEditor
                 

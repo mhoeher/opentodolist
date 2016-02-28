@@ -11,7 +11,6 @@ StickyNote {
     clip: true
     backgroundColor: Colors.itemColor(libraryItem.color)
     hoverEnabled: true
-    checkBoxList: todos
+    checkBoxList: libraryItem.todos
     showCheckBoxList: true
 }
-

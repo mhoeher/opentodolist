@@ -5,8 +5,11 @@
 #include "migrator_1_x_to_2_x.h"
 
 #include <QCoreApplication>
+#include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QFileInfo>
+#include <QJsonDocument>
 #include <QStandardPaths>
 
 /**
@@ -168,6 +171,44 @@ QVariant Application::loadValue(const QString &name, const QVariant &defaultValu
   m_settings->beginGroup("ApplicationSettings");
   QVariant result = m_settings->value(name, defaultValue);
   m_settings->endGroup();
+  return result;
+}
+
+/**
+   @brief Reads a file and returns its content
+ */
+QString Application::readFile(const QString &fileName) const
+{
+  QFile file(fileName);
+  if (file.open(QIODevice::ReadOnly)) {
+    return file.readAll();
+  }
+  return QString();
+}
+
+/**
+   @brief Return a list of all 3rd party information found in the apps resource system.
+ */
+QVariant Application::find3rdPartyInfos() const
+{
+  QDirIterator it(":/", {"3rdpartyinfo.json"}, QDir::Files, QDirIterator::Subdirectories);
+  QVariantList result;
+  while (it.hasNext()) {
+    QString file = it.next();
+    QFile f(file);
+    if(f.open(QIODevice::ReadOnly)) {
+      QJsonParseError errorMessage;
+      QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &errorMessage);
+      if (errorMessage.error == QJsonParseError::NoError) {
+        result.append(doc.toVariant());
+      } else {
+        qWarning().noquote().nospace() 
+            << "Failed to parse 3rd Party Info file " << file
+            << ": " << errorMessage.errorString();
+      }
+      f.close();
+    }
+  }
   return result;
 }
 

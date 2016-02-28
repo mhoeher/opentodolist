@@ -103,7 +103,7 @@ private:
 
 int main(int argc, char *argv[])
 {
-  qSetMessagePattern("%{file}(%{line}): %{message}");
+  //qSetMessagePattern("%{file}(%{line}): %{message}");
 #if OPENTODOLIST_DEBUG
   QLoggingCategory(0).setEnabled(QtDebugMsg, true);
 #endif

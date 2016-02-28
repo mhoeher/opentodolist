@@ -1,0 +1,8 @@
+{
+    "name": "Qt",
+    "author": "The Qt Company",
+    "website": "http://qt.io/",
+    "licenseUrl": "https://www.gnu.org/licenses/lgpl.txt",
+    "licenseType": "GNU LGPL v3+",
+    "downloadUrl": "http://qt.io/"
+}

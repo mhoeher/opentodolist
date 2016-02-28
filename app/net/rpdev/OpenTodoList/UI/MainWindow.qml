@@ -103,6 +103,16 @@ ApplicationWindow {
                 styleComboBox.currentIndex = 0;
             }
         }
+        
+        Menu {
+            title: qsTr("Help")
+            
+            MenuItem {
+                text: qsTr("About")
+                shortcut: StandardKey.HelpContents
+                onTriggered: Logic.viewPage(stack, aboutPage)
+            }
+        }
 
         Menu {
             title: qsTr("Debug")
@@ -416,6 +426,11 @@ ApplicationWindow {
                 }
                 stackView: stack
             }
+        }
+        
+        Component {
+            id: aboutPage
+            AboutPage {}
         }
     }
 }

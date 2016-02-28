@@ -22,27 +22,26 @@
         <file>net/rpdev/OpenTodoList/UI/NotePage.qml</file>
         <file>net/rpdev/OpenTodoList/UI/StickyNote.qml</file>
         <file>net/rpdev/OpenTodoList/UI/ColorMenu.qml</file>
-        <file>net/rpdev/OpenTodoList/UI/paper/COPYING</file>
         <file>net/rpdev/OpenTodoList/UI/paper/paper_@2X.png</file>
         <file>net/rpdev/OpenTodoList/UI/paper/paper.png</file>
-        <file>net/rpdev/OpenTodoList/UI/paper/readme.txt</file>
-        <file>net/rpdev/OpenTodoList/UI/cork_1/COPYING</file>
         <file>net/rpdev/OpenTodoList/UI/cork_1/cork_1_@2X.png</file>
         <file>net/rpdev/OpenTodoList/UI/cork_1/cork_1.png</file>
-        <file>net/rpdev/OpenTodoList/UI/cork_1/readme.txt</file>
-        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/COPYING</file>
         <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/lightpaperfibers_@2X.png</file>
         <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/lightpaperfibers.png</file>
-        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/readme.txt</file>
         <file>net/rpdev/OpenTodoList/UI/TodoListItem.qml</file>
         <file>net/rpdev/OpenTodoList/UI/TodoListPage.qml</file>
         <file>net/rpdev/OpenTodoList/UI/TextInputBar.qml</file>
         <file>net/rpdev/OpenTodoList/UI/TodoListView.qml</file>
-        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/COPYING</file>
-        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/readme.txt</file>
         <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper_@2X.png</file>
         <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png</file>
         <file>net/rpdev/OpenTodoList/UI/TodoPage.qml</file>
         <file>net/rpdev/OpenTodoList/UI/TaskListView.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/AboutPage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/cork_1/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/lightpaperfibers/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/paper/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/soft_wallpaper/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/AboutThirdPartyPage.qml</file>
+        <file>3rdpartyinfo/qt/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

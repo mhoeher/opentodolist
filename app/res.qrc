@@ -5,5 +5,6 @@
         <file>res/OpenTodoList64.png</file>
         <file>res/OpenTodoList80.png</file>
         <file>res/OpenTodoList250.png</file>
+        <file>res/COPYING</file>
     </qresource>
 </RCC>

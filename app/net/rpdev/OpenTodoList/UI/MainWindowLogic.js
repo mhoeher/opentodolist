@@ -39,3 +39,8 @@ function goBack(stack) {
         }
     }
 }
+
+function viewPage(stack, component) {
+    stack.clear();
+    stack.push({item: component, properties: { stack: stack }});    
+}

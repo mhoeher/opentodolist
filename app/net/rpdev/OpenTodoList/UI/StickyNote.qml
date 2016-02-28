@@ -115,19 +115,21 @@ MouseArea {
             elide: Text.ElideRight
         }
         
-        ListView {
+        Column {
             id: checkBockListView
-            model: note.checkBoxList
-            visible: note.showCheckBoxList
-            delegate: checkBoxListItemDelegate
-            height: contentHeight
+            
             anchors {
                 left: parent.left
                 right: parent.right
                 top: titleLabelBackground.bottom
                 margins: Globals.defaultMargin
             }
-            interactive: false
+            
+            Repeater {
+                model: note.checkBoxList
+                visible: note.showCheckBoxList
+                delegate: checkBoxListItemDelegate
+            }
         }
         
         Text {
