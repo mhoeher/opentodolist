@@ -166,23 +166,21 @@ ApplicationWindow {
             Row {
                 id: toolBarLeftButtonGroup
                 height: parent.height
-                
-                ComboBox {
-                    id: libraryNavigator
-                    model: App.libraries
-                    editable: false
-                    textRole: "name"
-                    visible: !leftSideBar.visible
-                    height: parent.height
-                    anchors.verticalCenter: parent.verticalCenter
-                    onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
-                }
     
                 Symbol {
                     symbol: Fonts.symbols.faAngleLeft
                     visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: Logic.cancelCurrent(stack)
+                }
+                ComboBox {
+                    id: libraryNavigator
+                    model: App.libraries
+                    editable: false
+                    textRole: "name"
+                    visible: !leftSideBar.visible && !formatMenu.visible
+                    anchors.verticalCenter: parent.verticalCenter
+                    onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
                 }
                 Symbol {
                     symbol: Fonts.symbols.faFolderOpenO
@@ -229,53 +227,43 @@ ApplicationWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     visible: menu.visible
                 }
-                ComboBox {
-                    id: styleComboBox
+                Symbol {
+                    id: styleSelector
                     visible: formatMenu.visible
                     anchors.verticalCenter: parent.verticalCenter
-                    height: parent.height
-                    model: ListModel {
-                        ListElement {
-                            label: ""
-                            style: DocumentFormatter.UnknownParagraphStyle
+                    symbol: Fonts.symbols.faEyeDropper
+                    menu: Menu {
+                        MenuItem {
+                            text: "Default"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.Default)
                         }
-                        ListElement {
-                            label: "Default"
-                            style: DocumentFormatter.Default
+                        MenuItem {
+                            text: "Title 1"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H1)
                         }
-                        ListElement {
-                            label: "Title 1"
-                            style: DocumentFormatter.H1
+                        MenuItem {
+                            text: "Title 2"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H2)
                         }
-                        ListElement {
-                            label: "Title 2"
-                            style: DocumentFormatter.H2
+                        MenuItem {
+                            text: "Title 3"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H3)
                         }
-                        ListElement {
-                            label: "Title 3"
-                            style: DocumentFormatter.H3
+                        MenuItem {
+                            text: "Title 4"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H4)
                         }
-                        ListElement {
-                            label: "Title 4"
-                            style: DocumentFormatter.H4
+                        MenuItem {
+                            text: "Title 5"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H5)
                         }
-                        ListElement {
-                            label: "Title 5"
-                            style: DocumentFormatter.H5
+                        MenuItem {
+                            text: "Title 6"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H6)
                         }
-                        ListElement {
-                            label: "Title 6"
-                            style: DocumentFormatter.H6
-                        }
-                        ListElement {
-                            label: "Code"
-                            style: DocumentFormatter.Code
-                        }
-                    }
-                    textRole: "label"
-                    onCurrentIndexChanged: {
-                        if (visible) {
-                            formatMenu.applyParagraphStyle(model.get(currentIndex).style);
+                        MenuItem {
+                            text: "Code"
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.Code)
                         }
                     }
                 }
@@ -334,32 +322,47 @@ ApplicationWindow {
                     onClicked: formatMenu.outdentItem.trigger()
                 }
                 Symbol {
-                    symbol: Fonts.symbols.faAlignLeft
+                    symbol: {
+                        if (formatMenu.alignLeftItem.checked) {
+                            return Fonts.symbols.faAlignLeft;
+                        } else if (formatMenu.alignRightItem.checked) {
+                            return Fonts.symbols.faAlignRight;
+                        } else if (formatMenu.alignCenterItem.checked) {
+                            return Fonts.symbols.faAlignCenter;
+                        } else if (formatMenu.alignJustifyItem.checked) {
+                            return Fonts.symbols.faAlignJustify;
+                        } else {
+                            return "";
+                        }
+                    }
                     visible: formatMenu.visible
-                    checked: formatMenu.alignLeftItem.checked
                     anchors.verticalCenter: parent.verticalCenter
-                    onClicked: formatMenu.alignLeftItem.trigger()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faAlignCenter
-                    visible: formatMenu.visible
-                    checked: formatMenu.alignCenterItem.checked
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: formatMenu.alignCenterItem.trigger()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faAlignRight
-                    visible: formatMenu.visible
-                    checked: formatMenu.alignRightItem.checked
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: formatMenu.alignRightItem.trigger()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faAlignJustify
-                    visible: formatMenu.visible
-                    checked: formatMenu.alignJustifyItem.checked
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: formatMenu.alignJustifyItem.trigger()
+                    menu: Menu {
+                        MenuItem {
+                            text: formatMenu.alignLeftItem.text
+                            checkable: true
+                            checked: formatMenu.alignLeftItem.checked
+                            onTriggered: formatMenu.alignLeftItem.trigger()
+                        }
+                        MenuItem {
+                            text: formatMenu.alignCenterItem.text
+                            checkable: true
+                            checked: formatMenu.alignCenterItem.checked
+                            onTriggered: formatMenu.alignCenterItem.trigger()
+                        }
+                        MenuItem {
+                            text: formatMenu.alignRightItem.text
+                            checkable: true
+                            checked: formatMenu.alignRightItem.checked
+                            onTriggered: formatMenu.alignRightItem.trigger()
+                        }
+                        MenuItem {
+                            text: formatMenu.alignJustifyItem.text
+                            checkable: true
+                            checked: formatMenu.alignJustifyItem.checked
+                            onTriggered: formatMenu.alignJustifyItem.trigger()
+                        }
+                    }
                 }
             }
         }        
@@ -475,9 +478,9 @@ ApplicationWindow {
                 top: parent.top
                 bottom: parent.bottom
             }
-            width: 200
+            width: 20 * Globals.fontPixelSize
             edge: Qt.LeftEdge
-            x: applicationWindow.width > Globals.fontPixelSize * 40 ? 0 : -width
+            x: applicationWindow.width > Globals.fontPixelSize * 60 ? 0 : -width
             visible: x > -width
             onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, libraryPage)
         }

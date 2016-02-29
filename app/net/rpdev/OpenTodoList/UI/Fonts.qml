@@ -38,6 +38,8 @@ QtObject {
         readonly property string faCut: "\uf0c4"
         readonly property string faPaste: "\uf0ea"
         
+        readonly property string faEyeDropper: "\uf1fb"
+        
         readonly property string faIndent: "\uf03c"
         readonly property string faOutdent: "\uf03b"
         
