@@ -35,7 +35,9 @@ QString Migrator_1_x_to_2_x::localStorageLocation(const QString &type)
     QStringList locations = QStandardPaths::standardLocations( QStandardPaths::DataLocation );
 
 #ifdef Q_OS_ANDROID
-    locations.insert( 0, androidExtStorageLocation() );
+    QString androidExtStorage(qgetenv("EXTERNAL_STORAGE"));
+    QDir dir(androidExtStorage + "/data/net.rpdev.opentodolist/");
+    locations.insert(0, dir.absolutePath());
 #endif
 
     QString overridePath( qgetenv( "OPENTODOLIST_LOCAL_STORAGE_LOCATION" ) );

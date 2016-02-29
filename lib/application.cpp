@@ -307,7 +307,7 @@ QString Application::defaultLibraryLocation() const
 {
 #ifdef Q_OS_ANDROID
   QString s( qgetenv( "EXTERNAL_STORAGE" ) );
-  QDir dir( s + "/data/net.rpdev.opentodolist/" );
+  QDir dir( s + "/data/net.rpdev.opentodolist/Inbox/" );
   return dir.absolutePath();
 #else
   QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);

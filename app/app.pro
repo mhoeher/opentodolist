@@ -24,3 +24,6 @@ ANDROID_APP_NAME = Open Todo List
 # Icons for various platforms
 mac:ICON = red/OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
+
+DISTFILES += \
+    android/AndroidManifest.xml

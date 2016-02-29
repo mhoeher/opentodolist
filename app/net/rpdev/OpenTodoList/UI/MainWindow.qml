@@ -83,11 +83,32 @@ ApplicationWindow {
             id: editMenu
             
             title: qsTr("&Edit")
-            visible: colorMenu.visible
             
             ColorMenu {
                 id: colorMenu
                 item: stack.currentItem && stack.currentItem["item"] ? stack.currentItem.item : null
+            }
+            
+            MenuItem {
+                id: copyItem
+                text: qsTr("&Copy")
+                enabled: activeFocusItem && typeof(activeFocusItem["copy"]) === "function"
+                shortcut: StandardKey.Copy
+                onTriggered: activeFocusItem.copy()
+            }
+            MenuItem {
+                id: cutItem
+                text: qsTr("C&ut")
+                enabled: activeFocusItem && typeof(activeFocusItem["cut"]) === "function"
+                shortcut: StandardKey.Cut
+                onTriggered: activeFocusItem.cut()
+            }
+            MenuItem {
+                id: pasteItem
+                text: qsTr("&Paste")
+                enabled: activeFocusItem && typeof(activeFocusItem["paste"]) === "function"
+                shortcut: StandardKey.Paste
+                onTriggered: activeFocusItem.paste()
             }
         }
         
@@ -131,193 +152,254 @@ ApplicationWindow {
     
     toolBar: ToolBar {
         height: Globals.minButtonHeight * 1.5
+
+        Flickable {
+            anchors {
+                left: parent.left
+                right: toolBarRightButtonGroup.left
+                rightMargin: Globals.defaultMargin
+            }
+            contentWidth: toolBarLeftButtonGroup.width
+            height: parent.height
+            clip: true
+
+            Row {
+                id: toolBarLeftButtonGroup
+                height: parent.height
+                
+                ComboBox {
+                    id: libraryNavigator
+                    model: App.libraries
+                    editable: false
+                    textRole: "name"
+                    visible: !leftSideBar.visible
+                    height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
+                    onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
+                }
+    
+                Symbol {
+                    symbol: Fonts.symbols.faAngleLeft
+                    visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: Logic.cancelCurrent(stack)
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faFolderOpenO
+                    visible: addLocalLibraryItem.enabled
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: addLocalLibraryItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faStickyNoteO
+                    visible: itemsMenu.visible && newNoteItem.enabled
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: newNoteItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faCheckSquareO
+                    visible: itemsMenu.visible && newTodoListItem.enabled
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: newTodoListItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faCheckSquareO
+                    visible: itemsMenu.visible && newTodoItem.enabled
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: newTodoItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faCheckSquareO
+                    visible: itemsMenu.visible && newTaskItem.enabled
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: newTaskItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faPictureO
+                    visible: itemsMenu.visible && newImageItem.enabled
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: newImageItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faPencilSquareO
+                    menu: ColorMenu {
+                        visible: colorMenu.visible
+                        item: colorMenu.item
+                    }
+                    anchors.verticalCenter: parent.verticalCenter
+                    visible: menu.visible
+                }
+                ComboBox {
+                    id: styleComboBox
+                    visible: formatMenu.visible
+                    anchors.verticalCenter: parent.verticalCenter
+                    height: parent.height
+                    model: ListModel {
+                        ListElement {
+                            label: ""
+                            style: DocumentFormatter.UnknownParagraphStyle
+                        }
+                        ListElement {
+                            label: "Default"
+                            style: DocumentFormatter.Default
+                        }
+                        ListElement {
+                            label: "Title 1"
+                            style: DocumentFormatter.H1
+                        }
+                        ListElement {
+                            label: "Title 2"
+                            style: DocumentFormatter.H2
+                        }
+                        ListElement {
+                            label: "Title 3"
+                            style: DocumentFormatter.H3
+                        }
+                        ListElement {
+                            label: "Title 4"
+                            style: DocumentFormatter.H4
+                        }
+                        ListElement {
+                            label: "Title 5"
+                            style: DocumentFormatter.H5
+                        }
+                        ListElement {
+                            label: "Title 6"
+                            style: DocumentFormatter.H6
+                        }
+                        ListElement {
+                            label: "Code"
+                            style: DocumentFormatter.Code
+                        }
+                    }
+                    textRole: "label"
+                    onCurrentIndexChanged: {
+                        if (visible) {
+                            formatMenu.applyParagraphStyle(model.get(currentIndex).style);
+                        }
+                    }
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faBold
+                    visible: formatMenu.visible
+                    checked: formatMenu.boldItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.boldItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faItalic
+                    visible: formatMenu.visible
+                    checked: formatMenu.italicItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.italicItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faUnderline
+                    visible: formatMenu.visible
+                    checked: formatMenu.underlineItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.underlineItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faStrikethrough
+                    visible: formatMenu.visible
+                    checked: formatMenu.strikethroughItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.strikethroughItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faList
+                    visible: formatMenu.visible
+                    checked: formatMenu.bulletListItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.bulletListItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faListOl
+                    visible: formatMenu.visible
+                    checked: formatMenu.orderedListItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.orderedListItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faIndent
+                    visible: formatMenu.visible
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.indentItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faOutdent
+                    visible: formatMenu.visible
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.outdentItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faAlignLeft
+                    visible: formatMenu.visible
+                    checked: formatMenu.alignLeftItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.alignLeftItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faAlignCenter
+                    visible: formatMenu.visible
+                    checked: formatMenu.alignCenterItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.alignCenterItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faAlignRight
+                    visible: formatMenu.visible
+                    checked: formatMenu.alignRightItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.alignRightItem.trigger()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faAlignJustify
+                    visible: formatMenu.visible
+                    checked: formatMenu.alignJustifyItem.checked
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: formatMenu.alignJustifyItem.trigger()
+                }
+            }
+        }        
         
-        RowLayout {
-            width: parent.width
+        Row {
+            id: toolBarRightButtonGroup
+            
+            anchors {
+                right: parent.right
+            }
             height: parent.height
             
-            ComboBox {
-                id: libraryNavigator
-                model: App.libraries
-                editable: false
-                textRole: "name"
-                visible: !leftSideBar.visible
-                height: parent.height
-                onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
-            }
-
             Symbol {
-                symbol: Fonts.symbols.faAngleLeft
-                visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
-                onClicked: Logic.cancelCurrent(stack)
+                symbol: Fonts.symbols.faCopy
+                visible: copyItem.enabled
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: copyItem.trigger()
             }
             Symbol {
-                symbol: Fonts.symbols.faFolderOpenO
-                visible: addLocalLibraryItem.enabled
-                onClicked: addLocalLibraryItem.trigger()
+                symbol: Fonts.symbols.faCut
+                visible: cutItem.enabled
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: cutItem.trigger()
             }
             Symbol {
-                symbol: Fonts.symbols.faStickyNoteO
-                visible: itemsMenu.visible && newNoteItem.enabled
-                onClicked: newNoteItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faCheckSquareO
-                visible: itemsMenu.visible && newTodoListItem.enabled
-                onClicked: newTodoListItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faCheckSquareO
-                visible: itemsMenu.visible && newTodoItem.enabled
-                onClicked: newTodoItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faCheckSquareO
-                visible: itemsMenu.visible && newTaskItem.enabled
-                onClicked: newTaskItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faPictureO
-                visible: itemsMenu.visible && newImageItem.enabled
-                onClicked: newImageItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faPencilSquareO
-                menu: ColorMenu {
-                    visible: colorMenu.visible
-                    item: colorMenu.item
-                }
-                visible: menu.visible
-            }
-            ComboBox {
-                id: styleComboBox
-                visible: formatMenu.visible
-                model: ListModel {
-                    ListElement {
-                        label: ""
-                        style: DocumentFormatter.UnknownParagraphStyle
-                    }
-                    ListElement {
-                        label: "Default"
-                        style: DocumentFormatter.Default
-                    }
-                    ListElement {
-                        label: "Title 1"
-                        style: DocumentFormatter.H1
-                    }
-                    ListElement {
-                        label: "Title 2"
-                        style: DocumentFormatter.H2
-                    }
-                    ListElement {
-                        label: "Title 3"
-                        style: DocumentFormatter.H3
-                    }
-                    ListElement {
-                        label: "Title 4"
-                        style: DocumentFormatter.H4
-                    }
-                    ListElement {
-                        label: "Title 5"
-                        style: DocumentFormatter.H5
-                    }
-                    ListElement {
-                        label: "Title 6"
-                        style: DocumentFormatter.H6
-                    }
-                    ListElement {
-                        label: "Code"
-                        style: DocumentFormatter.Code
-                    }
-                }
-                textRole: "label"
-                onCurrentIndexChanged: {
-                    if (visible) {
-                        formatMenu.applyParagraphStyle(model.get(currentIndex).style);
-                    }
-                }
-            }
-            Symbol {
-                symbol: Fonts.symbols.faBold
-                visible: formatMenu.visible
-                checked: formatMenu.boldItem.checked
-                onClicked: formatMenu.boldItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faItalic
-                visible: formatMenu.visible
-                checked: formatMenu.italicItem.checked
-                onClicked: formatMenu.italicItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faUnderline
-                visible: formatMenu.visible
-                checked: formatMenu.underlineItem.checked
-                onClicked: formatMenu.underlineItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faStrikethrough
-                visible: formatMenu.visible
-                checked: formatMenu.strikethroughItem.checked
-                onClicked: formatMenu.strikethroughItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faList
-                visible: formatMenu.visible
-                checked: formatMenu.bulletListItem.checked
-                onClicked: formatMenu.bulletListItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faListOl
-                visible: formatMenu.visible
-                checked: formatMenu.orderedListItem.checked
-                onClicked: formatMenu.orderedListItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faIndent
-                visible: formatMenu.visible
-                onClicked: formatMenu.indentItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faOutdent
-                visible: formatMenu.visible
-                onClicked: formatMenu.outdentItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faAlignLeft
-                visible: formatMenu.visible
-                checked: formatMenu.alignLeftItem.checked
-                onClicked: formatMenu.alignLeftItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faAlignCenter
-                visible: formatMenu.visible
-                checked: formatMenu.alignCenterItem.checked
-                onClicked: formatMenu.alignCenterItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faAlignRight
-                visible: formatMenu.visible
-                checked: formatMenu.alignRightItem.checked
-                onClicked: formatMenu.alignRightItem.trigger()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faAlignJustify
-                visible: formatMenu.visible
-                checked: formatMenu.alignJustifyItem.checked
-                onClicked: formatMenu.alignJustifyItem.trigger()
-            }
-            Item {
-                Layout.fillWidth: true
+                symbol: Fonts.symbols.faPaste
+                visible: pasteItem.enabled
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: pasteItem.trigger()
             }
             Symbol {
                 symbol: Fonts.symbols.faTrashO
                 visible: stack.currentItem && typeof(stack.currentItem["deleteItem"]) === "function"
+                anchors.verticalCenter: parent.verticalCenter
                 onClicked: stack.currentItem.deleteItem()
             }
             Symbol {
                 symbol: Fonts.symbols.faCheck
                 visible: stack.currentItem && typeof(stack.currentItem["save"]) === "function"
+                anchors.verticalCenter: parent.verticalCenter
                 onClicked: Logic.saveCurrent(stack)
             }
         }

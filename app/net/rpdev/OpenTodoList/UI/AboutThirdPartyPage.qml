@@ -34,16 +34,6 @@ Item {
             id: listView
             model: App.find3rdPartyInfos()
             delegate: itemDelegate
-            
-            onModelChanged: {
-                for (var i = 0; i < model.length; ++i) {
-                    var item = model[i];
-                    console.warn("Item #" + i + " (" + item + ")");
-                    for (var member in item) {
-                        console.warn("  " + member + " = " + item[member]);
-                    }
-                }
-            }
         }
     }
     

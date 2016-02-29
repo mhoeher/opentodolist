@@ -47,7 +47,10 @@ Item {
                 
                 symbol: Fonts.symbols.faPlus
                 enabled: edit.text !== ""
-                onClicked: root.accepted()
+                onClicked: {
+                    edit.focus = false;
+                    root.accepted();
+                }
             }
         }
     }

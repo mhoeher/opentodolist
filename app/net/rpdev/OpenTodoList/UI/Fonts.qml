@@ -34,6 +34,10 @@ QtObject {
         readonly property string faAlignCenter: "\uf037"
         readonly property string faAlignJustify: "\uf039"
         
+        readonly property string faCopy: "\uf0c5"
+        readonly property string faCut: "\uf0c4"
+        readonly property string faPaste: "\uf0ea"
+        
         readonly property string faIndent: "\uf03c"
         readonly property string faOutdent: "\uf03b"
         
