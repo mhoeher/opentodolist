@@ -60,6 +60,9 @@ public:
   
   Q_INVOKABLE QString readFile(const QString &fileName) const;
   Q_INVOKABLE QVariant find3rdPartyInfos() const;
+
+  Q_INVOKABLE QString urlToLocalFile(const QUrl &url) const;
+  Q_INVOKABLE QUrl localFileToUrl(const QString &localFile) const;
   
   Library *defaultLibrary();
   
