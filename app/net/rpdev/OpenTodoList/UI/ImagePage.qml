@@ -71,7 +71,7 @@ Item {
             Image {
                 id: image
                 visible: item.validImage
-                source: item.validImage ? item.directory + "/" + item.image : ""
+                source: item.validImage ? App.localFileToUrl(item.directory + "/" + item.image) : ""
                 anchors {
                     left: parent.left
                     right: parent.right

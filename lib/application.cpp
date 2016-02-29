@@ -213,6 +213,22 @@ QVariant Application::find3rdPartyInfos() const
 }
 
 /**
+   @brief Convert a URL to a local file name.
+ */
+QString Application::urlToLocalFile(const QUrl &url) const
+{
+    return url.toLocalFile();
+}
+
+/**
+   @brief Convert a local file name to a url.
+ */
+QUrl Application::localFileToUrl(const QString &localFile) const
+{
+    return QUrl::fromLocalFile(localFile);
+}
+
+/**
    @brief Returns the default library of the application.
  */
 Library *Application::defaultLibrary()

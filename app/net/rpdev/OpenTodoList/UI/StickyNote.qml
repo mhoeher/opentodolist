@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 
+import net.rpdev.OpenTodoList 1.0
 import net.rpdev.OpenTodoList.UI 1.0
 
 MouseArea {
@@ -135,7 +136,7 @@ MouseArea {
         
         Image {
             id: image
-            source: note.image
+            source: App.localFileToUrl(note.image)
             anchors {
                 left: parent.left
                 right: parent.right
