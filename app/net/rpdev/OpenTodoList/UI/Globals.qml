@@ -15,6 +15,8 @@ Item {
     property int minButtonHeight: fontPixelSize * 2
     property int defaultMargin: fontPixelSize
     
+    readonly property int defaultAnimationTime: 500
+    
     function file(relativeName) {
         var result = qmlBaseDirectory + "/" + relativeName;
         result.replace("//", "/");

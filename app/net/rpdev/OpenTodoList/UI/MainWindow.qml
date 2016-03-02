@@ -129,6 +129,12 @@ ApplicationWindow {
             title: qsTr("Help")
             
             MenuItem {
+                text: qsTr("Check for updates...")
+                visible: App.hasUpdateService
+                onTriggered: App.runUpdate()
+            }
+            MenuSeparator {}
+            MenuItem {
                 text: qsTr("About")
                 shortcut: StandardKey.HelpContents
                 onTriggered: Logic.viewPage(stack, aboutPage)
@@ -491,7 +497,7 @@ ApplicationWindow {
                 left: leftSideBar.right
                 top: parent.top
                 right: parent.right
-                bottom: parent.bottom
+                bottom: updateNotificationBar.top
             }
             clip: true
         }
@@ -499,6 +505,53 @@ ApplicationWindow {
         MouseArea {
             anchors.fill: stack
             enabled: stack.busy
+        }
+        
+        Rectangle {
+            id: updateNotificationBar
+            
+            property bool shown: App.updatesAvailable && App.hasUpdateService
+            
+            anchors {
+                left: leftSideBar.right
+                right: parent.right
+            }
+            height: updateNotificationBarLayout.height + Globals.defaultMargin
+            color: Colors.makeTransparent(Colors.primary, 0.3)
+            y: shown ? parent.height - height : parent.height
+            
+            RowLayout {
+                id: updateNotificationBarLayout
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin
+                }
+                
+                Label {
+                    text: qsTr( "A new version of OpenTodoList is available.")
+                    Layout.fillWidth: true
+                    wrapMode: Text.WrapAnywhere
+                }
+                Button {
+                    text: qsTr("Later")
+                    onClicked: updateNotificationBar.shown = false
+                }
+                Button {
+                    text: qsTr("Update Now")
+                    onClicked: {
+                        App.runUpdate();
+                        updateNotificationBar.shown = false;
+                    }
+                }
+            }
+            
+            Connections {
+                target: App
+                onUpdatesAvailableChanged:
+                    updateNotificationBar.shown = App.updatesAvailable && App.hasUpdateService
+            }
         }
         
         Component {

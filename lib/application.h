@@ -27,6 +27,8 @@ class Application : public QObject
   Q_PROPERTY(LibraryFactories libraryFactories READ libraryFactories CONSTANT)
   Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
   Q_PROPERTY(Library* defaultLibrary READ defaultLibrary NOTIFY defaultLibraryChanged)
+  Q_PROPERTY(bool updatesAvailable READ updatesAvailable NOTIFY updatesAvailableChanged)
+  Q_PROPERTY(bool hasUpdateService READ hasUpdateService CONSTANT)
 public:
   
   explicit Application(QObject *parent = 0);
@@ -66,10 +68,18 @@ public:
   
   Library *defaultLibrary();
   
+  bool updatesAvailable() const;
+  void setUpdatesAvailable(bool updatesAvailable);
+  
+  Q_INVOKABLE void checkForUpdates(bool forceCheck = false);
+  Q_INVOKABLE void runUpdate();
+  bool hasUpdateService() const;
+  
 signals:
   
   void librariesChanged();
   void defaultLibraryChanged();
+  void updatesAvailableChanged();
   
 public slots:
   
@@ -81,6 +91,7 @@ private:
   QSettings              *m_settings;
   bool                    m_loadingLibraries;
   bool                    m_isInCustomLocation;
+  bool                    m_updatesAvailable;
   
   void createFactories();
   void saveLibraries();
@@ -91,6 +102,10 @@ private:
   
   QString defaultLibraryLocation() const;
   void runMigrations();
+  
+  void runUpdateCheck();
+  void runCachedUpdateCheck();
+  void saveUpdatesAvailable(bool available);
   
 private slots:
   
