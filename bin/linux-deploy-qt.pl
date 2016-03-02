@@ -110,7 +110,8 @@ for my $qmlModule ( "QtQuick", "QtQuick.2", "QtGraphicalEffects" ) {
 }
 
 # Copy required plugins:
-for my $pluginType ( "generic", "imageformats", "platforminputcontexts", "platforms", "sqldrivers" ) {
+for my $pluginType ( "generic", "imageformats", "platforminputcontexts", "platforms",
+                     "platformthemes", "sqldrivers", "xcbglintegrations" ) {
     rcopy(
         File::Spec->catfile( $qtDir, "plugins", $pluginType ),
         File::Spec->catfile( $pluginsDir, $pluginType ) );

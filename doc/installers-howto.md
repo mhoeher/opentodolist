@@ -8,20 +8,35 @@ steps to create these installers are described per platform.
 Linux
 -----
 
-1. Build OpenTodoList
-2. Install it using:  
-    **make install $INSTALLROOT=$INSTALLROOT/OpenTodoList**  
-   Note that *$INSTALLROOT* is an arbitrary location. You
-   must install however into another subdirectory called
-   OpenTodoList for the other scripts to work properly.
-3. Deploy Qt libraries:  
-    **perl $OTLSOURCEDIR/bin/linux-deploy-qt.pl
-    --qt /path/to/qt --exe $INSTALLROOT/OpenTodoList/bin/OpenTodoList**
-4. Create installers and online repository:  
-    **perl $OTLSOURCEDIR/bin/mk-installer.pl
-        --installDir $INSTALLROOT
-        --targetDir /path/to/where/installers/shall/be/saved
-        --os linux --arch ARCH**
+Open a terminal and ensure, that all required tools are installed and visible your
+PATH environment variable. In particular,
+
+* Qt (via the qmake executable)
+* the Qt Installer Framework and
+* patchelf
+
+are required. Usually, you want to have something like this done before the build:
+
+    export PATH=/path/to/qt/bin:/path/to/qtinstallerframework/bin:$PATH
+
+Now, we can proceed to build and package the app. Let's assume the source
+code is in /home/rpdev/projects/opentodolist. In order to build the installer,
+execute the following steps:
+
+    cd /home/rpdev/projects
+    mkdir build-opentodolist-release
+    cd build-opentodolist-release
+    qmake CONFIG+=release ../opentodolist
+    make
+    make check
+    make installer_linux_x86_64
+
+After these steps completed, you will find the online and offline installers
+as well as the package repository for the online installer in the
+sub-directory installer_build. In order to create an official release (which
+is hosted on www.rpdev.net), copy these files to 
+https://www.rpdev.net/public/repositories/qtifw.
+
 
 Mac OS X
 --------

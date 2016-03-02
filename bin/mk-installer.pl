@@ -213,7 +213,7 @@ if (!defined($openTodoListVersion)) {
         "Contents", "MacOS", "OpenTodoList" );
   }
   $openTodoListVersion = ( -f $openTodoListApp ? `$openTodoListApp --version` : undef );
-  if ( $openTodoListVersion =~ m/^OpenTodoList\s*version\s*(.*)$/ ) {
+  if ( $openTodoListVersion =~ m/^OpenTodoList\s*(.*)$/ ) {
       $openTodoListVersion = $1;
   } else {
       # Okay, we are in Windows... try to read from config.pri instead:
@@ -237,7 +237,7 @@ if (!defined($openTodoListVersion)) {
 my $configFile = File::Spec->catfile( $tempDir, "config", "config.xml" );
 my $packagesDir = File::Spec->catfile( $tempDir, "packages" );
 my $exeSuffix = $Config{_exe};
-my $onlineRepositoryUrl = "http://www.rpdev.net/public/repositories/qtifw/OpenTodoList-$os-$arch";
+my $onlineRepositoryUrl = "https://www.rpdev.net/public/repositories/qtifw/OpenTodoList-$os-$arch";
 
 # Get current date and format for use in installer's config files
 printf( "Generating release date string...\n" );
@@ -249,6 +249,9 @@ mkdir( File::Spec->catfile( $tempDir, "packages" ) );
 mkdir( File::Spec->catfile( $tempDir, "packages", "net.rpdev.OpenTodoList" ) );
 mkdir( File::Spec->catfile( $tempDir, "packages", "net.rpdev.OpenTodoList", "meta" ) );
 mkdir( File::Spec->catfile( $tempDir, "packages", "net.rpdev.OpenTodoList", "data" ) );
+
+# Create packages dir
+mkdir($packagesDir);
 
 # Copy over installer config file
 createTargetConfig(
@@ -301,7 +304,7 @@ qx(binarycreator -c $configFile -p $packagesDir $offlineOnlyArg $offlineInstalle
 # Create Repository
 printf( "Creating repository...\n" );
 my $onlineRepositoryDir = File::Spec->catfile( $targetDir, "OpenTodoList-$os-$arch" );
-qx(repogen -c $configFile -p $packagesDir $onlineRepositoryDir);
+qx(repogen -r -c $configFile -p $packagesDir $onlineRepositoryDir);
 
 # Create online installer
 printf( "Creating online only installer...\n" );

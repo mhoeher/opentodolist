@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>OpenTodoList</Name>
-    <Version>$Version</Version>
+    <Version>@@Version</Version>
     <Title>OpenTodoList Installer</Title>
     <Publisher>RPdev</Publisher>
     <ProductUrl>https://www.rpdev.net/home/project/opentodolist</ProductUrl>
     <StartMenuDir>OpenTodoList</StartMenuDir>
-    <TargetDir>@homeDir@/OpenTodoList</TargetDir>
-    <AdminTargetDir>@rootDir@/OpenTodoList</AdminTargetDir>
-    <Icon>OpenTodoList</Icon>
-    <UninstallerName>OpenTodoListMaintenanceTool</UninstallerName>
+    <TargetDir>@HomeDir@/OpenTodoList</TargetDir>
+    <AdminTargetDir>@RootDir@/OpenTodoList</AdminTargetDir>
+    <!--<Icon>OpenTodoList</Icon>-->
+    <InstallerWindowIcon>OpenTodoList</InstallerWindowIcon>
+    <InstallerApplicationIcon>OpenTodoList</InstallerApplicationIcon>
+    <MaintenanceToolName>OpenTodoListMaintenanceTool</MaintenanceToolName>
     <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
     <RemoteRepositories>
         <Repository>
-        <Url>$RepositoryUrl</Url>
+        <Url>@@RepositoryUrl</Url>
         <Enabled>1</Enabled>
         <DisplayName>OpenTodoList Repository</DisplayName>
         </Repository>

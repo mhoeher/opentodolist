@@ -2,8 +2,8 @@
 <Package>
     <DisplayName>OpenTodoList</DisplayName>
     <Description>The OpenTodoList application.</Description>
-    <Version>$Version</Version>
-    <ReleaseDate>$ReleaseDate</ReleaseDate>
+    <Version>@@Version</Version>
+    <ReleaseDate>@@ReleaseDate</ReleaseDate>
     <Name>net.rpdev.OpenTodoList</Name>
     <Licenses>
         <License name="GNU GPL v3" file="COPYING" />

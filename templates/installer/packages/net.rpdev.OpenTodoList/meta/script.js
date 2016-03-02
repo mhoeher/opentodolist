@@ -22,8 +22,8 @@ Component.prototype.createOperations = function()
                                    "OpenTodoList.desktop",
                                    "Name=OpenTodoList\n" +
                                    "Type=Application\n" +
-                                   "Exec=@TargetDir@/OpenTodoList/OpenTodoList\n" +
-                                   "Icon=@TargetDir@/OpenTodoList/share/OpenTodoList/icons/OpenTodoList80.png\n" +
+                                   "Exec=@TargetDir@/bin/OpenTodoList\n" +
+                                   "Icon=@TargetDir@/share/OpenTodoList/icons/OpenTodoList80.png\n" +
                                    "Terminal=false\n" +
                                    "Categories=Utility;");
         }
