@@ -1,0 +1,8 @@
+before_script:
+  - echo "Running Test Setup"
+
+unittests:
+  script:
+    - qmake-qt5
+    - make -j4
+    - make check
