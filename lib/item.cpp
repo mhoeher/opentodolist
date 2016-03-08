@@ -271,7 +271,10 @@ void Item::saveItem(SaveItemStrategy strategy)
 QString Item::titleToDirectoryName(const QString &title)
 {
   QString copy = title;
-  return copy.replace(QRegExp("[\\/:\\?]"), " ");
+  copy.replace(QRegExp("[\\/:\\?]"), " "); // Remove bad chars
+  copy.replace(QRegExp("^\\s*"), ""); // Remove leading space
+  copy.replace(QRegExp("\\s*$"), ""); // Remove trailing space
+  return copy;
 }
 
 /**
