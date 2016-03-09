@@ -4,7 +4,7 @@
     <Version>@@Version</Version>
     <Title>OpenTodoList Installer</Title>
     <Publisher>RPdev</Publisher>
-    <ProductUrl>https://www.rpdev.net/home/project/opentodolist</ProductUrl>
+    <ProductUrl>http://www.rpdev.net/home/project/opentodolist</ProductUrl>
     <StartMenuDir>OpenTodoList</StartMenuDir>
     <TargetDir>@HomeDir@/OpenTodoList</TargetDir>
     <AdminTargetDir>@RootDir@/OpenTodoList</AdminTargetDir>

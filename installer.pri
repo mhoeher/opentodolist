@@ -1,8 +1,12 @@
 _installer_dir = "$$OUT_PWD/installer_build"
-_installer_repo = "https://www.rpdev.net/public/repositories/qtifw"
+_installer_repo = "http://www.rpdev.net/public/repositories/qtifw"
 _installer_repo_linux_x86_64 = "$$_installer_repo/OpenTodoList-linux-x86_64"
 _installer_repo_windows_i386 = "$$_installer_repo/OpenTodoList-windows-i386"
-_installer_date = $$system(date '+%Y-%m-%d')
+win32 {
+    _installer_date = $$system(powershell -Command "Get-Date -format yyyy-MM-dd")
+} else {
+    _installer_date = $$system(date '+%Y-%m-%d')
+}
 _package_dir = "$$_installer_dir/packages/net.rpdev.OpenTodoList"
 
 _installer_config = $$cat($$PWD/templates/installer/config/config.xml,blob)
@@ -80,3 +84,63 @@ installer_linux_x86_64.commands = \
 
 QMAKE_EXTRA_TARGETS += \
     installer_linux_x86_64
+
+
+
+CONFIG(release, debug|release) {
+    _win_build_distdir = release
+    _win_deploy_switch = --release
+} else {
+    _win_build_distdir = debug
+    _win_deploy_switch = --debug
+}
+
+installer_windows_i386.commands = \
+    @echo "Building Windows i386 Installer..." && \
+    IF EXIST $$shell_quote($$shell_path($$_installer_dir)) ( \
+        rmdir /S /Q $$shell_quote($$shell_path($$_installer_dir)) \
+    ) && \
+    mkdir $$shell_quote($$shell_path($$_package_dir/meta)) && \
+    copy $$shell_quote($$shell_path($$OUT_PWD/installer/package.xml)) \
+        $$shell_quote($$shell_path($$_package_dir/meta)) && \
+    copy $$shell_quote($$shell_path($$PWD/COPYING)) \
+        $$shell_quote($$shell_path($$_package_dir/meta)) && \
+    copy $$shell_quote($$shell_path($$PWD/templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js)) \
+        $$shell_quote($$shell_path($$_package_dir/meta)) && \
+    mkdir $$shell_quote($$shell_path($$_installer_dir/config)) && \
+    copy $$shell_quote($$shell_path($$PWD/app/res/OpenTodoList80.png)) \
+        $$shell_quote($$shell_path($$_installer_dir/config/)) && \
+    copy $$shell_quote($$shell_path($$OUT_PWD/installer/windows-i386/config.xml)) \
+        $$shell_quote($$shell_path($$_installer_dir/config)) && \
+    mkdir $$shell_quote($$shell_path($$_package_dir/data)) && \
+    mkdir $$shell_quote($$shell_path($$_installer_dir/dist/bin)) && \
+    copy $$shell_quote($$shell_path($$OUT_PWD/app/$$_win_build_distdir/OpenTodoList.exe)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/bin)) && \
+    windeployqt $$_win_deploy_switch --qmldir $$shell_quote($$shell_path($$PWD/app)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/bin/OpenTodoList.exe)) && \
+    mkdir $$shell_quote($$shell_path($$_installer_dir/dist/share/OpenTodoList/icons/)) && \
+    copy $$shell_quote($$shell_path($$PWD/app/res/OpenTodoList.ico)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/share/OpenTodoList/icons/)) && \
+    archivegen $$shell_quote($$shell_path($$_package_dir/data/OpenTodoList.7z)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/bin)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/lib)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/plugins)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/qml)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/share)) \
+        $$shell_quote($$shell_path($$_installer_dir/dist/translations)) && \
+    binarycreator -c $$shell_quote($$shell_path($$_installer_dir/config/config.xml)) \
+        -p $$shell_quote($$shell_path($$_installer_dir/packages/)) \
+        $$shell_quote($$shell_path($$_installer_dir/OpenTodoList-offline-windows-i386-$${OPENTODOLIST_VERSION}.exe)) && \
+    repogen -r \
+        -p $$shell_quote($$shell_path($$_installer_dir/packages/)) \
+        $$shell_quote($$shell_path($$_installer_dir/OpenTodoList-windows-i386/)) && \
+    binarycreator \
+        -c $$shell_quote($$shell_path($$_installer_dir/config/config.xml)) \
+        -p $$shell_quote($$shell_path($$_installer_dir/packages/)) \
+        --online-only \
+        $$shell_quote($$shell_path($$_installer_dir/OpenTodoList-online-windows-i386-$$OPENTODOLIST_VERSION)) && \
+    @echo Installer build finished
+
+
+QMAKE_EXTRA_TARGETS += \
+    installer_windows_i386

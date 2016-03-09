@@ -12,7 +12,7 @@ Component.prototype.createOperations = function()
         // on Windows, create shortcuts in start menu dir
         if (installer.value("os") === "win") {
             component.addOperation("CreateShortcut",
-                                   "@TargetDir@/OpenTodoList/OpenTodoList.exe",
+                                   "@TargetDir@/bin/OpenTodoList.exe",
                                    "@StartMenuDir@/OpenTodoList.lnk");
         }
 

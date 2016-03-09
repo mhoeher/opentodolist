@@ -54,15 +54,30 @@ Mac OS X
 Windows
 -------
 
-1. Build OpenTodoList
-2. Copy the directories for distribution (bin, share) from the build
-   directory into a directory **C:\path\to\dist\OpenTodoList**
-   *Note:* Mind the trailing OpenTodoList directory. It is required for the
-   subsequent scripts to succeed.
-3. Run windeployqt.exe on the OpenTodoList.exe
-4. Change into **C:\path\to\dist**.
-4. Create installers and online repository:  
-     **perl %OTLSOURCEDIR%\bin\mk-installer.pl 
-     --installDir . 
-     --targetDir C:\path\to\installersdir 
-     --os windows --arch ARCH**
+Open a terminal and ensure, that all required tools are installed and visible your
+PATH environment variable. In particular,
+
+* Qt (via the qmake executable)
+* the Qt Installer Framework and
+
+are required. Usually, you want to have something like this done before the build:
+
+    set PATH=C:\path\to\qt\bin;C:\path\to\qtinstallerframework\bin;$PATH
+
+Now, we can proceed to build and package the app. Let's assume the source
+code is in C:\opentodolist. In order to build the installer,
+execute the following steps:
+
+    C:
+    mkdir build-opentodolist-release
+    cd build-opentodolist-release
+    qmake CONFIG+=release ../opentodolist
+    make
+    make check
+    make installer_windows_i386
+
+After these steps completed, you will find the online and offline installers
+as well as the package repository for the online installer in the
+sub-directory installer_build. In order to create an official release (which
+is hosted on www.rpdev.net), copy these files to 
+https://www.rpdev.net/public/repositories/qtifw.
