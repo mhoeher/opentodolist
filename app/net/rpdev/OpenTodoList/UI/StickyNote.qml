@@ -118,7 +118,6 @@ MouseArea {
         }
         
         Column {
-            id: checkBockListView
             
             anchors {
                 left: parent.left
@@ -126,40 +125,46 @@ MouseArea {
                 top: titleLabelBackground.bottom
                 margins: Globals.defaultMargin
             }
+            spacing: Globals.defaultMargin
             
-            Repeater {
-                model: note.checkBoxList
-                visible: note.showCheckBoxList
-                delegate: checkBoxListItemDelegate
+            Column {
+                id: checkBockListView
+                
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                
+                Repeater {
+                    model: note.checkBoxList
+                    visible: note.showCheckBoxList
+                    delegate: checkBoxListItemDelegate
+                }
             }
-        }
-        
-        Image {
-            id: image
-            source: App.localFileToUrl(note.image)
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: checkBockListView.bottom
-                margins: Globals.defaultMargin
-            }
-            fillMode: Image.PreserveAspectFit
-            visible: note.image !== ""
-            asynchronous: true
-        }
-        
-        Text {
-            id: contentLabel
             
-            text: note.text
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: image.bottom
-                margins: Globals.defaultMargin
+            Image {
+                id: image
+                source: App.localFileToUrl(note.image)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                fillMode: Image.PreserveAspectFit
+                visible: note.image !== ""
+                asynchronous: true
             }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            textFormat: Text.RichText
+            
+            Text {
+                id: contentLabel
+                
+                text: note.text
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                textFormat: Text.RichText
+            }
         }
     }
 }
