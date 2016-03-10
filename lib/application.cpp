@@ -295,9 +295,13 @@ void Application::checkForUpdates(bool forceCheck)
 
 void Application::runUpdate()
 {
-#ifdef Q_OS_LINUX
+  resetUpdateCheck();
+#if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
   QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
       "/../OpenTodoListMaintenanceTool";
+#ifdef Q_OS_WIN
+  maintenanceToolExe += ".exe";
+#endif
   if (QFile::exists(maintenanceToolExe)) {
     QProcess::startDetached(maintenanceToolExe, {"--updater"});
   }
@@ -306,8 +310,10 @@ void Application::runUpdate()
 
 bool Application::hasUpdateService() const
 {
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX)
   return QFile::exists(QCoreApplication::applicationDirPath() + "/../OpenTodoListMaintenanceTool");
+#elif defined(Q_OS_WIN)
+    return QFile::exists(QCoreApplication::applicationDirPath() + "/../OpenTodoListMaintenanceTool.exe");
 #else
   return false;
 #endif
@@ -423,9 +429,12 @@ void Application::runMigrations()
 
 void Application::runUpdateCheck()
 {
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
   QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
       "/../OpenTodoListMaintenanceTool";
+#ifdef Q_OS_WIN
+  maintenanceToolExe += ".exe";
+#endif
   if (QFile::exists(maintenanceToolExe)) {
     QProcess *maintenanceTool = new QProcess(this);
     Q_CHECK_PTR(maintenanceTool);
@@ -441,6 +450,14 @@ void Application::runUpdateCheck()
     maintenanceTool->start();
   }
 #endif
+}
+
+void Application::resetUpdateCheck()
+{
+    m_settings->beginGroup("Updates");
+    m_settings->setValue("updatesAvailable", false);
+    setUpdatesAvailable(false);
+    m_settings->endGroup();
 }
 
 void Application::runCachedUpdateCheck()

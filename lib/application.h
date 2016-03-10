@@ -104,6 +104,7 @@ private:
   void runMigrations();
   
   void runUpdateCheck();
+  void resetUpdateCheck();
   void runCachedUpdateCheck();
   void saveUpdatesAvailable(bool available);
   
