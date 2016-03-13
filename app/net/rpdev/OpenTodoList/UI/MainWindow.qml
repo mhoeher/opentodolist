@@ -37,6 +37,16 @@ ApplicationWindow {
         }
         
         Menu {
+            title: qsTr("Navigate")
+            MenuItem {
+                text: qsTr("Back")
+                enabled: stack.depth > 1
+                shortcut: StandardKey.Back
+                onTriggered: Logic.goBack(stack)
+            }
+        }
+        
+        Menu {
             id: itemsMenu
             
             title: qsTr("&Items")
@@ -438,7 +448,7 @@ ApplicationWindow {
     
     onClosing: {
         if (Qt.platform.os == "android") {
-            if (stack.depth > 0) {
+            if (stack.depth > 1) {
                 Logic.cancelCurrent(stack);
                 close.accepted = false;
                 console.error("Handled close request.");
@@ -453,15 +463,6 @@ ApplicationWindow {
         
         focus: true
         anchors.fill: parent
-        
-        
-        onFocusChanged: {
-            if (!activeFocusItem) {
-                forceActiveFocus();
-            }
-        }
-        Keys.onEscapePressed: Logic.goBack(stack)
-        Keys.onBackPressed: Logic.goBack(stack)
         
         FileDialog {
             id: openLocalLibraryDialog
