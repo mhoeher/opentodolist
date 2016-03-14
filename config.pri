@@ -1,5 +1,5 @@
 # The application version
-OPENTODOLIST_VERSION=2.0.5
+OPENTODOLIST_VERSION=2.1.0
 
 # Pass in values via defines
 DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
@@ -7,7 +7,7 @@ DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 QMAKE_TARGET_COMPANY = "RPdev"
 QMAKE_TARGET_PRODUCT = "OpenTodoList"
 QMAKE_TARGET_DESCRIPTION = "A todo and task management application"
-QMAKE_TARGET_COPYRIGHT = "(c) RPdev 2014-2015"
+QMAKE_TARGET_COPYRIGHT = "(c) RPdev 2014-2016"
 
 CONFIG(release, debug|release) {
     DEFINES += OPENTODOLIST_RELEASE
