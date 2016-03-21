@@ -44,3 +44,14 @@ function viewPage(stack, component) {
     stack.clear();
     stack.push({item: component, properties: { stack: stack }});    
 }
+
+function parentItemHavingFunction(item, fun) {
+    var result = item;
+    while (result) {
+        if (typeof(result[fun]) === "function") {
+            break;
+        }
+        result = result.parent;
+    }
+    return result;
+}

@@ -87,6 +87,23 @@ ApplicationWindow {
                 enabled: stack.currentItem && typeof(stack.currentItem["newTask"]) === "function"
                 onTriggered: stack.currentItem.newTask()
             }
+            MenuSeparator {}
+            MenuItem {
+                property Item item: Logic.parentItemHavingFunction(activeFocusItem, 
+                                                                   "createItemAndOpen")
+                text: qsTr("&Create Item")
+                enabled: item
+                shortcut: qsTr("Return")
+                onTriggered: item.createItem()
+                
+            }
+            MenuItem {
+                property Item item: Logic.parentItemHavingFunction(activeFocusItem, "createItem")
+                text: qsTr("C&reate Item and Open")
+                enabled: item
+                shortcut: qsTr("Ctrl+Return")
+                onTriggered: item.createItemAndOpen()
+            }
         }
         
         Menu {

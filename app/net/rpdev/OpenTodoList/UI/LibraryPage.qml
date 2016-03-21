@@ -68,13 +68,23 @@ Item {
     TextInputBar {
         id: newNoteBar
         placeholderText: qsTr("Note Title")
-        onAccepted: Logic.createNote(library, newNoteBar.edit)
+        onAccepted: {
+            var note = Logic.createNote(library, newNoteBar.edit);
+            if (openItem) {
+                itemClicked(note);
+            }
+        }
     }
     
     TextInputBar {
         id: newTodoListBar
         placeholderText: qsTr("Todo List Title")
-        onAccepted: Logic.createTodoList(library, newTodoListBar.edit)
+        onAccepted: {
+            var todoList = Logic.createTodoList(library, newTodoListBar.edit);
+            if (openItem) {
+                itemClicked(todoList);
+            }
+        }
     }
     
     ScrollView {

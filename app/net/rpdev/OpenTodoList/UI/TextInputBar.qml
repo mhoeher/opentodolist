@@ -10,7 +10,19 @@ Item {
     property TextField edit: edit
     property alias placeholderText: edit.placeholderText
     
-    signal accepted()
+    signal accepted(bool openItem)
+    
+    function createItem() {
+        if (edit.text !== "") {
+            root.accepted(false);
+        }
+    }
+    
+    function createItemAndOpen() {
+        if (edit.text !== "") {
+            root.accepted(true);
+        }
+    }
     
     width: parent.width
     height: Math.max(edit.height, button.height) + Globals.defaultMargin * 3
@@ -38,8 +50,8 @@ Item {
                 Layout.fillWidth: true
                 Keys.onEscapePressed: focus = false
                 Keys.onBackPressed: focus = false
-                Keys.onEnterPressed: if (edit.text !== "") root.accepted()
-                Keys.onReturnPressed: if (edit.text !== "") root.accepted()
+                Keys.onEnterPressed: if (edit.text !== "") root.createItem()
+                Keys.onReturnPressed: if (edit.text !== "") root.createItem()
             }
             
             Symbol {
@@ -49,7 +61,7 @@ Item {
                 enabled: edit.text !== ""
                 onClicked: {
                     edit.focus = false;
-                    root.accepted();
+                    root.createItem()
                 }
             }
         }

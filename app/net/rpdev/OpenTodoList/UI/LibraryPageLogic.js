@@ -1,14 +1,16 @@
 
 function createNote(library, edit) {
-    library.addNote(edit.displayText);
+    var result = library.addNote(edit.displayText);
     edit.text = "";
     edit.focus = false;
+    return result;
 }
 
 function createTodoList(library, edit) {
-    library.addTodoList(edit.displayText);
+    var result = library.addTodoList(edit.displayText);
     edit.text = "";
     edit.focus = false;
+    return result;
 }
 
 function numberOfColumns(page) {

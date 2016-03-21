@@ -41,8 +41,11 @@ Item {
         id: newTodoBar
         placeholderText: qsTr("Todo Title")
         onAccepted: {
-            item.addTodo(newTodoBar.edit.text);
+            var todo = item.addTodo(newTodoBar.edit.text);
             newTodoBar.edit.focus = false;
+            if (openItem) {
+                todos.openTodo(todo);
+            }
         }
     }
 
@@ -84,6 +87,10 @@ Item {
             
             TodoListView {
                 id: todos
+                function openTodo(todo) {
+                    stack.push({item: todoPage, properties: { todo: todo } })
+                }
+
                 model: item.todos
                 anchors {
                     left: parent.left
@@ -91,7 +98,7 @@ Item {
                     top: titleEdit.bottom
                     margins: Globals.defaultMargin * 2
                 }
-                onTodoSelected: stack.push({item: todoPage, properties: { todo: todo } })
+                onTodoSelected: openTodo(todo)
             }
             
             StickyNote {
