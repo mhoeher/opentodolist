@@ -302,28 +302,28 @@ ApplicationWindow {
                 }
                 Symbol {
                     symbol: Fonts.symbols.faBold
-                    visible: formatMenu.visible
+                    visible: formatMenu.visible && formatMenu.boldItem.enabled
                     checked: formatMenu.boldItem.checked
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: formatMenu.boldItem.trigger()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faItalic
-                    visible: formatMenu.visible
+                    visible: formatMenu.visible && formatMenu.italicItem.enabled
                     checked: formatMenu.italicItem.checked
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: formatMenu.italicItem.trigger()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faUnderline
-                    visible: formatMenu.visible
+                    visible: formatMenu.visible&& formatMenu.underlineItem.enabled
                     checked: formatMenu.underlineItem.checked
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: formatMenu.underlineItem.trigger()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faStrikethrough
-                    visible: formatMenu.visible
+                    visible: formatMenu.visible&& formatMenu.strikethroughItem.enabled
                     checked: formatMenu.strikethroughItem.checked
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: formatMenu.strikethroughItem.trigger()

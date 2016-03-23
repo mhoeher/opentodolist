@@ -36,6 +36,9 @@ Menu {
     property DocumentFormatter __defaultFormatter: DocumentFormatter {}
     property DocumentFormatter __formatter: __itemFormatter || __defaultFormatter
     
+    property var __textSelected: __formatter && 
+                                 __formatter.selectionStart != __formatter.selectionEnd
+    
     visible: __formatter !== __defaultFormatter
     
     Menu {
@@ -114,6 +117,7 @@ Menu {
         shortcut: StandardKey.Bold
         checkable: true
         checked: formatMenu.__formatter.bold
+        enabled: __textSelected
         onTriggered: __formatter.bold = !__formatter.bold
     }
     
@@ -123,6 +127,7 @@ Menu {
         shortcut: StandardKey.Italic
         checkable: true
         checked: formatMenu.__formatter.italic
+        enabled: __textSelected
         onTriggered: __formatter.italic = !__formatter.italic
     }
     
@@ -132,6 +137,7 @@ Menu {
         shortcut: StandardKey.Underline
         checkable: true
         checked: formatMenu.__formatter.underline
+        enabled: __textSelected
         onTriggered: __formatter.underline = !__formatter.underline
     }
     
@@ -140,6 +146,7 @@ Menu {
         text: qsTr("Strikethrough")
         checkable: true
         checked: formatMenu.__formatter.strikethrough
+        enabled: __textSelected
         onTriggered: __formatter.strikethrough = !__formatter.strikethrough
     }
     
