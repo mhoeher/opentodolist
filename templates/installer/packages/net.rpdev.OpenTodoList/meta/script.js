@@ -6,6 +6,9 @@ function Component()
 Component.prototype.createOperations = function()
 {
     try {
+        // Ask the user to end any running instance of the app
+        component.addOperation("FakeStopProcessForUpdate", "OpenTodoList");
+        
         // call the base create operations function
         component.createOperations();
 
