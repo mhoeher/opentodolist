@@ -1,5 +1,5 @@
 # The application version
-OPENTODOLIST_VERSION=2.1.0
+OPENTODOLIST_VERSION=2.1.1
 
 # Pass in values via defines
 DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
