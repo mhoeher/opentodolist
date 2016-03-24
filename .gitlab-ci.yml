@@ -6,5 +6,5 @@ unittests:
     - qmake-qt5
     - make -j4
     - make check
-  only:
-    - master
+  except:
+    - /^\d+(\.\d+)+/
