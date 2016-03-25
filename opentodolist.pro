@@ -21,6 +21,7 @@ OTHER_FILES += \
   bin/mk-qrc.pl \
   bin/mk-linux-installer-x86_64.sh \
   templates/installer/config/config.xml \
+  templates/installer/config/controller.js \
   templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
   templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml
 

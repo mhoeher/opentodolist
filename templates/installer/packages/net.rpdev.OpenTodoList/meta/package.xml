@@ -11,4 +11,5 @@
     <Default>true</Default>
     <Script>script.js</Script>
     <ForcedInstallation>true</ForcedInstallation>
+    <RequiresAdminRights>true</RequiresAdminRights>
 </Package>

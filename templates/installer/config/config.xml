@@ -13,6 +13,10 @@
     <InstallerApplicationIcon>OpenTodoList</InstallerApplicationIcon>
     <MaintenanceToolName>OpenTodoListMaintenanceTool</MaintenanceToolName>
     <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
+    <!-- Note: This hangs at least in Windows
+    <RunProgram>@TargetDir@/bin/OpenTodoList</RunProgram>
+    -->
+    <ControlScript>@@ControllerScript</ControlScript>
     <RemoteRepositories>
         <Repository>
         <Url>@@RepositoryUrl</Url>

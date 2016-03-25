@@ -12,10 +12,15 @@ _package_dir = "$$_installer_dir/packages/net.rpdev.OpenTodoList"
 _installer_config = $$cat($$PWD/templates/installer/config/config.xml,blob)
 _installer_config_version = \
     $$replace(_installer_config, "@@Version", $$OPENTODOLIST_VERSION)
+_installer_config_version = \
+    $$replace(_installer_config_version, "@@ControllerScript","$$PWD/templates/installer/config/controller.js")
+
 _installer_config_linux_x86_64 = \
     $$replace(_installer_config_version, "@@RepositoryUrl", $$_installer_repo_linux_x86_64)
+
 _installer_config_windows_i386 = \
     $$replace(_installer_config_version, "@@RepositoryUrl", $$_installer_repo_windows_i386)
+
 
 _package_config = $$cat($$PWD/templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml,blob)
 _package_config_version = \
