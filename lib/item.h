@@ -47,6 +47,8 @@ public:
    */
   bool readonly() { return m_readonly; }
   
+  bool isDangling() const;
+  
   /**
      @brief The title of the item as shown in the user interface.
    */
@@ -79,6 +81,8 @@ public:
    */
   QString persistenceFilename() const { return Item::persistenceFilename(m_itemType); }
   
+  QString itemMainSettingsFile() const;
+  
   static bool isItemDirectory(const QString &directory, const QString &itemType);
   
   /**
@@ -99,6 +103,13 @@ public:
   
   static QString titleToDirectoryName(const QString &title);
   
+  virtual void handleFileChanged(const QString &filename);
+  
+  
+public slots:
+  
+  void reload();
+  
 signals:
 
   /**
@@ -112,6 +123,14 @@ signals:
      This signal is emitted when Item::deleteItem() is used to delete the item.
    */
   void itemDeleted(Item *item);
+  
+  /**
+     @brief The item has been reloaded.
+     
+     This signal is emitted to indicate that the item has been reloaded. This is
+     the case if the files on disk belonging to the item have changed.
+   */
+  void reloaded();
   
 protected:
   
@@ -146,7 +165,6 @@ private:
   bool        m_deleted;
   bool        m_readonly;
   
-  QString itemMainSettingsFile() const;
 };
 
 QDebug operator<<(QDebug debug, const Item *item);

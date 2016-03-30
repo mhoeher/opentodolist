@@ -29,7 +29,8 @@ SOURCES += \
     todolist.cpp \
     opentodolistqmlextensionsplugin.cpp \
     documentformatter.cpp \
-    migrator_1_x_to_2_x.cpp
+    migrator_1_x_to_2_x.cpp \
+    fileutils.cpp
 
 HEADERS += \
     application.h \
@@ -49,4 +50,5 @@ HEADERS += \
     toplevelitemlist.h \
     opentodolistqmlextensionsplugin.h \
     documentformatter.h \
-    migrator_1_x_to_2_x.h
+    migrator_1_x_to_2_x.h \
+    fileutils.h

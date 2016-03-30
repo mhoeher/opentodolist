@@ -26,6 +26,7 @@ ComplexItem::ComplexItem(const QString &directory,
   m_notesLoaded(false)
 {
   initializeItem();
+  setupReload();
 }
 
 /**
@@ -117,4 +118,14 @@ ComplexItem::ComplexItem(bool loadItem,
   if (loadItem) {
     initializeItem();
   }
+  setupReload();
+}
+
+void ComplexItem::setupReload()
+{
+  connect(this, &Item::reloaded, [this]{
+    m_notes = QString();
+    m_notesLoaded = false;
+    emit notesChanged();
+  });
 }

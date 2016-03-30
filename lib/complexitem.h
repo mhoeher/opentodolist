@@ -65,6 +65,8 @@ private:
   QString   m_notes;
   bool      m_notesLoaded;
   
+  void setupReload();
+  
 };
 
 #endif // COMPLEXITEM_H

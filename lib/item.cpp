@@ -35,7 +35,7 @@ const QString Item::ItemType = "Item";
 Item::Item(const QString &directory, const QString &itemType, const QStringList &persistentProperties, QObject *parent) : 
   QObject(parent),
   m_title(),
-  m_directory(directory),
+  m_directory(QFileInfo(directory).absoluteFilePath()),
   m_uid(),
   m_itemType(itemType),
   m_persistentProperties(persistentProperties + PersistentProperties),
@@ -115,6 +115,14 @@ bool Item::deleteItem()
 }
 
 /**
+   @brief Returns true if the item has been deleted on disk.
+ */
+bool Item::isDangling() const
+{
+  return !QFile(itemMainSettingsFile()).exists();
+}
+
+/**
    @brief Sets the title of the item.
  */
 void Item::setTitle(const QString &title)
@@ -124,6 +132,14 @@ void Item::setTitle(const QString &title)
     emit titleChanged();
     saveItem();
   }
+}
+
+/**
+   @brief Returns the file name of the main file where the item data is stored.
+ */
+QString Item::itemMainSettingsFile() const
+{
+  return m_directory + "/" + persistenceFilename();
 }
 
 /**
@@ -157,7 +173,7 @@ Item::Item(bool loadItem,
            QObject *parent) :
   QObject(parent),
   m_title(),
-  m_directory(directory),
+  m_directory(QFileInfo(directory).absoluteFilePath()),
   m_uid(),
   m_itemType(itemType),
   m_persistentProperties(persistentProperties + PersistentProperties),
@@ -251,17 +267,19 @@ void Item::loadItem()
  */
 void Item::saveItem(SaveItemStrategy strategy)
 {
-  m_modified = true;
-  switch (strategy) {
-  case SaveItemImmediately:
-    commitItem();
-    break;
-  case SaveItemLater:
-    QTimer::singleShot(0, this, &Item::commitItem);
-    break;
-  default:
-    qFatal("Unexpected Item::SaveItemStrategy received: %d", strategy);
-    break;
+  if (!m_loadingSettings) {
+    m_modified = true;
+    switch (strategy) {
+    case SaveItemImmediately:
+      commitItem();
+      break;
+    case SaveItemLater:
+      QTimer::singleShot(0, this, &Item::commitItem);
+      break;
+    default:
+      qFatal("Unexpected Item::SaveItemStrategy received: %d", strategy);
+      break;
+    }
   }
 }
 
@@ -279,6 +297,37 @@ QString Item::titleToDirectoryName(const QString &title)
     copy = "Item";
   }
   return copy;
+}
+
+/**
+   @brief Handle a change of a file.
+   
+   This method is called by the parent of an item (i.e. either the library
+   or container item to which the item belongs) when the file specified by the
+   given @p filename changed (i.e. it was removed, added or modified).
+ */
+void Item::handleFileChanged(const QString &filename)
+{
+  reload();
+}
+
+/**
+   @brief Re-loads the item.
+   
+   Calling this causes the item to re-load any data from disk.
+ */
+void Item::reload()
+{
+  QFileInfo fi(itemMainSettingsFile());
+  if (fi.exists()) {
+    loadItem();
+    m_loadingSettings = true;
+    emit reloaded();
+    m_loadingSettings = false;
+  } else {
+    // Main settings file gone -> assume the item has been deleted
+    deleteItem();
+  }
 }
 
 /**
@@ -301,14 +350,6 @@ void Item::loadItemData()
 void Item::saveItemData()
 {
   // Nothing to be done here
-}
-
-/**
-   @brief Returns the file name of the main file where the item data is stored.
- */
-QString Item::itemMainSettingsFile() const
-{
-  return m_directory + "/" + persistenceFilename();
 }
 
 /**

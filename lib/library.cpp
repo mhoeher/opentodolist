@@ -3,11 +3,16 @@
 #include "image.h"
 #include "note.h"
 #include "todolist.h"
+#include "fileutils.h"
 
 #include <QDir>
+#include <QDirIterator>
+#include <QFileSystemWatcher>
 #include <QQueue>
 #include <QSet>
 #include <QUrl>
+
+#include <QDebug>
 
 
 /**
@@ -130,8 +135,16 @@ Library::Library(const QString &name,
   m_directory( directory ),
   m_factory( factory ),
   m_items(),
-  m_itemsLoaded(false)
+  m_itemsLoaded(false),
+  m_loadingItems(false),
+  m_fileSystemWatcher(new QFileSystemWatcher(nullptr))
 {
+  Q_ASSERT(m_fileSystemWatcher != nullptr);
+  connect(m_fileSystemWatcher, &QFileSystemWatcher::fileChanged,
+          this, &Library::onFileChanged);
+  connect(m_fileSystemWatcher, &QFileSystemWatcher::directoryChanged,
+          this, &Library::onFileChanged);
+  watchRecursively();
 }
 
 QString Library::itemPathFromTitle(const QString &title, const QString &itemType) const
@@ -148,7 +161,9 @@ QString Library::itemPathFromTitle(const QString &title, const QString &itemType
 
 void Library::addItem(TopLevelItem *item)
 {
-  item->commitItem();
+  if (!m_loadingItems) {
+    item->commitItem();
+  }
   connect(item, &Item::itemDeleted, this, &Library::onTopLevelItemDeleted);
   m_items.append(item);
   emit itemsChanged();
@@ -157,48 +172,64 @@ void Library::addItem(TopLevelItem *item)
 void Library::loadItems()
 {
   if (!m_itemsLoaded) {
-    QQueue<QString> dirs;
-    QSet<QString> visitedDirs;
+    m_itemsLoaded = true;
+    scanItems();
+  }
+}
+
+void Library::deleteDanglingItems()
+{
+  for (auto item : m_items) {
+    if (item->isDangling()) {
+      item->deleteItem();
+    }
+  }
+}
+
+void Library::scanItems(const QString &startDir)
+{
+  m_loadingItems = true;
+  QSet<QString> itemDirs;
+  for (auto item : m_items) {
+    itemDirs.insert(item->directory());
+  }
+  
+  QQueue<QString> dirs;
+  QSet<QString> visitedDirs;
+  if (startDir.isEmpty()) {
     dirs.enqueue(QFileInfo(m_directory).canonicalFilePath());
-    while (!dirs.isEmpty()) {
-      QString dir = dirs.dequeue();
-      visitedDirs.insert(dir);
-      if (Item::isItemDirectory<Note>(dir)) {
-        auto note = new Note(dir, this);
-        Q_CHECK_PTR(note);
-        if (containsItem(note->uid())) {
-          delete note;
-          continue;
-        }
-        addItem(note);
-      } else if (Item::isItemDirectory<Image>(dir)) {
-        auto image = new Image(dir, this);
-        Q_CHECK_PTR(image);
-        if (containsItem(image->uid())) {
-          delete image;
-          continue;
-        }
-        addItem(image);
-      } else if(Item::isItemDirectory<TodoList>(dir)) {
-        auto todoList = new TodoList(dir, this);
-        Q_CHECK_PTR(todoList);
-        if (containsItem(todoList->uid())) {
-          delete todoList;
-          continue;
-        }
-        addItem(todoList);
-      } else {
-        QDir d(dir);
-        for (auto entry : d.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-          QString newPath = QFileInfo(d.absoluteFilePath(entry)).canonicalFilePath();
-          if (!visitedDirs.contains(newPath)) {
-            dirs.enqueue(newPath);
-          }
+  } else {
+    dirs.enqueue(QFileInfo(startDir).canonicalFilePath());
+  }
+  while (!dirs.isEmpty()) {
+    QString dir = dirs.dequeue();
+    visitedDirs.insert(dir);
+    if (itemDirs.contains(dir)) {
+      continue;
+    }
+    if (Item::isItemDirectory<Note>(dir)) {
+      auto note = new Note(dir, this);
+      Q_CHECK_PTR(note);
+      addItem(note);
+    } else if (Item::isItemDirectory<Image>(dir)) {
+      auto image = new Image(dir, this);
+      Q_CHECK_PTR(image);
+      addItem(image);
+    } else if(Item::isItemDirectory<TodoList>(dir)) {
+      auto todoList = new TodoList(dir, this);
+      Q_CHECK_PTR(todoList);
+      addItem(todoList);
+    } else {
+      QDir d(dir);
+      for (auto entry : d.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        QString newPath = QFileInfo(d.absoluteFilePath(entry)).canonicalFilePath();
+        if (!visitedDirs.contains(newPath)) {
+          dirs.enqueue(newPath);
         }
       }
     }
-    m_itemsLoaded = true;
   }
+  m_loadingItems = false;
 }
 
 bool Library::containsItem(const QUuid &uid) const
@@ -252,4 +283,50 @@ void Library::onTopLevelItemDeleted(Item *item)
       return;
     }
   }
+}
+
+void Library::watchRecursively()
+{
+  auto watchedFiles = QSet<QString>::fromList(m_fileSystemWatcher->files());
+  auto watchedDirs = QSet<QString>::fromList(m_fileSystemWatcher->directories());
+  auto existingFiles = QSet<QString>();
+  auto existingDirs = QSet<QString>();
+  QDirIterator it(m_directory, QDirIterator::Subdirectories);
+  while (it.hasNext()) {
+    auto entry = it.next();
+    QFileInfo fi(entry);
+    if (fi.isDir()) {
+      existingDirs.insert(entry);
+      if (!watchedDirs.contains(entry)) {
+        m_fileSystemWatcher->addPath(entry);
+      }
+    } else if (fi.isFile()) {
+      existingFiles.insert(entry);
+      if (!watchedFiles.contains(entry)) {
+        m_fileSystemWatcher->addPath(entry);
+      }
+    }
+  }
+  auto oldDirs = watchedDirs - existingDirs;
+  auto oldFiles = watchedFiles - existingFiles;
+  if (!oldDirs.isEmpty()) {
+    m_fileSystemWatcher->removePaths(oldDirs.toList());
+  }
+  if (!oldFiles.isEmpty()) {
+    m_fileSystemWatcher->removePaths(oldFiles.toList());
+  }
+}
+
+void Library::onFileChanged(const QString &path)
+{
+  QFileInfo fi(path);
+  QString absolutePath = fi.absoluteFilePath();
+  for (Item *item : m_items) {
+    if (FileUtils::isSubDirOrFile(item->directory(), absolutePath)) {
+      item->handleFileChanged(absolutePath);
+      return;
+    }
+  }
+  deleteDanglingItems();
+  scanItems(absolutePath);
 }

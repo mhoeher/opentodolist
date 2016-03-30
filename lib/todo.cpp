@@ -1,9 +1,11 @@
 #include "todo.h"
 
+#include "fileutils.h"
 #include "task.h"
 #include "todolist.h"
 
 #include <QDir>
+#include <QSet>
 
 /**
    @brief The item type name used by the Todo class.
@@ -86,6 +88,19 @@ QQmlListProperty<Task> Todo::taskList()
   return QQmlListProperty<Task>(this, nullptr, taskListCount, taskListAt);
 }
 
+void Todo::handleFileChanged(const QString &filename)
+{
+  for (auto task : m_tasks) {
+    if (filename.startsWith(task->directory())) {
+      task->handleFileChanged(filename);
+      return;
+    }
+  }
+  deleteDanglingTasks();
+  scanTasks();
+  ComplexItem::handleFileChanged(filename);
+}
+
 void Todo::appendTask(Task *task)
 {
   Q_CHECK_PTR(task);
@@ -98,21 +113,38 @@ void Todo::appendTask(Task *task)
 void Todo::loadTasks()
 {
   if (!m_tasksLoaded) {
-    QString tasksDir = directory() + "/tasks/";
-    QDir dir(tasksDir);
-    for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-      QString taskDir = dir.absoluteFilePath(entry);
-      if (Item::isItemDirectory<Task>(taskDir)) {
-        Task *task = new Task(taskDir, this);
-        Q_CHECK_PTR(task);
-        if (hasTask(task->uid())) {
-          delete task;
-          continue;
+    m_tasksLoaded = true;
+    scanTasks();
+  }
+}
+
+void Todo::deleteDanglingTasks()
+{
+  for (auto task : m_tasks) {
+    if (task->isDangling()) {
+      task->deleteItem();
+    }
+  }
+}
+
+void Todo::scanTasks()
+{
+  QSet<QString> taskDirs;
+  for (auto task : m_tasks) {
+    taskDirs.insert(task->directory());
+  }
+  QDir tasksDir(directory());
+  if (tasksDir.cd("tasks")) {
+    for (auto entry : tasksDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+      QString taskDir = tasksDir.absoluteFilePath(entry);
+      if (!taskDirs.contains(taskDir)) {
+        if (Item::isItemDirectory<Task>(taskDir)) {
+          Task *task = new Task(taskDir, this);
+          Q_CHECK_PTR(task);
+          appendTask(task);
         }
-        appendTask(task);
       }
     }
-    m_tasksLoaded = true;
   }
 }
 
@@ -153,7 +185,7 @@ void Todo::onTaskDeleted(Item *item)
   Q_CHECK_PTR(item);
   for (int i = 0; i < m_tasks.size(); ++i) {
     auto task = m_tasks.at(i);
-    if (task->uid() == item->uid()) {
+    if (task == item) {
       m_tasks.removeAt(i);
       task->deleteLater();
       emit tasksChanged();

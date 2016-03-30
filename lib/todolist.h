@@ -23,6 +23,9 @@ public:
   TodosList todos();
   QQmlListProperty<Todo> todoList();
   
+  // Item interface
+  void handleFileChanged(const QString &filename) override;
+  
 signals:
   
   /**
@@ -40,6 +43,8 @@ private:
   void appendTodo(Todo *todo);
   bool containsTodo(const QUuid &uuid);
   void loadTodos();
+  void deleteDanglingTodos();
+  void scanTodos();
   
   static int todoListCount(QQmlListProperty<Todo> *property);
   static Todo* todoListAt(QQmlListProperty<Todo> *property, int index);

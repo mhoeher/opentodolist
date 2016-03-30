@@ -16,6 +16,8 @@ class LocalLibraryFactory;
 class Note;
 class TodoList;
 
+class QFileSystemWatcher;
+
 
 /**
    @brief A container for items.
@@ -107,10 +109,15 @@ private:
   const LibraryFactory *m_factory;
   TopLevelItemList      m_items;
   bool                  m_itemsLoaded;
+  bool                  m_loadingItems;
+  
+  QFileSystemWatcher   *m_fileSystemWatcher;
   
   QString itemPathFromTitle(const QString &title, const QString &itemType) const;
   void addItem(TopLevelItem *item);
   void loadItems();
+  void deleteDanglingItems();
+  void scanItems(const QString &startDir = QString());
   bool containsItem(const QUuid &uid) const;
   QString dirForItemType(const QString &itemType) const;
   
@@ -120,6 +127,8 @@ private:
 private slots:
   
   void onTopLevelItemDeleted(Item *item);
+  void watchRecursively();
+  void onFileChanged(const QString &path);
   
 };
 

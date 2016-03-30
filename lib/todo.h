@@ -48,6 +48,9 @@ public:
   TaskList tasks();
   QQmlListProperty<Task> taskList();
   
+  // Item interface
+  void handleFileChanged(const QString &filename) override;
+  
 signals:
 
   /**
@@ -71,6 +74,8 @@ private:
   
   void appendTask(Task *task);
   void loadTasks();
+  void deleteDanglingTasks();
+  void scanTasks();
   bool hasTask(const QUuid &uuid);
   void setTodoList(TodoList *todoList);
   

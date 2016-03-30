@@ -1,8 +1,10 @@
 #include "todolist.h"
 
 #include "todo.h"
+#include "fileutils.h"
 
 #include <QDir>
+#include <QSet>
 
 
 const QString TodoList::ItemType = "TodoList";
@@ -44,6 +46,19 @@ QQmlListProperty<Todo> TodoList::todoList()
   return QQmlListProperty<Todo>(this, nullptr, todoListCount, todoListAt);
 }
 
+void TodoList::handleFileChanged(const QString &filename)
+{
+  for (auto todo : m_todos) {
+    if (FileUtils::isSubDirOrFile(todo->directory(), filename)) {
+      todo->handleFileChanged(filename);
+      return;
+    }
+  }
+  deleteDanglingTodos();
+  scanTodos();
+  TopLevelItem::handleFileChanged(filename);
+}
+
 void TodoList::appendTodo(Todo *todo)
 {
   Q_CHECK_PTR(todo);
@@ -66,20 +81,38 @@ bool TodoList::containsTodo(const QUuid &uuid)
 void TodoList::loadTodos()
 {
   if (!m_todosLoaded) {
-    QDir todosDir(directory() + "/todos/");
+    m_todosLoaded = true;
+    scanTodos();
+  }
+}
+
+void TodoList::deleteDanglingTodos()
+{
+  for (auto todo : m_todos) {
+    if (todo->isDangling()) {
+      todo->deleteItem();
+    }
+  }
+}
+
+void TodoList::scanTodos()
+{
+  QSet<QString> todoDirs;
+  for (auto todo : m_todos) {
+    todoDirs.insert(todo->directory());
+  }
+  QDir todosDir(directory());
+  if (todosDir.cd("todos")) {
     for (auto entry : todosDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
       QString todoDir = todosDir.absoluteFilePath(entry);
-      if (isItemDirectory<Todo>(todoDir)) {
-        Todo *todo = new Todo(todoDir, this);
-        Q_CHECK_PTR(todo);
-        if (containsTodo(todo->uid())) {
-          delete todo;
-          continue;
+      if (!todoDirs.contains(todoDir)) {
+        if (isItemDirectory<Todo>(todoDir)) {
+          Todo *todo = new Todo(todoDir, this);
+          Q_CHECK_PTR(todo);
+          appendTodo(todo);
         }
-        appendTodo(todo);
       }
     }
-    m_todosLoaded = true;
   }
 }
 
@@ -102,7 +135,7 @@ void TodoList::onTodoDeleted(Item *item)
   Q_CHECK_PTR(item);
   for (int i = 0; i < m_todos.size(); ++i) {
     auto todo = m_todos.at(i);
-    if (todo->uid() == item->uid()) {
+    if (todo == item) {
       todo->deleteLater();
       m_todos.removeAt(i);
       emit todosChanged();
