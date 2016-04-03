@@ -33,12 +33,12 @@ mkpath($$OUT_PWD/installer/windows-i386)
 
 write_file(\
     "$$OUT_PWD/installer/linux-x86_64/config.xml",\
-    _installer_config_linux_x86_64, blob)
+    _installer_config_linux_x86_64)
 write_file(\
     "$$OUT_PWD/installer/windows-i386/config.xml",\
-    _installer_config_windows_i386, blob)
+    _installer_config_windows_i386)
 
-write_file("$$OUT_PWD/installer/package.xml", _package_config_date, blob)
+write_file("$$OUT_PWD/installer/package.xml", _package_config_date)
 
 
 
@@ -102,9 +102,6 @@ CONFIG(release, debug|release) {
 
 installer_windows_i386.commands = \
     @echo "Building Windows i386 Installer..." && \
-    IF EXIST $$shell_quote($$shell_path($$_installer_dir)) ( \
-        rmdir /S /Q $$shell_quote($$shell_path($$_installer_dir)) \
-    ) && \
     mkdir $$shell_quote($$shell_path($$_package_dir/meta)) && \
     copy $$shell_quote($$shell_path($$OUT_PWD/installer/package.xml)) \
         $$shell_quote($$shell_path($$_package_dir/meta)) && \
