@@ -4,11 +4,16 @@ OpenTodoList - A Todo and Task Management Application
 About
 -----
 
-OpenTodoList is an open source todo and task management application.
-It allows creation of arbitrary many todo lists. Todo lists can in turn
-contain todos. A todo has various attributes, such as a title, done state,
-due date and a priorty. Furthermore, they have a description and can have
-arbitrary many tasks.
+OpenTodoList is an open source task managing and note taking application.
+It allows to create arbitrary many libraries, which are stored as directories on
+the local storage. Inside each library, todo lists, notes and images can be created.
+Todo lists in turn consist of todos (which can also have sub-tasks).
+
+As data is by default stored locally, you remain in full control of your data.
+However, if you need to securely sync libraries between multiple of your devices,
+you can use any service of your choice to do so. For example, if you have set
+up an ownCloud instance, you can use the ownCloud desktop client to sync your library
+between your devices and the cloud.
 
 License
 -------
@@ -21,23 +26,15 @@ the Free Software Foundation, either version 3 of the License, or
 Download
 --------
 
-### Linux, Mac OS X and Windows
+### Linux and Windows
 
 You can find installers for various operating systems on the projects
 [homepage](http://www.rpdev.net/home/project/opentodolist).
 
 ### Android
 
-OpenTodoList is available from the Google Play Store for Android devices. However,
-due to its early development state, it is currently available as a beta only. In
-order to give it a try, follow these steps:
+[![Google Play Store](https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png)](https://play.google.com/store/apps/details?id=net.rpdev.opentodolist)
 
-1. Join the [OpenTodoList community on 
-   Google+](https://plus.google.com/communities/106580508283710923527).
-2. Opt-in for receiving beta updates by visiting the appropriate [Google
-    Play site](https://play.google.com/apps/testing/net.rpdev.opentodolist).
-3. On any device where you want to install the app, visit its [Google
-   Play Store entry](https://play.google.com/store/apps/details?id=net.rpdev.opentodolist).
 
 Get Help
 --------
@@ -57,7 +54,7 @@ bug report there. Also make use of this if you want to request a new feature.
 Building
 --------
 
-OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.4
+OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.6
 (compilation with earlier versions might succeed, but running the
 application might fail in this case). To get the latest sources, you furthermore
 require git. To download and build the application, run the following steps:
@@ -68,17 +65,6 @@ require git. To download and build the application, run the following steps:
     qmake ../opentodolist CONFIG+=release
     make
 
-Available Backends
-------------------
-
-OpenTodoList implements a plugin mechanism for its storage backends. A backend
-is any kind of *service* that allows you to store todos. Right now, the following
-backends are implemented:
-
-### Todos in local XML files
-
-This backend stores your todos locally in a set of XML files. This makes it
-an ideal choice for sensible data that you do not want to store "in the cloud".
 
 Supported Operating Systems
 ---------------------------
@@ -87,9 +73,8 @@ OpenTodoList can be run on a variety of operating systems. It is regularly build
 and tested on the following systems:
 
 * Linux
-* Mac OS X 10.10 and up
-* MS Windows 8.1
-* Android (ARM, ARMv7, x86)
+* MS Windows 10
+* Android (ARMv7, x86)
 
 If an OS is not mentioned in the above list, that does not mean that OpenTodoList won't
 compile and run there. Due to the underlying Qt libraries, chances are good that
