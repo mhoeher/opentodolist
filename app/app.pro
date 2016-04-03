@@ -27,3 +27,12 @@ win32:RC_FILE = OpenTodoList.rc
 
 DISTFILES += \
     android/AndroidManifest.xml
+
+# Include resources as folder - for better handling inside QtCreator
+CONFIG(debug, debug|release) {
+    resources_folder.source = net
+    resources_folder.target = /
+    DEPLOYMENTFOLDERS += resources_folder
+}
+
+OTHER_FILES += $$files($$PWD/net/rpdev/OpenTodoList/*, true)

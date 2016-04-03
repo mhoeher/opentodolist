@@ -44,6 +44,13 @@ ApplicationWindow {
                 shortcut: StandardKey.Back
                 onTriggered: Logic.goBack(stack)
             }
+            MenuItem {
+                text: qsTr("Up")
+                enabled: stack.currentItem && (typeof(stack.currentItem["goUp"]) === "function")
+                visible: enabled
+                shortcut: qsTr("Alt+Up")
+                onTriggered: stack.currentItem.goUp()
+            }
         }
         
         Menu {
@@ -214,6 +221,18 @@ ApplicationWindow {
                     visible: !leftSideBar.visible && !formatMenu.visible
                     anchors.verticalCenter: parent.verticalCenter
                     onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faAngleUp
+                    visible: stack.currentItem && typeof(stack.currentItem["goUp"]) === "function"
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: stack.currentItem.goUp()
+                }
+                Symbol {
+                    symbol: Fonts.symbols.faHome
+                    visible: stack.currentItem && typeof(stack.currentItem["goHome"]) === "function"
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: stack.currentItem.goHome()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faFolderOpenO
@@ -481,8 +500,9 @@ ApplicationWindow {
         focus: true
         anchors.fill: parent
         
-        FileDialog {
+        FileBrowser {
             id: openLocalLibraryDialog
+            stack: stack
             title: qsTr("Open Local Library")
             selectFolder: true
             //folder: shortcuts.home //TODO: Why is this not working?
@@ -588,5 +608,6 @@ ApplicationWindow {
             id: aboutPage
             AboutPage {}
         }
+        
     }
 }

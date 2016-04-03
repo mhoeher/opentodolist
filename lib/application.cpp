@@ -319,6 +319,27 @@ bool Application::hasUpdateService() const
 #endif
 }
 
+/**
+   @brief Returns the home location of the current user.
+ */
+QUrl Application::homeLocation() const
+{
+#ifdef Q_OS_ANDROID
+  return QUrl::fromLocalFile(qgetenv("EXTERNAL_STORAGE"));
+#else
+  QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+  return QUrl::fromLocalFile(homeDir);
+#endif
+}
+
+/**
+   @brief Returns true of the folder pointed to by @p url exists.
+ */
+bool Application::folderExists(const QUrl &url) const
+{
+  return url.isValid() && QDir(url.toLocalFile()).exists();
+}
+
 void Application::createFactories()
 {
   m_libraryFactories << new LocalLibraryFactory(this);

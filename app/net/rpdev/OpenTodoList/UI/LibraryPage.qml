@@ -55,13 +55,15 @@ Item {
         }
     }
     
-    FileDialog {
+    FileBrowser {
         id: openImageDialog
+        stack: stackView
         title: qsTr("Add Image")
         selectExisting: true
         selectFolder: false
         selectMultiple: false
         folder: shortcuts.pictures
+        nameFilters: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif"]
         onAccepted: library.addImage(fileUrl)
     }
     

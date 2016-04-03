@@ -45,5 +45,10 @@
         <file>3rdpartyinfo/qt/3rdpartyinfo.json</file>
         <file>net/rpdev/OpenTodoList/UI/ImageItem.qml</file>
         <file>net/rpdev/OpenTodoList/UI/ImagePage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/FileSelectorPage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/FileBrowser.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/+android/FileBrowser.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/private/FileBrowserWrapper.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/private/qmldir</file>
     </qresource>
 </RCC>

@@ -75,6 +75,9 @@ public:
   Q_INVOKABLE void runUpdate();
   bool hasUpdateService() const;
   
+  Q_INVOKABLE QUrl homeLocation() const;
+  Q_INVOKABLE bool folderExists(const QUrl &url) const;
+  
 signals:
   
   void librariesChanged();
