@@ -53,11 +53,14 @@ public slots:
   
 protected:
   
-  explicit ComplexItem(bool loadItem, 
+  explicit ComplexItem(bool loadItem,
                        const QString &directory = QString(),
                        const QString &itemType = ItemType,
                        const QStringList &persistentProperties = QStringList(),
                        QObject *parent = 0);
+
+  // Item interface
+  bool deleteItemData() override;
   
 private:
   
@@ -65,7 +68,7 @@ private:
   QString   m_notes;
   bool      m_notesLoaded;
   
-  void setupReload();
+  void setupReload();  
   
 };
 

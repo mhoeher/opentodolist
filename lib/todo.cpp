@@ -91,7 +91,8 @@ QQmlListProperty<Task> Todo::taskList()
 void Todo::handleFileChanged(const QString &filename)
 {
   for (auto task : m_tasks) {
-    if (filename.startsWith(task->directory())) {
+    if (FileUtils::isSubDirOrFile(task->directory(), filename))
+    {
       task->handleFileChanged(filename);
       return;
     }
@@ -99,6 +100,22 @@ void Todo::handleFileChanged(const QString &filename)
   deleteDanglingTasks();
   scanTasks();
   ComplexItem::handleFileChanged(filename);
+}
+
+bool Todo::deleteItemData()
+{
+    bool result = true;
+    for (int i = m_tasks.length() - 1; i >= 0; --i)
+    {
+        result = m_tasks[i]->deleteItem() && result;
+    }
+    QDir dir(directory());
+    if (dir.exists() && dir.exists("tasks"))
+    {
+        result = dir.rmdir("tasks") && result;
+    }
+    result = ComplexItem::deleteItemData() && result;
+    return result;
 }
 
 void Todo::appendTask(Task *task)

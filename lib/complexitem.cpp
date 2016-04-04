@@ -121,9 +121,25 @@ ComplexItem::ComplexItem(bool loadItem,
   setupReload();
 }
 
+bool ComplexItem::deleteItemData()
+{
+    bool result = false;
+    QFile notesFile(directory() + "/" + "notes.html");
+    if (notesFile.exists()) 
+    {
+        if (notesFile.remove()) 
+        {
+            result = true;
+        }
+    }
+    result = Item::deleteItemData() && result;
+    return result;
+}
+
 void ComplexItem::setupReload()
 {
-  connect(this, &Item::reloaded, [this]{
+  connect(this, &Item::reloaded, [this] 
+  {
     m_notes = QString();
     m_notesLoaded = false;
     emit notesChanged();

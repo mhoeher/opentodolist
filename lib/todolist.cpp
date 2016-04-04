@@ -59,6 +59,22 @@ void TodoList::handleFileChanged(const QString &filename)
   TopLevelItem::handleFileChanged(filename);
 }
 
+bool TodoList::deleteItemData()
+{
+    bool result = true;
+    for (int i = m_todos.length() - 1; i >= 0; --i)
+    {
+        result = m_todos[i]->deleteItem() && result;
+    }
+    QDir dir(directory());
+    if (dir.exists() && dir.exists("todos"))
+    {
+        result = dir.rmdir("todos") && result;
+    }
+    result = TopLevelItem::deleteItemData() && result;
+    return result;
+}
+
 void TodoList::appendTodo(Todo *todo)
 {
   Q_CHECK_PTR(todo);

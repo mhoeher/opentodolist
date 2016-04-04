@@ -1,5 +1,7 @@
 #include "item.h"
 
+#include "fileutils.h"
+
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
@@ -33,18 +35,18 @@ const QString Item::ItemType = "Item";
    @note To construct an invalid item, pass in an empty string.
  */
 Item::Item(const QString &directory, const QString &itemType, const QStringList &persistentProperties, QObject *parent) : 
-  QObject(parent),
-  m_title(),
-  m_directory(QFileInfo(directory).absoluteFilePath()),
-  m_uid(),
-  m_itemType(itemType),
-  m_persistentProperties(persistentProperties + PersistentProperties),
-  m_loadingSettings(false),
-  m_modified(false),
-  m_deleted(false),
-  m_readonly(false)
+    QObject(parent),
+    m_title(),
+    m_directory(QFileInfo(directory).absoluteFilePath()),
+    m_uid(),
+    m_itemType(itemType),
+    m_persistentProperties(persistentProperties + PersistentProperties),
+    m_loadingSettings(false),
+    m_modified(false),
+    m_deleted(false),
+    m_readonly(false)
 {
-  initializeItem();
+    initializeItem();
 }
 
 Item::~Item()
@@ -53,7 +55,7 @@ Item::~Item()
 
 /**
    @brief Saves the item data to disk.
-
+   
    This method is used to save the item information to disk. The base implementation writes to the
    Item::persistenceFilename() file in the Item::directory(). All persistent properties passed in
    the constructor call will be written to the file. Sub-classes should implement the
@@ -65,33 +67,33 @@ Item::~Item()
 */
 void Item::commitItem()
 {
-  if (m_modified) {
-    if (!m_deleted && isValid() && !m_readonly) {
-      if (!m_loadingSettings) {
-        QDir itemDir(m_directory);
-        if (!itemDir.exists()) {
-          itemDir.mkpath(m_directory);
+    if (m_modified) {
+        if (!m_deleted && isValid() && !m_readonly) {
+            if (!m_loadingSettings) {
+                QDir itemDir(m_directory);
+                if (!itemDir.exists()) {
+                    itemDir.mkpath(m_directory);
+                }
+                QFile file(itemMainSettingsFile());
+                if (file.open(QIODevice::WriteOnly)) {
+                    QVariantMap properties;
+                    for (auto property : m_persistentProperties) {
+                        properties[property] = this->property(qUtf8Printable(property));
+                    }
+                    properties["uid"] = m_uid;
+                    QJsonDocument doc = QJsonDocument::fromVariant(properties);
+                    file.write(doc.toJson());
+                    file.close();
+                    saveItemData();
+                } else {
+                    qWarning().nospace()
+                            << "Failed to open " << file.fileName() << " for item" << this << ": " << 
+                               file.errorString();
+                }
+            }
         }
-        QFile file(itemMainSettingsFile());
-        if (file.open(QIODevice::WriteOnly)) {
-          QVariantMap properties;
-          for (auto property : m_persistentProperties) {
-            properties[property] = this->property(qUtf8Printable(property));
-          }
-          properties["uid"] = m_uid;
-          QJsonDocument doc = QJsonDocument::fromVariant(properties);
-          file.write(doc.toJson());
-          file.close();
-          saveItemData();
-        } else {
-          qWarning().nospace()
-              << "Failed to open " << file.fileName() << " for item" << this << ": " << 
-                 file.errorString();
-        }
-      }
+        m_modified = false;
     }
-    m_modified = false;
-  }
 }
 
 /**
@@ -103,15 +105,16 @@ void Item::commitItem()
  */
 bool Item::deleteItem()
 {
-  if (!m_deleted && isValid() && !readonly()) {
-    QDir dir(m_directory);
-    m_deleted = true;
-    emit itemDeleted(this);
-    if (dir.exists()) {
-      return dir.removeRecursively();
+    if (!m_deleted && isValid() && !readonly()) {
+        QDir dir(m_directory);
+        m_deleted = true;
+        emit itemDeleted(this);
+        if (dir.exists()) 
+        {
+            return deleteItemData();
+        }
     }
-  }
-  return false;
+    return false;
 }
 
 /**
@@ -119,7 +122,7 @@ bool Item::deleteItem()
  */
 bool Item::isDangling() const
 {
-  return !QFile(itemMainSettingsFile()).exists();
+    return !QFile(itemMainSettingsFile()).exists();
 }
 
 /**
@@ -127,11 +130,11 @@ bool Item::isDangling() const
  */
 void Item::setTitle(const QString &title)
 {
-  if ( m_title != title ) {
-    m_title = title;
-    emit titleChanged();
-    saveItem();
-  }
+    if ( m_title != title ) {
+        m_title = title;
+        emit titleChanged();
+        saveItem();
+    }
 }
 
 /**
@@ -139,7 +142,7 @@ void Item::setTitle(const QString &title)
  */
 QString Item::itemMainSettingsFile() const
 {
-  return m_directory + "/" + persistenceFilename();
+    return m_directory + "/" + persistenceFilename();
 }
 
 /**
@@ -156,7 +159,7 @@ QString Item::itemMainSettingsFile() const
  */
 bool Item::isItemDirectory(const QString &directory, const QString &itemType)
 {
-  return QFile::exists(directory + "/" + persistenceFilename(itemType));
+    return QFile::exists(directory + "/" + persistenceFilename(itemType));
 }
 
 /**
@@ -171,19 +174,19 @@ Item::Item(bool loadItem,
            const QString &itemType, 
            const QStringList &persistentProperties, 
            QObject *parent) :
-  QObject(parent),
-  m_title(),
-  m_directory(QFileInfo(directory).absoluteFilePath()),
-  m_uid(),
-  m_itemType(itemType),
-  m_persistentProperties(persistentProperties + PersistentProperties),
-  m_loadingSettings(false),
-  m_deleted(false),
-  m_readonly(false)
+    QObject(parent),
+    m_title(),
+    m_directory(QFileInfo(directory).absoluteFilePath()),
+    m_uid(),
+    m_itemType(itemType),
+    m_persistentProperties(persistentProperties + PersistentProperties),
+    m_loadingSettings(false),
+    m_deleted(false),
+    m_readonly(false)
 {
-  if (loadItem) {
-    initializeItem();
-  }
+    if (loadItem) {
+        initializeItem();
+    }
 }
 
 /**
@@ -195,16 +198,16 @@ Item::Item(bool loadItem,
  */
 void Item::initializeItem()
 {
-  Q_ASSERT(!m_itemType.contains(QRegExp("[^a-zA-Z]")));
-  Q_ASSERT(!m_itemType.isEmpty());
-  QFileInfo fi(itemMainSettingsFile());
-  if (fi.exists()) {
-    loadItem();
-    m_readonly = !fi.isWritable();
-  } else {
-    m_uid = QUuid::createUuid();
-    saveItem(SaveItemImmediately);
-  }
+    Q_ASSERT(!m_itemType.contains(QRegExp("[^a-zA-Z]")));
+    Q_ASSERT(!m_itemType.isEmpty());
+    QFileInfo fi(itemMainSettingsFile());
+    if (fi.exists()) {
+        loadItem();
+        m_readonly = !fi.isWritable();
+    } else {
+        m_uid = QUuid::createUuid();
+        saveItem(SaveItemImmediately);
+    }
 }
 
 /**
@@ -223,36 +226,36 @@ void Item::initializeItem()
  */
 void Item::loadItem()
 {
-  if ( isValid() ) {
-    m_loadingSettings = true;
-    QFileInfo fi(itemMainSettingsFile());
-    if (fi.exists()) {
-      QFile file(fi.filePath());
-      if (file.open(QIODevice::ReadOnly)) {
-        QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-        QVariant v = doc.toVariant();
-        if (v.type() != QVariant::Map) {
-          qWarning() << "Expected" << file.fileName() << "to be a map structure, but got" <<
-                        v.typeName();
+    if ( isValid() ) {
+        m_loadingSettings = true;
+        QFileInfo fi(itemMainSettingsFile());
+        if (fi.exists()) {
+            QFile file(fi.filePath());
+            if (file.open(QIODevice::ReadOnly)) {
+                QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+                QVariant v = doc.toVariant();
+                if (v.type() != QVariant::Map) {
+                    qWarning() << "Expected" << file.fileName() << "to be a map structure, but got" <<
+                                  v.typeName();
+                } else {
+                    QVariantMap map = v.toMap();
+                    for (auto property : m_persistentProperties) {
+                        setProperty(qUtf8Printable(property), 
+                                    map.value(property, this->property(qUtf8Printable(property))));
+                    }
+                    m_uid = map.value("uid", m_uid).toUuid();
+                }
+                loadItemData(); // Load further item data if required
+            } else {
+                qWarning().nospace() 
+                        << "Failed to load" << fi.filePath() << "of" << this
+                        << ": " << file.errorString();
+            }
         } else {
-          QVariantMap map = v.toMap();
-          for (auto property : m_persistentProperties) {
-            setProperty(qUtf8Printable(property), 
-                        map.value(property, this->property(qUtf8Printable(property))));
-          }
-          m_uid = map.value("uid", m_uid).toUuid();
+            qDebug() << "File" << fi.filePath() << "of" << this << "does not exist.";
         }
-        loadItemData(); // Load further item data if required
-      } else {
-        qWarning().nospace() 
-            << "Failed to load" << fi.filePath() << "of" << this
-                   << ": " << file.errorString();
-      }
-    } else {
-      qDebug() << "File" << fi.filePath() << "of" << this << "does not exist.";
+        m_loadingSettings = false;
     }
-    m_loadingSettings = false;
-  }
 }
 
 /**
@@ -267,20 +270,20 @@ void Item::loadItem()
  */
 void Item::saveItem(SaveItemStrategy strategy)
 {
-  if (!m_loadingSettings) {
-    m_modified = true;
-    switch (strategy) {
-    case SaveItemImmediately:
-      commitItem();
-      break;
-    case SaveItemLater:
-      QTimer::singleShot(0, this, &Item::commitItem);
-      break;
-    default:
-      qFatal("Unexpected Item::SaveItemStrategy received: %d", strategy);
-      break;
+    if (!m_loadingSettings) {
+        m_modified = true;
+        switch (strategy) {
+        case SaveItemImmediately:
+            commitItem();
+            break;
+        case SaveItemLater:
+            QTimer::singleShot(0, this, &Item::commitItem);
+            break;
+        default:
+            qFatal("Unexpected Item::SaveItemStrategy received: %d", strategy);
+            break;
+        }
     }
-  }
 }
 
 /**
@@ -288,15 +291,15 @@ void Item::saveItem(SaveItemStrategy strategy)
  */
 QString Item::titleToDirectoryName(const QString &title)
 {
-  QString copy = title;
-  copy.replace(QRegExp("[^\\w\\s]"), ""); // Remove bad chars
-  copy.replace(QRegExp("\\s+"), " "); // Replace consecutive whitespace with a single one
-  copy.replace(QRegExp("^\\s*"), ""); // Remove leading space
-  copy.replace(QRegExp("\\s*$"), ""); // Remove trailing space
-  if (copy.isEmpty() || copy == " ") {
-    copy = "Item";
-  }
-  return copy;
+    QString copy = title;
+    copy.replace(QRegExp("[^\\w\\s]"), ""); // Remove bad chars
+    copy.replace(QRegExp("\\s+"), " "); // Replace consecutive whitespace with a single one
+    copy.replace(QRegExp("^\\s*"), ""); // Remove leading space
+    copy.replace(QRegExp("\\s*$"), ""); // Remove trailing space
+    if (copy.isEmpty() || copy == " ") {
+        copy = "Item";
+    }
+    return copy;
 }
 
 /**
@@ -308,7 +311,7 @@ QString Item::titleToDirectoryName(const QString &title)
  */
 void Item::handleFileChanged(const QString &filename)
 {
-  reload();
+    reload();
 }
 
 /**
@@ -318,16 +321,16 @@ void Item::handleFileChanged(const QString &filename)
  */
 void Item::reload()
 {
-  QFileInfo fi(itemMainSettingsFile());
-  if (fi.exists()) {
-    loadItem();
-    m_loadingSettings = true;
-    emit reloaded();
-    m_loadingSettings = false;
-  } else {
-    // Main settings file gone -> assume the item has been deleted
-    deleteItem();
-  }
+    QFileInfo fi(itemMainSettingsFile());
+    if (fi.exists()) {
+        loadItem();
+        m_loadingSettings = true;
+        emit reloaded();
+        m_loadingSettings = false;
+    } else {
+        // Main settings file gone -> assume the item has been deleted
+        deleteLater();
+    }
 }
 
 /**
@@ -338,7 +341,7 @@ void Item::reload()
  */
 void Item::loadItemData()
 {
-  // Nothing to be done here
+    // Nothing to be done here
 }
 
 /**
@@ -349,7 +352,49 @@ void Item::loadItemData()
  */
 void Item::saveItemData()
 {
-  // Nothing to be done here
+    // Nothing to be done here
+}
+
+/**
+   @brief Deletes the associated data of the item on disk.
+   
+   This method is called by deleteItem() to dispose any data of the item on disk. The base
+   implementation removes the common shared files any item has plus it will try to remove the item
+   directory. The method returns true of all files were removed or false otherwise. Note that
+   false is specifically returned if a sub-class created other files which were not removed
+   previously.
+   
+   Sub-classes should extend this method by removing their specific files and folder structures
+   first before calling the base implementation:
+   
+   @code
+   bool MyCustomItem::deleteItemData() {
+       bool result = false;
+       QFile f(m_someCustomFile);
+       if (f.remove()) {
+           result = Item::deleteLater();
+       }
+       return result;
+   }
+   @endcode
+ */
+bool Item::deleteItemData()
+{
+    QFile mainFile(itemMainSettingsFile());
+    if (mainFile.exists())
+    {
+        if (mainFile.remove()) 
+        {
+            QDir itemDir(m_directory);
+            if (itemDir.exists()) 
+            {
+                if (itemDir.cdUp()) 
+                {
+                    return itemDir.rmdir(QFileInfo(m_directory).fileName());
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -357,13 +402,13 @@ void Item::saveItemData()
  */
 QDebug operator<<(QDebug debug, const Item *item)
 {
-  QDebugStateSaver saver(debug);
-  Q_UNUSED(saver);
-  
-  if (item) {
-    debug.nospace() << item->itemType() << "(\"" << item->title() << "\" [" << item->uid() << "])";
-  } else {
-    debug << "Item(nullptr)";
-  }
-  return debug;
+    QDebugStateSaver saver(debug);
+    Q_UNUSED(saver);
+    
+    if (item) {
+        debug.nospace() << item->itemType() << "(\"" << item->title() << "\" [" << item->uid() << "])";
+    } else {
+        debug << "Item(nullptr)";
+    }
+    return debug;
 }

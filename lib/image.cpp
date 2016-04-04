@@ -19,11 +19,11 @@ const QStringList Image::PersistentProperties = {"image"};
    @brief Constructor.
  */
 Image::Image(const QString &directory, QObject *parent) : 
-  TopLevelItem(false, directory, ItemType, PersistentProperties, parent),
-  m_image(),
-  m_busy(false)
+    TopLevelItem(false, directory, ItemType, PersistentProperties, parent),
+    m_image(),
+    m_busy(false)
 {
-  initializeItem();
+    initializeItem();
 }
 
 /**
@@ -43,36 +43,41 @@ Image::Image(const QString &directory, QObject *parent) :
  */
 void Image::setImage(const QString &image)
 {
-  if (m_image != image) {
-    QFileInfo fi(image);
-    if (fi.isRelative()) {
-      m_image = image;
-      emit imageChanged();
-      saveItem();
-    } else {
-      if (fi.absolutePath() == directory()) {
-        m_image = fi.fileName();
-        emit imageChanged();
-        saveItem();
-      } else {
-        if (!fi.exists()) {
-          return;
+    if (m_image != image) {
+        QFileInfo fi(image);
+        if (fi.isRelative()) {
+            m_image = image;
+            emit imageChanged();
+            saveItem();
+        } else {
+            if (fi.absolutePath() == directory()) {
+                m_image = fi.fileName();
+                emit imageChanged();
+                saveItem();
+            } else {
+                if (!fi.exists()) {
+                    return;
+                }
+                setBusy(true);
+                QString localFileName = findLocalFileName(image);
+                QFuture<void> copy = QtConcurrent::run(
+                            Image::copyImage, image, directory() + "/" + localFileName);
+                QString currentFileName = directory() + "/" + m_image;
+                if (QFile::exists(currentFileName))
+                {
+                    QtConcurrent::run(Image::removeImage, currentFileName);
+                }
+                auto *copyWatcher = new QFutureWatcher<void>(this);
+                connect(copyWatcher, &QFutureWatcher<void>::finished, [this,localFileName]() {
+                    this->m_image = localFileName;
+                    emit this->imageChanged();
+                    this->saveItem();
+                    this->setBusy(false);
+                });
+                copyWatcher->setFuture(copy);
+            }
         }
-        setBusy(true);
-        QString localFileName = findLocalFileName(image);
-        QFuture<void> copy = QtConcurrent::run(Image::copyImage, image, directory() + "/" + localFileName);
-        QtConcurrent::run(Image::removeImage, directory() + "/" + m_image);
-        auto *copyWatcher = new QFutureWatcher<void>(this);
-        connect(copyWatcher, &QFutureWatcher<void>::finished, [this,localFileName]() {
-          this->m_image = localFileName;
-          emit this->imageChanged();
-          this->saveItem();
-          this->setBusy(false);
-        });
-        copyWatcher->setFuture(copy);
-      }
     }
-  }
 }
 
 /**
@@ -83,40 +88,55 @@ void Image::setImage(const QString &image)
  */
 bool Image::validImage() const
 {
-  return QFile(directory() + "/" + m_image).exists();
+    return QFile(directory() + "/" + m_image).exists();
+}
+
+bool Image::deleteItemData()
+{
+    bool result = false;
+    QFile imageFile(directory() + "/" + m_image);
+    if (imageFile.exists())
+    {
+        if (imageFile.remove())
+        {
+            result = true;
+        }
+    }
+    result = TopLevelItem::deleteItemData() && result;
+    return result;
 }
 
 void Image::setBusy(bool busy)
 {
-  m_busy = busy;
-  emit busyChanged();
+    m_busy = busy;
+    emit busyChanged();
 }
 
 QString Image::findLocalFileName(const QString &image) const
 {
-  QFileInfo fi(image);
-  QString localFileName = fi.fileName();
-  int i = 0;
-  while (QFile::exists(directory() + "/" + localFileName)) {
-    localFileName = fi.completeBaseName() + " - " + QString::number(++i) + fi.suffix();
-  }
-  return localFileName;
+    QFileInfo fi(image);
+    QString localFileName = fi.fileName();
+    int i = 0;
+    while (QFile::exists(directory() + "/" + localFileName)) {
+        localFileName = fi.completeBaseName() + " - " + QString::number(++i) + fi.suffix();
+    }
+    return localFileName;
 }
 
 void Image::copyImage(const QString &imgFrom, const QString &imgTo)
 {
-  QFile file(imgFrom);
-  if (!file.copy(imgTo)) {
-    qWarning().noquote().nospace()
-        << "Failed to copy image from " << imgFrom << " to " << imgTo << ": " << file.errorString();
-  }
+    QFile file(imgFrom);
+    if (!file.copy(imgTo)) {
+        qWarning().noquote().nospace()
+                << "Failed to copy image from " << imgFrom << " to " << imgTo << ": " << file.errorString();
+    }
 }
 
 void Image::removeImage(const QString &image)
 {
-  QFile file(image);
-  if (!file.remove()) {
-    qWarning().noquote().nospace() 
-        << "Failed to remove image " << image << ": " << file.errorString();
-  }
+    QFile file(image);
+    if (!file.remove()) {
+        qWarning().noquote().nospace() 
+                << "Failed to remove image " << image << ": " << file.errorString();
+    }
 }

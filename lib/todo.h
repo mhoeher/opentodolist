@@ -65,6 +65,10 @@ signals:
   
 public slots:
   
+protected:
+  // Item interface
+  bool deleteItemData() override;
+  
 private:
   
   bool m_done;
@@ -85,6 +89,7 @@ private:
 private slots:
   
   void onTaskDeleted(Item *item);
+  
   
 };
 

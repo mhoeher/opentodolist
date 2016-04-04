@@ -35,6 +35,10 @@ signals:
   
 public slots:
   
+protected:
+  // Item interface
+  bool deleteItemData() override;
+
 private:
   
   TodosList m_todos;
@@ -52,6 +56,7 @@ private:
 private slots:
   
   void onTodoDeleted(Item *item);
+  
   
 };
 

@@ -151,6 +151,7 @@ protected:
   
   virtual void loadItemData();
   virtual void saveItemData();
+  virtual bool deleteItemData();
   
   
 private:

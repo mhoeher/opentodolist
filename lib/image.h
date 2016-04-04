@@ -44,6 +44,10 @@ signals:
   
 public slots:
   
+protected:
+  // Item interface
+  bool deleteItemData() override;
+
 private:
   
   QString m_image;
@@ -55,6 +59,7 @@ private:
   
   static void copyImage(const QString &imgFrom, const QString &imgTo);
   static void removeImage(const QString &image);
+  
   
 };
 
