@@ -12,7 +12,7 @@ MouseArea {
     property string title: qsTr("Sticky Note Title")
     property string text: qsTr("Note Content")
     property color backgroundColor: Colors.noteBackground
-    property var checkBoxList: null
+    property alias checkBoxList: checkBoxListRepeater.model
     property bool showCheckBoxList: false
     property string image: ""
     
@@ -136,7 +136,7 @@ MouseArea {
                 }
                 
                 Repeater {
-                    model: note.checkBoxList
+                    id: checkBoxListRepeater
                     visible: note.showCheckBoxList
                     delegate: checkBoxListItemDelegate
                 }

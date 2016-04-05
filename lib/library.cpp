@@ -153,7 +153,7 @@ QString Library::itemPathFromTitle(const QString &title, const QString &itemType
   QString tpl = baseDir + "/" + Item::titleToDirectoryName(title);
   int i = 0;
   QString result = tpl;
-  while (QDir(tpl).exists()) {
+  while (QDir(result).exists()) {
     result = tpl + " - " + QString::number(i++);
   }
   return result;
