@@ -33,7 +33,7 @@ Item {
         }
         
         Text {
-            text: qsTr("(c) RPdev 2013-2016")
+            text: qsTr("(c) RPdev 2013-2016, version %1").arg(applicationVersion)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.fillWidth: true
         }
