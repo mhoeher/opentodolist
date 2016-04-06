@@ -63,7 +63,7 @@ Item {
         selectFolder: false
         selectMultiple: false
         folder: shortcuts.pictures
-        nameFilters: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif"]
+        fileNameExtensions: ["jpg", "jpeg", "png", "bmp", "gif"]
         onAccepted: library.addImage(fileUrl)
     }
     

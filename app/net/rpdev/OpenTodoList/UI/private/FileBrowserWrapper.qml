@@ -9,7 +9,7 @@ Item {
     property StackView stack: null
     property url fileUrl
     property url folder
-    property var nameFilters // list<string>
+    //property var nameFilters // list<string>
     property bool selectExisting
     property bool selectFolder
     property bool selectMultiple
@@ -18,6 +18,7 @@ Item {
     property string sidebarVisible
     property string title
     //property bool visible
+    property var fileNameExtensions
     
     signal accepted()
     
@@ -37,7 +38,15 @@ Item {
         FileSelectorPage {
             folder: wrapper.folder
             selectFolder: wrapper.selectFolder
-            nameFilters: wrapper.nameFilters
+            nameFilters: {
+                var result = [];
+                if (wrapper.fileNameExtensions) {
+                    for (var i = 0; i < wrapper.fileNameExtensions.length; ++i) {
+                        result.push("*." + wrapper.fileNameExtensions[i]);
+                    }
+                }
+                return result;
+            }
             
             onFileSelected: {
                 if (!wrapper.selectFolder) {

@@ -22,7 +22,7 @@ ScrollView {
     }
     
     function __selectFolder() {
-        fileUrl = "file://" + folderListModel.folder;
+        fileUrl = folderListModel.folder;
         folderSelected(folderListModel.folder);
         __cleanStack();
     }
@@ -50,6 +50,7 @@ ScrollView {
             onClicked: {
                 if (fileIsDir) {
                     folderListModel.folder = "file://" + filePath;
+                    console.warn("file://" + filePath);
                 } else {
                     root.fileSelected("file://" + filePath)
                     __cleanStack();
