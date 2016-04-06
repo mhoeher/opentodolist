@@ -311,6 +311,7 @@ QString Item::titleToDirectoryName(const QString &title)
  */
 void Item::handleFileChanged(const QString &filename)
 {
+    Q_UNUSED(filename);
     reload();
 }
 
@@ -380,6 +381,7 @@ void Item::saveItemData()
  */
 bool Item::deleteItemData()
 {
+    bool result = false;
     QFile mainFile(itemMainSettingsFile());
     if (mainFile.exists())
     {
@@ -390,11 +392,12 @@ bool Item::deleteItemData()
             {
                 if (itemDir.cdUp()) 
                 {
-                    return itemDir.rmdir(QFileInfo(m_directory).fileName());
+                    result = itemDir.rmdir(QFileInfo(m_directory).fileName());
                 }
             }
         }
     }
+    return result;
 }
 
 /**
