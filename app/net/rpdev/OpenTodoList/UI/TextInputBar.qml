@@ -13,13 +13,13 @@ Item {
     signal accepted(bool openItem)
     
     function createItem() {
-        if (edit.text !== "") {
+        if (edit.displayText !== "") {
             root.accepted(false);
         }
     }
     
     function createItemAndOpen() {
-        if (edit.text !== "") {
+        if (edit.displayText !== "") {
             root.accepted(true);
         }
     }
