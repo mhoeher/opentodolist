@@ -56,6 +56,7 @@ private:
 private slots:
   
   void onTodoDeleted(Item *item);
+  void onItemDeleted(QObject *item);
   
   
 };

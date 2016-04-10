@@ -115,6 +115,7 @@ private:
   
   QString itemPathFromTitle(const QString &title, const QString &itemType) const;
   void addItem(TopLevelItem *item);
+  void addItemIfNoDuplicate(TopLevelItem* item);
   void loadItems();
   void deleteDanglingItems();
   void scanItems(const QString &startDir = QString());
@@ -126,6 +127,7 @@ private:
   
 private slots:
   
+  void onItemDeleted(QObject *item);
   void onTopLevelItemDeleted(Item *item);
   void watchRecursively();
   void onFileChanged(const QString &path);

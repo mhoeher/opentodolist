@@ -82,6 +82,7 @@ private:
   void scanTasks();
   bool hasTask(const QUuid &uuid);
   void setTodoList(TodoList *todoList);
+  bool containsTask(const QUuid &uuid) const;
   
   static int taskListCount(QQmlListProperty<Task> *property);
   static Task* taskListAt(QQmlListProperty<Task> *property, int index);
@@ -89,6 +90,7 @@ private:
 private slots:
   
   void onTaskDeleted(Item *item);
+  void onItemDeleted(QObject *item);
   
   
 };

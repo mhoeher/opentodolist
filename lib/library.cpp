@@ -165,8 +165,31 @@ void Library::addItem(TopLevelItem *item)
     item->commitItem();
   }
   connect(item, &Item::itemDeleted, this, &Library::onTopLevelItemDeleted);
+  connect(item, &QObject::destroyed, this, &Library::onItemDeleted);
   m_items.append(item);
   emit itemsChanged();
+}
+
+/**
+   @brief Adds an item if to the library if it is not a duplicate.
+   
+   This will use addItem() on the passed @p item if it is not already in the
+   library. Otherwise, the item will be deleted.
+   
+   @note The caller must not assume that the pointer to the item is still valid after the
+         call.
+ */
+void Library::addItemIfNoDuplicate(TopLevelItem *item)
+{
+    Q_CHECK_PTR(item);
+    if (containsItem(item->uid()))
+    {
+        delete item;
+    } 
+    else    
+    {
+        addItem(item);
+    }
 }
 
 void Library::loadItems()
@@ -210,15 +233,15 @@ void Library::scanItems(const QString &startDir)
     if (Item::isItemDirectory<Note>(dir)) {
       auto note = new Note(dir, this);
       Q_CHECK_PTR(note);
-      addItem(note);
+      addItemIfNoDuplicate(note);
     } else if (Item::isItemDirectory<Image>(dir)) {
       auto image = new Image(dir, this);
       Q_CHECK_PTR(image);
-      addItem(image);
+      addItemIfNoDuplicate(image);
     } else if(Item::isItemDirectory<TodoList>(dir)) {
       auto todoList = new TodoList(dir, this);
       Q_CHECK_PTR(todoList);
-      addItem(todoList);
+      addItemIfNoDuplicate(todoList);
     } else {
       QDir d(dir);
       for (auto entry : d.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -270,6 +293,15 @@ TopLevelItem* Library::itemListAt(QQmlListProperty<TopLevelItem> *property, int 
   Library *_this = dynamic_cast<Library*>(property->object);
   Q_CHECK_PTR(_this);
   return _this->items().at(index);
+}
+
+void Library::onItemDeleted(QObject* item)
+{
+    Q_CHECK_PTR(item);
+    if (m_items.removeOne(reinterpret_cast<TopLevelItem*>(item)))
+    {
+        emit itemsChanged();
+    }
 }
 
 void Library::onTopLevelItemDeleted(Item *item)

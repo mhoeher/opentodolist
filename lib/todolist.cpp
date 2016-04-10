@@ -80,6 +80,7 @@ void TodoList::appendTodo(Todo *todo)
   Q_CHECK_PTR(todo);
   todo->setTodoList(this);
   connect(todo, &Item::itemDeleted, this, &TodoList::onTodoDeleted);
+  connect(todo, &QObject::destroyed, this, &TodoList::onItemDeleted);
   m_todos.append(todo);
   emit todosChanged();
 }
@@ -125,7 +126,14 @@ void TodoList::scanTodos()
         if (isItemDirectory<Todo>(todoDir)) {
           Todo *todo = new Todo(todoDir, this);
           Q_CHECK_PTR(todo);
-          appendTodo(todo);
+          if (containsTodo(todo->uid()))
+          {
+              delete todo;
+          }
+          else
+          {
+              appendTodo(todo);
+          }
         }
       }
     }
@@ -158,4 +166,13 @@ void TodoList::onTodoDeleted(Item *item)
       break;
     }
   }
+}
+
+void TodoList::onItemDeleted(QObject* item)
+{
+    Q_CHECK_PTR(item);
+    if (m_todos.removeOne(reinterpret_cast<Todo*>(item)))
+    {
+        emit todosChanged();
+    }
 }
