@@ -353,12 +353,15 @@ void Library::onFileChanged(const QString &path)
 {
   QFileInfo fi(path);
   QString absolutePath = fi.absoluteFilePath();
-  for (Item *item : m_items) {
-    if (FileUtils::isSubDirOrFile(item->directory(), absolutePath)) {
-      item->handleFileChanged(absolutePath);
-      return;
-    }
+  if (FileUtils::isSubDirOrFile(m_directory, absolutePath)) {
+      for (Item *item : m_items) {
+        if (FileUtils::isSubDirOrFile(item->directory(), absolutePath)) {
+          item->handleFileChanged(absolutePath);
+          return;
+        }
+      }
+      
+      deleteDanglingItems();
+      scanItems(m_directory);
   }
-  deleteDanglingItems();
-  scanItems(absolutePath);
 }
