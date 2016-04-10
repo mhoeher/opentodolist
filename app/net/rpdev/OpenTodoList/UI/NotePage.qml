@@ -79,7 +79,12 @@ Item {
                 title: qsTr("Notes")
                 text: item.notes
                 backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
-                onClicked: stack.push({ item: notesEditor, properties: { text: item.notes }});
+                onClicked: {
+                    var page = stack.push({ item: notesEditor, properties: { text: item.notes }});
+                    page.onTextChanged.connect(function() { item.notes = page.text; });
+                    item.onReloaded.connect(function() { page.text = item.notes; });
+                    
+                }
             }
             
             Item {
@@ -90,7 +95,6 @@ Item {
                 id: notesEditor
                 
                 RichTextEditor {
-                    onAccepted: page.item.notes = text
                     Component.onCompleted: forceActiveFocus()
                 }
             }

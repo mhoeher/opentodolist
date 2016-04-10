@@ -18,6 +18,7 @@ FocusScope {
     signal accepted()
     
     function cancel() {
+        textArea.focus = false;
         accepted();
     }
     

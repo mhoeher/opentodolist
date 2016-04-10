@@ -98,14 +98,17 @@ Item {
                 title: qsTr("Notes")
                 text: todo.notes
                 backgroundColor: Colors.itemYellow
-                onClicked: stack.push({ item: notesEditor, properties: { text: todo.notes }});
+                onClicked: {
+                    var page = stack.push({ item: notesEditor, properties: { text: todo.notes }});
+                    page.onTextChanged.connect(function() { todo.notes = page.text; });
+                    todo.onReloaded.connect(function() { page.text = todo.notes; });
+                }
             }
             
             Component {
                 id: notesEditor
                 
                 RichTextEditor {
-                    onAccepted: page.todo.notes = text
                     Component.onCompleted: forceActiveFocus()
                 }
             }
