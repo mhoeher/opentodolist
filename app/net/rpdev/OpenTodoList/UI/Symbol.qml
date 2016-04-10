@@ -9,6 +9,7 @@ ButtonContainer {
     property alias label: label
     property Menu menu: null
     property bool checked: false
+    property alias color: label.color
     
     width: height
     
@@ -20,8 +21,10 @@ ButtonContainer {
     
     Text {
         id: label
-        font.family: Fonts.symbols.name
-        font.bold: false
+        font {
+            family: Fonts.symbols.family
+            pixelSize: Globals.minButtonHeight * 0.7
+        }
         color: checked ? Colors.primary : "black"
         anchors.centerIn: parent
         text: Fonts.symbols.faPlus

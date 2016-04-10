@@ -4,6 +4,7 @@ ColorMenu 1.0 ColorMenu.qml
 FileBrowser 1.0 FileBrowser.qml
 FileBrowserWrapper 1.0 FileBrowserWrapper.qml
 FileSelectorPage 1.0 FileSelectorPage.qml
+FontAwesome 1.0 FontAwesome.qml
 LibrariesSideBar 1.0 LibrariesSideBar.qml
 MainWindow 1.0 MainWindow.qml
 NoteItem 1.0 NoteItem.qml

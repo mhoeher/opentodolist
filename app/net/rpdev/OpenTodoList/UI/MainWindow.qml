@@ -39,6 +39,13 @@ ApplicationWindow {
         Menu {
             title: qsTr("Navigate")
             MenuItem {
+                text: qsTr("Show Library Sidebar")
+                visible: leftSideBar.compact
+                checked: leftSideBar.showing
+                shortcut: qsTr("Ctrl+L")
+                onTriggered: leftSideBar.showing = !leftSideBar.showing
+            }
+            MenuItem {
                 text: qsTr("Back")
                 enabled: stack.depth > 1
                 shortcut: StandardKey.Back
@@ -213,14 +220,13 @@ ApplicationWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: Logic.cancelCurrent(stack)
                 }
-                ComboBox {
-                    id: libraryNavigator
-                    model: App.libraries
-                    editable: false
-                    textRole: "name"
-                    visible: !leftSideBar.visible && !formatMenu.visible
+                Symbol {
+                    id: sidebarControl
+                    symbol: Fonts.symbols.faBars
                     anchors.verticalCenter: parent.verticalCenter
-                    onCurrentIndexChanged: leftSideBar.currentLibrary = App.libraries[currentIndex]
+                    visible: leftSideBar.compact && stack.depth <= 1
+                    checked: leftSideBar.showing
+                    onClicked: leftSideBar.showing = !leftSideBar.showing
                 }
                 Symbol {
                     symbol: Fonts.symbols.faAngleUp
@@ -233,12 +239,6 @@ ApplicationWindow {
                     visible: stack.currentItem && typeof(stack.currentItem["goHome"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: stack.currentItem.goHome()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faFolderOpenO
-                    visible: addLocalLibraryItem.enabled
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: addLocalLibraryItem.trigger()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faStickyNoteO
@@ -484,7 +484,11 @@ ApplicationWindow {
     
     onClosing: {
         if (Qt.platform.os == "android") {
-            if (stack.depth > 1) {
+            if (leftSideBar.compact && leftSideBar.showing) {
+                leftSideBar.showing = false;
+                close.accepted = false;
+                return;
+            } else if (stack.depth > 1) {
                 Logic.cancelCurrent(stack);
                 close.accepted = false;
                 console.error("Handled close request.");
@@ -516,19 +520,6 @@ ApplicationWindow {
             fillMode: Image.Tile
         }
         
-        LibrariesSideBar {
-            id: leftSideBar
-            anchors {
-                top: parent.top
-                bottom: parent.bottom
-            }
-            width: 20 * Globals.fontPixelSize
-            edge: Qt.LeftEdge
-            x: applicationWindow.width > Globals.fontPixelSize * 60 ? 0 : -width
-            visible: x > -width
-            onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, libraryPage)
-        }
-        
         StackView {
             id: stack
             anchors {
@@ -538,6 +529,19 @@ ApplicationWindow {
                 bottom: updateNotificationBar.top
             }
             clip: true
+        }
+        
+        LibrariesSideBar {
+            id: leftSideBar
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+            }
+            width: 15 * Globals.fontPixelSize
+            edge: Qt.LeftEdge
+            compact: applicationWindow.width <= Globals.fontPixelSize * 60
+            onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, libraryPage)
+            onOpenLocalLibrary: openLocalLibraryDialog.open()
         }
         
         MouseArea {

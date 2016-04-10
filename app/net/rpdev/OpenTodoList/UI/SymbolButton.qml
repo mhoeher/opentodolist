@@ -13,7 +13,10 @@ Button {
         id: style
         
         label: Label {
-            font.family: Fonts.symbols.family
+            font {
+                family: Fonts.symbols.family
+                pixelSize: Globals.minButtonHeight * 0.9
+            }
             text: style.control.text
         }
     }    
