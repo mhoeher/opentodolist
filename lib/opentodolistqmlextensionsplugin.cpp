@@ -10,9 +10,10 @@
 #include "note.h"
 #include "task.h"
 #include "todo.h"
+#include "todosmodel.h"
 #include "todolist.h"
 #include "toplevelitem.h"
-
+#include "filtermodel.h"
 
 #include <QtQml>
 
@@ -41,6 +42,8 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<Todo>(uri, 1, 0, "Todo");
   qmlRegisterType<TodoList>(uri, 1, 0, "TodoList");
   qmlRegisterType<TopLevelItem>(uri, 1, 0, "TopLevelItem");
+  qmlRegisterType<TodosModel>(uri, 1, 0, "TodosModel");
+  qmlRegisterType<FilterModel>(uri, 1, 0, "FilterModel");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

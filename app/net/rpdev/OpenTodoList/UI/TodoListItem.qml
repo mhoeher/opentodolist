@@ -6,11 +6,7 @@ import net.rpdev.OpenTodoList.UI 1.0
 StickyNote {
     id: todoListItem
     
-    property TodoList libraryItem: TodoList {}
-    
-    function __updateTodos() {
-        checkBoxList = libraryItem.todos
-    }
+    property TodoList libraryItem: null
     
     title: libraryItem.title
     text: libraryItem.notes
@@ -18,11 +14,15 @@ StickyNote {
     backgroundColor: Colors.itemColor(libraryItem.color)
     hoverEnabled: true
     showCheckBoxList: true
-    
-    onLibraryItemChanged: __updateTodos()
-    
-    Connections {
-        target: libraryItem
-        onTodosChanged: __updateTodos()
+    checkBoxList: FilterModel {
+        sourceModel: TodosModel {
+            todoList: libraryItem
+        }
+        filterFunction: function(index) {
+            var i = sourceModel.index(index, 0);
+            var todo = sourceModel.data(i, TodosModel.ObjectRole);
+            return todo && !todo.done;
+        }
     }
+    
 }

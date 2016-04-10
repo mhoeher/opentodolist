@@ -30,7 +30,9 @@ SOURCES += \
     opentodolistqmlextensionsplugin.cpp \
     documentformatter.cpp \
     migrator_1_x_to_2_x.cpp \
-    fileutils.cpp
+    fileutils.cpp \
+    todosmodel.cpp \
+    filtermodel.cpp
 
 HEADERS += \
     application.h \
@@ -51,4 +53,7 @@ HEADERS += \
     opentodolistqmlextensionsplugin.h \
     documentformatter.h \
     migrator_1_x_to_2_x.h \
-    fileutils.h
+    fileutils.h \
+    todosmodel.h \
+    filtermodel.h \
+    abstractitemmodel.h

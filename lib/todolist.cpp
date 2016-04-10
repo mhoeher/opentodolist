@@ -81,6 +81,11 @@ void TodoList::appendTodo(Todo *todo)
   todo->setTodoList(this);
   connect(todo, &Item::itemDeleted, this, &TodoList::onTodoDeleted);
   connect(todo, &QObject::destroyed, this, &TodoList::onItemDeleted);
+  connect(todo, &Todo::doneChanged, this, &TodoList::todosPropertiesChanged);
+  connect(todo, &Todo::titleChanged, this, &TodoList::todosPropertiesChanged);
+  connect(todo, &Todo::notesChanged, this, &TodoList::todosPropertiesChanged);
+  connect(todo, &Todo::dueToChanged, this, &TodoList::todosPropertiesChanged);
+  connect(todo, &Todo::tasksChanged, this, &TodoList::todosPropertiesChanged);
   m_todos.append(todo);
   emit todosChanged();
 }

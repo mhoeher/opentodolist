@@ -33,6 +33,11 @@ signals:
    */
   void todosChanged();
   
+  /**
+     @brief Some property of one of the contained todos has changed.
+   */
+  void todosPropertiesChanged();
+  
 public slots:
   
 protected:

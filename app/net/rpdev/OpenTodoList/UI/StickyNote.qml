@@ -12,7 +12,7 @@ MouseArea {
     property string title: qsTr("Sticky Note Title")
     property string text: qsTr("Note Content")
     property color backgroundColor: Colors.noteBackground
-    property alias checkBoxList: checkBoxListRepeater.model
+    property var checkBoxList: undefined
     property bool showCheckBoxList: false
     property string image: ""
     
@@ -28,12 +28,13 @@ MouseArea {
         id: checkBoxListItemDelegate
         
         RowLayout {
+            visible: object !== undefined // TODO: Check why this is required at all!
             Text {
                 font.family: Fonts.symbols.name
-                text: done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+                text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
             }
             Label {
-                text: title
+                text: object.title
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
         }
@@ -139,7 +140,20 @@ MouseArea {
                     id: checkBoxListRepeater
                     visible: note.showCheckBoxList
                     delegate: checkBoxListItemDelegate
+                    model: checkBoxList
                 }
+            }
+            
+            Label {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: qsTr("All Todos Done :)")
+                opacity: 0.5
+                font.italic: true
+                visible: showCheckBoxList && (checkBoxList.count === 0)
             }
             
             Image {

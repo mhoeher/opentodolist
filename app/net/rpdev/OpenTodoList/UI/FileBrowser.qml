@@ -9,7 +9,7 @@ FileDialog {
     property var fileNameExtensions
     
     nameFilters: {
-        var result = null;
+        var result = [];
         if (fileNameExtensions) {
             result = qsTr("Supported Files") + " (";
             for (var i = 0; i < fileNameExtensions.length; ++i) {
