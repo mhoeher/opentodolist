@@ -5,9 +5,10 @@
     <Version>@@Version</Version>
     <ReleaseDate>@@ReleaseDate</ReleaseDate>
     <Name>net.rpdev.OpenTodoList</Name>
+    <!-- This causes issues in the Windows installer on update:
     <Licenses>
         <License name="GNU GPL v3" file="COPYING" />
-    </Licenses>
+    </Licenses>-->
     <Default>true</Default>
     <Script>script.js</Script>
     <ForcedInstallation>true</ForcedInstallation>

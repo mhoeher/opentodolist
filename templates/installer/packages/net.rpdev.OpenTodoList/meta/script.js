@@ -7,16 +7,16 @@ Component.prototype.createOperations = function()
 {
     try {
         // Ask the user to end any running instance of the app
-        component.addOperation("FakeStopProcessForUpdate", "OpenTodoList");
+        component.addElevatedOperation("FakeStopProcessForUpdate", "OpenTodoList");
         
         // call the base create operations function
         component.createOperations();
 
         // on Windows, create shortcuts in start menu dir
         if (installer.value("os") === "win") {
-            component.addOperation("CreateShortcut",
+            component.addElevatedOperation("CreateShortcut",
                                    "@TargetDir@/bin/OpenTodoList.exe",
-                                   "@StartMenuDir@/OpenTodoList.lnk");
+                                   "@AllUsersStartMenuProgramsPath@/OpenTodoList.lnk");
         }
 
         // on Unix, create a desktop file:
@@ -38,4 +38,9 @@ Component.prototype.createOperations = function()
     } catch (e) {
         print(e);
     }
+}
+
+Component.prototype.createOperationsForArchive = function(archive)
+{
+    component.addElevatedOperation("Extract", archive, "@TargetDir@");
 }

@@ -6,8 +6,7 @@
     <Publisher>RPdev</Publisher>
     <ProductUrl>http://www.rpdev.net/home/project/opentodolist</ProductUrl>
     <StartMenuDir>OpenTodoList</StartMenuDir>
-    <TargetDir>@HomeDir@/OpenTodoList</TargetDir>
-    <AdminTargetDir>@RootDir@/OpenTodoList</AdminTargetDir>
+    <TargetDir>@ApplicationsDir@/OpenTodoList</TargetDir>
     <!--<Icon>OpenTodoList</Icon>-->
     <InstallerWindowIcon>OpenTodoList</InstallerWindowIcon>
     <InstallerApplicationIcon>OpenTodoList</InstallerApplicationIcon>
