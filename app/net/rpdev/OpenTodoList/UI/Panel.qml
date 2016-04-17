@@ -22,7 +22,7 @@ Item {
     x: !compact ? 0 : -width
     
     MouseArea {
-        //visible: panel.compact && panel.showing
+        visible: panel.compact && panel.showing
         enabled: panel.showing
         hoverEnabled: true
         
@@ -104,7 +104,7 @@ Item {
         
         onXChanged: {
             if (pullInArea.drag.active) {
-                panel.showing = x > (width / 5);
+                panel.showing = x > (width / 2);
             }
         }
         
