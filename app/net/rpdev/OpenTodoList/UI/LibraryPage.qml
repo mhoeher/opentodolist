@@ -12,6 +12,7 @@ Item {
     id: page
     
     property var library: null
+    property string tag: ""
     property StackView stackView: null
     
     signal itemClicked(TopLevelItem item)
@@ -67,6 +68,28 @@ Item {
         onAccepted: library.addImage(fileUrl)
     }
     
+    TopLevelItemsModel {
+        id: itemsModel
+        
+        library: page.library
+    }
+    
+    FilterModel {
+        id: filteredItemsModel
+        sourceModel: itemsModel
+        filterFunction: (page.tag === "") ? null : function(i) {
+            var result = false;
+            var item = sourceModel.data(sourceModel.index(i, 0), TopLevelItemsModel.ObjectRole);
+            for (var j = 0; j < item.tags.length; ++j) {
+                if (item.tags[j] === page.tag) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+    }
+    
     TextInputBar {
         id: newNoteBar
         placeholderText: qsTr("Note Title")
@@ -101,17 +124,17 @@ Item {
             
             Repeater {
                 id: repeater
-                model: library ? library.items : null
+                model: filteredItemsModel
                 delegate: Loader {
                     width: Logic.sizeOfColumns(scrollView, Globals.minButtonHeight * 2)
                     height: width / 3 * 2
                     source: Globals.file("/net/rpdev/OpenTodoList/UI/" + 
-                            library.items[index].itemType + "Item.qml")
+                            object.itemType + "Item.qml")
                     
                     onLoaded: {
-                        item.libraryItem = library.items[index];
+                        item.libraryItem = object;
                         item.onClicked.connect(function() {
-                            itemClicked(item.libraryItem)
+                            itemClicked(item.libraryItem);
                         });
                     }
                 }

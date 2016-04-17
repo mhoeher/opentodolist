@@ -32,7 +32,8 @@ SOURCES += \
     migrator_1_x_to_2_x.cpp \
     fileutils.cpp \
     todosmodel.cpp \
-    filtermodel.cpp
+    filtermodel.cpp \
+    toplevelitemsmodel.cpp
 
 HEADERS += \
     application.h \
@@ -56,4 +57,5 @@ HEADERS += \
     fileutils.h \
     todosmodel.h \
     filtermodel.h \
-    abstractitemmodel.h
+    abstractitemmodel.h \
+    toplevelitemsmodel.h

@@ -61,9 +61,9 @@ Item {
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         anchors.fill: parent
         
-        Item {
+        Column {
             width: scrollView.viewport.width
-            height: childrenRect.height
+            spacing: Globals.defaultMargin
             
             TextInput {
                 id: titleEdit
@@ -71,7 +71,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: parent.top
                     margins: Globals.defaultMargin
                 }
                 font {
@@ -95,7 +94,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: titleEdit.bottom
                     margins: Globals.defaultMargin * 2
                 }
                 onTodoSelected: openTodo(todo)
@@ -106,7 +104,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: todos.bottom
                     margins: Globals.defaultMargin
                 }
                 title: qsTr("Notes")
@@ -119,8 +116,14 @@ Item {
                 }
             }
             
-            Item {
-                height: Globals.defaultMargin
+            TagsEditor {
+                item: page.item
+                library: page.library
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
+                }
             }
             
             Component {

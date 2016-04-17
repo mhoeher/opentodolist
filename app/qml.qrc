@@ -51,5 +51,6 @@
         <file>net/rpdev/OpenTodoList/UI/private/FileBrowserWrapper.qml</file>
         <file>net/rpdev/OpenTodoList/UI/private/qmldir</file>
         <file>net/rpdev/OpenTodoList/UI/FontAwesome.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/TagsEditor.qml</file>
     </qresource>
 </RCC>

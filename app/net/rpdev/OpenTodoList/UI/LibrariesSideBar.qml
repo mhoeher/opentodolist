@@ -8,6 +8,7 @@ Panel {
     id: sidebar
     
     property var currentLibrary: App.libraries[0]
+    property string currentTag: ""
     
     signal libraryClicked(Library library)
     signal openLocalLibrary()
@@ -22,40 +23,101 @@ Panel {
         Component {
             id: libraryItemDelegate
             
-            ButtonContainer {
-                mainItem: itemText
+            Column {
                 width: parent.width
-                cursorShape: Qt.PointingHandCursor
                 
-                onClicked: {
-                    var library = App.libraries[index];
-                    if (currentLibrary !== library) {
-                        sidebar.currentLibrary = library;
-                    }
-                    libraryClicked(App.libraries[index]);
-                    sidebar.close();
-                }
-                
-                Rectangle {
-                    anchors.fill: parent
-                    color: Colors.secondary3
-                    visible: opacity > 0.0
-                    opacity: currentLibrary === App.libraries[index]
+                ButtonContainer {
+                    mainItem: itemText
+                    width: parent.width
+                    cursorShape: Qt.PointingHandCursor
                     
-                    Behavior on opacity { NumberAnimation { duration: 500 } }
+                    onClicked: {
+                        var library = App.libraries[index];
+                        if (currentLibrary !== library) {
+                            sidebar.currentLibrary = library;
+                        }
+                        sidebar.currentTag = "";
+                        libraryClicked(App.libraries[index]);
+                        sidebar.close();
+                    }
+                    
+                    Rectangle {
+                        anchors.fill: parent
+                        color: Colors.secondary3
+                        visible: opacity > 0.0
+                        opacity: (currentLibrary === App.libraries[index]) &&
+                                 (currentTag === "")
+                        
+                        Behavior on opacity { NumberAnimation { duration: 500 } }
+                    }
+                    
+                    Text {
+                        id: itemText
+                        text: name
+                        color: Colors.panelText
+                        font.bold: true
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                            margins: Globals.defaultMargin
+                        }
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    }
                 }
                 
-                Text {
-                    id: itemText
-                    text: name
-                    color: Colors.panelText
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        verticalCenter: parent.verticalCenter
-                        margins: Globals.defaultMargin
+                Repeater {
+                    id: tags
+                    
+                    property var library: App.libraries[index]
+                    
+                    model: library.tags
+                    delegate: tag
+                    
+                    Component {
+                        id: tag
+                        
+                        ButtonContainer {
+                            mainItem: tagText
+                            width: parent.width
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                                if (currentLibrary !== tags.library) {
+                                    sidebar.currentLibrary = tags.library;
+                                }
+                                if (currentTag !== tags.library.tags[index]) {
+                                    sidebar.currentTag = tags.library.tags[index];
+                                }
+                                libraryClicked(tags.library);
+                                sidebar.close();
+                            }
+                            
+                            Rectangle {
+                                anchors.fill: parent
+                                color: Colors.secondary3
+                                visible: opacity > 0.0
+                                opacity: (currentLibrary === tags.library) && 
+                                         (currentTag === tags.library.tags[index])
+                                
+                                Behavior on opacity { NumberAnimation { duration: 500 } }
+                            }
+                            
+                            Text {
+                                id: tagText
+                                text: tags.library.tags[index]
+                                color: Colors.panelText
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                    verticalCenter: parent.verticalCenter
+                                    margins: Globals.defaultMargin
+                                    leftMargin: Globals.defaultMargin * 2
+                                }
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            }
+                        }
                     }
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
             }
         }
@@ -76,7 +138,7 @@ Panel {
                             margins: Globals.defaultMargin
                             verticalCenter: parent.verticalCenter
                         }
-
+                        
                         height: Math.max(addLocalLibrarySymbol.height, addLocalLibraryLabel.height)
                         
                         Symbol {
@@ -115,4 +177,6 @@ Panel {
             }
         }
     }
+    
+    
 }

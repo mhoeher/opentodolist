@@ -43,7 +43,6 @@ MouseArea {
                 visible: object !== undefined // TODO: Check why this is required at all!
                 width: parent.width
                 y: Globals.minButtonHeight / 4
-                height: childrenRect.height
                 Text {
                     font.family: Fonts.symbols.name
                     text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO

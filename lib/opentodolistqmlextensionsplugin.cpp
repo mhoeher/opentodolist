@@ -14,6 +14,7 @@
 #include "todolist.h"
 #include "toplevelitem.h"
 #include "filtermodel.h"
+#include "toplevelitemsmodel.h"
 
 #include <QtQml>
 
@@ -43,6 +44,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<TodoList>(uri, 1, 0, "TodoList");
   qmlRegisterType<TopLevelItem>(uri, 1, 0, "TopLevelItem");
   qmlRegisterType<TodosModel>(uri, 1, 0, "TodosModel");
+  qmlRegisterType<TopLevelItemsModel>(uri, 1, 0, "TopLevelItemsModel");
   qmlRegisterType<FilterModel>(uri, 1, 0, "FilterModel");
 }
 

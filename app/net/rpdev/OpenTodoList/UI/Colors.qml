@@ -21,6 +21,10 @@ QtObject {
     
     property color itemDelimiter: "silver"
     
+    property color tagBackground: Qt.tint("white", makeTransparent(primary, 0.1))
+    property color tagBorder: "silver"
+    property color tagText: "black"
+    
     property color itemWhite: "#fefefe"
     property color itemRed: "#dea7bb"
     property color itemGreen: "#cce6bd"

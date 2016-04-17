@@ -9,6 +9,7 @@ Item {
     id: page
     
     property Note item: Note {}
+    property var library: null
     property StackView stack: null
     property bool __visible: Stack.status === Stack.Active
     
@@ -44,9 +45,9 @@ Item {
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         anchors.fill: parent
         
-        Item {
+        Column {
             width: scrollView.viewport.width
-            height: childrenRect.height
+            spacing: Globals.defaultMargin
             
             TextInput {
                 id: titleEdit
@@ -54,7 +55,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: parent.top
                     margins: Globals.defaultMargin
                 }
                 font {
@@ -73,7 +73,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: titleEdit.bottom
                     margins: Globals.defaultMargin
                 }
                 title: qsTr("Notes")
@@ -87,15 +86,21 @@ Item {
                 }
             }
             
-            Item {
-                height: Globals.defaultMargin
-            }
-            
             Component {
                 id: notesEditor
                 
                 RichTextEditor {
                     Component.onCompleted: forceActiveFocus()
+                }
+            }
+            
+            TagsEditor {
+                item: page.item
+                library: page.library
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
                 }
             }
         }

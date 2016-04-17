@@ -540,7 +540,8 @@ ApplicationWindow {
             width: 15 * Globals.fontPixelSize
             edge: Qt.LeftEdge
             compact: applicationWindow.width <= Globals.fontPixelSize * 60
-            onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, libraryPage)
+            onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, currentTag, libraryPage)
+            onCurrentTagChanged: Logic.viewLibrary(stack, currentLibrary, currentTag, libraryPage)
             onOpenLocalLibrary: openLocalLibraryDialog.open()
         }
         
@@ -602,7 +603,7 @@ ApplicationWindow {
                 onItemClicked: {
                     stack.push({item: Globals.file("/net/rpdev/OpenTodoList/UI/" +
                                       item.itemType + "Page.qml"),
-                                   properties: { item: item, stack: stack } });
+                                   properties: { item: item, library: library, stack: stack } });
                 }
                 stackView: stack
             }

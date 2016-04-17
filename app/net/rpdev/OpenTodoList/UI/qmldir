@@ -18,6 +18,7 @@ singleton Globals 1.0 Globals.qml
 StickyNote 1.0 StickyNote.qml
 Symbol 1.0 Symbol.qml
 SymbolButton 1.0 SymbolButton.qml
+TagsEditor 1.0 TagsEditor.qml
 TodoListItem 1.0 TodoListItem.qml
 TodoListPage 1.0 TodoListPage.qml
 TodoListView 1.0 TodoListView.qml

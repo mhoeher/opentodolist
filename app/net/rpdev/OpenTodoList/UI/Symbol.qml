@@ -10,6 +10,7 @@ ButtonContainer {
     property Menu menu: null
     property bool checked: false
     property alias color: label.color
+    property alias pixelSize: label.font.pixelSize
     
     width: height
     

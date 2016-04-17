@@ -9,10 +9,10 @@ function documentFormatterForItem(item) {
     }
 }
 
-function viewLibrary(stack, library, component) {
+function viewLibrary(stack, library, tag, component) {
     stack.clear();
     if (library) {
-        stack.push({item: component, properties: { library: library}});
+        stack.push({item: component, properties: { library: library, tag: tag } });
     }
 }
 

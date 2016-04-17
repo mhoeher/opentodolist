@@ -13,6 +13,7 @@ private slots:
   void initTestCase() {}
   void testConstructor();
   void testPersistence();
+  void testTags();
   void cleanupTestCase() {}
 };
 
@@ -34,12 +35,26 @@ void TopLevelItemTest::testPersistence()
   Q_CHECK_PTR(item);
   TopLevelItem::Color color = TopLevelItem::Green;
   item->setColor(color);
+  item->setTags({"Tag1", "Tag2"});
   item->commitItem();
   delete item;
   item = new TopLevelItem(dir.path());
   Q_CHECK_PTR(item);
   QCOMPARE(item->color(), color);
+  QCOMPARE(item->tags(), QStringList({"Tag1", "Tag2"}));
   delete item;
+}
+
+void TopLevelItemTest::testTags()
+{
+    TopLevelItem item;
+    QCOMPARE(item.tags(), QStringList());
+    item.addTag("Tag 2");
+    QCOMPARE(item.tags(), QStringList({"Tag 2"}));
+    item.addTag("Tag 1");
+    QCOMPARE(item.tags(), QStringList({"Tag 1", "Tag 2"}));
+    item.removeTagAt(1);
+    QCOMPARE(item.tags(), QStringList({"Tag 1"}));
 }
 
 QTEST_MAIN(TopLevelItemTest)

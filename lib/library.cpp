@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QFileSystemWatcher>
+#include <QMetaProperty>
 #include <QQueue>
 #include <QSet>
 #include <QUrl>
@@ -147,6 +148,17 @@ Library::Library(const QString &name,
   watchRecursively();
 }
 
+/**
+   @brief Returns the list of tags used by items in the library.
+   @return 
+ */
+QStringList Library::tags() const
+{
+    QStringList result = m_tags.toList();
+    result.sort();
+    return result;
+}
+
 QString Library::itemPathFromTitle(const QString &title, const QString &itemType) const
 {
   QString baseDir = dirForItemType(itemType);
@@ -166,8 +178,37 @@ void Library::addItem(TopLevelItem *item)
   }
   connect(item, &Item::itemDeleted, this, &Library::onTopLevelItemDeleted);
   connect(item, &QObject::destroyed, this, &Library::onItemDeleted);
+  connect(item, &TopLevelItem::tagsChanged, this, &Library::rebuildTags);
+  {
+      // Listen to property changed (required for models):
+      QMetaMethod targetSlot;
+      auto myMeta = metaObject();
+      for (int i = 0; i < myMeta->methodCount(); ++i)
+      {
+          auto method = myMeta->method(i);
+          if (method.name() == "handleItemChanged")
+          {
+              targetSlot = method;
+              break;
+          }
+      }
+      if (targetSlot.isValid())
+      {
+          auto meta = item->metaObject();
+          for (int i = 0; i < meta->propertyCount(); ++i)
+          {
+              QMetaProperty property = meta->property(i);
+              if (property.notifySignal().isValid())
+              {
+                  connect(item, property.notifySignal(),
+                          this, targetSlot);
+              }
+          }
+      }
+  }
   m_items.append(item);
   emit itemsChanged();
+  rebuildTags();
 }
 
 /**
@@ -364,4 +405,30 @@ void Library::onFileChanged(const QString &path)
       deleteDanglingItems();
       scanItems(m_directory);
   }
+}
+
+void Library::rebuildTags()
+{
+    QSet<QString> newTags;
+    for (auto item : m_items)
+    {
+        for (auto tag : item->tags())
+        {
+            newTags.insert(tag);
+        }
+    }
+    if (m_tags != newTags)
+    {
+        m_tags = newTags;
+        emit tagsChanged();
+    }
+}
+
+void Library::handleItemChanged()
+{
+    TopLevelItem *item = dynamic_cast<TopLevelItem*>(sender());
+    if (item != nullptr)
+    {
+        emit itemChanged(item);
+    }
 }

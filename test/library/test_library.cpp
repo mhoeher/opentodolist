@@ -36,6 +36,7 @@ private slots:
   void testDeleteNote();
   void testDeleteImage();
   void testDeleteTodoList();
+  void testTags();
   void cleanup();
   
 };
@@ -166,6 +167,15 @@ void LibraryTest::testDeleteTodoList()
   QCOMPARE(m_library->items().size(), 1);
   todoList->deleteItem();
   QCOMPARE(m_library->items().size(), 0);
+}
+
+void LibraryTest::testTags()
+{
+    auto note1 = m_library->addNote("Note 1");
+    note1->setTags({"Tag 1", "Tag 2"});
+    auto note2 = m_library->addNote("Note 2");
+    note2->setTags({"Tag 4", "Tag 3"});
+    QCOMPARE(m_library->tags(), QStringList({"Tag 1", "Tag 2", "Tag 3", "Tag 4"}));
 }
 
 void LibraryTest::cleanup()
