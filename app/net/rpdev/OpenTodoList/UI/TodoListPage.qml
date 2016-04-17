@@ -41,7 +41,7 @@ Item {
         id: newTodoBar
         placeholderText: qsTr("Todo Title")
         onAccepted: {
-            var todo = item.addTodo(newTodoBar.edit.text);
+            var todo = item.addTodo(newTodoBar.edit.displayText);
             newTodoBar.edit.focus = false;
             if (openItem) {
                 todos.openTodo(todo);

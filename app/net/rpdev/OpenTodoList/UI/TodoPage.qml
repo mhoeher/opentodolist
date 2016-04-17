@@ -41,7 +41,7 @@ Item {
         id: newTaskBar
         placeholderText: qsTr("Task Title")
         onAccepted: {
-            todo.addTask(newTaskBar.edit.text);
+            todo.addTask(newTaskBar.edit.displayText);
             newTaskBar.edit.focus = false;
         }
     }
