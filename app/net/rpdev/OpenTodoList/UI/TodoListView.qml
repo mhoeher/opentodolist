@@ -77,7 +77,7 @@ Item {
         id: background
         border {
             width: 1
-            color: "silver"
+            color: Colors.itemDelimiter
         }
         anchors.fill: parent
     }

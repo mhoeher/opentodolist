@@ -19,6 +19,8 @@ QtObject {
     
     property color headerBar: primary
     
+    property color itemDelimiter: "silver"
+    
     property color itemWhite: "#fefefe"
     property color itemRed: "#dea7bb"
     property color itemGreen: "#cce6bd"

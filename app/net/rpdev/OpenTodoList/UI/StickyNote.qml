@@ -27,15 +27,32 @@ MouseArea {
     Component {
         id: checkBoxListItemDelegate
         
-        RowLayout {
-            visible: object !== undefined // TODO: Check why this is required at all!
-            Text {
-                font.family: Fonts.symbols.name
-                text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+        Item {
+            width: parent.width
+            height: itemRow.height + Globals.minButtonHeight / 2
+            
+            Rectangle {
+                width: parent.width
+                height: 1
+                color: Colors.itemDelimiter
+                visible: index > 0
             }
-            Label {
-                text: object.title
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+            RowLayout {
+                id: itemRow
+                visible: object !== undefined // TODO: Check why this is required at all!
+                width: parent.width
+                y: Globals.minButtonHeight / 4
+                height: childrenRect.height
+                Text {
+                    font.family: Fonts.symbols.name
+                    text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+                }
+                Label {
+                    text: object.title
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    Layout.fillWidth: true
+                }
             }
         }
     }
