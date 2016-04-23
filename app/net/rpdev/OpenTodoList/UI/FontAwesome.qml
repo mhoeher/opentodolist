@@ -21,6 +21,11 @@ FontLoader {
     readonly property string faBars: "\uf0c9"
     readonly property string faTimes: "\uf00d"
     
+    readonly property string faArrowLeft: "\uf060"
+    readonly property string faArrowRight: "\uf061"
+    readonly property string faArrowUp: "\uf062"
+    readonly property string faArrowDown: "\uf063"
+    
     readonly property string faBold: "\uf032"        
     readonly property string faItalic: "\uf033"
     readonly property string faUnderline: "\uf0cd"

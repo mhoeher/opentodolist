@@ -178,7 +178,7 @@ ApplicationWindow {
             MenuItem {
                 text: qsTr("About")
                 shortcut: StandardKey.HelpContents
-                onTriggered: Logic.viewPage(stack, aboutPage)
+                onTriggered: stack.push({item: aboutPage, properties: { stack: stack }})
             }
         }
 
@@ -215,7 +215,7 @@ ApplicationWindow {
                 height: parent.height
     
                 Symbol {
-                    symbol: Fonts.symbols.faAngleLeft
+                    symbol: Fonts.symbols.faArrowLeft
                     visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: Logic.cancelCurrent(stack)

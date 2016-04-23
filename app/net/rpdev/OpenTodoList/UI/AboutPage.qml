@@ -9,6 +9,8 @@ Item {
     
     property StackView stack: null
     
+    function cancel() {}
+    
     ColumnLayout {
         anchors {
             fill: parent
