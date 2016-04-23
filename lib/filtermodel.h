@@ -25,6 +25,10 @@ public:
     
     void setSourceModel(QAbstractItemModel *sourceModel) override;
     
+public slots:
+    
+    void resetFilter();
+    
 signals:
     
     /**

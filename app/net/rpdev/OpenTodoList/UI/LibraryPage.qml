@@ -31,6 +31,10 @@ Item {
         openImageDialog.open();
     }
     
+    function find() {
+        filterBar.edit.forceActiveFocus()
+    }
+    
     property var deleteItem: library === App.defaultLibrary ? null :
                                                               function deleteItem() {
                                                                   confirmDeleteLibrary.open();
@@ -81,18 +85,32 @@ Item {
     
     FilterModel {
         id: filteredItemsModel
-        sourceModel: itemsModel
-        filterFunction: (page.tag === "") ? null : function(i) {
+        
+        property string filterText: filterBar.text
+        
+        property bool __needsFilter: (page.tag !== "") || (filterBar.text !== "")
+        
+        function __tagMatches(item) {
+            return (page.tag === "") || item.hasTag(page.tag)
+        }
+        
+        function __filterMatches(item) {
             var result = false;
-            var item = sourceModel.data(sourceModel.index(i, 0), TopLevelItemsModel.ObjectRole);
-            for (var j = 0; j < item.tags.length; ++j) {
-                if (item.tags[j] === page.tag) {
-                    result = true;
-                    break;
-                }
+            if (filterText === "") {
+                result = true;
+            } else {
+                result = Logic.itemMatchesFilter(item, filterText)
             }
             return result;
         }
+        
+        onFilterTextChanged: resetFilter()
+        
+        sourceModel: itemsModel
+        filterFunction: __needsFilter ? function(i) {
+            var item = sourceModel.data(sourceModel.index(i, 0), TopLevelItemsModel.ObjectRole);
+            return __tagMatches(item) && __filterMatches(item);
+        } : null
     }
     
     TextInputBar {
@@ -123,9 +141,26 @@ Item {
         }
     }
     
+    TextInputBar {
+        id: filterBar
+        placeholderText: qsTr("Search term 1, search term 2, ...")
+        symbol: Fonts.symbols.faTimes
+        color: Colors.secondary2
+        itemCreator: false
+        showWhenNonEmpty: true
+        closeOnButtonClick: true
+    }
+    
     ScrollView {
         id: scrollView
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            top: filterBar.bottom
+            topMargin: filterBar.shown ? filterBar.contentHeight - filterBar.height : 0
+        }
+
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         
         

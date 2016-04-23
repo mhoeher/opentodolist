@@ -62,3 +62,11 @@ void FilterModel::setSourceModel(QAbstractItemModel* sourceModel)
                    this, &FilterModel::invalidateFilter);        
     }
 }
+
+/**
+   @brief Causes the model to be re-filtered.
+ */
+void FilterModel::resetFilter()
+{
+    invalidateFilter();
+}
