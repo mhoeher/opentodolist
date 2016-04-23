@@ -74,21 +74,38 @@ void Item::commitItem()
                 if (!itemDir.exists()) {
                     itemDir.mkpath(m_directory);
                 }
-                QFile file(itemMainSettingsFile());
-                if (file.open(QIODevice::WriteOnly)) {
-                    QVariantMap properties;
-                    for (auto property : m_persistentProperties) {
-                        properties[property] = this->property(qUtf8Printable(property));
+                QVariantMap properties;
+                {
+                    // Read back properties from file to prevent we override ones from a newer add
+                    // version:
+                    QFile file(itemMainSettingsFile());
+                    if (file.open(QIODevice::ReadOnly))
+                    {
+                        QJsonParseError error;
+                        QJsonDocument json = QJsonDocument::fromJson(file.readAll(), &error);
+                        if (error.error == QJsonParseError::NoError)
+                        {
+                            properties = json.toVariant().toMap();
+                        }
+                        file.close();
                     }
-                    properties["uid"] = m_uid;
-                    QJsonDocument doc = QJsonDocument::fromVariant(properties);
-                    file.write(doc.toJson());
-                    file.close();
-                    saveItemData();
-                } else {
-                    qWarning().nospace()
-                            << "Failed to open " << file.fileName() << " for item" << this << ": " << 
-                               file.errorString();
+                }
+                {
+                    QFile file(itemMainSettingsFile());
+                    if (file.open(QIODevice::WriteOnly)) {
+                        for (auto property : m_persistentProperties) {
+                            properties[property] = this->property(qUtf8Printable(property));
+                        }
+                        properties["uid"] = m_uid;
+                        QJsonDocument doc = QJsonDocument::fromVariant(properties);
+                        file.write(doc.toJson());
+                        file.close();
+                        saveItemData();
+                    } else {
+                        qWarning().nospace()
+                                << "Failed to open " << file.fileName() << " for item" << this << ": " << 
+                                   file.errorString();
+                    }
                 }
             }
         }
