@@ -20,11 +20,15 @@ void TopLevelItemsModel::setLibrary(Library* library)
         if (!m_library.isNull())
         {
             disconnect(m_library.data(), &Library::itemChanged, this, &TopLevelItemsModel::itemChanged);    
+            disconnect(m_library.data(), &Library::itemAdded, this, &TopLevelItemsModel::itemAdded);
+            disconnect(m_library.data(), &Library::itemDeleted, this, &TopLevelItemsModel::itemDeleted);
         }
         m_library = library;
         if (!m_library.isNull())
         {
             connect(m_library.data(), &Library::itemChanged, this, &TopLevelItemsModel::itemChanged);    
+            connect(m_library.data(), &Library::itemAdded, this, &TopLevelItemsModel::itemAdded);
+            connect(m_library.data(), &Library::itemDeleted, this, &TopLevelItemsModel::itemDeleted);
         }
         endResetModel();
         emit libraryChanged();
@@ -87,5 +91,26 @@ void TopLevelItemsModel::itemChanged(TopLevelItem* item)
                 break;
             }
         }
+    }
+}
+
+void TopLevelItemsModel::itemAdded()
+{
+    // TODO: Check why beginInsertRows() is not working
+    /*if (!m_library.isNull())
+    {
+        beginInsertRows(QModelIndex(), 
+                             m_library->items().length(), m_library->items().length());
+        endInsertRows();
+    }*/
+    resetModel();
+}
+
+void TopLevelItemsModel::itemDeleted(int index)
+{
+    if (!m_library.isNull())
+    {
+        beginRemoveRows(QModelIndex(), index, index);
+        endRemoveRows();
     }
 }

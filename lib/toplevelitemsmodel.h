@@ -44,6 +44,8 @@ private slots:
     
     void resetModel();
     void itemChanged(TopLevelItem *item);
+    void itemAdded();
+    void itemDeleted(int index);
     
     
 };

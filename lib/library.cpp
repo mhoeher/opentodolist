@@ -207,6 +207,7 @@ void Library::addItem(TopLevelItem *item)
       }
   }
   m_items.append(item);
+  emit itemAdded();
   emit itemsChanged();
   rebuildTags();
 }
@@ -339,8 +340,9 @@ TopLevelItem* Library::itemListAt(QQmlListProperty<TopLevelItem> *property, int 
 void Library::onItemDeleted(QObject* item)
 {
     Q_CHECK_PTR(item);
-    if (m_items.removeOne(reinterpret_cast<TopLevelItem*>(item)))
-    {
+    int index = m_items.indexOf(reinterpret_cast<TopLevelItem*>(item));
+    if (index >= 0) {
+        emit itemDeleted(index);
         emit itemsChanged();
     }
 }
@@ -352,6 +354,7 @@ void Library::onTopLevelItemDeleted(Item *item)
     if (m_items.at(i) == item) {
       m_items.removeAt(i);
       item->deleteLater();
+      emit itemDeleted(i);
       emit itemsChanged();
       return;
     }

@@ -107,6 +107,16 @@ signals:
      */
     void itemChanged(TopLevelItem *item);
     
+    /**
+       @brief An item has been added to the library.
+     */
+    void itemAdded();
+    
+    /**
+       @brief The item ad the given @p index has been deleted.
+     */
+    void itemDeleted(int index);
+    
 public slots:
     
 protected:
