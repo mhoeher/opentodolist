@@ -20,6 +20,7 @@ public:
     
     enum Roles {
         ObjectRole = Qt::UserRole + 1,
+        TodoRole,
         DoneRole,
         TitleRole,
         NotesRole

@@ -9,7 +9,7 @@ import net.rpdev.OpenTodoList.UI 1.0
 Item {
     id: root
     
-    property list<Todo> model
+    property var model: TodosModel {}
     
     signal todoSelected(Todo todo)
     
@@ -36,7 +36,7 @@ Item {
             
             MouseArea {
                 anchors.fill: parent
-                onClicked: todoSelected(root.model[index])
+                onClicked: todoSelected(todo)
             }
             
             RowLayout {
@@ -46,8 +46,8 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 
                 Symbol {
-                    symbol: done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
-                    onClicked: done = !done
+                    symbol: todo.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+                    onClicked: todo.done = !object.done
                 }
                 
                 Label {
@@ -59,7 +59,7 @@ Item {
                 Symbol {
                     symbol: Fonts.symbols.faTrashO
                     onClicked: {
-                        confirmDeleteTodoDialog.todo = root.model[index];
+                        confirmDeleteTodoDialog.todo = todo;
                         confirmDeleteTodoDialog.open();
                     }
                 }

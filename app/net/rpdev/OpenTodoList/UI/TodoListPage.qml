@@ -26,6 +26,10 @@ Item {
         confirmDeleteDialog.open();
     }
     
+    function toggleDoneTodosVisible() {
+        doneTodos.visible = !doneTodos.visible
+    }
+    
     MessageDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo List?")
@@ -35,6 +39,29 @@ Item {
         onAccepted: {
             item.deleteItem();
             stack.pop();
+        }
+    }
+    
+    TodosModel {
+        id: todosModel
+        todoList: page.item
+    }
+    
+    FilterModel {
+        id: undoneTodosModel
+        sourceModel: todosModel
+        filterFunction: function(i) {
+            var todo = sourceModel.data(sourceModel.index(i, 0), TodosModel.ObjectRole);
+            return !todo.done;
+        }
+    }
+    
+    FilterModel {
+        id: doneTodosModel
+        sourceModel: todosModel
+        filterFunction: function(i) {
+            var todo = sourceModel.data(sourceModel.index(i, 0), TodosModel.ObjectRole);
+            return todo.done;
         }
     }
     
@@ -91,13 +118,39 @@ Item {
                     stack.push({item: todoPage, properties: { todo: todo } })
                 }
 
-                model: item.todos
+                model: undoneTodosModel
                 anchors {
                     left: parent.left
                     right: parent.right
                     margins: Globals.defaultMargin * 2
                 }
-                onTodoSelected: openTodo(todo)
+                onTodoSelected: openTodo(object)
+            }
+            
+            Symbol {
+                anchors {
+                    right: parent.right
+                    rightMargin: Globals.defaultMargin
+                }
+                symbol: doneTodos.visible ? Fonts.symbols.faEye : Fonts.symbols.faEyeSlash
+                visible: doneTodosModel.count > 0
+                onClicked: doneTodos.visible = !doneTodos.visible
+            }
+            
+            TodoListView {
+                id: doneTodos
+                function openTodo(todo) {
+                    stack.push({item: todoPage, properties: { todo: todo } })
+                }
+
+                visible: false
+                model: doneTodosModel
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
+                }
+                onTodoSelected: openTodo(object)
             }
             
             StickyNote {

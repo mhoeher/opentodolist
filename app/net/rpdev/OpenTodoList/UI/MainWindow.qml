@@ -124,6 +124,14 @@ ApplicationWindow {
                 shortcut: qsTr("Ctrl+Return")
                 onTriggered: item.createItemAndOpen()
             }
+            MenuSeparator {}
+            MenuItem {
+                text: qsTr("Show Done Todos")
+                enabled: stack.currentItem && 
+                         (typeof(stack.currentItem['toggleDoneTodosVisible']) === "function")
+                shortcut: qsTr("Ctrl+Shift+H")
+                onTriggered: stack.currentItem.toggleDoneTodosVisible()
+            }
         }
         
         Menu {

@@ -72,6 +72,7 @@ QVariant TodosModel::data(const QModelIndex &index, int role) const
         case TitleRole:
             return todo->title();
         case ObjectRole:
+        case TodoRole:
             return QVariant::fromValue<QObject*>(todo);
         case DoneRole:
             return todo->done();
@@ -88,6 +89,7 @@ QHash<int, QByteArray> TodosModel::roleNames() const
 {
     auto result = AbstractListModel::roleNames();
     result.insert(ObjectRole, "object");
+    result.insert(TodoRole, "todo");
     result.insert(DoneRole, "done");
     result.insert(TitleRole, "title");
     result.insert(NotesRole, "notes");
