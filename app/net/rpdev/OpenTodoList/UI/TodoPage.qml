@@ -52,9 +52,8 @@ Item {
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         anchors.fill: parent
         
-        Item {
+        Column {
             width: scrollView.viewport.width
-            height: childrenRect.height
             
             TextInput {
                 id: titleEdit
@@ -62,7 +61,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: parent.top
                     margins: Globals.defaultMargin
                 }
                 font {
@@ -82,7 +80,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: titleEdit.bottom
                     margins: Globals.defaultMargin * 2
                 }
             }
@@ -92,7 +89,6 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: tasks.bottom
                     margins: Globals.defaultMargin
                 }
                 title: qsTr("Notes")
@@ -102,6 +98,15 @@ Item {
                     var page = stack.push({ item: notesEditor, properties: { text: todo.notes }});
                     page.onTextChanged.connect(function() { todo.notes = page.text; });
                     todo.onReloaded.connect(function() { page.text = todo.notes; });
+                }
+            }
+            
+            Item {
+                height: Globals.defaultMargin
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
                 }
             }
             
