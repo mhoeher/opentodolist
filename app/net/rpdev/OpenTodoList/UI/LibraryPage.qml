@@ -65,7 +65,12 @@ Item {
         selectMultiple: false
         folder: shortcuts.pictures
         fileNameExtensions: ["jpg", "jpeg", "png", "bmp", "gif"]
-        onAccepted: library.addImage(fileUrl)
+        onAccepted: {
+            var image = library.addImage(fileUrl);
+            if (leftSideBar.currentTag !== "") {
+                image.addTag(leftSideBar.currentTag);
+            }
+        }
     }
     
     TopLevelItemsModel {
@@ -98,6 +103,9 @@ Item {
             if (openItem) {
                 itemClicked(note);
             }
+            if (leftSideBar.currentTag !== "") {
+                note.addTag(leftSideBar.currentTag)
+            }
         }
     }
     
@@ -108,6 +116,9 @@ Item {
             var todoList = Logic.createTodoList(library, newTodoListBar.edit);
             if (openItem) {
                 itemClicked(todoList);
+            }
+            if (leftSideBar.currentTag !== "") {
+                todoList.addTag(leftSideBar.currentTag)
             }
         }
     }
