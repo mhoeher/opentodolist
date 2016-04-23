@@ -53,7 +53,6 @@ Item {
                     Keys.onReturnPressed: editor.__addTag()
                     Keys.onEnterPressed: editor.__addTag()
                     onFocusChanged: {
-                        existingTagsLabel.visible = focus;
                         existingTags.visible = focus;
                     }
                 }
@@ -72,7 +71,7 @@ Item {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
             height: visible ? contentHeight : 0
-            visible: false
+            visible: existingTags.visible && (existingTagsRepeater.model.length > 0)
         }
         
         Flow {
@@ -117,7 +116,7 @@ Item {
             id: tagItem
             
             width: tagName.width + removeTag.width + Globals.defaultMargin * 1.5
-            height: Math.max(tagName.height, removeTag.height)
+            height: Math.max(tagName.height, removeTag.height, Globals.minButtonHeight)
             color: Colors.tagBackground
             border {
                 width: 1
@@ -157,7 +156,7 @@ Item {
         
         MouseArea {
             width: childrenRect.width
-            height: childrenRect.height
+            height: Math.max(childrenRect.height, Globals.minButtonHeight)
             
             onClicked: item.addTag(existingTagsRepeater.model[index])
             

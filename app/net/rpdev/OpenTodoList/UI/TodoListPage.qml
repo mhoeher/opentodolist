@@ -9,6 +9,7 @@ Item {
     id: page
     
     property TodoList item: TodoList {}
+    property var library: null
     property StackView stack: null
     property bool __visible: Stack.status === Stack.Active
     

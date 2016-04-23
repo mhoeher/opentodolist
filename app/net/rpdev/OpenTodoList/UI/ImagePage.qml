@@ -10,6 +10,7 @@ Item {
     
     property ImageTopLevelItem item: ImageTopLevelItem {}
     property StackView stack: null
+    property var library: null
     property bool __visible: Stack.status === Stack.Active
     
     function cancel() {
