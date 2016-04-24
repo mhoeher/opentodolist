@@ -115,7 +115,7 @@ Item {
             right: parent.right
             bottom: parent.bottom
             top: filterBar.bottom
-            topMargin: filterBar.contentHeight - filterBar.height
+            topMargin: filterBar.shown ? (filterBar.contentHeight - filterBar.height) : 0
         }
         
         Column {
