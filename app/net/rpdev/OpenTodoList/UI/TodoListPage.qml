@@ -110,7 +110,13 @@ Item {
         id: scrollView
         
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            top: filterBar.bottom
+            topMargin: filterBar.contentHeight - filterBar.height
+        }
         
         Column {
             width: scrollView.viewport.width

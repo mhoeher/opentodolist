@@ -55,10 +55,12 @@ Item {
                     onFocusChanged: {
                         existingTags.visible = focus;
                     }
+                    anchors.verticalCenter: parent.verticalCenter
                 }
                 Symbol {
                     symbol: Fonts.symbols.faPlus
                     onClicked: editor.__addTag()
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }
