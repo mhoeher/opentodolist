@@ -34,9 +34,19 @@ signals:
   void todosChanged();
   
   /**
-     @brief Some property of one of the contained todos has changed.
+     @brief One of the properties of the @p todo changed.
    */
-  void todosPropertiesChanged();
+  void todoChanged(Todo *todo);
+  
+  /**
+     @brief A todo has been added to the todo list.
+   */
+  void todoAdded();
+  
+  /**
+     @brief The todo ad the given @p index has been deleted.
+   */
+  void todoDeleted(int index);
   
 public slots:
   
@@ -62,6 +72,7 @@ private slots:
   
   void onTodoDeleted(Item *item);
   void onItemDeleted(QObject *item);
+  void handleTodoChanged();
   
   
 };

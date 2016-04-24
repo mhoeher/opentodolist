@@ -7,6 +7,7 @@
 
 // Forward:
 class TodoList;
+class Todo;
 
 /**
    @brief Provides access to the todos stored in a TodoList object.
@@ -59,6 +60,9 @@ private:
 private slots:
     
     void resetModel();
+    void todoChanged(Todo *item);
+    void todoAdded();
+    void todoDeleted(int index);
     
 };
 

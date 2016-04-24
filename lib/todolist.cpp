@@ -4,6 +4,8 @@
 #include "fileutils.h"
 
 #include <QDir>
+#include <QMetaMethod>
+#include <QMetaObject>
 #include <QSet>
 
 
@@ -81,13 +83,36 @@ void TodoList::appendTodo(Todo *todo)
   todo->setTodoList(this);
   connect(todo, &Item::itemDeleted, this, &TodoList::onTodoDeleted);
   connect(todo, &QObject::destroyed, this, &TodoList::onItemDeleted);
-  connect(todo, &Todo::doneChanged, this, &TodoList::todosPropertiesChanged);
-  connect(todo, &Todo::titleChanged, this, &TodoList::todosPropertiesChanged);
-  connect(todo, &Todo::notesChanged, this, &TodoList::todosPropertiesChanged);
-  connect(todo, &Todo::dueToChanged, this, &TodoList::todosPropertiesChanged);
-  connect(todo, &Todo::tasksChanged, this, &TodoList::todosPropertiesChanged);
+  {
+      // Listen to property changed (required for models):
+      QMetaMethod targetSlot;
+      auto myMeta = metaObject();
+      for (int i = 0; i < myMeta->methodCount(); ++i)
+      {
+          auto method = myMeta->method(i);
+          if (method.name() == "handleTodoChanged")
+          {
+              targetSlot = method;
+              break;
+          }
+      }
+      if (targetSlot.isValid())
+      {
+          auto meta = todo->metaObject();
+          for (int i = 0; i < meta->propertyCount(); ++i)
+          {
+              QMetaProperty property = meta->property(i);
+              if (property.notifySignal().isValid())
+              {
+                  connect(todo, property.notifySignal(),
+                          this, targetSlot);
+              }
+          }
+      }
+  }
   m_todos.append(todo);
   emit todosChanged();
+  emit todoAdded();
 }
 
 bool TodoList::containsTodo(const QUuid &uuid)
@@ -168,6 +193,7 @@ void TodoList::onTodoDeleted(Item *item)
       todo->deleteLater();
       m_todos.removeAt(i);
       emit todosChanged();
+      emit todoDeleted(i);
       break;
     }
   }
@@ -176,8 +202,22 @@ void TodoList::onTodoDeleted(Item *item)
 void TodoList::onItemDeleted(QObject* item)
 {
     Q_CHECK_PTR(item);
-    if (m_todos.removeOne(reinterpret_cast<Todo*>(item)))
+    for (int i = 0; i < m_todos.length(); ++i)
     {
-        emit todosChanged();
+        if (m_todos.at(i) == item)
+        {
+            m_todos.removeAt(i);
+            emit todoDeleted(i);
+            emit todosChanged();
+        }
+    }
+}
+
+void TodoList::handleTodoChanged()
+{
+    Todo *todo = dynamic_cast<Todo*>(sender());
+    if (todo != nullptr)
+    {
+        emit todoChanged(todo);
     }
 }

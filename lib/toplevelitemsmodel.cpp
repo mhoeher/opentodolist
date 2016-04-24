@@ -87,7 +87,8 @@ void TopLevelItemsModel::itemChanged(TopLevelItem* item)
         {
             if (item == m_library->items().at(i))
             {
-                emit dataChanged(index(i, 0), index(i, 0));
+                auto index = this->index(i, 0);
+                emit dataChanged(index, index);
                 break;
             }
         }
@@ -96,14 +97,12 @@ void TopLevelItemsModel::itemChanged(TopLevelItem* item)
 
 void TopLevelItemsModel::itemAdded()
 {
-    // TODO: Check why beginInsertRows() is not working
-    /*if (!m_library.isNull())
+    if (!m_library.isNull())
     {
-        beginInsertRows(QModelIndex(), 
-                             m_library->items().length(), m_library->items().length());
+        auto addIndex = m_library->items().length() - 1;
+        beginInsertRows(QModelIndex(), addIndex, addIndex);
         endInsertRows();
-    }*/
-    resetModel();
+    }
 }
 
 void TopLevelItemsModel::itemDeleted(int index)

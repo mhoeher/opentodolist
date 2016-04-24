@@ -25,14 +25,16 @@ void TodosModel::setTodoList(TodoList* todoList)
         beginResetModel();
         if (m_todoList) 
         {
-            disconnect(m_todoList.data(), &TodoList::todosChanged, this, &TodosModel::resetModel);
-            disconnect(m_todoList.data(), &TodoList::todosPropertiesChanged, this, &TodosModel::itemPropertiesChanged);
+            disconnect(m_todoList.data(), &TodoList::todoAdded, this, &TodosModel::todoAdded);
+            disconnect(m_todoList.data(), &TodoList::todoDeleted, this, &TodosModel::todoDeleted);
+            disconnect(m_todoList.data(), &TodoList::todoChanged, this, &TodosModel::todoChanged);
         }
         m_todoList = todoList;
         if (m_todoList) 
         {
-            connect(m_todoList.data(), &TodoList::todosChanged, this, &TodosModel::resetModel);
-            connect(m_todoList.data(), &TodoList::todosPropertiesChanged, this, &TodosModel::itemPropertiesChanged);
+            connect(m_todoList.data(), &TodoList::todoDeleted, this, &TodosModel::todoDeleted);
+            connect(m_todoList.data(), &TodoList::todoAdded, this, &TodosModel::todoAdded);
+            connect(m_todoList.data(), &TodoList::todoChanged, this, &TodosModel::todoChanged);
         }
         endResetModel();
         emit todoListChanged();
@@ -100,4 +102,39 @@ void TodosModel::resetModel()
 {
     beginResetModel();
     endResetModel();
+}
+
+void TodosModel::todoChanged(Todo* item)
+{
+    if (!m_todoList.isNull())
+    {
+        for (int i = 0; i < m_todoList->todos().length(); ++i)
+        {
+            if (item == m_todoList->todos().at(i))
+            {
+                auto index = this->index(i, 0);
+                emit dataChanged(index, index);
+                break;
+            }
+        }
+    }
+}
+
+void TodosModel::todoAdded()
+{
+    if (!m_todoList.isNull())
+    {
+        auto addIndex = m_todoList->todos().length() - 1;
+        beginInsertRows(QModelIndex(), addIndex, addIndex);
+        endInsertRows();
+    }
+}
+
+void TodosModel::todoDeleted(int index)
+{
+    if (!m_todoList.isNull())
+    {
+        beginRemoveRows(QModelIndex(), index, index);
+        endRemoveRows();
+    }
 }

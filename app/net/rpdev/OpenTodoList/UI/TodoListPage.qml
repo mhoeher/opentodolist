@@ -5,6 +5,8 @@ import QtQuick.Dialogs 1.2
 import net.rpdev.OpenTodoList 1.0
 import net.rpdev.OpenTodoList.UI 1.0
 
+import "LibraryPageLogic.js" as Logic
+
 Item {
     id: page
     
@@ -31,6 +33,10 @@ Item {
         doneTodos.visible = !doneTodos.visible
     }
     
+    function find() {
+        filterBar.edit.forceActiveFocus()
+    }
+    
     MessageDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo List?")
@@ -53,6 +59,7 @@ Item {
         sourceModel: todosModel
         filterFunction: function(i) {
             var todo = sourceModel.data(sourceModel.index(i, 0), TodosModel.ObjectRole);
+            var filterText = filterBar.text;
             return !todo.done;
         }
     }
@@ -63,6 +70,33 @@ Item {
         filterFunction: function(i) {
             var todo = sourceModel.data(sourceModel.index(i, 0), TodosModel.ObjectRole);
             return todo.done;
+        }
+    }
+    
+    TextInputBar {
+        id: filterBar
+        
+        placeholderText: qsTr("Search term 1, search term 2, ...")
+        symbol: Fonts.symbols.faTimes
+        color: Colors.secondary2
+        itemCreator: false
+        showWhenNonEmpty: true
+        closeOnButtonClick: true
+        
+        onTextChanged: {
+            function match(todo) {
+                return Logic.itemMatchesFilterWithDefault(todo, text, true);
+            }
+            undoneTodosModel.filterFunction = function(i) {
+                var todo = undoneTodosModel.sourceModel.data(
+                            undoneTodosModel.sourceModel.index(i, 0), TodosModel.ObjectRole);
+                return !todo.done && match(todo);
+            }
+            doneTodosModel.filterFunction = function(i) {
+                var todo = doneTodosModel.sourceModel.data(
+                            doneTodosModel.sourceModel.index(i, 0), TodosModel.ObjectRole);
+                return todo.done && match(todo);
+            }
         }
     }
     

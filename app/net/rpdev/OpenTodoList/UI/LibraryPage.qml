@@ -86,31 +86,15 @@ Item {
     FilterModel {
         id: filteredItemsModel
         
-        property string filterText: filterBar.text
-        
-        property bool __needsFilter: (page.tag !== "") || (filterBar.text !== "")
-        
         function __tagMatches(item) {
             return (page.tag === "") || item.hasTag(page.tag)
         }
         
-        function __filterMatches(item) {
-            var result = false;
-            if (filterText === "") {
-                result = true;
-            } else {
-                result = Logic.itemMatchesFilter(item, filterText)
-            }
-            return result;
-        }
-        
-        onFilterTextChanged: resetFilter()
-        
         sourceModel: itemsModel
-        filterFunction: __needsFilter ? function(i) {
+        filterFunction: function(i) {
             var item = sourceModel.data(sourceModel.index(i, 0), TopLevelItemsModel.ObjectRole);
-            return __tagMatches(item) && __filterMatches(item);
-        } : null
+            return __tagMatches(item);
+        }
     }
     
     TextInputBar {
@@ -149,6 +133,20 @@ Item {
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
+        
+        onTextChanged: {
+            function matches(item) {
+                var filter = filterBar.text;
+                return Logic.itemMatchesFilterWithDefault(item, filter, true);
+            }
+            filteredItemsModel.filterFunction = function(i) {
+                var item = filteredItemsModel.sourceModel.data(
+                            filteredItemsModel.sourceModel.index(i, 0),
+                            TopLevelItemsModel.ObjectRole);
+                return filteredItemsModel.__tagMatches(item) &&
+                        matches(item);
+            }
+        }
     }
     
     ScrollView {
