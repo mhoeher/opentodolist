@@ -116,6 +116,7 @@ Library *Application::addLibrary(const QString &factoryId,
     if (library) {
       m_libraries.append(library);
       connect(library, &Library::libraryDeleted, this, &Application::onLibraryDeleted);
+      connect(library, &Library::tagsChanged, this, &Application::saveLibraries);
       saveLibraries();
       emit librariesChanged();
       return library;
@@ -355,6 +356,7 @@ void Application::saveLibraries()
       m_settings->setValue("name", library->name());
       m_settings->setValue("type", library->factory()->id());
       m_settings->setValue("directory", library->directory());
+      m_settings->setValue("tags", library->tags());
       m_settings->beginGroup("args");
       auto args = library->saveArgs();
       for (auto arg : args.keys()) {
@@ -378,13 +380,17 @@ void Application::loadLibraries()
     QString name = m_settings->value("name").toString();
     QString type = m_settings->value("type").toString();
     QString directory = m_settings->value("directory").toString();
+    QStringList tags = m_settings->value("tags", QStringList()).toStringList();
     QVariantMap args;
     m_settings->beginGroup("args");
     for (auto value : m_settings->childKeys()) {
       args["value"] = m_settings->value(value);
     }
     m_settings->endGroup();
-    addLibrary(type, name, directory, args);
+    auto library = addLibrary(type, name, directory, args);
+    if (library) {
+        library->setTags(tags);
+    }
   }
   m_settings->endArray();
   m_loadingLibraries = false;

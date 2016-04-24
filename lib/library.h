@@ -74,6 +74,7 @@ public:
     Q_INVOKABLE void deleteLibrary();
     
     QStringList tags() const;
+    void setTags(const QStringList &tags);
     
 signals:
     

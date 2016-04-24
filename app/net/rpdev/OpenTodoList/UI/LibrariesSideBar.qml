@@ -86,7 +86,7 @@ Panel {
                                 if (currentLibrary !== tags.library) {
                                     sidebar.currentLibrary = tags.library;
                                 }
-                                if (currentTag !== tags.library.tags[index]) {
+                                if (sidebar.currentTag !== tags.library.tags[index]) {
                                     sidebar.currentTag = tags.library.tags[index];
                                 }
                                 libraryClicked(tags.library);
