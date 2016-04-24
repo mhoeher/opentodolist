@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
 
@@ -10,8 +11,16 @@ Item {
     id: root
     
     property var model: TodosModel {}
+    property bool allowEntryCreation: false
     
     signal todoSelected(Todo todo)
+    signal addEntry(string title, bool openItem)
+    
+    function focusNewItemInput() {
+        if (listView.headerItem) {
+            listView.headerItem.focusInputItem();
+        }
+    }
     
     height: listView.contentHeight
     
@@ -26,7 +35,7 @@ Item {
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: todo.deleteItem()
     }
-
+    
     Component {
         id: itemDelegate
         
@@ -51,7 +60,7 @@ Item {
                 }
                 
                 Label {
-                    text: title
+                    text: todo.title
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAnywhere
                 }
@@ -73,6 +82,74 @@ Item {
         }
     }
     
+    Component {
+        id: headerDelegate
+        
+        Item {
+            
+            function createItem() {
+                newEntryEdit.accepted();
+            }
+            
+            function createItemAndOpen() {
+                if (newEntryEdit.displayText !== "") {
+                    root.addEntry(newEntryEdit.displayText, true);
+                    newEntryEdit.text = "";
+                    newEntryEdit.forceActiveFocus();
+                }
+            }
+            
+            function focusInputItem() {
+                newEntryEdit.forceActiveFocus();
+            }
+            
+            width: parent.width
+            height: row.height + Globals.defaultMargin * 2
+            
+            
+            RowLayout {
+                id: row
+                
+                width: parent.width
+                anchors.verticalCenter: parent.verticalCenter
+                
+                Item {
+                    width: Globals.minButtonHeight
+                    height: Globals.minButtonHeight
+                }
+                
+                TextField { 
+                    id: newEntryEdit
+                    Layout.fillWidth: true
+                    placeholderText: qsTr("Add Todo...")
+                    style: TextFieldStyle {
+                        background: Item {}
+                        textColor: "black"
+                    }
+                    
+                    onAccepted: {
+                        if (displayText !== "") {
+                            root.addEntry(displayText, false);
+                            text = "";
+                            forceActiveFocus();
+                        }
+                    }
+                }
+                
+                Symbol {
+                    symbol: Fonts.symbols.faPlus
+                    onClicked: newEntryEdit.accepted()
+                }
+            }
+            
+            Rectangle {
+                width: parent.width
+                height: 1
+                color: background.border.color
+            }
+        }
+    }
+    
     Rectangle {
         id: background
         border {
@@ -81,7 +158,7 @@ Item {
         }
         anchors.fill: parent
     }
-
+    
     Image {
         id: backgroundImage
         anchors {
@@ -91,7 +168,7 @@ Item {
         source: "qrc:/net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png"        
         fillMode: Image.Tile
     }
-
+    
     ListView {
         id: listView
         anchors {
@@ -101,5 +178,6 @@ Item {
         }
         model: root.model
         delegate: itemDelegate
+        header: root.allowEntryCreation ? headerDelegate : null
     }
 }

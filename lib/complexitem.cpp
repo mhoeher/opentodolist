@@ -72,8 +72,6 @@ QString ComplexItem::notes()
         } else {
           qWarning() << "Failed to open" << file.fileName() << "of" << this;
         }
-      } else {
-        qDebug() << "The file notes.html of " << this << "does not exist.";
       }
     }
   }

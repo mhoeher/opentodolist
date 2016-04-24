@@ -14,8 +14,9 @@ Item {
     property bool __visible: Stack.status === Stack.Active
     
     function newTodo() {
-        newTodoBar.edit.forceActiveFocus();
-        newTodoBar.edit.text = "";
+        todos.focusNewItemInput();
+        //newTodoBar.edit.forceActiveFocus();
+        //newTodoBar.edit.text = "";
     }
 
     function cancel() {
@@ -65,18 +66,6 @@ Item {
         }
     }
     
-    TextInputBar {
-        id: newTodoBar
-        placeholderText: qsTr("Todo Title")
-        onAccepted: {
-            var todo = item.addTodo(newTodoBar.edit.displayText);
-            newTodoBar.edit.focus = false;
-            if (openItem) {
-                todos.openTodo(todo);
-            }
-        }
-    }
-
     Rectangle {
         color: Qt.lighter(Colors.itemColor(item.color), 1.1)
         opacity: 0.3
@@ -124,7 +113,14 @@ Item {
                     right: parent.right
                     margins: Globals.defaultMargin * 2
                 }
-                onTodoSelected: openTodo(object)
+                allowEntryCreation: true
+                onTodoSelected: openTodo(todo)
+                onAddEntry: {
+                    var todo = page.item.addTodo(title);
+                    if (openItem) {
+                        todos.openTodo(todo);
+                    }
+                }
             }
             
             Symbol {

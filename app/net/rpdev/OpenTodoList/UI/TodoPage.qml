@@ -13,8 +13,7 @@ Item {
     property bool __visible: Stack.status === Stack.Active
     
     function newTask() {
-        newTaskBar.edit.forceActiveFocus();
-        newTaskBar.edit.text = "";
+        tasks.focusNewItemInput();
     }
 
     function cancel() {
@@ -37,15 +36,6 @@ Item {
         }
     }
     
-    TextInputBar {
-        id: newTaskBar
-        placeholderText: qsTr("Task Title")
-        onAccepted: {
-            todo.addTask(newTaskBar.edit.displayText);
-            newTaskBar.edit.focus = false;
-        }
-    }
-    
     ScrollView {
         id: scrollView
         
@@ -54,6 +44,7 @@ Item {
         
         Column {
             width: scrollView.viewport.width
+            spacing: Globals.defaultMargin
             
             TextInput {
                 id: titleEdit
@@ -81,6 +72,10 @@ Item {
                     left: parent.left
                     right: parent.right
                     margins: Globals.defaultMargin * 2
+                }
+                allowNewEntryCreation: true
+                onAddEntry: {
+                    var task = todo.addTask(title);
                 }
             }
             

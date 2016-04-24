@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
 
@@ -10,6 +11,15 @@ Item {
     id: root
     
     property list<Task> model
+    property bool allowNewEntryCreation: true
+    
+    signal addEntry(string title)
+    
+    function focusNewItemInput() {
+        if (listView.headerItem) {
+            listView.headerItem.focusInputItem();
+        }
+    }
     
     height: listView.contentHeight
     
@@ -70,6 +80,66 @@ Item {
         }
     }
     
+    Component {
+        id: headerDelegate
+        
+        Item {
+            
+            function createItem() {
+                newEntryEdit.accepted();
+            }
+            
+            function focusInputItem() {
+                newEntryEdit.forceActiveFocus();
+            }
+            
+            width: parent.width
+            height: row.height + Globals.defaultMargin * 2
+            
+            
+            RowLayout {
+                id: row
+                
+                width: parent.width
+                anchors.verticalCenter: parent.verticalCenter
+                
+                Item {
+                    width: Globals.minButtonHeight
+                    height: Globals.minButtonHeight
+                }
+                
+                TextField { 
+                    id: newEntryEdit
+                    Layout.fillWidth: true
+                    placeholderText: qsTr("Add Task...")
+                    style: TextFieldStyle {
+                        background: Item {}
+                        textColor: "black"
+                    }
+                    
+                    onAccepted: {
+                        if (displayText !== "") {
+                            root.addEntry(displayText);
+                            text = "";
+                            forceActiveFocus();
+                        }
+                    }
+                }
+                
+                Symbol {
+                    symbol: Fonts.symbols.faPlus
+                    onClicked: newEntryEdit.accepted()
+                }
+            }
+            
+            Rectangle {
+                width: parent.width
+                height: 1
+                color: background.border.color
+            }
+        }
+    }
+    
     Rectangle {
         id: background
         border {
@@ -98,5 +168,6 @@ Item {
         }
         model: root.model
         delegate: itemDelegate
+        header: allowNewEntryCreation ? headerDelegate : null
     }
 }

@@ -40,7 +40,7 @@ ApplicationWindow {
             title: qsTr("Navigate")
             MenuItem {
                 text: qsTr("Find")
-                enabled: (stack.depth > 0) && (typeof(stack.currentItem["find"]) === "function")
+                enabled: stack.currentItem && (typeof(stack.currentItem["find"]) === "function")
                 shortcut: StandardKey.Find
                 onTriggered: stack.currentItem.find()
             }
