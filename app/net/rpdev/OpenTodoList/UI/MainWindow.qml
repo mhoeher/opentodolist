@@ -39,6 +39,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Navigate")
             MenuItem {
+                id: findItem
                 text: qsTr("Find")
                 enabled: stack.currentItem && (typeof(stack.currentItem["find"]) === "function")
                 shortcut: StandardKey.Find
@@ -243,7 +244,7 @@ ApplicationWindow {
                     onClicked: leftSideBar.showing = !leftSideBar.showing
                 }
                 Symbol {
-                    symbol: Fonts.symbols.faAngleUp
+                    symbol: Fonts.symbols.faArrowUp
                     visible: stack.currentItem && typeof(stack.currentItem["goUp"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: stack.currentItem.goUp()
@@ -265,18 +266,6 @@ ApplicationWindow {
                     visible: itemsMenu.visible && newTodoListItem.enabled
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: newTodoListItem.trigger()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faCheckSquareO
-                    visible: itemsMenu.visible && newTodoItem.enabled
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: newTodoItem.trigger()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faCheckSquareO
-                    visible: itemsMenu.visible && newTaskItem.enabled
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: newTaskItem.trigger()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faPictureO
@@ -441,6 +430,12 @@ ApplicationWindow {
             }
             height: parent.height
             
+            Symbol {
+                symbol: Fonts.symbols.faSearch
+                visible: findItem.enabled
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: findItem.trigger()
+            }
             Symbol {
                 symbol: Fonts.symbols.faCopy
                 visible: copyItem.enabled

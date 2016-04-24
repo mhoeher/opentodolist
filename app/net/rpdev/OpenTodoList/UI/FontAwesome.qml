@@ -45,6 +45,7 @@ FontLoader {
     readonly property string faCopy: "\uf0c5"
     readonly property string faCut: "\uf0c4"
     readonly property string faPaste: "\uf0ea"
+    readonly property string faSearch: "\uf002"
     
     readonly property string faEyeDropper: "\uf1fb"
     
