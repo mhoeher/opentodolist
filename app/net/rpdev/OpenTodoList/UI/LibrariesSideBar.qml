@@ -123,9 +123,12 @@ Panel {
         }
         
         ScrollView {
+            id: scrollView
             anchors.fill: parent
+            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+            
             Column {
-                width: sidebar.width
+                width: scrollView.width
                 
                 ButtonContainer {
                     width: parent.width

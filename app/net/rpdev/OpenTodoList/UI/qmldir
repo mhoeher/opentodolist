@@ -9,6 +9,7 @@ LibrariesSideBar 1.0 LibrariesSideBar.qml
 MainWindow 1.0 MainWindow.qml
 NoteItem 1.0 NoteItem.qml
 NotePage 1.0 NotePage.qml
+Panel 1.0 Panel.qml
 RichTextEditor 1.0 RichTextEditor.qml
 RichTextEditorFormatMenu 1.0 RichTextEditorFormatMenu.qml
 Sidebar 1.0 Sidebar.qml
