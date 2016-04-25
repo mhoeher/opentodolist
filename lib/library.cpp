@@ -310,8 +310,8 @@ void Library::scanItems(const QString &startDir)
             }
         }
     }
-    rebuildTags();
     m_loadingItems = false;
+    rebuildTags();
 }
 
 bool Library::containsItem(const QUuid &uid) const
