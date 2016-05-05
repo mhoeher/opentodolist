@@ -9,7 +9,11 @@ Item {
     
     property StackView stack: null
     
-    function cancel() {}
+    signal closed()
+    
+    function cancel() {
+        closed();
+    }
     
     ColumnLayout {
         anchors {

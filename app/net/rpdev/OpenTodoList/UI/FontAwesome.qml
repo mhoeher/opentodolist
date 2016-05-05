@@ -20,6 +20,7 @@ FontLoader {
     readonly property string faHome: "\uf015"
     readonly property string faBars: "\uf0c9"
     readonly property string faTimes: "\uf00d"
+    readonly property string faInfo: "\uf129"
     
     readonly property string faArrowLeft: "\uf060"
     readonly property string faArrowRight: "\uf061"

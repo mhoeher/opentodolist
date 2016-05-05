@@ -5,6 +5,11 @@ import net.rpdev.OpenTodoList 1.0
 import net.rpdev.OpenTodoList.UI 1.0
 
 Item {
+    
+    function cancel() {
+        closed();
+    }
+    
     Text {
         id: title
         font {

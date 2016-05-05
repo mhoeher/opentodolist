@@ -14,6 +14,8 @@ ApplicationWindow {
     
     signal openLocalLibrary()
     
+    property Item helpPage: null
+    
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
     width: 640
@@ -191,9 +193,22 @@ ApplicationWindow {
             }
             MenuSeparator {}
             MenuItem {
+                id: showAboutPageMenuItem
                 text: qsTr("About")
                 shortcut: StandardKey.HelpContents
-                onTriggered: stack.push({item: aboutPage, properties: { stack: stack }})
+                onTriggered: {
+                    if (helpPage) {
+                        stack.pop(helpPage);
+                    } else {
+                        leftSideBar.currentLibrary = null;
+                        leftSideBar.currentTag = "";
+                        helpPage = stack.push({item: aboutPage, 
+                                                  properties: { 
+                                                      stack: stack,
+                                                      onClosed: function() { helpPage = null; }
+                                                  }});
+                    }
+                }
             }
         }
 
@@ -546,12 +561,14 @@ ApplicationWindow {
                 top: parent.top
                 bottom: parent.bottom
             }
+            helpVisible: helpPage !== null
             width: 15 * Globals.fontPixelSize
             edge: Qt.LeftEdge
             compact: applicationWindow.width <= Globals.fontPixelSize * 60
             onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, currentTag, libraryPage)
             onCurrentTagChanged: Logic.viewLibrary(stack, currentLibrary, currentTag, libraryPage)
             onOpenLocalLibrary: openLocalLibraryDialog.open()
+            onAboutPageRequested: showAboutPageMenuItem.trigger()
         }
         
         MouseArea {

@@ -9,9 +9,11 @@ Panel {
     
     property var currentLibrary: App.libraries[0]
     property string currentTag: ""
+    property bool helpVisible: false
     
     signal libraryClicked(Library library)
     signal openLocalLibrary()
+    signal aboutPageRequested()
     
     contentItem: Item {
         
@@ -176,6 +178,58 @@ Panel {
                     model: App.libraries
                     delegate: libraryItemDelegate
                     anchors.fill: parent
+                }
+                
+                ButtonContainer {
+                    width: parent.width
+                    mainItem: showAboutItem
+                    
+                    Rectangle {
+                        anchors.fill: parent
+                        color: Colors.secondary3
+                        visible: opacity > 0.0
+                        opacity: sidebar.helpVisible ? 1.0 : 0.0
+                        
+                        Behavior on opacity { NumberAnimation { duration: 500 } }
+                    }
+                    
+                    Item {
+                        id: showAboutItem
+                        
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            margins: Globals.defaultMargin
+                            verticalCenter: parent.verticalCenter
+                        }
+                        
+                        height: Math.max(helpSymbol.height, helpText.height) + Globals.defaultMargin
+                        
+                        Symbol {
+                            id: helpSymbol
+                            symbol: Fonts.symbols.faInfo
+                            color: Colors.panelText
+                            anchors {
+                                left: parent.left
+                                verticalCenter: parent.verticalCenter
+                            }
+                        }
+                        Label {
+                            id: helpText
+                            text: qsTr("About...")
+                            color: Colors.panelText
+                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            anchors {
+                                left: helpSymbol.right
+                                right: parent.right
+                                verticalCenter: parent.verticalCenter
+                            }
+                        }
+                    }
+                    onClicked: {
+                        sidebar.aboutPageRequested();
+                        sidebar.close();
+                    }
                 }
             }
         }
