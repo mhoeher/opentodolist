@@ -9,6 +9,35 @@ function documentFormatterForItem(item) {
     }
 }
 
+function richTextEditorForItem(item) {
+    while (item !== undefined && item !== null) {
+        if (item["isRichTextEditor"] !== undefined) {
+            return item;
+        }
+        item = item.parent;
+    }
+    return undefined;
+}
+
+function checkCap(item, action) {
+    while (item !== undefined && item !== null) {
+        if (typeof(item[action]) === "function") {
+            return item;
+        }
+        item = item.parent;
+    }
+    return false;
+}
+
+function execCap(item, action) {
+    while (item !== undefined && item !== null) {
+        if (typeof(item[action]) === "function") {
+            return item[action]();
+        }
+        item = item.parent;
+    }
+}
+
 function viewLibrary(stack, library, tag, component) {
     stack.clear();
     if (library) {
