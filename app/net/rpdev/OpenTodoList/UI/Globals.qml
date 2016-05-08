@@ -12,7 +12,8 @@ Item {
     
     property QtObject appWindow: null
     property int fontPixelSize: typeof(defaultFontPixelSize) === "number" ? defaultFontPixelSize : 32
-    property int minButtonHeight: fontPixelSize * 2
+    property int minButtonHeight: fontPixelSize * (touchEnabled ? 2.5 : 2)
+    property bool touchEnabled: enableTouchOptimizations
     property int defaultMargin: fontPixelSize
     
     readonly property int defaultAnimationTime: 500

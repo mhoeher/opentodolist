@@ -15,13 +15,7 @@ ApplicationWindow {
     signal openLocalLibrary()
     
     property Item helpPage: null
-    
-    title: qsTr("OpenTodoList") + " - " + applicationVersion
-    visible: true
-    width: 640
-    height: 480
-
-    menuBar: MenuBar {
+    property MenuBar __menuBar: MenuBar {
         Menu {
             title: qsTr("&Library")
             MenuItem {
@@ -226,6 +220,14 @@ ApplicationWindow {
             }
         }
     }
+    
+    title: qsTr("OpenTodoList") + " - " + applicationVersion
+    visible: true
+    width: 640
+    height: 480
+
+    
+    menuBar: Globals.touchEnabled ? null : __menuBar
     
     toolBar: ToolBar {
         height: Globals.minButtonHeight * 1.5

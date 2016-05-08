@@ -131,6 +131,13 @@ int main(int argc, char *argv[])
   parser.addOption(qmlRootOption);
 #endif
   
+  // Enable touch screen optimizations
+  QCommandLineOption enableTouchOption = {{"T", "enable-touch"},
+                                          QCoreApplication::translate(
+                                          "main", 
+                                          "Switch on some optimizations for touchscreens.")};
+  parser.addOption(enableTouchOption);
+  
   parser.process(app);
   
   QQmlApplicationEngine engine;
@@ -165,6 +172,24 @@ int main(int argc, char *argv[])
                                        #endif
                                                )
                                          );
+  
+  // Enable touch optimizations, this flag is controlled via CLI, additionally, it
+  // is set implicitly on some platforms:
+  {
+      bool enableTouchOptimizations = 
+        #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX) || defined(Q_OS_WINPHONE)
+              true
+        #else
+              false
+        #endif
+              ;
+      if (parser.isSet(enableTouchOption))
+      {
+          enableTouchOptimizations = true;
+      }
+      engine.rootContext()->setContextProperty("enableTouchOptimizations",
+                                               enableTouchOptimizations);
+  }
   engine.rootContext()->setContextProperty("applicationVersion", QVariant(VERSION));
   engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
   engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
