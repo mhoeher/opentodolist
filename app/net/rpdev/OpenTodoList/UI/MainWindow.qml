@@ -144,28 +144,37 @@ ApplicationWindow {
             MenuItem {
                 id: copyItem
                 text: qsTr("&Copy")
-                enabled: Logic.checkCap(activeFocusItem, "copy")
+                enabled: activeFocusItem && typeof(activeFocusItem["copy"]) === "function"
                 shortcut: StandardKey.Copy
-                onTriggered: Logic.execCap(activeFocusItem, "copy")
+                onTriggered: activeFocusItem.copy()
             }
             MenuItem {
                 id: cutItem
                 text: qsTr("C&ut")
-                enabled: Logic.checkCap(activeFocusItem, "cut")
+                enabled: activeFocusItem && typeof(activeFocusItem["cut"]) === "function"
                 shortcut: StandardKey.Cut
-                onTriggered: Logic.execCap(activeFocusItem, "cut")
+                onTriggered: activeFocusItem.cut()
             }
             MenuItem {
                 id: pasteItem
                 text: qsTr("&Paste")
-                enabled: Logic.checkCap(activeFocusItem, "paste")
+                enabled: activeFocusItem && typeof(activeFocusItem["paste"]) === "function"
                 shortcut: StandardKey.Paste
-                onTriggered: Logic.execCap(activeFocusItem, "paste")
+                onTriggered: activeFocusItem.paste()
             }
         }
         
         RichTextEditorFormatMenu {
             id: formatMenu
+            onParagraphStyleChanged: {
+                for (var i = 0; i < styleComboBox.count; ++i) {
+                    if (styleComboBox.get(i).style === paragraphStyle) {
+                        styleComboBox.currentIndex = i;
+                        return;
+                    }
+                }
+                styleComboBox.currentIndex = 0;
+            }
         }
         
         Menu {
@@ -298,35 +307,35 @@ ApplicationWindow {
                     menu: Menu {
                         MenuItem {
                             text: "Default"
-                            onTriggered: formatMenu.defaultStyle.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.Default)
                         }
                         MenuItem {
                             text: "Title 1"
-                            onTriggered: formatMenu.heading1.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H1)
                         }
                         MenuItem {
                             text: "Title 2"
-                            onTriggered: formatMenu.heading2.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H2)
                         }
                         MenuItem {
                             text: "Title 3"
-                            onTriggered: formatMenu.heading3.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H3)
                         }
                         MenuItem {
                             text: "Title 4"
-                            onTriggered: formatMenu.heading4.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H4)
                         }
                         MenuItem {
                             text: "Title 5"
-                            onTriggered: formatMenu.heading5.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H5)
                         }
                         MenuItem {
                             text: "Title 6"
-                            onTriggered: formatMenu.heading6.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.H6)
                         }
                         MenuItem {
                             text: "Code"
-                            onTriggered: formatMenu.code.trigger()
+                            onTriggered: formatMenu.applyParagraphStyle(DocumentFormatter.Code)
                         }
                     }
                 }
@@ -395,7 +404,7 @@ ApplicationWindow {
                         } else if (formatMenu.alignJustifyItem.checked) {
                             return Fonts.symbols.faAlignJustify;
                         } else {
-                            return Fonts.symbols.faAlignLeft;
+                            return "";
                         }
                     }
                     visible: formatMenu.visible
@@ -403,18 +412,26 @@ ApplicationWindow {
                     menu: Menu {
                         MenuItem {
                             text: formatMenu.alignLeftItem.text
+                            checkable: true
+                            checked: formatMenu.alignLeftItem.checked
                             onTriggered: formatMenu.alignLeftItem.trigger()
                         }
                         MenuItem {
                             text: formatMenu.alignCenterItem.text
+                            checkable: true
+                            checked: formatMenu.alignCenterItem.checked
                             onTriggered: formatMenu.alignCenterItem.trigger()
                         }
                         MenuItem {
                             text: formatMenu.alignRightItem.text
+                            checkable: true
+                            checked: formatMenu.alignRightItem.checked
                             onTriggered: formatMenu.alignRightItem.trigger()
                         }
                         MenuItem {
                             text: formatMenu.alignJustifyItem.text
+                            checkable: true
+                            checked: formatMenu.alignJustifyItem.checked
                             onTriggered: formatMenu.alignJustifyItem.trigger()
                         }
                     }
@@ -624,7 +641,6 @@ ApplicationWindow {
             id: aboutPage
             AboutPage {}
         }
-     
+        
     }
-    
 }

@@ -52,8 +52,5 @@
         <file>net/rpdev/OpenTodoList/UI/private/qmldir</file>
         <file>net/rpdev/OpenTodoList/UI/FontAwesome.qml</file>
         <file>net/rpdev/OpenTodoList/UI/TagsEditor.qml</file>
-        <file>net/rpdev/RichTextEditor/RichTextEditor.qml</file>
-        <file>net/rpdev/RichTextEditor/qmldir</file>
-        <file>net/rpdev/RichTextEditor/script.js</file>
     </qresource>
 </RCC>

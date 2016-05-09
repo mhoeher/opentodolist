@@ -4,16 +4,15 @@ import QtQuick.Controls 1.4
 import net.rpdev.OpenTodoList 1.0
 import net.rpdev.OpenTodoList.UI 1.0
 
-import net.rpdev.RichTextEditor 1.0 as RTE
-
 FocusScope {
     id: editor
     
+    readonly property TextArea textArea: textArea
     property alias text: textArea.text
     property DocumentFormatter documentFormatter: DocumentFormatter {
         target: textArea
-        selectionStart: 0
-        selectionEnd: 0
+        selectionStart: textArea.selectionStart
+        selectionEnd: textArea.selectionEnd
     }
     
     signal accepted()
@@ -32,9 +31,21 @@ FocusScope {
         fillMode: Image.Tile
     }
     
-    RTE.RichTextEditor {
+    TextArea {
         id: textArea
         
         anchors.fill: parent
+        textFormat: TextEdit.RichText
+        tabChangesFocus: false
+        backgroundVisible: false
+        focus: true
+        Keys.onTabPressed: {
+            if (event.modifiers & Qt.ControlModifier) {
+                documentFormatter.decreaseIndentation();
+            } else {
+                documentFormatter.increaseIndentation();
+            }
+            event.accepted = true;
+        }
     }
 }

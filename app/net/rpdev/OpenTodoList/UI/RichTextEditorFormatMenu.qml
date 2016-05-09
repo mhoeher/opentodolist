@@ -9,14 +9,6 @@ Menu {
     id: formatMenu
     title: qsTr("Format")
     
-    property MenuItem defaultStyle: defaultStyle
-    property MenuItem heading1: heading1
-    property MenuItem heading2: heading2
-    property MenuItem heading3: heading3
-    property MenuItem heading4: heading4
-    property MenuItem heading5: heading5
-    property MenuItem heading6: heading6
-    property MenuItem code: code
     property MenuItem boldItem: bold
     property MenuItem italicItem: italic
     property MenuItem underlineItem: underline
@@ -30,11 +22,19 @@ Menu {
     property MenuItem alignRightItem: alignRight
     property MenuItem alignJustifyItem: alignJustify
     
-    property var __item: activeFocusItem
-    property var __itemFormatter: Logic.richTextEditorForItem(__item)
+    property int paragraphStyle: __formatter.paragraphStyle
     
-    property var __defaultFormatter: QtObject {}
-    property var __formatter: __itemFormatter || __defaultFormatter
+    onParagraphStyleChanged: console.debug(paragraphStyle)
+    
+    function applyParagraphStyle(style) {
+        __formatter.paragraphStyle = style;
+    }
+    
+    property var __item: activeFocusItem
+    property var __itemFormatter: Logic.documentFormatterForItem(__item)
+    
+    property DocumentFormatter __defaultFormatter: DocumentFormatter {}
+    property DocumentFormatter __formatter: __itemFormatter || __defaultFormatter
     
     property var __textSelected: __formatter && 
                                  __formatter.selectionStart != __formatter.selectionEnd
@@ -45,59 +45,67 @@ Menu {
         title: qsTr("Style")
         
         MenuItem {
-            id: defaultStyle
             text: qsTr("Default")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.Default
             shortcut: qsTr("Ctrl+Shift+D")
-            onTriggered: __formatter.defaultStyle()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.Default
         }
         
         MenuItem {
-            id: heading1
             text: qsTr("Title 1")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.H1
             shortcut: qsTr("Ctrl+Shift+1")
-            onTriggered: __formatter.heading1()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.H1
         }
         
         MenuItem {
-            id: heading2
             text: qsTr("Title 2")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.H2
             shortcut: qsTr("Ctrl+Shift+2")
-            onTriggered: __formatter.heading2()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.H2
         }
         
         MenuItem {
-            id: heading3
             text: qsTr("Title 3")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.H3
             shortcut: qsTr("Ctrl+Shift+3")
-            onTriggered: __formatter.heading3()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.H3
         }
         
         MenuItem {
-            id: heading4
             text: qsTr("Title 4")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.H4
             shortcut: qsTr("Ctrl+Shift+4")
-            onTriggered: __formatter.heading4()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.H4
         }
         
         MenuItem {
-            id: heading5
             text: qsTr("Title 5")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.H5
             shortcut: qsTr("Ctrl+Shift+5")
-            onTriggered: __formatter.heading5()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.H5
         }
         
         MenuItem {
-            id: heading6
             text: qsTr("Title 6")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.H6
             shortcut: qsTr("Ctrl+Shift+6")
-            onTriggered: __formatter.heading6()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.H6
         }
         
         MenuItem {
-            id: code
             text: qsTr("Code")
+            checkable: true
+            checked: __formatter.paragraphStyle === DocumentFormatter.Code
             shortcut: qsTr("Ctrl+Shift+C")
-            onTriggered: __formatter.code()
+            onTriggered: __formatter.paragraphStyle = DocumentFormatter.Code
         }
     }
     
@@ -107,27 +115,35 @@ Menu {
         id: bold
         text: qsTr("Bold")
         shortcut: StandardKey.Bold
-        onTriggered: __formatter.toggleBold()
+        checkable: true
+        checked: formatMenu.__formatter.bold
+        onTriggered: __formatter.bold = !__formatter.bold
     }
     
     MenuItem {
         id: italic
         text: qsTr("Italic")
         shortcut: StandardKey.Italic
-        onTriggered: __formatter.toggleItalic()
+        checkable: true
+        checked: formatMenu.__formatter.italic
+        onTriggered: __formatter.italic = !__formatter.italic
     }
     
     MenuItem {
         id: underline
         text: qsTr("Underline")
         shortcut: StandardKey.Underline
-        onTriggered: __formatter.toggleUnderline()
+        checkable: true
+        checked: formatMenu.__formatter.underline
+        onTriggered: __formatter.underline = !__formatter.underline
     }
     
     MenuItem {
         id: strikethrough
         text: qsTr("Strikethrough")
-        onTriggered: __formatter.toggleStrikeThrough()
+        checkable: true
+        checked: formatMenu.__formatter.strikethrough
+        onTriggered: __formatter.strikethrough = !__formatter.strikethrough
     }
     
     MenuSeparator {}
@@ -135,13 +151,13 @@ Menu {
     MenuItem {
         id: bulletList
         text: qsTr("Bullet List")
-        onTriggered: __formatter.insertUnorderedList()
+        onTriggered: __formatter.unorderedList = !__formatter.unorderedList
     }
     
     MenuItem {
         id: orderedList
         text: qsTr("Ordered List")
-        onTriggered: __formatter.insertOrderedList()
+        onTriggered: __formatter.orderedList = !__formatter.orderedList
     }
     
     MenuSeparator {}
@@ -149,13 +165,13 @@ Menu {
     MenuItem {
         id: indent
         text: qsTr("Indent")
-        onTriggered: __formatter.indent()
+        onTriggered: __formatter.increaseIndentation()
     }
     
     MenuItem {
         id: outdent
         text: qsTr("Outdent")
-        onTriggered: __formatter.outdent()
+        onTriggered: __formatter.decreaseIndentation()
     }
     
     MenuSeparator {}
@@ -163,25 +179,33 @@ Menu {
     MenuItem {
         id: alignLeft
         text: qsTr("Align Left")
-        onTriggered: __formatter.alignLeft()
+        checkable: true
+        checked: formatMenu.__formatter.alignLeft
+        onTriggered: __formatter.alignLeft = !__formatter.alignLeft
     }
     
     MenuItem {
         id: alignCenter
         text: qsTr("Center")
-        onTriggered: __formatter.alignCenter()
+        checkable: true
+        checked: formatMenu.__formatter.alignCenter
+        onTriggered: __formatter.alignCenter = !__formatter.alignCenter
     }
     
     MenuItem {
         id: alignRight
         text: qsTr("Align Right")
-        onTriggered: __formatter.alignRight()
+        checkable: true
+        checked: formatMenu.__formatter.alignRight
+        onTriggered: __formatter.alignRight = !__formatter.alignRight
     }
     
     MenuItem {
         id: alignJustify
         text: qsTr("Justify")
-        onTriggered: __formatter.alignJustify()
+        checkable: true
+        checked: formatMenu.__formatter.justify
+        onTriggered: __formatter.justify = !__formatter.justify
     }
     
 }

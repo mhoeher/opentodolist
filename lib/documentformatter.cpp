@@ -18,19 +18,20 @@
 
 #include "documentformatter.h"
 
+#include <QTextBlock>
 #include <QTextBlockFormat>
 
 DocumentFormatter::DocumentFormatter(QObject *parent) :
-  QObject(parent),
-  m_target( 0 ),
-  m_document( 0 ),
-  m_selectionStart( 0 ),
-  m_selectionEnd( 0 ),
-  m_currentParagraphStyle(UnknownParagraphStyle)
+    QObject(parent),
+    m_target( 0 ),
+    m_document( 0 ),
+    m_selectionStart( 0 ),
+    m_selectionEnd( 0 ),
+    m_currentParagraphStyle(UnknownParagraphStyle)
 {
-  connect(this, &DocumentFormatter::targetChanged, this, &DocumentFormatter::reset);
-  connect(this, &DocumentFormatter::selectionStartChanged, this, &DocumentFormatter::reset);
-  connect(this, &DocumentFormatter::selectionEndChanged, this, &DocumentFormatter::reset);
+    connect(this, &DocumentFormatter::targetChanged, this, &DocumentFormatter::reset);
+    connect(this, &DocumentFormatter::selectionStartChanged, this, &DocumentFormatter::reset);
+    connect(this, &DocumentFormatter::selectionEndChanged, this, &DocumentFormatter::reset);
 }
 
 /**
@@ -38,7 +39,7 @@ DocumentFormatter::DocumentFormatter(QObject *parent) :
  */
 QQuickItem *DocumentFormatter::target() const
 {
-  return m_target;
+    return m_target;
 }
 
 /**
@@ -49,294 +50,363 @@ QQuickItem *DocumentFormatter::target() const
  */
 void DocumentFormatter::setTarget(QQuickItem *target)
 {
-  m_document = 0;
-  m_target = target;
-  if ( target ) {
-    QVariant docAsVariant = target->property( "textDocument" );
-    if ( docAsVariant.isValid() && docAsVariant.canConvert<QQuickTextDocument*>() ) {
-      QQuickTextDocument *qqtd = docAsVariant.value<QQuickTextDocument*>();
-      if ( qqtd ) {
-        m_document = qqtd->textDocument();
-      }
+    m_document = 0;
+    m_target = target;
+    if ( target ) {
+        QVariant docAsVariant = target->property( "textDocument" );
+        if ( docAsVariant.isValid() && docAsVariant.canConvert<QQuickTextDocument*>() ) {
+            QQuickTextDocument *qqtd = docAsVariant.value<QQuickTextDocument*>();
+            if ( qqtd ) {
+                m_document = qqtd->textDocument();
+            }
+        }
     }
-  }
-  emit targetChanged();
+    emit targetChanged();
 }
 
 int DocumentFormatter::selectionStart() const
 {
-  return m_selectionStart;
+    return m_selectionStart;
 }
 
 void DocumentFormatter::setSelectionStart(int selectionStart)
 {
-  m_selectionStart = selectionStart;
-  emit selectionStartChanged();
+    m_selectionStart = selectionStart;
+    emit selectionStartChanged();
 }
 
 int DocumentFormatter::selectionEnd() const
 {
-  return m_selectionEnd;
+    return m_selectionEnd;
 }
 
 void DocumentFormatter::setSelectionEnd(int selectionEnd)
 {
-  m_selectionEnd = selectionEnd;
-  emit selectionEndChanged();
+    m_selectionEnd = selectionEnd;
+    emit selectionEndChanged();
 }
 
 bool DocumentFormatter::bold() const
 {
-  QTextCursor cursor = wordCursor();
-  return cursor.isNull() ? false : cursor.charFormat().fontWeight() == QFont::Bold;
+    QTextCursor cursor = wordCursor();
+    return cursor.isNull() ? false : cursor.charFormat().fontWeight() == QFont::Bold;
 }
 
 void DocumentFormatter::setBold(bool bold)
 {
-  QTextCursor cursor = wordCursor();
-  QTextCharFormat format;
-  format.setFontWeight( bold ? QFont::Bold : QFont::Normal );
-  cursor.mergeCharFormat( format );
-  emit boldChanged();
+    QTextCursor cursor = wordCursor();
+    QTextCharFormat format;
+    format.setFontWeight( bold ? QFont::Bold : QFont::Normal );
+    cursor.mergeCharFormat( format );
+    emit boldChanged();
 }
 
 bool DocumentFormatter::italic() const
 {
-  QTextCursor cursor = wordCursor();
-  return cursor.isNull() ? false : cursor.charFormat().fontItalic();
+    QTextCursor cursor = wordCursor();
+    return cursor.isNull() ? false : cursor.charFormat().fontItalic();
 }
 
 void DocumentFormatter::setItalic(bool italic)
 {
-  QTextCursor cursor = wordCursor();
-  QTextCharFormat format;
-  format.setFontItalic( italic );
-  cursor.mergeCharFormat( format );
-  emit italicChanged();
+    QTextCursor cursor = wordCursor();
+    QTextCharFormat format;
+    format.setFontItalic( italic );
+    cursor.mergeCharFormat( format );
+    emit italicChanged();
 }
 
 bool DocumentFormatter::underline() const
 {
-  QTextCursor cursor = wordCursor();
-  return cursor.isNull() ? false : cursor.charFormat().fontUnderline();
+    QTextCursor cursor = wordCursor();
+    return cursor.isNull() ? false : cursor.charFormat().fontUnderline();
 }
 
 void DocumentFormatter::setUnderline(bool underline)
 {
-  QTextCursor cursor = wordCursor();
-  QTextCharFormat format;
-  format.setFontUnderline( underline );
-  cursor.mergeCharFormat( format );
-  emit underlineChanged();
+    QTextCursor cursor = wordCursor();
+    QTextCharFormat format;
+    format.setFontUnderline( underline );
+    cursor.mergeCharFormat( format );
+    emit underlineChanged();
 }
 
 bool DocumentFormatter::strikethrough() const
 {
-  QTextCursor cursor = wordCursor();
-  return cursor.isNull() ? false : cursor.charFormat().fontStrikeOut();
+    QTextCursor cursor = wordCursor();
+    return cursor.isNull() ? false : cursor.charFormat().fontStrikeOut();
 }
 
 void DocumentFormatter::setStrikethrough(bool strikethrough)
 {
-  QTextCursor cursor = wordCursor();
-  QTextCharFormat format;
-  format.setFontStrikeOut( strikethrough );
-  cursor.mergeCharFormat( format );
-  emit strikethroughChanged();
+    QTextCursor cursor = wordCursor();
+    QTextCharFormat format;
+    format.setFontStrikeOut( strikethrough );
+    cursor.mergeCharFormat( format );
+    emit strikethroughChanged();
 }
 
 bool DocumentFormatter::alignLeft() const
 {
-  QTextCursor cursor = blockCursor();
-  return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignLeft;
+    QTextCursor cursor = blockCursor();
+    return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignLeft;
 }
 
 void DocumentFormatter::setAlignLeft(bool alignLeft)
 {
-  if ( alignLeft ) {
-    setAlignment( Qt::AlignLeft );
-  }
+    if ( alignLeft ) {
+        setAlignment( Qt::AlignLeft );
+    }
 }
 
 bool DocumentFormatter::alignCenter() const
 {
-  QTextCursor cursor = blockCursor();
-  return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignCenter;
+    QTextCursor cursor = blockCursor();
+    return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignCenter;
 }
 
 void DocumentFormatter::setAlignCenter(bool alignCenter)
 {
-  if ( alignCenter ) {
-    setAlignment( Qt::AlignCenter );
-  }
+    if ( alignCenter ) {
+        setAlignment( Qt::AlignCenter );
+    }
 }
 
 bool DocumentFormatter::alignRight() const
 {
-  QTextCursor cursor = blockCursor();
-  return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignRight;
+    QTextCursor cursor = blockCursor();
+    return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignRight;
 }
 
 void DocumentFormatter::setAlignRight(bool alignRight)
 {
-  if ( alignRight ) {
-    setAlignment( Qt::AlignRight );
-  }
+    if ( alignRight ) {
+        setAlignment( Qt::AlignRight );
+    }
 }
 
 bool DocumentFormatter::justify() const
 {
-  QTextCursor cursor = blockCursor();
-  return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignJustify;
+    QTextCursor cursor = blockCursor();
+    return cursor.isNull() ? false : cursor.blockFormat().alignment() == Qt::AlignJustify;
 }
 
 void DocumentFormatter::setJustify(bool justify)
 {
-  if ( justify ) {
-    setAlignment( Qt::AlignJustify );
-  }
+    if ( justify ) {
+        setAlignment( Qt::AlignJustify );
+    }
 }
 
 bool DocumentFormatter::unorderedList() const
 {
-  return false;
+    auto cursor = blockCursor();
+    auto blockFormat = cursor.blockFormat();
+    if (blockFormat.isListFormat()) 
+    {
+        auto listFormat = blockFormat.toListFormat();
+        switch (listFormat.style()) 
+        {
+        case QTextListFormat::ListCircle:
+        case QTextListFormat::ListDisc:
+        case QTextListFormat::ListSquare:
+            return true;
+        default:
+            return false;
+        }
+    }
+    return false;
 }
 
 void DocumentFormatter::setUnorderedList(bool unorderedList)
 {
-  if ( unorderedList ) {
-    QTextCursor cursor = blockCursor();
-    cursor.createList( QTextListFormat::ListDisc );
-  }
+    if ( unorderedList ) {
+        QTextCursor cursor = blockCursor();
+        cursor.createList( QTextListFormat::ListDisc );
+    }
 }
 
 bool DocumentFormatter::orderedList() const
 {
-  return false;
+    auto cursor = blockCursor();
+    auto blockFormat = cursor.blockFormat();
+    if (blockFormat.isListFormat()) 
+    {
+        return !unorderedList();
+    }
+    return false;
 }
 
 void DocumentFormatter::setOrderedList(bool orderedList)
 {
-  if ( orderedList ) {
-    QTextCursor cursor = blockCursor();
-    cursor.createList( QTextListFormat::ListDecimal );
-  }
+    if ( orderedList ) {
+        QTextCursor cursor = blockCursor();
+        cursor.createList( QTextListFormat::ListDecimal );
+    }
 }
 
 DocumentFormatter::ParagraphStyle DocumentFormatter::paragraphStyle() const
 {
-  return UnknownParagraphStyle;
+    return UnknownParagraphStyle;
 }
 
 void DocumentFormatter::setParagraphStyle(DocumentFormatter::ParagraphStyle paragraphStyle)
 {
-  m_currentParagraphStyle = paragraphStyle;
-  emit paragraphStyleChanged();
-  if (m_document && paragraphStyle != UnknownParagraphStyle) {
-    QTextCursor cursor = blockCursor();
-    if (!cursor.isNull()) {
-      QString selectedText = cursor.selectedText();
-      QString surroundWith = "";
-      static const QHash<ParagraphStyle,QString> SurroundWidth = {
-        {H1, "h1"},
-        {H2, "h2"},
-        {H3, "h3"},
-        {H4, "h4"},
-        {H5, "h5"},
-        {H6, "h6"},
-        {Code, "pre"},
-      };
-      surroundWith = SurroundWidth.value(paragraphStyle);
-      if (!surroundWith.isEmpty()) {
-        selectedText = QString("<%1>%2</%1>").arg(surroundWith).arg(selectedText);
-      }
-      cursor.removeSelectedText();
-      cursor.insertHtml(selectedText);
+    m_currentParagraphStyle = paragraphStyle;
+    emit paragraphStyleChanged();
+    if (m_document && paragraphStyle != UnknownParagraphStyle) {
+        /*
+        QTextCursor cursor = blockCursor();
+        if (!cursor.isNull()) {
+            QString selectedText = cursor.selectedText();
+            QString surroundWith = "";
+            static const QHash<ParagraphStyle,QString> SurroundWidth = {
+                {H1, "h1"},
+                {H2, "h2"},
+                {H3, "h3"},
+                {H4, "h4"},
+                {H5, "h5"},
+                {H6, "h6"},
+                {Code, "pre"},
+            };
+            surroundWith = SurroundWidth.value(paragraphStyle);
+            if (!surroundWith.isEmpty()) {
+                selectedText = QString("<%1>%2</%1>").arg(surroundWith).arg(selectedText);
+            }
+            cursor.removeSelectedText();
+            cursor.insertHtml(selectedText);
+        }*/
+        QTextCursor cursor = blockCursor();
+        if (!cursor.isNull())
+        {
+            QTextBlockFormat blockFormat;
+            QTextCharFormat charFormat;
+            switch (paragraphStyle)
+            {
+            case H1:
+                charFormat.setFontWeight(QFont::Bold);
+                charFormat.setFontPointSize(17);
+                break;
+            case H2:
+                charFormat.setFontWeight(QFont::Bold);
+                charFormat.setFontPointSize(16);
+                break;
+            case H3:
+                charFormat.setFontWeight(QFont::Bold);
+                charFormat.setFontPointSize(15);
+                break;
+            case H4:
+                charFormat.setFontWeight(QFont::Bold);
+                charFormat.setFontPointSize(14);
+                break;
+            case H5:
+                charFormat.setFontWeight(QFont::Bold);
+                charFormat.setFontPointSize(13);
+                break;
+            case H6:
+                charFormat.setFontWeight(QFont::Bold);
+                charFormat.setFontPointSize(12);
+                break;
+            case Default:
+                charFormat.setFontPointSize(10);
+                break;
+            case Code:
+                charFormat.setFontPointSize(10);
+                charFormat.setFontFamily("Courier New, Courier, fixed");
+            case UnknownParagraphStyle:
+                // Um... we should never end up here ;)
+                break;
+            }
+            cursor.beginEditBlock();
+            cursor.setBlockFormat(blockFormat);
+            cursor.setCharFormat(charFormat);
+            cursor.endEditBlock();
+        }
     }
-  }
 }
 
 void DocumentFormatter::reset()
 {
-  m_currentParagraphStyle = UnknownParagraphStyle;
-  emit boldChanged();
-  emit italicChanged();
-  emit underlineChanged();
-  emit strikethroughChanged();
-  emit alignLeftChanged();
-  emit alignCenterChanged();
-  emit alignRightChanged();
-  emit justifyChanged();
-  emit unorderedListChanged();
-  emit orderedListChanged();
-  emit paragraphStyleChanged();
+    m_currentParagraphStyle = UnknownParagraphStyle;
+    emit boldChanged();
+    emit italicChanged();
+    emit underlineChanged();
+    emit strikethroughChanged();
+    emit alignLeftChanged();
+    emit alignCenterChanged();
+    emit alignRightChanged();
+    emit justifyChanged();
+    emit unorderedListChanged();
+    emit orderedListChanged();
+    emit paragraphStyleChanged();
 }
 
 void DocumentFormatter::increaseIndentation()
 {
-  if (m_document) {
-    QTextCursor cursor = this->cursor();
-    QTextBlockFormat format = cursor.blockFormat();
-    format.setIndent(format.indent() + 1);
-    cursor.mergeBlockFormat(format);
-  }
+    if (m_document) {
+        QTextCursor cursor = this->cursor();
+        QTextBlockFormat format = cursor.blockFormat();
+        format.setIndent(format.indent() + 1);
+        cursor.mergeBlockFormat(format);
+    }
 }
 
 void DocumentFormatter::decreaseIndentation()
 {
-  if (m_document) {
-    QTextCursor cursor = this->cursor();
-    QTextBlockFormat format = cursor.blockFormat();
-    format.setIndent(format.indent() - 1);
-    cursor.mergeBlockFormat(format);
-  }
+    if (m_document) {
+        QTextCursor cursor = this->cursor();
+        QTextBlockFormat format = cursor.blockFormat();
+        format.setIndent(format.indent() - 1);
+        cursor.mergeBlockFormat(format);
+    }
 }
 
 QTextCursor DocumentFormatter::cursor() const
 {
-  if ( m_document ) {
-    QTextCursor cursor = QTextCursor( m_document );
-    cursor.setPosition( m_selectionStart );
-    if ( m_selectionStart != m_selectionEnd ) {
-      cursor.setPosition( m_selectionEnd, QTextCursor::KeepAnchor );
+    if ( m_document ) {
+        QTextCursor cursor = QTextCursor( m_document );
+        cursor.setPosition( m_selectionStart );
+        if ( m_selectionStart != m_selectionEnd ) {
+            cursor.setPosition( m_selectionEnd, QTextCursor::KeepAnchor );
+        }
+        return cursor;
     }
-    return cursor;
-  }
-  return QTextCursor();
+    return QTextCursor();
 }
 
 QTextCursor DocumentFormatter::wordCursor() const
 {
-  QTextCursor cursor = this->cursor();
-  if ( cursor.isNull() ) {
+    QTextCursor cursor = this->cursor();
+    if ( cursor.isNull() ) {
+        return cursor;
+    }
+    if ( !cursor.hasSelection() ) {
+        cursor.select(QTextCursor::WordUnderCursor);
+    }
     return cursor;
-  }
-  if ( !cursor.hasSelection() ) {
-    cursor.select(QTextCursor::WordUnderCursor);
-  }
-  return cursor;
 }
 
 QTextCursor DocumentFormatter::blockCursor() const
 {
-  QTextCursor cursor = this->cursor();
-  if ( cursor.isNull() ) {
+    QTextCursor cursor = this->cursor();
+    if ( cursor.isNull() ) {
+        return cursor;
+    }
+    if (!cursor.hasSelection())
+    {
+        cursor.select(QTextCursor::BlockUnderCursor);
+    }
     return cursor;
-  }
-  if ( !cursor.hasSelection() ) {
-    cursor.select(QTextCursor::BlockUnderCursor);
-  }
-  return cursor;
 }
 
 void DocumentFormatter::setAlignment(Qt::Alignment alignment)
 {
-  QTextCursor cursor = blockCursor();
-  QTextBlockFormat format;
-  format.setAlignment( alignment );
-  cursor.mergeBlockFormat( format );
-  emit alignLeftChanged();
-  emit alignCenterChanged();
-  emit alignRightChanged();
-  emit justifyChanged();
+    QTextCursor cursor = blockCursor();
+    QTextBlockFormat format;
+    format.setAlignment( alignment );
+    cursor.mergeBlockFormat( format );
+    emit alignLeftChanged();
+    emit alignCenterChanged();
+    emit alignRightChanged();
+    emit justifyChanged();
 }

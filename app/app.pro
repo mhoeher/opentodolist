@@ -3,7 +3,7 @@ setupApplication()
 
 TARGET = OpenTodoList
 
-QT += qml quick widgets svg xml concurrent webview #webengine
+QT += qml quick widgets svg xml concurrent
 
 SOURCES += main.cpp
 
@@ -26,8 +26,7 @@ mac:ICON = red/OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
 
 DISTFILES += \
-    android/AndroidManifest.xml \
-    net/rpdev/RichTextEditor/index.html
+    android/AndroidManifest.xml
 
 # Include resources as folder - for better handling inside QtCreator
 CONFIG(debug, debug|release) {
@@ -36,5 +35,4 @@ CONFIG(debug, debug|release) {
     DEPLOYMENTFOLDERS += resources_folder
 }
 
-OTHER_FILES += \
-    $$files($$PWD/net/rpdev/*, true)
+OTHER_FILES += $$files($$PWD/net/rpdev/OpenTodoList/*, true)
