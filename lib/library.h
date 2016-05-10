@@ -18,6 +18,7 @@ class Note;
 class TodoList;
 
 class QFileSystemWatcher;
+class QTimer;
 
 
 /**
@@ -129,6 +130,8 @@ protected:
     
 private:
     
+    static const int      UpdateChangedFilesDelayInMS;
+    
     QString               m_name;
     QString               m_directory;
     const LibraryFactory *m_factory;
@@ -136,6 +139,8 @@ private:
     bool                  m_itemsLoaded;
     bool                  m_loadingItems;
     QSet<QString>         m_tags;
+    QSet<QString>         m_changedFiles;
+    QTimer               *m_updateChangedFilesTimer;
     
     QFileSystemWatcher   *m_fileSystemWatcher;
     
@@ -157,6 +162,7 @@ private slots:
     void onTopLevelItemDeleted(Item *item);
     void watchRecursively();
     void onFileChanged(const QString &path);
+    void updateChangedFiles();
     void rebuildTags();
     void handleItemChanged();
     

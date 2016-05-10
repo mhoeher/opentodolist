@@ -11,10 +11,13 @@
 #include <QMetaProperty>
 #include <QQueue>
 #include <QSet>
+#include <QTimer>
 #include <QUrl>
 
 #include <QDebug>
 
+
+const int Library::UpdateChangedFilesDelayInMS = 10000;
 
 /**
    @brief Set the name of the library.
@@ -138,6 +141,9 @@ Library::Library(const QString &name,
     m_items(),
     m_itemsLoaded(false),
     m_loadingItems(false),
+    m_tags(),
+    m_changedFiles(),
+    m_updateChangedFilesTimer(new QTimer(this)),
     m_fileSystemWatcher(new QFileSystemWatcher(nullptr))
 {
     Q_ASSERT(m_fileSystemWatcher != nullptr);
@@ -146,6 +152,10 @@ Library::Library(const QString &name,
     connect(m_fileSystemWatcher, &QFileSystemWatcher::directoryChanged,
             this, &Library::onFileChanged);
     watchRecursively();
+    m_updateChangedFilesTimer->setInterval(UpdateChangedFilesDelayInMS);
+    m_updateChangedFilesTimer->setSingleShot(true);
+    connect(m_updateChangedFilesTimer, &QTimer::timeout,
+            this, &Library::updateChangedFiles);
 }
 
 /**
@@ -412,19 +422,29 @@ void Library::watchRecursively()
 
 void Library::onFileChanged(const QString &path)
 {
-    QFileInfo fi(path);
-    QString absolutePath = fi.absoluteFilePath();
-    if (FileUtils::isSubDirOrFile(m_directory, absolutePath)) {
-        for (Item *item : m_items) {
-            if (FileUtils::isSubDirOrFile(item->directory(), absolutePath)) {
-                item->handleFileChanged(absolutePath);
-                return;
+    m_changedFiles.insert(path);
+    m_updateChangedFilesTimer->start();
+}
+
+void Library::updateChangedFiles()
+{
+    for (QString path : m_changedFiles)
+    {
+        QFileInfo fi(path);
+        QString absolutePath = fi.absoluteFilePath();
+        if (FileUtils::isSubDirOrFile(m_directory, absolutePath)) {
+            for (Item *item : m_items) {
+                if (FileUtils::isSubDirOrFile(item->directory(), absolutePath)) {
+                    item->handleFileChanged(absolutePath);
+                    return;
+                }
             }
+            
+            deleteDanglingItems();
+            scanItems(m_directory);
         }
-        
-        deleteDanglingItems();
-        scanItems(m_directory);
     }
+    m_changedFiles.clear();
 }
 
 void Library::rebuildTags()
