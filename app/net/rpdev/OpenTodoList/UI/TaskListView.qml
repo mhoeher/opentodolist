@@ -169,5 +169,6 @@ Item {
         model: root.model
         delegate: itemDelegate
         header: allowNewEntryCreation ? headerDelegate : null
+        clip: true
     }
 }
