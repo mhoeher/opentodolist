@@ -54,6 +54,7 @@ public:
     void setTags(const QStringList& tags);
     Q_INVOKABLE void addTag(const QString &tag);
     Q_INVOKABLE void removeTagAt(int index);
+    Q_INVOKABLE void removeTag(const QString &tag);
     Q_INVOKABLE bool hasTag(const QString &tag) const;
     
 signals:

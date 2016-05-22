@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 import net.rpdev.OpenTodoList 1.0
 import net.rpdev.OpenTodoList.UI 1.0
@@ -127,7 +128,9 @@ Panel {
         ScrollView {
             id: scrollView
             anchors.fill: parent
-            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+            style: ScrollViewStyle {
+                transientScrollBars: true
+            }
             
             Column {
                 width: scrollView.width

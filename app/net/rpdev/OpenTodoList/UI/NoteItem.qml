@@ -9,6 +9,7 @@ StickyNote {
     title: libraryItem.title
     text: libraryItem.notes
     clip: true
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
     backgroundColor: Colors.itemColor(libraryItem.color)
     hoverEnabled: true
 }

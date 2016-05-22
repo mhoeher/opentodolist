@@ -126,6 +126,17 @@ void TopLevelItem::removeTagAt(int index)
 }
 
 /**
+   @brief Removes the @p tag from the item (if it is assigned).
+ */
+void TopLevelItem::removeTag(const QString& tag)
+{
+    auto index = m_tags.indexOf(tag);
+    if (index >= 0) {
+        removeTagAt(index);
+    }
+}
+
+/**
    @brief Returns true if the item has been tagged with the given @p tag.
  */
 bool TopLevelItem::hasTag(const QString& tag) const

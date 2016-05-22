@@ -22,6 +22,9 @@ function numberOfColumns(page) {
 }
 
 function sizeOfColumns(page, correction) {
+    if (correction === undefined) {
+        correction = 0;
+    }
     return (page.width - correction) / numberOfColumns(page);
 }
 

@@ -52,5 +52,7 @@
         <file>net/rpdev/OpenTodoList/UI/private/qmldir</file>
         <file>net/rpdev/OpenTodoList/UI/FontAwesome.qml</file>
         <file>net/rpdev/OpenTodoList/UI/TagsEditor.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/RenameItemDialog.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/CreateNewTagDialog.qml</file>
     </qresource>
 </RCC>

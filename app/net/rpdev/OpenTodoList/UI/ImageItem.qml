@@ -11,6 +11,7 @@ StickyNote {
     clip: true
     backgroundColor: Colors.itemColor(libraryItem.color)
     hoverEnabled: true
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
     image: libraryItem.validImage ? libraryItem.directory + "/" + libraryItem.image : ""
 }
 
