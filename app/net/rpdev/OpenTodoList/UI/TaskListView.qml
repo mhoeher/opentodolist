@@ -34,6 +34,10 @@ Item {
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: task.deleteItem()
     }
+    
+    RenameItemDialog {
+        id: renameItemDialog
+    }
 
     Component {
         id: itemDelegate
@@ -53,16 +57,19 @@ Item {
                     onClicked: done = !done
                 }
                 
-                TextEdit {
-                    text: title
+                MouseArea {
                     Layout.fillWidth: true
-                    wrapMode: Text.WrapAnywhere
-                    Keys.onEnterPressed: focus = false
-                    Keys.onReturnPressed: focus = false
-                    Keys.onEscapePressed: focus = false
-                    Keys.onBackPressed: focus = false
-                    onFocusChanged: root.model[index].title = text
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: renameItemDialog.renameItem(todo.tasks[index])
+                    height: childrenRect.height
+                    
+                    Label {
+                        text: title
+                        width: parent.width
+                        wrapMode: Text.WrapAnywhere
+                    }
                 }
+                
                 Symbol {
                     symbol: Fonts.symbols.faTrashO
                     onClicked: {

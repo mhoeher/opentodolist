@@ -14,7 +14,6 @@ Item {
     property bool __visible: Stack.status === Stack.Active
     
     function cancel() {
-        item.title = titleEdit.text;
     }
     
     function deleteItem() {
@@ -31,6 +30,10 @@ Item {
             item.deleteItem();
             stack.pop();
         }
+    }
+    
+    RenameItemDialog {
+        id: renameItemDialog
     }
 
     Rectangle {
@@ -49,23 +52,25 @@ Item {
             width: scrollView.viewport.width
             spacing: Globals.defaultMargin
             
-            TextInput {
-                id: titleEdit
-                text: item.title
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin
+            MouseArea {
+                onClicked: renameItemDialog.renameItem(item)
+                height: childrenRect.height
+                width: parent.width
+                cursorShape: Qt.PointingHandCursor
+                
+                Label {
+                    text: item.title
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: Globals.defaultMargin
+                    }
+                    font {
+                        bold: true
+                        pixelSize: Globals.fontPixelSize * 2
+                    }
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
-                font {
-                    bold: true
-                    pixelSize: Globals.fontPixelSize * 2
-                }
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                Keys.onEscapePressed: focus = false
-                Keys.onBackPressed: focus = false
-                Keys.onReturnPressed: focus = false
-                Keys.onEnterPressed: focus = false
             }
             
             Image {
