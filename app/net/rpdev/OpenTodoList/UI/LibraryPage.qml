@@ -283,6 +283,7 @@ Item {
                 id: repeater
                 model: filteredItemsModel
                 delegate: Loader {
+                    asynchronous: true
                     width: Logic.sizeOfColumns(scrollView)
                     height: width / 3 * 2
                     source: Globals.file("/net/rpdev/OpenTodoList/UI/" + 

@@ -1,4 +1,6 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 import net.rpdev.OpenTodoList.UI 1.0
 
@@ -9,7 +11,7 @@ Item {
     property int edge: Qt.LeftEdge
     property bool compact: false
     property bool showing: !compact
-    property Component contentItem: Item{}
+    property Component contentItem: Item {}
     
     property Item __parent: (parent && compact) ? parent : panel
     
@@ -93,18 +95,53 @@ Item {
             }
         }
     }
-
-    Loader {
+    
+    ScrollView {
         id: contents
         
-        sourceComponent: panel.contentItem
         anchors.fill: panel.compact ? undefined : parent
         width: panel.width
         height: panel.height
+        x: (compact && !showing) ? 0 : width
+        horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         
         onXChanged: {
-            if (pullInArea.drag.active) {
+            if (pullInArea.drag.active || pullOutArea.drag.active) {
                 panel.showing = x > (width / 2);
+            }
+        }
+        
+        Item {
+            width: panel.width
+            height:  childrenRect.height
+            
+            Loader {
+                id: contentsLoader
+                width: parent.width
+                sourceComponent: panel.contentItem
+            }
+            
+            MouseArea {
+                id: pullOutArea
+                
+                enabled: panel.compact
+                width: parent.width + 10
+                height: Math.max(contents.height, contentsLoader.height)
+                propagateComposedEvents: true
+                drag {
+                    target: contents
+                    axis: Drag.XAxis
+                    minimumX: 0
+                    maximumX: panel.width
+                }
+                onClicked: mouse.accepted = false
+            }
+            
+            Binding {
+                when: !(pullInArea.drag.active || pullOutArea.drag.active)
+                target: contents
+                property: "x"
+                value: (panel.compact && panel.showing) ? panel.width : 0
             }
         }
         
@@ -113,29 +150,21 @@ Item {
                 duration: Globals.defaultAnimationTime
             }
         }
-
-        Binding {
-            when: !pullInArea.drag.active
-            target: contents
-            property: "x"
-            value: (panel.compact && panel.showing) ? panel.width : 0
-        }
     }
     
     MouseArea {
         id: pullInArea
         
         enabled: panel.compact
-        width: panel.width + 10
-        height: panel.height
-        propagateComposedEvents: true
-        x: (panel.compact && panel.showing) ? panel.width : 0
+        width: 10
+        height: contents.height
+        anchors.left: contents.right
         drag {
             target: contents
             axis: Drag.XAxis
             minimumX: 0
             maximumX: panel.width
+            filterChildren: true
         }
     }
-    
 }

@@ -17,6 +17,8 @@ Panel {
     signal aboutPageRequested()
     
     contentItem: Item {
+        height: childrenRect.height
+        width: 10
         
         Connections {
             target: currentLibrary
@@ -125,114 +127,106 @@ Panel {
             }
         }
         
-        ScrollView {
-            id: scrollView
-            anchors.fill: parent
-            style: ScrollViewStyle {
-                transientScrollBars: true
+        Column {
+            width: parent.width
+            
+            ButtonContainer {
+                width: parent.width
+                opacity: 0.5
+                
+                Item {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: Globals.defaultMargin
+                        verticalCenter: parent.verticalCenter
+                    }
+                    
+                    height: Math.max(addLocalLibrarySymbol.height, addLocalLibraryLabel.height)
+                    
+                    Symbol {
+                        id: addLocalLibrarySymbol
+                        symbol: Fonts.symbols.faPlus
+                        color: Colors.panelText
+                        anchors {
+                            left: parent.left
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+                    Label {
+                        id: addLocalLibraryLabel
+                        text: qsTr("Add Local Library")
+                        color: Colors.panelText
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        anchors {
+                            left: addLocalLibrarySymbol.right
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+                }
+                onClicked: {
+                    sidebar.close();
+                    sidebar.openLocalLibrary();
+                }
             }
             
-            Column {
-                width: scrollView.width
+            Repeater {
+                id: librariesView
+                model: App.libraries
+                delegate: libraryItemDelegate
+                anchors.fill: parent
+            }
+            
+            ButtonContainer {
+                width: parent.width
+                mainItem: showAboutItem
                 
-                ButtonContainer {
-                    width: parent.width
-                    opacity: 0.5
-                    
-                    Item {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                            margins: Globals.defaultMargin
-                            verticalCenter: parent.verticalCenter
-                        }
-                        
-                        height: Math.max(addLocalLibrarySymbol.height, addLocalLibraryLabel.height)
-                        
-                        Symbol {
-                            id: addLocalLibrarySymbol
-                            symbol: Fonts.symbols.faPlus
-                            color: Colors.panelText
-                            anchors {
-                                left: parent.left
-                                verticalCenter: parent.verticalCenter
-                            }
-                        }
-                        Label {
-                            id: addLocalLibraryLabel
-                            text: qsTr("Add Local Library")
-                            color: Colors.panelText
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                            anchors {
-                                left: addLocalLibrarySymbol.right
-                                right: parent.right
-                                verticalCenter: parent.verticalCenter
-                            }
-                        }
-                    }
-                    onClicked: {
-                        sidebar.close();
-                        sidebar.openLocalLibrary();
-                    }
-                }
-                
-                Repeater {
-                    id: librariesView
-                    model: App.libraries
-                    delegate: libraryItemDelegate
+                Rectangle {
                     anchors.fill: parent
+                    color: Colors.secondary3
+                    visible: opacity > 0.0
+                    opacity: sidebar.helpVisible ? 1.0 : 0.0
+                    
+                    Behavior on opacity { NumberAnimation { duration: 500 } }
                 }
                 
-                ButtonContainer {
-                    width: parent.width
-                    mainItem: showAboutItem
+                Item {
+                    id: showAboutItem
                     
-                    Rectangle {
-                        anchors.fill: parent
-                        color: Colors.secondary3
-                        visible: opacity > 0.0
-                        opacity: sidebar.helpVisible ? 1.0 : 0.0
-                        
-                        Behavior on opacity { NumberAnimation { duration: 500 } }
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: Globals.defaultMargin
+                        verticalCenter: parent.verticalCenter
                     }
                     
-                    Item {
-                        id: showAboutItem
-                        
+                    height: Math.max(helpSymbol.height, helpText.height) + Globals.defaultMargin
+                    
+                    Symbol {
+                        id: helpSymbol
+                        symbol: Fonts.symbols.faInfo
+                        color: Colors.panelText
                         anchors {
                             left: parent.left
-                            right: parent.right
-                            margins: Globals.defaultMargin
                             verticalCenter: parent.verticalCenter
                         }
-                        
-                        height: Math.max(helpSymbol.height, helpText.height) + Globals.defaultMargin
-                        
-                        Symbol {
-                            id: helpSymbol
-                            symbol: Fonts.symbols.faInfo
-                            color: Colors.panelText
-                            anchors {
-                                left: parent.left
-                                verticalCenter: parent.verticalCenter
-                            }
-                        }
-                        Label {
-                            id: helpText
-                            text: qsTr("About...")
-                            color: Colors.panelText
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                            anchors {
-                                left: helpSymbol.right
-                                right: parent.right
-                                verticalCenter: parent.verticalCenter
-                            }
+                    }
+                    Label {
+                        id: helpText
+                        text: qsTr("About...")
+                        color: Colors.panelText
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        anchors {
+                            left: helpSymbol.right
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
                         }
                     }
-                    onClicked: {
-                        sidebar.aboutPageRequested();
-                        sidebar.close();
-                    }
+                }
+                onClicked: {
+                    sidebar.aboutPageRequested();
+                    sidebar.close();
                 }
             }
         }
