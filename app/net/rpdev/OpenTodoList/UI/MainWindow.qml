@@ -14,6 +14,10 @@ ApplicationWindow {
     
     signal openLocalLibrary()
     
+    function focus() {
+        rootItem.forceActiveFocus();
+    }
+    
     property Item helpPage: null
     property MenuBar __menuBar: MenuBar {
         Menu {
@@ -524,7 +528,7 @@ ApplicationWindow {
         close.accepted = true;
     }
     
-    Item {
+    FocusScope {
         id: rootItem
         
         focus: true

@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QFile>
+#include <QTimer>
 
 /**
   @brief The list of persistent properties of the ComplexItem class.
@@ -20,13 +21,21 @@ ComplexItem::ComplexItem(const QString &directory,
                          const QString &itemType,
                          const QStringList &persistentProperties,
                          QObject *parent) :
-  Item(false, directory, itemType, persistentProperties + PersistentProperties, parent),
-  m_dueTo(QDateTime()),
-  m_notes(QString()),
-  m_notesLoaded(false)
+    Item(false, directory, itemType, persistentProperties + PersistentProperties, parent),
+    m_dueTo(QDateTime()),
+    m_notes(QString()),
+    m_notesModified(false),
+    m_notesLoaded(false),
+    m_notesTimer(new QTimer(this))
 {
-  initializeItem();
-  setupReload();
+    initializeItem();
+    setupReload();
+    setupNotesTimer();
+}
+
+ComplexItem::~ComplexItem()
+{
+    saveNotes(); // Flush notes if necessary
 }
 
 /**
@@ -34,15 +43,15 @@ ComplexItem::ComplexItem(const QString &directory,
  */
 void ComplexItem::setDueTo(const QDateTime &dueTo)
 {
-  if (m_dueTo != dueTo) {
-    m_dueTo = dueTo;
-    // Note: Save only on a second basis.
-    QTime t = dueTo.time();
-    t.setHMS(t.hour(), t.minute(), t.second(), 0);
-    m_dueTo.setTime(t);
-    emit dueToChanged();
-    saveItem();
-  }
+    if (m_dueTo != dueTo) {
+        m_dueTo = dueTo;
+        // Note: Save only on a second basis.
+        QTime t = dueTo.time();
+        t.setHMS(t.hour(), t.minute(), t.second(), 0);
+        m_dueTo.setTime(t);
+        emit dueToChanged();
+        saveItem();
+    }
 }
 
 /**
@@ -50,7 +59,7 @@ void ComplexItem::setDueTo(const QDateTime &dueTo)
  */
 void ComplexItem::setDueToAsISO(const QString &dueTo)
 {
-  setDueTo( QDateTime::fromString(dueTo, Qt::ISODate));
+    setDueTo( QDateTime::fromString(dueTo, Qt::ISODate));
 }
 
 /**
@@ -61,21 +70,21 @@ void ComplexItem::setDueToAsISO(const QString &dueTo)
  */
 QString ComplexItem::notes()
 {
-  if (!m_notesLoaded) {
-    m_notesLoaded = true;
-    if (isValid()) {
-      QFile file(directory() + "/notes.html");
-      if (file.exists()) {
-        if (file.open(QIODevice::ReadOnly)) {
-          m_notes = file.readAll();
-          file.close();
-        } else {
-          qWarning() << "Failed to open" << file.fileName() << "of" << this;
+    if (!m_notesLoaded) {
+        m_notesLoaded = true;
+        if (isValid()) {
+            QFile file(directory() + "/notes.html");
+            if (file.exists()) {
+                if (file.open(QIODevice::ReadOnly)) {
+                    m_notes = file.readAll();
+                    file.close();
+                } else {
+                    qWarning() << "Failed to open" << file.fileName() << "of" << this;
+                }
+            }
         }
-      }
     }
-  }
-  return m_notes;
+    return m_notes;
 }
 
 /**
@@ -83,17 +92,12 @@ QString ComplexItem::notes()
  */
 void ComplexItem::setNotes(const QString &notes)
 {
-  if (m_notes != notes) {
-    m_notes = notes;
-    emit notesChanged();
-    if (isValid() && !readonly()) {
-      QFile file(directory() + "/notes.html");
-      if (file.open(QIODevice::WriteOnly)) {
-        file.write(m_notes.toUtf8());
-        file.close();
-      }
+    if (m_notes != notes) {
+        m_notes = notes;
+        emit notesChanged();
+        m_notesModified = true;
+        m_notesTimer->start();
     }
-  }
 }
 
 /**
@@ -108,15 +112,18 @@ ComplexItem::ComplexItem(bool loadItem,
                          const QString &itemType,
                          const QStringList &persistentProperties,
                          QObject *parent) :
-  Item(false, directory, itemType, persistentProperties + PersistentProperties, parent),
-  m_dueTo(QDateTime()),
-  m_notes(QString()),
-  m_notesLoaded(false)
+    Item(false, directory, itemType, persistentProperties + PersistentProperties, parent),
+    m_dueTo(QDateTime()),
+    m_notes(QString()),
+    m_notesModified(false),
+    m_notesLoaded(false),
+    m_notesTimer(new QTimer(this))
 {
-  if (loadItem) {
-    initializeItem();
-  }
-  setupReload();
+    if (loadItem) {
+        initializeItem();
+    }
+    setupReload();
+    setupNotesTimer();
 }
 
 bool ComplexItem::deleteItemData()
@@ -136,10 +143,30 @@ bool ComplexItem::deleteItemData()
 
 void ComplexItem::setupReload()
 {
-  connect(this, &Item::reloaded, [this] 
-  {
-    m_notes = QString();
-    m_notesLoaded = false;
-    emit notesChanged();
-  });
+    connect(this, &Item::reloaded, [this] 
+    {
+        m_notes = QString();
+        m_notesLoaded = false;
+        emit notesChanged();
+    });
+}
+
+void ComplexItem::setupNotesTimer()
+{
+    Q_CHECK_PTR(m_notesTimer);
+    m_notesTimer->setInterval(10000);
+    m_notesTimer->setSingleShot(true);
+    connect(m_notesTimer, &QTimer::timeout, this, &ComplexItem::saveNotes);
+}
+
+void ComplexItem::saveNotes()
+{
+    if (m_notesModified && isValid() && !readonly()) {
+        QFile file(directory() + "/notes.html");
+        if (file.open(QIODevice::WriteOnly)) {
+            file.write(m_notes.toUtf8());
+            file.close();
+            m_notesModified = true;
+        }
+    }
 }

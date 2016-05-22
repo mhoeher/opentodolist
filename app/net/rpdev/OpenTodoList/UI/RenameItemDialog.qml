@@ -3,6 +3,7 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.4
 
 import net.rpdev.OpenTodoList 1.0
+import net.rpdev.OpenTodoList.UI 1.0
 
 Dialog {
     id: dialog
@@ -19,7 +20,17 @@ Dialog {
     standardButtons: StandardButton.Ok | StandardButton.Cancel
     title: qsTr("Rename Item")
     
-    onAccepted: if (edit.text !== "") __item.title = edit.text
+    onAccepted: {
+        if (edit.text !== "") {
+            __item.title = edit.text;
+        }
+    }
+    
+    onVisibleChanged: {
+        if (!visible) {
+            Globals.appWindow.focus();
+        }
+    }
     
     TextField {
         id: edit

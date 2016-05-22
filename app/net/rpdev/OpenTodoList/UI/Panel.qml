@@ -22,7 +22,7 @@ Item {
     }
     
     x: !compact ? 0 : -width
-    
+
     MouseArea {
         visible: panel.compact && panel.showing
         enabled: panel.showing

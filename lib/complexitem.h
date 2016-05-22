@@ -6,6 +6,9 @@
 #include <QDateTime>
 #include <QObject>
 
+// Forward declaration
+class QTimer;
+
 /**
    @brief Complex items.
    
@@ -28,6 +31,7 @@ public:
                        const QString &itemType = ItemType,
                        const QStringList &persistentProperties = QStringList(),
                        QObject *parent = 0);
+  virtual ~ComplexItem();
   
   QDateTime dueTo() const
   {
@@ -66,9 +70,16 @@ private:
   
   QDateTime m_dueTo;
   QString   m_notes;
+  bool      m_notesModified;
   bool      m_notesLoaded;
+  QTimer   *m_notesTimer;
   
   void setupReload();  
+  void setupNotesTimer();
+  
+private slots:
+  
+  void saveNotes();
   
 };
 
