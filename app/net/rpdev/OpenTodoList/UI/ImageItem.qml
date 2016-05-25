@@ -34,7 +34,7 @@ MouseArea {
         Image {
             id: image
             asynchronous: true
-            source: libraryItem.directory + "/" + libraryItem.image
+            source: App.localFileToUrl(libraryItem.directory + "/" + libraryItem.image)
             anchors {
                 fill: parent
                 margins: Globals.defaultMargin

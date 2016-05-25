@@ -1,5 +1,6 @@
 net.rpdev.opentodolist.ui 1.0
 ButtonsContainer 1.0 ButtonsContainer.qml
+DropShadow 1.0 DropShadow.qml
 ColorMenu 1.0 ColorMenu.qml
 FileBrowser 1.0 FileBrowser.qml
 FileBrowserWrapper 1.0 FileBrowserWrapper.qml

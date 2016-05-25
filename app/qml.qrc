@@ -57,5 +57,6 @@
         <file>net/rpdev/OpenTodoList/UI/linedpaper/3rdpartyinfo.json</file>
         <file>net/rpdev/OpenTodoList/UI/linedpaper/linedpaper_@2x.png</file>
         <file>net/rpdev/OpenTodoList/UI/linedpaper/linedpaper.png</file>
+        <file>net/rpdev/OpenTodoList/UI/DropShadow.qml</file>
     </qresource>
 </RCC>
