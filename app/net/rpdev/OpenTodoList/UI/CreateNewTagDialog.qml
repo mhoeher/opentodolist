@@ -22,6 +22,13 @@ Dialog {
     
     onAccepted: if (edit.text !== "") __item.addTag(edit.text)
     
+    onVisibleChanged: {
+        // Hand back focus to main window:
+        if (!visible) {
+            Globals.appWindow.focus()
+        }
+    }
+    
     TextField {
         id: edit
         placeholderText: qsTr("Enter tag name...")

@@ -54,5 +54,8 @@
         <file>net/rpdev/OpenTodoList/UI/TagsEditor.qml</file>
         <file>net/rpdev/OpenTodoList/UI/RenameItemDialog.qml</file>
         <file>net/rpdev/OpenTodoList/UI/CreateNewTagDialog.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/linedpaper/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/linedpaper/linedpaper_@2x.png</file>
+        <file>net/rpdev/OpenTodoList/UI/linedpaper/linedpaper.png</file>
     </qresource>
 </RCC>

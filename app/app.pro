@@ -26,7 +26,8 @@ mac:ICON = red/OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
 
 DISTFILES += \
-    android/AndroidManifest.xml
+    android/AndroidManifest.xml \
+    net/rpdev/OpenTodoList/UI/DropShadow.qml
 
 # Include resources as folder - for better handling inside QtCreator
 CONFIG(debug, debug|release) {
