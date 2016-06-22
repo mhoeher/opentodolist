@@ -1,6 +1,7 @@
 #include "opentodolistqmlextensionsplugin.h"
+#include "opentodolist_config.h"
 
-#include <QApplication>
+#include <QGuiApplication>
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QDir>
@@ -109,10 +110,10 @@ int main(int argc, char *argv[])
 #endif
   
   
-  QApplication app(argc, argv);
+  QGuiApplication app(argc, argv);
   
   QCoreApplication::setApplicationName("OpenTodoList");
-  QCoreApplication::setApplicationVersion(VERSION);
+  QCoreApplication::setApplicationVersion(OPENTODOLIST_VERSION);
   QCoreApplication::setOrganizationDomain("www.rpdev.net");
   QCoreApplication::setOrganizationName("RPdev");
   
@@ -190,7 +191,7 @@ int main(int argc, char *argv[])
       engine.rootContext()->setContextProperty("enableTouchOptimizations",
                                                enableTouchOptimizations);
   }
-  engine.rootContext()->setContextProperty("applicationVersion", QVariant(VERSION));
+  engine.rootContext()->setContextProperty("applicationVersion", QVariant(OPENTODOLIST_VERSION));
   engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
   engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
   engine.load(QUrl(qmlBase + "main.qml"));

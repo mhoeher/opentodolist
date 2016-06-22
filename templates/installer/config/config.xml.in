@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>OpenTodoList</Name>
+    <Version>@OPENTODOLIST_VERSION@</Version>
+    <Title>OpenTodoList</Title>
+    <Publisher>RPdev</Publisher>
+    <ProductUrl>https://www.rpdev.net/wordpress/apps/opentodolist/</ProductUrl>
+    <StartMenuDir>OpenTodoList</StartMenuDir>
+    <TargetDir>@INSTALLER_APPLICATIONS_DIR@/OpenTodoList</TargetDir>
+    <!--<Icon>OpenTodoList</Icon>-->
+    <InstallerWindowIcon>OpenTodoList</InstallerWindowIcon>
+    <InstallerApplicationIcon>OpenTodoList</InstallerApplicationIcon>
+    <MaintenanceToolName>OpenTodoListMaintenanceTool</MaintenanceToolName>
+    <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
+    <!-- Note: This hangs at least in Windows
+    <RunProgram>@INSTALLER_TARGET_DIR@/bin/OpenTodoList</RunProgram>
+    -->
+    <!--<ControlScript>@INSTALLER_CONTROLLER_SCRIPT@</ControlScript>-->
+    <RemoteRepositories>
+        <Repository>
+        <Url>@REPOSITORY_URL@</Url>
+        <Enabled>1</Enabled>
+        <DisplayName>OpenTodoList Repository</DisplayName>
+        </Repository>
+    </RemoteRepositories>
+</Installer>

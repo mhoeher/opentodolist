@@ -42,11 +42,11 @@ write_file("$$OUT_PWD/installer/package.xml", _package_config_date)
 
 
 
-installer_linux_x86_64.commands = \
+installer_linux_x86_64.mkdir -p $$shell_quote($$_package_dir/meta)commands = \
     @echo "Building Linux x86_64 Installer..." && \
     which patchelf && \
     rm -rf $$shell_quote($$_installer_dir) && \
-    mkdir -p $$shell_quote($$_package_dir/meta) && \
+     && \
     cp $$shell_quote($$OUT_PWD/installer/package.xml) \
         $$shell_quote($$_package_dir/meta) && \
     cp $$shell_quote($$PWD/COPYING) $$shell_quote($$_package_dir/meta) && \
