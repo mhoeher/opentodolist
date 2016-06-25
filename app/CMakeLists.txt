@@ -6,7 +6,16 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 
 if(WIN32)
+    # Build a GUI app:
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
+    
+    # To make the resource compiler find the icon:
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+    
+    # Include the Windows resource file (to set icon of exe):
+    set(app_sources 
+        ${app_sources} 
+        OpenTodoList.rc)
 endif()
 
 add_executable(OpenTodoList ${app_sources} ${app_headers} ${app_resources})
