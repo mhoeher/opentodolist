@@ -2,6 +2,24 @@ file(GLOB app_sources *.cpp)
 file(GLOB app_headers *.h)
 file(GLOB app_resources *.qrc)
 
+# Include other files (QML, resources, ...):
+file(GLOB_RECURSE app_3rdpartyinfo 3rdpartyinfo/*)
+file(GLOB_RECURSE app_android android/*)
+file(GLOB_RECURSE app_qml net/*)
+file(GLOB_RECURSE app_res res/*)
+set(app_otherfiles
+    ${app_3rdpartyinfo}
+    ${app_android}
+    ${app_qml}
+    ${app_res}
+    ../COPYING
+    ../README.md
+    ../Doxyfile
+)
+foreach(file ${app_otherfiles})
+    set_source_files_properties(${file} PROPERTIES HEADER_FILE_ONLY TRUE)
+endforeach()
+
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 
@@ -18,7 +36,7 @@ if(WIN32)
         OpenTodoList.rc)
 endif()
 
-add_executable(OpenTodoList ${app_sources} ${app_headers} ${app_resources})
+add_executable(OpenTodoList ${app_sources} ${app_headers} ${app_resources} ${app_otherfiles})
 target_include_directories(OpenTodoList 
     PRIVATE 
         ../lib

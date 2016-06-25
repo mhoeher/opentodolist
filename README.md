@@ -33,7 +33,7 @@ You can find installers for various operating systems on the projects
 
 ### Android
 
-[![Google Play Store](https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png)](https://play.google.com/store/apps/details?id=net.rpdev.opentodolist)
+[<img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" width="250"/>](https://play.google.com/store/apps/details?id=net.rpdev.opentodolist)
 
 
 Get Help
