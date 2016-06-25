@@ -14,6 +14,13 @@ set(OPENTODOLIST_PATCH_VERSION 0)
 set(OPENTODOLIST_VERSION 
     ${OPENTODOLIST_MAJOR_VERSION}.${OPENTODOLIST_MINOR_VERSION}.${OPENTODOLIST_PATCH_VERSION})
 
+
+if(CMAKE_SYSTEM_NAME STREQUAL Android)
+    find_package(ECM)
+    set(ANDROID 1)
+endif()
+
+
 add_subdirectory(lib)
 add_subdirectory(app)
 
@@ -37,9 +44,9 @@ set(INSTALLER_CONTROLLER_SCRIPT
     ${CMAKE_CURRENT_SOURCE_DIR}/templates/installer/config/controller.js
 )
 set(INSTALLER_ONLINE_REPOSITORY_ROOT http://rpdev.net/public/repositories/qtifw/)
-if (UNIX)
+if (UNIX AND NOT ANDROID)
     include(BuildLinuxInstaller.cmake)
-endif(UNIX)
+endif()
 if (WIN32)
     include(BuildWindowsInstaller.cmake)
-endif(WIN32)
+endif()

@@ -15,6 +15,7 @@ set(app_otherfiles
     ../COPYING
     ../README.md
     ../Doxyfile
+    ../doc/installers-howto.md
 )
 foreach(file ${app_otherfiles})
     set_source_files_properties(${file} PROPERTIES HEADER_FILE_ONLY TRUE)
