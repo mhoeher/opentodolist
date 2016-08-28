@@ -16,6 +16,7 @@ set(app_otherfiles
     ../README.md
     ../Doxyfile
     ../doc/installers-howto.md
+    ../.gitlab-ci.yml
 )
 foreach(file ${app_otherfiles})
     set_source_files_properties(${file} PROPERTIES HEADER_FILE_ONLY TRUE)

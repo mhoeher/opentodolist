@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(OpenTodoList)
 
+include(options.cmake)
+include(utils.cmake)
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -20,6 +23,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL Android)
     set(ANDROID 1)
 endif()
 
+if(WITH_COVERAGE)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lgcov")
+endif(WITH_COVERAGE)
 
 add_subdirectory(lib)
 add_subdirectory(app)

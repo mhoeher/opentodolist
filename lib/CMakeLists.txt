@@ -1,5 +1,13 @@
-file(GLOB lib_sources *.cpp)
-file(GLOB lib_headers *.h)
+file(GLOB lib_sources 
+    *.cpp
+    datamodel/*.cpp
+)
+file(GLOB lib_headers
+    *.h
+    datamodel/*.h
+)
+
+include_directories(datamodel)
 
 # Create config file:
 configure_file(opentodolist_config.h.in 
