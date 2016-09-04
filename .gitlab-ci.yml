@@ -10,7 +10,5 @@ unittests:
     - make coverage
   except:
     - /^\d+(\.\d+)+/
-  artifacts:
-    when: always
-    paths:
-      - build/coverage/html/
+  tags:
+    - fedora
