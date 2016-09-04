@@ -17,6 +17,7 @@ set(app_otherfiles
     ../Doxyfile
     ../doc/installers-howto.md
     ../.gitlab-ci.yml
+    ../ci/docker/fedora/Dockerfile
 )
 foreach(file ${app_otherfiles})
     set_source_files_properties(${file} PROPERTIES HEADER_FILE_ONLY TRUE)

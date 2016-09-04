@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(OpenTodoList)
 
-include(options.cmake)
-include(utils.cmake)
+include(cmake/options.cmake)
+include(cmake/utils.cmake)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

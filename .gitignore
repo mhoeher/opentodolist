@@ -10,3 +10,4 @@ OpenTodoList/android/.idea/
 OpenTodoList/android/android.iml
 doc/html/
 doc/latex/
+/build/

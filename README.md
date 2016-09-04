@@ -51,19 +51,33 @@ In case you found an issue, please head over to the [GitLab issue tracker
 of OpenTodoList](https://gitlab.com/rpdev/opentodolist/issues) and file a
 bug report there. Also make use of this if you want to request a new feature.
 
+
 Building
 --------
 
-OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.6
+OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.7
 (compilation with earlier versions might succeed, but running the
 application might fail in this case). To get the latest sources, you furthermore
-require git. To download and build the application, run the following steps:
+require git. To get get the sources and change into the project directory, use the
+following commands:
 
     git clone https://gitlab.com/rpdev/opentodolist.git
-    mkdir build-opentodolist
-    cd build-opentodolist
-    qmake ../opentodolist CONFIG+=release
+    cd opentodolist
+
+To configure and compile the project, you will need a working C++ compiler as well
+as [CMake](https://cmake.org/). Depending on your operating system other tools might
+be required as well. Most commonly, you will need something like
+[GNU Make](https://www.gnu.org/software/make/). In the simplest case, building
+might be a matter of issuing the following commands:
+
+    mkdir ./build
+    cd ./build
+    cmake -DCMAKE_BUILD_TYPE=Release ..
     make
+
+That's it. You should find a runnable version of the application in `./build/app`. To build
+for other platforms (especially when cross-compiling), please also refer to the 
+detailed [Build instructions](./doc/building.md).
 
 
 Supported Operating Systems

@@ -162,3 +162,5 @@ To create the release APK, run the following:
         ./OpenTodoList_build_apk/bin/OpenTodoList.apk aliasname
     zipalign -v 4 OpenTodoList_build_apk/bin/OpenTodoList.apk \
         OpenTodoList_build_apk/bin/OpenTodoList-release-aligned.apk
+
+Replace the path to your keystore and specify a proper `aliasname`.
