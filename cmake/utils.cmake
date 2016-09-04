@@ -35,15 +35,15 @@ add_custom_target(coverage)
 
 if(WITH_COVERAGE)
     if(NOT GCOV_COMMAND)
-        message(FATAL "Running with coverage but 'gcov' command has not been found")
+        message(FATAL_ERROR "Running with coverage but 'gcov' command has not been found")
     endif(NOT GCOV_COMMAND)
     
     if(NOT LCOV_COMMAND)
-        message(FATAL "Running with coverage but 'lcov' command has not been found")
+        message(FATAL_ERROR "Running with coverage but 'lcov' command has not been found")
     endif(NOT LCOV_COMMAND)
     
     if(NOT GENHTML_COMMAND)
-        message(FATAL "Running with coverage but 'genhtml' command has not been found")
+        message(FATAL_ERROR "Running with coverage but 'genhtml' command has not been found")
     endif(NOT GENHTML_COMMAND)
     
     add_custom_command(
