@@ -46,23 +46,29 @@ if(WITH_COVERAGE)
         message(FATAL_ERROR "Running with coverage but 'genhtml' command has not been found")
     endif(NOT GENHTML_COMMAND)
     
+    add_custom_target(coverage_prepare)
+    add_custom_target(coverage_finish)
+    add_dependencies(coverage coverage_prepare)
+    add_dependencies(coverage test)
+    add_dependencies(coverage coverage_finish)
+    
     add_custom_command(
         TARGET
-            coverage
+            coverage_prepare
         COMMAND
             ${CMAKE_COMMAND} -E remove_directory "${CMAKE_BINARY_DIR}/coverage"
     )
     add_custom_command(
         TARGET
-            coverage
+            coverage_prepare
         COMMAND
             ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/coverage"
     )
     add_custom_command(
         TARGET
-            coverage
+            coverage_prepare
         COMMAND
-            ${LCOV_COMMAND} 
+            ${LCOV_COMMAND}
                 --no-external
                 --capture
                 --initial
@@ -74,15 +80,7 @@ if(WITH_COVERAGE)
     )
     add_custom_command(
         TARGET
-            coverage
-        COMMAND
-            ${CMAKE_COMMAND} --build . --target test
-        WORKING_DIRECTORY
-            ${CMAKE_BINARY_DIR}
-    )
-    add_custom_command(
-        TARGET
-            coverage
+            coverage_finish
         COMMAND
             ${LCOV_COMMAND} 
                 --no-external
@@ -95,7 +93,7 @@ if(WITH_COVERAGE)
     )
     add_custom_command(
         TARGET
-            coverage
+            coverage_finish
         COMMAND
             ${LCOV_COMMAND} 
                 --add-tracefile ${CMAKE_BINARY_DIR}/opentodolist_base.info
@@ -106,7 +104,7 @@ if(WITH_COVERAGE)
     )
     add_custom_command(
         TARGET
-            coverage
+            coverage_finish
         COMMAND
             ${LCOV_COMMAND}
                 --remove ${CMAKE_BINARY_DIR}/opentodolist.info
@@ -121,7 +119,7 @@ if(WITH_COVERAGE)
     )
     add_custom_command(
         TARGET
-            coverage
+            coverage_finish
         COMMAND
             ${GENHTML_COMMAND} 
                 --prefix ${CMAKE_BINARY_DIR} 

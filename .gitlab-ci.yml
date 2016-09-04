@@ -8,7 +8,9 @@ unittests:
     - cd build
     - cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_COVERAGE=ON ..
     - make -j4
-    - make coverage
+    - make coverage_prepare || true
+    - make test
+    - make coverage_finish || true
   except:
     - /^\d+(\.\d+)+/
   tags:
