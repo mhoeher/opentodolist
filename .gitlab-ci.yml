@@ -3,6 +3,7 @@ before_script:
 
 unittests:
   script:
+    - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
     - cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_COVERAGE=ON ..
