@@ -1,7 +1,23 @@
-before_script:
-  - echo "Running Test Setup"
+stages:
+  - images
+  - build
+
+fedora_image:
+  stage: images
+  only:
+    - /^docker-image-fedora.*$/
+  image: docker:latest
+  services:
+   - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - cd ci/docker/fedora
+    - docker build --pull -t registry.gitlab.com/rpdev/opentodolist:fedora .
+    - docker push registry.gitlab.com/rpdev/opentodolist:fedora
 
 unittests:
+  stage: build
+  image: registry.gitlab.com/rpdev/opentodolist:fedora
   script:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
