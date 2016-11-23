@@ -7,6 +7,6 @@ unittests:
     - cd build
     - cmake ..
     - make -j4
-    - make check
+    - make test
   only:
     - branches
