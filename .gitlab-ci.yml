@@ -2,6 +2,8 @@ before_script:
   - echo "Running Test Setup"
 
 unittests:
+  tags:
+    - fedora
   script:
     - mkdir build
     - cd build
