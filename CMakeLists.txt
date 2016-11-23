@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(OPENTODOLIST_MAJOR_VERSION 2)
 set(OPENTODOLIST_MINOR_VERSION 8)
 set(OPENTODOLIST_PATCH_VERSION 0)
-set(OPENTODOLIST_VERSION 
+set(OPENTODOLIST_VERSION
     ${OPENTODOLIST_MAJOR_VERSION}.${OPENTODOLIST_MINOR_VERSION}.${OPENTODOLIST_PATCH_VERSION})
 
 
@@ -46,6 +46,7 @@ set(INSTALLER_CONTROLLER_SCRIPT
 set(INSTALLER_ONLINE_REPOSITORY_ROOT http://rpdev.net/public/repositories/qtifw/)
 if (UNIX AND NOT ANDROID)
     include(BuildLinuxInstaller.cmake)
+    include(BuildLinuxAppImage.cmake)
 endif()
 if (WIN32)
     include(BuildWindowsInstaller.cmake)

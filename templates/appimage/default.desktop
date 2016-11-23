@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=OpenTodoList
+Exec=AppRun %F
+Icon=OpenTodoList
+Comment=A note and task managing application
+Terminal=false
