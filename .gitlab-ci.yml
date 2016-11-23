@@ -3,8 +3,10 @@ before_script:
 
 unittests:
   script:
-    - qmake-qt5
+    - mkdir build
+    - cd build
+    - cmake ..
     - make -j4
     - make check
-  except:
-    - /^\d+(\.\d+)+/
+  only:
+    - branches
