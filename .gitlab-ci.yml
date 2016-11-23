@@ -6,6 +6,7 @@ unittests:
   tags:
     - fedora
   script:
+    - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
     - cmake ..
