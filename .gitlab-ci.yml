@@ -1,10 +1,16 @@
 before_script:
   - echo "Running Test Setup"
+  - export CTEST_OUTPUT_ON_FAILURE=1
 
 unittests:
+  tags:
+    - fedora
   script:
-    - qmake-qt5
+    - export QT_QPA_PLATFORM=minimal
+    - mkdir build
+    - cd build
+    - cmake ..
     - make -j4
-    - make check
-  except:
-    - /^\d+(\.\d+)+/
+    - make test
+  only:
+    - branches
