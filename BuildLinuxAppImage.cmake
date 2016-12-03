@@ -32,12 +32,12 @@ add_custom_target(
         ${CMAKE_COMMAND} -E env PATH=${QT_INSTALL_PREFIX}/bin:$ENV{PATH} ${LINUXDEPLOYQT_TOOL}
             ${APPIMAGE_DIR}/OpenTodoList -appimage
             -qmldir=${CMAKE_SOURCE_DIR}/app/
-            -always-overwrite -verbose=2 || true
+            -always-overwrite -bundle-non-qt-libs -verbose=2 || true
     COMMAND
         ${CMAKE_COMMAND} -E env PATH=${QT_INSTALL_PREFIX}/bin:$ENV{PATH} ${LINUXDEPLOYQT_TOOL}
             ${APPIMAGE_DIR}/OpenTodoList -appimage
             -qmldir=${CMAKE_SOURCE_DIR}/app/
-            -always-overwrite -verbose=2 || true
+            -always-overwrite -bundle-non-qt-libs -verbose=2 || true
     WORKING_DIRECTORY
         ${CMAKE_CURRENT_BINARY_DIR}
 )
