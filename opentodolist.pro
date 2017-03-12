@@ -1,6 +1,5 @@
 TEMPLATE = subdirs
 CONFIG += ordered
-#SUBDIRS = plugins OpenTodoList
 
 qrc.depends =
 qrc.commands = perl $$PWD/bin/mk-qrc.pl \
@@ -32,4 +31,4 @@ SUBDIRS += \
     test
 
 include(config.pri)
-include(installer.pri)
+# include(installer.pri)

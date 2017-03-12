@@ -1,5 +1,4 @@
 #include "opentodolistqmlextensionsplugin.h"
-#include "opentodolist_config.h"
 
 #include <QGuiApplication>
 #include <QCommandLineParser>
@@ -19,13 +18,13 @@
 
 
 
-class QmlFileSystemWatcher : public QObject 
+class QmlFileSystemWatcher : public QObject
 {
   Q_OBJECT
   Q_PROPERTY(bool modified READ modified NOTIFY modifiedChanged)
-  
+
 public:
-  
+
   QmlFileSystemWatcher(const QString baseUrl, QQmlApplicationEngine *engine, QObject *parent = 0) :
     QObject(parent),
     m_baseUrl(baseUrl),
@@ -55,11 +54,11 @@ public:
     }
 #endif
   }
-  
+
   bool modified() const { return m_modified; }
-  
+
 public slots:
-  
+
   void reload() {
 #ifdef OPENTODOLIST_DEBUG
     m_engine->clearComponentCache();
@@ -68,20 +67,20 @@ public slots:
     emit modifiedChanged();
 #endif
   }
-  
+
 signals:
-  
+
   void modifiedChanged();
 
 private:
-  
+
   QString                 m_baseUrl;
   QQmlApplicationEngine  *m_engine;
   bool                    m_modified;
 #ifdef OPENTODOLIST_DEBUG
   QFileSystemWatcher     *m_watcher;
 #endif
-  
+
   void watchPath() {
 #ifdef OPENTODOLIST_DEBUG
     if (!m_watcher->directories().isEmpty()) {
@@ -98,7 +97,7 @@ private:
     }
 #endif
   }
-  
+
 };
 
 
@@ -108,42 +107,42 @@ int main(int argc, char *argv[])
 #if OPENTODOLIST_DEBUG
   QLoggingCategory(0).setEnabled(QtDebugMsg, true);
 #endif
-  
-  
+
+
   QGuiApplication app(argc, argv);
-  
+
   QCoreApplication::setApplicationName("OpenTodoList");
-  QCoreApplication::setApplicationVersion(OPENTODOLIST_VERSION);
+  QCoreApplication::setApplicationVersion(VERSION);
   QCoreApplication::setOrganizationDomain("www.rpdev.net");
   QCoreApplication::setOrganizationName("RPdev");
-  
+
   app.setWindowIcon(QIcon(":/res/OpenTodoList80.png"));
-  
+
   QCommandLineParser parser;
   parser.setApplicationDescription(
         QCoreApplication::translate("main", "Manage your personal data."));
   parser.addHelpOption();
   parser.addVersionOption();
-  
+
 #ifdef OPENTODOLIST_DEBUG
   QCommandLineOption qmlRootOption = {{"Q", "qml-root"},
                                       QCoreApplication::translate("main", "QML Root Directory"),
                                       QCoreApplication::translate("main", "DIR")};
   parser.addOption(qmlRootOption);
 #endif
-  
+
   // Enable touch screen optimizations
   QCommandLineOption enableTouchOption = {{"T", "enable-touch"},
                                           QCoreApplication::translate(
-                                          "main", 
+                                          "main",
                                           "Switch on some optimizations for touchscreens.")};
   parser.addOption(enableTouchOption);
-  
+
   parser.process(app);
-  
+
   QQmlApplicationEngine engine;
   QString qmlBase = "qrc:/";
-  
+
 #ifdef OPENTODOLIST_DEBUG
   if (parser.isSet(qmlRootOption)) {
     qmlBase = QDir(parser.value(qmlRootOption)).canonicalPath() + "/";
@@ -153,17 +152,17 @@ int main(int argc, char *argv[])
     }
   }
 #endif
-  
+
   engine.addImportPath(qmlBase);
   OpenTodoListQmlExtensionsPlugin plugin;
   plugin.registerTypes("net.rpdev.OpenTodoList");
-  
+
 #ifdef OPENTODOLIST_DEBUG
   QmlFileSystemWatcher watcher(qmlBase, &engine);
   engine.rootContext()->setContextProperty("qmlFileSystemWatcher", &watcher);
 #endif
-  
-  
+
+
   engine.rootContext()->setContextProperty("debugMode",
                                            QVariant(
                                        #ifdef OPENTODOLIST_DEBUG
@@ -173,11 +172,11 @@ int main(int argc, char *argv[])
                                        #endif
                                                )
                                          );
-  
+
   // Enable touch optimizations, this flag is controlled via CLI, additionally, it
   // is set implicitly on some platforms:
   {
-      bool enableTouchOptimizations = 
+      bool enableTouchOptimizations =
         #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX) || defined(Q_OS_WINPHONE)
               true
         #else
@@ -191,11 +190,11 @@ int main(int argc, char *argv[])
       engine.rootContext()->setContextProperty("enableTouchOptimizations",
                                                enableTouchOptimizations);
   }
-  engine.rootContext()->setContextProperty("applicationVersion", QVariant(OPENTODOLIST_VERSION));
+  engine.rootContext()->setContextProperty("applicationVersion", QVariant(VERSION));
   engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
   engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
   engine.load(QUrl(qmlBase + "main.qml"));
-  
+
   return app.exec();
 }
 
