@@ -3,7 +3,7 @@ before_script:
   - export CTEST_OUTPUT_ON_FAILURE=1
 
 unittests:
-  image: fedora
+  image: registry.gitlab.com/rpdev/opentodolist:fedora
   script:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
