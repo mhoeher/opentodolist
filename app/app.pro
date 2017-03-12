@@ -25,15 +25,5 @@ ANDROID_APP_NAME = Open Todo List
 mac:ICON = red/OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
 
-DISTFILES += \
-    android/AndroidManifest.xml \
-    net/rpdev/OpenTodoList/UI/DropShadow.qml
-
-# Include resources as folder - for better handling inside QtCreator
-CONFIG(debug, debug|release) {
-    resources_folder.source = net
-    resources_folder.target = /
-    DEPLOYMENTFOLDERS += resources_folder
-}
-
-OTHER_FILES += $$files($$PWD/net/rpdev/OpenTodoList/*, true)
+OTHER_FILES += \
+    android/AndroidManifest.xml

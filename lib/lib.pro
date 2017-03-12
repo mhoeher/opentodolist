@@ -47,8 +47,6 @@ HEADERS += \
     image.h \
     task.h \
     todo.h \
-    tasklist.h \
-    todoslist.h \
     todolist.h \
     toplevelitemlist.h \
     opentodolistqmlextensionsplugin.h \

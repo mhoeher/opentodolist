@@ -3,169 +3,117 @@
 
 #include <QObject>
 #include <QString>
-#include <QStringList>
 #include <QUuid>
+#include <QVariantMap>
 
 
 /**
-   @brief Base class for all items in a library.
-   
-   This class is the base class for any kind of item which can either directly or indirectly
-   be stored in a Library. It provides the common interface any such item must have.
+ * @brief Base class for all items in a library.
+ *
+ * This class is the base class for any kind of item which can either directly or indirectly
+ * be stored in a Library. It provides the common interface any such item must have.
  */
 class Item : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(QUuid uid READ uid NOTIFY uidChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(QString itemType READ itemType CONSTANT)
-    Q_PROPERTY(QString directory READ directory CONSTANT)
-    Q_PROPERTY(bool isValid READ isValid CONSTANT)
-    Q_PROPERTY(bool readonly READ readonly CONSTANT)
-    
+    Q_PROPERTY(QString filename READ filename NOTIFY filenameChanged)
+    Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
+    Q_PROPERTY(bool isValid READ isValid NOTIFY validChanged)
+
 public:
-    
-    static const QStringList PersistentProperties;
-    static const QString ItemType;
-    
-    explicit Item(const QString &directory = QString(),
-                  const QString &itemType = ItemType,
-                  const QStringList &persistentProperties = QStringList(),
+
+    explicit Item(QObject* parent = nullptr);
+    explicit Item(const QString &filename,
                   QObject *parent = 0);
     virtual ~Item();
-    
-    void commitItem();
-    
-    Q_INVOKABLE bool deleteItem();
-    
+
+    Q_INVOKABLE virtual bool deleteItem();
+    Q_INVOKABLE bool load();
+    Q_INVOKABLE bool save();
+    Q_INVOKABLE QVariant toVariant() const;
+    Q_INVOKABLE void fromVariant(QVariant data);
+
+
     /**
-     @brief Returns true if the item is valid.
-   */
-    bool isValid() { return !m_directory.isEmpty(); }
-    
+     * @brief Check if the item is valid.
+     *
+     * This returns true if the item is valid (i.e. it has a representation on disk). Otherwise,
+     * returns false.
+     */
+    bool isValid() const { return !m_filename.isEmpty(); }
+
     /**
-     @brief Returns true if the item is read-only.
-   */
-    bool readonly() { return m_readonly; }
-    
-    bool isDangling() const;
-    
-    /**
-     @brief The title of the item as shown in the user interface.
-   */
+     * @brief The title of the item as shown in the user interface.
+     */
     QString title() const { return m_title; }
+
     void setTitle(const QString &title);
-    
+
     /**
-     @brief The directory the item is stored in.
-   */
-    QString directory() const { return m_directory; }
-    
+     * @brief The file holding the item data.
+     *
+     * The filename property holds the name of the file containing the item's data
+     * on disk.
+     */
+    QString filename() const { return m_filename; }
+
     /**
-     @brief The globally unique ID of the item.
-   */
+     * @brief The globally unique ID of the item.
+     */
     QUuid uid() const { return m_uid; }
-    
-    /**
-     @brief The type name of the item. Used to generate the persistence file name.
-   */
-    QString itemType() const { return m_itemType; }
-    
-    /**
-     @brief The persistence file name used by items of the @p itemType.
-   */
-    static QString persistenceFilename(const QString &itemType) 
-    { return itemType.toLower() + ".opentodolist"; }
-    
-    /**
-     @brief The persistence file name into which the item's properties are stored.
-   */
-    QString persistenceFilename() const { return Item::persistenceFilename(m_itemType); }
-    
-    QString itemMainSettingsFile() const;
-    
-    static bool isItemDirectory(const QString &directory, const QString &itemType);
-    
-    /**
-    @brief Check if the @p directory is the data directory of a item type.
-    
-    This method can be used to test if a given directory is a data directory
-    of the item type T:
-    
-    @code
-    if (Item::isItemDirectory<Todo>(directory)) {
-      // Load the todo...
-    }
-    @endcode
-   */
-    template<typename T>
-    static bool isItemDirectory(const QString &directory) 
-    { return Item::isItemDirectory(directory, T::ItemType); }
-    
-    static QString titleToDirectoryName(const QString &title);
-    
-    virtual void handleFileChanged(const QString &filename);
-    
-    
+
+    QString itemType() const;
+
+    double weight() const;
+    void setWeight(double weight);
+
+    QString directory() const;
+
 public slots:
-    
-    void reload();
-    
+
 signals:
-    
-    /**
-     @brief The title of the item has changed.
-   */  
+
     void titleChanged();
-    
+    void uidChanged();
+    void isValidChanged();
+    void filenameChanged();
+    void weightChanged();
+
     /**
-     @brief The item has been deleted.
-     
-     This signal is emitted when Item::deleteItem() is used to delete the item.
-   */
+     * @brief The item has been deleted.
+     *
+     * This signal is emitted when Item::deleteItem() is used to delete the item.
+     */
     void itemDeleted(Item *item);
-    
+
     /**
-     @brief The item has been reloaded.
-     
-     This signal is emitted to indicate that the item has been reloaded. This is
-     the case if the files on disk belonging to the item have changed.
-   */
+     * @brief The item has been reloaded.
+     *
+     * This signal is emitted to indicate that the item has been reloaded. This is
+     * the case if the files on disk belonging to the item have changed.
+     */
     void reloaded();
-    
+
 protected:
-    
-    enum SaveItemStrategy {
-        SaveItemImmediately,
-        SaveItemLater
-    };
-    
-    explicit Item(bool loadItem,
-                  const QString &directory = QString(),
-                  const QString &itemType = ItemType,
-                  const QStringList &persistentProperties = QStringList(),
-                  QObject *parent = 0);
-    void initializeItem();
-    
-    void loadItem();
-    void saveItem(SaveItemStrategy strategy = SaveItemLater);
-    
-    virtual void loadItemData();
-    virtual void saveItemData();
-    virtual bool deleteItemData();
-    
-    
+
+    virtual QVariantMap toMap() const;
+    virtual void fromMap(QVariantMap map);
+
 private:
-    
+
+    QString     m_filename;
     QString     m_title;
-    QString     m_directory;
     QUuid       m_uid;
-    QString     m_itemType;
-    QStringList m_persistentProperties;
-    bool        m_loadingSettings;
-    bool        m_modified;
-    bool        m_deleted;
-    bool        m_readonly;
-    
+    double      m_weight;
+    bool        m_loading;
+
+    void setUid(const QUuid &uid);
+    void setFilename(const QString &filename);
+
 };
 
 QDebug operator<<(QDebug debug, const Item *item);

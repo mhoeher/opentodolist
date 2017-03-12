@@ -3,66 +3,52 @@
 
 #include "item.h"
 
-#include <QList>
 #include <QObject>
-#include <QPointer>
-
-
-// Forward declaration:
-class Todo;
 
 
 /**
-   @brief Represents a task inside a todo.
-   
-   The Task class represents a single task inside a todo. A task simply is a line of text
-   and a flag indicating whether or not the task is done. Hence, tasks model a simple check list
-   within a todo.
+ *  @brief Represents a task inside a todo.
+ *
+ * The Task class represents a single task inside a todo. A task simply is a line of text
+ * and a flag indicating whether or not the task is done. Hence, tasks model a simple check list
+ * within a todo.
  */
 class Task : public Item
 {
-  Q_OBJECT
-  Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
-  Q_PROPERTY(Todo* todo READ todo NOTIFY todoChanged)
-  
-  friend class Todo;
-  
-public:
-  
-  static const QString ItemType;
-  static const QStringList PersistentProperties;
-  
-  explicit Task(const QString &directory = QString(), QObject *parent = 0);
+    Q_OBJECT
 
-  /**
-     @brief Indicate whether the task is done or not.
-   */
-  bool done() const { return m_done; }
-  void setDone(bool done);
-  
-  Todo* todo() const;
-  
+    Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
+    Q_PROPERTY(QUuid todoUid READ todoUid WRITE setTodoUid NOTIFY todoUidChanged)
+
+public:
+
+    explicit Task(QObject *parent = nullptr);
+    explicit Task(QString filename, QObject *parent = nullptr);
+    virtual ~Task();
+
+    bool done() const;
+    void setDone(bool done);
+
+    QUuid todoUid() const;
+    void setTodoUid(const QUuid& todoUid);
+
 signals:
-  
-  /**
-     @brief The done state of the task changed.
-   */
-  void doneChanged();
-  
-  /**
-     @brief The todo property has changed.
-   */
-  void todoChanged();
-  
+
+    void doneChanged();
+    void todoUidChanged();
+
 public slots:
-  
+
 private:
-  
-  bool m_done;
-  QPointer<Todo> m_todo;
-  
-  void setTodo(Todo *todo);
-  
+
+    bool m_done;
+    QUuid m_todoUid;
+
+
+protected:
+    // Item interface
+    QVariantMap toMap() const override;
+    void fromMap(QVariantMap map) override;
 };
 
 #endif // TASK_H

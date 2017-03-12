@@ -1,55 +1,68 @@
 #include "task.h"
 
-#include "todo.h"
 
-
-/**
-   @brief The item type used by the Task class.
- */
-const QString Task::ItemType = "Task";
-
-/**
-  @brief The list of persistent attributes of the Task class.
-  */
-const QStringList Task::PersistentProperties = {"done"};
-
-/**
-   @brief Constructor.
- */
-Task::Task(const QString &directory, QObject *parent) : 
-  Item(false, directory, ItemType, PersistentProperties, parent),
-  m_done(false),
-  m_todo()
+Task::Task(QObject* parent) : Task(QString(), parent)
 {
-  initializeItem();
+}
+
+Task::Task(QString filename, QObject* parent) : Item(filename, parent),
+    m_done(false),
+    m_todoUid(QUuid())
+{
+}
+
+Task::~Task()
+{
 }
 
 /**
-   @brief Set the done state of the task.
+ * @brief A boolean value indicating if the task is done or not.
+ */
+bool Task::done() const
+{
+    return m_done;
+}
+
+/**
+ * @brief Set the task's done property.
  */
 void Task::setDone(bool done)
 {
-  if (m_done != done) {
-    m_done = done;
-    emit doneChanged();
-    saveItem();
-  }
+    if (m_done != done) {
+        m_done = done;
+        emit doneChanged();
+        save();
+    }
 }
 
 /**
-   @brief The todo to which the task belongs.
-   
-   This is the todo to which the task belongs.
+ * @brief The UUID of the todo the task belongs to.
  */
-Todo *Task::todo() const
+QUuid Task::todoUid() const
 {
-  return m_todo.data();
+    return m_todoUid;
 }
 
-/**
-   @brief Sets the todo to which the task belongs.
- */
-void Task::setTodo(Todo *todo)
+void Task::setTodoUid(const QUuid& todoUid)
 {
-  m_todo = todo;
+    if (m_todoUid != todoUid) {
+        m_todoUid = todoUid;
+        emit todoUidChanged();
+        save();
+    }
+}
+
+QVariantMap Task::toMap() const
+{
+    auto result = Item::toMap();
+    result["done"] = m_done;
+    result["todoUid"] = m_todoUid;
+    return result;
+}
+
+void Task::fromMap(QVariantMap map)
+{
+    Item::fromMap(map);
+    setDone(map.value("done", m_done).toBool());
+    setTodoUid(map.value("todoUid", m_todoUid).toUuid());
 }

@@ -28,7 +28,7 @@ OTHER_FILES += \
 SUBDIRS += \
     lib \
     app \
-    test
+#    test
 
 include(config.pri)
 # include(installer.pri)

@@ -1,14 +1,17 @@
 #include "note.h"
 
-/**
-   @brief The item type name used by the Note class.
- */
-const QString Note::ItemType = "Note";
 
 /**
-   @brief Constructor.
+ * @brief Constructor.
  */
-Note::Note(const QString &directory, QObject *parent) :
-  TopLevelItem(directory, ItemType, QStringList(), parent)
+Note::Note(QObject* parent) : Note(QString(), parent)
+{
+}
+
+Note::Note(const QString& filename, QObject* parent) : TopLevelItem(filename, parent)
+{
+}
+
+Note::~Note()
 {
 }

@@ -6,21 +6,20 @@
 #include <QObject>
 
 /**
-   @brief A class representing a single note.
-   
-   The Note class represents a single note inside a library. A note is like a
-   sticky note, whith a short headline and (optionally) some additional text providing
-   further details.
+ * @brief A class representing a single note.
+ *
+ * The Note class represents a single note inside a library. A note is like a
+ * sticky note, whith a short headline and (optionally) some additional text providing
+ * further details.
  */
 class Note : public TopLevelItem
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  static const QString ItemType;
-  
-  explicit Note(const QString &directory = QString(),
-                QObject *parent = 0);
-  
+    explicit Note(QObject *parent = nullptr);
+    explicit Note(const QString &filename, QObject* parent = nullptr);
+    virtual ~Note();
+
 };
 
 #endif // NOTE_H
