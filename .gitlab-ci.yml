@@ -8,7 +8,7 @@ unittests:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
-    - qmake ..
+    - qmake-qt5 ..
     - make -j4
     - make check
   only:
