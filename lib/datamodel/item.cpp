@@ -1,5 +1,11 @@
 #include "item.h"
 
+#include "image.h"
+#include "note.h"
+#include "todolist.h"
+#include "todo.h"
+#include "task.h"
+
 #include "fileutils.h"
 
 #include <QDebug>
@@ -9,6 +15,9 @@
 #include <QtGlobal>
 #include <QVariant>
 #include <QVariantMap>
+
+
+const QString Item::FileNameSuffix = "otl";
 
 
 /**
@@ -25,6 +34,7 @@ Item::Item(QObject* parent) :
     m_uid(QUuid::createUuid()),
     m_loading(false)
 {
+    setupChangedSignal();
 }
 
 /**
@@ -37,6 +47,18 @@ Item::Item(const QString& filename, QObject* parent) :
 {
     m_filename = filename;
     load();
+}
+
+/**
+ * @brief Create a new item in the @p dir.
+ */
+Item::Item(const QDir& dir, QObject* parent) : Item(parent)
+{
+    m_filename = QString();
+    if (dir.exists()) {
+        m_filename = dir.absoluteFilePath(m_uid.toString() + "." + FileNameSuffix);
+    }
+    setupChangedSignal();
 }
 
 /**
@@ -154,7 +176,6 @@ QVariant Item::toVariant() const
     QVariantMap result;
     result["filename"] = m_filename;
     result["data"] = toMap();
-    result["itemType"] = itemType();
     return result;
 }
 
@@ -179,6 +200,7 @@ void Item::fromVariant(QVariant data)
 QVariantMap Item::toMap() const
 {
     QVariantMap result;
+    result["itemType"] = itemType();
     result["uid"] = m_uid;
     result["title"] = m_title;
     result["weight"] = m_weight;
@@ -233,6 +255,60 @@ QString Item::directory() const
     return QString();
 }
 
+
+/**
+ * @brief Create an item from a map.
+ *
+ * @sa toMap()
+ */
+Item* Item::createItem(QVariantMap map, QObject* parent)
+{
+    auto result = createItem(map.value("itemType").toString(), parent);
+    if (result != nullptr) {
+        result->fromMap(map);
+    }
+    return result;
+}
+
+
+/**
+ * @brief Create an item from a variant.
+ *
+ * @sa toVariant()
+ */
+Item*Item::createItem(QVariant variant, QObject* parent)
+{
+    auto result = createItem(variant.toMap().value("data").toMap().value("itemType").toString(),
+                             parent);
+    if (result != nullptr) {
+        result->fromVariant(variant);
+    }
+    return result;
+}
+
+/**
+ * @brief Create an item from a string type.
+ *
+ * This creates an item from a string which holds an item type name. If the string
+ * does not match one of the known item names, this function returns a null pointer.
+ */
+Item*Item::createItem(QString itemType, QObject* parent)
+{
+    if (itemType == "Image") {
+        return new Image(parent);
+    } else if (itemType == "Note") {
+        return new Note(parent);
+    } else if (itemType == "TodoList") {
+        return new TodoList(parent);
+    } else if (itemType == "Todo") {
+        return new Todo(parent);
+    } else if (itemType == "Task") {
+        return new Task(parent);
+    } else {
+        return nullptr;
+    }
+}
+
 /**
    @brief Sets the title of the item.
  */
@@ -273,6 +349,14 @@ void Item::setFilename(const QString& filename)
         m_filename = filename;
         emit filenameChanged();
     }
+}
+
+void Item::setupChangedSignal()
+{
+    connect(this, &Item::titleChanged, this, &Item::changed);
+    connect(this, &Item::uidChanged, this, &Item::changed);
+    connect(this, &Item::filenameChanged, this, &Item::changed);
+    connect(this, &Item::weightChanged, this, &Item::changed);
 }
 
 /**

@@ -12,8 +12,9 @@ class Image : public TopLevelItem
     Q_PROPERTY(bool validImage READ validImage NOTIFY imageChanged)
 public:
 
-    explicit Image(const QString& filename, QObject *parent = 0);
+    explicit Image(const QString& filename, QObject *parent = nullptr);
     explicit Image(QObject *parent = nullptr);
+    explicit Image(const QDir &dir, QObject *parent = nullptr);
     virtual ~Image();
 
     /**
@@ -46,5 +47,7 @@ private:
     QString m_image;
 
 };
+
+typedef QSharedPointer<Image> ImagePtr;
 
 #endif // IMAGE_H

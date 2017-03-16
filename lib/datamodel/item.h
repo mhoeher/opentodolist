@@ -1,7 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <QDir>
 #include <QObject>
+#include <QSharedPointer>
 #include <QString>
 #include <QUuid>
 #include <QVariantMap>
@@ -22,12 +24,16 @@ class Item : public QObject
     Q_PROPERTY(QString itemType READ itemType CONSTANT)
     Q_PROPERTY(QString filename READ filename NOTIFY filenameChanged)
     Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
-    Q_PROPERTY(bool isValid READ isValid NOTIFY validChanged)
+    Q_PROPERTY(bool isValid READ isValid NOTIFY filenameChanged)
 
 public:
 
+    static const QString FileNameSuffix;
+
     explicit Item(QObject* parent = nullptr);
     explicit Item(const QString &filename,
+                  QObject *parent = 0);
+    explicit Item(const QDir &dir,
                   QObject *parent = 0);
     virtual ~Item();
 
@@ -73,6 +79,10 @@ public:
 
     QString directory() const;
 
+    static Item *createItem(QVariantMap map, QObject *parent = nullptr);
+    static Item *createItem(QVariant variant, QObject *parent = nullptr);
+    static Item *createItem(QString itemType, QObject *parent = nullptr);
+
 public slots:
 
 signals:
@@ -98,6 +108,11 @@ signals:
      */
     void reloaded();
 
+    /**
+     * @brief Some properties of the item changed.
+     */
+    void changed();
+
 protected:
 
     virtual QVariantMap toMap() const;
@@ -114,7 +129,11 @@ private:
     void setUid(const QUuid &uid);
     void setFilename(const QString &filename);
 
+    void setupChangedSignal();
+
 };
+
+typedef QSharedPointer<Item> ItemPtr;
 
 QDebug operator<<(QDebug debug, const Item *item);
 

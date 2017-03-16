@@ -11,6 +11,7 @@ Image::Image(const QString &filename, QObject *parent) :
     TopLevelItem(filename, parent),
     m_image()
 {
+    connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
 
 /**
@@ -18,6 +19,15 @@ Image::Image(const QString &filename, QObject *parent) :
  */
 Image::Image(QObject* parent) : Image(QString(), parent)
 {
+}
+
+/**
+ * @brief Constructor.
+ */
+Image::Image(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent),
+    m_image()
+{
+    connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
 
 /**
@@ -100,5 +110,5 @@ bool Image::deleteItem()
     if (validImage()) {
         QFile(directory() + "/" + m_image).remove();
     }
-    TopLevelItem::deleteItem();
+    return TopLevelItem::deleteItem();
 }

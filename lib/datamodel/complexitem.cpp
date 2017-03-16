@@ -14,6 +14,19 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent) : Item(filena
     m_dueTo(),
     m_notes()
 {
+    connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::notesChanged, this, &ComplexItem::changed);
+}
+
+/**
+ * @brief Constructor.
+ */
+ComplexItem::ComplexItem(const QDir& dir, QObject* parent) : Item(dir, parent),
+    m_dueTo(),
+    m_notes()
+{
+    connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::notesChanged, this, &ComplexItem::changed);
 }
 
 /**

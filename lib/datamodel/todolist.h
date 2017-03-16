@@ -12,7 +12,8 @@ class TodoList : public TopLevelItem
 public:
 
     explicit TodoList(QObject* parent = nullptr);
-    explicit TodoList(const QString &filename, QObject *parent = 0);
+    explicit TodoList(const QString &filename, QObject *parent = nullptr);
+    explicit TodoList(const QDir &dir, QObject *parent = nullptr);
     virtual ~TodoList();
 
 signals:
@@ -26,5 +27,7 @@ private:
 private slots:
 
 };
+
+typedef QSharedPointer<TodoList> TodoListPtr;
 
 #endif // TODOLIST_H

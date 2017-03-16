@@ -33,6 +33,7 @@ public:
 
     explicit TopLevelItem(const QString &filename, QObject* parent = nullptr);
     explicit TopLevelItem(QObject* parent = nullptr);
+    explicit TopLevelItem(const QDir &dir, QObject *parent = nullptr);
     virtual ~TopLevelItem();
 
     Color color() const;
@@ -64,5 +65,7 @@ protected:
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 };
+
+typedef QSharedPointer<TopLevelItem> TopLevelItemPtr;
 
 #endif // TOPLEVELITEM_H

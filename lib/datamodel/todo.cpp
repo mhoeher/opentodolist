@@ -8,6 +8,8 @@ Todo::Todo(const QString &filename, QObject *parent) : ComplexItem(filename, par
     m_todoListUid(),
     m_done(false)
 {
+    connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
+    connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
 }
 
 /**
@@ -15,6 +17,17 @@ Todo::Todo(const QString &filename, QObject *parent) : ComplexItem(filename, par
  */
 Todo::Todo(QObject* parent) : Todo(QString(), parent)
 {
+}
+
+/**
+ * @brief Constructor.
+ */
+Todo::Todo(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
+    m_todoListUid(),
+    m_done(false)
+{
+    connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
+    connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
 }
 
 /**

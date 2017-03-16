@@ -1,7 +1,8 @@
-include(../config.pri)
-setupApplication()
-
+TEMPLATE = app
 TARGET = OpenTodoList
+
+include(../config.pri)
+include(../lib/lib.pri)
 
 QT += qml quick widgets svg xml concurrent
 
@@ -12,9 +13,6 @@ RESOURCES += qml.qrc \
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
-
-# Default rules for deployment.
-include(deployment.pri)
 
 # Android: Set app name and point to Android files to be used:
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -27,3 +25,4 @@ win32:RC_FILE = OpenTodoList.rc
 
 OTHER_FILES += \
     android/AndroidManifest.xml
+

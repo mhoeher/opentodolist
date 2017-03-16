@@ -23,6 +23,7 @@ public:
 
     explicit Todo(const QString &filename, QObject *parent = nullptr);
     explicit Todo(QObject* parent = nullptr);
+    explicit Todo(const QDir &dir, QObject *parent = nullptr);
     virtual ~Todo();
 
     bool done() const;
@@ -53,5 +54,7 @@ private slots:
 
 
 };
+
+typedef QSharedPointer<Todo> TodoPtr;
 
 #endif // TODO_H

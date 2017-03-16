@@ -23,7 +23,8 @@ class Task : public Item
 public:
 
     explicit Task(QObject *parent = nullptr);
-    explicit Task(QString filename, QObject *parent = nullptr);
+    explicit Task(const QString &filename, QObject *parent = nullptr);
+    explicit Task(const QDir &dir, QObject *parent = nullptr);
     virtual ~Task();
 
     bool done() const;
@@ -50,5 +51,7 @@ protected:
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 };
+
+typedef QSharedPointer<Task> TaskPtr;
 
 #endif // TASK_H

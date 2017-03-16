@@ -7,7 +7,7 @@ DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 QMAKE_TARGET_COMPANY = "RPdev"
 QMAKE_TARGET_PRODUCT = "OpenTodoList"
 QMAKE_TARGET_DESCRIPTION = "A todo and task management application"
-QMAKE_TARGET_COPYRIGHT = "(c) RPdev 2014-2016"
+QMAKE_TARGET_COPYRIGHT = "(c) RPdev 2014-2017"
 
 CONFIG(release, debug|release) {
     DEFINES += OPENTODOLIST_RELEASE
@@ -15,29 +15,6 @@ CONFIG(release, debug|release) {
 
 CONFIG(debug, debug|release) {
     DEFINES += OPENTODOLIST_DEBUG
-}
-
-defineTest(setupApplication) {
-    TEMPLATE = app
-    CONFIG += c++11
-    INCLUDEPATH += $$PWD/../lib
-    LIBS += -L$$OUT_PWD/../lib -lopentodolist
-    win32:!win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../lib/opentodolist.lib
-    else:unix|win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../lib/libopentodolist.a
-
-    export(TEMPLATE)
-    export(CONFIG)
-    export(INCLUDEPATH)
-    export(LIBS)
-    export(PRE_TARGETDEPS)
-}
-
-defineTest(setupStaticLib) {
-    CONFIG += c++11 staticlib
-    TEMPLATE = lib
-
-    export(CONFIG)
-    export(TEMPLATE)
 }
 
 defineTest(setupTest) {

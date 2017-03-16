@@ -23,6 +23,7 @@ public:
 
     explicit ComplexItem(QObject *parent = nullptr);
     explicit ComplexItem(const QString &filename, QObject *parent = nullptr);
+    explicit ComplexItem(const QDir &dir, QObject* parent = nullptr);
     virtual ~ComplexItem();
 
     QDateTime dueTo() const;
@@ -50,5 +51,7 @@ protected:
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 };
+
+typedef QSharedPointer<ComplexItem> ComplexItemPtr;
 
 #endif // COMPLEXITEM_H

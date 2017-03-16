@@ -19,6 +19,13 @@ TodoList::TodoList(const QString& filename, QObject* parent) : TopLevelItem(file
 }
 
 /**
+ * @brief Constructor.
+ */
+TodoList::TodoList(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent)
+{
+}
+
+/**
  * @brief Destructor.
  */
 TodoList::~TodoList()

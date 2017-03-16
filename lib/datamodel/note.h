@@ -18,8 +18,11 @@ class Note : public TopLevelItem
 public:
     explicit Note(QObject *parent = nullptr);
     explicit Note(const QString &filename, QObject* parent = nullptr);
+    explicit Note(const QDir &dir, QObject *parent = nullptr);
     virtual ~Note();
 
 };
+
+typedef QSharedPointer<Note> NotePtr;
 
 #endif // NOTE_H

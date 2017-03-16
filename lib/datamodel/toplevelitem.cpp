@@ -11,6 +11,8 @@ TopLevelItem::TopLevelItem(const QString& filename, QObject* parent) :
     m_color(White),
     m_tags()
 {
+    connect(this, &TopLevelItem::colorChanged, this, &ComplexItem::changed);
+    connect(this, &TopLevelItem::tagsChanged, this, &ComplexItem::changed);
 }
 
 /**
@@ -18,6 +20,17 @@ TopLevelItem::TopLevelItem(const QString& filename, QObject* parent) :
  */
 TopLevelItem::TopLevelItem(QObject* parent) : TopLevelItem(QString(), parent)
 {
+}
+
+/**
+ * @brief Constructor.
+ */
+TopLevelItem::TopLevelItem(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
+    m_color(White),
+    m_tags()
+{
+    connect(this, &TopLevelItem::colorChanged, this, &ComplexItem::changed);
+    connect(this, &TopLevelItem::tagsChanged, this, &ComplexItem::changed);
 }
 
 /**
