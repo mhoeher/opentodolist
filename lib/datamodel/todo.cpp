@@ -1,12 +1,18 @@
 #include "todo.h"
 
+#include <QQmlEngine>
+
+#include "library.h"
+#include "task.h"
+
 
 /**
  * @brief Constructor.
  */
 Todo::Todo(const QString &filename, QObject *parent) : ComplexItem(filename, parent),
     m_todoListUid(),
-    m_done(false)
+    m_done(false),
+    m_library(nullptr)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
     connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
@@ -24,7 +30,8 @@ Todo::Todo(QObject* parent) : Todo(QString(), parent)
  */
 Todo::Todo(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
     m_todoListUid(),
-    m_done(false)
+    m_done(false),
+    m_library(nullptr)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
     connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
@@ -76,6 +83,28 @@ void Todo::setTodoListUid(const QUuid& todoListUid)
         emit todoListUidChanged();
         save();
     }
+}
+
+/**
+ * @brief Create a new task.
+ *
+ * This creates a new task in the library and returns a pointer to it.
+ * Note that this method is intended to be called by QML. It is safe to
+ * use the returned object in JavaScript/QML. When invoked from C++, do not
+ * attempt to store the returned object for access over a longer time,
+ * as the library might delete it at any time if need be and hence the pointer
+ * might get dangling.
+ */
+Task*Todo::addTask()
+{
+    if (m_library) {
+        TaskPtr task(new Task(QDir(directory())));
+        m_library->tasks().addItem(task);
+        task->setTodoUid(uid());
+        QQmlEngine::setObjectOwnership(task.data(), QQmlEngine::CppOwnership);
+        return task.data();
+    }
+    return nullptr;
 }
 
 QVariantMap Todo::toMap() const

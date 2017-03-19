@@ -4,7 +4,12 @@
 #include "complexitem.h"
 
 #include <QObject>
+#include <QPointer>
 
+
+class Library;
+class TodoList;
+class Task;
 
 /**
  * @brief A single todo inside a todo list.
@@ -19,6 +24,8 @@ class Todo : public ComplexItem
     Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
 
+    friend class TodoList;
+
 public:
 
     explicit Todo(const QString &filename, QObject *parent = nullptr);
@@ -31,6 +38,8 @@ public:
 
     QUuid todoListUid() const;
     void setTodoListUid(const QUuid& todoListUid);
+
+    Q_INVOKABLE Task* addTask();
 
 signals:
 
@@ -50,8 +59,9 @@ private:
     QUuid m_todoListUid;
     bool m_done;
 
-private slots:
+    Library* m_library;
 
+private slots:
 
 };
 

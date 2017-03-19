@@ -5,6 +5,11 @@
 #include <QString>
 #include <QVariantMap>
 
+#include "image.h"
+#include "itemcontainer.h"
+#include "note.h"
+#include "todolist.h"
+
 /**
  * @brief A container for items.
  *
@@ -26,6 +31,10 @@ public:
     explicit Library(const QString &directory, QObject* parent = nullptr);
     virtual ~Library();
 
+    Q_INVOKABLE Note* addNote();
+    Q_INVOKABLE Image* addImage();
+    Q_INVOKABLE TodoList* addTodoList();
+
 
     bool isValid() const { return !m_directory.isEmpty(); }
 
@@ -44,8 +53,9 @@ public:
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
 
-    QVariantMap toMap() const;
-    void fromMap(QVariantMap map);
+    ItemContainer &topLevelItems();
+    ItemContainer &todos();
+    ItemContainer &tasks();
 
 signals:
 
@@ -63,6 +73,13 @@ private:
 
     QString                 m_name;
     QString                 m_directory;
+
+    ItemContainer           m_topLevelItems;
+    ItemContainer           m_todos;
+    ItemContainer           m_tasks;
+
+    QVariantMap toMap() const;
+    void fromMap(QVariantMap map);
 
 };
 
