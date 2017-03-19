@@ -65,13 +65,13 @@ void Image::setImage(const QString &image)
                 m_image = fi.fileName();
                 emit imageChanged();
                 save();
-            } else {
+            } else if (isValid()) {
                 if (!fi.exists()) {
                     return;
                 }
                 QFile file(directory() + "/" + m_image);
                 file.remove();
-                QString targetFileName = QUuid::createUuid().toString() + ".res" + fi.completeSuffix();
+                QString targetFileName = QUuid::createUuid().toString() + ".res." + fi.completeSuffix();
                 QFile::copy(image, directory() + "/" + targetFileName);
                 m_image = targetFileName;
                 emit imageChanged();
@@ -89,7 +89,7 @@ void Image::setImage(const QString &image)
  */
 bool Image::validImage() const
 {
-    return QFile(directory() + "/" + m_image).exists();
+    return isValid() && QFile(directory() + "/" + m_image).exists();
 }
 
 QVariantMap Image::toMap() const

@@ -1,6 +1,7 @@
 #include "task.h"
 
 #include <QObject>
+#include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
 
@@ -11,36 +12,52 @@ class TaskTest : public QObject
 private slots:
 
   void initTestCase() {}
-  void testConstructor();
+  void testProperties();
   void testPersistence();
   void cleanupTestCase() {}
-  
+
 };
 
-void TaskTest::testConstructor()
+
+void TaskTest::testProperties()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto task = new Task(dir.path());
-  Q_CHECK_PTR(task);
-  delete task;
+    Task task;
+    QSignalSpy doneChanged(&task, &Task::doneChanged);
+    QSignalSpy todoUidChanged(&task, &Task::todoUidChanged);
+
+    QVERIFY(!task.done());
+
+    QUuid uuid = QUuid::createUuid();
+
+    task.setDone(true);
+    task.setTodoUid(uuid);
+
+    QCOMPARE(doneChanged.count(), 1);
+    QCOMPARE(todoUidChanged.count(), 1);
+
+    QVERIFY(task.done());
+    QCOMPARE(task.todoUid(), uuid);
 }
 
 void TaskTest::testPersistence()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto task = new Task(dir.path());
-  Q_CHECK_PTR(task);
-  QVERIFY2(!task->done(), "Expected task not to be done.");
-  task->setDone(true);
-  task->commitItem();
-  delete task;
-  task = new Task(dir.path());
-  QVERIFY2(task->done(), "Expected task to be done.");
-  delete task;
-}
+    Task task, anotherTask;
+    QSignalSpy doneChanged(&anotherTask, &Task::doneChanged);
+    QSignalSpy todoUidChanged(&anotherTask, &Task::todoUidChanged);
 
+    QUuid uuid = QUuid::createUuid();
+
+    task.setDone(true);
+    task.setTodoUid(uuid);
+
+    anotherTask.fromVariant(task.toVariant());
+
+    QCOMPARE(doneChanged.count(), 1);
+    QCOMPARE(todoUidChanged.count(), 1);
+
+    QVERIFY(anotherTask.done());
+    QCOMPARE(anotherTask.todoUid(), uuid);
+}
 
 QTEST_MAIN(TaskTest)
 #include "test_task.moc"

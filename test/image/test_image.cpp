@@ -1,42 +1,79 @@
 #include "image.h"
 
 #include <QObject>
+#include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
 
 class ImageTest : public QObject
 {
   Q_OBJECT
-  
+
 private slots:
-  
+
   void initTestCase() {}
-  void testConstructor();
+  void init();
+  void testProperties();
   void testPersistence();
+  void testSaveLoad();
+  void cleanup();
   void cleanupTestCase() {}
-  
+
+private:
+
+  QTemporaryDir *m_dir;
+
 };
 
-void ImageTest::testConstructor()
+
+
+void ImageTest::init()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto image = new Image(dir.path());
-  Q_CHECK_PTR(image);
-  delete image;
+    m_dir = new QTemporaryDir();
+}
+
+void ImageTest::testProperties()
+{
+    Image item;
+    QSignalSpy imageChanged(&item, &Image::imageChanged);
+
+    item.setImage("hello.bmp");
+
+    QCOMPARE(imageChanged.count(), 1);
+
+    QCOMPARE(item.image(), QString("hello.bmp"));
 }
 
 void ImageTest::testPersistence()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto image = new Image(dir.path());
-  image->setImage("test.png");
-  image->commitItem();
-  delete image;
-  image = new Image(dir.path());
-  QCOMPARE(image->image(), QString("test.png"));
-  delete image;
+    Image item, anotherItem;
+    QSignalSpy imageChanged(&anotherItem, &Image::imageChanged);
+
+    item.setImage("hello.bmp");
+
+    anotherItem.fromVariant(item.toVariant());
+
+    QCOMPARE(imageChanged.count(), 1);
+
+    QCOMPARE(anotherItem.image(), item.image());
+}
+
+void ImageTest::testSaveLoad()
+{
+    Image item(QDir(m_dir->path()));
+    QSignalSpy imageChanged(&item, &Image::imageChanged);
+    item.setImage(SRCDIR "/test_image.cpp");
+    QVERIFY(item.validImage());
+
+    Image anotherItem(item.filename());
+    anotherItem.load();
+    QCOMPARE(anotherItem.image(), item.image());
+    QVERIFY(anotherItem.validImage());
+}
+
+void ImageTest::cleanup()
+{
+    delete m_dir;
 }
 
 QTEST_MAIN(ImageTest)

@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2016-01-25T20:32:47
-#
-#-------------------------------------------------
-
 include(../config.pri)
 
 QT       += qml quick xml concurrent
@@ -15,7 +9,7 @@ CONFIG += static c++11
 
 win32:DESTDIR = $$OUT_PWD
 
-INCLUDEPATH += datamodel
+INCLUDEPATH += datamodel datastorage
 
 SOURCES += \
     application.cpp \
@@ -31,7 +25,8 @@ SOURCES += \
     opentodolistqmlextensionsplugin.cpp \
     documentformatter.cpp \
     fileutils.cpp \
-    filtermodel.cpp
+    filtermodel.cpp \
+    datastorage/itemcontainer.cpp
 
 HEADERS += \
     application.h \
@@ -48,4 +43,5 @@ HEADERS += \
     documentformatter.h \
     fileutils.h \
     filtermodel.h \
-    abstractitemmodel.h
+    abstractitemmodel.h \
+    datastorage/itemcontainer.h

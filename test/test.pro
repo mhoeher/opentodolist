@@ -1,8 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    application \
-    locallibraryfactory \
+#    application \
     item \
     complexitem \
     toplevelitem \

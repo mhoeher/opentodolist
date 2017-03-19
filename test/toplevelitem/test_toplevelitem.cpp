@@ -1,53 +1,65 @@
 #include "toplevelitem.h"
 
-#include <QTemporaryDir>
 #include <QObject>
+#include <QSignalSpy>
+#include <QTemporaryDir>
 #include <QTest>
 
 class TopLevelItemTest : public QObject
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 private slots:
-  
-  void initTestCase() {}
-  void testConstructor();
-  void testPersistence();
-  void testTags();
-  void cleanupTestCase() {}
+
+    void initTestCase() {}
+    void testProperties();
+    void testPersistence();
+    void testTags();
+    void cleanupTestCase() {}
 };
 
-void TopLevelItemTest::testConstructor()
+void TopLevelItemTest::testProperties()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Unable to create temporary directory.");
-  auto item = new TopLevelItem(dir.path());
-  Q_CHECK_PTR(item);
-  QCOMPARE(item->itemType(), TopLevelItem::ItemType);
-  delete item;
+    TopLevelItem item;
+    QSignalSpy colorChanged(&item, &TopLevelItem::colorChanged);
+    QSignalSpy tagsChanged(&item, &TopLevelItem::tagsChanged);
+
+    QCOMPARE(item.color(), TopLevelItem::White);
+
+    item.setColor(TopLevelItem::Green);
+    item.setTags({"Hello", "World"});
+
+    QCOMPARE(colorChanged.count(), 1);
+    QCOMPARE(tagsChanged.count(), 1);
+
+    QCOMPARE(item.color(), TopLevelItem::Green);
+    QCOMPARE(item.tags(), QStringList({"Hello", "World"}));
 }
 
 void TopLevelItemTest::testPersistence()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Unable to create temporary directory.");
-  auto item = new TopLevelItem(dir.path());
-  Q_CHECK_PTR(item);
-  TopLevelItem::Color color = TopLevelItem::Green;
-  item->setColor(color);
-  item->setTags({"Tag1", "Tag2"});
-  item->commitItem();
-  delete item;
-  item = new TopLevelItem(dir.path());
-  Q_CHECK_PTR(item);
-  QCOMPARE(item->color(), color);
-  QCOMPARE(item->tags(), QStringList({"Tag1", "Tag2"}));
-  delete item;
+    TopLevelItem item, anotherItem;
+    QSignalSpy colorChanged(&anotherItem, &TopLevelItem::colorChanged);
+    QSignalSpy tagsChanged(&anotherItem, &TopLevelItem::tagsChanged);
+
+    QCOMPARE(item.color(), TopLevelItem::White);
+
+    item.setColor(TopLevelItem::Green);
+    item.setTags({"Hello", "World"});
+
+    anotherItem.fromVariant(item.toVariant());
+
+    QCOMPARE(colorChanged.count(), 1);
+    QCOMPARE(tagsChanged.count(), 1);
+
+    QCOMPARE(anotherItem.color(), TopLevelItem::Green);
+    QCOMPARE(anotherItem.tags(), QStringList({"Hello", "World"}));
 }
 
 void TopLevelItemTest::testTags()
 {
     TopLevelItem item;
+    QSignalSpy tagsChanged(&item, &TopLevelItem::tagsChanged);
     QCOMPARE(item.tags(), QStringList());
     item.addTag("Tag 2");
     QCOMPARE(item.tags(), QStringList({"Tag 2"}));
@@ -55,6 +67,7 @@ void TopLevelItemTest::testTags()
     QCOMPARE(item.tags(), QStringList({"Tag 1", "Tag 2"}));
     item.removeTagAt(1);
     QCOMPARE(item.tags(), QStringList({"Tag 1"}));
+    QCOMPARE(tagsChanged.count(), 3);
 }
 
 QTEST_MAIN(TopLevelItemTest)

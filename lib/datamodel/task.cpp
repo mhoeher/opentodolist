@@ -10,7 +10,7 @@ Task::Task(const QDir& dir, QObject* parent) : Item(dir, parent),
     m_todoUid()
 {
     connect(this, &Task::doneChanged, this, &Task::changed);
-    connect(this, &Task::todoUid, this, &Task::changed);
+    connect(this, &Task::todoUidChanged, this, &Task::changed);
 }
 
 Task::Task(const QString &filename, QObject* parent) : Item(filename, parent),
@@ -18,7 +18,7 @@ Task::Task(const QString &filename, QObject* parent) : Item(filename, parent),
     m_todoUid(QUuid())
 {
     connect(this, &Task::doneChanged, this, &Task::changed);
-    connect(this, &Task::todoUid, this, &Task::changed);
+    connect(this, &Task::todoUidChanged, this, &Task::changed);
 }
 
 Task::~Task()

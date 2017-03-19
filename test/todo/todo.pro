@@ -1,7 +1,7 @@
 include(../../config.pri)
 setupTest(todo)
 
-QT += qml
+include(../../lib/lib.pri)
 
 SOURCES += \
     test_todo.cpp

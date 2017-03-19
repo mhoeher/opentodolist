@@ -2,95 +2,65 @@
 #include "task.h"
 
 #include <QObject>
+#include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
 
 
-class TodoTest : public QObject 
+class TodoTest : public QObject
 {
-  Q_OBJECT
-  
-private slots:
-  
-  void initTestCase() {}
-  void testConstructor();
-  void testPersistence();
-  void testAddTask();
-  void testTasks();
-  void testDeleteTask();
-  void cleanupTestCase() {}
+    Q_OBJECT
 
+private slots:
+
+    void initTestCase() {}
+    void testProperties();
+    void testPersistence();
+    void cleanupTestCase() {}
 };
 
 
-void TodoTest::testConstructor()
+void TodoTest::testProperties()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto todo = new Todo(dir.path());
-  Q_CHECK_PTR(todo);
-  delete todo;
+    Todo todo;
+    QSignalSpy doneChanged(&todo, &Todo::doneChanged);
+    QSignalSpy todoListUidChanged(&todo, &Todo::todoListUidChanged);
+
+    QVERIFY(!todo.done());
+
+    QUuid uid = QUuid::createUuid();
+
+    todo.setDone(true);
+    todo.setTodoListUid(uid);
+
+    QCOMPARE(doneChanged.count(), 1);
+    QCOMPARE(todoListUidChanged.count(), 1);
+
+    QVERIFY(todo.done());
+    QCOMPARE(todo.todoListUid(), uid);
+
 }
 
 void TodoTest::testPersistence()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto todo = new Todo(dir.path());
-  Q_CHECK_PTR(todo);
-  QVERIFY2(!todo->done(), "Expected todo to be not done.");
-  todo->setDone(true);
-  todo->commitItem();
-  delete todo;
-  todo = new Todo(dir.path());
-  Q_CHECK_PTR(todo);
-  QVERIFY2(todo->done(), "Expected todo to be done.");
-  delete todo;
-}
+    Todo todo, anotherTodo;
+    QSignalSpy doneChanged(&anotherTodo, &Todo::doneChanged);
+    QSignalSpy todoListUidChanged(&anotherTodo, &Todo::todoListUidChanged);
 
-void TodoTest::testAddTask()
-{
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto todo = new Todo(dir.path());
-  Q_CHECK_PTR(todo);
-  auto task = todo->addTask("Some Task");
-  Q_CHECK_PTR(task);
-  QCOMPARE(task->todo(), todo);
-  delete todo;
-}
+    QVERIFY(!todo.done());
 
-void TodoTest::testTasks()
-{
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto todo = new Todo(dir.path());
-  Q_CHECK_PTR(todo);
-  auto task = todo->addTask("Some Task");
-  Q_CHECK_PTR(task);
-  delete todo;
-  todo = new Todo(dir.path());
-  TaskList tasks = todo->tasks();
-  QCOMPARE(tasks.size(), 1);
-  Q_CHECK_PTR(tasks.at(0));
-  QCOMPARE(tasks.at(0)->title(), QString("Some Task"));
-  delete todo;
-}
+    QUuid uid = QUuid::createUuid();
 
-void TodoTest::testDeleteTask()
-{
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto todo = new Todo(dir.path());
-  Q_CHECK_PTR(todo);
-  auto task = todo->addTask("Some Task");
-  Q_CHECK_PTR(task);
-  TaskList tasks = todo->tasks();
-  QCOMPARE(tasks.size(), 1);
-  QVERIFY2(task->deleteItem(), "Failed to delete task.");
-  tasks = todo->tasks();
-  QCOMPARE(tasks.size(), 0);
-  delete todo;
+    todo.setDone(true);
+    todo.setTodoListUid(uid);
+
+    anotherTodo.fromVariant(todo.toVariant());
+
+    QCOMPARE(doneChanged.count(), 1);
+    QCOMPARE(todoListUidChanged.count(), 1);
+
+    QVERIFY(anotherTodo.done());
+    QCOMPARE(anotherTodo.todoListUid(), uid);
 }
 
 

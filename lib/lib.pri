@@ -1,5 +1,7 @@
-INCLUDEPATH += $$PWD $$PWD/datamodel
-LIBS += -L$$OUT_PWD/../lib -lopentodolist
+INCLUDEPATH += $$PWD $$PWD/datamodel $$PWD/datastorage
+LIBS += -L$$shadowed($$PWD) -lopentodolist
 
-win32:!win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../lib/opentodolist.lib
-else:unix|win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../lib/libopentodolist.a
+QT += qml
+
+win32:!win32-g++: PRE_TARGETDEPS += $$shadowed($$PWD)/opentodolist.lib
+else:unix|win32-g++: PRE_TARGETDEPS += $$shadowed($$PWD)/libopentodolist.a

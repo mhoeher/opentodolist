@@ -46,7 +46,6 @@ Item::Item(const QString& filename, QObject* parent) :
     Item(parent)
 {
     m_filename = filename;
-    load();
 }
 
 /**
