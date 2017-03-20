@@ -102,6 +102,7 @@ Task*Todo::addTask()
         m_library->tasks().addItem(task);
         task->setTodoUid(uid());
         QQmlEngine::setObjectOwnership(task.data(), QQmlEngine::CppOwnership);
+        task->save();
         return task.data();
     }
     return nullptr;

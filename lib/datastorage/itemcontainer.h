@@ -49,6 +49,8 @@ public:
     void addItem(ItemPtr item);
     void updateItem(ItemPtr item);
     void deleteItem(ItemPtr item);
+    void updateOrInsert(ItemPtr item);
+    void clear();
 
 signals:
 
@@ -61,6 +63,11 @@ signals:
      * @brief An item has been removed at the given @p index.
      */
     void itemDeleted(int index);
+
+    /**
+     * @brief The container has been cleared.
+     */
+    void cleared();
 
 public slots:
 

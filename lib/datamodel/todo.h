@@ -25,6 +25,7 @@ class Todo : public ComplexItem
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
 
     friend class TodoList;
+    friend class Library;
 
 public:
 

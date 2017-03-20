@@ -55,6 +55,7 @@ Todo *TodoList::addTodo()
         todo->setTodoListUid(uid());
         m_library->todos().addItem(todo);
         QQmlEngine::setObjectOwnership(todo.data(), QQmlEngine::CppOwnership);
+        todo->save();
         return todo.data();
     }
     return nullptr;

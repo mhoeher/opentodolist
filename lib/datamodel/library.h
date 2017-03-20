@@ -69,6 +69,14 @@ signals:
      */
     void libraryDeleted(Library *library);
 
+    /**
+     * @brief Loading the items of the library finished.
+     *
+     * This signal is emitted to indicate that loading the items in a library
+     * has finished.
+     */
+    void loadingFinished();
+
 private:
 
     QString                 m_name;
@@ -77,6 +85,8 @@ private:
     ItemContainer           m_topLevelItems;
     ItemContainer           m_todos;
     ItemContainer           m_tasks;
+
+    bool                    m_loading;
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);

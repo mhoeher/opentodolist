@@ -8,6 +8,7 @@
 
 #include <QObject>
 #include <QQmlEngine>
+#include <QSet>
 #include <QSettings>
 #include <QSignalSpy>
 #include <QTemporaryDir>
@@ -28,6 +29,7 @@ private slots:
     void testAddTodoList();
     void testAddTodo();
     void addTask();
+    void testLoad();
     void cleanup();
 
 private:
@@ -120,6 +122,39 @@ void LibraryTest::addTask()
     QVERIFY(task != nullptr);
     QCOMPARE(QQmlEngine::objectOwnership(task), QQmlEngine::CppOwnership);
     QCOMPARE(task->todoUid(), todo->uid());
+}
+
+void LibraryTest::testLoad()
+{
+    Library lib(m_dir->path());
+    lib.save();
+    lib.addNote();
+    lib.addImage();
+    auto todoList = lib.addTodoList();
+    auto todo = todoList->addTodo();
+    todo->addTask();
+
+    Library lib2(m_dir->path());
+    QSignalSpy loadingFinished(&lib2, &Library::loadingFinished);
+    QVERIFY(lib2.load());
+    QVERIFY(loadingFinished.wait(10000));
+    QSet<QUuid> uuids;
+    QSet<QString> itemTypes;
+    QCOMPARE(lib.topLevelItems().count(), 3);
+    QCOMPARE(lib.todos().count(), 1);
+    QCOMPARE(lib.tasks().count(), 1);
+    uuids.insert(lib.topLevelItems().item(0)->uid());
+    uuids.insert(lib.topLevelItems().item(1)->uid());
+    uuids.insert(lib.topLevelItems().item(2)->uid());
+    uuids.insert(lib.todos().item(0)->uid());
+    uuids.insert(lib.tasks().item(0)->uid());
+    itemTypes.insert(lib.topLevelItems().item(0)->itemType());
+    itemTypes.insert(lib.topLevelItems().item(1)->itemType());
+    itemTypes.insert(lib.topLevelItems().item(2)->itemType());
+    itemTypes.insert(lib.todos().item(0)->itemType());
+    itemTypes.insert(lib.tasks().item(0)->itemType());
+    QCOMPARE(uuids.count(), 5);
+    QCOMPARE(itemTypes.count(), 5);
 }
 
 void LibraryTest::cleanup()

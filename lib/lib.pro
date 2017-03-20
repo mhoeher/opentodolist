@@ -26,7 +26,8 @@ SOURCES += \
     documentformatter.cpp \
     fileutils.cpp \
     filtermodel.cpp \
-    datastorage/itemcontainer.cpp
+    datastorage/itemcontainer.cpp \
+    datastorage/libraryloader.cpp
 
 HEADERS += \
     application.h \
@@ -44,4 +45,5 @@ HEADERS += \
     fileutils.h \
     filtermodel.h \
     abstractitemmodel.h \
-    datastorage/itemcontainer.h
+    datastorage/itemcontainer.h \
+    datastorage/libraryloader.h

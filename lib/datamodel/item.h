@@ -135,6 +135,8 @@ private:
 
 typedef QSharedPointer<Item> ItemPtr;
 
+Q_DECLARE_METATYPE(ItemPtr);
+
 QDebug operator<<(QDebug debug, const Item *item);
 
 #endif // ITEM_H

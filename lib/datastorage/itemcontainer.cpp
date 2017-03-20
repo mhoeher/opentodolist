@@ -89,3 +89,32 @@ void ItemContainer::deleteItem(ItemPtr item)
         }
     }
 }
+
+/**
+ * @brief Update or add an item.
+ *
+ * This is a combination of the addItem and updateItem methods: It checks first if an
+ * item with the same uid already is stored in the container. If this is the case, this item
+ * is updated with the values in the @p item. Otherwise, item itself is added to the container.
+ */
+void ItemContainer::updateOrInsert(ItemPtr item)
+{
+    if (!item.isNull()) {
+        auto existingItem = m_uidMap.value(item->uid());
+        if (existingItem.isNull()) {
+            addItem(item);
+        } else {
+            existingItem->fromVariant(item->toVariant());
+        }
+    }
+}
+
+/**
+ * @brief Remove all items from the container.
+ */
+void ItemContainer::clear()
+{
+    m_items.clear();
+    m_uidMap.clear();
+    emit cleared();
+}

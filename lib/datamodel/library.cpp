@@ -6,6 +6,10 @@
 #include <QQmlEngine>
 #include <QtConcurrent>
 
+#include "libraryloader.h"
+#include "todo.h"
+#include "task.h"
+
 
 const QString Library::LibraryFileName = "library.json";
 
@@ -18,7 +22,8 @@ Library::Library(QObject* parent) : QObject(parent),
     m_directory(),
     m_topLevelItems(),
     m_todos(),
-    m_tasks()
+    m_tasks(),
+    m_loading(false)
 {
 
 }
@@ -47,6 +52,7 @@ Note *Library::addNote()
     NotePtr note(new Note(QDir(m_directory)));
     QQmlEngine::setObjectOwnership(note.data(), QQmlEngine::CppOwnership);
     m_topLevelItems.addItem(note);
+    note->save();
     return note.data();
 }
 
@@ -62,10 +68,11 @@ Note *Library::addNote()
  */
 Image *Library::addImage()
 {
-    ImagePtr note(new Image(QDir(m_directory)));
-    QQmlEngine::setObjectOwnership(note.data(), QQmlEngine::CppOwnership);
-    m_topLevelItems.addItem(note);
-    return note.data();
+    ImagePtr image(new Image(QDir(m_directory)));
+    QQmlEngine::setObjectOwnership(image.data(), QQmlEngine::CppOwnership);
+    m_topLevelItems.addItem(image);
+    image->save();
+    return image.data();
 }
 
 /**
@@ -84,6 +91,7 @@ TodoList *Library::addTodoList()
     todoList->m_library = this;
     QQmlEngine::setObjectOwnership(todoList.data(), QQmlEngine::CppOwnership);
     m_topLevelItems.addItem(todoList);
+    todoList->save();
     return todoList.data();
 }
 
@@ -140,6 +148,33 @@ bool Library::load()
                            << file.errorString();
             }
         }
+    }
+    if (!m_loading && isValid()) {
+        m_loading = true;
+        LibraryLoader *loader = new LibraryLoader(this);
+        loader->setDirectory(m_directory);
+        connect(loader, &LibraryLoader::scanFinished, [=]() {
+           m_loading = false;
+           emit loadingFinished();
+           loader->deleteLater();
+        });
+        connect(loader, &LibraryLoader::itemLoaded, [=](ItemPtr item) {
+            auto topLevelItem = qSharedPointerDynamicCast<TodoListPtr>(item);
+            if (!topLevelItem.isNull()) {
+                m_topLevelItems.updateOrInsert(item);
+            } else {
+                auto todo = qSharedPointerDynamicCast<TodoPtr>(item);
+                if (!todo.isNull()) {
+                    m_todos.updateOrInsert(item);
+                } else {
+                    auto task = qSharedPointerDynamicCast<TaskPtr>(item);
+                    if (!task.isNull()) {
+                        m_tasks.updateOrInsert(item);
+                    }
+                }
+            }
+        });
+        loader->scan();
     }
     return result;
 }
