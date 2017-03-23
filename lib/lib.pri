@@ -1,4 +1,4 @@
-INCLUDEPATH += $$PWD $$PWD/datamodel $$PWD/datastorage
+INCLUDEPATH += $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models
 LIBS += -L$$shadowed($$PWD) -lopentodolist
 
 QT += qml

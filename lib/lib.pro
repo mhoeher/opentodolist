@@ -9,7 +9,7 @@ CONFIG += static c++11
 
 win32:DESTDIR = $$OUT_PWD
 
-INCLUDEPATH += datamodel datastorage
+INCLUDEPATH += datamodel datastorage models
 
 SOURCES += \
     application.cpp \
@@ -27,7 +27,9 @@ SOURCES += \
     fileutils.cpp \
     filtermodel.cpp \
     datastorage/itemcontainer.cpp \
-    datastorage/libraryloader.cpp
+    datastorage/libraryloader.cpp \
+    models/itemsmodel.cpp \
+    models/itemssortfiltermodel.cpp
 
 HEADERS += \
     application.h \
@@ -46,4 +48,6 @@ HEADERS += \
     filtermodel.h \
     abstractitemmodel.h \
     datastorage/itemcontainer.h \
-    datastorage/libraryloader.h
+    datastorage/libraryloader.h \
+    models/itemsmodel.h \
+    models/itemssortfiltermodel.h

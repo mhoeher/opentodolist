@@ -18,6 +18,7 @@ OTHER_FILES += \
   bin/mk-installer.pl \
   bin/mk-pri.pl \
   bin/mk-qrc.pl \
+  bin/mk-unittest.py \
   bin/mk-linux-installer-x86_64.sh \
   templates/installer/config/config.xml \
   templates/installer/config/controller.js \
