@@ -4,8 +4,11 @@
 #include <QObject>
 #include <QList>
 #include <QHash>
+#include <QMutex>
 
 #include "item.h"
+
+class QThreadPool;
 
 /**
  * @brief A container for items.
@@ -73,8 +76,14 @@ public slots:
 
 private:
 
-    QList<ItemPtr> m_items;
-    QHash<QUuid, ItemPtr> m_uidMap;
+    QList<ItemPtr>          m_items;
+    QHash<QUuid, ItemPtr>   m_uidMap;
+    QThreadPool            *m_threadPool;
+    mutable QMutex          m_lock;
+
+private slots:
+
+    void patchItem(ItemPtr item, QVariant data);
 
 };
 

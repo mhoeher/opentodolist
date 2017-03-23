@@ -112,16 +112,18 @@ void LibraryTest::testAddTodo()
 void LibraryTest::addTask()
 {
     Library lib;
-    auto list = lib.addTodoList();
+    {
+        auto list = lib.addTodoList();
 
-    auto todo = list->addTodo();
-    QVERIFY(todo != nullptr);
+        auto todo = list->addTodo();
+        QVERIFY(todo != nullptr);
 
-    auto task = todo->addTask();
+        auto task = todo->addTask();
 
-    QVERIFY(task != nullptr);
-    QCOMPARE(QQmlEngine::objectOwnership(task), QQmlEngine::CppOwnership);
-    QCOMPARE(task->todoUid(), todo->uid());
+        QVERIFY(task != nullptr);
+        QCOMPARE(QQmlEngine::objectOwnership(task), QQmlEngine::CppOwnership);
+        QCOMPARE(task->todoUid(), todo->uid());
+    }
 }
 
 void LibraryTest::testLoad()

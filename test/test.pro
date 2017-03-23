@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 
-SUBDIRS += application
+#SUBDIRS += application
 SUBDIRS += item
 SUBDIRS += complexitem
 SUBDIRS += toplevelitem
@@ -10,3 +10,5 @@ SUBDIRS += task
 SUBDIRS += todo
 SUBDIRS += todolist
 SUBDIRS += library
+SUBDIRS += itemsmodel
+SUBDIRS += itemcontainer

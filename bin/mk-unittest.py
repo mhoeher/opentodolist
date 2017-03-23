@@ -13,7 +13,7 @@ from sys import argv
 
 from mako.template import Template
 
-HELP = """
+HELP = """\
 Create a new unit test.
 
 Usage:
@@ -24,7 +24,7 @@ Example:
     {program} SomeClass
 """
 
-PRO = """
+PRO = """\
 include(../../config.pri)
 setupTest(${name.lower()})
 
@@ -34,7 +34,7 @@ SOURCES += \
     test_${name.lower()}.cpp
 """
 
-CPP = """
+CPP = """\
 #include "${name.lower()}.h"
 
 #include <QObject>
@@ -65,30 +65,30 @@ def _help(program):
 
 def _render(testname):
     unittests_dir = join(dirname(dirname(__file__)), "test")
-    unittests_dir = join(unittests_dir, testname.lower())
+    unittest_dir = join(unittests_dir, testname.lower())
 
-    pro_file = join(unittests_dir, testname.lower() + ".pro")
-    cpp_file = join(unittests_dir, "test_" + testname.lower() + ".cpp")
+    pro_file = join(unittest_dir, testname.lower() + ".pro")
+    cpp_file = join(unittest_dir, "test_" + testname.lower() + ".cpp")
 
     tests_pro = join(unittests_dir, "test.pro")
 
-    makedirs(unittests_dir, exist_ok=False)
+    makedirs(unittest_dir, exist_ok=False)
 
     with open(pro_file, "w") as file:
         file.write(Template(PRO).render(name=testname))
 
     with open(cpp_file, "w") as file:
-        file.write(Template(CPP).render())
+        file.write(Template(CPP).render(name=testname))
 
     with open(tests_pro) as file:
         tests_pro_conrent = file.read(-1)
-    tests_pro_conrent += "SUBDIRS += " + testname.lower()
+    tests_pro_conrent += "SUBDIRS += " + testname.lower() + "\n"
     with open(tests_pro, "w") as file:
         file.write(tests_pro_conrent)
 
 
 if __name__ == '__main__':
-    if len(argv) != 1:
+    if len(argv) != 2:
         _help(argv[0])
     else:
         _render(argv[1])
