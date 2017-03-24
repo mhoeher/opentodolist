@@ -26,3 +26,6 @@ win32:RC_FILE = OpenTodoList.rc
 OTHER_FILES += \
     android/AndroidManifest.xml
 
+
+target.path = $$INSTALL_PREFIX_BIN
+INSTALLS += target

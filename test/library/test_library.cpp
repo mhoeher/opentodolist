@@ -140,6 +140,7 @@ void LibraryTest::testLoad()
     QSignalSpy loadingFinished(&lib2, &Library::loadingFinished);
     QVERIFY(lib2.load());
     QVERIFY(loadingFinished.wait(10000));
+    QThread::sleep(1);
     QSet<QUuid> uuids;
     QSet<QString> itemTypes;
     QCOMPARE(lib.topLevelItems().count(), 3);

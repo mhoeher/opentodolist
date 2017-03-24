@@ -23,9 +23,25 @@ ItemContainer*ItemsModel::container() const
 void ItemsModel::setContainer(ItemContainer* container)
 {
     if (container != m_container) {
+        if (m_container != nullptr) {
+            disconnect(m_container.data(), &ItemContainer::itemAdded,
+                       this, &ItemsModel::itemAdded);
+            disconnect(m_container.data(), &ItemContainer::itemDeleted,
+                       this, &ItemsModel::itemDeleted);
+            disconnect(m_container.data(), &ItemContainer::cleared,
+                       this, &ItemsModel::cleared);
+        }
         beginResetModel();
         m_container = container;
         endResetModel();
+        if (m_container != nullptr) {
+            connect(m_container.data(), &ItemContainer::itemAdded,
+                    this, &ItemsModel::itemAdded);
+            connect(m_container.data(), &ItemContainer::itemDeleted,
+                    this, &ItemsModel::itemDeleted);
+            connect(m_container.data(), &ItemContainer::cleared,
+                    this, &ItemsModel::cleared);
+        }
         emit containerChanged();
     }
 }
