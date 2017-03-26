@@ -20,9 +20,9 @@ const QString Library::LibraryFileName = "library.json";
 Library::Library(QObject* parent) : QObject(parent),
     m_name(),
     m_directory(),
-    m_topLevelItems(),
-    m_todos(),
-    m_tasks(),
+    m_topLevelItems(this),
+    m_todos(this),
+    m_tasks(this),
     m_loading(false)
 {
 
@@ -49,7 +49,13 @@ Library::~Library()
  */
 Note *Library::addNote()
 {
-    NotePtr note(new Note(QDir(m_directory)));
+    NotePtr note;
+    if (isValid()) {
+        note = NotePtr(new Note(QDir(m_directory)));
+    } else {
+        note = NotePtr(new Note());
+    }
+    note->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(note.data(), QQmlEngine::CppOwnership);
     m_topLevelItems.addItem(note);
     note->save();
@@ -68,7 +74,13 @@ Note *Library::addNote()
  */
 Image *Library::addImage()
 {
-    ImagePtr image(new Image(QDir(m_directory)));
+    ImagePtr image;
+    if (isValid()) {
+        image = ImagePtr(new Image(QDir(m_directory)));
+    } else {
+        image = ImagePtr(new Image());
+    }
+    image->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(image.data(), QQmlEngine::CppOwnership);
     m_topLevelItems.addItem(image);
     image->save();
@@ -87,12 +99,23 @@ Image *Library::addImage()
  */
 TodoList *Library::addTodoList()
 {
-    TodoListPtr todoList(new TodoList(QDir(m_directory)));
+    TodoListPtr todoList;
+    if (isValid()) {
+        todoList = TodoListPtr(new TodoList(QDir(m_directory)));
+    } else {
+        todoList = TodoListPtr(new TodoList());
+    }
     todoList->m_library = this;
+    todoList->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(todoList.data(), QQmlEngine::CppOwnership);
     m_topLevelItems.addItem(todoList);
     todoList->save();
     return todoList.data();
+}
+
+bool Library::isValid() const
+{
+    return !m_directory.isEmpty() && QDir(m_directory).exists();
 }
 
 void Library::setName(const QString &name)
@@ -112,14 +135,16 @@ void Library::setName(const QString &name)
  */
 void Library::deleteLibrary()
 {
-    QString directory;
-    QtConcurrent::run([=](){
-        QDir dir(directory);
-        for (auto entry : dir.entryList(QDir::Files)) {
-            dir.remove(entry);
-        }
-        dir.remove(".");
-    });
+    QString directory = m_directory;
+    if (isValid()) {
+        QtConcurrent::run([=](){
+            QDir dir(directory);
+            for (auto entry : dir.entryList(QDir::Files)) {
+                dir.remove(entry);
+            }
+            dir.remove(".");
+        });
+    }
     emit libraryDeleted(this);
     deleteLater();
 }
@@ -215,19 +240,19 @@ bool Library::save()
     return result;
 }
 
-ItemContainer& Library::topLevelItems()
+ItemContainer* Library::topLevelItems()
 {
-    return m_topLevelItems;
+    return &m_topLevelItems;
 }
 
-ItemContainer& Library::todos()
+ItemContainer* Library::todos()
 {
-    return m_todos;
+    return &m_todos;
 }
 
-ItemContainer& Library::tasks()
+ItemContainer* Library::tasks()
 {
-    return m_tasks;
+    return &m_tasks;
 }
 
 QVariantMap Library::toMap() const

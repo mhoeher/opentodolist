@@ -50,10 +50,16 @@ TodoList::~TodoList()
 Todo *TodoList::addTodo()
 {
     if (m_library != nullptr) {
-        TodoPtr todo(new Todo(QDir(directory())));
+        TodoPtr todo;
+        if (m_library->isValid()) {
+            todo = TodoPtr(new Todo(QDir(directory())));
+        } else {
+            todo = TodoPtr(new Todo());
+        }
         todo->m_library = m_library;
         todo->setTodoListUid(uid());
-        m_library->todos().addItem(todo);
+        todo->setWeight(m_library->todos()->nextItemWeight());
+        m_library->todos()->addItem(todo);
         QQmlEngine::setObjectOwnership(todo.data(), QQmlEngine::CppOwnership);
         todo->save();
         return todo.data();

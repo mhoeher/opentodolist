@@ -55,6 +55,8 @@ public:
     void updateOrInsert(ItemPtr item);
     void clear();
 
+    double nextItemWeight() const;
+
 signals:
 
     /**
@@ -80,10 +82,15 @@ private:
     QHash<QUuid, ItemPtr>   m_uidMap;
     QThreadPool            *m_threadPool;
     mutable QMutex          m_lock;
+    double                  m_minWeight;
+    double                  m_maxWeight;
 
 private slots:
 
     void patchItem(ItemPtr item, QVariant data);
+    void updateWeights(Item* item);
+    void updateWeights();
+    void handleDeleteItem(Item* item);
 
 };
 

@@ -11,13 +11,13 @@ import "MainWindowLogic.js" as Logic
 
 ApplicationWindow {
     id: window
-    
+
     signal openLocalLibrary()
-    
+
     function focus() {
         rootItem.forceActiveFocus();
     }
-    
+
     property Item helpPage: null
     property MenuBar __menuBar: MenuBar {
         Menu {
@@ -35,7 +35,7 @@ ApplicationWindow {
                 onTriggered: Qt.quit();
             }
         }
-        
+
         Menu {
             title: qsTr("Navigate")
             MenuItem {
@@ -66,13 +66,13 @@ ApplicationWindow {
                 onTriggered: stack.currentItem.goUp()
             }
         }
-        
+
         Menu {
             id: itemsMenu
-            
+
             title: qsTr("&Items")
             visible: leftSideBar.currentLibrary !== null
-            
+
             MenuItem {
                 id: newNoteItem
                 text: qsTr("New &Note")
@@ -110,13 +110,13 @@ ApplicationWindow {
             }
             MenuSeparator {}
             MenuItem {
-                property Item item: Logic.parentItemHavingFunction(activeFocusItem, 
+                property Item item: Logic.parentItemHavingFunction(activeFocusItem,
                                                                    "createItemAndOpen")
                 text: qsTr("&Create Item")
                 enabled: item
                 shortcut: qsTr("Return")
                 onTriggered: item.createItem()
-                
+
             }
             MenuItem {
                 property Item item: Logic.parentItemHavingFunction(activeFocusItem, "createItem")
@@ -128,23 +128,23 @@ ApplicationWindow {
             MenuSeparator {}
             MenuItem {
                 text: qsTr("Show Done Todos")
-                enabled: stack.currentItem && 
+                enabled: stack.currentItem &&
                          (typeof(stack.currentItem['toggleDoneTodosVisible']) === "function")
                 shortcut: qsTr("Ctrl+Shift+H")
                 onTriggered: stack.currentItem.toggleDoneTodosVisible()
             }
         }
-        
+
         Menu {
             id: editMenu
-            
+
             title: qsTr("&Edit")
-            
+
             ColorMenu {
                 id: colorMenu
                 item: stack.currentItem && stack.currentItem["item"] ? stack.currentItem.item : null
             }
-            
+
             MenuItem {
                 id: copyItem
                 text: qsTr("&Copy")
@@ -167,7 +167,7 @@ ApplicationWindow {
                 onTriggered: activeFocusItem.paste()
             }
         }
-        
+
         RichTextEditorFormatMenu {
             id: formatMenu
             onParagraphStyleChanged: {
@@ -180,10 +180,10 @@ ApplicationWindow {
                 styleComboBox.currentIndex = 0;
             }
         }
-        
+
         Menu {
             title: qsTr("Help")
-            
+
             MenuItem {
                 text: qsTr("Check for updates...")
                 visible: App.hasUpdateService
@@ -200,8 +200,8 @@ ApplicationWindow {
                     } else {
                         leftSideBar.currentLibrary = null;
                         leftSideBar.currentTag = "";
-                        helpPage = stack.push({item: aboutPage, 
-                                                  properties: { 
+                        helpPage = stack.push({item: aboutPage,
+                                                  properties: {
                                                       stack: stack,
                                                       onClosed: function() { helpPage = null; }
                                                   }});
@@ -224,15 +224,15 @@ ApplicationWindow {
             }
         }
     }
-    
+
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
     width: 640
     height: 480
 
-    
+
     menuBar: Globals.touchEnabled ? null : __menuBar
-    
+
     toolBar: ToolBar {
         height: Globals.minButtonHeight * 1.5
 
@@ -249,7 +249,7 @@ ApplicationWindow {
             Row {
                 id: toolBarLeftButtonGroup
                 height: parent.height
-    
+
                 Symbol {
                     symbol: Fonts.symbols.faArrowLeft
                     visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
@@ -441,16 +441,16 @@ ApplicationWindow {
                     }
                 }
             }
-        }        
-        
+        }
+
         Row {
             id: toolBarRightButtonGroup
-            
+
             anchors {
                 right: parent.right
             }
             height: parent.height
-            
+
             Symbol {
                 symbol: Fonts.symbols.faSearch
                 visible: findItem.enabled
@@ -489,7 +489,7 @@ ApplicationWindow {
             }
         }
     }
-    
+
     Component.onCompleted: {
         Globals.appWindow = window;
         width = App.loadValue("width", width);
@@ -511,7 +511,7 @@ ApplicationWindow {
             }
         });
     }
-    
+
     onClosing: {
         if (Qt.platform.os == "android") {
             if (leftSideBar.compact && leftSideBar.showing) {
@@ -527,13 +527,13 @@ ApplicationWindow {
         }
         close.accepted = true;
     }
-    
+
     FocusScope {
         id: rootItem
-        
+
         focus: true
         anchors.fill: parent
-        
+
         FileBrowser {
             id: openLocalLibraryDialog
             stack: stack
@@ -543,13 +543,13 @@ ApplicationWindow {
             selectExisting: false
             onAccepted: leftSideBar.currentLibrary = App.addLocalLibrary(fileUrl)
         }
-        
+
         Image {
             anchors.fill: parent
             source: "cork_1/cork_1.png"
             fillMode: Image.Tile
         }
-        
+
         StackView {
             id: stack
             anchors {
@@ -560,7 +560,7 @@ ApplicationWindow {
             }
             clip: true
         }
-        
+
         LibrariesSideBar {
             id: leftSideBar
             anchors {
@@ -576,17 +576,17 @@ ApplicationWindow {
             onOpenLocalLibrary: openLocalLibraryDialog.open()
             onAboutPageRequested: showAboutPageMenuItem.trigger()
         }
-        
+
         MouseArea {
             anchors.fill: stack
             enabled: stack.busy
         }
-        
+
         Rectangle {
             id: updateNotificationBar
-            
+
             property bool shown: App.updatesAvailable && App.hasUpdateService
-            
+
             anchors {
                 left: leftSideBar.right
                 right: parent.right
@@ -594,7 +594,7 @@ ApplicationWindow {
             height: updateNotificationBarLayout.height + Globals.defaultMargin
             color: Colors.makeTransparent(Colors.primary, 0.3)
             y: shown ? parent.height - height : parent.height
-            
+
             RowLayout {
                 id: updateNotificationBarLayout
                 anchors {
@@ -603,7 +603,7 @@ ApplicationWindow {
                     right: parent.right
                     margins: Globals.defaultMargin
                 }
-                
+
                 Label {
                     text: qsTr( "A new version of OpenTodoList is available.")
                     Layout.fillWidth: true
@@ -621,14 +621,14 @@ ApplicationWindow {
                     }
                 }
             }
-            
+
             Connections {
                 target: App
                 onUpdatesAvailableChanged:
                     updateNotificationBar.shown = App.updatesAvailable && App.hasUpdateService
             }
         }
-        
+
         Component {
             id: libraryPage
             LibraryPage {
@@ -640,11 +640,11 @@ ApplicationWindow {
                 stackView: stack
             }
         }
-        
+
         Component {
             id: aboutPage
             AboutPage {}
         }
-        
+
     }
 }

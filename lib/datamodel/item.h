@@ -71,6 +71,7 @@ public:
      * @brief The globally unique ID of the item.
      */
     QUuid uid() const { return m_uid; }
+    void setUid(const QUuid &uid);
 
     QString itemType() const;
 
@@ -126,7 +127,6 @@ private:
     double      m_weight;
     bool        m_loading;
 
-    void setUid(const QUuid &uid);
     void setFilename(const QString &filename);
 
     void setupChangedSignal();

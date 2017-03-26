@@ -1,5 +1,7 @@
 #include "itemssortfiltermodel.h"
 
+#include "itemsmodel.h"
+
 ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     QSortFilterProxyModel(parent),
     m_filterFunction(),
@@ -14,11 +16,9 @@ QJSValue ItemsSortFilterModel::filterFunction() const
 
 void ItemsSortFilterModel::setFilterFunction(QJSValue filter)
 {
-    if (filter.isCallable()) {
-        m_filterFunction = filter;
-        invalidateFilter();
-        emit filterFunctionChanged();
-    }
+    m_filterFunction = filter;
+    invalidateFilter();
+    emit filterFunctionChanged();
 }
 
 QJSValue ItemsSortFilterModel::sortFunction() const
@@ -28,8 +28,36 @@ QJSValue ItemsSortFilterModel::sortFunction() const
 
 void ItemsSortFilterModel::setSortFunction(QJSValue sort)
 {
-    if (sort.isCallable()) {
-        m_sortFunction = sort;
-        emit sortFunctionChanged();
+    m_sortFunction = sort;
+    emit sortFunctionChanged();
+}
+
+bool ItemsSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
+{
+    Q_UNUSED(source_parent);
+    bool result = true;
+    if (m_filterFunction.isCallable()) {
+        QJSValueList args;
+        args.append(source_row);
+        auto ret = m_filterFunction.call(args);
+        if (ret.isBool()) {
+            result = ret.toBool();
+        }
     }
+    return result;
+}
+
+bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left, const QModelIndex& source_right) const
+{
+    bool result = true;
+    if (m_sortFunction.isCallable()) {
+        QJSValueList args;
+        args.append(source_left.row());
+        args.append(source_right.row());
+        auto ret = m_sortFunction.call(args);
+        if (ret.isBool()) {
+            result = ret.toBool();
+        }
+    }
+    return result;
 }

@@ -11,7 +11,9 @@
 #include "todo.h"
 #include "todolist.h"
 #include "toplevelitem.h"
-#include "filtermodel.h"
+#include "itemcontainer.h"
+#include "itemsmodel.h"
+#include "itemssortfiltermodel.h"
 
 #include <QtQml>
 
@@ -25,11 +27,11 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 {
   //@uri net.rpdev.OpenTodoList
 
-  qmlRegisterSingletonType<Application>(uri, 1, 0, "Application",
+  qmlRegisterSingletonType<Application>(uri, 1, 0, "App",
                                         OpenTodoListQmlExtensionsPlugin::createApplication);
   qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
-  qmlRegisterType<Image>(uri, 1, 0, "Image");
-  qmlRegisterType<Item>(uri, 1, 0, "Item");
+  qmlRegisterType<Image>(uri, 1, 0, "ImageTopLevelItem");
+  qmlRegisterType<Item>(uri, 1, 0, "BasicItem");
   qmlRegisterType<DocumentFormatter>(uri, 1, 0, "DocumentFormatter");
   qmlRegisterUncreatableType<Library>(uri, 1, 0, "Library",
                                       "Must be created using Application.");
@@ -38,7 +40,9 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<Todo>(uri, 1, 0, "Todo");
   qmlRegisterType<TodoList>(uri, 1, 0, "TodoList");
   qmlRegisterType<TopLevelItem>(uri, 1, 0, "TopLevelItem");
-  qmlRegisterType<FilterModel>(uri, 1, 0, "FilterModel");
+  qmlRegisterType<ItemContainer>(uri, 1, 0, "ItemContainer");
+  qmlRegisterType<ItemsModel>(uri, 1, 0, "ItemsModel");
+  qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

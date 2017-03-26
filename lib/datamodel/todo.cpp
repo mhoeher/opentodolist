@@ -98,9 +98,15 @@ void Todo::setTodoListUid(const QUuid& todoListUid)
 Task*Todo::addTask()
 {
     if (m_library) {
-        TaskPtr task(new Task(QDir(directory())));
-        m_library->tasks().addItem(task);
+        TaskPtr task;
+        if (m_library->isValid()) {
+            task = TaskPtr(new Task(QDir(m_library->directory())));
+        } else {
+            task = TaskPtr(new Task());
+        }
+        m_library->tasks()->addItem(task);
         task->setTodoUid(uid());
+        task->setWeight(m_library->tasks()->nextItemWeight());
         QQmlEngine::setObjectOwnership(task.data(), QQmlEngine::CppOwnership);
         task->save();
         return task.data();

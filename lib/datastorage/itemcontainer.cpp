@@ -1,5 +1,7 @@
 #include "itemcontainer.h"
 
+#include <limits>
+
 #include <QMutexLocker>
 #include <QtConcurrent>
 #include <QThreadPool>
@@ -12,7 +14,9 @@ ItemContainer::ItemContainer(QObject *parent) : QObject(parent),
     m_items(),
     m_uidMap(),
     m_threadPool(new QThreadPool(this)),
-    m_lock()
+    m_lock(QMutex::Recursive),
+    m_minWeight(std::numeric_limits<double>::infinity()),
+    m_maxWeight(-std::numeric_limits<double>::infinity())
 {
     qRegisterMetaType<ItemPtr>();
     m_threadPool->setMaxThreadCount(1);
@@ -69,10 +73,14 @@ void ItemContainer::addItem(ItemPtr item)
 {
     QMutexLocker l(&m_lock);
     if (!item.isNull() && !m_uidMap.contains(item->uid())) {
+        connect(item.data(), &Item::weightChanged,
+                this, static_cast<void(ItemContainer::*)()>(&ItemContainer::updateWeights));
         QtConcurrent::run(m_threadPool, [=]() {
             QMutexLocker l(&m_lock);
+            connect(item.data(), &Item::itemDeleted, this, &ItemContainer::handleDeleteItem);
             m_items.append(item);
             m_uidMap.insert(item->uid(), item);
+            this->updateWeights(item.data());
             QMetaObject::invokeMethod(
                         this, "itemAdded",
                         Qt::QueuedConnection,
@@ -123,25 +131,8 @@ void ItemContainer::updateItem(ItemPtr item)
  */
 void ItemContainer::deleteItem(ItemPtr item)
 {
-    if (!item.isNull()) {
-        QtConcurrent::run(m_threadPool, [=]() {
-            auto c = count();
-            for (int i = 0; i < c; ++i) {
-                m_lock.lock();
-                auto existingItem = m_items.at(i);
-                m_lock.unlock();
-                if (existingItem->uid() == item->uid()) {
-                    QMutexLocker l(&m_lock);
-                    m_items.removeAt(i);
-                    m_uidMap.remove(item->uid());
-                    QMetaObject::invokeMethod(
-                                this, "itemDeleted",
-                                Qt::QueuedConnection,
-                                Q_ARG(int, i));
-                    break;
-                }
-            }
-        });
+    if (item) {
+        handleDeleteItem(item.data());
     }
 }
 
@@ -181,9 +172,65 @@ void ItemContainer::clear()
 }
 
 /**
+ * @brief Gets the weight for the next item.
+ *
+ * This method returns the weight for the next item to be added to the container.
+ */
+double ItemContainer::nextItemWeight() const
+{
+    QMutexLocker l(&m_lock);
+    auto result = m_minWeight;
+    if (count() == 0) {
+        result = 0.0;
+    }
+    result -= static_cast<double>(qrand()) / RAND_MAX;
+    return result;
+}
+
+/**
+ * @brief Remove the item from the container.
+ */
+void ItemContainer::handleDeleteItem(Item* item)
+{
+    if (item != nullptr) {
+        QtConcurrent::run(m_threadPool, [=]() {
+            auto c = count();
+            for (int i = 0; i < c; ++i) {
+                m_lock.lock();
+                auto existingItem = m_items.at(i);
+                m_lock.unlock();
+                if (existingItem->uid() == item->uid()) {
+                    QMutexLocker l(&m_lock);
+                    m_items.removeAt(i);
+                    m_uidMap.remove(item->uid());
+                    QMetaObject::invokeMethod(
+                                this, "itemDeleted",
+                                Qt::QueuedConnection,
+                                Q_ARG(int, i));
+                    break;
+                }
+            }
+        });
+    }
+}
+
+/**
  * @brief Update the @p item with the given @p data.
  */
 void ItemContainer::patchItem(ItemPtr item, QVariant data)
 {
     item->fromVariant(data);
 }
+
+void ItemContainer::updateWeights(Item* item)
+{
+    QMutexLocker l(&m_lock);
+    m_maxWeight = std::max(m_maxWeight, item->weight());
+    m_minWeight = std::min(m_minWeight, item->weight());
+}
+
+void ItemContainer::updateWeights()
+{
+    updateWeights(static_cast<Item*>(sender()));
+}
+

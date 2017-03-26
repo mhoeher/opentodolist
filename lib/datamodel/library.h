@@ -1,6 +1,7 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
+#include <QDir>
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
@@ -22,6 +23,9 @@ class Library : public QObject
     Q_PROPERTY(bool isValid READ isValid CONSTANT)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString directory READ directory CONSTANT)
+    Q_PROPERTY(ItemContainer* topLevelItems READ topLevelItems CONSTANT)
+    Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
+    Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
 
 public:
 
@@ -36,7 +40,7 @@ public:
     Q_INVOKABLE TodoList* addTodoList();
 
 
-    bool isValid() const { return !m_directory.isEmpty(); }
+    bool isValid() const;
 
     /**
      * @brief The name of the libary as used in the user interface.
@@ -53,9 +57,9 @@ public:
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
 
-    ItemContainer &topLevelItems();
-    ItemContainer &todos();
-    ItemContainer &tasks();
+    ItemContainer *topLevelItems();
+    ItemContainer *todos();
+    ItemContainer *tasks();
 
 signals:
 

@@ -27,10 +27,16 @@ signals:
 
 public slots:
 
+protected:
+    // QSortFilterProxyModel interface
+    bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const override;
+    bool lessThan(const QModelIndex& source_left, const QModelIndex& source_right) const override;
+
 private:
 
-    QJSValue m_filterFunction;
-    QJSValue m_sortFunction;
+    mutable QJSValue m_filterFunction;
+    mutable QJSValue m_sortFunction;
+
 
 };
 

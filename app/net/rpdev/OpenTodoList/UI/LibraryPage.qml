@@ -12,41 +12,41 @@ import "LibraryPageLogic.js" as Logic
 
 Item {
     id: page
-    
+
     property var library: null
     property string tag: ""
     property StackView stackView: null
-    
+
     signal itemClicked(TopLevelItem item)
-    
+
     function newNote() {
         newNoteBar.edit.forceActiveFocus();
         newNoteBar.edit.text = "";
     }
-    
+
     function newTodoList() {
         newTodoListBar.edit.forceActiveFocus();
         newTodoListBar.edit.text = "";
     }
-    
+
     function newImage() {
         openImageDialog.open();
     }
-    
+
     function find() {
         filterBar.edit.forceActiveFocus()
     }
-    
+
     property var deleteItem: library === App.defaultLibrary ? null :
                                                               function deleteItem() {
                                                                   confirmDeleteLibrary.open();
                                                               }
-    
+
     clip: true
     width: 100
     height: 100
-    
-    
+
+
     MessageDialog {
         id: confirmDeleteLibrary
         title: qsTr("Delete Library?")
@@ -59,7 +59,7 @@ Item {
             stackView.pop();
         }
     }
-    
+
     MessageDialog {
         id: confirmDeleteItem
         title: qsTr("Delete Item?")
@@ -69,25 +69,25 @@ Item {
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: itemContextMenu.item.deleteItem()
     }
-    
+
     RenameItemDialog {
         id: renameItemDialog
     }
-    
+
     CreateNewTagDialog {
         id: createNewTagDialog
     }
-    
+
     Menu {
         id: itemContextMenu
-        
+
         property TopLevelItem item: null
-        
+
         onItemChanged: tagsMenu.rebuild()
-        
+
         Menu {
             title: qsTr("Color")
-            
+
             MenuItem {
                 text: qsTr("Red")
                 onTriggered: itemContextMenu.item.color = TopLevelItem.Red
@@ -117,17 +117,17 @@ Item {
                 onTriggered: itemContextMenu.item.color = TopLevelItem.White
             }
         }
-        
+
         MenuItem {
             text: qsTr("Rename")
             onTriggered: renameItemDialog.renameItem(itemContextMenu.item)
         }
-        
+
         Menu {
             id: tagsMenu
-            
+
             title: qsTr("Tags")
-            
+
             function rebuild() {
                 while (items.length > 0) {
                     removeItem(items[0]);
@@ -137,20 +137,20 @@ Item {
                 item.onTriggered.connect(function() {
                     createNewTagDialog.addTag(topLevelItem);
                 });
-                
+
                 var tags = page.library.tags;
                 for (var i = 0; i < tags.length; ++i) {
                     var tag = tags[i];
                     __addTagMenuItem(tag);
                 }
             }
-            
+
             function __addTagMenuItem(tag) {
                 var topLevelItem = itemContextMenu.item;
                 var item = addItem(tag);
                 item.checkable = true;
                 item.checked = Qt.binding(function() {
-                    return topLevelItem.tags.indexOf(tag) >= 0; 
+                    return topLevelItem.tags.indexOf(tag) >= 0;
                 });
                 item.onTriggered.connect(function() {
                     if (topLevelItem.hasTag(tag)) {
@@ -160,10 +160,10 @@ Item {
                     }
                 });
             }
-            
+
             Connections {
                 target: page.library
-                onTagsChanged: tagsMenu.rebuild(); 
+                onTagsChanged: tagsMenu.rebuild();
             }
         }
 
@@ -172,7 +172,7 @@ Item {
             onTriggered: confirmDeleteItem.open()
         }
     }
-    
+
     FileBrowser {
         id: openImageDialog
         stack: stackView
@@ -189,27 +189,28 @@ Item {
             }
         }
     }
-    
-    TopLevelItemsModel {
+
+    ItemsSortFilterModel {
         id: itemsModel
-        
-        library: page.library
+        sourceModel: ItemsModel {
+            container: page.library.topLevelItems
+        }
     }
-    
-    FilterModel {
+
+    ItemsSortFilterModel {
         id: filteredItemsModel
-        
+
         function __tagMatches(item) {
             return (page.tag === "") || item.hasTag(page.tag)
         }
-        
+
         sourceModel: itemsModel
         filterFunction: function(i) {
             var item = sourceModel.data(sourceModel.index(i, 0), TopLevelItemsModel.ObjectRole);
             return __tagMatches(item);
         }
     }
-    
+
     TextInputBar {
         id: newNoteBar
         placeholderText: qsTr("Note Title")
@@ -223,7 +224,7 @@ Item {
             }
         }
     }
-    
+
     TextInputBar {
         id: newTodoListBar
         placeholderText: qsTr("Todo List Title")
@@ -237,7 +238,7 @@ Item {
             }
         }
     }
-    
+
     TextInputBar {
         id: filterBar
         placeholderText: qsTr("Search term 1, search term 2, ...")
@@ -246,7 +247,7 @@ Item {
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
-        
+
         onTextChanged: {
             function matches(item) {
                 var filter = filterBar.text;
@@ -261,7 +262,7 @@ Item {
             }
         }
     }
-    
+
     ScrollView {
         id: scrollView
         anchors {
@@ -278,7 +279,7 @@ Item {
         Flow {
             width: scrollView.viewport.width
             flow: Flow.LeftToRight
-            
+
             Repeater {
                 id: repeater
                 model: filteredItemsModel
@@ -286,13 +287,13 @@ Item {
                     asynchronous: true
                     width: Logic.sizeOfColumns(scrollView)
                     height: width / 3 * 2
-                    source: Globals.file("/net/rpdev/OpenTodoList/UI/" + 
+                    source: Globals.file("/net/rpdev/OpenTodoList/UI/" +
                             object.itemType + "Item.qml")
-                    
+
                     onLoaded: {
                         item.libraryItem = object;
                         item.onClicked.connect(function() {
-                            
+
                         });
                         item.onReleased.connect(function(mouse) {
                             switch (mouse.button) {

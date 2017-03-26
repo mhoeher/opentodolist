@@ -25,11 +25,11 @@ SOURCES += \
     opentodolistqmlextensionsplugin.cpp \
     documentformatter.cpp \
     fileutils.cpp \
-    filtermodel.cpp \
     datastorage/itemcontainer.cpp \
     datastorage/libraryloader.cpp \
     models/itemsmodel.cpp \
-    models/itemssortfiltermodel.cpp
+    models/itemssortfiltermodel.cpp \
+    migrators/migrator_2_x_to_3_x.cpp
 
 HEADERS += \
     application.h \
@@ -45,9 +45,9 @@ HEADERS += \
     opentodolistqmlextensionsplugin.h \
     documentformatter.h \
     fileutils.h \
-    filtermodel.h \
     abstractitemmodel.h \
     datastorage/itemcontainer.h \
     datastorage/libraryloader.h \
     models/itemsmodel.h \
-    models/itemssortfiltermodel.h
+    models/itemssortfiltermodel.h \
+    migrators/migrator_2_x_to_3_x.h
