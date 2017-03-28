@@ -11,6 +11,8 @@
 #include "note.h"
 #include "todolist.h"
 
+class DirectoryWatcher;
+
 /**
  * @brief A container for items.
  *
@@ -90,10 +92,16 @@ private:
     ItemContainer           m_todos;
     ItemContainer           m_tasks;
 
+    DirectoryWatcher       *m_directoryWatcher;
+
     bool                    m_loading;
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);
+
+private slots:
+
+    void appendItem(ItemPtr item);
 
 };
 

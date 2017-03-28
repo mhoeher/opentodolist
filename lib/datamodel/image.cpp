@@ -82,6 +82,18 @@ void Image::setImage(const QString &image)
 }
 
 /**
+ * @brief The URL of the image of the item.
+ */
+QUrl Image::imageUrl() const
+{
+    if (m_image.isEmpty()) {
+        return QUrl();
+    } else {
+        return QUrl::fromLocalFile(directory() + "/" + m_image);
+    }
+}
+
+/**
  * @brief Returns whether the image points to a valid file
  *
  * The validImage property is true if the image property points to an existing file

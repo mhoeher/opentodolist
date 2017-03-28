@@ -161,10 +161,10 @@ Item {
                 });
             }
 
-            Connections {
+            /*Connections {
                 target: page.library
                 onTagsChanged: tagsMenu.rebuild();
-            }
+            }*/
         }
 
         MenuItem {
@@ -298,10 +298,10 @@ Item {
                         item.onReleased.connect(function(mouse) {
                             switch (mouse.button) {
                             case Qt.LeftButton:
-                                itemClicked(item.libraryItem);
+                                itemClicked(object.libraryItem);
                                 break;
                             case Qt.RightButton:
-                                itemContextMenu.item = item.libraryItem;
+                                itemContextMenu.item = object.libraryItem;
                                 itemContextMenu.popup();
                                 break;
                             default:

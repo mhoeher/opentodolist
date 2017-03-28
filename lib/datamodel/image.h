@@ -4,11 +4,13 @@
 #include "toplevelitem.h"
 
 #include <QObject>
+#include <QUrl>
 
 class Image : public TopLevelItem
 {
     Q_OBJECT
     Q_PROPERTY(QString image READ image WRITE setImage NOTIFY imageChanged)
+    Q_PROPERTY(QUrl imageUrl READ imageUrl NOTIFY imageChanged)
     Q_PROPERTY(bool validImage READ validImage NOTIFY imageChanged)
 public:
 
@@ -22,6 +24,8 @@ public:
      */
     QString image() const { return m_image; }
     void setImage(const QString &image);
+
+    QUrl imageUrl() const;
 
     bool validImage() const;
 

@@ -38,6 +38,7 @@ public:
 
     Color color() const;
     void setColor(const Color &color);
+    void setColor(const QString &color);
 
     QStringList tags() const;
     void setTags(const QStringList& tags);

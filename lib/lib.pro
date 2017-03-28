@@ -29,7 +29,8 @@ SOURCES += \
     datastorage/libraryloader.cpp \
     models/itemsmodel.cpp \
     models/itemssortfiltermodel.cpp \
-    migrators/migrator_2_x_to_3_x.cpp
+    migrators/migrator_2_x_to_3_x.cpp \
+    utils/directorywatcher.cpp
 
 HEADERS += \
     application.h \
@@ -50,4 +51,5 @@ HEADERS += \
     datastorage/libraryloader.h \
     models/itemsmodel.h \
     models/itemssortfiltermodel.h \
-    migrators/migrator_2_x_to_3_x.h
+    migrators/migrator_2_x_to_3_x.h \
+    utils/directorywatcher.h

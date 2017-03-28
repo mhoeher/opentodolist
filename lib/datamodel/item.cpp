@@ -308,6 +308,15 @@ Item*Item::createItem(QString itemType, QObject* parent)
     }
 }
 
+Item* Item::createItem(QString filename, QVariantMap map, QObject* parent)
+{
+    auto result = createItem(map, parent);
+    if (result != nullptr) {
+        result->setFilename(filename);
+    }
+    return result;
+}
+
 /**
    @brief Sets the title of the item.
  */

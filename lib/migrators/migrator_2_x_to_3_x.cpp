@@ -40,8 +40,9 @@ static void migrate_note(const QString directory, const QFileInfo fi) {
     Note note(dir);
     note.setUid(data.value("uid", note.uid()).toUuid());
     note.setTitle(data.value("title", note.title()).toString());
-    note.setProperty("color", data.value("color", "White").toString());
     note.setTags(data.value("tags").toStringList());
+    note.setColor(data.value("colorName").toString());
+    note.setNotes(data.value("notes").toString());
 }
 
 static void migrate_image(const QString directory, const QFileInfo fi) {
@@ -50,9 +51,10 @@ static void migrate_image(const QString directory, const QFileInfo fi) {
     Image image(dir);
     image.setUid(data.value("uid", image.uid()).toUuid());
     image.setTitle(data.value("title", image.title()).toString());
-    image.setProperty("color", data.value("color", "White").toString());
     image.setTags(data.value("tags").toStringList());
+    image.setColor(data.value("colorName").toString());
     image.setImage(fi.dir().absoluteFilePath(data.value("image").toString()));
+    image.setNotes(data.value("notes").toString());
 }
 
 static void migrate_task(const QString &directory, Todo& todo,
@@ -62,7 +64,6 @@ static void migrate_task(const QString &directory, Todo& todo,
     Task task(dir);
     task.setUid(data.value("uid", task.uid()).toUuid());
     task.setTitle(data.value("title", task.title()).toString());
-    task.setProperty("color", data.value("color", "White").toString());
     task.setDone(data.value("done", task.done()).toBool());
     task.setTodoUid(todo.uid());
 }
@@ -74,9 +75,9 @@ static void migrate_todo(const QString directory, TodoList& todoList,
     Todo todo(dir);
     todo.setUid(data.value("uid", todo.uid()).toUuid());
     todo.setTitle(data.value("title", todo.title()).toString());
-    todo.setProperty("color", data.value("color", "White").toString());
     todo.setDone(data.value("done", todo.done()).toBool());
     todo.setTodoListUid(todoList.uid());
+    todo.setNotes(data.value("notes").toString());
     QDir tasks(fi.dir().absoluteFilePath("tasks"));
     for (auto taskDir : tasks.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         QFileInfo taskFile(taskDir + "/task.opentodolist");
@@ -92,8 +93,9 @@ static void migrate_todolist(const QString directory, const QFileInfo fi) {
     TodoList todoList(dir);
     todoList.setUid(data.value("uid", todoList.uid()).toUuid());
     todoList.setTitle(data.value("title", todoList.title()).toString());
-    todoList.setProperty("color", data.value("color", "White").toString());
     todoList.setTags(data.value("tags").toStringList());
+    todoList.setColor(data.value("colorName").toString());
+    todoList.setNotes(data.value("notes").toString());
     QDir todos(fi.dir().absoluteFilePath("todos"));
     for (auto todoDir : todos.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         QFileInfo todoFile(todoDir + "/todo.opentodolist");

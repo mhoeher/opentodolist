@@ -143,21 +143,28 @@ void LibraryTest::testLoad()
     QThread::sleep(1);
     QSet<QUuid> uuids;
     QSet<QString> itemTypes;
-    QCOMPARE(lib.topLevelItems()->count(), 3);
-    QCOMPARE(lib.todos()->count(), 1);
-    QCOMPARE(lib.tasks()->count(), 1);
-    uuids.insert(lib.topLevelItems()->item(0)->uid());
-    uuids.insert(lib.topLevelItems()->item(1)->uid());
-    uuids.insert(lib.topLevelItems()->item(2)->uid());
-    uuids.insert(lib.todos()->item(0)->uid());
-    uuids.insert(lib.tasks()->item(0)->uid());
-    itemTypes.insert(lib.topLevelItems()->item(0)->itemType());
-    itemTypes.insert(lib.topLevelItems()->item(1)->itemType());
-    itemTypes.insert(lib.topLevelItems()->item(2)->itemType());
-    itemTypes.insert(lib.todos()->item(0)->itemType());
-    itemTypes.insert(lib.tasks()->item(0)->itemType());
+    QSet<QString> files;
+    QCOMPARE(lib2.topLevelItems()->count(), 3);
+    QCOMPARE(lib2.todos()->count(), 1);
+    QCOMPARE(lib2.tasks()->count(), 1);
+    uuids.insert(lib2.topLevelItems()->item(0)->uid());
+    uuids.insert(lib2.topLevelItems()->item(1)->uid());
+    uuids.insert(lib2.topLevelItems()->item(2)->uid());
+    uuids.insert(lib2.todos()->item(0)->uid());
+    uuids.insert(lib2.tasks()->item(0)->uid());
+    itemTypes.insert(lib2.topLevelItems()->item(0)->itemType());
+    itemTypes.insert(lib2.topLevelItems()->item(1)->itemType());
+    itemTypes.insert(lib2.topLevelItems()->item(2)->itemType());
+    itemTypes.insert(lib2.todos()->item(0)->itemType());
+    itemTypes.insert(lib2.tasks()->item(0)->itemType());
+    files.insert(lib2.topLevelItems()->item(0)->filename());
+    files.insert(lib2.topLevelItems()->item(1)->filename());
+    files.insert(lib2.topLevelItems()->item(2)->filename());
+    files.insert(lib2.todos()->item(0)->filename());
+    files.insert(lib2.tasks()->item(0)->filename());
     QCOMPARE(uuids.count(), 5);
     QCOMPARE(itemTypes.count(), 5);
+    QCOMPARE(files.count(), 5);
 }
 
 void LibraryTest::cleanup()

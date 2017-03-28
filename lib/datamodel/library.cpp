@@ -5,10 +5,13 @@
 #include <QJsonDocument>
 #include <QQmlEngine>
 #include <QtConcurrent>
+#include <QTimer>
 
 #include "libraryloader.h"
 #include "todo.h"
 #include "task.h"
+
+#include "utils/directorywatcher.h"
 
 
 const QString Library::LibraryFileName = "library.json";
@@ -23,14 +26,21 @@ Library::Library(QObject* parent) : QObject(parent),
     m_topLevelItems(this),
     m_todos(this),
     m_tasks(this),
+    m_directoryWatcher(new DirectoryWatcher(this)),
     m_loading(false)
 {
-
+    auto timer = new QTimer(this);
+    timer->setInterval(5000);
+    timer->setSingleShot(true);
+    connect(timer, &QTimer::timeout, this, &Library::load);
+    connect(m_directoryWatcher, &DirectoryWatcher::directoryChanged, timer,
+            static_cast<void(QTimer::*)()>(&QTimer::start));
 }
 
 Library::Library(const QString& directory, QObject* parent) : Library(parent)
 {
     m_directory = directory;
+    m_directoryWatcher->setDirectory(directory);
 }
 
 Library::~Library()
@@ -136,6 +146,7 @@ void Library::setName(const QString &name)
 void Library::deleteLibrary()
 {
     QString directory = m_directory;
+    m_directoryWatcher->setDirectory(QString());
     if (isValid()) {
         QtConcurrent::run([=](){
             QDir dir(directory);
@@ -183,22 +194,7 @@ bool Library::load()
            emit loadingFinished();
            loader->deleteLater();
         });
-        connect(loader, &LibraryLoader::itemLoaded, [=](ItemPtr item) {
-            auto topLevelItem = qSharedPointerDynamicCast<TodoListPtr>(item);
-            if (!topLevelItem.isNull()) {
-                m_topLevelItems.updateOrInsert(item);
-            } else {
-                auto todo = qSharedPointerDynamicCast<TodoPtr>(item);
-                if (!todo.isNull()) {
-                    m_todos.updateOrInsert(item);
-                } else {
-                    auto task = qSharedPointerDynamicCast<TaskPtr>(item);
-                    if (!task.isNull()) {
-                        m_tasks.updateOrInsert(item);
-                    }
-                }
-            }
-        });
+        connect(loader, &LibraryLoader::itemLoaded, this, &Library::appendItem);
         loader->scan();
     }
     return result;
@@ -265,4 +261,22 @@ QVariantMap Library::toMap() const
 void Library::fromMap(QVariantMap map)
 {
     setName(map.value("name", m_name).toString());
+}
+
+void Library::appendItem(ItemPtr item)
+{
+    auto topLevelItem = qSharedPointerDynamicCast<TopLevelItem>(item);
+    if (!topLevelItem.isNull()) {
+        m_topLevelItems.updateOrInsert(item);
+    } else {
+        auto todo = qSharedPointerDynamicCast<Todo>(item);
+        if (!todo.isNull()) {
+            m_todos.updateOrInsert(item);
+        } else {
+            auto task = qSharedPointerDynamicCast<Task>(item);
+            if (!task.isNull()) {
+                m_tasks.updateOrInsert(item);
+            }
+        }
+    }
 }

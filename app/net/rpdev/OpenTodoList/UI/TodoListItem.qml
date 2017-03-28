@@ -8,23 +8,24 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 MouseArea {
     id: item
-    
+
+    property Library library: null
     property TodoList libraryItem: TodoList {}
-    
+
     property int __lineHeight: Globals.fontPixelSize * 1.5
     property int __linePadding: Globals.fontPixelSize * 0.25
-    
+
     hoverEnabled: !Globals.touchEnabled
     acceptedButtons: Qt.LeftArrow | Qt.RightButton
-    
+
     DropShadow {
         sourceItem: background
         hovered: item.containsMouse
     }
-    
+
     Rectangle {
         id: background
-        
+
         anchors {
             fill: parent
             margins: item.containsMouse ? Globals.defaultMargin / 2 : Globals.defaultMargin
@@ -34,10 +35,10 @@ MouseArea {
             color: Colors.itemDelimiter
         }
         clip: true
-        
+
         Image {
             id: backgroundImage
-            
+
             anchors {
                 fill: parent
                 margins: background.border.width
@@ -46,22 +47,22 @@ MouseArea {
             fillMode: Image.Tile
             asynchronous: true
         }
-        
+
         GE.ColorOverlay {
             source: backgroundImage
             anchors.fill: backgroundImage
             color: Colors.makeTransparent(Colors.itemColor(libraryItem.color), 0.5)
         }
-        
+
         Column {
             width: parent.width
-            
+
             Repeater {
                 model: item.height / __lineHeight
                 delegate: Item {
                     width: parent.width
                     height: __lineHeight
-                    
+
                     Rectangle {
                         anchors.bottom: parent.bottom
                         width: parent.width
@@ -72,10 +73,10 @@ MouseArea {
                 }
             }
         }
-        
+
         Label {
             id: title
-            
+
             text: libraryItem.title
             anchors {
                 left: parent.left
@@ -90,7 +91,7 @@ MouseArea {
                 bold: true
             }
         }
-        
+
         Label {
             anchors {
                 left: parent.left
@@ -106,7 +107,7 @@ MouseArea {
             color: "gray"
             visible: todosModel.count === 0
         }
-        
+
         Column {
             anchors {
                 left: parent.left
@@ -117,48 +118,48 @@ MouseArea {
                 topMargin: __lineHeight
                 bottom: parent.bottom
             }
-            
+
             Repeater {
-                model: FilterModel {
+                model: ItemsSortFilterModel {
                     id: todosModel
-                    
-                    sourceModel: TodosModel {
-                        todoList: item.libraryItem
+
+                    sourceModel: ItemsModel {
+                        container: item.library
                     }
                     filterFunction: function(row) {
                         var i = sourceModel.index(row, 0);
                         var todo = sourceModel.data(i, TodosModel.TodoRole);
-                        return !todo.done;
+                        return !todo.done && todo.todoListUid === item.libraryItem.uid;
                     }
                 }
                 delegate: Item {
                     id: todoDelegate
-                    
+
                     height: Math.max(lineCheckMark.height, lineText.height)
                     anchors {
                         left: parent.left
                         right: parent.right
                     }
-                    
-                    
+
+
                     Row {
                         anchors {
                             left: parent.left
                             right: parent.right
                         }
-                        
+
                         Symbol {
                             id: lineCheckMark
-                            
+
                             y: __linePadding
                             height: __lineHeight
                             pixelSize: __lineHeight / 3 * 2
                             symbol: Fonts.symbols.faSquareO
                         }
-    
+
                         Label {
                             id: lineText
-                            
+
                             width: todoDelegate.width - lineCheckMark.width
                             y: __linePadding
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -173,14 +174,14 @@ MouseArea {
                 }
             }
         }
-        
+
         Behavior on anchors.margins {
             SmoothedAnimation {
                 duration: Globals.defaultAnimationTime
             }
         }
     }
-    
+
 }
 
 

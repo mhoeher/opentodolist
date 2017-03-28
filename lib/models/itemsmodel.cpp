@@ -61,6 +61,7 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
     if (m_container && row < m_container->count()) {
         auto item = m_container->item(row);
         switch (role) {
+        case Qt::DisplayRole:
         case ItemRole:
             QQmlEngine::setObjectOwnership(item.data(), QQmlEngine::CppOwnership);
             return QVariant::fromValue<QObject*>(item.data());
@@ -74,7 +75,7 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
 QHash<int, QByteArray> ItemsModel::roleNames() const
 {
     auto result = QAbstractListModel::roleNames();
-    result.insert(ItemRole, "item");
+    result.insert(ItemRole, "object");
     return result;
 }
 

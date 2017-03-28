@@ -83,6 +83,7 @@ public:
     static Item *createItem(QVariantMap map, QObject *parent = nullptr);
     static Item *createItem(QVariant variant, QObject *parent = nullptr);
     static Item *createItem(QString itemType, QObject *parent = nullptr);
+    static Item *createItem(QString filename, QVariantMap map, QObject *parent = nullptr);
 
 public slots:
 

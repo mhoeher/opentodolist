@@ -85,7 +85,7 @@ void LibraryLoaderWorker::scan(const QString& directory, QObject* targetThread)
             QJsonParseError error;
             auto map = QJsonDocument::fromJson(file.readAll(), &error).toVariant().toMap();
             if (error.error == QJsonParseError::NoError) {
-                auto item = Item::createItem(map);
+                auto item = Item::createItem(filename, map);
                 if (item != nullptr) {
                     item->moveToThread(static_cast<QThread*>(targetThread));
                     emit itemLoaded(ItemPtr(item));

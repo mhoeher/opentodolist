@@ -60,6 +60,17 @@ void TopLevelItem::setColor(const Color &color)
     }
 }
 
+void TopLevelItem::setColor(const QString& color)
+{
+    QMetaEnum e = QMetaEnum::fromType<Color>();
+    QString currentColor = e.valueToKey(m_color);
+    bool ok;
+    Color c = static_cast<Color>(e.keysToValue(qUtf8Printable(color), &ok));
+    if (ok) {
+        setColor(c);
+    }
+}
+
 /**
  * @brief A list of tags attached to the item.
  *
@@ -147,14 +158,6 @@ void TopLevelItem::fromMap(QVariantMap map)
 {
     ComplexItem::fromMap(map);
 
-    QMetaEnum e = QMetaEnum::fromType<Color>();
-    QString currentColor = e.valueToKey(m_color);
-    QString colorName = map.value("color", currentColor).toString();
-    bool ok;
-    Color c = static_cast<Color>(e.keysToValue(qUtf8Printable(colorName), &ok));
-    if (ok) {
-        setColor(c);
-    }
-
+    setColor(map.value("color", m_color).toString());
     setTags(map.value("tags", m_tags).toStringList());
 }
