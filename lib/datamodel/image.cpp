@@ -55,27 +55,33 @@ Image::~Image()
 void Image::setImage(const QString &image)
 {
     if (m_image != image) {
-        QFileInfo fi(image);
-        if (fi.isRelative()) {
+        if (!isValid()) {
             m_image = image;
-            emit imageChanged();
             save();
+            emit imageChanged();
         } else {
-            if (fi.absolutePath() == directory()) {
-                m_image = fi.fileName();
+            QFileInfo fi(image);
+            if (fi.isRelative()) {
+                m_image = image;
                 emit imageChanged();
                 save();
-            } else if (isValid()) {
-                if (!fi.exists()) {
-                    return;
+            } else {
+                if (fi.absolutePath() == directory()) {
+                    m_image = fi.fileName();
+                    emit imageChanged();
+                    save();
+                } else if (isValid()) {
+                    if (!fi.exists()) {
+                        return;
+                    }
+                    QFile file(directory() + "/" + m_image);
+                    file.remove();
+                    QString targetFileName = QUuid::createUuid().toString() + ".res." + fi.completeSuffix();
+                    QFile::copy(image, directory() + "/" + targetFileName);
+                    m_image = targetFileName;
+                    emit imageChanged();
+                    save();
                 }
-                QFile file(directory() + "/" + m_image);
-                file.remove();
-                QString targetFileName = QUuid::createUuid().toString() + ".res." + fi.completeSuffix();
-                QFile::copy(image, directory() + "/" + targetFileName);
-                m_image = targetFileName;
-                emit imageChanged();
-                save();
             }
         }
     }
