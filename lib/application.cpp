@@ -261,23 +261,6 @@ bool Application::folderExists(const QUrl &url) const
 
 void Application::saveLibraries()
 {
-    /*if (!m_loadingLibraries) {
-    m_settings->beginWriteArray("Library", m_libraries.size());
-    for (int i = 0; i < m_libraries.size(); ++i) {
-      m_settings->setArrayIndex(i);
-      auto library = m_libraries.at(i);
-      m_settings->setValue("name", library->name());
-      m_settings->setValue("directory", library->directory());
-      m_settings->setValue("tags", library->tags());
-      m_settings->beginGroup("args");
-      auto args = library->saveArgs();
-      for (auto arg : args.keys()) {
-        m_settings->setValue(arg, args.value(arg));
-      }
-      m_settings->endGroup();
-    }
-    m_settings->endArray();
-  }*/
     if (!m_loadingLibraries) {
         m_settings->beginWriteArray("LibraryDirectories", m_libraries.length());
         for (int i = 0; i < m_libraries.length(); ++i) {
@@ -331,43 +314,6 @@ void Application::loadLibraries()
         }
     }
     m_loadingLibraries = false;
-    /*
-  int numLibraries = m_settings->beginReadArray("Library");
-  for (int i = 0; i < numLibraries; ++i) {
-    m_settings->setArrayIndex(i);
-    QString name = m_settings->value("name").toString();
-    QString type = m_settings->value("type").toString();
-    QString directory = m_settings->value("directory").toString();
-    QStringList tags = m_settings->value("tags", QStringList()).toStringList();
-    QVariantMap args;
-    m_settings->beginGroup("args");
-    for (auto value : m_settings->childKeys()) {
-      args["value"] = m_settings->value(value);
-    }
-    m_settings->endGroup();
-    auto library = addLibrary(type, name, directory, args);
-    if (library) {
-        library->setTags(tags);
-    }
-  }
-  m_settings->endArray();
-  m_loadingLibraries = false;
-
-  if (!m_isInCustomLocation) {
-    QString defaultLibLocation = defaultLibraryLocation();
-    QFileInfo defaultLibraryLocationFI(defaultLibLocation);
-    for (Library* lib : m_libraries) {
-      if (QFileInfo(lib->directory()) == defaultLibraryLocationFI) {
-        m_defaultLibrary = lib;
-        emit defaultLibraryChanged();
-        runMigrations();
-        return;
-      }
-    }
-    m_defaultLibrary = addLocalLibrary(defaultLibLocation);
-    emit defaultLibraryChanged();
-    runMigrations();
-  }*/
 }
 
 Library *Application::librariesAt(QQmlListProperty<Library> *property, int index)

@@ -34,7 +34,8 @@ static QVariantMap load_file(const QString &filename) {
     return QVariantMap();
 }
 
-static void migrate_note(const QString directory, const QFileInfo fi) {
+static void migrate_note(const QString directory, const QFileInfo fi,
+                         double weight) {
     auto data = load_file(fi.absoluteFilePath());
     QDir dir(directory);
     Note note(dir);
@@ -43,9 +44,11 @@ static void migrate_note(const QString directory, const QFileInfo fi) {
     note.setTags(data.value("tags").toStringList());
     note.setColor(data.value("colorName").toString());
     note.setNotes(data.value("notes").toString());
+    note.setWeight(weight);
 }
 
-static void migrate_image(const QString directory, const QFileInfo fi) {
+static void migrate_image(const QString directory, const QFileInfo fi,
+                          double weight) {
     auto data = load_file(fi.absoluteFilePath());
     QDir dir(directory);
     Image image(dir);
@@ -55,10 +58,11 @@ static void migrate_image(const QString directory, const QFileInfo fi) {
     image.setColor(data.value("colorName").toString());
     image.setImage(fi.dir().absoluteFilePath(data.value("image").toString()));
     image.setNotes(data.value("notes").toString());
+    image.setWeight(weight);
 }
 
 static void migrate_task(const QString &directory, Todo& todo,
-                         const QFileInfo fi) {
+                         const QFileInfo fi, double weight) {
     auto data = load_file(fi.absoluteFilePath());
     QDir dir(directory);
     Task task(dir);
@@ -66,10 +70,11 @@ static void migrate_task(const QString &directory, Todo& todo,
     task.setTitle(data.value("title", task.title()).toString());
     task.setDone(data.value("done", task.done()).toBool());
     task.setTodoUid(todo.uid());
+    task.setWeight(weight);
 }
 
 static void migrate_todo(const QString directory, TodoList& todoList,
-                         const QFileInfo fi) {
+                         const QFileInfo fi, double weight) {
     auto data = load_file(fi.absoluteFilePath());
     QDir dir(directory);
     Todo todo(dir);
@@ -78,16 +83,19 @@ static void migrate_todo(const QString directory, TodoList& todoList,
     todo.setDone(data.value("done", todo.done()).toBool());
     todo.setTodoListUid(todoList.uid());
     todo.setNotes(data.value("notes").toString());
+    todo.setWeight(weight);
     QDir tasks(fi.dir().absoluteFilePath("tasks"));
+    double taskWeight = 0.0;
     for (auto taskDir : tasks.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        QFileInfo taskFile(taskDir + "/task.opentodolist");
+        QFileInfo taskFile(tasks.absoluteFilePath(taskDir) + "/task.opentodolist");
         if (taskFile.exists()) {
-            migrate_task(directory, todo, taskFile);
+            migrate_task(directory, todo, taskFile, taskWeight);
+            taskWeight += 1.0;
         }
     }
 }
 
-static void migrate_todolist(const QString directory, const QFileInfo fi) {
+static void migrate_todolist(const QString directory, const QFileInfo fi, double weight) {
     auto data = load_file(fi.absoluteFilePath());
     QDir dir(directory);
     TodoList todoList(dir);
@@ -96,11 +104,14 @@ static void migrate_todolist(const QString directory, const QFileInfo fi) {
     todoList.setTags(data.value("tags").toStringList());
     todoList.setColor(data.value("colorName").toString());
     todoList.setNotes(data.value("notes").toString());
+    todoList.setWeight(weight);
     QDir todos(fi.dir().absoluteFilePath("todos"));
+    double todoWeight = 0.0;
     for (auto todoDir : todos.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        QFileInfo todoFile(todoDir + "/todo.opentodolist");
+        QFileInfo todoFile(todos.absoluteFilePath(todoDir) + "/todo.opentodolist");
         if (todoFile.exists()) {
-            migrate_todo(directory, todoList, todoFile);
+            migrate_todo(directory, todoList, todoFile, weight);
+            todoWeight += 1.0;
         }
     }
 }
@@ -111,16 +122,20 @@ static void migrate_to_3_0(const QString directory) {
                                 "todolist.opentodolist"},
                     QDir::NoDotAndDotDot | QDir::Files,
                     QDirIterator::Subdirectories);
+    double weight = 0.0;
     while (it.hasNext()) {
         it.next();
         auto fi = it.fileInfo();
         auto basename = fi.baseName();
         if (basename == "note") {
-            migrate_note(directory, fi);
+            migrate_note(directory, fi, weight);
+            weight += 1.0;
         } else if (basename == "image") {
-            migrate_image(directory, fi);
+            migrate_image(directory, fi, weight);
+            weight += 1.0;
         } else if (basename == "todolist") {
-            migrate_todolist(directory, fi);
+            migrate_todolist(directory, fi, weight);
+            weight += 1.0;
         }
     }
 }

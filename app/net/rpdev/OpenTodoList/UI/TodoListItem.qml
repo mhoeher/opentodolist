@@ -124,11 +124,11 @@ MouseArea {
                     id: todosModel
 
                     sourceModel: ItemsModel {
-                        container: item.library
+                        container: item.library.todos
                     }
                     filterFunction: function(row) {
                         var i = sourceModel.index(row, 0);
-                        var todo = sourceModel.data(i, TodosModel.TodoRole);
+                        var todo = sourceModel.data(i, ItemsModel.ObjectRole);
                         return !todo.done && todo.todoListUid === item.libraryItem.uid;
                     }
                 }
@@ -168,7 +168,7 @@ MouseArea {
                             font {
                                 pixelSize: Globals.fontPixelSize
                             }
-                            text: todo.title
+                            text: object.title
                         }
                     }
                 }

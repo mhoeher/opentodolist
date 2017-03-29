@@ -9,76 +9,76 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 Item {
     id: root
-    
-    property list<Task> model
+
+    property var model: null
     property bool allowNewEntryCreation: true
-    
+
     signal addEntry(string title)
-    
+
     function focusNewItemInput() {
         if (listView.headerItem) {
             listView.headerItem.focusInputItem();
         }
     }
-    
+
     height: listView.contentHeight
-    
+
     MessageDialog {
         id: confirmDeleteTaskDialog
-        
+
         property Task task
-        
+
         title: qsTr("Delete Task?")
         text: task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
                           "This cannot be undone.").arg(task.title) : ""
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: task.deleteItem()
     }
-    
+
     RenameItemDialog {
         id: renameItemDialog
     }
 
     Component {
         id: itemDelegate
-        
+
         Item {
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
-            
+
             RowLayout {
                 id: row
-                
+
                 width: parent.width
                 anchors.verticalCenter: parent.verticalCenter
-                
+
                 Symbol {
-                    symbol: done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
-                    onClicked: done = !done
+                    symbol: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+                    onClicked: object.done = !object.done
                 }
-                
+
                 MouseArea {
                     Layout.fillWidth: true
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: renameItemDialog.renameItem(todo.tasks[index])
+                    onClicked: renameItemDialog.renameItem(object)
                     height: childrenRect.height
-                    
+
                     Label {
-                        text: title
+                        text: object.title
                         width: parent.width
                         wrapMode: Text.WrapAnywhere
                     }
                 }
-                
+
                 Symbol {
                     symbol: Fonts.symbols.faTrashO
                     onClicked: {
-                        confirmDeleteTodoDialog.todo = root.model[index];
-                        confirmDeleteTodoDialog.open();
+                        confirmDeleteTaskDialog.task = object;
+                        confirmDeleteTaskDialog.open();
                     }
                 }
             }
-            
+
             Rectangle {
                 width: parent.width
                 height: 1
@@ -86,36 +86,36 @@ Item {
             }
         }
     }
-    
+
     Component {
         id: headerDelegate
-        
+
         Item {
-            
+
             function createItem() {
                 newEntryEdit.accepted();
             }
-            
+
             function focusInputItem() {
                 newEntryEdit.forceActiveFocus();
             }
-            
+
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
-            
-            
+
+
             RowLayout {
                 id: row
-                
+
                 width: parent.width
                 anchors.verticalCenter: parent.verticalCenter
-                
+
                 Item {
                     width: Globals.minButtonHeight
                     height: Globals.minButtonHeight
                 }
-                
-                TextField { 
+
+                TextField {
                     id: newEntryEdit
                     Layout.fillWidth: true
                     placeholderText: qsTr("Add Task...")
@@ -123,7 +123,7 @@ Item {
                         background: Item {}
                         textColor: "black"
                     }
-                    
+
                     onAccepted: {
                         if (displayText !== "") {
                             root.addEntry(displayText);
@@ -132,13 +132,13 @@ Item {
                         }
                     }
                 }
-                
+
                 Symbol {
                     symbol: Fonts.symbols.faPlus
                     onClicked: newEntryEdit.accepted()
                 }
             }
-            
+
             Rectangle {
                 width: parent.width
                 height: 1
@@ -146,7 +146,7 @@ Item {
             }
         }
     }
-    
+
     Rectangle {
         id: background
         border {
@@ -162,7 +162,7 @@ Item {
             fill: background
             margins: 1
         }
-        source: "qrc:/net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png"        
+        source: "qrc:/net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png"
         fillMode: Image.Tile
     }
 

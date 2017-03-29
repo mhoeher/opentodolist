@@ -206,7 +206,7 @@ Item {
 
         sourceModel: itemsModel
         filterFunction: function(i) {
-            var item = sourceModel.data(sourceModel.index(i, 0), TopLevelItemsModel.ObjectRole);
+            var item = sourceModel.data(sourceModel.index(i, 0), ItemsModel.ItemRole);
             return __tagMatches(item);
         }
     }
@@ -256,7 +256,7 @@ Item {
             filteredItemsModel.filterFunction = function(i) {
                 var item = filteredItemsModel.sourceModel.data(
                             filteredItemsModel.sourceModel.index(i, 0),
-                            TopLevelItemsModel.ObjectRole);
+                            ItemsModel.ItemRole);
                 return filteredItemsModel.__tagMatches(item) &&
                         matches(item);
             }
@@ -276,39 +276,39 @@ Item {
             transientScrollBars: true
         }
 
-        Flow {
-            width: scrollView.viewport.width
-            flow: Flow.LeftToRight
+        GridView {
+            id: grid
+            width: scrollView.width
+            flow: GridView.LeftToRight
+            model: filteredItemsModel
+            cellWidth: Logic.sizeOfColumns(scrollView)
+            cellHeight: cellWidth / 3 * 2
+            delegate: Loader {
+                asynchronous: true
+                width: grid.cellWidth
+                height: grid.cellHeight
+                source: Globals.file("/net/rpdev/OpenTodoList/UI/" +
+                        object.itemType + "Item.qml")
 
-            Repeater {
-                id: repeater
-                model: filteredItemsModel
-                delegate: Loader {
-                    asynchronous: true
-                    width: Logic.sizeOfColumns(scrollView)
-                    height: width / 3 * 2
-                    source: Globals.file("/net/rpdev/OpenTodoList/UI/" +
-                            object.itemType + "Item.qml")
+                onLoaded: {
+                    item.libraryItem = object;
+                    item.library = page.library;
+                    item.onClicked.connect(function() {
 
-                    onLoaded: {
-                        item.libraryItem = object;
-                        item.onClicked.connect(function() {
-
-                        });
-                        item.onReleased.connect(function(mouse) {
-                            switch (mouse.button) {
-                            case Qt.LeftButton:
-                                itemClicked(object.libraryItem);
-                                break;
-                            case Qt.RightButton:
-                                itemContextMenu.item = object.libraryItem;
-                                itemContextMenu.popup();
-                                break;
-                            default:
-                                break;
-                            }
-                        });
-                    }
+                    });
+                    item.onReleased.connect(function(mouse) {
+                        switch (mouse.button) {
+                        case Qt.LeftButton:
+                            itemClicked(object);
+                            break;
+                        case Qt.RightButton:
+                            itemContextMenu.item = object.libraryItem;
+                            itemContextMenu.popup();
+                            break;
+                        default:
+                            break;
+                        }
+                    });
                 }
             }
         }

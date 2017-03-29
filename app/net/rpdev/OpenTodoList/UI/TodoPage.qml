@@ -7,22 +7,23 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 Item {
     id: page
-    
+
+    property Library library: null
     property Todo todo: Todo {}
     property StackView stack: null
     property bool __visible: Stack.status === Stack.Active
-    
+
     function newTask() {
         tasks.focusNewItemInput();
     }
 
     function cancel() {
     }
-    
+
     function deleteItem() {
         confirmDeleteDialog.open();
     }
-    
+
     MessageDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo?")
@@ -34,27 +35,27 @@ Item {
             stack.pop();
         }
     }
-    
+
     RenameItemDialog {
         id: renameItemDialog
     }
-    
+
     ScrollView {
         id: scrollView
-        
+
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         anchors.fill: parent
-        
+
         Column {
             width: scrollView.viewport.width
             spacing: Globals.defaultMargin
-            
+
             MouseArea {
                 onClicked: renameItemDialog.renameItem(todo)
                 height: childrenRect.height
                 width: parent.width
                 cursorShape: Qt.PointingHandCursor
-                
+
                 Label {
                     text: todo.title
                     anchors {
@@ -69,10 +70,24 @@ Item {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
             }
-            
+
             TaskListView {
                 id: tasks
-                model: todo.tasks
+                model: ItemsSortFilterModel {
+                    sourceModel: ItemsModel {
+                        id: sourceModel
+                        container: page.library.tasks
+                    }
+                    filterFunction: function(row) {
+                        var idx = sourceModel.index(row, 0);
+                        console.debug(idx);
+                        var task = sourceModel.data(idx, ItemsModel.ItemRole);
+                        console.debug(task.title);
+                        console.debug(task.todoUid);
+                        return task.todoUid === page.todo.uid;
+                    }
+                }
+
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -80,10 +95,11 @@ Item {
                 }
                 allowNewEntryCreation: true
                 onAddEntry: {
-                    var task = todo.addTask(title);
+                    var task = todo.addTask();
+                    task.title = title;
                 }
             }
-            
+
             StickyNote {
                 id: note
                 anchors {
@@ -100,7 +116,7 @@ Item {
                     todo.onReloaded.connect(function() { page.text = todo.notes; });
                 }
             }
-            
+
             Item {
                 height: Globals.defaultMargin
                 anchors {
@@ -109,10 +125,10 @@ Item {
                     margins: Globals.defaultMargin * 2
                 }
             }
-            
+
             Component {
                 id: notesEditor
-                
+
                 RichTextEditor {
                     Component.onCompleted: forceActiveFocus()
                 }
