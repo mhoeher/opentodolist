@@ -27,5 +27,5 @@ OTHER_FILES += \
     android/AndroidManifest.xml
 
 
-target.path = $$INSTALL_PREFIX_BIN
+target.path = $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN
 INSTALLS += target

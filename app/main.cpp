@@ -90,7 +90,7 @@ private:
       m_watcher->removePaths(m_watcher->files());
     }
     m_watcher->addPath(m_baseUrl);
-    QDirIterator it(m_baseUrl, QDir::Dirs | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
+    QDirIterator it(m_baseUrl, QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
     while (it.hasNext()) {
       QString entry = it.next();
       m_watcher->addPath(entry);
