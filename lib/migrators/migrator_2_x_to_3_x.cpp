@@ -116,7 +116,7 @@ static void migrate_todolist(const QString directory, const QFileInfo fi, double
     }
 }
 
-static void migrate_to_3_0(const QString directory) {
+static void migrate_to_3_0(const QString &directory, const QString &targetDir) {
     QDirIterator it(directory, {"note.opentodolist",
                                 "image.opentodolist",
                                 "todolist.opentodolist"},
@@ -128,13 +128,13 @@ static void migrate_to_3_0(const QString directory) {
         auto fi = it.fileInfo();
         auto basename = fi.baseName();
         if (basename == "note") {
-            migrate_note(directory, fi, weight);
+            migrate_note(targetDir, fi, weight);
             weight += 1.0;
         } else if (basename == "image") {
-            migrate_image(directory, fi, weight);
+            migrate_image(targetDir, fi, weight);
             weight += 1.0;
         } else if (basename == "todolist") {
-            migrate_todolist(directory, fi, weight);
+            migrate_todolist(targetDir, fi, weight);
             weight += 1.0;
         }
     }
@@ -156,9 +156,12 @@ void Migrator_2_x_to_3_x::run(Application* application)
         auto library = new Library(directory, application);
         library->setName(name);
         application->appendLibrary(library);
-        QtConcurrent::run([=]() {
-            migrate_to_3_0(directory);
-        });
+        QString targetDir = library->newItemLocation();
+        if (QDir(targetDir).mkpath(".")) {
+            QtConcurrent::run([=]() {
+                migrate_to_3_0(directory, targetDir);
+            });
+        }
     }
     settings->endArray();
 }

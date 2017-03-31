@@ -77,6 +77,30 @@ QQmlListProperty<Library> Application::libraryList()
 }
 
 /**
+ * @brief Add a new library.
+ *
+ * This creates a new library and returns it. If @p url points to an existing
+ * directory, the library will use it for storing its data. If the url is invalid,
+ * the library will be created in the default library location.
+ */
+Library*Application::addLibrary(const QUrl& url)
+{
+    Library* result = nullptr;
+    auto path = url.toLocalFile();
+    QDir dir(path);
+    if (dir.exists()) {
+        result = new Library(path, this);
+        appendLibrary(result);
+    } else {
+        auto uid = QUuid::createUuid();
+        path = librariesLocation() + "/" + uid.toString();
+        result = new Library(path, this);
+        appendLibrary(result);
+    }
+    return result;
+}
+
+/**
  * @brief Save a value to the application settings
  *
  * This method is used to save a value to the application settings. Settings can be restored
@@ -331,19 +355,26 @@ int Application::librariesCount(QQmlListProperty<Library> *property)
 }
 
 /**
+ * @brief Get the location where libraries are stored by default.
+ */
+QString Application::librariesLocation() const
+{
+#ifdef Q_OS_ANDROID
+    QString s(qgetenv("EXTERNAL_STORAGE"));
+    QDir dir(s + "/data/net.rpdev.opentodolist/");
+    return dir.absolutePath();
+#else
+    QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    return QDir(result).absolutePath();
+#endif
+}
+
+/**
    @brief Returns the location of the default library.
  */
 QString Application::defaultLibraryLocation() const
 {
-#ifdef Q_OS_ANDROID
-    QString s(qgetenv("EXTERNAL_STORAGE"));
-    QDir dir(s + "/data/net.rpdev.opentodolist/Inbox/");
-    return dir.absolutePath();
-#else
-    QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    result += "/Inbox/";
-    return QDir(result).absolutePath();
-#endif
+    return QDir(librariesLocation()).absoluteFilePath("Inbox");
 }
 
 void Application::runMigrations()

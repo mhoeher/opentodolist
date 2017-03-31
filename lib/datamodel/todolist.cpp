@@ -52,7 +52,9 @@ Todo *TodoList::addTodo()
     if (m_library != nullptr) {
         TodoPtr todo;
         if (m_library->isValid()) {
-            todo = TodoPtr(new Todo(QDir(directory())));
+            QDir dir(m_library->newItemLocation());
+            dir.mkpath(".");
+            todo = TodoPtr(new Todo(dir));
         } else {
             todo = TodoPtr(new Todo());
         }

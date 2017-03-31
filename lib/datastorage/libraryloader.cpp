@@ -74,28 +74,37 @@ LibraryLoaderWorker::LibraryLoaderWorker() : QObject(),
  */
 void LibraryLoaderWorker::scan(const QString& directory, QObject* targetThread)
 {
-    QDir dir(directory);
-    for (auto entry : dir.entryList({QString("*.%1").arg(Item::FileNameSuffix)}, QDir::Files)) {
-        if (m_stop) {
-            break;
-        }
-        auto filename = dir.absoluteFilePath(entry);
-        QFile file(filename);
-        if (file.open(QIODevice::ReadOnly)) {
-            QJsonParseError error;
-            auto map = QJsonDocument::fromJson(file.readAll(), &error).toVariant().toMap();
-            if (error.error == QJsonParseError::NoError) {
-                auto item = Item::createItem(filename, map);
-                if (item != nullptr) {
-                    item->moveToThread(static_cast<QThread*>(targetThread));
-                    emit itemLoaded(ItemPtr(item));
+    QDir rootDir(directory);
+    for (auto yearEntry : rootDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        QDir yearDir(rootDir.absoluteFilePath(yearEntry));
+        for (auto monthEntry : yearDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            QDir monthDir(yearDir.absoluteFilePath(monthEntry));
+            for (auto entry : monthDir.entryList({QString("*.%1").arg(Item::FileNameSuffix)},
+                                                 QDir::Files)) {
+                if (m_stop) {
+                    break;
                 }
-            } else {
-                qWarning() << "Failed to parse item file" << filename << ":" << error.errorString();
+                auto filename = monthDir.absoluteFilePath(entry);
+                QFile file(filename);
+                if (file.open(QIODevice::ReadOnly)) {
+                    QJsonParseError error;
+                    auto map = QJsonDocument::fromJson(file.readAll(), &error).toVariant().toMap();
+                    if (error.error == QJsonParseError::NoError) {
+                        auto item = Item::createItem(filename, map);
+                        if (item != nullptr) {
+                            item->moveToThread(static_cast<QThread*>(targetThread));
+                            emit itemLoaded(ItemPtr(item));
+                        }
+                    } else {
+                        qWarning() << "Failed to parse item file" << filename << ":"
+                                   << error.errorString();
+                    }
+                    file.close();
+                } else {
+                    qWarning() << "Failed to open item file" << filename << ":"
+                               << file.errorString();
+                }
             }
-            file.close();
-        } else {
-            qWarning() << "Failed to open item file" << filename << ":" << file.errorString();
         }
     }
     emit scanFinished();

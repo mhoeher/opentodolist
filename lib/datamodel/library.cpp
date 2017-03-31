@@ -61,7 +61,9 @@ Note *Library::addNote()
 {
     NotePtr note;
     if (isValid()) {
-        note = NotePtr(new Note(QDir(m_directory)));
+        QDir dir(newItemLocation());
+        dir.mkpath(".");
+        note = NotePtr(new Note(dir));
     } else {
         note = NotePtr(new Note());
     }
@@ -86,7 +88,9 @@ Image *Library::addImage()
 {
     ImagePtr image;
     if (isValid()) {
-        image = ImagePtr(new Image(QDir(m_directory)));
+        QDir dir(newItemLocation());
+        dir.mkpath(".");
+        image = ImagePtr(new Image(dir));
     } else {
         image = ImagePtr(new Image());
     }
@@ -111,7 +115,9 @@ TodoList *Library::addTodoList()
 {
     TodoListPtr todoList;
     if (isValid()) {
-        todoList = TodoListPtr(new TodoList(QDir(m_directory)));
+        QDir dir(newItemLocation());
+        dir.mkpath(".");
+        todoList = TodoListPtr(new TodoList(dir));
     } else {
         todoList = TodoListPtr(new TodoList());
     }
@@ -249,6 +255,25 @@ ItemContainer* Library::todos()
 ItemContainer* Library::tasks()
 {
     return &m_tasks;
+}
+
+/**
+ * @brief Get the location of a new item.
+ *
+ * Returns an absolute path where a new item can be stored. Returns an empty
+ * string if the library is invalid.
+ */
+QString Library::newItemLocation() const
+{
+    QString result;
+    if (isValid()) {
+        QDir dir(m_directory);
+        auto date = QDate::currentDate();
+        auto subdir = QString("%1/%2");
+        subdir = subdir.arg(date.year()).arg(date.month());
+        result = dir.absoluteFilePath(subdir);
+    }
+    return result;
 }
 
 QVariantMap Library::toMap() const

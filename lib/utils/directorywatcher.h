@@ -62,6 +62,7 @@ signals:
 private slots:
 
     void setDirectory(const QString &directory);
+    void watchDir(const QString &directory);
 };
 
 #endif // DIRECTORYWATCHER_H

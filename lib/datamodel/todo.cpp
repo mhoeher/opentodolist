@@ -100,7 +100,9 @@ Task*Todo::addTask()
     if (m_library) {
         TaskPtr task;
         if (m_library->isValid()) {
-            task = TaskPtr(new Task(QDir(m_library->directory())));
+            QDir dir(m_library->newItemLocation());
+            dir.mkpath(".");
+            task = TaskPtr(new Task(dir));
         } else {
             task = TaskPtr(new Task());
         }

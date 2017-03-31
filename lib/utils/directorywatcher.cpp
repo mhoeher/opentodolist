@@ -45,15 +45,10 @@ DirectoryWatcherWorker::DirectoryWatcherWorker():
     m_watcher(new QFileSystemWatcher(this)),
     m_directory()
 {
-    connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString&) {
+    connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString& dir) {
         emit directoryChanged();
         if (!m_directory.isEmpty()) {
-            QDir dir(m_directory);
-            if (dir.exists()) {
-                for (auto entry : dir.entryList(QDir::Files)) {
-                    m_watcher->addPath(dir.absoluteFilePath(entry));
-                }
-            }
+            this->watchDir(dir);
         }
     });
     connect(m_watcher, &QFileSystemWatcher::fileChanged, [=](const QString&) {
@@ -74,12 +69,25 @@ void DirectoryWatcherWorker::setDirectory(const QString& directory)
             m_watcher->removePaths(items);
         }
         if (!m_directory.isEmpty()) {
-            QDir dir(m_directory);
-            m_watcher->addPath(dir.absolutePath());
-            if (dir.exists()) {
-                for (auto entry : dir.entryList(QDir::Files)) {
-                    m_watcher->addPath(dir.absoluteFilePath(entry));
-                }
+            watchDir(directory);
+        }
+    }
+}
+
+/**
+ * @brief Watch the directory recursively.
+ */
+void DirectoryWatcherWorker::watchDir(const QString& directory)
+{
+    if (directory != "") {
+        QDir dir(directory);
+        if (dir.exists()) {
+            m_watcher->addPath(directory);
+            for (auto entry : dir.entryList(QDir::Files)) {
+                m_watcher->addPath(dir.absoluteFilePath(entry));
+            }
+            for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+                watchDir(dir.absoluteFilePath(entry));
             }
         }
     }

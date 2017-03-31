@@ -63,6 +63,8 @@ public:
     ItemContainer *todos();
     ItemContainer *tasks();
 
+    QString newItemLocation() const;
+
 signals:
 
     /**

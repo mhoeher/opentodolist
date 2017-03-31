@@ -46,6 +46,8 @@ public:
     QStringList libraryTypes() const;
     QQmlListProperty<Library> libraryList();
 
+    Q_INVOKABLE Library* addLibrary(const QUrl &url = QUrl());
+
     Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
     Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
 
@@ -89,6 +91,7 @@ private:
     static Library* librariesAt(QQmlListProperty<Library> *property, int index);
     static int librariesCount(QQmlListProperty<Library> *property);
 
+    QString librariesLocation() const;
     QString defaultLibraryLocation() const;
     void runMigrations();
 
