@@ -14,10 +14,12 @@ OTHER_FILES += \
   Doxyfile \
   doc/installers-howto.md \
   .gitlab-ci.yml \
+  .qmake.conf \
   bin/linux-deploy-qt.pl \
   bin/mk-installer.pl \
   bin/mk-pri.pl \
   bin/mk-qrc.pl \
+  bin/mk-unittest.py \
   bin/mk-linux-installer-x86_64.sh \
   templates/installer/config/config.xml \
   templates/installer/config/controller.js \
@@ -32,3 +34,9 @@ SUBDIRS += \
 
 include(config.pri)
 # include(installer.pri)
+
+
+message("Configure summary:")
+message("    Install Prefix:         $$INSTALL_ROOT")
+message("    Binary Install Prefix:  $$INSTALL_PREFIX_BIN")
+message("    Library Install Prefix: $$INSTALL_PREFIX_LIB")

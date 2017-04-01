@@ -9,62 +9,62 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 Item {
     id: root
-    
-    property var model: TodosModel {}
+
+    property var model: ItemsModel {}
     property bool allowEntryCreation: false
-    
+
     signal todoSelected(Todo todo)
     signal addEntry(string title, bool openItem)
-    
+
     function focusNewItemInput() {
         if (listView.headerItem) {
             listView.headerItem.focusInputItem();
         }
     }
-    
+
     height: listView.contentHeight
-    
+
     MessageDialog {
         id: confirmDeleteTodoDialog
-        
+
         property Todo todo
-        
+
         title: qsTr("Delete Todo?")
         text: todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
                           "This cannot be undone.").arg(todo.title) : ""
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: todo.deleteItem()
     }
-    
+
     Component {
         id: itemDelegate
-        
+
         Item {
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
-            
+
             MouseArea {
                 anchors.fill: parent
-                onClicked: todoSelected(todo)
+                onClicked: todoSelected(object)
             }
-            
+
             RowLayout {
                 id: row
-                
+
                 width: parent.width
                 anchors.verticalCenter: parent.verticalCenter
-                
+
                 Symbol {
-                    symbol: todo.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
-                    onClicked: todo.done = !object.done
+                    symbol: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+                    onClicked: object.done = !object.done
                 }
-                
+
                 Label {
-                    text: todo.title
+                    text: object.title
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAnywhere
                 }
-                
+
                 Symbol {
                     symbol: Fonts.symbols.faTrashO
                     onClicked: {
@@ -73,7 +73,7 @@ Item {
                     }
                 }
             }
-            
+
             Rectangle {
                 width: parent.width
                 height: 1
@@ -81,16 +81,16 @@ Item {
             }
         }
     }
-    
+
     Component {
         id: headerDelegate
-        
+
         Item {
-            
+
             function createItem() {
                 newEntryEdit.accepted();
             }
-            
+
             function createItemAndOpen() {
                 if (newEntryEdit.displayText !== "") {
                     root.addEntry(newEntryEdit.displayText, true);
@@ -98,27 +98,27 @@ Item {
                     newEntryEdit.forceActiveFocus();
                 }
             }
-            
+
             function focusInputItem() {
                 newEntryEdit.forceActiveFocus();
             }
-            
+
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
-            
-            
+
+
             RowLayout {
                 id: row
-                
+
                 width: parent.width
                 anchors.verticalCenter: parent.verticalCenter
-                
+
                 Item {
                     width: Globals.minButtonHeight
                     height: Globals.minButtonHeight
                 }
-                
-                TextField { 
+
+                TextField {
                     id: newEntryEdit
                     Layout.fillWidth: true
                     placeholderText: qsTr("Add Todo...")
@@ -126,7 +126,7 @@ Item {
                         background: Item {}
                         textColor: "black"
                     }
-                    
+
                     onAccepted: {
                         if (displayText !== "") {
                             root.addEntry(displayText, false);
@@ -135,13 +135,13 @@ Item {
                         }
                     }
                 }
-                
+
                 Symbol {
                     symbol: Fonts.symbols.faPlus
                     onClicked: newEntryEdit.accepted()
                 }
             }
-            
+
             Rectangle {
                 width: parent.width
                 height: 1
@@ -149,7 +149,7 @@ Item {
             }
         }
     }
-    
+
     Rectangle {
         id: background
         border {
@@ -158,17 +158,17 @@ Item {
         }
         anchors.fill: parent
     }
-    
+
     Image {
         id: backgroundImage
         anchors {
             fill: background
             margins: 1
         }
-        source: "qrc:/net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png"        
+        source: "qrc:/net/rpdev/OpenTodoList/UI/soft_wallpaper/soft_wallpaper.png"
         fillMode: Image.Tile
     }
-    
+
     ListView {
         id: listView
         anchors {

@@ -1,61 +1,55 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2016-01-25T20:32:47
-#
-#-------------------------------------------------
-
 include(../config.pri)
-setupStaticLib()
 
 QT       += qml quick xml concurrent
 QT       -= gui
 
+TEMPLATE = lib
 TARGET = opentodolist
+CONFIG += static c++11
 
 win32:DESTDIR = $$OUT_PWD
 
+INCLUDEPATH += datamodel datastorage models
+
 SOURCES += \
     application.cpp \
-    library.cpp \
-    libraryfactory.cpp \
-    locallibraryfactory.cpp \
-    item.cpp \
-    complexitem.cpp \
-    toplevelitem.cpp \
-    note.cpp \
-    image.cpp \
-    task.cpp \
-    todo.cpp \
-    todolist.cpp \
+    datamodel/library.cpp \
+    datamodel/item.cpp \
+    datamodel/complexitem.cpp \
+    datamodel/toplevelitem.cpp \
+    datamodel/note.cpp \
+    datamodel/image.cpp \
+    datamodel/task.cpp \
+    datamodel/todo.cpp \
+    datamodel/todolist.cpp \
     opentodolistqmlextensionsplugin.cpp \
     documentformatter.cpp \
-    migrator_1_x_to_2_x.cpp \
     fileutils.cpp \
-    todosmodel.cpp \
-    filtermodel.cpp \
-    toplevelitemsmodel.cpp
+    datastorage/itemcontainer.cpp \
+    datastorage/libraryloader.cpp \
+    models/itemsmodel.cpp \
+    models/itemssortfiltermodel.cpp \
+    migrators/migrator_2_x_to_3_x.cpp \
+    utils/directorywatcher.cpp
 
 HEADERS += \
     application.h \
-    library.h \
-    libraryfactory.h \
-    locallibraryfactory.h \
-    item.h \
-    complexitem.h \
-    toplevelitem.h \
-    note.h \
-    image.h \
-    task.h \
-    todo.h \
-    tasklist.h \
-    todoslist.h \
-    todolist.h \
-    toplevelitemlist.h \
+    datamodel/library.h \
+    datamodel/item.h \
+    datamodel/complexitem.h \
+    datamodel/toplevelitem.h \
+    datamodel/note.h \
+    datamodel/image.h \
+    datamodel/task.h \
+    datamodel/todo.h \
+    datamodel/todolist.h \
     opentodolistqmlextensionsplugin.h \
     documentformatter.h \
-    migrator_1_x_to_2_x.h \
     fileutils.h \
-    todosmodel.h \
-    filtermodel.h \
     abstractitemmodel.h \
-    toplevelitemsmodel.h
+    datastorage/itemcontainer.h \
+    datastorage/libraryloader.h \
+    models/itemsmodel.h \
+    models/itemssortfiltermodel.h \
+    migrators/migrator_2_x_to_3_x.h \
+    utils/directorywatcher.h

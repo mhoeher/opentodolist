@@ -20,20 +20,21 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 MouseArea {
     id: item
-    
+
+    property Library library: null
     property Note libraryItem: Note {}
-    
+
     hoverEnabled: true
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    
+
     DropShadow {
         sourceItem: background
         hovered: item.containsMouse
     }
-    
+
     Rectangle {
         id: background
-        
+
         anchors {
             fill: parent
             margins: item.containsMouse ? Globals.defaultMargin / 2 : Globals.defaultMargin
@@ -43,7 +44,7 @@ MouseArea {
             color: Colors.itemDelimiter
         }
         clip: true
-        
+
         Image {
             id: backgroundImage
             source: "paper/paper.png"
@@ -53,16 +54,16 @@ MouseArea {
                 margins: background.border.width
             }
         }
-        
+
         GE.ColorOverlay {
             source: backgroundImage
             anchors.fill: backgroundImage
             color: Colors.makeTransparent(Colors.itemColor(libraryItem.color), 0.5)
         }
-        
+
         Rectangle {
             id: noteTitle
-            
+
             anchors {
                 left: parent.left
                 right: parent.right
@@ -70,10 +71,10 @@ MouseArea {
             }
 
             height: Globals.fontPixelSize * 2
-            color: Qt.tint("silver", 
+            color: Qt.tint("silver",
                            Colors.makeTransparent(
                                Colors.itemColor(libraryItem.color), 0.7))
-            
+
             Label {
                 anchors {
                     left: parent.left
@@ -90,7 +91,7 @@ MouseArea {
                 text: libraryItem.title
             }
         }
-        
+
         Text {
             anchors {
                 left: parent.left
@@ -106,11 +107,11 @@ MouseArea {
             clip: true
         }
     }
-    
+
     Behavior on anchors.margins {
         SmoothedAnimation {
             duration: Globals.defaultAnimationTime
         }
     }
-    
+
 }

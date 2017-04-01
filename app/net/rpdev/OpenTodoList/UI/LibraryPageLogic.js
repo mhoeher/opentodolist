@@ -1,13 +1,15 @@
 
 function createNote(library, edit) {
-    var result = library.addNote(edit.displayText);
+    var result = library.addNote();
+    result.title = edit.displayText;
     edit.text = "";
     edit.focus = false;
     return result;
 }
 
 function createTodoList(library, edit) {
-    var result = library.addTodoList(edit.displayText);
+    var result = library.addTodoList();
+    result.title = edit.displayText;
     edit.text = "";
     edit.focus = false;
     return result;

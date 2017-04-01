@@ -6,21 +6,21 @@ import net.rpdev.OpenTodoList 1.0
 import net.rpdev.OpenTodoList.UI 1.0
 
 Item {
-    
+
     property StackView stack: null
-    
+
     signal closed()
-    
+
     function cancel() {
         closed();
     }
-    
+
     ColumnLayout {
         anchors {
             fill: parent
             margins: Globals.defaultMargin
         }
-        
+
         Text {
             text: qsTr("OpenTodoList")
             font {
@@ -30,27 +30,27 @@ Item {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.fillWidth: true
         }
-        
+
         Text {
             text: qsTr("A todo and task managing application.")
             font.bold: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.fillWidth: true
         }
-        
+
         Text {
             text: qsTr("(c) RPdev 2013-2016, version %1").arg(applicationVersion)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.fillWidth: true
         }
-        
+
         Text {
             text: "<a href='%1'>%1</a>".arg("https://www.rpdev.net/wordpress/apps/opentodolist/")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             Layout.fillWidth: true
             onLinkActivated: Qt.openUrlExternally(link)
         }
-        
+
         Text {
             text: qsTr("OpenTodoList is released under the terms of the GNU General Public " +
                        "License version 3 or (at your choice) any later version. You can find a " +
@@ -65,17 +65,17 @@ Item {
                 }
             }
         }
-        
+
         TextArea {
             readOnly: true
             text: App.readFile(":/res/COPYING")
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-        
+
         Component {
             id: thirdPartyPage
-            
+
             AboutThirdPartyPage {}
         }
     }

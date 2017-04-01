@@ -7,35 +7,35 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 Panel {
     id: sidebar
-    
+
     property var currentLibrary: App.libraries[0]
     property string currentTag: ""
     property bool helpVisible: false
-    
+
     signal libraryClicked(Library library)
-    signal openLocalLibrary()
+    signal newLibrary()
     signal aboutPageRequested()
-    
+
     contentItem: Item {
         height: childrenRect.height
         width: 10
-        
+
         Connections {
             target: currentLibrary
             onLibraryDeleted: currentLibrary = null
         }
-        
+
         Component {
             id: libraryItemDelegate
-            
+
             Column {
                 width: parent.width
-                
+
                 ButtonContainer {
                     mainItem: itemText
                     width: parent.width
                     cursorShape: Qt.PointingHandCursor
-                    
+
                     onClicked: {
                         var library = App.libraries[index];
                         if (currentLibrary !== library) {
@@ -45,17 +45,17 @@ Panel {
                         libraryClicked(App.libraries[index]);
                         sidebar.close();
                     }
-                    
+
                     Rectangle {
                         anchors.fill: parent
                         color: Colors.secondary3
                         visible: opacity > 0.0
                         opacity: (currentLibrary === App.libraries[index]) &&
                                  (currentTag === "")
-                        
+
                         Behavior on opacity { NumberAnimation { duration: 500 } }
                     }
-                    
+
                     Text {
                         id: itemText
                         text: name
@@ -70,23 +70,23 @@ Panel {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     }
                 }
-                
+
                 Repeater {
                     id: tags
-                    
+
                     property var library: App.libraries[index]
-                    
+
                     model: library.tags
                     delegate: tag
-                    
+
                     Component {
                         id: tag
-                        
+
                         ButtonContainer {
                             mainItem: tagText
                             width: parent.width
                             cursorShape: Qt.PointingHandCursor
-                            
+
                             onClicked: {
                                 if (currentLibrary !== tags.library) {
                                     sidebar.currentLibrary = tags.library;
@@ -97,17 +97,17 @@ Panel {
                                 libraryClicked(tags.library);
                                 sidebar.close();
                             }
-                            
+
                             Rectangle {
                                 anchors.fill: parent
                                 color: Colors.secondary3
                                 visible: opacity > 0.0
-                                opacity: (currentLibrary === tags.library) && 
+                                opacity: (currentLibrary === tags.library) &&
                                          (currentTag === tags.library.tags[index])
-                                
+
                                 Behavior on opacity { NumberAnimation { duration: 500 } }
                             }
-                            
+
                             Text {
                                 id: tagText
                                 text: tags.library.tags[index]
@@ -126,14 +126,14 @@ Panel {
                 }
             }
         }
-        
+
         Column {
             width: parent.width
-            
+
             ButtonContainer {
                 width: parent.width
                 opacity: 0.5
-                
+
                 Item {
                     anchors {
                         left: parent.left
@@ -141,9 +141,9 @@ Panel {
                         margins: Globals.defaultMargin
                         verticalCenter: parent.verticalCenter
                     }
-                    
+
                     height: Math.max(addLocalLibrarySymbol.height, addLocalLibraryLabel.height)
-                    
+
                     Symbol {
                         id: addLocalLibrarySymbol
                         symbol: Fonts.symbols.faPlus
@@ -167,42 +167,42 @@ Panel {
                 }
                 onClicked: {
                     sidebar.close();
-                    sidebar.openLocalLibrary();
+                    sidebar.newLibrary();
                 }
             }
-            
+
             Repeater {
                 id: librariesView
                 model: App.libraries
                 delegate: libraryItemDelegate
                 anchors.fill: parent
             }
-            
+
             ButtonContainer {
                 width: parent.width
                 mainItem: showAboutItem
-                
+
                 Rectangle {
                     anchors.fill: parent
                     color: Colors.secondary3
                     visible: opacity > 0.0
                     opacity: sidebar.helpVisible ? 1.0 : 0.0
-                    
+
                     Behavior on opacity { NumberAnimation { duration: 500 } }
                 }
-                
+
                 Item {
                     id: showAboutItem
-                    
+
                     anchors {
                         left: parent.left
                         right: parent.right
                         margins: Globals.defaultMargin
                         verticalCenter: parent.verticalCenter
                     }
-                    
+
                     height: Math.max(helpSymbol.height, helpText.height) + Globals.defaultMargin
-                    
+
                     Symbol {
                         id: helpSymbol
                         symbol: Fonts.symbols.faInfo
@@ -231,6 +231,6 @@ Panel {
             }
         }
     }
-    
-    
+
+
 }

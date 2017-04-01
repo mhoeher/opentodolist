@@ -1,187 +1,259 @@
 #include "application.h"
 #include "image.h"
 #include "library.h"
-#include "locallibraryfactory.h"
 #include "note.h"
 #include "todolist.h"
+#include "todo.h"
+#include "task.h"
 
 #include <QObject>
+#include <QQmlEngine>
+#include <QSet>
 #include <QSettings>
+#include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
 
-class LibraryTest : public QObject 
+
+#include <iostream>
+
+class LibraryTest : public QObject
 {
-  
-  Q_OBJECT
-  
-private:
-  
-  QTemporaryDir   *m_appDir;
-  QSettings       *m_appSettings;
-  Application     *m_app;
-  QTemporaryDir   *m_dir;
-  Library         *m_library;
-  
+
+    Q_OBJECT
+
 private slots:
-  
-  void init();
-  void testAddNote();
-  void testAddImage();
-  void testAddImageWithoutTitle();
-  void testAddTodoList();
-  void testNotePersistence();
-  void testImagePersistence();
-  void testTodoListPersistence();
-  void testDeleteNote();
-  void testDeleteImage();
-  void testDeleteTodoList();
-  void testTags();
-  void cleanup();
-  
+
+    void init();
+    void testProperties();
+    void testPersistence();
+    void testAddNote();
+    void testAddImage();
+    void testAddTodoList();
+    void testAddTodo();
+    void addTask();
+    void testTags();
+    void testLoad();
+    void testDeleteLibrary();
+    void cleanup();
+
+private:
+
+    QTemporaryDir *m_dir;
+
 };
 
 
 void LibraryTest::init()
 {
-  m_appDir = new QTemporaryDir();
-  Q_CHECK_PTR(m_appDir);
-  QVERIFY2(m_appDir->isValid(), "Failed to create temporary directory.");
-  m_appSettings = new QSettings(m_appDir->path() + "/settings.ini", QSettings::IniFormat);
-  Q_CHECK_PTR(m_appSettings);
-  m_app = new Application(m_appSettings);
-  Q_CHECK_PTR(m_app);
-  m_dir = new QTemporaryDir();
-  QVERIFY2(m_dir->isValid(), "Failed to create temporary directory.");
-  m_library = m_app->addLibrary(LocalLibraryFactory::ID, "Test Library", m_dir->path());
-  Q_CHECK_PTR(m_library);
+    m_dir = new QTemporaryDir();
+}
+
+void LibraryTest::testProperties()
+{
+    Library lib;
+    QVERIFY(!lib.isValid());
+
+    QSignalSpy nameChanged(&lib, &Library::nameChanged);
+
+    lib.setName("My Library");
+
+    QCOMPARE(nameChanged.count(), 1);
+
+    QCOMPARE(lib.name(), QString("My Library"));
+}
+
+void LibraryTest::testPersistence()
+{
+    Library lib(m_dir->path()), anotherLib(m_dir->path());
+    QVERIFY(lib.isValid());
+
+    QSignalSpy nameChanged(&anotherLib, &Library::nameChanged);
+    QSignalSpy uidChanged(&anotherLib, &Library::uidChanged);
+
+    lib.setName("My Library");
+
+    anotherLib.load();
+
+    QCOMPARE(nameChanged.count(), 1);
+    QCOMPARE(uidChanged.count(), 1);
+
+    QCOMPARE(anotherLib.name(), QString("My Library"));
+    QCOMPARE(anotherLib.uid(), lib.uid());
 }
 
 void LibraryTest::testAddNote()
 {
-  auto note = m_library->addNote("Test Note");
-  Q_CHECK_PTR(note);
-  QCOMPARE(note->title(), QString("Test Note"));
-  QCOMPARE(m_library->items().size(), 1);
-  Q_CHECK_PTR(m_library->items().at(0));
-  QCOMPARE(m_library->items().at(0), note);
+    Library lib;
+    auto note = lib.addNote();
+    QVERIFY(note != nullptr);
+    QCOMPARE(QQmlEngine::objectOwnership(note), QQmlEngine::CppOwnership);
 }
 
 void LibraryTest::testAddImage()
 {
-  auto image = m_library->addImage("Test Image", "image.png");
-  Q_CHECK_PTR(image);
-  QCOMPARE(image->title(), QString("Test Image"));
-  QCOMPARE(image->image(), QString("image.png"));
-  QCOMPARE(m_library->items().size(), 1);
-  Q_CHECK_PTR(m_library->items().at(0));
-  QCOMPARE(m_library->items().at(0), image);
-}
-
-void LibraryTest::testAddImageWithoutTitle()
-{
-  auto image = m_library->addImage("test/image.png");
-  Q_CHECK_PTR(image);
-  QCOMPARE(image->title(), QString("image.png"));
-  QCOMPARE(image->image(), QString("test/image.png"));
-  QCOMPARE(m_library->items().size(), 1);
-  Q_CHECK_PTR(m_library->items().at(0));
-  QCOMPARE(m_library->items().at(0), image);
+    Library lib;
+    auto image = lib.addImage();
+    QVERIFY(image != nullptr);
+    QCOMPARE(QQmlEngine::objectOwnership(image), QQmlEngine::CppOwnership);
 }
 
 void LibraryTest::testAddTodoList()
 {
-  auto todoList = m_library->addTodoList("Test Todo List");
-  Q_CHECK_PTR(todoList);
-  QCOMPARE(todoList->title(), QString("Test Todo List"));
-  QCOMPARE(m_library->items().size(), 1);
-  Q_CHECK_PTR(m_library->items().at(0));
-  QCOMPARE(m_library->items().at(0), todoList);
+    Library lib;
+    auto list = lib.addTodoList();
+    QVERIFY(list != nullptr);
+    QCOMPARE(QQmlEngine::objectOwnership(list), QQmlEngine::CppOwnership);
 }
 
-void LibraryTest::testNotePersistence()
+void LibraryTest::testAddTodo()
 {
-  m_library->addNote("Test Note");
-  auto factory = m_app->libraryFactoryForType(LocalLibraryFactory::ID);
-  Q_CHECK_PTR(factory);
-  auto library = factory->createLibrary("Test Library", m_dir->path());
-  QCOMPARE(library->items().size(), 1);
-  auto item = library->items().at(0);
-  Q_CHECK_PTR(item);
-  auto note = dynamic_cast<Note*>(item);
-  Q_CHECK_PTR(note);
-  QCOMPARE(note->title(), QString("Test Note"));
+    Library lib;
+    auto list = lib.addTodoList();
+    auto todo = list->addTodo();
+
+    QVERIFY(todo != nullptr);
+    QCOMPARE(QQmlEngine::objectOwnership(todo), QQmlEngine::CppOwnership);
+    QCOMPARE(todo->todoListUid(), list->uid());
 }
 
-void LibraryTest::testImagePersistence()
+void LibraryTest::addTask()
 {
-  m_library->addImage("Test Image", "image.png");
-  auto factory = m_app->libraryFactoryForType(LocalLibraryFactory::ID);
-  Q_CHECK_PTR(factory);
-  auto library = factory->createLibrary("Test Library", m_dir->path());
-  QCOMPARE(library->items().size(), 1);
-  auto item = library->items().at(0);
-  Q_CHECK_PTR(item);
-  auto image = dynamic_cast<Image*>(item);
-  Q_CHECK_PTR(image);
-  QCOMPARE(image->title(), QString("Test Image"));
-  QCOMPARE(image->image(), QString("image.png"));
-}
+    Library lib;
+    {
+        auto list = lib.addTodoList();
 
-void LibraryTest::testTodoListPersistence()
-{
-  m_library->addTodoList("Test Todo List");
-  auto factory = m_app->libraryFactoryForType(LocalLibraryFactory::ID);
-  Q_CHECK_PTR(factory);
-  auto library = factory->createLibrary("Test Library", m_dir->path());
-  QCOMPARE(library->items().size(), 1);
-  auto item = library->items().at(0);
-  Q_CHECK_PTR(item);
-  auto todoList = dynamic_cast<TodoList*>(item);
-  Q_CHECK_PTR(todoList);
-  QCOMPARE(todoList->title(), QString("Test Todo List"));
-}
+        auto todo = list->addTodo();
+        QVERIFY(todo != nullptr);
 
-void LibraryTest::testDeleteNote()
-{
-  auto note = m_library->addNote("Test Note");
-  Q_CHECK_PTR(note);
-  QCOMPARE(m_library->items().size(), 1);
-  note->deleteItem();
-  QCOMPARE(m_library->items().size(), 0);
-}
+        auto task = todo->addTask();
 
-void LibraryTest::testDeleteImage()
-{
-  auto image = m_library->addImage("Test Image", "image.png");
-  Q_CHECK_PTR(image);
-  QCOMPARE(m_library->items().size(), 1);
-  image->deleteItem();
-  QCOMPARE(m_library->items().size(), 0);
-}
-
-void LibraryTest::testDeleteTodoList()
-{
-  auto todoList = m_library->addTodoList("Test Todo List");
-  Q_CHECK_PTR(todoList);
-  QCOMPARE(m_library->items().size(), 1);
-  todoList->deleteItem();
-  QCOMPARE(m_library->items().size(), 0);
+        QVERIFY(task != nullptr);
+        QCOMPARE(QQmlEngine::objectOwnership(task), QQmlEngine::CppOwnership);
+        QCOMPARE(task->todoUid(), todo->uid());
+    }
 }
 
 void LibraryTest::testTags()
 {
-    auto note1 = m_library->addNote("Note 1");
-    note1->setTags({"Tag 1", "Tag 2"});
-    auto note2 = m_library->addNote("Note 2");
-    note2->setTags({"Tag 4", "Tag 3"});
-    QCOMPARE(m_library->tags(), QStringList({"Tag 1", "Tag 2", "Tag 3", "Tag 4"}));
+    Library lib;
+    auto note1 = lib.addNote();
+    auto note2 = lib.addNote();
+
+    // Wait for addition to finish:
+    while (lib.topLevelItems()->count() < 2) {
+        QThread::msleep(10);
+    }
+
+    QCOMPARE(lib.tags(), QStringList());
+
+    QSignalSpy tagsChanged(&lib, &Library::tagsChanged);
+
+    note1->addTag("Foo");
+    QCOMPARE(tagsChanged.count(), 1);
+    QCOMPARE(lib.tags(), QStringList({"Foo"}));
+
+    note2->addTag("Foo");
+    note2->addTag("Bar");
+    QCOMPARE(tagsChanged.count(), 3);
+    QCOMPARE(lib.tags(), QStringList({"Bar", "Foo"}));
+
+    note2->setTags({});
+    QCOMPARE(tagsChanged.count(), 4);
+    QCOMPARE(lib.tags(), QStringList({"Foo"}));
+}
+
+void LibraryTest::testLoad()
+{
+    Library lib(m_dir->path());
+    lib.save();
+    lib.addNote();
+    lib.addImage();
+    auto todoList = lib.addTodoList();
+    auto todo = todoList->addTodo();
+    todo->addTask();
+
+    Library lib2(m_dir->path());
+    QSignalSpy loadingFinished(&lib2, &Library::loadingFinished);
+    QVERIFY(lib2.load());
+    QVERIFY(loadingFinished.wait(10000));
+    QThread::sleep(1);
+    QSet<QUuid> uuids;
+    QSet<QString> itemTypes;
+    QSet<QString> files;
+    QCOMPARE(lib2.topLevelItems()->count(), 3);
+    QCOMPARE(lib2.todos()->count(), 1);
+    QCOMPARE(lib2.tasks()->count(), 1);
+    uuids.insert(lib2.topLevelItems()->item(0)->uid());
+    uuids.insert(lib2.topLevelItems()->item(1)->uid());
+    uuids.insert(lib2.topLevelItems()->item(2)->uid());
+    uuids.insert(lib2.todos()->item(0)->uid());
+    uuids.insert(lib2.tasks()->item(0)->uid());
+    itemTypes.insert(lib2.topLevelItems()->item(0)->itemType());
+    itemTypes.insert(lib2.topLevelItems()->item(1)->itemType());
+    itemTypes.insert(lib2.topLevelItems()->item(2)->itemType());
+    itemTypes.insert(lib2.todos()->item(0)->itemType());
+    itemTypes.insert(lib2.tasks()->item(0)->itemType());
+    files.insert(lib2.topLevelItems()->item(0)->filename());
+    files.insert(lib2.topLevelItems()->item(1)->filename());
+    files.insert(lib2.topLevelItems()->item(2)->filename());
+    files.insert(lib2.todos()->item(0)->filename());
+    files.insert(lib2.tasks()->item(0)->filename());
+    QCOMPARE(uuids.count(), 5);
+    QCOMPARE(itemTypes.count(), 5);
+    QCOMPARE(files.count(), 5);
+}
+
+void LibraryTest::testDeleteLibrary()
+{
+    QDir dir(m_dir->path() + "/Library");
+    QVERIFY(dir.mkpath("."));
+    auto lib = new Library(dir.absolutePath());
+    lib->save();
+    {
+        QVERIFY(lib->addNote() != nullptr);
+        QVERIFY(lib->addImage() != nullptr);
+        auto todoList = lib->addTodoList();
+        QVERIFY(todoList != nullptr);
+        auto todo = todoList->addTodo();
+        QVERIFY(todo != nullptr);
+        QVERIFY(todo->addTask() != nullptr);
+        QThread::sleep(1); // to prevent warnings
+    }
+
+    bool called = false;
+    int countdown = 10;
+    lib->deleteLibrary(false, [&]() { called = true; });
+    while (!called) {
+        --countdown;
+        QThread::sleep(1);
+    }
+    QVERIFY(called);
+    QVERIFY(countdown > 0);
+
+    // We wanted to preserve files, make sure directory is still there:
+    dir.refresh();
+    QVERIFY(dir.exists());
+
+
+    lib = new Library(dir.absolutePath());
+    QThread::sleep(1);
+
+    // Delete also files on disk:
+    called = false;
+    countdown = 10;
+    lib->deleteLibrary(true, [&]() { called = true; });
+    while (!called) {
+        --countdown;
+        QThread::sleep(1);
+    }
+    dir.refresh();
+    QVERIFY(!dir.exists());
 }
 
 void LibraryTest::cleanup()
 {
-  delete m_library;
-  delete m_dir;
+    delete m_dir;
 }
 
 QTEST_MAIN(LibraryTest)

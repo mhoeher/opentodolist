@@ -9,12 +9,12 @@ import "LibraryPageLogic.js" as Logic
 
 Item {
     id: page
-    
+
     property TodoList item: TodoList {}
     property var library: null
     property StackView stack: null
     property bool __visible: Stack.status === Stack.Active
-    
+
     function newTodo() {
         todos.focusNewItemInput();
         //newTodoBar.edit.forceActiveFocus();
@@ -23,19 +23,19 @@ Item {
 
     function cancel() {
     }
-    
+
     function deleteItem() {
         confirmDeleteDialog.open();
     }
-    
+
     function toggleDoneTodosVisible() {
         doneTodos.visible = !doneTodos.visible
     }
-    
+
     function find() {
         filterBar.edit.forceActiveFocus()
     }
-    
+
     MessageDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo List?")
@@ -47,71 +47,78 @@ Item {
             stack.pop();
         }
     }
-    
+
     RenameItemDialog {
         id: renameItemDialog
     }
-    
-    TodosModel {
+
+    ItemsSortFilterModel {
         id: todosModel
-        todoList: page.item
+        sourceModel: ItemsModel {
+            id: allTodosModel
+            container: page.library.todos
+        }
+        filterFunction: function(row) {
+            var idx = allTodosModel.index(row, 0);
+            var todo = allTodosModel.data(idx, ItemsModel.ItemRole);
+            return todo.todoListUid === page.item.uid;
+        }
     }
-    
-    FilterModel {
+
+    ItemsSortFilterModel {
         id: undoneTodosModel
         sourceModel: todosModel
         filterFunction: function(i) {
-            var todo = sourceModel.data(sourceModel.index(i, 0), TodosModel.ObjectRole);
-            var filterText = filterBar.text;
+            var todo = sourceModel.data(sourceModel.index(i, 0), ItemsModel.ItemRole);
             return !todo.done;
         }
     }
-    
-    FilterModel {
+
+    ItemsSortFilterModel {
         id: doneTodosModel
         sourceModel: todosModel
         filterFunction: function(i) {
-            var todo = sourceModel.data(sourceModel.index(i, 0), TodosModel.ObjectRole);
+            var todo = sourceModel.data(sourceModel.index(i, 0), ItemsModel.ObjectRole);
             return todo.done;
         }
     }
-    
+
     TextInputBar {
         id: filterBar
-        
+
         placeholderText: qsTr("Search term 1, search term 2, ...")
         symbol: Fonts.symbols.faTimes
         color: Colors.secondary2
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
-        
+
         onTextChanged: {
             function match(todo) {
                 return Logic.itemMatchesFilterWithDefault(todo, text, true);
             }
             undoneTodosModel.filterFunction = function(i) {
                 var todo = undoneTodosModel.sourceModel.data(
-                            undoneTodosModel.sourceModel.index(i, 0), TodosModel.ObjectRole);
+                            undoneTodosModel.sourceModel.index(i, 0), ItemsModel.ItemRole);
                 return !todo.done && match(todo);
             }
             doneTodosModel.filterFunction = function(i) {
                 var todo = doneTodosModel.sourceModel.data(
-                            doneTodosModel.sourceModel.index(i, 0), TodosModel.ObjectRole);
+                            doneTodosModel.sourceModel.index(i, 0), ItemsModel.ItemRole);
                 return todo.done && match(todo);
             }
         }
     }
-    
+
     Rectangle {
         color: Qt.lighter(Colors.itemColor(item.color), 1.1)
         opacity: 0.3
         anchors.fill: parent
     }
-    
+
     ScrollView {
         id: scrollView
-        
+
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         anchors {
             left: parent.left
@@ -120,17 +127,17 @@ Item {
             top: filterBar.bottom
             topMargin: filterBar.shown ? (filterBar.contentHeight - filterBar.height) : 0
         }
-        
+
         Column {
             width: scrollView.viewport.width
             spacing: Globals.defaultMargin
-            
+
             MouseArea {
                 onClicked: renameItemDialog.renameItem(item)
                 height: childrenRect.height
                 width: parent.width
                 cursorShape: Qt.PointingHandCursor
-                
+
                 Label {
                     text: item.title
                     anchors {
@@ -145,11 +152,11 @@ Item {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
             }
-            
+
             TodoListView {
                 id: todos
                 function openTodo(todo) {
-                    stack.push({item: todoPage, properties: { todo: todo } })
+                    stack.push({item: todoPage, properties: { todo: todo, library: page.library } })
                 }
 
                 model: undoneTodosModel
@@ -161,13 +168,14 @@ Item {
                 allowEntryCreation: true
                 onTodoSelected: openTodo(todo)
                 onAddEntry: {
-                    var todo = page.item.addTodo(title);
+                    var todo = page.item.addTodo();
+                    todo.title = title;
                     if (openItem) {
                         todos.openTodo(todo);
                     }
                 }
             }
-            
+
             Symbol {
                 anchors {
                     right: parent.right
@@ -177,7 +185,7 @@ Item {
                 visible: doneTodosModel.count > 0
                 onClicked: doneTodos.visible = !doneTodos.visible
             }
-            
+
             TodoListView {
                 id: doneTodos
                 function openTodo(todo) {
@@ -193,7 +201,7 @@ Item {
                 }
                 onTodoSelected: openTodo(object)
             }
-            
+
             StickyNote {
                 id: note
                 anchors {
@@ -210,7 +218,7 @@ Item {
                     item.onReloaded.connect(function() { page.text = item.notes; });
                 }
             }
-            
+
             TagsEditor {
                 item: page.item
                 library: page.library
@@ -220,7 +228,7 @@ Item {
                     margins: Globals.defaultMargin * 2
                 }
             }
-            
+
             Item {
                 height: Globals.defaultMargin
                 anchors {
@@ -229,18 +237,18 @@ Item {
                     margins: Globals.defaultMargin * 2
                 }
             }
-            
+
             Component {
                 id: notesEditor
-                
+
                 RichTextEditor {
                     Component.onCompleted: forceActiveFocus()
                 }
             }
-            
+
             Component {
                 id: todoPage
-                
+
                 TodoPage {
                     stack: page.stack
                 }

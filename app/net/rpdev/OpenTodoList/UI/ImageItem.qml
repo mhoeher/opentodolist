@@ -5,20 +5,21 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 MouseArea {
     id: item
-    
+
+    property Library library: null
     property ImageTopLevelItem libraryItem: ImageTopLevelItem {}
-    
+
     hoverEnabled: !Globals.touchEnabled
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    
+
     DropShadow {
         sourceItem: background
         hovered: item.containsMouse
     }
-    
+
     Rectangle {
         id: background
-        
+
         anchors {
             fill: parent
             margins: item.containsMouse ? Globals.defaultMargin / 2 : Globals.defaultMargin
@@ -30,11 +31,11 @@ MouseArea {
             width: 1
             color: Colors.itemDelimiter
         }
-        
+
         Image {
             id: image
             asynchronous: true
-            source: App.localFileToUrl(libraryItem.directory + "/" + libraryItem.image)
+            source: libraryItem.imageUrl
             anchors {
                 fill: parent
                 margins: Globals.defaultMargin
@@ -42,7 +43,7 @@ MouseArea {
 
             fillMode: Image.PreserveAspectFit
         }
-        
+
         Behavior on anchors.margins {
             SmoothedAnimation {
                 duration: Globals.defaultAnimationTime

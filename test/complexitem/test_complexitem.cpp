@@ -2,49 +2,50 @@
 
 #include <QTemporaryDir>
 #include <QObject>
+#include <QSignalSpy>
 #include <QTest>
 
 class ComplexItemTest : public QObject
 {
   Q_OBJECT
-  
+
 private slots:
-  
+
   void initTestCase() {}
-  void testConstructor();
+  void testProperties();
   void testPersistence();
   void cleanupTestCase() {}
 };
 
-void ComplexItemTest::testConstructor()
+void ComplexItemTest::testProperties()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Unable to create temporary directory.");
-  auto item = new ComplexItem(dir.path());
-  Q_CHECK_PTR(item);
-  QCOMPARE(item->itemType(), ComplexItem::ItemType);
-  delete item;
+    ComplexItem item;
+    QSignalSpy dueToChanged(&item, &ComplexItem::dueToChanged);
+    QSignalSpy notesChanged(&item, &ComplexItem::notesChanged);
+
+    item.setDueTo(QDateTime::currentDateTime());
+    item.setNotes("Hello World");
+
+    QCOMPARE(dueToChanged.count(), 1);
+    QCOMPARE(notesChanged.count(), 1);
 }
 
 void ComplexItemTest::testPersistence()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Unable to create temporary directory.");
-  auto item = new ComplexItem(dir.path());
-  Q_CHECK_PTR(item);
-  QDateTime dueTo = QDateTime::currentDateTime();
-  QString notes = "Test Notes";
-  item->setDueTo(dueTo);
-  item->setNotes(notes);
-  // Date times are stored only at a second basis, so read back:
-  dueTo = item->dueTo();
-  item->commitItem();
-  delete item;
-  item = new ComplexItem(dir.path());
-  Q_CHECK_PTR(item);
-  QCOMPARE(item->dueTo(), dueTo);
-  QCOMPARE(item->notes(), notes);
-  delete item;
+    ComplexItem item, anotherItem;
+    QSignalSpy dueToChanged(&anotherItem, &ComplexItem::dueToChanged);
+    QSignalSpy notesChanged(&anotherItem, &ComplexItem::notesChanged);
+
+    item.setDueTo(QDateTime::currentDateTime());
+    item.setNotes("Hello World");
+
+    anotherItem.fromVariant(item.toVariant());
+
+    QCOMPARE(dueToChanged.count(), 1);
+    QCOMPARE(notesChanged.count(), 1);
+
+    QCOMPARE(item.dueTo(), anotherItem.dueTo());
+    QCOMPARE(item.notes(), anotherItem.notes());
 }
 
 QTEST_MAIN(ComplexItemTest)

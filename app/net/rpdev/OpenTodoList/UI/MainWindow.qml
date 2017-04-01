@@ -11,13 +11,13 @@ import "MainWindowLogic.js" as Logic
 
 ApplicationWindow {
     id: window
-    
+
     signal openLocalLibrary()
-    
+
     function focus() {
         rootItem.forceActiveFocus();
     }
-    
+
     property Item helpPage: null
     property MenuBar __menuBar: MenuBar {
         Menu {
@@ -26,7 +26,7 @@ ApplicationWindow {
                 id: addLocalLibraryItem
                 text: qsTr("&Add Local Library")
                 shortcut: StandardKey.Open
-                enabled: stack.depth <= 1
+                enabled: stackView.depth <= 1
                 onTriggered: openLocalLibraryDialog.open()
             }
             MenuItem {
@@ -35,15 +35,15 @@ ApplicationWindow {
                 onTriggered: Qt.quit();
             }
         }
-        
+
         Menu {
             title: qsTr("Navigate")
             MenuItem {
                 id: findItem
                 text: qsTr("Find")
-                enabled: stack.currentItem && (typeof(stack.currentItem["find"]) === "function")
+                enabled: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
                 shortcut: StandardKey.Find
-                onTriggered: stack.currentItem.find()
+                onTriggered: stackView.currentItem.find()
             }
             MenuItem {
                 text: qsTr("Show Library Sidebar")
@@ -54,69 +54,69 @@ ApplicationWindow {
             }
             MenuItem {
                 text: qsTr("Back")
-                enabled: stack.depth > 1
+                enabled: stackView.depth > 1
                 shortcut: StandardKey.Back
-                onTriggered: Logic.goBack(stack)
+                onTriggered: Logic.goBack(stackView)
             }
             MenuItem {
                 text: qsTr("Up")
-                enabled: stack.currentItem && (typeof(stack.currentItem["goUp"]) === "function")
+                enabled: stackView.currentItem && (typeof(stackView.currentItem["goUp"]) === "function")
                 visible: enabled
                 shortcut: qsTr("Alt+Up")
-                onTriggered: stack.currentItem.goUp()
+                onTriggered: stackView.currentItem.goUp()
             }
         }
-        
+
         Menu {
             id: itemsMenu
-            
+
             title: qsTr("&Items")
             visible: leftSideBar.currentLibrary !== null
-            
+
             MenuItem {
                 id: newNoteItem
                 text: qsTr("New &Note")
-                enabled: stack.currentItem && typeof(stack.currentItem["newNote"]) === "function"
+                enabled: stackView.currentItem && typeof(stackView.currentItem["newNote"]) === "function"
                 shortcut: qsTr("Ctrl+Shift+N")
-                onTriggered: stack.currentItem.newNote()
+                onTriggered: stackView.currentItem.newNote()
             }
             MenuItem {
                 id: newImageItem
                 text: qsTr("New &Image")
                 shortcut: qsTr("Ctrl+Shift+I")
-                enabled: stack.currentItem && typeof(stack.currentItem["newImage"]) === "function"
-                onTriggered: stack.currentItem.newImage()
+                enabled: stackView.currentItem && typeof(stackView.currentItem["newImage"]) === "function"
+                onTriggered: stackView.currentItem.newImage()
             }
             MenuItem {
                 id: newTodoListItem
                 text: qsTr("New &Todo List");
                 shortcut: qsTr("Ctrl+Shift+T")
-                enabled: stack.currentItem && typeof(stack.currentItem["newTodoList"]) === "function"
-                onTriggered: stack.currentItem.newTodoList()
+                enabled: stackView.currentItem && typeof(stackView.currentItem["newTodoList"]) === "function"
+                onTriggered: stackView.currentItem.newTodoList()
             }
             MenuItem {
                 id: newTodoItem
                 text: qsTr("New T&odo");
                 shortcut: qsTr("Ctrl+Shift+O")
-                enabled: stack.currentItem && typeof(stack.currentItem["newTodo"]) === "function"
-                onTriggered: stack.currentItem.newTodo()
+                enabled: stackView.currentItem && typeof(stackView.currentItem["newTodo"]) === "function"
+                onTriggered: stackView.currentItem.newTodo()
             }
             MenuItem {
                 id: newTaskItem
                 text: qsTr("New T&ask");
                 shortcut: qsTr("Ctrl+Shift+A")
-                enabled: stack.currentItem && typeof(stack.currentItem["newTask"]) === "function"
-                onTriggered: stack.currentItem.newTask()
+                enabled: stackView.currentItem && typeof(stackView.currentItem["newTask"]) === "function"
+                onTriggered: stackView.currentItem.newTask()
             }
             MenuSeparator {}
             MenuItem {
-                property Item item: Logic.parentItemHavingFunction(activeFocusItem, 
+                property Item item: Logic.parentItemHavingFunction(activeFocusItem,
                                                                    "createItemAndOpen")
                 text: qsTr("&Create Item")
                 enabled: item
                 shortcut: qsTr("Return")
                 onTriggered: item.createItem()
-                
+
             }
             MenuItem {
                 property Item item: Logic.parentItemHavingFunction(activeFocusItem, "createItem")
@@ -128,23 +128,23 @@ ApplicationWindow {
             MenuSeparator {}
             MenuItem {
                 text: qsTr("Show Done Todos")
-                enabled: stack.currentItem && 
-                         (typeof(stack.currentItem['toggleDoneTodosVisible']) === "function")
+                enabled: stackView.currentItem &&
+                         (typeof(stackView.currentItem['toggleDoneTodosVisible']) === "function")
                 shortcut: qsTr("Ctrl+Shift+H")
-                onTriggered: stack.currentItem.toggleDoneTodosVisible()
+                onTriggered: stackView.currentItem.toggleDoneTodosVisible()
             }
         }
-        
+
         Menu {
             id: editMenu
-            
+
             title: qsTr("&Edit")
-            
+
             ColorMenu {
                 id: colorMenu
-                item: stack.currentItem && stack.currentItem["item"] ? stack.currentItem.item : null
+                item: stackView.currentItem && stackView.currentItem["item"] ? stackView.currentItem.item : null
             }
-            
+
             MenuItem {
                 id: copyItem
                 text: qsTr("&Copy")
@@ -167,7 +167,7 @@ ApplicationWindow {
                 onTriggered: activeFocusItem.paste()
             }
         }
-        
+
         RichTextEditorFormatMenu {
             id: formatMenu
             onParagraphStyleChanged: {
@@ -180,10 +180,10 @@ ApplicationWindow {
                 styleComboBox.currentIndex = 0;
             }
         }
-        
+
         Menu {
             title: qsTr("Help")
-            
+
             MenuItem {
                 text: qsTr("Check for updates...")
                 visible: App.hasUpdateService
@@ -196,13 +196,13 @@ ApplicationWindow {
                 shortcut: StandardKey.HelpContents
                 onTriggered: {
                     if (helpPage) {
-                        stack.pop(helpPage);
+                        stackView.pop(helpPage);
                     } else {
                         leftSideBar.currentLibrary = null;
                         leftSideBar.currentTag = "";
-                        helpPage = stack.push({item: aboutPage, 
-                                                  properties: { 
-                                                      stack: stack,
+                        helpPage = stackView.push({item: aboutPage,
+                                                  properties: {
+                                                      stack: stackView,
                                                       onClosed: function() { helpPage = null; }
                                                   }});
                     }
@@ -224,15 +224,15 @@ ApplicationWindow {
             }
         }
     }
-    
+
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
     width: 640
     height: 480
 
-    
+
     menuBar: Globals.touchEnabled ? null : __menuBar
-    
+
     toolBar: ToolBar {
         height: Globals.minButtonHeight * 1.5
 
@@ -249,32 +249,32 @@ ApplicationWindow {
             Row {
                 id: toolBarLeftButtonGroup
                 height: parent.height
-    
+
                 Symbol {
                     symbol: Fonts.symbols.faArrowLeft
-                    visible: stack.currentItem && typeof(stack.currentItem["cancel"]) === "function"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["cancel"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
-                    onClicked: Logic.cancelCurrent(stack)
+                    onClicked: Logic.cancelCurrent(stackView)
                 }
                 Symbol {
                     id: sidebarControl
                     symbol: Fonts.symbols.faBars
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: leftSideBar.compact && stack.depth <= 1
+                    visible: leftSideBar.compact && stackView.depth <= 1
                     checked: leftSideBar.showing
                     onClicked: leftSideBar.showing = !leftSideBar.showing
                 }
                 Symbol {
                     symbol: Fonts.symbols.faArrowUp
-                    visible: stack.currentItem && typeof(stack.currentItem["goUp"]) === "function"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["goUp"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
-                    onClicked: stack.currentItem.goUp()
+                    onClicked: stackView.currentItem.goUp()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faHome
-                    visible: stack.currentItem && typeof(stack.currentItem["goHome"]) === "function"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["goHome"]) === "function"
                     anchors.verticalCenter: parent.verticalCenter
-                    onClicked: stack.currentItem.goHome()
+                    onClicked: stackView.currentItem.goHome()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faStickyNoteO
@@ -441,16 +441,16 @@ ApplicationWindow {
                     }
                 }
             }
-        }        
-        
+        }
+
         Row {
             id: toolBarRightButtonGroup
-            
+
             anchors {
                 right: parent.right
             }
             height: parent.height
-            
+
             Symbol {
                 symbol: Fonts.symbols.faSearch
                 visible: findItem.enabled
@@ -477,19 +477,19 @@ ApplicationWindow {
             }
             Symbol {
                 symbol: Fonts.symbols.faTrashO
-                visible: stack.currentItem && typeof(stack.currentItem["deleteItem"]) === "function"
+                visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: stack.currentItem.deleteItem()
+                onClicked: stackView.currentItem.deleteItem()
             }
             Symbol {
                 symbol: Fonts.symbols.faCheck
-                visible: stack.currentItem && typeof(stack.currentItem["save"]) === "function"
+                visible: stackView.currentItem && typeof(stackView.currentItem["save"]) === "function"
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: Logic.saveCurrent(stack)
+                onClicked: Logic.saveCurrent(stackView)
             }
         }
     }
-    
+
     Component.onCompleted: {
         Globals.appWindow = window;
         width = App.loadValue("width", width);
@@ -511,15 +511,15 @@ ApplicationWindow {
             }
         });
     }
-    
+
     onClosing: {
         if (Qt.platform.os == "android") {
             if (leftSideBar.compact && leftSideBar.showing) {
                 leftSideBar.showing = false;
                 close.accepted = false;
                 return;
-            } else if (stack.depth > 1) {
-                Logic.cancelCurrent(stack);
+            } else if (stackView.depth > 1) {
+                Logic.cancelCurrent(stackView);
                 close.accepted = false;
                 console.error("Handled close request.");
                 return;
@@ -527,31 +527,31 @@ ApplicationWindow {
         }
         close.accepted = true;
     }
-    
+
     FocusScope {
         id: rootItem
-        
+
         focus: true
         anchors.fill: parent
-        
+
         FileBrowser {
             id: openLocalLibraryDialog
-            stack: stack
+            stack: stackView
             title: qsTr("Open Local Library")
             selectFolder: true
             //folder: shortcuts.home //TODO: Why is this not working?
             selectExisting: false
             onAccepted: leftSideBar.currentLibrary = App.addLocalLibrary(fileUrl)
         }
-        
+
         Image {
             anchors.fill: parent
             source: "cork_1/cork_1.png"
             fillMode: Image.Tile
         }
-        
+
         StackView {
-            id: stack
+            id: stackView
             anchors {
                 left: leftSideBar.right
                 top: parent.top
@@ -560,7 +560,7 @@ ApplicationWindow {
             }
             clip: true
         }
-        
+
         LibrariesSideBar {
             id: leftSideBar
             anchors {
@@ -571,22 +571,22 @@ ApplicationWindow {
             width: 15 * Globals.fontPixelSize
             edge: Qt.LeftEdge
             compact: applicationWindow.width <= Globals.fontPixelSize * 60
-            onCurrentLibraryChanged: Logic.viewLibrary(stack, currentLibrary, currentTag, libraryPage)
-            onCurrentTagChanged: Logic.viewLibrary(stack, currentLibrary, currentTag, libraryPage)
-            onOpenLocalLibrary: openLocalLibraryDialog.open()
+            onCurrentLibraryChanged: Logic.viewLibrary(stackView, currentLibrary, currentTag, libraryPage)
+            onCurrentTagChanged: Logic.viewLibrary(stackView, currentLibrary, currentTag, libraryPage)
+            onNewLibrary: stackView.push(newLibraryPage)
             onAboutPageRequested: showAboutPageMenuItem.trigger()
         }
-        
+
         MouseArea {
-            anchors.fill: stack
-            enabled: stack.busy
+            anchors.fill: stackView
+            enabled: stackView.busy
         }
-        
+
         Rectangle {
             id: updateNotificationBar
-            
+
             property bool shown: App.updatesAvailable && App.hasUpdateService
-            
+
             anchors {
                 left: leftSideBar.right
                 right: parent.right
@@ -594,7 +594,7 @@ ApplicationWindow {
             height: updateNotificationBarLayout.height + Globals.defaultMargin
             color: Colors.makeTransparent(Colors.primary, 0.3)
             y: shown ? parent.height - height : parent.height
-            
+
             RowLayout {
                 id: updateNotificationBarLayout
                 anchors {
@@ -603,7 +603,7 @@ ApplicationWindow {
                     right: parent.right
                     margins: Globals.defaultMargin
                 }
-                
+
                 Label {
                     text: qsTr( "A new version of OpenTodoList is available.")
                     Layout.fillWidth: true
@@ -621,30 +621,42 @@ ApplicationWindow {
                     }
                 }
             }
-            
+
             Connections {
                 target: App
                 onUpdatesAvailableChanged:
                     updateNotificationBar.shown = App.updatesAvailable && App.hasUpdateService
             }
         }
-        
+
         Component {
             id: libraryPage
             LibraryPage {
                 onItemClicked: {
-                    stack.push({item: Globals.file("/net/rpdev/OpenTodoList/UI/" +
+                    stackView.push({item: Globals.file("/net/rpdev/OpenTodoList/UI/" +
                                       item.itemType + "Page.qml"),
-                                   properties: { item: item, library: library, stack: stack } });
+                                   properties: { item: item, library: library, stack: stackView } });
                 }
-                stackView: stack
             }
         }
-        
+
         Component {
             id: aboutPage
             AboutPage {}
         }
-        
+
+        Component {
+            id: newLibraryPage
+            NewLibraryPage {
+                stack: stackView
+                onNewLibrary: {
+                    var library = App.addLibrary(location);
+                    library.name = name;
+                    leftSideBar.currentLibrary = library;
+                    leftSideBar.currentTag = "";
+                }
+            }
+        }
+
     }
 }

@@ -7,19 +7,19 @@ import net.rpdev.OpenTodoList.UI 1.0
 
 Item {
     id: page
-    
+
     property ImageTopLevelItem item: ImageTopLevelItem {}
     property StackView stack: null
     property var library: null
     property bool __visible: Stack.status === Stack.Active
-    
+
     function cancel() {
     }
-    
+
     function deleteItem() {
         confirmDeleteDialog.open();
     }
-    
+
     MessageDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Image?")
@@ -31,7 +31,7 @@ Item {
             stack.pop();
         }
     }
-    
+
     RenameItemDialog {
         id: renameItemDialog
     }
@@ -41,23 +41,23 @@ Item {
         opacity: 0.3
         anchors.fill: parent
     }
-    
+
     ScrollView {
         id: scrollView
-        
+
         horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
         anchors.fill: parent
-        
+
         Column {
-            width: scrollView.viewport.width
+            width: scrollView.flickableItem.width
             spacing: Globals.defaultMargin
-            
+
             MouseArea {
                 onClicked: renameItemDialog.renameItem(item)
                 height: childrenRect.height
                 width: parent.width
                 cursorShape: Qt.PointingHandCursor
-                
+
                 Label {
                     text: item.title
                     anchors {
@@ -72,11 +72,11 @@ Item {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
             }
-            
+
             Image {
                 id: image
                 visible: item.validImage
-                source: item.validImage ? App.localFileToUrl(item.directory + "/" + item.image) : ""
+                source: item.imageUrl
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -85,7 +85,7 @@ Item {
                 asynchronous: true
                 fillMode: Image.PreserveAspectFit
             }
-            
+
             StickyNote {
                 id: note
                 anchors {
@@ -102,7 +102,7 @@ Item {
                     item.onReloaded.connect(function() { page.text = item.notes; });
                 }
             }
-            
+
             TagsEditor {
                 item: page.item
                 library: page.library
@@ -112,7 +112,7 @@ Item {
                     margins: Globals.defaultMargin * 2
                 }
             }
-            
+
             Item {
                 height: Globals.defaultMargin
                 anchors {
@@ -121,10 +121,10 @@ Item {
                     margins: Globals.defaultMargin * 2
                 }
             }
-            
+
             Component {
                 id: notesEditor
-                
+
                 RichTextEditor {
                     Component.onCompleted: forceActiveFocus()
                 }

@@ -2,65 +2,105 @@
 
 #include <QDir>
 #include <QObject>
+#include <QSignalSpy>
 #include <QTest>
 #include <QTemporaryDir>
 
 class ItemTest : public QObject
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 private slots:
-  
-  void initTestCase() {}
-  void testConstructor();
-  void testPersistence();
-  void testDeleteItem();
-  void cleanupTestCase() {}
-  
+
+    void initTestCase() {}
+    void init();
+    void testProperties();
+    void testPersistence();
+    void testDeleteItem();
+    void cleanup();
+    void cleanupTestCase() {}
+
+private:
+
+    QTemporaryDir *m_dir;
+
 };
 
 
-
-void ItemTest::testConstructor()
+void ItemTest::init()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  Item item(dir.path());
-  QCOMPARE(item.directory(), dir.path());
+    m_dir = new QTemporaryDir();
+}
+
+void ItemTest::testProperties()
+{
+    Item item;
+    QSignalSpy uidChanged(&item, &Item::uidChanged);
+    QSignalSpy titleChanged(&item, &Item::titleChanged);
+    QSignalSpy filenameChanged(&item, &Item::filenameChanged);
+    QSignalSpy weightChanged(&item, &Item::weightChanged);
+
+    item.setTitle("Hello World");
+    item.setWeight(1.0);
+
+    QCOMPARE(item.title(), QString("Hello World"));
+    QVERIFY(qFuzzyCompare(item.weight(), 1.0));
+
+    QCOMPARE(uidChanged.count(), 0);
+    QCOMPARE(titleChanged.count(), 1);
+    QCOMPARE(filenameChanged.count(), 0);
+    QCOMPARE(weightChanged.count(), 1);
 }
 
 void ItemTest::testPersistence()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  auto item = new Item(dir.path());
-  Q_CHECK_PTR(item);
-  item->setTitle("TestItem");
-  QUuid uid = item->uid();
-  item->commitItem();
-  delete item;
-  item = new Item(dir.path());
-  Q_CHECK_PTR(item);
-  QCOMPARE(item->title(), QString("TestItem"));
-  QCOMPARE(item->uid(), uid);
-  delete item;
+    Item item(QDir(m_dir->path())), anotherItem;
+    QSignalSpy uidChanged(&anotherItem, &Item::uidChanged);
+    QSignalSpy titleChanged(&anotherItem, &Item::titleChanged);
+    QSignalSpy filenameChanged(&anotherItem, &Item::filenameChanged);
+    QSignalSpy weightChanged(&anotherItem, &Item::weightChanged);
+
+    item.setTitle("Hello World");
+    item.setWeight(1.0);
+
+    anotherItem.fromVariant(item.toVariant());
+
+    QCOMPARE(anotherItem.uid(), item.uid());
+    QCOMPARE(anotherItem.title(), item.title());
+    QCOMPARE(anotherItem.filename(), item.filename());
+    QCOMPARE(anotherItem.weight(), item.weight());
+
+    QCOMPARE(uidChanged.count(), 1);
+    QCOMPARE(titleChanged.count(), 1);
+    QCOMPARE(filenameChanged.count(), 1);
+    QCOMPARE(weightChanged.count(), 1);
+
+    Item thirdItem(item.filename());
+    thirdItem.load();
+    QCOMPARE(thirdItem.uid(), item.uid());
+    QCOMPARE(thirdItem.title(), item.title());
+    QCOMPARE(thirdItem.filename(), item.filename());
+    QCOMPARE(thirdItem.weight(), item.weight());
 }
 
 void ItemTest::testDeleteItem()
 {
-  QTemporaryDir dir;
-  QVERIFY2(dir.isValid(), "Failed to create temporary directory.");
-  QString itemDir = dir.path() + "/itemdir";
-  auto item = new Item(itemDir);
-  Q_CHECK_PTR(item);
-  QVERIFY2(QDir(itemDir).exists(), "Item was not created in the expected location.");
-  bool itemDeletedSignalEmitted = false;
-  connect(item, &Item::itemDeleted, 
-          [&itemDeletedSignalEmitted](Item*) { itemDeletedSignalEmitted = true; });
-  QVERIFY2(item->deleteItem(), "Failed to delete item.");
-  QVERIFY2(itemDeletedSignalEmitted, "The Item::itemDeleted() signal was not emitted.");
-  QVERIFY2(!QDir(itemDir).exists(), "Item directory should have been deleted!");
-  delete item;
+    Item item(QDir(m_dir->path()));
+    QVERIFY(item.save());
+    {
+        QDir dir(m_dir->path());
+        QCOMPARE(dir.entryList(QDir::Files).length(), 1);
+    }
+    QVERIFY(item.deleteItem());
+    {
+        QDir dir(m_dir->path());
+        QCOMPARE(dir.entryList(QDir::Files).length(), 0);
+    }
+}
+
+void ItemTest::cleanup()
+{
+    delete m_dir;
 }
 
 QTEST_MAIN(ItemTest)

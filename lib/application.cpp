@@ -1,11 +1,8 @@
 #include "application.h"
 
-#include "locallibraryfactory.h"
-
-#include "migrator_1_x_to_2_x.h"
-
 #include <QCoreApplication>
 #include <QDebug>
+#include <QDateTime>
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
@@ -14,225 +11,166 @@
 #include <QStandardPaths>
 #include <QTimer>
 
+#include "migrators/migrator_2_x_to_3_x.h"
+
+
 /**
-   @brief Constructor.
-   
-   Creates a new Application object. The instance will be a child of the given @p parent.
+ * @brief Constructor.
+ *
+ * Creates a new Application object. The instance will be a child of the given @p parent.
  */
-Application::Application(QObject *parent) : QObject(parent),
-  m_defaultLibrary(nullptr),
-  m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                           QCoreApplication::organizationName(),
-                           QCoreApplication::applicationName(), this)),
-  m_loadingLibraries(false),
-  m_isInCustomLocation(false),
-  m_updatesAvailable(false)
+Application::Application(QObject *parent) :
+    QObject(parent),
+    m_defaultLibrary(nullptr),
+    m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
+                             QCoreApplication::organizationName(),
+                             QCoreApplication::applicationName(), this)),
+    m_loadingLibraries(false),
+    m_updatesAvailable(false)
 {
-  Q_CHECK_PTR(m_settings);
-  createFactories();
-  loadLibraries();
-  
-  checkForUpdates(); // Check for updates when we start....
-  QTimer *timer = new QTimer(this);
-  timer->setInterval(1000*60*60); // And every hour.
-  connect(timer, &QTimer::timeout, [this] {
-    checkForUpdates();
-  });
+    loadLibraries();
+
+    checkForUpdates(); // Check for updates when we start....
+    QTimer *timer = new QTimer(this);
+    timer->setInterval(1000*60*60); // And every hour.
+    connect(timer, &QTimer::timeout, [this] {
+        checkForUpdates();
+    });
 }
 
+/**
+ * @brief Constructor.
+ *
+ * Creates a new Application object working with the given @p settings object.
+ */
 Application::Application(QSettings *settings, QObject *parent) :
-  QObject(parent),
-  m_settings(settings),
-  m_loadingLibraries(false),
-  m_isInCustomLocation(true),
-  m_updatesAvailable(false)
+    QObject(parent),
+    m_defaultLibrary(nullptr),
+    m_settings(settings),
+    m_loadingLibraries(false),
+    m_updatesAvailable(false)
 {
-  Q_CHECK_PTR(m_settings);
-  createFactories();
-  loadLibraries();
-  
-  checkForUpdates(); // Check for updates when we start....
-  QTimer *timer = new QTimer(this);
-  timer->setInterval(1000*60*60); // And every hour.
-  connect(timer, &QTimer::timeout, [this] {
-    checkForUpdates();
-  });
+    Q_CHECK_PTR(m_settings);
+    loadLibraries();
+
+    checkForUpdates(); // Check for updates when we start....
+    QTimer *timer = new QTimer(this);
+    timer->setInterval(1000*60*60); // And every hour.
+    connect(timer, &QTimer::timeout, [this] {
+        checkForUpdates();
+    });
 }
 
+/**
+ * @brief Destructor.
+ */
 Application::~Application()
 {
 }
 
 /**
-   @brief Return the list of all library factory IDs.
-   
-   This method returns the list of all LibraryFactory IDs (cf LibraryFactory::id()) registered
-   in the Application.
-   
-   @sa Application::libraryFactoryForType()
- */
-QStringList Application::libraryTypes() const
-{
-  QStringList result;
-  for (auto factory : m_libraryFactories) {
-    result << factory->id();
-  }
-  result.sort();
-  return result;
-}
-
-/**
-   @brief Return the LibraryFactory for a given type of library.
-   
-   This method returns the LibraryFactory where the LibraryFactory::id() equals the
-   given @p factoryId. If no such library is found, returns a nullptr.
-   @param factoryId
-   @return 
- */
-LibraryFactory *Application::libraryFactoryForType(const QString &factoryId) const
-{
-  for (auto factory : m_libraryFactories) {
-    if (factory->id() == factoryId) {
-      return factory;
-    }
-  }
-  return nullptr;
-}
-
-/**
-   @brief Create a new library.
-   
-   This method creates a new library using the factory identified by the @p factoryId
-   and passing it the @p args.
- */
-Library *Application::addLibrary(const QString &factoryId,
-                                 const QString &name,
-                                 const QString &directory,
-                                 const QVariantMap &args)
-{
-  auto factory = libraryFactoryForType(factoryId);
-  if (factory) {
-    auto library = factory->createLibrary(name, directory, args, this);
-    if (library) {
-      m_libraries.append(library);
-      connect(library, &Library::libraryDeleted, this, &Application::onLibraryDeleted);
-      connect(library, &Library::tagsChanged, this, &Application::saveLibraries);
-      saveLibraries();
-      emit librariesChanged();
-      return library;
-    }
-  }
-  return nullptr;
-}
-
-/**
-   @brief Add a local library.
-   
-   This is a convenience wrapper which calls addLibrary() with the ID LocalLibraryFactory::ID.
-   Hence, this basically adding a local directory of a library to the application.
- */
-Library *Application::addLocalLibrary(const QString &name, const QString &directory)
-{
-  return addLibrary(LocalLibraryFactory::ID, name, directory);
-}
-
-/**
-   @brief Add a local library.
-   
-   This is an overloaded version of the addLocalLibrary() method. This version uses the directory
-   name of the @p directory also as name of the library.
- */
-Library *Application::addLocalLibrary(const QString &directory)
-{
-  QFileInfo fi(directory);
-  return addLocalLibrary(fi.fileName(), directory);
-}
-
-/**
-   @brief Add a local library.
-   
-   This is an overloaded version of addLocalLibrary(), which takes the @p directory as a URL.
- */
-Library *Application::addLocalLibrary(const QUrl &directory)
-{
-  return addLocalLibrary(directory.toLocalFile());
-}
-
-/**
-   @brief Returns the libraries as a QML list property.
+ * @brief Returns the libraries as a QML list property.
  */
 QQmlListProperty<Library> Application::libraryList()
 {
-  return QQmlListProperty<Library>(this, nullptr, librariesCount, librariesAt);
+    return QQmlListProperty<Library>(this, nullptr, librariesCount, librariesAt);
 }
 
 /**
-   @brief Save a value to the application settings
-   
-   This method is used to save a value to the application settings. Settings can be restored
-   (e.g. when the app restarts).
+ * @brief Add a new library.
+ *
+ * This creates a new library and returns it. If @p url points to an existing
+ * directory, the library will use it for storing its data. If the url is invalid,
+ * the library will be created in the default library location.
+ */
+Library*Application::addLibrary(const QUrl& url)
+{
+    Library* result = nullptr;
+    auto path = url.toLocalFile();
+    QDir dir(path);
+    if (url.isValid() && dir.exists()) {
+        result = new Library(path, this);
+        if (!result->load()) { // Is this an existing library?
+            result->save(); // If not, save immediately to preserve data.
+        }
+        appendLibrary(result);
+    } else {
+        auto uid = QUuid::createUuid();
+        path = librariesLocation() + "/" + uid.toString();
+        QDir(path).mkpath(".");
+        result = new Library(path, this);
+        appendLibrary(result);
+    }
+    return result;
+}
+
+/**
+ * @brief Save a value to the application settings
+ *
+ * This method is used to save a value to the application settings. Settings can be restored
+ * (e.g. when the app restarts).
  */
 void Application::saveValue(const QString &name, const QVariant &value)
 {
-  m_settings->beginGroup("ApplicationSettings");
-  m_settings->setValue(name, value);
-  m_settings->endGroup();
+    m_settings->beginGroup("ApplicationSettings");
+    m_settings->setValue(name, value);
+    m_settings->endGroup();
 }
 
 /**
-   @brief Read a persistent application value
-   
-   This method is used to read back persistent application settings which previously have been
-   written using saveValue().
+ * @brief Read a persistent application value
+ *
+ * This method is used to read back persistent application settings which previously have been
+ * written using saveValue().
  */
 QVariant Application::loadValue(const QString &name, const QVariant &defaultValue)
 {
-  m_settings->beginGroup("ApplicationSettings");
-  QVariant result = m_settings->value(name, defaultValue);
-  m_settings->endGroup();
-  return result;
+    m_settings->beginGroup("ApplicationSettings");
+    QVariant result = m_settings->value(name, defaultValue);
+    m_settings->endGroup();
+    return result;
 }
 
 /**
-   @brief Reads a file and returns its content
+ * @brief Reads a file and returns its content
  */
 QString Application::readFile(const QString &fileName) const
 {
-  QFile file(fileName);
-  if (file.open(QIODevice::ReadOnly)) {
-    return file.readAll();
-  }
-  return QString();
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        return file.readAll();
+    }
+    return QString();
 }
 
 /**
-   @brief Return a list of all 3rd party information found in the apps resource system.
+ * @brief Return a list of all 3rd party information found in the apps resource system.
  */
 QVariant Application::find3rdPartyInfos() const
 {
-  QDirIterator it(":/", {"3rdpartyinfo.json"}, QDir::Files, QDirIterator::Subdirectories);
-  QVariantList result;
-  while (it.hasNext()) {
-    QString file = it.next();
-    QFile f(file);
-    if(f.open(QIODevice::ReadOnly)) {
-      QJsonParseError errorMessage;
-      QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &errorMessage);
-      if (errorMessage.error == QJsonParseError::NoError) {
-        result.append(doc.toVariant());
-      } else {
-        qWarning().noquote().nospace() 
-            << "Failed to parse 3rd Party Info file " << file
-            << ": " << errorMessage.errorString();
-      }
-      f.close();
+    QDirIterator it(":/", {"3rdpartyinfo.json"}, QDir::Files, QDirIterator::Subdirectories);
+    QVariantList result;
+    while (it.hasNext()) {
+        QString file = it.next();
+        QFile f(file);
+        if(f.open(QIODevice::ReadOnly)) {
+            QJsonParseError errorMessage;
+            QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &errorMessage);
+            if (errorMessage.error == QJsonParseError::NoError) {
+                result.append(doc.toVariant());
+            } else {
+                qWarning().noquote().nospace()
+                        << "Failed to parse 3rd Party Info file " << file
+                        << ": " << errorMessage.errorString();
+            }
+            f.close();
+        }
     }
-  }
-  return result;
+    return result;
 }
 
 /**
-   @brief Convert a URL to a local file name.
+ * @brief Convert a URL to a local file name.
  */
 QString Application::urlToLocalFile(const QUrl &url) const
 {
@@ -240,7 +178,7 @@ QString Application::urlToLocalFile(const QUrl &url) const
 }
 
 /**
-   @brief Convert a local file name to a url.
+ * @brief Convert a local file name to a url.
  */
 QUrl Application::localFileToUrl(const QString &localFile) const
 {
@@ -248,182 +186,215 @@ QUrl Application::localFileToUrl(const QString &localFile) const
 }
 
 /**
-   @brief Returns the default library of the application.
+ * @brief Check if a file called @p filename exists.
+ */
+bool Application::fileExists(const QString& filename) const
+{
+    return QFile(filename).exists();
+}
+
+/**
+ * @brief Check if the @p directory exists.
+ */
+bool Application::directoryExists(const QString& directory) const
+{
+    return !directory.isEmpty() && QDir(directory).exists();
+}
+
+/**
+ * @brief Get the basename of the @p filename.
+ */
+QString Application::basename(const QString& filename) const
+{
+    return QFileInfo(filename).baseName();
+}
+
+/**
+ * @brief Returns the default library of the application.
  */
 Library *Application::defaultLibrary()
 {
-  return m_defaultLibrary;
+    return m_defaultLibrary;
 }
 
 /**
-   @brief Are updates available?
-   
-   This returns true if updates of the app are available or false otherwise.
-   Note that this functionality might not be present on all platforms, as e.g. on mobile
-   ones app updates are usually done via app store installations.
+ * @brief Are updates available?
+ *
+ * This returns true if updates of the app are available or false otherwise.
+ * Note that this functionality might not be present on all platforms, as e.g. on mobile
+ * ones app updates are usually done via app store installations.
  */
 bool Application::updatesAvailable() const
 {
-  return m_updatesAvailable;
+    return m_updatesAvailable;
 }
 
 /**
-   @brief Sets the updates available status.
+ * @brief Sets the updates available status.
  */
 void Application::setUpdatesAvailable(bool updatesAvailable)
 {
-  if (m_updatesAvailable != updatesAvailable) {
-    m_updatesAvailable = updatesAvailable;
-    emit updatesAvailableChanged();
-  }
+    if (m_updatesAvailable != updatesAvailable) {
+        m_updatesAvailable = updatesAvailable;
+        emit updatesAvailableChanged();
+    }
 }
 
 /**
-   @brief Check if updates are available
-   
-   This method checks if updates are available. If forceCheck is true, then
-   this will poll the upstream server on whether a newer version of the app is available. Otherwise,
-   the last update status from the config file is used unless it is too old.
+ * @brief Check if updates are available
+ *
+ * This method checks if updates are available. If forceCheck is true, then
+ * this will poll the upstream server on whether a newer version of the app is available. Otherwise,
+ * the last update status from the config file is used unless it is too old.
  */
 void Application::checkForUpdates(bool forceCheck)
 {
-  if (forceCheck) {
-    runUpdateCheck();
-  } else {
-    runCachedUpdateCheck();
-  } 
+    if (forceCheck) {
+        runUpdateCheck();
+    } else {
+        runCachedUpdateCheck();
+    }
 }
 
+/**
+ * @brief Run the application updater.
+ */
 void Application::runUpdate()
 {
-  resetUpdateCheck();
+    resetUpdateCheck();
 #if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
-  QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
-      "/../OpenTodoListMaintenanceTool";
+    QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
+            "/../OpenTodoListMaintenanceTool";
 #ifdef Q_OS_WIN
-  maintenanceToolExe += ".exe";
+    maintenanceToolExe += ".exe";
 #endif
-  if (QFile::exists(maintenanceToolExe)) {
-    QProcess::startDetached(maintenanceToolExe, {"--updater"});
-  }
-#endif
-}
-
-bool Application::hasUpdateService() const
-{
-#if defined(Q_OS_LINUX)
-  return QFile::exists(QCoreApplication::applicationDirPath() + "/../OpenTodoListMaintenanceTool");
-#elif defined(Q_OS_WIN)
-    return QFile::exists(QCoreApplication::applicationDirPath() + "/../OpenTodoListMaintenanceTool.exe");
-#else
-  return false;
+    if (QFile::exists(maintenanceToolExe)) {
+        QProcess::startDetached(maintenanceToolExe, {"--updater"});
+    }
 #endif
 }
 
 /**
-   @brief Returns the home location of the current user.
+ * @brief Check if an updater service is available.
+ */
+bool Application::hasUpdateService() const
+{
+#if defined(Q_OS_LINUX)
+    return QFile::exists(QCoreApplication::applicationDirPath() +
+                         "/../OpenTodoListMaintenanceTool");
+#elif defined(Q_OS_WIN)
+    return QFile::exists(QCoreApplication::applicationDirPath() +
+                         "/../OpenTodoListMaintenanceTool.exe");
+#else
+    return false;
+#endif
+}
+
+/**
+ * @brief Returns the home location of the current user.
  */
 QUrl Application::homeLocation() const
 {
 #ifdef Q_OS_ANDROID
-  return QUrl::fromLocalFile(qgetenv("EXTERNAL_STORAGE"));
+    return QUrl::fromLocalFile(qgetenv("EXTERNAL_STORAGE"));
 #else
-  QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-  return QUrl::fromLocalFile(homeDir);
+    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    return QUrl::fromLocalFile(homeDir);
 #endif
 }
 
 /**
-   @brief Returns true of the folder pointed to by @p url exists.
+ * @brief Returns true of the folder pointed to by @p url exists.
  */
 bool Application::folderExists(const QUrl &url) const
 {
-  return url.isValid() && QDir(url.toLocalFile()).exists();
-}
-
-void Application::createFactories()
-{
-  m_libraryFactories << new LocalLibraryFactory(this);
+    return url.isValid() && QDir(url.toLocalFile()).exists();
 }
 
 void Application::saveLibraries()
 {
-  if (!m_loadingLibraries) {
-    m_settings->beginWriteArray("Library", m_libraries.size());
-    for (int i = 0; i < m_libraries.size(); ++i) {
-      m_settings->setArrayIndex(i);
-      auto library = m_libraries.at(i);
-      m_settings->setValue("name", library->name());
-      m_settings->setValue("type", library->factory()->id());
-      m_settings->setValue("directory", library->directory());
-      m_settings->setValue("tags", library->tags());
-      m_settings->beginGroup("args");
-      auto args = library->saveArgs();
-      for (auto arg : args.keys()) {
-        m_settings->setValue(arg, args.value(arg));
-      }
-      m_settings->endGroup();
+    if (!m_loadingLibraries) {
+        m_settings->beginWriteArray("LibraryDirectories", m_libraries.length());
+        for (int i = 0; i < m_libraries.length(); ++i) {
+            auto library = m_libraries.at(i);
+            m_settings->setArrayIndex(i);
+            m_settings->setValue("directory", library->directory());
+        }
+        m_settings->endArray();
+        m_settings->beginGroup("DefaultLibrary");
+        m_settings->setValue("defaultLibrary", m_libraries.indexOf(m_defaultLibrary));
+        m_settings->endGroup();
     }
-    m_settings->endArray();
-  }
 }
 
 void Application::loadLibraries()
 {
-  m_loadingLibraries = true;
-  for (auto library : m_libraries) {
-    delete library;
-  }
-  int numLibraries = m_settings->beginReadArray("Library");
-  for (int i = 0; i < numLibraries; ++i) {
-    m_settings->setArrayIndex(i);
-    QString name = m_settings->value("name").toString();
-    QString type = m_settings->value("type").toString();
-    QString directory = m_settings->value("directory").toString();
-    QStringList tags = m_settings->value("tags", QStringList()).toStringList();
-    QVariantMap args;
-    m_settings->beginGroup("args");
-    for (auto value : m_settings->childKeys()) {
-      args["value"] = m_settings->value(value);
+    m_loadingLibraries = true;
+    for (auto library : m_libraries) {
+        delete library;
+    }
+    m_loadingLibraries = false;
+    runMigrations();
+    m_loadingLibraries = true;
+    int numLibraries = m_settings->beginReadArray("LibraryDirectories");
+    for (int i = 0; i < numLibraries; ++i) {
+        m_settings->setArrayIndex(i);
+        auto directory = m_settings->value("directory").toString();
+        auto library = new Library(directory, this);
+        appendLibrary(library);
+    }
+    m_settings->endArray();
+    m_settings->beginGroup("DefaultLibrary");
+    auto defaultLibraryIndex = m_settings->value("defaultLibrary", -1).toInt();
+    if (defaultLibraryIndex >= 0 && defaultLibraryIndex < m_libraries.length()) {
+        m_defaultLibrary = m_libraries.at(defaultLibraryIndex);
+        emit defaultLibraryChanged();
     }
     m_settings->endGroup();
-    auto library = addLibrary(type, name, directory, args);
-    if (library) {
-        library->setTags(tags);
+    emit librariesChanged();
+    if (!m_defaultLibrary) {
+        if (m_libraries.length() > 0) {
+            m_defaultLibrary = m_libraries.at(0);
+        } else {
+            QDir libraryDir(defaultLibraryLocation());
+            if (libraryDir.mkpath(".")) {
+                m_defaultLibrary = new Library(libraryDir.absolutePath());
+                emit defaultLibraryChanged();
+                m_libraries.append(m_defaultLibrary);
+                emit librariesChanged();
+            }
+        }
     }
-  }
-  m_settings->endArray();
-  m_loadingLibraries = false;
-  
-  if (!m_isInCustomLocation) {
-    QString defaultLibLocation = defaultLibraryLocation();
-    QFileInfo defaultLibraryLocationFI(defaultLibLocation);
-    for (Library* lib : m_libraries) {
-      if (QFileInfo(lib->directory()) == defaultLibraryLocationFI) {
-        m_defaultLibrary = lib;
-        emit defaultLibraryChanged();
-        runMigrations();
-        return;
-      }
-    }
-    m_defaultLibrary = addLocalLibrary(defaultLibLocation);
-    emit defaultLibraryChanged();
-    runMigrations();
-  }
+    m_loadingLibraries = false;
 }
 
 Library *Application::librariesAt(QQmlListProperty<Library> *property, int index)
 {
-  Application *_this = qobject_cast<Application*>(property->object);
-  Q_CHECK_PTR(_this);
-  return _this->libraries().at(index);
+    Application *_this = qobject_cast<Application*>(property->object);
+    Q_CHECK_PTR(_this);
+    return _this->libraries().at(index);
 }
 
 int Application::librariesCount(QQmlListProperty<Library> *property)
 {
-  Application *_this = qobject_cast<Application*>(property->object);
-  Q_CHECK_PTR(_this);
-  return _this->libraries().size();
+    Application *_this = qobject_cast<Application*>(property->object);
+    Q_CHECK_PTR(_this);
+    return _this->libraries().size();
+}
+
+/**
+ * @brief Get the location where libraries are stored by default.
+ */
+QString Application::librariesLocation() const
+{
+#ifdef Q_OS_ANDROID
+    QString s(qgetenv("EXTERNAL_STORAGE"));
+    QDir dir(s + "/data/net.rpdev.opentodolist/");
+    return dir.absolutePath();
+#else
+    QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    return QDir(result).absolutePath();
+#endif
 }
 
 /**
@@ -431,51 +402,45 @@ int Application::librariesCount(QQmlListProperty<Library> *property)
  */
 QString Application::defaultLibraryLocation() const
 {
-#ifdef Q_OS_ANDROID
-  QString s( qgetenv( "EXTERNAL_STORAGE" ) );
-  QDir dir( s + "/data/net.rpdev.opentodolist/Inbox/" );
-  return dir.absolutePath();
-#else
-  QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-  result += "/Inbox/";
-  return QDir(result).absolutePath();
-#endif
+    return QDir(librariesLocation()).absoluteFilePath("Inbox");
 }
 
 void Application::runMigrations()
 {
-  if (m_defaultLibrary) {
     m_settings->beginGroup("Migrations");
-    if (!m_settings->value("1_x_to_2_0_run", false).toBool()) {
-      Migrator_1_x_to_2_x(m_defaultLibrary).migrate();
-      m_settings->setValue("1_x_to_2_0_run", true);
+    if (!m_settings->value("2_x_to_3_0_run", false).toBool()) {
+        m_settings->endGroup();
+        Migrator_2_x_to_3_x migrator;
+        migrator.run(this);
+        m_settings->beginGroup("Migrations");
+        m_settings->setValue("2_x_to_3_0_run", true);
+        QTimer::singleShot(0, this, &Application::saveLibraries);
     }
     m_settings->endGroup();
-  }
 }
 
 void Application::runUpdateCheck()
 {
 #if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
-  QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
-      "/../OpenTodoListMaintenanceTool";
+    QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
+            "/../OpenTodoListMaintenanceTool";
 #ifdef Q_OS_WIN
-  maintenanceToolExe += ".exe";
+    maintenanceToolExe += ".exe";
 #endif
-  if (QFile::exists(maintenanceToolExe)) {
-    QProcess *maintenanceTool = new QProcess(this);
-    Q_CHECK_PTR(maintenanceTool);
-    maintenanceTool->setProgram(maintenanceToolExe);
-    maintenanceTool->setArguments({"--checkupdates"});
-    connect(maintenanceTool, &QProcess::stateChanged,
-            [this, maintenanceTool](QProcess::ProcessState newState) {
-      if (newState == QProcess::NotRunning) {
-        saveUpdatesAvailable(maintenanceTool->exitCode() == 0);
-        maintenanceTool->deleteLater();
-      }
-    });
-    maintenanceTool->start();
-  }
+    if (QFile::exists(maintenanceToolExe)) {
+        QProcess *maintenanceTool = new QProcess(this);
+        Q_CHECK_PTR(maintenanceTool);
+        maintenanceTool->setProgram(maintenanceToolExe);
+        maintenanceTool->setArguments({"--checkupdates"});
+        connect(maintenanceTool, &QProcess::stateChanged,
+                [this, maintenanceTool](QProcess::ProcessState newState) {
+            if (newState == QProcess::NotRunning) {
+                saveUpdatesAvailable(maintenanceTool->exitCode() == 0);
+                maintenanceTool->deleteLater();
+            }
+        });
+        maintenanceTool->start();
+    }
 #endif
 }
 
@@ -489,33 +454,52 @@ void Application::resetUpdateCheck()
 
 void Application::runCachedUpdateCheck()
 {
-  m_settings->beginGroup("Updates");
-  QDateTime lastCheck = m_settings->value("lastCheck").toDateTime();
-  bool hasUpdates = m_settings->value("updatesAvailable", false).toBool();
-  m_settings->endGroup();
-  
-  setUpdatesAvailable(hasUpdates);
-  if (!lastCheck.isValid() || lastCheck.daysTo(QDateTime::currentDateTime()) > 1) {
-    runUpdateCheck();
-  }
+    m_settings->beginGroup("Updates");
+    QDateTime lastCheck = m_settings->value("lastCheck").toDateTime();
+    bool hasUpdates = m_settings->value("updatesAvailable", false).toBool();
+    m_settings->endGroup();
+
+    setUpdatesAvailable(hasUpdates);
+    if (!lastCheck.isValid() || lastCheck.daysTo(QDateTime::currentDateTime()) > 1) {
+        runUpdateCheck();
+    }
 }
 
 void Application::saveUpdatesAvailable(bool available)
 {
-  m_settings->beginGroup("Updates");
-  m_settings->setValue("lastCheck", QDateTime::currentDateTime());
-  m_settings->setValue("updatesAvailable", available);
-  m_settings->endGroup();
-  setUpdatesAvailable(available);
+    m_settings->beginGroup("Updates");
+    m_settings->setValue("lastCheck", QDateTime::currentDateTime());
+    m_settings->setValue("updatesAvailable", available);
+    m_settings->endGroup();
+    setUpdatesAvailable(available);
+}
+
+void Application::appendLibrary(Library* library)
+{
+    Q_CHECK_PTR(library);
+    connect(library, &Library::libraryDeleted, this, &Application::onLibraryDeleted);
+    library->load();
+    m_libraries.append(library);
+    saveLibraries();
+    emit librariesChanged();
 }
 
 void Application::onLibraryDeleted(Library *library)
 {
-  if (m_libraries.contains(library)) {
-    m_libraries.removeAll(library);
-  }
-  saveLibraries();
-  emit librariesChanged();
+    if (m_libraries.contains(library)) {
+        m_libraries.removeAll(library);
+    }
+    if (m_defaultLibrary == library) {
+        if (m_libraries.length() > 0) {
+            m_defaultLibrary = m_libraries.at(0);
+        } else {
+            QDir dir(defaultLibraryLocation());
+            dir.mkpath(".");
+            m_defaultLibrary = new Library(dir.absolutePath());
+            m_libraries.append(m_defaultLibrary);
+            emit defaultLibraryChanged();
+        }
+    }
+    saveLibraries();
+    emit librariesChanged();
 }
-
-
