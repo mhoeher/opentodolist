@@ -20,7 +20,7 @@ ANDROID_PACKAGE = net.rpdev.opentodolist
 ANDROID_APP_NAME = Open Todo List
 
 # Icons for various platforms
-mac:ICON = red/OpenTodoList.icns
+mac:ICON = res/OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
 
 OTHER_FILES += \

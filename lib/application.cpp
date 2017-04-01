@@ -359,6 +359,7 @@ void Application::loadLibraries()
             QDir libraryDir(defaultLibraryLocation());
             if (libraryDir.mkpath(".")) {
                 m_defaultLibrary = new Library(libraryDir.absolutePath());
+                m_defaultLibrary->setName(qsTr("Inbox"));
                 emit defaultLibraryChanged();
                 m_libraries.append(m_defaultLibrary);
                 emit librariesChanged();
