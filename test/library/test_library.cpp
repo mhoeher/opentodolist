@@ -140,13 +140,18 @@ void LibraryTest::testTags()
     auto note1 = lib.addNote();
     auto note2 = lib.addNote();
 
+    // Wait for addition to finish:
+    while (lib.topLevelItems()->count() < 2) {
+        QThread::msleep(10);
+    }
+
     QCOMPARE(lib.tags(), QStringList());
 
     QSignalSpy tagsChanged(&lib, &Library::tagsChanged);
 
     note1->addTag("Foo");
-    QCOMPARE(lib.tags(), QStringList({"Foo"}));
     QCOMPARE(tagsChanged.count(), 1);
+    QCOMPARE(lib.tags(), QStringList({"Foo"}));
 
     note2->addTag("Foo");
     note2->addTag("Bar");

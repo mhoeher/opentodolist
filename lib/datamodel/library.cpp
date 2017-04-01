@@ -394,7 +394,7 @@ QStringList Library::tags() const
         }
     }
     auto result = tags.values();
-    result.sort();
+    result.sort(Qt::CaseInsensitive);
     return result;
 }
 
