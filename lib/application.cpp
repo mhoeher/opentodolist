@@ -88,12 +88,16 @@ Library*Application::addLibrary(const QUrl& url)
     Library* result = nullptr;
     auto path = url.toLocalFile();
     QDir dir(path);
-    if (dir.exists()) {
+    if (url.isValid() && dir.exists()) {
         result = new Library(path, this);
+        if (!result->load()) { // Is this an existing library?
+            result->save(); // If not, save immediately to preserve data.
+        }
         appendLibrary(result);
     } else {
         auto uid = QUuid::createUuid();
         path = librariesLocation() + "/" + uid.toString();
+        QDir(path).mkpath(".");
         result = new Library(path, this);
         appendLibrary(result);
     }
@@ -179,6 +183,30 @@ QString Application::urlToLocalFile(const QUrl &url) const
 QUrl Application::localFileToUrl(const QString &localFile) const
 {
     return QUrl::fromLocalFile(localFile);
+}
+
+/**
+ * @brief Check if a file called @p filename exists.
+ */
+bool Application::fileExists(const QString& filename) const
+{
+    return QFile(filename).exists();
+}
+
+/**
+ * @brief Check if the @p directory exists.
+ */
+bool Application::directoryExists(const QString& directory) const
+{
+    return !directory.isEmpty() && QDir(directory).exists();
+}
+
+/**
+ * @brief Get the basename of the @p filename.
+ */
+QString Application::basename(const QString& filename) const
+{
+    return QFileInfo(filename).baseName();
 }
 
 /**
@@ -452,6 +480,7 @@ void Application::appendLibrary(Library* library)
     connect(library, &Library::libraryDeleted, this, &Application::onLibraryDeleted);
     library->load();
     m_libraries.append(library);
+    saveLibraries();
     emit librariesChanged();
 }
 

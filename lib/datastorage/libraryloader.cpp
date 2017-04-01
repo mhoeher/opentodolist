@@ -4,6 +4,8 @@
 #include <QJsonDocument>
 #include <QVariantMap>
 
+#include "library.h"
+
 /**
  * @brief Constructor.
  */
@@ -74,36 +76,16 @@ LibraryLoaderWorker::LibraryLoaderWorker() : QObject(),
  */
 void LibraryLoaderWorker::scan(const QString& directory, QObject* targetThread)
 {
-    QDir rootDir(directory);
-    for (auto yearEntry : rootDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        QDir yearDir(rootDir.absoluteFilePath(yearEntry));
-        for (auto monthEntry : yearDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            QDir monthDir(yearDir.absoluteFilePath(monthEntry));
-            for (auto entry : monthDir.entryList({QString("*.%1").arg(Item::FileNameSuffix)},
-                                                 QDir::Files)) {
-                if (m_stop) {
-                    break;
-                }
-                auto filename = monthDir.absoluteFilePath(entry);
-                QFile file(filename);
-                if (file.open(QIODevice::ReadOnly)) {
-                    QJsonParseError error;
-                    auto map = QJsonDocument::fromJson(file.readAll(), &error).toVariant().toMap();
-                    if (error.error == QJsonParseError::NoError) {
-                        auto item = Item::createItem(filename, map);
-                        if (item != nullptr) {
-                            item->moveToThread(static_cast<QThread*>(targetThread));
-                            emit itemLoaded(ItemPtr(item));
-                        }
-                    } else {
-                        qWarning() << "Failed to parse item file" << filename << ":"
-                                   << error.errorString();
-                    }
-                    file.close();
-                } else {
-                    qWarning() << "Failed to open item file" << filename << ":"
-                               << file.errorString();
-                }
+    auto years = Library::years(directory);
+    for (auto year : years) {
+        auto months = Library::months(directory, year);
+        for (auto month : months) {
+            QDir dir(directory + "/" + year + "/" + month);
+            QString suffix = "*." + Item::FileNameSuffix;
+            for (auto entry : dir.entryList({suffix}, QDir::Files)) {
+                auto item = Item::createItemFromFile(dir.absoluteFilePath(entry));
+                item->moveToThread(static_cast<QThread*>(targetThread));
+                emit itemLoaded(ItemPtr(item));
             }
         }
     }

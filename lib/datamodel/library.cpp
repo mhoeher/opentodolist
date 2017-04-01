@@ -8,6 +8,7 @@
 #include <QTimer>
 
 #include "libraryloader.h"
+#include "toplevelitem.h"
 #include "todo.h"
 #include "task.h"
 
@@ -16,11 +17,13 @@
 
 const QString Library::LibraryFileName = "library.json";
 
+Q_LOGGING_CATEGORY(library, "net.rpdev.opentodolist.Library");
 
 /**
    @brief Set the name of the library.
  */
 Library::Library(QObject* parent) : QObject(parent),
+    m_uid(QUuid::createUuid()),
     m_name(),
     m_directory(),
     m_topLevelItems(this),
@@ -69,7 +72,7 @@ Note *Library::addNote()
     }
     note->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(note.data(), QQmlEngine::CppOwnership);
-    m_topLevelItems.addItem(note);
+    appendItem(note);
     note->save();
     return note.data();
 }
@@ -96,7 +99,7 @@ Image *Library::addImage()
     }
     image->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(image.data(), QQmlEngine::CppOwnership);
-    m_topLevelItems.addItem(image);
+    appendItem(image);
     image->save();
     return image.data();
 }
@@ -124,7 +127,7 @@ TodoList *Library::addTodoList()
     todoList->m_library = this;
     todoList->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(todoList.data(), QQmlEngine::CppOwnership);
-    m_topLevelItems.addItem(todoList);
+    appendItem(todoList);
     todoList->save();
     return todoList.data();
 }
@@ -147,20 +150,68 @@ void Library::setName(const QString &name)
  * @brief Remove the library from the application.
  *
  * This method removes the library from the application. Basically, it emits the libraryDeleted()
- * signal and then schedules the Library object for deletion.
+ * signal and then schedules the Library object for deletion. If @p deleteFiles is set to
+ * true, the data on disk will be removed. Otherwise, the library files will be preserved and
+ * hence can be restored later.
  */
-void Library::deleteLibrary()
+void Library::deleteLibrary(bool deleteFiles)
+{
+    deleteLibrary(deleteFiles, std::function<void ()>());
+}
+
+/**
+ * @brief Delete the library.
+ *
+ * This is an overloaded version of the deleteLibrary() method. It supports an
+ * additional @p callback argument, which is a callable function taking no arguments
+ * and which returns nothing. This function is called as soon as the actual deletion
+ * process is done.
+ *
+ * @note The callback might either get called in the calling thread or in an
+ * arbitrary helper thread. Do not make any assumptions where it gets called.
+ */
+void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
 {
     QString directory = m_directory;
     m_directoryWatcher->setDirectory(QString());
-    if (isValid()) {
+    if (isValid() && deleteFiles) {
         QtConcurrent::run([=](){
-            QDir dir(directory);
-            for (auto entry : dir.entryList(QDir::Files)) {
-                dir.remove(entry);
+            auto years = Library::years(directory);
+            for (auto year : years) {
+                auto months = Library::months(directory, year);
+                for (auto month : months) {
+                    QDir dir(directory + "/" + year + "/" + month);
+                    for (auto entry : dir.entryList(QDir::Files)) {
+                        if (!dir.remove(entry)) {
+                            qCWarning(library) << "Failed to remove file" << entry << "from"
+                                               << dir.absolutePath();
+                        }
+                    }
+                    dir.cdUp();
+                    if (!dir.rmdir(month)) {
+                        qCWarning(library) << "Failed to remove" << dir.absoluteFilePath(month);
+                    }
+                }
+                if (!QDir(directory).rmdir(year)) {
+                    qCWarning(library) << "Failed to remove" << (directory + "/" + year);
+                }
             }
-            dir.remove(".");
+            QDir dir(directory);
+            if (!dir.remove(Library::LibraryFileName)) {
+                qCWarning(library) << "Failed to remove" << Library::LibraryFileName
+                                   << "from" << dir.absolutePath();
+            }
+            dir.cdUp();
+            auto basename = QFileInfo(directory).baseName();
+            if (!dir.rmdir(basename)) {
+                qCWarning(library) << "Failed to remove library directory" << dir.absolutePath();
+            }
+            if (callback) {
+                callback();
+            }
         });
+    } else {
+        callback();
     }
     emit libraryDeleted(this);
     deleteLater();
@@ -192,13 +243,13 @@ bool Library::load()
         }
     }
     if (!m_loading && isValid()) {
-        m_loading = true;
+        setLoading(true);
         LibraryLoader *loader = new LibraryLoader(this);
         loader->setDirectory(m_directory);
         connect(loader, &LibraryLoader::scanFinished, [=]() {
-           m_loading = false;
-           emit loadingFinished();
-           loader->deleteLater();
+            setLoading(false);
+            emit loadingFinished();
+            loader->deleteLater();
         });
         connect(loader, &LibraryLoader::itemLoaded, this, &Library::appendItem);
         loader->scan();
@@ -276,15 +327,107 @@ QString Library::newItemLocation() const
     return result;
 }
 
+/**
+ * @brief Get the list of year entries.
+ *
+ * This searches the @p directory for a list if directories potentially holding
+ * item data of a library. Returns the list of entries (relative to the directory).
+ */
+QStringList Library::years(const QString& directory)
+{
+    QStringList result;
+    QDir dir(directory);
+    QRegExp re("^\\d{4}$");
+    if (!directory.isEmpty() && dir.exists()) {
+        for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            if (re.indexIn(entry) == 0) {
+                result << entry;
+            }
+        }
+    }
+    return result;
+}
+
+QStringList Library::months(const QString& directory, const QString& year)
+{
+    QStringList result;
+    if (!directory.isEmpty()) {
+        auto path = directory + "/" + year;
+        QDir dir(path);
+        QRegExp re("^[1-9][0-2]?$");
+        if (dir.exists()) {
+            for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+                if (re.indexIn(entry) == 0) {
+                    result << entry;
+                }
+            }
+        }
+    }
+    return result;
+}
+
+bool Library::loading() const
+{
+    return m_loading;
+}
+
+/**
+ * @brief The UID of the library.
+ */
+QUuid Library::uid() const
+{
+    return m_uid;
+}
+
+/**
+ * @brief Get the list of tags in the library.
+ *
+ * This returns the list of tags - sorted alphabetically - used within the library.
+ */
+QStringList Library::tags() const
+{
+    QSet<QString> tags;
+    for (int i = 0; i < m_topLevelItems.count(); ++i) {
+        auto item = qSharedPointerDynamicCast<TopLevelItem>(m_topLevelItems.item(i));
+        for (auto tag : item->tags()) {
+            tags.insert(tag);
+        }
+    }
+    auto result = tags.values();
+    result.sort();
+    return result;
+}
+
+/**
+ * @brief Set the UID of the library.
+ */
+void Library::setUid(const QUuid& uid)
+{
+    if (m_uid != uid) {
+        m_uid = uid;
+        emit uidChanged();
+    }
+}
+
+void Library::setLoading(bool loading)
+{
+    if (m_loading != loading) {
+        m_loading = loading;
+        emit loadingChanged();
+    }
+}
+
 QVariantMap Library::toMap() const
 {
     QVariantMap result;
+    result["uid"] = m_uid;
     result["name"] = m_name;
     return result;
 }
 
 void Library::fromMap(QVariantMap map)
 {
+    setUid(map.value("uid", m_uid).toUuid());
     setName(map.value("name", m_name).toString());
 }
 
@@ -293,6 +436,8 @@ void Library::appendItem(ItemPtr item)
     auto topLevelItem = qSharedPointerDynamicCast<TopLevelItem>(item);
     if (!topLevelItem.isNull()) {
         m_topLevelItems.updateOrInsert(item);
+        connect(topLevelItem.data(), &TopLevelItem::tagsChanged, this, &Library::tagsChanged);
+        emit tagsChanged();
     } else {
         auto todo = qSharedPointerDynamicCast<Todo>(item);
         if (!todo.isNull()) {

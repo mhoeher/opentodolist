@@ -2,6 +2,7 @@
 #define ITEM_H
 
 #include <QDir>
+#include <QLoggingCategory>
 #include <QObject>
 #include <QSharedPointer>
 #include <QString>
@@ -83,7 +84,7 @@ public:
     static Item *createItem(QVariantMap map, QObject *parent = nullptr);
     static Item *createItem(QVariant variant, QObject *parent = nullptr);
     static Item *createItem(QString itemType, QObject *parent = nullptr);
-    static Item *createItem(QString filename, QVariantMap map, QObject *parent = nullptr);
+    static Item *createItemFromFile(QString filename, QObject *parent = nullptr);
 
 public slots:
 
@@ -139,5 +140,7 @@ typedef QSharedPointer<Item> ItemPtr;
 Q_DECLARE_METATYPE(ItemPtr);
 
 QDebug operator<<(QDebug debug, const Item *item);
+
+Q_DECLARE_LOGGING_CATEGORY(item);
 
 #endif // ITEM_H

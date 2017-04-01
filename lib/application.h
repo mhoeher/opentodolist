@@ -57,6 +57,10 @@ public:
     Q_INVOKABLE QString urlToLocalFile(const QUrl &url) const;
     Q_INVOKABLE QUrl localFileToUrl(const QString &localFile) const;
 
+    Q_INVOKABLE bool fileExists(const QString &filename) const;
+    Q_INVOKABLE bool directoryExists(const QString &directory) const;
+    Q_INVOKABLE QString basename(const QString &filename) const;
+
     Library *defaultLibrary();
 
     bool updatesAvailable() const;

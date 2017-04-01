@@ -1,7 +1,10 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
+#include <functional>
+
 #include <QDir>
+#include <QLoggingCategory>
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
@@ -22,12 +25,15 @@ class DirectoryWatcher;
 class Library : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QUuid uid READ uid WRITE setUid NOTIFY uidChanged)
     Q_PROPERTY(bool isValid READ isValid CONSTANT)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QStringList tags READ tags NOTIFY tagsChanged)
     Q_PROPERTY(QString directory READ directory CONSTANT)
     Q_PROPERTY(ItemContainer* topLevelItems READ topLevelItems CONSTANT)
     Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
     Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
+    Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
 
 public:
 
@@ -55,7 +61,8 @@ public:
      */
     QString directory() const { return m_directory; }
 
-    Q_INVOKABLE void deleteLibrary();
+    Q_INVOKABLE void deleteLibrary(bool deleteFiles = false);
+    void deleteLibrary(bool deleteFiles, std::function<void ()> callback);
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
 
@@ -65,7 +72,19 @@ public:
 
     QString newItemLocation() const;
 
+    static QStringList years(const QString &directory);
+    static QStringList months(const QString &directory, const QString &year);
+
+    bool loading() const;
+    QUuid uid() const;
+    QStringList tags() const;
+
 signals:
+
+    /**
+     * @brief The UID of the library has changed.
+     */
+    void uidChanged();
 
     /**
      * @brief The name of the library changed.
@@ -73,9 +92,16 @@ signals:
     void nameChanged();
 
     /**
+     * @brief The list of tags changed.
+     */
+    void tagsChanged();
+
+    /**
      * @brief The library is deleted.
      */
     void libraryDeleted(Library *library);
+
+    void loadingChanged();
 
     /**
      * @brief Loading the items of the library finished.
@@ -87,6 +113,7 @@ signals:
 
 private:
 
+    QUuid                   m_uid;
     QString                 m_name;
     QString                 m_directory;
 
@@ -101,10 +128,15 @@ private:
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);
 
+    void setUid(const QUuid& uid);
+    void setLoading(bool loading);
+
 private slots:
 
     void appendItem(ItemPtr item);
 
 };
+
+Q_DECLARE_LOGGING_CATEGORY(library);
 
 #endif // LIBRARY_H

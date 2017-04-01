@@ -15,7 +15,7 @@ Item {
 
     property var library: null
     property string tag: ""
-    property StackView stackView: null
+    property StackView stack: null
 
     signal itemClicked(TopLevelItem item)
 
@@ -56,7 +56,7 @@ Item {
         standardButtons: StandardButton.Ok | StandardButton.Cancel
         onAccepted: {
             library.deleteLibrary();
-            stackView.pop();
+            stack.pop();
         }
     }
 
@@ -175,7 +175,7 @@ Item {
 
     FileBrowser {
         id: openImageDialog
-        stack: stackView
+        stack: stack
         title: qsTr("Add Image")
         selectExisting: true
         selectFolder: false
@@ -183,7 +183,10 @@ Item {
         folder: shortcuts.pictures
         fileNameExtensions: ["jpg", "jpeg", "png", "bmp", "gif"]
         onAccepted: {
-            var image = library.addImage(fileUrl);
+            var image = library.addImage();
+            var filename = App.urlToLocalFile(fileUrl);
+            image.image = App.urlToLocalFile(fileUrl);
+            image.title = App.basename(filename);
             if (leftSideBar.currentTag !== "") {
                 image.addTag(leftSideBar.currentTag);
             }
@@ -302,7 +305,7 @@ Item {
                             itemClicked(object);
                             break;
                         case Qt.RightButton:
-                            itemContextMenu.item = object.libraryItem;
+                            itemContextMenu.item = object;
                             itemContextMenu.popup();
                             break;
                         default:

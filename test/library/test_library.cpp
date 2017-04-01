@@ -14,6 +14,9 @@
 #include <QTemporaryDir>
 #include <QTest>
 
+
+#include <iostream>
+
 class LibraryTest : public QObject
 {
 
@@ -29,7 +32,9 @@ private slots:
     void testAddTodoList();
     void testAddTodo();
     void addTask();
+    void testTags();
     void testLoad();
+    void testDeleteLibrary();
     void cleanup();
 
 private:
@@ -64,14 +69,17 @@ void LibraryTest::testPersistence()
     QVERIFY(lib.isValid());
 
     QSignalSpy nameChanged(&anotherLib, &Library::nameChanged);
+    QSignalSpy uidChanged(&anotherLib, &Library::uidChanged);
 
     lib.setName("My Library");
 
     anotherLib.load();
 
     QCOMPARE(nameChanged.count(), 1);
+    QCOMPARE(uidChanged.count(), 1);
 
     QCOMPARE(anotherLib.name(), QString("My Library"));
+    QCOMPARE(anotherLib.uid(), lib.uid());
 }
 
 void LibraryTest::testAddNote()
@@ -126,6 +134,30 @@ void LibraryTest::addTask()
     }
 }
 
+void LibraryTest::testTags()
+{
+    Library lib;
+    auto note1 = lib.addNote();
+    auto note2 = lib.addNote();
+
+    QCOMPARE(lib.tags(), QStringList());
+
+    QSignalSpy tagsChanged(&lib, &Library::tagsChanged);
+
+    note1->addTag("Foo");
+    QCOMPARE(lib.tags(), QStringList({"Foo"}));
+    QCOMPARE(tagsChanged.count(), 1);
+
+    note2->addTag("Foo");
+    note2->addTag("Bar");
+    QCOMPARE(tagsChanged.count(), 3);
+    QCOMPARE(lib.tags(), QStringList({"Bar", "Foo"}));
+
+    note2->setTags({});
+    QCOMPARE(tagsChanged.count(), 4);
+    QCOMPARE(lib.tags(), QStringList({"Foo"}));
+}
+
 void LibraryTest::testLoad()
 {
     Library lib(m_dir->path());
@@ -165,6 +197,53 @@ void LibraryTest::testLoad()
     QCOMPARE(uuids.count(), 5);
     QCOMPARE(itemTypes.count(), 5);
     QCOMPARE(files.count(), 5);
+}
+
+void LibraryTest::testDeleteLibrary()
+{
+    QDir dir(m_dir->path() + "/Library");
+    QVERIFY(dir.mkpath("."));
+    auto lib = new Library(dir.absolutePath());
+    lib->save();
+    {
+        QVERIFY(lib->addNote() != nullptr);
+        QVERIFY(lib->addImage() != nullptr);
+        auto todoList = lib->addTodoList();
+        QVERIFY(todoList != nullptr);
+        auto todo = todoList->addTodo();
+        QVERIFY(todo != nullptr);
+        QVERIFY(todo->addTask() != nullptr);
+        QThread::sleep(1); // to prevent warnings
+    }
+
+    bool called = false;
+    int countdown = 10;
+    lib->deleteLibrary(false, [&]() { called = true; });
+    while (!called) {
+        --countdown;
+        QThread::sleep(1);
+    }
+    QVERIFY(called);
+    QVERIFY(countdown > 0);
+
+    // We wanted to preserve files, make sure directory is still there:
+    dir.refresh();
+    QVERIFY(dir.exists());
+
+
+    lib = new Library(dir.absolutePath());
+    QThread::sleep(1);
+
+    // Delete also files on disk:
+    called = false;
+    countdown = 10;
+    lib->deleteLibrary(true, [&]() { called = true; });
+    while (!called) {
+        --countdown;
+        QThread::sleep(1);
+    }
+    dir.refresh();
+    QVERIFY(!dir.exists());
 }
 
 void LibraryTest::cleanup()

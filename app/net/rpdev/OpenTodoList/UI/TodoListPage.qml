@@ -168,7 +168,8 @@ Item {
                 allowEntryCreation: true
                 onTodoSelected: openTodo(todo)
                 onAddEntry: {
-                    var todo = page.item.addTodo(title);
+                    var todo = page.item.addTodo();
+                    todo.title = title;
                     if (openItem) {
                         todos.openTodo(todo);
                     }

@@ -17,6 +17,8 @@
 #include <QVariantMap>
 
 
+Q_LOGGING_CATEGORY(item, "net.rpdev.opentodolist.Item");
+
 const QString Item::FileNameSuffix = "otl";
 
 
@@ -111,10 +113,11 @@ bool Item::load()
                 m_loading = loading;
                 result = true;
             } else {
-                qWarning() << "Failed to parse" << m_filename << ":" << error.errorString();
+                qCWarning(item) << "Failed to parse" << m_filename << ":" << error.errorString();
             }
         } else {
-            qWarning() << "Failed to open" << m_filename << "for reading:" << file.errorString();
+            qCWarning(item) << "Failed to open" << m_filename
+                            << "for reading:" << file.errorString();
         }
     }
     return result;
@@ -156,7 +159,7 @@ bool Item::save()
                 file.close();
                 result = true;
             } else {
-                qWarning() << "Failed to open" << m_filename << "for writing:"
+                qCWarning(item) << "Failed to open" << m_filename << "for writing:"
                            << file.errorString();
             }
         }
@@ -275,7 +278,7 @@ Item* Item::createItem(QVariantMap map, QObject* parent)
  *
  * @sa toVariant()
  */
-Item*Item::createItem(QVariant variant, QObject* parent)
+Item* Item::createItem(QVariant variant, QObject* parent)
 {
     auto result = createItem(variant.toMap().value("data").toMap().value("itemType").toString(),
                              parent);
@@ -291,7 +294,7 @@ Item*Item::createItem(QVariant variant, QObject* parent)
  * This creates an item from a string which holds an item type name. If the string
  * does not match one of the known item names, this function returns a null pointer.
  */
-Item*Item::createItem(QString itemType, QObject* parent)
+Item* Item::createItem(QString itemType, QObject* parent)
 {
     if (itemType == "Image") {
         return new Image(parent);
@@ -308,11 +311,27 @@ Item*Item::createItem(QString itemType, QObject* parent)
     }
 }
 
-Item* Item::createItem(QString filename, QVariantMap map, QObject* parent)
+Item* Item::createItemFromFile(QString filename, QObject* parent)
 {
-    auto result = createItem(map, parent);
-    if (result != nullptr) {
-        result->setFilename(filename);
+    Item *result = nullptr;
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly)) {
+        auto data = file.readAll();
+        QJsonParseError error;
+        auto doc = QJsonDocument::fromJson(data, &error);
+        if (error.error == QJsonParseError::NoError) {
+            auto map = doc.toVariant().toMap();
+            result = createItem(map, parent);
+            if (result != nullptr) {
+                result->setFilename(filename);
+            }
+        } else {
+            qCWarning(item) << "Failed to parse item file" << filename << ":"
+                            << error.errorString();
+        }
+        file.close();
+    } else {
+        qCWarning(item) << "Failed to open" << filename << "for reading:" << file.errorString();
     }
     return result;
 }

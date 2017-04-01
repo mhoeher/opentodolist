@@ -80,10 +80,7 @@ Item {
                     }
                     filterFunction: function(row) {
                         var idx = sourceModel.index(row, 0);
-                        console.debug(idx);
                         var task = sourceModel.data(idx, ItemsModel.ItemRole);
-                        console.debug(task.title);
-                        console.debug(task.todoUid);
                         return task.todoUid === page.todo.uid;
                     }
                 }
