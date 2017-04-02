@@ -1,6 +1,5 @@
 #include "opentodolistqmlextensionsplugin.h"
 
-#include <QGuiApplication>
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QDir>
@@ -9,10 +8,13 @@
 #include <QFileSystemWatcher>
 #include <QFont>
 #include <QFontInfo>
+#include <QGuiApplication>
 #include <QIcon>
 #include <QLoggingCategory>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+
+#include <QtSingleApplication>
 
 #include <iostream>
 
@@ -109,7 +111,7 @@ int main(int argc, char *argv[])
 #endif
 
 
-  QGuiApplication app(argc, argv);
+  QtSingleApplication app("OpenTodoList", argc, argv);
 
   QCoreApplication::setApplicationName("OpenTodoList");
   QCoreApplication::setApplicationVersion(VERSION);
@@ -139,6 +141,10 @@ int main(int argc, char *argv[])
   parser.addOption(enableTouchOption);
 
   parser.process(app);
+
+  if (app.sendMessage("activate")) {
+      return 0;
+  }
 
   QQmlApplicationEngine engine;
   QString qmlBase = "qrc:/";
@@ -190,6 +196,7 @@ int main(int argc, char *argv[])
       engine.rootContext()->setContextProperty("enableTouchOptimizations",
                                                enableTouchOptimizations);
   }
+  engine.rootContext()->setContextProperty("QtSingleApplication", &app);
   engine.rootContext()->setContextProperty("applicationVersion", QVariant(VERSION));
   engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
   engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);

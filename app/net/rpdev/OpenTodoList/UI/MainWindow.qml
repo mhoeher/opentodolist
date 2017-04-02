@@ -659,4 +659,12 @@ ApplicationWindow {
         }
 
     }
+
+    Connections {
+        target: QtSingleApplication
+        onMessageReceived: {
+            window.show();
+            window.raise();
+        }
+    }
 }

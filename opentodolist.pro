@@ -24,7 +24,8 @@ OTHER_FILES += \
   templates/installer/config/config.xml \
   templates/installer/config/controller.js \
   templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
-  templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml
+  templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
+  $$files(config.tests/qtsingleapplication/*)
 
 
 SUBDIRS += \
@@ -35,8 +36,16 @@ SUBDIRS += \
 include(config.pri)
 # include(installer.pri)
 
+# Check environment for optional packages:
+load(configure)
+
+qtCompileTest(qtsingleapplication) ## check for system QtSingleApplication
+config_qtsingleapplication:QT_SINGLE_APPLICATION_MODE = "System"
+else:QT_SINGLE_APPLICATION_MODE = "Built-in"
+
 
 message("Configure summary:")
 message("    Install Prefix:         $$INSTALL_ROOT")
-message("    Binary Install Prefix:  $$INSTALL_PREFIX_BIN")
-message("    Library Install Prefix: $$INSTALL_PREFIX_LIB")
+message("    Binary Install Prefix:  $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN")
+message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
+message("    QtSingleApplication:    $$QT_SINGLE_APPLICATION_MODE")
