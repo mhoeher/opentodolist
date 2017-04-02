@@ -37,7 +37,7 @@ Item {
 
         ListView {
             id: listView
-            model: OTL.Application.find3rdPartyInfos()
+            model: OTL.App.find3rdPartyInfos()
             delegate: itemDelegate
         }
     }

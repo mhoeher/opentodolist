@@ -59,5 +59,6 @@
         <file>net/rpdev/OpenTodoList/UI/linedpaper/linedpaper.png</file>
         <file>net/rpdev/OpenTodoList/UI/DropShadow.qml</file>
         <file>net/rpdev/OpenTodoList/UI/NewLibraryPage.qml</file>
+        <file>3rdpartyinfo/qtsingleapplication/3rdpartyinfo.json</file>
     </qresource>
 </RCC>
