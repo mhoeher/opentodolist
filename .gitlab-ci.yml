@@ -1,6 +1,7 @@
 before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
+  - git submodule update --init
 
 unittests:
   image: registry.gitlab.com/rpdev/opentodolist:fedora
