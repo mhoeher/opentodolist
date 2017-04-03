@@ -1,0 +1,8 @@
+{
+    "name": "QtKeychain",
+    "author": "Frank Osterfeld",
+    "website": "https://github.com/frankosterfeld/qtkeychain",
+    "licenseUrl": "https://github.com/frankosterfeld/qtkeychain/blob/master/COPYING",
+    "licenseType": "BSD 2-clause \"Simplified\" License",
+    "downloadUrl": "https://github.com/frankosterfeld/qtkeychain"
+}

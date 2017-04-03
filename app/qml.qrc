@@ -60,5 +60,7 @@
         <file>net/rpdev/OpenTodoList/UI/DropShadow.qml</file>
         <file>net/rpdev/OpenTodoList/UI/NewLibraryPage.qml</file>
         <file>3rdpartyinfo/qtsingleapplication/3rdpartyinfo.json</file>
+        <file>3rdpartyinfo/qtkeychain/3rdpartyinfo.json</file>
+        <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

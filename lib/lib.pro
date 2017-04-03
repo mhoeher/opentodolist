@@ -5,7 +5,7 @@ QT       -= gui
 
 TEMPLATE = lib
 TARGET = opentodolist
-CONFIG += static c++11
+CONFIG += static c++11 create_prl
 
 win32:DESTDIR = $$OUT_PWD
 
@@ -30,7 +30,8 @@ SOURCES += \
     models/itemsmodel.cpp \
     models/itemssortfiltermodel.cpp \
     migrators/migrator_2_x_to_3_x.cpp \
-    utils/directorywatcher.cpp
+    utils/directorywatcher.cpp \
+    utils/keystore.cpp
 
 HEADERS += \
     application.h \
@@ -52,4 +53,8 @@ HEADERS += \
     models/itemsmodel.h \
     models/itemssortfiltermodel.h \
     migrators/migrator_2_x_to_3_x.h \
-    utils/directorywatcher.h
+    utils/directorywatcher.h \
+    utils/keystore.h
+
+include(../3rdparty/qtkeychain/qt5keychain.pri)
+include(../3rdparty/simplecrypt.pri)

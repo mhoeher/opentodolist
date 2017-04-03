@@ -9,23 +9,24 @@ qrc.commands = perl $$PWD/bin/mk-qrc.pl \
 QMAKE_EXTRA_TARGETS += qrc
 
 OTHER_FILES += \
-  README.md \
-  COPYING \
-  Doxyfile \
-  doc/installers-howto.md \
-  .gitlab-ci.yml \
-  .qmake.conf \
-  bin/linux-deploy-qt.pl \
-  bin/mk-installer.pl \
-  bin/mk-pri.pl \
-  bin/mk-qrc.pl \
-  bin/mk-unittest.py \
-  bin/mk-linux-installer-x86_64.sh \
-  templates/installer/config/config.xml \
-  templates/installer/config/controller.js \
-  templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
-  templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
-  $$files(config.tests/qtsingleapplication/*)
+    README.md \
+    COPYING \
+    Doxyfile \
+    doc/installers-howto.md \
+    .gitlab-ci.yml \
+    .qmake.conf \
+    bin/linux-deploy-qt.pl \
+    bin/mk-installer.pl \
+    bin/mk-pri.pl \
+    bin/mk-qrc.pl \
+    bin/mk-unittest.py \
+    bin/mk-linux-installer-x86_64.sh \
+    templates/installer/config/config.xml \
+    templates/installer/config/controller.js \
+    templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
+    templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
+    $$files(config.tests/qtsingleapplication/*) \
+    $$files(config.tests/qtkeychain/*)
 
 
 SUBDIRS += \
@@ -43,9 +44,14 @@ qtCompileTest(qtsingleapplication) ## check for system QtSingleApplication
 config_qtsingleapplication:QT_SINGLE_APPLICATION_MODE = "System"
 else:QT_SINGLE_APPLICATION_MODE = "Built-in"
 
+qtCompileTest(qtkeychain) ## Check for QtKeychain
+config_qtkeychain:QT_KEYCHAIN_MODE = "System"
+else:QT_KEYCHAIN_MODE = "Built-in"
+
 
 message("Configure summary:")
 message("    Install Prefix:         $$INSTALL_ROOT")
 message("    Binary Install Prefix:  $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN")
 message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
 message("    QtSingleApplication:    $$QT_SINGLE_APPLICATION_MODE")
+message("    QtKeychain:             $$QT_KEYCHAIN_MODE")
