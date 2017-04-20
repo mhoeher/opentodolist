@@ -83,13 +83,7 @@ bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map) {
 KeyStore::KeyStore(QObject *parent) : QObject(parent),
     m_settings(nullptr)
 {
-    if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
-        KeyStoreSettingsFormat = QSettings::registerFormat(
-                    "otlks",
-                    &securedReadSettings,
-                    &securedWriteSettings,
-                    Qt::CaseSensitive);
-    }
+    registerSettingsFormat();
     if (KeyStoreSettingsFormat != QSettings::InvalidFormat) {
         m_settings = new QSettings(
                     KeyStoreSettingsFormat,
@@ -164,6 +158,41 @@ void KeyStore::deleteCredentials(const QString& key, DeleteCredentialsResult* re
         }
     });
     job->start();
+}
+
+/**
+ * @brief Create a settings object as fallback if no key store is found.
+ *
+ * This is a helper function creating a QSettings object as used as fallback when
+ * no platform specific key store can be found. This function is intended for
+ * testing purposes only, as outside the key store there should be no need to
+ * ever use such a settings object.
+ */
+QSettings* KeyStore::createSettingsFile(const QString& filename, QObject* parent)
+{
+    QSettings* result = nullptr;
+
+    if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
+        registerSettingsFormat();
+    }
+    if (KeyStoreSettingsFormat != QSettings::InvalidFormat) {
+        result = new QSettings(filename, KeyStoreSettingsFormat, parent);
+    }
+    return result;
+}
+
+/**
+ * @brief Registers the custom settings format.
+ */
+void KeyStore::registerSettingsFormat()
+{
+    if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
+        KeyStoreSettingsFormat = QSettings::registerFormat(
+                    "otlks",
+                    &securedReadSettings,
+                    &securedWriteSettings,
+                    Qt::CaseSensitive);
+    }
 }
 
 SaveCredentialsResult::SaveCredentialsResult() : QObject()

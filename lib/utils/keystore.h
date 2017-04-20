@@ -35,12 +35,16 @@ public:
                          LoadCredentialsResult *resultReceiver = nullptr);
     void deleteCredentials(const QString &key,
                            DeleteCredentialsResult *resultReceiver = nullptr);
+
+    static QSettings* createSettingsFile(const QString &filename, QObject* parent = nullptr);
 signals:
 
 public slots:
 
 private:
     QSettings               *m_settings;
+
+    static void registerSettingsFormat();
 };
 
 
