@@ -56,5 +56,11 @@ HEADERS += \
     utils/directorywatcher.h \
     utils/keystore.h
 
-include(../3rdparty/qtkeychain/qt5keychain.pri)
+config_qtkeychain {
+    LIBS += -lqt5keychain
+    DEFINES += OTL_USE_SYSTEM_QT5KEYCHAIN
+} else {
+    include(../3rdparty/qtkeychain/qt5keychain.pri)
+}
+
 include(../3rdparty/simplecrypt.pri)

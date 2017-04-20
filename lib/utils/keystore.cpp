@@ -1,22 +1,105 @@
 #include "keystore.h"
 
+#include <QCoreApplication>
+#include <QIODevice>
+#include <QJsonDocument>
 #include <QSettings>
 
+#ifdef OTL_USE_SYSTEM_QT5KEYCHAIN
+#include <qt5keychain/keychain.h>
+#else
 #include <qtkeychain/keychain.h>
+#endif
 
 #include <simplecrypt.h>
 
 
+Q_LOGGING_CATEGORY(keyStore, "net.rpdev.opentodolist.KeyStore", QtWarningMsg)
+
+
 const QString KeyStore::ServiceName = "OpenTodoList";
+
+
+namespace{
+
+
+static const quint64 SecureSettingsKey = Q_UINT64_C(0x0c14257ce25f252f);
+static QSettings::Format KeyStoreSettingsFormat = QSettings::InvalidFormat;
+
+
+/**
+ * @brief Helper method to write settings in a "secured" way.
+ *
+ * This is used to write settings to a slightly secured settings file. Basically,
+ * a symmetric cipher is applied to not have to store any user secrets in plain text.
+ * This is not a real protection against attackers - in fact, we rather rely
+ * on nobody is able to access the user's files. However, it is still better
+ * to not store any stuff unencrypted (especially on desktop systems, where potentially
+ * multiple users have access to the device).
+ */
+bool securedWriteSettings(QIODevice &device, const QSettings::SettingsMap &map) {
+    bool result = false;
+    auto doc = QJsonDocument::fromVariant(map);
+    auto data = doc.toJson();
+    SimpleCrypt simpleCrypt(SecureSettingsKey);
+    data = simpleCrypt.encryptToByteArray(data.toHex());
+    auto bytesWritten = device.write(data);
+    if (bytesWritten == data.length()) {
+        result = true;
+    }
+    return result;
+}
+
+
+/**
+ * @brief Read securely written settings.
+ *
+ * This is the reverse of the securedWriteSettings() functions.
+ */
+bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map) {
+    bool result = false;
+    auto data = device.readAll();
+    SimpleCrypt simpleCrypt(SecureSettingsKey);
+    data = QByteArray::fromHex(simpleCrypt.decryptToByteArray(data));
+    QJsonParseError error;
+    auto doc = QJsonDocument::fromJson(data, &error);
+    if (error.error == QJsonParseError::NoError) {
+        map = doc.toVariant().toMap();
+        result = true;
+    } else {
+        qCWarning(keyStore) << "Failed to read key store, encountered a JSON"
+                               "parse error:"
+                            << error.errorString();
+    }
+    return result;
+}
+
+}
 
 
 /**
  * @brief Constructor.
  */
 KeyStore::KeyStore(QObject *parent) : QObject(parent),
-    m_simpleCrypt(new SimpleCrypt(Q_UINT64_C(0x0c14257ce25f252f))),
-    m_settings(new QSettings())
+    m_settings(nullptr)
 {
+    if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
+        KeyStoreSettingsFormat = QSettings::registerFormat(
+                    "otlks",
+                    &securedReadSettings,
+                    &securedWriteSettings,
+                    Qt::CaseSensitive);
+    }
+    if (KeyStoreSettingsFormat != QSettings::InvalidFormat) {
+        m_settings = new QSettings(
+                    KeyStoreSettingsFormat,
+                    QSettings::UserScope,
+                    QCoreApplication::organizationName(),
+                    QCoreApplication::applicationName(),
+                    this
+                    );
+        m_settings->setFallbacksEnabled(false);
+    }
 }
 
 /**
@@ -24,33 +107,63 @@ KeyStore::KeyStore(QObject *parent) : QObject(parent),
  */
 KeyStore::~KeyStore()
 {
-    delete m_settings;
-    delete m_simpleCrypt;
 }
 
-void KeyStore::saveCredentials(const QString& key, const QString& value,
+void KeyStore::saveCredentials(const QString& key, const QByteArray& value,
                                SaveCredentialsResult* resultReceiver)
 {
     auto job = new QKeychain::WritePasswordJob(ServiceName, this);
     job->setAutoDelete(true);
-    job->setSettings(m_settings);
+    if (m_settings != nullptr) {
+        job->setInsecureFallback(true);
+        job->setSettings(m_settings);
+    }
     job->setKey(key);
-    job->setBinaryData(m_simpleCrypt->encryptToByteArray(value));
+    job->setBinaryData(value);
     connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
-        if (resultReceiver) {
-            // Todo: propagate infos to receiber
+        if (resultReceiver != nullptr) {
+            emit resultReceiver->done(job->error() != QKeychain::NoError,
+                                      job->errorString());
         }
     });
+    job->start();
 }
 
 void KeyStore::loadCredentials(const QString& key, LoadCredentialsResult* resultReceiver)
 {
-
+    auto job = new QKeychain::ReadPasswordJob(ServiceName, this);
+    job->setAutoDelete(true);
+    if (m_settings != nullptr) {
+        job->setInsecureFallback(true);
+        job->setSettings(m_settings);
+    }
+    job->setKey(key);
+    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
+        if (resultReceiver != nullptr) {
+            emit resultReceiver->done(job->binaryData(),
+                                      job->error() != QKeychain::NoError,
+                                      job->errorString());
+        }
+    });
+    job->start();
 }
 
 void KeyStore::deleteCredentials(const QString& key, DeleteCredentialsResult* resultReceiver)
 {
-
+    auto job = new QKeychain::DeletePasswordJob(ServiceName, this);
+    job->setAutoDelete(true);
+    if (m_settings != nullptr) {
+        job->setInsecureFallback(true);
+        job->setSettings(m_settings);
+    }
+    job->setKey(key);
+    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
+        if (resultReceiver != nullptr) {
+            emit resultReceiver->done(job->error() != QKeychain::NoError,
+                                      job->errorString());
+        }
+    });
+    job->start();
 }
 
 SaveCredentialsResult::SaveCredentialsResult() : QObject()

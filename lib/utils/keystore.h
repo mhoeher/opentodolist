@@ -1,6 +1,7 @@
 #ifndef KEYSTORE_H
 #define KEYSTORE_H
 
+#include <QLoggingCategory>
 #include <QObject>
 #include <QSet>
 
@@ -28,7 +29,7 @@ public:
     explicit KeyStore(QObject *parent = 0);
     virtual ~KeyStore();
 
-    void saveCredentials(const QString &key, const QString& value,
+    void saveCredentials(const QString &key, const QByteArray& value,
                          SaveCredentialsResult *resultReceiver = nullptr);
     void loadCredentials(const QString &key,
                          LoadCredentialsResult *resultReceiver = nullptr);
@@ -39,7 +40,6 @@ signals:
 public slots:
 
 private:
-    SimpleCrypt             *m_simpleCrypt;
     QSettings               *m_settings;
 };
 
@@ -58,6 +58,11 @@ public:
 
     explicit SaveCredentialsResult();
     virtual ~SaveCredentialsResult();
+
+signals:
+
+    void done(bool hasError, const QString &errorString);
+
 };
 
 
@@ -75,6 +80,10 @@ public:
 
     explicit LoadCredentialsResult();
     virtual ~LoadCredentialsResult();
+
+signals:
+
+    void done(const QByteArray &value, bool hasError, const QString &errorString);
 };
 
 
@@ -92,6 +101,13 @@ public:
 
     explicit DeleteCredentialsResult();
     virtual ~DeleteCredentialsResult();
+
+signals:
+
+    void done(bool hasError, const QString &errorString);
 };
+
+
+Q_DECLARE_LOGGING_CATEGORY(keyStore)
 
 #endif // KEYSTORE_H
