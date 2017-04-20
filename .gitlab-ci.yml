@@ -1,11 +1,12 @@
 before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
-  - git submodule update --init
 
 unittests:
   image: registry.gitlab.com/rpdev/opentodolist:fedora
   script:
+    - yum install -y git
+    - git submodule update --init
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
