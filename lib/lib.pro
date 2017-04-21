@@ -59,8 +59,8 @@ HEADERS += \
 config_qtkeychain {
     LIBS += -lqt5keychain
     DEFINES += OTL_USE_SYSTEM_QT5KEYCHAIN
-    DBUS_INTERFACES += $$PWD/../3rdparty/qtkeychain/org.kde.KWallet.xml
 } else {
+    DBUS_INTERFACES += $$PWD/../3rdparty/qtkeychain/org.kde.KWallet.xml
     include(../3rdparty/qtkeychain/qt5keychain.pri)
 }
 
