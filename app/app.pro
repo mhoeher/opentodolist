@@ -11,6 +11,17 @@ SOURCES += main.cpp
 RESOURCES += qml.qrc \
     res.qrc
 
+config_qtsingleapplication {
+    # Use system QtSingleApplication
+    CONFIG += qtsingleapplication
+    DEFINES += HAS_QTSINGLEAPPLICATION
+} else {
+    !ios&!android {
+        # Use built-in QtSingleApplication
+        include(../3rdparty/qtsingleapplication/src/qtsingleapplication.pri)
+    }
+}
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
 

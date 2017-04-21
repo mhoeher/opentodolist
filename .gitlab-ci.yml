@@ -2,9 +2,26 @@ before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
 
-unittests:
+
+# Linux build & unit tests with built-in libraries
+linux_builtin:
   image: registry.gitlab.com/rpdev/opentodolist:fedora
   script:
+    - export QT_QPA_PLATFORM=minimal
+    - mkdir build
+    - cd build
+    - qmake-qt5 ..
+    - make -j4
+    - make check
+  only:
+    - branches
+
+
+# Linux build & unit tests with system provides libraries
+linux_system:
+  image: registry.gitlab.com/rpdev/opentodolist:fedora
+  script:
+    - dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build

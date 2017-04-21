@@ -211,7 +211,9 @@ void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
             }
         });
     } else {
-        callback();
+        if (callback) {
+            callback();
+        }
     }
     emit libraryDeleted(this);
     deleteLater();
