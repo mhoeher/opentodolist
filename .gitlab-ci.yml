@@ -1,11 +1,14 @@
+variables:
+    FEDORA_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora
+    FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
+
 before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
 
-
 # Linux build & unit tests with built-in libraries
 linux_builtin:
-  image: registry.gitlab.com/rpdev/opentodolist:fedora
+  image: $FEDORA_IMAGE
   script:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
@@ -42,6 +45,6 @@ build_image_fedora:
   script:
     - cd ci/docker/fedora
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - make build
-    - make push
+    - docker build --pull -t $FEDORA_IMAGE .
+    - docker push $FEDORA_IMAGE
   when: manual
