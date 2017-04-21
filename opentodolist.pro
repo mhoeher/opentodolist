@@ -26,7 +26,8 @@ OTHER_FILES += \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
     $$files(config.tests/qtsingleapplication/*) \
-    $$files(config.tests/qtkeychain/*)
+    $$files(config.tests/qtkeychain/*) \
+    $$files(config.tests/libsecret/*) \
 
 
 SUBDIRS += \
@@ -45,8 +46,15 @@ config_qtsingleapplication:QT_SINGLE_APPLICATION_MODE = "System"
 else:QT_SINGLE_APPLICATION_MODE = "Built-in"
 
 qtCompileTest(qtkeychain) ## Check for QtKeychain
-config_qtkeychain:QT_KEYCHAIN_MODE = "System"
-else:QT_KEYCHAIN_MODE = "Built-in"
+config_qtkeychain {
+    QT_KEYCHAIN_MODE = "System"
+    LIBSECRET_MODE = "System"
+} else {
+    QT_KEYCHAIN_MODE = "Built-in"
+    qtCompileTest(libsecret) ## Check for libsecret
+    config_libsecret:LIBSECRET_MODE = "Found"
+    else:LIBSECRET_MODE = "Not Found"
+}
 
 
 message("Configure summary:")
@@ -55,3 +63,4 @@ message("    Binary Install Prefix:  $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN")
 message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
 message("    QtSingleApplication:    $$QT_SINGLE_APPLICATION_MODE")
 message("    QtKeychain:             $$QT_KEYCHAIN_MODE")
+message("    Libsecret:              $$LIBSECRET_MODE")
