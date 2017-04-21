@@ -21,7 +21,10 @@ linux_builtin:
 linux_system:
   image: registry.gitlab.com/rpdev/opentodolist:fedora
   script:
-    - dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel
+    # Retry installation up to three times, stupid but sometimes dnf fails on the first attempt...
+    - dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel || \
+      dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel || \
+      dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
