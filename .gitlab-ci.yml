@@ -21,10 +21,9 @@ linux_builtin:
 linux_system:
   image: registry.gitlab.com/rpdev/opentodolist:fedora
   script:
-    # Retry installation up to three times, stupid but sometimes dnf fails on the first attempt...
-    - dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel ||
-      dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel ||
-      dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel
+    - dnf clean all
+    - dnf makecache
+    - dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
@@ -33,3 +32,16 @@ linux_system:
     - make check
   only:
     - branches
+
+
+# Build the Linux (Fedora) Image
+build_image_fedora:
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/fedora
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - make build
+    - make push
+  when: manual
