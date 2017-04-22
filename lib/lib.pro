@@ -5,7 +5,7 @@ QT       -= gui
 
 TEMPLATE = lib
 TARGET = opentodolist
-CONFIG += static c++11 create_prl
+CONFIG += static c++11
 
 win32:DESTDIR = $$OUT_PWD
 

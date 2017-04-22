@@ -1,3 +1,15 @@
+variables:
+    FEDORA_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora
+    FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
+    WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
+    WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
+
+stages:
+  - images
+  - build
+  - test
+  - deploy
+
 before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
@@ -5,7 +17,8 @@ before_script:
 
 # Linux build & unit tests with built-in libraries
 linux_builtin:
-  image: registry.gitlab.com/rpdev/opentodolist:fedora
+  stage: build
+  image: $FEDORA_IMAGE
   script:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
@@ -15,16 +28,17 @@ linux_builtin:
     - make check
   only:
     - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
 
 
 # Linux build & unit tests with system provides libraries
 linux_system:
-  image: registry.gitlab.com/rpdev/opentodolist:fedora
+  stage: build
+  image: $FEDORA_SYSTEM_IMAGE
   script:
-    # Retry installation up to three times, stupid but sometimes dnf fails on the first attempt...
-    - dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel ||
-      dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel ||
-      dnf install -y libsecret-devel qtkeychain-qt5-devel qtsingleapplication-qt5-devel
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
@@ -33,3 +47,102 @@ linux_system:
     - make check
   only:
     - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Windows 32bit build
+win32_build:
+  stage: build
+  image: $WIN32_IMAGE
+  script:
+    - mkdir build
+    - cd build
+    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
+    - export PATH=/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/:$PATH
+    - qmake CONFIG+=release ..
+    - make -j4
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Windows 64bit build
+win64_build:
+  stage: build
+  image: $WIN64_IMAGE
+  script:
+    - mkdir build
+    - cd build
+    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
+    - export PATH=/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/:$PATH
+    - qmake CONFIG+=release ..
+    - make -j4
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Build the Linux (Fedora) Image
+build_image_fedora:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/fedora
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $FEDORA_IMAGE .
+    - docker push $FEDORA_IMAGE
+  when: manual
+
+
+# Build the Linux (Fedora) Image including system
+# provided optional dependencies:
+build_image_fedora_system:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/fedora_system
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $FEDORA_SYSTEM_IMAGE .
+    - docker push $FEDORA_SYSTEM_IMAGE
+  when: manual
+
+
+# Build the Win32 Image
+build_image_win32:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/win32
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $WIN32_IMAGE .
+    - docker push $WIN32_IMAGE
+  when: manual
+
+
+# Build the Win64 Image
+build_image_win64:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/win64
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $WIN64_IMAGE .
+    - docker push $WIN64_IMAGE
+  when: manual

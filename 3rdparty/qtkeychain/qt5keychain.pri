@@ -34,11 +34,12 @@ unix:!macx {
     DBUS_INTERFACES += $$QT5KEYCHAIN_PWD/org.kde.KWallet.xml
 }
 
-win {
+win32 {
     HEADERS += $$QT5KEYCHAIN_PWD/libsecret_p.h
 
     SOURCES += \
         $$QT5KEYCHAIN_PWD/keychain_win.cpp
+    LIBS *= -lcrypt32
 }
 
 mac {

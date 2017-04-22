@@ -25,6 +25,10 @@ OTHER_FILES += \
     templates/installer/config/controller.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
+    $$files(ci/docker/fedora/*) \
+    $$files(ci/docker/fedora_system/*) \
+    $$files(ci/docker/win32/*) \
+    $$files(ci/docker/win64/*) \
     $$files(config.tests/qtsingleapplication/*) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \
