@@ -4,6 +4,12 @@ variables:
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
 
+stages:
+  - images
+  - build
+  - test
+  - deploy
+
 before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
@@ -11,6 +17,7 @@ before_script:
 
 # Linux build & unit tests with built-in libraries
 linux_builtin:
+  stage: build
   image: $FEDORA_IMAGE
   script:
     - export QT_QPA_PLATFORM=minimal
@@ -29,6 +36,7 @@ linux_builtin:
 
 # Linux build & unit tests with system provides libraries
 linux_system:
+  stage: build
   image: $FEDORA_SYSTEM_IMAGE
   script:
     - export QT_QPA_PLATFORM=minimal
@@ -47,6 +55,7 @@ linux_system:
 
 # Windows 32bit build
 win32_build:
+  stage: build
   image: $WIN32_IMAGE
   script:
     - mkdir build
@@ -65,6 +74,7 @@ win32_build:
 
 # Windows 64bit build
 win64_build:
+  stage: build
   image: $WIN64_IMAGE
   script:
     - mkdir build
@@ -83,6 +93,7 @@ win64_build:
 
 # Build the Linux (Fedora) Image
 build_image_fedora:
+  stage: images
   image: docker:git
   services:
   - docker:dind
@@ -97,6 +108,7 @@ build_image_fedora:
 # Build the Linux (Fedora) Image including system
 # provided optional dependencies:
 build_image_fedora_system:
+  stage: images
   image: docker:git
   services:
   - docker:dind
@@ -110,6 +122,7 @@ build_image_fedora_system:
 
 # Build the Win32 Image
 build_image_win32:
+  stage: images
   image: docker:git
   services:
   - docker:dind
@@ -123,6 +136,7 @@ build_image_win32:
 
 # Build the Win64 Image
 build_image_win64:
+  stage: images
   image: docker:git
   services:
   - docker:dind
