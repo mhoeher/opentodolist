@@ -6,10 +6,11 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
-#include <QJsonDocument>
 #include <QProcess>
 #include <QStandardPaths>
 #include <QTimer>
+
+#include "utils/jsonutils.h"
 
 #include "migrators/migrator_2_x_to_3_x.h"
 
@@ -152,18 +153,10 @@ QVariant Application::find3rdPartyInfos() const
     QVariantList result;
     while (it.hasNext()) {
         QString file = it.next();
-        QFile f(file);
-        if(f.open(QIODevice::ReadOnly)) {
-            QJsonParseError errorMessage;
-            QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &errorMessage);
-            if (errorMessage.error == QJsonParseError::NoError) {
-                result.append(doc.toVariant());
-            } else {
-                qWarning().noquote().nospace()
-                        << "Failed to parse 3rd Party Info file " << file
-                        << ": " << errorMessage.errorString();
-            }
-            f.close();
+        bool ok;
+        auto map = JsonUtils::loadMap(file, &ok);
+        if (ok) {
+            result.append(map);
         }
     }
     return result;

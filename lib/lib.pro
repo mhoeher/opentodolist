@@ -31,7 +31,9 @@ SOURCES += \
     models/itemssortfiltermodel.cpp \
     migrators/migrator_2_x_to_3_x.cpp \
     utils/directorywatcher.cpp \
-    utils/keystore.cpp
+    utils/keystore.cpp \
+    sync/synchronizer.cpp \
+    utils/jsonutils.cpp
 
 HEADERS += \
     application.h \
@@ -54,7 +56,9 @@ HEADERS += \
     models/itemssortfiltermodel.h \
     migrators/migrator_2_x_to_3_x.h \
     utils/directorywatcher.h \
-    utils/keystore.h
+    utils/keystore.h \
+    sync/synchronizer.h \
+    utils/jsonutils.h
 
 config_qtkeychain {
     LIBS += -lqt5keychain
