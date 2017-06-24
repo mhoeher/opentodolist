@@ -86,6 +86,8 @@ protected:
     void setValidating(bool validating);
     void setValid(bool valid);
     void setSynchronizing(bool synchronizing);
+    void beginValidation();
+    void endValidation(bool valid);
 
 private:
 

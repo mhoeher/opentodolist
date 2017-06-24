@@ -122,6 +122,38 @@ void Synchronizer::setSynchronizing(bool synchronizing)
     }
 }
 
+/**
+ * @brief Begin validation.
+ *
+ * Begin the validation process. This is a utility method which sets
+ * the validating property to true and the valid property to false.
+ *
+ * @sa setValidating
+ * @sa setValid
+ * @sa endValidation
+ */
+void Synchronizer::beginValidation()
+{
+    setValidating(true);
+    setValid(false);
+}
+
+/**
+ * @brief End validation.
+ *
+ * This is a utility method which sets the validating property to false and the valid
+ * property to @p valid.
+ *
+ * @sa setValidating
+ * @sa setValid
+ * @sa beginValidation
+ */
+void Synchronizer::endValidation(bool valid)
+{
+    setValidating(true);
+    setValid(valid);
+}
+
 
 /**
  * @brief The local directory to sync.
