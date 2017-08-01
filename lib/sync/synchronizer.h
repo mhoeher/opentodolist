@@ -41,8 +41,7 @@ public:
     bool save() const;
     void restore();
 
-    static const Synchronizer* fromFile(const QString &filename, QObject* parent = nullptr);
-    static const Synchronizer* fromDirectory(const QString &dir, QObject* parent = nullptr);
+    static Synchronizer* fromDirectory(const QString &dir, QObject* parent = nullptr);
 
     /**
      * @brief Validate the connection to the backend.

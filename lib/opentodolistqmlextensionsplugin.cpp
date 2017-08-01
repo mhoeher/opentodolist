@@ -15,6 +15,10 @@
 #include "itemsmodel.h"
 #include "itemssortfiltermodel.h"
 
+#include "sync/synchronizer.h"
+#include "sync/genericdavsynchronizer.h"
+#include "sync/nextcloudsynchronizer.h"
+
 #include <QtQml>
 
 OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent) :
@@ -43,6 +47,11 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<ItemContainer>(uri, 1, 0, "ItemContainer");
   qmlRegisterType<ItemsModel>(uri, 1, 0, "ItemsModel");
   qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
+
+  qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
+                                           "Use specific synchronizer");
+  qmlRegisterType<GenericDAVSynchronizer>(uri, 1, 0, "GenericDAVSynchronizer");
+  qmlRegisterType<NextCloudSynchronizer>(uri, 1, 0, "NextCloudSynchronizer");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

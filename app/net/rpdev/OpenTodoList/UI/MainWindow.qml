@@ -30,6 +30,16 @@ ApplicationWindow {
                 onTriggered: openLocalLibraryDialog.open()
             }
             MenuItem {
+                id: addLibraryItem
+                text: qsTr("&New Library")
+                shortcut: StandardKey.New
+                onTriggered: {
+                    stackView.clear();
+                    stackView.push(newSyncedLibraryPage);
+                }
+            }
+
+            MenuItem {
                 text: qsTr("&Exit")
                 shortcut: StandardKey.Quit
                 onTriggered: Qt.quit();
@@ -654,6 +664,19 @@ ApplicationWindow {
                     library.name = name;
                     leftSideBar.currentLibrary = library;
                     leftSideBar.currentTag = "";
+                }
+            }
+        }
+
+        Component {
+            id: newSyncedLibraryPage
+
+            SynchronizerBackendSelectionPage {
+                onCancelled: {
+                    stackView.clear();
+                    Logic.viewLibrary(stackView,
+                                      leftSideBar.currentLibrary,
+                                      leftSideBar.currentTag);
                 }
             }
         }

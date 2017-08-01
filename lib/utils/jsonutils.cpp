@@ -26,10 +26,12 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data)
     bool result = false;
     QFile file(filename);
     QVariantMap properties;
+    QByteArray existingFileContent;
     if (file.exists()) {
         if (file.open(QIODevice::ReadOnly)) {
             QJsonParseError error;
-            auto doc = QJsonDocument::fromJson(file.readAll(), &error);
+            existingFileContent = file.readAll();
+            auto doc = QJsonDocument::fromJson(existingFileContent, &error);
             if (error.error == QJsonParseError::NoError) {
                 properties = doc.toVariant().toMap();
             } else {
@@ -45,14 +47,20 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data)
     for (auto key : data.keys()) {
         properties[key] = data[key];
     }
-    if (file.open(QIODevice::WriteOnly)) {
-        auto doc = QJsonDocument::fromVariant(properties);
-        auto bytes = doc.toJson(QJsonDocument::Indented);
-        result = bytes.length() == file.write(bytes);
-        file.close();
+    auto doc = QJsonDocument::fromVariant(properties);
+    auto newFileContent = doc.toJson(QJsonDocument::Indented);
+    if (newFileContent != existingFileContent) {
+        if (file.open(QIODevice::WriteOnly)) {
+            result = newFileContent.length() == file.write(newFileContent);
+            file.close();
+        } else {
+            qCWarning(jsonUtils) << "Failed to open" << filename << "for writing:"
+                                 << file.errorString();
+        }
     } else {
-        qCWarning(jsonUtils) << "Failed to open" << filename << "for writing:"
-                             << file.errorString();
+        qCDebug(jsonUtils) << "File" << filename << "was not changed - "
+                           << "skipping rewrite";
+        result = true;
     }
     return result;
 }

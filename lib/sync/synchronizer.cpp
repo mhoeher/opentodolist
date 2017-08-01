@@ -1,7 +1,16 @@
 #include "synchronizer.h"
 
+#include "genericdavsynchronizer.h"
+#include "nextcloudsynchronizer.h"
+
+#include <functional>
+
 #include <QDir>
 #include <QFile>
+#include <QMap>
+#include <QMetaObject>
+
+#include "utils/jsonutils.h"
 
 
 Q_LOGGING_CATEGORY(synchronizer, "net.rpdev.opentodolist.Synchronizer", QtDebugMsg)
@@ -185,29 +194,76 @@ void Synchronizer::setDirectory(const QString& directory)
  */
 bool Synchronizer::isNull() const
 {
-    return !m_directory.isEmpty() && QDir(m_directory).exists();
+    return m_directory.isEmpty() || !QDir(m_directory).exists();
 }
 
+
+/**
+ * @brief Save the settings of the synchronizer.
+ *
+ * This saves the settings of the synchronizer to the directory the
+ * synchronizer works on.
+ */
 bool Synchronizer::save() const
 {
-    // TODO: Implement me
+    auto result = false;
+    if (!isNull()) {
+        QDir dir(m_directory);
+        auto settingsFileName = dir.absoluteFilePath(SaveFileName);
+        result = JsonUtils::patchJsonFile(settingsFileName, toMap());
+    }
+    return result;
 }
 
+
+/**
+ * @brief Load settings from the synchronizer's directory.
+ */
 void Synchronizer::restore()
 {
-
+    if (!isNull()) {
+        QDir dir(m_directory);
+        auto settingsFileName = dir.absoluteFilePath(SaveFileName);
+        bool ok;
+        auto map = JsonUtils::loadMap(settingsFileName, &ok);
+        if (ok) {
+            fromMap(map);
+        }
+    }
 }
 
-const Synchronizer* Synchronizer::fromFile(const QString& filename, QObject* parent)
-{
-    return nullptr;
-}
 
-const Synchronizer*Synchronizer::fromDirectory(const QString& dir, QObject* parent)
+/**
+ * @brief Get the synchronizer for the given @p directory.
+ */
+Synchronizer* Synchronizer::fromDirectory(const QString& directory,
+                                                QObject* parent)
 {
-    QDir d(dir);
-    auto filename = d.absoluteFilePath(SaveFileName);
-    return fromFile(filename, parent);
+    Synchronizer* result = nullptr;
+    if (!directory.isEmpty()) {
+        static QMap<QString, std::function<Synchronizer* (QObject*)>> Synchronizers = {
+            {
+                "NextCloudSynchronizer",
+                [](QObject* parent) { return new NextCloudSynchronizer(parent); }
+            },
+            {
+                "GenericDAVSynchronizer",
+                [](QObject* parent) { return new GenericDAVSynchronizer(parent); }
+            }
+        };
+        QDir dir(directory);
+        auto absFilePath = dir.absoluteFilePath(SaveFileName);
+        auto map = JsonUtils::loadMap(absFilePath);
+        auto type = map.value("type").toString();
+        auto constructor = Synchronizers.value(type);
+        if (constructor) {
+            result = constructor(parent);
+            result->fromMap(map);
+        } else {
+            qCDebug(synchronizer) << "Unknown synchronizer type" << type;
+        }
+    }
+    return result;
 }
 
 
@@ -222,7 +278,6 @@ const Synchronizer*Synchronizer::fromDirectory(const QString& dir, QObject* pare
 QVariantMap Synchronizer::toMap() const
 {
     QVariantMap result;
-    result.insert("directory", m_directory);
     result.insert("type", QString(metaObject()->className()));
     return result;
 }
@@ -236,5 +291,5 @@ QVariantMap Synchronizer::toMap() const
  */
 void Synchronizer::fromMap(const QVariantMap& map)
 {
-    setDirectory(map.value("directory", m_directory).toString());
+    Q_UNUSED(map);
 }

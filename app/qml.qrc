@@ -62,5 +62,8 @@
         <file>3rdpartyinfo/qtsingleapplication/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/qtkeychain/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
+        <file>net/rpdev/OpenTodoList/UI/SynchronizerBackendSelectionPage.qml</file>
+        <file>net/rpdev/OpenTodoList/UI/sync_backends/nextcloud.svg</file>
+        <file>net/rpdev/OpenTodoList/UI/sync_backends/owncloud.svg</file>
     </qresource>
 </RCC>

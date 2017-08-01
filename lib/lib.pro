@@ -33,7 +33,10 @@ SOURCES += \
     utils/directorywatcher.cpp \
     utils/keystore.cpp \
     sync/synchronizer.cpp \
-    utils/jsonutils.cpp
+    utils/jsonutils.cpp \
+    sync/webdavsynchronizer.cpp \
+    sync/genericdavsynchronizer.cpp \
+    sync/nextcloudsynchronizer.cpp
 
 HEADERS += \
     application.h \
@@ -58,7 +61,10 @@ HEADERS += \
     utils/directorywatcher.h \
     utils/keystore.h \
     sync/synchronizer.h \
-    utils/jsonutils.h
+    utils/jsonutils.h \
+    sync/webdavsynchronizer.h \
+    sync/genericdavsynchronizer.h \
+    sync/nextcloudsynchronizer.h
 
 config_qtkeychain {
     LIBS += -lqt5keychain

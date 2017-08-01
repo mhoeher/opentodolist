@@ -14,3 +14,7 @@ SUBDIRS += itemsmodel
 SUBDIRS += itemcontainer
 SUBDIRS += keystore
 SUBDIRS += jsonutils
+SUBDIRS += nextcloudsynchronizer
+SUBDIRS += genericwebdavsynchronizer
+SUBDIRS += synchronizer
+SUBDIRS += webdavsynchronizer
