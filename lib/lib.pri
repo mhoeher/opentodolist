@@ -11,7 +11,7 @@ else:unix|win32-g++: OTL_LIBRARY_NAME += libopentodolist.a
 win32:CONFIG(release, debug|release) {
     LIBS *= -L$$shadowed($$PWD)/release
     PRE_TARGETDEPS *= $$shadowed($$PWD)/release/$$OTL_LIBRARY_NAME
-} else:win32:CONFIG(debug, release|debug) {
+} else:win32:CONFIG(debug, debug|release) {
     LIBS *= -L$$shadowed($$PWD)/debug
     PRE_TARGETDEPS *= $$shadowed($$PWD)/debug/$$OTL_LIBRARY_NAME
 } else {
