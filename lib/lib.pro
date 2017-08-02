@@ -7,8 +7,6 @@ TEMPLATE = lib
 TARGET = opentodolist
 CONFIG += static c++11 create_prl
 
-win32:DESTDIR = $$OUT_PWD
-
 INCLUDEPATH += datamodel datastorage models
 
 SOURCES += \
