@@ -3,6 +3,7 @@ variables:
     FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
+    NEXTCLOUD_IMAGE: registry.gitlab.com/rpdev/opentodolist:nextcloud
 
 stages:
   - images
@@ -145,4 +146,18 @@ build_image_win64:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --pull -t $WIN64_IMAGE .
     - docker push $WIN64_IMAGE
+  when: manual
+
+
+# Build the NextCloud Image
+build_image_nextcloud:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/nextcloud
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $NEXTCLOUD_IMAGE .
+    - docker push $NEXTCLOUD_IMAGE
   when: manual

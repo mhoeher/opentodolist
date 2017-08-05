@@ -29,6 +29,7 @@ OTHER_FILES += \
     $$files(ci/docker/fedora_system/*) \
     $$files(ci/docker/win32/*) \
     $$files(ci/docker/win64/*) \
+    $$files(ci/docker/nextcloud/*) \
     $$files(config.tests/qtsingleapplication/*) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \
