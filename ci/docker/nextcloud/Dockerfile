@@ -26,7 +26,7 @@ RUN dnf makecache && \
     rm ${NEXTCLOUD_RELEASE}.tar && \
     rm -r /var/www/html && \
     mv  nextcloud /var/www/html && \
-    php /var/www/html/occ maintenance:install && \
+    php /var/www/html/occ maintenance:install \
         --database sqlite \
         --admin-user admin \
         --admin-pass admin && \
