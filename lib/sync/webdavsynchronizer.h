@@ -2,8 +2,14 @@
 #define WEBDAVSYNCHRONIZER_H
 
 #include <QList>
+#include <QLoggingCategory>
 
 #include "sync/synchronizer.h"
+
+class QDomDocument;
+class QDomElement;
+class QNetworkAccessManager;
+class QNetworkReply;
 
 
 class WebDAVSynchronizer : public Synchronizer
@@ -61,6 +67,7 @@ private:
 
     typedef QList<Entry> EntryList;
 
+    QNetworkAccessManager *m_networkAccessManager;
     QString m_remoteDirectory;
     bool m_disableCertificateCheck;
     QString m_username;
@@ -70,6 +77,17 @@ private:
     bool get(const QString& filename, const QString& localFileName);
     bool put(const QString& localFileName, const QString& filename);
 
+    QNetworkReply *listDirectoryRequest(const QString& directory);
+    EntryList parseEntryList(const QString& directory,
+                             const QByteArray& reply);
+    EntryList parsePropFindResponse(const QDomDocument& response,
+                                    const QString& directory);
+    Entry parseResponseEntry(const QDomElement& element,
+                             const QString& baseDir);
+
 };
+
+
+Q_DECLARE_LOGGING_CATEGORY(webDAVSynchronizer)
 
 #endif // WEBDAVSYNCHRONIZER_H

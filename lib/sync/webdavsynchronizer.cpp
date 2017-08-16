@@ -1,7 +1,24 @@
 #include "webdavsynchronizer.h"
 
+#include <QDir>
+#include <QDomDocument>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+
+
+Q_LOGGING_CATEGORY(webDAVSynchronizer,
+                   "net.rpdev.opentodolist.WebDAVSynchronizer",
+                   QtDebugMsg)
+
+
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
-    Synchronizer(parent)
+    Synchronizer(parent),
+    m_networkAccessManager(new QNetworkAccessManager(this)),
+    m_remoteDirectory(),
+    m_disableCertificateCheck(false),
+    m_username(),
+    m_password()
 {
 
 }
@@ -13,7 +30,18 @@ WebDAVSynchronizer::~WebDAVSynchronizer()
 
 void WebDAVSynchronizer::validate()
 {
-    // TODO: Implement me
+    auto reply = listDirectoryRequest("/");
+    reply->setParent(this);
+    connect(reply, &QNetworkReply::finished, [=]() {
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (code == 200) {
+            this->setValid(true);
+        } else {
+            this->setValid(false);
+        }
+        this->setValidating(false);
+        reply->deleteLater();
+    });
 }
 
 void WebDAVSynchronizer::synchronize()
@@ -112,4 +140,82 @@ bool WebDAVSynchronizer::put(const QString& localFileName, const QString& filena
     Q_UNUSED(localFileName);
     Q_UNUSED(filename);
     return false;
+}
+
+QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory)
+{
+    /*
+     curl -i -X PROPFIND http://admin:admin@localhost:8080/remote.php/webdav/ --upload-file - -H "Depth: 1" <<END
+     <?xml version="1.0"?>
+     <a:propfind xmlns:a="DAV:">
+     <a:prop><a:resourcetype/></a:prop>
+     </a:propfind>
+     END
+    */
+
+    QByteArray requestData = "<?xml version=\"1.0\"?>"
+                             "<a:propfind xmlns:a=\"DAV:\">"
+                             "<a:prop>"
+                             "<a:resourcetype/>"
+                             "<a:getetag/>"
+                             "<a:displayname/>"
+                             "</a:prop>"
+                             "</a:propfind>";
+    QNetworkRequest request;
+    auto baseUrl = this->baseUrl();
+    auto dir = QDir::cleanPath(directory);
+    QUrl url(baseUrl.toString() + "/" + dir);
+    url.setUserName(m_username);
+    url.setPassword(m_password);
+    request.setUrl(url);
+    auto reply = m_networkAccessManager->sendCustomRequest(
+                request, "PROPFIND", requestData);
+    return reply;
+}
+
+WebDAVSynchronizer::EntryList WebDAVSynchronizer::parseEntryList(
+        const QString& directory, const QByteArray& reply)
+{
+    EntryList result;
+    QDomDocument doc;
+    QString errorMsg;
+    int errorLine;
+    if (doc.setContent(reply, &errorMsg, &errorLine)) {
+        result = parsePropFindResponse(doc, directory);
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to parse WebDAV response:"
+                                      << errorMsg << "in line" << errorLine;
+    }
+    return result;
+}
+
+WebDAVSynchronizer::EntryList WebDAVSynchronizer::parsePropFindResponse(
+        const QDomDocument& response, const QString& directory)
+{
+    EntryList result;
+    auto baseUrl = this->baseUrl();
+    auto baseDir = QDir::cleanPath(baseUrl.path() + "/" + directory);
+    auto root = response.documentElement();
+    if (root.tagName() == "multistatus") {
+        auto resp = root.firstChildElement("response");
+        while (resp.isElement()) {
+            auto entry = parseResponseEntry(resp, baseDir);
+            if (entry.type != Invalid) {
+                result << entry;
+            }
+            resp = resp.nextSiblingElement("response");
+        }
+    }
+    return result;
+}
+
+WebDAVSynchronizer::Entry WebDAVSynchronizer::parseResponseEntry(
+        const QDomElement& element, const QString& baseDir)
+{
+    auto path = element.firstChildElement("href").text();
+    path = QDir(baseDir).relativeFilePath(path);
+    Entry result;
+    result.type = File;
+    result.name = path;
+    return result;
 }
