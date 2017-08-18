@@ -11,10 +11,6 @@ stages:
   - test
   - deploy
 
-services:
-   - name: nextcloud
-     alias
-
 before_script:
   - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
