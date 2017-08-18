@@ -27,7 +27,7 @@ linux_builtin:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
-    - qmake-qt5 ..
+    - qmake-qt5 NEXTCLOUD_URL=nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
   only:
@@ -49,7 +49,7 @@ linux_system:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
-    - qmake-qt5 ..
+    - qmake-qt5 NEXTCLOUD_URL=nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
   only:

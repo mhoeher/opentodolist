@@ -105,7 +105,7 @@ void WebDAVSynchronizerTest::createDavClients()
         if (client->url().scheme() == "http") {
             client->setDisableCertificateCheck(true);
         }
-        QTest::addRow("NextCloud") << static_cast<QObject*>(client);
+        QTest::newRow("NextCloud") << static_cast<QObject*>(client);
     }
 #endif
 }

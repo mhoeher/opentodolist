@@ -1,5 +1,6 @@
 #include "webdavsynchronizer.h"
 
+#include <QBuffer>
 #include <QDir>
 #include <QDomDocument>
 #include <QNetworkAccessManager>
@@ -180,8 +181,11 @@ QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory
     url.setPassword(m_password);
     request.setUrl(url);
     request.setRawHeader("Depth", "1");
+    auto buffer = new QBuffer;
+    buffer->setData(requestData);
     auto reply = m_networkAccessManager->sendCustomRequest(
-                request, "PROPFIND", requestData);
+                request, "PROPFIND", buffer);
+    buffer->setParent(reply);
     return reply;
 }
 
