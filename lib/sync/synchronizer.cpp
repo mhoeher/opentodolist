@@ -159,7 +159,7 @@ void Synchronizer::beginValidation()
  */
 void Synchronizer::endValidation(bool valid)
 {
-    setValidating(true);
+    setValidating(false);
     setValid(valid);
 }
 

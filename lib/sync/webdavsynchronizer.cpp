@@ -30,16 +30,27 @@ WebDAVSynchronizer::~WebDAVSynchronizer()
 
 void WebDAVSynchronizer::validate()
 {
+    beginValidation();
     auto reply = listDirectoryRequest("/");
     reply->setParent(this);
+    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
+            [=](QNetworkReply::NetworkError error) {
+        qCWarning(webDAVSynchronizer) << "Error during validation:" << error;
+    });
+    connect(reply, &QNetworkReply::sslErrors,
+            [=](QList<QSslError> errors) {
+        for (auto error : errors) {
+            qCWarning(webDAVSynchronizer) << "SSL Error during validation:"
+                                          << error.errorString();
+        }
+    });
     connect(reply, &QNetworkReply::finished, [=]() {
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == 200) {
-            this->setValid(true);
+        if (code == 207) { // 207 MULTI-STATUS
+            endValidation(true);
         } else {
-            this->setValid(false);
+            endValidation(false);
         }
-        this->setValidating(false);
         reply->deleteLater();
     });
 }
@@ -168,6 +179,7 @@ QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory
     url.setUserName(m_username);
     url.setPassword(m_password);
     request.setUrl(url);
+    request.setRawHeader("Depth", "1");
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "PROPFIND", requestData);
     return reply;

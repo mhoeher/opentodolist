@@ -10,4 +10,5 @@ RUN dnf install -y \
     qt5-qtsvg-devel \
     qt5-qtx11extras-devel \
     qt5-qtxmlpatterns-devel \
-    qt5-rpm-macros
+    qt5-rpm-macros \
+    compat-openssl10-devel
