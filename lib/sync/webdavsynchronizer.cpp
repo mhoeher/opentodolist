@@ -61,6 +61,17 @@ void WebDAVSynchronizer::synchronize()
     // TODO: Implement me
 }
 
+void WebDAVSynchronizer::createDirectory(const QString& directory)
+{
+    setCreatingDirectory(true);
+    auto reply = createDirectoryRequest(directory);
+    connect(reply, &QNetworkReply::finished, [=]() {
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+        emit this->directoryCreated(directory, code == 201);
+        this->setCreatingDirectory(false);
+    });
+}
+
 QVariantMap WebDAVSynchronizer::toMap() const
 {
     auto result = Synchronizer::toMap();
@@ -191,6 +202,24 @@ QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "PROPFIND", buffer);
     buffer->setParent(reply);
+    return reply;
+}
+
+QNetworkReply*WebDAVSynchronizer::createDirectoryRequest(
+        const QString& directory)
+{
+    /*
+     curl -X MKCOL 'http://admin:admin@localhost:8080/remote.php/webdav/example'
+    */
+    QNetworkRequest request;
+    auto baseUrl = this->baseUrl();
+    auto dir = QDir::cleanPath(directory);
+    QUrl url(baseUrl.toString() + "/" + dir);
+    url.setUserName(m_username);
+    url.setPassword(m_password);
+    request.setUrl(url);
+    auto reply = m_networkAccessManager->sendCustomRequest(
+                request, "MKCOL");
     return reply;
 }
 

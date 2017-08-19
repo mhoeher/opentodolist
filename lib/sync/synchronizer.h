@@ -21,6 +21,7 @@ class Synchronizer : public QObject
     Q_PROPERTY(bool validating READ validating NOTIFY validatingChanged)
     Q_PROPERTY(bool valid READ valid NOTIFY validChanged)
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
+    Q_PROPERTY(bool creatingDirectory READ creatingDirectory NOTIFY creatingDirectoryChanged)
     Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged)
     Q_PROPERTY(bool isNull READ isNull NOTIFY directoryChanged)
 public:
@@ -33,6 +34,7 @@ public:
     bool validating() const;
     bool valid() const;
     bool synchronizing() const;
+    bool creatingDirectory() const;
 
     QString directory() const;
     void setDirectory(const QString& directory);
@@ -68,6 +70,20 @@ public:
      */
     virtual void synchronize() = 0;
 
+    /**
+     * @brief Create a directory on the server.
+     *
+     * This method is supposed to be used during account creation. It
+     * is used to trigger creation of a directory on the server.
+     * Concrete synchronizer implementations shall:
+     *
+     * 1. Set the creatingDirectory property to true.
+     * 2. Asynchronously create the directory on the server.
+     * 3. Emit the directoryCreated() signal with the path and the status.
+     * 4. Set the creatingDirectory property to false.
+     */
+    virtual void createDirectory(const QString& path) = 0;
+
     virtual QVariantMap toMap() const;
     virtual void fromMap(const QVariantMap &map);
 
@@ -77,7 +93,9 @@ signals:
     void validatingChanged();
     void validChanged();
     void synchronizingChanged();
+    void creatingDirectoryChanged();
     void directoryChanged();
+    void directoryCreated(const QString& directory, bool success);
 
 public slots:
 
@@ -85,6 +103,7 @@ protected:
     void setValidating(bool validating);
     void setValid(bool valid);
     void setSynchronizing(bool synchronizing);
+    void setCreatingDirectory(bool creatingDirectory);
     void beginValidation();
     void endValidation(bool valid);
 
@@ -93,6 +112,7 @@ private:
     bool    m_validating;
     bool    m_valid;
     bool    m_synchronizing;
+    bool    m_creatingDirectory;
     QString m_directory;
 
 };

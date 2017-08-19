@@ -29,6 +29,7 @@ public:
     // Synchronizer interface
     void validate() override;
     void synchronize() override;
+    void createDirectory(const QString& directory) override;
     QVariantMap toMap() const override;
     void fromMap(const QVariantMap& map) override;
 
@@ -78,6 +79,7 @@ private:
     bool put(const QString& localFileName, const QString& filename);
 
     QNetworkReply *listDirectoryRequest(const QString& directory);
+    QNetworkReply *createDirectoryRequest(const QString& directory);
     EntryList parseEntryList(const QString& directory,
                              const QByteArray& reply);
     EntryList parsePropFindResponse(const QDomDocument& response,

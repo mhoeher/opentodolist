@@ -4,8 +4,9 @@
 
 #include <QObject>
 #include <QObjectList>
-#include <QTest>
 #include <QSignalSpy>
+#include <QTest>
+#include <QUuid>
 
 class WebDAVSynchronizerTest : public QObject
 {
@@ -21,6 +22,8 @@ private slots:
   void password();
   void validate();
   void validate_data();
+  void createDirectory();
+  void createDirectory_data();
   void cleanup() {}
   void cleanupTestCase() {}
 
@@ -80,7 +83,7 @@ void WebDAVSynchronizerTest::validate()
     QSignalSpy validatingChanged(davClient, &Synchronizer::validatingChanged);
     QSignalSpy validChanged(davClient, &Synchronizer::validChanged);
     davClient->validate();
-    QVERIFY(validChanged.wait(30000));
+    QVERIFY(validatingChanged.wait(30000));
     QCOMPARE(validatingChanged.count(), 2);
     QCOMPARE(validChanged.count(), 1);
     QCOMPARE(davClient->valid(), true);
@@ -88,6 +91,29 @@ void WebDAVSynchronizerTest::validate()
 }
 
 void WebDAVSynchronizerTest::validate_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::createDirectory()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    Q_CHECK_PTR(davClient);
+    QCOMPARE(davClient->creatingDirectory(), false);
+    QSignalSpy creatingDirectoryChanged(davClient, &Synchronizer::creatingDirectoryChanged);
+    QSignalSpy directoryCreated(davClient, &Synchronizer::directoryCreated);
+    auto dirName = QUuid::createUuid().toString();
+    davClient->createDirectory(dirName);
+    QCOMPARE(davClient->creatingDirectory(), true);
+    QVERIFY(creatingDirectoryChanged.wait(30000));
+    QCOMPARE(creatingDirectoryChanged.count(), 2);
+    QCOMPARE(directoryCreated.count(), 1);
+    QCOMPARE(directoryCreated.at(0).at(0).toString(), dirName);
+    QCOMPARE(directoryCreated.at(0).at(0).toBool(), true);
+}
+
+void WebDAVSynchronizerTest::createDirectory_data()
 {
     createDavClients();
 }

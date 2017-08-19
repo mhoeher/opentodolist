@@ -33,6 +33,7 @@ Synchronizer::Synchronizer(QObject *parent) : QObject(parent),
     m_validating(false),
     m_valid(false),
     m_synchronizing(false),
+    m_creatingDirectory(false),
     m_directory()
 {
 }
@@ -118,6 +119,16 @@ bool Synchronizer::synchronizing() const
 
 
 /**
+ * @brief Indicates if a directory currently is being created.
+ * @return
+ */
+bool Synchronizer::creatingDirectory() const
+{
+    return m_creatingDirectory;
+}
+
+
+/**
  * @brief Set the synchronizing property.
  *
  * Sub-classes are supposed to use this method in their implementation of the
@@ -128,6 +139,18 @@ void Synchronizer::setSynchronizing(bool synchronizing)
     if (m_synchronizing != synchronizing) {
         m_synchronizing = synchronizing;
         emit synchronizingChanged();
+    }
+}
+
+
+/**
+ * @brief Set the creatingDirectory property.
+ */
+void Synchronizer::setCreatingDirectory(bool creatingDirectory)
+{
+    if (m_creatingDirectory != creatingDirectory) {
+        m_creatingDirectory = creatingDirectory;
+        emit creatingDirectoryChanged();
     }
 }
 
