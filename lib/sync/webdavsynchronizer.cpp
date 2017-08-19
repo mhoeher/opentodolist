@@ -154,6 +154,7 @@ bool WebDAVSynchronizer::put(const QString& localFileName, const QString& filena
     return false;
 }
 
+
 QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory)
 {
     /*
@@ -181,6 +182,10 @@ QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory
     url.setPassword(m_password);
     request.setUrl(url);
     request.setRawHeader("Depth", "1");
+    request.setHeader(QNetworkRequest::ContentLengthHeader,
+                      requestData.size());
+    request.setHeader(QNetworkRequest::ContentTypeHeader,
+                      "text/xml; charset=utf-8");
     auto buffer = new QBuffer;
     buffer->setData(requestData);
     auto reply = m_networkAccessManager->sendCustomRequest(
