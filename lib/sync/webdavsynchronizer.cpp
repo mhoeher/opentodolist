@@ -3,14 +3,24 @@
 #include <QBuffer>
 #include <QDir>
 #include <QDomDocument>
+#include <QEventLoop>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QTimer>
 
 
 Q_LOGGING_CATEGORY(webDAVSynchronizer,
                    "net.rpdev.opentodolist.WebDAVSynchronizer",
                    QtDebugMsg)
+
+enum {
+    WebDAVMultiGetResponseCode = 207,
+    HTTPOkCode = 200,
+    HTTPCreatedCode = 201,
+    HTTPNoContentCode = 204
+};
+
 
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
@@ -34,20 +44,9 @@ void WebDAVSynchronizer::validate()
     beginValidation();
     auto reply = listDirectoryRequest("/");
     reply->setParent(this);
-    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
-            [=](QNetworkReply::NetworkError error) {
-        qCWarning(webDAVSynchronizer) << "Error during validation:" << error;
-    });
-    connect(reply, &QNetworkReply::sslErrors,
-            [=](QList<QSslError> errors) {
-        for (auto error : errors) {
-            qCWarning(webDAVSynchronizer) << "SSL Error during validation:"
-                                          << error.errorString();
-        }
-    });
     connect(reply, &QNetworkReply::finished, [=]() {
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == 207) { // 207 MULTI-STATUS
+        if (code == WebDAVMultiGetResponseCode) {
             endValidation(true);
         } else {
             endValidation(false);
@@ -61,16 +60,6 @@ void WebDAVSynchronizer::synchronize()
     // TODO: Implement me
 }
 
-void WebDAVSynchronizer::createDirectory(const QString& directory)
-{
-    setCreatingDirectory(true);
-    auto reply = createDirectoryRequest(directory);
-    connect(reply, &QNetworkReply::finished, [=]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-        emit this->directoryCreated(directory, code == 201);
-        this->setCreatingDirectory(false);
-    });
-}
 
 QVariantMap WebDAVSynchronizer::toMap() const
 {
@@ -141,28 +130,84 @@ void WebDAVSynchronizer::setPassword(const QString& password)
     }
 }
 
-WebDAVSynchronizer::EntryList WebDAVSynchronizer::entryList(const QString& directory)
+
+/**
+ * @brief Get the list of entries on the given @p directory.
+ *
+ * This retrieves the contents of the @p directory (which is relative to the
+ * remoteDirectory set in the WebDAVSynchronizer itself).
+ */
+WebDAVSynchronizer::EntryList WebDAVSynchronizer::entryList(const QString& directory, bool *ok)
 {
     // TODO: Implement me
     Q_UNUSED(directory);
     EntryList result;
+    auto dir = this->remoteDirectory() + "/" + directory;
+    dir = QDir::cleanPath(dir);
+    auto reply = listDirectoryRequest(dir);
+    bool status = false;
+    connect(reply, &QNetworkReply::finished, [&]() {
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+        if (code == WebDAVMultiGetResponseCode) {
+            result = parseEntryList(dir, reply->readAll());
+            status = true;
+        }
+    });
+    waitForReplyToFinish(reply);
+    if (ok != nullptr) {
+        *ok = status;
+    }
     return result;
 }
 
-bool WebDAVSynchronizer::get(const QString& filename, const QString& localFileName)
+bool WebDAVSynchronizer::download(const QString& filename)
 {
-    // TODO: Implement me
-    Q_UNUSED(filename);
-    Q_UNUSED(localFileName);
     return false;
 }
 
-bool WebDAVSynchronizer::put(const QString& localFileName, const QString& filename)
+bool WebDAVSynchronizer::upload(const QString& filename)
 {
-    // TODO: Implement me
-    Q_UNUSED(localFileName);
-    Q_UNUSED(filename);
-    return false;
+    auto result = false;
+    auto file = new QFile(directory() + "/" + filename);
+    if (file->open(QIODevice::ReadOnly)) {
+        QNetworkRequest request;
+        auto url = QUrl(baseUrl().toString() +
+                        QDir::cleanPath("/" + remoteDirectory() + "/" + filename));
+        url.setUserName(username());
+        url.setPassword(password());
+        request.setUrl(url);
+        request.setHeader(QNetworkRequest::ContentLengthHeader,
+                          file->size());
+        request.setHeader(QNetworkRequest::ContentTypeHeader,
+                          "application/octet-stream");
+        auto reply = m_networkAccessManager->put(request, file);
+        file->setParent(reply);
+        waitForReplyToFinish(reply);
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (code == HTTPOkCode || code == HTTPCreatedCode ||
+                code == HTTPNoContentCode) {
+            result = true;
+        } else {
+            qCWarning(webDAVSynchronizer) << "Upload failed with code" << code;
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to open" << filename
+                                      << "for reading:" << file->errorString();
+        delete file;
+    }
+    return result;
+}
+
+bool WebDAVSynchronizer::mkdir(const QString& dirname)
+{
+    auto result = false;
+    auto reply = createDirectoryRequest(dirname);
+    connect(reply, &QNetworkReply::finished, [&]() {
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+        result = code == HTTPCreatedCode;
+    });
+    waitForReplyToFinish(reply);
+    return result;
 }
 
 
@@ -182,7 +227,6 @@ QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory
                              "<a:prop>"
                              "<a:resourcetype/>"
                              "<a:getetag/>"
-                             "<a:displayname/>"
                              "</a:prop>"
                              "</a:propfind>";
     QNetworkRequest request;
@@ -202,6 +246,7 @@ QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "PROPFIND", buffer);
     buffer->setParent(reply);
+    prepareReply(reply);
     return reply;
 }
 
@@ -220,6 +265,7 @@ QNetworkReply*WebDAVSynchronizer::createDirectoryRequest(
     request.setUrl(url);
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "MKCOL");
+    prepareReply(reply);
     return reply;
 }
 
@@ -262,10 +308,81 @@ WebDAVSynchronizer::EntryList WebDAVSynchronizer::parsePropFindResponse(
 WebDAVSynchronizer::Entry WebDAVSynchronizer::parseResponseEntry(
         const QDomElement& element, const QString& baseDir)
 {
+    auto type = File;
+    QString etag;
+
+    auto propstats = element.elementsByTagName("propstat");
+    for (int i = 0; i < propstats.length(); ++i) {
+        auto propstat = propstats.at(i).toElement();
+        auto status = propstat.firstChildElement("status");
+        if (status.text().endsWith("200 OK")) {
+            auto prop = propstat.firstChildElement("prop");
+            auto child = prop.firstChildElement();
+            while (child.isElement()) {
+                if (child.tagName() == "resourcetype") {
+                    if (child.firstChildElement().tagName() == "collection") {
+                        type = Directory;
+                    }
+                } else if (child.tagName() == "getetag") {
+                    etag = child.text();
+                } else {
+                    qCWarning(webDAVSynchronizer) << "Unknown DAV Property:"
+                                                  << child.tagName();
+                }
+                child = child.nextSiblingElement();
+            }
+        } else {
+            qCWarning(webDAVSynchronizer) << "Properties not retrieved -"
+                                          << status.text();
+        }
+    }
+
+
     auto path = element.firstChildElement("href").text();
     path = QDir(baseDir).relativeFilePath(path);
     Entry result;
-    result.type = File;
+    result.type = type;
+    result.etag = etag;
     result.name = path;
     return result;
+}
+
+void WebDAVSynchronizer::prepareReply(QNetworkReply* reply) const
+{
+    if (m_disableCertificateCheck) {
+        connect(reply, &QNetworkReply::sslErrors,
+                [=](QList<QSslError> errors) {
+            for (auto error : errors) {
+                qCWarning(webDAVSynchronizer) << error.errorString();
+            }
+            reply->ignoreSslErrors(errors);
+        });
+    }
+    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
+            [=](QNetworkReply::NetworkError error) {
+        qCWarning(webDAVSynchronizer) << "Network error:" << error;
+    });
+}
+
+
+/**
+ * @brief Waits for the @p reply to finish.
+ *
+ * This is a helper method which waits for the network reply to finish, i.e.
+ * either the reply's finished() signal is emitted or there was no up- or
+ * download progress within a given interval.
+ */
+void WebDAVSynchronizer::waitForReplyToFinish(QNetworkReply* reply) const
+{
+    Q_CHECK_PTR(reply);
+    QEventLoop loop;
+    QTimer timer;
+    timer.setInterval(30000);
+    auto restartTimer = [&](qint64, qint64) { timer.start(); };
+    connect(reply, &QNetworkReply::uploadProgress, restartTimer);
+    connect(reply, &QNetworkReply::uploadProgress, restartTimer);
+    connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    timer.start();
+    loop.exec();
 }

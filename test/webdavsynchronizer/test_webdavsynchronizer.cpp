@@ -1,33 +1,39 @@
+#define WEBDAV_SYNCHRONIZER_TEST
+
 #include "sync/webdavsynchronizer.h"
 #include "sync/genericdavsynchronizer.h"
 #include "sync/nextcloudsynchronizer.h"
 
 #include <QObject>
 #include <QObjectList>
+#include <QRegularExpression>
 #include <QSignalSpy>
+#include <QTemporaryDir>
 #include <QTest>
 #include <QUuid>
 
 class WebDAVSynchronizerTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void remoteDirectory();
-  void disableCertificateCheck();
-  void username();
-  void password();
-  void validate();
-  void validate_data();
-  void createDirectory();
-  void createDirectory_data();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void remoteDirectory();
+    void disableCertificateCheck();
+    void username();
+    void password();
+    void validate();
+    void validate_data();
+    void mkdir();
+    void mkdir_data();
+    void upload();
+    void upload_data();
+    void cleanup() {}
+    void cleanupTestCase() {}
 
-  void createDavClients();
+    void createDavClients();
 };
 
 
@@ -95,25 +101,49 @@ void WebDAVSynchronizerTest::validate_data()
     createDavClients();
 }
 
-void WebDAVSynchronizerTest::createDirectory()
+void WebDAVSynchronizerTest::mkdir()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
-    Q_CHECK_PTR(davClient);
-    QCOMPARE(davClient->creatingDirectory(), false);
-    QSignalSpy creatingDirectoryChanged(davClient, &Synchronizer::creatingDirectoryChanged);
-    QSignalSpy directoryCreated(davClient, &Synchronizer::directoryCreated);
     auto dirName = QUuid::createUuid().toString();
-    davClient->createDirectory(dirName);
-    QCOMPARE(davClient->creatingDirectory(), true);
-    QVERIFY(creatingDirectoryChanged.wait(30000));
-    QCOMPARE(creatingDirectoryChanged.count(), 2);
-    QCOMPARE(directoryCreated.count(), 1);
-    QCOMPARE(directoryCreated.at(0).at(0).toString(), dirName);
-    QCOMPARE(directoryCreated.at(0).at(0).toBool(), true);
+    QVERIFY(davClient->mkdir(dirName));
 }
 
-void WebDAVSynchronizerTest::createDirectory_data()
+void WebDAVSynchronizerTest::mkdir_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::upload()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    QTemporaryDir dir;
+    {
+        QFile file(dir.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Hello World\n");
+        file.close();
+    }
+    auto dirName = QUuid::createUuid().toString();
+    QVERIFY(davClient->mkdir(dirName));
+    davClient->setDirectory(dir.path());
+    davClient->setRemoteDirectory(dirName);
+    QVERIFY(davClient->upload("sample.txt"));
+
+    {
+        QFile file(dir.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Changed hello World\n");
+        file.close();
+    }
+    QVERIFY(davClient->upload("sample.txt"));
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Failed to open.*for reading"));
+    QVERIFY(!davClient->upload("sample2.txt"));
+}
+
+void WebDAVSynchronizerTest::upload_data()
 {
     createDavClients();
 }

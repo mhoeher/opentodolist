@@ -119,16 +119,6 @@ bool Synchronizer::synchronizing() const
 
 
 /**
- * @brief Indicates if a directory currently is being created.
- * @return
- */
-bool Synchronizer::creatingDirectory() const
-{
-    return m_creatingDirectory;
-}
-
-
-/**
  * @brief Set the synchronizing property.
  *
  * Sub-classes are supposed to use this method in their implementation of the
@@ -142,17 +132,6 @@ void Synchronizer::setSynchronizing(bool synchronizing)
     }
 }
 
-
-/**
- * @brief Set the creatingDirectory property.
- */
-void Synchronizer::setCreatingDirectory(bool creatingDirectory)
-{
-    if (m_creatingDirectory != creatingDirectory) {
-        m_creatingDirectory = creatingDirectory;
-        emit creatingDirectoryChanged();
-    }
-}
 
 /**
  * @brief Begin validation.
