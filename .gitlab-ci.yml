@@ -63,7 +63,7 @@ ubuntu_appimage:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
-    - source /opt/qt59/bin/qt59-env.sh
+    - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
     - qmake CONFIG+=RELEASE ..
     - make -j4
     - make check
