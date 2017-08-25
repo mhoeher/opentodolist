@@ -3,6 +3,7 @@ variables:
     FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
+    UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     NEXTCLOUD_IMAGE: registry.gitlab.com/rpdev/opentodolist:nextcloud
 
 stages:
@@ -52,6 +53,28 @@ linux_system:
     - qmake-qt5 NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Ubuntu build including AppImage
+ubuntu_appimage:
+  stage: build
+  image: $UBUNTU_IMAGE
+  script:
+    - desktop-file-validate templates/appimage/default.desktop
+    - export QT_QPA_PLATFORM=minimal
+    - mkdir build
+    - cd build
+    - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
+    - qmake CONFIG+=RELEASE ..
+    - make -j4
+    - make check
+    - make OpenTodoList-x86_64.AppImage
   only:
     - branches
   artifacts:
@@ -124,6 +147,20 @@ build_image_fedora_system:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --pull -t $FEDORA_SYSTEM_IMAGE .
     - docker push $FEDORA_SYSTEM_IMAGE
+  when: manual
+
+
+# Build the Linux (Ubuntu) Image
+build_image_ubuntu:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/ubuntu
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $UBUNTU_IMAGE .
+    - docker push $UBUNTU_IMAGE
   when: manual
 
 

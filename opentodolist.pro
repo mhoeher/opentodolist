@@ -25,8 +25,10 @@ OTHER_FILES += \
     templates/installer/config/controller.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
+    templates/appimage/default.desktop \
     $$files(ci/docker/fedora/*) \
     $$files(ci/docker/fedora_system/*) \
+    $$files(ci/docker/ubuntu/*) \
     $$files(ci/docker/win32/*) \
     $$files(ci/docker/win64/*) \
     $$files(ci/docker/nextcloud/*) \
@@ -69,3 +71,5 @@ message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
 message("    QtSingleApplication:    $$QT_SINGLE_APPLICATION_MODE")
 message("    QtKeychain:             $$QT_KEYCHAIN_MODE")
 message("    Libsecret:              $$LIBSECRET_MODE")
+
+include(appimage.pri)
