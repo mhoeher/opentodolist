@@ -68,7 +68,7 @@ Item {
                 Symbol {
                     symbol: Fonts.symbols.faTrashO
                     onClicked: {
-                        confirmDeleteTodoDialog.todo = todo;
+                        confirmDeleteTodoDialog.todo = object;
                         confirmDeleteTodoDialog.open();
                     }
                 }
