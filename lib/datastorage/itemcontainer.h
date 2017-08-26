@@ -70,6 +70,11 @@ signals:
     void itemDeleted(int index);
 
     /**
+     * @brief The properties of the item at the given @p index changed.
+     */
+    void itemChanged(int index);
+
+    /**
      * @brief The container has been cleared.
      */
     void cleared();
@@ -91,6 +96,8 @@ private slots:
     void updateWeights(Item* item);
     void updateWeights();
     void handleDeleteItem(Item* item);
+    void handleItemChanged();
+    void emitItemChanged(int index);
 
 };
 

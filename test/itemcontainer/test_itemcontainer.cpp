@@ -22,6 +22,7 @@ private slots:
   void testCount();
   void testUpdateItem();
   void testDeleteItem();
+  void testItemChanged();
   void cleanup();
   void cleanupTestCase() {}
 
@@ -118,6 +119,30 @@ void ItemContainerTest::testDeleteItem()
         QVERIFY(itemDeleted.wait(1000));
         QCOMPARE(itemDeleted.at(0).at(0).toInt(), ExpectedIndices[i]);
     }
+}
+
+void ItemContainerTest::testItemChanged()
+{
+    ItemContainer c;
+    QSignalSpy itemAdded(&c, &ItemContainer::itemAdded);
+    auto item1 = m_items.at(0);
+    auto item2 = m_items.at(1);
+    c.addItem(item1);
+    QVERIFY(itemAdded.wait(1000));
+    c.addItem(item2);
+    QVERIFY(itemAdded.wait(1000));
+    QSignalSpy spy(&c, &ItemContainer::itemChanged);
+    item1->setTitle("Foo");
+    QVERIFY(spy.wait(1000));
+    item2->setTitle("Bar");
+    QVERIFY(spy.wait(1000));
+    QCOMPARE(spy.count(), 2);
+    auto row = spy.at(0);
+    QCOMPARE(row.count(), 1);
+    QCOMPARE(row.at(0).toInt(), 0);
+    row = spy.at(1);
+    QCOMPARE(row.count(), 1);
+    QCOMPARE(row.at(0).toInt(), 1);
 }
 
 void ItemContainerTest::cleanup()

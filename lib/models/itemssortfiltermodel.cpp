@@ -7,6 +7,13 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     m_filterFunction(),
     m_sortFunction()
 {
+    auto handleRowsChanged = [=](const QModelIndex&, int, int) {
+        emit countChanged();
+    };
+    connect(this, &QSortFilterProxyModel::rowsInserted, handleRowsChanged);
+    connect(this, &QSortFilterProxyModel::rowsRemoved, handleRowsChanged);
+    connect(this, &QSortFilterProxyModel::modelReset,
+            [=]() { emit countChanged(); });
 }
 
 QJSValue ItemsSortFilterModel::filterFunction() const
@@ -30,6 +37,15 @@ void ItemsSortFilterModel::setSortFunction(QJSValue sort)
 {
     m_sortFunction = sort;
     emit sortFunctionChanged();
+}
+
+
+/**
+ * @brief The number of items in the model.
+ */
+int ItemsSortFilterModel::count() const
+{
+    return rowCount();
 }
 
 bool ItemsSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
