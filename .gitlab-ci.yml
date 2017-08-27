@@ -28,7 +28,7 @@ linux_builtin:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
-    - qmake-qt5 NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
+    - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
   only:
@@ -50,7 +50,7 @@ linux_system:
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
-    - qmake-qt5 NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
+    - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
   only:
@@ -71,7 +71,7 @@ ubuntu_appimage:
     - mkdir build
     - cd build
     - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
-    - qmake CONFIG+=RELEASE ..
+    - qmake CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
     - make OpenTodoList-x86_64.AppImage

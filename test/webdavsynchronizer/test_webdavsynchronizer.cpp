@@ -37,6 +37,8 @@ private slots:
     void download_data();
     void deleteEntry();
     void deleteEntry_data();
+    void syncDirectory();
+    void syncDirectory_data();
     void cleanup() {}
     void cleanupTestCase() {}
 
@@ -280,6 +282,16 @@ void WebDAVSynchronizerTest::deleteEntry()
 }
 
 void WebDAVSynchronizerTest::deleteEntry_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::syncDirectory()
+{
+
+}
+
+void WebDAVSynchronizerTest::syncDirectory_data()
 {
     createDavClients();
 }

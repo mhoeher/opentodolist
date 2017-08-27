@@ -89,6 +89,7 @@ private:
     bool upload(const QString& filename);
     bool mkdir(const QString& dirname);
     bool deleteEntry(const QString& filename);
+    bool syncDirectory(const QString &directory);
 
     QNetworkReply *listDirectoryRequest(const QString& directory);
     QNetworkReply *createDirectoryRequest(const QString& directory);

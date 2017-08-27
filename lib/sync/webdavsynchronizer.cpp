@@ -345,6 +345,12 @@ bool WebDAVSynchronizer::deleteEntry(const QString& filename)
     return result;
 }
 
+bool WebDAVSynchronizer::syncDirectory(const QString& directory)
+{
+    Q_UNUSED(directory);
+    return false;
+}
+
 
 QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(const QString& directory)
 {
