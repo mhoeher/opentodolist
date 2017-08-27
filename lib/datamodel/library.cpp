@@ -8,6 +8,7 @@
 
 #include "libraryloader.h"
 #include "toplevelitem.h"
+#include "todolist.h"
 #include "todo.h"
 #include "task.h"
 
@@ -401,12 +402,17 @@ void Library::appendItem(ItemPtr item)
 {
     auto topLevelItem = qSharedPointerDynamicCast<TopLevelItem>(item);
     if (!topLevelItem.isNull()) {
+        auto todoList = qSharedPointerDynamicCast<TodoList>(item);
+        if (todoList) {
+            todoList->m_library = this;
+        }
         m_topLevelItems.updateOrInsert(item);
         connect(topLevelItem.data(), &TopLevelItem::tagsChanged, this, &Library::tagsChanged);
         emit tagsChanged();
     } else {
         auto todo = qSharedPointerDynamicCast<Todo>(item);
         if (!todo.isNull()) {
+            todo->m_library = this;
             m_todos.updateOrInsert(item);
         } else {
             auto task = qSharedPointerDynamicCast<Task>(item);

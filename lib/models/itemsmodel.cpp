@@ -6,7 +6,12 @@ ItemsModel::ItemsModel(QObject *parent) :
     QAbstractListModel(parent),
     m_container()
 {
-
+    auto handleRowsChanged = [=](const QModelIndex&, int, int) {
+        emit countChanged();
+    };
+    connect(this, &QAbstractListModel::rowsAboutToBeInserted, handleRowsChanged);
+    connect(this, &QAbstractListModel::rowsAboutToBeRemoved, handleRowsChanged);
+    connect(this, &ItemsModel::containerChanged, this, &ItemsModel::countChanged);
 }
 
 /**
@@ -28,6 +33,8 @@ void ItemsModel::setContainer(ItemContainer* container)
                        this, &ItemsModel::itemAdded);
             disconnect(m_container.data(), &ItemContainer::itemDeleted,
                        this, &ItemsModel::itemDeleted);
+            disconnect(m_container.data(), &ItemContainer::itemChanged,
+                       this, &ItemsModel::itemChanged);
             disconnect(m_container.data(), &ItemContainer::cleared,
                        this, &ItemsModel::cleared);
         }
@@ -39,11 +46,21 @@ void ItemsModel::setContainer(ItemContainer* container)
                     this, &ItemsModel::itemAdded);
             connect(m_container.data(), &ItemContainer::itemDeleted,
                     this, &ItemsModel::itemDeleted);
+            connect(m_container.data(), &ItemContainer::itemChanged,
+                    this, &ItemsModel::itemChanged);
             connect(m_container.data(), &ItemContainer::cleared,
                     this, &ItemsModel::cleared);
         }
         emit containerChanged();
     }
+}
+
+/**
+ * @brief The number of items in the model.
+ */
+int ItemsModel::count() const
+{
+    return rowCount(QModelIndex());
 }
 
 int ItemsModel::rowCount(const QModelIndex& parent) const
@@ -89,6 +106,12 @@ void ItemsModel::itemDeleted(int index)
 {
     beginRemoveRows(QModelIndex(), index, index);
     endRemoveRows();
+}
+
+void ItemsModel::itemChanged(int index)
+{
+    auto idx = this->index(index, 0);
+    emit dataChanged(idx, idx);
 }
 
 void ItemsModel::cleared()

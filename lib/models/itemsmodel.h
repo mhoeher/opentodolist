@@ -17,6 +17,7 @@ class ItemsModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(ItemContainer* container READ container WRITE setContainer NOTIFY containerChanged)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum Roles {
         ItemRole = Qt::UserRole
@@ -29,6 +30,8 @@ public:
     ItemContainer* container() const;
     void setContainer(ItemContainer *container);
 
+    int count() const;
+
     // QAbstractItemModel interface
     int rowCount(const QModelIndex& parent) const override;
     QVariant data(const QModelIndex& index, int role) const override;
@@ -37,6 +40,7 @@ public:
 signals:
 
     void containerChanged();
+    void countChanged();
 
 public slots:
 
@@ -48,6 +52,7 @@ private slots:
 
     void itemAdded(int index);
     void itemDeleted(int index);
+    void itemChanged(int index);
     void cleared();
 };
 

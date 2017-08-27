@@ -11,6 +11,7 @@ class ItemsSortFilterModel : public QSortFilterProxyModel
     Q_PROPERTY(QJSValue filterFunction READ filterFunction WRITE setFilterFunction NOTIFY filterFunctionChanged)
     Q_PROPERTY(QJSValue sortFunction READ sortFunction WRITE setSortFunction
                NOTIFY sortFunctionChanged)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     explicit ItemsSortFilterModel(QObject *parent = 0);
 
@@ -20,10 +21,13 @@ public:
     QJSValue sortFunction() const;
     void setSortFunction(QJSValue sortFunction);
 
+    int count() const;
+
 signals:
 
     void filterFunctionChanged();
     void sortFunctionChanged();
+    void countChanged();
 
 public slots:
 

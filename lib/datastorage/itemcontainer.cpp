@@ -78,6 +78,7 @@ void ItemContainer::addItem(ItemPtr item)
         QtConcurrent::run(m_threadPool, [=]() {
             QMutexLocker l(&m_lock);
             connect(item.data(), &Item::itemDeleted, this, &ItemContainer::handleDeleteItem);
+            connect(item.data(), &Item::changed, this, &ItemContainer::handleItemChanged);
             m_items.append(item);
             m_uidMap.insert(item->uid(), item);
             this->updateWeights(item.data());
@@ -211,6 +212,32 @@ void ItemContainer::handleDeleteItem(Item* item)
                 }
             }
         });
+    }
+}
+
+void ItemContainer::handleItemChanged()
+{
+    auto sender = this->sender();
+    Item* item = static_cast<Item*>(sender);
+    QtConcurrent::run(m_threadPool, [=]() {
+        QMutexLocker l(&m_lock);
+        for (int i = 0; i < m_items.count(); ++i) {
+            auto it = m_items.at(i);
+            if (it.data() == item) {
+                QMetaObject::invokeMethod(
+                            this, "emitItemChanged",
+                            Qt::QueuedConnection,
+                            Q_ARG(int, i));
+                break;
+            }
+        }
+    });
+}
+
+void ItemContainer::emitItemChanged(int index)
+{
+    if (index >= 0 && index < m_items.count()) {
+        emit itemChanged(index);
     }
 }
 
