@@ -40,6 +40,7 @@ private slots:
     void cleanup() {}
     void cleanupTestCase() {}
 
+private:
     void createDavClients();
 };
 
