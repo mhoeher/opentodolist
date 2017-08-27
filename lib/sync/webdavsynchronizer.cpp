@@ -7,6 +7,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QTemporaryFile>
 #include <QTimer>
 
 
@@ -14,12 +15,86 @@ Q_LOGGING_CATEGORY(webDAVSynchronizer,
                    "net.rpdev.opentodolist.WebDAVSynchronizer",
                    QtDebugMsg)
 
-enum {
-    WebDAVMultiGetResponseCode = 207,
-    HTTPOkCode = 200,
-    HTTPCreatedCode = 201,
-    HTTPNoContentCode = 204
+enum class HTTPStatusCode {
+    Continue = 100,
+    SwitchingProtocols = 101,
+    WebDAVProcessing = 102,
+    OK = 200,
+    Created = 201,
+    Accepted = 202,
+    NonAuthoritativeInformation = 203,
+    NoContent = 204,
+    ResetContent = 205,
+    PartialContent = 206,
+    WebDAVMultiStatus = 207,
+    WebDAVAlreadyReported = 208,
+    IMUsed = 226,
+    MultipleChoices = 300,
+    MovedPermanently = 301,
+    Found = 302,
+    SeeOther = 303,
+    NotModified = 304,
+    UseProxy = 305,
+    Unused = 306,
+    TemporaryRedirect = 307,
+    PermanentRedirect = 308,
+    BadRequest = 400,
+    Unauthorized = 401,
+    PaymentRequired = 402,
+    Forbidden = 403,
+    NotFound = 404,
+    MethodNotAllowed = 405,
+    NotAcceptable = 406,
+    ProxyAuthenticationRequired = 407,
+    RequestTimeout = 408,
+    Conflict = 409,
+    Gone = 410,
+    LengthRequired = 411,
+    PreconditionFailed = 412,
+    RequestEntityTooLarge = 413,
+    RequestURITooLong = 414,
+    UnsupportedMediaType = 415,
+    RequestedRangeNotSatisfiable = 416,
+    ExpectationFailed = 417,
+    ImATeapot = 418,
+    TwiterEnhanceYourCalm = 420,
+    WebDAVUnprocessableEntity = 422,
+    WebDAVLocked = 423,
+    WebDAVFailedDependency = 424,
+    WebDAVReserved = 425,
+    UpgradeRequired = 426,
+    PreconditionRequired = 428,
+    TooManyRequests = 429,
+    RequestHeaderFieldsTooLarge = 431,
+    NginxNoResponse = 444,
+    MicrosoftRetryWith = 449,
+    MicrosoftBlockedByWindowsParentalControls = 450,
+    UnavailableForLegalReasons = 451,
+    NginxClientClosedRequest = 499,
+    InternalServerError = 500,
+    NotImplemented = 501,
+    BadGateway = 502,
+    ServiceUnavailable = 503,
+    GatewayTimeout = 504,
+    HTTPVersionNotSupported = 505,
+    VariantAlsoNegotiates = 506,
+    WebDAVInsufficientStorage = 507,
+    WebDAVLoopDetected = 508,
+    ApacheBandwidthLimitExceeded = 509,
+    NotExtended = 510,
+    NetworkAuthenticationRequired = 511,
+    NetworkReadTimeoutError = 598,
+    NetworkConnectTimeoutError = 599
 };
+
+bool operator ==(int lhs, HTTPStatusCode rhs) {
+    return lhs == static_cast<int>(rhs);
+}
+
+bool operator ==(HTTPStatusCode lhs, int rhs) {
+    return static_cast<int>(lhs) == rhs;
+}
+
 
 
 
@@ -46,7 +121,7 @@ void WebDAVSynchronizer::validate()
     reply->setParent(this);
     connect(reply, &QNetworkReply::finished, [=]() {
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == WebDAVMultiGetResponseCode) {
+        if (code == HTTPStatusCode::WebDAVMultiStatus) {
             endValidation(true);
         } else {
             endValidation(false);
@@ -147,8 +222,8 @@ WebDAVSynchronizer::EntryList WebDAVSynchronizer::entryList(const QString& direc
     auto reply = listDirectoryRequest(dir);
     bool status = false;
     connect(reply, &QNetworkReply::finished, [&]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-        if (code == WebDAVMultiGetResponseCode) {
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (code == HTTPStatusCode::WebDAVMultiStatus) {
             result = parseEntryList(dir, reply->readAll());
             status = true;
         }
@@ -162,7 +237,46 @@ WebDAVSynchronizer::EntryList WebDAVSynchronizer::entryList(const QString& direc
 
 bool WebDAVSynchronizer::download(const QString& filename)
 {
-    return false;
+    QTemporaryFile* file = new QTemporaryFile();
+    auto result = false;
+    if (file->open()) {
+        QNetworkRequest request;
+        auto url = QUrl(baseUrl().toString() +
+                        QDir::cleanPath("/" + remoteDirectory() + "/" + filename));
+        url.setUserName(username());
+        url.setPassword(password());
+        request.setUrl(url);
+        auto reply = m_networkAccessManager->get(request);
+        file->setParent(reply);
+        connect(reply, &QNetworkReply::readyRead, [=]() {
+            file->write(reply->readAll());
+        });
+        waitForReplyToFinish(reply);
+        file->write(reply->readAll());
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (code == HTTPStatusCode::OK) {
+            QFile targetFile(directory() + "/" + filename);
+            if (targetFile.open(QIODevice::WriteOnly)) {
+                file->seek(0);
+                while (!file->atEnd()) {
+                    targetFile.write(file->read(1024*1024));
+                }
+                targetFile.close();
+                result = true;
+            } else {
+                qCWarning(webDAVSynchronizer) << "Failed to open destination"
+                                              << "file for writing:"
+                                              << targetFile.errorString();
+            }
+        } else {
+            qCWarning(webDAVSynchronizer) << "Upload failed with code" << code;
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to open temporary file for"
+                                      << "downloading:"
+                                      << file->errorString();
+    }
+    return result;
 }
 
 bool WebDAVSynchronizer::upload(const QString& filename)
@@ -184,8 +298,8 @@ bool WebDAVSynchronizer::upload(const QString& filename)
         file->setParent(reply);
         waitForReplyToFinish(reply);
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == HTTPOkCode || code == HTTPCreatedCode ||
-                code == HTTPNoContentCode) {
+        if (code == HTTPStatusCode::OK || code == HTTPStatusCode::Created ||
+                code == HTTPStatusCode::NoContent) {
             result = true;
         } else {
             qCWarning(webDAVSynchronizer) << "Upload failed with code" << code;
@@ -204,9 +318,30 @@ bool WebDAVSynchronizer::mkdir(const QString& dirname)
     auto reply = createDirectoryRequest(dirname);
     connect(reply, &QNetworkReply::finished, [&]() {
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-        result = code == HTTPCreatedCode;
+        result = code.toInt() == HTTPStatusCode::Created;
     });
     waitForReplyToFinish(reply);
+    return result;
+}
+
+bool WebDAVSynchronizer::deleteEntry(const QString& filename)
+{
+    auto result = false;
+    QNetworkRequest request;
+    auto url = QUrl(baseUrl().toString() +
+                    QDir::cleanPath("/" + remoteDirectory() + "/" + filename));
+    url.setUserName(username());
+    url.setPassword(password());
+    request.setUrl(url);
+    auto reply = m_networkAccessManager->deleteResource(request);
+    waitForReplyToFinish(reply);
+    auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (code == HTTPStatusCode::OK || code == HTTPStatusCode::NoContent) {
+        result = true;
+    } else {
+        qCWarning(webDAVSynchronizer) << "Deleting entry failed with code"
+                                      << code;
+    }
     return result;
 }
 
@@ -292,15 +427,20 @@ WebDAVSynchronizer::EntryList WebDAVSynchronizer::parsePropFindResponse(
     auto baseUrl = this->baseUrl();
     auto baseDir = QDir::cleanPath(baseUrl.path() + "/" + directory);
     auto root = response.documentElement();
-    if (root.tagName() == "multistatus") {
-        auto resp = root.firstChildElement("response");
+    auto rootTagName = root.tagName();
+    if (rootTagName == "d:multistatus") {
+        auto resp = root.firstChildElement("d:response");
         while (resp.isElement()) {
             auto entry = parseResponseEntry(resp, baseDir);
             if (entry.type != Invalid) {
                 result << entry;
             }
-            resp = resp.nextSiblingElement("response");
+            resp = resp.nextSiblingElement("d:response");
         }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Received invalid WebDAV response from"
+                                         "server starting with element"
+                                      << rootTagName;
     }
     return result;
 }
@@ -311,19 +451,19 @@ WebDAVSynchronizer::Entry WebDAVSynchronizer::parseResponseEntry(
     auto type = File;
     QString etag;
 
-    auto propstats = element.elementsByTagName("propstat");
+    auto propstats = element.elementsByTagName("d:propstat");
     for (int i = 0; i < propstats.length(); ++i) {
         auto propstat = propstats.at(i).toElement();
-        auto status = propstat.firstChildElement("status");
+        auto status = propstat.firstChildElement("d:status");
         if (status.text().endsWith("200 OK")) {
-            auto prop = propstat.firstChildElement("prop");
+            auto prop = propstat.firstChildElement("d:prop");
             auto child = prop.firstChildElement();
             while (child.isElement()) {
-                if (child.tagName() == "resourcetype") {
-                    if (child.firstChildElement().tagName() == "collection") {
+                if (child.tagName() == "d:resourcetype") {
+                    if (child.firstChildElement().tagName() == "d:collection") {
                         type = Directory;
                     }
-                } else if (child.tagName() == "getetag") {
+                } else if (child.tagName() == "d:getetag") {
                     etag = child.text();
                 } else {
                     qCWarning(webDAVSynchronizer) << "Unknown DAV Property:"
@@ -338,7 +478,9 @@ WebDAVSynchronizer::Entry WebDAVSynchronizer::parseResponseEntry(
     }
 
 
-    auto path = element.firstChildElement("href").text();
+    QString path = QByteArray::fromPercentEncoding(
+                element.firstChildElement("d:href").text().toUtf8());
+
     path = QDir(baseDir).relativeFilePath(path);
     Entry result;
     result.type = type;

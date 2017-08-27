@@ -11,6 +11,7 @@
 #include <QTemporaryDir>
 #include <QTest>
 #include <QUuid>
+#include <QSet>
 
 class WebDAVSynchronizerTest : public QObject
 {
@@ -30,6 +31,12 @@ private slots:
     void mkdir_data();
     void upload();
     void upload_data();
+    void entryList();
+    void entryList_data();
+    void download();
+    void download_data();
+    void deleteEntry();
+    void deleteEntry_data();
     void cleanup() {}
     void cleanupTestCase() {}
 
@@ -144,6 +151,134 @@ void WebDAVSynchronizerTest::upload()
 }
 
 void WebDAVSynchronizerTest::upload_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::entryList()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    QTemporaryDir dir;
+    {
+        QFile file(dir.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Hello World\n");
+        file.close();
+    }
+    {
+        QFile file(dir.path() + "/sample2.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Hello World\n");
+        file.close();
+    }
+    auto dirName = QUuid::createUuid().toString();
+    QVERIFY(davClient->mkdir(dirName));
+    davClient->setDirectory(dir.path());
+    davClient->setRemoteDirectory(dirName);
+    QVERIFY(davClient->upload("sample.txt"));
+    QVERIFY(davClient->upload("sample2.txt"));
+    davClient->mkdir(davClient->remoteDirectory() + "/subdir");
+    bool ok;
+    auto entryList = davClient->entryList(".", &ok);
+    QVERIFY(ok);
+    QCOMPARE(entryList.length(), 4);
+    QSet<QString> expected = {".", "subdir", "sample.txt", "sample2.txt"};
+    QSet<QString> got = {entryList[0].name, entryList[1].name, entryList[2].name, entryList[3].name};
+    QCOMPARE(got, expected);
+    for (auto entry : entryList) {
+        if (entry.name == "." || entry.name == "subdir") {
+            QCOMPARE(entry.type, WebDAVSynchronizer::Directory);
+        } else {
+            QCOMPARE(entry.type, WebDAVSynchronizer::File);
+        }
+        QVERIFY(entry.etag != "");
+    }
+}
+
+void WebDAVSynchronizerTest::entryList_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::download()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    QTemporaryDir dir;
+    {
+        QFile file(dir.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Hello World\n");
+        file.close();
+    }
+    auto dirName = QUuid::createUuid().toString();
+    QVERIFY(davClient->mkdir(dirName));
+    davClient->setDirectory(dir.path());
+    davClient->setRemoteDirectory(dirName);
+    QVERIFY(davClient->upload("sample.txt"));
+
+    QTemporaryDir dir2;
+    davClient->setDirectory(dir2.path());
+    QVERIFY(davClient->download("sample.txt"));
+    {
+        QFile file(dir2.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::ReadOnly));
+        QCOMPARE(file.readAll(), QByteArray("Hello World\n"));
+    }
+    QTest::ignoreMessage(QtWarningMsg,
+                         QRegularExpression("Upload failed with code 404"));
+    QVERIFY(!davClient->download("sample2.txt"));
+    davClient->setDirectory(dir.path());
+    {
+        QFile file(dir.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Foo Bar Baz");
+        file.close();
+    }
+    QVERIFY(davClient->upload("sample.txt"));
+    davClient->setDirectory(dir2.path());
+    QVERIFY(davClient->download("sample.txt"));
+    {
+        QFile file(dir2.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::ReadOnly));
+        QCOMPARE(file.readAll(), QByteArray("Foo Bar Baz"));
+    }
+}
+
+void WebDAVSynchronizerTest::download_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::deleteEntry()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    QTemporaryDir dir;
+    {
+        QFile file(dir.path() + "/sample.txt");
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("Hello World\n");
+        file.close();
+    }
+    auto dirName = QUuid::createUuid().toString();
+    QVERIFY(davClient->mkdir(dirName));
+    davClient->setDirectory(dir.path());
+    davClient->setRemoteDirectory(dirName);
+    QVERIFY(davClient->upload("sample.txt"));
+    QVERIFY(davClient->deleteEntry("sample.txt"));
+    QTest::ignoreMessage(QtWarningMsg,
+                         QRegularExpression("Deleting entry failed with code 404"));
+    QVERIFY(!davClient->deleteEntry("sample.txt"));
+    QVERIFY(davClient->upload("sample.txt"));
+    davClient->setRemoteDirectory("");
+    QVERIFY(davClient->deleteEntry(dirName));
+    QVERIFY(davClient->mkdir(dirName));
+    QVERIFY(davClient->deleteEntry(dirName));
+}
+
+void WebDAVSynchronizerTest::deleteEntry_data()
 {
     createDavClients();
 }
