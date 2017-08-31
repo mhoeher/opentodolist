@@ -4,7 +4,7 @@ variables:
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
-    NEXTCLOUD_IMAGE: registry.gitlab.com/rpdev/opentodolist:nextcloud
+    NEXTCLOUD_IMAGE: nextcloud
 
 stages:
   - images
@@ -25,6 +25,7 @@ linux_builtin:
     - name: $NEXTCLOUD_IMAGE
       alias: nextcloud
   script:
+    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
@@ -47,6 +48,7 @@ linux_system:
     - name: $NEXTCLOUD_IMAGE
       alias: nextcloud
   script:
+    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
     - cd build
@@ -66,6 +68,7 @@ ubuntu_appimage:
   stage: build
   image: $UBUNTU_IMAGE
   script:
+    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - desktop-file-validate templates/appimage/default.desktop
     - export QT_QPA_PLATFORM=minimal
     - mkdir build
