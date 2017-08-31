@@ -147,6 +147,9 @@ linux_system:
 ubuntu_appimage:
   stage: build
   image: $UBUNTU_IMAGE
+  services:
+    - name: $NEXTCLOUD_IMAGE
+      alias: nextcloud
   script:
     - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - desktop-file-validate templates/appimage/default.desktop
