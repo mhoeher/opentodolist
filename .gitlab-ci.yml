@@ -17,6 +17,86 @@ before_script:
   - export CTEST_OUTPUT_ON_FAILURE=1
 
 
+
+################################################################################
+# Images Stage
+################################################################################
+
+# Build the Linux (Fedora) Image
+build_image_fedora:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/fedora
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $FEDORA_IMAGE .
+    - docker push $FEDORA_IMAGE
+  when: manual
+
+
+# Build the Linux (Fedora) Image including system
+# provided optional dependencies:
+build_image_fedora_system:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/fedora_system
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $FEDORA_SYSTEM_IMAGE .
+    - docker push $FEDORA_SYSTEM_IMAGE
+  when: manual
+
+
+# Build the Linux (Ubuntu) Image
+build_image_ubuntu:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/ubuntu
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $UBUNTU_IMAGE .
+    - docker push $UBUNTU_IMAGE
+  when: manual
+
+
+# Build the Win32 Image
+build_image_win32:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/win32
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $WIN32_IMAGE .
+    - docker push $WIN32_IMAGE
+  when: manual
+
+
+# Build the Win64 Image
+build_image_win64:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/win64
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $WIN64_IMAGE .
+    - docker push $WIN64_IMAGE
+  when: manual
+
+
+################################################################################
+# Build Stage
+################################################################################
+
 # Linux build & unit tests with built-in libraries
 linux_builtin:
   stage: build
@@ -122,88 +202,3 @@ win64_build:
     paths:
       - build
     expire_in: 1 week
-
-
-# Build the Linux (Fedora) Image
-build_image_fedora:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/fedora
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $FEDORA_IMAGE .
-    - docker push $FEDORA_IMAGE
-  when: manual
-
-
-# Build the Linux (Fedora) Image including system
-# provided optional dependencies:
-build_image_fedora_system:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/fedora_system
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $FEDORA_SYSTEM_IMAGE .
-    - docker push $FEDORA_SYSTEM_IMAGE
-  when: manual
-
-
-# Build the Linux (Ubuntu) Image
-build_image_ubuntu:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/ubuntu
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $UBUNTU_IMAGE .
-    - docker push $UBUNTU_IMAGE
-  when: manual
-
-
-# Build the Win32 Image
-build_image_win32:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/win32
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $WIN32_IMAGE .
-    - docker push $WIN32_IMAGE
-  when: manual
-
-
-# Build the Win64 Image
-build_image_win64:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/win64
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $WIN64_IMAGE .
-    - docker push $WIN64_IMAGE
-  when: manual
-
-
-# Build the NextCloud Image
-build_image_nextcloud:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/nextcloud
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $NEXTCLOUD_IMAGE .
-    - docker push $NEXTCLOUD_IMAGE
-  when: manual
