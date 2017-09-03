@@ -1,8 +1,11 @@
 #ifndef WEBDAVSYNCHRONIZER_H
 #define WEBDAVSYNCHRONIZER_H
 
+#include <tuple>
+
 #include <QList>
 #include <QLoggingCategory>
+#include <QRegularExpression>
 
 #include "sync/synchronizer.h"
 
@@ -86,12 +89,22 @@ private:
 
     EntryList entryList(const QString& directory, bool* ok = nullptr);
     bool download(const QString& filename);
-    bool upload(const QString& filename);
+    bool upload(const QString& filename, QString *etag = nullptr);
     bool mkdir(const QString& dirname);
     bool deleteEntry(const QString& filename);
-    bool syncDirectory(const QString &directory);
+    bool syncDirectory(
+            const QString &directory,
+            QRegularExpression directoryFilter = QRegularExpression(".*"),
+            bool pushOnly = false,
+            EntryList* entryList = nullptr);
+    QString etag(const QString &filename);
+
+    static QString mkpath(const QString &path);
+    static std::tuple<QString, QString> splitpath(const QString& path);
+    QString urlString() const;
 
     QNetworkReply *listDirectoryRequest(const QString& directory);
+    QNetworkReply *etagRequest(const QString& filename);
     QNetworkReply *createDirectoryRequest(const QString& directory);
     EntryList parseEntryList(const QString& directory,
                              const QByteArray& reply);

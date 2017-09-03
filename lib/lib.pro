@@ -1,6 +1,6 @@
 include(../config.pri)
 
-QT       += qml quick xml concurrent
+QT       += qml quick xml concurrent sql
 QT       -= gui
 
 TEMPLATE = lib
