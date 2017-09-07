@@ -92,11 +92,9 @@ private:
     bool upload(const QString& filename, QString *etag = nullptr);
     bool mkdir(const QString& dirname);
     bool deleteEntry(const QString& filename);
-    bool syncDirectory(
-            const QString &directory,
+    bool syncDirectory(const QString &directory,
             QRegularExpression directoryFilter = QRegularExpression(".*"),
-            bool pushOnly = false,
-            EntryList* entryList = nullptr);
+            bool pushOnly = false);
     QString etag(const QString &filename);
 
     static QString mkpath(const QString &path);

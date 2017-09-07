@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QDomDocument>
 #include <QEventLoop>
+#include <QFileInfo>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -92,13 +93,45 @@ enum class HTTPStatusCode {
     NetworkConnectTimeoutError = 599
 };
 
+
 bool operator ==(int lhs, HTTPStatusCode rhs) {
     return lhs == static_cast<int>(rhs);
 }
 
+
 bool operator ==(HTTPStatusCode lhs, int rhs) {
     return static_cast<int>(lhs) == rhs;
 }
+
+
+enum class SyncEntryType {
+    Unknown,
+    File,
+    Directory
+};
+
+struct SyncEntry {
+    QString parent;
+    QString entry;
+    SyncEntryType localType;
+    SyncEntryType remoteType;
+    QDateTime lastModDate;
+    QDateTime previousLasModtDate;
+    QString etag;
+    QString previousEtag;
+
+    SyncEntry() :
+        parent(),
+        entry(),
+        localType(SyncEntryType::Unknown),
+        remoteType(SyncEntryType::Unknown),
+        lastModDate(),
+        previousLasModtDate(),
+        etag(),
+        previousEtag()
+    {
+    }
+};
 
 
 static QSqlDatabase openSyncDb(const QString& localDir) {
@@ -119,16 +152,22 @@ static QSqlDatabase openSyncDb(const QString& localDir) {
     }
     query.prepare("SELECT value FROM version WHERE key == 'version';");
     int version = 0;
-    if (query.exec() && query.first()) {
-        auto record = query.record();
-        version = record.value("field").toInt();
+    if (query.exec()) {
+        if (query.first()) {
+            auto record = query.record();
+            version = record.value("field").toInt();
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to get version of sync DB:"
+                                      << query.lastError().text();
     }
     if (version == 0) {
-        query.prepare("CREATE TABLE files("
-                      "parent string, "
-                      "entry string, "
-                      "modificationDate string, "
-                      "etag string"
+        query.prepare("CREATE TABLE files ("
+                      "`parent` string NOT NULL, "
+                      "`entry` string not null, "
+                      "`modificationDate` date not null, "
+                      "`etag` string not null, "
+                      "PRIMARY KEY(`parent`, `entry`)"
                       ");");
         if (!query.exec()) {
             qWarning(webDAVSynchronizer) << "Failed to create files table:"
@@ -143,6 +182,69 @@ static QSqlDatabase openSyncDb(const QString& localDir) {
     }
     return db;
 }
+
+
+static void insertSyncDBEntry(QSqlDatabase &db, const SyncEntry &entry) {
+    QSqlQuery query(db);
+    query.prepare("INSERT OR REPLACE INTO files "
+                  "(parent, entry, modificationDate, etag) "
+                  "VALUES (?, ?, ?, ?);");
+    query.addBindValue(entry.parent);
+    query.addBindValue(entry.entry);
+    query.addBindValue(entry.lastModDate);
+    query.addBindValue(entry.etag);
+    if (!query.exec()) {
+        qCWarning(webDAVSynchronizer) << "Failed to insert SyncDB entry:"
+                                      << query.lastError().text();
+    }
+}
+
+
+/**
+ * @brief Get entries for given directory.
+ *
+ * This retrieves a list of entries from the last sync run
+ * for the given parent directory. The returned entries
+ * will have their previousLastModDate and previousEtag entries
+ * set.
+ */
+static QMap<QString, SyncEntry> findSyncDBEntries(QSqlDatabase &db,
+                                          const QString& parent) {
+    QMap<QString, SyncEntry> result;
+    QSqlQuery query(db);
+    query.prepare("SELECT parent, entry, modificationDate, etag "
+                  "FROM files WHERE parent = ?;");
+    query.addBindValue(parent);
+    if (query.exec()) {
+        while (query.next()) {
+            SyncEntry entry;
+            auto record = query.record();
+            entry.parent = record.value("parent").toString();
+            entry.entry = record.value("entry").toString();
+            entry.previousLasModtDate = record.value("modificationDate")
+                    .toDateTime();
+            entry.previousEtag = record.value("etag").toString();
+            result[entry.entry] = entry;
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to get sync entries from DB:"
+                                      << query.lastError().text();
+    }
+    return result;
+}
+
+static void removeDirFromSyncDB(QSqlQuery &db, const QString& parent) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM files "
+                  "WHERE parent LIKE '%' || ?;");
+    query.addBindValue(parent);
+    if (!query.exec()) {
+        qCWarning(webDAVSynchronizer) << "Failed to delete directory from "
+                                         "sync DB:"
+                                      << query.lastError().text();
+    }
+}
+
 
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
@@ -465,23 +567,53 @@ bool WebDAVSynchronizer::deleteEntry(const QString& filename)
  * list of directory contents. This can be used if a higher level method
  * detected that the directory is unchanged. In this case, only the local
  * files are checked and uploaded.
- *
- * If @p entryList is not a null pointer, the retrieved list of remote
- * directory entries is copied into that list.
  */
 bool WebDAVSynchronizer::syncDirectory(
         const QString& directory, QRegularExpression directoryFilter,
-        bool pushOnly, EntryList* entryList)
+        bool pushOnly)
 {
+    bool result = false;
     auto localBase = this->directory();
-    if (!localBase.isEmpty() && QDir(localBase).exists()) {
+    auto dir = mkpath(directory);
+    QDir d(localBase + "/" + dir);
+    if (!localBase.isEmpty() && d.exists()) {
         auto db = openSyncDb(this->directory());
+        auto entries = findSyncDBEntries(db, dir);
+
+        for (auto entry : d.entryList(
+                 QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
+            QFileInfo fi(d.absoluteFilePath(entry));
+            auto file = entries.value(entry, SyncEntry());
+            file.entry = entry;
+            file.parent = dir;
+            file.localType = fi.isDir() ? SyncEntryType::Directory :
+                                          SyncEntryType::File;
+            file.lastModDate = fi.lastModified();
+            entries[file.entry] = file;
+        }
+
+        if (pushOnly) {
+            for (auto key : entries.keys()) {
+                auto &file = entries[key];
+                file.etag = file.previousEtag;
+            }
+        } else {
+            auto remoteEntries = entryList(dir);
+            for (auto entry : remoteEntries) {
+                if (entry.name != ".") {
+                    auto file = entries[entry.name];
+                    file.parent = dir;
+                    file.entry = entry.name;
+                    file.remoteType = entry.type == Directory ?
+                                SyncEntryType::Directory :
+                                SyncEntryType::File;
+                    file.etag = entry.etag;
+                    entries[file.entry] = file;
+                }
+            }
+        }
     }
-    Q_UNUSED(directory);
-    Q_UNUSED(pushOnly);
-    Q_UNUSED(entryList);
-    Q_UNUSED(directoryFilter);
-    return false;
+    return result;
 }
 
 
