@@ -1,6 +1,6 @@
 INCLUDEPATH *= $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models
 
-QT *= qml
+QT *= qml sql
 
 CONFIG *= link_prl
 

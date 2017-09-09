@@ -104,149 +104,6 @@ bool operator ==(HTTPStatusCode lhs, int rhs) {
 }
 
 
-enum class SyncEntryType {
-    Unknown,
-    File,
-    Directory
-};
-
-struct SyncEntry {
-    QString parent;
-    QString entry;
-    SyncEntryType localType;
-    SyncEntryType remoteType;
-    QDateTime lastModDate;
-    QDateTime previousLasModtDate;
-    QString etag;
-    QString previousEtag;
-
-    SyncEntry() :
-        parent(),
-        entry(),
-        localType(SyncEntryType::Unknown),
-        remoteType(SyncEntryType::Unknown),
-        lastModDate(),
-        previousLasModtDate(),
-        etag(),
-        previousEtag()
-    {
-    }
-};
-
-
-static QSqlDatabase openSyncDb(const QString& localDir) {
-    auto dbPath = QDir::cleanPath(localDir + "/.otlwebdavsync.db");
-    auto db = QSqlDatabase::addDatabase(
-                "QSQLITE", dbPath);
-    if (!db.open()) {
-        qWarning(webDAVSynchronizer) << "Failed to open database:"
-                                     << db.lastError().text();
-        return db;
-    }
-    QSqlQuery query(db);
-    query.prepare("CREATE TABLE IF NOT EXISTS "
-                  "version (key string PRIMARY KEY, value);");
-    if (!query.exec()) {
-        qWarning(webDAVSynchronizer) << "Failed to create version table:"
-                                     << query.lastError().text();
-    }
-    query.prepare("SELECT value FROM version WHERE key == 'version';");
-    int version = 0;
-    if (query.exec()) {
-        if (query.first()) {
-            auto record = query.record();
-            version = record.value("field").toInt();
-        }
-    } else {
-        qCWarning(webDAVSynchronizer) << "Failed to get version of sync DB:"
-                                      << query.lastError().text();
-    }
-    if (version == 0) {
-        query.prepare("CREATE TABLE files ("
-                      "`parent` string NOT NULL, "
-                      "`entry` string not null, "
-                      "`modificationDate` date not null, "
-                      "`etag` string not null, "
-                      "PRIMARY KEY(`parent`, `entry`)"
-                      ");");
-        if (!query.exec()) {
-            qWarning(webDAVSynchronizer) << "Failed to create files table:"
-                                         << query.lastError().text();
-        }
-        query.prepare("INSERT OR REPLACE INTO version(key, value) "
-                      "VALUES ('version', 1);");
-        if (!query.exec()) {
-            qWarning(webDAVSynchronizer) << "Failed to insert version into DB:"
-                                         << query.lastError().text();
-        }
-    }
-    return db;
-}
-
-
-static void insertSyncDBEntry(QSqlDatabase &db, const SyncEntry &entry) {
-    QSqlQuery query(db);
-    query.prepare("INSERT OR REPLACE INTO files "
-                  "(parent, entry, modificationDate, etag) "
-                  "VALUES (?, ?, ?, ?);");
-    query.addBindValue(entry.parent);
-    query.addBindValue(entry.entry);
-    query.addBindValue(entry.lastModDate);
-    query.addBindValue(entry.etag);
-    if (!query.exec()) {
-        qCWarning(webDAVSynchronizer) << "Failed to insert SyncDB entry:"
-                                      << query.lastError().text();
-    }
-}
-
-
-/**
- * @brief Get entries for given directory.
- *
- * This retrieves a list of entries from the last sync run
- * for the given parent directory. The returned entries
- * will have their previousLastModDate and previousEtag entries
- * set.
- */
-static QMap<QString, SyncEntry> findSyncDBEntries(QSqlDatabase &db,
-                                          const QString& parent) {
-    QMap<QString, SyncEntry> result;
-    QSqlQuery query(db);
-    query.prepare("SELECT parent, entry, modificationDate, etag "
-                  "FROM files WHERE parent = ?;");
-    query.addBindValue(parent);
-    if (query.exec()) {
-        while (query.next()) {
-            SyncEntry entry;
-            auto record = query.record();
-            entry.parent = record.value("parent").toString();
-            entry.entry = record.value("entry").toString();
-            entry.previousLasModtDate = record.value("modificationDate")
-                    .toDateTime();
-            entry.previousEtag = record.value("etag").toString();
-            result[entry.entry] = entry;
-        }
-    } else {
-        qCWarning(webDAVSynchronizer) << "Failed to get sync entries from DB:"
-                                      << query.lastError().text();
-    }
-    return result;
-}
-
-static void removeDirFromSyncDB(QSqlQuery &db, const QString& parent) {
-    QSqlQuery query(db);
-    query.prepare("DELETE FROM files "
-                  "WHERE parent LIKE '%' || ?;");
-    query.addBindValue(parent);
-    if (!query.exec()) {
-        qCWarning(webDAVSynchronizer) << "Failed to delete directory from "
-                                         "sync DB:"
-                                      << query.lastError().text();
-    }
-}
-
-
-
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
     Synchronizer(parent),
     m_networkAccessManager(new QNetworkAccessManager(this)),
@@ -370,14 +227,12 @@ WebDAVSynchronizer::EntryList WebDAVSynchronizer::entryList(const QString& direc
     dir = QDir::cleanPath(dir);
     auto reply = listDirectoryRequest(dir);
     bool status = false;
-    connect(reply, &QNetworkReply::finished, [&]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == HTTPStatusCode::WebDAVMultiStatus) {
-            result = parseEntryList(dir, reply->readAll());
-            status = true;
-        }
-    });
     waitForReplyToFinish(reply);
+    auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (code == HTTPStatusCode::WebDAVMultiStatus) {
+        result = parseEntryList(dir, reply->readAll());
+        status = true;
+    }
     if (ok != nullptr) {
         *ok = status;
     }
@@ -447,7 +302,7 @@ bool WebDAVSynchronizer::upload(const QString& filename, QString* etag)
 {
     auto result = false;
     auto file = new QFile(directory() + "/" + filename);
-    QString currentEtag;
+    QString currentEtag = "no-etag-retrieved-yet";
     if (file->open(QIODevice::ReadOnly)) {
         QNetworkRequest request;
         auto url = QUrl(urlString() +
@@ -492,15 +347,22 @@ bool WebDAVSynchronizer::upload(const QString& filename, QString* etag)
     return result;
 }
 
-bool WebDAVSynchronizer::mkdir(const QString& dirname)
+bool WebDAVSynchronizer::mkdir(const QString& dirname, QString *etag)
 {
     auto result = false;
-    auto reply = createDirectoryRequest(dirname);
-    connect(reply, &QNetworkReply::finished, [&]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-        result = code.toInt() == HTTPStatusCode::Created;
-    });
+    auto reply = createDirectoryRequest(this->remoteDirectory() + "/" + dirname);
+    QString currentEtag = "no-etag-retrieved-yet";
     waitForReplyToFinish(reply);
+    auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    result = code.toInt() == HTTPStatusCode::Created;
+    for (auto header : reply->rawHeaderPairs()) {
+        if (header.first.toLower() == "etag") {
+            currentEtag = header.second;
+        }
+    }
+    if (etag != nullptr) {
+        *etag = currentEtag;
+    }
     return result;
 }
 
@@ -576,21 +438,15 @@ bool WebDAVSynchronizer::syncDirectory(
     auto localBase = this->directory();
     auto dir = mkpath(directory);
     QDir d(localBase + "/" + dir);
+    QString dbConnName;
     if (!localBase.isEmpty() && d.exists()) {
-        auto db = openSyncDb(this->directory());
+        result = true;
+
+        auto db = openSyncDb();
+        dbConnName = db.databaseName();
         auto entries = findSyncDBEntries(db, dir);
 
-        for (auto entry : d.entryList(
-                 QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
-            QFileInfo fi(d.absoluteFilePath(entry));
-            auto file = entries.value(entry, SyncEntry());
-            file.entry = entry;
-            file.parent = dir;
-            file.localType = fi.isDir() ? SyncEntryType::Directory :
-                                          SyncEntryType::File;
-            file.lastModDate = fi.lastModified();
-            entries[file.entry] = file;
-        }
+        mergeLocalInfoWithSyncList(d, dir, entries);
 
         if (pushOnly) {
             for (auto key : entries.keys()) {
@@ -598,20 +454,259 @@ bool WebDAVSynchronizer::syncDirectory(
                 file.etag = file.previousEtag;
             }
         } else {
-            auto remoteEntries = entryList(dir);
-            for (auto entry : remoteEntries) {
-                if (entry.name != ".") {
-                    auto file = entries[entry.name];
-                    file.parent = dir;
-                    file.entry = entry.name;
-                    file.remoteType = entry.type == Directory ?
-                                SyncEntryType::Directory :
-                                SyncEntryType::File;
-                    file.etag = entry.etag;
-                    entries[file.entry] = file;
+            result = result && mergeRemoteInfoWithSyncList(entries, dir);
+        }
+
+        qCDebug(webDAVSynchronizer) << "Synchronizing" <<
+                                       QDir::cleanPath(this->directory()
+                                                       + "/" + directory);
+
+
+        // First, pull entries:
+        for (auto entry : entries) {
+            if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
+                if (entry.remoteType == Directory &&
+                        !directoryFilter.match(entry.entry).hasMatch()) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                                                << entry.path();
+                    continue;
                 }
+                result = result && pullEntry(entry, db);
+            } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
+                if (entry.remoteType == Directory &&
+                        !directoryFilter.match(entry.entry).hasMatch()) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                                                << entry.path();
+                    continue;
+                }
+                result = result && removeLocalEntry(entry, db);
+            } else if (!entry.lastModDate.isNull() &&
+                       entry.lastModDate != entry.previousLasModtDate) {
+                if (entry.localType == Directory &&
+                        !directoryFilter.match(entry.entry).hasMatch()) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                                                << entry.path();
+                    continue;
+                }
+                result = result && pushEntry(entry, db);
+            } else if (entry.lastModDate.isNull() &&
+                       !entry.previousLasModtDate.isNull()) {
+                if (entry.localType == Directory &&
+                        !directoryFilter.match(entry.entry).hasMatch()) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                                                << entry.path();
+                    continue;
+                }
+                result = result && removeRemoteEntry(entry, db);
             }
         }
+        findSyncDBEntries(db, dir);
+        db.close();
+    }
+    if (!dbConnName.isNull()) {
+        QSqlDatabase::removeDatabase(dbConnName);
+    }
+    return result;
+}
+
+
+/**
+ * @brief Merge a sync entry list with local file data.
+ */
+void WebDAVSynchronizer::mergeLocalInfoWithSyncList(
+        QDir &d, const QString& dir, SyncEntryMap& entries)
+{
+    for (auto entry : d.entryList(
+             QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
+        QFileInfo fi(d.absoluteFilePath(entry));
+        auto file = entries.value(entry, SyncEntry());
+        file.entry = entry;
+        file.parent = dir;
+        file.localType = fi.isDir() ? Directory : File;
+        file.lastModDate = fi.lastModified();
+        entries[file.entry] = file;
+    }
+}
+
+
+/**
+ * @brief Merge a sync entry list with remote file data.
+ */
+bool WebDAVSynchronizer::mergeRemoteInfoWithSyncList(
+        SyncEntryMap& entries, const QString& dir)
+{
+    bool ok;
+    auto remoteEntries = entryList(dir, &ok);
+    if (ok) {
+        for (auto entry : remoteEntries) {
+            if (entry.name != ".") {
+                auto file = entries[entry.name];
+                file.parent = dir;
+                file.entry = entry.name;
+                file.remoteType = entry.type == Directory ?
+                            Directory : File;
+                file.etag = entry.etag;
+                entries[file.entry] = file;
+            }
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to get entry list for"
+                                      << dir;
+    }
+    return ok;
+}
+
+
+/**
+ * @brief Pull an entry from the server.
+ */
+bool WebDAVSynchronizer::pullEntry(
+        WebDAVSynchronizer::SyncEntry &entry, QSqlDatabase &db)
+{
+    qDebug(webDAVSynchronizer) << "Pulling" << entry.path();
+    bool result = false;
+    if (entry.remoteType == File) {
+        // Pull a file
+        if (entry.localType == Directory) {
+            qCWarning(webDAVSynchronizer)
+                    << "Pull conflict: Cannot pull file"
+                    << entry.entry << "from" << entry.parent
+                    << "because a local directory with that "
+                       "name already exists";
+        } else {
+            if (download(entry.parent + "/" + entry.entry)) {
+                QFileInfo fi(this->directory() + "/" + entry.parent
+                             + "/" + entry.entry);
+                entry.lastModDate = fi.lastModified();
+                insertSyncDBEntry(db, entry);
+                result = true;
+            }
+        }
+    } else if (entry.remoteType == Directory) {
+        // Pull a directory
+        if (entry.localType == File) {
+            qCWarning(webDAVSynchronizer)
+                    << "Pull conflict: Cannot pull directory"
+                    << entry.entry << "from" << entry.parent
+                    << "because a file with that name already "
+                       "exists locally";
+        } else if (entry.localType == Invalid) {
+            if (QDir(this->directory() + "/" + entry.parent).mkdir(
+                        entry.entry)) {
+                QFileInfo fi(this->directory() + "/" + entry.parent
+                             + "/" + entry.entry);
+                entry.lastModDate = fi.lastModified();
+                insertSyncDBEntry(db, entry);
+                result = true;
+            }
+        } else if (entry.localType == Directory) {
+            QFileInfo fi(this->directory() + "/" + entry.parent
+                         + "/" + entry.entry);
+            entry.lastModDate = fi.lastModified();
+            insertSyncDBEntry(db, entry);
+            result = true;
+        }
+    } else {
+        // Should not happen...
+        qCWarning(webDAVSynchronizer) << "Cannot pull remote entry "
+                                         "of type Unknown";
+        result = false;
+    }
+    return result;
+}
+
+
+/**
+ * @brief Remove a local file or directory.
+ */
+bool WebDAVSynchronizer::removeLocalEntry(
+        WebDAVSynchronizer::SyncEntry &entry, QSqlDatabase &db)
+{
+    qDebug(webDAVSynchronizer) << "Removing" << entry.path() << "locally";
+    bool result = false;
+    if (entry.localType == File) {
+        if (!QDir(directory() + "/" + entry.parent).remove(entry.entry)) {
+            qCWarning(webDAVSynchronizer) << "Failed to remove local file"
+                                          << entry.entry << "from"
+                                          << entry.parent;
+        } else {
+            removeFileFromSyncDB(db, entry);
+            result = true;
+        }
+    } else if (entry.localType == Directory) {
+        if (rmLocalDir(directory() + "/" + entry.path(), 2)) {
+            removeDirFromSyncDB(db, entry);
+            result = true;
+        } else {
+            qCWarning(webDAVSynchronizer) << "Failed to remove local"
+                                          << "directory" << entry.path();
+        }
+    } else {
+        // Should not happen
+        qCWarning(webDAVSynchronizer) << "Bad sync entry type of entry"
+                                      << entry.entry << "in" << entry.parent
+                                      << "in removeLocalEntry";
+    }
+    return result;
+}
+
+
+/**
+ * @brief Push an entry to the server.
+ */
+bool WebDAVSynchronizer::pushEntry(
+        WebDAVSynchronizer::SyncEntry &entry, QSqlDatabase &db)
+{
+    qDebug(webDAVSynchronizer) << "Pushing" << entry.path();
+    bool result = false;
+    if (entry.localType == Directory) {
+        if (entry.remoteType == File) {
+            qCWarning(webDAVSynchronizer)
+                    << "Conflict: Cannot push directory" << entry.path()
+                    << "as a file with that name exists on the remote";
+        } else if (entry.remoteType == Directory) {
+            insertSyncDBEntry(db, entry);
+            result = true;
+        } else if (entry.remoteType == Invalid) {
+            if (mkdir(entry.path(), &entry.etag)) {
+                insertSyncDBEntry(db, entry);
+                result = true;
+            }
+        }
+    } else if (entry.localType == File) {
+        if (entry.remoteType == Directory) {
+            qCWarning(webDAVSynchronizer)
+                    << "Conflict: Cannot push local file" << entry.path()
+                    << "because a directory with that name exists remotely";
+        } else {
+            if (upload(entry.path(), &entry.etag)) {
+                insertSyncDBEntry(db, entry);
+                result = true;
+            }
+        }
+    } else if (entry.localType == Invalid) {
+        qCWarning(webDAVSynchronizer) << "Unexpected local type of entry"
+                                      << entry.path();
+    }
+    return result;
+}
+
+
+/**
+ * @brief Remove an entry on the server.
+ */
+bool WebDAVSynchronizer::removeRemoteEntry(
+        WebDAVSynchronizer::SyncEntry &entry, QSqlDatabase &db)
+{
+    qDebug(webDAVSynchronizer) << "Removing" << entry.path() << "remotely";
+    bool result = false;
+    if (deleteEntry(entry.path())) {
+        if (entry.localType == Directory) {
+            removeDirFromSyncDB(db, entry);
+        } else {
+            removeFileFromSyncDB(db, entry);
+        }
+        result = true;
     }
     return result;
 }
@@ -629,19 +724,17 @@ QString WebDAVSynchronizer::etag(const QString& filename)
     QString result;
     auto path = m_remoteDirectory + "/" + filename;
     auto reply = etagRequest(path);
-    connect(reply, &QNetworkReply::finished, [&]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-        if (code.toInt() == HTTPStatusCode::WebDAVMultiStatus) {
-            auto entryList = parseEntryList(path, reply->readAll());
-            if (entryList.length() == 1) {
-                auto entry = entryList.at(0);
-                if (entry.name == ".") {
-                    result = entry.etag;
-                }
+    waitForReplyToFinish(reply);
+    auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    if (code.toInt() == HTTPStatusCode::WebDAVMultiStatus) {
+        auto entryList = parseEntryList(path, reply->readAll());
+        if (entryList.length() == 1) {
+            auto entry = entryList.at(0);
+            if (entry.name == ".") {
+                result = entry.etag;
             }
         }
-    });
-    waitForReplyToFinish(reply);
+    }
     return result;
 }
 
@@ -694,6 +787,8 @@ QString WebDAVSynchronizer::urlString() const
     }
     return result;
 }
+
+
 
 
 QNetworkReply* WebDAVSynchronizer::listDirectoryRequest(
@@ -906,10 +1001,195 @@ void WebDAVSynchronizer::waitForReplyToFinish(QNetworkReply* reply) const
     QTimer timer;
     timer.setInterval(30000);
     auto restartTimer = [&](qint64, qint64) { timer.start(); };
-    connect(reply, &QNetworkReply::uploadProgress, restartTimer);
-    connect(reply, &QNetworkReply::uploadProgress, restartTimer);
-    connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    auto c1 = connect(reply, &QNetworkReply::uploadProgress, restartTimer);
+    auto c2 = connect(reply, &QNetworkReply::uploadProgress, restartTimer);
+    auto c3 = connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    auto c4 = connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     timer.start();
     loop.exec();
+    disconnect(c1);
+    disconnect(c2);
+    disconnect(c3);
+    disconnect(c4);
+}
+
+
+/**
+ * @brief Open the SyncDB database.
+ */
+QSqlDatabase WebDAVSynchronizer::openSyncDb() {
+    const QString& localDir = this->directory();
+    auto dbPath = QDir::cleanPath(localDir + "/.otlwebdavsync.db");
+    auto db = QSqlDatabase::addDatabase("QSQLITE", dbPath);
+    db.setDatabaseName(dbPath);
+    if (!db.open()) {
+        qWarning(webDAVSynchronizer) << "Failed to open database:"
+                                     << db.lastError().text();
+        return db;
+    }
+    QSqlQuery query(db);
+    query.prepare("CREATE TABLE IF NOT EXISTS "
+                  "version (key string PRIMARY KEY, value);");
+    if (!query.exec()) {
+        qWarning(webDAVSynchronizer) << "Failed to create version table:"
+                                     << query.lastError().text();
+    }
+    query.prepare("SELECT value FROM version WHERE key == 'version';");
+    int version = 0;
+    if (query.exec()) {
+        if (query.first()) {
+            auto record = query.record();
+            version = record.value("value").toInt();
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to get version of sync DB:"
+                                      << query.lastError().text();
+    }
+    if (version == 0) {
+        query.prepare("CREATE TABLE files ("
+                      "`parent` string, "
+                      "`entry` string NOT NULL, "
+                      "`modificationDate` date not null, "
+                      "`etag` string not null, "
+                      "PRIMARY KEY(`parent`, `entry`)"
+                      ");");
+        if (!query.exec()) {
+            qWarning(webDAVSynchronizer) << "Failed to create files table:"
+                                         << query.lastError().text();
+        }
+        query.prepare("INSERT OR REPLACE INTO version(key, value) "
+                      "VALUES ('version', 1);");
+        if (!query.exec()) {
+            qWarning(webDAVSynchronizer) << "Failed to insert version into DB:"
+                                         << query.lastError().text();
+        }
+    }
+    return db;
+}
+
+
+/**
+ * @brief Insert a single entry into the SyncDB.
+ *
+ * This inserts the entry into the SyncDB. The current modification date and
+ * etag will be stored in the DB.
+ */
+void WebDAVSynchronizer::insertSyncDBEntry(
+        QSqlDatabase &db, const WebDAVSynchronizer::SyncEntry &entry) {
+    QSqlQuery query(db);
+    query.prepare("INSERT OR REPLACE INTO files "
+                  "(parent, entry, modificationDate, etag) "
+                  "VALUES (?, ?, ?, ?);");
+    query.addBindValue(entry.parent);
+    query.addBindValue(entry.entry);
+    query.addBindValue(entry.lastModDate);
+    query.addBindValue(entry.etag);
+    if (!query.exec()) {
+        qCWarning(webDAVSynchronizer) << "Failed to insert SyncDB entry:"
+                                      << query.lastError().text();
+    }
+}
+
+
+/**
+ * @brief Get entries for given directory.
+ *
+ * This retrieves a list of entries from the last sync run
+ * for the given parent directory. The returned entries
+ * will have their previousLastModDate and previousEtag entries
+ * set.
+ */
+WebDAVSynchronizer::SyncEntryMap WebDAVSynchronizer::findSyncDBEntries(
+        QSqlDatabase &db, const QString &parent) {
+    QMap<QString, SyncEntry> result;
+    QSqlQuery query(db);
+    query.prepare("SELECT parent, entry, modificationDate, etag "
+                  "FROM files WHERE parent = ?;");
+    query.addBindValue(parent);
+    if (query.exec()) {
+        while (query.next()) {
+            SyncEntry entry;
+            auto record = query.record();
+            entry.parent = record.value("parent").toString();
+            entry.entry = record.value("entry").toString();
+            entry.previousLasModtDate = record.value("modificationDate")
+                    .toDateTime();
+            entry.previousEtag = record.value("etag").toString();
+            result[entry.entry] = entry;
+        }
+    } else {
+        qCWarning(webDAVSynchronizer) << "Failed to get sync entries from DB:"
+                                      << query.lastError().text();
+    }
+    return result;
+}
+
+
+/**
+ * @brief Remove a directory from the SyncDB.
+ */
+void WebDAVSynchronizer::removeDirFromSyncDB(
+        QSqlDatabase &db, const SyncEntry& entry) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM files "
+                  "WHERE parent LIKE '%' || ? OR (parent = ? AND entry = ?);");
+    query.addBindValue(entry.path());
+    query.addBindValue(entry.parent);
+    query.addBindValue(entry.entry);
+    if (!query.exec()) {
+        qCWarning(webDAVSynchronizer) << "Failed to delete directory from "
+                                         "sync DB:"
+                                      << query.lastError().text();
+    }
+}
+
+
+/**
+ * @brief Remove a single entry from the SyncDB.
+ */
+void WebDAVSynchronizer::removeFileFromSyncDB(
+        QSqlDatabase &db, const WebDAVSynchronizer::SyncEntry &entry) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM files WHERE parent = ? AND entry = ?;");
+    query.addBindValue(entry.parent);
+    query.addBindValue(entry.entry);
+    if (!query.exec()) {
+        qCWarning(webDAVSynchronizer) << "Failed to remove entry from sync DB:"
+                                      << query.lastError().text();
+    }
+}
+
+
+/**
+ * @brief Remove a directory.
+ *
+ * This removes the directory @p dir. All files and directories in that
+ * directory are removed first, before the actual directory is removed.
+ * If @p maxDepth greater than zero, rmLocalDir() is called for all
+ * sub-directories with a maxDepth - 1. Hence, this method can be used to
+ * reduce the total depth up to which the deletion is executed.
+ */
+bool WebDAVSynchronizer::rmLocalDir(const QString &dir, int maxDepth) {
+    if (!dir.isEmpty()) {
+        QDir d(dir);
+        if (d.exists()) {
+            for (auto entry : d.entryList(QDir::Dirs | QDir::Files |
+                                          QDir::NoDotAndDotDot)) {
+                QFileInfo fi(d.absoluteFilePath(entry));
+                if (fi.isDir() && maxDepth > 0) {
+                    rmLocalDir(fi.absoluteFilePath(), maxDepth - 1);
+                }
+                if (fi.isDir()) {
+                    d.rmdir(entry);
+                } else {
+                    d.remove(entry);
+                }
+            }
+            auto dirName = d.dirName();
+            if (d.cdUp()) {
+                return d.rmdir(dirName);
+            }
+        }
+    }
+    return false;
 }

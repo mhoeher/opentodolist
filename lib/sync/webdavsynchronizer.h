@@ -3,12 +3,15 @@
 
 #include <tuple>
 
+#include <QDateTime>
 #include <QList>
 #include <QLoggingCategory>
 #include <QRegularExpression>
+#include <QSqlDatabase>
 
 #include "sync/synchronizer.h"
 
+class QDir;
 class QDomDocument;
 class QDomElement;
 class QNetworkAccessManager;
@@ -18,6 +21,7 @@ class QNetworkReply;
 #ifdef WEBDAV_SYNCHRONIZER_TEST
 class WebDAVSynchronizerTest;
 #endif
+
 
 class WebDAVSynchronizer : public Synchronizer
 {
@@ -77,7 +81,41 @@ private:
         QString etag;
     };
 
+    struct SyncEntry {
+        QString parent;
+        QString entry;
+        EntryType localType;
+        EntryType remoteType;
+        QDateTime lastModDate;
+        QDateTime previousLasModtDate;
+        QString etag;
+        QString previousEtag;
+
+        SyncEntry() :
+            parent(),
+            entry(),
+            localType(Invalid),
+            remoteType(Invalid),
+            lastModDate(),
+            previousLasModtDate(),
+            etag(),
+            previousEtag()
+        {
+        }
+
+        QString path() const {
+            if (parent.isEmpty() && entry.isEmpty()) {
+                return "";
+            } else if (parent.isEmpty()) {
+                return entry;
+            } else {
+                return parent + "/" + entry;
+            }
+        }
+    };
+
     typedef QList<Entry> EntryList;
+    typedef QMap<QString, SyncEntry> SyncEntryMap;
 
 
     QNetworkAccessManager *m_networkAccessManager;
@@ -90,16 +128,18 @@ private:
     EntryList entryList(const QString& directory, bool* ok = nullptr);
     bool download(const QString& filename);
     bool upload(const QString& filename, QString *etag = nullptr);
-    bool mkdir(const QString& dirname);
+    bool mkdir(const QString& dirname, QString *etag = nullptr);
     bool deleteEntry(const QString& filename);
     bool syncDirectory(const QString &directory,
             QRegularExpression directoryFilter = QRegularExpression(".*"),
             bool pushOnly = false);
     QString etag(const QString &filename);
 
+    // Path and URL utility functions
     static QString mkpath(const QString &path);
     static std::tuple<QString, QString> splitpath(const QString& path);
     QString urlString() const;
+
 
     QNetworkReply *listDirectoryRequest(const QString& directory);
     QNetworkReply *etagRequest(const QString& filename);
@@ -113,6 +153,26 @@ private:
     void prepareReply(QNetworkReply* reply) const;
     void waitForReplyToFinish(QNetworkReply* reply) const;
 
+    // Sync DB Handling
+    QSqlDatabase openSyncDb();
+    void closeSyncDb();
+    void insertSyncDBEntry(QSqlDatabase &db, const SyncEntry &entry);
+    SyncEntryMap findSyncDBEntries(QSqlDatabase &db,
+                                              const QString& parent);
+    void removeDirFromSyncDB(QSqlDatabase &db, const SyncEntry &entry);
+    void removeFileFromSyncDB(QSqlDatabase &db, const SyncEntry &entry);
+
+    // File System Utils
+    bool rmLocalDir(const QString& dir, int maxDepth = 0);
+
+    // syncDirectory() split down methods:
+    void mergeLocalInfoWithSyncList(
+            QDir &d, const QString &dir, SyncEntryMap &entries);
+    bool mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QString &dir);
+    bool pullEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool removeLocalEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool pushEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool removeRemoteEntry(SyncEntry& entry, QSqlDatabase& db);
 };
 
 
