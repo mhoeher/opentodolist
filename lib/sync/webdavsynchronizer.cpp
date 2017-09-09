@@ -138,7 +138,32 @@ void WebDAVSynchronizer::validate()
 
 void WebDAVSynchronizer::synchronize()
 {
-    // TODO: Implement me
+    if (!directory().isEmpty() && !synchronizing()) {
+        setSynchronizing(true);
+        // Sync the top level directory:
+        QSet<QString> changedYearDirs;
+        syncDirectory("/",
+                      QRegularExpression("\\d\\d\\d\\d"),
+                      false,
+                      &changedYearDirs);
+        // Sync the year directory:
+        QDir dir(directory());
+        for (auto yearDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            QSet<QString> changedMonthDirs;
+            syncDirectory("/" + yearDir,
+                          QRegularExpression("\\d\\d?"),
+                          !changedYearDirs.contains(yearDir),
+                          &changedMonthDirs);
+            QDir ydir(dir.absoluteFilePath(yearDir));
+            for (auto monthDir : ydir.entryList(
+                     QDir::Dirs | QDir::NoDotAndDotDot)) {
+                syncDirectory("/" + yearDir + "/" + monthDir,
+                              QRegularExpression(),
+                              !changedMonthDirs.contains(monthDir));
+            }
+        }
+        setSynchronizing(false);
+    }
 }
 
 
@@ -429,11 +454,17 @@ bool WebDAVSynchronizer::deleteEntry(const QString& filename)
  * list of directory contents. This can be used if a higher level method
  * detected that the directory is unchanged. In this case, only the local
  * files are checked and uploaded.
+ *
+ * If @p changedDirs is not a null pointer, any directory for which a change
+ * is detected is added to the set. This set can then be used to optimize
+ * recursive syncs in higher level functions, i.e. if a directory is not
+ * in the set, no changes compared to the last sync run were detected
+ * and hence only local changes need to be pushed.
  */
-bool WebDAVSynchronizer::syncDirectory(
-        const QString& directory, QRegularExpression directoryFilter,
-        bool pushOnly)
+bool WebDAVSynchronizer::syncDirectory(const QString& directory, QRegularExpression directoryFilter,
+        bool pushOnly, QSet<QString> *changedDirs)
 {
+    QSet<QString> _changedDirs;
     bool result = false;
     auto localBase = this->directory();
     auto dir = mkpath(directory);
@@ -449,9 +480,19 @@ bool WebDAVSynchronizer::syncDirectory(
         mergeLocalInfoWithSyncList(d, dir, entries);
 
         if (pushOnly) {
+            // Check if there were any changes locally:
+            bool localChanges = false;
             for (auto key : entries.keys()) {
-                auto &file = entries[key];
-                file.etag = file.previousEtag;
+                auto entry = entries[key];
+                if (entry.lastModDate != entry.previousLasModtDate) {
+                    localChanges = true;
+                }
+            }
+            // If there were local changes, get the current list of
+            // remote entries; this is to avoid sync issues if clients
+            // run in parallel:
+            if (localChanges) {
+                result = result && mergeRemoteInfoWithSyncList(entries, dir);
             }
         } else {
             result = result && mergeRemoteInfoWithSyncList(entries, dir);
@@ -461,50 +502,49 @@ bool WebDAVSynchronizer::syncDirectory(
                                        QDir::cleanPath(this->directory()
                                                        + "/" + directory);
 
-
-        // First, pull entries:
         for (auto entry : entries) {
             if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
-                if (entry.remoteType == Directory &&
-                        !directoryFilter.match(entry.entry).hasMatch()) {
-                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring"
                                                 << entry.path();
                     continue;
                 }
+                if (entry.remoteType == Directory) {
+                    _changedDirs.insert(entry.entry);
+                }
                 result = result && pullEntry(entry, db);
             } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
-                if (entry.remoteType == Directory &&
-                        !directoryFilter.match(entry.entry).hasMatch()) {
-                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring"
                                                 << entry.path();
                     continue;
                 }
                 result = result && removeLocalEntry(entry, db);
             } else if (!entry.lastModDate.isNull() &&
                        entry.lastModDate != entry.previousLasModtDate) {
-                if (entry.localType == Directory &&
-                        !directoryFilter.match(entry.entry).hasMatch()) {
-                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring"
                                                 << entry.path();
                     continue;
                 }
                 result = result && pushEntry(entry, db);
             } else if (entry.lastModDate.isNull() &&
                        !entry.previousLasModtDate.isNull()) {
-                if (entry.localType == Directory &&
-                        !directoryFilter.match(entry.entry).hasMatch()) {
-                    qCDebug(webDAVSynchronizer) << "Ignoring directory"
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(webDAVSynchronizer) << "Ignoring"
                                                 << entry.path();
                     continue;
                 }
                 result = result && removeRemoteEntry(entry, db);
             }
         }
-        findSyncDBEntries(db, dir);
         db.close();
     }
     if (!dbConnName.isNull()) {
         QSqlDatabase::removeDatabase(dbConnName);
+    }
+    if (changedDirs != nullptr) {
+        *changedDirs = _changedDirs;
     }
     return result;
 }
@@ -709,6 +749,36 @@ bool WebDAVSynchronizer::removeRemoteEntry(
         result = true;
     }
     return result;
+}
+
+bool WebDAVSynchronizer::skipEntry(
+        const WebDAVSynchronizer::SyncEntry &entry,
+        WebDAVSynchronizer::SyncStepDirection direction,
+        const QRegularExpression &dirFilter)
+{
+    switch (direction) {
+    case Download:
+        switch (entry.remoteType) {
+        case Directory:
+            return !dirFilter.match(entry.entry).hasMatch();
+        case File:
+            return entry.entry.startsWith(".");
+        default:
+            break;
+        }
+    case Upload:
+        switch (entry.localType) {
+        case Directory:
+            return !dirFilter.match(entry.entry).hasMatch();
+        case File:
+            return entry.entry.startsWith(".");
+        default:
+            break;
+        }
+    default:
+        break;
+    }
+    return false;
 }
 
 

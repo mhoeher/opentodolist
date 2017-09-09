@@ -81,6 +81,12 @@ private:
         QString etag;
     };
 
+    enum SyncStepDirection {
+        InvalidSyncStep,
+        Download,
+        Upload
+    };
+
     struct SyncEntry {
         QString parent;
         QString entry;
@@ -132,7 +138,7 @@ private:
     bool deleteEntry(const QString& filename);
     bool syncDirectory(const QString &directory,
             QRegularExpression directoryFilter = QRegularExpression(".*"),
-            bool pushOnly = false);
+            bool pushOnly = false, QSet<QString> *changedDirs = nullptr);
     QString etag(const QString &filename);
 
     // Path and URL utility functions
@@ -173,6 +179,7 @@ private:
     bool removeLocalEntry(SyncEntry& entry, QSqlDatabase& db);
     bool pushEntry(SyncEntry& entry, QSqlDatabase& db);
     bool removeRemoteEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool skipEntry(const SyncEntry &entry, SyncStepDirection direction, const QRegularExpression &dirFilter);
 };
 
 

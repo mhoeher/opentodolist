@@ -4,6 +4,13 @@
 #include "sync/genericdavsynchronizer.h"
 #include "sync/nextcloudsynchronizer.h"
 
+#include "datamodel/library.h"
+#include "datamodel/note.h"
+#include "datamodel/image.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todo.h"
+#include "datamodel/task.h"
+
 #include <QObject>
 #include <QObjectList>
 #include <QRegularExpression>
@@ -50,6 +57,8 @@ private slots:
     void etag_data();
     void syncDirectory();
     void syncDirectory_data();
+    void synchronize();
+    void synchronize_data();
 #endif // TEST_AGAINST_SERVER
     void cleanup() {}
     void cleanupTestCase() {}
@@ -353,48 +362,73 @@ void WebDAVSynchronizerTest::syncDirectory()
     davClient->setDirectory(dir1.path());
     davClient->setRemoteDirectory(dirName);
 
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Synchronizing"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Pushing \"foo\""));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Pushing \"sample.txt\""));
     QVERIFY(davClient->syncDirectory("/"));
 
     davClient->setDirectory(dir2.path());
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Synchronizing"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Pulling \"foo\""));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Pulling \"sample.txt\""));
     QVERIFY(davClient->syncDirectory("/"));
     QCOMPARE(catFile(dir2.path() + "/sample.txt"), QByteArray("Hello World\n"));
     QVERIFY(QDir(dir2.path() + "/foo").exists());
 
     QVERIFY(QFile::remove(dir2.path() + "/sample.txt"));
     QVERIFY(QDir(dir2.path()).rmdir("foo"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Synchronizing"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Removing \"foo\" remotely"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Removing \"sample.txt\" remotely"));
     QVERIFY(davClient->syncDirectory("/"));
 
     davClient->setDirectory(dir1.path());
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Synchronizing"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Removing \"foo\" locally"));
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression("Removing \"sample.txt\" locally"));
     QVERIFY(davClient->syncDirectory("/"));
     QVERIFY(!QFile::exists(dir1.path() + "/sample.txt"));
     QVERIFY(!QDir(dir1.path()).exists("foo"));
 }
 
 void WebDAVSynchronizerTest::syncDirectory_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::synchronize()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+
+    QTemporaryDir dir1;
+    QTemporaryDir dir2;
+
+    Library library(dir1.path());
+    library.save();
+    library.addNote();
+    library.addImage();
+    auto todoList = library.addTodoList();
+    auto todo = todoList->addTodo();
+    todo->addTask();
+
+    auto dirName = QUuid::createUuid().toString() + "-" + __func__;
+    QVERIFY(davClient->mkdir(dirName));
+    davClient->setDirectory(dir1.path());
+    davClient->setRemoteDirectory(dirName);
+    QList<bool> syncState;
+    QVERIFY(!davClient->synchronizing());
+    connect(davClient, &WebDAVSynchronizer::synchronizingChanged, [&]() {
+        syncState << davClient->synchronizing();
+    });
+    davClient->synchronize();
+    QVERIFY(!davClient->synchronizing());
+    QCOMPARE(syncState.count(), 2);
+    QVERIFY(syncState[0]);
+    QVERIFY(!syncState[1]);
+
+    davClient->setDirectory(dir2.path());
+    davClient->synchronize();
+
+    Library library2(dir2.path());
+    QSignalSpy loadingFinished(&library2, &Library::loadingFinished);
+    QVERIFY(library2.load());
+    QVERIFY(loadingFinished.wait());
+    QThread::sleep(1);
+    QCOMPARE(library2.topLevelItems()->count(), 3);
+    QCOMPARE(library2.todos()->count(), 1);
+    QCOMPARE(library2.tasks()->count(), 1);
+}
+
+void WebDAVSynchronizerTest::synchronize_data()
 {
     createDavClients();
 }
