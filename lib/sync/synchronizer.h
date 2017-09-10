@@ -7,6 +7,32 @@
 
 
 /**
+ * @brief Encapsulate information about an existing library.
+ */
+class SynchronizerExistingLibrary {
+    Q_GADGET
+
+    Q_PROPERTY(QString name READ name)
+    Q_PROPERTY(QString path READ path)
+
+public:
+
+    explicit SynchronizerExistingLibrary();
+
+    QString name() const;
+    void setName(const QString &name);
+
+    QString path() const;
+    void setPath(const QString &path);
+
+
+private:
+
+    QString m_name;
+    QString m_path;
+};
+
+/**
  * @brief Base class for file synchronization.
  *
  * The Synchronizer class serves as abstract base class for file based
@@ -68,9 +94,13 @@ public:
      */
     virtual void synchronize() = 0;
 
+    virtual void findExistingLibraries();
+
     virtual QVariantMap toMap() const;
     virtual void fromMap(const QVariantMap &map);
 
+
+    QVariantList existingLibraries() const;
 
 signals:
 
@@ -78,6 +108,7 @@ signals:
     void validChanged();
     void synchronizingChanged();
     void directoryChanged();
+    void existingLibrariesChanged();
 
 public slots:
 
@@ -87,6 +118,7 @@ protected:
     void setSynchronizing(bool synchronizing);
     void beginValidation();
     void endValidation(bool valid);
+    void setExistingLibraries(const QVariantList &existingLibraries);
 
 private:
 
@@ -95,10 +127,13 @@ private:
     bool    m_synchronizing;
     bool    m_creatingDirectory;
     QString m_directory;
+    QVariantList
+            m_existingLibraries;
 
 };
 
 
+Q_DECLARE_METATYPE(SynchronizerExistingLibrary)
 Q_DECLARE_LOGGING_CATEGORY(synchronizer)
 
 

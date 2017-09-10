@@ -167,6 +167,24 @@ void Synchronizer::endValidation(bool valid)
 
 
 /**
+ * @brief Set the list of existing libraries.
+ */
+void Synchronizer::setExistingLibraries(const QVariantList &existingLibraries)
+{
+    if (existingLibraries != m_existingLibraries) {
+        m_existingLibraries = existingLibraries;
+        emit existingLibrariesChanged();
+    }
+}
+
+
+QVariantList Synchronizer::existingLibraries() const
+{
+    return m_existingLibraries;
+}
+
+
+/**
  * @brief The local directory to sync.
  *
  * The directory holds the full path to the local directory to sync to the backend.
@@ -262,10 +280,26 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
             result = constructor(parent);
             result->fromMap(map);
         } else {
-            qCDebug(synchronizer) << "Unknown synchronizer type" << type;
+        qCDebug(synchronizer) << "Unknown synchronizer type" << type;
         }
-    }
+        }
     return result;
+}
+
+
+/**
+ * @brief Start searching for existing libraries.
+ *
+ * This method triggers a search for existing libraries in the currently
+ * set remote directory of the synchronizer. When the search is finished,
+ * the existingLibraries property of the synchronizer is updated.
+ *
+ * The default implementation of this method does nothing. Sub-classes
+ * can implement it if the appropriate functionality is supported by
+ * the respective backends.
+ */
+void Synchronizer::findExistingLibraries()
+{
 }
 
 
@@ -294,4 +328,50 @@ QVariantMap Synchronizer::toMap() const
 void Synchronizer::fromMap(const QVariantMap& map)
 {
     Q_UNUSED(map);
+}
+
+
+/**
+ * @brief Constructor.
+ */
+SynchronizerExistingLibrary::SynchronizerExistingLibrary() :
+    m_name(),
+    m_path()
+{
+}
+
+
+/**
+ * @brief The name if the library.
+ */
+QString SynchronizerExistingLibrary::name() const
+{
+    return m_name;
+}
+
+
+/**
+ * @brief Set the library name.
+ */
+void SynchronizerExistingLibrary::setName(const QString &name)
+{
+    m_name = name;
+}
+
+
+/**
+ * @brief The path (relative to the Synchronizer's remote directory).
+ */
+QString SynchronizerExistingLibrary::path() const
+{
+    return m_path;
+}
+
+
+/**
+ * @brief Set the path of the library.
+ */
+void SynchronizerExistingLibrary::setPath(const QString &path)
+{
+    m_path = path;
 }

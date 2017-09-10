@@ -1,6 +1,7 @@
 #define WEBDAV_SYNCHRONIZER_TEST
-
 #include "sync/webdavsynchronizer.h"
+#include "sync/webdavclient.h"
+
 #include "sync/genericdavsynchronizer.h"
 #include "sync/nextcloudsynchronizer.h"
 
@@ -59,6 +60,8 @@ private slots:
     void syncDirectory_data();
     void synchronize();
     void synchronize_data();
+    void findExistingEntries();
+    void findExistingEntries_data();
 #endif // TEST_AGAINST_SERVER
     void cleanup() {}
     void cleanupTestCase() {}
@@ -114,20 +117,20 @@ void WebDAVSynchronizerTest::password()
 
 void WebDAVSynchronizerTest::mkpath()
 {
-    QCOMPARE(WebDAVSynchronizer::mkpath(""), QString(""));
-    QCOMPARE(WebDAVSynchronizer::mkpath("/"), QString(""));
-    QCOMPARE(WebDAVSynchronizer::mkpath(("./foo/bar/")), QString("foo/bar"));
-    QCOMPARE(WebDAVSynchronizer::mkpath(("./foo/bar")), QString("foo/bar"));
-    QCOMPARE(WebDAVSynchronizer::mkpath(("./foo//bar")), QString("foo/bar"));
+    QCOMPARE(WebDAVClient::mkpath(""), QString(""));
+    QCOMPARE(WebDAVClient::mkpath("/"), QString(""));
+    QCOMPARE(WebDAVClient::mkpath(("./foo/bar/")), QString("foo/bar"));
+    QCOMPARE(WebDAVClient::mkpath(("./foo/bar")), QString("foo/bar"));
+    QCOMPARE(WebDAVClient::mkpath(("./foo//bar")), QString("foo/bar"));
 }
 
 void WebDAVSynchronizerTest::splitpath()
 {
-    QCOMPARE(WebDAVSynchronizer::splitpath(""),
+    QCOMPARE(WebDAVClient::splitpath(""),
              std::make_tuple(QString(""), QString("")));
-    QCOMPARE(WebDAVSynchronizer::splitpath("foo"),
+    QCOMPARE(WebDAVClient::splitpath("foo"),
              std::make_tuple(QString(""), QString("foo")));
-    QCOMPARE(WebDAVSynchronizer::splitpath("foo/bar"),
+    QCOMPARE(WebDAVClient::splitpath("foo/bar"),
              std::make_tuple(QString("foo"), QString("bar")));
 }
 
@@ -160,7 +163,7 @@ void WebDAVSynchronizerTest::mkdir()
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
+    QVERIFY(davClient->createDAVClient(davClient)->mkdir(dirName));
 }
 
 void WebDAVSynchronizerTest::mkdir_data()
@@ -172,19 +175,20 @@ void WebDAVSynchronizerTest::upload()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
 
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
-    davClient->setDirectory(dir.path());
-    davClient->setRemoteDirectory(dirName);
-    QVERIFY(davClient->upload("sample.txt"));
+    QVERIFY(dav->mkdir(dirName));
+    dav->setDirectory(dir.path());
+    dav->setRemoteDirectory(dirName);
+    QVERIFY(dav->upload("sample.txt"));
     echoToFile("Changed hello World\n", dir.path() + "/sample.txt");
-    QVERIFY(davClient->upload("sample.txt"));
+    QVERIFY(dav->upload("sample.txt"));
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Failed to open.*for reading"));
-    QVERIFY(!davClient->upload("sample2.txt"));
+    QVERIFY(!dav->upload("sample2.txt"));
 }
 
 void WebDAVSynchronizerTest::upload_data()
@@ -196,18 +200,19 @@ void WebDAVSynchronizerTest::entryList()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
     echoToFile("Hello World\n", dir.path() + "/sample2.txt");
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
-    davClient->setDirectory(dir.path());
-    davClient->setRemoteDirectory(dirName);
-    QVERIFY(davClient->upload("sample.txt"));
-    QVERIFY(davClient->upload("sample2.txt"));
-    davClient->mkdir("subdir");
+    QVERIFY(dav->mkdir(dirName));
+    dav->setDirectory(dir.path());
+    dav->setRemoteDirectory(dirName);
+    QVERIFY(dav->upload("sample.txt"));
+    QVERIFY(dav->upload("sample2.txt"));
+    dav->mkdir("subdir");
     bool ok;
-    auto entryList = davClient->entryList(".", &ok);
+    auto entryList = dav->entryList(".", &ok);
     QVERIFY(ok);
     QCOMPARE(entryList.length(), 4);
     QSet<QString> expected = {".", "subdir", "sample.txt", "sample2.txt"};
@@ -215,9 +220,9 @@ void WebDAVSynchronizerTest::entryList()
     QCOMPARE(got, expected);
     for (auto entry : entryList) {
         if (entry.name == "." || entry.name == "subdir") {
-            QCOMPARE(entry.type, WebDAVSynchronizer::Directory);
+            QCOMPARE(entry.type, WebDAVClient::Directory);
         } else {
-            QCOMPARE(entry.type, WebDAVSynchronizer::File);
+            QCOMPARE(entry.type, WebDAVClient::File);
         }
         QVERIFY(entry.etag != "");
     }
@@ -232,27 +237,28 @@ void WebDAVSynchronizerTest::download()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
-    davClient->setDirectory(dir.path());
-    davClient->setRemoteDirectory(dirName);
-    QVERIFY(davClient->upload("sample.txt"));
+    QVERIFY(dav->mkdir(dirName));
+    dav->setDirectory(dir.path());
+    dav->setRemoteDirectory(dirName);
+    QVERIFY(dav->upload("sample.txt"));
 
     QTemporaryDir dir2;
-    davClient->setDirectory(dir2.path());
-    QVERIFY(davClient->download("sample.txt"));
+    dav->setDirectory(dir2.path());
+    QVERIFY(dav->download("sample.txt"));
     QCOMPARE(catFile(dir2.path() + "/sample.txt"),
              QByteArray("Hello World\n"));
     QTest::ignoreMessage(QtWarningMsg,
                          QRegularExpression("Upload failed with code 404"));
-    QVERIFY(!davClient->download("sample2.txt"));
-    davClient->setDirectory(dir.path());
+    QVERIFY(!dav->download("sample2.txt"));
+    dav->setDirectory(dir.path());
     echoToFile("Foo Bar Baz", dir.path() + "/sample.txt");
-    QVERIFY(davClient->upload("sample.txt"));
-    davClient->setDirectory(dir2.path());
-    QVERIFY(davClient->download("sample.txt"));
+    QVERIFY(dav->upload("sample.txt"));
+    dav->setDirectory(dir2.path());
+    QVERIFY(dav->download("sample.txt"));
     QCOMPARE(catFile(dir2.path() + "/sample.txt"),
              QByteArray("Foo Bar Baz"));
 }
@@ -266,22 +272,23 @@ void WebDAVSynchronizerTest::deleteEntry()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
-    davClient->setDirectory(dir.path());
-    davClient->setRemoteDirectory(dirName);
-    QVERIFY(davClient->upload("sample.txt"));
-    QVERIFY(davClient->deleteEntry("sample.txt"));
+    QVERIFY(dav->mkdir(dirName));
+    dav->setDirectory(dir.path());
+    dav->setRemoteDirectory(dirName);
+    QVERIFY(dav->upload("sample.txt"));
+    QVERIFY(dav->deleteEntry("sample.txt"));
     QTest::ignoreMessage(QtWarningMsg,
                          QRegularExpression("Deleting entry failed with code 404"));
-    QVERIFY(!davClient->deleteEntry("sample.txt"));
-    QVERIFY(davClient->upload("sample.txt"));
-    davClient->setRemoteDirectory("");
-    QVERIFY(davClient->deleteEntry(dirName));
-    QVERIFY(davClient->mkdir(dirName));
-    QVERIFY(davClient->deleteEntry(dirName));
+    QVERIFY(!dav->deleteEntry("sample.txt"));
+    QVERIFY(dav->upload("sample.txt"));
+    dav->setRemoteDirectory("");
+    QVERIFY(dav->deleteEntry(dirName));
+    QVERIFY(dav->mkdir(dirName));
+    QVERIFY(dav->deleteEntry(dirName));
 }
 
 void WebDAVSynchronizerTest::deleteEntry_data()
@@ -293,39 +300,40 @@ void WebDAVSynchronizerTest::etag()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
-    davClient->setDirectory(dir.path());
-    davClient->setRemoteDirectory(dirName);
+    QVERIFY(dav->mkdir(dirName));
+    dav->setDirectory(dir.path());
+    dav->setRemoteDirectory(dirName);
 
-    auto dirEtag = davClient->etag("/");
+    auto dirEtag = dav->etag("/");
     QVERIFY(dirEtag != "");
 
     QString uploadEtag;
-    QVERIFY(davClient->upload("sample.txt", &uploadEtag));
+    QVERIFY(dav->upload("sample.txt", &uploadEtag));
     QThread::sleep(1);
-    auto dirEtag2 = davClient->etag("/");
+    auto dirEtag2 = dav->etag("/");
     QVERIFY(dirEtag2 != "");
     QVERIFY(dirEtag != dirEtag2);
 
-    auto fileEtag = davClient->etag("sample.txt");
+    auto fileEtag = dav->etag("sample.txt");
     QVERIFY(fileEtag != "");
     QCOMPARE(fileEtag, uploadEtag);
-    auto fileEtag_alt = davClient->etag("/sample.txt");
+    auto fileEtag_alt = dav->etag("/sample.txt");
     QVERIFY(fileEtag_alt != "");
     QVERIFY(fileEtag == fileEtag_alt);
     echoToFile("Changed hello World\n", dir.path() + "/sample.txt");
-    QVERIFY(davClient->upload("sample.txt", &uploadEtag));
+    QVERIFY(dav->upload("sample.txt", &uploadEtag));
     QThread::sleep(1);
 
-    auto fileEtag2 = davClient->etag("sample.txt");
+    auto fileEtag2 = dav->etag("sample.txt");
     QVERIFY(fileEtag2 != "");
     QVERIFY(fileEtag != fileEtag2);
     QCOMPARE(fileEtag2, uploadEtag);
 
-    auto dirEtag3 = davClient->etag("/");
+    auto dirEtag3 = dav->etag("/");
     QVERIFY(dirEtag3 != "");
     QVERIFY(dirEtag3 != dirEtag2);
 
@@ -333,12 +341,12 @@ void WebDAVSynchronizerTest::etag()
                 QtWarningMsg,
                 QRegularExpression("QNetworkReply::NetworkError"
                                    "\\(ContentNotFoundError\\)"));
-    QVERIFY(davClient->etag("sample2.txt") == "");
+    QVERIFY(dav->etag("sample2.txt") == "");
     QTest::ignoreMessage(
                 QtWarningMsg,
                 QRegularExpression("QNetworkReply::NetworkError"
                                    "\\(ContentNotFoundError\\)"));
-    QVERIFY(davClient->etag("foo/bar/") == "");
+    QVERIFY(dav->etag("foo/bar/") == "");
 }
 
 void WebDAVSynchronizerTest::etag_data()
@@ -350,6 +358,7 @@ void WebDAVSynchronizerTest::syncDirectory()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
 
     QTemporaryDir dir1;
     QTemporaryDir dir2;
@@ -358,23 +367,23 @@ void WebDAVSynchronizerTest::syncDirectory()
     QDir(dir1.path()).mkdir("foo");
 
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
-    davClient->setDirectory(dir1.path());
-    davClient->setRemoteDirectory(dirName);
+    QVERIFY(dav->mkdir(dirName));
+    dav->setDirectory(dir1.path());
+    dav->setRemoteDirectory(dirName);
 
-    QVERIFY(davClient->syncDirectory("/"));
+    QVERIFY(dav->syncDirectory("/"));
 
-    davClient->setDirectory(dir2.path());
-    QVERIFY(davClient->syncDirectory("/"));
+    dav->setDirectory(dir2.path());
+    QVERIFY(dav->syncDirectory("/"));
     QCOMPARE(catFile(dir2.path() + "/sample.txt"), QByteArray("Hello World\n"));
     QVERIFY(QDir(dir2.path() + "/foo").exists());
 
     QVERIFY(QFile::remove(dir2.path() + "/sample.txt"));
     QVERIFY(QDir(dir2.path()).rmdir("foo"));
-    QVERIFY(davClient->syncDirectory("/"));
+    QVERIFY(dav->syncDirectory("/"));
 
-    davClient->setDirectory(dir1.path());
-    QVERIFY(davClient->syncDirectory("/"));
+    dav->setDirectory(dir1.path());
+    QVERIFY(dav->syncDirectory("/"));
     QVERIFY(!QFile::exists(dir1.path() + "/sample.txt"));
     QVERIFY(!QDir(dir1.path()).exists("foo"));
 }
@@ -388,6 +397,7 @@ void WebDAVSynchronizerTest::synchronize()
 {
     QFETCH(QObject*, client);
     auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
 
     QTemporaryDir dir1;
     QTemporaryDir dir2;
@@ -401,7 +411,7 @@ void WebDAVSynchronizerTest::synchronize()
     todo->addTask();
 
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-    QVERIFY(davClient->mkdir(dirName));
+    QVERIFY(dav->mkdir(dirName));
     davClient->setDirectory(dir1.path());
     davClient->setRemoteDirectory(dirName);
     QList<bool> syncState;
@@ -429,6 +439,68 @@ void WebDAVSynchronizerTest::synchronize()
 }
 
 void WebDAVSynchronizerTest::synchronize_data()
+{
+    createDavClients();
+}
+
+void WebDAVSynchronizerTest::findExistingEntries()
+{
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
+    auto dav = davClient->createDAVClient(davClient);
+
+    QTemporaryDir dir1;
+    QTemporaryDir dir2;
+
+    {
+        Library lib(dir1.path());
+        lib.setName("foo");
+        lib.save();
+    }
+    {
+        Library lib(dir2.path());
+        lib.setName("bar");
+        lib.save();
+    }
+
+    auto dirName = QUuid::createUuid().toString() + "-" + __func__;
+    QVERIFY(dav->mkdir(dirName));
+    QVERIFY(dav->mkdir(dirName + "/lib1.otl"));
+    QVERIFY(dav->mkdir(dirName + "/OpenTodoList"));
+    QVERIFY(dav->mkdir(dirName + "/OpenTodoList/lib2.otl"));
+
+    davClient->setDirectory(dir1.path());
+    davClient->setRemoteDirectory(dirName + "/lib1.otl");
+    davClient->synchronize();
+
+    davClient->setDirectory(dir2.path());
+    davClient->setRemoteDirectory(dirName + "/OpenTodoList/lib2.otl");
+    davClient->synchronize();
+
+    davClient->setRemoteDirectory(dirName);
+    QSignalSpy spy(davClient, &WebDAVSynchronizer::existingLibrariesChanged);
+    davClient->findExistingLibraries();
+    QVERIFY(spy.wait());
+    auto existingLibs = davClient->existingLibraries();
+    QCOMPARE(existingLibs.length(), 2);
+    SynchronizerExistingLibrary lib1 =
+            existingLibs.at(0).value<SynchronizerExistingLibrary>();
+    SynchronizerExistingLibrary lib2 =
+            existingLibs.at(1).value<SynchronizerExistingLibrary>();
+    QVERIFY(lib1.name() == "foo" || lib2.name() == "foo");
+    QVERIFY(lib1.name() == "bar" || lib2.name() == "bar");
+    QVERIFY(lib1.name() != lib2.name());
+    for (auto lib : existingLibs) {
+        auto l = lib.value<SynchronizerExistingLibrary>();
+        if (l.name() == "foo") {
+            QVERIFY(l.path() == "lib1.otl");
+        } else {
+            QVERIFY(l.path() == "OpenTodoList/lib2.otl");
+        }
+    }
+}
+
+void WebDAVSynchronizerTest::findExistingEntries_data()
 {
     createDavClients();
 }

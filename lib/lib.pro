@@ -34,7 +34,8 @@ SOURCES += \
     utils/jsonutils.cpp \
     sync/webdavsynchronizer.cpp \
     sync/genericdavsynchronizer.cpp \
-    sync/nextcloudsynchronizer.cpp
+    sync/nextcloudsynchronizer.cpp \
+    sync/webdavclient.cpp
 
 HEADERS += \
     application.h \
@@ -62,7 +63,8 @@ HEADERS += \
     utils/jsonutils.h \
     sync/webdavsynchronizer.h \
     sync/genericdavsynchronizer.h \
-    sync/nextcloudsynchronizer.h
+    sync/nextcloudsynchronizer.h \
+    sync/webdavclient.h
 
 config_qtkeychain {
     LIBS += -lqt5keychain

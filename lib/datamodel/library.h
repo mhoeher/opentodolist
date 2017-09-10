@@ -79,6 +79,8 @@ public:
     QUuid uid() const;
     QStringList tags() const;
 
+    void fromJson(const QByteArray data);
+
 signals:
 
     /**
@@ -137,6 +139,6 @@ private slots:
 
 };
 
-Q_DECLARE_LOGGING_CATEGORY(library);
+Q_DECLARE_LOGGING_CATEGORY(library)
 
 #endif // LIBRARY_H

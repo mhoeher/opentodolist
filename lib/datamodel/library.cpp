@@ -365,6 +365,19 @@ QStringList Library::tags() const
     return result;
 }
 
+
+/**
+ * @brief Initialize the propertoes of the library from the JSON @p data.
+ */
+void Library::fromJson(const QByteArray data)
+{
+    auto doc = QJsonDocument::fromJson(data);
+    if (doc.isObject()) {
+        fromMap(doc.toVariant().toMap());
+    }
+}
+
+
 /**
  * @brief Set the UID of the library.
  */
