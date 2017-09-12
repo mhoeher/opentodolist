@@ -83,7 +83,7 @@ public:
      *
      * The method shall be implemented non-blocking.
      */
-    virtual void validate() = 0;
+    Q_INVOKABLE virtual void validate() = 0;
 
 
     /**

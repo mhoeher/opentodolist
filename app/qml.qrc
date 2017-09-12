@@ -65,5 +65,6 @@
         <file>net/rpdev/OpenTodoList/UI/SynchronizerBackendSelectionPage.qml</file>
         <file>net/rpdev/OpenTodoList/UI/sync_backends/nextcloud.svg</file>
         <file>net/rpdev/OpenTodoList/UI/sync_backends/owncloud.svg</file>
+        <file>net/rpdev/OpenTodoList/UI/WebDAVConnectionSettingsPage.qml</file>
     </qresource>
 </RCC>

@@ -680,18 +680,10 @@ ApplicationWindow {
                 }
                 onBackendSelected: {
                     stackView.clear();
-                    switch (synchronizer) {
-                    case "NextCloudSynchronizer":
-                        Logic.viewLibrary(stackView,
-                                          leftSideBar.currentLibrary,
-                                          leftSideBar.currentTag,
-                                          libraryPage);
-                        break;
-                    case "GenericDAVSynchronizer":
-                        Logic.viewLibrary(stackView,
-                                          leftSideBar.currentLibrary,
-                                          leftSideBar.currentTag,
-                                          libraryPage);
+                    switch (synchronizer.synchronizer) {
+                    case "WebDAVSynchronizer":
+                        stackView.push(webDavConnectionSetupPage,
+                                       {"synchronizer": synchronizer});
                         break;
                     case "":
                         openLocalLibraryDialog.open();
@@ -701,6 +693,19 @@ ApplicationWindow {
             }
         }
 
+    }
+
+    Component {
+        id: webDavConnectionSetupPage
+
+        WebDAVConnectionSettingsPage {
+            onCancelled: {
+                Logic.viewLibrary(stackView,
+                                  leftSideBar.currentLibrary,
+                                  leftSideBar.currentTag,
+                                  libraryPage);
+            }
+        }
     }
 
     Connections {

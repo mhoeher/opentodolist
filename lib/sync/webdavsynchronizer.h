@@ -19,6 +19,7 @@ class WebDAVSynchronizer : public Synchronizer
     Q_PROPERTY(bool disableCertificateCheck READ disableCertificateCheck WRITE setDisableCertificateCheck NOTIFY disableCertificateCheckChanged)
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
+    Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
     Q_PROPERTY(WebDAVServerType serverType READ serverType WRITE setServerType NOTIFY serverTypeChanged)
 
 #ifdef WEBDAV_SYNCHRONIZER_TEST
@@ -28,10 +29,10 @@ class WebDAVSynchronizer : public Synchronizer
 public:
 
     enum WebDAVServerType {
-        Unknown,
-        Generic,
-        NextCloud,
-        OwnCloud
+        Unknown = 0,
+        Generic = 1,
+        NextCloud = 2,
+        OwnCloud = 3
     };
 
     Q_ENUM(WebDAVServerType)

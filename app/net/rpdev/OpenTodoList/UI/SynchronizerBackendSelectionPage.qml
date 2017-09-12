@@ -22,25 +22,29 @@ Item {
             name: qsTr("NextCloud")
             title: ""
             image: "sync_backends/nextcloud.svg"
-            synchronizer: "NextCloudSynchronizer"
+            synchronizer: "WebDAVSynchronizer"
+            serverType: "NextCloud"
         }
         ListElement {
             name: qsTr("ownCloud")
             title: ""
             image: "sync_backends/owncloud.svg"
-            synchronizer: "NextCloudSynchronizer"
+            synchronizer: "WebDAVSynchronizer"
+            serverType: "OwnCloud"
         }
         ListElement {
             name: qsTr("WebDAV")
             title: qsTr("WebDAV")
             image: ""
-            synchronizer: "GenericDAVSynchronizer"
+            synchronizer: "WebDAVSynchronizer"
+            serverType: "Generic"
         }
         ListElement {
             name: qsTr("Create local library")
             title: qsTr("Create local library")
             image: ""
             synchronizer: ""
+            serverType: ""
         }
     }
 
@@ -128,10 +132,12 @@ Item {
             text: qsTr("OK")
             enabled: d.selectedSynchronizer >= 0
             onClicked: {
-                var synchronizer = backends.get(d.selectedSynchronizer);
-                synchronizer = synchronizer.synchronizer;
+                var backend = backends.get(d.selectedSynchronizer);
+                var synchronizer = backend.synchronizer;
+                var serverType = backend.serverType;
                 page.backendSelected({
-                                         "synchronizer": synchronizer
+                                         "synchronizer": synchronizer,
+                                         "serverType": serverType
                                      });
             }
         }

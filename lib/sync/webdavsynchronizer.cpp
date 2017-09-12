@@ -221,6 +221,7 @@ void WebDAVSynchronizer::setDisableCertificateCheck(bool disableCertificateCheck
 {
     if (m_disableCertificateCheck != disableCertificateCheck) {
         m_disableCertificateCheck = disableCertificateCheck;
+        setValid(false);
         emit disableCertificateCheckChanged();
     }
 }
@@ -234,6 +235,7 @@ void WebDAVSynchronizer::setUsername(const QString& username)
 {
     if (m_username != username) {
         m_username = username;
+        setValid(false);
         emit usernameChanged();
     }
 }
@@ -247,6 +249,7 @@ void WebDAVSynchronizer::setPassword(const QString& password)
 {
     if (m_password != password) {
         m_password = password;
+        setValid(false);
         emit passwordChanged();
     }
 }
@@ -268,6 +271,7 @@ void WebDAVSynchronizer::setUrl(const QUrl &url)
 {
     if (m_url != url) {
         m_url = url;
+        setValid(false);
         emit urlChanged();
     }
 }
@@ -307,6 +311,7 @@ void WebDAVSynchronizer::setServerType(const WebDAVServerType &serverType)
 {
     if (m_serverType != serverType) {
         m_serverType = serverType;
+        setValid(false);
         emit serverTypeChanged();
     }
 }
