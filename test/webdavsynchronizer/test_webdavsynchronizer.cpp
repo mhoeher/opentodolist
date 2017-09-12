@@ -2,8 +2,7 @@
 #include "sync/webdavsynchronizer.h"
 #include "sync/webdavclient.h"
 
-#include "sync/genericdavsynchronizer.h"
-#include "sync/nextcloudsynchronizer.h"
+#include "sync/webdavsynchronizer.h"
 
 #include "datamodel/library.h"
 #include "datamodel/note.h"
@@ -77,7 +76,7 @@ private:
 
 void WebDAVSynchronizerTest::remoteDirectory()
 {
-    GenericDAVSynchronizer sync;
+    WebDAVSynchronizer sync;
     QSignalSpy spy(&sync, &WebDAVSynchronizer::remoteDirectoryChanged);
     QCOMPARE(sync.remoteDirectory(), QString(""));
     sync.setRemoteDirectory("/foo/");
@@ -87,7 +86,7 @@ void WebDAVSynchronizerTest::remoteDirectory()
 
 void WebDAVSynchronizerTest::disableCertificateCheck()
 {
-    GenericDAVSynchronizer sync;
+    WebDAVSynchronizer sync;
     QSignalSpy spy(&sync, &WebDAVSynchronizer::disableCertificateCheckChanged);
     QVERIFY(!sync.disableCertificateCheck());
     sync.setDisableCertificateCheck(true);
@@ -97,7 +96,7 @@ void WebDAVSynchronizerTest::disableCertificateCheck()
 
 void WebDAVSynchronizerTest::username()
 {
-    GenericDAVSynchronizer sync;
+    WebDAVSynchronizer sync;
     QSignalSpy spy(&sync, &WebDAVSynchronizer::usernameChanged);
     QCOMPARE(sync.username(), QString(""));
     sync.setUsername("sample.user");
@@ -107,7 +106,7 @@ void WebDAVSynchronizerTest::username()
 
 void WebDAVSynchronizerTest::password()
 {
-    GenericDAVSynchronizer sync;
+    WebDAVSynchronizer sync;
     QSignalSpy spy(&sync, &WebDAVSynchronizer::passwordChanged);
     QCOMPARE(sync.password(), QString(""));
     sync.setPassword("fooBarBas123!");
@@ -514,7 +513,8 @@ void WebDAVSynchronizerTest::createDavClients()
 
 #ifdef NEXTCLOUD_URL
     {
-        auto client = new NextCloudSynchronizer();
+        auto client = new WebDAVSynchronizer();
+        client->setServerType(WebDAVSynchronizer::NextCloud);
         client->setUrl(QUrl(NEXTCLOUD_URL));
         client->setUsername(NEXTCLOUD_USER);
         client->setPassword(NEXTCLOUD_PASSWORD);

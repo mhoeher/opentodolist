@@ -1,6 +1,5 @@
 #include "sync/synchronizer.h"
-#include "sync/nextcloudsynchronizer.h"
-#include "sync/genericdavsynchronizer.h"
+#include "sync/webdavsynchronizer.h"
 #include "utils/jsonutils.h"
 
 #include <QObject>
@@ -25,31 +24,21 @@ private slots:
 
 void SynchronizerTest::fromDirectory()
 {
-    {
+    for (auto serverType : {WebDAVSynchronizer::NextCloud,
+            WebDAVSynchronizer::OwnCloud, WebDAVSynchronizer::Generic}) {
         QTemporaryDir dir;
         {
-            NextCloudSynchronizer sync;
+            WebDAVSynchronizer sync;
+            sync.setServerType(serverType);
             sync.setDirectory(dir.path());
             QVERIFY(sync.save());
         }
         {
             auto sync = Synchronizer::fromDirectory(dir.path());
             Q_CHECK_PTR(sync);
-            QVERIFY(dynamic_cast<NextCloudSynchronizer*>(sync) != nullptr);
-            delete sync;
-        }
-    }
-    {
-        QTemporaryDir dir;
-        {
-            GenericDAVSynchronizer sync;
-            sync.setDirectory(dir.path());
-            QVERIFY(sync.save());
-        }
-        {
-            auto sync = Synchronizer::fromDirectory(dir.path());
-            Q_CHECK_PTR(sync);
-            QVERIFY(dynamic_cast<GenericDAVSynchronizer*>(sync) != nullptr);
+            auto s = dynamic_cast<WebDAVSynchronizer*>(sync);
+            QVERIFY(s != nullptr);
+            QCOMPARE(s->serverType(), serverType);
             delete sync;
         }
     }

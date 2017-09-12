@@ -48,6 +48,25 @@ WebDAVSynchronizer::~WebDAVSynchronizer()
     }
 }
 
+QUrl WebDAVSynchronizer::baseUrl() const
+{
+    switch (m_serverType) {
+    case NextCloud:
+    case OwnCloud:
+    {
+        auto url = m_url.toString();
+        if (!url.endsWith("/")) {
+            url += "/";
+        }
+        url += "remote.php/webdav/";
+        return QUrl(url);
+    }
+    default:
+        return m_url;
+        break;
+    }
+}
+
 void WebDAVSynchronizer::validate()
 {
     beginValidation();
@@ -165,6 +184,8 @@ QVariantMap WebDAVSynchronizer::toMap() const
     result["username"] = m_username;
     result["remoteDirectory"] = m_remoteDirectory;
     result["disableCertificateCheck"] = m_disableCertificateCheck;
+    result["url"] = m_url;
+    result["serverType"] = QVariant::fromValue(m_serverType);
     return result;
 }
 
@@ -173,6 +194,8 @@ void WebDAVSynchronizer::fromMap(const QVariantMap& map)
     m_username = map.value("username").toString();
     m_remoteDirectory = map.value("remoteDirectory").toString();
     m_disableCertificateCheck = map.value("disableCertificateCheck").toBool();
+    m_url = map.value("url").toUrl();
+    m_serverType = map.value("serverType").value<WebDAVServerType>();
     Synchronizer::fromMap(map);
 }
 
@@ -230,6 +253,27 @@ void WebDAVSynchronizer::setPassword(const QString& password)
 
 
 /**
+ * @brief The URL to connect to.
+ */
+QUrl WebDAVSynchronizer::url() const
+{
+    return m_url;
+}
+
+
+/**
+ * @brief Set the server URL.
+ */
+void WebDAVSynchronizer::setUrl(const QUrl &url)
+{
+    if (m_url != url) {
+        m_url = url;
+        emit urlChanged();
+    }
+}
+
+
+/**
  * @brief Create a DAV client.
  *
  * This creates and returns a new WebDAVClient which belongs to the
@@ -248,4 +292,21 @@ WebDAVClient* WebDAVSynchronizer::createDAVClient(QObject *parent)
     result->setRemoteDirectory(remoteDirectory());
     result->setDirectory(directory());
     return result;
+}
+
+
+/**
+ * @brief The type of WebDAV server to connect to.
+ */
+WebDAVSynchronizer::WebDAVServerType WebDAVSynchronizer::serverType() const
+{
+    return m_serverType;
+}
+
+void WebDAVSynchronizer::setServerType(const WebDAVServerType &serverType)
+{
+    if (m_serverType != serverType) {
+        m_serverType = serverType;
+        emit serverTypeChanged();
+    }
 }

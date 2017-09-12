@@ -1,7 +1,6 @@
 #include "synchronizer.h"
 
-#include "genericdavsynchronizer.h"
-#include "nextcloudsynchronizer.h"
+#include "webdavsynchronizer.h"
 
 #include <functional>
 
@@ -263,12 +262,8 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
     if (!directory.isEmpty()) {
         static QMap<QString, std::function<Synchronizer* (QObject*)>> Synchronizers = {
             {
-                "NextCloudSynchronizer",
-                [](QObject* parent) { return new NextCloudSynchronizer(parent); }
-            },
-            {
-                "GenericDAVSynchronizer",
-                [](QObject* parent) { return new GenericDAVSynchronizer(parent); }
+                "WebDAVSynchronizer",
+                [](QObject* parent) { return new WebDAVSynchronizer(parent); }
             }
         };
         QDir dir(directory);

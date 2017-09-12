@@ -33,8 +33,6 @@ SOURCES += \
     sync/synchronizer.cpp \
     utils/jsonutils.cpp \
     sync/webdavsynchronizer.cpp \
-    sync/genericdavsynchronizer.cpp \
-    sync/nextcloudsynchronizer.cpp \
     sync/webdavclient.cpp
 
 HEADERS += \
@@ -62,8 +60,6 @@ HEADERS += \
     sync/synchronizer.h \
     utils/jsonutils.h \
     sync/webdavsynchronizer.h \
-    sync/genericdavsynchronizer.h \
-    sync/nextcloudsynchronizer.h \
     sync/webdavclient.h
 
 config_qtkeychain {

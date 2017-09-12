@@ -16,8 +16,7 @@
 #include "itemssortfiltermodel.h"
 
 #include "sync/synchronizer.h"
-#include "sync/genericdavsynchronizer.h"
-#include "sync/nextcloudsynchronizer.h"
+#include "sync/webdavsynchronizer.h"
 
 #include <QtQml>
 
@@ -50,8 +49,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 
   qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                            "Use specific synchronizer");
-  qmlRegisterType<GenericDAVSynchronizer>(uri, 1, 0, "GenericDAVSynchronizer");
-  qmlRegisterType<NextCloudSynchronizer>(uri, 1, 0, "NextCloudSynchronizer");
+  qmlRegisterType<WebDAVSynchronizer>(uri, 1, 0, "WebDAVSynchronizer");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

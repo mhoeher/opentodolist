@@ -19,6 +19,7 @@ class WebDAVSynchronizer : public Synchronizer
     Q_PROPERTY(bool disableCertificateCheck READ disableCertificateCheck WRITE setDisableCertificateCheck NOTIFY disableCertificateCheckChanged)
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
+    Q_PROPERTY(WebDAVServerType serverType READ serverType WRITE setServerType NOTIFY serverTypeChanged)
 
 #ifdef WEBDAV_SYNCHRONIZER_TEST
     friend class WebDAVSynchronizerTest;
@@ -26,10 +27,19 @@ class WebDAVSynchronizer : public Synchronizer
 
 public:
 
+    enum WebDAVServerType {
+        Unknown,
+        Generic,
+        NextCloud,
+        OwnCloud
+    };
+
+    Q_ENUM(WebDAVServerType)
+
     explicit WebDAVSynchronizer(QObject* parent = nullptr);
     virtual ~WebDAVSynchronizer();
 
-    virtual QUrl baseUrl() const = 0;
+    QUrl baseUrl() const;
 
     // Synchronizer interface
     void validate() override;
@@ -50,7 +60,13 @@ public:
     QString password() const;
     void setPassword(const QString& password);
 
+    QUrl url() const;
+    void setUrl(const QUrl &url);
+
     WebDAVClient *createDAVClient(QObject* parent = nullptr);
+
+    WebDAVServerType serverType() const;
+    void setServerType(const WebDAVServerType &serverType);
 
 signals:
 
@@ -58,13 +74,17 @@ signals:
     void disableCertificateCheckChanged();
     void usernameChanged();
     void passwordChanged();
+    void urlChanged();
+    void serverTypeChanged();
 
 private:
 
+    QUrl    m_url;
     QString m_remoteDirectory;
     bool m_disableCertificateCheck;
     QString m_username;
     QString m_password;
+    WebDAVServerType m_serverType;
     QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
 };
 
