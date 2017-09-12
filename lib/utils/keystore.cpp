@@ -195,7 +195,7 @@ void KeyStore::registerSettingsFormat()
     }
 }
 
-SaveCredentialsResult::SaveCredentialsResult() : QObject()
+SaveCredentialsResult::SaveCredentialsResult(QObject *parent) : QObject(parent)
 {
 
 }
@@ -205,7 +205,7 @@ SaveCredentialsResult::~SaveCredentialsResult()
 
 }
 
-LoadCredentialsResult::LoadCredentialsResult() : QObject()
+LoadCredentialsResult::LoadCredentialsResult(QObject *parent) : QObject(parent)
 {
 
 }
@@ -215,7 +215,8 @@ LoadCredentialsResult::~LoadCredentialsResult()
 
 }
 
-DeleteCredentialsResult::DeleteCredentialsResult() : QObject()
+DeleteCredentialsResult::DeleteCredentialsResult(QObject *parent) :
+    QObject(parent)
 {
 
 }

@@ -7,7 +7,7 @@ import net.rpdev.OpenTodoList.UI 1.0
 Item {
     id: page
 
-    signal backendSelected(Synchronizer synchronizer)
+    signal backendSelected(var synchronizer)
     signal cancelled()
 
     QtObject {
@@ -22,21 +22,25 @@ Item {
             name: qsTr("NextCloud")
             title: ""
             image: "sync_backends/nextcloud.svg"
+            synchronizer: "NextCloudSynchronizer"
         }
         ListElement {
             name: qsTr("ownCloud")
             title: ""
             image: "sync_backends/owncloud.svg"
+            synchronizer: "NextCloudSynchronizer"
         }
         ListElement {
             name: qsTr("WebDAV")
             title: qsTr("WebDAV")
             image: ""
+            synchronizer: "GenericDAVSynchronizer"
         }
         ListElement {
             name: qsTr("Create local library")
             title: qsTr("Create local library")
             image: ""
+            synchronizer: ""
         }
     }
 
@@ -122,6 +126,14 @@ Item {
         Button {
             id: okButton
             text: qsTr("OK")
+            enabled: d.selectedSynchronizer >= 0
+            onClicked: {
+                var synchronizer = backends.get(d.selectedSynchronizer);
+                synchronizer = synchronizer.synchronizer;
+                page.backendSelected({
+                                         "synchronizer": synchronizer
+                                     });
+            }
         }
 
         Button {

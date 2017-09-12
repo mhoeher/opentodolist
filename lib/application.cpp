@@ -6,11 +6,13 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
+#include <QJsonDocument>
 #include <QProcess>
 #include <QStandardPaths>
 #include <QTimer>
 
 #include "utils/jsonutils.h"
+#include "utils/keystore.h"
 
 #include "migrators/migrator_2_x_to_3_x.h"
 
@@ -27,7 +29,9 @@ Application::Application(QObject *parent) :
                              QCoreApplication::organizationName(),
                              QCoreApplication::applicationName(), this)),
     m_loadingLibraries(false),
-    m_updatesAvailable(false)
+    m_updatesAvailable(false),
+    m_keyStore(new KeyStore(this)),
+    m_secrets()
 {
     loadLibraries();
 
@@ -37,6 +41,7 @@ Application::Application(QObject *parent) :
     connect(timer, &QTimer::timeout, [this] {
         checkForUpdates();
     });
+    loadSecrets();
 }
 
 /**
@@ -60,6 +65,7 @@ Application::Application(QSettings *settings, QObject *parent) :
     connect(timer, &QTimer::timeout, [this] {
         checkForUpdates();
     });
+    loadSecrets();
 }
 
 /**
@@ -304,6 +310,38 @@ bool Application::folderExists(const QUrl &url) const
     return url.isValid() && QDir(url.toLocalFile()).exists();
 }
 
+
+/**
+ * @brief Get the secret for the given @p library.
+ */
+QString Application::getSecret(Library *library)
+{
+    Q_CHECK_PTR(library);
+    auto key = library->uid().toString();
+    return m_secrets.value(key, QString()).toString();
+}
+
+
+/**
+ * @brief Set a @p secret for the @p library.
+ *
+ * This sets the secret for the given library and stores the secret in a
+ * platform specific secrets store.
+ */
+void Application::setSecret(Library *library, const QString &secret)
+{
+    Q_CHECK_PTR(library);
+    auto key = library->uid().toString();
+    if (!m_secrets.contains(key) || m_secrets[key] != secret) {
+        m_secrets[key] = secret;
+        auto json = QJsonDocument::fromVariant(m_secrets).toJson();
+        m_keyStore->saveCredentials("OpenTodoList", json);
+        m_settings->beginGroup("Secrets");
+        m_settings->setValue("HaveSecrets", true);
+        m_settings->endGroup();
+    }
+}
+
 void Application::saveLibraries()
 {
     if (!m_loadingLibraries) {
@@ -476,6 +514,24 @@ void Application::appendLibrary(Library* library)
     m_libraries.append(library);
     saveLibraries();
     emit librariesChanged();
+}
+
+void Application::loadSecrets()
+{
+    m_settings->beginGroup("Secrets");
+    auto haveSecrets = m_settings->value("HaveSecrets", false).toBool();
+    m_settings->endGroup();
+    if (haveSecrets) {
+        auto result = new LoadCredentialsResult(this);
+        connect(result, &LoadCredentialsResult::done, [=](const QByteArray &value, bool hasError, const QString& errorString) {
+            if (hasError) {
+                qWarning() << "Failed to read secrets:" << errorString;
+            } else {
+                m_secrets = QJsonDocument::fromJson(value).toVariant().toMap();
+            }
+            result->deleteLater();
+        });
+    }
 }
 
 void Application::onLibraryDeleted(Library *library)

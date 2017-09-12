@@ -673,10 +673,30 @@ ApplicationWindow {
 
             SynchronizerBackendSelectionPage {
                 onCancelled: {
-                    stackView.clear();
                     Logic.viewLibrary(stackView,
                                       leftSideBar.currentLibrary,
-                                      leftSideBar.currentTag);
+                                      leftSideBar.currentTag,
+                                      libraryPage);
+                }
+                onBackendSelected: {
+                    stackView.clear();
+                    switch (synchronizer) {
+                    case "NextCloudSynchronizer":
+                        Logic.viewLibrary(stackView,
+                                          leftSideBar.currentLibrary,
+                                          leftSideBar.currentTag,
+                                          libraryPage);
+                        break;
+                    case "GenericDAVSynchronizer":
+                        Logic.viewLibrary(stackView,
+                                          leftSideBar.currentLibrary,
+                                          leftSideBar.currentTag,
+                                          libraryPage);
+                        break;
+                    case "":
+                        openLocalLibraryDialog.open();
+                        break;
+                    }
                 }
             }
         }

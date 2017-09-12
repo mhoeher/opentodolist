@@ -60,7 +60,7 @@ class SaveCredentialsResult : public QObject
 
 public:
 
-    explicit SaveCredentialsResult();
+    explicit SaveCredentialsResult(QObject* parent = nullptr);
     virtual ~SaveCredentialsResult();
 
 signals:
@@ -82,7 +82,7 @@ class LoadCredentialsResult : public QObject
 
 public:
 
-    explicit LoadCredentialsResult();
+    explicit LoadCredentialsResult(QObject* parent = nullptr);
     virtual ~LoadCredentialsResult();
 
 signals:
@@ -103,7 +103,7 @@ class DeleteCredentialsResult : public QObject
 
 public:
 
-    explicit DeleteCredentialsResult();
+    explicit DeleteCredentialsResult(QObject* parent = nullptr);
     virtual ~DeleteCredentialsResult();
 
 signals:

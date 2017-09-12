@@ -13,6 +13,7 @@
 
 
 class Migrator_2_x_to_3_x;
+class KeyStore;
 
 /**
  * @brief The main class of the application
@@ -73,6 +74,8 @@ public:
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
+    Q_INVOKABLE QString getSecret(Library* library);
+
 signals:
 
     void librariesChanged();
@@ -81,6 +84,8 @@ signals:
 
 public slots:
 
+    void setSecret(Library* library, const QString& secret);
+
 private:
 
     QList<Library*>         m_libraries;
@@ -88,6 +93,8 @@ private:
     QSettings              *m_settings;
     bool                    m_loadingLibraries;
     bool                    m_updatesAvailable;
+    KeyStore               *m_keyStore;
+    QVariantMap             m_secrets;
 
     void saveLibraries();
     void loadLibraries();
@@ -105,6 +112,8 @@ private:
     void saveUpdatesAvailable(bool available);
 
     void appendLibrary(Library* library);
+
+    void loadSecrets();
 
 private slots:
 
