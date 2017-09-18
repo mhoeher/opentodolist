@@ -48,6 +48,8 @@ public:
     void findExistingLibraries() override;
     QVariantMap toMap() const override;
     void fromMap(const QVariantMap& map) override;
+    QString secretsKey() const override;
+    QString secret() const override;
 
     QString remoteDirectory() const;
     void setRemoteDirectory(const QString& remoteDirectory);
@@ -69,8 +71,10 @@ public:
     WebDAVServerType serverType() const;
     void setServerType(const WebDAVServerType &serverType);
 
-signals:
+    bool createDirs() const;
+    void setCreateDirs(bool createDirs);
 
+signals:
     void remoteDirectoryChanged();
     void disableCertificateCheckChanged();
     void usernameChanged();
@@ -85,6 +89,7 @@ private:
     bool m_disableCertificateCheck;
     QString m_username;
     QString m_password;
+    bool m_createDirs;
     WebDAVServerType m_serverType;
     QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
 };

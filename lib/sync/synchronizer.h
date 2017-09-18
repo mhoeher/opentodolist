@@ -3,6 +3,7 @@
 
 #include <QLoggingCategory>
 #include <QObject>
+#include <QUuid>
 #include <QVariantMap>
 
 
@@ -14,6 +15,7 @@ class SynchronizerExistingLibrary {
 
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(QString path READ path)
+    Q_PROPERTY(QUuid uid READ uid)
 
 public:
 
@@ -26,10 +28,14 @@ public:
     void setPath(const QString &path);
 
 
+    QUuid uid() const;
+    void setUid(const QUuid &uid);
+
 private:
 
     QString m_name;
     QString m_path;
+    QUuid   m_uid;
 };
 
 /**
@@ -47,8 +53,10 @@ class Synchronizer : public QObject
     Q_PROPERTY(bool validating READ validating NOTIFY validatingChanged)
     Q_PROPERTY(bool valid READ valid NOTIFY validChanged)
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
+    Q_PROPERTY(bool findingLibraries READ findingLibraries NOTIFY findingLibrariesChanged)
     Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged)
     Q_PROPERTY(bool isNull READ isNull NOTIFY directoryChanged)
+    Q_PROPERTY(QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
 public:
 
     static const QString SaveFileName;
@@ -94,13 +102,18 @@ public:
      */
     virtual void synchronize() = 0;
 
-    virtual void findExistingLibraries();
+    Q_INVOKABLE virtual void findExistingLibraries();
 
     virtual QVariantMap toMap() const;
     virtual void fromMap(const QVariantMap &map);
+    virtual QString secretsKey() const;
+    virtual QString secret() const;
 
 
     QVariantList existingLibraries() const;
+
+    bool findingLibraries() const;
+
 
 signals:
 
@@ -109,6 +122,7 @@ signals:
     void synchronizingChanged();
     void directoryChanged();
     void existingLibrariesChanged();
+    void findingLibrariesChanged();
 
 public slots:
 
@@ -119,6 +133,7 @@ protected:
     void beginValidation();
     void endValidation(bool valid);
     void setExistingLibraries(const QVariantList &existingLibraries);
+    void setFindingLibraries(bool findingLibraries);
 
 private:
 
@@ -126,6 +141,7 @@ private:
     bool    m_valid;
     bool    m_synchronizing;
     bool    m_creatingDirectory;
+    bool    m_findingLibraries;
     QString m_directory;
     QVariantList
             m_existingLibraries;

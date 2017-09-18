@@ -450,16 +450,19 @@ void WebDAVSynchronizerTest::findExistingEntries()
 
     QTemporaryDir dir1;
     QTemporaryDir dir2;
+    QList<QUuid> uids;
 
     {
         Library lib(dir1.path());
         lib.setName("foo");
         lib.save();
+        uids.append(lib.uid());
     }
     {
         Library lib(dir2.path());
         lib.setName("bar");
         lib.save();
+        uids.append(lib.uid());
     }
 
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
@@ -489,6 +492,9 @@ void WebDAVSynchronizerTest::findExistingEntries()
     QVERIFY(lib1.name() == "foo" || lib2.name() == "foo");
     QVERIFY(lib1.name() == "bar" || lib2.name() == "bar");
     QVERIFY(lib1.name() != lib2.name());
+    QVERIFY(uids.contains(lib1.uid()));
+    QVERIFY(uids.contains(lib2.uid()));
+    QVERIFY(lib1.uid() != lib2.uid());
     for (auto lib : existingLibs) {
         auto l = lib.value<SynchronizerExistingLibrary>();
         if (l.name() == "foo") {
@@ -503,6 +509,7 @@ void WebDAVSynchronizerTest::findExistingEntries_data()
 {
     createDavClients();
 }
+
 
 #endif // TEST_AGAINST_SERVER
 

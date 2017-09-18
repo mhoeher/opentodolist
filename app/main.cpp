@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
 
   engine.addImportPath(qmlBase);
   OpenTodoListQmlExtensionsPlugin plugin;
-  plugin.registerTypes("net.rpdev.OpenTodoList");
+  plugin.registerTypes("OpenTodoList");
 
 #ifdef OPENTODOLIST_DEBUG
   QmlFileSystemWatcher watcher(qmlBase, &engine);

@@ -43,12 +43,14 @@ class QThreadPool;
 class ItemContainer : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     explicit ItemContainer(QObject *parent = 0);
     virtual ~ItemContainer();
 
-    int count() const;
+    Q_INVOKABLE int count() const;
     ItemPtr item(int index) const;
+    Q_INVOKABLE Item* get(int index) const;
     void addItem(ItemPtr item);
     void updateItem(ItemPtr item);
     void deleteItem(ItemPtr item);
@@ -78,6 +80,11 @@ signals:
      * @brief The container has been cleared.
      */
     void cleared();
+
+    /**
+     * @brief Indicates that the count property has changed.
+     */
+    void countChanged();
 
 public slots:
 

@@ -68,3 +68,8 @@ Todo *TodoList::addTodo()
     }
     return nullptr;
 }
+
+Library *TodoList::library() const
+{
+    return m_library;
+}

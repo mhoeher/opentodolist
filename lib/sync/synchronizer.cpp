@@ -177,6 +177,26 @@ void Synchronizer::setExistingLibraries(const QVariantList &existingLibraries)
 }
 
 
+/**
+ * @brief Set the finding libraries status.
+ *
+ * This method shall be called in sub-classes to indicate that searching for
+ * libraries started or finished.
+ */
+void Synchronizer::setFindingLibraries(bool findingLibraries)
+{
+    if (m_findingLibraries != findingLibraries) {
+        m_findingLibraries = findingLibraries;
+        emit findingLibrariesChanged();
+    }
+}
+
+bool Synchronizer::findingLibraries() const
+{
+    return m_findingLibraries;
+}
+
+
 QVariantList Synchronizer::existingLibraries() const
 {
     return m_existingLibraries;
@@ -327,6 +347,34 @@ void Synchronizer::fromMap(const QVariantMap& map)
 
 
 /**
+ * @brief Get a unique key used for storing the secrets of the synchronizer.
+ *
+ * The default implementation returns an empty string, indicating that the
+ * synchronizer does not need any secrets. If a concrete implementation needs
+ * to have secrets stored in a platform specific secret store, it shall return
+ * a (unique) key which is used to identify the secret within the store.
+ */
+QString Synchronizer::secretsKey() const
+{
+    return QString();
+}
+
+
+/**
+ * @brief The synchronizer's secret.
+ *
+ * The default implementation just returns an empty string. If a synchronizer
+ * uses any secrets, it shall return it by implementing this method. In
+ * addition, the secretsKey() method must be implemented to return a non-empty
+ * string.
+ */
+QString Synchronizer::secret() const
+{
+    return QString();
+}
+
+
+/**
  * @brief Constructor.
  */
 SynchronizerExistingLibrary::SynchronizerExistingLibrary() :
@@ -369,4 +417,14 @@ QString SynchronizerExistingLibrary::path() const
 void SynchronizerExistingLibrary::setPath(const QString &path)
 {
     m_path = path;
+}
+
+QUuid SynchronizerExistingLibrary::uid() const
+{
+    return m_uid;
+}
+
+void SynchronizerExistingLibrary::setUid(const QUuid &uid)
+{
+    m_uid = uid;
 }

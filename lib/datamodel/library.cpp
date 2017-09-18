@@ -11,6 +11,7 @@
 #include "todolist.h"
 #include "todo.h"
 #include "task.h"
+#include "sync/synchronizer.h"
 
 #include "utils/jsonutils.h"
 
@@ -258,6 +259,20 @@ bool Library::save()
         result = JsonUtils::patchJsonFile(filename, toMap());
     }
     return result;
+}
+
+
+/**
+ * @brief Trigger a synchronization of the library.
+ */
+void Library::sync()
+{
+    if (isValid()) {
+        auto sync = Synchronizer::fromDirectory(m_directory);
+        if (sync != nullptr) {
+
+        }
+    }
 }
 
 ItemContainer* Library::topLevelItems()

@@ -28,7 +28,7 @@ OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent
 
 void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 {
-  //@uri net.rpdev.OpenTodoList
+  //@uri OpenTodoList
 
   qmlRegisterSingletonType<Application>(uri, 1, 0, "App",
                                         OpenTodoListQmlExtensionsPlugin::createApplication);

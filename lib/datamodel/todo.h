@@ -23,6 +23,7 @@ class Todo : public ComplexItem
 
     Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
+    Q_PROPERTY(Library* library READ library CONSTANT)
 
     friend class TodoList;
     friend class Library;
@@ -41,6 +42,8 @@ public:
     void setTodoListUid(const QUuid& todoListUid);
 
     Q_INVOKABLE Task* addTask();
+
+    Library *library() const;
 
 signals:
 

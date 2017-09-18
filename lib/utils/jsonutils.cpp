@@ -7,7 +7,7 @@
 
 namespace JsonUtils {
 
-Q_LOGGING_CATEGORY(jsonUtils, "net.rpdev.opentodolist.JsonUtils")
+Q_LOGGING_CATEGORY(jsonUtils, "net.rpdev.opentodolist.JsonUtils", QtWarningMsg)
 
 /**
  * @brief Write a JSON file, keeping existing properties in the file.

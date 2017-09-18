@@ -15,6 +15,7 @@
 #include "todolist.h"
 
 class DirectoryWatcher;
+class Application;
 
 /**
  * @brief A container for items.
@@ -34,6 +35,8 @@ class Library : public QObject
     Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
     Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
+
+    friend class Application;
 
 public:
 
@@ -65,6 +68,7 @@ public:
     void deleteLibrary(bool deleteFiles, std::function<void ()> callback);
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
+    Q_INVOKABLE void sync();
 
     ItemContainer *topLevelItems();
     ItemContainer *todos();

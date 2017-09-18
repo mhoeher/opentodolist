@@ -8,11 +8,15 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QProcess>
+#include <QScopedPointer>
 #include <QStandardPaths>
 #include <QTimer>
+#include <QUuid>
 
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
+#include "sync/synchronizer.h"
+#include "sync/webdavsynchronizer.h"
 
 #include "migrators/migrator_2_x_to_3_x.h"
 
@@ -83,6 +87,81 @@ QQmlListProperty<Library> Application::libraryList()
     return QQmlListProperty<Library>(this, nullptr, librariesCount, librariesAt);
 }
 
+
+/**
+ * @brief Create a new library.
+ *
+ * This creates a new library using the given @p parameters. The following
+ * keys are assumed to be provided (some of them optional):
+ *
+ * - name: The name of the library.
+ * - localPath: The path where to create the library in.
+ * - synchronizer: The type (class name) of synchronizer to use.
+ * - serverType: For some synchronizer classes, the concrete sub-type of the server.
+ * - uid: The UID to use for the library.
+ * - path: The remote path of the library.
+ *
+ * If no synchronizer is specified and localPath points to a location
+ * with an existing library, that library will be imported. In this
+ * case, any other attributes are ignored.
+ */
+Library *Application::addLibrary(const QVariantMap &parameters)
+{
+    Library* result = nullptr;
+
+    auto synchronizerCls = parameters.value("synchronizer").toString();
+    auto localPath = parameters.value("localPath", librariesLocation()).toString();
+    auto name = parameters.value("name").toString();
+    QUuid uid;
+    if (parameters.contains("uid") && parameters.value("uid").toString() != "") {
+        uid = parameters.value("uid").toUuid();
+    } else {
+        uid = QUuid::createUuid();
+    }
+    auto path = parameters.value("path").toString();
+    if (synchronizerCls.isEmpty() || path.isEmpty()) {
+        if (!isLibraryDir(localPath)) {
+            localPath += "/" + uid.toString();
+        }
+    }
+
+    QDir(localPath).mkpath(".");
+
+    if (isLibraryDir(localPath)) {
+
+    }
+    if (QDir(localPath).exists()) {
+        result = new Library(localPath, this);
+        result->setUid(uid);
+        result->setName(name);
+        if (!synchronizerCls.isEmpty()) {
+            if (synchronizerCls == "WebDAVSynchronizer") {
+                auto sync = new WebDAVSynchronizer();
+                auto type = parameters.value("serverType")
+                        .value<WebDAVSynchronizer::WebDAVServerType>();
+                sync->setServerType(type);
+                sync->setUrl(parameters.value("url").toUrl());
+                sync->setUsername(parameters.value("username").toString());
+                sync->setPassword(parameters.value("password").toString());
+                sync->setDisableCertificateCheck(
+                            parameters.value(
+                                "disableCertificateCheck").toBool());
+                sync->setDirectory(result->directory());
+                if (path.isEmpty()) {
+                    path = "OpenTodoList/" + uid.toString();
+                    sync->setCreateDirs(true);
+                }
+                sync->setRemoteDirectory(path);
+                sync->save();
+                setSecret(result, sync->password());
+                delete sync;
+            }
+        }
+    }
+    appendLibrary(result);
+    return result;
+}
+
 /**
  * @brief Add a new library.
  *
@@ -90,7 +169,7 @@ QQmlListProperty<Library> Application::libraryList()
  * directory, the library will use it for storing its data. If the url is invalid,
  * the library will be created in the default library location.
  */
-Library*Application::addLibrary(const QUrl& url)
+/*Library*Application::addLibrary(const QUrl& url)
 {
     Library* result = nullptr;
     auto path = url.toLocalFile();
@@ -106,11 +185,12 @@ Library*Application::addLibrary(const QUrl& url)
         path = librariesLocation() + "/" + uid.toString();
         QDir(path).mkpath(".");
         result = new Library(path, this);
+        result->setUid(uid);
         appendLibrary(result);
     }
     return result;
 }
-
+*/
 /**
  * @brief Save a value to the application settings
  *
@@ -184,6 +264,20 @@ QUrl Application::localFileToUrl(const QString &localFile) const
     return QUrl::fromLocalFile(localFile);
 }
 
+
+/**
+ * @brief Clean the local file path given via the @p url.
+ *
+ * This method removes extra dots and dotdots from the file path
+ * and returns a simplified verion of the input path.
+ */
+QUrl Application::cleanPath(const QUrl &url) const
+{
+    auto path = url.toLocalFile();
+    path = QDir::cleanPath(path);
+    return QUrl::fromLocalFile(path);
+}
+
 /**
  * @brief Check if a file called @p filename exists.
  */
@@ -206,6 +300,22 @@ bool Application::directoryExists(const QString& directory) const
 QString Application::basename(const QString& filename) const
 {
     return QFileInfo(filename).baseName();
+}
+
+
+/**
+ * @brief Test if the @p url points to an existing library directory.
+ */
+bool Application::isLibraryDir(const QUrl &url) const
+{
+    bool result = false;
+    if (url.isValid()) {
+        auto dir = QDir(url.toLocalFile());
+        if (dir.exists() && dir.exists(Library::LibraryFileName)) {
+            result = true;
+        }
+    }
+    return result;
 }
 
 /**
@@ -317,8 +427,14 @@ bool Application::folderExists(const QUrl &url) const
 QString Application::getSecret(Library *library)
 {
     Q_CHECK_PTR(library);
-    auto key = library->uid().toString();
-    return m_secrets.value(key, QString()).toString();
+    QScopedPointer<Synchronizer> sync(
+                Synchronizer::fromDirectory(library->directory()));
+    QString result;
+    if (sync) {
+        auto key = sync->secretsKey();
+        result = m_secrets.value(key, QString()).toString();
+    }
+    return result;
 }
 
 
@@ -331,14 +447,20 @@ QString Application::getSecret(Library *library)
 void Application::setSecret(Library *library, const QString &secret)
 {
     Q_CHECK_PTR(library);
-    auto key = library->uid().toString();
-    if (!m_secrets.contains(key) || m_secrets[key] != secret) {
-        m_secrets[key] = secret;
-        auto json = QJsonDocument::fromVariant(m_secrets).toJson();
-        m_keyStore->saveCredentials("OpenTodoList", json);
-        m_settings->beginGroup("Secrets");
-        m_settings->setValue("HaveSecrets", true);
-        m_settings->endGroup();
+    QScopedPointer<Synchronizer> sync(
+                Synchronizer::fromDirectory(library->directory()));
+    if (sync) {
+        auto key = sync->secretsKey();
+        if (key != "") {
+            if (!m_secrets.contains(key) || m_secrets[key] != secret) {
+                m_secrets[key] = secret;
+                auto json = QJsonDocument::fromVariant(m_secrets).toJson();
+                m_keyStore->saveCredentials("OpenTodoList", json);
+                m_settings->beginGroup("Secrets");
+                m_settings->setValue("HaveSecrets", true);
+                m_settings->endGroup();
+            }
+        }
     }
 }
 
@@ -419,14 +541,17 @@ int Application::librariesCount(QQmlListProperty<Library> *property)
  */
 QString Application::librariesLocation() const
 {
+    QString result;
 #ifdef Q_OS_ANDROID
     QString s(qgetenv("EXTERNAL_STORAGE"));
     QDir dir(s + "/data/net.rpdev.opentodolist/");
-    return dir.absolutePath();
+    result = dir.absolutePath();
 #else
-    QString result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    return QDir(result).absolutePath();
+    result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    result =  QDir(result).absolutePath();
 #endif
+    QDir(result).mkpath(".");
+    return result;
 }
 
 /**

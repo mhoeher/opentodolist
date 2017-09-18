@@ -33,10 +33,12 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
     m_disableCertificateCheck(false),
     m_username(),
     m_password(),
+    m_createDirs(false),
     m_findExistingEntriesWatcher()
 {
     connect(&m_findExistingEntriesWatcher,
             &QFutureWatcher<QVariantList>::finished, [=]() {
+        setFindingLibraries(false);
         setExistingLibraries(m_findExistingEntriesWatcher.result());
     });
 }
@@ -91,25 +93,52 @@ void WebDAVSynchronizer::synchronize()
         auto dav = createDAVClient(this);
         setSynchronizing(true);
         // Sync the top level directory:
+        bool dirsOkay = true;
+        if (m_createDirs) {
+            auto parts = QDir::cleanPath(m_remoteDirectory).split("/");
+            QString rpath;
+            for (auto part : parts) {
+                rpath += "/" + part;
+                if (dav->etag(rpath) == "") {
+                    auto ok = dav->mkdir(rpath);
+                    if (!ok) {
+                        qCWarning(webDAVSynchronizer)
+                                << "Failed to prepare remote dir" << rpath
+                                << "for sync.";
+                        dirsOkay = false;
+                        break;
+                    } else {
+                        QThread::sleep(1);
+                    }
+                }
+            }
+            if (dirsOkay) {
+                m_createDirs = false;
+                save();
+            }
+        }
+
         QSet<QString> changedYearDirs;
         dav->syncDirectory("/",
                            QRegularExpression("\\d\\d\\d\\d"),
                            false,
                            &changedYearDirs);
         // Sync the year directory:
-        QDir dir(directory());
-        for (auto yearDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            QSet<QString> changedMonthDirs;
-            dav->syncDirectory("/" + yearDir,
-                               QRegularExpression("\\d\\d?"),
-                               !changedYearDirs.contains(yearDir),
-                               &changedMonthDirs);
-            QDir ydir(dir.absoluteFilePath(yearDir));
-            for (auto monthDir : ydir.entryList(
-                     QDir::Dirs | QDir::NoDotAndDotDot)) {
-                dav->syncDirectory("/" + yearDir + "/" + monthDir,
-                                   QRegularExpression(),
-                                   !changedMonthDirs.contains(monthDir));
+        if (dirsOkay) {
+            QDir dir(directory());
+            for (auto yearDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+                QSet<QString> changedMonthDirs;
+                dav->syncDirectory("/" + yearDir,
+                                   QRegularExpression("\\d\\d?"),
+                                   !changedYearDirs.contains(yearDir),
+                                   &changedMonthDirs);
+                QDir ydir(dir.absoluteFilePath(yearDir));
+                for (auto monthDir : ydir.entryList(
+                         QDir::Dirs | QDir::NoDotAndDotDot)) {
+                    dav->syncDirectory("/" + yearDir + "/" + monthDir,
+                                       QRegularExpression(),
+                                       !changedMonthDirs.contains(monthDir));
+                }
             }
         }
         setSynchronizing(false);
@@ -128,6 +157,7 @@ void WebDAVSynchronizer::synchronize()
  */
 void WebDAVSynchronizer::findExistingLibraries()
 {
+    setFindingLibraries(true);
     auto baseUrl = this->baseUrl();
     auto username = this->username();
     auto password = this->password();
@@ -169,6 +199,7 @@ void WebDAVSynchronizer::findExistingLibraries()
                     SynchronizerExistingLibrary library;
                     library.setName(lib.name());
                     library.setPath(dir);
+                    library.setUid(lib.uid());
                     result << QVariant::fromValue(library);
                 }
             }
@@ -186,6 +217,7 @@ QVariantMap WebDAVSynchronizer::toMap() const
     result["disableCertificateCheck"] = m_disableCertificateCheck;
     result["url"] = m_url;
     result["serverType"] = QVariant::fromValue(m_serverType);
+    result["createDirs"] = m_createDirs;
     return result;
 }
 
@@ -196,7 +228,23 @@ void WebDAVSynchronizer::fromMap(const QVariantMap& map)
     m_disableCertificateCheck = map.value("disableCertificateCheck").toBool();
     m_url = map.value("url").toUrl();
     m_serverType = map.value("serverType").value<WebDAVServerType>();
+    m_createDirs = map.value("createDirs", false).toBool();
     Synchronizer::fromMap(map);
+}
+
+QString WebDAVSynchronizer::secretsKey() const
+{
+    QString format("%1-%2-%3-%4");
+    return format
+            .arg(metaObject()->className())
+            .arg(QVariant::fromValue(m_serverType).toString())
+            .arg(baseUrl().toString())
+            .arg(username());
+}
+
+QString WebDAVSynchronizer::secret() const
+{
+    return password();
 }
 
 QString WebDAVSynchronizer::remoteDirectory() const
@@ -315,3 +363,14 @@ void WebDAVSynchronizer::setServerType(const WebDAVServerType &serverType)
         emit serverTypeChanged();
     }
 }
+
+bool WebDAVSynchronizer::createDirs() const
+{
+    return m_createDirs;
+}
+
+void WebDAVSynchronizer::setCreateDirs(bool createDirs)
+{
+    m_createDirs = createDirs;
+}
+
