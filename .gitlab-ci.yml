@@ -13,7 +13,6 @@ stages:
   - deploy
 
 before_script:
-  - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
 
 
