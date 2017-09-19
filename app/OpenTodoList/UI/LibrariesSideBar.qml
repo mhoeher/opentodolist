@@ -4,28 +4,21 @@ import QtQuick.Controls 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-Drawer {
+Item {
     id: sidebar
 
     property var currentLibrary: App.libraries[0]
     property string currentTag: ""
     property bool helpVisible: false
+    property bool compact: false
 
     signal libraryClicked(Library library)
     signal newLibrary()
     signal aboutPageRequested()
+    signal close()
 
-    function closeIfInteractive() {
-        if (interactive) {
-            close();
-        }
-    }
-
-
-    edge: Qt.LeftEdge
-    height: parent.height
-    dim: interactive
-    background: Rectangle {
+    Rectangle {
+        anchors.fill: parent
         color: Colors.panelDark
     }
 
@@ -56,7 +49,7 @@ Drawer {
                         }
                         sidebar.currentTag = "";
                         libraryClicked(App.libraries[index]);
-                        sidebar.closeIfInteractive();
+                        sidebar.close();
                     }
 
                     Rectangle {
@@ -108,7 +101,7 @@ Drawer {
                                     sidebar.currentTag = tags.library.tags[index];
                                 }
                                 libraryClicked(tags.library);
-                                sidebar.closeIfInteractive();
+                                sidebar.close();
                             }
 
                             Rectangle {
@@ -179,7 +172,7 @@ Drawer {
                     }
                 }
                 onClicked: {
-                    sidebar.closeIfInteractive();
+                    sidebar.close();
                     sidebar.newLibrary();
                 }
             }
@@ -239,7 +232,7 @@ Drawer {
                 }
                 onClicked: {
                     sidebar.aboutPageRequested();
-                    sidebar.closeIfInteractive();
+                    sidebar.close();
                 }
             }
         }

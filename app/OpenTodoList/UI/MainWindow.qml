@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.3
 
@@ -52,9 +52,9 @@ ApplicationWindow {
                     id: sidebarControl
                     symbol: Fonts.symbols.faBars
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: leftSideBar.interactive && stackView.depth <= 1
-                    checked: leftSideBar.visible
-                    onClicked: leftSideBar.visible = !leftSideBar.visible
+                    visible: leftSideBar.compact && stackView.depth <= 1
+                    checked: dynamicLeftDrawer.visible
+                    onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
                 }
                 Symbol {
                     symbol: Fonts.symbols.faArrowUp
@@ -306,7 +306,7 @@ ApplicationWindow {
 
     onClosing: {
         if (Qt.os == "android") {
-            if (leftSideBar.interactive && leftSideBar.visible) {
+            if (leftSideBar.compact && leftSideBar.visible) {
                 leftSideBar.visible = false;
                 close.accepted = false;
                 return;
@@ -336,12 +336,9 @@ ApplicationWindow {
 
     LibrariesSideBar {
         id: leftSideBar
-        edge: Qt.LeftEdge
         helpVisible: helpPage !== null
-        width: 15 * Globals.fontPixelSize
-        height: window.height - window.header.height
-        y: window.header.height
-        interactive: applicationWindow.width <= Globals.fontPixelSize * 60
+        anchors.fill: parent
+        compact: applicationWindow.width <= Globals.fontPixelSize * 60
         onCurrentLibraryChanged: Logic.viewLibrary(stackView, currentLibrary, currentTag, libraryPage)
         onCurrentTagChanged: Logic.viewLibrary(stackView, currentLibrary, currentTag, libraryPage)
         onNewLibrary: {
@@ -360,7 +357,22 @@ ApplicationWindow {
                                           });
             }
         }
-        onInteractiveChanged: open()
+        parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
+        onClose: dynamicLeftDrawer.close()
+    }
+
+    Item {
+        id: staticLeftSideBar
+        width: leftSideBar.compact ? 0 : 15 * Globals.fontPixelSize
+        height: parent.height
+    }
+
+    Drawer {
+        id: dynamicLeftDrawer
+        edge: Qt.LeftEdge
+        width: 15 * Globals.fontPixelSize
+        height: window.height - window.header.height
+        y: window.header.height
     }
 
     FocusScope {
@@ -371,8 +383,7 @@ ApplicationWindow {
             top: parent.top
             right: parent.right
             bottom: parent.bottom
-            left: parent.left
-            leftMargin: leftSideBar.interactive ? 0 : leftSideBar.width
+            left: staticLeftSideBar.right
         }
 
         Image {
