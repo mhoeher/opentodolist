@@ -167,7 +167,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
                                 "disableCertificateCheck").toBool());
                 sync->setDirectory(result->directory());
                 if (path.isEmpty()) {
-                    path = "OpenTodoList/" + uid.toString();
+                    path = "OpenTodoList/" + uid.toString() + ".otl";
                     sync->setCreateDirs(true);
                 }
                 sync->setRemoteDirectory(path);
