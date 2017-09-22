@@ -115,6 +115,8 @@ public:
     bool findingLibraries() const;
 
 
+    QUuid uid() const;
+
 signals:
 
     void validatingChanged();
@@ -137,6 +139,7 @@ protected:
 
 private:
 
+    QUuid   m_uuid;
     bool    m_validating;
     bool    m_valid;
     bool    m_synchronizing;

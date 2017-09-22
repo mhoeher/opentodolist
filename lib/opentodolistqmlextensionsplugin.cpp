@@ -50,6 +50,12 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                            "Use specific synchronizer");
   qmlRegisterType<WebDAVSynchronizer>(uri, 1, 0, "WebDAVSynchronizer");
+
+  // To allow assigning model classes to the sourceModel
+  // property of a proxy model in declarative assignments:
+  qmlRegisterUncreatableType<QAbstractItemModel>(
+              uri, 1, 0, "AbstractItemModel",
+              "Use sub-classes of abstract item model instead");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

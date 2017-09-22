@@ -29,6 +29,7 @@ const QString Synchronizer::SaveFileName = ".opentodolist.synchronizer";
  * to an existing local directory.
  */
 Synchronizer::Synchronizer(QObject *parent) : QObject(parent),
+    m_uuid(QUuid::createUuid()),
     m_validating(false),
     m_valid(false),
     m_synchronizing(false),
@@ -191,6 +192,11 @@ void Synchronizer::setFindingLibraries(bool findingLibraries)
     }
 }
 
+QUuid Synchronizer::uid() const
+{
+    return m_uuid;
+}
+
 bool Synchronizer::findingLibraries() const
 {
     return m_findingLibraries;
@@ -330,6 +336,7 @@ QVariantMap Synchronizer::toMap() const
 {
     QVariantMap result;
     result.insert("type", QString(metaObject()->className()));
+    result.insert("uid", m_uuid);
     return result;
 }
 
@@ -342,7 +349,7 @@ QVariantMap Synchronizer::toMap() const
  */
 void Synchronizer::fromMap(const QVariantMap& map)
 {
-    Q_UNUSED(map);
+    m_uuid = map.value("uid", m_uuid).toUuid();
 }
 
 

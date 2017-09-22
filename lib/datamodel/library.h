@@ -103,6 +103,15 @@ signals:
     void tagsChanged();
 
     /**
+     * @brief A library is about to be deleted.
+     *
+     * This signal is emitted to indicate that the @p library is aboit to be
+     * deleted. Clients might connect to this signal to do any additional clean
+     * up required before the library data is removed.
+     */
+    void deletingLibrary(Library* library);
+
+    /**
      * @brief The library is deleted.
      */
     void libraryDeleted(Library *library);

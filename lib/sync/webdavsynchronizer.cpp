@@ -234,12 +234,7 @@ void WebDAVSynchronizer::fromMap(const QVariantMap& map)
 
 QString WebDAVSynchronizer::secretsKey() const
 {
-    QString format("%1-%2-%3-%4");
-    return format
-            .arg(metaObject()->className())
-            .arg(QVariant::fromValue(m_serverType).toString())
-            .arg(baseUrl().toString())
-            .arg(username());
+    return this->uid().toString();
 }
 
 QString WebDAVSynchronizer::secret() const

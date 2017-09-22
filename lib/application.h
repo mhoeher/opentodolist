@@ -3,6 +3,7 @@
 
 #include "library.h"
 
+#include <QLoggingCategory>
 #include <QObject>
 #include <QQmlListProperty>
 #include <QSettings>
@@ -78,17 +79,11 @@ public:
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
-    Q_INVOKABLE QString getSecret(Library* library);
-
 signals:
 
     void librariesChanged();
     void defaultLibraryChanged();
     void updatesAvailableChanged();
-
-public slots:
-
-    void setSecret(Library* library, const QString& secret);
 
 private:
 
@@ -116,12 +111,15 @@ private:
 
     void appendLibrary(Library* library);
 
-    void loadSecrets();
+
+    void initialize();
 
 private slots:
 
     void onLibraryDeleted(Library *library);
 
 };
+
+Q_DECLARE_LOGGING_CATEGORY(application)
 
 #endif // APPLICATION_H

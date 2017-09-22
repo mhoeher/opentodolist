@@ -175,6 +175,7 @@ void Library::deleteLibrary(bool deleteFiles)
  */
 void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
 {
+    emit deletingLibrary(this);
     QString directory = m_directory;
     m_directoryWatcher->setDirectory(QString());
     if (isValid() && deleteFiles) {
@@ -200,9 +201,11 @@ void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
                 }
             }
             QDir dir(directory);
-            if (!dir.remove(Library::LibraryFileName)) {
-                qCWarning(library) << "Failed to remove" << Library::LibraryFileName
-                                   << "from" << dir.absolutePath();
+            for (auto entry : dir.entryList(QDir::Files)) {
+                if (!dir.remove(entry)) {
+                    qCWarning(library) << "Failed to remove" << entry
+                                       << "from" << dir.absolutePath();
+                }
             }
             dir.cdUp();
             auto basename = QFileInfo(directory).baseName();

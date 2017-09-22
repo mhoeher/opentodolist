@@ -18,7 +18,12 @@
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
 
+#include <qtkeychain/keychain.h>
+
 #include "migrators/migrator_2_x_to_3_x.h"
+
+
+Q_LOGGING_CATEGORY(application, "net.rpdev.OpenTodoList.Application", QtDebugMsg)
 
 
 /**
@@ -37,15 +42,7 @@ Application::Application(QObject *parent) :
     m_keyStore(new KeyStore(this)),
     m_secrets()
 {
-    loadLibraries();
-
-    checkForUpdates(); // Check for updates when we start....
-    QTimer *timer = new QTimer(this);
-    timer->setInterval(1000*60*60); // And every hour.
-    connect(timer, &QTimer::timeout, [this] {
-        checkForUpdates();
-    });
-    loadSecrets();
+    initialize();
 }
 
 /**
@@ -53,6 +50,7 @@ Application::Application(QObject *parent) :
  *
  * Creates a new Application object working with the given @p settings object.
  */
+
 Application::Application(QSettings *settings, QObject *parent) :
     QObject(parent),
     m_defaultLibrary(nullptr),
@@ -61,6 +59,14 @@ Application::Application(QSettings *settings, QObject *parent) :
     m_updatesAvailable(false)
 {
     Q_CHECK_PTR(m_settings);
+    initialize();
+}
+
+/**
+ * @brief Shared initialization of constructors.
+ */
+void Application::initialize()
+{
     loadLibraries();
 
     checkForUpdates(); // Check for updates when we start....
@@ -69,7 +75,19 @@ Application::Application(QSettings *settings, QObject *parent) :
     connect(timer, &QTimer::timeout, [this] {
         checkForUpdates();
     });
-    loadSecrets();
+
+    connect(m_keyStore, &KeyStore::credentialsLoaded,
+            [=](const QString& key, const QString& value, bool success) {
+        if (success) {
+            if (!m_secrets.contains(key)) {
+                m_secrets.insert(key, value);
+            } else {
+                qCWarning(application) << "Received credentials for a key"
+                                       << key << "but we already have"
+                                       << "credentials for that one";
+            }
+        }
+    });
 }
 
 /**
@@ -153,7 +171,8 @@ Library *Application::addLibrary(const QVariantMap &parameters)
                 }
                 sync->setRemoteDirectory(path);
                 sync->save();
-                setSecret(result, sync->password());
+                m_keyStore->saveCredentials(sync->secretsKey(), sync->secret());
+                m_secrets.insert(sync->secretsKey(), sync->secret());
                 delete sync;
             }
         }
@@ -421,49 +440,6 @@ bool Application::folderExists(const QUrl &url) const
 }
 
 
-/**
- * @brief Get the secret for the given @p library.
- */
-QString Application::getSecret(Library *library)
-{
-    Q_CHECK_PTR(library);
-    QScopedPointer<Synchronizer> sync(
-                Synchronizer::fromDirectory(library->directory()));
-    QString result;
-    if (sync) {
-        auto key = sync->secretsKey();
-        result = m_secrets.value(key, QString()).toString();
-    }
-    return result;
-}
-
-
-/**
- * @brief Set a @p secret for the @p library.
- *
- * This sets the secret for the given library and stores the secret in a
- * platform specific secrets store.
- */
-void Application::setSecret(Library *library, const QString &secret)
-{
-    Q_CHECK_PTR(library);
-    QScopedPointer<Synchronizer> sync(
-                Synchronizer::fromDirectory(library->directory()));
-    if (sync) {
-        auto key = sync->secretsKey();
-        if (key != "") {
-            if (!m_secrets.contains(key) || m_secrets[key] != secret) {
-                m_secrets[key] = secret;
-                auto json = QJsonDocument::fromVariant(m_secrets).toJson();
-                m_keyStore->saveCredentials("OpenTodoList", json);
-                m_settings->beginGroup("Secrets");
-                m_settings->setValue("HaveSecrets", true);
-                m_settings->endGroup();
-            }
-        }
-    }
-}
-
 void Application::saveLibraries()
 {
     if (!m_loadingLibraries) {
@@ -486,6 +462,8 @@ void Application::loadLibraries()
     for (auto library : m_libraries) {
         delete library;
     }
+    m_secrets.clear();
+
     m_loadingLibraries = false;
     runMigrations();
     m_loadingLibraries = true;
@@ -495,6 +473,14 @@ void Application::loadLibraries()
         auto directory = m_settings->value("directory").toString();
         auto library = new Library(directory, this);
         appendLibrary(library);
+        QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(
+                    directory));
+        if (sync) {
+            auto key = sync->secretsKey();
+            if (!key.isEmpty()) {
+                m_keyStore->loadCredentials(key);
+            }
+        }
     }
     m_settings->endArray();
     m_settings->beginGroup("DefaultLibrary");
@@ -634,30 +620,26 @@ void Application::saveUpdatesAvailable(bool available)
 void Application::appendLibrary(Library* library)
 {
     Q_CHECK_PTR(library);
-    connect(library, &Library::libraryDeleted, this, &Application::onLibraryDeleted);
+    connect(library, &Library::libraryDeleted,
+            this, &Application::onLibraryDeleted);
+    connect(library, &Library::deletingLibrary, [=](Library* library) {
+        if (library->isValid() && !library->directory().isEmpty()) {
+            QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(
+                                                  library->directory()));
+            if (sync) {
+                auto key = sync->secretsKey();
+                if (!key.isEmpty()) {
+                    m_keyStore->deleteCredentials(key);
+                }
+            }
+        }
+    });
     library->load();
     m_libraries.append(library);
     saveLibraries();
     emit librariesChanged();
 }
 
-void Application::loadSecrets()
-{
-    m_settings->beginGroup("Secrets");
-    auto haveSecrets = m_settings->value("HaveSecrets", false).toBool();
-    m_settings->endGroup();
-    if (haveSecrets) {
-        auto result = new LoadCredentialsResult(this);
-        connect(result, &LoadCredentialsResult::done, [=](const QByteArray &value, bool hasError, const QString& errorString) {
-            if (hasError) {
-                qWarning() << "Failed to read secrets:" << errorString;
-            } else {
-                m_secrets = QJsonDocument::fromJson(value).toVariant().toMap();
-            }
-            result->deleteLater();
-        });
-    }
-}
 
 void Application::onLibraryDeleted(Library *library)
 {

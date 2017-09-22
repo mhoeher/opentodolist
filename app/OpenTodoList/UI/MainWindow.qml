@@ -538,7 +538,6 @@ ApplicationWindow {
                                   libraryPage);
             }
             onLibraryAvailable: {
-                console.debug("Foooo");
                 var lib = App.addLibrary(synchronizer);
                 if (lib !== null) {
                     leftSideBar.currentLibrary = lib;

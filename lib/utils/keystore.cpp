@@ -17,7 +17,7 @@
 Q_LOGGING_CATEGORY(keyStore, "net.rpdev.opentodolist.KeyStore", QtWarningMsg)
 
 
-const QString KeyStore::ServiceName = "OpenTodoList";
+const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
 
 
 namespace{
@@ -103,59 +103,72 @@ KeyStore::~KeyStore()
 {
 }
 
-void KeyStore::saveCredentials(const QString& key, const QByteArray& value,
-                               SaveCredentialsResult* resultReceiver)
+void KeyStore::saveCredentials(const QString& key, const QString &value)
 {
-    auto job = new QKeychain::WritePasswordJob(ServiceName, this);
-    job->setAutoDelete(true);
+    auto job = new QKeychain::WritePasswordJob(ServiceName);
+    job->setKey(key);
+    job->setTextData(value);
     if (m_settings != nullptr) {
         job->setInsecureFallback(true);
         job->setSettings(m_settings);
     }
-    job->setKey(key);
-    job->setBinaryData(value);
+    job->setAutoDelete(true);
     connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
-        if (resultReceiver != nullptr) {
-            emit resultReceiver->done(job->error() != QKeychain::NoError,
-                                      job->errorString());
+        bool success = true;
+        if (job->error() != QKeychain::NoError) {
+            qCWarning(keyStore) << "Failed to save credentials for" << key
+                                << ":" << job->errorString();
+            success = false;
+        } else {
+            qCDebug(keyStore) << "Successfully saved credentials for" << key;
         }
+        emit credentialsSaved(key, success);
     });
     job->start();
 }
 
-void KeyStore::loadCredentials(const QString& key, LoadCredentialsResult* resultReceiver)
+void KeyStore::loadCredentials(const QString& key)
 {
-    auto job = new QKeychain::ReadPasswordJob(ServiceName, this);
-    job->setAutoDelete(true);
+    auto job = new QKeychain::ReadPasswordJob(ServiceName);
+    job->setKey(key);
     if (m_settings != nullptr) {
         job->setInsecureFallback(true);
         job->setSettings(m_settings);
     }
-    job->setKey(key);
-    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
-        if (resultReceiver != nullptr) {
-            emit resultReceiver->done(job->binaryData(),
-                                      job->error() != QKeychain::NoError,
-                                      job->errorString());
+    job->setAutoDelete(true);
+    connect(job, &QKeychain::ReadPasswordJob::finished, [=](QKeychain::Job*) {
+        bool success = true;
+        if (job->error() != QKeychain::NoError) {
+            qCWarning(keyStore) << "Failed to read credentials for" << key
+                                << ":" << job->errorString();
+            success = false;
+        } else {
+            qCDebug(keyStore) << "Successfully loaded credentials for" << key;
         }
+        emit credentialsLoaded(key, job->textData(), success);
     });
     job->start();
 }
 
-void KeyStore::deleteCredentials(const QString& key, DeleteCredentialsResult* resultReceiver)
+void KeyStore::deleteCredentials(const QString& key)
 {
-    auto job = new QKeychain::DeletePasswordJob(ServiceName, this);
-    job->setAutoDelete(true);
+    auto job = new QKeychain::DeletePasswordJob(ServiceName);
+    job->setKey(key);
     if (m_settings != nullptr) {
         job->setInsecureFallback(true);
         job->setSettings(m_settings);
     }
-    job->setKey(key);
-    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
-        if (resultReceiver != nullptr) {
-            emit resultReceiver->done(job->error() != QKeychain::NoError,
-                                      job->errorString());
+    job->setAutoDelete(true);
+    connect(job, &QKeychain::DeletePasswordJob::finished, [=](QKeychain::Job*) {
+        bool success = true;
+        if (job->error() != QKeychain::NoError) {
+            qCWarning(keyStore) << "Failed to delete credentials for" << key
+                                << ":" << job->errorString();
+            success = false;
+        } else {
+            qCDebug(keyStore) << "Successfully deleted credentials for" << key;
         }
+        emit credentialsDeleted(key, success);
     });
     job->start();
 }
@@ -193,35 +206,4 @@ void KeyStore::registerSettingsFormat()
                     &securedWriteSettings,
                     Qt::CaseSensitive);
     }
-}
-
-SaveCredentialsResult::SaveCredentialsResult(QObject *parent) : QObject(parent)
-{
-
-}
-
-SaveCredentialsResult::~SaveCredentialsResult()
-{
-
-}
-
-LoadCredentialsResult::LoadCredentialsResult(QObject *parent) : QObject(parent)
-{
-
-}
-
-LoadCredentialsResult::~LoadCredentialsResult()
-{
-
-}
-
-DeleteCredentialsResult::DeleteCredentialsResult(QObject *parent) :
-    QObject(parent)
-{
-
-}
-
-DeleteCredentialsResult::~DeleteCredentialsResult()
-{
-
 }
