@@ -50,6 +50,7 @@ public:
     void fromMap(const QVariantMap& map) override;
     QString secretsKey() const override;
     QString secret() const override;
+    void setSecret(const QString &secret) override;
 
     QString remoteDirectory() const;
     void setRemoteDirectory(const QString& remoteDirectory);

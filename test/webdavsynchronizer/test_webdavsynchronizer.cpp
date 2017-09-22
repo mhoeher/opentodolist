@@ -435,6 +435,21 @@ void WebDAVSynchronizerTest::synchronize()
     QCOMPARE(library2.topLevelItems()->count(), 3);
     QCOMPARE(library2.todos()->count(), 1);
     QCOMPARE(library2.tasks()->count(), 1);
+
+    // Sync without changes should be "invariant"
+    davClient->synchronize();
+    davClient->synchronize();
+    davClient->synchronize();
+
+
+    Library library3(dir2.path());
+    QSignalSpy loadingFinished2(&library3, &Library::loadingFinished);
+    QVERIFY(library3.load());
+    QVERIFY(loadingFinished2.wait());
+    QThread::sleep(1);
+    QCOMPARE(library3.topLevelItems()->count(), 3);
+    QCOMPARE(library3.todos()->count(), 1);
+    QCOMPARE(library3.tasks()->count(), 1);
 }
 
 void WebDAVSynchronizerTest::synchronize_data()

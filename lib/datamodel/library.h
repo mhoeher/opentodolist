@@ -35,6 +35,7 @@ class Library : public QObject
     Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
     Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
+    Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
 
     friend class Application;
 
@@ -85,6 +86,9 @@ public:
 
     void fromJson(const QByteArray data);
 
+    bool synchronizing() const;
+    void setSynchronizing(bool synchronizing);
+
 signals:
 
     /**
@@ -126,6 +130,8 @@ signals:
      */
     void loadingFinished();
 
+    void synchronizingChanged();
+
 private:
 
     QUuid                   m_uid;
@@ -139,6 +145,7 @@ private:
     DirectoryWatcher       *m_directoryWatcher;
 
     bool                    m_loading;
+    bool                    m_synchronizing;
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);

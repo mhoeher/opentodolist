@@ -268,6 +268,12 @@ ApplicationWindow {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Symbol {
+                symbol: Fonts.symbols.faRefresh
+                visible: stackView.currentItem && (typeof(stackView.currentItem.sync) === "function")
+                onClicked: stackView.currentItem.sync()
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Symbol {
                 symbol: Fonts.symbols.faTrashO
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 anchors.verticalCenter: parent.verticalCenter
@@ -305,7 +311,7 @@ ApplicationWindow {
     }
 
     onClosing: {
-        if (Qt.os == "android") {
+        if (Qt.os === "android") {
             if (leftSideBar.compact && leftSideBar.visible) {
                 leftSideBar.visible = false;
                 close.accepted = false;

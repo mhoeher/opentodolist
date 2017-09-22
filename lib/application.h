@@ -79,6 +79,10 @@ public:
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
+public slots:
+
+    void syncLibrary(Library *library);
+
 signals:
 
     void librariesChanged();
@@ -117,6 +121,7 @@ private:
 private slots:
 
     void onLibraryDeleted(Library *library);
+    void onLibrarySyncFinished(Library *library);
 
 };
 

@@ -33,7 +33,8 @@ Library::Library(QObject* parent) : QObject(parent),
     m_todos(this),
     m_tasks(this),
     m_directoryWatcher(new DirectoryWatcher(this)),
-    m_loading(false)
+    m_loading(false),
+    m_synchronizing(false)
 {
     auto timer = new QTimer(this);
     timer->setInterval(5000);
@@ -175,6 +176,11 @@ void Library::deleteLibrary(bool deleteFiles)
  */
 void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
 {
+    if (m_synchronizing) {
+        qCWarning(library) << "Cannot delete library" << this << this->name()
+                           << ": A sync is currently running.";
+        return;
+    }
     emit deletingLibrary(this);
     QString directory = m_directory;
     m_directoryWatcher->setDirectory(QString());
@@ -392,6 +398,32 @@ void Library::fromJson(const QByteArray data)
     auto doc = QJsonDocument::fromJson(data);
     if (doc.isObject()) {
         fromMap(doc.toVariant().toMap());
+    }
+}
+
+
+/**
+ * @brief Indicates if the library is currently synchronizing.
+ *
+ * This property indicates if the library currently is
+ * synchronizing, i.e. a background job is running which
+ * synchronizes the local files of the library with some
+ * storage server.
+ */
+bool Library::synchronizing() const
+{
+    return m_synchronizing;
+}
+
+
+/**
+ * @brief Set the synchronzing status of the library.
+ */
+void Library::setSynchronizing(bool synchronizing)
+{
+    if (m_synchronizing != synchronizing) {
+        m_synchronizing = synchronizing;
+        emit synchronizingChanged();
     }
 }
 

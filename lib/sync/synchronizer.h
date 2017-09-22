@@ -108,6 +108,7 @@ public:
     virtual void fromMap(const QVariantMap &map);
     virtual QString secretsKey() const;
     virtual QString secret() const;
+    virtual void setSecret(const QString& secret);
 
 
     QVariantList existingLibraries() const;

@@ -10,15 +10,16 @@
 #include <QProcess>
 #include <QScopedPointer>
 #include <QStandardPaths>
+#include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
 
+#include "sync/synchronizer.h"
+#include "sync/syncjob.h"
+#include "sync/syncrunner.h"
+#include "sync/webdavsynchronizer.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
-#include "sync/synchronizer.h"
-#include "sync/webdavsynchronizer.h"
-
-#include <qtkeychain/keychain.h>
 
 #include "migrators/migrator_2_x_to_3_x.h"
 
@@ -440,6 +441,41 @@ bool Application::folderExists(const QUrl &url) const
 }
 
 
+/**
+ * @brief Start synchronizing the @p library.
+ */
+void Application::syncLibrary(Library *library)
+{
+    if (library != nullptr && library->isValid()) {
+        if (!library->synchronizing()) {
+            QScopedPointer<Synchronizer> sync(
+                        Synchronizer::fromDirectory(library->directory()));
+            if (!sync) {
+                return;
+            }
+            auto key = sync->secretsKey();
+            QString secret;
+            if (!key.isEmpty()) {
+                if (m_secrets.contains(key)) {
+                    secret = m_secrets.value(key).toString();
+                } else {
+                    qCWarning(application) << "Missing sync secret for library"
+                                           << library << library->name();
+                    return;
+                }
+            }
+            library->setSynchronizing(true);
+            auto job = new SyncJob(library, library->directory(), secret);
+            connect(job, &SyncJob::syncFinished,
+                    this, &Application::onLibrarySyncFinished,
+                    Qt::QueuedConnection);
+            auto runner = new SyncRunner(job);
+            QThreadPool::globalInstance()->start(runner);
+        }
+    }
+}
+
+
 void Application::saveLibraries()
 {
     if (!m_loadingLibraries) {
@@ -659,4 +695,13 @@ void Application::onLibraryDeleted(Library *library)
     }
     saveLibraries();
     emit librariesChanged();
+}
+
+void Application::onLibrarySyncFinished(Library *library)
+{
+    for (auto lib : m_libraries) {
+        if (lib == library) {
+            lib->setSynchronizing(false);
+        }
+    }
 }

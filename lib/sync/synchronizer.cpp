@@ -300,6 +300,7 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
         if (constructor) {
             result = constructor(parent);
             result->fromMap(map);
+            result->setDirectory(directory);
         } else {
         qCDebug(synchronizer) << "Unknown synchronizer type" << type;
         }
@@ -378,6 +379,15 @@ QString Synchronizer::secretsKey() const
 QString Synchronizer::secret() const
 {
     return QString();
+}
+
+
+/**
+ * @brief Set the secret required by the synchronizer.
+ */
+void Synchronizer::setSecret(const QString &secret)
+{
+    Q_UNUSED(secret);
 }
 
 

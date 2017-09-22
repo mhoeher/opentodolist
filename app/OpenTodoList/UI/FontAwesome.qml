@@ -16,6 +16,7 @@ FontLoader {
     readonly property string faPictureO: "\uf03e"
     readonly property string faPencilSquareO: "\uf044"
     readonly property string faTrashO: "\uf014"
+    readonly property string faRefresh: "\uf021"
     readonly property string faCheck: "\uf00c"
     readonly property string faHome: "\uf015"
     readonly property string faBars: "\uf0c9"

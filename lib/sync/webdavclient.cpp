@@ -356,6 +356,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
 
         mergeLocalInfoWithSyncList(d, dir, entries);
 
+        bool skipSync = false;
         if (pushOnly) {
             // Check if there were any changes locally:
             bool localChanges = false;
@@ -370,6 +371,8 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
             // run in parallel:
             if (localChanges) {
                 result = result && mergeRemoteInfoWithSyncList(entries, dir);
+            } else {
+                skipSync = true;
             }
         } else {
             result = result && mergeRemoteInfoWithSyncList(entries, dir);
@@ -379,41 +382,47 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                                        QDir::cleanPath(this->directory()
                                                        + "/" + directory);
 
-        for (auto entry : entries) {
-            if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(webDAVClient) << "Ignoring"
-                                                << entry.path();
-                    continue;
+        if (!skipSync) {
+            for (auto entry : entries) {
+                if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(webDAVClient) << "Ignoring"
+                                                    << entry.path();
+                        continue;
+                    }
+                    if (entry.remoteType == Directory) {
+                        _changedDirs.insert(entry.entry);
+                    }
+                    result = result && pullEntry(entry, db);
+                } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(webDAVClient) << "Ignoring"
+                                                    << entry.path();
+                        continue;
+                    }
+                    result = result && removeLocalEntry(entry, db);
+                } else if (!entry.lastModDate.isNull() &&
+                           entry.lastModDate != entry.previousLasModtDate) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(webDAVClient) << "Ignoring"
+                                                    << entry.path();
+                        continue;
+                    }
+                    result = result && pushEntry(entry, db);
+                } else if (entry.lastModDate.isNull() &&
+                           !entry.previousLasModtDate.isNull()) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(webDAVClient) << "Ignoring"
+                                                    << entry.path();
+                        continue;
+                    }
+                    result = result && removeRemoteEntry(entry, db);
                 }
-                if (entry.remoteType == Directory) {
-                    _changedDirs.insert(entry.entry);
-                }
-                result = result && pullEntry(entry, db);
-            } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(webDAVClient) << "Ignoring"
-                                                << entry.path();
-                    continue;
-                }
-                result = result && removeLocalEntry(entry, db);
-            } else if (!entry.lastModDate.isNull() &&
-                       entry.lastModDate != entry.previousLasModtDate) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(webDAVClient) << "Ignoring"
-                                                << entry.path();
-                    continue;
-                }
-                result = result && pushEntry(entry, db);
-            } else if (entry.lastModDate.isNull() &&
-                       !entry.previousLasModtDate.isNull()) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(webDAVClient) << "Ignoring"
-                                                << entry.path();
-                    continue;
-                }
-                result = result && removeRemoteEntry(entry, db);
             }
+        } else {
+            qCDebug(webDAVClient) << "Skipping sync of " << directory
+                                    << "as there were no local changes and we"
+                                    << "have been asked to push only";
         }
         db.close();
     }

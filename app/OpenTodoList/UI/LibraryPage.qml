@@ -35,6 +35,11 @@ Page {
         filterBar.edit.forceActiveFocus()
     }
 
+    function sync() {
+        console.debug("Manually started syncing " + library.name)
+        App.syncLibrary(library);
+    }
+
     property var deleteItem: library === App.defaultLibrary ? null :
                                                               function deleteItem() {
                                                                   confirmDeleteLibrary.open();

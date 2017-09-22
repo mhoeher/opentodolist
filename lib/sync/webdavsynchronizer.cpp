@@ -95,6 +95,7 @@ void WebDAVSynchronizer::synchronize()
         // Sync the top level directory:
         bool dirsOkay = true;
         if (m_createDirs) {
+            dav->setRemoteDirectory("");
             auto parts = QDir::cleanPath(m_remoteDirectory).split("/");
             QString rpath;
             for (auto part : parts) {
@@ -116,6 +117,7 @@ void WebDAVSynchronizer::synchronize()
                 m_createDirs = false;
                 save();
             }
+            dav->setRemoteDirectory(remoteDirectory());
         }
 
         QSet<QString> changedYearDirs;
@@ -240,6 +242,11 @@ QString WebDAVSynchronizer::secretsKey() const
 QString WebDAVSynchronizer::secret() const
 {
     return password();
+}
+
+void WebDAVSynchronizer::setSecret(const QString &secret)
+{
+    setPassword(secret);
 }
 
 QString WebDAVSynchronizer::remoteDirectory() const
