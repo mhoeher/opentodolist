@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.2
-import QtQuick.Controls.Styles 1.4
 
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0

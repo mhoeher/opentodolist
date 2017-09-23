@@ -1,6 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.2
-import QtQuick.Dialogs 1.2
+
 
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
@@ -20,12 +20,19 @@ Item {
         confirmDeleteDialog.open();
     }
 
-    MessageDialog {
+    Dialog {
         id: confirmDeleteDialog
+
         title: qsTr("Delete Image?")
-        text: qsTr("Are you sure you want to delete the image <strong>%1</strong>? This action " +
-                   "cannot be undone.").arg(item.title)
-        standardButtons:Dialog.Ok |Dialog.Cancel
+
+        Text {
+            text: qsTr("Are you sure you want to delete the image <strong>%1</strong>? This action " +
+                       "cannot be undone.").arg(item.title)
+            width: 300
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        }
+
+        standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
             item.deleteItem();
             stack.pop();

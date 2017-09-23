@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
-import QtQuick.Dialogs 1.2
 
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
@@ -22,14 +21,19 @@ Item {
 
     height: listView.contentHeight
 
-    MessageDialog {
+    Dialog {
         id: confirmDeleteTaskDialog
 
         property Task task
 
         title: qsTr("Delete Task?")
-        text: task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
-                          "This cannot be undone.").arg(task.title) : ""
+
+        Text {
+            text: task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
+                              "This cannot be undone.").arg(task.title) : ""
+            width: 300
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: task.deleteItem()
     }
