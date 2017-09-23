@@ -570,7 +570,7 @@ ApplicationWindow {
     }
 
     Connections {
-        target: QtSingleApplication
+        target: !!application.messageReceived ? application : null
         onMessageReceived: {
             window.show();
             window.raise();

@@ -58,10 +58,12 @@
         <file>3rdpartyinfo/qtkeychain/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
         <file>OpenTodoList/UI/SynchronizerBackendSelectionPage.qml</file>
-        <file>OpenTodoList/UI/sync_backends/nextcloud.svg</file>
-        <file>OpenTodoList/UI/sync_backends/owncloud.svg</file>
         <file>OpenTodoList/UI/WebDAVConnectionSettingsPage.qml</file>
         <file>OpenTodoList/UI/SyncLibrarySelectionPage.qml</file>
         <file>OpenTodoList/UI/FolderSelectionDialog.qml</file>
+        <file>OpenTodoList/UI/sync_backends/nextcloud.png</file>
+        <file>OpenTodoList/UI/sync_backends/owncloud.png</file>
+        <file>OpenTodoList/UI/sync_backends/cloud.png</file>
+        <file>OpenTodoList/UI/sync_backends/disk.png</file>
     </qresource>
 </RCC>

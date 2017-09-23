@@ -31,8 +31,6 @@ OTHER_FILES += \
     $$files(ci/docker/ubuntu/*) \
     $$files(ci/docker/win32/*) \
     $$files(ci/docker/win64/*) \
-    $$files(ci/docker/nextcloud/*) \
-    $$files(config.tests/qtsingleapplication/*) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \
 
@@ -47,10 +45,6 @@ include(config.pri)
 
 # Check environment for optional packages:
 load(configure)
-
-qtCompileTest(qtsingleapplication) ## check for system QtSingleApplication
-config_qtsingleapplication:QT_SINGLE_APPLICATION_MODE = "System"
-else:QT_SINGLE_APPLICATION_MODE = "Built-in"
 
 qtCompileTest(qtkeychain) ## Check for QtKeychain
 config_qtkeychain {
@@ -68,7 +62,6 @@ message("Configure summary:")
 message("    Install Prefix:         $$INSTALL_ROOT")
 message("    Binary Install Prefix:  $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN")
 message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
-message("    QtSingleApplication:    $$QT_SINGLE_APPLICATION_MODE")
 message("    QtKeychain:             $$QT_KEYCHAIN_MODE")
 message("    Libsecret:              $$LIBSECRET_MODE")
 

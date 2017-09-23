@@ -43,28 +43,28 @@ Page {
         ListElement {
             name: qsTr("NextCloud")
             title: ""
-            image: "sync_backends/nextcloud.svg"
+            image: "sync_backends/nextcloud.png"
             synchronizer: "WebDAVSynchronizer"
             serverType: "NextCloud"
         }
         ListElement {
             name: qsTr("ownCloud")
             title: ""
-            image: "sync_backends/owncloud.svg"
+            image: "sync_backends/owncloud.png"
             synchronizer: "WebDAVSynchronizer"
             serverType: "OwnCloud"
         }
         ListElement {
             name: qsTr("WebDAV")
             title: qsTr("WebDAV")
-            image: ""
+            image: "sync_backends/cloud.png"
             synchronizer: "WebDAVSynchronizer"
             serverType: "Generic"
         }
         ListElement {
-            name: qsTr("Create local library")
-            title: qsTr("Create local library")
-            image: ""
+            name: qsTr("Local Library")
+            title: qsTr("Local Library")
+            image: "sync_backends/disk.png"
             synchronizer: ""
             serverType: ""
         }
@@ -74,8 +74,8 @@ Page {
         id: gridViewDelegate
 
         Item {
-            width: 400
-            height: 200
+            width: Globals.fontPixelSize * 30
+            height: Globals.fontPixelSize * 20
             clip: true
 
             Rectangle {
