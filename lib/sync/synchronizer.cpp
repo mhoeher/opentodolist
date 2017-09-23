@@ -34,7 +34,9 @@ Synchronizer::Synchronizer(QObject *parent) : QObject(parent),
     m_valid(false),
     m_synchronizing(false),
     m_creatingDirectory(false),
-    m_directory()
+    m_directory(),
+    m_existingLibraries(),
+    m_lastSync()
 {
 }
 
@@ -192,6 +194,24 @@ void Synchronizer::setFindingLibraries(bool findingLibraries)
     }
 }
 
+void Synchronizer::setLastSync(const QDateTime &lastSync)
+{
+    m_lastSync = lastSync;
+}
+
+
+/**
+ * @brief The date and time when the last sync has been run.
+ */
+QDateTime Synchronizer::lastSync() const
+{
+    return m_lastSync;
+}
+
+
+/**
+ * @brief The UID of the synchronizer.
+ */
 QUuid Synchronizer::uid() const
 {
     return m_uuid;
@@ -338,6 +358,7 @@ QVariantMap Synchronizer::toMap() const
     QVariantMap result;
     result.insert("type", QString(metaObject()->className()));
     result.insert("uid", m_uuid);
+    result.insert("lastSync", m_lastSync);
     return result;
 }
 
@@ -351,6 +372,7 @@ QVariantMap Synchronizer::toMap() const
 void Synchronizer::fromMap(const QVariantMap& map)
 {
     m_uuid = map.value("uid", m_uuid).toUuid();
+    m_lastSync = map.value("lastSync", m_lastSync).toDateTime();
 }
 
 

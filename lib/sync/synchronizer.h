@@ -1,6 +1,7 @@
 #ifndef SYNCHRONIZER_H
 #define SYNCHRONIZER_H
 
+#include <QDateTime>
 #include <QLoggingCategory>
 #include <QObject>
 #include <QUuid>
@@ -118,6 +119,10 @@ public:
 
     QUuid uid() const;
 
+    QDateTime lastSync() const;
+
+    void setLastSync(const QDateTime &lastSync);
+
 signals:
 
     void validatingChanged();
@@ -149,6 +154,8 @@ private:
     QString m_directory;
     QVariantList
             m_existingLibraries;
+    QDateTime
+            m_lastSync;
 
 };
 

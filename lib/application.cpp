@@ -82,6 +82,20 @@ void Application::initialize()
         if (success) {
             if (!m_secrets.contains(key)) {
                 m_secrets.insert(key, value);
+                for (auto lib : m_libraries) {
+                    if (lib->isValid()) {
+                        QScopedPointer<Synchronizer> sync(
+                                    Synchronizer::fromDirectory(
+                                        lib->directory()));
+                        if (sync) {
+                            if (sync->secretsKey() == key) {
+                                qCDebug(application) << "Start-up sync of"
+                                                     << lib << lib->name();
+                                syncLibrary(lib);
+                            }
+                        }
+                    }
+                }
             } else {
                 qCWarning(application) << "Received credentials for a key"
                                        << key << "but we already have"
@@ -89,6 +103,42 @@ void Application::initialize()
             }
         }
     });
+
+    auto syncTimer = new QTimer(this);
+    syncTimer->setInterval(1000 * 60 * 5); // Check if we need to sync every 5 min
+    syncTimer->setSingleShot(false);
+    connect(syncTimer, &QTimer::timeout, [=]() {
+        for (auto lib : m_libraries) {
+            if (lib->isValid()) {
+                QScopedPointer<Synchronizer> sync(
+                            Synchronizer::fromDirectory(lib->directory()));
+                if (sync) {
+                    auto lastSync = sync->lastSync();
+                    bool runSync = false;
+                    if (!lastSync.isValid()) {
+                        runSync = true;
+                    } else {
+                        auto currentDateTime = QDateTime::currentDateTime();
+                        auto diff = currentDateTime.toMSecsSinceEpoch() -
+                                lastSync.toMSecsSinceEpoch();
+                        if (diff >= (1000 * 60 * 60)) {
+                            // Sync every hour
+                            qCDebug(application) << "Library" << lib
+                                                << lib->name()
+                                                << "has not been synced for"
+                                                << "more than an hour,"
+                                                << "starting sync now";
+                            runSync = true;
+                        }
+                    }
+                    if (runSync) {
+                        syncLibrary(lib);
+                    }
+                }
+            }
+        }
+    });
+    syncTimer->start();
 }
 
 /**
@@ -674,6 +724,14 @@ void Application::onLibrarySyncFinished(Library *library)
     for (auto lib : m_libraries) {
         if (lib == library) {
             lib->setSynchronizing(false);
+            if (lib->isValid()) {
+                QScopedPointer<Synchronizer> sync(
+                            Synchronizer::fromDirectory(lib->directory()));
+                if (sync) {
+                    sync->setLastSync(QDateTime::currentDateTime());
+                    sync->save();
+                }
+            }
         }
     }
 }
