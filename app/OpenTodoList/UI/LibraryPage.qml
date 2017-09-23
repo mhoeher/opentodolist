@@ -44,6 +44,7 @@ Page {
                                                               function deleteItem() {
                                                                   confirmDeleteLibrary.open();
                                                               }
+    property bool syncRunning: library && library.synchronizing
 
     clip: true
 

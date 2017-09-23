@@ -269,9 +269,15 @@ ApplicationWindow {
             }
             Symbol {
                 symbol: Fonts.symbols.faRefresh
-                visible: stackView.currentItem && (typeof(stackView.currentItem.sync) === "function")
+                visible: stackView.hasSync && !stackView.syncRunning
                 onClicked: stackView.currentItem.sync()
                 anchors.verticalCenter: parent.verticalCenter
+            }
+            BusyIndicator {
+                visible: stackView.isBusy
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height
+                width: height
             }
             Symbol {
                 symbol: Fonts.symbols.faTrashO
@@ -400,6 +406,11 @@ ApplicationWindow {
 
         StackView {
             id: stackView
+
+            property bool hasSync: currentItem && (typeof(currentItem.sync) === "function")
+            property bool syncRunning: currentItem && currentItem.syncRunning
+            property bool isBusy: syncRunning
+
             anchors.fill: parent
             clip: true
         }
