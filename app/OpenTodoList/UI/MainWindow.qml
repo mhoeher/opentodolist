@@ -407,8 +407,8 @@ ApplicationWindow {
         StackView {
             id: stackView
 
-            property bool hasSync: currentItem && (typeof(currentItem.sync) === "function")
-            property bool syncRunning: currentItem && currentItem.syncRunning
+            property bool hasSync: !!currentItem && (typeof(currentItem.sync) === "function")
+            property bool syncRunning: !!currentItem && !!currentItem.syncRunning
             property bool isBusy: syncRunning
 
             anchors.fill: parent

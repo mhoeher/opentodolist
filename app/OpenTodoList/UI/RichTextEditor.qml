@@ -22,28 +22,29 @@ FocusScope {
         accepted();
     }
     
-    width: 800
-    height: 600
-    
     Image {
         anchors.fill: parent
         source: "paper/paper.png"
         fillMode: Image.Tile
     }
-    
-    TextArea {
-        id: textArea
-        
+
+    ScrollView {
         anchors.fill: parent
-        textFormat: TextEdit.RichText
-        focus: true
-        Keys.onTabPressed: {
-            if (event.modifiers & Qt.ControlModifier) {
-                documentFormatter.decreaseIndentation();
-            } else {
-                documentFormatter.increaseIndentation();
+
+        TextArea {
+            id: textArea
+
+            textFormat: TextEdit.RichText
+            focus: true
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            Keys.onTabPressed: {
+                if (event.modifiers & Qt.ControlModifier) {
+                    documentFormatter.decreaseIndentation();
+                } else {
+                    documentFormatter.increaseIndentation();
+                }
+                event.accepted = true;
             }
-            event.accepted = true;
         }
     }
 }
