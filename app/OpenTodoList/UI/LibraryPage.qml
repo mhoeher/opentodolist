@@ -206,8 +206,6 @@ Page {
         id: openImageDialog
 
         title: qsTr("Add Image to Library")
-        //x: (width - parent.width) / 2
-        //y: (height - parent.header) / 2
         nameFilters: ["*.png", "*.bmp", "*.jpg", "*.jpeg", "*.gif"]
 
         onAccepted: {

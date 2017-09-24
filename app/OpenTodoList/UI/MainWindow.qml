@@ -124,6 +124,7 @@ ApplicationWindow {
                     }
                 }
                 Symbol {
+                    id: makeBoldToolButton
                     symbol: Fonts.symbols.faBold
                     visible: formatMenu.formatting && formatMenu.boldItem.enabled
                     checked: formatMenu.boldItem.checked
@@ -131,6 +132,7 @@ ApplicationWindow {
                     onClicked: formatMenu.boldItem.triggered()
                 }
                 Symbol {
+                    id: makeItalicToolButton
                     symbol: Fonts.symbols.faItalic
                     visible: formatMenu.formatting && formatMenu.italicItem.enabled
                     checked: formatMenu.italicItem.checked
@@ -138,6 +140,7 @@ ApplicationWindow {
                     onClicked: formatMenu.italicItem.triggered()
                 }
                 Symbol {
+                    id: makeUnderlineToolButton
                     symbol: Fonts.symbols.faUnderline
                     visible: formatMenu.formatting&& formatMenu.underlineItem.enabled
                     checked: formatMenu.underlineItem.checked
@@ -152,6 +155,7 @@ ApplicationWindow {
                     onClicked: formatMenu.strikethroughItem.triggered()
                 }
                 Symbol {
+                    id: makeUnorderedListToolButton
                     symbol: Fonts.symbols.faList
                     visible: formatMenu.formatting
                     checked: formatMenu.bulletListItem.checked
@@ -159,6 +163,7 @@ ApplicationWindow {
                     onClicked: formatMenu.bulletListItem.triggered()
                 }
                 Symbol {
+                    id: makeOrderedListToolButton
                     symbol: Fonts.symbols.faListOl
                     visible: formatMenu.formatting
                     checked: formatMenu.orderedListItem.checked
@@ -166,12 +171,14 @@ ApplicationWindow {
                     onClicked: formatMenu.orderedListItem.triggered()
                 }
                 Symbol {
+                    id: indentToolButton
                     symbol: Fonts.symbols.faIndent
                     visible: formatMenu.formatting
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: formatMenu.indentItem.triggered()
                 }
                 Symbol {
+                    id: outdentToolButton
                     symbol: Fonts.symbols.faOutdent
                     visible: formatMenu.formatting
                     anchors.verticalCenter: parent.verticalCenter
@@ -232,6 +239,8 @@ ApplicationWindow {
             height: parent.height
 
             Symbol {
+                id: searchToolButton
+
                 symbol: Fonts.symbols.faSearch
                 enabled: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
                 onClicked: stackView.currentItem.find()
@@ -280,6 +289,58 @@ ApplicationWindow {
                 onClicked: stackView.currentItem.pageMenu.open()
             }
         }
+    }
+
+    Shortcut {
+        sequence: StandardKey.Find
+        onActivated: searchToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: StandardKey.Back
+        onActivated: if (stackView.canGoBack) { stackView.pop(); }
+    }
+
+    Shortcut {
+        sequence: qsTr("Ctrl+Shift+L")
+        onActivated: if (leftSideBar.compact) {
+                         dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
+                     }
+    }
+
+    Shortcut {
+        sequence: StandardKey.Bold
+        onActivated: makeBoldToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: StandardKey.Italic
+        onActivated: makeItalicToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: StandardKey.Underline
+        onActivated: makeUnderlineToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: qsTr("Ctrl+Shift+U")
+        onActivated: makeUnorderedListToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: qsTr("Ctrl+Shift+O")
+        onActivated: makeOrderedListToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: qsTr("Ctrl+Tab")
+        onActivated: indentToolButton.clicked(null)
+    }
+
+    Shortcut {
+        sequence: qsTr("Ctrl+Shift+Tab")
+        onActivated: outdentToolButton.clicked(null)
     }
 
     Component.onCompleted: {
