@@ -202,25 +202,23 @@ Page {
         }
     }
 
-    Dialog {
+    OpenFileDialog {
         id: openImageDialog
-        /*stack: stack
-        title: qsTr("Add Image")
-        selectExisting: true
-        selectFolder: false
-        selectMultiple: false
-        folder: shortcuts.pictures
-        fileNameExtensions: ["jpg", "jpeg", "png", "bmp", "gif"]
+
+        title: qsTr("Add Image to Library")
+        //x: (width - parent.width) / 2
+        //y: (height - parent.header) / 2
+        nameFilters: ["*.png", "*.bmp", "*.jpg", "*.jpeg", "*.gif"]
+
         onAccepted: {
             var image = library.addImage();
             var filename = App.urlToLocalFile(fileUrl);
-            image.image = App.urlToLocalFile(fileUrl);
+            image.image = filename;
             image.title = App.basename(filename);
             if (leftSideBar.currentTag !== "") {
                 image.addTag(leftSideBar.currentTag);
             }
-        }*/
-        standardButtons: Dialog.Ok | Dialog.Cancel
+        }
     }
 
     ItemsSortFilterModel {

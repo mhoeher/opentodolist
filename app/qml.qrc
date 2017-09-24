@@ -66,5 +66,6 @@
         <file>OpenTodoList/UI/sync_backends/disk.png</file>
         <file>OpenTodoList/UI/WebDAVSynchronizerSettingsPage.qml</file>
         <file>OpenTodoList/UI/CenteredDialog.qml</file>
+        <file>OpenTodoList/UI/OpenFileDialog.qml</file>
     </qresource>
 </RCC>

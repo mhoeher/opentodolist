@@ -9,16 +9,17 @@ import OpenTodoList.UI 1.0
 CenteredDialog {
     id: dialog
 
-    property alias folder: folders.folder
+    property url fileUrl: ""
+    property alias nameFilters: files.nameFilters
 
-    title: qsTr("Select a Folder")
+    title: qsTr("Select a File")
     modal: true
-    standardButtons: Dialog.Ok | Dialog.Cancel
+    standardButtons: fileUrl != "" ? (Dialog.Ok | Dialog.Cancel) : Dialog.Cancel
 
     header: RowLayout {
         Symbol {
             symbol: Fonts.symbols.faArrowUp
-            onClicked: folders.folder = App.cleanPath(folders.folder + "/..")
+            onClicked: files.folder = App.cleanPath(files.folder + "/..")
         }
     }
 
@@ -26,8 +27,8 @@ CenteredDialog {
         implicitWidth: 300
         implicitHeight: 400
         header: Text {
-            text: qsTr("Selected folder: ") + "<strong>" +
-                  App.urlToLocalFile(folders.folder) + "</strong>"
+            text: qsTr("Selected file: ") + "<strong>" +
+                  App.urlToLocalFile(dialog.fileUrl) + "</strong>"
             width: parent.width
             clip: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -36,8 +37,8 @@ CenteredDialog {
 
 
         model: FolderListModel {
-            id: folders
-            showFiles: false
+            id: files
+            showFiles: true
             showDirs: true
             showOnlyReadable: true
             showDotAndDotDot: false
@@ -57,15 +58,30 @@ CenteredDialog {
         delegate: MouseArea {
             width: parent.width
             height: childrenRect.height + Globals.defaultMargin
-            onClicked: folders.folder = App.cleanPath(folders.folder + "/" + fileName)
+            onClicked: {
+                if (fileIsDir) {
+                    files.folder = App.cleanPath(files.folder +
+                                                 "/" + fileName);
+                } else {
+                    dialog.fileUrl = fileURL;
+                }
+            }
+
+            Rectangle {
+                anchors.fill: row
+                visible: dialog.fileUrl === fileURL
+                color: Qt.lighter(Colors.secondary3, 1.5)
+            }
 
             RowLayout {
+                id: row
+
                 y: Globals.defaultMargin / 2
                 x: Globals.defaultMargin / 2
                 width: parent.width - Globals.defaultMargin
 
                 Symbol {
-                    symbol: Fonts.symbols.faFolderOpenO
+                    symbol: fileIsDir ? Fonts.symbols.faFolderOpenO : Fonts.symbols.faFileO
                 }
                 Text {
                     Layout.fillWidth: true
