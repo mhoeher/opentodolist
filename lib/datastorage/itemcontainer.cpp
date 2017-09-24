@@ -20,6 +20,10 @@ ItemContainer::ItemContainer(QObject *parent) : QObject(parent),
 {
     qRegisterMetaType<ItemPtr>();
     m_threadPool->setMaxThreadCount(1);
+    connect(this, &ItemContainer::itemAdded,
+            this, &ItemContainer::countChanged);
+    connect(this, &ItemContainer::itemDeleted,
+            this, &ItemContainer::countChanged);
 }
 
 /**
@@ -52,6 +56,21 @@ ItemPtr ItemContainer::item(int index) const
         return m_items.at(index);
     }
     return ItemPtr();
+}
+
+
+/**
+ * @brief Get the item at the given @p index.
+ *
+ * This method returns a null pointer if no item exists at the given index.
+ */
+Item *ItemContainer::get(int index) const
+{
+    auto item = this->item(index);
+    if (item) {
+        return item.data();
+    }
+    return nullptr;
 }
 
 /**

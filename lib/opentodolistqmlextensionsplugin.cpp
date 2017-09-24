@@ -15,6 +15,9 @@
 #include "itemsmodel.h"
 #include "itemssortfiltermodel.h"
 
+#include "sync/synchronizer.h"
+#include "sync/webdavsynchronizer.h"
+
 #include <QtQml>
 
 OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent) :
@@ -25,7 +28,7 @@ OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent
 
 void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 {
-  //@uri net.rpdev.OpenTodoList
+  //@uri OpenTodoList
 
   qmlRegisterSingletonType<Application>(uri, 1, 0, "App",
                                         OpenTodoListQmlExtensionsPlugin::createApplication);
@@ -33,8 +36,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<Image>(uri, 1, 0, "ImageTopLevelItem");
   qmlRegisterType<Item>(uri, 1, 0, "BasicItem");
   qmlRegisterType<DocumentFormatter>(uri, 1, 0, "DocumentFormatter");
-  qmlRegisterUncreatableType<Library>(uri, 1, 0, "Library",
-                                      "Must be created using Application.");
+  qmlRegisterType<Library>(uri, 1, 0, "Library");
   qmlRegisterType<Note>(uri, 1, 0, "Note");
   qmlRegisterType<Task>(uri, 1, 0, "Task");
   qmlRegisterType<Todo>(uri, 1, 0, "Todo");
@@ -43,6 +45,16 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<ItemContainer>(uri, 1, 0, "ItemContainer");
   qmlRegisterType<ItemsModel>(uri, 1, 0, "ItemsModel");
   qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
+
+  qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
+                                           "Use specific synchronizer");
+  qmlRegisterType<WebDAVSynchronizer>(uri, 1, 0, "WebDAVSynchronizer");
+
+  // To allow assigning model classes to the sourceModel
+  // property of a proxy model in declarative assignments:
+  qmlRegisterUncreatableType<QAbstractItemModel>(
+              uri, 1, 0, "AbstractItemModel",
+              "Use sub-classes of abstract item model instead");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

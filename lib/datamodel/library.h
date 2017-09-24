@@ -15,6 +15,8 @@
 #include "todolist.h"
 
 class DirectoryWatcher;
+class Application;
+class Synchronizer;
 
 /**
  * @brief A container for items.
@@ -34,6 +36,9 @@ class Library : public QObject
     Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
     Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
+    Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
+
+    friend class Application;
 
 public:
 
@@ -65,6 +70,7 @@ public:
     void deleteLibrary(bool deleteFiles, std::function<void ()> callback);
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
+    Q_INVOKABLE void sync();
 
     ItemContainer *topLevelItems();
     ItemContainer *todos();
@@ -78,6 +84,14 @@ public:
     bool loading() const;
     QUuid uid() const;
     QStringList tags() const;
+
+    void fromJson(const QByteArray data);
+
+    bool synchronizing() const;
+    void setSynchronizing(bool synchronizing);
+
+    Q_INVOKABLE Synchronizer *createSynchronizer(
+            QObject *parent = nullptr) const;
 
 signals:
 
@@ -97,6 +111,15 @@ signals:
     void tagsChanged();
 
     /**
+     * @brief A library is about to be deleted.
+     *
+     * This signal is emitted to indicate that the @p library is aboit to be
+     * deleted. Clients might connect to this signal to do any additional clean
+     * up required before the library data is removed.
+     */
+    void deletingLibrary(Library* library);
+
+    /**
      * @brief The library is deleted.
      */
     void libraryDeleted(Library *library);
@@ -111,6 +134,8 @@ signals:
      */
     void loadingFinished();
 
+    void synchronizingChanged();
+
 private:
 
     QUuid                   m_uid;
@@ -124,6 +149,7 @@ private:
     DirectoryWatcher       *m_directoryWatcher;
 
     bool                    m_loading;
+    bool                    m_synchronizing;
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);
@@ -137,6 +163,6 @@ private slots:
 
 };
 
-Q_DECLARE_LOGGING_CATEGORY(library);
+Q_DECLARE_LOGGING_CATEGORY(library)
 
 #endif // LIBRARY_H

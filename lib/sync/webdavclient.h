@@ -1,0 +1,262 @@
+#ifndef WEBDAVCLIENT_H
+#define WEBDAVCLIENT_H
+
+#include <tuple>
+
+#include <QDateTime>
+#include <QLoggingCategory>
+#include <QNetworkAccessManager>
+#include <QObject>
+#include <QRegularExpression>
+#include <QSqlDatabase>
+#include <QUrl>
+
+
+class QDir;
+class QDomDocument;
+class QDomElement;
+class QNetworkAccessManager;
+class QNetworkReply;
+
+class WebDAVSynchronizer;
+
+#ifdef WEBDAV_SYNCHRONIZER_TEST
+class WebDAVSynchronizerTest;
+#endif
+
+
+class WebDAVClient : public QObject
+{
+    Q_OBJECT
+    friend class WebDAVSynchronizer;
+#ifdef WEBDAV_SYNCHRONIZER_TEST
+    friend class WebDAVSynchronizerTest;
+#endif
+public:
+    explicit WebDAVClient(QObject *parent = nullptr);
+
+    QUrl baseUrl() const;
+    void setBaseUrl(const QUrl &baseUrl);
+
+    QString remoteDirectory() const;
+    void setRemoteDirectory(const QString &remoteDirectory);
+
+    QString directory() const;
+    void setDirectory(const QString &directory);
+
+    bool disableCertificateCheck() const;
+    void setDisableCertificateCheck(bool disableCertificateCheck);
+
+    QString username() const;
+    void setUsername(const QString &username);
+
+    QString password() const;
+    void setPassword(const QString &password);
+
+signals:
+
+public slots:
+
+private:
+
+    enum EntryType {
+        Invalid,
+        File,
+        Directory
+    };
+
+    struct Entry {
+        QString name;
+        EntryType type;
+        QString etag;
+    };
+
+    enum SyncStepDirection {
+        InvalidSyncStep,
+        Download,
+        Upload
+    };
+
+    struct SyncEntry {
+        QString parent;
+        QString entry;
+        EntryType localType;
+        EntryType remoteType;
+        QDateTime lastModDate;
+        QDateTime previousLasModtDate;
+        QString etag;
+        QString previousEtag;
+
+        SyncEntry() :
+            parent(),
+            entry(),
+            localType(Invalid),
+            remoteType(Invalid),
+            lastModDate(),
+            previousLasModtDate(),
+            etag(),
+            previousEtag()
+        {
+        }
+
+        QString path() const {
+            if (parent.isEmpty() && entry.isEmpty()) {
+                return "";
+            } else if (parent.isEmpty()) {
+                return entry;
+            } else {
+                return parent + "/" + entry;
+            }
+        }
+    };
+
+    typedef QList<Entry> EntryList;
+    typedef QMap<QString, SyncEntry> SyncEntryMap;
+
+    QNetworkAccessManager *m_networkAccessManager;
+    QUrl m_baseUrl;
+    QString m_remoteDirectory;
+    QString m_directory;
+    bool m_disableCertificateCheck;
+    QString m_username;
+    QString m_password;
+
+
+    EntryList entryList(const QString& directory, bool* ok = nullptr);
+    bool download(const QString& filename, QIODevice* targetDevice = nullptr);
+    QByteArray getRemoteFileContents(const QString& filename);
+    bool upload(const QString& filename, QString *etag = nullptr);
+    bool mkdir(const QString& dirname, QString *etag = nullptr);
+    bool deleteEntry(const QString& filename);
+    bool syncDirectory(const QString &directory,
+            QRegularExpression directoryFilter = QRegularExpression(".*"),
+            bool pushOnly = false, QSet<QString> *changedDirs = nullptr);
+    QString etag(const QString &filename);
+
+    // Path and URL utility functions
+    static QString mkpath(const QString &path);
+    static std::tuple<QString, QString> splitpath(const QString& path);
+    QString urlString() const;
+
+    QNetworkReply *listDirectoryRequest(const QString& directory);
+    QNetworkReply *etagRequest(const QString& filename);
+    QNetworkReply *createDirectoryRequest(const QString& directory);
+    static EntryList parseEntryList(const QUrl &baseUrl, const QString& directory,
+                                    const QByteArray& reply);
+    static EntryList parsePropFindResponse(const QUrl &baseUrl, const QDomDocument& response,
+                                           const QString& directory);
+    static Entry parseResponseEntry(const QDomElement& element,
+                                    const QString& baseDir);
+    void prepareReply(QNetworkReply* reply) const;
+    static void waitForReplyToFinish(QNetworkReply* reply);
+
+    // Sync DB Handling
+    QSqlDatabase openSyncDb();
+    void closeSyncDb();
+    void insertSyncDBEntry(QSqlDatabase &db, const SyncEntry &entry);
+    SyncEntryMap findSyncDBEntries(QSqlDatabase &db,
+                                              const QString& parent);
+    void removeDirFromSyncDB(QSqlDatabase &db, const SyncEntry &entry);
+    void removeFileFromSyncDB(QSqlDatabase &db, const SyncEntry &entry);
+
+    // File System Utils
+    bool rmLocalDir(const QString& dir, int maxDepth = 0);
+
+    // syncDirectory() split down methods:
+    void mergeLocalInfoWithSyncList(
+            QDir &d, const QString &dir, SyncEntryMap &entries);
+    bool mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QString &dir);
+    bool pullEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool removeLocalEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool pushEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool removeRemoteEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool skipEntry(const SyncEntry &entry, SyncStepDirection direction,
+                   const QRegularExpression &dirFilter);
+};
+
+
+enum class HTTPStatusCode {
+    Continue = 100,
+    SwitchingProtocols = 101,
+    WebDAVProcessing = 102,
+    OK = 200,
+    Created = 201,
+    Accepted = 202,
+    NonAuthoritativeInformation = 203,
+    NoContent = 204,
+    ResetContent = 205,
+    PartialContent = 206,
+    WebDAVMultiStatus = 207,
+    WebDAVAlreadyReported = 208,
+    IMUsed = 226,
+    MultipleChoices = 300,
+    MovedPermanently = 301,
+    Found = 302,
+    SeeOther = 303,
+    NotModified = 304,
+    UseProxy = 305,
+    Unused = 306,
+    TemporaryRedirect = 307,
+    PermanentRedirect = 308,
+    BadRequest = 400,
+    Unauthorized = 401,
+    PaymentRequired = 402,
+    Forbidden = 403,
+    NotFound = 404,
+    MethodNotAllowed = 405,
+    NotAcceptable = 406,
+    ProxyAuthenticationRequired = 407,
+    RequestTimeout = 408,
+    Conflict = 409,
+    Gone = 410,
+    LengthRequired = 411,
+    PreconditionFailed = 412,
+    RequestEntityTooLarge = 413,
+    RequestURITooLong = 414,
+    UnsupportedMediaType = 415,
+    RequestedRangeNotSatisfiable = 416,
+    ExpectationFailed = 417,
+    ImATeapot = 418,
+    TwiterEnhanceYourCalm = 420,
+    WebDAVUnprocessableEntity = 422,
+    WebDAVLocked = 423,
+    WebDAVFailedDependency = 424,
+    WebDAVReserved = 425,
+    UpgradeRequired = 426,
+    PreconditionRequired = 428,
+    TooManyRequests = 429,
+    RequestHeaderFieldsTooLarge = 431,
+    NginxNoResponse = 444,
+    MicrosoftRetryWith = 449,
+    MicrosoftBlockedByWindowsParentalControls = 450,
+    UnavailableForLegalReasons = 451,
+    NginxClientClosedRequest = 499,
+    InternalServerError = 500,
+    NotImplemented = 501,
+    BadGateway = 502,
+    ServiceUnavailable = 503,
+    GatewayTimeout = 504,
+    HTTPVersionNotSupported = 505,
+    VariantAlsoNegotiates = 506,
+    WebDAVInsufficientStorage = 507,
+    WebDAVLoopDetected = 508,
+    ApacheBandwidthLimitExceeded = 509,
+    NotExtended = 510,
+    NetworkAuthenticationRequired = 511,
+    NetworkReadTimeoutError = 598,
+    NetworkConnectTimeoutError = 599
+};
+
+
+inline bool operator ==(int lhs, HTTPStatusCode rhs) {
+    return lhs == static_cast<int>(rhs);
+}
+
+
+inline bool operator ==(HTTPStatusCode lhs, int rhs) {
+    return static_cast<int>(lhs) == rhs;
+}
+
+Q_DECLARE_LOGGING_CATEGORY(webDAVClient)
+
+#endif // WEBDAVCLIENT_H

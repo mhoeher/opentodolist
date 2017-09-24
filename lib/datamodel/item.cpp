@@ -7,11 +7,11 @@
 #include "task.h"
 
 #include "fileutils.h"
+#include "utils/jsonutils.h"
 
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
-#include <QJsonDocument>
 #include <QtGlobal>
 #include <QVariant>
 #include <QVariantMap>
@@ -99,28 +99,15 @@ bool Item::deleteItem()
  */
 bool Item::load()
 {
-    bool result = false;
-    QFile file(m_filename);
-    if (file.exists()) {
-        if (file.open(QIODevice::ReadOnly)) {
-            auto data = file.readAll();
-            QJsonParseError error;
-            auto doc = QJsonDocument::fromJson(data, &error);
-            if (error.error == QJsonParseError::NoError) {
-                auto loading = m_loading;
-                m_loading = true;
-                fromMap(doc.toVariant().toMap());
-                m_loading = loading;
-                result = true;
-            } else {
-                qCWarning(item) << "Failed to parse" << m_filename << ":" << error.errorString();
-            }
-        } else {
-            qCWarning(item) << "Failed to open" << m_filename
-                            << "for reading:" << file.errorString();
-        }
+    bool ok = false;
+    auto map = JsonUtils::loadMap(m_filename, &ok);
+    if (ok) {
+        auto loading = m_loading;
+        m_loading = true;
+        fromMap(map);
+        m_loading = loading;
     }
-    return result;
+    return ok;
 }
 
 /**
@@ -137,31 +124,7 @@ bool Item::save()
     bool result = false;
     if (!m_loading) {
         if (isValid()) {
-            QFile file(m_filename);
-            QVariantMap map;
-            if (file.open(QIODevice::ReadOnly)) {
-                auto doc = QJsonDocument::fromJson(file.readAll());
-                map = doc.toVariant().toMap();
-                file.close();
-            }
-
-            // Merge new map into existing to preserve attributes from newer versions
-            auto newMap = toMap();
-            for (auto key : newMap.keys()) {
-                map.insert(key, newMap[key]);
-            }
-
-            auto doc = QJsonDocument::fromVariant(map);
-            auto json = doc.toJson(QJsonDocument::Indented);
-
-            if (file.open(QIODevice::WriteOnly)) {
-                file.write(json);
-                file.close();
-                result = true;
-            } else {
-                qCWarning(item) << "Failed to open" << m_filename << "for writing:"
-                           << file.errorString();
-            }
+            result = JsonUtils::patchJsonFile(m_filename, toMap());
         }
     }
     return result;
@@ -314,24 +277,13 @@ Item* Item::createItem(QString itemType, QObject* parent)
 Item* Item::createItemFromFile(QString filename, QObject* parent)
 {
     Item *result = nullptr;
-    QFile file(filename);
-    if (file.open(QIODevice::ReadOnly)) {
-        auto data = file.readAll();
-        QJsonParseError error;
-        auto doc = QJsonDocument::fromJson(data, &error);
-        if (error.error == QJsonParseError::NoError) {
-            auto map = doc.toVariant().toMap();
-            result = createItem(map, parent);
-            if (result != nullptr) {
-                result->setFilename(filename);
-            }
-        } else {
-            qCWarning(item) << "Failed to parse item file" << filename << ":"
-                            << error.errorString();
+    bool ok;
+    auto map = JsonUtils::loadMap(filename, &ok);
+    if (ok) {
+        result = createItem(map, parent);
+        if (result != nullptr) {
+            result->setFilename(filename);
         }
-        file.close();
-    } else {
-        qCWarning(item) << "Failed to open" << filename << "for reading:" << file.errorString();
     }
     return result;
 }

@@ -1,7 +1,6 @@
 #include "libraryloader.h"
 
 #include <QDebug>
-#include <QJsonDocument>
 #include <QVariantMap>
 
 #include "library.h"

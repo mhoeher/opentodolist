@@ -4,6 +4,7 @@ variables:
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
+    NEXTCLOUD_IMAGE: nextcloud
 
 stages:
   - images
@@ -12,107 +13,13 @@ stages:
   - deploy
 
 before_script:
-  - echo "Running Test Setup"
   - export CTEST_OUTPUT_ON_FAILURE=1
 
 
-# Linux build & unit tests with built-in libraries
-linux_builtin:
-  stage: build
-  image: $FEDORA_IMAGE
-  script:
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build
-    - cd build
-    - qmake-qt5 ..
-    - make -j4
-    - make check
-  only:
-    - branches
-  artifacts:
-    paths:
-      - build
-    expire_in: 1 week
 
-
-# Linux build & unit tests with system provides libraries
-linux_system:
-  stage: build
-  image: $FEDORA_SYSTEM_IMAGE
-  script:
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build
-    - cd build
-    - qmake-qt5 ..
-    - make -j4
-    - make check
-  only:
-    - branches
-  artifacts:
-    paths:
-      - build
-    expire_in: 1 week
-
-
-# Ubuntu build including AppImage
-ubuntu_appimage:
-  stage: build
-  image: $UBUNTU_IMAGE
-  script:
-    - desktop-file-validate templates/appimage/default.desktop
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build
-    - cd build
-    - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
-    - qmake CONFIG+=RELEASE ..
-    - make -j4
-    - make check
-    - make OpenTodoList-x86_64.AppImage
-  only:
-    - branches
-  artifacts:
-    paths:
-      - build
-    expire_in: 1 week
-
-
-# Windows 32bit build
-win32_build:
-  stage: build
-  image: $WIN32_IMAGE
-  script:
-    - mkdir build
-    - cd build
-    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
-    - export PATH=/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/:$PATH
-    - qmake CONFIG+=release ..
-    - make -j4
-  only:
-    - branches
-  artifacts:
-    paths:
-      - build
-    expire_in: 1 week
-
-
-# Windows 64bit build
-win64_build:
-  stage: build
-  image: $WIN64_IMAGE
-  script:
-    - mkdir build
-    - cd build
-    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
-    - export PATH=/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/:$PATH
-    - qmake CONFIG+=release ..
-    - make -j4
-  only:
-    - branches
-  artifacts:
-    paths:
-      - build
-    expire_in: 1 week
-
+################################################################################
+# Images Stage
+################################################################################
 
 # Build the Linux (Fedora) Image
 build_image_fedora:
@@ -183,3 +90,117 @@ build_image_win64:
     - docker build --pull -t $WIN64_IMAGE .
     - docker push $WIN64_IMAGE
   when: manual
+
+
+################################################################################
+# Build Stage
+################################################################################
+
+# Linux build & unit tests with built-in libraries
+linux_builtin:
+  stage: build
+  image: $FEDORA_IMAGE
+  services:
+    - name: $NEXTCLOUD_IMAGE
+      alias: nextcloud
+  script:
+    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
+    - export QT_QPA_PLATFORM=minimal
+    - mkdir build
+    - cd build
+    - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
+    - make -j4
+    - make check
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Linux build & unit tests with system provides libraries
+linux_system:
+  stage: build
+  image: $FEDORA_SYSTEM_IMAGE
+  services:
+    - name: $NEXTCLOUD_IMAGE
+      alias: nextcloud
+  script:
+    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
+    - export QT_QPA_PLATFORM=minimal
+    - mkdir build
+    - cd build
+    - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
+    - make -j4
+    - make check
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Ubuntu build including AppImage
+ubuntu_appimage:
+  stage: build
+  image: $UBUNTU_IMAGE
+  services:
+    - name: $NEXTCLOUD_IMAGE
+      alias: nextcloud
+  script:
+    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
+    - desktop-file-validate templates/appimage/default.desktop
+    - export QT_QPA_PLATFORM=minimal
+    - mkdir build
+    - cd build
+    - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
+    - qmake CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
+    - make -j4
+    - make check
+    - make OpenTodoList-x86_64.AppImage
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Windows 32bit build
+win32_build:
+  stage: build
+  image: $WIN32_IMAGE
+  script:
+    - mkdir build
+    - cd build
+    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
+    - export PATH=/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/:$PATH
+    - qmake CONFIG+=release ..
+    - make -j4
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week
+
+
+# Windows 64bit build
+win64_build:
+  stage: build
+  image: $WIN64_IMAGE
+  script:
+    - mkdir build
+    - cd build
+    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
+    - export PATH=/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/:$PATH
+    - qmake CONFIG+=release ..
+    - make -j4
+  only:
+    - branches
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 week

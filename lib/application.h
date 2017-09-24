@@ -3,6 +3,7 @@
 
 #include "library.h"
 
+#include <QLoggingCategory>
 #include <QObject>
 #include <QQmlListProperty>
 #include <QSettings>
@@ -13,6 +14,7 @@
 
 
 class Migrator_2_x_to_3_x;
+class KeyStore;
 
 /**
  * @brief The main class of the application
@@ -29,6 +31,7 @@ class Application : public QObject
     Q_PROPERTY(Library* defaultLibrary READ defaultLibrary NOTIFY defaultLibraryChanged)
     Q_PROPERTY(bool updatesAvailable READ updatesAvailable NOTIFY updatesAvailableChanged)
     Q_PROPERTY(bool hasUpdateService READ hasUpdateService CONSTANT)
+    Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
 
     friend class Migrator_2_x_to_3_x;
 public:
@@ -46,7 +49,7 @@ public:
     QStringList libraryTypes() const;
     QQmlListProperty<Library> libraryList();
 
-    Q_INVOKABLE Library* addLibrary(const QUrl &url = QUrl());
+    Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
 
     Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
     Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
@@ -56,15 +59,18 @@ public:
 
     Q_INVOKABLE QString urlToLocalFile(const QUrl &url) const;
     Q_INVOKABLE QUrl localFileToUrl(const QString &localFile) const;
+    Q_INVOKABLE QUrl cleanPath(const QUrl &url) const;
 
     Q_INVOKABLE bool fileExists(const QString &filename) const;
     Q_INVOKABLE bool directoryExists(const QString &directory) const;
     Q_INVOKABLE QString basename(const QString &filename) const;
+    Q_INVOKABLE bool isLibraryDir(const QUrl &url) const;
 
     Library *defaultLibrary();
 
     bool updatesAvailable() const;
     void setUpdatesAvailable(bool updatesAvailable);
+    QString librariesLocation() const;
 
     Q_INVOKABLE void checkForUpdates(bool forceCheck = false);
     Q_INVOKABLE void runUpdate();
@@ -73,13 +79,18 @@ public:
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
+    Q_INVOKABLE QString secretForSynchronizer(Synchronizer* sync);
+
+public slots:
+
+    void syncLibrary(Library *library);
+    void saveSynchronizerSecrets(Synchronizer *sync);
+
 signals:
 
     void librariesChanged();
     void defaultLibraryChanged();
     void updatesAvailableChanged();
-
-public slots:
 
 private:
 
@@ -88,6 +99,8 @@ private:
     QSettings              *m_settings;
     bool                    m_loadingLibraries;
     bool                    m_updatesAvailable;
+    KeyStore               *m_keyStore;
+    QVariantMap             m_secrets;
 
     void saveLibraries();
     void loadLibraries();
@@ -95,7 +108,6 @@ private:
     static Library* librariesAt(QQmlListProperty<Library> *property, int index);
     static int librariesCount(QQmlListProperty<Library> *property);
 
-    QString librariesLocation() const;
     QString defaultLibraryLocation() const;
     void runMigrations();
 
@@ -106,10 +118,16 @@ private:
 
     void appendLibrary(Library* library);
 
+
+    void initialize();
+
 private slots:
 
     void onLibraryDeleted(Library *library);
+    void onLibrarySyncFinished(Library *library);
 
 };
+
+Q_DECLARE_LOGGING_CATEGORY(application)
 
 #endif // APPLICATION_H

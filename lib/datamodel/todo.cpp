@@ -130,3 +130,8 @@ void Todo::fromMap(QVariantMap map)
     setTodoListUid(map.value("todoListUid", m_todoListUid).toUuid());
     setDone(map.value("done", m_done).toBool());
 }
+
+Library *Todo::library() const
+{
+    return m_library;
+}

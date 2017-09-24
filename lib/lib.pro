@@ -1,13 +1,11 @@
 include(../config.pri)
 
-QT       += qml quick xml concurrent
+QT       += qml quick xml concurrent sql
 QT       -= gui
 
 TEMPLATE = lib
 TARGET = opentodolist
-CONFIG += static c++11
-
-win32:DESTDIR = $$OUT_PWD
+CONFIG += static c++11 create_prl
 
 INCLUDEPATH += datamodel datastorage models
 
@@ -31,7 +29,13 @@ SOURCES += \
     models/itemssortfiltermodel.cpp \
     migrators/migrator_2_x_to_3_x.cpp \
     utils/directorywatcher.cpp \
-    utils/keystore.cpp
+    utils/keystore.cpp \
+    sync/synchronizer.cpp \
+    utils/jsonutils.cpp \
+    sync/webdavsynchronizer.cpp \
+    sync/webdavclient.cpp \
+    sync/syncrunner.cpp \
+    sync/syncjob.cpp
 
 HEADERS += \
     application.h \
@@ -54,7 +58,13 @@ HEADERS += \
     models/itemssortfiltermodel.h \
     migrators/migrator_2_x_to_3_x.h \
     utils/directorywatcher.h \
-    utils/keystore.h
+    utils/keystore.h \
+    sync/synchronizer.h \
+    utils/jsonutils.h \
+    sync/webdavsynchronizer.h \
+    sync/webdavclient.h \
+    sync/syncrunner.h \
+    sync/syncjob.h
 
 config_qtkeychain {
     LIBS += -lqt5keychain

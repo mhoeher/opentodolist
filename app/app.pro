@@ -4,22 +4,23 @@ TARGET = OpenTodoList
 include(../config.pri)
 include(../lib/lib.pri)
 
-QT += qml quick widgets svg xml concurrent
+QT += qml quick xml concurrent
 
 SOURCES += main.cpp
 
 RESOURCES += qml.qrc \
     res.qrc
 
-config_qtsingleapplication {
-    # Use system QtSingleApplication
-    CONFIG += qtsingleapplication
-    DEFINES += HAS_QTSINGLEAPPLICATION
-} else {
-    !ios&!android {
-        # Use built-in QtSingleApplication
-        include(../3rdparty/qtsingleapplication/src/qtsingleapplication.pri)
-    }
+!ios&!android {
+    DEFINES += OTL_USE_SINGLE_APPLICATION
+    HEADERS += \
+        ../3rdparty/qtsingleapplication/src/qtsingleguiapplication.h \
+        ../3rdparty/qtsingleapplication/src/qtlocalpeer.h
+    SOURCES += \
+        ../3rdparty/qtsingleapplication/src/qtsingleguiapplication.cpp \
+        ../3rdparty/qtsingleapplication/src/qtlocalpeer.cpp
+    INCLUDEPATH += ../3rdparty/qtsingleapplication/src
+    DEPENDPATH += ../3rdparty/qtsingleapplication/src
 }
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

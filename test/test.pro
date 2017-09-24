@@ -13,3 +13,6 @@ SUBDIRS += library
 SUBDIRS += itemsmodel
 SUBDIRS += itemcontainer
 SUBDIRS += keystore
+SUBDIRS += jsonutils
+SUBDIRS += synchronizer
+SUBDIRS += webdavsynchronizer

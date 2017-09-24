@@ -1,23 +1,22 @@
-INCLUDEPATH += $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models
-LIBS += -L$$shadowed($$PWD) -lopentodolist
+INCLUDEPATH *= $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models
 
-QT += qml
+QT *= qml sql
 
-win32:!win32-g++: PRE_TARGETDEPS += $$shadowed($$PWD)/opentodolist.lib
-else:unix|win32-g++: PRE_TARGETDEPS += $$shadowed($$PWD)/libopentodolist.a
+CONFIG *= link_prl
 
-# Link against crypt32 on Windows when using
-# built-in qtkeychain:
-!config_qtkeychain {
-    macx {
-        LIBS *= "-framework Security" "-framework Foundation"
-    } else:win32 {
-        LIBS *= -lcrypt32
-    } else:unix {
-        QT *= dbus
-    }
+win32:!win32-g++: OTL_LIBRARY_NAME += opentodolist.lib
+else:unix|win32-g++: OTL_LIBRARY_NAME += libopentodolist.a
+
+
+win32:CONFIG(release, debug|release) {
+    LIBS *= -L$$shadowed($$PWD)/release
+    PRE_TARGETDEPS *= $$shadowed($$PWD)/release/$$OTL_LIBRARY_NAME
+} else:win32:CONFIG(debug, debug|release) {
+    LIBS *= -L$$shadowed($$PWD)/debug
+    PRE_TARGETDEPS *= $$shadowed($$PWD)/debug/$$OTL_LIBRARY_NAME
 } else {
-    LIBS *= -lqt5keychain
+    LIBS *= -L$$shadowed($$PWD)
+    PRE_TARGETDEPS *= $$shadowed($$PWD)/$$OTL_LIBRARY_NAME
 }
 
-
+LIBS *= -lopentodolist

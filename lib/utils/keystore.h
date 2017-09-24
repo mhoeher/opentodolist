@@ -24,20 +24,38 @@ class KeyStore : public QObject
 {
     Q_OBJECT
 public:
-    static const QString ServiceName;
+    static const QLatin1String ServiceName;
 
     explicit KeyStore(QObject *parent = 0);
     virtual ~KeyStore();
 
-    void saveCredentials(const QString &key, const QByteArray& value,
-                         SaveCredentialsResult *resultReceiver = nullptr);
-    void loadCredentials(const QString &key,
-                         LoadCredentialsResult *resultReceiver = nullptr);
-    void deleteCredentials(const QString &key,
-                           DeleteCredentialsResult *resultReceiver = nullptr);
+    void saveCredentials(const QString &key, const QString& value);
+    void loadCredentials(const QString &key);
+    void deleteCredentials(const QString &key);
 
-    static QSettings* createSettingsFile(const QString &filename, QObject* parent = nullptr);
+    static QSettings* createSettingsFile(const QString &filename,
+                                         QObject* parent = nullptr);
+
 signals:
+
+    /**
+     * @brief The credentials for the given @p key have been saved.
+     */
+    void credentialsSaved(const QString& key, bool success);
+
+    /**
+     * @brief The credentials for the given @p key have been loaded.
+     *
+     * The @p value contains the loaded secret. The @p success flag indicates
+     * if the secret was loaded successfully.
+     */
+    void credentialsLoaded(const QString& key, const QString& value,
+                           bool success);
+
+    /**
+     * @brief Credentials for the @p key have been removed.
+     */
+    void credentialsDeleted(const QString& key, bool success);
 
 public slots:
 
@@ -45,70 +63,6 @@ private:
     QSettings               *m_settings;
 
     static void registerSettingsFormat();
-};
-
-
-/**
- * @brief A class used to receive the results of a write credentials operation.
- *
- * This class is passed as a callback object to the KeyStore class. It will receive the
- * results of a save operation to the credential store.
- */
-class SaveCredentialsResult : public QObject
-{
-    Q_OBJECT
-
-public:
-
-    explicit SaveCredentialsResult();
-    virtual ~SaveCredentialsResult();
-
-signals:
-
-    void done(bool hasError, const QString &errorString);
-
-};
-
-
-/**
- * @brief A class used to receive the results of a read credentials operation.
- *
- * This class is passed as a callback object to the KeyStore class. It will receive the
- * results of a load operation to the credential store.
- */
-class LoadCredentialsResult : public QObject
-{
-    Q_OBJECT
-
-public:
-
-    explicit LoadCredentialsResult();
-    virtual ~LoadCredentialsResult();
-
-signals:
-
-    void done(const QByteArray &value, bool hasError, const QString &errorString);
-};
-
-
-/**
- * @brief A class used to receive the results of a delete credentials operation.
- *
- * This class is passed as a callback object to the KeyStore class. It will receive the
- * results of a delete operation to the credential store.
- */
-class DeleteCredentialsResult : public QObject
-{
-    Q_OBJECT
-
-public:
-
-    explicit DeleteCredentialsResult();
-    virtual ~DeleteCredentialsResult();
-
-signals:
-
-    void done(bool hasError, const QString &errorString);
 };
 
 

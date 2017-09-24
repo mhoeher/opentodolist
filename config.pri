@@ -35,17 +35,10 @@ defineTest(setupTest) {
     DEFINES += SRCBINDIR=\\\"$$OUT_PWD/\\\"
     QT += testlib xml concurrent
     QT -= gui
-    INCLUDEPATH += $$PWD/../../lib
-    LIBS += -L$$OUT_PWD/../../lib -lopentodolist
-    win32:!win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../../lib/opentodolist.lib
-    else:unix|win32-g++: PRE_TARGETDEPS += $$OUT_PWD/../../lib/libopentodolist.a
 
     export(CONFIG)
     export(TARGET)
     export(TEMPLATE)
     export(DEFINES)
     export(QT)
-    export(INCLUDEPATH)
-    export(LIBS)
-    export(PRE_TARGETDEPS)
 }

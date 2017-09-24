@@ -13,6 +13,7 @@ class Todo;
 class TodoList : public TopLevelItem
 {
     Q_OBJECT
+    Q_PROPERTY(Library* library READ library CONSTANT)
 
     friend class Library;
 
@@ -24,6 +25,8 @@ public:
     virtual ~TodoList();
 
     Q_INVOKABLE Todo* addTodo();
+
+    Library *library() const;
 
 signals:
 
