@@ -36,8 +36,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<Image>(uri, 1, 0, "ImageTopLevelItem");
   qmlRegisterType<Item>(uri, 1, 0, "BasicItem");
   qmlRegisterType<DocumentFormatter>(uri, 1, 0, "DocumentFormatter");
-  qmlRegisterUncreatableType<Library>(uri, 1, 0, "Library",
-                                      "Must be created using Application.");
+  qmlRegisterType<Library>(uri, 1, 0, "Library");
   qmlRegisterType<Note>(uri, 1, 0, "Note");
   qmlRegisterType<Task>(uri, 1, 0, "Task");
   qmlRegisterType<Todo>(uri, 1, 0, "Todo");

@@ -16,6 +16,7 @@
 
 class DirectoryWatcher;
 class Application;
+class Synchronizer;
 
 /**
  * @brief A container for items.
@@ -88,6 +89,9 @@ public:
 
     bool synchronizing() const;
     void setSynchronizing(bool synchronizing);
+
+    Q_INVOKABLE Synchronizer *createSynchronizer(
+            QObject *parent = nullptr) const;
 
 signals:
 

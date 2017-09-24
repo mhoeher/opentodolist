@@ -83,16 +83,12 @@ void Application::initialize()
             if (!m_secrets.contains(key)) {
                 m_secrets.insert(key, value);
                 for (auto lib : m_libraries) {
-                    if (lib->isValid()) {
-                        QScopedPointer<Synchronizer> sync(
-                                    Synchronizer::fromDirectory(
-                                        lib->directory()));
-                        if (sync) {
-                            if (sync->secretsKey() == key) {
-                                qCDebug(application) << "Start-up sync of"
-                                                     << lib << lib->name();
-                                syncLibrary(lib);
-                            }
+                    QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+                    if (sync) {
+                        if (sync->secretsKey() == key) {
+                            qCDebug(application) << "Start-up sync of"
+                                                 << lib << lib->name();
+                            syncLibrary(lib);
                         }
                     }
                 }
@@ -109,31 +105,28 @@ void Application::initialize()
     syncTimer->setSingleShot(false);
     connect(syncTimer, &QTimer::timeout, [=]() {
         for (auto lib : m_libraries) {
-            if (lib->isValid()) {
-                QScopedPointer<Synchronizer> sync(
-                            Synchronizer::fromDirectory(lib->directory()));
-                if (sync) {
-                    auto lastSync = sync->lastSync();
-                    bool runSync = false;
-                    if (!lastSync.isValid()) {
+            QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+            if (sync) {
+                auto lastSync = sync->lastSync();
+                bool runSync = false;
+                if (!lastSync.isValid()) {
+                    runSync = true;
+                } else {
+                    auto currentDateTime = QDateTime::currentDateTime();
+                    auto diff = currentDateTime.toMSecsSinceEpoch() -
+                            lastSync.toMSecsSinceEpoch();
+                    if (diff >= (1000 * 60 * 60)) {
+                        // Sync every hour
+                        qCDebug(application) << "Library" << lib
+                                             << lib->name()
+                                             << "has not been synced for"
+                                             << "more than an hour,"
+                                             << "starting sync now";
                         runSync = true;
-                    } else {
-                        auto currentDateTime = QDateTime::currentDateTime();
-                        auto diff = currentDateTime.toMSecsSinceEpoch() -
-                                lastSync.toMSecsSinceEpoch();
-                        if (diff >= (1000 * 60 * 60)) {
-                            // Sync every hour
-                            qCDebug(application) << "Library" << lib
-                                                << lib->name()
-                                                << "has not been synced for"
-                                                << "more than an hour,"
-                                                << "starting sync now";
-                            runSync = true;
-                        }
                     }
-                    if (runSync) {
-                        syncLibrary(lib);
-                    }
+                }
+                if (runSync) {
+                    syncLibrary(lib);
                 }
             }
         }
@@ -464,14 +457,32 @@ bool Application::folderExists(const QUrl &url) const
 
 
 /**
+ * @brief Get the secrets for a synchronizer.
+ *
+ * Get the secrets for the synchronizer @p sync. If no secrets
+ * for the synchronizer where stored, an empty string is returned.
+ */
+QString Application::secretForSynchronizer(Synchronizer *sync)
+{
+    QString result;
+    if (sync != nullptr) {
+        auto key = sync->secretsKey();
+        if (!key.isEmpty() && m_secrets.contains(key)) {
+            result = m_secrets.value(key).toString();
+        }
+    }
+    return result;
+}
+
+
+/**
  * @brief Start synchronizing the @p library.
  */
 void Application::syncLibrary(Library *library)
 {
-    if (library != nullptr && library->isValid()) {
+    if (library != nullptr) {
         if (!library->synchronizing()) {
-            QScopedPointer<Synchronizer> sync(
-                        Synchronizer::fromDirectory(library->directory()));
+            QScopedPointer<Synchronizer> sync(library->createSynchronizer());
             if (!sync) {
                 return;
             }
@@ -493,6 +504,25 @@ void Application::syncLibrary(Library *library)
                     Qt::QueuedConnection);
             auto runner = new SyncRunner(job);
             QThreadPool::globalInstance()->start(runner);
+        }
+    }
+}
+
+
+/**
+ * @brief Save the secrets for a synchronizer.
+ *
+ * This saves the secrets of the given Synchronizer @p sync to the
+ * key store.
+ */
+void Application::saveSynchronizerSecrets(Synchronizer *sync)
+{
+    if (sync != nullptr) {
+        auto key = sync->secretsKey();
+        if (!key.isEmpty()) {
+            auto secret = sync->secret();
+            m_keyStore->saveCredentials(key, secret);
+            m_secrets[key] = secret;
         }
     }
 }
@@ -531,8 +561,7 @@ void Application::loadLibraries()
         auto directory = m_settings->value("directory").toString();
         auto library = new Library(directory, this);
         appendLibrary(library);
-        QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(
-                    directory));
+        QScopedPointer<Synchronizer> sync(library->createSynchronizer());
         if (sync) {
             auto key = sync->secretsKey();
             if (!key.isEmpty()) {
@@ -681,14 +710,11 @@ void Application::appendLibrary(Library* library)
     connect(library, &Library::libraryDeleted,
             this, &Application::onLibraryDeleted);
     connect(library, &Library::deletingLibrary, [=](Library* library) {
-        if (library->isValid() && !library->directory().isEmpty()) {
-            QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(
-                                                  library->directory()));
-            if (sync) {
-                auto key = sync->secretsKey();
-                if (!key.isEmpty()) {
-                    m_keyStore->deleteCredentials(key);
-                }
+        QScopedPointer<Synchronizer> sync(library->createSynchronizer());
+        if (sync) {
+            auto key = sync->secretsKey();
+            if (!key.isEmpty()) {
+                m_keyStore->deleteCredentials(key);
             }
         }
     });
@@ -724,13 +750,10 @@ void Application::onLibrarySyncFinished(Library *library)
     for (auto lib : m_libraries) {
         if (lib == library) {
             lib->setSynchronizing(false);
-            if (lib->isValid()) {
-                QScopedPointer<Synchronizer> sync(
-                            Synchronizer::fromDirectory(lib->directory()));
-                if (sync) {
-                    sync->setLastSync(QDateTime::currentDateTime());
-                    sync->save();
-                }
+            QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+            if (sync) {
+                sync->setLastSync(QDateTime::currentDateTime());
+                sync->save();
             }
         }
     }

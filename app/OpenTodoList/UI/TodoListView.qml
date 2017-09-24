@@ -22,7 +22,7 @@ Item {
 
     height: listView.contentHeight
 
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteTodoDialog
 
         property Todo todo
@@ -32,6 +32,7 @@ Item {
             text: confirmDeleteTodoDialog.todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
                               "This cannot be undone.").arg(confirmDeleteTodoDialog.todo.title) : ""
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: 300
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: todo.deleteItem()

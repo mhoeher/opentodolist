@@ -6,7 +6,7 @@ import Qt.labs.folderlistmodel 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-Dialog {
+CenteredDialog {
     id: dialog
 
     property alias folder: folders.folder
@@ -14,6 +14,13 @@ Dialog {
     title: qsTr("Select a Folder")
     modal: true
     standardButtons: Dialog.Ok | Dialog.Cancel
+
+    header: RowLayout {
+        Symbol {
+            symbol: Fonts.symbols.faArrowUp
+            onClicked: folders.folder = App.cleanPath(folders.folder + "/..")
+        }
+    }
 
     ListView {
         implicitWidth: 300
@@ -34,6 +41,18 @@ Dialog {
             showDirs: true
             showOnlyReadable: true
             showDotAndDotDot: true
+
+            onFolderChanged: {
+                var f = folder.toString();
+                f = App.urlToLocalFile(f);
+                if (f.endsWith("/..")) {
+                    f = f.substring(0, f.length - 3);
+                    if (f === "") {
+                        f = "/";
+                    }
+                    folder = App.localFileToUrl(f);
+                }
+            }
         }
         delegate: MouseArea {
             width: parent.width

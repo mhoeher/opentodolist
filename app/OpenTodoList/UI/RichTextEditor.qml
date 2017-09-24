@@ -4,9 +4,11 @@ import QtQuick.Controls 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-FocusScope {
+Page {
     id: editor
     
+    property ComplexItem item: null
+
     readonly property TextArea textArea: textArea
     property alias text: textArea.text
     property DocumentFormatter documentFormatter: DocumentFormatter {
@@ -20,6 +22,23 @@ FocusScope {
     function cancel() {
         textArea.focus = false;
         accepted();
+    }
+
+    Component.onCompleted: {
+        if (item !== null) {
+            text = item.notes;
+        }
+    }
+    Component.onDestruction: {
+        if (item !== null) {
+            item.notes = text;
+        }
+    }
+
+    Connections {
+        target: item
+        ignoreUnknownSignals: true
+        onNotesChanged: editor.text = item.notes
     }
     
     Image {

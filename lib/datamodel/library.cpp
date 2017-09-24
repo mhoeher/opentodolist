@@ -429,6 +429,30 @@ void Library::setSynchronizing(bool synchronizing)
 
 
 /**
+ * @brief Create a synchronizer for the library.
+ *
+ * This creates an instance of the Synchronizer class (or more precise, a
+ * concrete synchronizer depending on what the user set up for the library)
+ * and returns it. The ownership of the object is with the caller.
+ *
+ * If specified, the synchronizer will be owned by the @p parent.
+ *
+ * If no synchronizer has been set up for the library, a nullptr is returned.
+ *
+ * @note The method also returns nullptrs if the library is invalid, i.e.
+ * it has no local directory associated with it.
+ */
+Synchronizer *Library::createSynchronizer(QObject *parent) const
+{
+    if (isValid()) {
+        return Synchronizer::fromDirectory(directory(), parent);
+    } else {
+        return nullptr;
+    }
+}
+
+
+/**
  * @brief Set the UID of the library.
  */
 void Library::setUid(const QUuid& uid)

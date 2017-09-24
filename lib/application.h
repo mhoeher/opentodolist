@@ -79,9 +79,12 @@ public:
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
+    Q_INVOKABLE QString secretForSynchronizer(Synchronizer* sync);
+
 public slots:
 
     void syncLibrary(Library *library);
+    void saveSynchronizerSecrets(Synchronizer *sync);
 
 signals:
 

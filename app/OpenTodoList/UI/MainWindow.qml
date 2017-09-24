@@ -43,12 +43,6 @@ ApplicationWindow {
                 height: parent.height
 
                 Symbol {
-                    symbol: Fonts.symbols.faArrowLeft
-                    visible: stackView.currentItem && typeof(stackView.currentItem["cancel"]) === "function"
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: Logic.cancelCurrent(stackView)
-                }
-                Symbol {
                     id: sidebarControl
                     symbol: Fonts.symbols.faBars
                     anchors.verticalCenter: parent.verticalCenter
@@ -57,16 +51,10 @@ ApplicationWindow {
                     onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
                 }
                 Symbol {
-                    symbol: Fonts.symbols.faArrowUp
-                    visible: stackView.currentItem && typeof(stackView.currentItem["goUp"]) === "function"
+                    symbol: Fonts.symbols.faArrowLeft
+                    visible: stackView.canGoBack
+                    onClicked: stackView.pop()
                     anchors.verticalCenter: parent.verticalCenter
-                    onClicked: stackView.currentItem.goUp()
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faHome
-                    visible: stackView.currentItem && typeof(stackView.currentItem["goHome"]) === "function"
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: stackView.currentItem.goHome()
                 }
                 Symbol {
                     symbol: Fonts.symbols.faStickyNoteO
@@ -267,12 +255,6 @@ ApplicationWindow {
                 onClicked: activeFocusItem.paste()
                 anchors.verticalCenter: parent.verticalCenter
             }
-            Symbol {
-                symbol: Fonts.symbols.faRefresh
-                visible: stackView.hasSync && !stackView.syncRunning
-                onClicked: stackView.currentItem.sync()
-                anchors.verticalCenter: parent.verticalCenter
-            }
             BusyIndicator {
                 visible: stackView.isBusy
                 anchors.verticalCenter: parent.verticalCenter
@@ -290,6 +272,12 @@ ApplicationWindow {
                 visible: stackView.currentItem && typeof(stackView.currentItem["save"]) === "function"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: Logic.saveCurrent(stackView)
+            }
+            Symbol {
+                symbol: Fonts.symbols.faEllipsisV
+                visible: stackView.hasPageMenu
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: stackView.currentItem.pageMenu.open()
             }
         }
     }
@@ -410,9 +398,22 @@ ApplicationWindow {
             property bool hasSync: !!currentItem && (typeof(currentItem.sync) === "function")
             property bool syncRunning: !!currentItem && !!currentItem.syncRunning
             property bool isBusy: syncRunning
+            property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
+            property bool canGoBack: currentItem !== null && depth > 1
 
             anchors.fill: parent
             clip: true
+        }
+
+        Connections {
+            target: stackView.currentItem
+            ignoreUnknownSignals: true
+            onClosePage: stackView.pop()
+            onOpenPage: stackView.push(component, properties)
+            onClearAndOpenPage: {
+                stackView.clear();
+                stackView.push(component, properties);
+            }
         }
 
         MouseArea {

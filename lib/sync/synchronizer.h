@@ -58,6 +58,9 @@ class Synchronizer : public QObject
     Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged)
     Q_PROPERTY(bool isNull READ isNull NOTIFY directoryChanged)
     Q_PROPERTY(QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
+    Q_PROPERTY(QString type READ type CONSTANT)
+    Q_PROPERTY(QString secret READ secret WRITE setSecret NOTIFY secretChanged)
+    Q_PROPERTY(QString secretsKey READ secretsKey CONSTANT)
 public:
 
     static const QString SaveFileName;
@@ -73,8 +76,10 @@ public:
     void setDirectory(const QString& directory);
     bool isNull() const;
 
-    bool save() const;
+    Q_INVOKABLE bool save() const;
     void restore();
+
+    QString type() const;
 
     static Synchronizer* fromDirectory(const QString &dir, QObject* parent = nullptr);
 
@@ -131,6 +136,7 @@ signals:
     void directoryChanged();
     void existingLibrariesChanged();
     void findingLibrariesChanged();
+    void secretChanged();
 
 public slots:
 

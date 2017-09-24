@@ -4,12 +4,14 @@ import QtQuick.Controls 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-Item {
+Page {
     id: page
 
     property Library library: null
     property Todo todo: Todo {}
-    property StackView stack: null
+
+    signal closePage()
+    signal openPage(var component, var properties)
 
 
     function newTask() {
@@ -23,18 +25,19 @@ Item {
         confirmDeleteDialog.open();
     }
 
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo?")
         Text {
             text: qsTr("Are you sure you want to delete the todo <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(todo.title)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: 300
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
             todo.deleteItem();
-            stack.pop();
+            page.closePage();
         }
     }
 
@@ -109,9 +112,7 @@ Item {
                 text: todo.notes
                 backgroundColor: Colors.itemYellow
                 onClicked: {
-                    var page = stack.push(notesEditor, { text: todo.notes });
-                    page.onTextChanged.connect(function() { todo.notes = page.text; });
-                    todo.onReloaded.connect(function() { page.text = todo.notes; });
+                    page.openPage(notesEditor, {item: page.todo});
                 }
             }
 
@@ -126,10 +127,7 @@ Item {
 
             Component {
                 id: notesEditor
-
-                RichTextEditor {
-                    Component.onCompleted: forceActiveFocus()
-                }
+                RichTextEditor {}
             }
         }
     }

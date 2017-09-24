@@ -1,14 +1,11 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 import OpenTodoList 1.0 as OTL
 import OpenTodoList.UI 1.0
 
-Item {
-
-    function cancel() {
-        closed();
-    }
+Page {
+    id: page
 
     Text {
         id: title
@@ -27,6 +24,7 @@ Item {
     }
 
     ScrollView {
+        clip: true
         anchors {
             left: parent.left
             right: parent.right
@@ -60,6 +58,7 @@ Item {
                 id: column
                 spacing: Globals.defaultMargin / 2
                 width: parent.width
+                padding: Globals.defaultMargin
 
                 Text {
                     id: itemTitle

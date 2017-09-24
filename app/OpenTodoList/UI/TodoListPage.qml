@@ -6,12 +6,13 @@ import OpenTodoList.UI 1.0
 
 import "LibraryPageLogic.js" as Logic
 
-Item {
+Page {
     id: page
 
     property TodoList item: TodoList {}
     property var library: null
-    property StackView stack: null
+
+    signal openPage(var component, var properties)
 
 
     function newTodo() {
@@ -35,18 +36,19 @@ Item {
         filterBar.edit.forceActiveFocus()
     }
 
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo List?")
         Text {
             text: qsTr("Are you sure you want to delete the todo list <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(item.title)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: 300
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
             item.deleteItem();
-            stack.pop();
+            page.closePage();
         }
     }
 
@@ -157,7 +159,7 @@ Item {
             TodoListView {
                 id: todos
                 function openTodo(todo) {
-                    stack.push(todoPage, { todo: todo, library: page.library })
+                    page.openPage(todoPage, {item: page.todo});
                 }
 
                 model: undoneTodosModel
@@ -190,7 +192,7 @@ Item {
             TodoListView {
                 id: doneTodos
                 function openTodo(todo) {
-                    stack.push(todoPage, { todo: todo })
+                    page.openPage(todoPage, {item: todo});
                 }
 
                 visible: false
@@ -200,7 +202,7 @@ Item {
                     right: parent.right
                     margins: Globals.defaultMargin * 2
                 }
-                onTodoSelected: openTodo(object)
+                onTodoSelected: openTodo(todo)
             }
 
             StickyNote {
@@ -214,9 +216,7 @@ Item {
                 text: item.notes
                 backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
                 onClicked: {
-                    var page = stack.push(notesEditor, { text: item.notes });
-                    page.onTextChanged.connect(function() { item.notes = page.text; });
-                    item.onReloaded.connect(function() { page.text = item.notes; });
+                    page.openPage(notesEditor, {"item": page.item});
                 }
             }
 
@@ -242,17 +242,12 @@ Item {
             Component {
                 id: notesEditor
 
-                RichTextEditor {
-                    Component.onCompleted: forceActiveFocus()
-                }
+                RichTextEditor {}
             }
 
             Component {
                 id: todoPage
-
-                TodoPage {
-                    stack: page.stack
-                }
+                TodoPage {}
             }
         }
     }

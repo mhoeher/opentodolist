@@ -120,6 +120,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 #endif
 
+    app.setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QCoreApplication::setApplicationName("OpenTodoList");
     QCoreApplication::setApplicationVersion(VERSION);
     QCoreApplication::setOrganizationDomain("www.rpdev.net");

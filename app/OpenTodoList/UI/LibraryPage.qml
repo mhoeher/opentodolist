@@ -10,11 +10,12 @@ import "LibraryPageLogic.js" as Logic
 Page {
     id: page
 
-    property var library: null
+    property Library library: null
     property string tag: ""
-    property StackView stack: null
 
     signal itemClicked(TopLevelItem item)
+    signal closePage()
+    signal openPage(var component, var properties)
 
     function newNote() {
         newNoteBar.edit.forceActiveFocus();
@@ -34,21 +35,41 @@ Page {
         filterBar.edit.forceActiveFocus()
     }
 
-    function sync() {
-        console.debug("Manually started syncing " + library.name)
-        App.syncLibrary(library);
-    }
-
     property var deleteItem: library === App.defaultLibrary ? null :
-                                                              function deleteItem() {
+                                                              function() {
                                                                   confirmDeleteLibrary.open();
                                                               }
     property bool syncRunning: library && library.synchronizing
+    property Menu pageMenu: Menu {
+        x: page.width
+
+        MenuItem {
+            text: qsTr("Edit Sync Settings")
+            onClicked: {
+                var sync = page.library.createSynchronizer();
+                if (sync !== null) {
+                    var key = sync.secretsKey;
+                    if (key !== "") {
+                        sync.secret = App.secretForSynchronizer(sync);
+                    }
+                    var url = Qt.resolvedUrl(sync.type + "SettingsPage.qml");
+                    page.openPage(url, {"synchronizer": sync});
+                }
+            }
+        }
+
+        MenuItem {
+            text: qsTr("Sync Now")
+            onClicked: {
+                console.debug("Manually started syncing " + page.library.name);
+                App.syncLibrary(library);
+            }
+        }
+    }
 
     clip: true
 
-
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteLibrary
         title: qsTr("Delete Library?")
         Text {
@@ -56,15 +77,15 @@ Page {
                        "application? Note that the files inside the library will not be removed, so " +
                        "you can restore the library later on.").arg(library.name)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: 300
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
             library.deleteLibrary();
-            stack.pop();
         }
     }
 
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteItem
         title: qsTr("Delete Item?")
         Text {
@@ -72,6 +93,7 @@ Page {
                        "This action cannot be undone!").arg(
                       itemContextMenu.item ? itemContextMenu.item.title : "")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: 300
         }
         standardButtons:Dialog.Ok |Dialog.Cancel
         onAccepted: itemContextMenu.item.deleteItem()

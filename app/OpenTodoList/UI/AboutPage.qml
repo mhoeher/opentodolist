@@ -1,82 +1,81 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.2
 
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-Item {
+Page {
+    id: page
 
-    property StackView stack: null
+    signal openPage(var component, var properties)
 
-    signal closed()
+    Component {
+        id: thirdPartyPage
 
-    function cancel() {
-        closed();
+        AboutThirdPartyPage {}
     }
 
-    ColumnLayout {
-        anchors {
-            fill: parent
-            margins: Globals.defaultMargin
-        }
+    ScrollView {
+        id: scrollView
 
-        Text {
-            text: qsTr("OpenTodoList")
-            font {
-                pixelSize: Globals.fontPixelSize * 2
-                bold: true
+        anchors.fill: parent
+
+        Column {
+            width: page.width - 2 * padding
+            spacing: Globals.defaultMargin
+            padding: Globals.defaultMargin
+
+            Text {
+                text: qsTr("OpenTodoList")
+                font {
+                    pixelSize: Globals.fontPixelSize * 2
+                    bold: true
+                }
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
             }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.fillWidth: true
-        }
 
-        Text {
-            text: qsTr("A todo and task managing application.")
-            font.bold: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.fillWidth: true
-        }
+            Text {
+                text: qsTr("A todo and task managing application.")
+                font.bold: true
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+            }
 
-        Text {
-            text: qsTr("(c) RPdev 2013-2016, version %1").arg(applicationVersion)
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.fillWidth: true
-        }
+            Text {
+                text: qsTr("(c) RPdev 2013-2016, version %1").arg(applicationVersion)
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+            }
 
-        Text {
-            text: "<a href='%1'>%1</a>".arg("https://www.rpdev.net/wordpress/apps/opentodolist/")
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.fillWidth: true
-            onLinkActivated: Qt.openUrlExternally(link)
-        }
+            Text {
+                text: "<a href='%1'>%1</a>".arg("https://www.rpdev.net/wordpress/apps/opentodolist/")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
 
-        Text {
-            text: qsTr("OpenTodoList is released under the terms of the GNU General Public " +
-                       "License version 3 or (at your choice) any later version. You can find a " +
-                       "copy of the license below. Additionally, several libraries and resources " +
-                       "are used. For detailed information about their license terms, please " +
-                       "refer to the <a href='3rdparty'>3rd Party Software</a> page.")
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Layout.fillWidth: true
-            onLinkActivated: {
-                if (link == "3rdparty") {
-                    stack.push(thirdPartyPage)
+            Text {
+                text: qsTr("OpenTodoList is released under the terms of the GNU General Public " +
+                           "License version 3 or (at your choice) any later version. You can find a " +
+                           "copy of the license below. Additionally, several libraries and resources " +
+                           "are used. For detailed information about their license terms, please " +
+                           "refer to the <a href='3rdparty'>3rd Party Software</a> page.")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+                onLinkActivated: {
+                    if (link == "3rdparty") {
+                        page.openPage(thirdPartyPage, {});
+                    }
                 }
             }
-        }
 
-        TextArea {
-            readOnly: true
-            text: App.readFile(":/res/COPYING")
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
-
-        Component {
-            id: thirdPartyPage
-
-            AboutThirdPartyPage {}
+            Text {
+                text: App.readFile(":/res/COPYING")
+                width: parent.width
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
         }
     }
 }

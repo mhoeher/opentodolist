@@ -5,22 +5,20 @@ import QtQuick.Controls 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-Item {
+Page {
     id: page
 
     property ImageTopLevelItem item: ImageTopLevelItem {}
-    property StackView stack: null
     property var library: null
 
-
-    function cancel() {
-    }
+    signal openPage(var component, var properties)
+    signal closePage()
 
     function deleteItem() {
         confirmDeleteDialog.open();
     }
 
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteDialog
 
         title: qsTr("Delete Image?")
@@ -33,9 +31,11 @@ Item {
         }
 
         standardButtons: Dialog.Ok | Dialog.Cancel
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
         onAccepted: {
             item.deleteItem();
-            stack.pop();
+            page.closePage();
         }
     }
 
@@ -102,11 +102,7 @@ Item {
                 title: qsTr("Notes")
                 text: item.notes
                 backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
-                onClicked: {
-                    var page = stack.push(notesEditor, { text: item.notes });
-                    page.onTextChanged.connect(function() { item.notes = page.text; });
-                    item.onReloaded.connect(function() { page.text = item.notes; });
-                }
+                onClicked: page.openPage(notesEditor, {item: page.item})
             }
 
             TagsEditor {
@@ -130,10 +126,7 @@ Item {
 
             Component {
                 id: notesEditor
-
-                RichTextEditor {
-                    Component.onCompleted: forceActiveFocus()
-                }
+                RichTextEditor {}
             }
         }
     }

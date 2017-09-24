@@ -41,6 +41,8 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
         setFindingLibraries(false);
         setExistingLibraries(m_findExistingEntriesWatcher.result());
     });
+    connect(this, &WebDAVSynchronizer::passwordChanged,
+            this, &WebDAVSynchronizer::secretChanged);
 }
 
 WebDAVSynchronizer::~WebDAVSynchronizer()
@@ -120,13 +122,13 @@ void WebDAVSynchronizer::synchronize()
             dav->setRemoteDirectory(remoteDirectory());
         }
 
-        QSet<QString> changedYearDirs;
-        dav->syncDirectory("/",
-                           QRegularExpression("\\d\\d\\d\\d"),
-                           false,
-                           &changedYearDirs);
-        // Sync the year directory:
         if (dirsOkay) {
+            QSet<QString> changedYearDirs;
+            dav->syncDirectory("/",
+                               QRegularExpression("\\d\\d\\d\\d"),
+                               false,
+                               &changedYearDirs);
+            // Sync the year directory:
             QDir dir(directory());
             for (auto yearDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
                 QSet<QString> changedMonthDirs;

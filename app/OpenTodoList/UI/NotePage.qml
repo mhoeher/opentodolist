@@ -9,7 +9,9 @@ Item {
     
     property Note item: Note {}
     property var library: null
-    property StackView stack: null
+
+    signal closePage()
+    signal openPage(var component, var properties)
 
     
     function cancel() {
@@ -19,7 +21,7 @@ Item {
         confirmDeleteDialog.open();
     }
     
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Note?")
 
@@ -33,7 +35,7 @@ Item {
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
             item.deleteItem();
-            stack.pop();
+            page.closePage();
         }
     }
     
@@ -88,10 +90,7 @@ Item {
                 text: item.notes
                 backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
                 onClicked: {
-                    var page = stack.push(notesEditor, { text: item.notes });
-                    page.onTextChanged.connect(function() { item.notes = page.text; });
-                    item.onReloaded.connect(function() { page.text = item.notes; });
-                    
+                    page.openPage(notesEditor, {"item": item});
                 }
             }
             
@@ -99,7 +98,7 @@ Item {
                 id: notesEditor
                 
                 RichTextEditor {
-                    Component.onCompleted: forceActiveFocus()
+                    id: editor
                 }
             }
             

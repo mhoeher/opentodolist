@@ -44,7 +44,6 @@
         <file>3rdpartyinfo/qt/3rdpartyinfo.json</file>
         <file>OpenTodoList/UI/ImageItem.qml</file>
         <file>OpenTodoList/UI/ImagePage.qml</file>
-        <file>OpenTodoList/UI/FileSelectorPage.qml</file>
         <file>OpenTodoList/UI/FontAwesome.qml</file>
         <file>OpenTodoList/UI/TagsEditor.qml</file>
         <file>OpenTodoList/UI/RenameItemDialog.qml</file>
@@ -65,5 +64,7 @@
         <file>OpenTodoList/UI/sync_backends/owncloud.png</file>
         <file>OpenTodoList/UI/sync_backends/cloud.png</file>
         <file>OpenTodoList/UI/sync_backends/disk.png</file>
+        <file>OpenTodoList/UI/WebDAVSynchronizerSettingsPage.qml</file>
+        <file>OpenTodoList/UI/CenteredDialog.qml</file>
     </qresource>
 </RCC>

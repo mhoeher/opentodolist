@@ -299,6 +299,15 @@ void Synchronizer::restore()
 
 
 /**
+ * @brief Get the type name (aka the class name) of the synchronizer.
+ */
+QString Synchronizer::type() const
+{
+    return metaObject()->className();
+}
+
+
+/**
  * @brief Get the synchronizer for the given @p directory.
  */
 Synchronizer* Synchronizer::fromDirectory(const QString& directory,

@@ -21,7 +21,7 @@ Item {
 
     height: listView.contentHeight
 
-    Dialog {
+    CenteredDialog {
         id: confirmDeleteTaskDialog
 
         property Task task
@@ -29,8 +29,8 @@ Item {
         title: qsTr("Delete Task?")
 
         Text {
-            text: task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
-                              "This cannot be undone.").arg(task.title) : ""
+            text: confirmDeleteTaskDialog.task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
+                              "This cannot be undone.").arg(confirmDeleteTaskDialog.task.title) : ""
             width: 300
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }

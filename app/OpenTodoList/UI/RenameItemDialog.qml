@@ -4,7 +4,7 @@ import QtQuick.Controls 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
-Dialog {
+CenteredDialog {
     id: dialog
     
     property BasicItem __item
@@ -34,6 +34,6 @@ Dialog {
     TextField {
         id: edit
         placeholderText: qsTr("Enter item title...")
-        width: parent ? parent.width : implicitWidth
+        width: parent ? parent.width : 300
     }
 }
