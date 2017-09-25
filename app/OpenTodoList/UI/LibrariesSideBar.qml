@@ -161,7 +161,7 @@ Item {
                     }
                     Label {
                         id: addLocalLibraryLabel
-                        text: qsTr("Add Local Library")
+                        text: qsTr("Add Library")
                         color: Colors.panelText
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         anchors {

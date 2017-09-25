@@ -292,6 +292,11 @@ ApplicationWindow {
     }
 
     Shortcut {
+        sequence: StandardKey.Quit
+        onActivated: Qt.quit()
+    }
+
+    Shortcut {
         sequence: StandardKey.Find
         onActivated: searchToolButton.clicked(null)
     }
