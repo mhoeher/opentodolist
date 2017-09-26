@@ -182,7 +182,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
     }
     auto path = parameters.value("path").toString();
     if (synchronizerCls.isEmpty() || path.isEmpty()) {
-        if (!isLibraryDir(localPath)) {
+        if (!isLibraryDir(localPath) || localPath == librariesLocation()) {
             localPath += "/" + uid.toString();
         }
     }
