@@ -188,7 +188,7 @@ win32_build:
     - apt-get install -y wget python3
     - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
     - chmod +x xwindeployqt
-    - xwindeployqt --toolchain-root /opt/mxe-i686-shared/ --toolchain-arch i686-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
+    - ./xwindeployqt --toolchain-root /opt/mxe-i686-shared/ --toolchain-arch i686-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
   only:
     - branches
   artifacts:
@@ -216,7 +216,7 @@ win64_build:
     - apt-get install -y wget python3
     - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
     - chmod +x xwindeployqt
-    - xwindeployqt --toolchain-root /opt/mxe-x64-shared/ --toolchain-arch x86_64-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
+    - ./xwindeployqt --toolchain-root /opt/mxe-x64-shared/ --toolchain-arch x86_64-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
   only:
     - branches
   artifacts:
