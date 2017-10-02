@@ -3,6 +3,7 @@ variables:
     FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
+    MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win32
     MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     NEXTCLOUD_IMAGE: nextcloud
@@ -93,20 +94,6 @@ build_image_win64:
   when: manual
 
 
-# Build the Win64 MXE Image
-build_image_mxe_win64:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/mxe-win64
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $MXE_WIN64_IMAGE .
-    - docker push $MXE_WIN64_IMAGE
-  when: manual
-
-
 ################################################################################
 # Build Stage
 ################################################################################
@@ -186,36 +173,54 @@ ubuntu_appimage:
 # Windows 32bit build
 win32_build:
   stage: build
-  image: $WIN32_IMAGE
+  image: $MXE_WIN32_IMAGE
   script:
-    - mkdir build
-    - cd build
-    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
-    - export PATH=/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/:$PATH
+    - mkdir build-win32
+    - cd build-win32
+    - export PATH=/opt/mxe-i686-shared/usr/bin:$PATH
+    - export PATH=/opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
     - qmake CONFIG+=release ..
     - make -j4
+    - cd ..
+    - mkdir -p deploy-win32/OpenTodoList
+    - cp build-win32/app/release/OpenTodoList.exe deploy-win32/OpenTodoList/
+    - apt-get update
+    - apt-get install -y wget python3
+    - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
+    - chmod +x xwindeployqt
+    - xwindeployqt --toolchain-root /opt/mxe-i686-shared/ --toolchain-arch i686-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
   only:
     - branches
   artifacts:
     paths:
-      - build
+      - build-win32
+      - deploy-win32
     expire_in: 1 week
 
 
 # Windows 64bit build
 win64_build:
   stage: build
-  image: $WIN64_IMAGE
+  image: $MXE_WIN64_IMAGE
   script:
-    - mkdir build
-    - cd build
-    - export PATH=/usr/lib/mxe/usr/bin/:$PATH
-    - export PATH=/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/:$PATH
+    - mkdir build-win64
+    - cd build-win64
+    - export PATH=/opt/mxe-x64-shared/usr/bin:$PATH
+    - export PATH=/opt/mxe-x64-shared/usr/x86_64-w64-mingw32.shared/qt5/bin:$PATH
     - qmake CONFIG+=release ..
     - make -j4
+    - cd ..
+    - mkdir -p deploy-win64/OpenTodoList
+    - cp build-win64/app/release/OpenTodoList.exe deploy-win64/OpenTodoList/
+    - apt-get update
+    - apt-get install -y wget python3
+    - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
+    - chmod +x xwindeployqt
+    - xwindeployqt --toolchain-root /opt/mxe-x64-shared/ --toolchain-arch x86_64-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
   only:
     - branches
   artifacts:
     paths:
-      - build
+      - build-win64
+      - deploy-win64
     expire_in: 1 week
