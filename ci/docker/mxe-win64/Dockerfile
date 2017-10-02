@@ -8,7 +8,7 @@ RUN apt-get update && \
         openssl p7zip-full patch perl pkg-config python ruby scons \
         sed unzip wget xz-utils python3 && \
     cd /opt && \
-    git clone git clone https://github.com/mxe/mxe.git && \
+    git clone https://github.com/mxe/mxe.git && \
     cd mxe && \
     make MXE_TARGETS='x86_64-w64-mingw32.shared' \
         JOBS=16 \
