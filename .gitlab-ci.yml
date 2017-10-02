@@ -3,6 +3,7 @@ variables:
     FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
+    MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     NEXTCLOUD_IMAGE: nextcloud
 
@@ -89,6 +90,20 @@ build_image_win64:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --pull -t $WIN64_IMAGE .
     - docker push $WIN64_IMAGE
+  when: manual
+
+
+# Build the Win64 MXE Image
+build_image_mxe_win64:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/mxe-win64
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $MXE_WIN64_IMAGE .
+    - docker push $MXE_WIN64_IMAGE
   when: manual
 
 

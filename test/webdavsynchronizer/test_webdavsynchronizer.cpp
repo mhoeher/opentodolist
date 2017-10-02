@@ -497,7 +497,7 @@ void WebDAVSynchronizerTest::findExistingEntries()
     davClient->setRemoteDirectory(dirName);
     QSignalSpy spy(davClient, &WebDAVSynchronizer::existingLibrariesChanged);
     davClient->findExistingLibraries();
-    QVERIFY(spy.wait());
+    spy.wait();
     auto existingLibs = davClient->existingLibraries();
     QCOMPARE(existingLibs.length(), 2);
     SynchronizerExistingLibrary lib1 =
@@ -513,9 +513,9 @@ void WebDAVSynchronizerTest::findExistingEntries()
     for (auto lib : existingLibs) {
         auto l = lib.value<SynchronizerExistingLibrary>();
         if (l.name() == "foo") {
-            QVERIFY(l.path() == "lib1.otl");
+            QVERIFY(l.path() == "/lib1.otl");
         } else {
-            QVERIFY(l.path() == "OpenTodoList/lib2.otl");
+            QVERIFY(l.path() == "/OpenTodoList/lib2.otl");
         }
     }
 }
