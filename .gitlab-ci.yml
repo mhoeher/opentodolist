@@ -179,6 +179,8 @@ win32_build:
     - cd build-win32
     - export PATH=/opt/mxe-i686-shared/usr/bin:$PATH
     - export PATH=/opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
+    - echo -e "[Paths]\nPrefix = .." > /opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin/qt.conf
+    - (cd /opt && ln -s mxe-i686-shared mxe-i686)
     - qmake CONFIG+=release ..
     - make -j4
     - cd ..
