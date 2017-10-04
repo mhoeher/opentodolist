@@ -35,6 +35,7 @@ private slots:
     void testTags();
     void testLoad();
     void testDeleteLibrary();
+    void testFromJson();
     void cleanup();
 
 private:
@@ -249,6 +250,18 @@ void LibraryTest::testDeleteLibrary()
     }
     dir.refresh();
     QVERIFY(!dir.exists());
+}
+
+void LibraryTest::testFromJson()
+{
+    Library lib;
+    lib.fromJson("{"
+                 "\"name\": \"foo\","
+                 "\"uid\": \"{6ca12b27-fc18-4257-9460-ef8dfed622bb}\""
+                 "}"
+                );
+    QCOMPARE(lib.uid(), QUuid("{6ca12b27-fc18-4257-9460-ef8dfed622bb}"));
+    QCOMPARE(lib.name(), QString("foo"));
 }
 
 void LibraryTest::cleanup()

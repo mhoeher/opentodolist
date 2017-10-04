@@ -38,8 +38,8 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
 {
     connect(&m_findExistingEntriesWatcher,
             &QFutureWatcher<QVariantList>::finished, [=]() {
-        setFindingLibraries(false);
         setExistingLibraries(m_findExistingEntriesWatcher.result());
+        setFindingLibraries(false);
     });
     connect(this, &WebDAVSynchronizer::passwordChanged,
             this, &WebDAVSynchronizer::secretChanged);
@@ -198,13 +198,19 @@ void WebDAVSynchronizer::findExistingLibraries()
             if (client.download(dir + "/" + Library::LibraryFileName,
                                 &buffer)) {
                 if (!json.isEmpty()) {
-                    Library lib;
-                    lib.fromJson(json);
-                    SynchronizerExistingLibrary library;
-                    library.setName(lib.name());
-                    library.setPath(dir);
-                    library.setUid(lib.uid());
-                    result << QVariant::fromValue(library);
+                    auto doc = QJsonDocument::fromJson(json);
+                    if (doc.isObject()) {
+                        auto map = doc.toVariant().toMap();
+                        SynchronizerExistingLibrary library;
+                        library.setName(map.value("name").toString());
+                        auto path = dir;
+                        if (!path.startsWith("/")) {
+                            path.prepend("/");
+                        }
+                        library.setPath(path);
+                        library.setUid(map.value("uid").toUuid());
+                        result << QVariant::fromValue(library);
+                    }
                 }
             }
         }
