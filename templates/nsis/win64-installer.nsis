@@ -1,0 +1,71 @@
+#!Nsis Installer Command Script
+#
+# This is an NSIS Installer Command Script generated automatically
+# by the Fedora nsiswrapper program.  For more information see:
+#
+#   http://fedoraproject.org/wiki/MinGW
+#
+# To build an installer from the script you would normally do:
+#
+#   makensis this_script
+#
+# which will generate the output file 'OpenTodoList-Windows-64bit.exe' which is a Windows
+# installer containing your program.
+
+!define PROGRAM_NAME "OpenTodoList for Windows 64bit"
+!define PROJECT_REG_UNINSTALL_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PROGRAM_NAME}"
+!define PROJECT_UNINSTALL_EXE "Uninstall OpenTodoList.exe"
+
+Name "${PROGRAM_NAME}"
+OutFile "OpenTodoList-Windows-64bit.exe"
+InstallDir "$PROGRAMFILES64\OpenTodoList"
+InstallDirRegKey HKLM SOFTWARE\OpenTodoList "Install_Dir"
+
+ShowInstDetails hide
+ShowUninstDetails hide
+
+# Uncomment this to enable BZip2 compression, which results in
+# slightly smaller files but uses more memory at install time.
+#SetCompressor bzip2
+
+XPStyle on
+
+Page components
+Page directory
+Page instfiles
+
+ComponentText "Select which optional components you want to install."
+
+DirText "Please select the installation folder."
+
+Section "OpenTodoList"
+  SectionIn RO
+
+  SetOutPath "$INSTDIR\."
+  File /r "bin"
+SectionEnd
+
+Section "Start Menu Shortcuts"
+  CreateDirectory "$SMPROGRAMS\OpenTodoList"
+  CreateShortCut "$SMPROGRAMS\OpenTodoList\Uninstall OpenTodoList.lnk" "$INSTDIR\${PROJECT_UNINSTALL_EXE}" "" "$INSTDIR\${PROJECT_UNINSTALL_EXE}" 0
+  CreateShortCut "$SMPROGRAMS\OpenTodoList\OpenTodoList.lnk" "$INSTDIR\bin\OpenTodoList.exe" "" "$INSTDIR\bin\OpenTodoList.exe" 0
+SectionEnd
+
+Section "Desktop Icons"
+SectionEnd
+
+Section "Uninstall"
+  Delete /rebootok "$SMPROGRAMS\OpenTodoList\OpenTodoList.lnk"
+  Delete /rebootok "$SMPROGRAMS\OpenTodoList\Uninstall OpenTodoList.lnk"
+  RMDir "$SMPROGRAMS\OpenTodoList"
+
+  RMDir /r "$INSTDIR\.\"
+
+  RMDir "$INSTDIR"
+SectionEnd
+
+Section -post
+  WriteUninstaller "$INSTDIR\${PROJECT_UNINSTALL_EXE}"
+  WriteRegStr HKLM "${PROJECT_REG_UNINSTALL_KEY}" "UninstallString" '"$INSTDIR\${PROJECT_UNINSTALL_EXE}" _?=$INSTDIR'
+  WriteRegStr HKLM "${PROJECT_REG_UNINSTALL_KEY}" "QuietUninstallString" '"$INSTDIR\${PROJECT_UNINSTALL_EXE}" /S _?=$INSTDIR'
+SectionEnd

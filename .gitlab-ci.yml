@@ -12,6 +12,7 @@ stages:
   - images
   - build
   - test
+  - installer
   - deploy
 
 before_script:
@@ -113,8 +114,6 @@ linux_builtin:
     - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
-  only:
-    - branches
   artifacts:
     paths:
       - build
@@ -136,8 +135,6 @@ linux_system:
     - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
-  only:
-    - branches
   artifacts:
     paths:
       - build
@@ -162,8 +159,6 @@ ubuntu_appimage:
     - make -j4
     - make check
     - make OpenTodoList-x86_64.AppImage
-  only:
-    - branches
   artifacts:
     paths:
       - build
@@ -184,15 +179,13 @@ win32_build:
     - qmake CONFIG+=release ..
     - make -j4
     - cd ..
-    - mkdir -p deploy-win32/OpenTodoList
-    - cp build-win32/app/release/OpenTodoList.exe deploy-win32/OpenTodoList/
+    - mkdir -p deploy-win32/bin
+    - cp build-win32/app/release/OpenTodoList.exe deploy-win32/bin/
     - apt-get update
     - apt-get install -y wget python3
     - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
     - chmod +x xwindeployqt
-    - ./xwindeployqt --toolchain-root /opt/mxe-i686-shared/ --toolchain-arch i686-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/OpenTodoList/
-  only:
-    - branches
+    - ./xwindeployqt --toolchain-root /opt/mxe-i686-shared/ --toolchain-arch i686-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/bin/
   artifacts:
     paths:
       - build-win32
@@ -212,17 +205,51 @@ win64_build:
     - qmake CONFIG+=release ..
     - make -j4
     - cd ..
-    - mkdir -p deploy-win64/OpenTodoList
-    - cp build-win64/app/release/OpenTodoList.exe deploy-win64/OpenTodoList/
+    - mkdir -p deploy-win64/bin
+    - cp build-win64/app/release/OpenTodoList.exe deploy-win64/bin/
     - apt-get update
     - apt-get install -y wget python3
     - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
     - chmod +x xwindeployqt
-    - ./xwindeployqt --toolchain-root /opt/mxe-x64-shared/ --toolchain-arch x86_64-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win64/OpenTodoList/
-  only:
-    - branches
+    - ./xwindeployqt --toolchain-root /opt/mxe-x64-shared/ --toolchain-arch x86_64-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win64/bin/
   artifacts:
     paths:
       - build-win64
       - deploy-win64
     expire_in: 1 week
+
+
+################################################################################
+# Installer Stage
+################################################################################
+
+win32_installer:
+    stage: installer
+    image: fedora
+    dependencies:
+        - win32_build
+    script:
+        - yum install -y mingw32-nsis
+        - cp templates/nsis/win32-installer.nsis deploy-win32/
+        - cd deploy-win32
+        - makensis win32-installer.nsis
+    artifacts:
+        paths:
+            - deploy-win32/*.exe
+        expire_in: 1 week
+
+
+win64_installer:
+    stage: installer
+    image: fedora
+    dependencies:
+        - win64_build
+    script:
+        - yum install -y mingw32-nsis
+        - cp templates/nsis/win64-installer.nsis deploy-win64/
+        - cd deploy-win64
+        - makensis win64-installer.nsis
+    artifacts:
+        paths:
+            - deploy-win64/*.exe
+        expire_in: 1 week
