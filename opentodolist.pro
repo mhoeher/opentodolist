@@ -64,5 +64,15 @@ message("    Binary Install Prefix:  $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN")
 message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
 message("    QtKeychain:             $$QT_KEYCHAIN_MODE")
 message("    Libsecret:              $$LIBSECRET_MODE")
+with_update_service {
+    message("    Update Service:         ENABLED")
+} else {
+    message("    Update Service:         DISABLED")
+}
+with_nextcloud_tests {
+    message("    WebDAV NextCloud Tests: ENABLED")
+} else {
+    message("    WebDAV NextCloud Tests: DISABLED")
+}
 
 include(appimage.pri)

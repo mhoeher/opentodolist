@@ -39,7 +39,6 @@ Application::Application(QObject *parent) :
                              QCoreApplication::organizationName(),
                              QCoreApplication::applicationName(), this)),
     m_loadingLibraries(false),
-    m_updatesAvailable(false),
     m_keyStore(new KeyStore(this)),
     m_secrets()
 {
@@ -56,8 +55,7 @@ Application::Application(QSettings *settings, QObject *parent) :
     QObject(parent),
     m_defaultLibrary(nullptr),
     m_settings(settings),
-    m_loadingLibraries(false),
-    m_updatesAvailable(false)
+    m_loadingLibraries(false)
 {
     Q_CHECK_PTR(m_settings);
     initialize();
@@ -69,13 +67,6 @@ Application::Application(QSettings *settings, QObject *parent) :
 void Application::initialize()
 {
     loadLibraries();
-
-    checkForUpdates(); // Check for updates when we start....
-    QTimer *timer = new QTimer(this);
-    timer->setInterval(1000*60*60); // And every hour.
-    connect(timer, &QTimer::timeout, [this] {
-        checkForUpdates();
-    });
 
     connect(m_keyStore, &KeyStore::credentialsLoaded,
             [=](const QString& key, const QString& value, bool success) {
@@ -361,78 +352,6 @@ Library *Application::defaultLibrary()
     return m_defaultLibrary;
 }
 
-/**
- * @brief Are updates available?
- *
- * This returns true if updates of the app are available or false otherwise.
- * Note that this functionality might not be present on all platforms, as e.g. on mobile
- * ones app updates are usually done via app store installations.
- */
-bool Application::updatesAvailable() const
-{
-    return m_updatesAvailable;
-}
-
-/**
- * @brief Sets the updates available status.
- */
-void Application::setUpdatesAvailable(bool updatesAvailable)
-{
-    if (m_updatesAvailable != updatesAvailable) {
-        m_updatesAvailable = updatesAvailable;
-        emit updatesAvailableChanged();
-    }
-}
-
-/**
- * @brief Check if updates are available
- *
- * This method checks if updates are available. If forceCheck is true, then
- * this will poll the upstream server on whether a newer version of the app is available. Otherwise,
- * the last update status from the config file is used unless it is too old.
- */
-void Application::checkForUpdates(bool forceCheck)
-{
-    if (forceCheck) {
-        runUpdateCheck();
-    } else {
-        runCachedUpdateCheck();
-    }
-}
-
-/**
- * @brief Run the application updater.
- */
-void Application::runUpdate()
-{
-    resetUpdateCheck();
-#if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
-    QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
-            "/../OpenTodoListMaintenanceTool";
-#ifdef Q_OS_WIN
-    maintenanceToolExe += ".exe";
-#endif
-    if (QFile::exists(maintenanceToolExe)) {
-        QProcess::startDetached(maintenanceToolExe, {"--updater"});
-    }
-#endif
-}
-
-/**
- * @brief Check if an updater service is available.
- */
-bool Application::hasUpdateService() const
-{
-#if defined(Q_OS_LINUX)
-    return QFile::exists(QCoreApplication::applicationDirPath() +
-                         "/../OpenTodoListMaintenanceTool");
-#elif defined(Q_OS_WIN)
-    return QFile::exists(QCoreApplication::applicationDirPath() +
-                         "/../OpenTodoListMaintenanceTool.exe");
-#else
-    return false;
-#endif
-}
 
 /**
  * @brief Returns the home location of the current user.
@@ -649,60 +568,6 @@ void Application::runMigrations()
     m_settings->endGroup();
 }
 
-void Application::runUpdateCheck()
-{
-#if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
-    QString maintenanceToolExe = QCoreApplication::applicationDirPath() +
-            "/../OpenTodoListMaintenanceTool";
-#ifdef Q_OS_WIN
-    maintenanceToolExe += ".exe";
-#endif
-    if (QFile::exists(maintenanceToolExe)) {
-        QProcess *maintenanceTool = new QProcess(this);
-        Q_CHECK_PTR(maintenanceTool);
-        maintenanceTool->setProgram(maintenanceToolExe);
-        maintenanceTool->setArguments({"--checkupdates"});
-        connect(maintenanceTool, &QProcess::stateChanged,
-                [this, maintenanceTool](QProcess::ProcessState newState) {
-            if (newState == QProcess::NotRunning) {
-                saveUpdatesAvailable(maintenanceTool->exitCode() == 0);
-                maintenanceTool->deleteLater();
-            }
-        });
-        maintenanceTool->start();
-    }
-#endif
-}
-
-void Application::resetUpdateCheck()
-{
-    m_settings->beginGroup("Updates");
-    m_settings->setValue("updatesAvailable", false);
-    setUpdatesAvailable(false);
-    m_settings->endGroup();
-}
-
-void Application::runCachedUpdateCheck()
-{
-    m_settings->beginGroup("Updates");
-    QDateTime lastCheck = m_settings->value("lastCheck").toDateTime();
-    bool hasUpdates = m_settings->value("updatesAvailable", false).toBool();
-    m_settings->endGroup();
-
-    setUpdatesAvailable(hasUpdates);
-    if (!lastCheck.isValid() || lastCheck.daysTo(QDateTime::currentDateTime()) > 1) {
-        runUpdateCheck();
-    }
-}
-
-void Application::saveUpdatesAvailable(bool available)
-{
-    m_settings->beginGroup("Updates");
-    m_settings->setValue("lastCheck", QDateTime::currentDateTime());
-    m_settings->setValue("updatesAvailable", available);
-    m_settings->endGroup();
-    setUpdatesAvailable(available);
-}
 
 void Application::appendLibrary(Library* library)
 {
