@@ -18,6 +18,8 @@
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
 
+#include "utils/updateservice.h"
+
 #include <QtQml>
 
 OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent) :
@@ -55,6 +57,8 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterUncreatableType<QAbstractItemModel>(
               uri, 1, 0, "AbstractItemModel",
               "Use sub-classes of abstract item model instead");
+
+  qmlRegisterType<UpdateService>(uri, 1, 0, "UpdateService");
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

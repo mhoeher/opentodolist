@@ -487,52 +487,7 @@ ApplicationWindow {
             enabled: stackView.busy
         }
 
-        Rectangle {
-            id: updateNotificationBar
-
-            property bool shown: App.updatesAvailable && App.hasUpdateService
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: updateNotificationBarLayout.height + Globals.defaultMargin
-            color: Colors.makeTransparent(Colors.primary, 0.3)
-            y: shown ? parent.height - height : parent.height
-
-            RowLayout {
-                id: updateNotificationBarLayout
-                anchors {
-                    verticalCenter: parent.verticalCenter
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin
-                }
-
-                Label {
-                    text: qsTr( "A new version of OpenTodoList is available.")
-                    Layout.fillWidth: true
-                    wrapMode: Text.WrapAnywhere
-                }
-                Button {
-                    text: qsTr("Later")
-                    onClicked: updateNotificationBar.shown = false
-                }
-                Button {
-                    text: qsTr("Update Now")
-                    onClicked: {
-                        App.runUpdate();
-                        updateNotificationBar.shown = false;
-                    }
-                }
-            }
-
-            Connections {
-                target: App
-                onUpdatesAvailableChanged:
-                    updateNotificationBar.shown = App.updatesAvailable && App.hasUpdateService
-            }
-        }
+        UpdateNotificationBar {}
 
         Component {
             id: libraryPage

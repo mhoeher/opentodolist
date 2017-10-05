@@ -1,5 +1,13 @@
 # The application version
-OPENTODOLIST_VERSION=3.0.0
+system(git describe) {
+    OPENTODOLIST_VERSION = $$system(git describe)
+} else {
+    OPENTODOLIST_VERSION=0.0.0-unknown
+}
+
+with_update_service {
+    DEFINES += WITH_UPDATE_SERVICE
+}
 
 # Pass in values via defines
 DEFINES += VERSION=\\\"$$OPENTODOLIST_VERSION\\\"

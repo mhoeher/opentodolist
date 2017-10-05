@@ -29,8 +29,6 @@ class Application : public QObject
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
     Q_PROPERTY(Library* defaultLibrary READ defaultLibrary NOTIFY defaultLibraryChanged)
-    Q_PROPERTY(bool updatesAvailable READ updatesAvailable NOTIFY updatesAvailableChanged)
-    Q_PROPERTY(bool hasUpdateService READ hasUpdateService CONSTANT)
     Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
 
     friend class Migrator_2_x_to_3_x;
@@ -68,13 +66,7 @@ public:
 
     Library *defaultLibrary();
 
-    bool updatesAvailable() const;
-    void setUpdatesAvailable(bool updatesAvailable);
     QString librariesLocation() const;
-
-    Q_INVOKABLE void checkForUpdates(bool forceCheck = false);
-    Q_INVOKABLE void runUpdate();
-    bool hasUpdateService() const;
 
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
@@ -90,7 +82,6 @@ signals:
 
     void librariesChanged();
     void defaultLibraryChanged();
-    void updatesAvailableChanged();
 
 private:
 
@@ -98,7 +89,6 @@ private:
     Library                *m_defaultLibrary;
     QSettings              *m_settings;
     bool                    m_loadingLibraries;
-    bool                    m_updatesAvailable;
     KeyStore               *m_keyStore;
     QVariantMap             m_secrets;
 
@@ -110,11 +100,6 @@ private:
 
     QString defaultLibraryLocation() const;
     void runMigrations();
-
-    void runUpdateCheck();
-    void resetUpdateCheck();
-    void runCachedUpdateCheck();
-    void saveUpdatesAvailable(bool available);
 
     void appendLibrary(Library* library);
 

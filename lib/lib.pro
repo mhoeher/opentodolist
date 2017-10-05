@@ -35,7 +35,8 @@ SOURCES += \
     sync/webdavsynchronizer.cpp \
     sync/webdavclient.cpp \
     sync/syncrunner.cpp \
-    sync/syncjob.cpp
+    sync/syncjob.cpp \
+    utils/updateservice.cpp
 
 HEADERS += \
     application.h \
@@ -64,7 +65,8 @@ HEADERS += \
     sync/webdavsynchronizer.h \
     sync/webdavclient.h \
     sync/syncrunner.h \
-    sync/syncjob.h
+    sync/syncjob.h \
+    utils/updateservice.h
 
 config_qtkeychain {
     LIBS += -lqt5keychain

@@ -155,7 +155,7 @@ ubuntu_appimage:
     - mkdir build
     - cd build
     - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
-    - qmake CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
+    - qmake CONFIG+=with_update_service CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
     - make OpenTodoList-x86_64.AppImage
@@ -176,7 +176,7 @@ win32_build:
     - export PATH=/opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
     - echo -e "[Paths]\nPrefix = .." > /opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin/qt.conf
     - (cd /opt && ln -s mxe-i686-shared mxe-i686)
-    - qmake CONFIG+=release ..
+    - qmake CONFIG+=with_update_service CONFIG+=release ..
     - make -j4
     - cd ..
     - mkdir -p deploy-win32/bin
@@ -202,7 +202,7 @@ win64_build:
     - cd build-win64
     - export PATH=/opt/mxe-x64-shared/usr/bin:$PATH
     - export PATH=/opt/mxe-x64-shared/usr/x86_64-w64-mingw32.shared/qt5/bin:$PATH
-    - qmake CONFIG+=release ..
+    - qmake CONFIG+=with_update_service CONFIG+=release ..
     - make -j4
     - cd ..
     - mkdir -p deploy-win64/bin
