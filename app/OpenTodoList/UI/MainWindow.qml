@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.3
@@ -371,15 +371,10 @@ ApplicationWindow {
     }
 
     onClosing: {
-        if (Qt.os === "android") {
-            if (leftSideBar.compact && leftSideBar.visible) {
-                leftSideBar.visible = false;
+        if (Qt.platform.os === "android") {
+            if (stackView.depth > 1) {
+                stackView.pop();
                 close.accepted = false;
-                return;
-            } else if (stackView.depth > 1) {
-                Logic.cancelCurrent(stackView);
-                close.accepted = false;
-                console.error("Handled close request.");
                 return;
             }
         }

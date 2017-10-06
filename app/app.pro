@@ -41,3 +41,12 @@ OTHER_FILES += \
 
 target.path = $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN
 INSTALLS += target
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/gradlew \
+    android/android.iml \
+    android/build.gradle \
+    android/gradlew.bat \
+    android/gradle.properties \
+    android/local.properties

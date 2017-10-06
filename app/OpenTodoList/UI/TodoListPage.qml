@@ -159,7 +159,7 @@ Page {
             TodoListView {
                 id: todos
                 function openTodo(todo) {
-                    page.openPage(todoPage, {item: page.todo});
+                    page.openPage(todoPage, {todo: todo, library: page.library});
                 }
 
                 model: undoneTodosModel
@@ -192,7 +192,7 @@ Page {
             TodoListView {
                 id: doneTodos
                 function openTodo(todo) {
-                    page.openPage(todoPage, {item: todo});
+                    page.openPage(todoPage, {todo: todo, library: page.library});
                 }
 
                 visible: false

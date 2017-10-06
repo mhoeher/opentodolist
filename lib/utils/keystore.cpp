@@ -117,8 +117,11 @@ void KeyStore::saveCredentials(const QString& key, const QString &value)
         bool success = true;
         if (job->error() != QKeychain::NoError) {
             qCWarning(keyStore) << "Failed to save credentials for" << key
-                                << ":" << job->errorString();
-            success = false;
+                                << ":" << job->errorString()
+                                << "- using fallback";
+            m_settings->beginGroup("Fallback");
+            m_settings->setValue(key, value);
+            m_settings->endGroup();
         } else {
             qCDebug(keyStore) << "Successfully saved credentials for" << key;
         }
@@ -138,20 +141,34 @@ void KeyStore::loadCredentials(const QString& key)
     job->setAutoDelete(true);
     connect(job, &QKeychain::ReadPasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
+        QString secret = job->textData();
         if (job->error() != QKeychain::NoError) {
             qCWarning(keyStore) << "Failed to read credentials for" << key
-                                << ":" << job->errorString();
-            success = false;
+                                << ":" << job->errorString()
+                                << "- trying fallback";
+            m_settings->beginGroup("Fallback");
+            if (m_settings->contains(key)) {
+                secret = m_settings->value(key).toString();
+            } else {
+                success = false;
+            }
+            m_settings->endGroup();
         } else {
             qCDebug(keyStore) << "Successfully loaded credentials for" << key;
         }
-        emit credentialsLoaded(key, job->textData(), success);
+        emit credentialsLoaded(key, secret, success);
     });
     job->start();
 }
 
 void KeyStore::deleteCredentials(const QString& key)
 {
+    // Remove from fallback (in case we stored twice):
+    m_settings->beginGroup("Fallback");
+    m_settings->remove(key);
+    m_settings->endGroup();
+
+    // Try to remove from platform specific key store:
     auto job = new QKeychain::DeletePasswordJob(ServiceName);
     job->setKey(key);
     if (m_settings != nullptr) {
