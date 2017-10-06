@@ -12,10 +12,6 @@ Page {
 
     signal closePage()
 
-    implicitWidth: 200
-    implicitHeight: 200
-
-
     footer: RowLayout {
         Item {
             Layout.fillWidth: true
@@ -37,11 +33,13 @@ Page {
     }
 
     ScrollView {
+        id: scrollView
+
         width: parent.width
         height: parent.height
 
         Column {
-            width: parent.width
+            width: scrollView.width
 
             Text {
                 text: qsTr("User name")
@@ -51,6 +49,7 @@ Page {
                 id: username
                 width: parent.width
                 text: page.synchronizer.username
+                inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
             }
 
             Text {
@@ -62,6 +61,7 @@ Page {
                 width: parent.width
                 text: page.synchronizer.password
                 echoMode: TextInput.Password
+                inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
             }
         }
     }

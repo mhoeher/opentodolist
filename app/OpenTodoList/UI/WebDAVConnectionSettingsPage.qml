@@ -56,11 +56,10 @@ Page {
             width: scrollView.width
 
             Column {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin
-                }
+                width: scrollView.width - Globals.defaultMargin * 2
+                x: Globals.defaultMargin
+                y: Globals.defaultMargin
+
 
                 Item {
                     height: Globals.defaultMargin
@@ -74,6 +73,7 @@ Page {
                     id: url
                     placeholderText: qsTr("https://...")
                     width: parent.width
+                    inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
                 }
 
                 Item {
@@ -87,6 +87,7 @@ Page {
                 TextField {
                     id: username
                     width: parent.width
+                    inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                 }
 
                 Item {
@@ -101,6 +102,7 @@ Page {
                     id: password
                     echoMode: TextInput.Password
                     width: parent.width
+                    inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                 }
 
                 Item {

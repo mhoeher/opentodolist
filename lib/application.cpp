@@ -173,16 +173,17 @@ Library *Application::addLibrary(const QVariantMap &parameters)
     }
     auto path = parameters.value("path").toString();
     if (synchronizerCls.isEmpty() || path.isEmpty()) {
-        if (!isLibraryDir(localPath) || localPath == librariesLocation()) {
+        if (!isLibraryDir(QUrl::fromLocalFile(localPath)) || localPath == librariesLocation()) {
             localPath += "/" + uid.toString();
         }
     }
 
+    if (!isLibraryDir(QUrl::fromLocalFile(localPath)) || localPath == librariesLocation()) {
+        localPath += "/" + uid.toString();
+    }
+
     QDir(localPath).mkpath(".");
 
-    if (isLibraryDir(localPath)) {
-
-    }
     if (QDir(localPath).exists()) {
         result = new Library(localPath, this);
         result->setUid(uid);
@@ -211,8 +212,8 @@ Library *Application::addLibrary(const QVariantMap &parameters)
                 delete sync;
             }
         }
+        appendLibrary(result);
     }
-    appendLibrary(result);
     return result;
 }
 
