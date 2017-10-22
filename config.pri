@@ -2,7 +2,7 @@
 system(git describe) {
     OPENTODOLIST_VERSION = $$system(git describe)
 } else {
-    OPENTODOLIST_VERSION=0.0.0-unknown
+    OPENTODOLIST_VERSION=3.0.0-unknown
 }
 
 with_update_service {
