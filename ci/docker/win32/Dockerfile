@@ -9,7 +9,7 @@ RUN echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" > \
     apt-get install -y gnupg2 && \
     \
     apt-key adv --keyserver keyserver.ubuntu.com \
-        --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB \
+        --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB && \
     \
     apt-get update && \
     apt-get install -y \
