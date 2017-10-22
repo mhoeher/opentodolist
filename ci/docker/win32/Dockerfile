@@ -11,6 +11,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com \
 # Install required packages:
 RUN apt-get update
 RUN apt-get install -y \
+    git \
     mxe-i686-w64-mingw32.shared-qtbase \
     mxe-i686-w64-mingw32.shared-qtdeclarative \
     mxe-i686-w64-mingw32.shared-qtgraphicaleffects \
@@ -23,14 +24,3 @@ RUN apt-get install -y \
     mxe-i686-w64-mingw32.shared-qttranslations \
     mxe-i686-w64-mingw32.shared-qtwinextras \
     mxe-i686-w64-mingw32.shared-qtxmlpatterns
-
-
-# Add a custom Qt configuration, so qmake will link
-# against the shared version of the libraries:
-ADD qt.conf /usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin
-
-
-# Copy the qtmain library to the bin directory, so
-# the build process finds it:
-RUN cp /usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/lib/libqtmain.a \
-    /usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin

@@ -38,5 +38,6 @@ RUN \
         build-essential \
         libgl1-mesa-dev \
         libfuse2 \
-        desktop-file-utils && \
+        desktop-file-utils \
+        git && \
     apt-get clean
