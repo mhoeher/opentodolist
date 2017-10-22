@@ -47,6 +47,7 @@ win32 {
     SOURCES *= \
         $$QT5KEYCHAIN_PWD/keychain_win.cpp
     LIBS *= -lcrypt32
+    DEFINES *= USE_CREDENTIAL_STORE
 }
 
 mac {
