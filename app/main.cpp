@@ -109,6 +109,7 @@ private:
 
 int main(int argc, char *argv[])
 {
+    //qputenv("QT_QUICK_CONTROLS_STYLE", "material");
     //qSetMessagePattern("%{file}(%{line}): %{message}");
 #if OPENTODOLIST_DEBUG
     QLoggingCategory(0).setEnabled(QtDebugMsg, true);

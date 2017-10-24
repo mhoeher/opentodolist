@@ -68,5 +68,7 @@
         <file>OpenTodoList/UI/CenteredDialog.qml</file>
         <file>OpenTodoList/UI/OpenFileDialog.qml</file>
         <file>OpenTodoList/UI/UpdateNotificationBar.qml</file>
+        <file>+android/qtquickcontrols2.conf</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>
