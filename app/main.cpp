@@ -13,6 +13,7 @@
 #include <QLoggingCategory>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QScreen>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
 #include <QtSingleGuiApplication>
@@ -110,6 +111,12 @@ private:
 int main(int argc, char *argv[])
 {
     //qputenv("QT_QUICK_CONTROLS_STYLE", "material");
+
+    // Let the app decide which scale factor to apply
+#ifdef Q_OS_ANDROID
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+#endif
+
     //qSetMessagePattern("%{file}(%{line}): %{message}");
 #if OPENTODOLIST_DEBUG
     QLoggingCategory(0).setEnabled(QtDebugMsg, true);

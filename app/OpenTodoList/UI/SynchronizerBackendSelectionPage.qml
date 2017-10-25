@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 import OpenTodoList 1.0
@@ -74,8 +74,8 @@ Page {
         id: gridViewDelegate
 
         Item {
-            width: Globals.fontPixelSize * 30
-            height: Globals.fontPixelSize * 20
+            width: GridView.view.cellWidth
+            height: GridView.view.cellHeight
             clip: true
 
             Rectangle {
@@ -96,7 +96,14 @@ Page {
             }
 
             Image {
-                anchors.centerIn: parent
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    bottom: label.top
+                    margins: Globals.defaultMargin
+                }
+
                 source: {
                     if (image !== "") {
                         return Qt.resolvedUrl(image);
@@ -104,11 +111,11 @@ Page {
                         return "";
                     }
                 }
-                height: 150
                 fillMode: Image.PreserveAspectFit
             }
 
             Text {
+                id: label
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     bottom: parent.bottom
@@ -120,15 +127,19 @@ Page {
     }
 
     ScrollView {
+        id: scrollView
+
         anchors.fill: parent
 
         GridView {
             id: grid
-            anchors.fill: parent
+            x: Globals.defaultMargin
+            y: Globals.defaultMargin
+            width: scrollView.width - 2 * Globals.defaultMargin
             model: backends
             delegate: gridViewDelegate
-            cellHeight: 200 + Globals.defaultMargin
-            cellWidth: 400 + Globals.defaultMargin
+            cellHeight: Globals.fontPixelSize * 20
+            cellWidth: Globals.fontPixelSize * 30
         }
     }
 }

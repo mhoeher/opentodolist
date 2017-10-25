@@ -50,3 +50,9 @@ DISTFILES += \
     android/gradlew.bat \
     android/gradle.properties \
     android/local.properties
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    ANDROID_EXTRA_LIBS = \
+        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18/libcrypto.so \
+        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18/libssl.so
+}

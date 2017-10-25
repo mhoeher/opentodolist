@@ -114,6 +114,15 @@ Page {
                     text: qsTr("Ignore SSL Errors")
                     checked: false
                 }
+
+                Item {
+                    height: Globals.defaultMargin
+                    width: 1
+                }
+                BusyIndicator {
+                    visible: dav.validating
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
         }
     }
