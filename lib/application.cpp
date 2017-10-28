@@ -77,6 +77,7 @@ void Application::initialize()
                     QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
                     if (sync) {
                         if (sync->secretsKey() == key) {
+                            lib->setSecretsMissing(false);
                             qCDebug(application) << "Start-up sync of"
                                                  << lib << lib->name();
                             syncLibrary(lib);
@@ -172,14 +173,15 @@ Library *Application::addLibrary(const QVariantMap &parameters)
         uid = QUuid::createUuid();
     }
     auto path = parameters.value("path").toString();
-    if (synchronizerCls.isEmpty() || path.isEmpty()) {
-        if (!isLibraryDir(QUrl::fromLocalFile(localPath)) || localPath == librariesLocation()) {
-            localPath += "/" + uid.toString();
-        }
-    }
 
     if (!isLibraryDir(QUrl::fromLocalFile(localPath)) || localPath == librariesLocation()) {
-        localPath += "/" + uid.toString();
+        auto modLocalPath = localPath + "/" + uid.toString();
+        if (QDir(modLocalPath).exists()) {
+            // Do not re-use existing directory:
+            localPath += "/" + QUuid::createUuid().toString();
+        } else {
+            localPath = modLocalPath;
+        }
     }
 
     QDir(localPath).mkpath(".");
@@ -443,6 +445,12 @@ void Application::saveSynchronizerSecrets(Synchronizer *sync)
             auto secret = sync->secret();
             m_keyStore->saveCredentials(key, secret);
             m_secrets[key] = secret;
+            for (auto lib : m_libraries) {
+                QScopedPointer<Synchronizer> s(lib->createSynchronizer());
+                if (s && s->secretsKey() == key) {
+                    lib->setSecretsMissing(false);
+                }
+            }
         }
     }
 }
@@ -486,6 +494,7 @@ void Application::loadLibraries()
             auto key = sync->secretsKey();
             if (!key.isEmpty()) {
                 m_keyStore->loadCredentials(key);
+                library->setSecretsMissing(true);
             }
         }
     }

@@ -34,7 +34,8 @@ Library::Library(QObject* parent) : QObject(parent),
     m_tasks(this),
     m_directoryWatcher(new DirectoryWatcher(this)),
     m_loading(false),
-    m_synchronizing(false)
+    m_synchronizing(false),
+    m_secretsMissing(false)
 {
     auto timer = new QTimer(this);
     timer->setInterval(5000);
@@ -403,6 +404,25 @@ void Library::fromJson(const QByteArray data)
 
 
 /**
+ * @brief Indicates if the library has a synchronizer.
+ *
+ * This property indicates if the library has a synchronizer set up.
+ */
+bool Library::hasSynchronizer() const
+{
+    bool result = false;
+    if (isValid()) {
+        auto sync = createSynchronizer();
+        if (sync != nullptr) {
+            result = true;
+            delete sync;
+        }
+    }
+    return result;
+}
+
+
+/**
  * @brief Indicates if the library is currently synchronizing.
  *
  * This property indicates if the library currently is
@@ -448,6 +468,35 @@ Synchronizer *Library::createSynchronizer(QObject *parent) const
         return Synchronizer::fromDirectory(directory(), parent);
     } else {
         return nullptr;
+    }
+}
+
+
+/**
+ * @brief Indicates that secrets for the library are missing.
+ *
+ * This is a helper property which is used on the GUI domain only. It is
+ * set by the application to flag the library as having missing login
+ * credentials. This can happen if e.g. the user removed the credentials
+ * from the platform specific credential store or some other error occurred
+ * which causes the app from failing to re-read credentials.
+ *
+ * @sa setSecretsMissing
+ */
+bool Library::secretsMissing() const
+{
+    return m_secretsMissing;
+}
+
+
+/**
+ * @brief Flag the libary as not having secrets required for synchronization.
+ */
+void Library::setSecretsMissing(bool secretsMissing)
+{
+    if (m_secretsMissing != secretsMissing) {
+        m_secretsMissing = secretsMissing;
+        emit secretsMissingChanged();
     }
 }
 
