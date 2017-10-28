@@ -133,13 +133,16 @@ Page {
 
         GridView {
             id: grid
+
+            property int columns: Math.max(width / (Globals.defaultMargin * 20), 1)
+
             x: Globals.defaultMargin
             y: Globals.defaultMargin
             width: scrollView.width - 2 * Globals.defaultMargin
             model: backends
             delegate: gridViewDelegate
-            cellHeight: Globals.fontPixelSize * 20
-            cellWidth: Globals.fontPixelSize * 30
+            cellHeight: cellWidth * 0.66
+            cellWidth: width / columns
         }
     }
 }
