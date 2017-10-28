@@ -24,12 +24,13 @@ UpdateService::UpdateService(QObject *parent) : QObject(parent)
     updateTimer->start();
     checkForUpdates();
 #endif
+    checkForUpdates();
 }
 
 void UpdateService::checkForUpdates()
 {
     auto nam = new QNetworkAccessManager(this);
-    QUrl updateUrl("https://gitlab.com/api/v4/projects/185664/repository/tags");
+    QUrl updateUrl("https://api.github.com/repos/mhoeher/opentodolist/releases/latest");
     QNetworkRequest req(updateUrl);
     auto reply = nam->get(req);
     if (reply) {
@@ -42,37 +43,23 @@ void UpdateService::checkForUpdates()
             nam->deleteLater();
         });
         connect(reply, &QNetworkReply::finished, [=]() {
-            qCDebug(updateService) << "Received tag list - going to check for "
-                                      "most recent version";
+            qCDebug(updateService) << "Received reply, checking...";
             auto doc = QJsonDocument::fromJson(reply->readAll());
-            if (doc.isArray()) {
-                auto tags = doc.toVariant().toList();
-                auto currentVersion = QVersionNumber::fromString(VERSION);
-                auto latestVersion = currentVersion;
-                QString latestTagName;
-                for (auto tag : tags) {
-                    auto tagName = tag.toMap().value("name", "").toString();
-                    if (!tagName.isEmpty()) {
-                        auto version = QVersionNumber::fromString(tagName);
-                        if (version > currentVersion &&
-                                version > latestVersion) {
-                            latestTagName = tagName;
-                            latestVersion = version;
-                        }
+            if (doc.isObject()) {
+                auto info = doc.toVariant().toMap();
+                if (info.contains("tag_name")) {
+                    auto tagName = info.value("tag_name").toString();
+                    qDebug(updateService) << "Latest release:" << tagName;
+                    auto currentVersion = QVersionNumber::fromString(VERSION);
+                    auto latestVersion = QVersionNumber::fromString(tagName);
+                    if (latestVersion > currentVersion) {
+                        emit updateAvailable(
+                                    tagName,
+                                    QUrl(info.value("html_url").toString()));
+                    } else {
+                        qCDebug(updateService)
+                                << "Already running latest version";
                     }
-                }
-                if (!latestTagName.isEmpty()) {
-                    auto updateUrl =
-                            QString("https://gitlab.com/rpdev/"
-                                    "opentodolist/tags/%1")
-                            .arg(latestTagName);
-                    qCDebug(updateService) << "Found more recent version:"
-                                           << latestTagName
-                                           << "dowloadable via"
-                                           << updateUrl;
-                    emit updateAvailable(latestTagName, QUrl(updateUrl));
-                } else {
-                    qCDebug(updateService) << "Already running latest version";
                 }
             }
             reply->deleteLater();
