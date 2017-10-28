@@ -45,6 +45,7 @@ Page {
 
         MenuItem {
             text: qsTr("Edit Sync Settings")
+            enabled: page.library.hasSynchronizer
             onClicked: {
                 var sync = page.library.createSynchronizer();
                 if (sync !== null) {
@@ -60,6 +61,7 @@ Page {
 
         MenuItem {
             text: qsTr("Sync Now")
+            enabled: page.library.hasSynchronizer
             onClicked: {
                 console.debug("Manually started syncing " + page.library.name);
                 App.syncLibrary(library);
@@ -337,5 +339,9 @@ Page {
                 }
             }
         }
+    }
+
+    LibrarySecretsMissingNotificationBar {
+        library: page.library
     }
 }

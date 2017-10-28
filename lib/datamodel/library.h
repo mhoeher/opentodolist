@@ -36,7 +36,10 @@ class Library : public QObject
     Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
     Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
+    Q_PROPERTY(bool hasSynchronizer READ hasSynchronizer CONSTANT)
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
+    Q_PROPERTY(bool secretsMissing READ secretsMissing WRITE setSecretsMissing
+               NOTIFY secretsMissingChanged)
 
     friend class Application;
 
@@ -87,11 +90,15 @@ public:
 
     void fromJson(const QByteArray data);
 
+    bool hasSynchronizer() const;
     bool synchronizing() const;
     void setSynchronizing(bool synchronizing);
 
     Q_INVOKABLE Synchronizer *createSynchronizer(
             QObject *parent = nullptr) const;
+
+    bool secretsMissing() const;
+    void setSecretsMissing(bool secretsMissing);
 
 signals:
 
@@ -136,6 +143,8 @@ signals:
 
     void synchronizingChanged();
 
+    void secretsMissingChanged();
+
 private:
 
     QUuid                   m_uid;
@@ -150,6 +159,7 @@ private:
 
     bool                    m_loading;
     bool                    m_synchronizing;
+    bool                    m_secretsMissing;
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);
