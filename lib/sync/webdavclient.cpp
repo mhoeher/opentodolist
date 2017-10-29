@@ -169,7 +169,7 @@ bool WebDAVClient::download(const QString& filename, QIODevice *targetDevice)
                 }
             }
         } else {
-            qCWarning(webDAVClient) << "Upload failed with code" << code;
+            qCWarning(webDAVClient) << "Download failed with code" << code;
         }
     } else {
         qCWarning(webDAVClient) << "Failed to open temporary file for"
@@ -957,19 +957,10 @@ void WebDAVClient::waitForReplyToFinish(QNetworkReply* reply)
 {
     Q_CHECK_PTR(reply);
     QEventLoop loop;
-    QTimer timer;
-    timer.setInterval(30000);
-    auto restartTimer = [&](qint64, qint64) { timer.start(); };
-    auto c1 = connect(reply, &QNetworkReply::uploadProgress, restartTimer);
-    auto c2 = connect(reply, &QNetworkReply::uploadProgress, restartTimer);
-    auto c3 = connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-    auto c4 = connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-    timer.start();
+    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+            &loop, SLOT(quit()));
     loop.exec();
-    disconnect(c1);
-    disconnect(c2);
-    disconnect(c3);
-    disconnect(c4);
 }
 
 
