@@ -7,7 +7,7 @@ import OpenTodoList.UI 1.0
 Item {
     id: sidebar
 
-    property var currentLibrary: App.libraries[0]
+    property Library currentLibrary: App.libraries[0]
     property string currentTag: ""
     property bool helpVisible: false
     property bool compact: false
