@@ -18,6 +18,20 @@ ApplicationWindow {
         rootItem.forceActiveFocus();
     }
 
+    function viewLibrary(lib, tag) {
+        lib = lib || leftSideBar.currentLibrary;
+        tag = tag || leftSideBar.currentTag;
+        stackView.clear();
+        if (lib) {
+            stackView.push(libraryPage, { library: lib, tag: tag });
+            if (d.completed) {
+                console.debug("Setting last library: " + lib.name + "@" + tag);
+                App.saveValue("lastLibrary", lib.uid.toString());
+                App.saveValue("lastTag", tag);
+            }
+        }
+    }
+
     property Item helpPage: null
 
     title: qsTr("OpenTodoList") + " - " + applicationVersion
@@ -291,6 +305,31 @@ ApplicationWindow {
         }
     }
 
+    QtObject {
+        id: d
+
+        property bool completed: false
+
+        property string lastLibrary: ""
+        property string lastTag: ""
+
+        function reopenLastLibrary() {
+            if (d.lastLibrary != "") {
+                var libs = App.libraries;
+                for (var i = 0; i < libs.length; ++i) {
+                    var lib = libs[i];
+                    console.debug("" + lib.uid.toString() + " == " + d.lastLibrary + "?");
+                    if (lib.uid.toString() === d.lastLibrary) {
+                        leftSideBar.currentLibrary = lib;
+                        leftSideBar.currentTag = d.lastTag;
+                        d.lastLibrary = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     Shortcut {
         sequence: StandardKey.Quit
         onActivated: Qt.quit()
@@ -352,6 +391,8 @@ ApplicationWindow {
         Globals.appWindow = window;
         width = App.loadValue("width", width);
         height = App.loadValue("height", height);
+        d.lastLibrary = App.loadValue("lastLibrary", "");
+        d.lastTag = App.loadValue("lastTag", "");
         if (App.loadValue("maximized", "false") === "true") {
             window.visibility = Window.Maximized
         }
@@ -368,6 +409,8 @@ ApplicationWindow {
                 App.saveValue("height", height);
             }
         });
+        d.reopenLastLibrary();
+        d.completed = true;
     }
 
     onClosing: {
@@ -400,8 +443,8 @@ ApplicationWindow {
         helpVisible: helpPage !== null
         anchors.fill: parent
         compact: applicationWindow.width <= Globals.fontPixelSize * 60
-        onCurrentLibraryChanged: Logic.viewLibrary(stackView, currentLibrary, currentTag, libraryPage)
-        onCurrentTagChanged: Logic.viewLibrary(stackView, currentLibrary, currentTag, libraryPage)
+        onCurrentLibraryChanged: window.viewLibrary(currentLibrary, currentTag)
+        onCurrentTagChanged: window.viewLibrary(currentLibrary, currentTag)
         onNewLibrary: {
             stackView.clear();
             stackView.push(newSyncedLibraryPage);
@@ -503,12 +546,7 @@ ApplicationWindow {
             id: newSyncedLibraryPage
 
             SynchronizerBackendSelectionPage {
-                onCancelled: {
-                    Logic.viewLibrary(stackView,
-                                      leftSideBar.currentLibrary,
-                                      leftSideBar.currentTag,
-                                      libraryPage);
-                }
+                onCancelled: window.viewLibrary()
                 onBackendSelected: {
                     switch (synchronizer.synchronizer) {
                     case "WebDAVSynchronizer":
@@ -529,12 +567,7 @@ ApplicationWindow {
         id: webDavConnectionSetupPage
 
         WebDAVConnectionSettingsPage {
-            onCancelled: {
-                Logic.viewLibrary(stackView,
-                                  leftSideBar.currentLibrary,
-                                  leftSideBar.currentTag,
-                                  libraryPage);
-            }
+            onCancelled: window.viewLibrary()
             onConnectionDataAvailable: {
                 stackView.replace(
                             existingLibrarySelectionPage,
@@ -547,12 +580,7 @@ ApplicationWindow {
         id: existingLibrarySelectionPage
 
         SyncLibrarySelectionPage {
-            onCancelled: {
-                Logic.viewLibrary(stackView,
-                                  leftSideBar.currentLibrary,
-                                  leftSideBar.currentTag,
-                                  libraryPage);
-            }
+            onCancelled: window.viewLibrary()
             onLibraryAvailable: {
                 stackView.replace(
                             newLocalLibraryPage,
@@ -565,22 +593,14 @@ ApplicationWindow {
         id: newLocalLibraryPage
 
         NewLibraryPage {
-            onCancelled: {
-                Logic.viewLibrary(stackView,
-                                  leftSideBar.currentLibrary,
-                                  leftSideBar.currentTag,
-                                  libraryPage);
-            }
+            onCancelled: window.viewLibrary()
             onLibraryAvailable: {
                 var lib = App.addLibrary(synchronizer);
                 if (lib !== null) {
                     leftSideBar.currentLibrary = lib;
                 } else {
                     console.error("Failed to create library!");
-                    Logic.viewLibrary(stackView,
-                                      leftSideBar.currentLibrary,
-                                      leftSideBar.currentTag,
-                                      libraryPage);
+                    window.viewLibrary();
                 }
             }
         }

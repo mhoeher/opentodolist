@@ -38,13 +38,6 @@ function execCap(item, action) {
     }
 }
 
-function viewLibrary(stack, library, tag, component) {
-    stack.clear();
-    if (library) {
-        stack.push(component, { library: library, tag: tag });
-    }
-}
-
 function cancelCurrent(stack) {
     var currentItem = stack.currentItem;
     if (typeof(currentItem["cancel"]) === "function") {
