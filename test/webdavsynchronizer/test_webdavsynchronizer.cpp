@@ -251,7 +251,7 @@ void WebDAVSynchronizerTest::download()
     QCOMPARE(catFile(dir2.path() + "/sample.txt"),
              QByteArray("Hello World\n"));
     QTest::ignoreMessage(QtWarningMsg,
-                         QRegularExpression("Upload failed with code 404"));
+                         QRegularExpression("Download failed with code 404"));
     QVERIFY(!dav->download("sample2.txt"));
     dav->setDirectory(dir.path());
     echoToFile("Foo Bar Baz", dir.path() + "/sample.txt");

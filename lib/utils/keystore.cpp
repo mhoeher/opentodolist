@@ -14,7 +14,7 @@
 #include <simplecrypt.h>
 
 
-Q_LOGGING_CATEGORY(keyStore, "net.rpdev.opentodolist.KeyStore", QtWarningMsg)
+Q_LOGGING_CATEGORY(keyStore, "net.rpdev.opentodolist.KeyStore", QtDebugMsg)
 
 
 const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
