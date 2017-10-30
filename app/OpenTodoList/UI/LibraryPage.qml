@@ -231,15 +231,9 @@ Page {
     ItemsSortFilterModel {
         id: filteredItemsModel
 
-        function __tagMatches(item) {
-            return (page.tag === "") || item.hasTag(page.tag)
-        }
-
         sourceModel: itemsModel
-        filterFunction: function(i) {
-            var item = sourceModel.data(sourceModel.index(i, 0), ItemsModel.ItemRole);
-            return __tagMatches(item);
-        }
+        tag: page.tag
+        searchString: filterBar.text
     }
 
     TextInputBar {
@@ -278,20 +272,6 @@ Page {
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
-
-        onTextChanged: {
-            function matches(item) {
-                var filter = filterBar.text;
-                return Logic.itemMatchesFilterWithDefault(item, filter, true);
-            }
-            filteredItemsModel.filterFunction = function(i) {
-                var item = filteredItemsModel.sourceModel.data(
-                            filteredItemsModel.sourceModel.index(i, 0),
-                            ItemsModel.ItemRole);
-                return filteredItemsModel.__tagMatches(item) &&
-                        matches(item);
-            }
-        }
     }
 
     ScrollView {

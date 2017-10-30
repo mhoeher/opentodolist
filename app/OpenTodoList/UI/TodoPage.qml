@@ -82,11 +82,7 @@ Page {
                         id: sourceModel
                         container: page.library.tasks
                     }
-                    filterFunction: function(row) {
-                        var idx = sourceModel.index(row, 0);
-                        var task = sourceModel.data(idx, ItemsModel.ItemRole);
-                        return task.todoUid === page.todo.uid;
-                    }
+                    todo: page.todo.uid
                 }
 
                 anchors {
