@@ -57,34 +57,23 @@ Page {
     }
 
     ItemsSortFilterModel {
-        id: todosModel
+        id: undoneTodosModel
         sourceModel: ItemsModel {
-            id: allTodosModel
             container: page.library.todos
         }
-        filterFunction: function(row) {
-            var idx = allTodosModel.index(row, 0);
-            var todo = allTodosModel.data(idx, ItemsModel.ItemRole);
-            return todo.todoListUid === page.item.uid;
-        }
-    }
-
-    ItemsSortFilterModel {
-        id: undoneTodosModel
-        sourceModel: todosModel
-        filterFunction: function(i) {
-            var todo = sourceModel.data(sourceModel.index(i, 0), ItemsModel.ItemRole);
-            return !todo.done;
-        }
+        todoList: page.item.uid
+        onlyUndone: true
+        searchString: filterBar.text
     }
 
     ItemsSortFilterModel {
         id: doneTodosModel
-        sourceModel: todosModel
-        filterFunction: function(i) {
-            var todo = sourceModel.data(sourceModel.index(i, 0), ItemsModel.ObjectRole);
-            return todo.done;
+        sourceModel: ItemsModel {
+            container: page.library.todos
         }
+        todoList: page.item.uid
+        onlyDone: true
+        searchString: filterBar.text
     }
 
     TextInputBar {
@@ -96,22 +85,6 @@ Page {
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
-
-        onTextChanged: {
-            function match(todo) {
-                return Logic.itemMatchesFilterWithDefault(todo, text, true);
-            }
-            undoneTodosModel.filterFunction = function(i) {
-                var todo = undoneTodosModel.sourceModel.data(
-                            undoneTodosModel.sourceModel.index(i, 0), ItemsModel.ItemRole);
-                return !todo.done && match(todo);
-            }
-            doneTodosModel.filterFunction = function(i) {
-                var todo = doneTodosModel.sourceModel.data(
-                            doneTodosModel.sourceModel.index(i, 0), ItemsModel.ItemRole);
-                return todo.done && match(todo);
-            }
-        }
     }
 
     Rectangle {

@@ -126,11 +126,9 @@ MouseArea {
                     sourceModel: ItemsModel {
                         container: item.library.todos
                     }
-                    filterFunction: function(row) {
-                        var i = sourceModel.index(row, 0);
-                        var todo = sourceModel.data(i, ItemsModel.ObjectRole);
-                        return !todo.done && todo.todoListUid === item.libraryItem.uid;
-                    }
+
+                    onlyUndone: true
+                    todoList: item.libraryItem.uid
                 }
                 delegate: Item {
                     id: todoDelegate
