@@ -105,97 +105,69 @@ Page {
         id: renameItemDialog
     }
 
-    CreateNewTagDialog {
-        id: createNewTagDialog
-    }
-
     Menu {
         id: itemContextMenu
 
         property TopLevelItem item: null
+        property var color: item ? item.color : TopLevelItem.White
 
-        onItemChanged: tagsMenu.rebuild()
+        ButtonGroup { id: colorButtons }
 
-        Menu {
-            title: qsTr("Color")
-
-            MenuItem {
-                text: qsTr("Red")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.Red
-            }
-            MenuItem {
-                text: qsTr("Green")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.Green
-            }
-            MenuItem {
-                text: qsTr("Blue")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.Blue
-            }
-            MenuItem {
-                text: qsTr("Yellow")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.Yellow
-            }
-            MenuItem {
-                text: qsTr("Orange")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.Orange
-            }
-            MenuItem {
-                text: qsTr("Lilac")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.Lilac
-            }
-            MenuItem {
-                text: qsTr("White")
-                onTriggered: itemContextMenu.item.color = TopLevelItem.White
-            }
+        MenuItem {
+            text: qsTr("Red")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.Red
+            onTriggered: itemContextMenu.item.color = TopLevelItem.Red
         }
+        MenuItem {
+            text: qsTr("Green")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.Green
+            onTriggered: itemContextMenu.item.color = TopLevelItem.Green
+        }
+        MenuItem {
+            text: qsTr("Blue")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.Blue
+            onTriggered: itemContextMenu.item.color = TopLevelItem.Blue
+        }
+        MenuItem {
+            text: qsTr("Yellow")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.Yellow
+            onTriggered: itemContextMenu.item.color = TopLevelItem.Yellow
+        }
+        MenuItem {
+            text: qsTr("Orange")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.Orange
+            onTriggered: itemContextMenu.item.color = TopLevelItem.Orange
+        }
+        MenuItem {
+            text: qsTr("Lilac")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.Lilac
+            onTriggered: itemContextMenu.item.color = TopLevelItem.Lilac
+        }
+        MenuItem {
+            text: qsTr("White")
+            checkable: true
+            ButtonGroup.group: colorButtons
+            checked: itemContextMenu.color === TopLevelItem.White
+            onTriggered: itemContextMenu.item.color = TopLevelItem.White
+        }
+
+        MenuSeparator {}
 
         MenuItem {
             text: qsTr("Rename")
             onTriggered: renameItemDialog.renameItem(itemContextMenu.item)
-        }
-
-        Menu {
-            id: tagsMenu
-
-            title: qsTr("Tags")
-
-            function rebuild() {
-                while (contentData.length > 0) {
-                    removeItem(contentData[0]);
-                }
-                var topLevelItem = itemContextMenu.item;
-                var item = addItem(qsTr("Create new tag..."));
-                item.onTriggered.connect(function() {
-                    createNewTagDialog.addTag(topLevelItem);
-                });
-
-                var tags = page.library.tags;
-                for (var i = 0; i < tags.length; ++i) {
-                    var tag = tags[i];
-                    __addTagMenuItem(tag);
-                }
-            }
-
-            function __addTagMenuItem(tag) {
-                var topLevelItem = itemContextMenu.item;
-                var item = addItem(tag);
-                item.checkable = true;
-                item.checked = Qt.binding(function() {
-                    return topLevelItem.tags.indexOf(tag) >= 0;
-                });
-                item.onTriggered.connect(function() {
-                    if (topLevelItem.hasTag(tag)) {
-                        topLevelItem.removeTag(tag);
-                    } else {
-                        topLevelItem.addTag(tag);
-                    }
-                });
-            }
-
-            /*Connections {
-                target: page.library
-                onTagsChanged: tagsMenu.rebuild();
-            }*/
         }
 
         MenuItem {
@@ -292,6 +264,8 @@ Page {
             cellWidth: Logic.sizeOfColumns(scrollView)
             cellHeight: cellWidth / 3 * 2
             delegate: Loader {
+                id: gridItem
+
                 asynchronous: true
                 width: grid.cellWidth
                 height: grid.cellHeight
@@ -310,6 +284,9 @@ Page {
                             break;
                         case Qt.RightButton:
                             itemContextMenu.item = object;
+                            itemContextMenu.parent = gridItem;
+                            itemContextMenu.x = mouse.x;
+                            itemContextMenu.y = mouse.y;
                             itemContextMenu.open();
                             break;
                         default:
