@@ -25,6 +25,10 @@ Page {
         confirmDeleteDialog.open();
     }
 
+    function find() {
+        filterBar.edit.forceActiveFocus()
+    }
+
     CenteredDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo?")
@@ -45,10 +49,27 @@ Page {
         id: renameItemDialog
     }
 
+    TextInputBar {
+        id: filterBar
+
+        placeholderText: qsTr("Search term 1, search term 2, ...")
+        symbol: Fonts.symbols.faTimes
+        color: Colors.secondary2
+        itemCreator: false
+        showWhenNonEmpty: true
+        closeOnButtonClick: true
+    }
+
     ScrollView {
         id: scrollView
 
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            top: filterBar.bottom
+            topMargin: filterBar.shown ? (filterBar.contentHeight - filterBar.height) : 0
+        }
 
         Column {
             width: scrollView.width
@@ -83,6 +104,7 @@ Page {
                         container: page.library.tasks
                     }
                     todo: page.todo.uid
+                    searchString: filterBar.text
                 }
 
                 anchors {
