@@ -39,10 +39,6 @@ Page {
         }
     }
 
-    RenameItemDialog {
-        id: renameItemDialog
-    }
-
     Rectangle {
         color: Qt.lighter(Colors.itemColor(item.color), 1.1)
         opacity: 0.3
@@ -58,25 +54,9 @@ Page {
             width: scrollView.width
             spacing: Globals.defaultMargin
 
-            MouseArea {
-                onClicked: renameItemDialog.renameItem(item)
-                height: childrenRect.height
+            ItemTitle {
+                item: page.item
                 width: parent.width
-                cursorShape: Qt.PointingHandCursor
-
-                Label {
-                    text: item.title
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Globals.defaultMargin
-                    }
-                    font {
-                        bold: true
-                        pixelSize: Globals.fontPixelSize * 2
-                    }
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
             }
 
             Image {

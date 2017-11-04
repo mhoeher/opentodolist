@@ -61,8 +61,8 @@ Item {
                     onClicked: object.done = !object.done
                 }
 
-                Label {
-                    text: object.title
+                URLText {
+                    plainText: object.title
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAnywhere
                 }

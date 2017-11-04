@@ -10,7 +10,7 @@ Button {
     
     contentItem: Text {
         text: control.text
-        font: Fonts.symbols.family
+        font.family: Fonts.symbols.family
         font.pixelSize: Globals.minButtonHeight * 0.9
     }
 }
