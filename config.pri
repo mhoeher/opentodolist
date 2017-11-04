@@ -1,6 +1,6 @@
 # The application version
 system(git describe) {
-    OPENTODOLIST_VERSION = $$system(git describe)
+    OPENTODOLIST_VERSION = $$system(git describe --tags)
 } else {
     OPENTODOLIST_VERSION=3.2.0-unknown
 }
