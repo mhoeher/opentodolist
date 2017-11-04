@@ -12,6 +12,7 @@ CenteredDialog {
     function renameItem(item) {
         __item = item;
         edit.text = item.title;
+        dialog.parent = MainWindow.window.contentItem;
         dialog.open();
         edit.forceActiveFocus();
     }

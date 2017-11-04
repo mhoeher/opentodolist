@@ -22,3 +22,4 @@ TagsEditor 1.0 TagsEditor.qml
 TodoListItem 1.0 TodoListItem.qml
 TodoListPage 1.0 TodoListPage.qml
 TodoListView 1.0 TodoListView.qml
+URLText 1.0 URLText.qml

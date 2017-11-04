@@ -66,8 +66,8 @@ Item {
                     onClicked: renameItemDialog.renameItem(object)
                     height: childrenRect.height
 
-                    Label {
-                        text: object.title
+                    URLText {
+                        plainText: object.title
                         width: parent.width
                         wrapMode: Text.WrapAnywhere
                     }

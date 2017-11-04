@@ -45,10 +45,6 @@ Page {
         }
     }
 
-    RenameItemDialog {
-        id: renameItemDialog
-    }
-
     TextInputBar {
         id: filterBar
 
@@ -75,25 +71,9 @@ Page {
             width: scrollView.width
             spacing: Globals.defaultMargin
 
-            MouseArea {
-                onClicked: renameItemDialog.renameItem(todo)
-                height: childrenRect.height
+            ItemTitle {
+                item: page.todo
                 width: parent.width
-                cursorShape: Qt.PointingHandCursor
-
-                Label {
-                    text: todo.title
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Globals.defaultMargin
-                    }
-                    font {
-                        bold: true
-                        pixelSize: Globals.fontPixelSize * 2
-                    }
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
             }
 
             TaskListView {
