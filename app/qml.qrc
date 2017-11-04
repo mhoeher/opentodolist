@@ -47,7 +47,6 @@
         <file>OpenTodoList/UI/FontAwesome.qml</file>
         <file>OpenTodoList/UI/TagsEditor.qml</file>
         <file>OpenTodoList/UI/RenameItemDialog.qml</file>
-        <file>OpenTodoList/UI/CreateNewTagDialog.qml</file>
         <file>OpenTodoList/UI/linedpaper/3rdpartyinfo.json</file>
         <file>OpenTodoList/UI/linedpaper/linedpaper_@2x.png</file>
         <file>OpenTodoList/UI/linedpaper/linedpaper.png</file>
