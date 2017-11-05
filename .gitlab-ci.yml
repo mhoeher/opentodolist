@@ -291,7 +291,7 @@ win32_vs_installer:
         - makensis win32-installer.nsis
     artifacts:
         paths:
-            - build-win64-vs/*.exe
+            - build-win32-vs/*.exe
         expire_in: 1 week
 
 
