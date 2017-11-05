@@ -40,6 +40,7 @@ class Library : public QObject
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
     Q_PROPERTY(bool secretsMissing READ secretsMissing WRITE setSecretsMissing
                NOTIFY secretsMissingChanged)
+    Q_PROPERTY(bool isInDefaultLocation READ isInDefaultLocation CONSTANT)
 
     friend class Application;
 
@@ -83,6 +84,8 @@ public:
 
     static QStringList years(const QString &directory);
     static QStringList months(const QString &directory, const QString &year);
+
+    bool isInDefaultLocation() const;
 
     bool loading() const;
     QUuid uid() const;
