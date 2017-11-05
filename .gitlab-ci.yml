@@ -293,6 +293,7 @@ win32_vs_installer:
         paths:
             - build-win32-vs/*.exe
         expire_in: 1 week
+    when: manual
 
 
 win64_vs_installer:
@@ -309,3 +310,4 @@ win64_vs_installer:
         paths:
             - build-win64-vs/*.exe
         expire_in: 1 week
+    when: manual
