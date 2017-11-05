@@ -5,6 +5,7 @@ include(../config.pri)
 include(../lib/lib.pri)
 
 QT += qml quick xml concurrent
+CONFIG += c++11
 
 SOURCES += main.cpp
 

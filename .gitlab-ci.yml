@@ -15,10 +15,6 @@ stages:
   - installer
   - deploy
 
-before_script:
-  - export CTEST_OUTPUT_ON_FAILURE=1
-
-
 
 ################################################################################
 # Images Stage
@@ -219,6 +215,34 @@ win64_build:
     expire_in: 1 week
 
 
+# Windows Visual Studio 32bit Build
+win32_vs_build:
+  stage: build
+  tags:
+    - windows
+  script:
+    - .\\ci\\windows\\windows-msvc17-x32.bat
+  artifacts:
+    paths:
+      - build-win32-vs
+    expire_in: 1 week
+  when: manual
+
+
+# Windows Visual Studio 64bit Build
+win64_vs_build:
+  stage: build
+  tags:
+    - windows
+  script:
+    - .\\ci\\windows\\windows-msvc17-x64.bat
+  artifacts:
+    paths:
+      - build-win64-vs
+    expire_in: 1 week
+  when: manual
+
+
 ################################################################################
 # Installer Stage
 ################################################################################
@@ -252,4 +276,36 @@ win64_installer:
     artifacts:
         paths:
             - deploy-win64/*.exe
+        expire_in: 1 week
+
+
+win32_vs_installer:
+    stage: installer
+    image: fedora
+    dependencies:
+        - win32_vs_build
+    script:
+        - yum install -y mingw32-nsis
+        - cp templates/nsis/win32-installer.nsis build-win32-vs/
+        - cd build-win32-vs/
+        - makensis win32-installer.nsis
+    artifacts:
+        paths:
+            - build-win64-vs/*.exe
+        expire_in: 1 week
+
+
+win64_vs_installer:
+    stage: installer
+    image: fedora
+    dependencies:
+        - win64_vs_build
+    script:
+        - yum install -y mingw32-nsis
+        - cp templates/nsis/win64-installer.nsis build-win64-vs/
+        - cd build-win64-vs
+        - makensis win64-installer.nsis
+    artifacts:
+        paths:
+            - build-win64-vs/*.exe
         expire_in: 1 week

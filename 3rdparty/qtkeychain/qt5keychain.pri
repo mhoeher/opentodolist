@@ -46,7 +46,7 @@ win32 {
 
     SOURCES *= \
         $$QT5KEYCHAIN_PWD/keychain_win.cpp
-    LIBS *= -lcrypt32
+    LIBS *= -lcrypt32 -lAdvapi32
     DEFINES *= USE_CREDENTIAL_STORE
 }
 
