@@ -543,6 +543,15 @@ int Application::librariesCount(QQmlListProperty<Library> *property)
  */
 QString Application::librariesLocation() const
 {
+    return defaultLibrariesLocation();
+}
+
+
+/**
+ * @brief Get the location where libraries are stored by default.
+ */
+QString Application::defaultLibrariesLocation()
+{
     QString result;
 #ifdef Q_OS_ANDROID
     QString s(qgetenv("EXTERNAL_STORAGE"));

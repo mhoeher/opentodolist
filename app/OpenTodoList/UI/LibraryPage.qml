@@ -75,15 +75,30 @@ Page {
         id: confirmDeleteLibrary
         title: qsTr("Delete Library?")
         Text {
-            text: qsTr("Do you really want to remove the library <strong>%1</strong> from the " +
-                       "application? Note that the files inside the library will not be removed, so " +
-                       "you can restore the library later on.").arg(library.name)
+            property string textDefaultLocation: {
+                return qsTr("Do you really want to remove the library " +
+                            "<strong>%1</strong> from  the " +
+                            "application? <em>This will remove any files " +
+                            "belonging to the library.</em>"
+                            )
+                .arg(library.name);
+            }
+            property string textNonDefaultLocation: {
+                return qsTr("Do you really want to remove the library " +
+                            "<strong>%1</strong> from the " +
+                            "application? Note that the files inside the " +
+                            "library will not be removed, so " +
+                            "you can restore the library later on.")
+                .arg(library.name);
+            }
+
+            text: library.isInDefaultLocation ? textDefaultLocation : textNonDefaultLocation
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: 300
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
-            library.deleteLibrary();
+            library.deleteLibrary(library.isInDefaultLocation);
         }
     }
 

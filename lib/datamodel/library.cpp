@@ -6,6 +6,7 @@
 #include <QtConcurrent>
 #include <QTimer>
 
+#include "application.h"
 #include "libraryloader.h"
 #include "toplevelitem.h"
 #include "todolist.h"
@@ -208,7 +209,7 @@ void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
                 }
             }
             QDir dir(directory);
-            for (auto entry : dir.entryList(QDir::Files)) {
+            for (auto entry : dir.entryList(QDir::Files | QDir::Hidden)) {
                 if (!dir.remove(entry)) {
                     qCWarning(library) << "Failed to remove" << entry
                                        << "from" << dir.absolutePath();
@@ -354,6 +355,27 @@ QStringList Library::months(const QString& directory, const QString& year)
                 }
             }
         }
+    }
+    return result;
+}
+
+
+/**
+ * @brief Whether the library is in the default libraries location.
+ *
+ * This property indicates if the library is located in the default libraries
+ * location.
+ */
+bool Library::isInDefaultLocation() const
+{
+    bool result = false;
+    if (isValid()) {
+        auto defaultLibrariesLocation = Application::defaultLibrariesLocation();
+        defaultLibrariesLocation = QDir::cleanPath(defaultLibrariesLocation);
+
+        auto thisDir = QFileInfo(m_directory).absoluteDir().path();
+
+        result = thisDir == defaultLibrariesLocation;
     }
     return result;
 }

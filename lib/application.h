@@ -67,6 +67,7 @@ public:
     Library *defaultLibrary();
 
     QString librariesLocation() const;
+    static QString defaultLibrariesLocation();
 
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
