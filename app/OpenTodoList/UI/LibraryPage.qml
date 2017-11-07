@@ -94,7 +94,12 @@ Page {
 
             text: library.isInDefaultLocation ? textDefaultLocation : textNonDefaultLocation
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: 300
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                margins: Globals.defaultMargin
+            }
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
@@ -110,7 +115,12 @@ Page {
                        "This action cannot be undone!").arg(
                       itemContextMenu.item ? itemContextMenu.item.title : "")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: 300
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                margins: Globals.defaultMargin
+            }
         }
         standardButtons:Dialog.Ok |Dialog.Cancel
         onAccepted: itemContextMenu.item.deleteItem()

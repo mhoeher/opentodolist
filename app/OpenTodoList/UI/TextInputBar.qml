@@ -71,6 +71,7 @@ Item {
                 Keys.onBackPressed: focus = false
                 Keys.onEnterPressed: __createIfValidInput()
                 Keys.onReturnPressed: __createIfValidInput()
+                selectByMouse: true
             }
             
             Symbol {

@@ -63,6 +63,7 @@ Page {
                     regExp: /^.+$/
                 }
                 visible: !synchronizer || synchronizer["name"] === undefined
+                selectByMouse: true
             }
 
             CheckBox {

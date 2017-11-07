@@ -88,6 +88,7 @@ Page {
                     x: Globals.defaultMargin
                     visible: createNewLibrary.checked
                     Layout.fillWidth: true
+                    selectByMouse: true
                 }
 
                 Text {

@@ -74,6 +74,7 @@ Page {
                     placeholderText: qsTr("https://...")
                     width: parent.width
                     inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
+                    selectByMouse: true
                 }
 
                 Item {
@@ -88,6 +89,7 @@ Page {
                     id: username
                     width: parent.width
                     inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+                    selectByMouse: true
                 }
 
                 Item {
@@ -103,6 +105,7 @@ Page {
                     echoMode: TextInput.Password
                     width: parent.width
                     inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+                    selectByMouse: true
                 }
 
                 Item {

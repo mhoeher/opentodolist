@@ -36,7 +36,12 @@ Page {
             text: qsTr("Are you sure you want to delete the todo <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(todo.title)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: 300
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                margins: Globals.defaultMargin
+            }
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {

@@ -56,6 +56,7 @@ Item {
                         existingTags.visible = focus;
                     }
                     anchors.verticalCenter: parent.verticalCenter
+                    selectByMouse: true
                 }
                 Symbol {
                     symbol: Fonts.symbols.faPlus
