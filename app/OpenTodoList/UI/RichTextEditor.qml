@@ -47,12 +47,15 @@ Page {
         fillMode: Image.Tile
     }
 
-    ScrollView {
+    Flickable {
+        id: flickable
         anchors.fill: parent
-
-        TextArea {
+        flickableDirection: Flickable.VerticalFlick
+        ScrollBar.vertical: ScrollBar {}
+        TextArea.flickable: TextArea {
             id: textArea
 
+            anchors.fill: parent
             textFormat: TextEdit.RichText
             focus: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -64,6 +67,8 @@ Page {
                 }
                 event.accepted = true;
             }
+            selectByMouse: true
+            persistentSelection: true
         }
     }
 }

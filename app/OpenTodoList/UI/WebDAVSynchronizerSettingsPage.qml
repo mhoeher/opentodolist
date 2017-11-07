@@ -50,6 +50,7 @@ Page {
                 width: parent.width
                 text: page.synchronizer.username
                 inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+                selectByMouse: true
             }
 
             Text {
@@ -62,6 +63,7 @@ Page {
                 text: page.synchronizer.password
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+                selectByMouse: true
             }
         }
     }

@@ -32,7 +32,12 @@ Item {
             text: confirmDeleteTodoDialog.todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
                               "This cannot be undone.").arg(confirmDeleteTodoDialog.todo.title) : ""
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: 300
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                margins: Globals.defaultMargin
+            }
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: todo.deleteItem()
@@ -133,6 +138,7 @@ Item {
                             forceActiveFocus();
                         }
                     }
+                    selectByMouse: true
                 }
 
                 Symbol {

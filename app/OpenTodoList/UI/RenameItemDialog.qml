@@ -35,6 +35,12 @@ CenteredDialog {
     TextField {
         id: edit
         placeholderText: qsTr("Enter item title...")
-        width: parent ? parent.width : 300
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            margins: Globals.defaultMargin
+        }
+        selectByMouse: true
     }
 }

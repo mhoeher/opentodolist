@@ -28,7 +28,12 @@ Item {
         Text {
             text: qsTr("Are you sure you want to delete the note <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(item.title)
-            width: 300
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                margins: Globals.defaultMargin
+            }
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
