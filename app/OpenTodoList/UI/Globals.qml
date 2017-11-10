@@ -17,6 +17,16 @@ Item {
     property int defaultMargin: fontPixelSize
     
     readonly property int defaultAnimationTime: 500
+
+    readonly property bool selectTextWithMouse: {
+        switch (Qt.platform.os) {
+            case "android":
+            case "ios":
+                return false;
+            default:
+                return true;
+        }
+    }
     
     function file(relativeName) {
         var result = qmlBaseDirectory + "/" + relativeName;

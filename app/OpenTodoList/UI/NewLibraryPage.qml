@@ -63,7 +63,7 @@ Page {
                     regExp: /^.+$/
                 }
                 visible: !synchronizer || synchronizer["name"] === undefined
-                selectByMouse: true
+                selectByMouse: Globals.selectTextWithMouse
             }
 
             CheckBox {

@@ -54,6 +54,12 @@ Item {
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
 
+            ReorderWeightedItem {
+                anchors.fill: parent
+                onClicked: renameItemDialog.renameItem(object)
+                model: root.model
+            }
+
             RowLayout {
                 id: row
 
@@ -65,17 +71,10 @@ Item {
                     onClicked: object.done = !object.done
                 }
 
-                MouseArea {
+                URLText {
+                    plainText: object.title
                     Layout.fillWidth: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: renameItemDialog.renameItem(object)
-                    height: childrenRect.height
-
-                    URLText {
-                        plainText: object.title
-                        width: parent.width
-                        wrapMode: Text.WrapAnywhere
-                    }
+                    wrapMode: Text.WrapAnywhere
                 }
 
                 Symbol {

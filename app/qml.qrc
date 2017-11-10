@@ -72,5 +72,6 @@
         <file>OpenTodoList/UI/LibrarySecretsMissingNotificationBar.qml</file>
         <file>OpenTodoList/UI/URLText.qml</file>
         <file>OpenTodoList/UI/ItemTitle.qml</file>
+        <file>OpenTodoList/UI/ReorderWeightedItem.qml</file>
     </qresource>
 </RCC>
