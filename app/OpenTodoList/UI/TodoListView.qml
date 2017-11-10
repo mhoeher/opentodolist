@@ -47,12 +47,15 @@ Item {
         id: itemDelegate
 
         Item {
+            id: todoItem
+
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
 
-            MouseArea {
+            ReorderWeightedItem {
                 anchors.fill: parent
                 onClicked: todoSelected(object)
+                model: root.model
             }
 
             RowLayout {

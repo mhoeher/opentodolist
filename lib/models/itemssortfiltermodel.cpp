@@ -12,7 +12,6 @@
 
 ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     QSortFilterProxyModel(parent),
-    m_sortFunction(),
     m_searchString(),
     m_defaultSearchResult(true),
     m_tag(),
@@ -21,6 +20,7 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     m_todoList(),
     m_todo()
 {
+    setSortRole(ItemsModel::WeightRole);
     auto handleRowsChanged = [=](const QModelIndex&, int, int) {
         emit countChanged();
     };
@@ -28,17 +28,10 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     connect(this, &QSortFilterProxyModel::rowsRemoved, handleRowsChanged);
     connect(this, &QSortFilterProxyModel::modelReset,
             [=]() { emit countChanged(); });
-}
-
-QJSValue ItemsSortFilterModel::sortFunction() const
-{
-    return m_sortFunction;
-}
-
-void ItemsSortFilterModel::setSortFunction(QJSValue sort)
-{
-    m_sortFunction = sort;
-    emit sortFunctionChanged();
+    connect(this, &ItemsSortFilterModel::dataChanged,
+            [=](const QModelIndex&, const QModelIndex, QVector<int>) {
+        sort(0);
+    });
 }
 
 
@@ -82,22 +75,6 @@ bool ItemsSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& s
         result = result && itemMatchesFilter(item);
     }
 
-    return result;
-}
-
-
-bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left, const QModelIndex& source_right) const
-{
-    bool result = true;
-    if (m_sortFunction.isCallable()) {
-        QJSValueList args;
-        args.append(source_left.row());
-        args.append(source_right.row());
-        auto ret = m_sortFunction.call(args);
-        if (ret.isBool()) {
-            result = ret.toBool();
-        }
-    }
     return result;
 }
 

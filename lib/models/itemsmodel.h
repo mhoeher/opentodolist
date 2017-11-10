@@ -20,7 +20,8 @@ class ItemsModel : public QAbstractListModel
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum Roles {
-        ItemRole = Qt::UserRole
+        ItemRole = Qt::UserRole,
+        WeightRole
     };
 
     Q_ENUM(Roles)

@@ -41,6 +41,6 @@ CenteredDialog {
             top: parent.top
             margins: Globals.defaultMargin
         }
-        selectByMouse: true
+        selectByMouse: Globals.selectTextWithMouse
     }
 }

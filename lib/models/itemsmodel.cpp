@@ -82,6 +82,8 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
         case ItemRole:
             QQmlEngine::setObjectOwnership(item.data(), QQmlEngine::CppOwnership);
             return QVariant::fromValue<QObject*>(item.data());
+        case WeightRole:
+            return item.data()->weight();
         default:
             break;
         }
@@ -93,6 +95,7 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
 {
     auto result = QAbstractListModel::roleNames();
     result.insert(ItemRole, "object");
+    result.insert(WeightRole, "weight");
     return result;
 }
 
