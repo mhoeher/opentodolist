@@ -23,13 +23,20 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     setSortRole(ItemsModel::WeightRole);
     auto handleRowsChanged = [=](const QModelIndex&, int, int) {
         emit countChanged();
+        sort(0);
     };
     connect(this, &QSortFilterProxyModel::rowsInserted, handleRowsChanged);
     connect(this, &QSortFilterProxyModel::rowsRemoved, handleRowsChanged);
     connect(this, &QSortFilterProxyModel::modelReset,
-            [=]() { emit countChanged(); });
+            [=]() {
+        emit countChanged();
+        sort(0);
+    });
     connect(this, &ItemsSortFilterModel::dataChanged,
             [=](const QModelIndex&, const QModelIndex, QVector<int>) {
+        sort(0);
+    });
+    connect(this, &ItemsSortFilterModel::sourceModelChanged, [=]() {
         sort(0);
     });
 }
