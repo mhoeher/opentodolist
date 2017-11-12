@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=OpenTodoList
-Exec=usr/bin/OpenTodoList.wrapper %F
+Exec=OpenTodoList.wrapper %F
 Icon=OpenTodoList
 Comment=A note and task managing application
 Terminal=false

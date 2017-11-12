@@ -6,7 +6,11 @@ system(git describe) {
 }
 
 with_update_service {
-    DEFINES += WITH_UPDATE_SERVICE
+    DEFINES *= WITH_UPDATE_SERVICE
+}
+
+with_appimage_extras {
+    DEFINES *= OTL_IS_APPIMAGE
 }
 
 # Pass in values via defines

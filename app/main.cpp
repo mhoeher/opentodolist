@@ -157,6 +157,22 @@ int main(int argc, char *argv[])
                                             "Switch on some optimizations for touchscreens.")};
     parser.addOption(enableTouchOption);
 
+    // If APPDIR is set, assume we are running from AppImage.
+    // Provide option to remove desktop integration. Note that we
+    // don't handle this; instead it is handled by the `desktopintegration`
+    // script we use.
+    // See https://github.com/AppImage/AppImageKit/blob/master/desktopintegration.
+#ifdef OTL_IS_APPIMAGE
+    QCommandLineOption removeDesktopIntegrationOption = {
+        "remove-appimage-desktop-integration",
+        QCoreApplication::translate(
+        "main",
+        "Remove shortcuts to the AppImage.")
+    };
+    parser.addOption(removeDesktopIntegrationOption);
+
+#endif
+
     parser.process(app);
 
 #ifdef OTL_USE_SINGLE_APPLICATION
