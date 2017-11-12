@@ -74,5 +74,10 @@ with_nextcloud_tests {
 } else {
     message("    WebDAV NextCloud Tests: DISABLED")
 }
+with_appimage_extras {
+    message("    AppImage Extras:        ENABLED")
+} else {
+    message("    AppImage Extras:        DISABLED")
+}
 
 include(appimage.pri)
