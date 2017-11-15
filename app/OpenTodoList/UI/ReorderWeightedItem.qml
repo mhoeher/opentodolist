@@ -14,14 +14,27 @@ Item {
         id: mouseArea
 
         anchors.fill: parent
-        drag.target: dragTile
         drag.axis: Drag.YAxis
         onClicked: root.clicked()
         onReleased: {
             dragTile.Drag.drop();
             dragTile.x = 0;
             dragTile.y = 0;
+            drag.target = undefined;
         }
+        onPressAndHold: {
+            drag.target = dragTile;
+            mouse.accepted = false;
+        }
+    }
+
+    Rectangle {
+        id: itemBackground
+        visible: mouseArea.drag.target === dragTile
+        anchors.fill: parent
+        color: Colors.primary
+        opacity: 0.2
+        z: 9
     }
 
     Rectangle {
