@@ -243,6 +243,20 @@ win64_vs_build:
   when: manual
 
 
+# macOS build:
+macos:
+  stage: build
+  tags:
+    - macos
+  script:
+    - ci/macos-build.sh
+  artifacts:
+    paths:
+      - build-macos/app/OpenTodoList.dmg
+    expire_in: 1 week
+  when: manual
+
+
 ################################################################################
 # Installer Stage
 ################################################################################
