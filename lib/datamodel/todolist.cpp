@@ -58,7 +58,7 @@ Todo *TodoList::addTodo()
         } else {
             todo = TodoPtr(new Todo());
         }
-        todo->m_library = m_library;
+        todo->setLibrary(m_library);
         todo->setTodoListUid(uid());
         todo->setWeight(m_library->todos()->nextItemWeight());
         m_library->todos()->addItem(todo);

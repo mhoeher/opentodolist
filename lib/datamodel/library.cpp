@@ -570,7 +570,7 @@ void Library::appendItem(ItemPtr item)
     } else {
         auto todo = qSharedPointerDynamicCast<Todo>(item);
         if (!todo.isNull()) {
-            todo->m_library = this;
+            todo->setLibrary(this);
             m_todos.updateOrInsert(item);
         } else {
             auto task = qSharedPointerDynamicCast<Task>(item);

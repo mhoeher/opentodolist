@@ -52,6 +52,14 @@ Item {
             width: parent.width
             height: row.height + Globals.defaultMargin * 2
 
+            Rectangle {
+                width: parent.width * (object.percentageDone / 100.0)
+                height: parent.height
+                visible: object.percentageDone > 0
+                color: "black"
+                opacity: 0.1
+            }
+
             ReorderWeightedItem {
                 anchors.fill: parent
                 onClicked: todoSelected(object)
