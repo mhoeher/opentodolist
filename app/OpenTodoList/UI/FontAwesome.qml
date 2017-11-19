@@ -23,6 +23,7 @@ FontLoader {
     readonly property string faEllipsisV: "\uf142"
     readonly property string faTimes: "\uf00d"
     readonly property string faInfo: "\uf129"
+    readonly property string faPaperclip: "\uf0c6"
     
     readonly property string faArrowLeft: "\uf060"
     readonly property string faArrowRight: "\uf061"

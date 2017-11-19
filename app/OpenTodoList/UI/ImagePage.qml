@@ -90,6 +90,15 @@ Page {
                 onClicked: page.openPage(notesEditor, {item: page.item})
             }
 
+            Attachments {
+                item: page.item
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
+                }
+            }
+
             TagsEditor {
                 item: page.item
                 library: page.library
