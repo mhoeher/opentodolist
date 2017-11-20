@@ -190,3 +190,20 @@ void ComplexItem::fromMap(QVariantMap map)
     setNotes(map.value("notes", m_notes).toString());
     setAttachments(map.value("attachments", m_attachments).toStringList());
 }
+
+bool ComplexItem::deleteItem()
+{
+    if (isValid()) {
+        for (auto attachment : m_attachments) {
+            auto path = attachmentFileName(attachment);
+            QFile file(path);
+            if (file.exists()) {
+                if (!file.remove()) {
+                    qCWarning(complexItem) << "Failed to remove attachment"
+                                           << path << ":" << file.errorString();
+                }
+            }
+        }
+    }
+    return Item::deleteItem();
+}

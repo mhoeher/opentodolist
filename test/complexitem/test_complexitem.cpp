@@ -65,14 +65,24 @@ void ComplexItemTest::attachments()
     item.attachFile(d.absoluteFilePath("res/foo.txt"));
     QCOMPARE(attachmentsChanged.count(), 1);
     QCOMPARE(item.attachments(), QStringList({"foo.txt"}));
+    QVERIFY(QFile(item.attachmentFileName("foo.txt")).exists());
 
     item.attachFile(d.absoluteFilePath("res/foo.txt"));
     QCOMPARE(attachmentsChanged.count(), 2);
     QCOMPARE(item.attachments(), QStringList({"foo-1.txt", "foo.txt"}));
+    QVERIFY(QFile(item.attachmentFileName("foo-1.txt")).exists());
 
     item.detachFile("foo.txt");
     QCOMPARE(attachmentsChanged.count(), 3);
     QCOMPARE(item.attachments(), QStringList({"foo-1.txt"}));
+    QVERIFY(QFile(item.attachmentFileName("foo-1.txt")).exists());
+    QVERIFY(!QFile(item.attachmentFileName("foo.txt")).exists());
+
+    auto attachmentPath = item.attachmentFileName("foo-1.txt");
+    QVERIFY(QFile(attachmentPath).exists());
+    QVERIFY(item.deleteItem());
+    QVERIFY(!QFile(attachmentPath).exists());
+
 }
 
 QTEST_MAIN(ComplexItemTest)

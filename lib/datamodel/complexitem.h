@@ -38,6 +38,9 @@ public:
     QStringList attachments() const;
     Q_INVOKABLE QString attachmentFileName(const QString& filename);
 
+    // Item interface
+    bool deleteItem() override;
+
 signals:
 
     void dueToChanged();
