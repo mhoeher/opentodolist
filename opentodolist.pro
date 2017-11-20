@@ -26,6 +26,7 @@ OTHER_FILES += \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
     templates/appimage/default.desktop \
+    $$files(templates/nsis/*,true) \
     $$files(ci/docker/fedora/*) \
     $$files(ci/docker/fedora_system/*) \
     $$files(ci/docker/ubuntu/*) \
