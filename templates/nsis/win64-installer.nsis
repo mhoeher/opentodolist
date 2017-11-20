@@ -62,6 +62,8 @@ Section "Uninstall"
   RMDir /r "$INSTDIR\.\"
 
   RMDir "$INSTDIR"
+
+  DeleteRegKey HKLM "${PROJECT_REG_UNINSTALL_KEY}"
 SectionEnd
 
 Section -post
@@ -69,3 +71,22 @@ Section -post
   WriteRegStr HKLM "${PROJECT_REG_UNINSTALL_KEY}" "UninstallString" '"$INSTDIR\${PROJECT_UNINSTALL_EXE}" _?=$INSTDIR'
   WriteRegStr HKLM "${PROJECT_REG_UNINSTALL_KEY}" "QuietUninstallString" '"$INSTDIR\${PROJECT_UNINSTALL_EXE}" /S _?=$INSTDIR'
 SectionEnd
+
+
+Function .onInit
+  ReadRegStr $R0 HKLM "${PROJECT_REG_UNINSTALL_KEY}" "UninstallString"
+  StrCmp $R0 "" done
+
+  MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
+    "${PROGRAM_NAME} is already installed. $\n$\nClick `OK` to remove the \
+    previous version or `Cancel` to cancel this upgrade." \
+    IDOK uninst
+  Abort
+
+;Run the uninstaller
+uninst:
+    ClearErrors
+    Exec $R0
+done:
+
+FunctionEnd
