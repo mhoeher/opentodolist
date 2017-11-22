@@ -108,6 +108,18 @@ public:
      */
     virtual void synchronize() = 0;
 
+    /**
+     * @brief Stop the currently running synchronization procedure.
+     *
+     * This method stops the currently running synchronization. The default
+     * implementation of this method does nothing. Implementations of the
+     * Synchronizer interface should implement specific means to stop
+     * a synchronization - this might be crucial for some platforms the app
+     * runs on, where upon a request for the app to terminate, this must
+     * be carried out as fast as possible.
+     */
+    virtual void stopSync() {}
+
     Q_INVOKABLE virtual void findExistingLibraries();
 
     virtual QVariantMap toMap() const;

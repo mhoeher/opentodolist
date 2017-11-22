@@ -39,8 +39,16 @@ void SyncJob::execute()
             if (!key.isEmpty()) {
                 sync->setSecret(m_secret);
             }
+            connect(this, &SyncJob::stopRequested,
+                    sync.data(), &Synchronizer::stopSync,
+                    Qt::QueuedConnection);
             sync->synchronize();
         }
     }
     emit syncFinished(m_library);
+}
+
+void SyncJob::stop()
+{
+    emit stopRequested();
 }

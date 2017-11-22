@@ -23,7 +23,11 @@ signals:
 
     void syncFinished(Library *library);
 
+    void stopRequested();
+
 public slots:
+
+    void stop();
 
 private:
 
