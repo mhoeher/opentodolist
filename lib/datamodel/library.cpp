@@ -21,7 +21,7 @@
 
 const QString Library::LibraryFileName = "library.json";
 
-Q_LOGGING_CATEGORY(library, "net.rpdev.opentodolist.Library");
+Q_LOGGING_CATEGORY(library, "net.rpdev.opentodolist.Library")
 
 /**
    @brief Set the name of the library.
@@ -44,6 +44,8 @@ Library::Library(QObject* parent) : QObject(parent),
     connect(timer, &QTimer::timeout, this, &Library::load);
     connect(m_directoryWatcher, &DirectoryWatcher::directoryChanged, timer,
             static_cast<void(QTimer::*)()>(&QTimer::start));
+    connect(&m_topLevelItems, &ItemContainer::countChanged,
+            this, &Library::tagsChanged);
 }
 
 Library::Library(const QString& directory, QObject* parent) : Library(parent)
@@ -566,7 +568,6 @@ void Library::appendItem(ItemPtr item)
         }
         m_topLevelItems.updateOrInsert(item);
         connect(topLevelItem.data(), &TopLevelItem::tagsChanged, this, &Library::tagsChanged);
-        emit tagsChanged();
     } else {
         auto todo = qSharedPointerDynamicCast<Todo>(item);
         if (!todo.isNull()) {
