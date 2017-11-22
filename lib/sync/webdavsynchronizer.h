@@ -45,6 +45,7 @@ public:
     // Synchronizer interface
     void validate() override;
     void synchronize() override;
+    void stopSync() override;
     void findExistingLibraries() override;
     QVariantMap toMap() const override;
     void fromMap(const QVariantMap& map) override;
@@ -82,8 +83,11 @@ signals:
     void passwordChanged();
     void urlChanged();
     void serverTypeChanged();
+    void stopRequested();
 
 private:
+
+    static const QString SyncLockFileName;
 
     QUrl    m_url;
     QString m_remoteDirectory;
@@ -91,6 +95,7 @@ private:
     QString m_username;
     QString m_password;
     bool m_createDirs;
+    bool m_stopRequested;
     WebDAVServerType m_serverType;
     QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
 };

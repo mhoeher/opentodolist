@@ -34,6 +34,7 @@ Synchronizer::Synchronizer(QObject *parent) : QObject(parent),
     m_valid(false),
     m_synchronizing(false),
     m_creatingDirectory(false),
+    m_findingLibraries(false),
     m_directory(),
     m_existingLibraries(),
     m_lastSync()

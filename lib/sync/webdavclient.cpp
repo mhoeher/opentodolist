@@ -1,5 +1,6 @@
 #include "webdavclient.h"
 
+#include <QCoreApplication>
 #include <QBuffer>
 #include <QDateTime>
 #include <QDir>
@@ -24,7 +25,8 @@ WebDAVClient::WebDAVClient(QObject *parent) : QObject(parent),
     m_directory(),
     m_disableCertificateCheck(false),
     m_username(),
-    m_password()
+    m_password(),
+    m_stopRequested(false)
 {
 }
 
@@ -76,6 +78,12 @@ QString WebDAVClient::password() const
 void WebDAVClient::setPassword(const QString &password)
 {
     m_password = password;
+}
+
+void WebDAVClient::stopSync()
+{
+    m_stopRequested = true;
+    emit stopRequested();
 }
 
 QUrl WebDAVClient::baseUrl() const
@@ -143,6 +151,8 @@ bool WebDAVClient::download(const QString& filename, QIODevice *targetDevice)
         connect(reply, &QNetworkReply::readyRead, [=]() {
             file->write(reply->readAll());
         });
+        connect(qApp, &QCoreApplication::aboutToQuit,
+                reply, &QNetworkReply::abort);
         waitForReplyToFinish(reply);
         file->write(reply->readAll());
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -211,6 +221,8 @@ bool WebDAVClient::upload(const QString& filename, QString* etag)
         request.setHeader(QNetworkRequest::ContentTypeHeader,
                           "application/octet-stream");
         auto reply = m_networkAccessManager->put(request, file);
+        connect(qApp, &QCoreApplication::aboutToQuit,
+                reply, &QNetworkReply::abort);
         connect(reply, &QNetworkReply::finished,
                 reply, &QNetworkReply::deleteLater);
         file->setParent(reply);
@@ -278,6 +290,8 @@ bool WebDAVClient::deleteEntry(const QString& filename)
     auto reply = m_networkAccessManager->deleteResource(request);
     connect(reply, &QNetworkReply::finished,
             reply, &QNetworkReply::deleteLater);
+    connect(qApp, &QCoreApplication::aboutToQuit,
+            reply, &QNetworkReply::abort);
     waitForReplyToFinish(reply);
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     if (code == HTTPStatusCode::OK || code == HTTPStatusCode::NoContent) {
@@ -341,6 +355,7 @@ bool WebDAVClient::deleteEntry(const QString& filename)
 bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression directoryFilter,
         bool pushOnly, QSet<QString> *changedDirs)
 {
+    m_stopRequested = false;
     QSet<QString> _changedDirs;
     bool result = false;
     auto localBase = this->directory();
@@ -362,7 +377,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
             bool localChanges = false;
             for (auto key : entries.keys()) {
                 auto entry = entries[key];
-                if (entry.lastModDate != entry.previousLasModtDate) {
+                if (entry.lastModDate != entry.previousLasModDate) {
                     localChanges = true;
                 }
             }
@@ -384,6 +399,9 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
 
         if (!skipSync) {
             for (auto entry : entries) {
+                if (m_stopRequested) {
+                    break;
+                }
                 if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
@@ -402,7 +420,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     }
                     result = result && removeLocalEntry(entry, db);
                 } else if (!entry.lastModDate.isNull() &&
-                           entry.lastModDate != entry.previousLasModtDate) {
+                           entry.lastModDate != entry.previousLasModDate) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
                                                     << entry.path();
@@ -410,7 +428,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     }
                     result = result && pushEntry(entry, db);
                 } else if (entry.lastModDate.isNull() &&
-                           !entry.previousLasModtDate.isNull()) {
+                           !entry.previousLasModDate.isNull()) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
                                                     << entry.path();
@@ -785,6 +803,8 @@ QNetworkReply* WebDAVClient::listDirectoryRequest(
     buffer->setData(requestData);
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "PROPFIND", buffer);
+    connect(qApp, &QCoreApplication::aboutToQuit,
+            reply, &QNetworkReply::abort);
     buffer->setParent(reply);
     prepareReply(reply);
     return reply;
@@ -822,6 +842,8 @@ QNetworkReply* WebDAVClient::etagRequest(const QString& filename)
     buffer->setData(requestData);
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "PROPFIND", buffer);
+    connect(qApp, &QCoreApplication::aboutToQuit,
+            reply, &QNetworkReply::abort);
     buffer->setParent(reply);
     prepareReply(reply);
     return reply;
@@ -840,6 +862,8 @@ QNetworkReply*WebDAVClient::createDirectoryRequest(
     request.setUrl(url);
     auto reply = m_networkAccessManager->sendCustomRequest(
                 request, "MKCOL");
+    connect(qApp, &QCoreApplication::aboutToQuit,
+            reply, &QNetworkReply::abort);
     prepareReply(reply);
     return reply;
 }
@@ -1062,7 +1086,7 @@ WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(
             auto record = query.record();
             entry.parent = record.value("parent").toString();
             entry.entry = record.value("entry").toString();
-            entry.previousLasModtDate = record.value("modificationDate")
+            entry.previousLasModDate = record.value("modificationDate")
                     .toDateTime();
             entry.previousEtag = record.value("etag").toString();
             result[entry.entry] = entry;

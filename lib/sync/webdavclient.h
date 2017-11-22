@@ -55,7 +55,11 @@ public:
 
 signals:
 
+    void stopRequested();
+
 public slots:
+
+    void stopSync();
 
 private:
 
@@ -83,7 +87,7 @@ private:
         EntryType localType;
         EntryType remoteType;
         QDateTime lastModDate;
-        QDateTime previousLasModtDate;
+        QDateTime previousLasModDate;
         QString etag;
         QString previousEtag;
 
@@ -93,7 +97,7 @@ private:
             localType(Invalid),
             remoteType(Invalid),
             lastModDate(),
-            previousLasModtDate(),
+            previousLasModDate(),
             etag(),
             previousEtag()
         {
@@ -120,6 +124,7 @@ private:
     bool m_disableCertificateCheck;
     QString m_username;
     QString m_password;
+    bool m_stopRequested;
 
 
     EntryList entryList(const QString& directory, bool* ok = nullptr);

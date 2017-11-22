@@ -421,6 +421,7 @@ void Application::syncLibrary(Library *library)
             }
             library->setSynchronizing(true);
             auto job = new SyncJob(library, library->directory(), secret);
+            connect(qApp, &QCoreApplication::aboutToQuit, job, &SyncJob::stop);
             connect(job, &SyncJob::syncFinished,
                     this, &Application::onLibrarySyncFinished,
                     Qt::QueuedConnection);
