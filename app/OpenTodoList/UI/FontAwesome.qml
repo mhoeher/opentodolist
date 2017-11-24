@@ -22,7 +22,10 @@ FontLoader {
     readonly property string faBars: "\uf0c9"
     readonly property string faEllipsisV: "\uf142"
     readonly property string faTimes: "\uf00d"
+    readonly property string faTimesCircle: "\uf057"
     readonly property string faInfo: "\uf129"
+    readonly property string faWarning: "\uf071"
+    readonly property string faQuestionCircleO: "\uf29c"
     readonly property string faPaperclip: "\uf0c6"
     
     readonly property string faArrowLeft: "\uf060"

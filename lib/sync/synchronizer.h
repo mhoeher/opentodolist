@@ -1,6 +1,7 @@
 #ifndef SYNCHRONIZER_H
 #define SYNCHRONIZER_H
 
+#include <QDebug>
 #include <QDateTime>
 #include <QLoggingCategory>
 #include <QObject>
@@ -63,7 +64,23 @@ class Synchronizer : public QObject
     Q_PROPERTY(QString secretsKey READ secretsKey CONSTANT)
 public:
 
+    enum LogType {
+        Debug,
+        Warning,
+        Error
+    };
+
+    Q_ENUM(LogType)
+
+    struct LogEntry {
+        QDateTime time;
+        LogType type;
+        QString message;
+    };
+
     static const QString SaveFileName;
+    static const QString LogFileName;
+    static const int MaxLogEntries = 1000;
 
     explicit Synchronizer(QObject *parent = 0);
     virtual ~Synchronizer();
@@ -140,6 +157,15 @@ public:
 
     void setLastSync(const QDateTime &lastSync);
 
+    // For logging:
+    QDebug debug();
+    QDebug warning();
+    QDebug error();
+
+    QList<LogEntry> log() const;
+    bool loadLog();
+    bool saveLog();
+
 signals:
 
     void validatingChanged();
@@ -174,6 +200,11 @@ private:
             m_existingLibraries;
     QDateTime
             m_lastSync;
+    QList<LogEntry>
+            m_log;
+
+    template<LogType Type>
+    inline QDebug createDebugStream();
 
 };
 

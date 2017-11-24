@@ -57,6 +57,10 @@ signals:
 
     void stopRequested();
 
+    void debug(const QString& message);
+    void warning(const QString& message);
+    void error(const QString& message);
+
 public slots:
 
     void stopSync();

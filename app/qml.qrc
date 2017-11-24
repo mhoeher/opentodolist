@@ -74,5 +74,6 @@
         <file>OpenTodoList/UI/ItemTitle.qml</file>
         <file>OpenTodoList/UI/ReorderWeightedItem.qml</file>
         <file>OpenTodoList/UI/Attachments.qml</file>
+        <file>OpenTodoList/UI/LogViewPage.qml</file>
     </qresource>
 </RCC>

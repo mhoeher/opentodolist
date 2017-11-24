@@ -67,6 +67,14 @@ Page {
                 App.syncLibrary(library);
             }
         }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Sync Log")
+            enabled: page.library.hasSynchronizer
+            onClicked: openPage(logPage, {"log": page.library.syncLog()})
+        }
     }
 
     clip: true
@@ -325,5 +333,11 @@ Page {
 
     LibrarySecretsMissingNotificationBar {
         library: page.library
+    }
+
+    Component {
+        id: logPage
+
+        LogViewPage {}
     }
 }

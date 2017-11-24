@@ -78,6 +78,7 @@ public slots:
 
     void syncLibrary(Library *library);
     void saveSynchronizerSecrets(Synchronizer *sync);
+    void copyToClipboard(const QString &text);
 
 signals:
 

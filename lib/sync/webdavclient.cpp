@@ -116,6 +116,9 @@ WebDAVClient::EntryList WebDAVClient::entryList(const QString& directory, bool *
     if (code == HTTPStatusCode::WebDAVMultiStatus) {
         result = parseEntryList(baseUrl(), dir, reply->readAll());
         status = true;
+    } else {
+        emit warning(tr("Unexpected HTTP code received when getting "
+                        "remote folder entry list: '%1'").arg(code));
     }
     if (ok != nullptr) {
         *ok = status;
@@ -176,15 +179,21 @@ bool WebDAVClient::download(const QString& filename, QIODevice *targetDevice)
                     qCWarning(webDAVClient) << "Failed to open destination"
                                                   << "file for writing:"
                                                   << targetFile.errorString();
+                    emit warning(tr("Failed to open file '%1' for writing: %2")
+                                 .arg(targetFile.fileName())
+                                 .arg(targetFile.errorString()));
                 }
             }
         } else {
             qCWarning(webDAVClient) << "Download failed with code" << code;
+            emit warning(tr("Download failed with HTTP code %1").arg(code));
         }
     } else {
         qCWarning(webDAVClient) << "Failed to open temporary file for"
                                       << "downloading:"
                                       << file->errorString();
+        emit warning(tr("Failed to open intermediate download file: %1")
+                     .arg(file->errorString()));
     }
     return result;
 }
@@ -239,10 +248,13 @@ bool WebDAVClient::upload(const QString& filename, QString* etag)
             result = true;
         } else {
             qCWarning(webDAVClient) << "Upload failed with code" << code;
+            emit warning(tr("Uploading failed with HTTP code %1").arg(code));
         }
     } else {
         qCWarning(webDAVClient) << "Failed to open" << filename
                                       << "for reading:" << file->errorString();
+        emit warning(tr("Failed to open file '%1' for reading: %2")
+                     .arg(file->fileName()).arg(file->errorString()));
         delete file;
     }
 
@@ -250,6 +262,7 @@ bool WebDAVClient::upload(const QString& filename, QString* etag)
         if (currentEtag.isNull()) {
             qDebug() << "Server did not send etag on upload - "
                         "manually getting it.";
+            emit debug(tr("Server did not send eTag when uploading"));
             currentEtag = this->etag(filename);
         }
         *etag = currentEtag;
@@ -299,6 +312,8 @@ bool WebDAVClient::deleteEntry(const QString& filename)
     } else {
         qCWarning(webDAVClient) << "Deleting entry failed with code"
                                       << code;
+        emit warning(tr("Deleting remote file failed with HTTP code %1")
+                     .arg(code));
     }
     return result;
 }
@@ -396,6 +411,9 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
         qCDebug(webDAVClient) << "Synchronizing" <<
                                        QDir::cleanPath(this->directory()
                                                        + "/" + directory);
+        emit debug(tr("Synchronizing '%1'")
+                   .arg(QDir::cleanPath(this->directory()
+                                        + "/" + directory)));
 
         if (!skipSync) {
             for (auto entry : entries) {
@@ -406,6 +424,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
                                                     << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
                     if (entry.remoteType == Directory) {
@@ -416,6 +435,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
                                                     << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
                     result = result && removeLocalEntry(entry, db);
@@ -424,6 +444,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
                                                     << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
                     result = result && pushEntry(entry, db);
@@ -432,6 +453,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(webDAVClient) << "Ignoring"
                                                     << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
                     result = result && removeRemoteEntry(entry, db);
@@ -441,6 +463,9 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
             qCDebug(webDAVClient) << "Skipping sync of " << directory
                                     << "as there were no local changes and we"
                                     << "have been asked to push only";
+            emit debug(tr("Skipping sync of directory '%1' as there were no "
+                          "local changes and we have been asked to push only")
+                       .arg(directory));
         }
         db.close();
     }
@@ -496,6 +521,7 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(
     } else {
         qCWarning(webDAVClient) << "Failed to get entry list for"
                                       << dir;
+        emit warning(tr("Failed to get entry list for '%1'").arg(dir));
         for (auto entry : entries.keys()) {
             auto &e = entries[entry];
             e.etag = e.previousEtag;
@@ -512,6 +538,7 @@ bool WebDAVClient::pullEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
     qCDebug(webDAVClient) << "Pulling" << entry.path();
+    emit debug(tr("Pulling '%1'").arg(entry.path()));
     bool result = false;
     if (entry.remoteType == File) {
         // Pull a file
@@ -521,6 +548,11 @@ bool WebDAVClient::pullEntry(
                     << entry.entry << "from" << entry.parent
                     << "because a local directory with that "
                        "name already exists";
+            emit error(tr("Pull conflict: Cannot pull file '%1' from "
+                          "'%2'  because a local directory with than "
+                          "name already exists")
+                       .arg(entry.entry)
+                       .arg(entry.parent));
         } else {
             if (download(entry.parent + "/" + entry.entry)) {
                 QFileInfo fi(this->directory() + "/" + entry.parent
@@ -538,6 +570,11 @@ bool WebDAVClient::pullEntry(
                     << entry.entry << "from" << entry.parent
                     << "because a file with that name already "
                        "exists locally";
+            emit error(tr("Pull conflict: Cannot pull directory '%1' from '%2' "
+                          "because a file with that name already exists "
+                          "locally")
+                       .arg(entry.entry)
+                       .arg(entry.parent));
         } else if (entry.localType == Invalid) {
             if (QDir(this->directory() + "/" + entry.parent).mkdir(
                         entry.entry)) {
@@ -558,6 +595,7 @@ bool WebDAVClient::pullEntry(
         // Should not happen...
         qCWarning(webDAVClient) << "Cannot pull remote entry "
                                          "of type Unknown";
+        emit warning(tr("Cannot pull remote entry of type Unknown"));
         result = false;
     }
     return result;
@@ -571,12 +609,17 @@ bool WebDAVClient::removeLocalEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
     qCDebug(webDAVClient) << "Removing" << entry.path() << "locally";
+    emit debug(tr("Removing '%1' locally").arg(entry.path()));
     bool result = false;
     if (entry.localType == File) {
         if (!QDir(directory() + "/" + entry.parent).remove(entry.entry)) {
             qCWarning(webDAVClient) << "Failed to remove local file"
                                           << entry.entry << "from"
                                           << entry.parent;
+            emit warning(tr("Failed to remove local file '%1' "
+                            "from '%2'")
+                         .arg(entry.entry)
+                         .arg(entry.parent));
         } else {
             removeFileFromSyncDB(db, entry);
             result = true;
@@ -588,12 +631,18 @@ bool WebDAVClient::removeLocalEntry(
         } else {
             qCWarning(webDAVClient) << "Failed to remove local"
                                           << "directory" << entry.path();
+            emit warning(tr("Failed to remove local directory '%1'")
+                         .arg(entry.path()));
         }
     } else {
         // Should not happen
         qCWarning(webDAVClient) << "Bad sync entry type of entry"
                                       << entry.entry << "in" << entry.parent
                                       << "in removeLocalEntry";
+        emit error(tr("Bad sync entry type of entry '%1' in '%2' "
+                      "when removing local entry")
+                   .arg(entry.entry)
+                   .arg(entry.parent));
     }
     return result;
 }
@@ -606,12 +655,16 @@ bool WebDAVClient::pushEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
     qDebug(webDAVClient) << "Pushing" << entry.path();
+    emit debug(tr("Pushing '%1'").arg(entry.path()));
     bool result = false;
     if (entry.localType == Directory) {
         if (entry.remoteType == File) {
             qCWarning(webDAVClient)
                     << "Conflict: Cannot push directory" << entry.path()
                     << "as a file with that name exists on the remote";
+            emit warning(tr("Push conflict: Cannot push directory '%1' "
+                            "as a file with that name exists on the remote")
+                         .arg(entry.path()));
         } else if (entry.remoteType == Directory) {
             insertSyncDBEntry(db, entry);
             result = true;
@@ -626,6 +679,10 @@ bool WebDAVClient::pushEntry(
             qCWarning(webDAVClient)
                     << "Conflict: Cannot push local file" << entry.path()
                     << "because a directory with that name exists remotely";
+            emit warning(tr("Push conflict: Cannot push local file '%1' "
+                            "because a directory with that name exists "
+                            "remotely")
+                         .arg(entry.path()));
         } else {
             if (upload(entry.path(), &entry.etag)) {
                 insertSyncDBEntry(db, entry);
@@ -635,6 +692,8 @@ bool WebDAVClient::pushEntry(
     } else if (entry.localType == Invalid) {
         qCWarning(webDAVClient) << "Unexpected local type of entry"
                                       << entry.path();
+        emit error(tr("Unexpected local type of entry '%1'")
+                   .arg(entry.path()));
     }
     return result;
 }
@@ -647,6 +706,7 @@ bool WebDAVClient::removeRemoteEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
     qDebug(webDAVClient) << "Removing" << entry.path() << "remotely";
+    emit debug(tr("Removing remote entry '%1'").arg(entry.path()));
     bool result = false;
     if (deleteEntry(entry.path())) {
         if (entry.localType == Directory) {

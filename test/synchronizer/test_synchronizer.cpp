@@ -15,6 +15,7 @@ private slots:
   void initTestCase() {}
   void init() {}
   void fromDirectory();
+  void logging();
   void cleanup() {}
   void cleanupTestCase() {}
 };
@@ -50,6 +51,52 @@ void SynchronizerTest::fromDirectory()
                                  map);
         auto sync = Synchronizer::fromDirectory(dir.path());
         QVERIFY(sync == nullptr);
+    }
+}
+
+void SynchronizerTest::logging()
+{
+    QTemporaryDir dir;
+    {
+        WebDAVSynchronizer sync;
+        QCOMPARE(sync.log().length(), 0);
+        sync.setDirectory(dir.path());
+        sync.debug() << "I am a debug message";
+        sync.warning() << "I am a warning message";
+        sync.error() << "I am an error message";
+        QCOMPARE(sync.log().length(), 3);
+        auto log = sync.log();
+        QVERIFY(log[0].time <= log[1].time);
+        QVERIFY(log[1].time <= log[2].time);
+        QCOMPARE(log[0].message, QString("I am a debug message "));
+        QCOMPARE(log[1].message, QString("I am a warning message "));
+        QCOMPARE(log[2].message, QString("I am an error message "));
+        sync.saveLog();
+    }
+    {
+        WebDAVSynchronizer sync;
+        QCOMPARE(sync.log().length(), 0);
+        sync.setDirectory(dir.path());
+        sync.loadLog();
+        QCOMPARE(sync.log().length(), 3);
+        auto log = sync.log();
+        QVERIFY(log[0].time <= log[1].time);
+        QVERIFY(log[1].time <= log[2].time);
+        QCOMPARE(log[0].message, QString("I am a debug message "));
+        QCOMPARE(log[1].message, QString("I am a warning message "));
+        QCOMPARE(log[2].message, QString("I am an error message "));
+    }
+    {
+        WebDAVSynchronizer sync;
+        for (int i = 0; i < Synchronizer::MaxLogEntries; ++i) {
+            sync.debug() << "Foo";
+        }
+        QCOMPARE(sync.log().length(), Synchronizer::MaxLogEntries);
+        sync.debug() << "Bar";
+        QCOMPARE(sync.log().length(), Synchronizer::MaxLogEntries);
+        QCOMPARE(sync.log()[0].message, QString("Foo "));
+        QCOMPARE(sync.log()[Synchronizer::MaxLogEntries-1].message,
+                QString("Bar "));
     }
 }
 
