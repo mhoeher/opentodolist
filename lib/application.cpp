@@ -1,11 +1,13 @@
 #include "application.h"
 
+#include <QClipboard>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDateTime>
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
+#include <QGuiApplication>
 #include <QJsonDocument>
 #include <QProcess>
 #include <QScopedPointer>
@@ -453,6 +455,19 @@ void Application::saveSynchronizerSecrets(Synchronizer *sync)
                 }
             }
         }
+    }
+}
+
+
+/**
+ * @brief Copy the @p text to the clipboard.
+ */
+void Application::copyToClipboard(const QString &text)
+{
+    auto app = dynamic_cast<QGuiApplication*>(qApp);
+    if (app != nullptr) {
+        auto clipboard = app->clipboard();
+        clipboard->setText(text);
     }
 }
 

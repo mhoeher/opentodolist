@@ -74,7 +74,7 @@ public:
     void deleteLibrary(bool deleteFiles, std::function<void ()> callback);
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
-    Q_INVOKABLE void sync();
+    Q_INVOKABLE QVariant syncLog();
 
     ItemContainer *topLevelItems();
     ItemContainer *todos();

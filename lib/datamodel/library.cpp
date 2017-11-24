@@ -276,16 +276,29 @@ bool Library::save()
 
 
 /**
- * @brief Trigger a synchronization of the library.
+ * @brief Get the sync log of the library.
+ *
+ * @sa Synchronizer::log()
  */
-void Library::sync()
+QVariant Library::syncLog()
 {
+    QVariantList result;
     if (isValid()) {
-        auto sync = Synchronizer::fromDirectory(m_directory);
-        if (sync != nullptr) {
+        QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(m_directory));
+        if (sync) {
+            sync->loadLog();
+            auto log = sync->log();
+            for (auto entry : log) {
+                QVariantMap map;
+                map["time"] = entry.time;
+                map["type"] = QVariant::fromValue(entry.type);
+                map["message"] = entry.message;
+                result << map;
+            }
 
         }
     }
+    return result;
 }
 
 ItemContainer* Library::topLevelItems()

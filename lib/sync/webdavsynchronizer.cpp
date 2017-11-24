@@ -96,9 +96,19 @@ void WebDAVSynchronizer::validate()
 void WebDAVSynchronizer::synchronize()
 {
     if (!directory().isEmpty() && !synchronizing()) {
+        debug() << tr("Starting synchronization");
         auto dav = createDAVClient(this);
         connect(this, &WebDAVSynchronizer::stopRequested,
                 dav, &WebDAVClient::stopSync);
+        connect(dav, &WebDAVClient::debug, [=](const QString& message) {
+            debug() << message;
+        });
+        connect(dav, &WebDAVClient::warning, [=](const QString& message) {
+            warning() << message;
+        });
+        connect(dav, &WebDAVClient::error, [=](const QString& message) {
+            error() << message;
+        });
         setSynchronizing(true);
         m_stopRequested = false;
         bool fullSync = false;
@@ -111,11 +121,15 @@ void WebDAVSynchronizer::synchronize()
                 qCWarning(webDAVSynchronizer) << "The last sync did not "
                                                  "complete - doing a full "
                                                  "sync";
+                warning() << tr("The last sync did not run through - "
+                                "doing a full sync");
             }
             QFile file(syncDir.absoluteFilePath(SyncLockFileName));
             if (!file.open(QIODevice::WriteOnly)) {
                 qCWarning(webDAVSynchronizer) << "Failed to create sync lock:"
                                               << file.errorString();
+                error() << tr("Failed to create sync lock:")
+                        << file.errorString();
             } else {
                 file.close();
             }
@@ -123,6 +137,7 @@ void WebDAVSynchronizer::synchronize()
         // Sync the top level directory:
         bool dirsOkay = true;
         if (m_createDirs) {
+            debug() << tr("Creating the remote top level directory");
             dav->setRemoteDirectory("");
             auto parts = QDir::cleanPath(m_remoteDirectory).split("/");
             QString rpath;
@@ -134,6 +149,8 @@ void WebDAVSynchronizer::synchronize()
                         qCWarning(webDAVSynchronizer)
                                 << "Failed to prepare remote dir" << rpath
                                 << "for sync.";
+                        error() << tr("Failed to prepare remote directory '%1' "
+                                      "for sync").arg(rpath);
                         dirsOkay = false;
                         break;
                     } else {
@@ -150,10 +167,13 @@ void WebDAVSynchronizer::synchronize()
 
         if (dirsOkay) {
             QSet<QString> changedYearDirs;
-            dav->syncDirectory("/",
+            if (!dav->syncDirectory("/",
                                QRegularExpression("\\d\\d\\d\\d"),
                                false,
-                               &changedYearDirs);
+                                    &changedYearDirs)) {
+                warning() << tr("Failed to synchronize top level "
+                                "directory!");
+            }
             // Sync the year directory:
             QDir dir(directory());
             for (auto yearDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -161,19 +181,25 @@ void WebDAVSynchronizer::synchronize()
                     break;
                 }
                 QSet<QString> changedMonthDirs;
-                dav->syncDirectory("/" + yearDir,
+                if (!dav->syncDirectory("/" + yearDir,
                                    QRegularExpression("\\d\\d?"),
                                    fullSync || !changedYearDirs.contains(yearDir),
-                                   &changedMonthDirs);
+                                        &changedMonthDirs)) {
+                    warning() << tr("Failed to synchronize '%1'").arg(
+                                     "/" + yearDir);
+                }
                 QDir ydir(dir.absoluteFilePath(yearDir));
                 for (auto monthDir : ydir.entryList(
                          QDir::Dirs | QDir::NoDotAndDotDot)) {
                     if (m_stopRequested) {
                         break;
                     }
-                    dav->syncDirectory("/" + yearDir + "/" + monthDir,
+                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir,
                                        QRegularExpression(),
-                                       fullSync || !changedMonthDirs.contains(monthDir));
+                                            fullSync || !changedMonthDirs.contains(monthDir))) {
+                        warning() << tr("Failed to synchronize '%1'").arg(
+                                         "/" + yearDir + "/" + monthDir);
+                    }
                 }
             }
         }
@@ -183,6 +209,8 @@ void WebDAVSynchronizer::synchronize()
         }
         setSynchronizing(false);
         delete dav;
+
+        debug() << tr("Synchronization finished");
     }
 }
 

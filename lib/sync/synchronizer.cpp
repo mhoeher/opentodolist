@@ -19,6 +19,8 @@ Q_LOGGING_CATEGORY(synchronizer, "net.rpdev.opentodolist.Synchronizer", QtDebugM
  * @brief The default file name for storing synchronizer settings.
  */
 const QString Synchronizer::SaveFileName = ".opentodolist.synchronizer";
+const QString Synchronizer::LogFileName = ".opentodolist.sync.log";
+const int Synchronizer::MaxLogEntries;
 
 
 /**
@@ -37,7 +39,8 @@ Synchronizer::Synchronizer(QObject *parent) : QObject(parent),
     m_findingLibraries(false),
     m_directory(),
     m_existingLibraries(),
-    m_lastSync()
+    m_lastSync(),
+    m_log()
 {
 }
 
@@ -193,6 +196,107 @@ void Synchronizer::setFindingLibraries(bool findingLibraries)
         m_findingLibraries = findingLibraries;
         emit findingLibrariesChanged();
     }
+}
+
+bool Synchronizer::loadLog()
+{
+    bool result = false;
+    m_log.clear();
+    if (!m_directory.isEmpty()) {
+        QFile log(m_directory + "/" + LogFileName);
+        if (log.open(QIODevice::ReadOnly)) {
+            auto json = QJsonDocument::fromJson(log.readAll());
+            if (json.isArray()) {
+                auto array = json.toVariant().toList();
+                for (auto obj : array) {
+                    LogEntry entry;
+                    auto map = obj.toMap();
+                    entry.time = map.value("time").toDateTime();
+                    entry.message = map.value("message").toString();
+                    entry.type = map.value("type").value<LogType>();
+                    m_log.append(entry);
+                }
+            }
+            log.close();
+            result = true;
+        } else {
+            qCWarning(synchronizer) << "Failed to open log for reading:"
+                                    << log.errorString();
+        }
+    }
+    return result;
+}
+
+bool Synchronizer::saveLog()
+{
+    bool result = true;
+    if (!m_directory.isEmpty() && !m_log.isEmpty()) {
+        QFile log(m_directory + "/" + LogFileName);
+        if (log.open(QIODevice::WriteOnly)) {
+            QVariantList list;
+            for (auto entry : m_log) {
+                QVariantMap map;
+                map["type"] = QVariant::fromValue(entry.type);
+                map["time"] = entry.time;
+                map["message"] = entry.message;
+                list.append(map);
+            }
+            auto json = QJsonDocument::fromVariant(list).toJson(
+                        QJsonDocument::Indented);
+            log.write(json);
+            log.close();
+            result = true;
+        } else {
+            qCWarning(synchronizer) << "Failed to open log file for writing:"
+                                    << log.errorString();
+        }
+    }
+    return result;
+}
+
+
+/**
+ * @brief Returns the log of the synchronizer.
+ */
+QList<Synchronizer::LogEntry> Synchronizer::log() const
+{
+    return m_log;
+}
+
+
+/**
+ * @brief Get a debug stream to write a debug log entry.
+ *
+ * This returns a QDebug object which can be used to write an entry
+ * to the log.
+ */
+QDebug Synchronizer::debug()
+{
+    return createDebugStream<Debug>();
+}
+
+
+/**
+ * @brief Get a debug stream to write a warning log entry.
+ *
+ * This returns a QDebug object which can be used to write an entry
+ * to the log.
+ */
+QDebug Synchronizer::warning()
+{
+    return createDebugStream<Warning>();
+}
+
+
+/**
+ * @brief Get a debug stream to write an error log entry.
+ *
+ * This returns a QDebug object which can be used to write an entry
+ * to the log.
+ */
+QDebug Synchronizer::error()
+{
+    return createDebugStream<Error>();
 }
 
 void Synchronizer::setLastSync(const QDateTime &lastSync)
@@ -476,4 +580,17 @@ QUuid SynchronizerExistingLibrary::uid() const
 void SynchronizerExistingLibrary::setUid(const QUuid &uid)
 {
     m_uid = uid;
+}
+
+template<Synchronizer::LogType Type>
+QDebug Synchronizer::createDebugStream()
+{
+    while (m_log.length() >= MaxLogEntries) {
+        m_log.removeFirst();
+    }
+    LogEntry entry;
+    entry.time = QDateTime::currentDateTime();
+    entry.type = Type;
+    m_log.append(entry);
+    return QDebug(&m_log.last().message);
 }

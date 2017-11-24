@@ -34,6 +34,7 @@ void SyncJob::execute()
     if (!m_libraryDirectory.isEmpty()) {
         QScopedPointer<Synchronizer> sync(
                     Synchronizer::fromDirectory(m_libraryDirectory));
+        sync->loadLog();
         if (sync) {
             auto key = sync->secretsKey();
             if (!key.isEmpty()) {
@@ -44,6 +45,7 @@ void SyncJob::execute()
                     Qt::QueuedConnection);
             sync->synchronize();
         }
+        sync->saveLog();
     }
     emit syncFinished(m_library);
 }
