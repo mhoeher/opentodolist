@@ -57,9 +57,17 @@ signals:
 
     void stopRequested();
 
-    void debug(const QString& message);
-    void warning(const QString& message);
-    void error(const QString& message);
+    void debug(const QString& message) const;
+    void warning(const QString& message) const;
+    void error(const QString& message) const;
+
+    /**
+     * @brief Indicates errors during synchronization.
+     *
+     * This signal is emitted to indicate issues during sync operations.
+     * The @p message string contains more detailed information.
+     */
+    void syncError(const QString& message) const;
 
 public slots:
 

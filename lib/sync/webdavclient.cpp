@@ -1014,18 +1014,30 @@ WebDAVClient::Entry WebDAVClient::parseResponseEntry(
 
 void WebDAVClient::prepareReply(QNetworkReply* reply) const
 {
-    if (m_disableCertificateCheck) {
-        connect(reply, &QNetworkReply::sslErrors,
-                [=](QList<QSslError> errors) {
-            for (auto error : errors) {
-                qCWarning(webDAVClient) << error.errorString();
+    connect(reply, &QNetworkReply::sslErrors,
+            [=](QList<QSslError> errors) {
+        for (auto error : errors) {
+            qCWarning(webDAVClient) << error.errorString();
+            emit this->error(tr("There was an SSL error: %1")
+                       .arg(error.errorString()));
+            if (!m_disableCertificateCheck) {
+                emit syncError(tr("Problem establishing a secure connection to "
+                                  "the server: %1").arg(error.errorString()));
             }
+        }
+        if (m_disableCertificateCheck) {
             reply->ignoreSslErrors(errors);
-        });
-    }
+        }
+    });
     connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
             [=](QNetworkReply::NetworkError error) {
         qCWarning(webDAVClient) << "Network error:" << error;
+        emit this->error(tr("There was a network error: %1")
+                         .arg(QVariant::fromValue(error).toString()));
+        if (error == QNetworkReply::AuthenticationRequiredError) {
+            emit syncError(tr("Authentication failed. Please check you username "
+                              "and password."));
+        }
     });
 }
 

@@ -40,6 +40,7 @@ class Library : public QObject
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
     Q_PROPERTY(bool secretsMissing READ secretsMissing WRITE setSecretsMissing
                NOTIFY secretsMissingChanged)
+    Q_PROPERTY(QStringList syncErrors READ syncErrors NOTIFY syncErrorsChanged)
     Q_PROPERTY(bool isInDefaultLocation READ isInDefaultLocation CONSTANT)
 
     friend class Application;
@@ -103,6 +104,8 @@ public:
     bool secretsMissing() const;
     void setSecretsMissing(bool secretsMissing);
 
+    QStringList syncErrors() const;
+
 signals:
 
     /**
@@ -148,6 +151,13 @@ signals:
 
     void secretsMissingChanged();
 
+    void syncErrorsChanged();
+
+public slots:
+
+    void addSyncError(const QString &error);
+    void clearSyncErrors();
+
 private:
 
     QUuid                   m_uid;
@@ -163,6 +173,7 @@ private:
     bool                    m_loading;
     bool                    m_synchronizing;
     bool                    m_secretsMissing;
+    QStringList             m_syncErrors;
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);

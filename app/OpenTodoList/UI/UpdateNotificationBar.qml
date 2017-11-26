@@ -44,7 +44,7 @@ Rectangle {
             text: qsTr("An update to OpenTodoList %1 is available.").arg(
                       updateNotificationBar.version)
             Layout.fillWidth: true
-            wrapMode: Text.WrapAnywhere
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
         Button {
             text: qsTr("Ignore")

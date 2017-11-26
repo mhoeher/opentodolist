@@ -422,11 +422,14 @@ void Application::syncLibrary(Library *library)
                 }
             }
             library->setSynchronizing(true);
+            library->clearSyncErrors();
             auto job = new SyncJob(library, library->directory(), secret);
             connect(qApp, &QCoreApplication::aboutToQuit, job, &SyncJob::stop);
             connect(job, &SyncJob::syncFinished,
                     this, &Application::onLibrarySyncFinished,
                     Qt::QueuedConnection);
+            connect(job, &SyncJob::syncError,
+                    library, &Library::addSyncError, Qt::QueuedConnection);
             auto runner = new SyncRunner(job);
             QThreadPool::globalInstance()->start(runner);
         }

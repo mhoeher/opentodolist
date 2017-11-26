@@ -132,7 +132,6 @@ Item {
                         if (displayText !== "") {
                             root.addEntry(displayText);
                             text = "";
-                            forceActiveFocus();
                         }
                     }
                     selectByMouse: true

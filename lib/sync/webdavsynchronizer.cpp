@@ -109,6 +109,8 @@ void WebDAVSynchronizer::synchronize()
         connect(dav, &WebDAVClient::error, [=](const QString& message) {
             error() << message;
         });
+        connect(dav, &WebDAVClient::syncError,
+                this, &WebDAVSynchronizer::syncError);
         setSynchronizing(true);
         m_stopRequested = false;
         bool fullSync = false;
