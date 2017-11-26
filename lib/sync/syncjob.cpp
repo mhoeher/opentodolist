@@ -43,6 +43,8 @@ void SyncJob::execute()
             connect(this, &SyncJob::stopRequested,
                     sync.data(), &Synchronizer::stopSync,
                     Qt::QueuedConnection);
+            connect(sync.data(), &Synchronizer::syncError,
+                    this, &SyncJob::syncError);
             sync->synchronize();
         }
         sync->saveLog();

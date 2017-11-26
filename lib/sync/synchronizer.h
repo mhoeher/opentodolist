@@ -175,6 +175,7 @@ signals:
     void existingLibrariesChanged();
     void findingLibrariesChanged();
     void secretChanged();
+    void syncError(const QString& message);
 
 public slots:
 

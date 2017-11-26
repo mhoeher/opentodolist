@@ -75,5 +75,7 @@
         <file>OpenTodoList/UI/ReorderWeightedItem.qml</file>
         <file>OpenTodoList/UI/Attachments.qml</file>
         <file>OpenTodoList/UI/LogViewPage.qml</file>
+        <file>OpenTodoList/UI/SyncErrorNotificationBar.qml</file>
+        <file>OpenTodoList/UI/SyncErrorViewPage.qml</file>
     </qresource>
 </RCC>

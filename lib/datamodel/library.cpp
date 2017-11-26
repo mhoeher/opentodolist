@@ -36,7 +36,8 @@ Library::Library(QObject* parent) : QObject(parent),
     m_directoryWatcher(new DirectoryWatcher(this)),
     m_loading(false),
     m_synchronizing(false),
-    m_secretsMissing(false)
+    m_secretsMissing(false),
+    m_syncErrors()
 {
     auto timer = new QTimer(this);
     timer->setInterval(5000);
@@ -535,6 +536,45 @@ void Library::setSecretsMissing(bool secretsMissing)
         m_secretsMissing = secretsMissing;
         emit secretsMissingChanged();
     }
+}
+
+
+/**
+ * @brief Get the list of sync errors.
+ *
+ * The syncErrors property holds the list of sync error messages. By default,
+ * the list should be empty, indicating that there are no sync errors. However,
+ * if issues occur during sync, they are appended to this list and can be shown
+ * in the user interface to let the user know something is wrong (e.g. a
+ * password required to log in to a sync server changed and the user needs to
+ * change it.
+ */
+QStringList Library::syncErrors() const
+{
+    return m_syncErrors;
+}
+
+
+/**
+ * @brief Appends a new sync error.
+ *
+ * This appends the sync @p error (which is given as an error string) to the
+ * list of sync errors.
+ */
+void Library::addSyncError(const QString& error)
+{
+    m_syncErrors.append(error);
+    emit syncErrorsChanged();
+}
+
+
+/**
+ * @brief Clears the list of sync errors.
+ */
+void Library::clearSyncErrors()
+{
+    m_syncErrors.clear();
+    emit syncErrorsChanged();
 }
 
 

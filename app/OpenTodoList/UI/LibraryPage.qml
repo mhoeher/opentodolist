@@ -331,13 +331,22 @@ Page {
         }
     }
 
-    LibrarySecretsMissingNotificationBar {
+    LibrarySecretsMissingNotificationBar { library: page.library }
+
+    SyncErrorNotificationBar {
         library: page.library
+        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
     }
 
     Component {
         id: logPage
 
         LogViewPage {}
+    }
+
+    Component {
+        id: syncErrorPage
+
+        SyncErrorViewPage {}
     }
 }

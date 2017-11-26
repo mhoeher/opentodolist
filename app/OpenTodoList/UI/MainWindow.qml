@@ -252,6 +252,13 @@ ApplicationWindow {
             }
             height: parent.height
 
+            BusyIndicator {
+                visible: stackView.isBusy
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height
+                width: height
+            }
+
             Symbol {
                 id: searchToolButton
 
@@ -261,40 +268,10 @@ ApplicationWindow {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Symbol {
-                symbol: Fonts.symbols.faCopy
-                visible: activeFocusItem && typeof(activeFocusItem["copy"]) === "function"
-                onClicked: activeFocusItem.copy()
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            Symbol {
-                symbol: Fonts.symbols.faCut
-                visible: activeFocusItem && typeof(activeFocusItem["cut"]) === "function"
-                onClicked: activeFocusItem.cut()
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            Symbol {
-                symbol: Fonts.symbols.faPaste
-                visible: activeFocusItem && typeof(activeFocusItem["paste"]) === "function"
-                onClicked: activeFocusItem.paste()
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            BusyIndicator {
-                visible: stackView.isBusy
-                anchors.verticalCenter: parent.verticalCenter
-                height: parent.height
-                width: height
-            }
-            Symbol {
                 symbol: Fonts.symbols.faTrashO
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: stackView.currentItem.deleteItem()
-            }
-            Symbol {
-                symbol: Fonts.symbols.faCheck
-                visible: stackView.currentItem && typeof(stackView.currentItem["save"]) === "function"
-                anchors.verticalCenter: parent.verticalCenter
-                onClicked: Logic.saveCurrent(stackView)
             }
             Symbol {
                 symbol: Fonts.symbols.faEllipsisV

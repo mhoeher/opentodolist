@@ -24,6 +24,7 @@ signals:
     void syncFinished(Library *library);
 
     void stopRequested();
+    void syncError(const QString& error);
 
 public slots:
 
