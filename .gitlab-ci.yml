@@ -105,14 +105,14 @@ linux_builtin:
   script:
     - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - export QT_QPA_PLATFORM=minimal
-    - mkdir build
-    - cd build
+    - mkdir build-fedora-builtin
+    - cd build-fedora-builtin
     - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
   artifacts:
     paths:
-      - build
+      - build-fedora-builtin
     expire_in: 1 week
 
 
@@ -126,14 +126,14 @@ linux_system:
   script:
     - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - export QT_QPA_PLATFORM=minimal
-    - mkdir build
-    - cd build
+    - mkdir build-fedora-system
+    - cd build-fedora-system
     - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
     - make check
   artifacts:
     paths:
-      - build
+      - build-fedora-system
     expire_in: 1 week
 
 
@@ -148,8 +148,8 @@ ubuntu_appimage:
     - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
     - desktop-file-validate templates/appimage/default.desktop
     - export QT_QPA_PLATFORM=minimal
-    - mkdir build
-    - cd build
+    - mkdir build-ubuntu
+    - cd build-ubuntu
     - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
     - qmake CONFIG+=with_update_service CONFIG+=with_appimage_extras CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
     - make -j4
@@ -157,7 +157,7 @@ ubuntu_appimage:
     - make OpenTodoList-x86_64.AppImage
   artifacts:
     paths:
-      - build
+      - build-ubuntu
     expire_in: 1 week
 
 
@@ -325,3 +325,26 @@ win64_vs_installer:
             - build-win64-vs/*.exe
         expire_in: 1 week
     when: manual
+
+
+################################################################################
+# Images Stage
+################################################################################
+
+
+github:
+    stage: deploy
+    image: fedora
+    script:
+        - yum install -y --nogpgcheck python3
+        - mkdir uploads
+        - cp build-ubuntu/OpenTodoList-x86_64.AppImage uploads
+        - cp deploy-win32/OpenTodoList-Windows-32bit.exe uploads
+        - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
+        - cp deploy-win32-vs/OpenTodoList-Windows-32bit.exe uploads/OpenTodoList-Windows-MVSC-32bit.exe || echo "Skip deploying MSVC 32bit installer"
+        - cp deploy-win64-vs/OpenTodoList-Windows-64bit.exe uploads/OpenTodoList-Windows-MVSC-64bit.exe || echo "Skip deploying MSVC 64bit installer"
+        - cp build-macos/app/OpenTodoList.dmg uploads
+        - ./ci/github-upload.py mhoeher opentodolist continuous $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
+    when: manual
+    only:
+        - tags
