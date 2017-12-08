@@ -67,7 +67,14 @@ MouseArea {
                         anchors.bottom: parent.bottom
                         width: parent.width
                         height: 1
-                        color: Colors.itemDelimiter
+                        color: {
+                            switch (item.libraryItem.color) {
+                            case TopLevelItem.Lilac:
+                                return Colors.itemDelimiterAlt;
+                            default:
+                                return Colors.itemDelimiter;
+                            }
+                        }
                         antialiasing: true
                     }
                 }
