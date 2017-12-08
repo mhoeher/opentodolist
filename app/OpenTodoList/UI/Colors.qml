@@ -20,6 +20,7 @@ QtObject {
     property color headerBar: primary
     
     property color itemDelimiter: "silver"
+    property color itemDelimiterAlt: "gray"
     
     property color tagBackground: Qt.tint("white", makeTransparent(primary, 0.1))
     property color tagBorder: "silver"
