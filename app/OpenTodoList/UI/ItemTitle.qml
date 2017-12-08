@@ -12,12 +12,27 @@ Item {
 
     height: layout.height + 2 * Globals.defaultMargin
 
+    QtObject {
+        id: d
+
+        property bool checkable: item && (typeof(item["done"]) === "boolean")
+        property bool done: checkable && item.done
+    }
+
     RowLayout {
         id: layout
 
         x: Globals.defaultMargin
         y: x
         width: parent.width - 2 * x
+
+        Symbol {
+            id: checkButton
+            visible: d.checkable
+            symbol: d.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
+            onClicked: root.item.done = !root.item.done
+            pixelSize: Globals.minButtonHeight
+        }
 
         URLText {
             id: label
