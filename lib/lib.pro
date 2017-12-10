@@ -21,7 +21,6 @@ SOURCES += \
     datamodel/todo.cpp \
     datamodel/todolist.cpp \
     opentodolistqmlextensionsplugin.cpp \
-    documentformatter.cpp \
     fileutils.cpp \
     datastorage/itemcontainer.cpp \
     datastorage/libraryloader.cpp \
@@ -50,7 +49,6 @@ HEADERS += \
     datamodel/todo.h \
     datamodel/todolist.h \
     opentodolistqmlextensionsplugin.h \
-    documentformatter.h \
     fileutils.h \
     abstractitemmodel.h \
     datastorage/itemcontainer.h \

@@ -1,6 +1,7 @@
 #include "complexitem.h"
 
 #include <QtConcurrent>
+#include <QTextDocument>
 
 
 Q_LOGGING_CATEGORY(complexItem, "net.rpdev.OpenTodoList.ComplexItem",
@@ -80,8 +81,18 @@ QString ComplexItem::notes()
  */
 void ComplexItem::setNotes(const QString &notes)
 {
-    if (m_notes != notes) {
-        m_notes = notes;
+    auto copy = notes;
+    // Detect old-style HTML notes and convert to plain text:
+    if (copy.startsWith("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+                        "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                        "<html><head><meta name=\"qrichtext\" content=\"1\""
+                        " />")) {
+        QTextDocument doc;
+        doc.setHtml(copy);
+        copy = doc.toRawText();
+    }
+    if (m_notes != copy) {
+        m_notes = copy;
         emit notesChanged();
         save();
     }

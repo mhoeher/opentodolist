@@ -194,6 +194,7 @@ MouseArea {
                 }
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 textFormat: Text.RichText
+                onLinkActivated: Qt.openUrlExternally(link)
             }
         }
     }

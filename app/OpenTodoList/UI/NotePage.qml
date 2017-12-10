@@ -72,7 +72,7 @@ Item {
                     margins: Globals.defaultMargin
                 }
                 title: qsTr("Notes")
-                text: item.notes
+                text: Globals.markdownToHtml(item.notes)
                 backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
                 onClicked: {
                     page.openPage(notesEditor, {"item": item});

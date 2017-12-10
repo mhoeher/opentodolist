@@ -13,7 +13,6 @@
         <file>OpenTodoList/UI/Fonts.qml</file>
         <file>OpenTodoList/UI/SymbolButton.qml</file>
         <file>OpenTodoList/UI/RichTextEditor.qml</file>
-        <file>OpenTodoList/UI/RichTextEditorFormatMenu.qml</file>
         <file>OpenTodoList/UI/LibraryPage.qml</file>
         <file>OpenTodoList/UI/Symbol.qml</file>
         <file>OpenTodoList/UI/LibraryPageLogic.js</file>
@@ -77,5 +76,7 @@
         <file>OpenTodoList/UI/LogViewPage.qml</file>
         <file>OpenTodoList/UI/SyncErrorNotificationBar.qml</file>
         <file>OpenTodoList/UI/SyncErrorViewPage.qml</file>
+        <file>OpenTodoList/UI/showdownjs/3rdpartyinfo.json</file>
+        <file>OpenTodoList/UI/showdownjs/showdown.js</file>
     </qresource>
 </RCC>

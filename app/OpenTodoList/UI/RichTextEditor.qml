@@ -11,11 +11,6 @@ Page {
 
     readonly property TextArea textArea: textArea
     property alias text: textArea.text
-    property DocumentFormatter documentFormatter: DocumentFormatter {
-        target: textArea
-        selectionStart: textArea.selectionStart
-        selectionEnd: textArea.selectionEnd
-    }
     
     signal accepted()
     
@@ -55,20 +50,14 @@ Page {
         TextArea.flickable: TextArea {
             id: textArea
 
+            padding: Globals.defaultMargin
             anchors.fill: parent
-            textFormat: TextEdit.RichText
+            textFormat: TextEdit.PlainText
             focus: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            Keys.onTabPressed: {
-                if (event.modifiers & Qt.ControlModifier) {
-                    documentFormatter.decreaseIndentation();
-                } else {
-                    documentFormatter.increaseIndentation();
-                }
-                event.accepted = true;
-            }
             selectByMouse: true
             persistentSelection: true
+            font.family: "Courier"
         }
     }
 }

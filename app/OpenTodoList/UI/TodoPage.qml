@@ -112,7 +112,7 @@ Page {
                     margins: Globals.defaultMargin
                 }
                 title: qsTr("Notes")
-                text: todo.notes
+                text: Globals.markdownToHtml(page.todo.notes)
                 backgroundColor: Colors.itemYellow
                 onClicked: {
                     page.openPage(notesEditor, {item: page.todo});
