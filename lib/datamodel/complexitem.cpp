@@ -89,7 +89,7 @@ void ComplexItem::setNotes(const QString &notes)
                         " />")) {
         QTextDocument doc;
         doc.setHtml(copy);
-        copy = doc.toRawText();
+        copy = doc.toPlainText();
     }
     if (m_notes != copy) {
         m_notes = copy;
