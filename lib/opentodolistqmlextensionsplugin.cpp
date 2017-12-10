@@ -2,7 +2,6 @@
 
 #include "application.h"
 #include "complexitem.h"
-#include "documentformatter.h"
 #include "image.h"
 #include "item.h"
 #include "library.h"
@@ -37,7 +36,6 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
   qmlRegisterType<Image>(uri, 1, 0, "ImageTopLevelItem");
   qmlRegisterType<Item>(uri, 1, 0, "BasicItem");
-  qmlRegisterType<DocumentFormatter>(uri, 1, 0, "DocumentFormatter");
   qmlRegisterType<Library>(uri, 1, 0, "Library");
   qmlRegisterType<Note>(uri, 1, 0, "Note");
   qmlRegisterType<Task>(uri, 1, 0, "Task");

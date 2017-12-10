@@ -1,0 +1,8 @@
+{
+    "name": "ShowdownJS",
+    "author": "The ShowdownJS Team",
+    "website": "http://showdownjs.com/",
+    "licenseUrl": "https://github.com/showdownjs/showdown/blob/master/license.txt",
+    "licenseType": "BSD License",
+    "downloadUrl": "https://github.com/showdownjs/showdown/blob/master/dist/showdown.js"
+}

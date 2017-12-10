@@ -7,17 +7,6 @@ import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
 
-//StickyNote {
-//    property Note libraryItem: Note {}
-
-//    title: libraryItem.title
-//    text: libraryItem.notes
-//    clip: true
-//    acceptedButtons: Qt.LeftButton | Qt.RightButton
-//    backgroundColor: Colors.itemColor(libraryItem.color)
-//    hoverEnabled: true
-//}
-
 MouseArea {
     id: item
 
@@ -102,7 +91,7 @@ MouseArea {
             }
 
             textFormat: Text.RichText
-            text: libraryItem.notes
+            text: Globals.markdownToHtml(libraryItem.notes)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             clip: true
         }

@@ -6,6 +6,8 @@ import QtQuick.Controls 2.2
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
 
+import "showdownjs/showdown.js" as ShowdownJS
+
 
 Item {
     id: globals
@@ -22,9 +24,9 @@ Item {
         switch (Qt.platform.os) {
             case "android":
             case "ios":
-                return false;
+            return false;
             default:
-                return true;
+            return true;
         }
     }
     
@@ -33,5 +35,18 @@ Item {
         result.replace("//", "/");
         return result;
     }
+
+    function markdownToHtml(markdown) {
+        return d.markdownConverter.makeHtml(markdown);
+    }
     
+    QtObject {
+        id: d
+
+        property var markdownConverter: {
+            var converter = new ShowdownJS.showdown.Converter();
+            converter.setFlavor('github');
+            return converter;
+        }
+    }
 }
