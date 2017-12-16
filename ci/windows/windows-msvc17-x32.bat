@@ -1,5 +1,5 @@
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
-set PATH=C:\Qt\5.9.2\msvc2015\bin;%PATH%
+set PATH=C:\Qt\5.10.0\msvc2015\bin;%PATH%
 mkdir build-win32-vs
 cd build-win32-vs
 echo %PATH%
