@@ -1,28 +1,19 @@
 FROM debian
 
-
-# Enable MXE pre-build repository:
-RUN echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" > \
-        /etc/apt/sources.list.d/mxeapt.list && \
-    \
-    apt-get update && \
-    apt-get install -y gnupg2 && \
-    \
-    apt-key adv --keyserver keyserver.ubuntu.com \
-        --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB && \
-    \
+RUN \
+\
     apt-get update && \
     apt-get install -y \
-        git \
-        mxe-x86-64-w64-mingw32.shared-qtbase \
-        mxe-x86-64-w64-mingw32.shared-qtdeclarative \
-        mxe-x86-64-w64-mingw32.shared-qtgraphicaleffects \
-        mxe-x86-64-w64-mingw32.shared-qtimageformats \
-        mxe-x86-64-w64-mingw32.shared-qtmultimedia \
-        mxe-x86-64-w64-mingw32.shared-qtquickcontrols \
-        mxe-x86-64-w64-mingw32.shared-qtquickcontrols2 \
-        mxe-x86-64-w64-mingw32.shared-qtsvg \
-        mxe-x86-64-w64-mingw32.shared-qttools \
-        mxe-x86-64-w64-mingw32.shared-qttranslations \
-        mxe-x86-64-w64-mingw32.shared-qtwinextras \
-        mxe-x86-64-w64-mingw32.shared-qtxmlpatterns
+        autoconf automake autopoint bash bison bzip2 flex gettext   \
+        git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev      \
+        libtool-bin libltdl-dev libssl-dev libxml-parser-perl make  \
+        openssl p7zip-full patch perl pkg-config python ruby scons  \
+        sed unzip wget xz-utils nsis &&                             \
+\
+    cd opt && \
+    mkdir mxe-x64-shared && \
+    cd mxe-x64-shared && \
+    git clone https://github.com/mxe/mxe.git . && \
+    make MXE_TARGETS='x86_64-w64-mingw32.shared' \
+        JOBS=4 \
+        qt5
