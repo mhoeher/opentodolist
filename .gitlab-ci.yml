@@ -3,8 +3,8 @@ variables:
     FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
-    MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win32
-    MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win64
+    MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
+    MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     NEXTCLOUD_IMAGE: nextcloud
 
