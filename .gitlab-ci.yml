@@ -145,19 +145,10 @@ ubuntu_appimage:
     - name: $NEXTCLOUD_IMAGE
       alias: nextcloud
   script:
-    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
-    - desktop-file-validate templates/appimage/default.desktop
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build-ubuntu
-    - cd build-ubuntu
-    - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
-    - qmake CONFIG+=with_update_service CONFIG+=with_appimage_extras CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
-    - make -j4
-    - make check
-    - make OpenTodoList-x86_64.AppImage
+    - ci/ubuntu-build.sh
   artifacts:
     paths:
-      - build-ubuntu
+      - build-ubuntu/OpenTodoList-x86_64.AppImage
     expire_in: 1 week
 
 

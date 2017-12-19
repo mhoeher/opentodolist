@@ -1,5 +1,8 @@
 FROM debian
 
+# Note: If build fails, check out this issue:
+#       https://github.com/mxe/mxe/issues/2011
+
 RUN \
 \
     apt-get update && \
