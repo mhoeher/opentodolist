@@ -24,7 +24,6 @@ UpdateService::UpdateService(QObject *parent) : QObject(parent)
     updateTimer->start();
     checkForUpdates();
 #endif
-    checkForUpdates();
 }
 
 void UpdateService::checkForUpdates()
