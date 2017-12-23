@@ -32,6 +32,7 @@ OTHER_FILES += \
     $$files(ci/docker/ubuntu/*) \
     $$files(ci/docker/win32/*) \
     $$files(ci/docker/win64/*) \
+    $$files(ci/windows/*) \
     $$files(ci/*.*) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \

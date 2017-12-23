@@ -3,8 +3,8 @@ variables:
     FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
-    MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win32
-    MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:mxe_win64
+    MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
+    MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     NEXTCLOUD_IMAGE: nextcloud
 
@@ -145,19 +145,10 @@ ubuntu_appimage:
     - name: $NEXTCLOUD_IMAGE
       alias: nextcloud
   script:
-    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
-    - desktop-file-validate templates/appimage/default.desktop
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build-ubuntu
-    - cd build-ubuntu
-    - source /opt/qt59/bin/qt59-env.sh || true # Ignore errors during sourcing
-    - qmake CONFIG+=with_update_service CONFIG+=with_appimage_extras CONFIG+=RELEASE CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
-    - make -j4
-    - make check
-    - make OpenTodoList-x86_64.AppImage
+    - ci/ubuntu-build.sh
   artifacts:
     paths:
-      - build-ubuntu
+      - build-ubuntu/OpenTodoList-x86_64.AppImage
     expire_in: 1 week
 
 
@@ -166,26 +157,10 @@ win32_build:
   stage: build
   image: $MXE_WIN32_IMAGE
   script:
-    - mkdir build-win32
-    - cd build-win32
-    - export PATH=/opt/mxe-i686-shared/usr/bin:$PATH
-    - export PATH=/opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
-    - echo -e "[Paths]\nPrefix = .." > /opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin/qt.conf
-    - (cd /opt && ln -s mxe-i686-shared mxe-i686)
-    - qmake CONFIG+=with_update_service CONFIG+=release ..
-    - make -j4
-    - cd ..
-    - mkdir -p deploy-win32/bin
-    - cp build-win32/app/release/OpenTodoList.exe deploy-win32/bin/
-    - apt-get update
-    - apt-get install -y wget python3
-    - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
-    - chmod +x xwindeployqt
-    - ./xwindeployqt --toolchain-root /opt/mxe-i686-shared/ --toolchain-arch i686-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win32/bin/
+    - ./ci/win32-build.sh
   artifacts:
     paths:
-      - build-win32
-      - deploy-win32
+      - deploy-win32/OpenTodoList-Windows-32bit.exe
     expire_in: 1 week
 
 
@@ -194,24 +169,10 @@ win64_build:
   stage: build
   image: $MXE_WIN64_IMAGE
   script:
-    - mkdir build-win64
-    - cd build-win64
-    - export PATH=/opt/mxe-x64-shared/usr/bin:$PATH
-    - export PATH=/opt/mxe-x64-shared/usr/x86_64-w64-mingw32.shared/qt5/bin:$PATH
-    - qmake CONFIG+=with_update_service CONFIG+=release ..
-    - make -j4
-    - cd ..
-    - mkdir -p deploy-win64/bin
-    - cp build-win64/app/release/OpenTodoList.exe deploy-win64/bin/
-    - apt-get update
-    - apt-get install -y wget python3
-    - wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
-    - chmod +x xwindeployqt
-    - ./xwindeployqt --toolchain-root /opt/mxe-x64-shared/ --toolchain-arch x86_64-w64-mingw32.shared --qml-dir ./app --plugins bearer --plugins imageformats --plugins sqldrivers deploy-win64/bin/
+    - ./ci/win64-build.sh
   artifacts:
     paths:
-      - build-win64
-      - deploy-win64
+      - deploy-win64/OpenTodoList-Windows-64bit.exe
     expire_in: 1 week
 
 
@@ -260,37 +221,6 @@ macos:
 ################################################################################
 # Installer Stage
 ################################################################################
-
-win32_installer:
-    stage: installer
-    image: fedora
-    dependencies:
-        - win32_build
-    script:
-        - yum install -y mingw32-nsis
-        - cp templates/nsis/win32-installer.nsis deploy-win32/
-        - cd deploy-win32
-        - makensis win32-installer.nsis
-    artifacts:
-        paths:
-            - deploy-win32/*.exe
-        expire_in: 1 week
-
-
-win64_installer:
-    stage: installer
-    image: fedora
-    dependencies:
-        - win64_build
-    script:
-        - yum install -y mingw32-nsis
-        - cp templates/nsis/win64-installer.nsis deploy-win64/
-        - cd deploy-win64
-        - makensis win64-installer.nsis
-    artifacts:
-        paths:
-            - deploy-win64/*.exe
-        expire_in: 1 week
 
 
 win32_vs_installer:
