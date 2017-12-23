@@ -34,7 +34,7 @@ Page {
         title: qsTr("Delete Todo?")
         Text {
             text: qsTr("Are you sure you want to delete the todo <strong>%1</strong>? This action " +
-                       "cannot be undone.").arg(todo.title)
+                       "cannot be undone.").arg(todo.displayTitle)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             anchors {
                 left: parent.left

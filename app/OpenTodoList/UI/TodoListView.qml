@@ -30,7 +30,7 @@ Item {
         title: qsTr("Delete Todo?")
         Text {
             text: confirmDeleteTodoDialog.todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
-                              "This cannot be undone.").arg(confirmDeleteTodoDialog.todo.title) : ""
+                              "This cannot be undone.").arg(confirmDeleteTodoDialog.todo.displayTitle) : ""
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             anchors {
                 left: parent.left
@@ -78,7 +78,7 @@ Item {
                 }
 
                 URLText {
-                    plainText: object.title
+                    plainText: object.displayTitle
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAnywhere
                 }

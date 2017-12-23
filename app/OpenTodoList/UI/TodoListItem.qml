@@ -84,7 +84,7 @@ MouseArea {
         Label {
             id: title
 
-            text: libraryItem.title
+            text: libraryItem.displayTitle
             anchors {
                 left: parent.left
                 leftMargin: Globals.defaultMargin
@@ -173,7 +173,7 @@ MouseArea {
                             font {
                                 pixelSize: Globals.fontPixelSize
                             }
-                            text: object.title
+                            text: object.displayTitle
                         }
                     }
                 }

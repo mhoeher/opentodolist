@@ -121,7 +121,7 @@ Page {
         Text {
             text: qsTr("Do you really want to delete the item <strong>%1</strong> from the library? " +
                        "This action cannot be undone!").arg(
-                      itemContextMenu.item ? itemContextMenu.item.title : "")
+                      itemContextMenu.item ? itemContextMenu.item.displayTitle : "")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             anchors {
                 left: parent.left

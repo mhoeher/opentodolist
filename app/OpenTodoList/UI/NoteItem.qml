@@ -77,7 +77,7 @@ MouseArea {
                     bold: true
                 }
                 elide: Text.ElideRight
-                text: libraryItem.title
+                text: libraryItem.displayTitle
             }
         }
 

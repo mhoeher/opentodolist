@@ -22,6 +22,7 @@ class Item : public QObject
 
     Q_PROPERTY(QUuid uid READ uid NOTIFY uidChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(QString displayTitle READ displayTitle NOTIFY titleChanged)
     Q_PROPERTY(QString itemType READ itemType CONSTANT)
     Q_PROPERTY(QString filename READ filename NOTIFY filenameChanged)
     Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
@@ -59,6 +60,8 @@ public:
     QString title() const { return m_title; }
 
     void setTitle(const QString &title);
+
+    QString displayTitle() const;
 
     /**
      * @brief The file holding the item data.
