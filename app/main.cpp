@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 #ifdef OTL_IS_APPIMAGE
     // In the current AppImage build, we do not deploy the
     // Qt wayland plugin. Hence, fall back to x11/xcb.
-    platform = qgetenv("QT_QPA_PLATFORM");
+    auto platform = qgetenv("QT_QPA_PLATFORM");
     if (platform == "wayland") {
         qputenv("QT_QPA_PLATFORM", "xcb");
     }
