@@ -12,15 +12,12 @@ RUN \
     apt-get install -y \
         build-essential \
         libfontconfig1 \
-        libgl1-mesa-dev \
-        libfuse2 \
-        libxi6 \
-        libxrender1 \
-        libgtk-3-0 \
-        libmysqlclient18 \
-        libpq5 \
-        libegl1-mesa \
         desktop-file-utils \
+        libwayland-dev \
+        libwayland-egl1-mesa \
+        libwayland-server0 \
+        libgles2-mesa-dev \
+        libxkbcommon-dev \
         git && \
     wget http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run && \
     chmod +x qt-unified-linux-x64-online.run && \

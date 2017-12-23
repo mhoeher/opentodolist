@@ -16,7 +16,6 @@ export QT_QPA_PLATFORM=minimal
 mkdir build-ubuntu
 cd build-ubuntu
 
-export PATH=/opt/Qt/5.10.0/gcc_64/bin/:$PATH
 qmake \
     CONFIG+=with_update_service \
     CONFIG+=with_appimage_extras \
