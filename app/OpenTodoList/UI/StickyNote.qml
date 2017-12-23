@@ -48,7 +48,7 @@ MouseArea {
                     text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
                 }
                 Label {
-                    text: object.title
+                    text: object.displayTitle
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     Layout.fillWidth: true
                 }

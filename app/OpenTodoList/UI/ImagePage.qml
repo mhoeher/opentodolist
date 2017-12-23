@@ -25,7 +25,7 @@ Page {
 
         Text {
             text: qsTr("Are you sure you want to delete the image <strong>%1</strong>? This action " +
-                       "cannot be undone.").arg(item.title)
+                       "cannot be undone.").arg(item.displayTitle)
             anchors {
                 left: parent.left
                 right: parent.right

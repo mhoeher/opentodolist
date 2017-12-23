@@ -300,6 +300,20 @@ void Item::setTitle(const QString &title)
     }
 }
 
+
+/**
+ * @brief The HTML escaped item title.
+ *
+ * This property holds the item's title with HTML tags ('<' and '>')
+ * replaced by appropriate HTML entities.
+ */
+QString Item::displayTitle() const
+{
+    QString result = m_title;
+    return result.replace("<", "&lt;").replace(">", "&gt;");
+}
+
+
 /**
  * @brief The type of the item.
  *

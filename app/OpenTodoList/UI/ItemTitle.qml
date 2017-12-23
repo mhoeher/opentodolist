@@ -36,7 +36,7 @@ Item {
 
         URLText {
             id: label
-            plainText: root.item.title
+            plainText: root.item.displayTitle
             Layout.fillWidth: true
             font {
                 bold: true

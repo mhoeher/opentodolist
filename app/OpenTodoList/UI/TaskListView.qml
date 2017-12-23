@@ -30,7 +30,7 @@ Item {
 
         Text {
             text: confirmDeleteTaskDialog.task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
-                              "This cannot be undone.").arg(confirmDeleteTaskDialog.task.title) : ""
+                              "This cannot be undone.").arg(confirmDeleteTaskDialog.task.displayTitle) : ""
             anchors {
                 left: parent.left
                 right: parent.right
@@ -72,7 +72,7 @@ Item {
                 }
 
                 URLText {
-                    plainText: object.title
+                    plainText: object.displayTitle
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAnywhere
                 }
