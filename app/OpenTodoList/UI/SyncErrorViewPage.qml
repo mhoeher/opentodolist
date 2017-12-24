@@ -22,7 +22,7 @@ Page {
             Symbol {
                 symbol: Fonts.symbols.faWarning
             }
-            Text {
+            Label {
                 Layout.fillWidth: true
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: modelData

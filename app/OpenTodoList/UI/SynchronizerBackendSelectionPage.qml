@@ -81,10 +81,10 @@ Page {
             Rectangle {
                 anchors.fill: parent
                 visible: d.selectedSynchronizer === index
-                color: Colors.primary
+                color: Colors.highlight
                 opacity: 0.2
                 border {
-                    color: Qt.darker(Colors.primary)
+                    color: Qt.darker(Colors.highlight)
                     width: 1
                 }
                 radius: Globals.defaultMargin
@@ -114,7 +114,7 @@ Page {
                 fillMode: Image.PreserveAspectFit
             }
 
-            Text {
+            Label {
                 id: label
                 anchors {
                     horizontalCenter: parent.horizontalCenter

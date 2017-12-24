@@ -41,7 +41,7 @@ Page {
         Column {
             width: scrollView.width
 
-            Text {
+            Label {
                 text: qsTr("User name")
             }
 
@@ -53,7 +53,7 @@ Page {
                 selectByMouse: true
             }
 
-            Text {
+            Label {
                 text: qsTr("Password")
             }
 

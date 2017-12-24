@@ -32,7 +32,7 @@ Page {
     CenteredDialog {
         id: confirmDeleteDialog
         title: qsTr("Delete Todo?")
-        Text {
+        Label {
             text: qsTr("Are you sure you want to delete the todo <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(todo.displayTitle)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -55,7 +55,7 @@ Page {
 
         placeholderText: qsTr("Search term 1, search term 2, ...")
         symbol: Fonts.symbols.faTimes
-        color: Colors.secondary2
+        color: Colors.midlight
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
@@ -113,7 +113,7 @@ Page {
                 }
                 title: qsTr("Notes")
                 text: Globals.markdownToHtml(page.todo.notes)
-                backgroundColor: Colors.itemYellow
+                backgroundColor: Colors.itemColor(TopLevelItem.Yellow)
                 onClicked: {
                     page.openPage(notesEditor, {item: page.todo});
                 }

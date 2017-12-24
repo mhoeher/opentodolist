@@ -28,7 +28,7 @@ Item {
         property Todo todo
 
         title: qsTr("Delete Todo?")
-        Text {
+        Label {
             text: confirmDeleteTodoDialog.todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
                               "This cannot be undone.").arg(confirmDeleteTodoDialog.todo.displayTitle) : ""
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -56,7 +56,7 @@ Item {
                 width: parent.width * (object.percentageDone / 100.0)
                 height: parent.height
                 visible: object.percentageDone > 0
-                color: "black"
+                color: Colors.highlight
                 opacity: 0.1
             }
 
@@ -170,7 +170,7 @@ Item {
         id: background
         border {
             width: 1
-            color: Colors.itemDelimiter
+            color: Colors.midlight
         }
         anchors.fill: parent
     }

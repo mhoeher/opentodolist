@@ -91,7 +91,7 @@ Page {
                     selectByMouse: true
                 }
 
-                Text {
+                Label {
                     text: qsTr("Searching for existing libraries...")
                     Layout.alignment: Qt.AlignHCenter
                     visible: dav.findingLibraries

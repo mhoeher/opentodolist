@@ -70,7 +70,7 @@ CenteredDialog {
             Rectangle {
                 anchors.fill: row
                 visible: dialog.fileUrl === fileURL
-                color: Qt.lighter(Colors.secondary3, 1.5)
+                color: Colors.highlight
             }
 
             RowLayout {
@@ -83,13 +83,13 @@ CenteredDialog {
                 Symbol {
                     symbol: fileIsDir ? Fonts.symbols.faFolderOpenO : Fonts.symbols.faFileO
                 }
-                Text {
+                Label {
                     Layout.fillWidth: true
                     text: fileName
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    color: dialog.fileUrl == fileURL ? Colors.highlightedText : Colors.windowText
                 }
             }
         }
     }
-
 }

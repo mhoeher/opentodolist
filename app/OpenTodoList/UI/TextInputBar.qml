@@ -53,7 +53,7 @@ Item {
         id: background
         anchors.fill: parent
         anchors.bottomMargin: Globals.defaultMargin
-        color: Colors.headerBar
+        color: Colors.midlight
         
         RowLayout {
             anchors {
@@ -100,7 +100,7 @@ Item {
         gradient: Gradient {
             GradientStop {
                 position: 0
-                color: "#88000000"
+                color: Colors.shadow
             }
             GradientStop {
                 position: 1

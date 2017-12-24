@@ -47,7 +47,7 @@ Page {
             x: Globals.defaultMargin / 2
             y: x
 
-            Text {
+            Label {
                 text: qsTr("Library Name:")
                 width: parent.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -72,7 +72,7 @@ Page {
                 checked: true
             }
 
-            Text {
+            Label {
                 text: useDefaultLocation.checked ?
                           qsTr("The items you add to the library will be stored in the " +
                                "default location for libraries.") :

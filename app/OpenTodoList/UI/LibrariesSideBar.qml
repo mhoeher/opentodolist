@@ -19,7 +19,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: Colors.panelDark
+        color: Colors.dark
     }
 
     ScrollView {
@@ -38,6 +38,9 @@ Item {
                 width: parent.width
 
                 ButtonContainer {
+                    id: buttonContainer
+                    property bool isActive: (currentLibrary === App.libraries[index]) &&
+                                            (currentTag === "")
                     mainItem: itemText
                     width: parent.width
                     cursorShape: Qt.PointingHandCursor
@@ -54,18 +57,17 @@ Item {
 
                     Rectangle {
                         anchors.fill: parent
-                        color: Colors.secondary3
-                        visible: opacity > 0.0
-                        opacity: (currentLibrary === App.libraries[index]) &&
-                                 (currentTag === "")
+                        color: Colors.highlight
+                        visible: buttonContainer.isActive
+                        opacity: buttonContainer.isActive ? 1.0 : 0.0
 
                         Behavior on opacity { NumberAnimation { duration: 500 } }
                     }
 
-                    Text {
+                    Label {
                         id: itemText
                         text: name
-                        color: Colors.panelText
+                        color: buttonContainer.isActive ? Colors.highlightedText : Colors.light
                         font.bold: true
                         anchors {
                             left: parent.left
@@ -89,6 +91,11 @@ Item {
                         id: tag
 
                         ButtonContainer {
+                            id: tagButtonContainer
+
+                            property bool isActive: (currentLibrary === tags.library) &&
+                                                    (currentTag === tags.library.tags[index])
+
                             mainItem: tagText
                             width: parent.width
                             cursorShape: Qt.PointingHandCursor
@@ -106,18 +113,17 @@ Item {
 
                             Rectangle {
                                 anchors.fill: parent
-                                color: Colors.secondary3
+                                color: Colors.highlight
                                 visible: opacity > 0.0
-                                opacity: (currentLibrary === tags.library) &&
-                                         (currentTag === tags.library.tags[index])
+                                opacity: tagButtonContainer.isActive ? 1.0 : 0.0
 
                                 Behavior on opacity { NumberAnimation { duration: 500 } }
                             }
 
-                            Text {
+                            Label {
                                 id: tagText
                                 text: tags.library.tags[index]
-                                color: Colors.panelText
+                                color: tagButtonContainer.isActive ? Colors.highlightedText : Colors.light
                                 anchors {
                                     left: parent.left
                                     right: parent.right
@@ -153,7 +159,7 @@ Item {
                     Symbol {
                         id: addLocalLibrarySymbol
                         symbol: Fonts.symbols.faPlus
-                        color: Colors.panelText
+                        color: Colors.light
                         anchors {
                             left: parent.left
                             verticalCenter: parent.verticalCenter
@@ -162,7 +168,7 @@ Item {
                     Label {
                         id: addLocalLibraryLabel
                         text: qsTr("Add Library")
-                        color: Colors.panelText
+                        color: Colors.light
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         anchors {
                             left: addLocalLibrarySymbol.right
@@ -190,7 +196,7 @@ Item {
 
                 Rectangle {
                     anchors.fill: parent
-                    color: Colors.secondary3
+                    color: sidebar.helpVisible ? Colors.highlight : "transparent"
                     visible: opacity > 0.0
                     opacity: sidebar.helpVisible ? 1.0 : 0.0
 
@@ -212,7 +218,7 @@ Item {
                     Symbol {
                         id: helpSymbol
                         symbol: Fonts.symbols.faInfo
-                        color: Colors.panelText
+                        color: sidebar.helpVisible ? Colors.highlightedText : Colors.light
                         anchors {
                             left: parent.left
                             verticalCenter: parent.verticalCenter
@@ -221,7 +227,7 @@ Item {
                     Label {
                         id: helpText
                         text: qsTr("About...")
-                        color: Colors.panelText
+                        color: sidebar.helpVisible ? Colors.highlightedText : Colors.light
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         anchors {
                             left: helpSymbol.right

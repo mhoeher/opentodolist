@@ -23,7 +23,7 @@ Page {
 
         title: qsTr("Delete Image?")
 
-        Text {
+        Label {
             text: qsTr("Are you sure you want to delete the image <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(item.displayTitle)
             anchors {
@@ -45,7 +45,7 @@ Page {
     }
 
     Rectangle {
-        color: Qt.lighter(Colors.itemColor(item.color), 1.1)
+        color: Colors.lightItemColor(item.color)
         opacity: 0.3
         anchors.fill: parent
     }
@@ -86,7 +86,7 @@ Page {
                 }
                 title: qsTr("Notes")
                 text: Globals.markdownToHtml(item.notes)
-                backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
+                backgroundColor: item.color === TopLevelItem.White ? Colors.window : Colors.itemColor(TopLevelItem.White)
                 onClicked: page.openPage(notesEditor, {item: page.item})
             }
 
