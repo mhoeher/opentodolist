@@ -22,14 +22,13 @@ MouseArea {
 
         anchors {
             fill: parent
-            margins: item.containsMouse ? Globals.defaultMargin / 2 : Globals.defaultMargin
+            margins: Globals.defaultMargin / 2
         }
 
-        color: Qt.tint("white", Colors.makeTransparent(
-                           Colors.itemColor(libraryItem.color), 0.5))
+        color: Colors.itemColor(libraryItem.color)
         border {
             width: 1
-            color: Colors.itemDelimiter
+            color: Colors.mid
         }
 
         Image {
@@ -42,12 +41,6 @@ MouseArea {
             }
 
             fillMode: Image.PreserveAspectFit
-        }
-
-        Behavior on anchors.margins {
-            SmoothedAnimation {
-                duration: Globals.defaultAnimationTime
-            }
         }
     }
 }

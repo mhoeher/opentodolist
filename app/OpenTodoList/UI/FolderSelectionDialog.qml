@@ -67,7 +67,7 @@ CenteredDialog {
                 Symbol {
                     symbol: Fonts.symbols.faFolderOpenO
                 }
-                Text {
+                Label {
                     Layout.fillWidth: true
                     text: fileName
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere

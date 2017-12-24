@@ -66,7 +66,7 @@ Item {
             }
         }
         
-        Text {
+        Label {
             id: existingTagsLabel
             
             font.bold: true
@@ -120,17 +120,17 @@ Item {
             
             width: tagName.width + removeTag.width + Globals.defaultMargin * 1.5
             height: Math.max(tagName.height, removeTag.height, Globals.minButtonHeight)
-            color: Colors.tagBackground
+            color: Colors.highlight
             border {
                 width: 1
-                color: Colors.tagBorder
+                color: Colors.mid
             }
             
-            Text {
+            Label {
                 id: tagName
                 text: editor.item.tags[index]
                 width: Math.min(contentWidth, tags.__maxWidth)
-                color: Colors.tagText
+                color: Colors.highlightedText
                 font.bold: true
                 anchors {
                     left: parent.left
@@ -142,7 +142,7 @@ Item {
             Symbol {
                 id: removeTag
                 symbol: Fonts.symbols.faTimes
-                color: Colors.tagText
+                color: Colors.highlightedText
                 pixelSize: Globals.fontPixelSize
                 anchors {
                     right: parent.right
@@ -163,9 +163,8 @@ Item {
             
             onClicked: item.addTag(existingTagsRepeater.model[index])
             
-            Text {
+            Label {
                 text: existingTagsRepeater.model[index]
-                color: Colors.secondary1
                 font.bold: true
             }
         }

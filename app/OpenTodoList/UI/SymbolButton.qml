@@ -8,7 +8,7 @@ Button {
     
     property alias symbol: button.text
     
-    contentItem: Text {
+    contentItem: Label {
         text: control.text
         font.family: Fonts.symbols.family
         font.pixelSize: Globals.minButtonHeight * 0.9

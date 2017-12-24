@@ -32,7 +32,7 @@ Item {
         id: itemBackground
         visible: mouseArea.drag.target === dragTile
         anchors.fill: parent
-        color: Colors.primary
+        color: Colors.highlight
         opacity: 0.2
         z: 9
     }
@@ -42,8 +42,8 @@ Item {
 
         property BasicItem item: object
 
-        color: "silver"
-        border.color: "gray"
+        color: Colors.midlight
+        border.color: Colors.mid
         opacity: 0.5
         width: root.width
         height: root.height
@@ -57,7 +57,7 @@ Item {
     Rectangle {
         width: parent.width
         height: 3
-        color: Colors.secondary1
+        color: Colors.dark
         visible: upperDropArea.containsDrag
         z: 10
         y: -1
@@ -67,7 +67,7 @@ Item {
         width: parent.width
         y: parent.height - 1
         height: 3
-        color: Colors.secondary1
+        color: Colors.dark
         visible: lowerDropArea.containsDrag
         z: 10
     }

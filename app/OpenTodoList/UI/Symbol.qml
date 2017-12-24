@@ -21,13 +21,13 @@ ButtonContainer {
         }
     }
     
-    Text {
+    Label {
         id: label
         font {
             family: Fonts.symbols.family
             pixelSize: Globals.minButtonHeight * 0.7
         }
-        color: checked ? Colors.primary : "black"
+        color: checked ? Colors.accentText : Colors.windowText
         anchors.centerIn: parent
         text: Fonts.symbols.faPlus
     }

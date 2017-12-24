@@ -17,7 +17,7 @@ Rectangle {
         right: parent.right
     }
     height: secretsMissingBarLayout.height + Globals.defaultMargin
-    color: Colors.primary
+    color: Colors.warnBackground
     y: shown ? parent.height - height : parent.height
 
     RowLayout {

@@ -1,4 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.9
+
 
 import OpenTodoList.UI 1.0
 
@@ -12,7 +13,7 @@ Rectangle {
     
     property int __borderWidth: hovered ? hoverBorderWidth : borderWidth
     
-    color: "black"
+    color: Colors.shadow
     opacity: hovered ? 0.6 : 0.4
     anchors {
         fill: sourceItem

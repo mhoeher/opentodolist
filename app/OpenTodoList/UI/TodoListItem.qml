@@ -28,11 +28,11 @@ MouseArea {
 
         anchors {
             fill: parent
-            margins: item.containsMouse ? Globals.defaultMargin / 2 : Globals.defaultMargin
+            margins: Globals.defaultMargin / 2
         }
         border {
             width: 1
-            color: Colors.itemDelimiter
+            color: Colors.midlight
         }
         clip: true
 
@@ -67,14 +67,7 @@ MouseArea {
                         anchors.bottom: parent.bottom
                         width: parent.width
                         height: 1
-                        color: {
-                            switch (item.libraryItem.color) {
-                            case TopLevelItem.Lilac:
-                                return Colors.itemDelimiterAlt;
-                            default:
-                                return Colors.itemDelimiter;
-                            }
-                        }
+                        color: Colors.mid
                         antialiasing: true
                     }
                 }
@@ -111,7 +104,7 @@ MouseArea {
             lineHeight: __lineHeight
             lineHeightMode: Text.FixedHeight
             text: qsTr("No open todos - everything catched up :-)")
-            color: "gray"
+            color: Colors.mid
             visible: todosModel.count === 0
         }
 
@@ -179,14 +172,7 @@ MouseArea {
                 }
             }
         }
-
-        Behavior on anchors.margins {
-            SmoothedAnimation {
-                duration: Globals.defaultAnimationTime
-            }
-        }
     }
-
 }
 
 

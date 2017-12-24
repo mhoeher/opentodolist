@@ -35,10 +35,10 @@ Page {
                     "Error": Fonts.symbols.faTimesCircle
                 }[modelData.type] || Fonts.symbols.faQuestionCircleO
             }
-            Text {
+            Label {
                 text: modelData.time
             }
-            Text {
+            Label {
                 Layout.fillWidth: true
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: modelData.message

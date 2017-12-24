@@ -28,7 +28,7 @@ Item {
 
         title: qsTr("Delete Task?")
 
-        Text {
+        Label {
             text: confirmDeleteTaskDialog.task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
                               "This cannot be undone.").arg(confirmDeleteTaskDialog.task.displayTitle) : ""
             anchors {
@@ -155,7 +155,7 @@ Item {
         id: background
         border {
             width: 1
-            color: "silver"
+            color: Colors.midlight
         }
         anchors.fill: parent
     }

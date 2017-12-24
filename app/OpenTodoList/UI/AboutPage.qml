@@ -26,7 +26,7 @@ Page {
             spacing: Globals.defaultMargin
             padding: Globals.defaultMargin
 
-            Text {
+            Label {
                 text: qsTr("OpenTodoList")
                 font {
                     pixelSize: Globals.fontPixelSize * 2
@@ -36,27 +36,27 @@ Page {
                 width: parent.width
             }
 
-            Text {
+            Label {
                 text: qsTr("A todo and task managing application.")
                 font.bold: true
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
             }
 
-            Text {
+            Label {
                 text: qsTr("(c) RPdev 2013-2016, version %1").arg(applicationVersion)
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
             }
 
-            Text {
+            Label {
                 text: "<a href='%1'>%1</a>".arg("https://www.rpdev.net/wordpress/apps/opentodolist/")
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
-            Text {
+            Label {
                 text: qsTr("OpenTodoList is released under the terms of the GNU General Public " +
                            "License version 3 or (at your choice) any later version. You can find a " +
                            "copy of the license below. Additionally, several libraries and resources " +
@@ -71,7 +71,7 @@ Page {
                 }
             }
 
-            Text {
+            Label {
                 text: App.readFile(":/res/COPYING")
                 width: parent.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere

@@ -30,7 +30,7 @@ Item {
         property string attachment
 
         title: qsTr("Delete Attachment?")
-        Text {
+        Label {
             text: qsTr("Are you sure you want to delete the attachment <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(confirmDeleteAttachmentDialog.attachment)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere

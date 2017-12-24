@@ -11,7 +11,7 @@ MouseArea {
     
     property string title: qsTr("Sticky Note Title")
     property string text: qsTr("Note Content")
-    property color backgroundColor: Colors.noteBackground
+    property color backgroundColor: Colors.window
     property var checkBoxList: undefined
     property bool showCheckBoxList: false
     property string image: ""
@@ -34,7 +34,7 @@ MouseArea {
             Rectangle {
                 width: parent.width
                 height: 1
-                color: Colors.itemDelimiter
+                color: Colors.midlight
                 visible: index > 0
             }
 
@@ -43,7 +43,7 @@ MouseArea {
                 visible: object !== undefined // TODO: Check why this is required at all!
                 width: parent.width
                 y: Globals.minButtonHeight / 4
-                Text {
+                Label {
                     font.family: Fonts.symbols.name
                     text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
                 }
@@ -65,7 +65,7 @@ MouseArea {
             rightMargin: Globals.defaultMargin * 0.5 - __shadowOffset
             bottomMargin: Globals.defaultMargin * 0.5 - __shadowOffset
         }
-        color: "black"
+        color: Colors.shadow
         opacity: note.hoverEnabled & note.containsMouse ? 0.5 : 0.1
         Behavior on opacity { SmoothedAnimation { duration: 500 } }
     }
@@ -114,13 +114,14 @@ MouseArea {
                 left: parent.left
                 right: parent.right
                 top: parent.top
+                margins: notesItemBackground.border.width + 1
             }
             height: titleLabel.height + Globals.defaultMargin * 2
-            color: "black"
+            color: Colors.dark
             opacity: 0.1
         }
 
-        Text {
+        Label {
             id: titleLabel
             
             text: title
@@ -184,7 +185,7 @@ MouseArea {
                 asynchronous: true
             }
             
-            Text {
+            Label {
                 id: contentLabel
                 
                 text: note.text

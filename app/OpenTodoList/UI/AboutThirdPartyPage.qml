@@ -7,7 +7,7 @@ import OpenTodoList.UI 1.0
 Page {
     id: page
 
-    Text {
+    Label {
         id: title
         font {
             pixelSize: Globals.fontPixelSize * 2
@@ -60,28 +60,28 @@ Page {
                 width: parent.width
                 padding: Globals.defaultMargin
 
-                Text {
+                Label {
                     id: itemTitle
                     text: item.name
                     font.bold: true
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
-                Text {
+                Label {
                     id: authorLabel
                     text: qsTr("Author: <a href='%2'>%1</a>").arg(item.author).arg(item.website)
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
 
-                Text {
+                Label {
                     id: licenseLabel
                     text: qsTr("License: <a href='%1'>%2</a>").arg(item.licenseUrl).arg(item.licenseType)
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
 
-                Text {
+                Label {
                     id: downloadLabel
                     text: qsTr("Download: <a href='%1'>%1</a>").arg(item.downloadUrl)
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere

@@ -18,7 +18,7 @@ Rectangle {
         right: parent.right
     }
     height: updateNotificationBarLayout.height + Globals.defaultMargin
-    color: Colors.primary
+    color: Colors.infoBackground
     y: shown ? parent.height - height : parent.height
 
     UpdateService {

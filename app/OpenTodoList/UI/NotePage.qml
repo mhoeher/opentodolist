@@ -25,7 +25,7 @@ Item {
         id: confirmDeleteDialog
         title: qsTr("Delete Note?")
 
-        Text {
+        Label {
             text: qsTr("Are you sure you want to delete the note <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(item.displayTitle)
             anchors {
@@ -45,8 +45,7 @@ Item {
     }
     
     Rectangle {
-        color: Qt.lighter(Colors.itemColor(item.color), 1.1)
-        opacity: 0.3
+        color: Colors.lightItemColor(item.color)
         anchors.fill: parent
     }
     
@@ -73,7 +72,7 @@ Item {
                 }
                 title: qsTr("Notes")
                 text: Globals.markdownToHtml(item.notes)
-                backgroundColor: item.color === TopLevelItem.White ? Colors.noteBackground : Colors.itemWhite
+                backgroundColor: item.color === TopLevelItem.White ? Colors.window : Colors.itemColor(TopLevelItem.White)
                 onClicked: {
                     page.openPage(notesEditor, {"item": item});
                 }

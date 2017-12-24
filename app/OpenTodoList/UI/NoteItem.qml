@@ -26,11 +26,11 @@ MouseArea {
 
         anchors {
             fill: parent
-            margins: item.containsMouse ? Globals.defaultMargin / 2 : Globals.defaultMargin
+            margins: Globals.defaultMargin / 2
         }
         border {
             width: 1
-            color: Colors.itemDelimiter
+            color: Colors.mid
         }
         clip: true
 
@@ -60,7 +60,7 @@ MouseArea {
             }
 
             height: Globals.fontPixelSize * 2
-            color: Qt.tint("silver",
+            color: Qt.tint(Colors.midlight,
                            Colors.makeTransparent(
                                Colors.itemColor(libraryItem.color), 0.7))
 
@@ -81,7 +81,7 @@ MouseArea {
             }
         }
 
-        Text {
+        Label {
             anchors {
                 left: parent.left
                 right: parent.right
@@ -96,11 +96,4 @@ MouseArea {
             clip: true
         }
     }
-
-    Behavior on anchors.margins {
-        SmoothedAnimation {
-            duration: Globals.defaultAnimationTime
-        }
-    }
-
 }

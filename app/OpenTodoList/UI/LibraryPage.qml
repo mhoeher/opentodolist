@@ -82,7 +82,7 @@ Page {
     CenteredDialog {
         id: confirmDeleteLibrary
         title: qsTr("Delete Library?")
-        Text {
+        Label {
             property string textDefaultLocation: {
                 return qsTr("Do you really want to remove the library " +
                             "<strong>%1</strong> from  the " +
@@ -118,7 +118,7 @@ Page {
     CenteredDialog {
         id: confirmDeleteItem
         title: qsTr("Delete Item?")
-        Text {
+        Label {
             text: qsTr("Do you really want to delete the item <strong>%1</strong> from the library? " +
                        "This action cannot be undone!").arg(
                       itemContextMenu.item ? itemContextMenu.item.displayTitle : "")
@@ -273,7 +273,7 @@ Page {
         id: filterBar
         placeholderText: qsTr("Search term 1, search term 2, ...")
         symbol: Fonts.symbols.faTimes
-        color: Colors.secondary2
+        color: Colors.mid
         itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true

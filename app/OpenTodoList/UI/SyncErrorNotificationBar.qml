@@ -19,7 +19,7 @@ Rectangle {
         right: parent.right
     }
     height: layout.height + Globals.defaultMargin
-    color: Colors.secondary1
+    color: Colors.warnBackground
     y: shown ? parent.height - height : parent.height
 
     RowLayout {
@@ -36,7 +36,6 @@ Rectangle {
                        "Please ensure that the library settings are up to date.")
             Layout.fillWidth: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            color: "white"
         }
         Button {
             text: qsTr("Ignore")
