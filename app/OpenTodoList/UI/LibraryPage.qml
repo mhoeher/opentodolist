@@ -331,6 +331,58 @@ Page {
         }
     }
 
+    Rectangle {
+        id: syncIndicatorBar
+
+        color: Colors.midlight
+        border {
+            width: 1
+            color: Colors.mid
+        }
+        height: childrenRect.height
+        width: parent.width
+        y: parent.height
+        state: page.library.synchronizing ? "visible" : ""
+
+        states: State {
+            name: "visible"
+
+            PropertyChanges {
+                target: syncIndicatorBar
+                y: page.height - syncIndicatorBar.height
+            }
+        }
+
+        transitions: Transition {
+            from: ""
+            to: "visible"
+            reversible: true
+
+            SmoothedAnimation {
+                properties: "y"
+            }
+        }
+
+        RowLayout {
+            height: childrenRect.height
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: Globals.defaultMargin
+            }
+
+            Label {
+                Layout.fillWidth: true
+                text: qsTr("Synchronizing library...")
+            }
+
+            BusyIndicator {
+                width: Globals.minButtonHeight
+                height: width
+            }
+        }
+    }
+
     LibrarySecretsMissingNotificationBar { library: page.library }
 
     SyncErrorNotificationBar {

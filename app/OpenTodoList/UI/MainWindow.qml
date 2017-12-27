@@ -108,13 +108,6 @@ ApplicationWindow {
             }
             height: parent.height
 
-            BusyIndicator {
-                visible: stackView.isBusy
-                anchors.verticalCenter: parent.verticalCenter
-                height: parent.height
-                width: height
-            }
-
             Symbol {
                 id: searchToolButton
 
@@ -315,7 +308,6 @@ ApplicationWindow {
 
             property bool hasSync: !!currentItem && (typeof(currentItem.sync) === "function")
             property bool syncRunning: !!currentItem && !!currentItem.syncRunning
-            property bool isBusy: syncRunning
             property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
             property bool canGoBack: currentItem !== null && depth > 1
 
@@ -431,42 +423,4 @@ ApplicationWindow {
     SystemPalette {
         id: p
     }
-
-//    Column {
-//        Repeater {
-//            model: [
-//                { color: p.alternateBase, name: "alternateBase" },
-//                { color: p.base, name: "base" },
-//                { color: p.button, name: "button" },
-//                { color: p.buttonText, name: "buttonText" },
-//                { color: p.dark, name: "dark" },
-//                { color: p.highlight, name: "highlight" },
-//                { color: p.highlightedText, name: "highlightedText" },
-//                { color: p.light, name: "light" },
-//                { color: p.mid, name: "mid" },
-//                { color: p.midlight, name: "midlight" },
-//                { color: p.shadow, name: "shadow" },
-//                { color: p.text, name: "text" },
-//                { color: p.window, name: "window" },
-//                { color: p.windowText, name: "windowText" }
-//            ]
-//            delegate: Row {
-//                Rectangle {
-//                    width: 250
-//                    height: Globals.minButtonHeight
-//                    color: "white"
-
-//                    Text {
-//                        anchors.fill: parent
-//                        text: modelData.name
-//                    }
-//                }
-//                Rectangle {
-//                    width: Globals.minButtonHeight
-//                    height: Globals.minButtonHeight
-//                    color: modelData.color
-//                }
-//            }
-//        }
-//    }
 }

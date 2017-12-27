@@ -217,6 +217,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
             }
         }
         appendLibrary(result);
+        syncLibrary(result);
     }
     return result;
 }
