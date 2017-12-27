@@ -1,5 +1,5 @@
 import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.3
 
@@ -156,61 +156,57 @@ ApplicationWindow {
         }
     }
 
-    Shortcut {
-        sequence: StandardKey.Quit
-        onActivated: Qt.quit()
-    }
+    menuBar: MenuBar {
+        visible: {
+            switch (Qt.platform.os) {
+            case "android":
+            case "ios":
+            case "tvos":
+            case "qnx":
+                return false;
+            default:
+                return true;
+            }
+        }
 
-    Shortcut {
-        sequence: StandardKey.Find
-        onActivated: searchToolButton.clicked(null)
-    }
+        Menu {
+            title: qsTr("OpenTodoList")
 
-    Shortcut {
-        sequence: StandardKey.Back
-        onActivated: if (stackView.canGoBack) { stackView.pop(); }
-    }
+            Action {
+                text: qsTr("Quit")
+                shortcut: StandardKey.Quit
+                onTriggered: Qt.quit()
+            }
+        }
 
-    Shortcut {
-        sequence: qsTr("Ctrl+Shift+L")
-        onActivated: if (leftSideBar.compact) {
-                         dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
-                     }
-    }
+        Menu {
+            title: qsTr("Edit")
 
-    Shortcut {
-        sequence: StandardKey.Bold
-        onActivated: makeBoldToolButton.clicked(null)
-    }
+            Action {
+                text: qsTr("Find")
+                shortcut: StandardKey.Find
+                onTriggered: searchToolButton.clicked(null)
+            }
 
-    Shortcut {
-        sequence: StandardKey.Italic
-        onActivated: makeItalicToolButton.clicked(null)
-    }
+            Action {
+                text: qsTr("Go Back")
+                shortcut: StandardKey.Back
+                onTriggered: if (stackView.canGoBack) { stackView.pop(); }
+            }
+        }
 
-    Shortcut {
-        sequence: StandardKey.Underline
-        onActivated: makeUnderlineToolButton.clicked(null)
-    }
+        Menu {
+            title: qsTr("View")
 
-    Shortcut {
-        sequence: qsTr("Ctrl+Shift+U")
-        onActivated: makeUnorderedListToolButton.clicked(null)
-    }
+            Action {
+                text: qsTr("Open Left Side Bar")
+                shortcut: qsTr("Ctrl+Shift+L")
+                onTriggered: if (leftSideBar.compact) {
+                                 dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
+                             }
+            }
+        }
 
-    Shortcut {
-        sequence: qsTr("Ctrl+Shift+O")
-        onActivated: makeOrderedListToolButton.clicked(null)
-    }
-
-    Shortcut {
-        sequence: qsTr("Ctrl+Tab")
-        onActivated: indentToolButton.clicked(null)
-    }
-
-    Shortcut {
-        sequence: qsTr("Ctrl+Shift+Tab")
-        onActivated: outdentToolButton.clicked(null)
     }
 
     Component.onCompleted: {
@@ -418,9 +414,5 @@ ApplicationWindow {
             window.show();
             window.raise();
         }
-    }
-
-    SystemPalette {
-        id: p
     }
 }
