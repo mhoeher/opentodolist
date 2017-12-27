@@ -17,6 +17,7 @@ Item {
     property int minButtonHeight: fontPixelSize * (touchEnabled ? 2.5 : 2)
     property bool touchEnabled: enableTouchOptimizations
     property int defaultMargin: fontPixelSize
+    property int defaultPadding: defaultMargin * 2
     
     readonly property int defaultAnimationTime: 500
 
