@@ -33,22 +33,7 @@ MouseArea {
             color: Colors.mid
         }
         clip: true
-
-        Image {
-            id: backgroundImage
-            source: "paper/paper.png"
-            fillMode: Image.Tile
-            anchors {
-                fill: parent
-                margins: background.border.width
-            }
-        }
-
-        GE.ColorOverlay {
-            source: backgroundImage
-            anchors.fill: backgroundImage
-            color: Colors.makeTransparent(Colors.itemColor(libraryItem.color), 0.5)
-        }
+        color: Colors.lightItemColor(libraryItem.color)
 
         Rectangle {
             id: noteTitle
@@ -57,12 +42,11 @@ MouseArea {
                 left: parent.left
                 right: parent.right
                 top: parent.top
+                margins: 1
             }
 
             height: Globals.fontPixelSize * 2
-            color: Qt.tint(Colors.midlight,
-                           Colors.makeTransparent(
-                               Colors.itemColor(libraryItem.color), 0.7))
+            color: Colors.itemColor(libraryItem.color)
 
             Label {
                 anchors {
@@ -78,6 +62,7 @@ MouseArea {
                 }
                 elide: Text.ElideRight
                 text: libraryItem.displayTitle
+                textFormat: Text.RichText
             }
         }
 

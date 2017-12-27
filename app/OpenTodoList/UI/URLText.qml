@@ -6,12 +6,10 @@ Label {
 
     property string plainText: ""
 
+    textFormat: Text.RichText
     text: {
         var re = /(\w+:\/\/[^\s]+)/g;
-        return (plainText
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(re, "<a href='$1'>$1</a>"));
+        return plainText.replace(re, "<a href='$1'>$1</a>");
     }
 
     onLinkActivated: Qt.openUrlExternally(link)

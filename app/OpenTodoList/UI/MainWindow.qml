@@ -310,12 +310,6 @@ ApplicationWindow {
             left: staticLeftSideBar.right
         }
 
-        Image {
-            anchors.fill: parent
-            source: "cork_1/cork_1.png"
-            fillMode: Image.Tile
-        }
-
         StackView {
             id: stackView
 
@@ -433,4 +427,46 @@ ApplicationWindow {
             window.raise();
         }
     }
+
+    SystemPalette {
+        id: p
+    }
+
+//    Column {
+//        Repeater {
+//            model: [
+//                { color: p.alternateBase, name: "alternateBase" },
+//                { color: p.base, name: "base" },
+//                { color: p.button, name: "button" },
+//                { color: p.buttonText, name: "buttonText" },
+//                { color: p.dark, name: "dark" },
+//                { color: p.highlight, name: "highlight" },
+//                { color: p.highlightedText, name: "highlightedText" },
+//                { color: p.light, name: "light" },
+//                { color: p.mid, name: "mid" },
+//                { color: p.midlight, name: "midlight" },
+//                { color: p.shadow, name: "shadow" },
+//                { color: p.text, name: "text" },
+//                { color: p.window, name: "window" },
+//                { color: p.windowText, name: "windowText" }
+//            ]
+//            delegate: Row {
+//                Rectangle {
+//                    width: 250
+//                    height: Globals.minButtonHeight
+//                    color: "white"
+
+//                    Text {
+//                        anchors.fill: parent
+//                        text: modelData.name
+//                    }
+//                }
+//                Rectangle {
+//                    width: Globals.minButtonHeight
+//                    height: Globals.minButtonHeight
+//                    color: modelData.color
+//                }
+//            }
+//        }
+//    }
 }

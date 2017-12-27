@@ -11,6 +11,7 @@ Page {
 
     readonly property TextArea textArea: textArea
     property alias text: textArea.text
+    property alias backgroundColor: editorBackground.color
     
     signal accepted()
     
@@ -23,6 +24,7 @@ Page {
         if (item !== null) {
             text = item.notes;
         }
+        textArea.forceActiveFocus();
     }
     Component.onDestruction: {
         if (item !== null) {
@@ -34,12 +36,6 @@ Page {
         target: item
         ignoreUnknownSignals: true
         onNotesChanged: editor.text = item.notes
-    }
-    
-    Image {
-        anchors.fill: parent
-        source: "paper/paper.png"
-        fillMode: Image.Tile
     }
 
     Flickable {
@@ -58,6 +54,11 @@ Page {
             selectByMouse: true
             persistentSelection: true
             font.family: "Courier"
+            background: Rectangle {
+                id: editorBackground
+
+                color: Colors.window
+            }
         }
     }
 }

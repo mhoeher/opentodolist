@@ -17,6 +17,16 @@ QtObject {
     readonly property color dark: palette.dark
     readonly property color highlight: palette.highlight
     readonly property color highlightedText: palette.highlightedText
+    readonly property color base: palette.base
+    readonly property color darkText: {
+        var dark = colors.dark;
+        var avg = (dark.r + dark.g + dark.b) / 3;
+        if (avg < 0.5) {
+            return "white";
+        } else {
+            return "black";
+        }
+    }
 
     readonly property color accentText: Qt.tint(
                                             palette.text,
@@ -47,12 +57,12 @@ QtObject {
     
     function itemColor(color) {
         var pureColor = pureTtemColor(color);
-        return Qt.tint(window, makeTransparent(pureColor, 0.3));
+        return Qt.tint(midlight, makeTransparent(pureColor, 0.4));
     }
 
     function lightItemColor(color) {
         var pureColor = pureTtemColor(color);
-        return Qt.tint(light, makeTransparent(pureColor, 0.3));
+        return Qt.tint(light, makeTransparent(pureColor, 0.4));
     }
 
     function pureTtemColor(color) {

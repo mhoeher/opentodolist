@@ -155,19 +155,10 @@ Item {
         id: background
         border {
             width: 1
-            color: Colors.midlight
+            color: Colors.mid
         }
+        color: Colors.midlight
         anchors.fill: parent
-    }
-
-    Image {
-        id: backgroundImage
-        anchors {
-            fill: background
-            margins: 1
-        }
-        source: "soft_wallpaper/soft_wallpaper.png"
-        fillMode: Image.Tile
     }
 
     ListView {
@@ -181,5 +172,6 @@ Item {
         delegate: itemDelegate
         header: allowNewEntryCreation ? headerDelegate : null
         clip: true
+        interactive: false
     }
 }
