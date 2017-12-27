@@ -42,5 +42,6 @@ CenteredDialog {
             margins: Globals.defaultMargin
         }
         selectByMouse: Globals.selectTextWithMouse
+        onAccepted: dialog.accept()
     }
 }
