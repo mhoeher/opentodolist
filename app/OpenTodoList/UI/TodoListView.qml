@@ -141,20 +141,19 @@ Item {
                     Layout.fillWidth: true
                     placeholderText: qsTr("Add Todo...")
                     background: Item {}
-
-                    onAccepted: {
-                        if (displayText !== "") {
-                            root.addEntry(displayText, false);
-                            text = "";
-                            forceActiveFocus();
-                        }
-                    }
+                    onAccepted: newEntryButton.clicked(null)
                     selectByMouse: true
                 }
 
                 Symbol {
+                    id: newEntryButton
                     symbol: Fonts.symbols.faPlus
-                    onClicked: newEntryEdit.accepted()
+                    onClicked: {
+                        if (newEntryEdit.displayText !== "") {
+                            root.addEntry(newEntryEdit.displayText, false);
+                            delayedClearTimer.start();
+                        }
+                    }
                 }
             }
 
@@ -162,6 +161,16 @@ Item {
                 width: parent.width
                 height: 1
                 color: background.border.color
+            }
+
+            Timer {
+                id: delayedClearTimer
+                interval: 10
+                repeat: false
+                onTriggered: {
+                    newEntryEdit.clear();
+                    newEntryEdit.forceActiveFocus();
+                }
             }
         }
     }
