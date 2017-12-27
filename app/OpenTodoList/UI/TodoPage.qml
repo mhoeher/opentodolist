@@ -9,6 +9,7 @@ Page {
 
     property Library library: null
     property Todo todo: Todo {}
+    property int parentItemColor: TopLevelItem.White
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -27,6 +28,10 @@ Page {
 
     function find() {
         filterBar.edit.forceActiveFocus()
+    }
+
+    background: Rectangle {
+        color: Colors.lightItemColor(page.parentItemColor)
     }
 
     CenteredDialog {
@@ -113,7 +118,6 @@ Page {
                 }
                 title: qsTr("Notes")
                 text: Globals.markdownToHtml(page.todo.notes)
-                backgroundColor: Colors.itemColor(TopLevelItem.Yellow)
                 onClicked: {
                     page.openPage(notesEditor, {item: page.todo});
                 }
@@ -139,7 +143,9 @@ Page {
 
             Component {
                 id: notesEditor
-                RichTextEditor {}
+                RichTextEditor {
+                    backgroundColor: Colors.lightItemColor(page.parentItemColor)
+                }
             }
         }
     }

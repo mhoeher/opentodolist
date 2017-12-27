@@ -67,7 +67,7 @@ Item {
                     Label {
                         id: itemText
                         text: name
-                        color: buttonContainer.isActive ? Colors.highlightedText : Colors.light
+                        color: buttonContainer.isActive ? Colors.highlightedText : Colors.darkText
                         font.bold: true
                         anchors {
                             left: parent.left
@@ -123,7 +123,7 @@ Item {
                             Label {
                                 id: tagText
                                 text: tags.library.tags[index]
-                                color: tagButtonContainer.isActive ? Colors.highlightedText : Colors.light
+                                color: tagButtonContainer.isActive ? Colors.highlightedText : Colors.darkText
                                 anchors {
                                     left: parent.left
                                     right: parent.right
@@ -159,7 +159,7 @@ Item {
                     Symbol {
                         id: addLocalLibrarySymbol
                         symbol: Fonts.symbols.faPlus
-                        color: Colors.light
+                        color: Colors.darkText
                         anchors {
                             left: parent.left
                             verticalCenter: parent.verticalCenter
@@ -168,7 +168,7 @@ Item {
                     Label {
                         id: addLocalLibraryLabel
                         text: qsTr("Add Library")
-                        color: Colors.light
+                        color: Colors.darkText
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         anchors {
                             left: addLocalLibrarySymbol.right
@@ -218,7 +218,7 @@ Item {
                     Symbol {
                         id: helpSymbol
                         symbol: Fonts.symbols.faInfo
-                        color: sidebar.helpVisible ? Colors.highlightedText : Colors.light
+                        color: sidebar.helpVisible ? Colors.highlightedText : Colors.darkText
                         anchors {
                             left: parent.left
                             verticalCenter: parent.verticalCenter
@@ -227,7 +227,7 @@ Item {
                     Label {
                         id: helpText
                         text: qsTr("About...")
-                        color: sidebar.helpVisible ? Colors.highlightedText : Colors.light
+                        color: sidebar.helpVisible ? Colors.highlightedText : Colors.darkText
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         anchors {
                             left: helpSymbol.right

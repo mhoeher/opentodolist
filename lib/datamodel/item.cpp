@@ -310,7 +310,8 @@ void Item::setTitle(const QString &title)
 QString Item::displayTitle() const
 {
     QString result = m_title;
-    return result.replace("<", "&lt;").replace(">", "&gt;");
+    result.replace("<", "&lt;").replace(">", "&gt;");
+    return result;
 }
 
 

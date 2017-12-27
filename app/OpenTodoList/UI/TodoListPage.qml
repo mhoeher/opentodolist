@@ -90,7 +90,6 @@ Page {
 
     Rectangle {
         color: Colors.lightItemColor(item.color)
-        opacity: 0.3
         anchors.fill: parent
     }
 
@@ -172,7 +171,6 @@ Page {
                 }
                 title: qsTr("Notes")
                 text: Globals.markdownToHtml(item.notes)
-                backgroundColor: item.color === TopLevelItem.White ? Colors.window : Colors.itemColor(TopLevelItem.White)
                 onClicked: {
                     page.openPage(notesEditor, {"item": page.item});
                 }
@@ -209,12 +207,16 @@ Page {
             Component {
                 id: notesEditor
 
-                RichTextEditor {}
+                RichTextEditor {
+                    backgroundColor: Colors.lightItemColor(page.item.color)
+                }
             }
 
             Component {
                 id: todoPage
-                TodoPage {}
+                TodoPage {
+                    parentItemColor: page.item.color
+                }
             }
         }
     }

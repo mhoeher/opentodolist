@@ -32,27 +32,10 @@ MouseArea {
         }
         border {
             width: 1
-            color: Colors.midlight
+            color: Colors.mid
         }
         clip: true
-
-        Image {
-            id: backgroundImage
-
-            anchors {
-                fill: parent
-                margins: background.border.width
-            }
-            source: "paper/paper.png"
-            fillMode: Image.Tile
-            asynchronous: true
-        }
-
-        GE.ColorOverlay {
-            source: backgroundImage
-            anchors.fill: backgroundImage
-            color: Colors.makeTransparent(Colors.itemColor(libraryItem.color), 0.5)
-        }
+        color: Colors.lightItemColor(libraryItem.color)
 
         Column {
             width: parent.width
@@ -78,6 +61,7 @@ MouseArea {
             id: title
 
             text: libraryItem.displayTitle
+            textFormat: Text.RichText
             anchors {
                 left: parent.left
                 leftMargin: Globals.defaultMargin
@@ -166,7 +150,7 @@ MouseArea {
                             font {
                                 pixelSize: Globals.fontPixelSize
                             }
-                            text: object.displayTitle
+                            text: object.title
                         }
                     }
                 }

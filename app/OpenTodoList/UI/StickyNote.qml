@@ -11,10 +11,11 @@ MouseArea {
     
     property string title: qsTr("Sticky Note Title")
     property string text: qsTr("Note Content")
-    property color backgroundColor: Colors.window
+    property color backgroundColor: Colors.light
+    property color titleBackgroundColor: Colors.midlight
+    property color borderColor: Colors.mid
     property var checkBoxList: undefined
     property bool showCheckBoxList: false
-    property string image: ""
     
     property int __shadowOffset: hoverEnabled && containsMouse ? Globals.defaultMargin : 0
     
@@ -49,6 +50,7 @@ MouseArea {
                 }
                 Label {
                     text: object.displayTitle
+                    textFormat: Text.RichText
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     Layout.fillWidth: true
                 }
@@ -70,30 +72,16 @@ MouseArea {
         Behavior on opacity { SmoothedAnimation { duration: 500 } }
     }
     
-    Image {
-        id: texture
-        source: "lightpaperfibers/lightpaperfibers.png"
-        fillMode: Image.Tile
-        anchors.fill: notesItemBackground
-        anchors.margins: 1
-    }
-    
-    ColorOverlay {
-        source: texture
-        anchors.fill: texture
-        color: Colors.makeTransparent(backgroundColor, 0.5)
-    }
-    
     Rectangle {
         id: notesItemBackground
         anchors {
             fill: parent
             margins: Globals.defaultMargin - __shadowOffset * 0.5
         }
-        color: "transparent"
+        color: note.backgroundColor
         border {
             width: 1
-            color: Qt.darker(backgroundColor, 1.2)
+            color: note.borderColor
         }
     }
     
@@ -114,11 +102,10 @@ MouseArea {
                 left: parent.left
                 right: parent.right
                 top: parent.top
-                margins: notesItemBackground.border.width + 1
+                margins: notesItemBackground.border.width
             }
             height: titleLabel.height + Globals.defaultMargin * 2
-            color: Colors.dark
-            opacity: 0.1
+            color: note.titleBackgroundColor
         }
 
         Label {
@@ -171,18 +158,6 @@ MouseArea {
                 opacity: 0.5
                 font.italic: true
                 visible: showCheckBoxList && (checkBoxList.count === 0)
-            }
-            
-            Image {
-                id: image
-                source: App.localFileToUrl(note.image)
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                fillMode: Image.PreserveAspectFit
-                visible: note.image !== ""
-                asynchronous: true
             }
             
             Label {

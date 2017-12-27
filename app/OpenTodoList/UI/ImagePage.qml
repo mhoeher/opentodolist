@@ -86,7 +86,6 @@ Page {
                 }
                 title: qsTr("Notes")
                 text: Globals.markdownToHtml(item.notes)
-                backgroundColor: item.color === TopLevelItem.White ? Colors.window : Colors.itemColor(TopLevelItem.White)
                 onClicked: page.openPage(notesEditor, {item: page.item})
             }
 
@@ -120,7 +119,9 @@ Page {
 
             Component {
                 id: notesEditor
-                RichTextEditor {}
+                RichTextEditor {
+                    backgroundColor: Colors.lightItemColor(page.item.color)
+                }
             }
         }
     }

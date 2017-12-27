@@ -130,7 +130,7 @@ Page {
                 margins: Globals.defaultMargin
             }
         }
-        standardButtons:Dialog.Ok |Dialog.Cancel
+        standardButtons:Dialog.Ok | Dialog.Cancel
         onAccepted: itemContextMenu.item.deleteItem()
     }
 

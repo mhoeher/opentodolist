@@ -26,7 +26,7 @@ CenteredDialog {
     ListView {
         implicitWidth: 300
         implicitHeight: 400
-        header: Text {
+        header: Label {
             text: qsTr("Selected file: ") + "<strong>" +
                   App.urlToLocalFile(dialog.fileUrl) + "</strong>"
             width: parent.width
