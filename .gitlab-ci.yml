@@ -278,3 +278,18 @@ github:
     when: manual
     only:
         - tags
+
+
+pages:
+  stage: deploy
+  image: ruby:2.4
+  script:
+      - cd homepage/opentodolist
+      - bundle install
+      - bundle exec jekyll build -d public
+      - cp -r public ../../
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
