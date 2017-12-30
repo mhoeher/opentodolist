@@ -281,8 +281,8 @@ github:
 
 
 pages:
-  stage: deploy
-  image: ruby:2.3
+  stage: build
+  image: ruby:2.4
   script:
       - cd homepage/opentodolist
       - bundle install
