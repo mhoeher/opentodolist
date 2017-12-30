@@ -281,7 +281,7 @@ github:
 
 
 pages:
-  stage: build
+  stage: deploy
   image: ruby:2.4
   script:
       - cd homepage/opentodolist
@@ -291,5 +291,5 @@ pages:
   artifacts:
     paths:
     - public
-  #only:
-  #- master
+  only:
+  - master
