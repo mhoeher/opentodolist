@@ -287,8 +287,10 @@ pages:
       - cd homepage/opentodolist
       - bundle install
       - bundle exec jekyll build -d public
+      - mkdir ../../public
+      - cp -r public/* ../../public/
   artifacts:
     paths:
-    - homepage/opentodolist/public
+    - public
   #only:
   #- master
