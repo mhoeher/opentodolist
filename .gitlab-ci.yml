@@ -280,13 +280,9 @@ github:
         - tags
 
 
-homepage:
-    image: ruby:2.3
-    variables:
-      JEKYLL_ENV: production
-
 pages:
   stage: deploy
+  image: ruby:2.3
   script:
       - cd homepage/opentodolist
       - bundle install
