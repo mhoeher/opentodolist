@@ -287,8 +287,7 @@ pages:
       - cd homepage/opentodolist
       - bundle install
       - bundle exec jekyll build -d public
-      - mkdir ../../public
-      - cp -r public/* public/.* ../../public/
+      - cp -r public ../../
   artifacts:
     paths:
     - public
