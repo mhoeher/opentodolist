@@ -281,14 +281,14 @@ github:
 
 
 pages:
-  stage: deploy
+  stage: build
   image: ruby:2.4
   script:
       - cd homepage/opentodolist
       - bundle install
       - bundle exec jekyll build -d public
       - mkdir ../../public
-      - cp -r public/* ../../public/
+      - cp -r public/* public/.* ../../public/
   artifacts:
     paths:
     - public
