@@ -223,6 +223,7 @@ Page {
             if (leftSideBar.currentTag !== "") {
                 image.addTag(leftSideBar.currentTag);
             }
+            itemCreatedNotification.show(image);
         }
     }
 
@@ -246,12 +247,10 @@ Page {
         placeholderText: qsTr("Note Title")
         onAccepted: {
             var note = Logic.createNote(library, newNoteBar.edit);
-            if (openItem) {
-                itemClicked(note);
-            }
             if (leftSideBar.currentTag !== "") {
                 note.addTag(leftSideBar.currentTag)
             }
+            itemCreatedNotification.show(note);
         }
     }
 
@@ -260,12 +259,10 @@ Page {
         placeholderText: qsTr("Todo List Title")
         onAccepted: {
             var todoList = Logic.createTodoList(library, newTodoListBar.edit);
-            if (openItem) {
-                itemClicked(todoList);
-            }
             if (leftSideBar.currentTag !== "") {
                 todoList.addTag(leftSideBar.currentTag)
             }
+            itemCreatedNotification.show(todoList);
         }
     }
 
@@ -274,7 +271,6 @@ Page {
         placeholderText: qsTr("Search term 1, search term 2, ...")
         symbol: Fonts.symbols.faTimes
         color: Colors.mid
-        itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }
@@ -388,6 +384,12 @@ Page {
     SyncErrorNotificationBar {
         library: page.library
         onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+    }
+
+    ItemCreatedNotification {
+        id: itemCreatedNotification
+
+        onOpen: itemClicked(item)
     }
 
     Component {

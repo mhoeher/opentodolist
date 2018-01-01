@@ -18,6 +18,8 @@ Item {
     property bool touchEnabled: enableTouchOptimizations
     property int defaultMargin: fontPixelSize
     property int defaultPadding: defaultMargin * 2
+
+    property ItemCreatedNotification itemCreatedNotification: null
     
     readonly property int defaultAnimationTime: 500
 

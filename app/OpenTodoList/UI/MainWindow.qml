@@ -172,41 +172,66 @@ ApplicationWindow {
         Menu {
             title: qsTr("OpenTodoList")
 
-            Action {
-                text: qsTr("Quit")
-                shortcut: StandardKey.Quit
-                onTriggered: Qt.quit()
-            }
+            MenuItem { action: quitAction }
         }
 
         Menu {
             title: qsTr("Edit")
 
-            Action {
-                text: qsTr("Find")
-                shortcut: StandardKey.Find
-                onTriggered: searchToolButton.clicked(null)
-            }
-
-            Action {
-                text: qsTr("Go Back")
-                shortcut: StandardKey.Back
-                onTriggered: if (stackView.canGoBack) { stackView.pop(); }
-            }
+            MenuItem { action: findAction }
+            MenuItem { action: goBackAction }
         }
 
         Menu {
             title: qsTr("View")
 
-            Action {
-                text: qsTr("Open Left Side Bar")
-                shortcut: qsTr("Ctrl+Shift+L")
-                onTriggered: if (leftSideBar.compact) {
-                                 dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
-                             }
-            }
+            MenuItem { action: openLastCreatedItemAction }
+            MenuSeparator {}
+            MenuItem { action: openLeftSideBarAction }
         }
 
+    }
+
+    Action {
+        id: quitAction
+
+        text: qsTr("Quit")
+        shortcut: StandardKey.Quit
+        onTriggered: Qt.quit()
+    }
+
+    Action {
+        id: findAction
+
+        text: qsTr("Find")
+        shortcut: StandardKey.Find
+        onTriggered: searchToolButton.clicked(null)
+    }
+
+    Action {
+        id: goBackAction
+
+        text: qsTr("Go Back")
+        shortcut: StandardKey.Back
+        onTriggered: if (stackView.canGoBack) { stackView.pop(); }
+    }
+
+    Action {
+        id: openLastCreatedItemAction
+
+        shortcut: StandardKey.Open
+        text: qsTr("Open Last Created Item")
+        enabled: !!Globals.itemCreatedNotification
+        onTriggered: Globals.itemCreatedNotification.trigger()
+    }
+
+    Action {
+        id: openLeftSideBarAction
+
+        text: qsTr("Open Left Side Bar")
+        onTriggered: if (leftSideBar.compact) {
+                         dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
+                     }
     }
 
     Component.onCompleted: {

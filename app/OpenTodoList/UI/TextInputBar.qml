@@ -13,8 +13,6 @@ Item {
     property alias symbol: button.symbol
     property alias color: background.color
     property bool itemCreator: true
-    property var createItem: itemCreator ? __createItem : null
-    property var createItemAndOpen: itemCreator ? __createItemAndOpen : null
     property alias contentHeight: background.height
     property bool shown: __visible
     property bool closeOnButtonClick: false
@@ -22,23 +20,11 @@ Item {
     
     property bool __visible: edit.focus || (showWhenNonEmpty && (edit.text !== ""))
     
-    signal accepted(bool openItem)
-    
-    function __createItem() {
-        if (edit.displayText !== "") {
-            root.accepted(false);
-        }
-    }
-    
-    function __createItemAndOpen() {
-        if (edit.displayText !== "") {
-            root.accepted(true);
-        }
-    }
+    signal accepted()
     
     function __createIfValidInput() {
-        if (itemCreator && (edit.displayText !== "")) {
-            __createItem();
+        if (edit.displayText !== "") {
+            root.accepted();
         }
     }
     
