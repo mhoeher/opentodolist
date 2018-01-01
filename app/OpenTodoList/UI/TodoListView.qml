@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
+import QtQml 2.2
 
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
@@ -50,7 +51,7 @@ Item {
             id: todoItem
 
             width: parent.width
-            height: row.height + Globals.defaultMargin * 2
+            height: row.height + Globals.defaultMargin
 
             Rectangle {
                 width: parent.width * (object.percentageDone / 100.0)
@@ -66,13 +67,19 @@ Item {
                 model: root.model
             }
 
-            RowLayout {
+            GridLayout {
                 id: row
+
+                property date date: object.dueTo
+                property bool hasDate: date.getTime() === date.getTime()
 
                 width: parent.width
                 anchors.verticalCenter: parent.verticalCenter
+                columns: 4
 
                 Symbol {
+                    id: checkMark
+
                     symbol: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
                     onClicked: object.done = !object.done
                 }
@@ -80,6 +87,7 @@ Item {
                 URLText {
                     plainText: object.displayTitle
                     Layout.fillWidth: true
+                    Layout.columnSpan: 2
                     wrapMode: Text.WrapAnywhere
                 }
 
@@ -89,6 +97,25 @@ Item {
                         confirmDeleteTodoDialog.todo = object;
                         confirmDeleteTodoDialog.open();
                     }
+                }
+
+                Item {
+                    width: 1
+                    height: 1
+                    visible: row.hasDate
+                }
+
+                Symbol {
+                    symbol: Fonts.symbols.faCalendar
+                    visible: row.hasDate
+                    enabled: false
+                }
+
+                Label {
+                    text: row.date.toLocaleDateString()
+                    Layout.fillWidth: true
+                    visible: row.hasDate
+                    enabled: false
                 }
             }
 

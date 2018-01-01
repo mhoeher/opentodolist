@@ -6,11 +6,14 @@ Attachments 1.0 Attachments.qml
 ButtonContainer 1.0 ButtonContainer.qml
 CenteredDialog 1.0 CenteredDialog.qml
 ColorMenu 1.0 ColorMenu.qml
+DateSelectionDialog 1.0 DateSelectionDialog.qml
 DropShadow 1.0 DropShadow.qml
+DueDateOverlay 1.0 DueDateOverlay.qml
 FolderSelectionDialog 1.0 FolderSelectionDialog.qml
 FontAwesome 1.0 FontAwesome.qml
 ImageItem 1.0 ImageItem.qml
 ImagePage 1.0 ImagePage.qml
+ItemDueDateEditor 1.0 ItemDueDateEditor.qml
 ItemTitle 1.0 ItemTitle.qml
 LibrariesSideBar 1.0 LibrariesSideBar.qml
 LibraryPage 1.0 LibraryPage.qml

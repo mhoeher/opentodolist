@@ -25,7 +25,7 @@ MouseArea {
             margins: Globals.defaultMargin / 2
         }
 
-        color: Colors.itemColor(libraryItem.color)
+        color: Colors.lightItemColor(libraryItem.color)
         border {
             width: 1
             color: Colors.mid
@@ -42,6 +42,7 @@ MouseArea {
 
             fillMode: Image.PreserveAspectFit
         }
+        DueDateOverlay { dueDate: libraryItem.dueTo }
     }
 }
 

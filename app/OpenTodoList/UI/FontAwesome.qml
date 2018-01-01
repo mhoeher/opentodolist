@@ -8,6 +8,7 @@ FontLoader {
     readonly property string faStickyNoteO: "\uf24a"
     readonly property string faPlus: "\uf067"
     readonly property string faAngleLeft: "\uf104"
+    readonly property string faAngleRight: "\uf105"
     readonly property string faAngleUp: "\uf106"
     readonly property string faFolderOpenO: "\uf115"
     readonly property string faFileO: "\uf016"
@@ -28,6 +29,9 @@ FontLoader {
     readonly property string faQuestionCircleO: "\uf29c"
     readonly property string faPaperclip: "\uf0c6"
     
+    readonly property string faCalendar: "\uf073"
+    readonly property string faCalendarO: "\uf133"
+
     readonly property string faArrowLeft: "\uf060"
     readonly property string faArrowRight: "\uf061"
     readonly property string faArrowUp: "\uf062"

@@ -5,6 +5,7 @@ import QtQuick.Controls 2.2
 import OpenTodoList.UI 1.0
 
 ButtonContainer {
+    id: root
     
     property alias symbol: label.text
     property alias label: label
@@ -27,8 +28,18 @@ ButtonContainer {
             family: Fonts.symbols.family
             pixelSize: Globals.minButtonHeight * 0.7
         }
-        color: checked ? Colors.accentText : Colors.windowText
         anchors.centerIn: parent
         text: Fonts.symbols.faPlus
+        enabled: parent.enabled
+    }
+
+    states: State {
+        name: "checked"
+        when: root.checked
+
+        PropertyChanges {
+            target: label
+            color: Colors.accentText
+        }
     }
 }
