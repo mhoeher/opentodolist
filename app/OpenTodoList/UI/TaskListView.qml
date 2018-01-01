@@ -52,7 +52,7 @@ Item {
 
         Item {
             width: parent.width
-            height: row.height + Globals.defaultMargin * 2
+            height: row.height + Globals.defaultMargin
 
             ReorderWeightedItem {
                 anchors.fill: parent

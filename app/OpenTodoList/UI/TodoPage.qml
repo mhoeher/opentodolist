@@ -123,6 +123,15 @@ Page {
                 }
             }
 
+            ItemDueDateEditor {
+                item: page.todo
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
+                }
+            }
+
             Attachments {
                 item: page.todo
                 anchors {

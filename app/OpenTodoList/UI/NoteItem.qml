@@ -80,5 +80,7 @@ MouseArea {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             clip: true
         }
+
+        DueDateOverlay { dueDate: libraryItem.dueTo }
     }
 }

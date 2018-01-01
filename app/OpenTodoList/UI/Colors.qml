@@ -54,10 +54,13 @@ QtObject {
     property color itemLilac: "#9683cf"
 
     readonly property SystemPalette palette: SystemPalette {}
+    readonly property SystemPalette inactive: SystemPalette {
+        colorGroup: SystemPalette.Inactive
+    }
     
     function itemColor(color) {
         var pureColor = pureTtemColor(color);
-        return Qt.tint(midlight, makeTransparent(pureColor, 0.4));
+        return Qt.tint(mid, makeTransparent(pureColor, 0.4));
     }
 
     function lightItemColor(color) {

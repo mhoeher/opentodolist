@@ -89,6 +89,15 @@ Page {
                 onClicked: page.openPage(notesEditor, {item: page.item})
             }
 
+            ItemDueDateEditor {
+                item: page.item
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Globals.defaultMargin * 2
+                }
+            }
+
             Attachments {
                 item: page.item
                 anchors {

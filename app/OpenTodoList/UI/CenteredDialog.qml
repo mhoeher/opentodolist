@@ -9,4 +9,5 @@ Dialog {
     width: Math.min(parent.width * 0.7, 800)
     parent: ApplicationWindow.window.contentItem
     padding: Globals.defaultPadding
+    dim: true
 }

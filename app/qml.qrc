@@ -65,5 +65,8 @@
         <file>OpenTodoList/UI/showdownjs/showdown.js</file>
         <file>+windows/qtquickcontrols2.conf</file>
         <file>+winrt/qtquickcontrols2.conf</file>
+        <file>OpenTodoList/UI/DateSelectionDialog.qml</file>
+        <file>OpenTodoList/UI/ItemDueDateEditor.qml</file>
+        <file>OpenTodoList/UI/DueDateOverlay.qml</file>
     </qresource>
 </RCC>

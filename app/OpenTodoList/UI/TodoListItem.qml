@@ -156,6 +156,7 @@ MouseArea {
                 }
             }
         }
+        DueDateOverlay { dueDate: libraryItem.dueTo }
     }
 }
 
