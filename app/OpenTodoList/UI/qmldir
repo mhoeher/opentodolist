@@ -13,6 +13,7 @@ FolderSelectionDialog 1.0 FolderSelectionDialog.qml
 FontAwesome 1.0 FontAwesome.qml
 ImageItem 1.0 ImageItem.qml
 ImagePage 1.0 ImagePage.qml
+ItemCreatedNotification 1.0 ItemCreatedNotification.qml
 ItemDueDateEditor 1.0 ItemDueDateEditor.qml
 ItemTitle 1.0 ItemTitle.qml
 LibrariesSideBar 1.0 LibrariesSideBar.qml

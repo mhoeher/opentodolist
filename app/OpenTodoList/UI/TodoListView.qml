@@ -13,7 +13,7 @@ Item {
     property bool allowEntryCreation: false
 
     signal todoSelected(Todo todo)
-    signal addEntry(string title, bool openItem)
+    signal addEntry(string title)
 
     function focusNewItemInput() {
         if (listView.headerItem) {
@@ -136,14 +136,6 @@ Item {
                 newEntryEdit.accepted();
             }
 
-            function createItemAndOpen() {
-                if (newEntryEdit.displayText !== "") {
-                    root.addEntry(newEntryEdit.displayText, true);
-                    newEntryEdit.text = "";
-                    newEntryEdit.forceActiveFocus();
-                }
-            }
-
             function focusInputItem() {
                 newEntryEdit.forceActiveFocus();
             }
@@ -177,7 +169,7 @@ Item {
                     symbol: Fonts.symbols.faPlus
                     onClicked: {
                         if (newEntryEdit.displayText !== "") {
-                            root.addEntry(newEntryEdit.displayText, false);
+                            root.addEntry(newEntryEdit.displayText);
                             delayedClearTimer.start();
                         }
                     }

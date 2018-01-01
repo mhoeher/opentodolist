@@ -83,7 +83,6 @@ Page {
         placeholderText: qsTr("Search term 1, search term 2, ...")
         symbol: Fonts.symbols.faTimes
         color: Colors.midlight
-        itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }
@@ -130,9 +129,7 @@ Page {
                 onAddEntry: {
                     var todo = page.item.addTodo();
                     todo.title = title;
-                    if (openItem) {
-                        todos.openTodo(todo);
-                    }
+                    itemCreatedNotification.show(todo);
                 }
             }
 
@@ -228,6 +225,12 @@ Page {
                 }
             }
         }
+    }
+
+    ItemCreatedNotification {
+        id: itemCreatedNotification
+
+        onOpen: page.openPage(todoPage, {todo: item, library: page.library});
     }
 }
 

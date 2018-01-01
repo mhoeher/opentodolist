@@ -68,5 +68,6 @@
         <file>OpenTodoList/UI/DateSelectionDialog.qml</file>
         <file>OpenTodoList/UI/ItemDueDateEditor.qml</file>
         <file>OpenTodoList/UI/DueDateOverlay.qml</file>
+        <file>OpenTodoList/UI/ItemCreatedNotification.qml</file>
     </qresource>
 </RCC>

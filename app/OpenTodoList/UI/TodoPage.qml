@@ -61,7 +61,6 @@ Page {
         placeholderText: qsTr("Search term 1, search term 2, ...")
         symbol: Fonts.symbols.faTimes
         color: Colors.midlight
-        itemCreator: false
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }

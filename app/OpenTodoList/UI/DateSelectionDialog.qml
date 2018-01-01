@@ -34,7 +34,7 @@ CenteredDialog {
 
     GridLayout {
         columns: 3
-        width: Math.min(dialog.availableWidth, dialog.availableHeight)
+        width: Math.min(dialog.availableWidth, dialog.availableHeight) - 2 * Globals.defaultMargin
         height: width
         anchors.centerIn: parent
 
