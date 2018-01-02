@@ -8,7 +8,6 @@
 #include <QFileSystemWatcher>
 #include <QFont>
 #include <QFontInfo>
-#include <QGuiApplication>
 #include <QIcon>
 #include <QLoggingCategory>
 #include <QQmlApplicationEngine>
@@ -16,9 +15,9 @@
 #include <QScreen>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
-#include <QtSingleGuiApplication>
+#include <QtSingleApplication>
 #else
-#include <QGuiApplication>
+#include <QApplication>
 #endif
 
 #include <iostream>
@@ -132,9 +131,9 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef OTL_USE_SINGLE_APPLICATION
-    QtSingleGuiApplication app("OpenTodoList", argc, argv);
+    QtSingleApplication app("OpenTodoList", argc, argv);
 #else
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 #endif
 
     app.setAttribute(Qt::AA_EnableHighDpiScaling);

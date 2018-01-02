@@ -72,20 +72,20 @@ ApplicationWindow {
                 }
                 Symbol {
                     symbol: Fonts.symbols.faStickyNoteO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newNote"]) === "function"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["newNote"]) === "function" && Qt.platform.os !== "android"
                     //shortcut: qsTr("Ctrl+Shift+N")
                     onClicked: stackView.currentItem.newNote()
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Symbol {
                     symbol: Fonts.symbols.faCheckSquareO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newTodoList"]) === "function"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["newTodoList"]) === "function" && Qt.platform.os !== "android"
                     onClicked: stackView.currentItem.newTodoList()
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Symbol {
                     symbol: Fonts.symbols.faPictureO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newImage"]) === "function"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["newImage"]) === "function" && Qt.platform.os !== "android"
                     onClicked: stackView.currentItem.newImage()
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -170,20 +170,26 @@ ApplicationWindow {
         }
 
         Menu {
-            title: qsTr("OpenTodoList")
+            title: qsTr("&OpenTodoList")
 
+            MenuItem { action: newLibraryAction }
+            MenuSeparator {}
+            MenuItem { action: newNoteAction }
+            MenuItem { action: newTodoListAction }
+            MenuItem { action: newImageAction }
+            MenuSeparator {}
             MenuItem { action: quitAction }
         }
 
         Menu {
-            title: qsTr("Edit")
+            title: qsTr("&Edit")
 
             MenuItem { action: findAction }
             MenuItem { action: goBackAction }
         }
 
         Menu {
-            title: qsTr("View")
+            title: qsTr("&View")
 
             MenuItem { action: openLastCreatedItemAction }
             MenuSeparator {}
@@ -193,9 +199,44 @@ ApplicationWindow {
     }
 
     Action {
+        id: newLibraryAction
+
+        text: qsTr("New &Library")
+        shortcut: StandardKey.New
+        onTriggered: {
+            stackView.clear();
+            stackView.push(newSyncedLibraryPage);
+        }
+    }
+
+    Action {
+        id: newNoteAction
+
+        text: qsTr("New &Note")
+        onTriggered: stackView.currentItem.newNote()
+        enabled: typeof(stackView.currentItem.newNote) === "function"
+    }
+
+    Action {
+        id: newTodoListAction
+
+        text: qsTr("New &Todo List")
+        onTriggered: stackView.currentItem.newTodoList()
+        enabled: typeof(stackView.currentItem.newTodoList) === "function"
+    }
+
+    Action {
+        id: newImageAction
+
+        text: qsTr("New &Image")
+        onTriggered: stackView.currentItem.newImage()
+        enabled: typeof(stackView.currentItem.newImage) === "function"
+    }
+
+    Action {
         id: quitAction
 
-        text: qsTr("Quit")
+        text: qsTr("&Quit")
         shortcut: StandardKey.Quit
         onTriggered: Qt.quit()
     }
@@ -203,7 +244,7 @@ ApplicationWindow {
     Action {
         id: findAction
 
-        text: qsTr("Find")
+        text: qsTr("&Find")
         shortcut: StandardKey.Find
         onTriggered: searchToolButton.clicked(null)
     }
@@ -211,7 +252,7 @@ ApplicationWindow {
     Action {
         id: goBackAction
 
-        text: qsTr("Go Back")
+        text: qsTr("Go &Back")
         shortcut: StandardKey.Back
         onTriggered: if (stackView.canGoBack) { stackView.pop(); }
     }
@@ -220,7 +261,7 @@ ApplicationWindow {
         id: openLastCreatedItemAction
 
         shortcut: StandardKey.Open
-        text: qsTr("Open Last Created Item")
+        text: qsTr("Open Last &Created Item")
         enabled: !!Globals.itemCreatedNotification
         onTriggered: Globals.itemCreatedNotification.trigger()
     }
@@ -228,7 +269,7 @@ ApplicationWindow {
     Action {
         id: openLeftSideBarAction
 
-        text: qsTr("Open Left Side Bar")
+        text: qsTr("Open &Left Side Bar")
         onTriggered: if (leftSideBar.compact) {
                          dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
                      }

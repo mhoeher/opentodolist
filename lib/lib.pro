@@ -66,6 +66,12 @@ HEADERS += \
     sync/syncjob.h \
     utils/updateservice.h
 
+android {
+    QT += androidextras
+    HEADERS += utils/android/androidfiledialog.h
+    SOURCES += utils/android/androidfiledialog.cpp
+}
+
 config_qtkeychain {
     LIBS += -lqt5keychain
     DEFINES += OTL_USE_SYSTEM_QT5KEYCHAIN

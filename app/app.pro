@@ -4,7 +4,7 @@ TARGET = OpenTodoList
 include(../config.pri)
 include(../lib/lib.pri)
 
-QT += qml quick xml concurrent
+QT += qml quick xml concurrent widgets
 CONFIG += c++11
 
 SOURCES += main.cpp
@@ -15,10 +15,10 @@ RESOURCES += qml.qrc \
 !ios&!android {
     DEFINES += OTL_USE_SINGLE_APPLICATION
     HEADERS += \
-        ../3rdparty/qtsingleapplication/src/qtsingleguiapplication.h \
+        ../3rdparty/qtsingleapplication/src/qtsingleapplication.h \
         ../3rdparty/qtsingleapplication/src/qtlocalpeer.h
     SOURCES += \
-        ../3rdparty/qtsingleapplication/src/qtsingleguiapplication.cpp \
+        ../3rdparty/qtsingleapplication/src/qtsingleapplication.cpp \
         ../3rdparty/qtsingleapplication/src/qtlocalpeer.cpp
     INCLUDEPATH += ../3rdparty/qtsingleapplication/src
     DEPENDPATH += ../3rdparty/qtsingleapplication/src

@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.2
+import QtQuick.Controls.Material 2.2
 
 import OpenTodoList 1.0
 import OpenTodoList.UI 1.0
@@ -209,11 +210,8 @@ Page {
         }
     }
 
-    OpenFileDialog {
+    OpenImageDialog {
         id: openImageDialog
-
-        title: qsTr("Add Image to Library")
-        nameFilters: ["*.png", "*.bmp", "*.jpg", "*.jpeg", "*.gif"]
 
         onAccepted: {
             var image = library.addImage();
@@ -324,6 +322,43 @@ Page {
                     });
                 }
             }
+        }
+    }
+
+    RoundButton {
+        id: newItemButton
+
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+            margins: Globals.defaultMargin * 2
+        }
+        width: Globals.minButtonHeight * 2
+        height: Globals.minButtonHeight * 2
+        radius: Globals.minButtonHeight
+        text: "+"
+        onClicked: newItemMenu.open()
+        Material.background: Material.Green
+        visible: Qt.platform.os === "android"
+    }
+
+    Menu {
+        id: newItemMenu
+
+        y: newItemButton.y - height
+        x: newItemButton.x - width
+
+        MenuItem {
+            text: qsTr("Note")
+            onTriggered: page.newNote()
+        }
+        MenuItem {
+            text: qsTr("Todo List")
+            onTriggered: page.newTodoList()
+        }
+        MenuItem {
+            text: qsTr("Image")
+            onTriggered: page.newImage()
         }
     }
 
