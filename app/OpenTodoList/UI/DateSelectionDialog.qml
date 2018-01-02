@@ -10,8 +10,8 @@ CenteredDialog {
 
     property date selectedDate
 
-    width: Math.min(parent.width * 0.7, 800)
-    height: Math.min(parent.height * 0.7, 600)
+    width: parent.width * 0.8
+    height: parent.height * 0.8
     standardButtons: Dialog.Ok | Dialog.Cancel
     onSelectedDateChanged: {
         if (selectedDate.getTime() === selectedDate.getTime()) {
@@ -34,7 +34,7 @@ CenteredDialog {
 
     GridLayout {
         columns: 3
-        width: Math.min(dialog.availableWidth, dialog.availableHeight) - 2 * Globals.defaultMargin
+        width: Math.min(dialog.availableWidth, dialog.availableHeight) - Globals.defaultMargin
         height: width
         anchors.centerIn: parent
 
@@ -55,6 +55,7 @@ CenteredDialog {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             text: grid.locale.monthName(grid.month) + " " + grid.year
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
         Symbol {
@@ -106,7 +107,7 @@ CenteredDialog {
                 }
                 opacity: model.month === grid.month ? 1.0 : 0.5
                 text: model.day
-                font.pixelSize: grid.font.pixelSize * 2
+                font.pixelSize: grid.font.pixelSize
                 background: Rectangle {
                     color: {
                         if (d.dateEquals(model.date, dialog.selectedDate)) {
@@ -127,6 +128,7 @@ CenteredDialog {
             Layout.row: 3
             Layout.column: 1
             text: dialog.selectedDate.toLocaleDateString()
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
         Symbol {
