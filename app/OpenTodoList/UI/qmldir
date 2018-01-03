@@ -25,6 +25,7 @@ NewLibraryPage 1.0 NewLibraryPage.qml
 NoteItem 1.0 NoteItem.qml
 NotePage 1.0 NotePage.qml
 OpenFileDialog 1.0 OpenFileDialog.qml
+OpenImageDialog 1.0 OpenImageDialog.qml
 RenameItemDialog 1.0 RenameItemDialog.qml
 ReorderWeightedItem 1.0 ReorderWeightedItem.qml
 RichTextEditor 1.0 RichTextEditor.qml

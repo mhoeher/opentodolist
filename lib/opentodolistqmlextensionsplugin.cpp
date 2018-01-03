@@ -19,6 +19,10 @@
 
 #include "utils/updateservice.h"
 
+#ifdef Q_OS_ANDROID
+#include "utils/android/androidfiledialog.h"
+#endif
+
 #include <QtQml>
 
 OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent) :
@@ -57,6 +61,10 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
               "Use sub-classes of abstract item model instead");
 
   qmlRegisterType<UpdateService>(uri, 1, 0, "UpdateService");
+
+#ifdef Q_OS_ANDROID
+  qmlRegisterType<AndroidFileDialog>(uri, 1, 0, "AndroidFileDialog");
+#endif
 }
 
 QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)

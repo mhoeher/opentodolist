@@ -69,5 +69,7 @@
         <file>OpenTodoList/UI/ItemDueDateEditor.qml</file>
         <file>OpenTodoList/UI/DueDateOverlay.qml</file>
         <file>OpenTodoList/UI/ItemCreatedNotification.qml</file>
+        <file>OpenTodoList/UI/OpenImageDialog.qml</file>
+        <file>OpenTodoList/UI/+android/OpenImageDialog.qml</file>
     </qresource>
 </RCC>
