@@ -17,7 +17,7 @@
 #include <QVariantMap>
 
 
-Q_LOGGING_CATEGORY(item, "net.rpdev.opentodolist.Item");
+Q_LOGGING_CATEGORY(item, "net.rpdev.opentodolist.Item")
 
 const QString Item::FileNameSuffix = "otl";
 
