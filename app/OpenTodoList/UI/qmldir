@@ -3,6 +3,8 @@ OpenTodoList.UI 1.0
 AboutPage 1.0 AboutPage.qml
 AboutThirdPartyPage 1.0 AboutThirdPartyPage.qml
 Attachments 1.0 Attachments.qml
+BackgroundSymbol 1.0 BackgroundSymbol.qml
+BackgroundLabel 1.0 BackgroundLabel.qml
 ButtonContainer 1.0 ButtonContainer.qml
 CenteredDialog 1.0 CenteredDialog.qml
 ColorMenu 1.0 ColorMenu.qml
@@ -17,11 +19,13 @@ ItemCreatedNotification 1.0 ItemCreatedNotification.qml
 ItemDueDateEditor 1.0 ItemDueDateEditor.qml
 ItemTitle 1.0 ItemTitle.qml
 LibrariesSideBar 1.0 LibrariesSideBar.qml
+LibrarySideBarButton 1.0 LibrarySideBarButton.qml
 LibraryPage 1.0 LibraryPage.qml
 LibrarySecretsMissingNotificationBar 1.0 LibrarySecretsMissingNotificationBar.qml
 LogViewPage 1.0 LogViewPage.qml
 MainWindow 1.0 MainWindow.qml
 NewLibraryPage 1.0 NewLibraryPage.qml
+NewTopLevelItemButton 1.0 NewTopLevelItemButton.qml
 NoteItem 1.0 NoteItem.qml
 NotePage 1.0 NotePage.qml
 OpenFileDialog 1.0 OpenFileDialog.qml
@@ -30,6 +34,7 @@ RenameItemDialog 1.0 RenameItemDialog.qml
 ReorderWeightedItem 1.0 ReorderWeightedItem.qml
 RichTextEditor 1.0 RichTextEditor.qml
 RichTextEditorFormatMenu 1.0 RichTextEditorFormatMenu.qml
+ScheduleView 1.0 ScheduleView.qml
 StickyNote 1.0 StickyNote.qml
 Symbol 1.0 Symbol.qml
 SymbolButton 1.0 SymbolButton.qml
@@ -51,3 +56,4 @@ WebDAVSynchronizerSettingsPage 1.0 WebDAVSynchronizerSettingsPage.qml
 singleton Colors 1.0 Colors.qml
 singleton Fonts 1.0 Fonts.qml
 singleton Globals 1.0 Globals.qml
+singleton StyleInfo 1.0 StyleInfo.qml

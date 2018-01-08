@@ -71,5 +71,13 @@
         <file>OpenTodoList/UI/ItemCreatedNotification.qml</file>
         <file>OpenTodoList/UI/OpenImageDialog.qml</file>
         <file>OpenTodoList/UI/+android/OpenImageDialog.qml</file>
+        <file>OpenTodoList/UI/NewTopLevelItemButton.qml</file>
+        <file>OpenTodoList/UI/+material/NewTopLevelItemButton.qml</file>
+        <file>OpenTodoList/UI/StyleInfo.qml</file>
+        <file>OpenTodoList/UI/+material/StyleInfo.qml</file>
+        <file>OpenTodoList/UI/ScheduleView.qml</file>
+        <file>OpenTodoList/UI/LibrarySideBarButton.qml</file>
+        <file>OpenTodoList/UI/BackgroundSymbol.qml</file>
+        <file>OpenTodoList/UI/BackgroundLabel.qml</file>
     </qresource>
 </RCC>

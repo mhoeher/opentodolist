@@ -273,6 +273,10 @@ Page {
         closeOnButtonClick: true
     }
 
+    BackgroundSymbol {
+        symbol: page.tag !== "" ? Fonts.symbols.faTag : Fonts.symbols.faGrid
+    }
+
     ScrollView {
         id: scrollView
         anchors {
@@ -323,43 +327,35 @@ Page {
                 }
             }
         }
+    }    
+
+    BackgroundLabel {
+        visible: filteredItemsModel.count === 0
+        text: qsTr("Nothing here yet! Start by adding a " +
+                   "<a href='#note'>note</a>, " +
+                   "<a href='#todolist'>todo list</a> or " +
+                   "<a href='#image'>image</a>.")
+        onLinkActivated: {
+            switch (link) {
+            case "#note":
+                page.newNote();
+                break;
+            case "#todolist":
+                page.newTodoList();
+                break;
+            case "#image":
+                page.newImage();
+                break;
+            default:
+                break;
+            }
+        }
     }
 
-    RoundButton {
-        id: newItemButton
-
-        anchors {
-            right: parent.right
-            bottom: parent.bottom
-            margins: Globals.defaultMargin * 2
-        }
-        width: Globals.minButtonHeight * 2
-        height: Globals.minButtonHeight * 2
-        radius: Globals.minButtonHeight
-        text: "+"
-        onClicked: newItemMenu.open()
-        Material.background: Material.Green
-        visible: Qt.platform.os === "android"
-    }
-
-    Menu {
-        id: newItemMenu
-
-        y: newItemButton.y - height
-        x: newItemButton.x - width
-
-        MenuItem {
-            text: qsTr("Note")
-            onTriggered: page.newNote()
-        }
-        MenuItem {
-            text: qsTr("Todo List")
-            onTriggered: page.newTodoList()
-        }
-        MenuItem {
-            text: qsTr("Image")
-            onTriggered: page.newImage()
-        }
+    NewTopLevelItemButton {
+        onNewImage: page.newImage()
+        onNewNote: page.newNote()
+        onNewTodoList: page.newTodoList()
     }
 
     Rectangle {

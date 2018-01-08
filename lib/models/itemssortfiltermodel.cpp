@@ -18,7 +18,9 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     m_onlyDone(false),
     m_onlyUndone(false),
     m_todoList(),
-    m_todo()
+    m_todo(),
+    m_minDueDate(),
+    m_maxDueDate()
 {
     setSortRole(ItemsModel::WeightRole);
     auto handleRowsChanged = [=](const QModelIndex&, int, int) {
@@ -50,7 +52,8 @@ int ItemsSortFilterModel::count() const
     return rowCount();
 }
 
-bool ItemsSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
+bool ItemsSortFilterModel::filterAcceptsRow(
+        int source_row, const QModelIndex& source_parent) const
 {
     Q_UNUSED(source_parent);
 
@@ -60,7 +63,8 @@ bool ItemsSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& s
 
     if (item != nullptr) {
         if (!m_tag.isEmpty()) {
-            result = result && item->property("tags").toStringList().contains(m_tag);
+            result = result &&
+                    item->property("tags").toStringList().contains(m_tag);
         }
 
         if (m_onlyDone) {
@@ -72,17 +76,56 @@ bool ItemsSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex& s
         }
 
         if (!m_todoList.isNull()) {
-            result = result && (item->property("todoListUid").toUuid() == m_todoList);
+            result = result &&
+                    (item->property("todoListUid").toUuid() == m_todoList);
         }
 
         if (!m_todo.isNull()) {
             result = result && (item->property("todoUid").toUuid() == m_todo);
         }
 
+        if (!m_minDueDate.isNull()) {
+            auto dueTo = item->property("dueTo").toDateTime();
+            result = result && !dueTo.isNull() && (dueTo >= m_minDueDate);
+        }
+
+        if (!m_maxDueDate.isNull()) {
+            auto dueTo = item->property("dueTo").toDateTime();
+            result = result && !dueTo.isNull() && (dueTo < m_maxDueDate);
+        }
+
         result = result && itemMatchesFilter(item);
     }
 
     return result;
+}
+
+QDateTime ItemsSortFilterModel::maxDueDate() const
+{
+    return m_maxDueDate;
+}
+
+void ItemsSortFilterModel::setMaxDueDate(const QDateTime &maxDueDate)
+{
+    if (m_maxDueDate != maxDueDate) {
+        m_maxDueDate = maxDueDate;
+        invalidateFilter();
+        emit maxDueDateChanged();
+    }
+}
+
+QDateTime ItemsSortFilterModel::minDueDate() const
+{
+    return m_minDueDate;
+}
+
+void ItemsSortFilterModel::setMinDueDate(const QDateTime &minDueDate)
+{
+    if (m_minDueDate != minDueDate) {
+        m_minDueDate = minDueDate;
+        invalidateFilter();
+        emit minDueDateChanged();
+    }
 }
 
 
@@ -208,7 +251,8 @@ bool ItemsSortFilterModel::itemMatchesFilter(Item *item) const
     bool result = m_defaultSearchResult;
     if (!m_searchString.isEmpty()) {
         result = false;
-        auto words = m_searchString.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        auto words = m_searchString.split(QRegExp("\\s+"),
+                                          QString::SkipEmptyParts);
         auto itemMatches = [=](Item *item) {
             for (auto word : words) {
                 if (item->title().indexOf(word, Qt::CaseInsensitive) >= 0) {
