@@ -124,7 +124,11 @@ bool Item::save()
     bool result = false;
     if (!m_loading) {
         if (isValid()) {
-            result = JsonUtils::patchJsonFile(m_filename, toMap());
+            bool changed;
+            result = JsonUtils::patchJsonFile(m_filename, toMap(), &changed);
+            if (changed) {
+                emit saved();
+            }
         }
     }
     return result;

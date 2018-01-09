@@ -96,8 +96,12 @@ void ItemContainer::addItem(ItemPtr item)
                 this, static_cast<void(ItemContainer::*)()>(&ItemContainer::updateWeights));
         QtConcurrent::run(m_threadPool, [=]() {
             QMutexLocker l(&m_lock);
-            connect(item.data(), &Item::itemDeleted, this, &ItemContainer::handleDeleteItem);
-            connect(item.data(), &Item::changed, this, &ItemContainer::handleItemChanged);
+            connect(item.data(), &Item::itemDeleted,
+                    this, &ItemContainer::handleDeleteItem);
+            connect(item.data(), &Item::changed,
+                    this, &ItemContainer::handleItemChanged);
+            connect(item.data(), &Item::saved,
+                    this, &ItemContainer::itemDataChanged);
             m_items.append(item);
             m_uidMap.insert(item->uid(), item);
             this->updateWeights(item.data());

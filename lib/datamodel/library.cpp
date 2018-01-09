@@ -33,6 +33,7 @@ Library::Library(QObject* parent) : QObject(parent),
     m_topLevelItems(this),
     m_todos(this),
     m_tasks(this),
+    m_itemDataChanged(false),
     m_directoryWatcher(new DirectoryWatcher(this)),
     m_loading(false),
     m_synchronizing(false),
@@ -47,6 +48,26 @@ Library::Library(QObject* parent) : QObject(parent),
             static_cast<void(QTimer::*)()>(&QTimer::start));
     connect(&m_topLevelItems, &ItemContainer::countChanged,
             this, &Library::tagsChanged);
+    connect(&m_topLevelItems, &ItemContainer::itemDataChanged, [=]() {
+        m_itemDataChanged = true;
+    });
+    connect(&m_todos, &ItemContainer::itemDataChanged, [=]() {
+        m_itemDataChanged = true;
+    });
+    connect(&m_tasks, &ItemContainer::itemDataChanged, [=]() {
+        m_itemDataChanged = true;
+    });
+
+    auto quickSaveTimer = new QTimer(this);
+    quickSaveTimer->setInterval(10000);
+    quickSaveTimer->setSingleShot(false);
+    connect(quickSaveTimer, &QTimer::timeout, [=]() {
+        if (m_itemDataChanged) {
+            emit needSync();
+            m_itemDataChanged = false;
+        }
+    });
+    quickSaveTimer->start();
 }
 
 Library::Library(const QString& directory, QObject* parent) : Library(parent)

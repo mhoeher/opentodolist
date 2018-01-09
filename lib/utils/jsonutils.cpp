@@ -20,13 +20,19 @@ Q_LOGGING_CATEGORY(jsonUtils, "net.rpdev.opentodolist.JsonUtils", QtWarningMsg)
  * users switch between versions of the application).
  *
  * The function returns true on success or false otherwise.
+ *
+ * Note that this function will not touch the target file if there are no
+ * changed. If you need to know if the file was actually written, pass in a
+ * pointer to a boolean via the @p changed parameter.
  */
-bool patchJsonFile(const QString& filename, const QVariantMap& data)
+bool patchJsonFile(const QString& filename, const QVariantMap& data,
+                   bool* changed)
 {
     bool result = false;
     QFile file(filename);
     QVariantMap properties;
     QByteArray existingFileContent;
+    bool hasChanged = false;
     if (file.exists()) {
         if (file.open(QIODevice::ReadOnly)) {
             QJsonParseError error;
@@ -53,6 +59,7 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data)
         if (file.open(QIODevice::WriteOnly)) {
             result = newFileContent.length() == file.write(newFileContent);
             file.close();
+            hasChanged = true;
         } else {
             qCWarning(jsonUtils) << "Failed to open" << filename << "for writing:"
                                  << file.errorString();
@@ -61,6 +68,9 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data)
         qCDebug(jsonUtils) << "File" << filename << "was not changed - "
                            << "skipping rewrite";
         result = true;
+    }
+    if (changed != nullptr) {
+        *changed = hasChanged;
     }
     return result;
 }

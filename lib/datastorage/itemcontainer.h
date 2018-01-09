@@ -86,6 +86,14 @@ signals:
      */
     void countChanged();
 
+    /**
+     * @brief An item's data changed.
+     *
+     * This signal is emitted to indicate that the save file of an item
+     * changed on disk.
+     */
+    void itemDataChanged();
+
 public slots:
 
 private:
