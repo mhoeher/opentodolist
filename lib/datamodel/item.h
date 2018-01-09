@@ -119,6 +119,14 @@ signals:
      */
     void changed();
 
+    /**
+     * @brief The item has been saved.
+     *
+     * This signal is emitted to indicate that the item has been saved to a
+     * file.
+     */
+    void saved();
+
 protected:
 
     virtual QVariantMap toMap() const;

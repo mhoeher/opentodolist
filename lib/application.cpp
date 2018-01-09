@@ -622,6 +622,9 @@ void Application::appendLibrary(Library* library)
             }
         }
     });
+    connect(library, &Library::needSync, [=]() {
+        syncLibrary(library);
+    });
     library->load();
     m_libraries.append(library);
     saveLibraries();

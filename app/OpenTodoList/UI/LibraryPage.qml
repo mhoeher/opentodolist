@@ -380,15 +380,24 @@ Page {
             }
         }
 
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
+        transitions: [
+            Transition {
+                from: ""
+                to: "visible"
 
-            SmoothedAnimation {
-                properties: "y"
+                SmoothedAnimation {
+                    properties: "y"
+                }
+            },
+            Transition {
+                from: "visible"
+                to: ""
+
+                SmoothedAnimation {
+                    properties: "y"
+                }
             }
-        }
+        ]
 
         RowLayout {
             height: childrenRect.height
@@ -403,9 +412,16 @@ Page {
                 text: qsTr("Synchronizing library...")
             }
 
-            BusyIndicator {
-                width: Globals.minButtonHeight
-                height: width
+            Label {
+                font.family: Fonts.symbols.name
+                text: Fonts.symbols.faSpinner
+
+                NumberAnimation on rotation {
+                    from: 0
+                    to: 360
+                    duration: 2000
+                    loops: Animation.Infinite
+                }
             }
         }
     }

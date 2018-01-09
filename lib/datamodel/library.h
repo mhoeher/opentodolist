@@ -153,6 +153,14 @@ signals:
 
     void syncErrorsChanged();
 
+    /**
+     * @brief The library needs to be synced.
+     *
+     * This signal is emitted to indicate that the library needs to be
+     * synchronized.
+     */
+    void needSync();
+
 public slots:
 
     void addSyncError(const QString &error);
@@ -167,6 +175,7 @@ private:
     ItemContainer           m_topLevelItems;
     ItemContainer           m_todos;
     ItemContainer           m_tasks;
+    bool                    m_itemDataChanged;
 
     DirectoryWatcher       *m_directoryWatcher;
 

@@ -66,6 +66,8 @@ FontLoader {
     
     readonly property string faIndent: "\uf03c"
     readonly property string faOutdent: "\uf03b"
+
+    readonly property string faSpinner: "\uf110"
     
     
     source: "fontawesome-webfont.ttf"
