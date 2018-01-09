@@ -28,6 +28,9 @@ FontLoader {
     readonly property string faWarning: "\uf071"
     readonly property string faQuestionCircleO: "\uf29c"
     readonly property string faPaperclip: "\uf0c6"
+    readonly property string faClockO: "\uf017"
+    readonly property string faTag: "\uf02b"
+    readonly property string faTags: "\uf02c"
     
     readonly property string faCalendar: "\uf073"
     readonly property string faCalendarO: "\uf133"
@@ -47,6 +50,7 @@ FontLoader {
     
     readonly property string faList: "\uf03a"
     readonly property string faListOl: "\uf0cb"
+    readonly property string faGrid: "\uf00a"
     
     readonly property string faAlignLeft: "\uf036"
     readonly property string faAlignRight: "\uf038"

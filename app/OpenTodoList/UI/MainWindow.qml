@@ -18,16 +18,26 @@ ApplicationWindow {
         rootItem.forceActiveFocus();
     }
 
-    function viewLibrary(lib, tag) {
+    function viewLibrary(lib, tag, special) {
         lib = lib || leftSideBar.currentLibrary;
         tag = tag || leftSideBar.currentTag;
+        special = special || leftSideBar.specialView;
         stackView.clear();
         if (lib) {
-            stackView.push(libraryPage, { library: lib, tag: tag });
+            switch (special) {
+            case "schedule":
+                stackView.push(scheduleViewPage, { library: lib});
+                break;
+            default:
+                stackView.push(libraryPage, { library: lib, tag: tag });
+                break;
+            }
             if (d.completed) {
-                console.debug("Setting last library: " + lib.name + "@" + tag);
+                console.debug("Setting last library: " + lib.name + "@" +
+                              tag + "|" + special);
                 App.saveValue("lastLibrary", lib.uid.toString());
                 App.saveValue("lastTag", tag);
+                App.saveValue("specialView", special);
             }
         }
     }
@@ -72,20 +82,20 @@ ApplicationWindow {
                 }
                 Symbol {
                     symbol: Fonts.symbols.faStickyNoteO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newNote"]) === "function" && Qt.platform.os !== "android"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["newNote"]) === "function" && StyleInfo.name !== "material"
                     //shortcut: qsTr("Ctrl+Shift+N")
                     onClicked: stackView.currentItem.newNote()
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Symbol {
                     symbol: Fonts.symbols.faCheckSquareO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newTodoList"]) === "function" && Qt.platform.os !== "android"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["newTodoList"]) === "function" && StyleInfo.name !== "material"
                     onClicked: stackView.currentItem.newTodoList()
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Symbol {
                     symbol: Fonts.symbols.faPictureO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newImage"]) === "function" && Qt.platform.os !== "android"
+                    visible: stackView.currentItem && typeof(stackView.currentItem["newImage"]) === "function" && StyleInfo.name !== "material"
                     onClicked: stackView.currentItem.newImage()
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -112,7 +122,7 @@ ApplicationWindow {
                 id: searchToolButton
 
                 symbol: Fonts.symbols.faSearch
-                enabled: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
+                visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
                 onClicked: stackView.currentItem.find()
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -138,6 +148,7 @@ ApplicationWindow {
 
         property string lastLibrary: ""
         property string lastTag: ""
+        property string specialView: ""
 
         function reopenLastLibrary() {
             if (d.lastLibrary != "") {
@@ -148,6 +159,7 @@ ApplicationWindow {
                     if (lib.uid.toString() === d.lastLibrary) {
                         leftSideBar.currentLibrary = lib;
                         leftSideBar.currentTag = d.lastTag;
+                        leftSideBar.specialView = d.specialView;
                         d.lastLibrary = "";
                         break;
                     }
@@ -214,7 +226,7 @@ ApplicationWindow {
 
         text: qsTr("New &Note")
         onTriggered: stackView.currentItem.newNote()
-        enabled: typeof(stackView.currentItem.newNote) === "function"
+        enabled: stackView.currentItem && typeof(stackView.currentItem.newNote) === "function"
     }
 
     Action {
@@ -222,7 +234,7 @@ ApplicationWindow {
 
         text: qsTr("New &Todo List")
         onTriggered: stackView.currentItem.newTodoList()
-        enabled: typeof(stackView.currentItem.newTodoList) === "function"
+        enabled: stackView.currentItem && typeof(stackView.currentItem.newTodoList) === "function"
     }
 
     Action {
@@ -230,7 +242,7 @@ ApplicationWindow {
 
         text: qsTr("New &Image")
         onTriggered: stackView.currentItem.newImage()
-        enabled: typeof(stackView.currentItem.newImage) === "function"
+        enabled: stackView.currentItem && typeof(stackView.currentItem.newImage) === "function"
     }
 
     Action {
@@ -281,6 +293,7 @@ ApplicationWindow {
         height = App.loadValue("height", height);
         d.lastLibrary = App.loadValue("lastLibrary", "");
         d.lastTag = App.loadValue("lastTag", "");
+        d.specialView = App.loadValue("specialView", "");
         if (App.loadValue("maximized", "false") === "true") {
             window.visibility = Window.Maximized
         }
@@ -318,8 +331,9 @@ ApplicationWindow {
         helpVisible: helpPage !== null
         anchors.fill: parent
         compact: applicationWindow.width <= Globals.fontPixelSize * 60
-        onCurrentLibraryChanged: window.viewLibrary(currentLibrary, currentTag)
-        onCurrentTagChanged: window.viewLibrary(currentLibrary, currentTag)
+        onCurrentLibraryChanged: window.viewLibrary(currentLibrary, currentTag, specialView)
+        onCurrentTagChanged: window.viewLibrary(currentLibrary, currentTag, specialView)
+        onSpecialViewChanged: window.viewLibrary(currentLibrary, currentTag, specialView)
         onNewLibrary: {
             stackView.clear();
             stackView.push(newSyncedLibraryPage);
@@ -403,6 +417,11 @@ ApplicationWindow {
                                    { item: item, library: library, stack: stackView });
                 }
             }
+        }
+
+        Component {
+            id: scheduleViewPage
+            ScheduleView {}
         }
 
         Component {

@@ -1,6 +1,7 @@
 #ifndef ITEMSSORTFILTERMODEL_H
 #define ITEMSSORTFILTERMODEL_H
 
+#include <QDateTime>
 #include <QJSValue>
 #include <QObject>
 #include <QSortFilterProxyModel>
@@ -26,6 +27,10 @@ class ItemsSortFilterModel : public QSortFilterProxyModel
     Q_PROPERTY(QUuid todoList READ todoList WRITE setTodoList
                NOTIFY todoListChanged)
     Q_PROPERTY(QUuid todo READ todo WRITE setTodo NOTIFY todoChanged)
+    Q_PROPERTY(QDateTime minDueDate READ minDueDate WRITE setMinDueDate
+               NOTIFY minDueDateChanged)
+    Q_PROPERTY(QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate
+               NOTIFY maxDueDateChanged)
 public:
     explicit ItemsSortFilterModel(QObject *parent = 0);
 
@@ -52,6 +57,12 @@ public:
     QUuid todo() const;
     void setTodo(const QUuid &todo);
 
+    QDateTime minDueDate() const;
+    void setMinDueDate(const QDateTime &minDueDate);
+
+    QDateTime maxDueDate() const;
+    void setMaxDueDate(const QDateTime &maxDueDate);
+
 signals:
 
     void countChanged();
@@ -62,6 +73,8 @@ signals:
     void onlyUndoneChanged();
     void todoListChanged();
     void todoChanged();
+    void minDueDateChanged();
+    void maxDueDateChanged();
 
 public slots:
 
@@ -78,6 +91,8 @@ private:
     bool    m_onlyUndone;
     QUuid   m_todoList;
     QUuid   m_todo;
+    QDateTime m_minDueDate;
+    QDateTime m_maxDueDate;
 
     bool itemMatchesFilter(Item *item) const;
     QList<Todo*> todosOf(Item* item) const;

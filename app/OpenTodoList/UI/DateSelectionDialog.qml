@@ -14,6 +14,7 @@ CenteredDialog {
     height: parent.height * 0.8
     standardButtons: Dialog.Ok | Dialog.Cancel
     onSelectedDateChanged: {
+        console.debug(selectedDate);
         if (selectedDate.getTime() === selectedDate.getTime()) {
             // Selected date is valid
             grid.year = selectedDate.getFullYear();
