@@ -44,7 +44,7 @@ Page {
             }
 
             Label {
-                text: qsTr("(c) RPdev 2013-2016, version %1").arg(applicationVersion)
+                text: qsTr("(c) RPdev 2013-2018, version %1").arg(applicationVersion)
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
             }

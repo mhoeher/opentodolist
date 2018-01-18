@@ -9,10 +9,12 @@
 #include <QFont>
 #include <QFontInfo>
 #include <QIcon>
+#include <QLocale>
 #include <QLoggingCategory>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QScreen>
+#include <QTranslator>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
 #include <QtSingleApplication>
@@ -137,6 +139,19 @@ int main(int argc, char *argv[])
 #endif
 
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
+
+    QTranslator translator;
+    // look up e.g. :/translations/myapp_de.qm
+    if (translator.load(QLocale(),
+                        QLatin1String("opentodolist"),
+                        QLatin1String("_"),
+                        QLatin1String(":/translations"),
+                        ".qm")) {
+        qDebug() << "Found translation for" << QLocale().bcp47Name();
+        app.installTranslator(&translator);
+    } else {
+        qDebug() << "No translation for" << QLocale().bcp47Name();
+    }
 
     QCoreApplication::setApplicationName("OpenTodoList");
     QCoreApplication::setApplicationVersion(VERSION);

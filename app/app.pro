@@ -10,7 +10,8 @@ CONFIG += c++11
 SOURCES += main.cpp
 
 RESOURCES += qml.qrc \
-    res.qrc
+    res.qrc \
+    translations.qrc
 
 !ios&!android {
     DEFINES += OTL_USE_SINGLE_APPLICATION
@@ -63,3 +64,12 @@ contains(ANDROID_TARGET_ARCH,x86) {
         $$PWD/../pre-build/android/openssl/x86-4.9-api-18/libcrypto.so \
         $$PWD/../pre-build/android/openssl/x86-4.9-api-18/libssl.so
 }
+
+# Add QML/JS files when running lupdate:
+lupdate_only {
+    SOURCES += $$files(*.qml,true) $$files(*.js,true)
+}
+
+TRANSLATIONS += \
+    translations/opentodolist_en.ts \
+    translations/opentodolist_de.ts

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>translations/opentodolist_de.qm</file>
+        <file>translations/opentodolist_en.qm</file>
+    </qresource>
+</RCC>
