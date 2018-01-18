@@ -274,7 +274,7 @@ github:
         - cp build-win32-vs/OpenTodoList-Windows-32bit.exe uploads/OpenTodoList-Windows-MVSC-32bit.exe || echo "Skip deploying MSVC 32bit installer"
         - cp build-win64-vs/OpenTodoList-Windows-64bit.exe uploads/OpenTodoList-Windows-MVSC-64bit.exe || echo "Skip deploying MSVC 64bit installer"
         - cp build-macos/app/OpenTodoList.dmg uploads
-        - ./ci/github-upload.py mhoeher opentodolist continuous $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
+        - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     when: manual
     only:
         - tags
