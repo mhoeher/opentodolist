@@ -1,5 +1,5 @@
-#include "todo.h"
-#include "task.h"
+#include "datamodel/todo.h"
+#include "datamodel/task.h"
 
 #include <QObject>
 #include <QSignalSpy>

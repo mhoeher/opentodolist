@@ -1,7 +1,7 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "library.h"
+#include "datamodel/library.h"
 
 #include <QLoggingCategory>
 #include <QObject>

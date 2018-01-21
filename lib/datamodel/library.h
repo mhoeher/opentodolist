@@ -10,7 +10,7 @@
 #include <QVariantMap>
 
 #include "image.h"
-#include "itemcontainer.h"
+#include "datastorage/itemcontainer.h"
 #include "note.h"
 #include "todolist.h"
 

@@ -1,4 +1,4 @@
-#include "image.h"
+#include "datamodel/image.h"
 
 #include <QObject>
 #include <QSignalSpy>

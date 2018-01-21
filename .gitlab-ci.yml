@@ -1,12 +1,12 @@
 variables:
-    FEDORA_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora
-    FEDORA_SYSTEM_IMAGE: registry.gitlab.com/rpdev/opentodolist:fedora_system
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     NEXTCLOUD_IMAGE: nextcloud
+    OWNCLOUD_IMAGE: owncloud
+    CTEST_OUTPUT_ON_FAILURE: 1
 
 stages:
   - images
@@ -19,35 +19,6 @@ stages:
 ################################################################################
 # Images Stage
 ################################################################################
-
-# Build the Linux (Fedora) Image
-build_image_fedora:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/fedora
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $FEDORA_IMAGE .
-    - docker push $FEDORA_IMAGE
-  when: manual
-
-
-# Build the Linux (Fedora) Image including system
-# provided optional dependencies:
-build_image_fedora_system:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/fedora_system
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $FEDORA_SYSTEM_IMAGE .
-    - docker push $FEDORA_SYSTEM_IMAGE
-  when: manual
-
 
 # Build the Linux (Ubuntu) Image
 build_image_ubuntu:
@@ -95,47 +66,6 @@ build_image_win64:
 # Build Stage
 ################################################################################
 
-# Linux build & unit tests with built-in libraries
-linux_builtin:
-  stage: build
-  image: $FEDORA_IMAGE
-  services:
-    - name: $NEXTCLOUD_IMAGE
-      alias: nextcloud
-  script:
-    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build-fedora-builtin
-    - cd build-fedora-builtin
-    - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
-    - make -j4
-    - make check
-  artifacts:
-    paths:
-      - build-fedora-builtin
-    expire_in: 1 week
-
-
-# Linux build & unit tests with system provides libraries
-linux_system:
-  stage: build
-  image: $FEDORA_SYSTEM_IMAGE
-  services:
-    - name: $NEXTCLOUD_IMAGE
-      alias: nextcloud
-  script:
-    - curl -d install="true" -d adminlogin=admin -d adminpass=admin http://nextcloud/index.php
-    - export QT_QPA_PLATFORM=minimal
-    - mkdir build-fedora-system
-    - cd build-fedora-system
-    - qmake-qt5 CONFIG+=with_nextcloud_tests NEXTCLOUD_URL=http://nextcloud NEXTCLOUD_USER=admin NEXTCLOUD_PASSWORD=admin ..
-    - make -j4
-    - make check
-  artifacts:
-    paths:
-      - build-fedora-system
-    expire_in: 1 week
-
 
 # Ubuntu build including AppImage
 ubuntu_appimage:
@@ -144,6 +74,8 @@ ubuntu_appimage:
   services:
     - name: $NEXTCLOUD_IMAGE
       alias: nextcloud
+    - name: $OWNCLOUD_IMAGE
+      alias: owncloud
   script:
     - ci/ubuntu-build.sh
   artifacts:

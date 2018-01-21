@@ -1,4 +1,4 @@
-#include "note.h"
+#include "datamodel/note.h"
 
 #include <QObject>
 #include <QTemporaryDir>

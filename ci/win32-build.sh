@@ -8,12 +8,18 @@ export PATH=/opt/mxe-x64-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
 
 mkdir build-win32
 cd build-win32
-qmake CONFIG+=with_update_service CONFIG+=release ..
-make -j4
+
+i686-w64-mingw32.shared-cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
+    -DUSE_CREDENTIAL_STORE=ON \
+    -DQTKEYCHAIN_STATIC=ON \
+    ..
+i686-w64-mingw32.shared-cmake --build . --target all -- -j4
 
 cd ..
 mkdir -p deploy-win32/bin
-cp build-win32/app/release/OpenTodoList.exe deploy-win32/bin/
+cp build-win32/app/OpenTodoList.exe deploy-win32/bin/
 
 apt-get update
 apt-get install -y wget python3

@@ -1,10 +1,10 @@
-#include "itemsmodel.h"
+#include "models/itemsmodel.h"
 
 #include <QObject>
 #include <QSignalSpy>
 #include <QTest>
 
-#include "note.h"
+#include "datamodel/note.h"
 
 class ItemsModelTest : public QObject
 {

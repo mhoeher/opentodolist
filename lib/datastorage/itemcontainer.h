@@ -6,7 +6,7 @@
 #include <QHash>
 #include <QMutex>
 
-#include "item.h"
+#include "datamodel/item.h"
 
 class QThreadPool;
 

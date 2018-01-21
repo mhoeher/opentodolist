@@ -1,14 +1,14 @@
-#include "itemcontainer.h"
+#include "datastorage/itemcontainer.h"
 
 #include <QObject>
 #include <QSignalSpy>
 #include <QTest>
 
-#include "todolist.h"
-#include "todo.h"
-#include "task.h"
-#include "note.h"
-#include "image.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todo.h"
+#include "datamodel/task.h"
+#include "datamodel/note.h"
+#include "datamodel/image.h"
 
 class ItemContainerTest : public QObject
 {

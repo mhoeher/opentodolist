@@ -111,7 +111,7 @@ private:
 
 int main(int argc, char *argv[])
 {
-#ifdef OTL_IS_APPIMAGE
+#ifdef OPENTODOLIST_IS_APPIMAGE
     // In the current AppImage build, we do not deploy the
     // Qt wayland plugin. Hence, fall back to x11/xcb.
     auto platform = qgetenv("QT_QPA_PLATFORM");
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
     }
 
     QCoreApplication::setApplicationName("OpenTodoList");
-    QCoreApplication::setApplicationVersion(VERSION);
+    QCoreApplication::setApplicationVersion(OPENTODOLIST_VERSION);
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
     QCoreApplication::setOrganizationName("RPdev");
 
@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
     // don't handle this; instead it is handled by the `desktopintegration`
     // script we use.
     // See https://github.com/AppImage/AppImageKit/blob/master/desktopintegration.
-#ifdef OTL_IS_APPIMAGE
+#ifdef OPENTODOLIST_IS_APPIMAGE
     QCommandLineOption removeDesktopIntegrationOption = {
         "remove-appimage-desktop-integration",
         QCoreApplication::translate(
@@ -257,9 +257,12 @@ int main(int argc, char *argv[])
 #ifdef OTL_USE_SINGLE_APPLICATION
     engine.rootContext()->setContextProperty("application", &app);
 #endif
-    engine.rootContext()->setContextProperty("applicationVersion", QVariant(VERSION));
-    engine.rootContext()->setContextProperty("defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
-    engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
+    engine.rootContext()->setContextProperty(
+                "applicationVersion", QVariant(OPENTODOLIST_VERSION));
+    engine.rootContext()->setContextProperty(
+                "defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
+    engine.rootContext()->setContextProperty(
+                "qmlBaseDirectory", qmlBase);
     engine.load(QUrl(qmlBase + "main.qml"));
 
     return app.exec();
