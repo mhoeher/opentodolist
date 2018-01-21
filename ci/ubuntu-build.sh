@@ -29,6 +29,7 @@ cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
     -DOPENTODOLIST_WITH_APPIMAGE_EXTRAS=ON \
+    -DQTKEYCHAIN_STATIC=ON \
     ..
 cmake --build . --target all -- -j4
 cmake --build . --target test

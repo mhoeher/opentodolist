@@ -40,6 +40,7 @@ endif()
 
 if (Qt5Core_FOUND)
   set(QTKEYCHAIN_VERSION_INFIX 5)
+  set(CMAKE_AUTOMOC ON)
 
   if(ANDROID)
     if(Qt5Core_VERSION VERSION_LESS 5.7)
@@ -68,7 +69,9 @@ if (Qt5Core_FOUND)
     qt5_create_translation(${ARGN})
   endmacro(qt_create_translation)
   macro(qt_wrap_cpp)
-    set(CMAKE_AUTOMOC ON)
+    if (NOT CMAKE_AUTOMOC)
+      qt5_wrap_cpp(${ARGN})
+    endif()
   endmacro()
 
   set(QTCORE_LIBRARIES ${Qt5Core_LIBRARIES})
@@ -171,8 +174,7 @@ if(UNIX AND NOT APPLE AND NOT ANDROID)
         INCLUDE_DIRECTORIES(${LIBSECRET_INCLUDE_DIRS})
     endif()
 
-    list(APPEND qtkeychain_SOURCES keychain_unix.cpp gnomekeyring.cpp libsecret.cpp plaintextstore.cpp)
-    qt_add_dbus_interface(qtkeychain_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/org.kde.KWallet.xml kwallet_interface KWalletInterface)
+    list(APPEND qtkeychain_SOURCES keychain_unix.cpp gnomekeyring.cpp libsecret.cpp plaintextstore.cpp kwallet_interface.cpp)
     list(APPEND qtkeychain_LIBRARIES ${QTDBUS_LIBRARIES} )
 endif()
 

@@ -40,9 +40,6 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 
-# Enable AppImage build:
-add_appimage_target()
-
 # Include sub-directories:
 add_subdirectory(3rdparty)
 add_subdirectory(lib)

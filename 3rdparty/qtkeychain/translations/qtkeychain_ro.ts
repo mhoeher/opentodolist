@@ -4,16 +4,6 @@
 <context>
     <name>QKeychain::DeletePasswordJobPrivate</name>
     <message>
-        <location filename="../keychain_win.cpp" line="79"/>
-        <source>Password entry not found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keychain_win.cpp" line="83"/>
-        <source>Could not decrypt data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../keychain_unix.cpp" line="496"/>
         <location filename="../keychain_unix.cpp" line="504"/>
         <source>Unknown error</source>
@@ -22,6 +12,16 @@
     <message>
         <location filename="../keychain_unix.cpp" line="522"/>
         <source>Could not open wallet: %1; %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keychain_win.cpp" line="79"/>
+        <source>Password entry not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keychain_win.cpp" line="83"/>
+        <source>Could not decrypt data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -79,17 +79,6 @@
 <context>
     <name>QKeychain::ReadPasswordJobPrivate</name>
     <message>
-        <location filename="../keychain_win.cpp" line="32"/>
-        <source>Password entry not found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keychain_win.cpp" line="36"/>
-        <location filename="../keychain_win.cpp" line="114"/>
-        <source>Could not decrypt data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../keychain_unix.cpp" line="126"/>
         <source>D-Bus is not running</source>
         <translation type="unfinished"></translation>
@@ -137,8 +126,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keychain_mac.cpp" line="75"/>
-        <source>Password not found</source>
+        <location filename="../keychain_win.cpp" line="32"/>
+        <source>Password entry not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keychain_win.cpp" line="36"/>
+        <location filename="../keychain_win.cpp" line="114"/>
+        <source>Could not decrypt data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -156,15 +151,14 @@
         <source>Could not create decryption cipher</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../keychain_mac.cpp" line="75"/>
+        <source>Password not found</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QKeychain::WritePasswordJobPrivate</name>
-    <message>
-        <location filename="../keychain_win.cpp" line="64"/>
-        <location filename="../keychain_win.cpp" line="137"/>
-        <source>Encryption failed</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../keychain_unix.cpp" line="363"/>
         <source>D-Bus is not running</source>
@@ -179,6 +173,12 @@
     <message>
         <location filename="../keychain_unix.cpp" line="416"/>
         <source>Could not open wallet: %1; %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keychain_win.cpp" line="64"/>
+        <location filename="../keychain_win.cpp" line="137"/>
+        <source>Encryption failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -214,11 +214,6 @@
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <location filename="../libsecret.cpp" line="120"/>
-        <source>Entry not found</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../keychain_unix.cpp" line="173"/>
         <source>Access to keychain denied</source>
@@ -267,6 +262,11 @@
     <message>
         <location filename="../keychain_unix.cpp" line="194"/>
         <source>Unknown error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../libsecret.cpp" line="120"/>
+        <source>Entry not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
