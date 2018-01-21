@@ -6,6 +6,10 @@ set(APP_SOURCES
     main.cpp
 )
 
+if(WIN32)
+    set(APP_SOURCES ${APP_SOURCES} OpenTodoList.rc)
+endif()
+
 set(APP_RESOURCES
     ./qml.qrc
     ./res.qrc
