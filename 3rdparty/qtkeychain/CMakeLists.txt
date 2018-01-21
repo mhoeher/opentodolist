@@ -68,7 +68,7 @@ if (Qt5Core_FOUND)
     qt5_create_translation(${ARGN})
   endmacro(qt_create_translation)
   macro(qt_wrap_cpp)
-    qt5_wrap_cpp(${ARGN})
+    set(CMAKE_AUTOMOC ON)
   endmacro()
 
   set(QTCORE_LIBRARIES ${Qt5Core_LIBRARIES})

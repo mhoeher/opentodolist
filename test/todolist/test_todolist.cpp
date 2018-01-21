@@ -1,5 +1,5 @@
-#include "todolist.h"
-#include "todo.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todo.h"
 
 #include <QObject>
 #include <QTemporaryDir>

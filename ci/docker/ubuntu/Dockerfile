@@ -27,5 +27,7 @@ RUN \
         libgl1-mesa-dev \
         libfuse2 \
         desktop-file-utils \
-        git && \
+        git \
+        cmake \
+        && \
     apt-get clean

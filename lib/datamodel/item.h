@@ -148,10 +148,10 @@ private:
 
 typedef QSharedPointer<Item> ItemPtr;
 
-Q_DECLARE_METATYPE(ItemPtr);
+Q_DECLARE_METATYPE(ItemPtr)
 
 QDebug operator<<(QDebug debug, const Item *item);
 
-Q_DECLARE_LOGGING_CATEGORY(item);
+Q_DECLARE_LOGGING_CATEGORY(item)
 
 #endif // ITEM_H

@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QVariantMap>
 
-#include "library.h"
+#include "datamodel/library.h"
 
 /**
  * @brief Constructor.

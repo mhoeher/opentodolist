@@ -1,4 +1,4 @@
-#include "complexitem.h"
+#include "datamodel/complexitem.h"
 
 #include <QTemporaryDir>
 #include <QObject>

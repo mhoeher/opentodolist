@@ -1,4 +1,4 @@
-#include "toplevelitem.h"
+#include "datamodel/toplevelitem.h"
 
 #include <QObject>
 #include <QSignalSpy>

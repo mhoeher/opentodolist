@@ -4,11 +4,11 @@
 
 #include "itemsmodel.h"
 
-#include "item.h"
-#include "library.h"
-#include "task.h"
-#include "todo.h"
-#include "todolist.h"
+#include "datamodel/item.h"
+#include "datamodel/library.h"
+#include "datamodel/task.h"
+#include "datamodel/todo.h"
+#include "datamodel/todolist.h"
 
 ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     QSortFilterProxyModel(parent),
