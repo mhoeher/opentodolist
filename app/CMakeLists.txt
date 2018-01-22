@@ -19,7 +19,18 @@ find_package(Qt5Xml REQUIRED)
 find_package(Qt5Concurrent REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-add_executable(OpenTodoList WIN32 ${APP_SOURCES} ${APP_RESOURCES})
+if(WIN32)
+    set(APP_FLAGS WIN32)
+endif()
+
+if(APPLE)
+    set(APP_FLAGS MACOSX_BUNDLE)
+    set(APP_SOURCES ${APP_SOURCES} res/OpenTodoList.icns)
+    set(MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns)
+    set_source_files_properties(res/OpenTodoList.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+endif()
+
+add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
 
 target_link_libraries(
     OpenTodoList
