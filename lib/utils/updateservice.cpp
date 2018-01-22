@@ -15,7 +15,7 @@ Q_LOGGING_CATEGORY(updateService,
 
 UpdateService::UpdateService(QObject *parent) : QObject(parent)
 {
-#ifdef WITH_UPDATE_SERVICE
+#ifdef OPENTODOLIST_WITH_UPDATE_SERVICE
     auto updateTimer = new QTimer(this);
     updateTimer->setInterval(1000*60*60*24);
     updateTimer->setSingleShot(false);
@@ -49,7 +49,8 @@ void UpdateService::checkForUpdates()
                 if (info.contains("tag_name")) {
                     auto tagName = info.value("tag_name").toString();
                     qDebug(updateService) << "Latest release:" << tagName;
-                    auto currentVersion = QVersionNumber::fromString(VERSION);
+                    auto currentVersion = QVersionNumber::fromString(
+                                OPENTODOLIST_VERSION);
                     auto latestVersion = QVersionNumber::fromString(tagName);
                     if (latestVersion > currentVersion) {
                         emit updateAvailable(

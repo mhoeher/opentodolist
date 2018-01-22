@@ -1,11 +1,11 @@
 #include "migrator_2_x_to_3_x.h"
 
 #include "application.h"
-#include "image.h"
-#include "note.h"
-#include "task.h"
-#include "todo.h"
-#include "todolist.h"
+#include "datamodel/image.h"
+#include "datamodel/note.h"
+#include "datamodel/task.h"
+#include "datamodel/todo.h"
+#include "datamodel/todolist.h"
 
 #include <QDir>
 #include <QDirIterator>

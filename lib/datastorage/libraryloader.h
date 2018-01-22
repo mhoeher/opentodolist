@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QThread>
 
-#include "item.h"
+#include "datamodel/item.h"
 
 class LibraryLoaderWorker;
 

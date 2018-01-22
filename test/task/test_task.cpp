@@ -1,4 +1,4 @@
-#include "task.h"
+#include "datamodel/task.h"
 
 #include <QObject>
 #include <QSignalSpy>

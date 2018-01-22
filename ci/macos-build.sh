@@ -1,6 +1,14 @@
 #!/bin/bash
 mkdir build-macos
 cd build-macos
-/Users/mhoeher/Qt/5.10.0/clang_64/bin/qmake CONFIG+=release CONFIG+=with_update_service ..
+
+QTSDK=/Users/mhoeher/Qt/5.10.0/clang_64/
+
+/Applications/CMake.app/Contents/bin/cmake \
+    -DCMAKE_PREFIX_PATH=$QTSDK \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
+    -DQTKEYCHAIN_STATIC=ON \
+    ..
 make -j2
-/Users/mhoeher/Qt/5.10.0/clang_64/bin/macdeployqt app/OpenTodoList.app/ -dmg -qmldir=../app
+$QTSDK/bin/macdeployqt app/OpenTodoList.app/ -dmg -qmldir=../app

@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QPointer>
 
-#include "itemcontainer.h"
+#include "datastorage/itemcontainer.h"
 
 /**
  * @brief A model working on a item container.

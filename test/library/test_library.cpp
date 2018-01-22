@@ -1,10 +1,10 @@
 #include "application.h"
-#include "image.h"
-#include "library.h"
-#include "note.h"
-#include "todolist.h"
-#include "todo.h"
-#include "task.h"
+#include "datamodel/image.h"
+#include "datamodel/library.h"
+#include "datamodel/note.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todo.h"
+#include "datamodel/task.h"
 
 #include <QObject>
 #include <QQmlEngine>

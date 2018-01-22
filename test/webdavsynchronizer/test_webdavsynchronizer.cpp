@@ -17,10 +17,12 @@
 #include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
+#include <QUrl>
 #include <QUuid>
 #include <QSet>
 
-#ifdef NEXTCLOUD_URL
+#if defined(OPENTODOLIST_NEXTCLOUD_TEST_URL) || \
+    defined(OPENTODOLIST_OWNCLOUD_TEST_URL)
 #define TEST_AGAINST_SERVER
 #endif
 
@@ -533,17 +535,33 @@ void WebDAVSynchronizerTest::createDavClients()
 {
     QTest::addColumn<QObject*>("client");
 
-#ifdef NEXTCLOUD_URL
+#ifdef OPENTODOLIST_NEXTCLOUD_TEST_URL
     {
+        auto url = QUrl(OPENTODOLIST_NEXTCLOUD_TEST_URL);
         auto client = new WebDAVSynchronizer();
         client->setServerType(WebDAVSynchronizer::NextCloud);
-        client->setUrl(QUrl(NEXTCLOUD_URL));
-        client->setUsername(NEXTCLOUD_USER);
-        client->setPassword(NEXTCLOUD_PASSWORD);
+        client->setUrl(url.toString(QUrl::RemoveUserInfo | QUrl::PrettyDecoded));
+        client->setUsername(url.userName());
+        client->setPassword(url.password());
         if (client->url().scheme() == "http") {
             client->setDisableCertificateCheck(true);
         }
         QTest::newRow("NextCloud") << static_cast<QObject*>(client);
+    }
+#endif
+
+#ifdef OPENTODOLIST_OWNCLOUD_TEST_URL
+    {
+        auto url = QUrl(OPENTODOLIST_OWNCLOUD_TEST_URL);
+        auto client = new WebDAVSynchronizer();
+        client->setServerType(WebDAVSynchronizer::OwnCloud);
+        client->setUrl(url.toString(QUrl::RemoveUserInfo | QUrl::PrettyDecoded));
+        client->setUsername(url.userName());
+        client->setPassword(url.password());
+        if (client->url().scheme() == "http") {
+            client->setDisableCertificateCheck(true);
+        }
+        QTest::newRow("ownCloud") << static_cast<QObject*>(client);
     }
 #endif
 }

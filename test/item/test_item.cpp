@@ -1,4 +1,4 @@
-#include "item.h"
+#include "datamodel/item.h"
 
 #include <QDir>
 #include <QObject>
