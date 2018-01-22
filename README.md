@@ -47,21 +47,6 @@ of OpenTodoList](https://gitlab.com/rpdev/opentodolist/issues) and file a
 bug report there. Also make use of this if you want to request a new feature.
 
 
-Building
---------
-
-OpenTodoList is written on top of Qt 5 and QML. You need at least Qt 5.6
-(compilation with earlier versions might succeed, but running the
-application might fail in this case). To get the latest sources, you furthermore
-require git. To download and build the application, run the following steps:
-
-    git clone https://gitlab.com/rpdev/opentodolist.git
-    mkdir build-opentodolist
-    cd build-opentodolist
-    qmake ../opentodolist CONFIG+=release
-    make
-
-
 # Supported Operating Systems
 
 OpenTodoList is developed in C++ on top of the Qt 5 framework. In theory that
