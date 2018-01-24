@@ -11,7 +11,7 @@ RUN \
     ./qt-unified-linux-x64-online.run --script qt-installer-script.js \
         --platform minimal --no-force-installations -v && \
     rm -f qt-unified-linux-x64-online.run && \
-    cd /opt &&
+    cd /opt && \
     mkdir android && \
     cd android && \
     wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
