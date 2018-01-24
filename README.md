@@ -71,10 +71,23 @@ choice.
 The following components are required to build OpenTodoList:
 
 * Qt >= 5.10.0
-* CMake >= 2.8.11
+* CMake >= 2.8.11 (optional)
 
-The project uses CMake as a build system, which works the same way on more
+The project uses `qmake` and `cmake` as a build system, which work the same way on more
 or less all platforms:
+
+Using `qmake`:
+
+```bash
+git clone https://gitlab.com/rpdev/opentodolist.git
+cd opentodolist
+mkdir build
+cd build
+qmake CONFIG+=release ..
+make
+```
+
+Using `cmake`:
 
 ```bash
 git clone https://gitlab.com/rpdev/opentodolist.git
@@ -96,7 +109,7 @@ cmake -DCMAKE_BUILD_TYPE=RELEASE \
 ```
 
 Please refer to the [Qt CMake manual](http://doc.qt.io/qt-5/cmake-manual.html)
-for more information.
+for more information on using Qt with `cmake`.
 
 Among others, you can set the following CMake parameters (via the `-D` switch)
 to control the build and tweak the configuration of the app:
@@ -108,3 +121,9 @@ to control the build and tweak the configuration of the app:
 | `OPENTODOLIST_WITH_APPIMAGE_EXTRAS` | ON, OFF | Enable extra functionality when building the app as AppImage. |
 | `OPENTODOLIST_NEXTCLOUD_TEST_URL` | URL including username and password | The URL of a NextCloud instance. If given, unit tests will be run against this NextCloud instance. |
 | `OPENTODOLIST_OWNCLOUD_TEST_URL` | URL including username and password | The URL of an ownCloud instance. If given, unit tests will be run against this ownCloud instance. |
+
+
+**Note:** Currently, the following target platforms do not support compilation
+via `cmake`:
+
+* Android
