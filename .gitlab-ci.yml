@@ -174,7 +174,7 @@ android_armv7:
     - cp build-android-armv7/android/build/outputs/apk/android-debug.apk OpenTodoList-armv7.apk
   artifacts:
     paths:
-      - OpenTodoList-armv7.apk
+      - build-android-armv7/OpenTodoList-Android-armv7.apk
     expire_in: 1 week
 
 
@@ -187,7 +187,7 @@ android_x86:
     - cp build-android-x86/android/build/outputs/apk/android-debug.apk OpenTodoList-x86.apk
   artifacts:
     paths:
-      - OpenTodoList-x86.apk
+      - build-android-x86/OpenTodoList-Android-x86.apk
     expire_in: 1 week
 
 
