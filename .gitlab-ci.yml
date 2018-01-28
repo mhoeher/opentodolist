@@ -4,6 +4,7 @@ variables:
     MXE_WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     MXE_WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
+    ANDROID_IMAGE: registry.gitlab.com/rpdev/opentodolist:android
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
     CTEST_OUTPUT_ON_FAILURE: 1
@@ -59,6 +60,20 @@ build_image_win64:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --pull -t $WIN64_IMAGE .
     - docker push $WIN64_IMAGE
+  when: manual
+
+
+# Build the Android Image
+build_image_android:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/android
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $ANDROID_IMAGE .
+    - docker push $ANDROID_IMAGE
   when: manual
 
 
@@ -148,6 +163,30 @@ macos:
       - build-macos/app/OpenTodoList.dmg
     expire_in: 1 week
   when: manual
+
+
+# Android build ARMv7
+android_armv7:
+  stage: build
+  image: $ANDROID_IMAGE
+  script:
+    - ci/android_armv7-build.sh
+  artifacts:
+    paths:
+      - build-android-armv7/OpenTodoList-Android-armv7.apk
+    expire_in: 1 week
+
+
+# Android build x86
+android_x86:
+  stage: build
+  image: $ANDROID_IMAGE
+  script:
+    - ci/android_x86-build.sh
+  artifacts:
+    paths:
+      - build-android-x86/OpenTodoList-Android-x86.apk
+    expire_in: 1 week
 
 
 ################################################################################

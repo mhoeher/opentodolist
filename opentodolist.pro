@@ -15,18 +15,14 @@ OTHER_FILES += \
     doc/installers-howto.md \
     .gitlab-ci.yml \
     .qmake.conf \
-    bin/linux-deploy-qt.pl \
-    bin/mk-installer.pl \
-    bin/mk-pri.pl \
-    bin/mk-qrc.pl \
-    bin/mk-unittest.py \
-    bin/mk-linux-installer-x86_64.sh \
+    bin/* \
     templates/installer/config/config.xml \
     templates/installer/config/controller.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
     templates/appimage/default.desktop \
     $$files(templates/nsis/*,true) \
+    $$files(ci/docker/android/*) \
     $$files(ci/docker/fedora/*) \
     $$files(ci/docker/fedora_system/*) \
     $$files(ci/docker/ubuntu/*) \
