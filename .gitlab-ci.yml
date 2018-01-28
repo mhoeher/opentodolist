@@ -171,7 +171,6 @@ android_armv7:
   image: $ANDROID_IMAGE
   script:
     - ci/android_armv7-build.sh
-    - cp build-android-armv7/android/build/outputs/apk/android-debug.apk OpenTodoList-armv7.apk
   artifacts:
     paths:
       - build-android-armv7/OpenTodoList-Android-armv7.apk
@@ -184,7 +183,6 @@ android_x86:
   image: $ANDROID_IMAGE
   script:
     - ci/android_x86-build.sh
-    - cp build-android-x86/android/build/outputs/apk/android-debug.apk OpenTodoList-x86.apk
   artifacts:
     paths:
       - build-android-x86/OpenTodoList-Android-x86.apk
