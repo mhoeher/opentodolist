@@ -1,0 +1,20 @@
+#!/bin/env python3
+
+import sys
+import os
+from xml.dom.minidom import parse
+
+
+if len(sys.argv) < 3:
+    print("set-android-version-name AndroidManifest.xml VERSIONNAME")
+    quit()
+
+manifest = sys.argv[1]
+version_name = sys.argv[2]
+
+dom1 = parse(manifest)
+
+dom1.documentElement.setAttribute("android:versionName", str(version_name))
+
+with open(manifest, 'wb') as f:
+    f.write(dom1.toxml("utf-8"))

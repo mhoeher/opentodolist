@@ -68,6 +68,11 @@ choice.
 
 ## Build Requirements and Instructions
 
+The application can be build with either `qmake` or `cmake`. The former is the probably the easiest way as `qmake` is installed together with Qt.
+
+* Continue with [Build Instructions using `qmake`](./doc/building-with-qmake.md).
+* Continue with [Build Instructions using `cmake`](./doc/building-with-cmake.md)
+
 The following components are required to build OpenTodoList:
 
 * Qt >= 5.10.0

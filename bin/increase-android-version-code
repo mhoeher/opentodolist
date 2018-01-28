@@ -1,0 +1,24 @@
+#!/bin/env python3
+# QT-CI Project
+# License: Apache-2.0
+# https://github.com/benlau/qtci
+# Based on the solution from http://stackoverflow.com/questions/6758685/auto-increment-version-code-in-android-app
+
+import sys
+import os
+from xml.dom.minidom import parse
+
+
+if len(sys.argv) < 2:
+    print("increase_version_code_android AndroidManifest.xml")
+    quit()
+
+manifest = sys.argv[1]
+
+dom1 = parse(manifest)
+versionCode = int(dom1.documentElement.getAttribute("android:versionCode")) + 1
+
+dom1.documentElement.setAttribute("android:versionCode", str(versionCode))
+
+with open(manifest, 'wb') as f:
+    f.write(dom1.toxml("utf-8"))

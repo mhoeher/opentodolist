@@ -15,12 +15,7 @@ OTHER_FILES += \
     doc/installers-howto.md \
     .gitlab-ci.yml \
     .qmake.conf \
-    bin/linux-deploy-qt.pl \
-    bin/mk-installer.pl \
-    bin/mk-pri.pl \
-    bin/mk-qrc.pl \
-    bin/mk-unittest.py \
-    bin/mk-linux-installer-x86_64.sh \
+    bin/* \
     templates/installer/config/config.xml \
     templates/installer/config/controller.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
