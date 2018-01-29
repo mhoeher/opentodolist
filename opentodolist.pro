@@ -16,6 +16,7 @@ OTHER_FILES += \
     .gitlab-ci.yml \
     .qmake.conf \
     bin/* \
+    cmake/* \
     templates/installer/config/config.xml \
     templates/installer/config/controller.js \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \

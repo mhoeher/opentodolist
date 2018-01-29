@@ -1,6 +1,6 @@
 LINUXDEPLOYQT_URL = https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 LINUXDEPLOYQT = ./linuxdeployqt-continuous-x86_64.AppImage
-APPIMAGETOOL_URL = https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+APPIMAGETOOL_URL = https://github.com/AppImage/AppImageKit/releases/download/10/appimagetool-x86_64.AppImage
 APPIMAGETOOL = ./appimagetool-x86_64.AppImage
 DESKTOPINTEGRATION_URL = https://raw.githubusercontent.com/AppImage/AppImageKit/master/desktopintegration
 

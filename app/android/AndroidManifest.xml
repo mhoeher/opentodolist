@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<manifest android:versionName="3.4.0" xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="68" android:installLocation="auto" package="net.rpdev.opentodolist">
+<manifest android:versionName="3.4.0" xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="70" android:installLocation="auto" package="net.rpdev.opentodolist">
     <application android:icon="@drawable/icon" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="OpenTodoList">
-        <activity android:screenOrientation="unspecified" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="net.rpdev.OpenTodoList.Activity" android:label="@string/app_name">
+        <activity android:screenOrientation="unspecified" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -30,8 +30,6 @@
             <meta-data android:resource="@layout/splash" android:name="android.app.splash_screen"/>
             <!-- Splash screen -->
         </activity>
-        <service android:name="net.rpdev.OpenTodoList.Service" android:label="OpenTodoList Sync Service">
-        </service>
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26"/>
     <supports-screens android:normalScreens="true" android:smallScreens="true" android:largeScreens="true" android:anyDensity="true"/>
