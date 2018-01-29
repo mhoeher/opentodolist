@@ -132,7 +132,7 @@ win32_vs_build:
     - .\\ci\\windows\\windows-msvc17-x32.bat
   artifacts:
     paths:
-      - build-win32-vs
+      - build-win32-vs/OpenTodoList-Windows-32bit-MSVC.exe
     expire_in: 1 week
   when: manual
 
@@ -146,7 +146,7 @@ win64_vs_build:
     - .\\ci\\windows\\windows-msvc17-x64.bat
   artifacts:
     paths:
-      - build-win64-vs
+      - build-win64-vs/OpenTodoList-Windows-64bit-MSVC.exe
     expire_in: 1 week
   when: manual
 
@@ -190,45 +190,6 @@ android_x86:
 
 
 ################################################################################
-# Installer Stage
-################################################################################
-
-
-win32_vs_installer:
-    stage: installer
-    image: fedora
-    dependencies:
-        - win32_vs_build
-    script:
-        - yum install -y mingw32-nsis
-        - cp templates/nsis/win32-installer.nsis build-win32-vs/
-        - cd build-win32-vs/
-        - makensis win32-installer.nsis
-    artifacts:
-        paths:
-            - build-win32-vs/*.exe
-        expire_in: 1 week
-    when: manual
-
-
-win64_vs_installer:
-    stage: installer
-    image: fedora
-    dependencies:
-        - win64_vs_build
-    script:
-        - yum install -y mingw32-nsis
-        - cp templates/nsis/win64-installer.nsis build-win64-vs/
-        - cd build-win64-vs
-        - makensis win64-installer.nsis
-    artifacts:
-        paths:
-            - build-win64-vs/*.exe
-        expire_in: 1 week
-    when: manual
-
-
-################################################################################
 # Images Stage
 ################################################################################
 
@@ -242,8 +203,8 @@ github:
         - cp build-ubuntu/OpenTodoList-x86_64.AppImage uploads
         - cp deploy-win32/OpenTodoList-Windows-32bit.exe uploads
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
-        - cp build-win32-vs/OpenTodoList-Windows-32bit.exe uploads/OpenTodoList-Windows-MVSC-32bit.exe || echo "Skip deploying MSVC 32bit installer"
-        - cp build-win64-vs/OpenTodoList-Windows-64bit.exe uploads/OpenTodoList-Windows-MVSC-64bit.exe || echo "Skip deploying MSVC 64bit installer"
+        - cp build-win32-vs/OpenTodoList-Windows-32bit-MSVC.exe uploads || echo "Skip deploying MSVC 32bit installer"
+        - cp build-win64-vs/OpenTodoList-Windows-64bit-MSVC.exe uploads || echo "Skip deploying MSVC 64bit installer"
         - cp build-macos/app/OpenTodoList.dmg uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     when: manual
