@@ -12,7 +12,7 @@ cd build-win64-vs
     ..
 nmake
 mkdir bin
-copy app\release\OpenTodoList.exe bin
+copy app\OpenTodoList.exe bin
 copy ..\pre-build\windows\openssl-1.0.2l-x64_86-win64\ssleay32.dll bin\ssleay32.dll
 copy ..\pre-build\windows\openssl-1.0.2l-x64_86-win64\libeay32.dll bin\libeay32.dll
 windeployqt --qmldir ..\app --release --compiler-runtime bin\OpenTodoList.exe
