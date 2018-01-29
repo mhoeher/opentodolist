@@ -8,7 +8,7 @@ set(LINUXDEPLOYQT
     ./linuxdeployqt-continuous-x86_64.AppImage
 )
 set(APPIMAGETOOL_URL
-    https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    https://github.com/AppImage/AppImageKit/releases/download/10/appimagetool-x86_64.AppImage
 )
 set(APPIMAGETOOL ./appimagetool-x86_64.AppImage)
 set(DESKTOPINTEGRATION_URL
