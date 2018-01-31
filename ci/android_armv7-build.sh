@@ -2,6 +2,11 @@
 
 set -e
 
+# Build prerequisites:
+./ci/android/build-openssl \
+    Setenv-android-armv7.sh \
+    $PWD/pre-build/android/openssl/arm-linux-androideabi-4.9-api-18/
+
 export PATH=$QT_ARM_ROOT/bin:$PATH
 
 mkdir -p build-android-armv7
