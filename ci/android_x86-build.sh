@@ -2,6 +2,11 @@
 
 set -e
 
+# Build prerequisites:
+./ci/android/build-openssl \
+    Setenv-android-x86.sh \
+    $PWD/pre-build/android/openssl/x86-4.9-api-18/
+
 export PATH=$QT_X86_ROOT/bin:$PATH
 
 mkdir -p build-android-x86

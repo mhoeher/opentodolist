@@ -54,16 +54,28 @@ DISTFILES += \
     android/local.properties
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-    ANDROID_EXTRA_LIBS = \
-        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18/libcrypto.so \
-        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18/libssl.so
+    OPENSSL_PREBUILD_DIR = \
+        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18
+}
+contains(ANDROID_TARGET_ARCH,x86) {
+    OPENSSL_PREBUILD_DIR = \
+        $$PWD/../pre-build/android/openssl/x86-4.9-api-18/
+}
+android {
+    exists($$OPENSSL_PREBUILD_DIR/libcrypto.so):
+    exists($$OPENSSL_PREBUILD_DIR/libssl.so) {
+        ANDROID_EXTRA_LIBS = \
+            $$OPENSSL_PREBUILD_DIR/libcrypto.so \
+            $$OPENSSL_PREBUILD_DIR/libssl.so
+        message("OpenSSL libraries for Android found - your build will support HTTPS")
+    } else {
+        warning("No prebuilt OpenSSL libraries found for Android.")
+        warning("Your build will not support HTTPS connections!")
+        warning("To fix this, build OpenSSL libraries and put them into")
+        warning("$$OPENSSL_PREBUILD_DIR")
+    }
 }
 
-contains(ANDROID_TARGET_ARCH,x86) {
-    ANDROID_EXTRA_LIBS = \
-        $$PWD/../pre-build/android/openssl/x86-4.9-api-18/libcrypto.so \
-        $$PWD/../pre-build/android/openssl/x86-4.9-api-18/libssl.so
-}
 
 # Add QML/JS files when running lupdate:
 lupdate_only {
