@@ -20,6 +20,7 @@ Rectangle {
 
     color: Colors.dark
     clip: true
+    onNewLibrary: close()
 
     ScrollView {
         id: scrollView
@@ -88,6 +89,12 @@ Rectangle {
                         }
                     }
                 }
+            }
+
+            LibrarySideBarButton {
+                text: qsTr("New Library")
+                symbol: Fonts.symbols.faPlus
+                onClicked: sidebar.newLibrary()
             }
 
             LibrarySideBarButton {

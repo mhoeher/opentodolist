@@ -16,3 +16,4 @@ doc/latex/
 *~
 app/android/gradle.properties
 app/android/local.properties
+/build-*
