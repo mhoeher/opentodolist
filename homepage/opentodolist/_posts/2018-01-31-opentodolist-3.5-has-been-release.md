@@ -14,12 +14,12 @@ share:
 date: 2018-01-31T00:00:00+01:00
 ---
 
-This is the first version of OpenTodoList release in 2018. And of course, we start with some cool new features!
+This is the first version of OpenTodoList released in 2018. And of course, we start with some cool new features!
 
 
 ## Changelog
 
-* Localization support: The app can not be translated into other languages. Currently, translations to German are available.
+* Localization support: The app can now be translated into other languages. Currently, translations to German are available.
 * Selecting images to add to a library is now much improved: On Android, you can now select an image e.g. from the Gallery. On other platforms, a native file selection dialog is used instead.
 * A sync is now triggered when you change items in a library. This ensures that changes end up on a server as quick as possibe and can be synchronized to your other devices.
 * You can now set due dates on your items.
