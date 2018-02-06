@@ -81,7 +81,7 @@ Rectangle {
             text: qsTr("<strong>%1</strong> has been created.").arg(
                       d.itemName)
             Layout.fillWidth: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
         }
         Button {
             text: qsTr("Open")

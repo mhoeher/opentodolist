@@ -71,7 +71,7 @@ Item {
             
             font.bold: true
             text: qsTr("Or select an existing tag:")
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             width: parent.width
             height: visible ? contentHeight : 0
             visible: existingTags.visible && (existingTagsRepeater.model.length > 0)

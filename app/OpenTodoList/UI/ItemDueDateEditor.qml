@@ -24,6 +24,7 @@ RowLayout {
     Label {
         Layout.fillWidth: true
         text: d.validDate ? qsTr("Due on") + " " + root.item.dueTo.toLocaleDateString() : ""
+        wrapMode: Text.WordWrap
     }
 
     Button {

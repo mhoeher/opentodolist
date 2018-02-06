@@ -32,7 +32,7 @@ Item {
         Label {
             text: confirmDeleteTodoDialog.todo ? qsTr("Do you want to delete the todo <strong>%1</strong>? " +
                               "This cannot be undone.").arg(confirmDeleteTodoDialog.todo.displayTitle) : ""
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             anchors {
                 left: parent.left
                 right: parent.right
@@ -88,7 +88,7 @@ Item {
                     plainText: object.displayTitle
                     Layout.fillWidth: true
                     Layout.columnSpan: 2
-                    wrapMode: Text.WrapAnywhere
+                    wrapMode: Text.WordWrap
                 }
 
                 Symbol {

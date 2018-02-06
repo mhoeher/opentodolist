@@ -40,7 +40,7 @@ Page {
             }
             Label {
                 Layout.fillWidth: true
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 text: modelData.message
             }
         }

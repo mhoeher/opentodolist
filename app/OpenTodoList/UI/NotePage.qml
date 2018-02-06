@@ -34,7 +34,7 @@ Item {
                 top: parent.top
                 margins: Globals.defaultMargin
             }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
         }
 
         standardButtons: Dialog.Ok | Dialog.Cancel

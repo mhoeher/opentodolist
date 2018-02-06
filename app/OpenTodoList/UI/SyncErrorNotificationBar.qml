@@ -35,7 +35,7 @@ Rectangle {
             text: qsTr("There were errors when synchronizing the library. " +
                        "Please ensure that the library settings are up to date.")
             Layout.fillWidth: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
         }
         Button {
             text: qsTr("Ignore")
