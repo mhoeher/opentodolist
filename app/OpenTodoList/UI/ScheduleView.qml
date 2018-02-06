@@ -180,7 +180,7 @@ Page {
                 }
 
                 Label {
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    wrapMode: Text.WordWrap
                     text: object.title
                     Layout.fillWidth: true
                 }
@@ -226,7 +226,7 @@ Page {
                 font.bold: true
                 text: qsTr("Overdue")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 visible: overdueTodos.count + overdueTopLevelItems.count > 0
             }
 
@@ -253,7 +253,7 @@ Page {
                 font.bold: true
                 text: qsTr("Today")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 visible: todaysTodos.count + todaysTopLevelItems.count > 0
             }
 
@@ -280,7 +280,7 @@ Page {
                 font.bold: true
                 text: qsTr("Later This Week")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 visible: thisWeeksTodos.count + thisWeeksTopLevelItems.count > 0
             }
 
@@ -307,7 +307,7 @@ Page {
                 font.bold: true
                 text: qsTr("Next Week")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 visible: nextWeeksTodos.count + nextWeeksTopLevelItems.count > 0
             }
 
@@ -334,7 +334,7 @@ Page {
                 font.bold: true
                 text: qsTr("Coming Next")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 visible: upcomingTodos.count + upcomingTopLevelItems.count > 0
             }
 

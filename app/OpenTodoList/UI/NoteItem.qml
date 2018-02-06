@@ -77,7 +77,7 @@ MouseArea {
 
             textFormat: Text.RichText
             text: Globals.markdownToHtml(libraryItem.notes)
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             clip: true
         }
 

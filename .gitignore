@@ -17,3 +17,7 @@ doc/latex/
 app/android/gradle.properties
 app/android/local.properties
 /build-*
+config.tests/*/Makefile
+config.tests/*/*.o
+config.tests/qtkeychain/qtkeychain
+.qmake.stash

@@ -31,7 +31,7 @@ CenteredDialog {
                   App.urlToLocalFile(dialog.fileUrl) + "</strong>"
             width: parent.width
             clip: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
         }
         clip: true
 
@@ -86,7 +86,7 @@ CenteredDialog {
                 Label {
                     Layout.fillWidth: true
                     text: fileName
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    wrapMode: Text.WordWrap
                     color: dialog.fileUrl == fileURL ? Colors.highlightedText : Colors.windowText
                 }
             }

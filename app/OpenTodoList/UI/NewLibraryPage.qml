@@ -50,7 +50,7 @@ Page {
             Label {
                 text: qsTr("Library Name:")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 visible: libraryName.visible
             }
 
@@ -80,7 +80,7 @@ Page {
                                "shall be saved. You can also select an existing library " +
                                "directory. In this case, the library will be imported.")
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
             }
 
             Item { height: Globals.defaultMargin; width: 1 }

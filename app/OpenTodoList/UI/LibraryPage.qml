@@ -102,7 +102,7 @@ Page {
             }
 
             text: library.isInDefaultLocation ? textDefaultLocation : textNonDefaultLocation
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             anchors {
                 left: parent.left
                 right: parent.right
@@ -123,7 +123,7 @@ Page {
             text: qsTr("Do you really want to delete the item <strong>%1</strong> from the library? " +
                        "This action cannot be undone!").arg(
                       itemContextMenu.item ? itemContextMenu.item.displayTitle : "")
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             anchors {
                 left: parent.left
                 right: parent.right

@@ -33,7 +33,7 @@ Item {
         Label {
             text: qsTr("Are you sure you want to delete the attachment <strong>%1</strong>? This action " +
                        "cannot be undone.").arg(confirmDeleteAttachmentDialog.attachment)
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.Word
             anchors {
                 left: parent.left
                 right: parent.right

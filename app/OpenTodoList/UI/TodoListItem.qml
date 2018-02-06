@@ -144,7 +144,7 @@ MouseArea {
 
                             width: todoDelegate.width - lineCheckMark.width
                             y: __linePadding
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            wrapMode: Text.WordWrap
                             lineHeight: __lineHeight
                             lineHeightMode: Text.FixedHeight
                             font {

@@ -42,7 +42,7 @@ Item {
                 bold: true
                 pixelSize: Globals.fontPixelSize * 2
             }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
         }
 
         Symbol {

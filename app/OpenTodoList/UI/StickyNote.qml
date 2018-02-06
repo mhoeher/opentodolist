@@ -51,7 +51,7 @@ MouseArea {
                 Label {
                     text: object.displayTitle
                     textFormat: Text.RichText
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                 }
             }
@@ -153,7 +153,7 @@ MouseArea {
                     left: parent.left
                     right: parent.right
                 }
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 text: qsTr("All Todos Done :)")
                 opacity: 0.5
                 font.italic: true
@@ -168,7 +168,7 @@ MouseArea {
                     left: parent.left
                     right: parent.right
                 }
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: Text.WordWrap
                 textFormat: Text.RichText
                 onLinkActivated: Qt.openUrlExternally(link)
             }

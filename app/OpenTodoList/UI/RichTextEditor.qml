@@ -50,7 +50,7 @@ Page {
             anchors.fill: parent
             textFormat: TextEdit.PlainText
             focus: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             selectByMouse: true
             persistentSelection: true
             font.family: "Courier"

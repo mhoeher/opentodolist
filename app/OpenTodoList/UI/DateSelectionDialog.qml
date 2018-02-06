@@ -56,7 +56,7 @@ CenteredDialog {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             text: grid.locale.monthName(grid.month) + " " + grid.year
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.Word
         }
 
         Symbol {
@@ -129,7 +129,7 @@ CenteredDialog {
             Layout.row: 3
             Layout.column: 1
             text: dialog.selectedDate.toLocaleDateString()
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.Word
         }
 
         Symbol {

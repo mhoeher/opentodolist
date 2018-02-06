@@ -52,7 +52,7 @@ MouseArea {
             id: label
 
             Layout.fillWidth: true
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            wrapMode: Text.WordWrap
             font.bold: root.bold
             color: sym.color
         }
