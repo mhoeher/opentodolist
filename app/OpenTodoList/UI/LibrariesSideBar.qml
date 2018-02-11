@@ -44,6 +44,9 @@ Rectangle {
                         indent: 1
                         text: modelData.name
                         bold: true
+                        symbol: modelData.hasSynchronizer ?
+                                    Fonts.symbols.faCloud :
+                                    Fonts.symbols.faFolderOpenO
                         active: currentLibrary === librarySection.library &&
                                 currentTag === "" && specialView === ""
                         onClicked: {
