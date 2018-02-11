@@ -299,7 +299,7 @@ Page {
     }    
 
     BackgroundLabel {
-        visible: filteredItemsModel.count === 0
+        visible: itemsModel.count === 0
         text: qsTr("Nothing here yet! Start by adding a " +
                    "<a href='#note'>note</a>, " +
                    "<a href='#todolist'>todo list</a> or " +
