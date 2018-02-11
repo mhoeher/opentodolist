@@ -43,7 +43,7 @@ MouseArea {
             id: sym
             font.family: Fonts.symbols.name
             visible: text !== ""
-            color: buttonContainer.isActive ? Colors.highlightedText : Colors.darkText
+            color: root.active ? Colors.highlightedText : Colors.darkText
 
             Behavior on color { NumberAnimation { duration: 500 } }
         }

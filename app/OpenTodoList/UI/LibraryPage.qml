@@ -41,41 +41,10 @@ Page {
                                                                   confirmDeleteLibrary.open();
                                                               }
     property bool syncRunning: library && library.synchronizing
-    property Menu pageMenu: Menu {
+    property Menu pageMenu: LibraryPageMenu {
         x: page.width
-
-        MenuItem {
-            text: qsTr("Edit Sync Settings")
-            enabled: page.library.hasSynchronizer
-            onClicked: {
-                var sync = page.library.createSynchronizer();
-                if (sync !== null) {
-                    var key = sync.secretsKey;
-                    if (key !== "") {
-                        sync.secret = App.secretForSynchronizer(sync);
-                    }
-                    var url = Qt.resolvedUrl(sync.type + "SettingsPage.qml");
-                    page.openPage(url, {"synchronizer": sync});
-                }
-            }
-        }
-
-        MenuItem {
-            text: qsTr("Sync Now")
-            enabled: page.library.hasSynchronizer
-            onClicked: {
-                console.debug("Manually started syncing " + page.library.name);
-                App.syncLibrary(library);
-            }
-        }
-
-        MenuSeparator {}
-
-        MenuItem {
-            text: qsTr("Sync Log")
-            enabled: page.library.hasSynchronizer
-            onClicked: openPage(logPage, {"log": page.library.syncLog()})
-        }
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
     }
 
     clip: true
@@ -358,72 +327,9 @@ Page {
         onNewTodoList: page.newTodoList()
     }
 
-    Rectangle {
+    SyncIndicatorBar {
         id: syncIndicatorBar
-
-        color: Colors.midlight
-        border {
-            width: 1
-            color: Colors.mid
-        }
-        height: childrenRect.height
-        width: parent.width
-        y: parent.height
-        state: page.library.synchronizing ? "visible" : ""
-
-        states: State {
-            name: "visible"
-
-            PropertyChanges {
-                target: syncIndicatorBar
-                y: page.height - syncIndicatorBar.height
-            }
-        }
-
-        transitions: [
-            Transition {
-                from: ""
-                to: "visible"
-
-                SmoothedAnimation {
-                    properties: "y"
-                }
-            },
-            Transition {
-                from: "visible"
-                to: ""
-
-                SmoothedAnimation {
-                    properties: "y"
-                }
-            }
-        ]
-
-        RowLayout {
-            height: childrenRect.height
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: Globals.defaultMargin
-            }
-
-            Label {
-                Layout.fillWidth: true
-                text: qsTr("Synchronizing library...")
-            }
-
-            Label {
-                font.family: Fonts.symbols.name
-                text: Fonts.symbols.faSpinner
-
-                NumberAnimation on rotation {
-                    from: 0
-                    to: 360
-                    duration: 2000
-                    loops: Animation.Infinite
-                }
-            }
-        }
+        library: page.library
     }
 
     LibrarySecretsMissingNotificationBar { library: page.library }
@@ -433,21 +339,16 @@ Page {
         onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
     }
 
+    Component {
+        id: syncErrorPage
+
+        SyncErrorViewPage {}
+    }
+
     ItemCreatedNotification {
         id: itemCreatedNotification
 
         onOpen: itemClicked(item)
     }
 
-    Component {
-        id: logPage
-
-        LogViewPage {}
-    }
-
-    Component {
-        id: syncErrorPage
-
-        SyncErrorViewPage {}
-    }
 }

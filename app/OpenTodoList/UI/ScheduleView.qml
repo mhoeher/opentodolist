@@ -9,6 +9,11 @@ Page {
     id: page
 
     property Library library: null
+    property Menu pageMenu: LibraryPageMenu {
+        x: page.width
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
+    }
 
     signal openPage(var component, var properties)
 
@@ -362,4 +367,23 @@ Page {
             }
         }
     }
+
+    SyncIndicatorBar {
+        id: syncIndicatorBar
+        library: page.library
+    }
+
+    LibrarySecretsMissingNotificationBar { library: page.library }
+
+    SyncErrorNotificationBar {
+        library: page.library
+        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+    }
+
+    Component {
+        id: syncErrorPage
+
+        SyncErrorViewPage {}
+    }
+
 }

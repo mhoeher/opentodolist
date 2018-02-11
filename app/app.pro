@@ -51,7 +51,9 @@ DISTFILES += \
     android/build.gradle \
     android/gradlew.bat \
     android/gradle.properties \
-    android/local.properties
+    android/local.properties \
+    OpenTodoList/UI/SyncIndicatorBar.qml \
+    OpenTodoList/UI/LibraryPageMenu.qml
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     OPENSSL_PREBUILD_DIR = \

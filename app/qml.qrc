@@ -79,5 +79,7 @@
         <file>OpenTodoList/UI/LibrarySideBarButton.qml</file>
         <file>OpenTodoList/UI/BackgroundSymbol.qml</file>
         <file>OpenTodoList/UI/BackgroundLabel.qml</file>
+        <file>OpenTodoList/UI/SyncIndicatorBar.qml</file>
+        <file>OpenTodoList/UI/LibraryPageMenu.qml</file>
     </qresource>
 </RCC>
