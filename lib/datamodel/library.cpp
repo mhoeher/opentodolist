@@ -51,10 +51,19 @@ Library::Library(QObject* parent) : QObject(parent),
     connect(&m_topLevelItems, &ItemContainer::itemDataChanged, [=]() {
         m_itemDataChanged = true;
     });
+    connect(&m_topLevelItems, &ItemContainer::itemDeleted, [=]() {
+        m_itemDataChanged = true;
+    });
     connect(&m_todos, &ItemContainer::itemDataChanged, [=]() {
         m_itemDataChanged = true;
     });
+    connect(&m_todos, &ItemContainer::itemDeleted, [=]() {
+        m_itemDataChanged = true;
+    });
     connect(&m_tasks, &ItemContainer::itemDataChanged, [=]() {
+        m_itemDataChanged = true;
+    });
+    connect(&m_tasks, &ItemContainer::itemDeleted, [=]() {
         m_itemDataChanged = true;
     });
 
