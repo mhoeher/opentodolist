@@ -373,4 +373,17 @@ Page {
         library: page.library
     }
 
+    LibrarySecretsMissingNotificationBar { library: page.library }
+
+    SyncErrorNotificationBar {
+        library: page.library
+        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+    }
+
+    Component {
+        id: syncErrorPage
+
+        SyncErrorViewPage {}
+    }
+
 }

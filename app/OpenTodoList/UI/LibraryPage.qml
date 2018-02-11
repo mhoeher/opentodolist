@@ -339,15 +339,16 @@ Page {
         onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
     }
 
+    Component {
+        id: syncErrorPage
+
+        SyncErrorViewPage {}
+    }
+
     ItemCreatedNotification {
         id: itemCreatedNotification
 
         onOpen: itemClicked(item)
     }
 
-    Component {
-        id: syncErrorPage
-
-        SyncErrorViewPage {}
-    }
 }
