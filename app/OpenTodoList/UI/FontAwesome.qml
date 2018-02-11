@@ -11,6 +11,7 @@ FontLoader {
     readonly property string faAngleRight: "\uf105"
     readonly property string faAngleUp: "\uf106"
     readonly property string faFolderOpenO: "\uf115"
+    readonly property string faCloud: "\uf0c2"
     readonly property string faFileO: "\uf016"
     readonly property string faCheckSquareO: "\uf046"
     readonly property string faSquareO: "\uf096"
