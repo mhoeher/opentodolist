@@ -14,7 +14,7 @@ Page {
             bold: true
         }
         text: qsTr("Used Libraries and Resources")
-        wrapMode: Text.Word
+        wrapMode: Text.WordWrap
         anchors {
             left: parent.left
             right: parent.right
@@ -64,27 +64,27 @@ Page {
                     id: itemTitle
                     text: item.name
                     font.bold: true
-                    wrapMode: Text.Word
+                    wrapMode: Text.WordWrap
                 }
 
                 Label {
                     id: authorLabel
                     text: qsTr("Author: <a href='%2'>%1</a>").arg(item.author).arg(item.website)
-                    wrapMode: Text.Word
+                    wrapMode: Text.WordWrap
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
 
                 Label {
                     id: licenseLabel
                     text: qsTr("License: <a href='%1'>%2</a>").arg(item.licenseUrl).arg(item.licenseType)
-                    wrapMode: Text.Word
+                    wrapMode: Text.WordWrap
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
 
                 Label {
                     id: downloadLabel
                     text: qsTr("Download: <a href='%1'>%1</a>").arg(item.downloadUrl)
-                    wrapMode: Text.Word
+                    wrapMode: Text.WordWrap
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
             }

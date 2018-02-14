@@ -142,15 +142,17 @@ int main(int argc, char *argv[])
 
     QTranslator translator;
     // look up e.g. :/translations/myapp_de.qm
-    if (translator.load(QLocale(),
-                        QLatin1String("opentodolist"),
-                        QLatin1String("_"),
-                        QLatin1String(":/translations"),
-                        ".qm")) {
-        qDebug() << "Found translation for" << QLocale().bcp47Name();
-        app.installTranslator(&translator);
-    } else {
-        qDebug() << "No translation for" << QLocale().bcp47Name();
+
+    {
+        auto l = QLocale();
+        auto uiLanguages = l.uiLanguages();
+        for (auto uiLanguage : uiLanguages) {
+            QString fileName = ":/translations/opentodolist_" + uiLanguage;
+            if (translator.load(fileName, QString(), "-"), ".qm") {
+                qDebug() << "Found translation for" << uiLanguage;
+                break;
+            }
+        }
     }
 
     QCoreApplication::setApplicationName("OpenTodoList");

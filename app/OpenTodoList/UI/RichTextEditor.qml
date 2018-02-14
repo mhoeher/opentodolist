@@ -24,7 +24,6 @@ Page {
         if (item !== null) {
             text = item.notes;
         }
-        textArea.forceActiveFocus();
     }
     Component.onDestruction: {
         if (item !== null) {
@@ -38,27 +37,47 @@ Page {
         onNotesChanged: editor.text = item.notes
     }
 
+    Rectangle {
+        id: editorBackground
+        anchors.fill: parent
+        color: Colors.window
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: textArea.forceActiveFocus()
+    }
+
     Flickable {
         id: flickable
         anchors.fill: parent
         flickableDirection: Flickable.VerticalFlick
         ScrollBar.vertical: ScrollBar {}
-        TextArea.flickable: TextArea {
+        contentHeight: textArea.height + 2 * Globals.defaultMargin
+        contentWidth: width
+
+        TextArea {
             id: textArea
 
             padding: Globals.defaultMargin
-            anchors.fill: parent
+            x: Globals.defaultMargin
+            y: x
+            width: flickable.width - 2 * x
             textFormat: TextEdit.PlainText
-            focus: true
             wrapMode: Text.WordWrap
-            selectByMouse: true
-            persistentSelection: true
-            font.family: "Courier"
-            background: Rectangle {
-                id: editorBackground
-
-                color: Colors.window
+            selectByMouse: {
+                switch (Qt.platform.os) {
+                case "android":
+                    return focus;
+                default:
+                    return true;
+                }
             }
+
+            font.family: "Courier New, Courier, Fixed"
+
+            Keys.onEscapePressed: focus = false
+            Keys.onBackPressed: focus = false
         }
     }
 }
