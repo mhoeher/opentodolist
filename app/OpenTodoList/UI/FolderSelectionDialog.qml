@@ -30,7 +30,7 @@ CenteredDialog {
                   App.urlToLocalFile(folders.folder) + "</strong>"
             width: parent.width
             clip: true
-            wrapMode: Text.Word
+            wrapMode: Text.WordWrap
         }
         clip: true
 
@@ -70,7 +70,7 @@ CenteredDialog {
                 Label {
                     Layout.fillWidth: true
                     text: fileName
-                    wrapMode: Text.Word
+                    wrapMode: Text.WordWrap
                 }
             }
         }
