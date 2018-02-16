@@ -43,11 +43,6 @@ Page {
         color: Colors.window
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: textArea.forceActiveFocus()
-    }
-
     Flickable {
         id: flickable
         anchors.fill: parent
@@ -55,6 +50,12 @@ Page {
         ScrollBar.vertical: ScrollBar {}
         contentHeight: textArea.height + 2 * Globals.defaultMargin
         contentWidth: width
+
+        MouseArea {
+            width: flickable.width
+            height: flickable.height
+            onClicked: textArea.forceActiveFocus()
+        }
 
         TextArea {
             id: textArea
