@@ -11,7 +11,7 @@ source "$DIR/$ENVSCRIPT"
 rm -rf "$DIR/tmp"
 mkdir "$DIR/tmp"
 cd "$DIR/tmp"
-wget https://www.openssl.org/source/openssl-1.1.0g.tar.gz
+wget https://www.openssl.org/source/old/1.0.2/openssl-1.0.2k.tar.gz
 tar xf openssl-*.tar.gz
 rm openssl-*.tar.gz
 cd openssl-*

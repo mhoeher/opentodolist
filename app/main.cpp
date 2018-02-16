@@ -14,6 +14,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QScreen>
+#include <QSslSocket>
 #include <QTranslator>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
@@ -266,6 +267,12 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty(
                 "qmlBaseDirectory", qmlBase);
     engine.load(QUrl(qmlBase + "main.qml"));
+
+    // Print SSL information for debugging
+    qWarning() << "OpenSSL version Qt was built against:"
+               << QSslSocket::sslLibraryBuildVersionString();
+    qWarning() << "OpenSSL version loaded:"
+               << QSslSocket::sslLibraryVersionString();
 
     return app.exec();
 }
