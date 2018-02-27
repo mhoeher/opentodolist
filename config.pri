@@ -2,7 +2,7 @@
 system(git describe) {
     OPENTODOLIST_VERSION = $$system(git describe --tags)
 } else {
-    OPENTODOLIST_VERSION = 3.5.0-unknown
+    OPENTODOLIST_VERSION = 3.6.0-unknown
 }
 
 with_update_service {
