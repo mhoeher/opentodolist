@@ -12,6 +12,7 @@ Page {
     property TodoList item: TodoList {}
     property var library: null
 
+    signal closePage()
     signal openPage(var component, var properties)
 
 

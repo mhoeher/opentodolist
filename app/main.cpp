@@ -14,6 +14,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QScreen>
+#include <QSslSocket>
 #include <QTranslator>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
@@ -142,15 +143,17 @@ int main(int argc, char *argv[])
 
     QTranslator translator;
     // look up e.g. :/translations/myapp_de.qm
-    if (translator.load(QLocale(),
-                        QLatin1String("opentodolist"),
-                        QLatin1String("_"),
-                        QLatin1String(":/translations"),
-                        ".qm")) {
-        qDebug() << "Found translation for" << QLocale().bcp47Name();
-        app.installTranslator(&translator);
-    } else {
-        qDebug() << "No translation for" << QLocale().bcp47Name();
+
+    {
+        auto l = QLocale();
+        auto uiLanguages = l.uiLanguages();
+        for (auto uiLanguage : uiLanguages) {
+            QString fileName = ":/translations/opentodolist_" + uiLanguage;
+            if (translator.load(fileName, QString(), "-"), ".qm") {
+                qDebug() << "Found translation for" << uiLanguage;
+                break;
+            }
+        }
     }
 
     QCoreApplication::setApplicationName("OpenTodoList");
@@ -264,6 +267,12 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty(
                 "qmlBaseDirectory", qmlBase);
     engine.load(QUrl(qmlBase + "main.qml"));
+
+    // Print SSL information for debugging
+    qWarning() << "OpenSSL version Qt was built against:"
+               << QSslSocket::sslLibraryBuildVersionString();
+    qWarning() << "OpenSSL version loaded:"
+               << QSslSocket::sslLibraryVersionString();
 
     return app.exec();
 }

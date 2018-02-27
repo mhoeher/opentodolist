@@ -88,12 +88,19 @@ Item {
             }
             var thisWeight = object.weight;
             if (index === 0) {
-                item.weight = thisWeight - 1 + 0.1 * Math.random();
+                var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
+                if (diff == 0) {
+                    diff = Math.random() + 0.1;
+                }
+                item.weight = thisWeight - diff;
             } else {
                 var prevWeight = root.model.data(
                             root.model.index(index - 1, 0),
                             ItemsModel.ItemRole).weight;
                 var diff = thisWeight - prevWeight;
+                if (diff === 0) {
+                    diff = Math.random();
+                }
                 var diffFactor = (0.4 + 0.2 * Math.random());
                 item.weight = thisWeight - diff * diffFactor;
             }
@@ -116,12 +123,19 @@ Item {
             }
             var thisWeight = object.weight;
             if (index === root.model.count - 1) {
-                item.weight = thisWeight + 1 + 0.1 * Math.random();
+                var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
+                if (diff == 0) {
+                    diff = Math.random() + 0.1;
+                }
+                item.weight = thisWeight + diff;
             } else {
                 var nextWeight = root.model.data(
                             root.model.index(index + 1, 0),
                             ItemsModel.ItemRole).weight;
                 var diff = nextWeight - thisWeight;
+                if (diff === 0) {
+                    diff = Math.random();
+                }
                 var diffFactor = (0.4 + 0.2 * Math.random());
                 item.weight = thisWeight + diff * diffFactor;
             }
