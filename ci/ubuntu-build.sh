@@ -16,6 +16,8 @@ fi
 
 which cmake || (apt-get update && apt-get install -y cmake)
 
+[ -f /usr/lib/x86_64-linux-gnu/libssl.so ] || (apt-get update && apt-get install -y libssl-dev)
+
 desktop-file-validate templates/appimage/default.desktop
 
 source /opt/qt510/bin/qt510-env.sh || true

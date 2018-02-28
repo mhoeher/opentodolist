@@ -78,6 +78,14 @@ android {
     }
 }
 
+with_appimage_extras {
+    # If we build an AppImage, explicitly link against libssl.so and
+    # libcrypto.so so we bundle them. This is required because on more
+    # recent distributions a (binary) incompatible OpenSSL is available
+    # which we cannot really use and hence no HTTPS is working.
+    LIBS += -lcrypto -lssl
+}
+
 
 # Add QML/JS files when running lupdate:
 lupdate_only {
