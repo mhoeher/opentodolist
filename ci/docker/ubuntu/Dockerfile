@@ -29,5 +29,6 @@ RUN \
         desktop-file-utils \
         git \
         cmake \
+        libssl-dev \
         && \
     apt-get clean
