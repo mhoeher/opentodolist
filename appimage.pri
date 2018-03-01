@@ -27,9 +27,9 @@ appimage.commands = \
     cp -r $$PWD/templates/icons/* AppImageBuild/usr/share/icons/hicolor/ && \
     cp -r $$PWD/templates/icons/64x64/apps/OpenTodoList.png AppImageBuild/ && \
     $$LINUXDEPLOYQT AppImageBuild/OpenTodoList \
-        -qmldir=$$PWD/app -qmake=$$QMAKE_QMAKE && \
+        -qmldir=$$PWD/app -qmake=$$QMAKE_QMAKE -bundle-non-qt-libs && \
     $$LINUXDEPLOYQT AppImageBuild/OpenTodoList \
-        -qmldir=$$PWD/app -qmake=$$QMAKE_QMAKE && \
+        -qmldir=$$PWD/app -qmake=$$QMAKE_QMAKE -bundle-non-qt-libs && \
     (cd AppImageBuild && rm AppRun && ln -s OpenTodoList.wrapper AppRun) && \
     $$APPIMAGETOOL AppImageBuild OpenTodoList-x86_64.AppImage
 
