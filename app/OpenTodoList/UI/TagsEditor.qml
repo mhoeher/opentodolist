@@ -49,6 +49,7 @@ Item {
                     
                     placeholderText: qsTr("Add tag...")
                     width: Math.min(tags.__maxWidth, Globals.fontPixelSize * 20)
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     Layout.fillWidth: true
                     Keys.onReturnPressed: editor.__addTag()
                     Keys.onEnterPressed: editor.__addTag()

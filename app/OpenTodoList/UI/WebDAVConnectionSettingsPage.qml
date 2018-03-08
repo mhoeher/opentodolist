@@ -75,6 +75,7 @@ Page {
                     width: parent.width
                     inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
                     selectByMouse: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
                 Item {
@@ -90,6 +91,7 @@ Page {
                     width: parent.width
                     inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                     selectByMouse: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
                 Item {
@@ -106,6 +108,7 @@ Page {
                     width: parent.width
                     inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                     selectByMouse: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
                 Item {

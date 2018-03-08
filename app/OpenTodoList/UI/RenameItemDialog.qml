@@ -41,6 +41,7 @@ CenteredDialog {
             top: parent.top
             margins: Globals.defaultMargin
         }
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         selectByMouse: Globals.selectTextWithMouse
         onAccepted: dialog.accept()
     }

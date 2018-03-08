@@ -89,6 +89,7 @@ Page {
                     visible: createNewLibrary.checked
                     Layout.fillWidth: true
                     selectByMouse: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
                 Label {
