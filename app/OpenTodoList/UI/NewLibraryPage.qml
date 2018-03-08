@@ -56,14 +56,12 @@ Page {
 
             TextField {
                 id: libraryName
-                property bool inputOkay: !visible || acceptableInput
+                property bool inputOkay: !visible || text !== ""
                 placeholderText: qsTr("My New Library")
                 width: parent.width
-                validator: RegExpValidator {
-                    regExp: /^.+$/
-                }
                 visible: !synchronizer || synchronizer["name"] === undefined
                 selectByMouse: Globals.selectTextWithMouse
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
             CheckBox {
@@ -105,6 +103,7 @@ Page {
 
                     placeholderText: qsTr("Please select a library location")
                     Layout.fillWidth: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
                 RoundButton {

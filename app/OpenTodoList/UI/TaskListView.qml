@@ -129,6 +129,7 @@ Item {
                     background: Item {}
                     onAccepted: newEntryButton.clicked(null)
                     selectByMouse: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
 
                 Symbol {

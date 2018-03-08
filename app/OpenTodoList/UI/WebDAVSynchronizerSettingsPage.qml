@@ -51,6 +51,7 @@ Page {
                 text: page.synchronizer.username
                 inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                 selectByMouse: true
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
             Label {
@@ -64,6 +65,7 @@ Page {
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                 selectByMouse: true
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
         }
     }
