@@ -58,4 +58,3 @@ WebDAVSynchronizerSettingsPage 1.0 WebDAVSynchronizerSettingsPage.qml
 singleton Colors 1.0 Colors.qml
 singleton Fonts 1.0 Fonts.qml
 singleton Globals 1.0 Globals.qml
-singleton StyleInfo 1.0 StyleInfo.qml

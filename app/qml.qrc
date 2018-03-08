@@ -51,7 +51,6 @@
         <file>OpenTodoList/UI/CenteredDialog.qml</file>
         <file>OpenTodoList/UI/OpenFileDialog.qml</file>
         <file>OpenTodoList/UI/UpdateNotificationBar.qml</file>
-        <file>+android/qtquickcontrols2.conf</file>
         <file>qtquickcontrols2.conf</file>
         <file>OpenTodoList/UI/LibrarySecretsMissingNotificationBar.qml</file>
         <file>OpenTodoList/UI/URLText.qml</file>
@@ -63,8 +62,6 @@
         <file>OpenTodoList/UI/SyncErrorViewPage.qml</file>
         <file>OpenTodoList/UI/showdownjs/3rdpartyinfo.json</file>
         <file>OpenTodoList/UI/showdownjs/showdown.js</file>
-        <file>+windows/qtquickcontrols2.conf</file>
-        <file>+winrt/qtquickcontrols2.conf</file>
         <file>OpenTodoList/UI/DateSelectionDialog.qml</file>
         <file>OpenTodoList/UI/ItemDueDateEditor.qml</file>
         <file>OpenTodoList/UI/DueDateOverlay.qml</file>
@@ -72,9 +69,6 @@
         <file>OpenTodoList/UI/OpenImageDialog.qml</file>
         <file>OpenTodoList/UI/+android/OpenImageDialog.qml</file>
         <file>OpenTodoList/UI/NewTopLevelItemButton.qml</file>
-        <file>OpenTodoList/UI/+material/NewTopLevelItemButton.qml</file>
-        <file>OpenTodoList/UI/StyleInfo.qml</file>
-        <file>OpenTodoList/UI/+material/StyleInfo.qml</file>
         <file>OpenTodoList/UI/ScheduleView.qml</file>
         <file>OpenTodoList/UI/LibrarySideBarButton.qml</file>
         <file>OpenTodoList/UI/BackgroundSymbol.qml</file>

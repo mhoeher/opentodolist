@@ -81,25 +81,6 @@ ApplicationWindow {
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Symbol {
-                    symbol: Fonts.symbols.faStickyNoteO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newNote"]) === "function" && StyleInfo.name !== "material"
-                    //shortcut: qsTr("Ctrl+Shift+N")
-                    onClicked: stackView.currentItem.newNote()
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faCheckSquareO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newTodoList"]) === "function" && StyleInfo.name !== "material"
-                    onClicked: stackView.currentItem.newTodoList()
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                Symbol {
-                    symbol: Fonts.symbols.faPictureO
-                    visible: stackView.currentItem && typeof(stackView.currentItem["newImage"]) === "function" && StyleInfo.name !== "material"
-                    onClicked: stackView.currentItem.newImage()
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                Symbol {
                     symbol: Fonts.symbols.faPencilSquareO
                     menu: ColorMenu {
                         item: stackView.currentItem && stackView.currentItem["item"] ? stackView.currentItem.item : null
