@@ -75,5 +75,6 @@
         <file>OpenTodoList/UI/BackgroundLabel.qml</file>
         <file>OpenTodoList/UI/SyncIndicatorBar.qml</file>
         <file>OpenTodoList/UI/LibraryPageMenu.qml</file>
+        <file>OpenTodoList/UI/RenameLibraryDialog.qml</file>
     </qresource>
 </RCC>

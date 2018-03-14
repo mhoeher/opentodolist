@@ -16,6 +16,17 @@ Menu {
     signal openPage(var component, var properties)
 
     MenuItem {
+        text: qsTr("Rename")
+        onClicked: {
+            renameLibraryDialog.renameLibrary(menu.library)
+        }
+
+        RenameLibraryDialog {
+            id: renameLibraryDialog
+        }
+    }
+
+    MenuItem {
         text: qsTr("Edit Sync Settings")
         enabled: menu.library.hasSynchronizer
         onClicked: {

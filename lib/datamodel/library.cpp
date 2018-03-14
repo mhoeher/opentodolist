@@ -66,12 +66,15 @@ Library::Library(QObject* parent) : QObject(parent),
     connect(&m_tasks, &ItemContainer::itemDeleted, [=]() {
         m_itemDataChanged = true;
     });
+    connect(this, &Library::nameChanged, [=]() {
+        m_itemDataChanged = true;
+    });
 
     auto quickSaveTimer = new QTimer(this);
     quickSaveTimer->setInterval(10000);
     quickSaveTimer->setSingleShot(false);
     connect(quickSaveTimer, &QTimer::timeout, [=]() {
-        if (m_itemDataChanged) {
+        if (m_itemDataChanged && !m_synchronizing) {
             emit needSync();
             m_itemDataChanged = false;
         }
