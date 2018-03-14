@@ -42,6 +42,10 @@ Item {
     function markdownToHtml(markdown) {
         return d.markdownConverter.makeHtml(markdown);
     }
+
+    Component.onCompleted: {
+        ShowdownJS.setOption('strikethrough', true);
+    }
     
     QtObject {
         id: d
@@ -49,6 +53,9 @@ Item {
         property var markdownConverter: {
             var converter = new ShowdownJS.showdown.Converter();
             converter.setFlavor('github');
+            // Note: Seens not to be supported by QML/Qt :(
+            converter.setOption('strikethrough', true);
+            converter.setOption('ghMentions', false);
             return converter;
         }
     }

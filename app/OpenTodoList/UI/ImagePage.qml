@@ -25,7 +25,7 @@ Page {
 
         Label {
             text: qsTr("Are you sure you want to delete the image <strong>%1</strong>? This action " +
-                       "cannot be undone.").arg(item.displayTitle)
+                       "cannot be undone.").arg(Globals.markdownToHtml(item.title))
             anchors {
                 left: parent.left
                 right: parent.right

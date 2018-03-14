@@ -57,7 +57,7 @@ Rectangle {
 
         property bool shown: false
         property BasicItem item: null
-        property string itemName: item ? item.displayTitle : ""
+        property string itemName: item ? Globals.markdownToHtml(item.title) : ""
     }
 
     Timer {

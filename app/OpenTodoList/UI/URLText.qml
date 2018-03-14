@@ -7,10 +7,6 @@ Label {
     property string plainText: ""
 
     textFormat: Text.RichText
-    text: {
-        var re = /(\w+:\/\/[^\s]+)/g;
-        return plainText.replace(re, "<a href='$1'>$1</a>");
-    }
-
+    text: Globals.markdownToHtml(plainText)
     onLinkActivated: Qt.openUrlExternally(link)
 }

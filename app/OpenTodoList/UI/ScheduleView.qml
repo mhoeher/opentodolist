@@ -184,9 +184,9 @@ Page {
                     }
                 }
 
-                Label {
+                URLText {
                     wrapMode: Text.WordWrap
-                    text: object.title
+                    plainText: object.title
                     Layout.fillWidth: true
                 }
             }
