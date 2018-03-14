@@ -149,48 +149,6 @@ ApplicationWindow {
         }
     }
 
-    menuBar: MenuBar {
-        visible: {
-            switch (Qt.platform.os) {
-            case "android":
-            case "ios":
-            case "tvos":
-            case "qnx":
-                return false;
-            default:
-                return true;
-            }
-        }
-
-        Menu {
-            title: qsTr("&OpenTodoList")
-
-            MenuItem { action: newLibraryAction }
-            MenuSeparator {}
-            MenuItem { action: newNoteAction }
-            MenuItem { action: newTodoListAction }
-            MenuItem { action: newImageAction }
-            MenuSeparator {}
-            MenuItem { action: quitAction }
-        }
-
-        Menu {
-            title: qsTr("&Edit")
-
-            MenuItem { action: findAction }
-            MenuItem { action: goBackAction }
-        }
-
-        Menu {
-            title: qsTr("&View")
-
-            MenuItem { action: openLastCreatedItemAction }
-            MenuSeparator {}
-            MenuItem { action: openLeftSideBarAction }
-        }
-
-    }
-
     Action {
         id: newLibraryAction
 
