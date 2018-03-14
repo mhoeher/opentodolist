@@ -17,7 +17,7 @@ Item {
         id: dialog
 
         title: qsTr("Attach File")
-        parent: MainWindow.window.contentItem
+        parent: MainWindow.overlay
 
         onAccepted: {
             item.item.attachFile(App.urlToLocalFile(fileUrl))

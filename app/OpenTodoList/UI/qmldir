@@ -32,6 +32,7 @@ NotePage 1.0 NotePage.qml
 OpenFileDialog 1.0 OpenFileDialog.qml
 OpenImageDialog 1.0 OpenImageDialog.qml
 RenameItemDialog 1.0 RenameItemDialog.qml
+RenameLibraryDialog 1.0 RenameLibraryDialog.qml
 ReorderWeightedItem 1.0 ReorderWeightedItem.qml
 RichTextEditor 1.0 RichTextEditor.qml
 RichTextEditorFormatMenu 1.0 RichTextEditorFormatMenu.qml
