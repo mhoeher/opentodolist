@@ -30,7 +30,7 @@ Item {
 
         Label {
             text: confirmDeleteTaskDialog.task ? qsTr("Do you want to delete the task <strong>%1</strong>? " +
-                              "This cannot be undone.").arg(Globals.markdownToHtml(confirmDeleteTaskDialog.task.displayTitle)) : ""
+                              "This cannot be undone.").arg(Globals.markdownToHtml(confirmDeleteTaskDialog.task.title)) : ""
             anchors {
                 left: parent.left
                 right: parent.right

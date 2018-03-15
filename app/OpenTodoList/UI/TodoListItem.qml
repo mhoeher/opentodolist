@@ -60,7 +60,7 @@ MouseArea {
         Label {
             id: title
 
-            text: Globals.markdownToHtml(libraryItem.displayTitle)
+            text: Globals.markdownToHtml(libraryItem.title)
             textFormat: Text.RichText
             anchors {
                 left: parent.left
