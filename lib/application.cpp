@@ -36,7 +36,6 @@ Q_LOGGING_CATEGORY(application, "net.rpdev.OpenTodoList.Application", QtDebugMsg
  */
 Application::Application(QObject *parent) :
     QObject(parent),
-    m_defaultLibrary(nullptr),
     m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
                              QCoreApplication::organizationName(),
                              QCoreApplication::applicationName(), this)),
@@ -55,7 +54,6 @@ Application::Application(QObject *parent) :
 
 Application::Application(QSettings *settings, QObject *parent) :
     QObject(parent),
-    m_defaultLibrary(nullptr),
     m_settings(settings),
     m_loadingLibraries(false)
 {
@@ -350,14 +348,6 @@ bool Application::isLibraryDir(const QUrl &url) const
     return result;
 }
 
-/**
- * @brief Returns the default library of the application.
- */
-Library *Application::defaultLibrary()
-{
-    return m_defaultLibrary;
-}
-
 
 /**
  * @brief Returns the home location of the current user.
@@ -486,9 +476,6 @@ void Application::saveLibraries()
             m_settings->setValue("directory", library->directory());
         }
         m_settings->endArray();
-        m_settings->beginGroup("DefaultLibrary");
-        m_settings->setValue("defaultLibrary", m_libraries.indexOf(m_defaultLibrary));
-        m_settings->endGroup();
     }
 }
 
@@ -519,28 +506,7 @@ void Application::loadLibraries()
         }
     }
     m_settings->endArray();
-    m_settings->beginGroup("DefaultLibrary");
-    auto defaultLibraryIndex = m_settings->value("defaultLibrary", -1).toInt();
-    if (defaultLibraryIndex >= 0 && defaultLibraryIndex < m_libraries.length()) {
-        m_defaultLibrary = m_libraries.at(defaultLibraryIndex);
-        emit defaultLibraryChanged();
-    }
-    m_settings->endGroup();
     emit librariesChanged();
-    if (!m_defaultLibrary) {
-        if (m_libraries.length() > 0) {
-            m_defaultLibrary = m_libraries.at(0);
-        } else {
-            QDir libraryDir(defaultLibraryLocation());
-            if (libraryDir.mkpath(".")) {
-                m_defaultLibrary = new Library(libraryDir.absolutePath());
-                m_defaultLibrary->setName(tr("Inbox"));
-                emit defaultLibraryChanged();
-                m_libraries.append(m_defaultLibrary);
-                emit librariesChanged();
-            }
-        }
-    }
     m_loadingLibraries = false;
 }
 
@@ -636,17 +602,6 @@ void Application::onLibraryDeleted(Library *library)
 {
     if (m_libraries.contains(library)) {
         m_libraries.removeAll(library);
-    }
-    if (m_defaultLibrary == library) {
-        if (m_libraries.length() > 0) {
-            m_defaultLibrary = m_libraries.at(0);
-        } else {
-            QDir dir(defaultLibraryLocation());
-            dir.mkpath(".");
-            m_defaultLibrary = new Library(dir.absolutePath());
-            m_libraries.append(m_defaultLibrary);
-            emit defaultLibraryChanged();
-        }
     }
     saveLibraries();
     emit librariesChanged();

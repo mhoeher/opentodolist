@@ -7,7 +7,7 @@ import OpenTodoList.UI 1.0
 Rectangle {
     id: sidebar
 
-    property Library currentLibrary: App.libraries[0]
+    property Library currentLibrary: App.libraries[0] || null
     property string currentTag: ""
     property string specialView: ""
 

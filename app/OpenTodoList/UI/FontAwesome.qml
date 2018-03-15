@@ -32,6 +32,7 @@ FontLoader {
     readonly property string faClockO: "\uf017"
     readonly property string faTag: "\uf02b"
     readonly property string faTags: "\uf02c"
+    readonly property string faBook: "\uf02d"
     
     readonly property string faCalendar: "\uf073"
     readonly property string faCalendarO: "\uf133"

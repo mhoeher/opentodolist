@@ -36,10 +36,10 @@ Page {
         filterBar.edit.forceActiveFocus()
     }
 
-    property var deleteItem: library === App.defaultLibrary ? null :
-                                                              function() {
-                                                                  confirmDeleteLibrary.open();
-                                                              }
+    function deleteItem() {
+        confirmDeleteLibrary.open();
+    }
+
     property bool syncRunning: library && library.synchronizing
     property Menu pageMenu: LibraryPageMenu {
         x: page.width

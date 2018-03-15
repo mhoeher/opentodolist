@@ -28,7 +28,6 @@ class Application : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
-    Q_PROPERTY(Library* defaultLibrary READ defaultLibrary NOTIFY defaultLibraryChanged)
     Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
 
     friend class Migrator_2_x_to_3_x;
@@ -64,8 +63,6 @@ public:
     Q_INVOKABLE QString basename(const QString &filename) const;
     Q_INVOKABLE bool isLibraryDir(const QUrl &url) const;
 
-    Library *defaultLibrary();
-
     QString librariesLocation() const;
     static QString defaultLibrariesLocation();
 
@@ -83,12 +80,10 @@ public slots:
 signals:
 
     void librariesChanged();
-    void defaultLibraryChanged();
 
 private:
 
     QList<Library*>         m_libraries;
-    Library                *m_defaultLibrary;
     QSettings              *m_settings;
     bool                    m_loadingLibraries;
     KeyStore               *m_keyStore;

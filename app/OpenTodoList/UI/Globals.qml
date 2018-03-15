@@ -42,10 +42,6 @@ Item {
     function markdownToHtml(markdown) {
         return d.markdownConverter.makeHtml(markdown);
     }
-
-    Component.onCompleted: {
-        ShowdownJS.setOption('strikethrough', true);
-    }
     
     QtObject {
         id: d
