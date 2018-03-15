@@ -6,7 +6,7 @@ system(git describe) {
 }
 
 with_update_service {
-    DEFINES *= WITH_UPDATE_SERVICE
+    DEFINES *= OPENTODOLIST_WITH_UPDATE_SERVICE
 }
 
 with_appimage_extras {
