@@ -49,7 +49,7 @@ MouseArea {
                     text: object.done ? Fonts.symbols.faCheckSquareO : Fonts.symbols.faSquareO
                 }
                 Label {
-                    text: object.displayTitle
+                    text: Globals.markdownToHtml(object.title)
                     textFormat: Text.RichText
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true

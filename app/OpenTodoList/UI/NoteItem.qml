@@ -48,7 +48,7 @@ MouseArea {
             height: Globals.fontPixelSize * 2
             color: Colors.itemColor(libraryItem.color)
 
-            Label {
+            URLText {
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -61,7 +61,7 @@ MouseArea {
                     bold: true
                 }
                 elide: Text.ElideRight
-                text: libraryItem.displayTitle
+                plainText: libraryItem.title
                 textFormat: Text.RichText
             }
         }
