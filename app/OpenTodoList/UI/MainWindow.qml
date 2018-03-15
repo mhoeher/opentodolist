@@ -318,6 +318,26 @@ ApplicationWindow {
             left: staticLeftSideBar.right
         }
 
+        Item {
+            anchors.fill: stackView
+            anchors.margins: Globals.defaultMargin
+            visible: App.libraries.length === 0
+
+            BackgroundSymbol {
+                symbol: Fonts.symbols.faBook
+            }
+
+            BackgroundLabel {
+                text: qsTr("Start by <a href='#newLibrary'>creating a new " +
+                           "library</a>. Libraries are used to store " +
+                           "different kinds of items like notes, todo lists " +
+                           "and images.")
+                onLinkActivated: if (link === "#newLibrary") {
+                                     newLibraryAction.trigger();
+                                 }
+            }
+        }
+
         StackView {
             id: stackView
 
@@ -328,7 +348,9 @@ ApplicationWindow {
 
             anchors.fill: parent
             clip: true
+            visible: depth > 0
         }
+
 
         Connections {
             target: stackView.currentItem
