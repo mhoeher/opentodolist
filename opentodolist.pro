@@ -44,18 +44,20 @@ SUBDIRS += \
 include(config.pri)
 # include(installer.pri)
 
-# Check environment for optional packages:
-load(configure)
+!ios {
+    # Check environment for optional packages:
+    load(configure)
 
-qtCompileTest(qtkeychain) ## Check for QtKeychain
-config_qtkeychain {
-    QT_KEYCHAIN_MODE = "System"
-    LIBSECRET_MODE = "System"
-} else {
-    QT_KEYCHAIN_MODE = "Built-in"
-    qtCompileTest(libsecret) ## Check for libsecret
-    config_libsecret:LIBSECRET_MODE = "Found"
-    else:LIBSECRET_MODE = "Not Found"
+    qtCompileTest(qtkeychain) ## Check for QtKeychain
+    config_qtkeychain {
+        QT_KEYCHAIN_MODE = "System"
+        LIBSECRET_MODE = "System"
+    } else {
+        QT_KEYCHAIN_MODE = "Built-in"
+        qtCompileTest(libsecret) ## Check for libsecret
+        config_libsecret:LIBSECRET_MODE = "Found"
+        else:LIBSECRET_MODE = "Not Found"
+    }
 }
 
 

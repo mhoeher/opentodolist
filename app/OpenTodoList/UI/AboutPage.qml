@@ -50,7 +50,7 @@ Page {
             }
 
             Label {
-                text: "<a href='%1'>%1</a>".arg("https://www.rpdev.net/wordpress/apps/opentodolist/")
+                text: "<a href='%1'>%1</a>".arg("https://opentodolist.rpdev.net/")
                 wrapMode: Text.WordWrap
                 width: parent.width
                 onLinkActivated: Qt.openUrlExternally(link)

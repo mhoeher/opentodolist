@@ -23,12 +23,12 @@ DirectoryWatcher::DirectoryWatcher(QObject *parent) : QObject(parent),
  */
 DirectoryWatcher::~DirectoryWatcher()
 {
+    m_worker->deleteLater();
     m_thread->quit();
     if (!m_thread->wait(5000)) {
         m_thread->terminate();
         m_thread->wait(5000);
     }
-    delete m_worker;
 }
 
 /**
@@ -42,18 +42,10 @@ void DirectoryWatcher::setDirectory(const QString& directory)
 
 DirectoryWatcherWorker::DirectoryWatcherWorker():
     QObject(),
-    m_watcher(new QFileSystemWatcher(this)),
+    m_watcher(nullptr),
     m_directory()
 {
-    connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString& dir) {
-        emit directoryChanged();
-        if (!m_directory.isEmpty()) {
-            this->watchDir(dir);
-        }
-    });
-    connect(m_watcher, &QFileSystemWatcher::fileChanged, [=](const QString&) {
-        emit directoryChanged();
-    });
+
 }
 
 DirectoryWatcherWorker::~DirectoryWatcherWorker()
@@ -64,6 +56,21 @@ void DirectoryWatcherWorker::setDirectory(const QString& directory)
 {
     if (m_directory != directory) {
         m_directory = directory;
+
+        // Create watcher on-demand when we first set a directory.
+        if (m_watcher == nullptr) {
+            m_watcher = new QFileSystemWatcher(this);
+            connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString& dir) {
+                emit directoryChanged();
+                if (!m_directory.isEmpty()) {
+                    this->watchDir(dir);
+                }
+            });
+            connect(m_watcher, &QFileSystemWatcher::fileChanged, [=](const QString&) {
+                emit directoryChanged();
+            });
+        }
+
         auto items = m_watcher->files() + m_watcher->directories();
         if (!items.isEmpty()) {
             m_watcher->removePaths(items);
