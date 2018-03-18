@@ -21,12 +21,12 @@ $QTSDK/bin/macdeployqt app/OpenTodoList.app/ -qmldir=../app
 # Prepare a "betautified" folder:
 cd app
 mkdir dmg.in
-cp -r OpenTodoList.app dmg.in
+rsync -a OpenTodoList.app dmg.in/
 cp ../../templates/macos/DS_Store ./dmg.in/.DS_Store
 cd dmg.in
 ln -s /Applications ./Applications
 cd ../
 
 # Create DMG file:
-hdiutil create -volname OpenTodoList -srcfolder ./dmg.in -ov -format UDRO OpenTodoList.dmg
+hdiutil create -volname OpenTodoList -srcfolder ./dmg.in -ov -format UDZO OpenTodoList.dmg
 
