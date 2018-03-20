@@ -3,13 +3,17 @@ set PATH=C:\Qt\5.10.0\msvc2015\bin;%PATH%
 mkdir build-win32-vs
 cd build-win32-vs
 "C:\Program Files\CMake\bin\cmake.exe" ^
-    -G"NMake Makefiles" ^
+    -G"MinGW Makefiles" ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON ^
     -DUSE_CREDENTIAL_STORE=ON ^
     -DQTKEYCHAIN_STATIC=ON ^
+    -DCMAKE_MAKE_PROGRAM=C:\Qt\Tools\QtCreator\bin\jom.exe ^
+    -DCMAKE_C_COMPILER=cl ^
+    -DCMAKE_CXX_COMPILER=cl ^
     ..
-nmake
+"C:\Program Files\CMake\bin\cmake.exe" ^
+    --build . -- -j3
 mkdir bin
 copy app\OpenTodoList.exe bin
 copy ..\pre-build\windows\openssl-1.0.2l-i386-win32\ssleay32.dll bin\ssleay32.dll
