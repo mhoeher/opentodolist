@@ -33,9 +33,9 @@ public:
 
     explicit Item(QObject* parent = nullptr);
     explicit Item(const QString &filename,
-                  QObject *parent = 0);
+                  QObject *parent = nullptr);
     explicit Item(const QDir &dir,
-                  QObject *parent = 0);
+                  QObject *parent = nullptr);
     virtual ~Item();
 
     Q_INVOKABLE virtual bool deleteItem();

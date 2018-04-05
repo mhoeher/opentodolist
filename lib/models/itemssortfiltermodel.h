@@ -32,7 +32,7 @@ class ItemsSortFilterModel : public QSortFilterProxyModel
     Q_PROPERTY(QDateTime maxDueDate READ maxDueDate WRITE setMaxDueDate
                NOTIFY maxDueDateChanged)
 public:
-    explicit ItemsSortFilterModel(QObject *parent = 0);
+    explicit ItemsSortFilterModel(QObject *parent = nullptr);
 
     int count() const;
 

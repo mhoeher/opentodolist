@@ -96,7 +96,7 @@ QVariantMap loadMap(const QString& filename, bool* ok)
         }
         file.close();
     } else {
-        qCWarning(jsonUtils) << "Failed to open" << filename << "for reading:"
+        qCDebug(jsonUtils) << "Failed to open" << filename << "for reading:"
                              << file.errorString();
     }
     if (ok != nullptr) {

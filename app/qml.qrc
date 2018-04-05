@@ -3,78 +3,115 @@
         <file>main.qml</file>
         <file>OpenTodoList/UI/Globals.qml</file>
         <file>OpenTodoList/UI/qmldir</file>
-        <file>OpenTodoList/UI/MainWindow.qml</file>
-        <file>OpenTodoList/UI/MainWindowLogic.js</file>
         <file>OpenTodoList/UI/Colors.qml</file>
-        <file>OpenTodoList/UI/LibrariesSideBar.qml</file>
         <file>OpenTodoList/UI/ButtonContainer.qml</file>
-        <file>OpenTodoList/UI/fontawesome-license.txt</file>
-        <file>OpenTodoList/UI/fontawesome-webfont.ttf</file>
         <file>OpenTodoList/UI/Fonts.qml</file>
         <file>OpenTodoList/UI/SymbolButton.qml</file>
-        <file>OpenTodoList/UI/RichTextEditor.qml</file>
-        <file>OpenTodoList/UI/LibraryPage.qml</file>
         <file>OpenTodoList/UI/Symbol.qml</file>
-        <file>OpenTodoList/UI/LibraryPageLogic.js</file>
-        <file>OpenTodoList/UI/NoteItem.qml</file>
-        <file>OpenTodoList/UI/NotePage.qml</file>
         <file>OpenTodoList/UI/StickyNote.qml</file>
-        <file>OpenTodoList/UI/ColorMenu.qml</file>
-        <file>OpenTodoList/UI/TodoListItem.qml</file>
-        <file>OpenTodoList/UI/TodoListPage.qml</file>
-        <file>OpenTodoList/UI/TextInputBar.qml</file>
         <file>OpenTodoList/UI/TodoListView.qml</file>
-        <file>OpenTodoList/UI/TodoPage.qml</file>
         <file>OpenTodoList/UI/TaskListView.qml</file>
-        <file>OpenTodoList/UI/AboutPage.qml</file>
-        <file>OpenTodoList/UI/AboutThirdPartyPage.qml</file>
         <file>3rdpartyinfo/qt/3rdpartyinfo.json</file>
-        <file>OpenTodoList/UI/ImageItem.qml</file>
-        <file>OpenTodoList/UI/ImagePage.qml</file>
         <file>OpenTodoList/UI/FontAwesome.qml</file>
-        <file>OpenTodoList/UI/TagsEditor.qml</file>
-        <file>OpenTodoList/UI/RenameItemDialog.qml</file>
         <file>OpenTodoList/UI/DropShadow.qml</file>
-        <file>OpenTodoList/UI/NewLibraryPage.qml</file>
         <file>3rdpartyinfo/qtsingleapplication/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/qtkeychain/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
-        <file>OpenTodoList/UI/SynchronizerBackendSelectionPage.qml</file>
-        <file>OpenTodoList/UI/WebDAVConnectionSettingsPage.qml</file>
-        <file>OpenTodoList/UI/SyncLibrarySelectionPage.qml</file>
-        <file>OpenTodoList/UI/FolderSelectionDialog.qml</file>
         <file>OpenTodoList/UI/sync_backends/nextcloud.png</file>
         <file>OpenTodoList/UI/sync_backends/owncloud.png</file>
         <file>OpenTodoList/UI/sync_backends/cloud.png</file>
         <file>OpenTodoList/UI/sync_backends/disk.png</file>
-        <file>OpenTodoList/UI/WebDAVSynchronizerSettingsPage.qml</file>
-        <file>OpenTodoList/UI/CenteredDialog.qml</file>
-        <file>OpenTodoList/UI/OpenFileDialog.qml</file>
-        <file>OpenTodoList/UI/UpdateNotificationBar.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>OpenTodoList/UI/LibrarySecretsMissingNotificationBar.qml</file>
         <file>OpenTodoList/UI/URLText.qml</file>
         <file>OpenTodoList/UI/ItemTitle.qml</file>
         <file>OpenTodoList/UI/ReorderWeightedItem.qml</file>
-        <file>OpenTodoList/UI/Attachments.qml</file>
-        <file>OpenTodoList/UI/LogViewPage.qml</file>
-        <file>OpenTodoList/UI/SyncErrorNotificationBar.qml</file>
-        <file>OpenTodoList/UI/SyncErrorViewPage.qml</file>
-        <file>OpenTodoList/UI/showdownjs/3rdpartyinfo.json</file>
-        <file>OpenTodoList/UI/showdownjs/showdown.js</file>
-        <file>OpenTodoList/UI/DateSelectionDialog.qml</file>
-        <file>OpenTodoList/UI/ItemDueDateEditor.qml</file>
-        <file>OpenTodoList/UI/DueDateOverlay.qml</file>
-        <file>OpenTodoList/UI/ItemCreatedNotification.qml</file>
-        <file>OpenTodoList/UI/OpenImageDialog.qml</file>
-        <file>OpenTodoList/UI/+android/OpenImageDialog.qml</file>
-        <file>OpenTodoList/UI/NewTopLevelItemButton.qml</file>
         <file>OpenTodoList/UI/ScheduleView.qml</file>
-        <file>OpenTodoList/UI/LibrarySideBarButton.qml</file>
-        <file>OpenTodoList/UI/BackgroundSymbol.qml</file>
-        <file>OpenTodoList/UI/BackgroundLabel.qml</file>
-        <file>OpenTodoList/UI/SyncIndicatorBar.qml</file>
-        <file>OpenTodoList/UI/LibraryPageMenu.qml</file>
-        <file>OpenTodoList/UI/RenameLibraryDialog.qml</file>
+        <file>Windows/MainWindow.qml</file>
+        <file>Components/ApplicationWindow.qml</file>
+        <file>Components/ToolBar.qml</file>
+        <file>Components/ToolButton.qml</file>
+        <file>Components/Button.qml</file>
+        <file>3rdpartyinfo/fontawesome/3rdpartyinfo.json</file>
+        <file>Fonts/Icons.qml</file>
+        <file>Fonts/fontawesome-free-5.0.9/fa-brands-400.ttf</file>
+        <file>Fonts/fontawesome-free-5.0.9/fa-regular-400.ttf</file>
+        <file>Fonts/fontawesome-free-5.0.9/fa-solid-900.ttf</file>
+        <file>Fonts/fontawesome-free-5.0.9/LICENSE.txt</file>
+        <file>Fonts/fontawesome-free-5.0.9/README.md</file>
+        <file>Fonts/Fonts.qml</file>
+        <file>Fonts/qmldir</file>
+        <file>Components/Action.qml</file>
+        <file>Components/Drawer.qml</file>
+        <file>Widgets/BackgroundLabel.qml</file>
+        <file>Widgets/BackgroundSymbol.qml</file>
+        <file>Components/Label.qml</file>
+        <file>Components/Frame.qml</file>
+        <file>Components/Pane.qml</file>
+        <file>Components/StackView.qml</file>
+        <file>Widgets/ItemCreatedNotification.qml</file>
+        <file>Utils/Markdown.qml</file>
+        <file>Utils/qmldir</file>
+        <file>Utils/showdownjs/3rdpartyinfo.json</file>
+        <file>Utils/showdownjs/showdown.js</file>
+        <file>Widgets/LibrariesSideBar.qml</file>
+        <file>Widgets/LibrarySideBarButton.qml</file>
+        <file>Components/ItemDelegate.qml</file>
+        <file>Components/ScrollView.qml</file>
+        <file>Menues/ColorMenu.qml</file>
+        <file>Components/Menu.qml</file>
+        <file>Components/MenuItem.qml</file>
+        <file>Components/MenuSeparator.qml</file>
+        <file>Pages/AboutPage.qml</file>
+        <file>Pages/AboutThirdPartyPage.qml</file>
+        <file>Pages/ImagePage.qml</file>
+        <file>Pages/LibraryPage.qml</file>
+        <file>Pages/LogViewPage.qml</file>
+        <file>Pages/NewLibraryPage.qml</file>
+        <file>Pages/NotePage.qml</file>
+        <file>Pages/SyncErrorViewPage.qml</file>
+        <file>Pages/SynchronizerBackendSelectionPage.qml</file>
+        <file>Pages/SyncLibrarySelectionPage.qml</file>
+        <file>Pages/TodoListPage.qml</file>
+        <file>Pages/TodoPage.qml</file>
+        <file>Pages/WebDAVConnectionSettingsPage.qml</file>
+        <file>Pages/WebDAVSynchronizerSettingsPage.qml</file>
+        <file>Widgets/UpdateNotificationBar.qml</file>
+        <file>Components/Page.qml</file>
+        <file>Menues/LibraryPageMenu.qml</file>
+        <file>Windows/CenteredDialog.qml</file>
+        <file>Windows/DateSelectionDialog.qml</file>
+        <file>Windows/FolderSelectionDialog.qml</file>
+        <file>Windows/OpenFileDialog.qml</file>
+        <file>Windows/OpenImageDialog.qml</file>
+        <file>Windows/RenameItemDialog.qml</file>
+        <file>Windows/RenameLibraryDialog.qml</file>
+        <file>Components/Dialog.qml</file>
+        <file>Windows/+android/OpenImageDialog.qml</file>
+        <file>Components/TextField.qml</file>
+        <file>Components/ButtonGroup.qml</file>
+        <file>Widgets/LibrarySecretsMissingNotificationBar.qml</file>
+        <file>Widgets/NewTopLevelItemButton.qml</file>
+        <file>Widgets/SyncErrorNotificationBar.qml</file>
+        <file>Widgets/SyncIndicatorBar.qml</file>
+        <file>Widgets/TextInputBar.qml</file>
+        <file>Components/RoundButton.qml</file>
+        <file>Components/ScrollBar.qml</file>
+        <file>Widgets/ImageItem.qml</file>
+        <file>Widgets/NoteItem.qml</file>
+        <file>Widgets/TodoListItem.qml</file>
+        <file>Utils/Colors.qml</file>
+        <file>Pages/MarkdownEditorPage.qml</file>
+        <file>Components/TextArea.qml</file>
+        <file>Widgets/TagsEditor.qml</file>
+        <file>Widgets/Attachments.qml</file>
+        <file>Widgets/ItemDueDateEditor.qml</file>
+        <file>Utils/DateUtils.qml</file>
+        <file>Components/ComboBox.qml</file>
+        <file>Widgets/ItemNotesEditor.qml</file>
+        <file>Components/CheckBox.qml</file>
+        <file>Widgets/TodosWidget.qml</file>
+        <file>Components/SwipeDelegate.qml</file>
+        <file>Windows/DeleteItemDialog.qml</file>
+        <file>Windows/DeleteLibraryDialog.qml</file>
     </qresource>
 </RCC>

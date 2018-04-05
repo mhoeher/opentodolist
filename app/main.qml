@@ -1,8 +1,6 @@
-import QtQuick 2.5
-
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import QtQuick 2.0
+import "./Windows"
 
 MainWindow {
-    id: applicationWindow
+    Component.onCompleted: show()
 }

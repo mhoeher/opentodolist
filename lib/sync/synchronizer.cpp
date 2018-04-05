@@ -12,7 +12,8 @@
 #include "utils/jsonutils.h"
 
 
-Q_LOGGING_CATEGORY(synchronizer, "net.rpdev.opentodolist.Synchronizer", QtDebugMsg)
+Q_LOGGING_CATEGORY(synchronizer, "net.rpdev.opentodolist.Synchronizer",
+                   QtWarningMsg)
 
 
 /**
@@ -431,14 +432,16 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
         auto map = JsonUtils::loadMap(absFilePath);
         auto type = map.value("type").toString();
         auto constructor = Synchronizers.value(type);
-        if (constructor) {
-            result = constructor(parent);
-            result->fromMap(map);
-            result->setDirectory(directory);
-        } else {
-        qCDebug(synchronizer) << "Unknown synchronizer type" << type;
+        if (!type.isEmpty()) {
+            if (constructor) {
+                result = constructor(parent);
+                result->fromMap(map);
+                result->setDirectory(directory);
+            } else {
+                qCWarning(synchronizer) << "Unknown synchronizer type" << type;
+            }
         }
-        }
+    }
     return result;
 }
 

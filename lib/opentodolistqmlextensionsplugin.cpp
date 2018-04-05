@@ -35,11 +35,12 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 {
   //@uri OpenTodoList
 
-  qmlRegisterSingletonType<Application>(uri, 1, 0, "App",
-                                        OpenTodoListQmlExtensionsPlugin::createApplication);
+  qmlRegisterSingletonType<Application>(
+              uri, 1, 0, "Application",
+              OpenTodoListQmlExtensionsPlugin::createApplication);
   qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
-  qmlRegisterType<Image>(uri, 1, 0, "ImageTopLevelItem");
-  qmlRegisterType<Item>(uri, 1, 0, "BasicItem");
+  qmlRegisterType<Image>(uri, 1, 0, "Image");
+  qmlRegisterType<Item>(uri, 1, 0, "Item");
   qmlRegisterType<Library>(uri, 1, 0, "Library");
   qmlRegisterType<Note>(uri, 1, 0, "Note");
   qmlRegisterType<Task>(uri, 1, 0, "Task");

@@ -33,8 +33,8 @@ class Application : public QObject
     friend class Migrator_2_x_to_3_x;
 public:
 
-    explicit Application(QObject *parent = 0);
-    explicit Application(QSettings *settings, QObject *parent = 0);
+    explicit Application(QObject *parent = nullptr);
+    explicit Application(QSettings *settings, QObject *parent = nullptr);
 
     virtual ~Application();
 
@@ -57,6 +57,7 @@ public:
     Q_INVOKABLE QString urlToLocalFile(const QUrl &url) const;
     Q_INVOKABLE QUrl localFileToUrl(const QString &localFile) const;
     Q_INVOKABLE QUrl cleanPath(const QUrl &url) const;
+    Q_INVOKABLE QString htmlToPlainText(const QString &html) const;
 
     Q_INVOKABLE bool fileExists(const QString &filename) const;
     Q_INVOKABLE bool directoryExists(const QString &directory) const;

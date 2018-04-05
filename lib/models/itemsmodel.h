@@ -26,7 +26,7 @@ public:
 
     Q_ENUM(Roles)
 
-    explicit ItemsModel(QObject *parent = 0);
+    explicit ItemsModel(QObject *parent = nullptr);
 
     ItemContainer* container() const;
     void setContainer(ItemContainer *container);
