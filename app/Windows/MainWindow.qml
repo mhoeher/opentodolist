@@ -1,13 +1,12 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
+import QtQuick.Layouts 1.1
+
 import "../Components"
 import "../Fonts"
 import "../Widgets"
 import "../Menues"
 import "../Pages"
-
-import QtQuick.Layouts 1.1
-
 
 import OpenTodoList 1.0 as OTL
 
@@ -410,79 +409,78 @@ ApplicationWindow {
         }
     }
 
-    //        Component {
-    //            id: scheduleViewPage
-    //            ScheduleView {}
-    //        }
+    Component {
+        id: scheduleViewPage
+        ScheduleViewPage {}
+    }
 
     Component {
         id: aboutPage
         AboutPage {}
     }
 
-    //        Component {
-    //            id: newSyncedLibraryPage
+    Component {
+        id: newSyncedLibraryPage
 
-    //            SynchronizerBackendSelectionPage {
-    //                onCancelled: window.viewLibrary()
-    //                onBackendSelected: {
-    //                    switch (synchronizer.synchronizer) {
-    //                    case "WebDAVSynchronizer":
-    //                        stackView.replace(webDavConnectionSetupPage,
-    //                                          {"synchronizer": synchronizer});
-    //                        break;
-    //                    case "":
-    //                        stackView.replace(newLocalLibraryPage);
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //        }
+        SynchronizerBackendSelectionPage {
+            onCancelled: window.viewLibrary()
+            onBackendSelected: {
+                switch (synchronizer.synchronizer) {
+                case "WebDAVSynchronizer":
+                    stackView.replace(webDavConnectionSetupPage,
+                                      {"synchronizer": synchronizer});
+                    break;
+                case "":
+                    stackView.replace(newLocalLibraryPage);
+                    break;
+                }
+            }
+        }
+    }
 
-    //    }
+    Component {
+        id: webDavConnectionSetupPage
 
-    //    Component {
-    //        id: webDavConnectionSetupPage
+        WebDAVConnectionSettingsPage {
+            onCancelled: window.viewLibrary()
+            onConnectionDataAvailable: {
+                stackView.replace(
+                            existingLibrarySelectionPage,
+                            {"synchronizer": synchronizer});
+            }
+        }
+    }
 
-    //        WebDAVConnectionSettingsPage {
-    //            onCancelled: window.viewLibrary()
-    //            onConnectionDataAvailable: {
-    //                stackView.replace(
-    //                            existingLibrarySelectionPage,
-    //                            {"synchronizer": synchronizer});
-    //            }
-    //        }
-    //    }
+    Component {
+        id: existingLibrarySelectionPage
 
-    //    Component {
-    //        id: existingLibrarySelectionPage
+        SyncLibrarySelectionPage {
+            onCancelled: window.viewLibrary()
+            onLibraryAvailable: {
+                stackView.replace(
+                            newLocalLibraryPage,
+                            {"synchronizer": synchronizer});
+            }
+        }
+    }
 
-    //        SyncLibrarySelectionPage {
-    //            onCancelled: window.viewLibrary()
-    //            onLibraryAvailable: {
-    //                stackView.replace(
-    //                            newLocalLibraryPage,
-    //                            {"synchronizer": synchronizer});
-    //            }
-    //        }
-    //    }
+    Component {
+        id: newLocalLibraryPage
 
-    //    Component {
-    //        id: newLocalLibraryPage
-
-    //        NewLibraryPage {
-    //            onCancelled: window.viewLibrary()
-    //            onLibraryAvailable: {
-    //                var lib = App.addLibrary(synchronizer);
-    //                if (lib !== null) {
-    //                    leftSideBar.currentLibrary = lib;
-    //                } else {
-    //                    console.error("Failed to create library!");
-    //                    window.viewLibrary();
-    //                }
-    //            }
-    //        }
-    //    }
+        NewLibraryPage {
+            onCancelled: window.viewLibrary()
+            onLibraryAvailable: {
+                var lib = OTL.Application.addLibrary(synchronizer);
+                if (lib !== null) {
+                    librariesSideBar.currentLibrary = lib;
+                    librariesSideBar.currentTag = "";
+                } else {
+                    console.error("Failed to create library!");
+                    window.viewLibrary();
+                }
+            }
+        }
+    }
 
     Connections {
         target: !!application.messageReceived ? application : null

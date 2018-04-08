@@ -1,9 +1,10 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import OpenTodoList 1.0 as OTL
+
+import "../Components"
+
 
 Page {
     id: page
@@ -37,8 +38,7 @@ Page {
         }
     }
 
-
-    WebDAVSynchronizer {
+    OTL.WebDAVSynchronizer {
         id: dav
 
         serverType: synchronizer.serverType
@@ -48,86 +48,66 @@ Page {
         disableCertificateCheck: ignoreSslErrors.checked
     }
 
-    ScrollView {
-        id: scrollView
+    Pane {
         anchors.fill: parent
 
-        Flickable {
-            width: scrollView.width
+        ScrollView {
+            id: scrollView
+            anchors.fill: parent
 
-            Column {
-                width: scrollView.width - Globals.defaultMargin * 2
-                x: Globals.defaultMargin
-                y: Globals.defaultMargin
+            Flickable {
+                width: scrollView.width
 
+                Column {
+                    width: scrollView.width
 
-                Item {
-                    height: Globals.defaultMargin
-                    width: 1
-                }
-                Label {
-                    text: qsTr("Server Address:")
-                    width: parent.width
-                }
-                TextField {
-                    id: url
-                    placeholderText: qsTr("https://...")
-                    width: parent.width
-                    inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
-                    selectByMouse: true
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
+                    Label {
+                        text: qsTr("Server Address:")
+                        width: parent.width
+                        font.bold: true
+                    }
+                    TextField {
+                        id: url
+                        placeholderText: qsTr("https://...")
+                        width: parent.width
+                        inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText
+                    }
 
-                Item {
-                    height: Globals.defaultMargin
-                    width: 1
-                }
-                Label {
-                    text: qsTr("User name:")
-                    width: parent.width
-                }
-                TextField {
-                    id: username
-                    width: parent.width
-                    inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
-                    selectByMouse: true
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
+                    Label {
+                        text: qsTr("User name:")
+                        font.bold: true
+                        width: parent.width
+                    }
 
-                Item {
-                    height: Globals.defaultMargin
-                    width: 1
-                }
-                Label {
-                    text: qsTr("Password:")
-                    width: parent.width
-                }
-                TextField {
-                    id: password
-                    echoMode: TextInput.Password
-                    width: parent.width
-                    inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
-                    selectByMouse: true
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
+                    TextField {
+                        id: username
+                        width: parent.width
+                        inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+                    }
 
-                Item {
-                    height: Globals.defaultMargin
-                    width: 1
-                }
-                CheckBox {
-                    id: ignoreSslErrors
-                    text: qsTr("Ignore SSL Errors")
-                    checked: false
-                }
+                    Label {
+                        text: qsTr("Password:")
+                        width: parent.width
+                        font.bold: true
+                    }
 
-                Item {
-                    height: Globals.defaultMargin
-                    width: 1
-                }
-                BusyIndicator {
-                    visible: dav.validating
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    TextField {
+                        id: password
+                        echoMode: TextInput.Password
+                        width: parent.width
+                        inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+                    }
+
+                    CheckBox {
+                        id: ignoreSslErrors
+                        text: qsTr("Ignore SSL Errors")
+                        checked: false
+                    }
+
+                    BusyIndicator {
+                        visible: dav.validating
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
                 }
             }
         }

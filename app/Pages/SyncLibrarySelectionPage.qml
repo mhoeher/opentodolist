@@ -1,9 +1,9 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.2
+import QtQuick 2.10
 import QtQuick.Layouts 1.3
 
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import OpenTodoList 1.0 as OTL
+
+import "../Components"
 
 Page {
     id: page
@@ -12,6 +12,8 @@ Page {
 
     signal cancelled()
     signal libraryAvailable(var synchronizer)
+
+    title: qsTr("Create Library")
 
     onSynchronizerChanged: {
         dav.url = synchronizer.url;
@@ -56,62 +58,62 @@ Page {
 
     ButtonGroup { id: libraryRadioGroup }
 
-    WebDAVSynchronizer { id: dav }
+    OTL.WebDAVSynchronizer { id: dav }
 
-    ScrollView {
+    Pane {
         anchors.fill: parent
 
-        Flickable {
-            id: flickable
+        ScrollView {
             anchors.fill: parent
 
-            ColumnLayout {
-                width: flickable.width - 2 * Globals.defaultMargin
-                x: Globals.defaultMargin
-                y: Globals.defaultMargin
+            Flickable {
+                id: flickable
+                anchors.fill: parent
 
-                RadioButton {
-                    id: createNewLibrary
-                    text: qsTr("Create new library on server")
-                    checked: true
-                    Layout.fillWidth: true
-                    onCheckedChanged: {
-                        if (checked) {
-                            d.path = "";
-                            d.uid = "";
-                        }
-                    }
-                }
+                ColumnLayout {
+                    width: flickable.width
 
-                TextField {
-                    id: newLibraryName
-                    x: Globals.defaultMargin
-                    visible: createNewLibrary.checked
-                    Layout.fillWidth: true
-                    selectByMouse: true
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
-
-                Label {
-                    text: qsTr("Searching for existing libraries...")
-                    Layout.alignment: Qt.AlignHCenter
-                    visible: dav.findingLibraries
-                }
-
-                BusyIndicator {
-                    Layout.alignment: Qt.AlignHCenter
-                    visible: dav.findingLibraries
-                }
-
-                Repeater {
-                    model: dav.existingLibraries
-                    delegate: RadioButton {
-                        text: modelData.name
+                    RadioButton {
+                        id: createNewLibrary
+                        text: qsTr("Create new library on server")
+                        checked: true
+                        Layout.fillWidth: true
                         onCheckedChanged: {
                             if (checked) {
-                                d.name = modelData.name;
-                                d.path = modelData.path;
-                                d.uid = modelData.uid;
+                                d.path = "";
+                                d.uid = "";
+                            }
+                        }
+                    }
+
+                    TextField {
+                        id: newLibraryName
+                        x: Globals.defaultMargin
+                        visible: createNewLibrary.checked
+                        Layout.fillWidth: true
+                    }
+
+                    Label {
+                        text: qsTr("Searching for existing libraries...")
+                        Layout.alignment: Qt.AlignHCenter
+                        visible: dav.findingLibraries
+                    }
+
+                    BusyIndicator {
+                        Layout.alignment: Qt.AlignHCenter
+                        visible: dav.findingLibraries
+                    }
+
+                    Repeater {
+                        model: dav.existingLibraries
+                        delegate: RadioButton {
+                            text: modelData.name
+                            onCheckedChanged: {
+                                if (checked) {
+                                    d.name = modelData.name;
+                                    d.path = modelData.path;
+                                    d.uid = modelData.uid;
+                                }
                             }
                         }
                     }

@@ -17,15 +17,10 @@
         <file>3rdpartyinfo/qtsingleapplication/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/qtkeychain/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
-        <file>OpenTodoList/UI/sync_backends/nextcloud.png</file>
-        <file>OpenTodoList/UI/sync_backends/owncloud.png</file>
-        <file>OpenTodoList/UI/sync_backends/cloud.png</file>
-        <file>OpenTodoList/UI/sync_backends/disk.png</file>
         <file>qtquickcontrols2.conf</file>
         <file>OpenTodoList/UI/URLText.qml</file>
         <file>OpenTodoList/UI/ItemTitle.qml</file>
         <file>OpenTodoList/UI/ReorderWeightedItem.qml</file>
-        <file>OpenTodoList/UI/ScheduleView.qml</file>
         <file>Windows/MainWindow.qml</file>
         <file>Components/ApplicationWindow.qml</file>
         <file>Components/ToolBar.qml</file>
@@ -114,5 +109,13 @@
         <file>Windows/DeleteItemDialog.qml</file>
         <file>Windows/DeleteLibraryDialog.qml</file>
         <file>Widgets/ReorderableListViewOverlay.qml</file>
+        <file>Components/DialogButtonBox.qml</file>
+        <file>Pages/sync_backends/cloud.png</file>
+        <file>Pages/sync_backends/disk.png</file>
+        <file>Pages/sync_backends/nextcloud.png</file>
+        <file>Pages/sync_backends/owncloud.png</file>
+        <file>Components/RadioButton.qml</file>
+        <file>Components/BusyIndicator.qml</file>
+        <file>Pages/ScheduleViewPage.qml</file>
     </qresource>
 </RCC>

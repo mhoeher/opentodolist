@@ -21,7 +21,7 @@ Menu {
             if (sync !== null) {
                 var key = sync.secretsKey;
                 if (key !== "") {
-                    sync.secret = App.secretForSynchronizer(sync);
+                    sync.secret = OTL.Application.secretForSynchronizer(sync);
                 }
                 var url = Qt.resolvedUrl(sync.type + "SettingsPage.qml");
                 menu.openPage(url, {"synchronizer": sync});
@@ -34,7 +34,7 @@ Menu {
         enabled: menu.library.hasSynchronizer
         onClicked: {
             console.debug("Manually started syncing " + menu.library.name);
-            App.syncLibrary(library);
+            OTL.Application.syncLibrary(library);
         }
     }
     

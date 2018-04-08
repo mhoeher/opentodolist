@@ -1,12 +1,15 @@
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.10
 import QtQuick.Layouts 1.3
 
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import OpenTodoList 1.0 as OTL
+
+import "../Components"
+import "../Fonts"
 
 Page {
     id: page
+
+    title: qsTr("Synchronization Log")
 
     property alias log: view.model
 
@@ -15,7 +18,7 @@ Page {
 
         MenuItem {
             text: qsTr("Copy Log")
-            onClicked: App.copyToClipboard(JSON.stringify(page.log))
+            onClicked: OTL.Application.copyToClipboard(JSON.stringify(page.log))
         }
     }
 
@@ -28,19 +31,18 @@ Page {
         delegate: RowLayout {
             width: view.width
             spacing: Globals.defaultMargin
-            Symbol {
+            ToolButton {
                 symbol: {
-                    "Debug": Fonts.symbols.faInfo,
-                    "Warning": Fonts.symbols.faWarning,
-                    "Error": Fonts.symbols.faTimesCircle
-                }[modelData.type] || Fonts.symbols.faQuestionCircleO
+                    "Debug": Icons.faInfo,
+                    "Warning": Icons.faExclamation,
+                    "Error": Icons.faTimesCircle
+                }[modelData.type] || Icons.faQuestionCircle
             }
             Label {
                 text: modelData.time
             }
             Label {
                 Layout.fillWidth: true
-                wrapMode: Text.WordWrap
                 text: modelData.message
             }
         }

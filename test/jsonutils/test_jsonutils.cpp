@@ -51,7 +51,7 @@ void JsonUtilsTest::testLoadMapWithNonExistingFile()
     QTemporaryDir tempDir;
     auto filename = tempDir.path() + "/test.json";
     bool ok;
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression(".*No such file or directory.*"));
+    QTest::ignoreMessage(QtDebugMsg, QRegularExpression(".*No such file or directory.*"));
     auto map = loadMap(filename, &ok);
     QVERIFY(!ok);
     QCOMPARE(map.size(), 0);

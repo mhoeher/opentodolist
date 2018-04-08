@@ -1,8 +1,8 @@
 import QtQuick 2.9
-import QtQuick.Controls 2.2
 
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import OpenTodoList 1.0 as OTL
+
+import "../Components"
 
 Page {
     id: page
@@ -70,79 +70,24 @@ Page {
         }
     }
 
-    Component {
-        id: gridViewDelegate
-
-        Item {
-            width: GridView.view.cellWidth
-            height: GridView.view.cellHeight
-            clip: true
-
-            Rectangle {
-                anchors.fill: parent
-                visible: d.selectedSynchronizer === index
-                color: Colors.highlight
-                opacity: 0.2
-                border {
-                    color: Qt.darker(Colors.highlight)
-                    width: 1
-                }
-                radius: Globals.defaultMargin
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: d.selectedSynchronizer = index
-            }
-
-            Image {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    bottom: label.top
-                    margins: Globals.defaultMargin
-                }
-
-                source: {
-                    if (image !== "") {
-                        return Qt.resolvedUrl(image);
-                    } else {
-                        return "";
-                    }
-                }
-                fillMode: Image.PreserveAspectFit
-            }
-
-            Label {
-                id: label
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                    bottom: parent.bottom
-                    bottomMargin: Globals.defaultMargin
-                }
-                text: title
-            }
-        }
-    }
-
-    ScrollView {
-        id: scrollView
-
+    Pane {
         anchors.fill: parent
 
-        GridView {
+        ListView {
             id: grid
 
             property int columns: Math.max(width / (Globals.defaultMargin * 20), 1)
 
-            x: Globals.defaultMargin
-            y: Globals.defaultMargin
-            width: scrollView.width - 2 * Globals.defaultMargin
+            anchors.fill: parent
+            ScrollBar.vertical: ScrollBar {}
             model: backends
-            delegate: gridViewDelegate
-            cellHeight: cellWidth * 0.66
-            cellWidth: width / columns
+            delegate: ItemDelegate {
+                width: parent.width
+                icon.source: image
+                text: name
+                highlighted: d.selectedSynchronizer === index
+                onClicked: d.selectedSynchronizer = index
+            }
         }
     }
 }
