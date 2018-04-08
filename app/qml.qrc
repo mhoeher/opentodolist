@@ -113,5 +113,6 @@
         <file>Components/SwipeDelegate.qml</file>
         <file>Windows/DeleteItemDialog.qml</file>
         <file>Windows/DeleteLibraryDialog.qml</file>
+        <file>Widgets/ReorderableListViewOverlay.qml</file>
     </qresource>
 </RCC>

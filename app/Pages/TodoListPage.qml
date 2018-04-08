@@ -28,6 +28,20 @@ Page {
 
     title: OTL.Application.htmlToPlainText(Markdown.format(item.title))
 
+    QtObject {
+        id: d
+
+        function openTodo(todo) {
+            page.openPage(
+                        Qt.resolvedUrl("TodoPage.qml"),
+                        {
+                            item: todo,
+                            todoList: page.item,
+                            library: page.library
+                        });
+        }
+    }
+
     Settings {
         id: settings
         category: "TodoListPage"
@@ -118,6 +132,7 @@ Page {
                     decorativeSymbolFont: Fonts.icons
                     symbol: Icons.faPlus
                     onHeaderButtonClicked: newTodoDialog.open()
+                    onTodoClicked: d.openTodo(todo)
                 }
 
                 TodosWidget {
@@ -129,6 +144,7 @@ Page {
                     symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
                     onHeaderButtonClicked: settings.showUndone =
                                            !settings.showUndone
+                    onTodoClicked: d.openTodo(todo)
                 }
 
                 ItemNotesEditor {

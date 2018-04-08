@@ -103,4 +103,5 @@ DISTFILES += \
     Widgets/TodoListItem.qml \
     Widgets/UpdateNotificationBar.qml \
     Utils/DateUtils.qml \
-    Widgets/ItemNotesEditor.qml
+    Widgets/ItemNotesEditor.qml \
+    Widgets/ReorderableListViewOverlay.qml

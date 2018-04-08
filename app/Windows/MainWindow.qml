@@ -73,6 +73,14 @@ ApplicationWindow {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
+            ToolButton {
+                symbol: stackView.isChecked ? Icons.faCheckCircle :
+                                              Icons.faCircle
+                font.family: Fonts.icons
+                visible: stackView.isCheckable
+                onClicked: stackView.item.done = !stackView.item.done
+            }
+
             Label {
                 id: pageTitleLabel
                 Layout.fillWidth: true
@@ -98,9 +106,7 @@ ApplicationWindow {
                 symbol: Icons.faPaintBrush
                 menu: ColorMenu {
                     y: window.header.height
-                    item: stackView.currentItem &&
-                          stackView.currentItem["item"] ?
-                              stackView.currentItem.item : null
+                    item: stackView.hasColor ? stackView.currentItem.item : null
                 }
                 anchors.verticalCenter: parent.verticalCenter
                 visible: menu.item !== null
@@ -339,6 +345,12 @@ ApplicationWindow {
         property bool syncRunning: !!currentItem && !!currentItem.syncRunning
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
         property bool canGoBack: currentItem !== null && depth > 1
+
+        property bool hasItem: currentItem &&
+                               currentItem.item !== undefined
+        property bool hasColor: hasItem && currentItem.item.color !== undefined
+        property bool isCheckable: hasItem && currentItem.item.done !== undefined
+        property bool isChecked: isCheckable ? currentItem.item.done : false
 
         anchors {
             left: staticLeftSideBar.right

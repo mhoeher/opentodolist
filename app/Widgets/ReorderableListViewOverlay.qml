@@ -1,72 +1,60 @@
-import QtQuick 2.9
+import QtQuick 2.10
 
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import OpenTodoList 1.0 as OTL
 
-Item {
-    id: root
+import "../Utils"
+
+MouseArea {
+    id: mouseArea
 
     property var model
 
-    function beginDrag() {
+    drag.axis: Drag.YAxis
+    drag.filterChildren: true
+    onReleased: {
+        if (drag.target !== undefined) {
+            dragTile.Drag.drop();
+            dragTile.x = 0;
+            dragTile.y = 0;
+            drag.target = undefined;
+        }
+    }
+    onPressAndHold: {
         drag.target = dragTile;
-    }
-
-    function endDrag() {
-        dragTile.Drag.drop();
-        dragTile.x = 0;
-        dragTile.y = 0;
-        drag.target = undefined;
-    }
-
-    MouseArea {
-        id: mouseArea
-
-        anchors.fill: parent
-        drag.axis: Drag.YAxis
-//        onReleased: {
-//            dragTile.Drag.drop();
-//            dragTile.x = 0;
-//            dragTile.y = 0;
-//            drag.target = undefined;
-//        }
-//        onPressAndHold: {
-//            drag.target = dragTile;
-//            mouse.accepted = false;
-//        }
+        mouse.accepted = false;
     }
 
     Rectangle {
         id: itemBackground
         visible: mouseArea.drag.target === dragTile
         anchors.fill: parent
-        color: Colors.highlight
+        color: Colors.color(Colors.teal)
         opacity: 0.2
-        z: 11
+        z: 9
     }
 
     Rectangle {
         id: dragTile
 
-        property BasicItem item: object
+        property OTL.Item item: object
 
-        color: Colors.midlight
-        border.color: Colors.mid
+        color: Colors.color(Colors.green)
+        border.color: Qt.darker(Colors.color(Colors.green))
         opacity: 0.5
-        width: root.width
-        height: root.height
+        width: mouseArea.width
+        height: mouseArea.height
+        z: 10
         visible: mouseArea.drag.active
-        z: 12
         Drag.hotSpot.x: width / 2
         Drag.hotSpot.y: height / 2
         Drag.active: mouseArea.drag.active
-        Drag.keys: ["" + root.model]
+        Drag.keys: ["" + mouseArea.model]
     }
 
     Rectangle {
         width: parent.width
         height: 3
-        color: Colors.dark
+        color: Colors.color(Colors.teal)
         visible: upperDropArea.containsDrag
         z: 10
         y: -1
@@ -76,7 +64,7 @@ Item {
         width: parent.width
         y: parent.height - 1
         height: 3
-        color: Colors.dark
+        color: Colors.color(Colors.teal)
         visible: lowerDropArea.containsDrag
         z: 10
     }
@@ -89,7 +77,7 @@ Item {
             top: parent.top
         }
         height: parent.height / 2
-        keys: ["" + root.model]
+        keys: ["" + mouseArea.model]
         onDropped: {
             var item = drag.source.item;
             if (item === object) {
@@ -103,9 +91,9 @@ Item {
                 }
                 item.weight = thisWeight - diff;
             } else {
-                var prevWeight = root.model.data(
-                            root.model.index(index - 1, 0),
-                            ItemsModel.ItemRole).weight;
+                var prevWeight = mouseArea.model.data(
+                            mouseArea.model.index(index - 1, 0),
+                            OTL.ItemsModel.ItemRole).weight;
                 diff = thisWeight - prevWeight;
                 if (diff === 0) {
                     diff = Math.random();
@@ -124,23 +112,23 @@ Item {
             bottom: parent.bottom
         }
         height: parent.height / 2
-        keys: ["" + root.model]
+        keys: ["" + mouseArea.model]
         onDropped: {
             var item = drag.source.item;
             if (item === object) {
                 return;
             }
             var thisWeight = object.weight;
-            if (index === root.model.count - 1) {
+            if (index === mouseArea.model.count - 1) {
                 var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
                 if (diff == 0) {
                     diff = Math.random() + 0.1;
                 }
                 item.weight = thisWeight + diff;
             } else {
-                var nextWeight = root.model.data(
-                            root.model.index(index + 1, 0),
-                            ItemsModel.ItemRole).weight;
+                var nextWeight = mouseArea.model.data(
+                            mouseArea.model.index(index + 1, 0),
+                            OTL.ItemsModel.ItemRole).weight;
                 diff = nextWeight - thisWeight;
                 if (diff === 0) {
                     diff = Math.random();

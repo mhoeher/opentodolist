@@ -1,164 +1,121 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.2
 
-import OpenTodoList 1.0
-import OpenTodoList.UI 1.0
+import OpenTodoList 1.0 as OTL
+
+import "../Components"
+import "../Fonts"
+import "../Windows"
+import "../Widgets"
+import "../Utils"
 
 Page {
     id: page
 
-    property Library library: null
-    property Todo todo: Todo {}
-    property int parentItemColor: TopLevelItem.White
+    property OTL.Todo item: OTL.Todo {}
+    property OTL.Library library: null
+    property OTL.TodoList todoList: null
 
     signal closePage()
     signal openPage(var component, var properties)
 
-
-    function newTask() {
-        tasks.focusNewItemInput();
-    }
-
-    function cancel() {
-    }
-
     function deleteItem() {
-        confirmDeleteDialog.open();
+        confirmDeleteDialog.deleteItem(item);
     }
 
-    function find() {
-        filterBar.edit.forceActiveFocus()
+    function renameItem() {
+        renameItemDialog.renameItem(item);
     }
 
-    background: Rectangle {
-        color: Colors.lightItemColor(page.parentItemColor)
-    }
+    title: OTL.Application.htmlToPlainText(Markdown.format(item.title))
 
-    CenteredDialog {
+    DeleteItemDialog {
         id: confirmDeleteDialog
-        title: qsTr("Delete Todo?")
-        Label {
-            text: qsTr("Are you sure you want to delete the todo <strong>%1</strong>? This action " +
-                       "cannot be undone.").arg(Globals.markdownToHtml(todo.title))
-            wrapMode: Text.WordWrap
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-                margins: Globals.defaultMargin
-            }
-        }
-        standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
-            todo.deleteItem();
             page.closePage();
         }
     }
 
-    TextInputBar {
-        id: filterBar
-
-        placeholderText: qsTr("Search term 1, search term 2, ...")
-        symbol: Fonts.symbols.faTimes
-        color: Colors.midlight
-        showWhenNonEmpty: true
-        closeOnButtonClick: true
+    RenameItemDialog {
+        id: renameItemDialog
     }
 
-    ScrollView {
-        id: scrollView
+    CenteredDialog {
+        id: newTaskDialog
+        title: qsTr("Add Task")
 
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            top: filterBar.bottom
-            topMargin: filterBar.shown ? (filterBar.contentHeight - filterBar.height) : 0
+        TextField {
+            id: newTaskEdit
+
+            Keys.onEnterPressed: newTaskDialog.accept()
+            Keys.onReturnPressed: newTaskDialog.accept()
         }
 
-        Column {
-            width: scrollView.width
-            spacing: Globals.defaultMargin
+        standardButtons: Dialog.Ok | Dialog.Cancel
 
-            ItemTitle {
-                item: page.todo
-                width: parent.width
+        onAccepted: {
+            if (newTaskEdit.text !== "") {
+                var task = page.item.addTask();
+                task.title = newTaskEdit.text;
             }
+            newTaskEdit.text = "";
+        }
+        onRejected: {
+            newTaskEdit.text = "";
+        }
+        onOpened: {
+            newTaskEdit.forceActiveFocus()
+        }
+    }
 
-            TaskListView {
-                id: tasks
-                model: ItemsSortFilterModel {
-                    sourceModel: ItemsModel {
-                        id: sourceModel
-                        container: page.library.tasks
-                    }
-                    todo: page.todo.uid
-                    searchString: filterBar.text
+    OTL.ItemsSortFilterModel {
+        id: tasks
+        sourceModel: OTL.ItemsModel {
+            container: page.library.tasks
+        }
+        todo: page.item.uid
+    }
+
+    Pane {
+        id: background
+
+        backgroundColor: Colors.color(Colors.itemColor(page.todoList),
+                                      Colors.shade50)
+        anchors.fill: parent
+
+        ScrollView {
+            id: scrollView
+
+            anchors.fill: parent
+
+            Column {
+                width: scrollView.width
+
+                TodosWidget {
+                    width: parent.width
+                    model: tasks
+                    title: qsTr("Tasks")
+                    decorativeSymbol: Icons.faCircle
+                    decorativeSymbolFont: Fonts.icons
+                    symbol: Icons.faPlus
+                    onHeaderButtonClicked: newTaskDialog.open()
                 }
 
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin * 2
+                ItemNotesEditor {
+                    item: page.item
+                    width: parent.width
                 }
-                allowNewEntryCreation: true
-                onAddEntry: {
-                    var task = todo.addTask();
-                    task.title = title;
-                }
-            }
 
-            StickyNote {
-                id: note
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin
+                ItemDueDateEditor {
+                    item: page.item
+                    width: parent.width
                 }
-                title: qsTr("Notes")
-                text: Globals.markdownToHtml(page.todo.notes)
-                onClicked: {
-                    page.openPage(notesEditor, {item: page.todo});
-                }
-            }
 
-            ItemDueDateEditor {
-                item: page.todo
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin * 2
-                }
-            }
-
-            Attachments {
-                item: page.todo
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin * 2
-                }
-            }
-
-            Item {
-                height: Globals.defaultMargin
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: Globals.defaultMargin * 2
-                }
-            }
-
-            Component {
-                id: notesEditor
-                RichTextEditor {
-                    backgroundColor: Colors.lightItemColor(page.parentItemColor)
+                Attachments {
+                    item: page.item
+                    width: parent.width
                 }
             }
         }
     }
 }
-
-
-
 
