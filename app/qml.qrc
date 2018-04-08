@@ -1,26 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>OpenTodoList/UI/Globals.qml</file>
-        <file>OpenTodoList/UI/qmldir</file>
-        <file>OpenTodoList/UI/Colors.qml</file>
-        <file>OpenTodoList/UI/ButtonContainer.qml</file>
-        <file>OpenTodoList/UI/Fonts.qml</file>
-        <file>OpenTodoList/UI/SymbolButton.qml</file>
-        <file>OpenTodoList/UI/Symbol.qml</file>
-        <file>OpenTodoList/UI/StickyNote.qml</file>
-        <file>OpenTodoList/UI/TodoListView.qml</file>
-        <file>OpenTodoList/UI/TaskListView.qml</file>
         <file>3rdpartyinfo/qt/3rdpartyinfo.json</file>
-        <file>OpenTodoList/UI/FontAwesome.qml</file>
-        <file>OpenTodoList/UI/DropShadow.qml</file>
         <file>3rdpartyinfo/qtsingleapplication/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/qtkeychain/3rdpartyinfo.json</file>
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
         <file>qtquickcontrols2.conf</file>
-        <file>OpenTodoList/UI/URLText.qml</file>
-        <file>OpenTodoList/UI/ItemTitle.qml</file>
-        <file>OpenTodoList/UI/ReorderWeightedItem.qml</file>
         <file>Windows/MainWindow.qml</file>
         <file>Components/ApplicationWindow.qml</file>
         <file>Components/ToolBar.qml</file>
