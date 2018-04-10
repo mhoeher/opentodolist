@@ -57,6 +57,7 @@ Item {
 
                 width: parent.width
                 height: parent.height
+                interactive: false
                 model: OTL.ItemsSortFilterModel {
                     sourceModel: OTL.ItemsModel {
                         container: item.library.todos
@@ -74,6 +75,7 @@ Item {
                         text: Markdown.format(object.title)
                         elide: Text.ElideRight
                         Layout.fillWidth: true
+                        wrapMode: Text.NoWrap
                     }
                 }
             }
@@ -85,6 +87,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 text: qsTr("✔ No open todos - everything done")
                 visible: openTodosList.count === 0
+                opacity: 0.5
             }
         }
     }

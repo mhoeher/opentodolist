@@ -26,6 +26,10 @@ Page {
         renameItemDialog.renameItem(item);
     }
 
+    function find() {
+        filterBar.edit.forceActiveFocus()
+    }
+
     title: OTL.Application.htmlToPlainText(Markdown.format(item.title))
 
     DeleteItemDialog {
@@ -73,6 +77,15 @@ Page {
             container: page.library.tasks
         }
         todo: page.item.uid
+        searchString: filterBar.text
+    }
+
+    TextInputBar {
+        id: filterBar
+        placeholderText: qsTr("Search term 1, search term 2, ...")
+        symbol: Icons.faTimes
+        showWhenNonEmpty: true
+        closeOnButtonClick: true
     }
 
     Pane {

@@ -77,7 +77,8 @@ ApplicationWindow {
                                               Icons.faCircle
                 font.family: Fonts.icons
                 visible: stackView.isCheckable
-                onClicked: stackView.item.done = !stackView.item.done
+                onClicked: stackView.currentItem.item.done =
+                           !stackView.currentItem.item.done
             }
 
             Label {
@@ -232,7 +233,7 @@ ApplicationWindow {
         shortcut: StandardKey.Open
         text: qsTr("Open Last &Created Item")
         enabled: !!window.itemCreatedNotification
-        onTriggered: Globals.itemCreatedNotification.trigger()
+        onTriggered: window.itemCreatedNotification.trigger()
     }
 
     Action {
@@ -373,7 +374,7 @@ ApplicationWindow {
     Drawer {
         id: dynamicLeftDrawer
         edge: Qt.LeftEdge
-        width: Math.min(300, window.width / 3)
+        width: Math.max(300, window.width / 3)
         height: window.height - window.header.height
         y: window.header.height
     }

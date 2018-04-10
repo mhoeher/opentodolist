@@ -42,7 +42,7 @@ RowLayout {
     }
 
     ToolButton {
-        symbol: Icons.faCalendarTimes
+        symbol: Icons.faCalendarMinus
         font.family: Fonts.icons
         onClicked: root.item.dueTo = new Date("")
         visible: d.validDate

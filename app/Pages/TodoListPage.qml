@@ -26,6 +26,10 @@ Page {
         renameItemDialog.renameItem(item);
     }
 
+    function find() {
+        filterBar.edit.forceActiveFocus()
+    }
+
     title: OTL.Application.htmlToPlainText(Markdown.format(item.title))
 
     QtObject {
@@ -56,7 +60,10 @@ Page {
         }
     }
 
-    ItemCreatedNotification { id: itemCreatedNotification }
+    ItemCreatedNotification {
+        id: itemCreatedNotification
+        onOpen: d.openTodo(item)
+    }
 
     RenameItemDialog {
         id: renameItemDialog
@@ -91,6 +98,14 @@ Page {
         }
     }
 
+    TextInputBar {
+        id: filterBar
+        placeholderText: qsTr("Search term 1, search term 2, ...")
+        symbol: Icons.faTimes
+        showWhenNonEmpty: true
+        closeOnButtonClick: true
+    }
+
     OTL.ItemsModel {
         id: todos
         container: page.library.todos
@@ -101,6 +116,7 @@ Page {
         sourceModel: todos
         todoList: page.item.uid
         onlyUndone: true
+        searchString: filterBar.text
     }
 
     OTL.ItemsSortFilterModel {
@@ -108,6 +124,7 @@ Page {
         sourceModel: todos
         todoList: page.item.uid
         onlyDone: true
+        searchString: filterBar.text
     }
 
     Pane {

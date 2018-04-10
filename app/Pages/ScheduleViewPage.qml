@@ -161,6 +161,15 @@ Page {
                         }
                     }
                     font.family: Fonts.icons
+                    onClicked: {
+                        switch (object.itemType) {
+                        case "Todo":
+                            object.done = !object.done;
+                            break;
+                        default:
+                            break;
+                        }
+                    }
                 }
                 Label {
                     Layout.fillWidth: true

@@ -81,10 +81,35 @@ Column {
                             onClicked: object.done = !object.done
                             background: Item {}
                         }
-                        Label {
+                        Column {
                             Layout.fillWidth: true
                             anchors.verticalCenter: parent.verticalCenter
-                            text: Markdown.format(object.title)
+
+                            Label {
+                                text: Markdown.format(object.title)
+                                width: parent.width
+                            }
+                            Item {
+                                height: 10
+                                width: 1
+                                visible: object.dueTo !== undefined &&
+                                         DateUtils.validDate(object.dueTo)
+                            }
+                            RowLayout {
+                                width: parent.width
+                                visible: object.dueTo !== undefined &&
+                                         DateUtils.validDate(object.dueTo)
+                                opacity: 0.5
+
+                                Label {
+                                    font.family: Fonts.icons
+                                    text: Icons.faCalendarAlt
+                                }
+                                Label {
+                                    Layout.fillWidth: true
+                                    text: DateUtils.format(object.dueTo)
+                                }
+                            }
                         }
                         ToolButton {
                             visible: swipeDelegate.hovered
@@ -115,6 +140,15 @@ Column {
                         }
                     }
                     onClicked: root.todoClicked(object)
+
+                    Rectangle {
+                        visible: object.percentageDone !== undefined &&
+                                 object.percentageDone > 0
+                        height: background.height
+                        width: parent.width * object.percentageDone / 100.0
+                        color: "black"
+                        opacity: 0.1
+                    }
                 }
             }
         }

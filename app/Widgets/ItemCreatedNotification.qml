@@ -24,6 +24,7 @@ Pane {
     signal open(OTL.Item item)
 
     backgroundColor: info
+    z: 11
     anchors {
         left: parent.left
         right: parent.right
