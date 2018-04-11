@@ -85,6 +85,7 @@ ApplicationWindow {
                 id: pageTitleLabel
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
+                wrapMode: Text.NoWrap
 
                 elide: Text.ElideRight
 

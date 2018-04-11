@@ -13,6 +13,7 @@ Item {
         if (count === 1 && result.startsWith("<p>") &&
                 result.endsWith("</p>")) {
             result = result.substring(3, result.length - 4);
+            result = "<span></span>" + result;
         }
         return result;
     }

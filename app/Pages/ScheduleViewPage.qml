@@ -21,6 +21,8 @@ Page {
 
     signal openPage(var component, var properties)
 
+    title: library.name
+
     Component {
         id: notePage
         NotePage { library: page.library }
