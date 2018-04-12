@@ -4,9 +4,16 @@ import QtQuick.Controls 2.3
 Label {
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
-    onLinkActivated: {
-        if (/^(http|https|file):\/\/.*$/.exec(link)) {
-            Qt.openUrlExternally(link)
-        }
+    function linkHandler(link) {
+        Qt.openUrlExternally(link);
+    }
+
+    onLinkActivated: linkHandler(link)
+
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.NoButton
+        cursorShape: parent.hoveredLink !== "" ? Qt.PointingHandCursor :
+                                                 Qt.ArrowCursor
     }
 }

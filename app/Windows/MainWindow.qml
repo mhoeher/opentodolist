@@ -391,13 +391,6 @@ ApplicationWindow {
         }
     }
 
-    MouseArea {
-        // Used to prevent interaction with the stack while we load
-        // a page.
-        anchors.fill: stackView
-        enabled: stackView.busy
-    }
-
     UpdateNotificationBar {}
 
     Component {
