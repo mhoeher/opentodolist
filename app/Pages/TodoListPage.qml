@@ -72,10 +72,12 @@ Page {
     CenteredDialog {
         id: newTodoDialog
         title: qsTr("Add Todo")
+        width: idealDialogWidth
 
         TextField {
             id: newTodoEdit
 
+            width: newTodoDialog.availableWidth
             Keys.onEnterPressed: newTodoDialog.accept()
             Keys.onReturnPressed: newTodoDialog.accept()
         }

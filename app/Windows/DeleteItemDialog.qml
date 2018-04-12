@@ -16,7 +16,7 @@ CenteredDialog {
 
     standardButtons: Dialog.Ok | Dialog.Cancel
     title: qsTr("Delete Item?")
-    width: 400
+    width: idealDialogWidth
 
     onAccepted: {
         d.item.deleteItem();

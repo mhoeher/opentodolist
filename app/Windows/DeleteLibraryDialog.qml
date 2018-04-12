@@ -16,7 +16,7 @@ CenteredDialog {
 
     standardButtons: Dialog.Ok | Dialog.Cancel
     title: qsTr("Delete Library?")
-    width: 400
+    width: idealDialogWidth
 
     onAccepted: {
         var library = d.library;

@@ -19,6 +19,7 @@ CenteredDialog {
     
     standardButtons: Dialog.Ok | Dialog.Cancel
     title: qsTr("Rename Item")
+    width: idealDialogWidth
     
     onAccepted: {
         if (edit.text !== "") {
@@ -30,5 +31,6 @@ CenteredDialog {
         id: edit
         placeholderText: qsTr("Enter item title...")
         onAccepted: dialog.accept()
+        width: dialog.availableWidth
     }
 }

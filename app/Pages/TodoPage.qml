@@ -46,10 +46,12 @@ Page {
     CenteredDialog {
         id: newTaskDialog
         title: qsTr("Add Task")
+        width: idealDialogWidth
 
         TextField {
             id: newTaskEdit
 
+            width: newTaskDialog.availableWidth
             Keys.onEnterPressed: newTaskDialog.accept()
             Keys.onReturnPressed: newTaskDialog.accept()
         }
