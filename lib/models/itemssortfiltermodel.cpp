@@ -255,13 +255,13 @@ bool ItemsSortFilterModel::itemMatchesFilter(Item *item) const
                                           QString::SkipEmptyParts);
         auto itemMatches = [=](Item *item) {
             for (auto word : words) {
-                if (item->title().indexOf(word, Qt::CaseInsensitive) >= 0) {
+                if (item->title().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
                     return true;
                 }
                 auto complexItem = dynamic_cast<ComplexItem*>(item);
                 if (complexItem != nullptr) {
                     if (complexItem->notes().indexOf(
-                                word, Qt::CaseInsensitive) >= 0) {
+                                word, 0, Qt::CaseInsensitive) >= 0) {
                         return true;
                     }
                 }
