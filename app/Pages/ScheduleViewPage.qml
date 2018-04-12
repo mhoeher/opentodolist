@@ -123,10 +123,12 @@ Page {
         Loader {
             asynchronous: true
             width: parent.width
-            height: childrenRect.height
+            height: itemDelegateInner.height
             clip: true
 
             ItemDelegate {
+                id: itemDelegateInner
+
                 width: parent.width
                 onClicked: {
                     switch (object.itemType) {
@@ -198,7 +200,8 @@ Page {
     }
 
     BackgroundLabel {
-        text: qsTr("Nothing scheduled... Add a due date to items for them to " +
+        text: Markdown.stylesheet +
+              qsTr("Nothing scheduled... Add a due date to items for them to " +
                    "appear here.")
         visible: !d.hasScheduledItems
     }

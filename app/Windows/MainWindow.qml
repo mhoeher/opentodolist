@@ -7,6 +7,7 @@ import "../Fonts"
 import "../Widgets"
 import "../Menues"
 import "../Pages"
+import "../Utils"
 
 import OpenTodoList 1.0 as OTL
 
@@ -328,7 +329,8 @@ ApplicationWindow {
         }
 
         BackgroundLabel {
-            text: qsTr("Start by <a href='#newLibrary'>creating a new " +
+            text: Markdown.stylesheet +
+                  qsTr("Start by <a href='#newLibrary'>creating a new " +
                        "library</a>. Libraries are used to store " +
                        "different kinds of items like notes, todo lists " +
                        "and images.")

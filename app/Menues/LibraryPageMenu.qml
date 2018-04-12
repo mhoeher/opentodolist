@@ -23,7 +23,7 @@ Menu {
                 if (key !== "") {
                     sync.secret = OTL.Application.secretForSynchronizer(sync);
                 }
-                var url = Qt.resolvedUrl(sync.type + "SettingsPage.qml");
+                var url = Qt.resolvedUrl("../Pages/" + sync.type + "SettingsPage.qml");
                 menu.openPage(url, {"synchronizer": sync});
             }
         }

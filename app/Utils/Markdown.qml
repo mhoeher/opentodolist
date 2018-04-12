@@ -7,6 +7,15 @@ import OpenTodoList 1.0 as OTL
 import "showdownjs/showdown.js" as ShowdownJS
 
 Item {
+    readonly property string stylesheet: "
+    <style type='text/css'>
+        a, a:visited {
+            color: %1;
+            text-decoration: none;
+        }
+    </style>
+    ".arg(Colors.color(Colors.teal))
+
     function format(markdown) {
         var result = d.markdownConverter.makeHtml(markdown);
         var count = (result.match(/<p>/g) || []).length;
@@ -15,7 +24,7 @@ Item {
             result = result.substring(3, result.length - 4);
             result = "<span></span>" + result;
         }
-        return result;
+        return stylesheet + result;
     }
 
     function strip(markdown) {

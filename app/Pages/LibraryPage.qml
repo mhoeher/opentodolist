@@ -291,7 +291,8 @@ Page {
 
     BackgroundLabel {
         visible: itemsModel.count === 0
-        text: qsTr("Nothing here yet! Start by adding a " +
+        text: Markdown.stylesheet +
+              qsTr("Nothing here yet! Start by adding a " +
                    "<a href='#note'>note</a>, " +
                    "<a href='#todolist'>todo list</a> or " +
                    "<a href='#image'>image</a>.")

@@ -9,6 +9,7 @@ Label {
     }
 
     onLinkActivated: linkHandler(link)
+    textFormat: Text.RichText
 
     MouseArea {
         anchors.fill: parent

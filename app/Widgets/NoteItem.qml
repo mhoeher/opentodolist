@@ -55,6 +55,7 @@ Item {
                 anchors.fill: parent
                 text: Markdown.format(item.libraryItem.notes)
                 elide: Text.ElideRight
+                clip: true
             }
         }
     }

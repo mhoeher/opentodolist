@@ -58,6 +58,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 interactive: false
+                clip: true
                 model: OTL.ItemsSortFilterModel {
                     sourceModel: OTL.ItemsModel {
                         container: item.library.todos
