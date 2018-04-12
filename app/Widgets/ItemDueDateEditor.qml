@@ -33,19 +33,19 @@ RowLayout {
     }
 
     ToolButton {
+        symbol: Icons.faCalendarMinus
+        font.family: Fonts.icons
+        onClicked: root.item.dueTo = new Date("")
+        visible: d.validDate
+    }
+
+    ToolButton {
         symbol: Icons.faCalendarPlus
         font.family: Fonts.icons
         onClicked: {
             dialog.selectedDate = root.item.dueTo;
             dialog.open();
         }
-    }
-
-    ToolButton {
-        symbol: Icons.faCalendarMinus
-        font.family: Fonts.icons
-        onClicked: root.item.dueTo = new Date("")
-        visible: d.validDate
     }
 
     DateSelectionDialog {
