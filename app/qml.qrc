@@ -102,5 +102,6 @@
         <file>Components/RadioButton.qml</file>
         <file>Components/BusyIndicator.qml</file>
         <file>Pages/ScheduleViewPage.qml</file>
+        <file>Widgets/ProgressItemOverlay.qml</file>
     </qresource>
 </RCC>

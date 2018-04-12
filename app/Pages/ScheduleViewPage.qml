@@ -120,62 +120,74 @@ Page {
     Component {
         id: itemDelegate
 
-        ItemDelegate {
+        Loader {
+            asynchronous: true
             width: parent.width
-            onClicked: {
-                switch (object.itemType) {
-                case "Note":
-                    page.openPage(notePage, { item: object });
-                    break;
-                case "TodoList":
-                    page.openPage(todoListPage, { item: object });
-                    break;
-                case "Todo":
-                    page.openPage(todoPage, { item: object });
-                    break;
-                case "Image":
-                    page.openPage(imagePage, { item: object });
-                    break;
-                default:
-                    console.warn("Unhandled item type: " + object.itemType);
-                    break;
-                }
-            }
+            height: childrenRect.height
+            clip: true
 
-            contentItem: RowLayout {
+            ItemDelegate {
                 width: parent.width
-
-                ToolButton {
-                    background: Item {}
-                    symbol: {
-                        switch (object.itemType) {
-                        case "Todo":
-                            return object.done ? Icons.faCheckCircle:
-                                                 Icons.faCircle;
-                        case "TodoList":
-                            return Icons.faListAlt;
-                        case "Note":
-                            return Icons.faStickyNote;
-                        case "Image":
-                            return Icons.faImage;
-                        default:
-                            return Icons.faQuestionCircle
-                        }
-                    }
-                    font.family: Fonts.icons
-                    onClicked: {
-                        switch (object.itemType) {
-                        case "Todo":
-                            object.done = !object.done;
-                            break;
-                        default:
-                            break;
-                        }
+                onClicked: {
+                    switch (object.itemType) {
+                    case "Note":
+                        page.openPage(notePage, { item: object });
+                        break;
+                    case "TodoList":
+                        page.openPage(todoListPage, { item: object });
+                        break;
+                    case "Todo":
+                        page.openPage(todoPage, { item: object });
+                        break;
+                    case "Image":
+                        page.openPage(imagePage, { item: object });
+                        break;
+                    default:
+                        console.warn("Unhandled item type: " + object.itemType);
+                        break;
                     }
                 }
-                Label {
-                    Layout.fillWidth: true
-                    text: Markdown.format(object.title)
+
+                contentItem: RowLayout {
+                    width: parent.width
+
+                    ToolButton {
+                        background: Item {}
+                        symbol: {
+                            switch (object.itemType) {
+                            case "Todo":
+                                return object.done ? Icons.faCheckCircle:
+                                                     Icons.faCircle;
+                            case "TodoList":
+                                return Icons.faListAlt;
+                            case "Note":
+                                return Icons.faStickyNote;
+                            case "Image":
+                                return Icons.faImage;
+                            default:
+                                return Icons.faQuestionCircle
+                            }
+                        }
+                        font.family: Fonts.icons
+                        onClicked: {
+                            switch (object.itemType) {
+                            case "Todo":
+                                object.done = !object.done;
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }
+                    Label {
+                        Layout.fillWidth: true
+                        text: Markdown.format(object.title)
+                    }
+                }
+
+                ProgressItemOverlay {
+                    item: object
+                    height: background.height
                 }
             }
         }

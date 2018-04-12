@@ -56,6 +56,9 @@ Item {
     }
 
     function itemColor(item) {
+        if (!item || item.color === undefined) {
+            return "#00000000";
+        }
         switch (item.color) {
         case OTL.TopLevelItem.White:
             return Material.Grey;

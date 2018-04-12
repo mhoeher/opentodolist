@@ -105,4 +105,5 @@ DISTFILES += \
     Utils/DateUtils.qml \
     Widgets/ItemNotesEditor.qml \
     Widgets/ReorderableListViewOverlay.qml \
-    Components/DialogButtonBox.qml
+    Components/DialogButtonBox.qml \
+    Widgets/ProgressItemOverlay.qml

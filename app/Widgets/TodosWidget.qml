@@ -141,13 +141,9 @@ Column {
                     }
                     onClicked: root.todoClicked(object)
 
-                    Rectangle {
-                        visible: object.percentageDone !== undefined &&
-                                 object.percentageDone > 0
+                    ProgressItemOverlay {
+                        item: object
                         height: background.height
-                        width: parent.width * object.percentageDone / 100.0
-                        color: "black"
-                        opacity: 0.1
                     }
                 }
             }
