@@ -54,6 +54,8 @@ Page {
             }
 
             Label {
+                function linkHandler(link) {}
+
                 text: qsTr("OpenTodoList is released under the terms of the GNU General Public " +
                            "License version 3 or (at your choice) any later version. You can find a " +
                            "copy of the license below. Additionally, several libraries and resources " +

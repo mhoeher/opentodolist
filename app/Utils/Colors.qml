@@ -30,6 +30,7 @@ Item {
     // Pre-defined colors for specific "roles":
     readonly property int positiveColor: green
     readonly property int negativeColor: red
+    readonly property int linkColor: teal
 
     // Pre-defined shades:
     readonly property int shade50: Material.Shade50

@@ -23,7 +23,7 @@ CenteredDialog {
     
     onAccepted: {
         if (edit.text !== "") {
-            __item.title = edit.text;
+            __item.title = edit.displayText;
         }
     }
     

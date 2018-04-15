@@ -30,7 +30,6 @@ Page {
 
         delegate: RowLayout {
             width: view.width
-            spacing: Globals.defaultMargin
             ToolButton {
                 symbol: {
                     "Debug": Icons.faInfo,

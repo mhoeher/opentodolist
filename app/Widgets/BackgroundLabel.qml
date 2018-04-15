@@ -12,4 +12,5 @@ Label {
     opacity: 0.7
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
+    textFormat: Text.RichText
 }

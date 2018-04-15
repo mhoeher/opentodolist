@@ -61,7 +61,7 @@ Page {
         onAccepted: {
             if (newTaskEdit.text !== "") {
                 var task = page.item.addTask();
-                task.title = newTaskEdit.text;
+                task.title = newTaskEdit.displayText;
             }
             newTaskEdit.text = "";
         }
@@ -95,7 +95,12 @@ Page {
 
         backgroundColor: Colors.color(Colors.itemColor(page.todoList),
                                       Colors.shade50)
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: filterBar.bottom
+            bottom: parent.bottom
+        }
 
         ScrollView {
             id: scrollView

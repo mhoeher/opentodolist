@@ -14,7 +14,7 @@ Item {
             text-decoration: none;
         }
     </style>
-    ".arg(Colors.color(Colors.teal))
+    ".arg(Colors.color(Colors.linkColor))
 
     function format(markdown) {
         var result = d.markdownConverter.makeHtml(markdown);
@@ -22,9 +22,8 @@ Item {
         if (count === 1 && result.startsWith("<p>") &&
                 result.endsWith("</p>")) {
             result = result.substring(3, result.length - 4);
-            result = "<span></span>" + result;
         }
-        return stylesheet + result;
+        return result;
     }
 
     function strip(markdown) {

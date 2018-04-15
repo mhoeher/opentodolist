@@ -30,6 +30,8 @@ Pane {
     width: parent.width
     y: __visible ? 0 : -height
     z: 1
+    elevation: 6
+    visible: y > -height
     
     Behavior on y { SmoothedAnimation { duration: 500 } }
 

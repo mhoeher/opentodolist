@@ -1,6 +1,8 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
+import "../Utils"
+
 Label {
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
@@ -9,7 +11,8 @@ Label {
     }
 
     onLinkActivated: linkHandler(link)
-    textFormat: Text.RichText
+    textFormat: Text.StyledText
+    linkColor: Colors.color(Colors.linkColor)
 
     MouseArea {
         anchors.fill: parent

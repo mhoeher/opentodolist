@@ -17,10 +17,11 @@ CenteredDialog {
 
     standardButtons: Dialog.Ok | Dialog.Cancel
     title: qsTr("Rename Library")
+    width: idealDialogWidth
 
     onAccepted: {
         if (edit.text !== "") {
-            d.library.name = edit.text;
+            d.library.name = edit.displayText;
         }
     }
 
@@ -34,5 +35,6 @@ CenteredDialog {
         id: edit
         placeholderText: qsTr("Enter library title...")
         onAccepted: dialog.accept()
+        width: parent.width
     }
 }

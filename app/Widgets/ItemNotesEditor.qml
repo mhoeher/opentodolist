@@ -49,7 +49,8 @@ Column {
 
             Label {
                 width: parent.width
-                text: Markdown.format(page.item.notes)
+                textFormat: Text.RichText
+                text: Markdown.stylesheet + Markdown.format(page.item.notes)
             }
         }
     }

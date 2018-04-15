@@ -32,12 +32,14 @@ Item {
             height: titleLabel.height + padding
             backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
                                           Colors.shade100)
+            clip: true
 
             Label {
                 id: titleLabel
                 text: Markdown.format(item.libraryItem.title)
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
+                width: parent.width
             }
         }
 

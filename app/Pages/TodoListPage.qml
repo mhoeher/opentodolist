@@ -87,7 +87,7 @@ Page {
         onAccepted: {
             if (newTodoEdit.text !== "") {
                 var todo = page.item.addTodo();
-                todo.title = newTodoEdit.text;
+                todo.title = newTodoEdit.displayText;
                 itemCreatedNotification.show(todo);
             }
             newTodoEdit.text = "";
@@ -98,14 +98,6 @@ Page {
         onOpened: {
             newTodoEdit.forceActiveFocus()
         }
-    }
-
-    TextInputBar {
-        id: filterBar
-        placeholderText: qsTr("Search term 1, search term 2, ...")
-        symbol: Icons.faTimes
-        showWhenNonEmpty: true
-        closeOnButtonClick: true
     }
 
     OTL.ItemsModel {
@@ -129,11 +121,25 @@ Page {
         searchString: filterBar.text
     }
 
+    TextInputBar {
+        id: filterBar
+        placeholderText: qsTr("Search term 1, search term 2, ...")
+        symbol: Icons.faTimes
+        showWhenNonEmpty: true
+        closeOnButtonClick: true
+    }
+
     Pane {
         id: background
 
         backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: filterBar.bottom
+            bottom: parent.bottom
+        }
+
 
         ScrollView {
             id: scrollView

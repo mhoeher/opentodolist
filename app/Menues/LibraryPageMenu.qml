@@ -44,7 +44,7 @@ Menu {
         text: qsTr("Sync Log")
         enabled: menu.library.hasSynchronizer
         onClicked: menu.openPage(
-                       Qt.resolvedUrl("LogViewPage.qml"),
+                       Qt.resolvedUrl("../Pages/LogViewPage.qml"),
                        {"log": menu.library.syncLog()})
     }
 }

@@ -39,6 +39,7 @@ Item {
                 text: Markdown.format(item.libraryItem.title)
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
+                width: parent.width
             }
         }
 
