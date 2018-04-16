@@ -12,6 +12,7 @@
 #include <QProcess>
 #include <QScopedPointer>
 #include <QStandardPaths>
+#include <QTextDocument>
 #include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
@@ -307,6 +308,21 @@ QUrl Application::cleanPath(const QUrl &url) const
     path = QDir::cleanPath(path);
     return QUrl::fromLocalFile(path);
 }
+
+
+/**
+ * @brief Converts HTML into plain text.
+ *
+ * This function gets an @p html string as input and returns the text converted
+ * to plain text.
+ */
+QString Application::htmlToPlainText(const QString &html) const
+{
+    QTextDocument doc;
+    doc.setHtml(html);
+    return doc.toPlainText();
+}
+
 
 /**
  * @brief Check if a file called @p filename exists.

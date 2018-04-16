@@ -36,6 +36,9 @@ endif()
 
 add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
 
+configure_file(Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
+set_target_properties(OpenTodoList PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
+
 target_link_libraries(
     OpenTodoList
 

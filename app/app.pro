@@ -37,14 +37,10 @@ ANDROID_APP_NAME = Open Todo List
 mac:ICON = res/OpenTodoList.icns
 win32:RC_FILE = OpenTodoList.rc
 
-OTHER_FILES += \
-    android/AndroidManifest.xml
-
-
 target.path = $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN
 INSTALLS += target
 
-DISTFILES += \
+OTHER_FILES += \
     android/AndroidManifest.xml \
     android/gradlew \
     android/android.iml \
@@ -52,8 +48,7 @@ DISTFILES += \
     android/gradlew.bat \
     android/gradle.properties \
     android/local.properties \
-    OpenTodoList/UI/SyncIndicatorBar.qml \
-    OpenTodoList/UI/LibraryPageMenu.qml
+
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     OPENSSL_PREBUILD_DIR = \
@@ -87,3 +82,28 @@ lupdate_only {
 TRANSLATIONS += \
     translations/opentodolist_en.ts \
     translations/opentodolist_de.ts
+
+DISTFILES += \
+    Utils/Colors.qml \
+    Widgets/Attachments.qml \
+    Widgets/BackgroundLabel.qml \
+    Widgets/BackgroundSymbol.qml \
+    Widgets/ImageItem.qml \
+    Widgets/ItemCreatedNotification.qml \
+    Widgets/ItemDueDateEditor.qml \
+    Widgets/LibrariesSideBar.qml \
+    Widgets/LibrarySecretsMissingNotificationBar.qml \
+    Widgets/LibrarySideBarButton.qml \
+    Widgets/NewTopLevelItemButton.qml \
+    Widgets/NoteItem.qml \
+    Widgets/SyncErrorNotificationBar.qml \
+    Widgets/SyncIndicatorBar.qml \
+    Widgets/TagsEditor.qml \
+    Widgets/TextInputBar.qml \
+    Widgets/TodoListItem.qml \
+    Widgets/UpdateNotificationBar.qml \
+    Utils/DateUtils.qml \
+    Widgets/ItemNotesEditor.qml \
+    Widgets/ReorderableListViewOverlay.qml \
+    Components/DialogButtonBox.qml \
+    Widgets/ProgressItemOverlay.qml
