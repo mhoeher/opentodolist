@@ -38,7 +38,7 @@ public:
     Q_ENUM(WebDAVServerType)
 
     explicit WebDAVSynchronizer(QObject* parent = nullptr);
-    virtual ~WebDAVSynchronizer();
+    ~WebDAVSynchronizer() override;
 
     QUrl baseUrl() const;
 

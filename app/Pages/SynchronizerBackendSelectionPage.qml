@@ -76,8 +76,6 @@ Page {
         ListView {
             id: grid
 
-            property int columns: Math.max(width / (Globals.defaultMargin * 20), 1)
-
             anchors.fill: parent
             ScrollBar.vertical: ScrollBar {}
             model: backends
