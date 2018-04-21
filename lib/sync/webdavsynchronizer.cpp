@@ -71,7 +71,6 @@ QUrl WebDAVSynchronizer::baseUrl() const
     }
     default:
         return m_url;
-        break;
     }
 }
 
@@ -82,7 +81,8 @@ void WebDAVSynchronizer::validate()
     auto reply = dav->listDirectoryRequest("/");
     reply->setParent(this);
     connect(reply, &QNetworkReply::finished, [=]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        auto code = reply->attribute(
+                    QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (code == HTTPStatusCode::WebDAVMultiStatus) {
             endValidation(true);
         } else {

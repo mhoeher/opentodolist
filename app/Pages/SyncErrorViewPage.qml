@@ -19,7 +19,7 @@ Page {
 
         delegate: RowLayout {
             width: view.width
-            spacing: Globals.defaultMargin
+            spacing: 2
             ToolButton {
                 symbol: Icons.faWarning
             }

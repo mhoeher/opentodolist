@@ -82,7 +82,7 @@ public:
     static const QString LogFileName;
     static const int MaxLogEntries = 1000;
 
-    explicit Synchronizer(QObject *parent = 0);
+    explicit Synchronizer(QObject *parent = nullptr);
     virtual ~Synchronizer();
 
     bool validating() const;

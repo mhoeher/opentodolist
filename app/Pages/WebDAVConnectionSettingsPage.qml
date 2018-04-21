@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Utils"
 
 
 Page {
@@ -26,9 +27,11 @@ Page {
                     synchronizer.disableCertificateCheck = ignoreSslErrors.checked;
                     page.connectionDataAvailable(synchronizer);
                 } else {
+                    d.validated = false;
                     dav.validate();
                 }
             }
+            enabled: !dav.validating
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
         }
         Button {
@@ -46,6 +49,22 @@ Page {
         username: username.text
         password: password.text
         disableCertificateCheck: ignoreSslErrors.checked
+
+        onValidatingChanged: {
+            if (!validating) {
+                d.validated = true;
+            }
+        }
+        onUrlChanged: d.validated = false
+        onUsernameChanged: d.validated = false
+        onPasswordChanged: d.validated = false
+        onDisableCertificateCheckChanged: d.validated = false
+    }
+
+    QtObject {
+        id: d
+
+        property bool validated: false
     }
 
     Pane {
@@ -102,6 +121,16 @@ Page {
                         id: ignoreSslErrors
                         text: qsTr("Ignore SSL Errors")
                         checked: false
+                    }
+
+                    Label {
+                        id: validationError
+                        text: qsTr("Failed to connect to the server. Please " +
+                                   "check your user name, password and the " +
+                                   "server address and retry.")
+                        color: Colors.color(Colors.red)
+                        width: parent.width
+                        visible: d.validated && !dav.valid
                     }
 
                     BusyIndicator {

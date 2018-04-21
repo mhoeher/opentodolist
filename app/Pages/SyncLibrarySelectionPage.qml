@@ -88,7 +88,6 @@ Page {
 
                     TextField {
                         id: newLibraryName
-                        x: Globals.defaultMargin
                         visible: createNewLibrary.checked
                         Layout.fillWidth: true
                     }
