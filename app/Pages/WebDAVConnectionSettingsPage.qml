@@ -135,6 +135,7 @@ Page {
 
                     BusyIndicator {
                         visible: dav.validating
+                        running: visible
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }

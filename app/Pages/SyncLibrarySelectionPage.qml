@@ -101,6 +101,7 @@ Page {
                     BusyIndicator {
                         Layout.alignment: Qt.AlignHCenter
                         visible: dav.findingLibraries
+                        running: visible
                     }
 
                     Repeater {
