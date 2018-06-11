@@ -734,6 +734,7 @@ bool WebDAVClient::skipEntry(
         default:
             break;
         }
+        break;
     case Upload:
         switch (entry.localType) {
         case Directory:
@@ -743,6 +744,7 @@ bool WebDAVClient::skipEntry(
         default:
             break;
         }
+        break;
     default:
         break;
     }

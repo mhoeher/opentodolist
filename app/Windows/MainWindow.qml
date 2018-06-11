@@ -285,7 +285,6 @@ ApplicationWindow {
         close.accepted = true;
     }
 
-
     LibrariesSideBar {
         id: librariesSideBar
 
@@ -296,9 +295,9 @@ ApplicationWindow {
         helpVisible: helpPage !== null
         anchors.fill: parent
         compact: window.width < 600
-        onCurrentLibraryChanged: viewSelectedLibrary()
-        onCurrentTagChanged: viewSelectedLibrary()
-        onSpecialViewChanged: viewSelectedLibrary()
+        onCurrentLibraryChanged: changeLibraryTimer.restart()
+        onCurrentTagChanged: changeLibraryTimer.restart()
+        onSpecialViewChanged: changeLibraryTimer.restart()
         onNewLibrary: {
             stackView.clear();
             stackView.push(newSyncedLibraryPage);
@@ -318,6 +317,13 @@ ApplicationWindow {
         }
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
+
+        Timer {
+            id: changeLibraryTimer
+            interval: 100
+            repeat: false
+            onTriggered: librariesSideBar.viewSelectedLibrary()
+        }
     }
 
     Pane {

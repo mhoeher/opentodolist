@@ -75,11 +75,15 @@ CenteredDialog {
                                   d.item.itemType);
                     return;
                 }
-                var title = Markdown.format(d.item.title);
-                title = OTL.Application.htmlToPlainText(title);
-                return msg.arg(title);
+                return msg.arg(converter.text);
             }
             return "";
+        }
+
+        MarkdownConverter {
+            id: converter
+            markdown: d.item ? d.item.title : ""
+            strip: true
         }
     }
 }

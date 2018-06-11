@@ -43,6 +43,11 @@ Page {
         TodoPage { library: page.library }
     }
 
+    ItemDelegate {
+        id: sampleItemDelegate
+        visible: false
+    }
+
     Timer {
         interval: 1000 * 60 * 60
         repeat: true
@@ -109,11 +114,6 @@ Page {
 
             upcomingTodos.minDueDate = endOfNextWeek;
             upcomingTopLevelItems.minDueDate = endOfNextWeek;
-
-            console.debug("Start of today: " + startOfToday);
-            console.debug("End of today: " + endOfToday);
-            console.debug("End of this week: " + endOfWeek);
-            console.debug("End of next week: " + endOfNextWeek);
         }
     }
 
@@ -124,12 +124,12 @@ Page {
             asynchronous: true
             width: parent.width
             height: itemDelegateInner.height
-            clip: true
 
             ItemDelegate {
                 id: itemDelegateInner
 
                 width: parent.width
+
                 onClicked: {
                     switch (object.itemType) {
                     case "Note":
@@ -150,10 +150,28 @@ Page {
                     }
                 }
 
-                contentItem: RowLayout {
+                contentItem: Item {
+                    id: cntItem
+
+                    function updateImplicitHeight() {
+                        updateImplicitHeightTimer.restart();
+                    }
+
                     width: parent.width
+                    implicitHeight: sampleItemDelegate.implicitHeight
+
+                    Timer {
+                        id: updateImplicitHeightTimer
+                        interval: 100
+                        repeat: false
+                        onTriggered: cntItem.implicitHeight = Math.max(
+                                         itemSymbol.height,
+                                         itemTitle.contentHeight)
+                    }
 
                     ToolButton {
+                        id: itemSymbol
+
                         background: Item {}
                         symbol: {
                             switch (object.itemType) {
@@ -180,16 +198,28 @@ Page {
                                 break;
                             }
                         }
+                        anchors {
+                            left: parent.left
+                            verticalCenter: parent.verticalCenter
+                        }
+                        onHeightChanged: cntItem.updateImplicitHeight()
                     }
-                    Label {
-                        Layout.fillWidth: true
-                        text: Markdown.format(object.title)
+                    MarkdownLabel {
+                        id: itemTitle
+
+                        markdown: object.title
+                        anchors {
+                            left: itemSymbol.right
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                        onContentHeightChanged: cntItem.updateImplicitHeight()
                     }
                 }
 
                 ProgressItemOverlay {
                     item: object
-                    height: background.height
+                    height: itemDelegateInner.height
                 }
             }
         }

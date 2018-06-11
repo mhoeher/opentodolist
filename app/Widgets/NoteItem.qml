@@ -34,9 +34,9 @@ Item {
                                           Colors.shade100)
             clip: true
 
-            Label {
+            MarkdownLabel{
                 id: titleLabel
-                text: Markdown.format(item.libraryItem.title)
+                markdown: item.libraryItem.title
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 width: parent.width
@@ -53,9 +53,9 @@ Item {
             backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
                                           Colors.shade50)
 
-            Label {
+            MarkdownLabel {
                 anchors.fill: parent
-                text: Markdown.format(item.libraryItem.notes)
+                markdown: item.libraryItem.notes
                 elide: Text.ElideRight
                 clip: true
             }
