@@ -56,7 +56,12 @@ Pane {
 
         property bool shown: false
         property OTL.Item item: null
-        property string itemName: item ? Markdown.format(item.title) : ""
+        property string itemName: markdownConverter.text
+    }
+
+    MarkdownConverter {
+        id: markdownConverter
+        markdown: d.item ? d.item.title : ""
     }
 
     Timer {
@@ -76,8 +81,7 @@ Pane {
         }
 
         Label {
-            text: qsTr("<strong>%1</strong> has been created.").arg(
-                      Markdown.format(d.itemName))
+            text: qsTr("<strong>%1</strong> has been created.").arg(d.itemName)
             Layout.fillWidth: true
             elide: Text.ElideRight
         }

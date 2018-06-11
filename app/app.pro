@@ -106,4 +106,5 @@ DISTFILES += \
     Widgets/ItemNotesEditor.qml \
     Widgets/ReorderableListViewOverlay.qml \
     Components/DialogButtonBox.qml \
-    Widgets/ProgressItemOverlay.qml
+    Widgets/ProgressItemOverlay.qml \
+    Utils/markdown-formatter-worker.js

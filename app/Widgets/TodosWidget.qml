@@ -80,8 +80,8 @@ Column {
                         Layout.fillWidth: true
                         anchors.verticalCenter: parent.verticalCenter
 
-                        Label {
-                            text: Markdown.format(object.title)
+                        MarkdownLabel {
+                            markdown: object.title
                             width: parent.width
                         }
                         Item {

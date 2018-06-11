@@ -34,9 +34,9 @@ Item {
             backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
                                           Colors.shade100)
 
-            Label {
+            MarkdownLabel {
                 id: titleLabel
-                text: Markdown.format(item.libraryItem.title)
+                markdown: item.libraryItem.title
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 width: parent.width
@@ -73,8 +73,8 @@ Item {
                         font.family: Fonts.icons
                         text: Icons.faCircle
                     }
-                    Label {
-                        text: Markdown.format(object.title)
+                    MarkdownLabel {
+                        markdown: object.title
                         elide: Text.ElideRight
                         Layout.fillWidth: true
                         wrapMode: Text.NoWrap

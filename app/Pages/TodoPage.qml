@@ -30,7 +30,13 @@ Page {
         filterBar.edit.forceActiveFocus()
     }
 
-    title: OTL.Application.htmlToPlainText(Markdown.format(item.title))
+    title: itemTitle.text
+
+    MarkdownConverter {
+        id: itemTitle
+        markdown: item.title
+        strip: true
+    }
 
     DeleteItemDialog {
         id: confirmDeleteDialog

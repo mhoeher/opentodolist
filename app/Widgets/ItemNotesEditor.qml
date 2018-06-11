@@ -47,10 +47,10 @@ Column {
             implicitHeight: height
             onClicked: page.openPage(notesEditor, {"item": item})
 
-            Label {
+            MarkdownLabel {
                 width: parent.width
                 textFormat: Text.RichText
-                text: Markdown.stylesheet + Markdown.format(page.item.notes)
+                markdown: page.item.notes
             }
         }
     }

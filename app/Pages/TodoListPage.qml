@@ -30,7 +30,13 @@ Page {
         filterBar.edit.forceActiveFocus()
     }
 
-    title: OTL.Application.htmlToPlainText(Markdown.format(item.title))
+    title: titleText.text
+
+    MarkdownConverter {
+        id: titleText
+        markdown: item.title
+        strip: true
+    }
 
     QtObject {
         id: d

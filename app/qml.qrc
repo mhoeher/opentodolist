@@ -103,5 +103,8 @@
         <file>Components/BusyIndicator.qml</file>
         <file>Pages/ScheduleViewPage.qml</file>
         <file>Widgets/ProgressItemOverlay.qml</file>
+        <file>Utils/markdown-formatter-worker.js</file>
+        <file>Components/MarkdownConverter.qml</file>
+        <file>Components/MarkdownLabel.qml</file>
     </qresource>
 </RCC>
