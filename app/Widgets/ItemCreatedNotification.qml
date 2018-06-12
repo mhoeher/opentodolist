@@ -50,6 +50,24 @@ Pane {
         }
     }
 
+    RowLayout {
+        id: layout
+        anchors {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+            right: parent.right
+        }
+
+        Label {
+            text: qsTr("<strong>%1</strong> has been created.").arg(d.itemName)
+            Layout.fillWidth: true
+            elide: Text.ElideRight
+        }
+        Button {
+            text: qsTr("Open")
+            onClicked: root.open(d.item)
+        }
+    }
 
     QtObject {
         id: d
@@ -70,24 +88,5 @@ Pane {
         interval: 5000
         repeat: false
         onTriggered: d.shown = false
-    }
-
-    RowLayout {
-        id: layout
-        anchors {
-            verticalCenter: parent.verticalCenter
-            left: parent.left
-            right: parent.right
-        }
-
-        Label {
-            text: qsTr("<strong>%1</strong> has been created.").arg(d.itemName)
-            Layout.fillWidth: true
-            elide: Text.ElideRight
-        }
-        Button {
-            text: qsTr("Open")
-            onClicked: root.open(d.item)
-        }
     }
 }
