@@ -49,6 +49,12 @@ Column {
 
     DeleteItemDialog { id: deleteDialog }
 
+    QtObject {
+        id: d
+
+        property SwipeDelegate openSwipeDelegate: null
+    }
+
     Column {
         x: decorativeIcon.width
         width: parent.width - x
@@ -134,8 +140,23 @@ Column {
                         onClicked: deleteDialog.deleteItem(object)
                     }
                 }
-                onClicked: root.todoClicked(object)
-                onPressAndHold: reorderOverlay.startDrag()
+                onClicked: {
+                    d.openSwipeDelegate = null;
+                    root.todoClicked(object);
+                }
+                onPressAndHold: {
+                    d.openSwipeDelegate = null;
+                    reorderOverlay.startDrag();
+                }
+                swipe.onOpened: d.openSwipeDelegate = swipeDelegate
+
+                Connections {
+                    target: d
+                    onOpenSwipeDelegateChanged: if (d.openSwipeDelegate !==
+                                                        swipeDelegate) {
+                                                    swipeDelegate.swipe.close();
+                                                }
+                }
 
                 ProgressItemOverlay {
                     item: object
