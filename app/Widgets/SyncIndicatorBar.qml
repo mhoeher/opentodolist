@@ -64,7 +64,7 @@ Pane {
                 to: 360
                 duration: 2000
                 loops: Animation.Infinite
-                running: syncIndicatorBar.state === "running"
+                running: syncIndicatorBar.state === "visible"
             }
         }
     }
