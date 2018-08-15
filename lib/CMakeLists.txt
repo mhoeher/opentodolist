@@ -2,6 +2,13 @@
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+if(ANDROID)
+    set(LIB_HEADERS_ANDROID
+        ./utils/android/androidfiledialog.h)
+    set(LIB_SOURCES_ANDROID
+        ./utils/android/androidfiledialog.cpp)
+endif()
+
 
 set(LIB_HEADERS
     ./opentodolistqmlextensionsplugin.h
@@ -31,6 +38,8 @@ set(LIB_HEADERS
     ./datamodel/note.h
     ./datastorage/libraryloader.h
     ./datastorage/itemcontainer.h
+
+    ${LIB_HEADERS_ANDROID}
 )
 
 set(LIB_SOURCES
@@ -61,13 +70,11 @@ set(LIB_SOURCES
     ./datastorage/itemcontainer.cpp
     ./datastorage/libraryloader.cpp
 
+    ${LIB_SOURCES_ANDROID}
+
     # Include SimpleCrypt source:
     ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
 )
-
-# Android specific
-#     ./utils/android/androidfiledialog.h
-#     ./utils/android/androidfiledialog.cpp
 
 
 # Find required Qt libraries

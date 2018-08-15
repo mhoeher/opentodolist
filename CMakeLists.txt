@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.7.0)
 
 project(opentodolist)
 
@@ -6,6 +6,7 @@ project(opentodolist)
 include(cmake/options.cmake)
 include(cmake/version.cmake)
 include(cmake/BuildLinuxAppImage.cmake)
+include(cmake/qt-android-mk-apk.cmake)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -52,11 +53,13 @@ file(GLOB_RECURSE OTHER_FILES
     README.md
     COPYING
     Doxyfile
-    doc/installers-howto.md
+    doc/*
     .gitlab-ci.yml
     bin/*
     templates/*
     ci/*
+    cmake/*
+    app/android/*
 )
 
 add_custom_target(OtherFiles SOURCES ${OTHER_FILES})

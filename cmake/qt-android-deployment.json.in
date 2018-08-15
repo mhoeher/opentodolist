@@ -1,0 +1,17 @@
+{
+ "description": "This file is read by androiddeployqt",
+ "qt": "@QT5_INSTALL_PREFIX@",
+ "sdk": "@ANDROID_SDK_ROOT@",
+ "ndk": "@CMAKE_ANDROID_NDK@",
+ "toolchain-prefix": "@APK_NDK_TOOLCHAIN_PREFIX@",
+ "tool-prefix": "@CMAKE_CXX_ANDROID_TOOLCHAIN_MACHINE@",
+ "toolchain-version": "@CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION@",
+ "ndk-host": "@CMAKE_ANDROID_NDK_TOOLCHAIN_HOST_TAG@",
+ "target-architecture": "@CMAKE_ANDROID_ARCH_ABI@",
+ "application-binary": "@APK_TARGET_OUTPUT_FILENAME@",
+ "android-package": "@APK_PACKAGE_NAME@",
+ "qml-root-path": "@APK_QML_ROOT_PATH@",
+ "sdkBuildToolsRevision": "@APK_SDK_BUILD_TOOLS_VERSION@",
+ "android-package-source-directory": "@APK_ANDROID_EXTRA_FILES@",
+ "android-extra-libs": "@APK_EXTRA_LIBS@"
+}
