@@ -22,7 +22,7 @@ desktop-file-validate templates/appimage/default.desktop
 source /opt/qt510/bin/qt510-env.sh || true
 export QT_QPA_PLATFORM=minimal
 
-mkdir -p build-ubuntu-cmake
+mkdir -p build-ubuntu
 cd build-ubuntu
 
 cmake \
