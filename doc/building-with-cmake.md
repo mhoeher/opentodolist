@@ -50,19 +50,63 @@ to control the build and tweak the configuration of the app:
 | `OPENTODOLIST_OWNCLOUD_TEST_URL` | URL including username and password | The URL of an ownCloud instance. If given, unit tests will be run against this ownCloud instance. |
 
 
-## Known Issues
+## Building for Android
 
-The `cmake` based build is not fully working for Android targets. There is a toolchain
-file included which you can try to use to build the application for Android like this:
+To build for Android, you need to have the Android SDK and NDK set up.
+Then, call `cmake` passing it the required paths to your installations
+plus the Android version and ABI you want to build for.
+
+Examples:
 
 ```bash
-mkdir build-android
-cd build-android
-cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchain-Android.cmake \
+mkdir build
+cd build
+
+# Configure for Android on ARM:
+cmake \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_CXX_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-g++ \
+    -DCMAKE_C_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc \
+    -DCMAKE_PREFIX_PATH:STRING=$QT_ARM_ROOT \
+    -DQT_QMAKE_EXECUTABLE:STRING=$QT_ARM_ROOT/bin/qmake \
+    -DCMAKE_SYSTEM_NAME=Android \
+    -DCMAKE_SYSTEM_VERSION=16 \
+    -DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a \
+    -DCMAKE_ANDROID_STL_TYPE=gnustl_shared \
+    -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
+    -DOPENTODOLIST_ANDROID_EXTRA_LIBS="$EXTRA_LIBS" \
     ..
-make
+
+# Configure for Android on x86:
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_CXX_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-g++ \
+    -DCMAKE_C_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-gcc \
+    -DCMAKE_PREFIX_PATH:STRING=$QT_X86_ROOT \
+    -DQT_QMAKE_EXECUTABLE:STRING=$QT_X86_ROOT/bin/qmake \
+    -DCMAKE_SYSTEM_NAME=Android \
+    -DCMAKE_SYSTEM_VERSION=16 \
+    -DCMAKE_ANDROID_ARCH_ABI=x86 \
+    -DCMAKE_ANDROID_STL_TYPE=gnustl_shared \
+    -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
+    -DOPENTODOLIST_ANDROID_EXTRA_LIBS="$EXTRA_LIBS" \
+    ..
 ```
 
-However, the build is likely to work only for ARMv7 targets. At least the x86 build
-is known to fail.
+**Note:** If you want to the app to be able to connect to servers via
+secure channels (usually HTTPS), you must build OpenSSL for the desired
+Android target first and pass the paths to the created `libcrypto.so` and
+`libssl.so` - separated via a comma - via the
+`OPENTODOLIST_ANDROID_EXTRA_LIBS` variable to `cmake`.
+
+For more information about building for Android using cmake, refer to the
+[CMake toolchain documentation](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling-for-android).
+
+
+## Known Issues
+
+* The official Qt packages for Android you can download from the [qt.io](qt.io)
+  are build against the Android NDK r10e, which is quite old (at least at the
+  time of writing - where the most recent Qt release is 5.11.1). You better
+  stick with this NDK to build the app for Android. Release APKs of OpenTodoList
+  are build against r15c, so this NDK should work as well.

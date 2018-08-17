@@ -34,7 +34,22 @@ if(APPLE)
     set_source_files_properties(res/OpenTodoList.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 endif()
 
-add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+if(ANDROID)
+    add_library(OpenTodoList SHARED ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+    set(EXTRA_LIBS $<TARGET_FILE:qt5keychain>)
+    if(NOT "${OPENTODOLIST_ANDROID_EXTRA_LIBS}" STREQUAL "")
+        set(EXTRA_LIBS "${EXTRA_LIBS},${OPENTODOLIST_ANDROID_EXTRA_LIBS}")
+    endif()
+    qt_android_build_apk(
+        TARGET OpenTodoList
+        PACKAGE_NAME net.rpdev.opentodolist
+        QML_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}
+        ANDROID_EXTRA_FILES ${CMAKE_CURRENT_SOURCE_DIR}/android
+        EXTRA_LIBS "${EXTRA_LIBS}"
+    )
+else()
+    add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+endif()
 
 configure_file(Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 set_target_properties(OpenTodoList PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)

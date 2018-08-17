@@ -19,7 +19,7 @@ make -j2
 make test
 $QTSDK/bin/macdeployqt app/OpenTodoList.app/ -qmldir=../app
 
-# Prepare a "betautified" folder:
+# Prepare a "beautified" folder:
 cd app
 mkdir dmg.in
 rsync -a OpenTodoList.app dmg.in/
