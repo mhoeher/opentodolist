@@ -38,6 +38,7 @@ set(LIB_HEADERS
     ./datamodel/note.h
     ./datastorage/libraryloader.h
     ./datastorage/itemcontainer.h
+    ./datastorage/cache.h
 
     ${LIB_HEADERS_ANDROID}
 )
@@ -69,6 +70,7 @@ set(LIB_SOURCES
     ./application.cpp
     ./datastorage/itemcontainer.cpp
     ./datastorage/libraryloader.cpp
+    ./datastorage/cache.cpp
 
     ${LIB_SOURCES_ANDROID}
 
@@ -114,4 +116,5 @@ target_link_libraries(opentodolist-common
 
     # Third party libraries:
     qt5keychain
+    qlmdb
 )

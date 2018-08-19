@@ -41,6 +41,11 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 
+# Configure the build in qlmdb library:
+set(QLMDB_WITH_STATIC_LIBS ON)
+set(QLMDB_WITH_BUILTIN_LMDB ON)
+
+
 # Include sub-directories:
 add_subdirectory(3rdparty)
 add_subdirectory(lib)

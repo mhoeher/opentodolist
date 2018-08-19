@@ -24,14 +24,28 @@ Example:
     {program} SomeClass
 """
 
-PRO = """\
-include(../../config.pri)
-setupTest(${name.lower()})
+CMAKE = """\
+find_package(Qt5Test REQUIRED)
+add_executable(
+    test_${name.lower()}
 
-include(../../lib/lib.pri)
-
-SOURCES += \
     test_${name.lower()}.cpp
+)
+
+target_link_libraries(
+    test_${name.lower()}
+
+    # Internal libraries:
+    opentodolist-common
+
+    # Qt Libraries
+    Qt5::Test
+)
+
+add_test(
+    NAME ${name.lower()}
+    COMMAND $<TARGET_FILE:test_${name.lower()}> -platform minimal
+)
 """
 
 CPP = """\
@@ -67,24 +81,24 @@ def _render(testname):
     unittests_dir = join(dirname(dirname(__file__)), "test")
     unittest_dir = join(unittests_dir, testname.lower())
 
-    pro_file = join(unittest_dir, testname.lower() + ".pro")
+    cmake_file = join(unittest_dir, "CMakeLists.txt")
     cpp_file = join(unittest_dir, "test_" + testname.lower() + ".cpp")
 
-    tests_pro = join(unittests_dir, "test.pro")
+    tests_cmake = join(unittests_dir, "CMakeLists.txt")
 
     makedirs(unittest_dir, exist_ok=False)
 
-    with open(pro_file, "w") as file:
-        file.write(Template(PRO).render(name=testname))
+    with open(cmake_file, "w") as file:
+        file.write(Template(CMAKE).render(name=testname))
 
     with open(cpp_file, "w") as file:
         file.write(Template(CPP).render(name=testname))
 
-    with open(tests_pro) as file:
-        tests_pro_conrent = file.read(-1)
-    tests_pro_conrent += "SUBDIRS += " + testname.lower() + "\n"
-    with open(tests_pro, "w") as file:
-        file.write(tests_pro_conrent)
+    with open(tests_cmake) as file:
+        tests_cmake_content = file.read(-1)
+    tests_cmake_content += "add_subdirectory(" + testname.lower() + ")\n"
+    with open(tests_cmake, "w") as file:
+        file.write(tests_cmake_content)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,3 @@
+[submodule "3rdparty/qlmdb"]
+	path = 3rdparty/qlmdb
+	url = https://gitlab.com/rpdev/qlmdb.git
