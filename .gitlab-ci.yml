@@ -8,6 +8,8 @@ variables:
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
     CTEST_OUTPUT_ON_FAILURE: 1
+    GIT_SUBMODULE_STRATEGY: recursive
+
 
 stages:
   - images
@@ -15,10 +17,6 @@ stages:
   - test
   - installer
   - deploy
-
-
-before_script:
-  - git submodule update --init
 
 
 

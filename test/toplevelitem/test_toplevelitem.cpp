@@ -16,6 +16,7 @@ private slots:
     void testPersistence();
     void testTags();
     void cleanupTestCase() {}
+
 };
 
 void TopLevelItemTest::testProperties()

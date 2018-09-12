@@ -12,11 +12,14 @@ class LibraryLoader : public QObject
 {
     Q_OBJECT
 public:
-    explicit LibraryLoader(QObject *parent = 0);
+    explicit LibraryLoader(QObject *parent = nullptr);
     virtual ~LibraryLoader();
 
     QString directory() const;
     void setDirectory(const QString& directory);
+
+    QUuid libraryId() const;
+    void setLibraryId(const QUuid &libraryId);
 
 signals:
 
@@ -39,6 +42,7 @@ public slots:
 
 private:
 
+    QUuid m_libraryId;
     QString m_directory;
     QThread m_thread;
     LibraryLoaderWorker *m_worker;
@@ -59,7 +63,7 @@ private:
 
 private slots:
 
-    void scan(const QString &directory, QObject* targetThread);
+    void scan(const QUuid &libraryId, const QString &directory, QObject* targetThread);
 
 signals:
 

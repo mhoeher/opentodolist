@@ -100,7 +100,4 @@ private:
     QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
 };
 
-
-Q_DECLARE_LOGGING_CATEGORY(webDAVSynchronizer)
-
 #endif // WEBDAVSYNCHRONIZER_H

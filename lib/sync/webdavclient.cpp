@@ -15,8 +15,7 @@
 #include <QTimer>
 
 
-Q_LOGGING_CATEGORY(webDAVClient, "net.rpdev.opentodolist.WebDAVClient",
-                   QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVClient", QtDebugMsg)
 
 WebDAVClient::WebDAVClient(QObject *parent) : QObject(parent),
     m_networkAccessManager(new QNetworkAccessManager(this)),
@@ -176,7 +175,7 @@ bool WebDAVClient::download(const QString& filename, QIODevice *targetDevice)
                     targetFile.close();
                     result = true;
                 } else {
-                    qCWarning(webDAVClient) << "Failed to open destination"
+                    qCWarning(log) << "Failed to open destination"
                                                   << "file for writing:"
                                                   << targetFile.errorString();
                     emit warning(tr("Failed to open file '%1' for writing: %2")
@@ -185,11 +184,11 @@ bool WebDAVClient::download(const QString& filename, QIODevice *targetDevice)
                 }
             }
         } else {
-            qCWarning(webDAVClient) << "Download failed with code" << code;
+            qCWarning(log) << "Download failed with code" << code;
             emit warning(tr("Download failed with HTTP code %1").arg(code));
         }
     } else {
-        qCWarning(webDAVClient) << "Failed to open temporary file for"
+        qCWarning(log) << "Failed to open temporary file for"
                                       << "downloading:"
                                       << file->errorString();
         emit warning(tr("Failed to open intermediate download file: %1")
@@ -247,11 +246,11 @@ bool WebDAVClient::upload(const QString& filename, QString* etag)
             }
             result = true;
         } else {
-            qCWarning(webDAVClient) << "Upload failed with code" << code;
+            qCWarning(log) << "Upload failed with code" << code;
             emit warning(tr("Uploading failed with HTTP code %1").arg(code));
         }
     } else {
-        qCWarning(webDAVClient) << "Failed to open" << filename
+        qCWarning(log) << "Failed to open" << filename
                                       << "for reading:" << file->errorString();
         emit warning(tr("Failed to open file '%1' for reading: %2")
                      .arg(file->fileName()).arg(file->errorString()));
@@ -310,7 +309,7 @@ bool WebDAVClient::deleteEntry(const QString& filename)
     if (code == HTTPStatusCode::OK || code == HTTPStatusCode::NoContent) {
         result = true;
     } else {
-        qCWarning(webDAVClient) << "Deleting entry failed with code"
+        qCWarning(log) << "Deleting entry failed with code"
                                       << code;
         emit warning(tr("Deleting remote file failed with HTTP code %1")
                      .arg(code));
@@ -408,7 +407,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
             result = result && mergeRemoteInfoWithSyncList(entries, dir);
         }
 
-        qCDebug(webDAVClient) << "Synchronizing" <<
+        qCDebug(log) << "Synchronizing" <<
                                        QDir::cleanPath(this->directory()
                                                        + "/" + directory);
         emit debug(tr("Synchronizing '%1'")
@@ -422,7 +421,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                 }
                 if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(webDAVClient) << "Ignoring"
+                        qCDebug(log) << "Ignoring"
                                                     << entry.path();
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
@@ -433,7 +432,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                     result = result && pullEntry(entry, db);
                 } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(webDAVClient) << "Ignoring"
+                        qCDebug(log) << "Ignoring"
                                                     << entry.path();
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
@@ -442,7 +441,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                 } else if (!entry.lastModDate.isNull() &&
                            entry.lastModDate != entry.previousLasModDate) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(webDAVClient) << "Ignoring"
+                        qCDebug(log) << "Ignoring"
                                                     << entry.path();
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
@@ -451,7 +450,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                 } else if (entry.lastModDate.isNull() &&
                            !entry.previousLasModDate.isNull()) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(webDAVClient) << "Ignoring"
+                        qCDebug(log) << "Ignoring"
                                                     << entry.path();
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
@@ -460,7 +459,7 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
                 }
             }
         } else {
-            qCDebug(webDAVClient) << "Skipping sync of " << directory
+            qCDebug(log) << "Skipping sync of " << directory
                                     << "as there were no local changes and we"
                                     << "have been asked to push only";
             emit debug(tr("Skipping sync of directory '%1' as there were no "
@@ -519,7 +518,7 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(
             }
         }
     } else {
-        qCWarning(webDAVClient) << "Failed to get entry list for"
+        qCWarning(log) << "Failed to get entry list for"
                                       << dir;
         emit warning(tr("Failed to get entry list for '%1'").arg(dir));
         for (auto entry : entries.keys()) {
@@ -537,13 +536,13 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(
 bool WebDAVClient::pullEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
-    qCDebug(webDAVClient) << "Pulling" << entry.path();
+    qCDebug(log) << "Pulling" << entry.path();
     emit debug(tr("Pulling '%1'").arg(entry.path()));
     bool result = false;
     if (entry.remoteType == File) {
         // Pull a file
         if (entry.localType == Directory) {
-            qCWarning(webDAVClient)
+            qCWarning(log)
                     << "Pull conflict: Cannot pull file"
                     << entry.entry << "from" << entry.parent
                     << "because a local directory with that "
@@ -565,7 +564,7 @@ bool WebDAVClient::pullEntry(
     } else if (entry.remoteType == Directory) {
         // Pull a directory
         if (entry.localType == File) {
-            qCWarning(webDAVClient)
+            qCWarning(log)
                     << "Pull conflict: Cannot pull directory"
                     << entry.entry << "from" << entry.parent
                     << "because a file with that name already "
@@ -593,7 +592,7 @@ bool WebDAVClient::pullEntry(
         }
     } else {
         // Should not happen...
-        qCWarning(webDAVClient) << "Cannot pull remote entry "
+        qCWarning(log) << "Cannot pull remote entry "
                                          "of type Unknown";
         emit warning(tr("Cannot pull remote entry of type Unknown"));
         result = false;
@@ -608,12 +607,12 @@ bool WebDAVClient::pullEntry(
 bool WebDAVClient::removeLocalEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
-    qCDebug(webDAVClient) << "Removing" << entry.path() << "locally";
+    qCDebug(log) << "Removing" << entry.path() << "locally";
     emit debug(tr("Removing '%1' locally").arg(entry.path()));
     bool result = false;
     if (entry.localType == File) {
         if (!QDir(directory() + "/" + entry.parent).remove(entry.entry)) {
-            qCWarning(webDAVClient) << "Failed to remove local file"
+            qCWarning(log) << "Failed to remove local file"
                                           << entry.entry << "from"
                                           << entry.parent;
             emit warning(tr("Failed to remove local file '%1' "
@@ -629,14 +628,14 @@ bool WebDAVClient::removeLocalEntry(
             removeDirFromSyncDB(db, entry);
             result = true;
         } else {
-            qCWarning(webDAVClient) << "Failed to remove local"
+            qCWarning(log) << "Failed to remove local"
                                           << "directory" << entry.path();
             emit warning(tr("Failed to remove local directory '%1'")
                          .arg(entry.path()));
         }
     } else {
         // Should not happen
-        qCWarning(webDAVClient) << "Bad sync entry type of entry"
+        qCWarning(log) << "Bad sync entry type of entry"
                                       << entry.entry << "in" << entry.parent
                                       << "in removeLocalEntry";
         emit error(tr("Bad sync entry type of entry '%1' in '%2' "
@@ -654,12 +653,12 @@ bool WebDAVClient::removeLocalEntry(
 bool WebDAVClient::pushEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
-    qDebug(webDAVClient) << "Pushing" << entry.path();
+    qCDebug(log) << "Pushing" << entry.path();
     emit debug(tr("Pushing '%1'").arg(entry.path()));
     bool result = false;
     if (entry.localType == Directory) {
         if (entry.remoteType == File) {
-            qCWarning(webDAVClient)
+            qCWarning(log)
                     << "Conflict: Cannot push directory" << entry.path()
                     << "as a file with that name exists on the remote";
             emit warning(tr("Push conflict: Cannot push directory '%1' "
@@ -676,7 +675,7 @@ bool WebDAVClient::pushEntry(
         }
     } else if (entry.localType == File) {
         if (entry.remoteType == Directory) {
-            qCWarning(webDAVClient)
+            qCWarning(log)
                     << "Conflict: Cannot push local file" << entry.path()
                     << "because a directory with that name exists remotely";
             emit warning(tr("Push conflict: Cannot push local file '%1' "
@@ -690,7 +689,7 @@ bool WebDAVClient::pushEntry(
             }
         }
     } else if (entry.localType == Invalid) {
-        qCWarning(webDAVClient) << "Unexpected local type of entry"
+        qCWarning(log) << "Unexpected local type of entry"
                                       << entry.path();
         emit error(tr("Unexpected local type of entry '%1'")
                    .arg(entry.path()));
@@ -705,7 +704,7 @@ bool WebDAVClient::pushEntry(
 bool WebDAVClient::removeRemoteEntry(
         WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
-    qDebug(webDAVClient) << "Removing" << entry.path() << "remotely";
+    qCDebug(log) << "Removing" << entry.path() << "remotely";
     emit debug(tr("Removing remote entry '%1'").arg(entry.path()));
     bool result = false;
     if (deleteEntry(entry.path())) {
@@ -940,7 +939,7 @@ WebDAVClient::EntryList WebDAVClient::parseEntryList(
     if (doc.setContent(reply, &errorMsg, &errorLine)) {
         result = parsePropFindResponse(baseUrl, doc, directory);
     } else {
-        qCWarning(webDAVClient) << "Failed to parse WebDAV response:"
+        qCWarning(log) << "Failed to parse WebDAV response:"
                                       << errorMsg << "in line" << errorLine;
     }
     return result;
@@ -963,7 +962,7 @@ WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(
             resp = resp.nextSiblingElement("d:response");
         }
     } else {
-        qCWarning(webDAVClient) << "Received invalid WebDAV response from"
+        qCWarning(log) << "Received invalid WebDAV response from"
                                          "server starting with element"
                                       << rootTagName;
     }
@@ -991,13 +990,13 @@ WebDAVClient::Entry WebDAVClient::parseResponseEntry(
                 } else if (child.tagName() == "d:getetag") {
                     etag = child.text();
                 } else {
-                    qCWarning(webDAVClient) << "Unknown DAV Property:"
+                    qCWarning(log) << "Unknown DAV Property:"
                                                   << child.tagName();
                 }
                 child = child.nextSiblingElement();
             }
         } else {
-            qCWarning(webDAVClient) << "Properties not retrieved -"
+            qCWarning(log) << "Properties not retrieved -"
                                           << status.text();
         }
     }
@@ -1019,7 +1018,7 @@ void WebDAVClient::prepareReply(QNetworkReply* reply) const
     connect(reply, &QNetworkReply::sslErrors,
             [=](QList<QSslError> errors) {
         for (auto error : errors) {
-            qCWarning(webDAVClient) << error.errorString();
+            qCWarning(log) << error.errorString();
             emit this->error(tr("There was an SSL error: %1")
                        .arg(error.errorString()));
             if (!m_disableCertificateCheck) {
@@ -1033,7 +1032,7 @@ void WebDAVClient::prepareReply(QNetworkReply* reply) const
     });
     connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
             [=](QNetworkReply::NetworkError error) {
-        qCWarning(webDAVClient) << "Network error:" << error;
+        qCWarning(log) << "Network error:" << error;
         emit this->error(tr("There was a network error: %1")
                          .arg(QVariant::fromValue(error).toString()));
         if (error == QNetworkReply::AuthenticationRequiredError) {
@@ -1071,7 +1070,7 @@ QSqlDatabase WebDAVClient::openSyncDb() {
     auto db = QSqlDatabase::addDatabase("QSQLITE", dbPath);
     db.setDatabaseName(dbPath);
     if (!db.open()) {
-        qCWarning(webDAVClient) << "Failed to open database:"
+        qCWarning(log) << "Failed to open database:"
                                      << db.lastError().text();
         return db;
     }
@@ -1079,7 +1078,7 @@ QSqlDatabase WebDAVClient::openSyncDb() {
     query.prepare("CREATE TABLE IF NOT EXISTS "
                   "version (key string PRIMARY KEY, value);");
     if (!query.exec()) {
-        qCWarning(webDAVClient) << "Failed to create version table:"
+        qCWarning(log) << "Failed to create version table:"
                                      << query.lastError().text();
     }
     query.prepare("SELECT value FROM version WHERE key == 'version';");
@@ -1090,7 +1089,7 @@ QSqlDatabase WebDAVClient::openSyncDb() {
             version = record.value("value").toInt();
         }
     } else {
-        qCWarning(webDAVClient) << "Failed to get version of sync DB:"
+        qCWarning(log) << "Failed to get version of sync DB:"
                                       << query.lastError().text();
     }
     if (version == 0) {
@@ -1102,13 +1101,13 @@ QSqlDatabase WebDAVClient::openSyncDb() {
                       "PRIMARY KEY(`parent`, `entry`)"
                       ");");
         if (!query.exec()) {
-            qCWarning(webDAVClient) << "Failed to create files table:"
+            qCWarning(log) << "Failed to create files table:"
                                          << query.lastError().text();
         }
         query.prepare("INSERT OR REPLACE INTO version(key, value) "
                       "VALUES ('version', 1);");
         if (!query.exec()) {
-            qCWarning(webDAVClient) << "Failed to insert version into DB:"
+            qCWarning(log) << "Failed to insert version into DB:"
                                          << query.lastError().text();
         }
     }
@@ -1133,7 +1132,7 @@ void WebDAVClient::insertSyncDBEntry(
     query.addBindValue(entry.lastModDate);
     query.addBindValue(entry.etag);
     if (!query.exec()) {
-        qCWarning(webDAVClient) << "Failed to insert SyncDB entry:"
+        qCWarning(log) << "Failed to insert SyncDB entry:"
                                       << query.lastError().text();
     }
 }
@@ -1166,7 +1165,7 @@ WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(
             result[entry.entry] = entry;
         }
     } else {
-        qCWarning(webDAVClient) << "Failed to get sync entries from DB:"
+        qCWarning(log) << "Failed to get sync entries from DB:"
                                       << query.lastError().text();
     }
     return result;
@@ -1185,7 +1184,7 @@ void WebDAVClient::removeDirFromSyncDB(
     query.addBindValue(entry.parent);
     query.addBindValue(entry.entry);
     if (!query.exec()) {
-        qCWarning(webDAVClient) << "Failed to delete directory from "
+        qCWarning(log) << "Failed to delete directory from "
                                          "sync DB:"
                                       << query.lastError().text();
     }
@@ -1202,7 +1201,7 @@ void WebDAVClient::removeFileFromSyncDB(
     query.addBindValue(entry.parent);
     query.addBindValue(entry.entry);
     if (!query.exec()) {
-        qCWarning(webDAVClient) << "Failed to remove entry from sync DB:"
+        qCWarning(log) << "Failed to remove entry from sync DB:"
                                       << query.lastError().text();
     }
 }

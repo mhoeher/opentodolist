@@ -211,7 +211,6 @@ private:
 
 
 Q_DECLARE_METATYPE(SynchronizerExistingLibrary)
-Q_DECLARE_LOGGING_CATEGORY(synchronizer)
 
 
 #endif // SYNCHRONIZER_H

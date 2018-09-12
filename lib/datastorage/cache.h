@@ -11,6 +11,8 @@ class Context;
 class Database;
 }
 
+class QThreadPool;
+class ItemsQuery;
 
 /**
  * @brief On-disk items cache.
@@ -43,6 +45,8 @@ public:
     bool open();
     bool isValid() const;
 
+    void run(ItemsQuery *query);
+
 signals:
 
 public slots:
@@ -53,10 +57,11 @@ private:
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
+    QThreadPool *m_threadPool;
     bool m_valid;
 
     bool openDBs();
-    bool initV0();
+    bool initVersion0();
 };
 
 #endif // CACHE_H

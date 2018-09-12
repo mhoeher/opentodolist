@@ -12,14 +12,54 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <QJsonDocument>
 #include <QtGlobal>
 #include <QVariant>
 #include <QVariantMap>
 
-
-Q_LOGGING_CATEGORY(item, "net.rpdev.opentodolist.Item")
-
 const QString Item::FileNameSuffix = "otl";
+
+
+/**
+ * @brief Constructor.
+ */
+ItemCacheEntry::ItemCacheEntry() :
+    id(),
+    parentId(),
+    data(),
+    metaData(),
+    valid(false)
+{
+
+}
+
+
+/**
+ * @brief Convert the entry to a byte array.
+ */
+QByteArray ItemCacheEntry::toByteArray() const
+{
+    QVariantMap map;
+    map["data"] = data;
+    map["meta"] = metaData;
+    map["type"] = Item::staticMetaObject.className();
+    map["parent"] = parentId;
+    return QJsonDocument::fromVariant(map).toBinaryData();
+}
+
+ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray &data, const QByteArray &id)
+{
+    ItemCacheEntry result;
+    auto map = QJsonDocument::fromBinaryData(data).toVariant().toMap();
+    if (map["type"] == Item::staticMetaObject.className()) {
+        result.valid = true;
+        result.id = QUuid(id);
+        result.data = map["data"];
+        result.metaData = map["meta"];
+        result.parentId = map["parent"].toUuid();
+    }
+    return result;
+}
 
 
 /**
@@ -67,6 +107,11 @@ Item::Item(const QDir& dir, QObject* parent) : Item(parent)
  */
 Item::~Item()
 {
+}
+
+QUuid Item::parentId() const
+{
+    return QUuid();
 }
 
 /**
@@ -287,6 +332,34 @@ Item* Item::createItemFromFile(QString filename, QObject* parent)
         result = createItem(map, parent);
         if (result != nullptr) {
             result->setFilename(filename);
+        }
+    }
+    return result;
+}
+
+ItemCacheEntry Item::encache() const
+{
+    ItemCacheEntry result;
+    result.id = m_uid;
+    result.parentId = parentId();
+    result.data = toMap();
+    QVariantMap meta;
+    meta["filename"] = m_filename;
+    result.metaData = meta;
+    result.valid = true;
+    return result;
+}
+
+Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
+{
+    Item *result = nullptr;
+    if (entry.valid) {
+        result = Item::createItem(entry.data.toMap(), parent);
+        auto meta = entry.metaData.toMap();
+        result->setFilename(meta["filename"].toString());
+        auto topLevelItem = qobject_cast<TopLevelItem*>(result);
+        if (topLevelItem != nullptr) {
+            topLevelItem->setLibraryId(entry.parentId);
         }
     }
     return result;

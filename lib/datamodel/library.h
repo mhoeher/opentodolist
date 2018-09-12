@@ -18,6 +18,31 @@ class DirectoryWatcher;
 class Application;
 class Synchronizer;
 
+
+/**
+ * @brief Represents a library stored in the cache.
+ */
+struct LibraryCacheEntry {
+    LibraryCacheEntry();
+    LibraryCacheEntry(const LibraryCacheEntry &other) = default;
+    LibraryCacheEntry& operator =(const LibraryCacheEntry &other) = default;
+    bool operator ==(const LibraryCacheEntry &other) const;
+
+    QByteArray toByteArray() const;
+    static LibraryCacheEntry fromByteArray(const QByteArray &data, const QByteArray &id);
+
+
+    QUuid id;
+    QVariant data;
+    QVariant metaData;
+    bool valid;
+};
+
+Q_DECLARE_METATYPE(LibraryCacheEntry)
+
+
+
+
 /**
  * @brief A container for items.
  *
@@ -57,8 +82,13 @@ public:
     Q_INVOKABLE Image* addImage();
     Q_INVOKABLE TodoList* addTodoList();
 
-
     bool isValid() const;
+
+    LibraryCacheEntry encache() const;
+    static Library* decache(const LibraryCacheEntry &entry,
+                            QObject *parent = nullptr);
+    static Library* decache(const QVariant &entry,
+                            QObject *parent = nullptr);
 
     /**
      * @brief The name of the libary as used in the user interface.
@@ -195,7 +225,5 @@ private slots:
     void appendItem(ItemPtr item);
 
 };
-
-Q_DECLARE_LOGGING_CATEGORY(library)
 
 #endif // LIBRARY_H

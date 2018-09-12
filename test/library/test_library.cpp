@@ -36,6 +36,8 @@ private slots:
     void testLoad();
     void testDeleteLibrary();
     void testFromJson();
+    void testEncache();
+    void testDecache();
     void cleanup();
 
 private:
@@ -66,13 +68,27 @@ void LibraryTest::testProperties()
 
 void LibraryTest::testPersistence()
 {
-    Library lib(m_dir->path()), anotherLib(m_dir->path());
+    Library lib(m_dir->path());
     QVERIFY(lib.isValid());
+
+    lib.setName("My Library");
+
+    auto todoList = lib.addTodoList();
+    todoList->setTitle("A TodoList");
+    auto todo = todoList->addTodo();
+    todo->setTitle("A Todo");
+    auto task = todo->addTask();
+    task->setTitle("A Task");
+    auto note = lib.addNote();
+    note->setTitle("A Note");
+    auto image = lib.addImage();
+    image->setTitle("An Image");
+
+    Library anotherLib(m_dir->path());
 
     QSignalSpy nameChanged(&anotherLib, &Library::nameChanged);
     QSignalSpy uidChanged(&anotherLib, &Library::uidChanged);
-
-    lib.setName("My Library");
+    QSignalSpy loadingFinished(&anotherLib, &Library::loadingFinished);
 
     anotherLib.load();
 
@@ -81,6 +97,23 @@ void LibraryTest::testPersistence()
 
     QCOMPARE(anotherLib.name(), QString("My Library"));
     QCOMPARE(anotherLib.uid(), lib.uid());
+
+    QVERIFY(loadingFinished.wait());
+    QTest::qSleep(1000);
+
+    QCOMPARE(anotherLib.topLevelItems()->count(), 3);
+    QCOMPARE(anotherLib.todos()->count(), 1);
+    QCOMPARE(anotherLib.tasks()->count(), 1);
+    for (int i = 0; i < anotherLib.topLevelItems()->count(); ++i) {
+        auto item = anotherLib.topLevelItems()->get(i);
+        QCOMPARE(item->parentId(), anotherLib.uid());
+        auto todoList = qobject_cast<TodoList*>(item);
+        if (todoList) {
+            QCOMPARE(anotherLib.todos()->get(0)->parentId(), todoList->uid());
+            QCOMPARE(anotherLib.tasks()->get(0)->parentId(),
+                     anotherLib.todos()->get(0)->uid());
+        }
+    }
 }
 
 void LibraryTest::testAddNote()
@@ -262,6 +295,27 @@ void LibraryTest::testFromJson()
                 );
     QCOMPARE(lib.uid(), QUuid("{6ca12b27-fc18-4257-9460-ef8dfed622bb}"));
     QCOMPARE(lib.name(), QString("foo"));
+}
+
+void LibraryTest::testEncache()
+{
+    Library lib(m_dir->path());
+    lib.setName("Foo");
+    auto cacheEntry = lib.encache();
+    QVERIFY(cacheEntry.valid);
+    QCOMPARE(cacheEntry.id, lib.uid());
+}
+
+void LibraryTest::testDecache()
+{
+    Library lib(m_dir->path());
+    lib.setName("Foo");
+    auto cacheEntry = lib.encache();
+
+    QScopedPointer<Library> lib2(Library::decache(cacheEntry));
+    QCOMPARE(lib2->uid(), lib.uid());
+    QCOMPARE(lib2->name(), lib.name());
+    QCOMPARE(lib2->directory(), lib.directory());
 }
 
 void LibraryTest::cleanup()

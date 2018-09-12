@@ -1,10 +1,15 @@
 #include <QLoggingCategory>
+#include <QRunnable>
+#include <QScopedPointer>
+#include <QThreadPool>
 
 #include <qlmdb/context.h>
 #include <qlmdb/database.h>
 #include <qlmdb/errors.h>
 
 #include "cache.h"
+#include "itemsquery.h"
+
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Cache", QtWarningMsg)
 
@@ -15,6 +20,41 @@ const QByteArray Cache::Version_0 = "0";
 
 
 /**
+ * @brief Runs an ItemQuery.
+ */
+class ItemsQueryRunnable : public QRunnable {
+public:
+    explicit ItemsQueryRunnable(ItemsQuery *query);
+
+    // QRunnable interface
+    void run() override;
+
+private:
+    QScopedPointer<ItemsQuery> m_query;
+};
+
+
+/**
+ * @brief Creates a runner which runs the @p query on the @p cache.
+ */
+ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery *query) :
+    QRunnable(),
+    m_query(query)
+{
+}
+
+
+/**
+ * @brief Implementation of QRunnable::run().
+ */
+void ItemsQueryRunnable::run()
+{
+    m_query->run();
+    m_query->finished();
+}
+
+
+/**
  * @brief Constructor.
  */
 Cache::Cache(QObject *parent) : QObject(parent),
@@ -22,6 +62,7 @@ Cache::Cache(QObject *parent) : QObject(parent),
     m_global(),
     m_items(),
     m_children(),
+    m_threadPool(new QThreadPool(this)),
     m_valid(false)
 {
     m_context->setMaxDBs(3);
@@ -93,7 +134,7 @@ bool Cache::open()
         }
     }
 
-    if (m_context->isOpen() && openDBs() && initV0()) {
+    if (m_context->isOpen() && openDBs() && initVersion0()) {
         m_valid = true;
     } else {
         qCWarning(log) << "Failed to open cache directory"
@@ -103,19 +144,44 @@ bool Cache::open()
     return m_valid;
 }
 
+
 bool Cache::isValid() const
 {
     return m_valid;
 }
 
+
+/**
+ * @brief Run a query on the cache.
+ *
+ * This runs the @p query on this cache. The query is run in a dedicated
+ * thread (using a QThreadPool). Hence, the query is run either immediately
+ * or (if all threads are already busy) the query is enqueued and executed
+ * as soon as a thread gets free.
+ *
+ * The ownership of the query object is passed to the cache, which will destroy
+ * the query once it ran.
+ */
+void Cache::run(ItemsQuery *query)
+{
+    if (query != nullptr) {
+        query->m_context = m_context;
+        query->m_global = m_global;
+        query->m_items = m_items;
+        query->m_children = m_children;
+        m_threadPool->start(new ItemsQueryRunnable(query));
+    }
+}
+
+
 bool Cache::openDBs()
 {
     m_global = QSharedPointer<QLMDB::Database>(
-                new QLMDB::Database(*m_context.data()));
+                new QLMDB::Database(*m_context));
     m_items = QSharedPointer<QLMDB::Database>(
-                new QLMDB::Database(*m_context.data(), "items"));
+                new QLMDB::Database(*m_context, "items"));
     m_children = QSharedPointer<QLMDB::Database>(
-                new QLMDB::Database(*m_context.data(), "children",
+                new QLMDB::Database(*m_context, "children",
                                     QLMDB::Database::Create |
                                     QLMDB::Database::MultiValues));
     if (m_global->isValid()) {
@@ -138,7 +204,8 @@ bool Cache::openDBs()
             m_children->isValid();
 }
 
-bool Cache::initV0()
+
+bool Cache::initVersion0()
 {
     auto version = m_global->get(VersionKey);
     if (version.isEmpty()) {

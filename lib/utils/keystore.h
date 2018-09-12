@@ -66,6 +66,4 @@ private:
 };
 
 
-Q_DECLARE_LOGGING_CATEGORY(keyStore)
-
 #endif // KEYSTORE_H

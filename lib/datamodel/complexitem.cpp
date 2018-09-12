@@ -4,8 +4,7 @@
 #include <QTextDocument>
 
 
-Q_LOGGING_CATEGORY(complexItem, "net.rpdev.OpenTodoList.ComplexItem",
-                   QtWarningMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.ComplexItem", QtWarningMsg)
 
 
 /**
@@ -42,6 +41,11 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent) : Item(dir, parent),
  */
 ComplexItem::~ComplexItem()
 {
+}
+
+QUuid ComplexItem::parentId() const
+{
+    return QUuid();
 }
 
 /**
@@ -157,7 +161,7 @@ void ComplexItem::detachFile(const QString &filename)
             auto directory = this->directory();
             QDir dir(directory);
             if (!dir.remove(filename)) {
-                qCWarning(complexItem) << "Failed to remove" << filename
+                qCWarning(log) << "Failed to remove" << filename
                                        << "from" << dir.path();
             }
             m_attachments.removeAll(filename);
@@ -210,7 +214,7 @@ bool ComplexItem::deleteItem()
             QFile file(path);
             if (file.exists()) {
                 if (!file.remove()) {
-                    qCWarning(complexItem) << "Failed to remove attachment"
+                    qCWarning(log) << "Failed to remove attachment"
                                            << path << ":" << file.errorString();
                 }
             }

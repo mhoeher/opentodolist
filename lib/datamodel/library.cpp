@@ -21,7 +21,58 @@
 
 const QString Library::LibraryFileName = "library.json";
 
-Q_LOGGING_CATEGORY(library, "net.rpdev.opentodolist.Library")
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Library")
+
+
+/**
+ * @brief Constructor.
+ */
+LibraryCacheEntry::LibraryCacheEntry() :
+    id(),
+    data(),
+    metaData(),
+    valid(false)
+{
+
+}
+
+bool LibraryCacheEntry::operator ==(const LibraryCacheEntry &other) const
+{
+    return id == other.id &&
+            valid == other.valid &&
+            toByteArray() == other.toByteArray();
+}
+
+
+/**
+ * @brief Convert the enry to a byte array.
+ */
+QByteArray LibraryCacheEntry::toByteArray() const
+{
+    QVariantMap map;
+    map["data"] = data;
+    map["meta"] = metaData;
+    map["type"] = Library::staticMetaObject.className();
+    return QJsonDocument::fromVariant(map).toBinaryData();
+}
+
+
+/**
+ * @brief Create an entry from a byte array.
+ */
+LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray &data, const QByteArray &id)
+{
+    auto map = QJsonDocument::fromBinaryData(data).toVariant().toMap();
+    LibraryCacheEntry result;
+    if (map["type"].toString() == Library::staticMetaObject.className()) {
+        result.id = QUuid(id);
+        result.data = map["data"];
+        result.metaData = map["meta"];
+        result.valid = true;
+    }
+    return result;
+}
+
 
 /**
    @brief Set the name of the library.
@@ -112,6 +163,7 @@ Note *Library::addNote()
     } else {
         note = NotePtr(new Note());
     }
+    note->setLibraryId(m_uid);
     note->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(note.data(), QQmlEngine::CppOwnership);
     appendItem(note);
@@ -139,6 +191,7 @@ Image *Library::addImage()
     } else {
         image = ImagePtr(new Image());
     }
+    image->setLibraryId(m_uid);
     image->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(image.data(), QQmlEngine::CppOwnership);
     appendItem(image);
@@ -166,6 +219,7 @@ TodoList *Library::addTodoList()
     } else {
         todoList = TodoListPtr(new TodoList());
     }
+    todoList->setLibraryId(m_uid);
     todoList->m_library = this;
     todoList->setWeight(m_topLevelItems.nextItemWeight());
     QQmlEngine::setObjectOwnership(todoList.data(), QQmlEngine::CppOwnership);
@@ -177,6 +231,59 @@ TodoList *Library::addTodoList()
 bool Library::isValid() const
 {
     return !m_directory.isEmpty() && QDir(m_directory).exists();
+}
+
+
+/**
+ * @brief Creates a cache entry for the library.
+ *
+ * This method creates a representation of the library which can be written
+ * to the cache.
+ */
+LibraryCacheEntry Library::encache() const
+{
+    LibraryCacheEntry result;
+    result.id = m_uid;
+    result.data = toMap();
+    QVariantMap meta;
+    meta["directory"] = m_directory;
+    result.metaData = meta;
+    result.valid = true;
+    return result;
+}
+
+
+/**
+ * @brief Construct a library from a cache entry.
+ *
+ * This constructs a library from the cache @p entry. The library will
+ * be owned by the @p parent object.
+ */
+Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
+{
+    Library *result = nullptr;
+    if (entry.valid) {
+        auto meta = entry.metaData.toMap();
+        if (meta.contains("directory")) {
+            result = new Library(meta["directory"].toString(), parent);
+        } else {
+            result = new Library(parent);
+        }
+        result->fromMap(entry.data.toMap());
+    }
+    return  result;
+}
+
+
+/**
+ * @brief Construct a library from a cache entry.
+ *
+ * This constructs a library from the cache @p entry. The library will
+ * be owned by the @p parent object.
+ */
+Library *Library::decache(const QVariant &entry, QObject *parent)
+{
+    return decache(entry.value<LibraryCacheEntry>(), parent);
 }
 
 void Library::setName(const QString &name)
@@ -215,7 +322,7 @@ void Library::deleteLibrary(bool deleteFiles)
 void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
 {
     if (m_synchronizing) {
-        qCWarning(library) << "Cannot delete library" << this << this->name()
+        qCWarning(log) << "Cannot delete library" << this << this->name()
                            << ": A sync is currently running.";
         return;
     }
@@ -231,30 +338,30 @@ void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
                     QDir dir(directory + "/" + year + "/" + month);
                     for (auto entry : dir.entryList(QDir::Files)) {
                         if (!dir.remove(entry)) {
-                            qCWarning(library) << "Failed to remove file" << entry << "from"
+                            qCWarning(log) << "Failed to remove file" << entry << "from"
                                                << dir.absolutePath();
                         }
                     }
                     dir.cdUp();
                     if (!dir.rmdir(month)) {
-                        qCWarning(library) << "Failed to remove" << dir.absoluteFilePath(month);
+                        qCWarning(log) << "Failed to remove" << dir.absoluteFilePath(month);
                     }
                 }
                 if (!QDir(directory).rmdir(year)) {
-                    qCWarning(library) << "Failed to remove" << (directory + "/" + year);
+                    qCWarning(log) << "Failed to remove" << (directory + "/" + year);
                 }
             }
             QDir dir(directory);
             for (auto entry : dir.entryList(QDir::Files | QDir::Hidden)) {
                 if (!dir.remove(entry)) {
-                    qCWarning(library) << "Failed to remove" << entry
+                    qCWarning(log) << "Failed to remove" << entry
                                        << "from" << dir.absolutePath();
                 }
             }
             dir.cdUp();
             auto basename = QFileInfo(directory).baseName();
             if (!dir.rmdir(basename)) {
-                qCWarning(library) << "Failed to remove library directory" << dir.absolutePath();
+                qCWarning(log) << "Failed to remove library directory" << dir.absolutePath();
             }
             if (callback) {
                 callback();
@@ -286,6 +393,7 @@ bool Library::load()
         setLoading(true);
         LibraryLoader *loader = new LibraryLoader(this);
         loader->setDirectory(m_directory);
+        loader->setLibraryId(m_uid);
         connect(loader, &LibraryLoader::scanFinished, [=]() {
             setLoading(false);
             emit loadingFinished();

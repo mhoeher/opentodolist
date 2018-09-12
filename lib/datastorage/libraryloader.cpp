@@ -15,8 +15,10 @@ LibraryLoader::LibraryLoader(QObject *parent) : QObject(parent),
     qRegisterMetaType<ItemPtr>();
     m_thread.start();
     m_worker->moveToThread(&m_thread);
-    connect(m_worker, &LibraryLoaderWorker::itemLoaded, this, &LibraryLoader::itemLoaded);
-    connect(m_worker, &LibraryLoaderWorker::scanFinished, this, &LibraryLoader::scanFinished);
+    connect(m_worker, &LibraryLoaderWorker::itemLoaded,
+            this, &LibraryLoader::itemLoaded);
+    connect(m_worker, &LibraryLoaderWorker::scanFinished,
+            this, &LibraryLoader::scanFinished);
 }
 
 /**
@@ -58,8 +60,19 @@ void LibraryLoader::setDirectory(const QString& directory)
 void LibraryLoader::scan()
 {
     QMetaObject::invokeMethod(m_worker, "scan", Qt::QueuedConnection,
+                              Q_ARG(QUuid, m_libraryId),
                               Q_ARG(const QString&, m_directory),
                               Q_ARG(QObject*, thread()));
+}
+
+QUuid LibraryLoader::libraryId() const
+{
+    return m_libraryId;
+}
+
+void LibraryLoader::setLibraryId(const QUuid &libraryId)
+{
+    m_libraryId = libraryId;
 }
 
 /**
@@ -73,7 +86,7 @@ LibraryLoaderWorker::LibraryLoaderWorker() : QObject(),
 /**
  * @brief Scan the @p directory for items, moving any created one to the @p targetThread.
  */
-void LibraryLoaderWorker::scan(const QString& directory, QObject* targetThread)
+void LibraryLoaderWorker::scan(const QUuid &libraryId, const QString& directory, QObject* targetThread)
 {
     auto years = Library::years(directory);
     for (auto year : years) {
@@ -83,6 +96,10 @@ void LibraryLoaderWorker::scan(const QString& directory, QObject* targetThread)
             QString suffix = "*." + Item::FileNameSuffix;
             for (auto entry : dir.entryList({suffix}, QDir::Files)) {
                 auto item = Item::createItemFromFile(dir.absoluteFilePath(entry));
+                auto topLevelItem = qobject_cast<TopLevelItem*>(item);
+                if (topLevelItem != nullptr) {
+                    topLevelItem->setLibraryId(libraryId);
+                }
                 item->moveToThread(static_cast<QThread*>(targetThread));
                 emit itemLoaded(ItemPtr(item));
             }

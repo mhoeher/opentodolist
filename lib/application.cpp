@@ -27,7 +27,7 @@
 #include "migrators/migrator_2_x_to_3_x.h"
 
 
-Q_LOGGING_CATEGORY(application, "net.rpdev.OpenTodoList.Application", QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
 
 
 /**
@@ -79,14 +79,14 @@ void Application::initialize()
                     if (sync) {
                         if (sync->secretsKey() == key) {
                             lib->setSecretsMissing(false);
-                            qCDebug(application) << "Start-up sync of"
+                            qCDebug(log) << "Start-up sync of"
                                                  << lib << lib->name();
                             syncLibrary(lib);
                         }
                     }
                 }
             } else {
-                qCWarning(application) << "Received credentials for a key"
+                qCWarning(log) << "Received credentials for a key"
                                        << key << "but we already have"
                                        << "credentials for that one";
             }
@@ -110,7 +110,7 @@ void Application::initialize()
                             lastSync.toMSecsSinceEpoch();
                     if (diff >= (1000 * 60 * 60)) {
                         // Sync every hour
-                        qCDebug(application) << "Library" << lib
+                        qCDebug(log) << "Library" << lib
                                              << lib->name()
                                              << "has not been synced for"
                                              << "more than an hour,"
@@ -423,7 +423,7 @@ void Application::syncLibrary(Library *library)
                 if (m_secrets.contains(key)) {
                     secret = m_secrets.value(key).toString();
                 } else {
-                    qCWarning(application) << "Missing sync secret for library"
+                    qCWarning(log) << "Missing sync secret for library"
                                            << library << library->name();
                     return;
                 }

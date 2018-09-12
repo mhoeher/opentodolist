@@ -8,9 +8,7 @@
 #include <QVersionNumber>
 
 
-Q_LOGGING_CATEGORY(updateService,
-                   "net.rpdev.opentodolist.UpdateService",
-                   QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.UpdateService", QtDebugMsg)
 
 
 UpdateService::UpdateService(QObject *parent) : QObject(parent)
@@ -36,19 +34,19 @@ void UpdateService::checkForUpdates()
         connect(reply, static_cast<void(QNetworkReply::*)
                 (QNetworkReply::NetworkError)>(&QNetworkReply::error),
                 [=](QNetworkReply::NetworkError error) {
-            qCWarning(updateService) << "Failed to get update information:"
+            qCWarning(log) << "Failed to get update information:"
                                      << error;
             reply->deleteLater();
             nam->deleteLater();
         });
         connect(reply, &QNetworkReply::finished, [=]() {
-            qCDebug(updateService) << "Received reply, checking...";
+            qCDebug(log) << "Received reply, checking...";
             auto doc = QJsonDocument::fromJson(reply->readAll());
             if (doc.isObject()) {
                 auto info = doc.toVariant().toMap();
                 if (info.contains("tag_name")) {
                     auto tagName = info.value("tag_name").toString();
-                    qDebug(updateService) << "Latest release:" << tagName;
+                    qCDebug(log) << "Latest release:" << tagName;
                     auto currentVersion = QVersionNumber::fromString(
                                 OPENTODOLIST_VERSION);
                     auto latestVersion = QVersionNumber::fromString(tagName);
@@ -57,7 +55,7 @@ void UpdateService::checkForUpdates()
                                     tagName,
                                     QUrl(info.value("html_url").toString()));
                     } else {
-                        qCDebug(updateService)
+                        qCDebug(log)
                                 << "Already running latest version";
                     }
                 }

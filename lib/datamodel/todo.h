@@ -34,7 +34,9 @@ public:
     explicit Todo(const QString &filename, QObject *parent = nullptr);
     explicit Todo(QObject* parent = nullptr);
     explicit Todo(const QDir &dir, QObject *parent = nullptr);
-    virtual ~Todo();
+    ~Todo() override;
+
+    QUuid parentId() const override;
 
     bool done() const;
     void setDone(bool done);

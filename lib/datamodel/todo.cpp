@@ -45,6 +45,11 @@ Todo::~Todo()
 
 }
 
+QUuid Todo::parentId() const
+{
+    return m_todoListUid;
+}
+
 /**
  * @brief A boolean flag indicating if the todo is already done.
  */

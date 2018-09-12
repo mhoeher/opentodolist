@@ -12,8 +12,7 @@
 #include "utils/jsonutils.h"
 
 
-Q_LOGGING_CATEGORY(synchronizer, "net.rpdev.opentodolist.Synchronizer",
-                   QtWarningMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Synchronizer", QtWarningMsg)
 
 
 /**
@@ -204,9 +203,9 @@ bool Synchronizer::loadLog()
     bool result = false;
     m_log.clear();
     if (!m_directory.isEmpty()) {
-        QFile log(m_directory + "/" + LogFileName);
-        if (log.open(QIODevice::ReadOnly)) {
-            auto json = QJsonDocument::fromJson(log.readAll());
+        QFile logFile(m_directory + "/" + LogFileName);
+        if (logFile.open(QIODevice::ReadOnly)) {
+            auto json = QJsonDocument::fromJson(logFile.readAll());
             if (json.isArray()) {
                 auto array = json.toVariant().toList();
                 for (auto obj : array) {
@@ -218,11 +217,11 @@ bool Synchronizer::loadLog()
                     m_log.append(entry);
                 }
             }
-            log.close();
+            logFile.close();
             result = true;
         } else {
-            qCWarning(synchronizer) << "Failed to open log for reading:"
-                                    << log.errorString();
+            qCWarning(::log) << "Failed to open log for reading:"
+                                    << logFile.errorString();
         }
     }
     return result;
@@ -248,7 +247,7 @@ bool Synchronizer::saveLog()
             log.close();
             result = true;
         } else {
-            qCWarning(synchronizer) << "Failed to open log file for writing:"
+            qCWarning(::log) << "Failed to open log file for writing:"
                                     << log.errorString();
         }
     }
@@ -438,7 +437,7 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
                 result->fromMap(map);
                 result->setDirectory(directory);
             } else {
-                qCWarning(synchronizer) << "Unknown synchronizer type" << type;
+                qCWarning(::log) << "Unknown synchronizer type" << type;
             }
         }
     }

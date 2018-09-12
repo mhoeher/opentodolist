@@ -274,6 +274,4 @@ inline bool operator ==(HTTPStatusCode lhs, int rhs) {
     return static_cast<int>(lhs) == rhs;
 }
 
-Q_DECLARE_LOGGING_CATEGORY(webDAVClient)
-
 #endif // WEBDAVCLIENT_H

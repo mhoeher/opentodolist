@@ -7,7 +7,7 @@
 
 namespace JsonUtils {
 
-Q_LOGGING_CATEGORY(jsonUtils, "net.rpdev.opentodolist.JsonUtils", QtWarningMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.JsonUtils", QtWarningMsg)
 
 /**
  * @brief Write a JSON file, keeping existing properties in the file.
@@ -41,12 +41,12 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
             if (error.error == QJsonParseError::NoError) {
                 properties = doc.toVariant().toMap();
             } else {
-                qCWarning(jsonUtils) << "Failed to parse" << filename << ":"
+                qCWarning(log) << "Failed to parse" << filename << ":"
                                      << error.errorString();
             }
             file.close();
         } else {
-            qCWarning(jsonUtils) << "Failed to open" << filename << "for reading:"
+            qCWarning(log) << "Failed to open" << filename << "for reading:"
                                  << file.errorString();
         }
     }
@@ -61,11 +61,11 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
             file.close();
             hasChanged = true;
         } else {
-            qCWarning(jsonUtils) << "Failed to open" << filename << "for writing:"
+            qCWarning(log) << "Failed to open" << filename << "for writing:"
                                  << file.errorString();
         }
     } else {
-        qCDebug(jsonUtils) << "File" << filename << "was not changed - "
+        qCDebug(log) << "File" << filename << "was not changed - "
                            << "skipping rewrite";
         result = true;
     }
@@ -91,12 +91,12 @@ QVariantMap loadMap(const QString& filename, bool* ok)
             result = doc.toVariant().toMap();
             success = true;
         } else {
-            qCWarning(jsonUtils) << "Failed to parse" << filename << ":"
+            qCWarning(log) << "Failed to parse" << filename << ":"
                                  << error.errorString();
         }
         file.close();
     } else {
-        qCDebug(jsonUtils) << "Failed to open" << filename << "for reading:"
+        qCDebug(log) << "Failed to open" << filename << "for reading:"
                              << file.errorString();
     }
     if (ok != nullptr) {

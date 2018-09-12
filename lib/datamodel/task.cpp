@@ -25,6 +25,11 @@ Task::~Task()
 {
 }
 
+QUuid Task::parentId() const
+{
+    return m_todoUid;
+}
+
 /**
  * @brief A boolean value indicating if the task is done or not.
  */

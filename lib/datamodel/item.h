@@ -9,6 +9,26 @@
 #include <QUuid>
 #include <QVariantMap>
 
+/**
+ * @brief Represents an arbitrary item stored in the cache.
+ */
+struct ItemCacheEntry {
+    ItemCacheEntry();
+    ItemCacheEntry(const ItemCacheEntry &other) = default;
+
+    QByteArray toByteArray() const;
+    static ItemCacheEntry fromByteArray(const QByteArray &data,
+                                        const QByteArray &id);
+
+    QUuid id;
+    QUuid parentId;
+    QVariant data;
+    QVariant metaData;
+    bool valid;
+};
+
+Q_DECLARE_METATYPE(ItemCacheEntry)
+
 
 /**
  * @brief Base class for all items in a library.
@@ -37,6 +57,16 @@ public:
     explicit Item(const QDir &dir,
                   QObject *parent = nullptr);
     virtual ~Item();
+
+    /**
+     * @brief Get the UUID of the parent item.
+     *
+     * This method returns the UUID of the parent to which the item
+     * belongs. For top level items, this is the UUID of the library
+     * the item belongs to. For other items, this is the UUID of
+     * the direct parent item.
+     */
+    virtual QUuid parentId() const;
 
     Q_INVOKABLE virtual bool deleteItem();
     Q_INVOKABLE bool load();
@@ -85,6 +115,10 @@ public:
     static Item *createItem(QVariant variant, QObject *parent = nullptr);
     static Item *createItem(QString itemType, QObject *parent = nullptr);
     static Item *createItemFromFile(QString filename, QObject *parent = nullptr);
+
+    ItemCacheEntry encache() const;
+    static Item* decache(const ItemCacheEntry &entry,
+                         QObject* parent = nullptr);
 
 public slots:
 
@@ -148,7 +182,5 @@ typedef QSharedPointer<Item> ItemPtr;
 Q_DECLARE_METATYPE(ItemPtr)
 
 QDebug operator<<(QDebug debug, const Item *item);
-
-Q_DECLARE_LOGGING_CATEGORY(item)
 
 #endif // ITEM_H
