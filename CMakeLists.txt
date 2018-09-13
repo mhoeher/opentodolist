@@ -43,7 +43,7 @@ endif()
 
 # Configure the build in qlmdb library:
 set(QLMDB_WITH_STATIC_LIBS ON)
-set(QLMDB_WITH_BUILTIN_LMDB ON)
+set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
 
 
 # Include sub-directories:
