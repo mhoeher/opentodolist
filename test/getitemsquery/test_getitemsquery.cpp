@@ -34,8 +34,8 @@ private slots:
 
 void GetItemsQueryTest::run()
 {
-    QTest::ignoreMessage(QtDebugMsg,
-                         QRegularExpression(".*Cache is uninitialized.*"));
+//    QTest::ignoreMessage(QtDebugMsg,
+//                         QRegularExpression(".*Cache is uninitialized.*"));
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());

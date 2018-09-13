@@ -59,9 +59,9 @@ void CacheTest::open()
         QVERIFY(!c.isValid());
         c.setCacheDirectory(tempDir->path());
         c.setCacheSize(CACHE_SIZE);
-        QTest::ignoreMessage(QtDebugMsg,
-                             "Cache is uninitialized - "
-                             "initializing to Version 0 now");
+//        QTest::ignoreMessage(QtDebugMsg,
+//                             "Cache is uninitialized - "
+//                             "initializing to Version 0 now");
         QVERIFY(c.open());
         QVERIFY(c.isValid());
     }
