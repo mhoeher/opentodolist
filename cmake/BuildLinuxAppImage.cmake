@@ -48,6 +48,7 @@ add_custom_target(
     COMMAND
         ${LINUXDEPLOYQT} AppImageBuild/OpenTodoList
             -qmldir=${CMAKE_CURRENT_SOURCE_DIR}/app -qmake=${QMAKE_EXECUTABLE}
+            -bundle-non-qt-libs
     COMMAND
         rm AppImageBuild/AppRun || /bin/true
     COMMAND
