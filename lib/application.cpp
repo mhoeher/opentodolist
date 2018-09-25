@@ -370,12 +370,8 @@ bool Application::isLibraryDir(const QUrl &url) const
  */
 QUrl Application::homeLocation() const
 {
-#ifdef Q_OS_ANDROID
-    return QUrl::fromLocalFile(qgetenv("EXTERNAL_STORAGE"));
-#else
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     return QUrl::fromLocalFile(homeDir);
-#endif
 }
 
 /**
@@ -555,14 +551,8 @@ QString Application::librariesLocation() const
 QString Application::defaultLibrariesLocation()
 {
     QString result;
-#ifdef Q_OS_ANDROID
-    QString s(qgetenv("EXTERNAL_STORAGE"));
-    QDir dir(s + "/data/net.rpdev.opentodolist/");
-    result = dir.absolutePath();
-#else
     result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     result =  QDir(result).absolutePath();
-#endif
     QDir(result).mkpath(".");
     return result;
 }
