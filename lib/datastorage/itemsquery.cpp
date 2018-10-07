@@ -3,7 +3,12 @@
 /**
  * @brief Constructor.
  */
-ItemsQuery::ItemsQuery(QObject *parent) : QObject(parent)
+ItemsQuery::ItemsQuery(QObject *parent) : QObject(parent),
+    m_context(),
+    m_global(),
+    m_items(),
+    m_children(),
+    m_dataChanged(false)
 {
 }
 
@@ -44,6 +49,19 @@ QSharedPointer<QLMDB::Database> ItemsQuery::children() const
 
 
 /**
+ * @brief Indicate that the query changed the cache contents.
+ *
+ * This method shall be called by concrete sub-classes to indicate that the
+ * cache contents have been changed.
+ * @param changed
+ */
+void ItemsQuery::setDataChanged(bool changed)
+{
+    m_dataChanged = changed;
+}
+
+
+/**
  * @brief The context of the cache data base.
  */
 QSharedPointer<QLMDB::Context> ItemsQuery::context() const
@@ -61,5 +79,8 @@ QSharedPointer<QLMDB::Context> ItemsQuery::context() const
  */
 void ItemsQuery::finish()
 {
+    if (m_dataChanged) {
+        emit dataChanged();
+    }
     emit finished();
 }

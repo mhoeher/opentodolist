@@ -57,14 +57,23 @@ void InsertOrUpdateItemsQuery::run()
     for (auto lib : m_libEntries) {
         auto data = lib.toByteArray();
         auto id = lib.id.toByteArray();
-        itemCursor.put(id, data);
+
+        auto it = itemCursor.findKey(id);
+        if (!it.isValid() || it.value() != data) {
+            setDataChanged();
+            itemCursor.put(id, data);
+        }
         childrenCursor.put(Cache::RootId, id,
                            QLMDB::Cursor::NoDuplicateData);
     }
     for (auto item : m_itemEntries) {
         auto data = item.toByteArray();
         auto id = item.id.toByteArray();
-        itemCursor.put(id, data);
+        auto it = itemCursor.findKey(id);
+        if (!it.isValid() || it.value() != data) {
+            setDataChanged();
+            itemCursor.put(id, data);
+        }
         childrenCursor.put(item.parentId.toByteArray(), id,
                            QLMDB::Cursor::NoDuplicateData);
     }

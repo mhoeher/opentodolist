@@ -29,11 +29,20 @@ signals:
      */
     void finished();
 
+    /**
+     * @brief Indicates that he query changed the cache contents.
+     *
+     * This signal is emitted once when the query is finished and if
+     * the query changed the cache contents (by calling setDataChanged()).
+     */
+    void dataChanged();
+
 protected:
     QSharedPointer<QLMDB::Context> context() const;
     QSharedPointer<QLMDB::Database> global() const;
     QSharedPointer<QLMDB::Database> items() const;
     QSharedPointer<QLMDB::Database> children() const;
+    void setDataChanged(bool changed = true);
 
     /**
      * @brief Run the query.
@@ -50,6 +59,7 @@ private:
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
+    bool m_dataChanged;
 
     void finish();
 };

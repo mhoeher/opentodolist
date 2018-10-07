@@ -54,6 +54,8 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
     {
         auto q = new InsertOrUpdateItemsQuery;
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy cacheFinished(&cache, &Cache::finished);
+        QSignalSpy dataChanged(&cache, &Cache::dataChanged);
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
@@ -64,8 +66,31 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         q->add(image);
         cache.run(q);
 
-        QVERIFY(destroyed.wait());
+        QVERIFY(cacheFinished.wait());
+        QCOMPARE(destroyed.count(), 1);
         QCOMPARE(finished.count(), 1);
+        QCOMPARE(dataChanged.count(), 1);
+    }
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy cacheFinished(&cache, &Cache::finished);
+        QSignalSpy dataChanged(&cache, &Cache::dataChanged);
+        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
+
+        q->add(&lib);
+        q->add(todoList);
+        q->add(todo);
+        q->add(task);
+        q->add(note);
+        q->add(image);
+        cache.run(q);
+
+        QVERIFY(cacheFinished.wait());
+        QCOMPARE(destroyed.count(), 1);
+        QCOMPARE(finished.count(), 1);
+        QCOMPARE(dataChanged.count(), 0);
     }
 
     {
@@ -78,6 +103,8 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
 
         auto q = new InsertOrUpdateItemsQuery;
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy cacheFinished(&cache, &Cache::finished);
+        QSignalSpy dataChanged(&cache, &Cache::dataChanged);
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
@@ -88,8 +115,10 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         q->add(image);
         cache.run(q);
 
-        QVERIFY(destroyed.wait());
+        QVERIFY(cacheFinished.wait());
+        QCOMPARE(destroyed.count(), 1);
         QCOMPARE(finished.count(), 1);
+        QCOMPARE(dataChanged.count(), 1);
     }
 }
 

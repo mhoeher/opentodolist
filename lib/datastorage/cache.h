@@ -49,6 +49,22 @@ public:
 
 signals:
 
+    /**
+     * @brief Data in the cache has changed.
+     *
+     * This signal is emitted to indicate that data in the cache has been
+     * changed. Listeners may wait for this signal to learn when to re-read
+     * item lists after a change.
+     */
+    void dataChanged();
+
+    /**
+     * @brief A query has finished running.
+     *
+     * This signal is emitted to indicate that a query finished running.
+     */
+    void finished();
+
 public slots:
 
 private:

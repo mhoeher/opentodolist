@@ -50,7 +50,7 @@ ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery *query) :
 void ItemsQueryRunnable::run()
 {
     m_query->run();
-    m_query->finished();
+    m_query->finish();
 }
 
 
@@ -169,6 +169,12 @@ void Cache::run(ItemsQuery *query)
         query->m_global = m_global;
         query->m_items = m_items;
         query->m_children = m_children;
+        connect(query, &ItemsQuery::dataChanged,
+                this, &Cache::dataChanged,
+                Qt::QueuedConnection);
+        connect(query, &ItemsQuery::finished,
+                this, &Cache::finished,
+                Qt::QueuedConnection);
         m_threadPool->start(new ItemsQueryRunnable(query));
     }
 }

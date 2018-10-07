@@ -56,11 +56,16 @@ void DeleteItemsQuery::run()
                         item->deleteItem();
                         delete item;
                     }
+                    setDataChanged();
+                }
+            } else {
+                if (!items()->get(t, nextId).isNull()) {
+                    setDataChanged();
                 }
             }
-
             items()->remove(t, nextId);
-            queue.append(children()->getAll(nextId));
+            auto keys = children()->getAll(nextId);
+            queue.append(keys);
             children()->remove(t, nextId);
         }
 
