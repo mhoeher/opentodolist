@@ -365,6 +365,12 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
     return result;
 }
 
+Item *Item::decache(const QVariant &entry, QObject *parent)
+{
+    auto cacheEntry = entry.value<ItemCacheEntry>();
+    return decache(cacheEntry, parent);
+}
+
 /**
    @brief Sets the title of the item.
  */

@@ -161,6 +161,31 @@ void GetItemsQueryTest::run()
 
     {
         auto q = new GetItemsQuery();
+        q->setParent(todoList->uid());
+        q->setRecursive(true);
+        QSignalSpy itemsAvailable(
+                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
+        cache.run(q);
+        QVERIFY(destroyed.wait());
+        QCOMPARE(itemsAvailable.count(), 1);
+        auto items = itemsAvailable.at(0).at(0).toList();
+        QCOMPARE(items.count(), 2);
+        QSet<QByteArray> got = QSet<QByteArray>(
+        {
+                        items.at(0).value<ItemCacheEntry>().toByteArray(),
+                        items.at(1).value<ItemCacheEntry>().toByteArray()
+                    });
+        QSet<QByteArray> expected = QSet<QByteArray>(
+        {
+                        todo->encache().toByteArray(),
+                        task->encache().toByteArray()
+                    });
+        QCOMPARE(got, expected);
+    }
+
+    {
+        auto q = new GetItemsQuery();
         q->setParent(todo->uid());
         QSignalSpy itemsAvailable(
                     q, &GetItemsQuery::itemsAvailable);

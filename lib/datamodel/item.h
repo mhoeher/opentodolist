@@ -119,6 +119,8 @@ public:
     ItemCacheEntry encache() const;
     static Item* decache(const ItemCacheEntry &entry,
                          QObject* parent = nullptr);
+    static Item* decache(const QVariant &entry,
+                         QObject* parent = nullptr);
 
 public slots:
 

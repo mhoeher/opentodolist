@@ -18,6 +18,8 @@ public:
     QUuid parent() const;
     void setParent(const QUuid &parent);
 
+    bool recursive() const;
+    void setRecursive(bool recursive);
 
 signals:
 
@@ -38,6 +40,7 @@ protected:
 
 private:
     QList<QUuid> m_parents;
+    bool m_recursive;
 };
 
 #endif // GETITEMSQUERY_H

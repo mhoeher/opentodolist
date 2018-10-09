@@ -1,57 +1,48 @@
 #include "itemsmodel.h"
 
+#include "datastorage/getitemsquery.h"
+
 #include <QQmlEngine>
 
 ItemsModel::ItemsModel(QObject *parent) :
     QAbstractListModel(parent),
-    m_container()
+    m_cache(),
+    m_items(),
+    m_ids(),
+    m_fetchTimer(),
+    m_parentItem()
 {
-    auto handleRowsChanged = [=](const QModelIndex&, int, int) {
-        emit countChanged();
-    };
-    connect(this, &QAbstractListModel::rowsAboutToBeInserted, handleRowsChanged);
-    connect(this, &QAbstractListModel::rowsAboutToBeRemoved, handleRowsChanged);
-    connect(this, &ItemsModel::containerChanged, this, &ItemsModel::countChanged);
+    m_fetchTimer.setInterval(100);
+    connect(&m_fetchTimer, &QTimer::timeout,
+            this, &ItemsModel::fetch);
+    m_fetchTimer.setSingleShot(true);
 }
 
 /**
- * @brief The item container the model works on.
+ * @brief The item cache the model works on.
  */
-ItemContainer*ItemsModel::container() const
+Cache* ItemsModel::cache() const
 {
-    return m_container.data();
+    return m_cache.data();
 }
 
 /**
  * @brief Set the item container.
  */
-void ItemsModel::setContainer(ItemContainer* container)
+void ItemsModel::setCache(Cache* cache)
 {
-    if (container != m_container) {
-        if (m_container != nullptr) {
-            disconnect(m_container.data(), &ItemContainer::itemAdded,
-                       this, &ItemsModel::itemAdded);
-            disconnect(m_container.data(), &ItemContainer::itemDeleted,
-                       this, &ItemsModel::itemDeleted);
-            disconnect(m_container.data(), &ItemContainer::itemChanged,
-                       this, &ItemsModel::itemChanged);
-            disconnect(m_container.data(), &ItemContainer::cleared,
-                       this, &ItemsModel::cleared);
+    if (cache != m_cache) {
+        if (m_cache != nullptr) {
+            disconnect(m_cache.data(), &Cache::dataChanged,
+                       this, &ItemsModel::triggerFetch);
         }
-        beginResetModel();
-        m_container = container;
-        endResetModel();
-        if (m_container != nullptr) {
-            connect(m_container.data(), &ItemContainer::itemAdded,
-                    this, &ItemsModel::itemAdded);
-            connect(m_container.data(), &ItemContainer::itemDeleted,
-                    this, &ItemsModel::itemDeleted);
-            connect(m_container.data(), &ItemContainer::itemChanged,
-                    this, &ItemsModel::itemChanged);
-            connect(m_container.data(), &ItemContainer::cleared,
-                    this, &ItemsModel::cleared);
+        reset();
+        m_cache = cache;
+        if (m_cache != nullptr) {
+            connect(m_cache.data(), &Cache::dataChanged,
+                    this, &ItemsModel::triggerFetch);
         }
-        emit containerChanged();
+        emit cacheChanged();
     }
 }
 
@@ -60,13 +51,13 @@ void ItemsModel::setContainer(ItemContainer* container)
  */
 int ItemsModel::count() const
 {
-    return rowCount(QModelIndex());
+    return rowCount();
 }
 
 int ItemsModel::rowCount(const QModelIndex& parent) const
 {
-    if (m_container && !parent.isValid()) {
-        return m_container->count();
+    if (!parent.isValid()) {
+        return m_ids.length();
     } else {
         return 0;
     }
@@ -75,15 +66,15 @@ int ItemsModel::rowCount(const QModelIndex& parent) const
 QVariant ItemsModel::data(const QModelIndex& index, int role) const
 {
     int row = index.row();
-    if (m_container && row < m_container->count()) {
-        auto item = m_container->item(row);
+    if (row < m_ids.length()) {
+        auto id = m_ids.at(row);
+        auto item = m_items.value(id);
         switch (role) {
         case Qt::DisplayRole:
         case ItemRole:
-            QQmlEngine::setObjectOwnership(item.data(), QQmlEngine::CppOwnership);
-            return QVariant::fromValue<QObject*>(item.data());
+            return QVariant::fromValue<QObject*>(item);
         case WeightRole:
-            return item.data()->weight();
+            return item->weight();
         default:
             break;
         }
@@ -99,26 +90,118 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     return result;
 }
 
-void ItemsModel::itemAdded(int index)
+
+/**
+ * @brief The ID of the parent item to retrieve items for.
+ */
+QUuid ItemsModel::parentItem() const
 {
-    beginInsertRows(QModelIndex(), index, index);
-    endInsertRows();
+    return m_parentItem;
 }
 
-void ItemsModel::itemDeleted(int index)
+
+/**
+ * @brief Set the parent item to retrieve items for.
+ */
+void ItemsModel::setParentItem(const QUuid &parentItem)
 {
-    beginRemoveRows(QModelIndex(), index, index);
-    endRemoveRows();
+    if (m_parentItem != parentItem) {
+        m_parentItem = parentItem;
+        emit parentItemChanged();
+        triggerFetch();
+    }
 }
 
-void ItemsModel::itemChanged(int index)
+
+void ItemsModel::reset()
 {
-    auto idx = this->index(index, 0);
-    emit dataChanged(idx, idx);
+    emit beginResetModel();
+    m_ids.clear();
+    for (auto item : m_items.values()) {
+        delete item;
+    }
+    m_items.clear();
+    triggerFetch();
+    emit endResetModel();
+    emit countChanged();
 }
 
-void ItemsModel::cleared()
+void ItemsModel::fetch()
 {
-    beginResetModel();
-    endResetModel();
+    if (m_cache) {
+        auto q = new GetItemsQuery();
+        if (!m_parentItem.isNull()) {
+            q->setParent(m_parentItem);
+        }
+        connect(q, &GetItemsQuery::itemsAvailable,
+                this, &ItemsModel::update);
+        m_cache->run(q);
+    }
+}
+
+void ItemsModel::triggerFetch()
+{
+    m_fetchTimer.start();
+}
+
+void ItemsModel::update(QVariantList items)
+{
+    auto idsToDelete = QSet<QUuid>::fromList(m_ids);
+    QList<Item*> newItems;
+    for (auto data : items) {
+        auto item = Item::decache(data, this);
+        auto id = item->uid();
+        if (m_items.contains(id)) {
+            auto existingItem = m_items.value(id);
+            existingItem->fromVariant(item->toVariant());
+            delete item;
+            idsToDelete.remove(id);
+        } else {
+            auto item = Item::decache(data, this);
+            newItems << item;
+        }
+    }
+
+    if (!idsToDelete.isEmpty()) {
+        for (auto id : idsToDelete) {
+            auto index = m_ids.indexOf(id);
+            beginRemoveRows(QModelIndex(), index, index);
+            auto item = m_items.take(id);
+            delete item;
+            m_ids.removeAt(index);
+            endRemoveRows();
+        }
+    }
+
+    if (!newItems.isEmpty()) {
+        beginInsertRows(
+                    QModelIndex(),
+                    m_ids.length(),
+                    m_ids.length() + newItems.length() - 1);
+        for (auto item : newItems) {
+            connect(item, &Item::changed,
+                    this, &ItemsModel::itemChanged);
+            m_ids.append(item->uid());
+            m_items.insert(item->uid(), item);
+            QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);
+        }
+        endInsertRows();
+    }
+
+    if (!idsToDelete.isEmpty() || !newItems.isEmpty()) {
+        emit countChanged();
+    }
+}
+
+void ItemsModel::itemChanged()
+{
+    auto item = qobject_cast<Item*>(sender());
+    if (item) {
+        auto id = item->uid();
+        if (m_items.contains(id)) {
+            auto index = m_ids.indexOf(id);
+            auto modelIndex = this->index(index);
+            emit dataChanged(modelIndex, modelIndex);
+        }
+    }
 }

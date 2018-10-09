@@ -56,7 +56,6 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
-        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
         q->add(todoList);
@@ -67,7 +66,6 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());
-        QCOMPARE(destroyed.count(), 1);
         QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 1);
     }
@@ -77,7 +75,6 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
-        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
         q->add(todoList);
@@ -88,7 +85,6 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());
-        QCOMPARE(destroyed.count(), 1);
         QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 0);
     }
@@ -105,7 +101,6 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
-        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
         q->add(todoList);
@@ -116,8 +111,7 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());
-        QCOMPARE(destroyed.count(), 1);
-        QCOMPARE(finished.count(), 1);
+            QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 1);
     }
 }

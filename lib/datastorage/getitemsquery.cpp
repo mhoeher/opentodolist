@@ -1,3 +1,5 @@
+#include <QQueue>
+
 #include <qlmdb/transaction.h>
 #include <qlmdb/cursor.h>
 
@@ -5,7 +7,9 @@
 #include "datastorage/getitemsquery.h"
 
 GetItemsQuery::GetItemsQuery(QObject *parent) :
-    ItemsQuery(parent)
+    ItemsQuery(parent),
+    m_parents(),
+    m_recursive(false)
 {
     qRegisterMetaType<ItemCacheEntry>();
 }
@@ -28,10 +32,19 @@ void GetItemsQuery::run()
             it = itemsCursor.next();
         }
     } else {
-        for (auto parentId : m_parents) {
-            auto pit = childrenCursor.findKey(parentId.toByteArray());
+        QQueue<QByteArray> queue;
+        for (auto id : m_parents) {
+            queue.enqueue(id.toByteArray());
+        }
+        while (!queue.isEmpty()) {
+            auto parentId = queue.dequeue();
+            auto pit = childrenCursor.findKey(parentId);
             while (pit.isValid()) {
-                auto it = itemsCursor.findKey(pit.value());
+                auto childId = pit.value();
+                if (m_recursive) {
+                    queue.enqueue(childId);
+                }
+                auto it = itemsCursor.findKey(childId);
                 auto entry = ItemCacheEntry::fromByteArray(
                             it.value(), it.key());
                 if (entry.valid) {
@@ -42,6 +55,27 @@ void GetItemsQuery::run()
         }
     }
     emit itemsAvailable(result);
+}
+
+
+/**
+ * @brief Retrieve items recursively.
+ *
+ * If this property is set to true, the retrieval is done recursively.
+ * Otherwise, only the direct children of the given parents are retrieved.
+ */
+bool GetItemsQuery::recursive() const
+{
+    return m_recursive;
+}
+
+
+/**
+ * @brief Set if the retrieval shall be recursive.
+ */
+void GetItemsQuery::setRecursive(bool recursive)
+{
+    m_recursive = recursive;
 }
 
 
