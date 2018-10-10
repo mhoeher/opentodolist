@@ -328,6 +328,52 @@ void GetItemsQueryTest::run()
                     });
         QCOMPARE(got, expected);
     }
+
+    {
+        auto q = new GetItemsQuery();
+        q->setParent(todoList->uid());
+        q->setItemFilter([=](ItemPtr item, GetItemsQuery *query) {
+            for (auto item : query->childrenOf(item->uid())) {
+                if (item->title().contains("task", Qt::CaseInsensitive)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+        QSignalSpy itemsAvailable(
+                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
+        cache.run(q);
+        QVERIFY(destroyed.wait());
+        QCOMPARE(itemsAvailable.count(), 1);
+        auto items = itemsAvailable.at(0).at(0).toList();
+        QCOMPARE(items.count(), 1);
+        QSet<QByteArray> got = QSet<QByteArray>(
+        {
+                        items.at(0).value<ItemCacheEntry>().toByteArray()
+                    });
+        QSet<QByteArray> expected = QSet<QByteArray>(
+        {
+                        todo->encache().toByteArray()
+                    });
+        QCOMPARE(got, expected);
+    }
+
+    {
+        auto q = new GetItemsQuery();
+        q->setParent(todoList->uid());
+        q->setItemFilter([=](ItemPtr, GetItemsQuery*) {
+            return false;
+        });
+        QSignalSpy itemsAvailable(
+                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
+        cache.run(q);
+        QVERIFY(destroyed.wait());
+        QCOMPARE(itemsAvailable.count(), 1);
+        auto items = itemsAvailable.at(0).at(0).toList();
+        QCOMPARE(items.count(), 0);
+    }
 }
 
 QTEST_MAIN(GetItemsQueryTest)

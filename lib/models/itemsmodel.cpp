@@ -1,8 +1,14 @@
+#include <QQmlEngine>
+#include <QDateTime>
+
 #include "itemsmodel.h"
+
+#include "datamodel/complexitem.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todo.h"
 
 #include "datastorage/getitemsquery.h"
 
-#include <QQmlEngine>
 
 ItemsModel::ItemsModel(QObject *parent) :
     QAbstractListModel(parent),
@@ -10,7 +16,13 @@ ItemsModel::ItemsModel(QObject *parent) :
     m_items(),
     m_ids(),
     m_fetchTimer(),
-    m_parentItem()
+    m_parentItem(),
+    m_searchString(),
+    m_tag(),
+    m_onlyDone(false),
+    m_onlyUndone(false),
+    m_onlyWithDueDate(false),
+    m_defaultSearchResult(true)
 {
     m_fetchTimer.setInterval(100);
     connect(&m_fetchTimer, &QTimer::timeout,
@@ -113,6 +125,160 @@ void ItemsModel::setParentItem(const QUuid &parentItem)
 }
 
 
+/**
+ * @brief Only include items which match the given search string.
+ */
+QString ItemsModel::searchString() const
+{
+    return m_searchString;
+}
+
+
+/**
+ * @brief Set the search string.
+ */
+void ItemsModel::setSearchString(const QString &searchString)
+{
+    if (m_searchString != searchString) {
+        m_searchString = searchString;
+        triggerFetch();
+        emit searchStringChanged();
+    }
+}
+
+
+/**
+ * @brief Only include items which have the given tag.
+ */
+QString ItemsModel::tag() const
+{
+    return m_tag;
+}
+
+
+/**
+ * @brief Set the tag used for filtering.
+ */
+void ItemsModel::setTag(const QString &tag)
+{
+    if (m_tag != tag) {
+        m_tag = tag;
+        triggerFetch();
+        emit tagChanged();
+    }
+}
+
+
+/**
+ * @brief Include only items which have their "done" property set to true.
+ */
+bool ItemsModel::onlyDone() const
+{
+    return m_onlyDone;
+}
+
+
+/**
+ * @brief Set if only done items shall be included.
+ */
+void ItemsModel::setOnlyDone(bool value)
+{
+    if (m_onlyDone != value) {
+        m_onlyDone = value;
+        triggerFetch();
+        emit onlyDoneChanged();
+    }
+}
+
+
+/**
+ * @brief Include only items which have their "done" property set to false.
+ */
+bool ItemsModel::onlyUndone() const
+{
+    return m_onlyUndone;
+}
+
+
+/**
+ * @brief Set if only undone items shall be included.
+ */
+void ItemsModel::setOnlyUndone(bool value)
+{
+    if (m_onlyUndone != value) {
+        m_onlyUndone = value;
+        triggerFetch();
+        emit onlyUndoneChanged();
+    }
+}
+
+
+/**
+ * @brief Only include open items which have a due date set.
+ */
+bool ItemsModel::onlyWithDueDate() const
+{
+    return m_onlyWithDueDate;
+}
+
+
+/**
+ * @brief Set if only open items with a due date set shall be included.
+ */
+void ItemsModel::setOnlyWithDueDate(bool value)
+{
+    if (m_onlyWithDueDate != value) {
+        m_onlyWithDueDate = value;
+        triggerFetch();
+        emit onlyWithDueDateChanged();
+    }
+}
+
+
+/**
+ * @brief The default search/filter result.
+ *
+ * This is the default result of the filter operation. If this is true,
+ * all items are included unless they are not matched by a filter. If it is
+ * false, all items are excluded, unless they are included by a filter.
+ */
+bool ItemsModel::defaultSearchResult() const
+{
+    return m_defaultSearchResult;
+}
+
+
+/**
+ * @brief Set the default search/filter result.
+ */
+void ItemsModel::setDefaultSearchResult(bool defaultSearchResult)
+{
+    if (m_defaultSearchResult != defaultSearchResult) {
+        m_defaultSearchResult = defaultSearchResult;
+        triggerFetch();
+        emit defaultSearchResultChanged();
+
+    }
+}
+
+
+bool ItemsModel::itemMatches(ItemPtr item, QStringList words) {
+    for (auto word : words) {
+        if (item->title().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
+            return true;
+        }
+        auto complexItem = item.dynamicCast<ComplexItem>();
+        if (complexItem != nullptr) {
+            if (complexItem->notes().indexOf(
+                        word, 0, Qt::CaseInsensitive) >= 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
 void ItemsModel::reset()
 {
     emit beginResetModel();
@@ -133,10 +299,83 @@ void ItemsModel::fetch()
         if (!m_parentItem.isNull()) {
             q->setParent(m_parentItem);
         }
+
+        auto tag = m_tag;
+        auto onlyDone = m_onlyDone;
+        auto onlyUndone = m_onlyUndone;
+        auto onlyWithDueDate = m_onlyWithDueDate;
+        auto itemMatchesFilter = getFilterFn();
+
+        q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
+            auto result = true;
+            if (itemMatchesFilter) {
+                result = itemMatchesFilter(item, query);
+            }
+            if (onlyDone && !item->property("done").toBool()) {
+                result = false;
+            }
+            if (onlyUndone && item->property("done").toBool()) {
+                result = false;
+            }
+            if (onlyWithDueDate &&
+                    !item->property("dueTo").toDateTime().isNull()) {
+                result = false;
+            }
+            return result;
+        });
         connect(q, &GetItemsQuery::itemsAvailable,
                 this, &ItemsModel::update);
         m_cache->run(q);
     }
+}
+
+std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn() const
+{
+    auto words = m_searchString.split(QRegExp("\\s+"),
+                                      QString::SkipEmptyParts);
+    bool defaultSearchResult = m_defaultSearchResult;
+    std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
+    if (!words.isEmpty()) {
+        itemMatchesFilter = [=](ItemPtr item, GetItemsQuery *query) {
+            bool result = defaultSearchResult;
+            if (itemMatches(item, words)) {
+                return true;
+            } else {
+                auto todoList = item.dynamicCast<TodoList>();
+                if (todoList) {
+                    for (auto todo : query->childrenOf(todoList->uid())) {
+                        if (itemMatches(todo, words)) {
+                            result = true;
+                            break;
+                        } else {
+                            for (auto task :
+                                 query->childrenOf(todo->uid())) {
+                                if (itemMatches(task, words)) {
+                                    result = true;
+                                    break;
+                                }
+                            }
+                            if (result) {
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    auto todo = item.dynamicCast<Todo>();
+                    if (todo) {
+                        for (auto task : query->childrenOf(todo->uid())) {
+                            if (itemMatches(task, words)) {
+                                result = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        };
+    }
+    return itemMatchesFilter;
 }
 
 void ItemsModel::triggerFetch()

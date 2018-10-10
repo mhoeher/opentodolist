@@ -116,12 +116,9 @@ void DeleteItemsQueryTest::run()
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
-        QSignalSpy destroyed(q, &DeleteItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
     }
 
     {
@@ -130,12 +127,9 @@ void DeleteItemsQueryTest::run()
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
-        QSignalSpy destroyed(q, &DeleteItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 0);
-        QCOMPARE(destroyed.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
     }
 
     {
