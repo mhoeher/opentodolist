@@ -30,8 +30,12 @@ signals:
 
 private:
 
-    QUuid m_uid;
-    bool m_isLibrary;
+    struct ItemToDelete {
+        QUuid uid;
+        bool isLibrary;
+    };
+
+    QList<ItemToDelete> m_itemsToDelete;
 
     // ItemsQuery interface
 protected:

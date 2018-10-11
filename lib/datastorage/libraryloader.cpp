@@ -10,7 +10,8 @@
  */
 LibraryLoader::LibraryLoader(QObject *parent) : QObject(parent),
     m_thread(),
-    m_worker(new LibraryLoaderWorker())
+    m_worker(new LibraryLoaderWorker()),
+    m_cache()
 {
     qRegisterMetaType<ItemPtr>();
     m_thread.start();
@@ -63,6 +64,16 @@ void LibraryLoader::scan()
                               Q_ARG(QUuid, m_libraryId),
                               Q_ARG(const QString&, m_directory),
                               Q_ARG(QObject*, thread()));
+}
+
+Cache *LibraryLoader::cache() const
+{
+    return m_cache;
+}
+
+void LibraryLoader::setCache(Cache *cache)
+{
+    m_cache = cache;
 }
 
 QUuid LibraryLoader::libraryId() const

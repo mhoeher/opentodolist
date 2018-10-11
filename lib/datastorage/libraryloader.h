@@ -7,6 +7,7 @@
 #include "datamodel/item.h"
 
 class LibraryLoaderWorker;
+class Cache;
 
 class LibraryLoader : public QObject
 {
@@ -20,6 +21,9 @@ public:
 
     QUuid libraryId() const;
     void setLibraryId(const QUuid &libraryId);
+
+    Cache *cache() const;
+    void setCache(Cache *cache);
 
 signals:
 
@@ -46,6 +50,7 @@ private:
     QString m_directory;
     QThread m_thread;
     LibraryLoaderWorker *m_worker;
+    Cache *m_cache;
 
 };
 
