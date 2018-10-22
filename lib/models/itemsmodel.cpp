@@ -8,6 +8,7 @@
 #include "datamodel/todo.h"
 
 #include "datastorage/getitemsquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
 
 
 ItemsModel::ItemsModel(QObject *parent) :
@@ -22,7 +23,8 @@ ItemsModel::ItemsModel(QObject *parent) :
     m_onlyDone(false),
     m_onlyUndone(false),
     m_onlyWithDueDate(false),
-    m_defaultSearchResult(true)
+    m_defaultSearchResult(true),
+    m_updating(false)
 {
     m_fetchTimer.setInterval(100);
     connect(&m_fetchTimer, &QTimer::timeout,
@@ -385,6 +387,7 @@ void ItemsModel::triggerFetch()
 
 void ItemsModel::update(QVariantList items)
 {
+    m_updating = true;
     auto idsToDelete = QSet<QUuid>::fromList(m_ids);
     QList<Item*> newItems;
     for (auto data : items) {
@@ -430,6 +433,8 @@ void ItemsModel::update(QVariantList items)
     if (!idsToDelete.isEmpty() || !newItems.isEmpty()) {
         emit countChanged();
     }
+
+    m_updating = false;
 }
 
 void ItemsModel::itemChanged()
@@ -441,6 +446,11 @@ void ItemsModel::itemChanged()
             auto index = m_ids.indexOf(id);
             auto modelIndex = this->index(index);
             emit dataChanged(modelIndex, modelIndex);
+        }
+        if (!m_updating && m_cache != nullptr) {
+            auto q = new InsertOrUpdateItemsQuery();
+            q->add(item, InsertOrUpdateItemsQuery::Save);
+            m_cache->run(q);
         }
     }
 }

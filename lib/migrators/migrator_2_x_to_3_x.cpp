@@ -156,10 +156,10 @@ void Migrator_2_x_to_3_x::run(Application* application)
         auto library = new Library(directory, application);
         library->setName(name);
         application->appendLibrary(library);
-        QString targetDir = library->newItemLocation();
-        if (QDir(targetDir).mkpath(".")) {
+        auto targetDir = library->newItemLocation();
+        if (targetDir.mkpath(".")) {
             QtConcurrent::run([=]() {
-                migrate_to_3_0(directory, targetDir);
+                migrate_to_3_0(directory, targetDir.path());
             });
         }
     }

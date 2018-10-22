@@ -16,7 +16,9 @@ public:
     explicit DeleteItemsQuery(QObject *parent = nullptr);
 
     void deleteItem(const Item *item);
-    void deleteLibrary(const Library *library);
+    void deleteItem(const QUuid &uid);
+    void deleteLibrary(const Library *library, bool deleteLibraryDir);
+    void deleteLibrary(const QUuid &uid, bool deleteLibraryDir);
 
 signals:
 
@@ -33,6 +35,7 @@ private:
     struct ItemToDelete {
         QUuid uid;
         bool isLibrary;
+        bool deleteLibraryDir;
     };
 
     QList<ItemToDelete> m_itemsToDelete;

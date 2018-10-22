@@ -17,14 +17,28 @@ DeleteItemsQuery::DeleteItemsQuery(QObject *parent) :
 void DeleteItemsQuery::deleteItem(const Item *item)
 {
     if (item != nullptr) {
-        m_itemsToDelete << ItemToDelete({ item->uid(), false });
+        deleteItem(item->uid());
     }
 }
 
-void DeleteItemsQuery::deleteLibrary(const Library *library)
+void DeleteItemsQuery::deleteItem(const QUuid &uid)
+{
+    if (!uid.isNull()) {
+        m_itemsToDelete << ItemToDelete({ uid, false, false });
+    }
+}
+
+void DeleteItemsQuery::deleteLibrary(const Library *library, bool deleteLibraryDir)
 {
     if (library != nullptr) {
-        m_itemsToDelete << ItemToDelete({ library->uid(), true });
+        deleteLibrary(library->uid(), deleteLibraryDir);
+    }
+}
+
+void DeleteItemsQuery::deleteLibrary(const QUuid &uid, bool deleteLibraryDir)
+{
+    if (!uid.isNull()) {
+        m_itemsToDelete << ItemToDelete({ uid, true, deleteLibraryDir });
     }
 }
 
@@ -36,6 +50,20 @@ void DeleteItemsQuery::run()
             QQueue<QByteArray> queue;
             queue << itemToDelete.uid.toByteArray();
 
+            // If the item is a library and we are requested to delete the
+            // library directory, do it now:
+            if (itemToDelete.isLibrary && itemToDelete.deleteLibraryDir) {
+                auto libData = items()->get(t, itemToDelete.uid.toByteArray());
+                if (!libData.isEmpty()) {
+                    auto lib = Library::decache(
+                                LibraryCacheEntry::fromByteArray(
+                                    libData, itemToDelete.uid.toByteArray()));
+                    if (lib) {
+                        lib->deleteLibrary();
+                        delete lib;
+                    }
+                }
+            }
 
             while (!queue.isEmpty()) {
                 auto nextId = queue.dequeue();

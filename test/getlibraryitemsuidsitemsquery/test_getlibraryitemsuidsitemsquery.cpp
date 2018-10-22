@@ -54,16 +54,21 @@ void GetLibraryItemsUIDsItemsQueryTest::run()
     }
 
     Library lib;
-    auto todoList = lib.addTodoList();
-    todoList->setTitle("A todo list");
-    auto todo = todoList->addTodo();
-    todo->setTitle("A todo");
-    auto task = todo->addTask();
-    task->setTitle("A task");
-    auto note = lib.addNote();
-    note->setTitle("A note");
-    auto image = lib.addImage();
-    image->setTitle("An image");
+    TodoList todoList;
+    todoList.setTitle("A todo list");
+    todoList.setLibraryId(lib.uid());
+    Todo todo;
+    todo.setTitle("A todo");
+    todo.setTodoListUid(todoList.uid());
+    Task task;
+    task.setTitle("A task");
+    task.setTodoUid(todo.uid());
+    Note note;
+    note.setTitle("A note");
+    note.setLibraryId(lib.uid());
+    Image image;
+    image.setTitle("An image");
+    image.setLibraryId(lib.uid());
 
     {
         auto q = new InsertOrUpdateItemsQuery;
@@ -71,11 +76,11 @@ void GetLibraryItemsUIDsItemsQueryTest::run()
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(destroyed.wait());
@@ -94,11 +99,11 @@ void GetLibraryItemsUIDsItemsQueryTest::run()
         auto got = uidsAvailable.at(0).at(0).value<QSet<QUuid>>();
         auto expected = QSet<QUuid>(
         {
-                        todoList->uid(),
-                        todo->uid(),
-                        task->uid(),
-                        note->uid(),
-                        image->uid(),
+                        todoList.uid(),
+                        todo.uid(),
+                        task.uid(),
+                        note.uid(),
+                        image.uid(),
                     });
         QCOMPARE(got, expected);
     }

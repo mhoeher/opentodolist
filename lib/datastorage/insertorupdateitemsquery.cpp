@@ -1,4 +1,5 @@
 #include <QJsonDocument>
+#include <QRandomGenerator>
 
 #include <qlmdb/context.h>
 #include <qlmdb/cursor.h>
@@ -24,12 +25,18 @@ InsertOrUpdateItemsQuery::InsertOrUpdateItemsQuery(QObject *parent) :
 /**
  * @brief Add the @p item to the list of items to be cached.
  */
-void InsertOrUpdateItemsQuery::add(Item *item)
+void InsertOrUpdateItemsQuery::add(Item *item, InsertFlags flags)
 {
     if (item != nullptr) {
         auto entry = item->encache();
         if (entry.valid) {
             m_itemEntries.append(entry);
+            if (flags.testFlag(CalcWeight)) {
+                m_calcWeight.insert(item->uid());
+            }
+            if (flags.testFlag(Save)) {
+                m_save.insert(item->uid());
+            }
         }
     }
 }
@@ -67,6 +74,34 @@ void InsertOrUpdateItemsQuery::run()
                            QLMDB::Cursor::NoDuplicateData);
     }
     for (auto item : m_itemEntries) {
+        if (m_calcWeight.contains(item.id)) {
+            auto i = Item::decache(item);
+            auto parentId = item.parentId;
+            double weight = 0.0;
+            auto childIds = children()->getAll(t, parentId.toByteArray());
+            for (auto childId : childIds) {
+                auto data = items()->get(t, childId);
+                if (!data.isNull()) {
+                    auto siblingItem = Item::decache(
+                                ItemCacheEntry::fromByteArray(data, childId));
+                    if (siblingItem) {
+                        weight = qMax(weight, siblingItem->weight());
+                        delete siblingItem;
+                    }
+                }
+            }
+            weight += 1.0 + QRandomGenerator::securelySeeded().generateDouble();
+            i->setWeight(weight);
+            item = i->encache();
+            delete i;
+        }
+        if (m_save.contains(item.id)) {
+            auto i = Item::decache(item);
+            if (i->isValid()) {
+                i->save();
+            }
+            delete i;
+        }
         auto data = item.toByteArray();
         auto id = item.id.toByteArray();
         auto it = itemCursor.findKey(id);

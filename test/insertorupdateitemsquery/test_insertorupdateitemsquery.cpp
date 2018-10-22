@@ -40,16 +40,21 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
     QVERIFY(cache.open());
 
     Library lib;
-    auto todoList = lib.addTodoList();
-    todoList->setTitle("A todo list");
-    auto todo = todoList->addTodo();
-    todo->setTitle("A todo");
-    auto task = todo->addTask();
-    task->setTitle("A task");
-    auto note = lib.addNote();
-    note->setTitle("A note");
-    auto image = lib.addImage();
-    image->setTitle("An image");
+    TodoList todoList;
+    todoList.setTitle("A todo list");
+    todoList.setLibraryId(lib.uid());
+    Todo todo;
+    todo.setTitle("A todo");
+    todo.setTodoListUid(todoList.uid());
+    Task task;
+    task.setTitle("A task");
+    task.setTodoUid(todo.uid());
+    Note note;
+    note.setTitle("A note");
+    note.setLibraryId(lib.uid());
+    Image image;
+    image.setTitle("An image");
+    image.setLibraryId(lib.uid());
 
     {
         auto q = new InsertOrUpdateItemsQuery;
@@ -58,11 +63,11 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());
@@ -77,11 +82,11 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());
@@ -91,11 +96,11 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
 
     {
         lib.setName("Changed library title");
-        todoList->setTitle("Changed todo list");
-        todo->setTitle("Changed todo");
-        task->setTitle("Changed task");
-        note->setTitle("Changed note");
-        image->setTitle("Changed image");
+        todoList.setTitle("Changed todo list");
+        todo.setTitle("Changed todo");
+        task.setTitle("Changed task");
+        note.setTitle("Changed note");
+        image.setTitle("Changed image");
 
         auto q = new InsertOrUpdateItemsQuery;
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
@@ -103,11 +108,11 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());

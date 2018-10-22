@@ -53,16 +53,21 @@ void DeleteItemsQueryTest::run()
     }
 
     Library lib;
-    auto todoList = lib.addTodoList();
-    todoList->setTitle("A todo list");
-    auto todo = todoList->addTodo();
-    todo->setTitle("A todo");
-    auto task = todo->addTask();
-    task->setTitle("A task");
-    auto note = lib.addNote();
-    note->setTitle("A note");
-    auto image = lib.addImage();
-    image->setTitle("An image");
+    TodoList todoList;
+    todoList.setTitle("A todo list");
+    todoList.setLibraryId(lib.uid());
+    Todo todo;
+    todo.setTitle("A todo");
+    todo.setTodoListUid(todoList.uid());
+    Task task;
+    task.setTitle("A task");
+    task.setTodoUid(todo.uid());
+    Note note;
+    note.setTitle("A note");
+    note.setLibraryId(lib.uid());
+    Image image;
+    image.setTitle("An image");
+    image.setLibraryId(lib.uid());
 
     {
         auto q = new InsertOrUpdateItemsQuery;
@@ -70,11 +75,11 @@ void DeleteItemsQueryTest::run()
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(destroyed.wait());
@@ -101,18 +106,18 @@ void DeleteItemsQueryTest::run()
                     });
         QSet<QByteArray> expected = QSet<QByteArray>(
         {
-                        todoList->encache().toByteArray(),
-                        todo->encache().toByteArray(),
-                        task->encache().toByteArray(),
-                        note->encache().toByteArray(),
-                        image->encache().toByteArray(),
+                        todoList.encache().toByteArray(),
+                        todo.encache().toByteArray(),
+                        task.encache().toByteArray(),
+                        note.encache().toByteArray(),
+                        image.encache().toByteArray(),
                     });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new DeleteItemsQuery();
-        q->deleteItem(task);
+        q->deleteItem(&task);
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
@@ -123,7 +128,7 @@ void DeleteItemsQueryTest::run()
 
     {
         auto q = new DeleteItemsQuery();
-        q->deleteItem(task);
+        q->deleteItem(&task);
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
@@ -151,10 +156,10 @@ void DeleteItemsQueryTest::run()
                     });
         QSet<QByteArray> expected = QSet<QByteArray>(
         {
-                        todoList->encache().toByteArray(),
-                        todo->encache().toByteArray(),
-                        note->encache().toByteArray(),
-                        image->encache().toByteArray(),
+                        todoList.encache().toByteArray(),
+                        todo.encache().toByteArray(),
+                        note.encache().toByteArray(),
+                        image.encache().toByteArray(),
                     });
         QCOMPARE(got, expected);
     }
@@ -165,11 +170,11 @@ void DeleteItemsQueryTest::run()
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(destroyed.wait());
@@ -178,7 +183,7 @@ void DeleteItemsQueryTest::run()
 
     {
         auto q = new DeleteItemsQuery();
-        q->deleteItem(todo);
+        q->deleteItem(&todo);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
@@ -208,9 +213,9 @@ void DeleteItemsQueryTest::run()
                     });
         QSet<QByteArray> expected = QSet<QByteArray>(
         {
-                        todoList->encache().toByteArray(),
-                        note->encache().toByteArray(),
-                        image->encache().toByteArray(),
+                        todoList.encache().toByteArray(),
+                        note.encache().toByteArray(),
+                        image.encache().toByteArray(),
                     });
         QCOMPARE(got, expected);
     }
@@ -221,11 +226,11 @@ void DeleteItemsQueryTest::run()
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(destroyed.wait());
@@ -234,7 +239,7 @@ void DeleteItemsQueryTest::run()
 
     {
         auto q = new DeleteItemsQuery();
-        q->deleteItem(todoList);
+        q->deleteItem(&todoList);
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy destroyed(q, &DeleteItemsQuery::destroyed);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
@@ -263,8 +268,8 @@ void DeleteItemsQueryTest::run()
                     });
         QSet<QByteArray> expected = QSet<QByteArray>(
         {
-                        note->encache().toByteArray(),
-                        image->encache().toByteArray(),
+                        note.encache().toByteArray(),
+                        image.encache().toByteArray(),
                     });
         QCOMPARE(got, expected);
     }
@@ -275,11 +280,11 @@ void DeleteItemsQueryTest::run()
         QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
 
         q->add(&lib);
-        q->add(todoList);
-        q->add(todo);
-        q->add(task);
-        q->add(note);
-        q->add(image);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task);
+        q->add(&note);
+        q->add(&image);
         cache.run(q);
 
         QVERIFY(destroyed.wait());
@@ -288,7 +293,7 @@ void DeleteItemsQueryTest::run()
 
     {
         auto q = new DeleteItemsQuery();
-        q->deleteLibrary(&lib);
+        q->deleteLibrary(&lib, false);
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy destroyed(q, &DeleteItemsQuery::destroyed);
         QSignalSpy cacheFinished(&cache, &Cache::finished);

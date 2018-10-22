@@ -17,14 +17,21 @@
 #include <QTimer>
 #include <QUuid>
 
+#include "datamodel/image.h"
+#include "datamodel/note.h"
+#include "datamodel/task.h"
+#include "datamodel/todo.h"
+#include "datamodel/todolist.h"
+#include "datastorage/cache.h"
+#include "datastorage/deleteitemsquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
+#include "migrators/migrator_2_x_to_3_x.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
 #include "sync/syncrunner.h"
 #include "sync/webdavsynchronizer.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
-
-#include "migrators/migrator_2_x_to_3_x.h"
 
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
@@ -40,6 +47,7 @@ Application::Application(QObject *parent) :
     m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
                              QCoreApplication::organizationName(),
                              QCoreApplication::applicationName(), this)),
+    m_cache(new Cache(this)),
     m_loadingLibraries(false),
     m_keyStore(new KeyStore(this)),
     m_secrets()
@@ -47,26 +55,45 @@ Application::Application(QObject *parent) :
     initialize();
 }
 
+
 /**
  * @brief Constructor.
  *
- * Creates a new Application object working with the given @p settings object.
+ * This is an overloaded version of the Application constructor. It causes the
+ * Application object to store its settings in the given @p applicationDir.
  */
-
-Application::Application(QSettings *settings, QObject *parent) :
+Application::Application(QString applicationDir, QObject *parent) :
     QObject(parent),
-    m_settings(settings),
-    m_loadingLibraries(false)
+    m_settings(new QSettings(applicationDir + "/appsettings.ini",
+                            QSettings::IniFormat, this)),
+    m_cache(new Cache(this)),
+    m_loadingLibraries(false),
+    m_keyStore(new KeyStore(this)),
+    m_secrets()
 {
-    Q_CHECK_PTR(m_settings);
-    initialize();
+    initialize(applicationDir);
 }
 
 /**
  * @brief Shared initialization of constructors.
  */
-void Application::initialize()
+void Application::initialize(const QString &path)
 {
+    auto cacheDir = path;
+    if (cacheDir.isEmpty()) {
+        auto cacheDir = QStandardPaths::writableLocation(
+                    QStandardPaths::AppDataLocation);
+    }
+    cacheDir += "/cache";
+    {
+        QDir dir(cacheDir);
+        if (!dir.exists()) {
+            dir.mkpath(".");
+        }
+    }
+    m_cache->setCacheDirectory(cacheDir);
+    m_cache->open();
+
     loadLibraries();
 
     connect(m_keyStore, &KeyStore::credentialsLoaded,
@@ -159,6 +186,11 @@ QQmlListProperty<Library> Application::libraryList()
  * If no synchronizer is specified and localPath points to a location
  * with an existing library, that library will be imported. In this
  * case, any other attributes are ignored.
+ *
+ * The function returns a Library object which represents the library just
+ * created. The ownership of the returned object is transferred to the caller.
+ * In case of invalid input parameters or issues creating the library, a
+ * null pointer is returned.
  */
 Library *Application::addLibrary(const QVariantMap &parameters)
 {
@@ -188,7 +220,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
     QDir(localPath).mkpath(".");
 
     if (QDir(localPath).exists()) {
-        result = new Library(localPath, this);
+        result = new Library(localPath);
         result->setUid(uid);
         result->setName(name);
         if (!synchronizerCls.isEmpty()) {
@@ -215,10 +247,158 @@ Library *Application::addLibrary(const QVariantMap &parameters)
                 delete sync;
             }
         }
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(result);
+        m_cache->run(q);
         appendLibrary(result);
         syncLibrary(result);
     }
     return result;
+}
+
+
+/**
+ * @brief Delete the library.
+ *
+ * This will remove the @p library from the application, i.e.
+ * it will be removed from the cache. In addition, if the library
+ * is located in the default libraries location, the files on
+ * disk stored will also be removed.
+ */
+void Application::deleteLibrary(Library *library)
+{
+    if (library != nullptr) {
+        auto q = new DeleteItemsQuery();
+        q->deleteLibrary(library, library->isInDefaultLocation());
+        m_cache->run(q);
+    }
+}
+
+Note *Application::addNote(Library *library, QVariantMap properties)
+{
+    Note *note = nullptr;
+    if (library != nullptr) {
+        if (library->isValid()) {
+            QDir dir(library->newItemLocation());
+            dir.mkpath(".");
+            note = new Note(dir);
+        } else {
+            note = new Note();
+        }
+        for (auto property : properties.keys()) {
+            auto value = properties.value(property);
+            note->setProperty(property.toUtf8(), value);
+        }
+        note->setLibraryId(library->uid());
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(note, InsertOrUpdateItemsQuery::CreateNewItem);
+        m_cache->run(q);
+    }
+    return note;
+}
+
+Image* Application::addImage(Library *library, QVariantMap properties)
+{
+    Image *image = nullptr;
+    if (library != nullptr) {
+        if (library->isValid()) {
+            QDir dir(library->newItemLocation());
+            dir.mkpath(".");
+            image = new Image(dir);
+        } else {
+            image = new Image();
+        }
+        for (auto property : properties.keys()) {
+            auto value = properties.value(property);
+            image->setProperty(property.toUtf8(), value);
+        }
+        image->setLibraryId(library->uid());
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(image, InsertOrUpdateItemsQuery::CreateNewItem);
+        m_cache->run(q);
+    }
+    return image;
+}
+
+TodoList *Application::addTodoList(Library *library, QVariantMap properties)
+{
+    TodoList *todoList = nullptr;
+    if (library != nullptr) {
+        if (library->isValid()) {
+            QDir dir(library->newItemLocation());
+            dir.mkpath(".");
+            todoList = new TodoList(dir);
+        } else {
+            todoList = new TodoList();
+        }
+        for (auto property : properties.keys()) {
+            auto value = properties.value(property);
+            todoList->setProperty(property.toUtf8(), value);
+        }
+        todoList->setLibraryId(library->uid());
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(todoList, InsertOrUpdateItemsQuery::CreateNewItem);
+        m_cache->run(q);
+    }
+    return todoList;
+}
+
+
+Todo *Application::addTodo(
+        Library *library, TodoList *todoList, QVariantMap properties)
+{
+    Todo *todo = nullptr;
+    if (library != nullptr && todoList != nullptr) {
+        if (library->isValid()) {
+            QDir dir(library->newItemLocation());
+            dir.mkpath(".");
+            todo = new Todo(dir);
+        } else {
+            todo = new Todo();
+        }
+        for (auto property : properties.keys()) {
+            auto value = properties.value(property);
+            todo->setProperty(property.toUtf8(), value);
+        }
+        todo->setTodoListUid(todoList->uid());
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(todo, InsertOrUpdateItemsQuery::CreateNewItem);
+        m_cache->run(q);
+    }
+    return todo;
+}
+
+Task *Application::addTask(Library *library, Todo *todo, QVariantMap properties)
+{
+    Task *task = nullptr;
+    if (library != nullptr && todo != nullptr) {
+        if (library->isValid()) {
+            QDir dir(library->newItemLocation());
+            dir.mkpath(".");
+            task = new Task(dir);
+        } else {
+            task = new Task();
+        }
+        for (auto property : properties.keys()) {
+            auto value = properties.value(property);
+            task->setProperty(property.toUtf8(), value);
+        }
+        task->setTodoUid(todo->uid());
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(task, InsertOrUpdateItemsQuery::CreateNewItem);
+        m_cache->run(q);
+    }
+    return task;
+}
+
+
+void Application::deleteItem(Item *item)
+{
+    if (item != nullptr) {
+        auto q = new DeleteItemsQuery();
+        q->deleteItem(item);
+        m_cache->run(q);
+    }
 }
 
 
@@ -477,6 +657,11 @@ void Application::copyToClipboard(const QString &text)
     }
 }
 
+Cache *Application::cache() const
+{
+    return m_cache;
+}
+
 
 void Application::saveLibraries()
 {
@@ -551,19 +736,13 @@ QString Application::librariesLocation() const
 QString Application::defaultLibrariesLocation()
 {
     QString result;
-    result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    result = QStandardPaths::writableLocation(
+                QStandardPaths::AppLocalDataLocation);
     result =  QDir(result).absolutePath();
     QDir(result).mkpath(".");
     return result;
 }
 
-/**
-   @brief Returns the location of the default library.
- */
-QString Application::defaultLibraryLocation() const
-{
-    return QDir(librariesLocation()).absoluteFilePath("Inbox");
-}
 
 void Application::runMigrations()
 {

@@ -1,8 +1,11 @@
 #include "jsonutils.h"
 
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonParseError>
+#include <QSaveFile>
 
 
 namespace JsonUtils {
@@ -56,10 +59,13 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
     auto doc = QJsonDocument::fromVariant(properties);
     auto newFileContent = doc.toJson(QJsonDocument::Indented);
     if (newFileContent != existingFileContent) {
-        if (file.open(QIODevice::WriteOnly)) {
-            result = newFileContent.length() == file.write(newFileContent);
-            file.close();
-            hasChanged = true;
+        QFileInfo fi(filename);
+        fi.dir().mkpath(".");
+        QSaveFile saveFile(filename);
+        if (saveFile.open(QIODevice::WriteOnly)) {
+            saveFile.write(newFileContent);
+            result = saveFile.commit();
+            hasChanged = result;
         } else {
             qCWarning(log) << "Failed to open" << filename << "for writing:"
                                  << file.errorString();

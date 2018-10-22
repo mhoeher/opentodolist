@@ -11,78 +11,78 @@ endif()
 
 
 set(LIB_HEADERS
-    opentodolistqmlextensionsplugin.h
-    models/itemsmodel.h
-    models/itemssortfiltermodel.h
-    fileutils.h
-    application.h
-    sync/webdavclient.h
-    sync/syncjob.h
-    sync/synchronizer.h
-    sync/syncrunner.h
-    sync/webdavsynchronizer.h
-    utils/jsonutils.h
-    utils/keystore.h
-    utils/directorywatcher.h
-    utils/updateservice.h
     abstractitemmodel.h
-    migrators/migrator_2_x_to_3_x.h
+    application.h
     datamodel/complexitem.h
-    datamodel/todo.h
-    datamodel/item.h
-    datamodel/todolist.h
     datamodel/image.h
-    datamodel/toplevelitem.h
+    datamodel/item.h
     datamodel/library.h
-    datamodel/task.h
     datamodel/note.h
-    datastorage/libraryloader.h
-    datastorage/itemcontainer.h
+    datamodel/task.h
+    datamodel/todo.h
+    datamodel/todolist.h
+    datamodel/toplevelitem.h
     datastorage/cache.h
-    datastorage/itemsquery.h
-    datastorage/insertorupdateitemsquery.h
-    datastorage/librariesitemsquery.h
+    datastorage/deleteitemsquery.h
     datastorage/getitemsquery.h
     datastorage/getlibraryitemsuidsitemsquery.h
-    datastorage/deleteitemsquery.h
+    datastorage/insertorupdateitemsquery.h
+    datastorage/itemsquery.h
+    datastorage/librariesitemsquery.h
+    datastorage/libraryloader.h
+    fileutils.h
+    migrators/migrator_2_x_to_3_x.h
+    models/itemsmodel.h
+    models/itemssortfiltermodel.h
+    models/librariesmodel.h
+    opentodolistqmlextensionsplugin.h
+    sync/synchronizer.h
+    sync/syncjob.h
+    sync/syncrunner.h
+    sync/webdavclient.h
+    sync/webdavsynchronizer.h
+    utils/directorywatcher.h
+    utils/jsonutils.h
+    utils/keystore.h
+    utils/updateservice.h
 
     ${LIB_HEADERS_ANDROID}
 )
 
 set(LIB_SOURCES
-    models/itemsmodel.cpp
-    models/itemssortfiltermodel.cpp
-    fileutils.cpp
-    sync/webdavsynchronizer.cpp
-    sync/webdavclient.cpp
-    sync/synchronizer.cpp
-    sync/syncrunner.cpp
-    sync/syncjob.cpp
-    utils/jsonutils.cpp
-    utils/keystore.cpp
-    utils/directorywatcher.cpp
-    utils/updateservice.cpp
-    opentodolistqmlextensionsplugin.cpp
-    migrators/migrator_2_x_to_3_x.cpp
-    datamodel/library.cpp
-    datamodel/item.cpp
-    datamodel/todo.cpp
-    datamodel/complexitem.cpp
-    datamodel/toplevelitem.cpp
-    datamodel/todolist.cpp
-    datamodel/task.cpp
-    datamodel/image.cpp
-    datamodel/note.cpp
     application.cpp
-    datastorage/itemcontainer.cpp
-    datastorage/libraryloader.cpp
+    datamodel/complexitem.cpp
+    datamodel/image.cpp
+    datamodel/item.cpp
+    datamodel/library.cpp
+    datamodel/note.cpp
+    datamodel/task.cpp
+    datamodel/todo.cpp
+    datamodel/todolist.cpp
+    datamodel/toplevelitem.cpp
     datastorage/cache.cpp
-    datastorage/itemsquery.cpp
-    datastorage/insertorupdateitemsquery.cpp
-    datastorage/librariesitemsquery.cpp
+    datastorage/deleteitemsquery.cpp
     datastorage/getitemsquery.cpp
     datastorage/getlibraryitemsuidsitemsquery.cpp
-    datastorage/deleteitemsquery.cpp
+    datastorage/insertorupdateitemsquery.cpp
+    datastorage/itemsquery.cpp
+    datastorage/librariesitemsquery.cpp
+    datastorage/libraryloader.cpp
+    fileutils.cpp
+    migrators/migrator_2_x_to_3_x.cpp
+    models/itemsmodel.cpp
+    models/itemssortfiltermodel.cpp
+    models/librariesmodel.cpp
+    opentodolistqmlextensionsplugin.cpp
+    sync/synchronizer.cpp
+    sync/syncjob.cpp
+    sync/syncrunner.cpp
+    sync/webdavclient.cpp
+    sync/webdavsynchronizer.cpp
+    utils/directorywatcher.cpp
+    utils/jsonutils.cpp
+    utils/keystore.cpp
+    utils/updateservice.cpp
 
     ${LIB_SOURCES_ANDROID}
 
@@ -98,8 +98,13 @@ find_package(Qt5Xml REQUIRED)
 find_package(Qt5Concurrent REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
+if(ANDROID)
+    set(libtype STATIC)
+else()
+    set(libtype SHARED)
+endif()
 # Add the library
-add_library(opentodolist-common STATIC
+add_library(opentodolist-common ${libtype}
     ${LIB_HEADERS}
     ${LIB_SOURCES}
 )

@@ -17,6 +17,7 @@ public:
     explicit GetLibraryItemsUIDsItemsQuery(QObject *parent = nullptr);
 
     void addLibrary(const Library *library);
+    void addLibrary(const QUuid uid);
 
 signals:
 

@@ -22,9 +22,24 @@ GetLibraryItemsUIDsItemsQuery::GetLibraryItemsUIDsItemsQuery(QObject *parent) :
 void GetLibraryItemsUIDsItemsQuery::addLibrary(const Library *library)
 {
     if (library != nullptr) {
-        m_itemQueue << library->uid();
+        addLibrary(library->uid());
     }
 }
+
+
+/**
+ * @brief Add a library to the query.
+ *
+ * This is an overloaded version of the addLibrary, which takes the UID of a
+ * library to retrieve item UIDs for.
+ */
+void GetLibraryItemsUIDsItemsQuery::addLibrary(const QUuid uid)
+{
+    if (!uid.isNull()) {
+        m_itemQueue << uid;
+    }
+}
+
 
 void GetLibraryItemsUIDsItemsQuery::run()
 {

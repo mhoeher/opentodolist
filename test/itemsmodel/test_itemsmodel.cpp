@@ -146,7 +146,7 @@ void ItemsModelTest::testDeleteItems()
     {
         auto q = new DeleteItemsQuery;
         QSignalSpy deleted(q, &DeleteItemsQuery::destroyed);
-        q->deleteLibrary(&lib);
+        q->deleteLibrary(&lib, false);
         m_cache->run(q);
         QVERIFY(deleted.wait());
     }

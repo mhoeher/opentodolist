@@ -10,13 +10,13 @@
 #include <QVariantMap>
 
 #include "image.h"
-#include "datastorage/itemcontainer.h"
 #include "note.h"
 #include "todolist.h"
 
 class DirectoryWatcher;
 class Application;
 class Synchronizer;
+class Cache;
 
 
 /**
@@ -57,9 +57,6 @@ class Library : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QStringList tags READ tags NOTIFY tagsChanged)
     Q_PROPERTY(QString directory READ directory CONSTANT)
-    Q_PROPERTY(ItemContainer* topLevelItems READ topLevelItems CONSTANT)
-    Q_PROPERTY(ItemContainer* todos READ todos CONSTANT)
-    Q_PROPERTY(ItemContainer* tasks READ tasks CONSTANT)
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
     Q_PROPERTY(bool hasSynchronizer READ hasSynchronizer CONSTANT)
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
@@ -77,10 +74,6 @@ public:
     explicit Library(QObject *parent = nullptr);
     explicit Library(const QString &directory, QObject* parent = nullptr);
     virtual ~Library();
-
-    Q_INVOKABLE Note* addNote();
-    Q_INVOKABLE Image* addImage();
-    Q_INVOKABLE TodoList* addTodoList();
 
     bool isValid() const;
 
@@ -101,17 +94,12 @@ public:
      */
     QString directory() const { return m_directory; }
 
-    Q_INVOKABLE void deleteLibrary(bool deleteFiles = false);
-    void deleteLibrary(bool deleteFiles, std::function<void ()> callback);
+    void deleteLibrary();
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
     Q_INVOKABLE QVariant syncLog();
 
-    ItemContainer *topLevelItems();
-    ItemContainer *todos();
-    ItemContainer *tasks();
-
-    QString newItemLocation() const;
+    QDir newItemLocation() const;
 
     static QStringList years(const QString &directory);
     static QStringList months(const QString &directory, const QString &year);
@@ -135,6 +123,12 @@ public:
     void setSecretsMissing(bool secretsMissing);
 
     QStringList syncErrors() const;
+
+    Cache *cache() const;
+    void setCache(Cache *cache);
+
+    QVariant toVariant();
+    void fromVariant(const QVariant &data);
 
 signals:
 
@@ -191,6 +185,11 @@ signals:
      */
     void needSync();
 
+    /**
+     * @brief Some property of the library has changed.
+     */
+    void changed();
+
 public slots:
 
     void addSyncError(const QString &error);
@@ -201,10 +200,8 @@ private:
     QUuid                   m_uid;
     QString                 m_name;
     QString                 m_directory;
+    Cache                  *m_cache;
 
-    ItemContainer           m_topLevelItems;
-    ItemContainer           m_todos;
-    ItemContainer           m_tasks;
     bool                    m_itemDataChanged;
 
     DirectoryWatcher       *m_directoryWatcher;
@@ -219,10 +216,6 @@ private:
 
     void setUid(const QUuid& uid);
     void setLoading(bool loading);
-
-private slots:
-
-    void appendItem(ItemPtr item);
 
 };
 

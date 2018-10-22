@@ -1,12 +1,12 @@
 find_package(Qt5Test REQUIRED)
 add_executable(
-    test_itemcontainer
+    test_librariesmodel
 
-    test_itemcontainer.cpp
+    test_librariesmodel.cpp
 )
 
 target_link_libraries(
-    test_itemcontainer
+    test_librariesmodel
 
     # Internal libraries:
     opentodolist-common
@@ -16,6 +16,6 @@ target_link_libraries(
 )
 
 add_test(
-    NAME itemcontainer
-    COMMAND $<TARGET_FILE:test_itemcontainer> -platform minimal
+    NAME librariesmodel
+    COMMAND $<TARGET_FILE:test_librariesmodel> -platform minimal
 )

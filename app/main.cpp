@@ -26,7 +26,6 @@
 #include <iostream>
 
 
-
 class QmlFileSystemWatcher : public QObject
 {
     Q_OBJECT
@@ -45,7 +44,6 @@ public:
     {
         Q_CHECK_PTR(m_engine);
 #ifdef OPENTODOLIST_DEBUG
-        Q_CHECK_PTR(m_watcher);
         if (QDir(m_baseUrl).exists()) {
             watchPath();
             connect(m_watcher, &QFileSystemWatcher::fileChanged, [this](const QString &file) {

@@ -15,6 +15,12 @@
 
 class Migrator_2_x_to_3_x;
 class KeyStore;
+class Cache;
+class Note;
+class Image;
+class TodoList;
+class Todo;
+class Task;
 
 /**
  * @brief The main class of the application
@@ -34,7 +40,7 @@ class Application : public QObject
 public:
 
     explicit Application(QObject *parent = nullptr);
-    explicit Application(QSettings *settings, QObject *parent = nullptr);
+    explicit Application(QString applicationDir, QObject *parent = nullptr);
 
     virtual ~Application();
 
@@ -47,6 +53,13 @@ public:
     QQmlListProperty<Library> libraryList();
 
     Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
+    Q_INVOKABLE void deleteLibrary(Library *library);
+    Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
+    Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
+    Q_INVOKABLE TodoList* addTodoList(Library *library, QVariantMap properties);
+    Q_INVOKABLE Todo* addTodo(Library *library, TodoList* todoList, QVariantMap properties);
+    Q_INVOKABLE Task* addTask(Library *library, Todo *todo, QVariantMap properties);
+    Q_INVOKABLE void deleteItem(Item *item);
 
     Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
     Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
@@ -72,6 +85,8 @@ public:
 
     Q_INVOKABLE QString secretForSynchronizer(Synchronizer* sync);
 
+    Cache *cache() const;
+
 public slots:
 
     void syncLibrary(Library *library);
@@ -86,6 +101,7 @@ private:
 
     QList<Library*>         m_libraries;
     QSettings              *m_settings;
+    Cache                  *m_cache;
     bool                    m_loadingLibraries;
     KeyStore               *m_keyStore;
     QVariantMap             m_secrets;
@@ -96,13 +112,12 @@ private:
     static Library* librariesAt(QQmlListProperty<Library> *property, int index);
     static int librariesCount(QQmlListProperty<Library> *property);
 
-    QString defaultLibraryLocation() const;
     void runMigrations();
 
     void appendLibrary(Library* library);
 
 
-    void initialize();
+    void initialize(const QString &path = QString());
 
 private slots:
 

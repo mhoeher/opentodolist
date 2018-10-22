@@ -13,10 +13,12 @@
 class GetItemsQuery;
 
 /**
- * @brief A model working on a item container.
+ * @brief A model working on a Cache.
  *
- * This class implements the QAbstractListModel interface for items
- * contained in a ItemContainer.
+ * This class allows to access items stored in a Cache. It allows some
+ * basic filtering to limit the amount of data shown, e.g. only
+ * direkt children of a particular item or from a library can be
+ * shown.
  */
 class ItemsModel : public QAbstractListModel
 {
@@ -99,6 +101,8 @@ private:
     bool m_onlyUndone;
     bool m_onlyWithDueDate;
     bool m_defaultSearchResult;
+
+    bool m_updating;
 
     static bool itemMatches(ItemPtr item, QStringList words);
 

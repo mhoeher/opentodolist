@@ -13,9 +13,6 @@ class Todo;
 class TodoList : public TopLevelItem
 {
     Q_OBJECT
-    Q_PROPERTY(Library* library READ library CONSTANT)
-
-    friend class Library;
 
 public:
 
@@ -24,10 +21,6 @@ public:
     explicit TodoList(const QDir &dir, QObject *parent = nullptr);
     virtual ~TodoList();
 
-    Q_INVOKABLE Todo* addTodo();
-
-    Library *library() const;
-
 signals:
 
 public slots:
@@ -35,8 +28,6 @@ public slots:
 protected:
 
 private:
-
-    Library* m_library;
 
 private slots:
 

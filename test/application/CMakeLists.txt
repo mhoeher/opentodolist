@@ -14,3 +14,8 @@ target_link_libraries(
     # Qt Libraries
     Qt5::Test
 )
+
+add_test(
+    NAME application
+    COMMAND $<TARGET_FILE:test_application> -platform minimal
+)

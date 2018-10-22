@@ -7,7 +7,6 @@
 #include <QPointer>
 
 
-class Library;
 class TodoList;
 class Task;
 
@@ -23,11 +22,7 @@ class Todo : public ComplexItem
 
     Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
-    Q_PROPERTY(Library* library READ library CONSTANT)
     Q_PROPERTY(int percentageDone READ percentageDone NOTIFY percentageDoneChanged)
-
-    friend class TodoList;
-    friend class Library;
 
 public:
 
@@ -44,11 +39,7 @@ public:
     QUuid todoListUid() const;
     void setTodoListUid(const QUuid& todoListUid);
 
-    Q_INVOKABLE Task* addTask();
-
     int percentageDone() const;
-
-    Library *library() const;
 
 signals:
 
@@ -68,14 +59,6 @@ private:
 
     QUuid m_todoListUid;
     bool m_done;
-
-    Library* m_library;
-
-    void setLibrary(Library* library);
-
-private slots:
-
-    void handleTaskChanged(int index);
 
 };
 
