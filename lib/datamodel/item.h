@@ -4,10 +4,14 @@
 #include <QDir>
 #include <QLoggingCategory>
 #include <QObject>
+#include <QPointer>
 #include <QSharedPointer>
 #include <QString>
 #include <QUuid>
 #include <QVariantMap>
+
+
+class Cache;
 
 /**
  * @brief Represents an arbitrary item stored in the cache.
@@ -122,6 +126,9 @@ public:
     static Item* decache(const QVariant &entry,
                          QObject* parent = nullptr);
 
+    Cache *cache() const;
+    void setCache(Cache *cache);
+
 public slots:
 
 signals:
@@ -167,6 +174,7 @@ protected:
 
 private:
 
+    QPointer<Cache> m_cache;
     QString     m_filename;
     QString     m_title;
     QUuid       m_uid;
@@ -176,6 +184,10 @@ private:
     void setFilename(const QString &filename);
 
     void setupChangedSignal();
+
+    void onCacheChanged();
+    void onItemDataLoadedFromCache(const QVariant &entry);
+    void onChanged();
 
 };
 

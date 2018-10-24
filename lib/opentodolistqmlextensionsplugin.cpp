@@ -10,6 +10,7 @@
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
 #include "datamodel/toplevelitem.h"
+#include "datastorage/cache.h"
 #include "models/itemsmodel.h"
 #include "models/itemssortfiltermodel.h"
 
@@ -39,6 +40,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
               OpenTodoListQmlExtensionsPlugin::createApplication);
   qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
   qmlRegisterType<Image>(uri, 1, 0, "Image");
+  qmlRegisterType<Cache>(uri, 1, 0, "Cache");
   qmlRegisterType<Item>(uri, 1, 0, "Item");
   qmlRegisterType<Library>(uri, 1, 0, "Library");
   qmlRegisterType<Note>(uri, 1, 0, "Note");

@@ -62,10 +62,10 @@ Item {
                 clip: true
                 model: OTL.ItemsSortFilterModel {
                     sourceModel: OTL.ItemsModel {
-                        container: item.library.todos
+                        cache: OTL.Application.cache
+                        parentItem: item.libraryItem.uid
+                        onlyUndone: true
                     }
-                    todoList: item.libraryItem.uid
-                    onlyUndone: true
                 }
                 delegate: RowLayout {
                     width: parent.width

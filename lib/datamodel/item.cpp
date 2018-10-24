@@ -8,6 +8,9 @@
 
 #include "fileutils.h"
 #include "utils/jsonutils.h"
+#include "datastorage/cache.h"
+#include "datastorage/getitemquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
 
 #include <QDebug>
 #include <QDir>
@@ -71,6 +74,7 @@ ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray &data, const QByte
  */
 Item::Item(QObject* parent) :
     QObject(parent),
+    m_cache(),
     m_filename(),
     m_title(),
     m_uid(QUuid::createUuid()),
@@ -229,6 +233,38 @@ void Item::fromMap(QVariantMap map)
     setUid(map.value("uid", m_uid).toUuid());
     setTitle(map.value("title", m_title).toString());
     setWeight(map.value("weight", m_weight).toDouble());
+}
+
+
+/**
+ * @brief The Cache the item is connected to.
+ */
+Cache* Item::cache() const
+{
+    return m_cache.data();
+}
+
+
+/**
+ * @brief Set the cache the item is connected to.
+ */
+void Item::setCache(Cache *cache)
+{
+    if (m_cache != cache) {
+        if (m_cache != nullptr) {
+            disconnect(m_cache.data(), &Cache::dataChanged,
+                       this, &Item::onCacheChanged);
+            disconnect(this, &Item::changed,
+                       this, &Item::onChanged);
+        }
+        m_cache = cache;
+        if (m_cache != nullptr) {
+            connect(m_cache.data(), &Cache::dataChanged,
+                    this, &Item::onCacheChanged);
+            connect(this, &Item::changed,
+                    this, &Item::onChanged);
+        }
+    }
 }
 
 /**
@@ -420,6 +456,35 @@ void Item::setupChangedSignal()
     connect(this, &Item::uidChanged, this, &Item::changed);
     connect(this, &Item::filenameChanged, this, &Item::changed);
     connect(this, &Item::weightChanged, this, &Item::changed);
+}
+
+void Item::onCacheChanged()
+{
+    if (m_cache) {
+        auto q = new GetItemQuery();
+        q->setUid(m_uid);
+        connect(q, &GetItemQuery::itemLoaded,
+                this, &Item::onItemDataLoadedFromCache,
+                Qt::QueuedConnection);
+        m_cache->run(q);
+    }
+}
+
+void Item::onItemDataLoadedFromCache(const QVariant &entry)
+{
+    ItemPtr item(Item::decache(entry));
+    if (item != nullptr) {
+        this->fromMap(item->toMap());
+    }
+}
+
+void Item::onChanged()
+{
+    if (m_cache != nullptr) {
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(this);
+        m_cache->run(q);
+    }
 }
 
 /**

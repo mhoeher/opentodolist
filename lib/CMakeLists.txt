@@ -25,6 +25,7 @@ set(LIB_HEADERS
     datastorage/cache.h
     datastorage/deleteitemsquery.h
     datastorage/getitemsquery.h
+    datastorage/getitemquery.h
     datastorage/getlibraryitemsuidsitemsquery.h
     datastorage/insertorupdateitemsquery.h
     datastorage/itemsquery.h
@@ -63,6 +64,7 @@ set(LIB_SOURCES
     datastorage/cache.cpp
     datastorage/deleteitemsquery.cpp
     datastorage/getitemsquery.cpp
+    datastorage/getitemquery.cpp
     datastorage/getlibraryitemsuidsitemsquery.cpp
     datastorage/insertorupdateitemsquery.cpp
     datastorage/itemsquery.cpp

@@ -2,6 +2,7 @@
 #define ITEMSMODEL_H
 
 #include <QAbstractListModel>
+#include <QDateTime>
 #include <QHash>
 #include <QObject>
 #include <QPointer>
@@ -11,6 +12,7 @@
 #include "datastorage/cache.h"
 
 class GetItemsQuery;
+
 
 /**
  * @brief A model working on a Cache.
@@ -25,17 +27,31 @@ class ItemsModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
-    Q_PROPERTY(QUuid parentItem READ parentItem WRITE setParentItem NOTIFY parentItemChanged)
-    Q_PROPERTY(QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged)
+    Q_PROPERTY(QUuid parentItem READ parentItem WRITE setParentItem
+               NOTIFY parentItemChanged)
+    Q_PROPERTY(QString searchString READ searchString WRITE setSearchString
+               NOTIFY searchStringChanged)
     Q_PROPERTY(QString tag READ tag WRITE setTag NOTIFY tagChanged)
-    Q_PROPERTY(bool onlyDone READ onlyDone WRITE setOnlyDone NOTIFY onlyDoneChanged)
-    Q_PROPERTY(bool onlyUndone READ onlyUndone WRITE setOnlyUndone NOTIFY onlyUndoneChanged)
-    Q_PROPERTY(bool onlyWithDueDate READ onlyWithDueDate WRITE setOnlyWithDueDate NOTIFY onlyWithDueDateChanged)
-    Q_PROPERTY(bool defaultSearchResult READ defaultSearchResult WRITE setDefaultSearchResult NOTIFY defaultSearchResultChanged)
+    Q_PROPERTY(bool onlyDone READ onlyDone WRITE setOnlyDone
+               NOTIFY onlyDoneChanged)
+    Q_PROPERTY(bool onlyUndone READ onlyUndone WRITE setOnlyUndone
+               NOTIFY onlyUndoneChanged)
+    Q_PROPERTY(bool onlyWithDueDate READ onlyWithDueDate
+               WRITE setOnlyWithDueDate NOTIFY onlyWithDueDateChanged)
+    Q_PROPERTY(bool defaultSearchResult READ defaultSearchResult
+               WRITE setDefaultSearchResult NOTIFY defaultSearchResultChanged)
+    Q_PROPERTY(bool recursive READ recursive WRITE setRecursive
+               NOTIFY recursiveChanged)
+    Q_PROPERTY(QString overdueLabel READ overdueLabel WRITE setOverdueLabel
+               NOTIFY overdueLabelChanged)
+    Q_PROPERTY(QVariantMap timeSpans READ timeSpans WRITE setTimeSpans
+               NOTIFY timeSpansChanged)
 public:
     enum Roles {
         ItemRole = Qt::UserRole,
-        WeightRole
+        WeightRole,
+        DueToRole,
+        DueToSpanRole
     };
 
     Q_ENUM(Roles)
@@ -73,6 +89,15 @@ public:
     bool defaultSearchResult() const;
     void setDefaultSearchResult(bool defaultSearchResult);
 
+    bool recursive() const;
+    void setRecursive(bool recursive);
+
+    QString overdueLabel() const;
+    void setOverdueLabel(const QString &overdueLabel);
+
+    QVariantMap timeSpans() const;
+    void setTimeSpans(const QVariantMap &timeSpans);
+
 signals:
 
     void cacheChanged();
@@ -84,6 +109,9 @@ signals:
     void onlyUndoneChanged();
     void onlyWithDueDateChanged();
     void defaultSearchResultChanged();
+    void recursiveChanged();
+    void overdueLabelChanged();
+    void timeSpansChanged();
 
 public slots:
 
@@ -101,10 +129,16 @@ private:
     bool m_onlyUndone;
     bool m_onlyWithDueDate;
     bool m_defaultSearchResult;
+    bool m_recursive;
 
     bool m_updating;
 
+    QString m_overdueLabel;
+    QVariantMap m_timeSpans;
+
     static bool itemMatches(ItemPtr item, QStringList words);
+
+    QString timeSpanLabel(Item *item) const;
 
 private slots:
 

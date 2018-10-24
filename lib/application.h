@@ -35,6 +35,7 @@ class Application : public QObject
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
     Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
+    Q_PROPERTY(Cache* cache READ cache CONSTANT)
 
     friend class Migrator_2_x_to_3_x;
 public:
@@ -118,6 +119,8 @@ private:
 
 
     void initialize(const QString &path = QString());
+
+    void connectItemToCache(Item* item);
 
 private slots:
 

@@ -102,7 +102,8 @@ void LibraryLoader::scan()
         auto q = new GetLibraryItemsUIDsItemsQuery();
         q->addLibrary(m_libraryId);
         connect(q, &GetLibraryItemsUIDsItemsQuery::uidsAvailable,
-                this, &LibraryLoader::itemUidsLoaded);
+                this, &LibraryLoader::itemUidsLoaded,
+                Qt::QueuedConnection);
         m_cache->run(q);
     }
 }
@@ -171,7 +172,8 @@ void LibraryLoader::itemsInserted()
             q->deleteItem(id);
         }
         connect(q, &DeleteItemsQuery::finished,
-                this, &LibraryLoader::scanFinished);
+                this, &LibraryLoader::scanFinished,
+                Qt::QueuedConnection);
         m_cache->run(q);
     }
 }

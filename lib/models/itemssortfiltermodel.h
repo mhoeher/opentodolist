@@ -24,10 +24,6 @@ signals:
 
     void countChanged();
 
-
-    // QAbstractProxyModel interface
-public:
-    void setSourceModel(QAbstractItemModel *sourceModel) override;
 };
 
 #endif // ITEMSSORTFILTERMODEL_H

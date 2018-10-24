@@ -24,6 +24,7 @@ ItemsModel::ItemsModel(QObject *parent) :
     m_onlyUndone(false),
     m_onlyWithDueDate(false),
     m_defaultSearchResult(true),
+    m_recursive(false),
     m_updating(false)
 {
     m_fetchTimer.setInterval(100);
@@ -87,6 +88,17 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
         case Qt::DisplayRole:
         case ItemRole:
             return QVariant::fromValue<QObject*>(item);
+        case DueToRole:
+        {
+            auto complexItem = qobject_cast<ComplexItem*>(item);
+            if (complexItem) {
+                return complexItem->dueTo().toString(Qt::ISODate);
+            } else {
+                return QVariant();
+            }
+        }
+        case DueToSpanRole:
+            return timeSpanLabel(item);
         case WeightRole:
             return item->weight();
         default:
@@ -101,6 +113,8 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     auto result = QAbstractListModel::roleNames();
     result.insert(ItemRole, "object");
     result.insert(WeightRole, "weight");
+    result.insert(DueToRole, "dueTo");
+    result.insert(DueToSpanRole, "dueToSpan");
     return result;
 }
 
@@ -264,6 +278,88 @@ void ItemsModel::setDefaultSearchResult(bool defaultSearchResult)
 }
 
 
+/**
+ * @brief Shall items be retrieved recursively.
+ *
+ * This property defines if items are retrieved recursively from the cache.
+ * If this is false and a parent item is set, only direct children of this
+ * item are retrieved. Otherwise, all children - direct and indirect -
+ * are retrieved.
+ */
+bool ItemsModel::recursive() const
+{
+    return m_recursive;
+}
+
+
+/**
+ * @brief Set if items shall be retrieved recursively.
+ */
+void ItemsModel::setRecursive(bool recursive)
+{
+    if (m_recursive != recursive) {
+        m_recursive = recursive;
+        triggerFetch();
+        emit recursiveChanged();
+    }
+}
+
+
+/**
+ * @brief The label used for overdue items.
+ */
+QString ItemsModel::overdueLabel() const
+{
+    return m_overdueLabel;
+}
+
+
+/**
+ * @brief Set the label used for overdue items.
+ */
+void ItemsModel::setOverdueLabel(const QString &overdueLabel)
+{
+    if (m_overdueLabel != overdueLabel) {
+        m_overdueLabel = overdueLabel;
+        auto rowCount = this->rowCount();
+        if (rowCount > 0) {
+            emit dataChanged(index(0), index(rowCount));
+        }
+        emit overdueLabelChanged();
+    }
+}
+
+
+/**
+ * @brief Time span definitions.
+ *
+ * This property holds a map where the keys are minimum dates and times and
+ * the values are a label. If an item's due date is greater than a value in
+ * this map, it is assigned the appropriate label. If none of the due dates
+ * in the map is earlier than the overdueLabel is used for the item.
+ */
+QVariantMap ItemsModel::timeSpans() const
+{
+    return m_timeSpans;
+}
+
+
+/**
+ * @brief Set the time spans used for grouping items by due date.
+ */
+void ItemsModel::setTimeSpans(const QVariantMap &timeSpans)
+{
+    if (m_timeSpans != timeSpans) {
+        m_timeSpans = timeSpans;
+        auto rowCount = this->rowCount();
+        if (rowCount > 0) {
+            emit dataChanged(index(0), index(rowCount - 1));
+        }
+        emit timeSpansChanged();
+    }
+}
+
+
 bool ItemsModel::itemMatches(ItemPtr item, QStringList words) {
     for (auto word : words) {
         if (item->title().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
@@ -278,6 +374,25 @@ bool ItemsModel::itemMatches(ItemPtr item, QStringList words) {
         }
     }
     return false;
+}
+
+
+QString ItemsModel::timeSpanLabel(Item *item) const
+{
+    QString result;
+    auto complexItem = qobject_cast<ComplexItem*>(item);
+    if (complexItem && complexItem->dueTo().isValid()) {
+        result = m_overdueLabel;
+        auto dueDate = complexItem->dueTo().toString(Qt::ISODate);
+        // Note: Keys in the map are sorted, so we iterate from least to most
+        //       recent entries:
+        for (auto key : m_timeSpans.keys()) {
+            if (dueDate >= key) {
+                result = m_timeSpans.value(key).toString();
+            }
+        }
+    }
+    return result;
 }
 
 
@@ -301,6 +416,7 @@ void ItemsModel::fetch()
         if (!m_parentItem.isNull()) {
             q->setParent(m_parentItem);
         }
+        q->setRecursive(m_recursive);
 
         auto tag = m_tag;
         auto onlyDone = m_onlyDone;
@@ -313,20 +429,27 @@ void ItemsModel::fetch()
             if (itemMatchesFilter) {
                 result = itemMatchesFilter(item, query);
             }
-            if (onlyDone && !item->property("done").toBool()) {
-                result = false;
+            if (onlyDone) {
+                auto done = item->property("done");
+                if (!done.isNull() && !done.toBool()) {
+                    result = false;
+                }
             }
-            if (onlyUndone && item->property("done").toBool()) {
-                result = false;
+            if (onlyUndone) {
+                auto done = item->property("done");
+                if (!done.isNull() && done.toBool()) {
+                    result = false;
+                }
             }
             if (onlyWithDueDate &&
-                    !item->property("dueTo").toDateTime().isNull()) {
+                    !item->property("dueTo").toDateTime().isValid()) {
                 result = false;
             }
             return result;
         });
         connect(q, &GetItemsQuery::itemsAvailable,
-                this, &ItemsModel::update);
+                this, &ItemsModel::update,
+                Qt::QueuedConnection);
         m_cache->run(q);
     }
 }
@@ -454,3 +577,4 @@ void ItemsModel::itemChanged()
         }
     }
 }
+

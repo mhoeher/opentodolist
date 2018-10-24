@@ -66,8 +66,13 @@ Page {
 
         onAccepted: {
             if (newTaskEdit.text !== "") {
-                var task = page.item.addTask();
-                task.title = newTaskEdit.displayText;
+                var properties = {
+                    "title": newTaskEdit.text
+                };
+                var task = OTL.Application.addTask(
+                            page.library,
+                            page.item,
+                            properties);
             }
             newTaskEdit.text = "";
         }
@@ -82,10 +87,10 @@ Page {
     OTL.ItemsSortFilterModel {
         id: tasks
         sourceModel: OTL.ItemsModel {
-            container: page.library.tasks
+            cache: OTL.Application.cache
+            parentItem: page.item.uid
+            searchString: filterBar.text
         }
-        todo: page.item.uid
-        searchString: filterBar.text
     }
 
     TextInputBar {

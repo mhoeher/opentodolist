@@ -41,27 +41,6 @@ Page {
         id: renameItemDialog
     }
 
-    OTL.ItemsModel {
-        id: todos
-        container: page.library.todos
-    }
-
-    OTL.ItemsSortFilterModel {
-        id: undoneTodos
-
-        sourceModel: todos
-        todoList: page.item.uid
-        onlyUndone: true
-    }
-
-    OTL.ItemsSortFilterModel {
-        id: doneTodos
-
-        sourceModel: todos
-        todoList: page.item.uid
-        onlyDone: true
-    }
-
     Pane {
         id: background
 

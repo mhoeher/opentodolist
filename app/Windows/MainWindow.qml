@@ -61,7 +61,7 @@ ApplicationWindow {
             ToolButton {
                 id: sidebarControl
                 symbol: Icons.faBars
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 visible: librariesSideBar.compact && stackView.depth <= 1
                 checked: dynamicLeftDrawer.visible
                 onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
@@ -70,7 +70,7 @@ ApplicationWindow {
                 symbol: Icons.faArrowLeft
                 visible: stackView.canGoBack
                 onClicked: stackView.pop()
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
             }
 
             ToolButton {
@@ -80,6 +80,7 @@ ApplicationWindow {
                 visible: stackView.isCheckable
                 onClicked: stackView.currentItem.item.done =
                            !stackView.currentItem.item.done
+                Layout.alignment: Qt.AlignVCenter
             }
 
             Label {
@@ -100,7 +101,7 @@ ApplicationWindow {
             ToolButton {
                 symbol: Icons.faPencilAlt
                 visible: stackView.currentItem && typeof(stackView.currentItem["renameItem"]) === "function"
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 onClicked: stackView.currentItem.renameItem()
             }
 
@@ -110,7 +111,7 @@ ApplicationWindow {
                     y: window.header.height
                     item: stackView.hasColor ? stackView.currentItem.item : null
                 }
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 visible: menu.item !== null
             }
 
@@ -120,19 +121,19 @@ ApplicationWindow {
                 symbol: Icons.faSearch
                 visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
                 onClicked: stackView.currentItem.find()
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
             }
 
             ToolButton {
                 symbol: Icons.faTrashAlt
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 onClicked: stackView.currentItem.deleteItem()
             }
             ToolButton {
                 symbol: Icons.faEllipsisV
                 visible: stackView.hasPageMenu
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 onClicked: {
                     if (stackView.currentItem.pageMenu.visible) {
                         stackView.currentItem.pageMenu.close();

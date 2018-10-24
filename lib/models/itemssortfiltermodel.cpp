@@ -14,6 +14,14 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
     QSortFilterProxyModel(parent)
 {
     setSortRole(ItemsModel::WeightRole);
+    sort(0);
+
+    connect(this, &ItemsSortFilterModel::rowsInserted,
+            this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::rowsRemoved,
+            this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::modelReset,
+            this, &ItemsSortFilterModel::countChanged);
 }
 
 
@@ -23,10 +31,4 @@ ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
 int ItemsSortFilterModel::count() const
 {
     return rowCount();
-}
-
-
-void ItemsSortFilterModel::setSourceModel(QAbstractItemModel *sourceModel)
-{
-
 }

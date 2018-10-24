@@ -25,6 +25,7 @@
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
+#include "datastorage/libraryloader.h"
 #include "migrators/migrator_2_x_to_3_x.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
@@ -81,7 +82,7 @@ void Application::initialize(const QString &path)
 {
     auto cacheDir = path;
     if (cacheDir.isEmpty()) {
-        auto cacheDir = QStandardPaths::writableLocation(
+        cacheDir = QStandardPaths::writableLocation(
                     QStandardPaths::AppDataLocation);
     }
     cacheDir += "/cache";
@@ -153,6 +154,7 @@ void Application::initialize(const QString &path)
     });
     syncTimer->start();
 }
+
 
 /**
  * @brief Destructor.
@@ -293,6 +295,7 @@ Note *Application::addNote(Library *library, QVariantMap properties)
         auto q = new InsertOrUpdateItemsQuery();
         q->add(note, InsertOrUpdateItemsQuery::CreateNewItem);
         m_cache->run(q);
+        note->setCache(m_cache);
     }
     return note;
 }
@@ -316,6 +319,7 @@ Image* Application::addImage(Library *library, QVariantMap properties)
         auto q = new InsertOrUpdateItemsQuery();
         q->add(image, InsertOrUpdateItemsQuery::CreateNewItem);
         m_cache->run(q);
+        image->setCache(m_cache);
     }
     return image;
 }
@@ -339,6 +343,7 @@ TodoList *Application::addTodoList(Library *library, QVariantMap properties)
         auto q = new InsertOrUpdateItemsQuery();
         q->add(todoList, InsertOrUpdateItemsQuery::CreateNewItem);
         m_cache->run(q);
+        todoList->setCache(m_cache);
     }
     return todoList;
 }
@@ -364,6 +369,7 @@ Todo *Application::addTodo(
         auto q = new InsertOrUpdateItemsQuery();
         q->add(todo, InsertOrUpdateItemsQuery::CreateNewItem);
         m_cache->run(q);
+        todo->setCache(m_cache);
     }
     return todo;
 }
@@ -387,6 +393,7 @@ Task *Application::addTask(Library *library, Todo *todo, QVariantMap properties)
         auto q = new InsertOrUpdateItemsQuery();
         q->add(task, InsertOrUpdateItemsQuery::CreateNewItem);
         m_cache->run(q);
+        task->setCache(m_cache);
     }
     return task;
 }
@@ -550,7 +557,8 @@ bool Application::isLibraryDir(const QUrl &url) const
  */
 QUrl Application::homeLocation() const
 {
-    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString homeDir = QStandardPaths::writableLocation(
+                QStandardPaths::HomeLocation);
     return QUrl::fromLocalFile(homeDir);
 }
 
@@ -693,6 +701,13 @@ void Application::loadLibraries()
         auto directory = m_settings->value("directory").toString();
         auto library = new Library(directory, this);
         appendLibrary(library);
+        auto loader = new LibraryLoader();
+        loader->setDirectory(directory);
+        loader->setLibraryId(library->uid());
+        loader->setCache(m_cache);
+        connect(loader, &LibraryLoader::scanFinished,
+                loader, &LibraryLoader::deleteLater);
+        loader->scan();
         QScopedPointer<Synchronizer> sync(library->createSynchronizer());
         if (sync) {
             auto key = sync->secretsKey();
