@@ -20,7 +20,7 @@ CenteredDialog {
 
     onAccepted: {
         var library = d.library;
-        library.deleteLibrary(library.isInDefaultLocation);
+        OTL.Application.deleteLibrary(library);
     }
 
     QtObject {

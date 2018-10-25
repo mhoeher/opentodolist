@@ -32,26 +32,28 @@ Pane {
             width: scrollView.width
 
             Repeater {
-                model: OTL.Application.libraries
+                model: OTL.LibrariesModel {
+                    cache: OTL.Application.cache
+                }
 
                 delegate: Column {
                     id: librarySection
 
-                    property OTL.Library library: modelData
+                    Component.onCompleted: console.warn(library)
 
                     width: parent.width
 
                     LibrarySideBarButton {
                         indent: 1
-                        text: modelData.name
+                        text: library.name
                         bold: true
-                        symbol: modelData.hasSynchronizer ?
+                        symbol: library.hasSynchronizer ?
                                     Icons.faCloud :
                                     Icons.faFolderOpen
                         highlighted: currentLibrary === librarySection.library &&
                                 currentTag === "" && specialView === ""
                         onClicked: {
-                            currentLibrary = modelData;
+                            currentLibrary = library;
                             currentTag = "";
                             specialView = "";
                             helpVisible = false;
@@ -66,7 +68,7 @@ Pane {
                         highlighted: currentLibrary === librarySection.library &&
                                 currentTag === "" && specialView === "schedule"
                         onClicked: {
-                            currentLibrary = modelData;
+                            currentLibrary = library;
                             currentTag = "";
                             specialView = "schedule";
                             helpVisible = false;
@@ -75,7 +77,7 @@ Pane {
                     }
 
                     Repeater {
-                        model: modelData.tags
+                        model: library.tags
                         delegate: LibrarySideBarButton {
                             indent: 2
                             text: modelData

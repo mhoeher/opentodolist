@@ -115,8 +115,8 @@ void Application::initialize(const QString &path)
                 }
             } else {
                 qCWarning(log) << "Received credentials for a key"
-                                       << key << "but we already have"
-                                       << "credentials for that one";
+                               << key << "but we already have"
+                               << "credentials for that one";
             }
         }
     });

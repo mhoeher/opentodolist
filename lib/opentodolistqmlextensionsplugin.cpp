@@ -12,6 +12,7 @@
 #include "datamodel/toplevelitem.h"
 #include "datastorage/cache.h"
 #include "models/itemsmodel.h"
+#include "models/librariesmodel.h"
 #include "models/itemssortfiltermodel.h"
 
 #include "sync/synchronizer.h"
@@ -49,6 +50,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<TodoList>(uri, 1, 0, "TodoList");
   qmlRegisterType<TopLevelItem>(uri, 1, 0, "TopLevelItem");
   qmlRegisterType<ItemsModel>(uri, 1, 0, "ItemsModel");
+  qmlRegisterType<LibrariesModel>(uri, 1, 0, "LibrariesModel");
   qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
 
   qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
