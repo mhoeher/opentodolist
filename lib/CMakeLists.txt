@@ -32,7 +32,6 @@ set(LIB_HEADERS
     datastorage/librariesitemsquery.h
     datastorage/libraryloader.h
     fileutils.h
-    migrators/migrator_2_x_to_3_x.h
     models/itemsmodel.h
     models/itemssortfiltermodel.h
     models/librariesmodel.h
@@ -71,7 +70,6 @@ set(LIB_SOURCES
     datastorage/librariesitemsquery.cpp
     datastorage/libraryloader.cpp
     fileutils.cpp
-    migrators/migrator_2_x_to_3_x.cpp
     models/itemsmodel.cpp
     models/itemssortfiltermodel.cpp
     models/librariesmodel.cpp

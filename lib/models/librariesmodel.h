@@ -20,6 +20,7 @@ class LibrariesModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum {
         LibraryRole = Qt::UserRole
@@ -29,6 +30,9 @@ public:
 
     Cache *cache() const;
     void setCache(Cache *cache);
+
+    int count() const;
+    Q_INVOKABLE Library* get(int row) const;
 
     // QAbstractItemModel interface
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -41,6 +45,17 @@ signals:
      * @brief The cache property has changed.
      */
     void cacheChanged();
+
+    /**
+     * @brief The model finished updating from the cache.
+     */
+    void updateFinished();
+
+
+    /**
+     * @brief The number of libraries changed.
+     */
+    void countChanged();
 
 public slots:
 

@@ -81,34 +81,8 @@ Library::Library(QObject* parent) : QObject(parent),
     m_uid(QUuid::createUuid()),
     m_name(),
     m_directory(),
-    m_itemDataChanged(false),
-    m_directoryWatcher(new DirectoryWatcher(this)),
-    m_loading(false),
-    m_synchronizing(false),
-    m_secretsMissing(false),
-    m_syncErrors()
+    m_itemDataChanged(false)
 {
-    auto timer = new QTimer(this);
-    timer->setInterval(5000);
-    timer->setSingleShot(true);
-    connect(timer, &QTimer::timeout, this, &Library::load);
-    connect(m_directoryWatcher, &DirectoryWatcher::directoryChanged, timer,
-            static_cast<void(QTimer::*)()>(&QTimer::start));
-    connect(this, &Library::nameChanged, [=]() {
-        m_itemDataChanged = true;
-    });
-
-    auto quickSaveTimer = new QTimer(this);
-    quickSaveTimer->setInterval(10000);
-    quickSaveTimer->setSingleShot(false);
-    connect(quickSaveTimer, &QTimer::timeout, [=]() {
-        if (m_itemDataChanged && !m_synchronizing) {
-            emit needSync();
-            m_itemDataChanged = false;
-        }
-    });
-    quickSaveTimer->start();
-
     connect(this, &Library::uidChanged,
             this, &Library::changed);
     connect(this, &Library::nameChanged,
@@ -120,7 +94,6 @@ Library::Library(QObject* parent) : QObject(parent),
 Library::Library(const QString& directory, QObject* parent) : Library(parent)
 {
     m_directory = directory;
-    m_directoryWatcher->setDirectory(directory);
 }
 
 Library::~Library()
@@ -203,14 +176,8 @@ void Library::setName(const QString &name)
  */
 void Library::deleteLibrary()
 {
-    if (m_synchronizing) {
-        qCWarning(log) << "Cannot delete library" << this << this->name()
-                           << ": A sync is currently running.";
-        return;
-    }
     emit deletingLibrary(this);
     QString directory = m_directory;
-    m_directoryWatcher->setDirectory(QString());
     if (isValid()) {
         QtConcurrent::run([=](){
             auto years = Library::years(directory);
@@ -386,10 +353,6 @@ bool Library::isInDefaultLocation() const
     return result;
 }
 
-bool Library::loading() const
-{
-    return m_loading;
-}
 
 /**
  * @brief The UID of the library.
@@ -452,32 +415,6 @@ bool Library::hasSynchronizer() const
 
 
 /**
- * @brief Indicates if the library is currently synchronizing.
- *
- * This property indicates if the library currently is
- * synchronizing, i.e. a background job is running which
- * synchronizes the local files of the library with some
- * storage server.
- */
-bool Library::synchronizing() const
-{
-    return m_synchronizing;
-}
-
-
-/**
- * @brief Set the synchronzing status of the library.
- */
-void Library::setSynchronizing(bool synchronizing)
-{
-    if (m_synchronizing != synchronizing) {
-        m_synchronizing = synchronizing;
-        emit synchronizingChanged();
-    }
-}
-
-
-/**
  * @brief Create a synchronizer for the library.
  *
  * This creates an instance of the Synchronizer class (or more precise, a
@@ -501,73 +438,6 @@ Synchronizer *Library::createSynchronizer(QObject *parent) const
 }
 
 
-/**
- * @brief Indicates that secrets for the library are missing.
- *
- * This is a helper property which is used on the GUI domain only. It is
- * set by the application to flag the library as having missing login
- * credentials. This can happen if e.g. the user removed the credentials
- * from the platform specific credential store or some other error occurred
- * which causes the app from failing to re-read credentials.
- *
- * @sa setSecretsMissing
- */
-bool Library::secretsMissing() const
-{
-    return m_secretsMissing;
-}
-
-
-/**
- * @brief Flag the libary as not having secrets required for synchronization.
- */
-void Library::setSecretsMissing(bool secretsMissing)
-{
-    if (m_secretsMissing != secretsMissing) {
-        m_secretsMissing = secretsMissing;
-        emit secretsMissingChanged();
-    }
-}
-
-
-/**
- * @brief Get the list of sync errors.
- *
- * The syncErrors property holds the list of sync error messages. By default,
- * the list should be empty, indicating that there are no sync errors. However,
- * if issues occur during sync, they are appended to this list and can be shown
- * in the user interface to let the user know something is wrong (e.g. a
- * password required to log in to a sync server changed and the user needs to
- * change it.
- */
-QStringList Library::syncErrors() const
-{
-    return m_syncErrors;
-}
-
-
-/**
- * @brief Appends a new sync error.
- *
- * This appends the sync @p error (which is given as an error string) to the
- * list of sync errors.
- */
-void Library::addSyncError(const QString& error)
-{
-    m_syncErrors.append(error);
-    emit syncErrorsChanged();
-}
-
-
-/**
- * @brief Clears the list of sync errors.
- */
-void Library::clearSyncErrors()
-{
-    m_syncErrors.clear();
-    emit syncErrorsChanged();
-}
-
 Cache *Library::cache() const
 {
     return m_cache;
@@ -590,6 +460,24 @@ void Library::fromVariant(const QVariant &data)
 
 
 /**
+ * @brief Get the key which is used to store the secrets required for sync.
+ *
+ * This returns a key (i.e. a string) which is used to store the secrets
+ * required to sync the library.
+ *
+ * @sa Application::secretsKeys
+ */
+QString Library::synchronizerSecret() const
+{
+    QScopedPointer<Synchronizer> sync(createSynchronizer());
+    if (sync) {
+        return sync->secretsKey();
+    }
+    return QString();
+}
+
+
+/**
  * @brief Set the UID of the library.
  */
 void Library::setUid(const QUuid& uid)
@@ -600,13 +488,6 @@ void Library::setUid(const QUuid& uid)
     }
 }
 
-void Library::setLoading(bool loading)
-{
-    if (m_loading != loading) {
-        m_loading = loading;
-        emit loadingChanged();
-    }
-}
 
 QVariantMap Library::toMap() const
 {

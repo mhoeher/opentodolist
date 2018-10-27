@@ -253,8 +253,19 @@ Page {
     LibrarySecretsMissingNotificationBar { library: page.library }
 
     SyncErrorNotificationBar {
+        readonly property var syncErrors: {
+            if (page.library) {
+                return OTL.Application.syncErrors[page.library.directory] || [];
+            } else {
+                return [];
+            }
+        }
+
         library: page.library
-        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+        onShowErrors: page.openPage(syncErrorPage,
+                                    {
+                                        errors: syncErrors
+                                    })
     }
 
     Component {

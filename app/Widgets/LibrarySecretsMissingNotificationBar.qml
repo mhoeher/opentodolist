@@ -10,7 +10,9 @@ Pane {
     id: secretsMissingBar
 
     property OTL.Library library
-    property bool shown: library.secretsMissing
+    property bool shown: library.synchronizerSecret !== "" &&
+                         OTL.Application.secretsKeys.indexOf(
+                             library.synchronizerSecret) < 0
 
     signal openPage(var component, var properties)
     signal ignore()
@@ -42,7 +44,8 @@ Pane {
             onClicked: {
                 var sync = library.createSynchronizer();
                 if (sync !== null) {
-                    var url = Qt.resolvedUrl(sync.type + "SettingsPage.qml");
+                    var url = Qt.resolvedUrl(
+                                "../Pages/" + sync.type + "SettingsPage.qml");
                     secretsMissingBar.openPage(url, {"synchronizer": sync});
                 }
             }

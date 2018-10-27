@@ -10,11 +10,17 @@ Pane {
     id: syncIndicatorBar
 
     property OTL.Library library
+
+    readonly property bool syncRunning: {
+        return library &&
+                OTL.Application.directoriesWithRunningSync.indexOf(
+                    library.directory) >= 0;
+    }
     
     y: parent.height
     backgroundColor: nonInteractive
     width: parent.width
-    state: library && library.synchronizing ? "visible" : ""
+    state: syncRunning ? "visible" : ""
     
     states: State {
         name: "visible"

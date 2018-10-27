@@ -8,9 +8,15 @@ import OpenTodoList 1.0 as OTL
 Pane {
     id: sidebar
 
-    property OTL.Library currentLibrary: OTL.Application.libraries[0] || null
+    property OTL.Library currentLibrary: null
     property string currentTag: ""
     property string specialView: ""
+
+    // For reopening the last view:
+    property string lastLibrary: ""
+    property string lastTag: ""
+    property string lastSpecialView: ""
+    property bool previousLibraryOpened: false
 
     property bool helpVisible: false
     property bool compact: false
@@ -18,6 +24,20 @@ Pane {
     signal newLibrary()
     signal aboutPageRequested()
     signal close()
+
+    function reopenLastLibrary() {
+        if (lastLibrary != "" && !previousLibraryOpened) {
+            for (var i = 0; i < librariesModel.count; ++i) {
+                var lib = librariesModel.get(i);
+                if (lib.uid.toString() === lastLibrary) {
+                    currentLibrary = lib;
+                    currentTag = lastTag;
+                    specialView = lastSpecialView;
+                }
+            }
+        }
+        previousLibraryOpened = true;
+    }
 
     clip: true
     padding: 0
@@ -33,7 +53,10 @@ Pane {
 
             Repeater {
                 model: OTL.LibrariesModel {
+                    id: librariesModel
+
                     cache: OTL.Application.cache
+                    onUpdateFinished: sidebar.reopenLastLibrary()
                 }
 
                 delegate: Column {

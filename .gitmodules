@@ -1,3 +1,6 @@
 [submodule "3rdparty/qlmdb"]
 	path = 3rdparty/qlmdb
 	url = https://gitlab.com/rpdev/qlmdb.git
+[submodule "3rdparty/SingleApplication"]
+	path = 3rdparty/SingleApplication
+	url = https://github.com/itay-grudev/SingleApplication.git

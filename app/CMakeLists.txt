@@ -54,6 +54,19 @@ endif()
 configure_file(Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 set_target_properties(OpenTodoList PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 
+if(NOT ANDROID)
+    target_compile_definitions(OpenTodoList PRIVATE
+        OTL_USE_SINGLE_APPLICATION
+        QAPPLICATION_CLASS=QGuiApplication)
+    target_include_directories(OpenTodoList PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/SingleApplication)
+
+    target_sources(OpenTodoList PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/SingleApplication/singleapplication.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/SingleApplication/singleapplication_p.cpp
+    )
+endif()
+
 target_link_libraries(
     OpenTodoList
 

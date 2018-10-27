@@ -16,6 +16,10 @@ LibrariesModel::LibrariesModel(QObject *parent) :
     m_libraries(),
     m_uids()
 {
+    connect(this, &LibrariesModel::rowsInserted,
+            this, &LibrariesModel::countChanged);
+    connect(this, &LibrariesModel::rowsRemoved,
+            this, &LibrariesModel::countChanged);
 }
 
 /**
@@ -53,6 +57,28 @@ void LibrariesModel::setCache(Cache *cache)
         emit cacheChanged();
     }
 }
+
+
+/**
+ * @brief The number of libraries in the model.
+ */
+int LibrariesModel::count() const
+{
+    return rowCount();
+}
+
+
+/**
+ * @brief Get the library for the given @p row.
+ */
+Library *LibrariesModel::get(int row) const
+{
+    if (row >= 0 && row < count()) {
+        return m_libraries.value(m_uids.at(row));
+    }
+    return nullptr;
+}
+
 
 void LibrariesModel::fetch()
 {
@@ -102,6 +128,8 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
         }
         endInsertRows();
     }
+
+    emit updateFinished();
 }
 
 void LibrariesModel::libraryChanged()

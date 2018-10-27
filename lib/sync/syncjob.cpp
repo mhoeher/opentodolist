@@ -5,7 +5,7 @@
 /**
  * @brief Create a new sync job.
  *
- * This creates a new sync job for the @p library which
+ * This creates a new sync job for the library which
  * stores it's data in the @p libraryDirectory. The @p secret is
  * the passphrase or key required by the library's synchronizer
  * to talk to the backend server (if required).
@@ -14,11 +14,9 @@
  * are called, as it might get deleted while the sync is running
  * in the background.
  */
-SyncJob::SyncJob(Library *library,
-                 const QString &libraryDirectory,
+SyncJob::SyncJob(const QString &libraryDirectory,
                  const QString &secret,
                  QObject *parent) : QObject(parent),
-    m_library(library),
     m_libraryDirectory(libraryDirectory),
     m_secret(secret)
 {
@@ -44,15 +42,20 @@ void SyncJob::execute()
                     sync.data(), &Synchronizer::stopSync,
                     Qt::QueuedConnection);
             connect(sync.data(), &Synchronizer::syncError,
-                    this, &SyncJob::syncError);
+                    this, &SyncJob::onSyncError);
             sync->synchronize();
         }
         sync->saveLog();
     }
-    emit syncFinished(m_library);
+    emit syncFinished(m_libraryDirectory);
 }
 
 void SyncJob::stop()
 {
     emit stopRequested();
+}
+
+void SyncJob::onSyncError(QString error)
+{
+    emit syncError(m_libraryDirectory, error);
 }

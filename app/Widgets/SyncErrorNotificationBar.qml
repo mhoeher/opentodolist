@@ -8,7 +8,16 @@ import "../Components"
 Pane {
     id: root
 
-    property bool shown: library !== null && library.syncErrors.length > 0
+    readonly property var syncErrors: {
+        if (library) {
+            return OTL.Application.syncErrors[
+                    library.directory] || [];
+        } else {
+            return [];
+        }
+    }
+
+    property bool shown: syncErrors.length > 0
     property OTL.Library library: null
 
     signal showErrors()

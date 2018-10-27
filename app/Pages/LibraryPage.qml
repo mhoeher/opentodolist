@@ -47,7 +47,12 @@ Page {
         renameLibraryDialog.renameLibrary(library);
     }
 
-    property bool syncRunning: library && library.synchronizing
+    property bool syncRunning: {
+        return library &&
+                OTL.Application.directoriesWithRunningSync.indexOf(
+                    library.directory) >= 0;
+    }
+
     property Menu pageMenu: LibraryPageMenu {
         x: page.width
         library: page.library
@@ -338,8 +343,20 @@ Page {
     }
 
     SyncErrorNotificationBar {
+        readonly property var syncErrors: {
+            if (page.library) {
+                return OTL.Application.syncErrors[
+                        page.library.directory] || [];
+            } else {
+                return [];
+            }
+        }
+
         library: page.library
-        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+        onShowErrors: page.openPage(syncErrorPage,
+                                    {
+                                        errors: syncErrors
+                                    })
     }
 
     Component {

@@ -18,9 +18,9 @@
 #include <QTranslator>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
-#include <QtSingleApplication>
+#include "singleapplication.h"
 #else
-#include <QApplication>
+#include <QGuiApplication>
 #endif
 
 #include <iostream>
@@ -127,12 +127,12 @@ int main(int argc, char *argv[])
 #endif
 
     //qSetMessagePattern("%{file}(%{line}): %{message}");
-#if OPENTODOLIST_DEBUG
+#ifdef OPENTODOLIST_DEBUG
     QLoggingCategory(0).setEnabled(QtDebugMsg, true);
 #endif
 
 #ifdef OTL_USE_SINGLE_APPLICATION
-    QtSingleApplication app("OpenTodoList", argc, argv);
+    SingleApplication app(argc, argv);
 #else
     QApplication app(argc, argv);
 #endif
@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
         auto uiLanguages = l.uiLanguages();
         for (auto uiLanguage : uiLanguages) {
             QString fileName = ":/translations/opentodolist_" + uiLanguage;
-            if (translator.load(fileName, QString(), "-"), ".qm") {
+            if (translator.load(fileName, QString(), "-", ".qm")) {
                 qDebug() << "Found translation for" << uiLanguage;
                 break;
             }
@@ -198,12 +198,6 @@ int main(int argc, char *argv[])
 #endif
 
     parser.process(app);
-
-#ifdef OTL_USE_SINGLE_APPLICATION
-    if (app.sendMessage("activate")) {
-        return 0;
-    }
-#endif
 
     QQmlApplicationEngine engine;
     QString qmlBase = "qrc:/";
