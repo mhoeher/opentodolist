@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 #ifdef OTL_USE_SINGLE_APPLICATION
     SingleApplication app(argc, argv);
 #else
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 #endif
 
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
