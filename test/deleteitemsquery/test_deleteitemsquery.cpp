@@ -191,8 +191,9 @@ void DeleteItemsQueryTest::run()
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
+        if (destroyed.count() == 0) {
+            QVERIFY(destroyed.wait());
+        }
     }
 
     {
@@ -247,8 +248,9 @@ void DeleteItemsQueryTest::run()
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
+        if (destroyed.count() == 0) {
+            QVERIFY(destroyed.wait());
+        }
     }
 
     {
@@ -301,8 +303,9 @@ void DeleteItemsQueryTest::run()
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
-        QCOMPARE(destroyed.count(), 1);
+        if (destroyed.count() == 0) {
+            QVERIFY(destroyed.wait());
+        }
     }
 
     {
