@@ -297,6 +297,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
         q->add(result);
         m_cache->run(q);
         syncLibrary(result);
+        result->setCache(m_cache);
     }
     return result;
 }

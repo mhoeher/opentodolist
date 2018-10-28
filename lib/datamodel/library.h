@@ -173,12 +173,18 @@ signals:
     void changed();
 
 
+    /**
+     * @brief The cache the library is associated with has changed.
+     */
+    void cacheChanged();
+
+
 private:
 
     QUuid                   m_uid;
     QString                 m_name;
     QString                 m_directory;
-    Cache                  *m_cache;
+    QPointer<Cache>         m_cache;
 
     bool                    m_itemDataChanged;
 
@@ -188,6 +194,9 @@ private:
     void fromMap(QVariantMap map);
 
     void setUid(const QUuid& uid);
+    void onCacheChanged();
+    void onLibraryDataLoadedFromCache(const QVariant &entry);
+    void onChanged();
 
 };
 

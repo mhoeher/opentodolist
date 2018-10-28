@@ -1,4 +1,3 @@
-#include "library.h"
 
 #include <QDebug>
 #include <QDir>
@@ -6,8 +5,11 @@
 #include <QtConcurrent>
 #include <QTimer>
 
+#include "library.h"
 #include "application.h"
-#include "datastorage/libraryloader.h"
+#include "datastorage/cache.h"
+#include "datastorage/getlibraryquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
 #include "toplevelitem.h"
 #include "todolist.h"
 #include "todo.h"
@@ -15,8 +17,6 @@
 #include "sync/synchronizer.h"
 
 #include "utils/jsonutils.h"
-
-#include "utils/directorywatcher.h"
 
 
 const QString Library::LibraryFileName = "library.json";
@@ -89,9 +89,12 @@ Library::Library(QObject* parent) : QObject(parent),
             this, &Library::changed);
     connect(this, &Library::tagsChanged,
             this, &Library::changed);
+    connect(this, &Library::changed,
+            this, &Library::onChanged);
 }
 
-Library::Library(const QString& directory, QObject* parent) : Library(parent)
+Library::Library(const QString& directory, QObject* parent) :
+    Library(parent)
 {
     m_directory = directory;
 }
@@ -438,14 +441,39 @@ Synchronizer *Library::createSynchronizer(QObject *parent) const
 }
 
 
+
+/**
+ * @brief The cache the library is connected to.
+ *
+ * This is the Cache object the Library is connected to. The library
+ * will automatically keep in sync with the set Cache.
+ */
 Cache *Library::cache() const
 {
-    return m_cache;
+    return m_cache.data();
 }
 
+
+/**
+ * @brief Set the cache the library is associated with.
+ */
 void Library::setCache(Cache *cache)
 {
-    m_cache = cache;
+    if (m_cache != cache) {
+        if (m_cache != nullptr) {
+            disconnect(m_cache.data(), &Cache::dataChanged,
+                       this, &Library::onCacheChanged);
+            disconnect(this, &Library::changed,
+                       this, &Library::onChanged);
+        }
+        m_cache = cache;
+        if (m_cache != nullptr) {
+            connect(m_cache.data(), &Cache::dataChanged,
+                    this, &Library::onCacheChanged);
+            connect(this, &Library::changed,
+                    this, &Library::onChanged);
+        }
+    }
 }
 
 QVariant Library::toVariant()
@@ -485,6 +513,35 @@ void Library::setUid(const QUuid& uid)
     if (m_uid != uid) {
         m_uid = uid;
         emit uidChanged();
+    }
+}
+
+void Library::onCacheChanged()
+{
+    if (m_cache) {
+        auto q = new GetLibraryQuery();
+        q->setUid(m_uid);
+        connect(q, &GetLibraryQuery::libraryLoaded,
+                this, &Library::onLibraryDataLoadedFromCache,
+                Qt::QueuedConnection);
+        m_cache->run(q);
+    }
+}
+
+void Library::onLibraryDataLoadedFromCache(const QVariant &entry)
+{
+    QSharedPointer<Library> lib(Library::decache(entry));
+    if (lib != nullptr) {
+        this->fromMap(lib->toMap());
+    }
+}
+
+void Library::onChanged()
+{
+    if (m_cache != nullptr) {
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(this);
+        m_cache->run(q);
     }
 }
 
