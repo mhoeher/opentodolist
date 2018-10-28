@@ -84,6 +84,7 @@ void LibrariesModel::fetch()
 {
     if (m_cache) {
         auto q = new LibrariesItemsQuery();
+        q->setIncludeCalculatedValues(true);
         connect(q, &LibrariesItemsQuery::librariesAvailable,
                 this, &LibrariesModel::librariesAvailable);
         m_cache->run(q);

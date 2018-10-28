@@ -35,6 +35,7 @@ struct LibraryCacheEntry {
     QUuid id;
     QVariant data;
     QVariant metaData;
+    QVariant calculatedData;
     bool valid;
 };
 
@@ -104,6 +105,7 @@ public:
 
     QUuid uid() const;
     QStringList tags() const;
+    void setTags(QStringList tags);
 
     void fromJson(const QByteArray data);
 
@@ -186,9 +188,13 @@ private:
     QString                 m_directory;
     QPointer<Cache>         m_cache;
 
+    // Calculated properties
+    QStringList             m_tags;
+
     bool                    m_itemDataChanged;
 
     bool                    m_secretsMissing;
+
 
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);

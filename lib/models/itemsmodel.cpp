@@ -445,6 +445,11 @@ void ItemsModel::fetch()
                     !item->property("dueTo").toDateTime().isValid()) {
                 result = false;
             }
+            if (!tag.isEmpty()) {
+                if (!item->property("tags").toStringList().contains(tag)) {
+                    result = false;
+                }
+            }
             return result;
         });
         connect(q, &GetItemsQuery::itemsAvailable,

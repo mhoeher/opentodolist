@@ -43,6 +43,15 @@ Pane {
     padding: 0
     onNewLibrary: close()
 
+    QtObject {
+        id: d
+
+        function isSelectedLibrary(lib) {
+            return !!lib && !!sidebar.currentLibrary &&
+                    lib.uid === sidebar.currentLibrary.uid;
+        }
+    }
+
     ScrollView {
         id: scrollView
 
@@ -71,7 +80,7 @@ Pane {
                         symbol: library.hasSynchronizer ?
                                     Icons.faCloud :
                                     Icons.faFolderOpen
-                        highlighted: currentLibrary.uid === library.uid &&
+                        highlighted: d.isSelectedLibrary(library.uid) &&
                                 currentTag === "" && specialView === ""
                         onClicked: {
                             currentLibrary = library;
@@ -86,7 +95,7 @@ Pane {
                         indent: 2
                         text: qsTr("Schedule")
                         symbol: Icons.faClock
-                        highlighted: currentLibrary.uid === library.uid &&
+                        highlighted: d.isSelectedLibrary(library.uid) &&
                                 currentTag === "" && specialView === "schedule"
                         onClicked: {
                             currentLibrary = library;
@@ -103,11 +112,11 @@ Pane {
                             indent: 2
                             text: modelData
                             symbol: Icons.faTag
-                            highlighted: currentLibrary.uid === library.uid &&
+                            highlighted: d.isSelectedLibrary(library.uid) &&
                                     currentTag === modelData &&
                                     specialView === ""
                             onClicked: {
-                                currentLibrary = librarySection.library;
+                                currentLibrary = library;
                                 currentTag = modelData;
                                 specialView = "";
                                 helpVisible = false;

@@ -29,7 +29,6 @@ private slots:
     void init();
     void testProperties();
     void testVariant();
-    void testTags();
     void testLoad();
     void testFromJson();
     void testEncache();
@@ -62,36 +61,6 @@ void LibraryTest::testProperties()
     QCOMPARE(lib.name(), QString("My Library"));
 }
 
-
-void LibraryTest::testTags()
-{
-    // @todo Implement me
-//    Library lib;
-//    auto note1 = lib.addNote();
-//    auto note2 = lib.addNote();
-
-//    // Wait for addition to finish:
-//    while (lib.topLevelItems()->count() < 2) {
-//        QThread::msleep(10);
-//    }
-
-//    QCOMPARE(lib.tags(), QStringList());
-
-//    QSignalSpy tagsChanged(&lib, &Library::tagsChanged);
-
-//    note1->addTag("Foo");
-//    QCOMPARE(tagsChanged.count(), 1);
-//    QCOMPARE(lib.tags(), QStringList({"Foo"}));
-
-//    note2->addTag("Foo");
-//    note2->addTag("Bar");
-//    QCOMPARE(tagsChanged.count(), 3);
-//    QCOMPARE(lib.tags(), QStringList({"Bar", "Foo"}));
-
-//    note2->setTags({});
-//    QCOMPARE(tagsChanged.count(), 4);
-//    QCOMPARE(lib.tags(), QStringList({"Foo"}));
-}
 
 void LibraryTest::testLoad()
 {

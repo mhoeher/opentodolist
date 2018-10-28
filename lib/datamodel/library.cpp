@@ -146,6 +146,10 @@ Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
             result = new Library(parent);
         }
         result->fromMap(entry.data.toMap());
+        auto calculated = entry.calculatedData.toMap();
+        result->setTags(
+                    calculated.value(
+                        "tags", result->m_tags).toStringList());
     }
     return  result;
 }
@@ -372,17 +376,13 @@ QUuid Library::uid() const
  */
 QStringList Library::tags() const
 {
-    // @todo Implement differently
-    QSet<QString> tags;
-//    for (int i = 0; i < m_topLevelItems.count(); ++i) {
-//        auto item = qSharedPointerDynamicCast<TopLevelItem>(m_topLevelItems.item(i));
-//        for (auto tag : item->tags()) {
-//            tags.insert(tag);
-//        }
-//    }
-    auto result = tags.values();
-    result.sort(Qt::CaseInsensitive);
-    return result;
+    return m_tags;
+}
+
+void Library::setTags(QStringList tags)
+{
+    m_tags = tags;
+    emit tagsChanged();
 }
 
 

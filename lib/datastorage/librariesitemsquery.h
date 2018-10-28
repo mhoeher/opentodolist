@@ -12,6 +12,9 @@ class LibrariesItemsQuery : public ItemsQuery
 public:
     explicit LibrariesItemsQuery(QObject *parent = nullptr);
 
+    bool includeCalculatedValues() const;
+    void setIncludeCalculatedValues(bool includeCalculatedValues);
+
 signals:
 
     /**
@@ -27,6 +30,10 @@ signals:
     // ItemsQuery interface
 protected:
     void run() override;
+
+private:
+
+    bool m_includeCalculatedValues;
 };
 
 #endif // LIBRARIESITEMSQUERY_H

@@ -31,9 +31,7 @@ class TodoList;
  * models the application, i.e. it is created when the application starts and destroyed once
  * the application is to be closed.
  *
- * @todo Watch libraries w/o synchronizer for changes on disk -> DirectoryWatcher
- *
-*  @todo Listen for changes and trigger sync automatically.
+ *  @todo Listen for changes and trigger sync automatically.
  */
 class Application : public QObject
 {
