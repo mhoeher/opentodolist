@@ -56,7 +56,7 @@ void Image::setImage(const QString &image)
 {
     if (m_image != image) {
         if (!isValid()) {
-            // TODO: Probably related to https://gitlab.com/rpdev/opentodolist/issues/202
+            // @todo Probably related to https://gitlab.com/rpdev/opentodolist/issues/202
             m_image = image;
             save();
             emit imageChanged();

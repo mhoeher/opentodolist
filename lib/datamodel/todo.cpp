@@ -99,7 +99,7 @@ void Todo::setTodoListUid(const QUuid& todoListUid)
  */
 int Todo::percentageDone() const
 {
-    // TODO: Implement me
+    // @todo Implement me
 //    auto uid = this->uid();
 //    int totalTasks = 0;
 //    int completeTasks = 0;

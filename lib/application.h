@@ -13,16 +13,15 @@
 #include <QVector>
 
 
-class KeyStore;
 class Cache;
-class Note;
+class DirectoryWatcher;
 class Image;
-class TodoList;
-class Todo;
+class KeyStore;
+class Note;
 class Task;
+class Todo;
+class TodoList;
 
-// TODO: Watch libraries w/o synchronizer for changes on disk -> DirectoryWatcher
-// TODO: Listen for changes and trigger sync automatically.
 
 /**
  * @brief The main class of the application
@@ -31,6 +30,10 @@ class Task;
  * as contained class and provides references to other objects. Basically, the Application class
  * models the application, i.e. it is created when the application starts and destroyed once
  * the application is to be closed.
+ *
+ * @todo Watch libraries w/o synchronizer for changes on disk -> DirectoryWatcher
+ *
+*  @todo Listen for changes and trigger sync automatically.
  */
 class Application : public QObject
 {
@@ -113,6 +116,8 @@ private:
     QVariantMap             m_secrets;
     QStringList             m_directoriesWithRunningSync;
     QVariantMap             m_syncErrors;
+    QMap<QString, DirectoryWatcher*>
+                            m_watchedDirectories;
 
     void saveLibraries();
     void loadLibraries();
@@ -128,6 +133,9 @@ private:
 
     template<typename T>
     void runSyncForLibrary(T library);
+
+    template<typename T>
+    void watchLibraryForChanges(T library);
 
 private slots:
 

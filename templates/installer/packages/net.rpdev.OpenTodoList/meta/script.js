@@ -31,7 +31,7 @@ Component.prototype.createOperations = function()
                                    "Categories=Utility;");
         }
 
-        // todo: What should we do on Mac?
+        // @todo What should we do on Mac?
         if (installer.value("os") === "mac") {
         }
 

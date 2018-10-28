@@ -372,7 +372,7 @@ QUuid Library::uid() const
  */
 QStringList Library::tags() const
 {
-    // TODO: Implement differently
+    // @todo Implement differently
     QSet<QString> tags;
 //    for (int i = 0; i < m_topLevelItems.count(); ++i) {
 //        auto item = qSharedPointerDynamicCast<TopLevelItem>(m_topLevelItems.item(i));

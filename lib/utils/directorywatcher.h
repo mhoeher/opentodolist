@@ -23,7 +23,7 @@ class DirectoryWatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit DirectoryWatcher(QObject *parent = 0);
+    explicit DirectoryWatcher(QObject *parent = nullptr);
     virtual ~DirectoryWatcher();
 
 signals:

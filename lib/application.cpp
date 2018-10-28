@@ -32,6 +32,7 @@
 #include "sync/webdavsynchronizer.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
+#include "utils/directorywatcher.h"
 
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
@@ -50,7 +51,8 @@ Application::Application(QObject *parent) :
                              QCoreApplication::applicationName(), this)),
     m_cache(new Cache(this)),
     m_keyStore(new KeyStore(this)),
-    m_secrets()
+    m_secrets(),
+    m_watchedDirectories()
 {
     initialize();
 }
@@ -68,7 +70,8 @@ Application::Application(QString applicationDir, QObject *parent) :
                             QSettings::IniFormat, this)),
     m_cache(new Cache(this)),
     m_keyStore(new KeyStore(this)),
-    m_secrets()
+    m_secrets(),
+    m_watchedDirectories()
 {
     initialize(applicationDir);
 }
@@ -202,6 +205,29 @@ void Application::syncLibrariesWithCache(
     }
 }
 
+template<typename T>
+void Application::watchLibraryForChanges(T library)
+{
+    QScopedPointer<Synchronizer> sync(library->createSynchronizer());
+    if (sync == nullptr && library->isValid()) {
+        auto watcher = new DirectoryWatcher(this);
+        auto directory = library->directory();
+        auto uid = library->uid();
+        watcher->setDirectory(library->directory());
+        m_watchedDirectories[library->directory()] = watcher;
+        connect(watcher, &DirectoryWatcher::directoryChanged,
+                [=]() {
+            auto loader = new LibraryLoader();
+            loader->setCache(m_cache);
+            loader->setDirectory(directory);
+            loader->setLibraryId(uid);
+            connect(loader, &LibraryLoader::scanFinished,
+                    loader, &LibraryLoader::deleteLater);
+            loader->scan();
+        });
+    }
+}
+
 
 /**
  * @brief Destructor.
@@ -292,12 +318,17 @@ Library *Application::addLibrary(const QVariantMap &parameters)
                 emit secretsKeysChanged();
                 delete sync;
             }
+        } else {
+            watchLibraryForChanges(result);
         }
         auto q = new InsertOrUpdateItemsQuery();
         q->add(result);
         m_cache->run(q);
         syncLibrary(result);
         result->setCache(m_cache);
+        auto libs = librariesFromConfig();
+        libs << QSharedPointer<Library>(Library::decache(result->encache()));
+        librariesToConfig(libs);
     }
     return result;
 }
@@ -314,9 +345,15 @@ Library *Application::addLibrary(const QVariantMap &parameters)
 void Application::deleteLibrary(Library *library)
 {
     if (library != nullptr) {
+        auto watcher = m_watchedDirectories.value(
+                    library->directory(), nullptr);
         if (m_directoriesWithRunningSync.contains(library->directory())) {
             qCWarning(log) << "Cannot delete a library which is syncing.";
             return;
+        }
+        if (watcher != nullptr) {
+            delete watcher;
+            m_watchedDirectories.remove(library->directory());
         }
         auto q = new DeleteItemsQuery();
         q->deleteLibrary(library, library->isInDefaultLocation());
@@ -753,6 +790,7 @@ void Application::loadLibraries()
                 m_keyStore->loadCredentials(key);
             }
         }
+        watchLibraryForChanges(library);
     }
 }
 
@@ -792,6 +830,18 @@ void Application::onLibrarySyncFinished(QString directory)
         auto dirs = directoriesWithRunningSync();
         dirs.removeAll(directory);
         setDirectoriesWithRunningSync(dirs);
+        auto libs = librariesFromConfig();
+        for (auto lib : libs) {
+            if (lib->directory() == directory) {
+                auto loader = new LibraryLoader();
+                loader->setCache(m_cache);
+                loader->setLibraryId(lib->uid());
+                loader->setDirectory(directory);
+                connect(loader, &LibraryLoader::scanFinished,
+                        loader, &LibraryLoader::deleteLater);
+                loader->scan();
+            }
+        }
     }
 }
 

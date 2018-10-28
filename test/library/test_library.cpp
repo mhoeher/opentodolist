@@ -65,7 +65,7 @@ void LibraryTest::testProperties()
 
 void LibraryTest::testTags()
 {
-    // TODO: Implement me
+    // @todo Implement me
 //    Library lib;
 //    auto note1 = lib.addNote();
 //    auto note2 = lib.addNote();

@@ -62,8 +62,6 @@ Pane {
                 delegate: Column {
                     id: librarySection
 
-                    Component.onCompleted: console.warn(library)
-
                     width: parent.width
 
                     LibrarySideBarButton {
