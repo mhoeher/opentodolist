@@ -423,11 +423,14 @@ void ItemsModel::fetch()
         auto onlyUndone = m_onlyUndone;
         auto onlyWithDueDate = m_onlyWithDueDate;
         auto itemMatchesFilter = getFilterFn();
+        auto defaultSearchResult = m_defaultSearchResult;
 
         q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
             auto result = true;
             if (itemMatchesFilter) {
                 result = itemMatchesFilter(item, query);
+            } else {
+                result = defaultSearchResult;
             }
             if (onlyDone) {
                 auto done = item->property("done");
@@ -463,11 +466,10 @@ std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn
 {
     auto words = m_searchString.split(QRegExp("\\s+"),
                                       QString::SkipEmptyParts);
-    bool defaultSearchResult = m_defaultSearchResult;
     std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
     if (!words.isEmpty()) {
         itemMatchesFilter = [=](ItemPtr item, GetItemsQuery *query) {
-            bool result = defaultSearchResult;
+            bool result = false;
             if (itemMatches(item, words)) {
                 return true;
             } else {
