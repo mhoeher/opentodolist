@@ -80,7 +80,7 @@ Pane {
                         symbol: library.hasSynchronizer ?
                                     Icons.faCloud :
                                     Icons.faFolderOpen
-                        highlighted: d.isSelectedLibrary(library.uid) &&
+                        highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === ""
                         onClicked: {
                             currentLibrary = library;
@@ -95,7 +95,7 @@ Pane {
                         indent: 2
                         text: qsTr("Schedule")
                         symbol: Icons.faClock
-                        highlighted: d.isSelectedLibrary(library.uid) &&
+                        highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === "schedule"
                         onClicked: {
                             currentLibrary = library;
@@ -112,7 +112,7 @@ Pane {
                             indent: 2
                             text: modelData
                             symbol: Icons.faTag
-                            highlighted: d.isSelectedLibrary(library.uid) &&
+                            highlighted: d.isSelectedLibrary(library) &&
                                     currentTag === modelData &&
                                     specialView === ""
                             onClicked: {
