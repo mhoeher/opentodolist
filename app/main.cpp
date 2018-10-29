@@ -132,7 +132,9 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef OTL_USE_SINGLE_APPLICATION
-    SingleApplication app(argc, argv);
+    SingleApplication app(argc, argv, false,
+                          SingleApplication::User |
+                          SingleApplication::ExcludeAppPath);
 #else
     QGuiApplication app(argc, argv);
 #endif
