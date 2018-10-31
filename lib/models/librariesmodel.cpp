@@ -103,7 +103,10 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
         auto uid = lib->uid();
         librariesToRemove.remove(uid);
         if (m_libraries.contains(uid)) {
-            m_libraries.value(uid)->fromVariant(lib->toVariant());
+            auto l = m_libraries.value(uid);
+            l->fromVariant(lib->toVariant());
+            l->applyCalculatedData(
+                        entry.value<LibraryCacheEntry>().calculatedData.toMap());
             delete lib;
         } else {
             newItems << lib;

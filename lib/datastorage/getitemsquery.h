@@ -73,6 +73,9 @@ public:
     std::function<bool (ItemPtr, GetItemsQuery *)> itemFilter() const;
     void setItemFilter(const std::function<bool (ItemPtr, GetItemsQuery *)> &itemFilter);
 
+    bool calculateProperties() const;
+    void setCalculateProperties(bool calculateProperties);
+
 signals:
 
     /**
@@ -95,6 +98,10 @@ private:
     bool m_recursive;
     QLMDB::Transaction *m_transaction;
     std::function<bool(ItemPtr, GetItemsQuery*)> m_itemFilter;
+    bool m_calculateProperties;
+
+    void calculateValues(ItemCacheEntry &entry, Item *item = nullptr);
+    int percentageForTodo(const QByteArray &todoId);
 };
 
 #endif // GETITEMSQUERY_H

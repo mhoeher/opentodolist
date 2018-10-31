@@ -1,16 +1,19 @@
 #include <QQueue>
 
-#include <qlmdb/transaction.h>
 #include <qlmdb/cursor.h>
+#include <qlmdb/database.h>
+#include <qlmdb/transaction.h>
 
 #include "datamodel/item.h"
+#include "datamodel/todo.h"
 #include "datastorage/getitemsquery.h"
 
 GetItemsQuery::GetItemsQuery(QObject *parent) :
     ItemsQuery(parent),
     m_parents(),
     m_recursive(false),
-    m_transaction(nullptr)
+    m_transaction(nullptr),
+    m_calculateProperties(false)
 {
     qRegisterMetaType<ItemCacheEntry>();
 }
@@ -32,9 +35,11 @@ void GetItemsQuery::run()
                 if (m_itemFilter) {
                     auto item = ItemPtr(Item::decache(entry));
                     if (m_itemFilter(item, this)) {
+                        calculateValues(entry, item.data());
                         result << QVariant::fromValue(entry);
                     }
                 } else {
+                    calculateValues(entry);
                     result << QVariant::fromValue(entry);
                 }
             }
@@ -60,9 +65,11 @@ void GetItemsQuery::run()
                     if (m_itemFilter) {
                         auto item = ItemPtr(Item::decache(entry));
                         if (m_itemFilter(item, this)) {
+                            calculateValues(entry, item.data());
                             result << QVariant::fromValue(entry);
                         }
                     } else {
+                        calculateValues(entry);
                         result << QVariant::fromValue(entry);
                     }
                 }
@@ -72,6 +79,45 @@ void GetItemsQuery::run()
     }
     m_transaction = nullptr;
     emit itemsAvailable(result);
+}
+
+void GetItemsQuery::calculateValues(ItemCacheEntry &entry, Item *item)
+{
+    if (m_calculateProperties) {
+        QVariantMap properties;
+
+        if (!item) {
+            ItemPtr itemPtr(Item::decache(entry));
+            item = itemPtr.data();
+        }
+
+        auto todo = qobject_cast<Todo*>(item);
+        if (todo != nullptr) {
+            properties["percentageDone"] = percentageForTodo(
+                        entry.id.toByteArray());
+        }
+
+        entry.calculatedData = properties;
+    }
+}
+
+int GetItemsQuery::percentageForTodo(const QByteArray &todoId)
+{
+    auto taskIds = children()->getAll(*m_transaction, todoId);
+    if (taskIds.isEmpty()) {
+        return 0;
+    } else {
+        int done = 0;
+        for (auto taskId : taskIds) {
+            auto data = items()->get(*m_transaction, taskId);
+            ItemPtr task(Item::decache(ItemCacheEntry::fromByteArray(
+                                           data, taskId)));
+            if (task && task->property("done").toBool()) {
+                ++done;
+            }
+        }
+        return done * 100 / taskIds.length();
+    }
 }
 
 std::function<bool (ItemPtr, GetItemsQuery *)> GetItemsQuery::itemFilter() const
@@ -237,4 +283,21 @@ GetItemsQuery::ChildrenGenerator::ChildrenGenerator(
     m_query(query),
     m_id(id)
 {
+}
+
+
+/**
+ * @brief Calculate additional properties for returned items.
+ *
+ * If this property is set to true, the query will calculate additional
+ * properties for items returned.
+ */
+bool GetItemsQuery::calculateProperties() const
+{
+    return m_calculateProperties;
+}
+
+void GetItemsQuery::setCalculateProperties(bool calculateProperties)
+{
+    m_calculateProperties = calculateProperties;
 }

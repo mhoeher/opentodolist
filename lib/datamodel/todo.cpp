@@ -12,6 +12,7 @@
 Todo::Todo(const QString &filename, QObject *parent) :
     ComplexItem(filename, parent),
     m_todoListUid(),
+    m_percentageDone(0),
     m_done(false)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
@@ -30,6 +31,7 @@ Todo::Todo(QObject* parent) : Todo(QString(), parent)
  */
 Todo::Todo(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
     m_todoListUid(),
+    m_percentageDone(0),
     m_done(false)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
@@ -97,30 +99,18 @@ void Todo::setTodoListUid(const QUuid& todoListUid)
  */
 int Todo::percentageDone() const
 {
-    // @todo Implement me
-//    auto uid = this->uid();
-//    int totalTasks = 0;
-//    int completeTasks = 0;
-//    if (m_library != nullptr) {
-//        auto tasks = m_library->tasks();
-//        for (int i = 0; i < tasks->count(); ++i) {
-//            auto task = dynamic_cast<Task*>(tasks->get(i));
-//            if (task != nullptr) {
-//                if (task->todoUid() == uid) {
-//                    ++totalTasks;
-//                    if (task->done()) {
-//                        ++completeTasks;
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    if (totalTasks > 0) {
-//        return completeTasks * 100 / totalTasks;
-//    } else {
-//        return 0;
-//    }
-    return 0;
+    return m_percentageDone;
+}
+
+void Todo::applyCalculatedProperties(const QVariantMap &properties)
+{
+    ComplexItem::applyCalculatedProperties(properties);
+    auto percentage = properties.value(
+                "percentageDone", m_percentageDone).toInt();
+    if (percentage != m_percentageDone) {
+        m_percentageDone = percentage;
+        emit percentageDoneChanged();
+    }
 }
 
 

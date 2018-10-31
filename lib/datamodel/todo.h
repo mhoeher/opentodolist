@@ -41,6 +41,9 @@ public:
 
     int percentageDone() const;
 
+    // Item interface
+    void applyCalculatedProperties(const QVariantMap &properties) override;
+
 signals:
 
     void doneChanged();
@@ -51,13 +54,14 @@ public slots:
 
 protected:
 
-    // Item interface
+
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 
 private:
 
     QUuid m_todoListUid;
+    int m_percentageDone;
     bool m_done;
 
 };

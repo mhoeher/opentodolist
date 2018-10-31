@@ -417,6 +417,7 @@ void ItemsModel::fetch()
             q->setParent(m_parentItem);
         }
         q->setRecursive(m_recursive);
+        q->setCalculateProperties(true);
 
         auto tag = m_tag;
         auto onlyDone = m_onlyDone;
@@ -526,6 +527,8 @@ void ItemsModel::update(QVariantList items)
         if (m_items.contains(id)) {
             auto existingItem = m_items.value(id);
             existingItem->fromVariant(item->toVariant());
+            existingItem->applyCalculatedProperties(
+                        data.value<ItemCacheEntry>().calculatedData.toMap());
             delete item;
             idsToDelete.remove(id);
         } else {

@@ -31,6 +31,7 @@ ItemCacheEntry::ItemCacheEntry() :
     parentId(),
     data(),
     metaData(),
+    calculatedData(),
     valid(false)
 {
 
@@ -237,6 +238,19 @@ void Item::fromMap(QVariantMap map)
 
 
 /**
+ * @brief Apply properties calculated from the database.
+ *
+ * This function is called when restoring an item from the cache.
+ * Sub-classes can override it to apply properties which have been
+ * calculated automatically when the item is read from the item Cache.
+ */
+void Item::applyCalculatedProperties(const QVariantMap &properties)
+{
+    Q_UNUSED(properties);
+}
+
+
+/**
  * @brief The Cache the item is connected to.
  */
 Cache* Item::cache() const
@@ -390,6 +404,7 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
     Item *result = nullptr;
     if (entry.valid) {
         result = Item::createItem(entry.data.toMap(), parent);
+        result->applyCalculatedProperties(entry.calculatedData.toMap());
         auto meta = entry.metaData.toMap();
         result->setFilename(meta["filename"].toString());
         auto topLevelItem = qobject_cast<TopLevelItem*>(result);
@@ -473,6 +488,8 @@ void Item::onItemDataLoadedFromCache(const QVariant &entry)
     ItemPtr item(Item::decache(entry));
     if (item != nullptr) {
         this->fromMap(item->toMap());
+        this->applyCalculatedProperties(
+                    entry.value<ItemCacheEntry>().calculatedData.toMap());
     }
 }
 

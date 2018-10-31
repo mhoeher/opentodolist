@@ -146,10 +146,9 @@ Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
             result = new Library(parent);
         }
         result->fromMap(entry.data.toMap());
+        result->applyCalculatedData(entry.calculatedData.toMap());
         auto calculated = entry.calculatedData.toMap();
-        result->setTags(
-                    calculated.value(
-                        "tags", result->m_tags).toStringList());
+        result->applyCalculatedData(calculated);
     }
     return  result;
 }
@@ -532,6 +531,8 @@ void Library::onLibraryDataLoadedFromCache(const QVariant &entry)
     QSharedPointer<Library> lib(Library::decache(entry));
     if (lib != nullptr) {
         this->fromMap(lib->toMap());
+        applyCalculatedData(
+                    entry.value<LibraryCacheEntry>().calculatedData.toMap());
     }
 }
 
@@ -542,6 +543,11 @@ void Library::onChanged()
         q->add(this);
         m_cache->run(q);
     }
+}
+
+void Library::applyCalculatedData(const QVariantMap &properties)
+{
+    setTags(properties.value("tags", m_tags).toStringList());
 }
 
 

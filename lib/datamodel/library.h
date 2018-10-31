@@ -119,6 +119,7 @@ public:
 
     QVariant toVariant();
     void fromVariant(const QVariant &data);
+    void applyCalculatedData(const QVariantMap &properties);
 
     QString synchronizerSecret() const;
 

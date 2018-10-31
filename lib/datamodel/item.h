@@ -28,6 +28,7 @@ struct ItemCacheEntry {
     QUuid parentId;
     QVariant data;
     QVariant metaData;
+    QVariant calculatedData;
     bool valid;
 };
 
@@ -77,6 +78,8 @@ public:
     Q_INVOKABLE bool save();
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant(QVariant data);
+
+    virtual void applyCalculatedProperties(const QVariantMap &properties);
 
 
     /**
