@@ -67,8 +67,8 @@ void InsertOrUpdateItemsQuery::run()
 
         auto it = itemCursor.findKey(id);
         if (!it.isValid() || it.value() != data) {
-            setDataChanged();
             itemCursor.put(id, data);
+            markAsChanged(t, id);
         }
         childrenCursor.put(Cache::RootId, id,
                            QLMDB::Cursor::NoDuplicateData);
@@ -106,8 +106,8 @@ void InsertOrUpdateItemsQuery::run()
         auto id = item.id.toByteArray();
         auto it = itemCursor.findKey(id);
         if (!it.isValid() || it.value() != data) {
-            setDataChanged();
             itemCursor.put(id, data);
+            markAsChanged(t, id);
         }
         childrenCursor.put(item.parentId.toByteArray(), id,
                            QLMDB::Cursor::NoDuplicateData);

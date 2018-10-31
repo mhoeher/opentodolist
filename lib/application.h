@@ -116,6 +116,7 @@ private:
     QVariantMap             m_syncErrors;
     QMap<QString, DirectoryWatcher*>
                             m_watchedDirectories;
+    QSet<QString>           m_librariesWithChanges;
 
     void saveLibraries();
     void loadLibraries();
@@ -139,6 +140,7 @@ private slots:
 
     void onLibrarySyncFinished(QString directory);
     void onLibrarySyncError(QString directory, QString error);
+    void onLibrariesChanged(QVariantList librariesUids);
 
 };
 

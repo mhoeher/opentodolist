@@ -172,6 +172,9 @@ void Cache::run(ItemsQuery *query)
         connect(query, &ItemsQuery::dataChanged,
                 this, &Cache::dataChanged,
                 Qt::QueuedConnection);
+        connect(query, &ItemsQuery::librariesChanged,
+                this, &Cache::librariesChanged,
+                Qt::QueuedConnection);
         connect(query, &ItemsQuery::finished,
                 this, &Cache::finished,
                 Qt::QueuedConnection);

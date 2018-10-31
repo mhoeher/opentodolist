@@ -65,7 +65,6 @@ void Todo::setDone(bool done)
     if (m_done != done) {
         m_done = done;
         emit doneChanged();
-        save();
     }
 }
 
@@ -85,7 +84,6 @@ void Todo::setTodoListUid(const QUuid& todoListUid)
     if (m_todoListUid != todoListUid) {
         m_todoListUid = todoListUid;
         emit todoListUidChanged();
-        save();
     }
 }
 

@@ -61,6 +61,7 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
+        QSignalSpy librariesChanged(&cache, &Cache::librariesChanged);
 
         q->add(&lib);
         q->add(&todoList);
@@ -73,6 +74,9 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QVERIFY(cacheFinished.wait());
         QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 1);
+        QCOMPARE(librariesChanged.count(), 1);
+        QCOMPARE(librariesChanged.at(0).at(0).toList().at(0).toUuid(),
+                 lib.uid());
     }
 
     {
@@ -80,6 +84,7 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
+        QSignalSpy librariesChanged(&cache, &Cache::librariesChanged);
 
         q->add(&lib);
         q->add(&todoList);
@@ -92,6 +97,7 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QVERIFY(cacheFinished.wait());
         QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 0);
+        QCOMPARE(librariesChanged.count(), 0);
     }
 
     {

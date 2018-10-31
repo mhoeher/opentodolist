@@ -72,7 +72,7 @@ void DeleteItemsQueryTest::run()
     {
         auto q = new InsertOrUpdateItemsQuery;
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
-        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
+        QSignalSpy cacheFinished(&cache, &Cache::finished);
 
         q->add(&lib);
         q->add(&todoList);
@@ -82,7 +82,7 @@ void DeleteItemsQueryTest::run()
         q->add(&image);
         cache.run(q);
 
-        QVERIFY(destroyed.wait());
+        QVERIFY(cacheFinished.wait());
         QCOMPARE(finished.count(), 1);
     }
 
@@ -121,9 +121,13 @@ void DeleteItemsQueryTest::run()
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
+        QSignalSpy librariesChanged(&cache, &Cache::librariesChanged);
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 1);
+        QCOMPARE(librariesChanged.count(), 1);
+        QCOMPARE(librariesChanged.at(0).at(0).toList().at(0).toUuid(),
+                 lib.uid());
     }
 
     {
@@ -132,9 +136,11 @@ void DeleteItemsQueryTest::run()
         QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
         QSignalSpy cacheFinished(&cache, &Cache::finished);
         QSignalSpy dataChanged(&cache, &Cache::dataChanged);
+        QSignalSpy librariesChanged(&cache, &Cache::librariesChanged);
         cache.run(q);
         QVERIFY(cacheFinished.wait());
         QCOMPARE(dataChanged.count(), 0);
+        QCOMPARE(librariesChanged.count(), 0);
     }
 
     {

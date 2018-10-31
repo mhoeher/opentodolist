@@ -52,7 +52,8 @@ Application::Application(QObject *parent) :
     m_cache(new Cache(this)),
     m_keyStore(new KeyStore(this)),
     m_secrets(),
-    m_watchedDirectories()
+    m_watchedDirectories(),
+    m_librariesWithChanges()
 {
     initialize();
 }
@@ -71,7 +72,8 @@ Application::Application(QString applicationDir, QObject *parent) :
     m_cache(new Cache(this)),
     m_keyStore(new KeyStore(this)),
     m_secrets(),
-    m_watchedDirectories()
+    m_watchedDirectories(),
+    m_librariesWithChanges()
 {
     initialize(applicationDir);
 }
@@ -95,6 +97,9 @@ void Application::initialize(const QString &path)
     }
     m_cache->setCacheDirectory(cacheDir);
     m_cache->open();
+
+    connect(m_cache, &Cache::librariesChanged,
+            this, &Application::onLibrariesChanged);
 
     loadLibraries();
 
@@ -842,6 +847,10 @@ void Application::onLibrarySyncFinished(QString directory)
                 loader->scan();
             }
         }
+        if (m_librariesWithChanges.contains(lib.directory())) {
+            m_librariesWithChanges.remove(lib.directory());
+            runSyncForLibrary(&lib);
+        }
     }
 }
 
@@ -852,6 +861,23 @@ void Application::onLibrarySyncError(QString directory, QString error)
     errors.append(error);
     m_syncErrors[directory] = errors;
     emit syncErrorsChanged();
+}
+
+void Application::onLibrariesChanged(QVariantList librariesUids)
+{
+    auto libs = librariesFromConfig();
+    for (auto id : librariesUids) {
+        auto uid = id.toUuid();
+        for (auto lib : libs) {
+            if (uid == lib->uid()) {
+                if (m_directoriesWithRunningSync.contains(lib->directory())) {
+                    m_librariesWithChanges.insert(lib->directory());
+                } else {
+                    runSyncForLibrary(lib);
+                }
+            }
+        }
+    }
 }
 
 

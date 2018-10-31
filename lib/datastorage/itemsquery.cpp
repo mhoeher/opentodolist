@@ -1,4 +1,9 @@
-#include "itemsquery.h"
+#include <qlmdb/database.h>
+
+#include "datamodel/item.h"
+#include "datamodel/library.h"
+#include "datastorage/itemsquery.h"
+
 
 /**
  * @brief Constructor.
@@ -8,7 +13,9 @@ ItemsQuery::ItemsQuery(QObject *parent) : QObject(parent),
     m_global(),
     m_items(),
     m_children(),
-    m_dataChanged(false)
+    m_dataChanged(false),
+    m_changedLibrariesUids(),
+    m_changedParentUids()
 {
 }
 
@@ -62,6 +69,48 @@ void ItemsQuery::setDataChanged(bool changed)
 
 
 /**
+ * @brief Returns true if the query has changed the cache.
+ *
+ * @sa setDataChanged()
+ */
+bool ItemsQuery::hasDataChanged() const
+{
+    return m_dataChanged;
+}
+
+
+/**
+ * @brief Mark an item as changed.
+ *
+ * This marks the item with the given @p id as changed. This will cause the
+ * librariesChanged() signal to be emitted when the transaction is done.
+ */
+void ItemsQuery::markAsChanged(QLMDB::Transaction &transaction, QByteArray id)
+{
+    while (!m_changedParentUids.contains(id)) {
+        auto entry = m_items->get(transaction, id);
+        if (!entry.isEmpty()) {
+            auto itemEntry = ItemCacheEntry::fromByteArray(entry, id);
+            if (itemEntry.valid) {
+                m_changedParentUids.insert(id);
+                id = itemEntry.parentId.toByteArray();
+            } else {
+                auto libEntry = LibraryCacheEntry::fromByteArray(entry, id);
+                if (libEntry.valid) {
+                    m_changedLibrariesUids.insert(id);
+                    m_changedParentUids.insert(id);
+                    setDataChanged(true);
+                    break;
+                }
+            }
+        } else {
+            break;
+        }
+    }
+}
+
+
+/**
  * @brief The context of the cache data base.
  */
 QSharedPointer<QLMDB::Context> ItemsQuery::context() const
@@ -81,6 +130,13 @@ void ItemsQuery::finish()
 {
     if (m_dataChanged) {
         emit dataChanged();
+    }
+    if (!m_changedLibrariesUids.isEmpty()) {
+        QVariantList librariesUids;
+        for (auto id : m_changedLibrariesUids) {
+            librariesUids << QUuid(id);
+        }
+        emit librariesChanged(librariesUids);
     }
     emit finished();
 }

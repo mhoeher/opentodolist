@@ -171,7 +171,6 @@ void Library::setName(const QString &name)
     if ( m_name != name ) {
         m_name = name;
         emit nameChanged();
-        save();
     }
 }
 

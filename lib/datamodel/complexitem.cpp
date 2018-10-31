@@ -68,7 +68,6 @@ void ComplexItem::setDueTo(const QDateTime &dueTo)
         t.setHMS(t.hour(), t.minute(), t.second(), 0);
         m_dueTo.setTime(t);
         emit dueToChanged();
-        save();
     }
 }
 
@@ -98,7 +97,6 @@ void ComplexItem::setNotes(const QString &notes)
     if (m_notes != copy) {
         m_notes = copy;
         emit notesChanged();
-        save();
     }
 }
 
@@ -141,7 +139,6 @@ void ComplexItem::attachFile(const QString &filename)
             m_attachments.append(targetFileName);
             std::stable_sort(m_attachments.begin(), m_attachments.end());
             emit attachmentsChanged();
-            save();
         }
     }
 }
@@ -166,7 +163,6 @@ void ComplexItem::detachFile(const QString &filename)
             }
             m_attachments.removeAll(filename);
             emit attachmentsChanged();
-            save();
         }
     }
 }
@@ -183,7 +179,6 @@ void ComplexItem::setAttachments(const QStringList &attachments)
     if (m_attachments != attachments) {
         m_attachments = attachments;
         emit attachmentsChanged();
-        save();
     }
 }
 

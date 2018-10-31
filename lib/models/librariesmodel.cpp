@@ -4,6 +4,7 @@
 #include "datamodel/library.h"
 #include "datastorage/cache.h"
 #include "datastorage/librariesitemsquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
 #include "models/librariesmodel.h"
 
 
@@ -14,7 +15,8 @@ LibrariesModel::LibrariesModel(QObject *parent) :
     QAbstractListModel(parent),
     m_cache(nullptr),
     m_libraries(),
-    m_uids()
+    m_uids(),
+    m_updating(false)
 {
     connect(this, &LibrariesModel::rowsInserted,
             this, &LibrariesModel::countChanged);
@@ -93,6 +95,7 @@ void LibrariesModel::fetch()
 
 void LibrariesModel::librariesAvailable(QVariantList libraries)
 {
+    m_updating = true;
     auto librariesToRemove = QSet<QUuid>::fromList(m_uids);
     QList<Library*> newItems;
     for (auto entry : libraries) {
@@ -129,7 +132,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
         }
         endInsertRows();
     }
-
+    m_updating = false;
     emit updateFinished();
 }
 
@@ -141,6 +144,11 @@ void LibrariesModel::libraryChanged()
         auto idx = m_uids.indexOf(uid);
         if (idx >= 0) {
             emit dataChanged(index(idx), index(idx));
+            if (!m_updating && m_cache != nullptr) {
+                auto q = new InsertOrUpdateItemsQuery();
+                q->add(lib);
+                m_cache->run(q);
+            }
         }
     }
 }

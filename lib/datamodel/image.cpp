@@ -58,19 +58,16 @@ void Image::setImage(const QString &image)
         if (!isValid()) {
             // @todo Probably related to https://gitlab.com/rpdev/opentodolist/issues/202
             m_image = image;
-            save();
             emit imageChanged();
         } else {
             QFileInfo fi(image);
             if (fi.isRelative()) {
                 m_image = image;
                 emit imageChanged();
-                save();
             } else {
                 if (fi.absolutePath() == directory()) {
                     m_image = fi.fileName();
                     emit imageChanged();
-                    save();
                 } else if (isValid()) {
                     if (!fi.exists()) {
                         return;
@@ -82,7 +79,6 @@ void Image::setImage(const QString &image)
                     QFile::copy(image, directory() + "/" + targetFileName);
                     m_image = targetFileName;
                     emit imageChanged();
-                    save();
                 }
             }
         }

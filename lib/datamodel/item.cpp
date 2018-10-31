@@ -287,7 +287,6 @@ void Item::setWeight(double weight)
     if (!qFuzzyCompare(m_weight, weight)) {
         m_weight = weight;
         emit weightChanged();
-        save();
     }
 }
 
@@ -415,7 +414,6 @@ void Item::setTitle(const QString &title)
     if ( m_title != title ) {
         m_title = title;
         emit titleChanged();
-        save();
     }
 }
 

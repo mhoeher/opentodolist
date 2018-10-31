@@ -77,6 +77,7 @@ void ComplexItemTest::attachments()
     QCOMPARE(item.attachments(), QStringList({"foo-1.txt"}));
     QVERIFY(QFile(item.attachmentFileName("foo-1.txt")).exists());
     QVERIFY(!QFile(item.attachmentFileName("foo.txt")).exists());
+    item.save();
 
     auto attachmentPath = item.attachmentFileName("foo-1.txt");
     QVERIFY(QFile(attachmentPath).exists());

@@ -58,6 +58,16 @@ signals:
      */
     void dataChanged();
 
+
+    /**
+     * @brief One or more libraries have changed.
+     *
+     * This signal is emitted if a query has finished running which modified
+     * one or more libraries. The @p libraryUids parameter is a list of UIDs of
+     * the libraries which have changed.
+     */
+    void librariesChanged(QVariantList libraryUids);
+
     /**
      * @brief A query has finished running.
      *

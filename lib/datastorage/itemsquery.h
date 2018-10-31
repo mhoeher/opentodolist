@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSharedPointer>
+#include <QSet>
 
 class Cache;
 class ItemsQueryRunnable;
@@ -11,6 +12,7 @@ class ItemsQueryRunnable;
 namespace QLMDB {
 class Context;
 class Database;
+class Transaction;
 }
 
 class ItemsQuery : public QObject
@@ -37,12 +39,22 @@ signals:
      */
     void dataChanged();
 
+    /**
+     * @brief A list of UIDs of libraries which have been changed.
+     *
+     * This signal is emitted by some queries if they changed the database.
+     * It contains a list of UIDs of the libraries which have been changed.
+     */
+    void librariesChanged(QVariantList libraries);
+
 protected:
     QSharedPointer<QLMDB::Context> context() const;
     QSharedPointer<QLMDB::Database> global() const;
     QSharedPointer<QLMDB::Database> items() const;
     QSharedPointer<QLMDB::Database> children() const;
     void setDataChanged(bool changed = true);
+    bool hasDataChanged() const;
+
 
     /**
      * @brief Run the query.
@@ -53,6 +65,8 @@ protected:
      */
     virtual void run() = 0;
 
+    virtual void markAsChanged(QLMDB::Transaction &transaction, QByteArray id);
+
 private:
 
     QSharedPointer<QLMDB::Context> m_context;
@@ -60,6 +74,8 @@ private:
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
     bool m_dataChanged;
+    QSet<QByteArray> m_changedLibrariesUids;
+    QSet<QByteArray> m_changedParentUids;
 
     void finish();
 };

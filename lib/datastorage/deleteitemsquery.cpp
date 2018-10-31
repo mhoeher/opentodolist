@@ -42,6 +42,7 @@ void DeleteItemsQuery::deleteLibrary(const QUuid &uid, bool deleteLibraryDir)
     }
 }
 
+
 void DeleteItemsQuery::run()
 {
     QLMDB::Transaction t(*context());
@@ -82,11 +83,11 @@ void DeleteItemsQuery::run()
                             item->deleteItem();
                             delete item;
                         }
-                        setDataChanged();
+                        markAsChanged(t, item->uid().toByteArray());
                     }
                 } else {
                     if (!items()->get(t, nextId).isNull()) {
-                        setDataChanged();
+                        markAsChanged(t, nextId);
                     }
                 }
                 items()->remove(t, nextId);

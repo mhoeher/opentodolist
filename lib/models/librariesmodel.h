@@ -64,6 +64,7 @@ private:
     QPointer<Cache> m_cache;
     QHash<QUuid, Library*> m_libraries;
     QList<QUuid> m_uids;
+    bool m_updating;
 
     void fetch();
 

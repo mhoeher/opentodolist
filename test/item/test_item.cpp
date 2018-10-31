@@ -65,6 +65,7 @@ void ItemTest::testPersistence()
 
     item.setTitle("Hello World");
     item.setWeight(1.0);
+    item.save();
 
     anotherItem.fromVariant(item.toVariant());
 

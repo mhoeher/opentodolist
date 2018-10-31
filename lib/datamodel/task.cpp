@@ -46,7 +46,6 @@ void Task::setDone(bool done)
     if (m_done != done) {
         m_done = done;
         emit doneChanged();
-        save();
     }
 }
 
@@ -63,7 +62,6 @@ void Task::setTodoUid(const QUuid& todoUid)
     if (m_todoUid != todoUid) {
         m_todoUid = todoUid;
         emit todoUidChanged();
-        save();
     }
 }
 
