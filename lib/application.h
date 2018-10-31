@@ -30,8 +30,6 @@ class TodoList;
  * as contained class and provides references to other objects. Basically, the Application class
  * models the application, i.e. it is created when the application starts and destroyed once
  * the application is to be closed.
- *
- *  @todo Listen for changes and trigger sync automatically.
  */
 class Application : public QObject
 {
