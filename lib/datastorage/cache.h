@@ -79,6 +79,9 @@ public slots:
 
 private:
 
+    QString m_cacheDirectory;
+    size_t m_cacheSize;
+
     QSharedPointer<QLMDB::Context> m_context;
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;

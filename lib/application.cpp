@@ -92,7 +92,9 @@ void Application::initialize(const QString &path)
     {
         QDir dir(cacheDir);
         if (!dir.exists()) {
-            dir.mkpath(".");
+            if (!dir.mkpath(".")) {
+                qWarning() << "Failed to create cache directory";
+            }
         }
     }
     m_cache->setCacheDirectory(cacheDir);

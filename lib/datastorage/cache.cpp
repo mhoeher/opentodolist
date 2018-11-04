@@ -58,14 +58,15 @@ void ItemsQueryRunnable::run()
  * @brief Constructor.
  */
 Cache::Cache(QObject *parent) : QObject(parent),
-    m_context(new QLMDB::Context),
+    m_cacheDirectory(),
+    m_cacheSize(3U * 1024U * 1024U * 1024U),
+    m_context(nullptr),
     m_global(),
     m_items(),
     m_children(),
     m_threadPool(new QThreadPool(this)),
     m_valid(false)
 {
-    m_context->setMaxDBs(3);
 }
 
 
@@ -82,7 +83,7 @@ Cache::~Cache()
  */
 QString Cache::cacheDirectory() const
 {
-    return m_context->path();
+    return m_cacheDirectory;
 }
 
 
@@ -91,7 +92,7 @@ QString Cache::cacheDirectory() const
  */
 void Cache::setCacheDirectory(const QString &cacheDirectory)
 {
-    m_context->setPath(cacheDirectory);
+    m_cacheDirectory = cacheDirectory;
 }
 
 
@@ -100,7 +101,7 @@ void Cache::setCacheDirectory(const QString &cacheDirectory)
  */
 size_t Cache::cacheSize() const
 {
-    return m_context->mapSize();
+    return m_cacheSize;
 }
 
 
@@ -109,7 +110,7 @@ size_t Cache::cacheSize() const
  */
 void Cache::setCacheSize(size_t envSize)
 {
-    m_context->setMapSize(envSize);
+    m_cacheSize = envSize;
 }
 
 
@@ -119,27 +120,44 @@ void Cache::setCacheSize(size_t envSize)
  */
 bool Cache::open()
 {
-    // Set max map size to 3GB
-    m_context->setMapSize(static_cast<size_t>(3U * 1024U * 1024U * 1024U));
-
-    // Try to open env with 3GB, but if we don't have enough disk space,
+    m_valid = false;
+    // Try to open env with initial size, but if we don't have enough disk space,
     // try to open it with less memory, down to at least 10MB.
-    while (!m_context->open() &&
-           m_context->lastError() == QLMDB::Errors::OutOfMemory) {
-        m_context->setMapSize(m_context->mapSize() / 2);
-        if (m_context->mapSize() < 10U * 1024U * 1024U) {
-            qCWarning(log) << "Finally failed to open cache - we need at "
-                              "least 10MB.";
-            return false;
+    auto cacheSize = m_cacheSize;
+    do {
+        m_context.reset(new QLMDB::Context);
+        m_context->setMaxDBs(3);
+        m_context->setPath(m_cacheDirectory);
+        m_context->setMapSize(cacheSize);
+        if (m_context->open()) {
+            break;
+        } else if (m_context->lastError() == QLMDB::Errors::OutOfMemory) {
+            m_context.clear();
+            cacheSize = cacheSize / 2;
+            if (cacheSize < 10U * 1024U * 1024U) {
+                qCWarning(log) << "Finally failed to open cache - we need at "
+                                  "least 10MB.";
+                break;
+            } else {
+                qCWarning(log) << "Failed to open cache with size of"
+                               << cacheSize << "bytes, trying smaller cache...";
+            }
+        } else {
+            qCWarning(log) << "Failed to open cache directory"
+                           << m_context->path() << ":"
+                           << m_context->lastErrorString();
+            m_context.clear();
+            break;
         }
-    }
+    } while (m_context == nullptr);
 
-    if (m_context->isOpen() && openDBs() && initVersion0()) {
-        m_valid = true;
-    } else {
-        qCWarning(log) << "Failed to open cache directory"
-                       << m_context->path() << ":"
-                       << m_context->lastErrorString();
+    if (m_context != nullptr) {
+        if (openDBs() && initVersion0()) {
+            m_valid = true;
+        } else {
+            qCWarning(log) << "Failed to initialize cache.";
+            m_context.clear();
+        }
     }
     return m_valid;
 }
@@ -165,20 +183,24 @@ bool Cache::isValid() const
 void Cache::run(ItemsQuery *query)
 {
     if (query != nullptr) {
-        query->m_context = m_context;
-        query->m_global = m_global;
-        query->m_items = m_items;
-        query->m_children = m_children;
-        connect(query, &ItemsQuery::dataChanged,
-                this, &Cache::dataChanged,
-                Qt::QueuedConnection);
-        connect(query, &ItemsQuery::librariesChanged,
-                this, &Cache::librariesChanged,
-                Qt::QueuedConnection);
-        connect(query, &ItemsQuery::finished,
-                this, &Cache::finished,
-                Qt::QueuedConnection);
-        m_threadPool->start(new ItemsQueryRunnable(query));
+        if (m_context == nullptr) {
+            delete query;
+        } else {
+            query->m_context = m_context;
+            query->m_global = m_global;
+            query->m_items = m_items;
+            query->m_children = m_children;
+            connect(query, &ItemsQuery::dataChanged,
+                    this, &Cache::dataChanged,
+                    Qt::QueuedConnection);
+            connect(query, &ItemsQuery::librariesChanged,
+                    this, &Cache::librariesChanged,
+                    Qt::QueuedConnection);
+            connect(query, &ItemsQuery::finished,
+                    this, &Cache::finished,
+                    Qt::QueuedConnection);
+            m_threadPool->start(new ItemsQueryRunnable(query));
+        }
     }
 }
 
