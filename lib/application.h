@@ -13,8 +13,15 @@
 #include <QVector>
 
 
-class Migrator_2_x_to_3_x;
+class Cache;
+class DirectoryWatcher;
+class Image;
 class KeyStore;
+class Note;
+class Task;
+class Todo;
+class TodoList;
+
 
 /**
  * @brief The main class of the application
@@ -27,26 +34,30 @@ class KeyStore;
 class Application : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<Library> libraries READ libraryList NOTIFY librariesChanged)
     Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
+    Q_PROPERTY(Cache* cache READ cache CONSTANT)
+    Q_PROPERTY(QStringList directoriesWithRunningSync
+               READ directoriesWithRunningSync
+               NOTIFY directoriesWithRunningSyncChanged)
+    Q_PROPERTY(QVariantMap syncErrors READ syncErrors NOTIFY syncErrorsChanged)
+    Q_PROPERTY(QStringList secretsKeys READ secretsKeys
+               NOTIFY secretsKeysChanged)
 
-    friend class Migrator_2_x_to_3_x;
 public:
 
     explicit Application(QObject *parent = nullptr);
-    explicit Application(QSettings *settings, QObject *parent = nullptr);
+    explicit Application(QString applicationDir, QObject *parent = nullptr);
 
     virtual ~Application();
 
-    /**
-   * @brief The list of all Library objects present in the application.
-   */
-    QList<Library*> libraries() const               { return m_libraries; }
-
-    QStringList libraryTypes() const;
-    QQmlListProperty<Library> libraryList();
-
     Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
+    Q_INVOKABLE void deleteLibrary(Library *library);
+    Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
+    Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
+    Q_INVOKABLE TodoList* addTodoList(Library *library, QVariantMap properties);
+    Q_INVOKABLE Todo* addTodo(Library *library, TodoList* todoList, QVariantMap properties);
+    Q_INVOKABLE Task* addTask(Library *library, Todo *todo, QVariantMap properties);
+    Q_INVOKABLE void deleteItem(Item *item);
 
     Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
     Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
@@ -72,6 +83,15 @@ public:
 
     Q_INVOKABLE QString secretForSynchronizer(Synchronizer* sync);
 
+    Cache *cache() const;
+
+    QStringList directoriesWithRunningSync() const;
+    void setDirectoriesWithRunningSync(const QStringList &directoriesWithRunningSync);
+
+    QVariantMap syncErrors() const;
+
+    QStringList secretsKeys() const;
+
 public slots:
 
     void syncLibrary(Library *library);
@@ -80,37 +100,47 @@ public slots:
 
 signals:
 
-    void librariesChanged();
+    void directoriesWithRunningSyncChanged();
+    void syncErrorsChanged();
+    void secretsKeysChanged();
 
 private:
 
-    QList<Library*>         m_libraries;
     QSettings              *m_settings;
-    bool                    m_loadingLibraries;
+    Cache                  *m_cache;
     KeyStore               *m_keyStore;
     QVariantMap             m_secrets;
+    QStringList             m_directoriesWithRunningSync;
+    QVariantMap             m_syncErrors;
+    QMap<QString, DirectoryWatcher*>
+                            m_watchedDirectories;
+    QSet<QString>           m_librariesWithChanges;
 
     void saveLibraries();
     void loadLibraries();
 
-    static Library* librariesAt(QQmlListProperty<Library> *property, int index);
-    static int librariesCount(QQmlListProperty<Library> *property);
 
-    QString defaultLibraryLocation() const;
-    void runMigrations();
+    void initialize(const QString &path = QString());
 
-    void appendLibrary(Library* library);
+    void connectItemToCache(Item* item);
 
+    QList<QSharedPointer<Library>> librariesFromConfig();
+    void librariesToConfig(QList<QSharedPointer<Library>> libraries);
+    void syncLibrariesWithCache(QList<QSharedPointer<Library>> libraries);
 
-    void initialize();
+    template<typename T>
+    void runSyncForLibrary(T library);
+
+    template<typename T>
+    void watchLibraryForChanges(T library);
 
 private slots:
 
-    void onLibraryDeleted(Library *library);
-    void onLibrarySyncFinished(Library *library);
+    void onLibrarySyncFinished(QString directory);
+    void onLibrarySyncError(QString directory, QString error);
+    void onLibrariesChanged(QVariantList librariesUids);
 
 };
 
-Q_DECLARE_LOGGING_CATEGORY(application)
 
 #endif // APPLICATION_H

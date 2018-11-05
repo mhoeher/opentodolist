@@ -4,10 +4,35 @@
 #include <QDir>
 #include <QLoggingCategory>
 #include <QObject>
+#include <QPointer>
 #include <QSharedPointer>
 #include <QString>
 #include <QUuid>
 #include <QVariantMap>
+
+
+class Cache;
+
+/**
+ * @brief Represents an arbitrary item stored in the cache.
+ */
+struct ItemCacheEntry {
+    ItemCacheEntry();
+    ItemCacheEntry(const ItemCacheEntry &other) = default;
+
+    QByteArray toByteArray() const;
+    static ItemCacheEntry fromByteArray(const QByteArray &data,
+                                        const QByteArray &id);
+
+    QUuid id;
+    QUuid parentId;
+    QVariant data;
+    QVariant metaData;
+    QVariant calculatedData;
+    bool valid;
+};
+
+Q_DECLARE_METATYPE(ItemCacheEntry)
 
 
 /**
@@ -38,11 +63,23 @@ public:
                   QObject *parent = nullptr);
     virtual ~Item();
 
+    /**
+     * @brief Get the UUID of the parent item.
+     *
+     * This method returns the UUID of the parent to which the item
+     * belongs. For top level items, this is the UUID of the library
+     * the item belongs to. For other items, this is the UUID of
+     * the direct parent item.
+     */
+    virtual QUuid parentId() const;
+
     Q_INVOKABLE virtual bool deleteItem();
     Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant(QVariant data);
+
+    virtual void applyCalculatedProperties(const QVariantMap &properties);
 
 
     /**
@@ -85,6 +122,15 @@ public:
     static Item *createItem(QVariant variant, QObject *parent = nullptr);
     static Item *createItem(QString itemType, QObject *parent = nullptr);
     static Item *createItemFromFile(QString filename, QObject *parent = nullptr);
+
+    ItemCacheEntry encache() const;
+    static Item* decache(const ItemCacheEntry &entry,
+                         QObject* parent = nullptr);
+    static Item* decache(const QVariant &entry,
+                         QObject* parent = nullptr);
+
+    Cache *cache() const;
+    void setCache(Cache *cache);
 
 public slots:
 
@@ -131,6 +177,7 @@ protected:
 
 private:
 
+    QPointer<Cache> m_cache;
     QString     m_filename;
     QString     m_title;
     QUuid       m_uid;
@@ -141,6 +188,10 @@ private:
 
     void setupChangedSignal();
 
+    void onCacheChanged();
+    void onItemDataLoadedFromCache(const QVariant &entry);
+    void onChanged();
+
 };
 
 typedef QSharedPointer<Item> ItemPtr;
@@ -148,7 +199,5 @@ typedef QSharedPointer<Item> ItemPtr;
 Q_DECLARE_METATYPE(ItemPtr)
 
 QDebug operator<<(QDebug debug, const Item *item);
-
-Q_DECLARE_LOGGING_CATEGORY(item)
 
 #endif // ITEM_H

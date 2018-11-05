@@ -19,13 +19,14 @@ CenteredDialog {
     width: idealDialogWidth
 
     onAccepted: {
-        d.item.deleteItem();
+        OTL.Application.deleteItem(d.item);
     }
 
     QtObject {
         id: d
 
         property OTL.Item item
+        property OTL.Library library
 
         readonly property string deleteImage: qsTr("Do you really want " +
                                                    "to delete the image " +

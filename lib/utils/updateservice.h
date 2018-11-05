@@ -27,8 +27,4 @@ private slots:
     void checkForUpdates();
 };
 
-
-Q_DECLARE_LOGGING_CATEGORY(updateService)
-
-
 #endif // UPDATESERVICE_H

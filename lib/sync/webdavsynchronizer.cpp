@@ -21,9 +21,7 @@
 #include <QTimer>
 
 
-Q_LOGGING_CATEGORY(webDAVSynchronizer,
-                   "net.rpdev.opentodolist.WebDAVSynchronizer",
-                   QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg)
 
 
 
@@ -120,7 +118,7 @@ void WebDAVSynchronizer::synchronize()
                 // If the last sync did not run through, do a full sync,
                 // i.e. request etags for all directories.
                 fullSync = true;
-                qCWarning(webDAVSynchronizer) << "The last sync did not "
+                qCWarning(::log) << "The last sync did not "
                                                  "complete - doing a full "
                                                  "sync";
                 warning() << tr("The last sync did not run through - "
@@ -128,7 +126,7 @@ void WebDAVSynchronizer::synchronize()
             }
             QFile file(syncDir.absoluteFilePath(SyncLockFileName));
             if (!file.open(QIODevice::WriteOnly)) {
-                qCWarning(webDAVSynchronizer) << "Failed to create sync lock:"
+                qCWarning(::log) << "Failed to create sync lock:"
                                               << file.errorString();
                 error() << tr("Failed to create sync lock:")
                         << file.errorString();
@@ -148,7 +146,7 @@ void WebDAVSynchronizer::synchronize()
                 if (dav->etag(rpath) == "") {
                     auto ok = dav->mkdir(rpath);
                     if (!ok) {
-                        qCWarning(webDAVSynchronizer)
+                        qCWarning(::log)
                                 << "Failed to prepare remote dir" << rpath
                                 << "for sync.";
                         error() << tr("Failed to prepare remote directory '%1' "
@@ -218,7 +216,7 @@ void WebDAVSynchronizer::synchronize()
 
 void WebDAVSynchronizer::stopSync()
 {
-    qCWarning(webDAVSynchronizer) << "Stopping WebDAV sync";
+    qCWarning(::log) << "Stopping WebDAV sync";
     m_stopRequested = true;
     emit stopRequested();
 }

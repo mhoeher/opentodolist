@@ -61,7 +61,7 @@ ApplicationWindow {
             ToolButton {
                 id: sidebarControl
                 symbol: Icons.faBars
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 visible: librariesSideBar.compact && stackView.depth <= 1
                 checked: dynamicLeftDrawer.visible
                 onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
@@ -70,7 +70,7 @@ ApplicationWindow {
                 symbol: Icons.faArrowLeft
                 visible: stackView.canGoBack
                 onClicked: stackView.pop()
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
             }
 
             ToolButton {
@@ -80,6 +80,7 @@ ApplicationWindow {
                 visible: stackView.isCheckable
                 onClicked: stackView.currentItem.item.done =
                            !stackView.currentItem.item.done
+                Layout.alignment: Qt.AlignVCenter
             }
 
             Label {
@@ -100,7 +101,7 @@ ApplicationWindow {
             ToolButton {
                 symbol: Icons.faPencilAlt
                 visible: stackView.currentItem && typeof(stackView.currentItem["renameItem"]) === "function"
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 onClicked: stackView.currentItem.renameItem()
             }
 
@@ -110,7 +111,7 @@ ApplicationWindow {
                     y: window.header.height
                     item: stackView.hasColor ? stackView.currentItem.item : null
                 }
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 visible: menu.item !== null
             }
 
@@ -120,19 +121,19 @@ ApplicationWindow {
                 symbol: Icons.faSearch
                 visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
                 onClicked: stackView.currentItem.find()
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
             }
 
             ToolButton {
                 symbol: Icons.faTrashAlt
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 onClicked: stackView.currentItem.deleteItem()
             }
             ToolButton {
                 symbol: Icons.faEllipsisV
                 visible: stackView.hasPageMenu
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignVCenter
                 onClicked: {
                     if (stackView.currentItem.pageMenu.visible) {
                         stackView.currentItem.pageMenu.close();
@@ -148,26 +149,6 @@ ApplicationWindow {
         id: d
 
         property bool completed: false
-
-        property string lastLibrary: ""
-        property string lastTag: ""
-        property string specialView: ""
-
-        function reopenLastLibrary() {
-            if (d.lastLibrary != "") {
-                var libs = OTL.Application.libraries;
-                for (var i = 0; i < libs.length; ++i) {
-                    var lib = libs[i];
-                    if (lib.uid.toString() === d.lastLibrary) {
-                        librariesSideBar.currentLibrary = lib;
-                        librariesSideBar.currentTag = d.lastTag;
-                        librariesSideBar.specialView = d.specialView;
-                        d.lastLibrary = "";
-                        break;
-                    }
-                }
-            }
-        }
     }
 
     Action {
@@ -250,9 +231,11 @@ ApplicationWindow {
     Component.onCompleted: {
         width = OTL.Application.loadValue("width", width);
         height = OTL.Application.loadValue("height", height);
-        d.lastLibrary = OTL.Application.loadValue("lastLibrary", "");
-        d.lastTag = OTL.Application.loadValue("lastTag", "");
-        d.specialView = OTL.Application.loadValue("specialView", "");
+
+        librariesSideBar.lastLibrary = OTL.Application.loadValue("lastLibrary", "");
+        librariesSideBar.lastTag = OTL.Application.loadValue("lastTag", "");
+        librariesSideBar.lastSpecialView = OTL.Application.loadValue("specialView", "");
+
         if (OTL.Application.loadValue("maximized", "false") === "true") {
             window.visibility = Window.Maximized;
         }
@@ -270,7 +253,6 @@ ApplicationWindow {
                 OTL.Application.saveValue("height", height);
             }
         });
-        d.reopenLastLibrary();
         d.completed = true;
     }
 
@@ -328,7 +310,7 @@ ApplicationWindow {
 
     Pane {
         anchors.fill: stackView
-        visible: OTL.Application.libraries.length === 0
+        visible: librariesSideBar.numberOfLibraries === 0
 
         BackgroundSymbol {
             symbol: Icons.faBook
@@ -486,8 +468,9 @@ ApplicationWindow {
     }
 
     Connections {
-        target: !!application.messageReceived ? application : null
-        onMessageReceived: {
+        target: !!application ? application : null
+        onInstanceStarted: {
+            console.warn("Instance started");
             window.show();
             window.raise();
         }

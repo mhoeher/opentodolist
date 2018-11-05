@@ -40,6 +40,11 @@ TopLevelItem::~TopLevelItem()
 {
 }
 
+QUuid TopLevelItem::parentId() const
+{
+    return m_libraryId;
+}
+
 /**
  * @brief The color of the item.
  */
@@ -56,7 +61,6 @@ void TopLevelItem::setColor(const Color &color)
     if (m_color != color) {
         m_color = color;
         emit colorChanged();
-        save();
     }
 }
 
@@ -88,7 +92,6 @@ void TopLevelItem::setTags(const QStringList& tags)
     {
         m_tags = tags;
         emit tagsChanged();
-        save();
     }
 }
 
@@ -104,7 +107,6 @@ void TopLevelItem::addTag(const QString& tag)
     {
         m_tags.append(tag);
         m_tags.sort();
-        save();
         emit tagsChanged();
     }
 }
@@ -119,7 +121,6 @@ void TopLevelItem::removeTagAt(int index)
 {
     Q_ASSERT(index >= 0 && index < m_tags.length());
     m_tags.removeAt(index);
-    save();
     emit tagsChanged();
 }
 
@@ -140,6 +141,27 @@ void TopLevelItem::removeTag(const QString& tag)
 bool TopLevelItem::hasTag(const QString& tag) const
 {
     return m_tags.contains(tag);
+}
+
+
+/**
+ * @brief The ID of the library the item belongs to.
+ */
+QUuid TopLevelItem::libraryId() const
+{
+    return m_libraryId;
+}
+
+
+/**
+ * @brief Set the library ID.
+ */
+void TopLevelItem::setLibraryId(const QUuid &libraryId)
+{
+    if (m_libraryId != libraryId) {
+        m_libraryId = libraryId;
+        emit libraryIdChanged();
+    }
 }
 
 QVariantMap TopLevelItem::toMap() const

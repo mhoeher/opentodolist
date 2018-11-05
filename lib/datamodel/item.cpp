@@ -8,18 +8,62 @@
 
 #include "fileutils.h"
 #include "utils/jsonutils.h"
+#include "datastorage/cache.h"
+#include "datastorage/getitemquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
 
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <QJsonDocument>
 #include <QtGlobal>
 #include <QVariant>
 #include <QVariantMap>
 
-
-Q_LOGGING_CATEGORY(item, "net.rpdev.opentodolist.Item")
-
 const QString Item::FileNameSuffix = "otl";
+
+
+/**
+ * @brief Constructor.
+ */
+ItemCacheEntry::ItemCacheEntry() :
+    id(),
+    parentId(),
+    data(),
+    metaData(),
+    calculatedData(),
+    valid(false)
+{
+
+}
+
+
+/**
+ * @brief Convert the entry to a byte array.
+ */
+QByteArray ItemCacheEntry::toByteArray() const
+{
+    QVariantMap map;
+    map["data"] = data;
+    map["meta"] = metaData;
+    map["type"] = Item::staticMetaObject.className();
+    map["parent"] = parentId;
+    return QJsonDocument::fromVariant(map).toBinaryData();
+}
+
+ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray &data, const QByteArray &id)
+{
+    ItemCacheEntry result;
+    auto map = QJsonDocument::fromBinaryData(data).toVariant().toMap();
+    if (map["type"] == Item::staticMetaObject.className()) {
+        result.valid = true;
+        result.id = QUuid(id);
+        result.data = map["data"];
+        result.metaData = map["meta"];
+        result.parentId = map["parent"].toUuid();
+    }
+    return result;
+}
 
 
 /**
@@ -31,6 +75,7 @@ const QString Item::FileNameSuffix = "otl";
  */
 Item::Item(QObject* parent) :
     QObject(parent),
+    m_cache(),
     m_filename(),
     m_title(),
     m_uid(QUuid::createUuid()),
@@ -67,6 +112,11 @@ Item::Item(const QDir& dir, QObject* parent) : Item(parent)
  */
 Item::~Item()
 {
+}
+
+QUuid Item::parentId() const
+{
+    return QUuid();
 }
 
 /**
@@ -186,6 +236,51 @@ void Item::fromMap(QVariantMap map)
     setWeight(map.value("weight", m_weight).toDouble());
 }
 
+
+/**
+ * @brief Apply properties calculated from the database.
+ *
+ * This function is called when restoring an item from the cache.
+ * Sub-classes can override it to apply properties which have been
+ * calculated automatically when the item is read from the item Cache.
+ */
+void Item::applyCalculatedProperties(const QVariantMap &properties)
+{
+    Q_UNUSED(properties);
+}
+
+
+/**
+ * @brief The Cache the item is connected to.
+ */
+Cache* Item::cache() const
+{
+    return m_cache.data();
+}
+
+
+/**
+ * @brief Set the cache the item is connected to.
+ */
+void Item::setCache(Cache *cache)
+{
+    if (m_cache != cache) {
+        if (m_cache != nullptr) {
+            disconnect(m_cache.data(), &Cache::dataChanged,
+                       this, &Item::onCacheChanged);
+            disconnect(this, &Item::changed,
+                       this, &Item::onChanged);
+        }
+        m_cache = cache;
+        if (m_cache != nullptr) {
+            connect(m_cache.data(), &Cache::dataChanged,
+                    this, &Item::onCacheChanged);
+            connect(this, &Item::changed,
+                    this, &Item::onChanged);
+        }
+    }
+}
+
 /**
  * @brief The weight of the item.
  *
@@ -206,7 +301,6 @@ void Item::setWeight(double weight)
     if (!qFuzzyCompare(m_weight, weight)) {
         m_weight = weight;
         emit weightChanged();
-        save();
     }
 }
 
@@ -292,6 +386,41 @@ Item* Item::createItemFromFile(QString filename, QObject* parent)
     return result;
 }
 
+ItemCacheEntry Item::encache() const
+{
+    ItemCacheEntry result;
+    result.id = m_uid;
+    result.parentId = parentId();
+    result.data = toMap();
+    QVariantMap meta;
+    meta["filename"] = m_filename;
+    result.metaData = meta;
+    result.valid = true;
+    return result;
+}
+
+Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
+{
+    Item *result = nullptr;
+    if (entry.valid) {
+        result = Item::createItem(entry.data.toMap(), parent);
+        result->applyCalculatedProperties(entry.calculatedData.toMap());
+        auto meta = entry.metaData.toMap();
+        result->setFilename(meta["filename"].toString());
+        auto topLevelItem = qobject_cast<TopLevelItem*>(result);
+        if (topLevelItem != nullptr) {
+            topLevelItem->setLibraryId(entry.parentId);
+        }
+    }
+    return result;
+}
+
+Item *Item::decache(const QVariant &entry, QObject *parent)
+{
+    auto cacheEntry = entry.value<ItemCacheEntry>();
+    return decache(cacheEntry, parent);
+}
+
 /**
    @brief Sets the title of the item.
  */
@@ -300,7 +429,6 @@ void Item::setTitle(const QString &title)
     if ( m_title != title ) {
         m_title = title;
         emit titleChanged();
-        save();
     }
 }
 
@@ -341,6 +469,37 @@ void Item::setupChangedSignal()
     connect(this, &Item::uidChanged, this, &Item::changed);
     connect(this, &Item::filenameChanged, this, &Item::changed);
     connect(this, &Item::weightChanged, this, &Item::changed);
+}
+
+void Item::onCacheChanged()
+{
+    if (m_cache) {
+        auto q = new GetItemQuery();
+        q->setUid(m_uid);
+        connect(q, &GetItemQuery::itemLoaded,
+                this, &Item::onItemDataLoadedFromCache,
+                Qt::QueuedConnection);
+        m_cache->run(q);
+    }
+}
+
+void Item::onItemDataLoadedFromCache(const QVariant &entry)
+{
+    ItemPtr item(Item::decache(entry));
+    if (item != nullptr) {
+        this->fromMap(item->toMap());
+        this->applyCalculatedProperties(
+                    entry.value<ItemCacheEntry>().calculatedData.toMap());
+    }
+}
+
+void Item::onChanged()
+{
+    if (m_cache != nullptr) {
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(this, InsertOrUpdateItemsQuery::Save);
+        m_cache->run(q);
+    }
 }
 
 /**

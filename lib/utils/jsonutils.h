@@ -18,9 +18,6 @@ bool patchJsonFile(const QString &filename, const QVariantMap &data,
                    bool *changed = nullptr);
 QVariantMap loadMap(const QString &filename, bool* ok = nullptr);
 
-
-Q_DECLARE_LOGGING_CATEGORY(jsonUtils)
-
 }
 
 

@@ -62,19 +62,26 @@ Page {
         onTriggered: d.updateTimes()
     }
 
+    OTL.ItemsModel {
+        id: items
+        onlyWithDueDate: true
+        onlyUndone: true
+        parentItem: page.library.uid
+        overdueLabel: qsTr("Overdue")
+        recursive: true
+        cache: OTL.Application.cache
+    }
+
+    OTL.ItemsSortFilterModel {
+        id: sortedItems
+        sourceModel: items
+        sortRole: OTL.ItemsModel.DueToRole
+    }
+
     QtObject {
         id: d
 
-        property int hasScheduledItems: (overdueTodos.count +
-                                         overdueTopLevelItems.count +
-                                         todaysTodos.count +
-                                         todaysTopLevelItems.count +
-                                         thisWeeksTodos.count +
-                                         thisWeeksTopLevelItems.count +
-                                         nextWeeksTodos.count +
-                                         nextWeeksTopLevelItems.count +
-                                         upcomingTodos.count +
-                                         upcomingTopLevelItems.count) > 0
+        property int hasScheduledItems: items.count > 0
 
         function updateTimes() {
             var today = new Date();
@@ -94,26 +101,12 @@ Page {
             var endOfNextWeek = new Date(endOfWeek.getTime() +
                                          7 * 25 * 60 * 60 * 1000);
 
-            overdueTodos.maxDueDate = startOfToday;
-            overdueTopLevelItems.maxDueDate = startOfToday;
-
-            todaysTodos.minDueDate = startOfToday;
-            todaysTodos.maxDueDate = endOfToday;
-            todaysTopLevelItems.minDueDate = startOfToday;
-            todaysTopLevelItems.maxDueDate = endOfToday;
-
-            thisWeeksTodos.minDueDate = endOfToday;
-            thisWeeksTodos.maxDueDate = endOfWeek;
-            thisWeeksTopLevelItems.minDueDate = endOfToday;
-            thisWeeksTopLevelItems.maxDueDate = endOfWeek;
-
-            nextWeeksTodos.minDueDate = endOfWeek;
-            nextWeeksTodos.maxDueDate = endOfNextWeek;
-            nextWeeksTopLevelItems.minDueDate = endOfWeek;
-            nextWeeksTopLevelItems.maxDueDate = endOfNextWeek;
-
-            upcomingTodos.minDueDate = endOfNextWeek;
-            upcomingTopLevelItems.minDueDate = endOfNextWeek;
+            var timeSpans = {};
+            timeSpans[startOfToday.toISOString()] = "Today";
+            timeSpans[endOfToday.toISOString()] = "Later This Week";
+            timeSpans[endOfWeek.toISOString()] = "Next Week";
+            timeSpans[endOfNextWeek.toISOString()] = "Coming Next";
+            items.timeSpans = timeSpans;
         }
     }
 
@@ -236,156 +229,20 @@ Page {
         visible: !d.hasScheduledItems
     }
 
-    OTL.ItemsModel {
-        id: topLevelItems
-        container: page.library.topLevelItems
-    }
-
-    OTL.ItemsModel {
-        id: todos
-        container: page.library.todos
-    }
-
-    Pane {
+    ListView {
         anchors.fill: parent
-
-        ScrollView {
-            id: scrollView
-            anchors.fill: parent
-
-            Column {
-                width: scrollView.width
-
-                Label {
-                    font.bold: true
-                    text: qsTr("Overdue")
-                    width: parent.width
-                    visible: overdueTodos.count + overdueTopLevelItems.count > 0
-                    topPadding: 20
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: overdueTopLevelItems
-                        sourceModel: topLevelItems
-                    }
-                    delegate: itemDelegate
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: overdueTodos
-                        sourceModel: todos
-                        onlyUndone: true
-                    }
-                    delegate: itemDelegate
-                }
-
-                Label {
-                    font.bold: true
-                    text: qsTr("Today")
-                    width: parent.width
-                    visible: todaysTodos.count + todaysTopLevelItems.count > 0
-                    topPadding: 20
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: todaysTopLevelItems
-                        sourceModel: topLevelItems
-                    }
-                    delegate: itemDelegate
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: todaysTodos
-                        sourceModel: todos
-                        onlyUndone: true
-                    }
-
-                    delegate: itemDelegate
-                }
-
-                Label {
-                    font.bold: true
-                    text: qsTr("Later This Week")
-                    width: parent.width
-                    visible: thisWeeksTodos.count + thisWeeksTopLevelItems.count > 0
-                    topPadding: 20
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: thisWeeksTopLevelItems
-                        sourceModel: topLevelItems
-                    }
-                    delegate: itemDelegate
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: thisWeeksTodos
-                        sourceModel: todos
-                        onlyUndone: true
-                    }
-
-                    delegate: itemDelegate
-                }
-
-                Label {
-                    font.bold: true
-                    text: qsTr("Next Week")
-                    width: parent.width
-                    visible: nextWeeksTodos.count + nextWeeksTopLevelItems.count > 0
-                    topPadding: 20
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: nextWeeksTopLevelItems
-                        sourceModel: topLevelItems
-                    }
-                    delegate: itemDelegate
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: nextWeeksTodos
-                        sourceModel: todos
-                        onlyUndone: true
-                    }
-
-                    delegate: itemDelegate
-                }
-
-                Label {
-                    font.bold: true
-                    text: qsTr("Coming Next")
-                    width: parent.width
-                    visible: upcomingTodos.count + upcomingTopLevelItems.count > 0
-                    topPadding: 20
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: upcomingTopLevelItems
-                        sourceModel: topLevelItems
-                    }
-                    delegate: itemDelegate
-                }
-
-                Repeater {
-                    model: OTL.ItemsSortFilterModel {
-                        id: upcomingTodos
-                        sourceModel: todos
-                        onlyUndone: true
-                    }
-
-                    delegate: itemDelegate
-                }
+        delegate: itemDelegate
+        model: sortedItems
+        section {
+            property: "dueToSpan"
+            delegate: Label {
+                font.bold: true
+                text: section
+                width: parent.width
+                height: 30
             }
         }
+
     }
 
     SyncIndicatorBar {
@@ -396,8 +253,19 @@ Page {
     LibrarySecretsMissingNotificationBar { library: page.library }
 
     SyncErrorNotificationBar {
+        readonly property var syncErrors: {
+            if (page.library) {
+                return OTL.Application.syncErrors[page.library.directory] || [];
+            } else {
+                return [];
+            }
+        }
+
         library: page.library
-        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+        onShowErrors: page.openPage(syncErrorPage,
+                                    {
+                                        errors: syncErrors
+                                    })
     }
 
     Component {

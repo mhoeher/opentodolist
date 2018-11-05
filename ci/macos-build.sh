@@ -6,7 +6,7 @@ rm -rf build-macos
 mkdir build-macos
 cd build-macos
 
-QTSDK=$QT_DIR/5.10.1/clang_64/
+QTSDK=$QT_DIR/5.11.2/clang_64/
 
 /Applications/CMake.app/Contents/bin/cmake \
     -DCMAKE_PREFIX_PATH=$QTSDK \

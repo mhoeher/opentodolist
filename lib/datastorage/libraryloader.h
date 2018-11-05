@@ -3,30 +3,31 @@
 
 #include <QObject>
 #include <QThread>
+#include <QFutureWatcher>
 
 #include "datamodel/item.h"
 
 class LibraryLoaderWorker;
+class Cache;
+class InsertOrUpdateItemsQuery;
 
 class LibraryLoader : public QObject
 {
     Q_OBJECT
 public:
-    explicit LibraryLoader(QObject *parent = 0);
+    explicit LibraryLoader(QObject *parent = nullptr);
     virtual ~LibraryLoader();
 
     QString directory() const;
     void setDirectory(const QString& directory);
 
-signals:
+    QUuid libraryId() const;
+    void setLibraryId(const QUuid &libraryId);
 
-    /**
-     * @brief An item has been loaded.
-     *
-     * This signal is emitted to indicate that an @p item has been
-     * found when scanning a library directory.
-     */
-    void itemLoaded(ItemPtr item);
+    Cache *cache() const;
+    void setCache(Cache *cache);
+
+signals:
 
     /**
      * @brief Scanning has finished.
@@ -39,32 +40,22 @@ public slots:
 
 private:
 
+    struct DirectoryScanResult {
+        InsertOrUpdateItemsQuery* query;
+        QSet<QUuid> itemsToDelete;
+    };
+
+    QUuid m_libraryId;
     QString m_directory;
-    QThread m_thread;
-    LibraryLoaderWorker *m_worker;
-
-};
-
-class LibraryLoaderWorker : public QObject
-{
-    Q_OBJECT
-
-    friend class LibraryLoader;
-
-private:
-
-    bool m_stop;
-
-    LibraryLoaderWorker();
+    Cache *m_cache;
+    QFutureWatcher<DirectoryScanResult> m_scanWatcher;
+    QSet<QUuid> m_itemsToDelete;
 
 private slots:
 
-    void scan(const QString &directory, QObject* targetThread);
-
-signals:
-
-    void itemLoaded(ItemPtr item);
-    void scanFinished();
+    void itemUidsLoaded(QSet<QUuid> uids);
+    void directoryScanDone();
+    void itemsInserted();
 };
 
 #endif // LIBRARYLOADER_H

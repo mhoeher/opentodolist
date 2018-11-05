@@ -68,9 +68,28 @@ choice.
 
 ## Build Requirements and Instructions
 
-The application can be build with either `qmake` or `cmake`. The former is the probably the easiest way as `qmake` is installed together with Qt.
+First, get the sources of the app, for example by cloning it from GitLab:
 
-* Continue with [Build Instructions using `qmake`](./doc/building-with-qmake.md).
+```bash
+git clone --recurse-submodules https://gitlab.com/rpdev/opentodolist.git
+```
+
+**Important:** Make sure you clone recursively. The app requires some
+libraries that are included in source form. If you do not clone
+recursively, the build will likely fail. If you already cloned the repository,
+you can run
+
+```bash
+git submodule update --init
+```
+
+to clone the submodules. You also might want to run this command regularly
+after pulling new changes.
+
+The application is mainly build using `cmake`. There still is some support
+for `qmake`, but this will be removed soon.
+
 * Continue with [Build Instructions using `cmake`](./doc/building-with-cmake.md)
+* Continue with [Build Instructions using `qmake`](./doc/building-with-qmake.md)
 
 

@@ -49,6 +49,9 @@ void SynchronizerTest::fromDirectory()
         map["type"] = "foo";
         JsonUtils::patchJsonFile(dir.path() + "/" + Synchronizer::SaveFileName,
                                  map);
+        QTest::ignoreMessage(
+                    QtWarningMsg,
+                    QRegularExpression(".*Unknown synchronizer type.*"));
         auto sync = Synchronizer::fromDirectory(dir.path());
         QVERIFY(sync == nullptr);
     }

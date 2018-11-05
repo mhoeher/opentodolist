@@ -1,4 +1,5 @@
 #include "datamodel/item.h"
+#include "datamodel/note.h"
 
 #include <QDir>
 #include <QObject>
@@ -17,6 +18,8 @@ private slots:
     void testProperties();
     void testPersistence();
     void testDeleteItem();
+    void testEncache();
+    void testDecache();
     void cleanup();
     void cleanupTestCase() {}
 
@@ -62,6 +65,7 @@ void ItemTest::testPersistence()
 
     item.setTitle("Hello World");
     item.setWeight(1.0);
+    item.save();
 
     anotherItem.fromVariant(item.toVariant());
 
@@ -96,6 +100,30 @@ void ItemTest::testDeleteItem()
         QDir dir(m_dir->path());
         QCOMPARE(dir.entryList(QDir::Files).length(), 0);
     }
+}
+
+void ItemTest::testEncache()
+{
+    Note note(QDir(m_dir->path()));
+    note.setTitle("Hello World");
+    auto entry = note.encache();
+    QVERIFY(entry.valid);
+}
+
+void ItemTest::testDecache()
+{
+    Note note(QDir(m_dir->path()));
+    note.setTitle("Hello World");
+    note.setLibraryId(QUuid::createUuid());
+    auto entry = note.encache();
+
+    QScopedPointer<Item> item(Item::decache(entry));
+    QVERIFY(item != nullptr);
+    QCOMPARE(item->title(), note.title());
+    QCOMPARE(item->directory(), note.directory());
+    QCOMPARE(item->filename(), note.filename());
+    QCOMPARE(item->uid(), note.uid());
+    QCOMPARE(item->parentId(), note.parentId());
 }
 
 void ItemTest::cleanup()

@@ -25,7 +25,9 @@ public:
     explicit Task(QObject *parent = nullptr);
     explicit Task(const QString &filename, QObject *parent = nullptr);
     explicit Task(const QDir &dir, QObject *parent = nullptr);
-    virtual ~Task();
+    ~Task() override;
+
+    QUuid parentId() const override;
 
     bool done() const;
     void setDone(bool done);

@@ -47,7 +47,12 @@ Page {
         renameLibraryDialog.renameLibrary(library);
     }
 
-    property bool syncRunning: library && library.synchronizing
+    property bool syncRunning: {
+        return library &&
+                OTL.Application.directoriesWithRunningSync.indexOf(
+                    library.directory) >= 0;
+    }
+
     property Menu pageMenu: LibraryPageMenu {
         x: page.width
         library: page.library
@@ -61,17 +66,24 @@ Page {
         id: d
 
 
-        function createNote(library, edit) {
-            var result = library.addNote();
-            result.title = edit.displayText;
+        function createNote(library, edit, tags) {
+            var properties = {
+                "title": edit.displayText,
+                "tags": tags
+            };
+            var result = OTL.Application.addNote(library, properties);
             edit.text = "";
             edit.focus = false;
             return result;
         }
 
-        function createTodoList(library, edit) {
-            var result = library.addTodoList();
-            result.title = edit.displayText;
+        function createTodoList(library, edit, tags) {
+            var properties = {
+                "title": edit.displayText,
+                "tags": tags
+            }
+
+            var result = OTL.Application.addTodoList(library, properties);
             edit.text = "";
             edit.focus = false;
             return result;
@@ -174,13 +186,18 @@ Page {
         id: openImageDialog
 
         onAccepted: {
-            var image = library.addImage();
             var filename = OTL.Application.urlToLocalFile(fileUrl);
-            image.image = filename;
-            image.title = OTL.Application.basename(filename);
+            var tags = [];
             if (librariesSideBar.currentTag !== "") {
-                image.addTag(librariesSideBar.currentTag);
+                tags = [librariesSideBar.currentTag];
             }
+            var properties = {
+                "title": OTL.Application.basename(filename),
+                "image": filename,
+                "tags": tags
+            };
+
+            var image = OTL.Application.addImage(library, properties);
             itemCreatedNotification.show(image);
         }
     }
@@ -188,26 +205,22 @@ Page {
     OTL.ItemsSortFilterModel {
         id: itemsModel
         sourceModel: OTL.ItemsModel {
-            container: page.library.topLevelItems
+            cache: OTL.Application.cache
+            tag: page.tag
+            searchString: filterBar.text
+            parentItem: page.library.uid
         }
-    }
-
-    OTL.ItemsSortFilterModel {
-        id: filteredItemsModel
-
-        sourceModel: itemsModel
-        tag: page.tag
-        searchString: filterBar.text
     }
 
     TextInputBar {
         id: newNoteBar
         placeholderText: qsTr("Note Title")
         onAccepted: {
-            var note = d.createNote(library, newNoteBar.edit);
+            var tags = [];
             if (librariesSideBar.currentTag !== "") {
-                note.addTag(librariesSideBar.currentTag)
+                tags = [librariesSideBar.currentTag];
             }
+            var note = d.createNote(library, newNoteBar.edit, tags);
             itemCreatedNotification.show(note);
         }
     }
@@ -216,10 +229,11 @@ Page {
         id: newTodoListBar
         placeholderText: qsTr("Todo List Title")
         onAccepted: {
-            var todoList = d.createTodoList(library, newTodoListBar.edit);
+            var tags = [];
             if (librariesSideBar.currentTag !== "") {
-                todoList.addTag(librariesSideBar.currentTag)
+                tags = [librariesSideBar.currentTag];
             }
+            var todoList = d.createTodoList(library, newTodoListBar.edit, tags);
             itemCreatedNotification.show(todoList);
         }
     }
@@ -249,7 +263,7 @@ Page {
             id: grid
             width: scrollView.width
             flow: GridView.LeftToRight
-            model: filteredItemsModel
+            model: itemsModel
             cellWidth: d.sizeOfColumns(scrollView)
             cellHeight: cellWidth / 3 * 2
 
@@ -329,8 +343,20 @@ Page {
     }
 
     SyncErrorNotificationBar {
+        readonly property var syncErrors: {
+            if (page.library) {
+                return OTL.Application.syncErrors[
+                        page.library.directory] || [];
+            } else {
+                return [];
+            }
+        }
+
         library: page.library
-        onShowErrors: page.openPage(syncErrorPage, { errors: page.library.syncErrors })
+        onShowErrors: page.openPage(syncErrorPage,
+                                    {
+                                        errors: syncErrors
+                                    })
     }
 
     Component {

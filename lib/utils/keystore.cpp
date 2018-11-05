@@ -14,7 +14,7 @@
 #include <simplecrypt.h>
 
 
-Q_LOGGING_CATEGORY(keyStore, "net.rpdev.opentodolist.KeyStore", QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.KeyStore", QtDebugMsg)
 
 
 const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
@@ -67,7 +67,7 @@ bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map) {
         map = doc.toVariant().toMap();
         result = true;
     } else {
-        qCWarning(keyStore) << "Failed to read key store, encountered a JSON"
+        qCWarning(log) << "Failed to read key store, encountered a JSON"
                                "parse error:"
                             << error.errorString();
     }
@@ -116,14 +116,14 @@ void KeyStore::saveCredentials(const QString& key, const QString &value)
     connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
-            qCWarning(keyStore) << "Failed to save credentials for" << key
+            qCWarning(log) << "Failed to save credentials for" << key
                                 << ":" << job->errorString()
                                 << "- using fallback";
             m_settings->beginGroup("Fallback");
             m_settings->setValue(key, value);
             m_settings->endGroup();
         } else {
-            qCDebug(keyStore) << "Successfully saved credentials for" << key;
+            qCDebug(log) << "Successfully saved credentials for" << key;
         }
         emit credentialsSaved(key, success);
     });
@@ -143,7 +143,7 @@ void KeyStore::loadCredentials(const QString& key)
         bool success = true;
         QString secret = job->textData();
         if (job->error() != QKeychain::NoError) {
-            qCWarning(keyStore) << "Failed to read credentials for" << key
+            qCWarning(log) << "Failed to read credentials for" << key
                                 << ":" << job->errorString()
                                 << "- trying fallback";
             m_settings->beginGroup("Fallback");
@@ -154,7 +154,7 @@ void KeyStore::loadCredentials(const QString& key)
             }
             m_settings->endGroup();
         } else {
-            qCDebug(keyStore) << "Successfully loaded credentials for" << key;
+            qCDebug(log) << "Successfully loaded credentials for" << key;
         }
         emit credentialsLoaded(key, secret, success);
     });
@@ -179,11 +179,11 @@ void KeyStore::deleteCredentials(const QString& key)
     connect(job, &QKeychain::DeletePasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
-            qCWarning(keyStore) << "Failed to delete credentials for" << key
+            qCWarning(log) << "Failed to delete credentials for" << key
                                 << ":" << job->errorString();
             success = false;
         } else {
-            qCDebug(keyStore) << "Successfully deleted credentials for" << key;
+            qCDebug(log) << "Successfully deleted credentials for" << key;
         }
         emit credentialsDeleted(key, success);
     });

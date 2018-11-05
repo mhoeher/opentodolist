@@ -8,9 +8,15 @@ import OpenTodoList 1.0 as OTL
 Pane {
     id: sidebar
 
-    property OTL.Library currentLibrary: OTL.Application.libraries[0] || null
+    property OTL.Library currentLibrary: null
     property string currentTag: ""
     property string specialView: ""
+
+    // For reopening the last view:
+    property string lastLibrary: ""
+    property string lastTag: ""
+    property string lastSpecialView: ""
+    property bool previousLibraryOpened: false
 
     property bool helpVisible: false
     property bool compact: false
@@ -19,9 +25,32 @@ Pane {
     signal aboutPageRequested()
     signal close()
 
+    function reopenLastLibrary() {
+        if (lastLibrary != "" && !previousLibraryOpened) {
+            for (var i = 0; i < librariesModel.count; ++i) {
+                var lib = librariesModel.get(i);
+                if (lib.uid.toString() === lastLibrary) {
+                    currentLibrary = lib;
+                    currentTag = lastTag;
+                    specialView = lastSpecialView;
+                }
+            }
+        }
+        previousLibraryOpened = true;
+    }
+
     clip: true
     padding: 0
     onNewLibrary: close()
+
+    QtObject {
+        id: d
+
+        function isSelectedLibrary(lib) {
+            return !!lib && !!sidebar.currentLibrary &&
+                    lib.uid === sidebar.currentLibrary.uid;
+        }
+    }
 
     ScrollView {
         id: scrollView
@@ -32,26 +61,29 @@ Pane {
             width: scrollView.width
 
             Repeater {
-                model: OTL.Application.libraries
+                model: OTL.LibrariesModel {
+                    id: librariesModel
+
+                    cache: OTL.Application.cache
+                    onUpdateFinished: sidebar.reopenLastLibrary()
+                }
 
                 delegate: Column {
                     id: librarySection
-
-                    property OTL.Library library: modelData
 
                     width: parent.width
 
                     LibrarySideBarButton {
                         indent: 1
-                        text: modelData.name
+                        text: library.name
                         bold: true
-                        symbol: modelData.hasSynchronizer ?
+                        symbol: library.hasSynchronizer ?
                                     Icons.faCloud :
                                     Icons.faFolderOpen
-                        highlighted: currentLibrary === librarySection.library &&
+                        highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === ""
                         onClicked: {
-                            currentLibrary = modelData;
+                            currentLibrary = library;
                             currentTag = "";
                             specialView = "";
                             helpVisible = false;
@@ -63,10 +95,10 @@ Pane {
                         indent: 2
                         text: qsTr("Schedule")
                         symbol: Icons.faClock
-                        highlighted: currentLibrary === librarySection.library &&
+                        highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === "schedule"
                         onClicked: {
-                            currentLibrary = modelData;
+                            currentLibrary = library;
                             currentTag = "";
                             specialView = "schedule";
                             helpVisible = false;
@@ -75,16 +107,16 @@ Pane {
                     }
 
                     Repeater {
-                        model: modelData.tags
+                        model: library.tags
                         delegate: LibrarySideBarButton {
                             indent: 2
                             text: modelData
                             symbol: Icons.faTag
-                            highlighted: currentLibrary === librarySection.library &&
+                            highlighted: d.isSelectedLibrary(library) &&
                                     currentTag === modelData &&
                                     specialView === ""
                             onClicked: {
-                                currentLibrary = librarySection.library;
+                                currentLibrary = library;
                                 currentTag = modelData;
                                 specialView = "";
                                 helpVisible = false;

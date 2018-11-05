@@ -64,6 +64,7 @@ void ImageTest::testSaveLoad()
     QSignalSpy imageChanged(&item, &Image::imageChanged);
     item.setImage(SRCDIR "/test_image.cpp");
     QVERIFY(item.validImage());
+    QVERIFY(item.save());
 
     Image anotherItem(item.filename());
     anotherItem.load();

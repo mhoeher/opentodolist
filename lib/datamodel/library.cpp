@@ -1,4 +1,3 @@
-#include "library.h"
 
 #include <QDebug>
 #include <QDir>
@@ -6,8 +5,11 @@
 #include <QtConcurrent>
 #include <QTimer>
 
+#include "library.h"
 #include "application.h"
-#include "datastorage/libraryloader.h"
+#include "datastorage/cache.h"
+#include "datastorage/getlibraryquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
 #include "toplevelitem.h"
 #include "todolist.h"
 #include "todo.h"
@@ -16,12 +18,61 @@
 
 #include "utils/jsonutils.h"
 
-#include "utils/directorywatcher.h"
-
 
 const QString Library::LibraryFileName = "library.json";
 
-Q_LOGGING_CATEGORY(library, "net.rpdev.opentodolist.Library")
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Library")
+
+
+/**
+ * @brief Constructor.
+ */
+LibraryCacheEntry::LibraryCacheEntry() :
+    id(),
+    data(),
+    metaData(),
+    valid(false)
+{
+
+}
+
+bool LibraryCacheEntry::operator ==(const LibraryCacheEntry &other) const
+{
+    return id == other.id &&
+            valid == other.valid &&
+            toByteArray() == other.toByteArray();
+}
+
+
+/**
+ * @brief Convert the enry to a byte array.
+ */
+QByteArray LibraryCacheEntry::toByteArray() const
+{
+    QVariantMap map;
+    map["data"] = data;
+    map["meta"] = metaData;
+    map["type"] = Library::staticMetaObject.className();
+    return QJsonDocument::fromVariant(map).toBinaryData();
+}
+
+
+/**
+ * @brief Create an entry from a byte array.
+ */
+LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray &data, const QByteArray &id)
+{
+    auto map = QJsonDocument::fromBinaryData(data).toVariant().toMap();
+    LibraryCacheEntry result;
+    if (map["type"].toString() == Library::staticMetaObject.className()) {
+        result.id = QUuid(id);
+        result.data = map["data"];
+        result.metaData = map["meta"];
+        result.valid = true;
+    }
+    return result;
+}
+
 
 /**
    @brief Set the name of the library.
@@ -30,153 +81,88 @@ Library::Library(QObject* parent) : QObject(parent),
     m_uid(QUuid::createUuid()),
     m_name(),
     m_directory(),
-    m_topLevelItems(this),
-    m_todos(this),
-    m_tasks(this),
-    m_itemDataChanged(false),
-    m_directoryWatcher(new DirectoryWatcher(this)),
-    m_loading(false),
-    m_synchronizing(false),
-    m_secretsMissing(false),
-    m_syncErrors()
+    m_itemDataChanged(false)
 {
-    auto timer = new QTimer(this);
-    timer->setInterval(5000);
-    timer->setSingleShot(true);
-    connect(timer, &QTimer::timeout, this, &Library::load);
-    connect(m_directoryWatcher, &DirectoryWatcher::directoryChanged, timer,
-            static_cast<void(QTimer::*)()>(&QTimer::start));
-    connect(&m_topLevelItems, &ItemContainer::countChanged,
-            this, &Library::tagsChanged);
-    connect(&m_topLevelItems, &ItemContainer::itemDataChanged, [=]() {
-        m_itemDataChanged = true;
-    });
-    connect(&m_topLevelItems, &ItemContainer::itemDeleted, [=]() {
-        m_itemDataChanged = true;
-    });
-    connect(&m_todos, &ItemContainer::itemDataChanged, [=]() {
-        m_itemDataChanged = true;
-    });
-    connect(&m_todos, &ItemContainer::itemDeleted, [=]() {
-        m_itemDataChanged = true;
-    });
-    connect(&m_tasks, &ItemContainer::itemDataChanged, [=]() {
-        m_itemDataChanged = true;
-    });
-    connect(&m_tasks, &ItemContainer::itemDeleted, [=]() {
-        m_itemDataChanged = true;
-    });
-    connect(this, &Library::nameChanged, [=]() {
-        m_itemDataChanged = true;
-    });
-
-    auto quickSaveTimer = new QTimer(this);
-    quickSaveTimer->setInterval(10000);
-    quickSaveTimer->setSingleShot(false);
-    connect(quickSaveTimer, &QTimer::timeout, [=]() {
-        if (m_itemDataChanged && !m_synchronizing) {
-            emit needSync();
-            m_itemDataChanged = false;
-        }
-    });
-    quickSaveTimer->start();
+    connect(this, &Library::uidChanged,
+            this, &Library::changed);
+    connect(this, &Library::nameChanged,
+            this, &Library::changed);
+    connect(this, &Library::tagsChanged,
+            this, &Library::changed);
+    connect(this, &Library::changed,
+            this, &Library::onChanged);
 }
 
-Library::Library(const QString& directory, QObject* parent) : Library(parent)
+Library::Library(const QString& directory, QObject* parent) :
+    Library(parent)
 {
     m_directory = directory;
-    m_directoryWatcher->setDirectory(directory);
 }
 
 Library::~Library()
 {
 }
 
-/**
- * @brief Create a new note.
- *
- * This creates a new note in the library and returns a pointer to it.
- * Note that this method is intended to be called by QML. It is safe to
- * use the returned object in JavaScript/QML. When invoked from C++, do not
- * attempt to store the returned object for access over a longer time,
- * as the library might delete it at any time if need be and hence the pointer
- * might get dangling.
- */
-Note *Library::addNote()
-{
-    NotePtr note;
-    if (isValid()) {
-        QDir dir(newItemLocation());
-        dir.mkpath(".");
-        note = NotePtr(new Note(dir));
-    } else {
-        note = NotePtr(new Note());
-    }
-    note->setWeight(m_topLevelItems.nextItemWeight());
-    QQmlEngine::setObjectOwnership(note.data(), QQmlEngine::CppOwnership);
-    appendItem(note);
-    note->save();
-    return note.data();
-}
-
-/**
- * @brief Create a new image.
- *
- * This creates a new image in the library and returns a pointer to it.
- * Note that this method is intended to be called by QML. It is safe to
- * use the returned object in JavaScript/QML. When invoked from C++, do not
- * attempt to store the returned object for access over a longer time,
- * as the library might delete it at any time if need be and hence the pointer
- * might get dangling.
- */
-Image *Library::addImage()
-{
-    ImagePtr image;
-    if (isValid()) {
-        QDir dir(newItemLocation());
-        dir.mkpath(".");
-        image = ImagePtr(new Image(dir));
-    } else {
-        image = ImagePtr(new Image());
-    }
-    image->setWeight(m_topLevelItems.nextItemWeight());
-    QQmlEngine::setObjectOwnership(image.data(), QQmlEngine::CppOwnership);
-    appendItem(image);
-    image->save();
-    return image.data();
-}
-
-/**
- * @brief Create a new todo list.
- *
- * This creates a new todo list in the library and returns a pointer to it.
- * Note that this method is intended to be called by QML. It is safe to
- * use the returned object in JavaScript/QML. When invoked from C++, do not
- * attempt to store the returned object for access over a longer time,
- * as the library might delete it at any time if need be and hence the pointer
- * might get dangling.
- */
-TodoList *Library::addTodoList()
-{
-    TodoListPtr todoList;
-    if (isValid()) {
-        QDir dir(newItemLocation());
-        dir.mkpath(".");
-        todoList = TodoListPtr(new TodoList(dir));
-    } else {
-        todoList = TodoListPtr(new TodoList());
-    }
-    todoList->m_library = this;
-    todoList->setWeight(m_topLevelItems.nextItemWeight());
-    QQmlEngine::setObjectOwnership(todoList.data(), QQmlEngine::CppOwnership);
-    appendItem(todoList);
-    todoList->save();
-    return todoList.data();
-}
 
 bool Library::isValid() const
 {
     return !m_directory.isEmpty() && QDir(m_directory).exists();
+}
+
+
+/**
+ * @brief Creates a cache entry for the library.
+ *
+ * This method creates a representation of the library which can be written
+ * to the cache.
+ */
+LibraryCacheEntry Library::encache() const
+{
+    LibraryCacheEntry result;
+    result.id = m_uid;
+    result.data = toMap();
+    QVariantMap meta;
+    meta["directory"] = m_directory;
+    result.metaData = meta;
+    result.valid = true;
+    return result;
+}
+
+
+/**
+ * @brief Construct a library from a cache entry.
+ *
+ * This constructs a library from the cache @p entry. The library will
+ * be owned by the @p parent object.
+ */
+Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
+{
+    Library *result = nullptr;
+    if (entry.valid) {
+        auto meta = entry.metaData.toMap();
+        if (meta.contains("directory")) {
+            result = new Library(meta["directory"].toString(), parent);
+        } else {
+            result = new Library(parent);
+        }
+        result->fromMap(entry.data.toMap());
+        result->applyCalculatedData(entry.calculatedData.toMap());
+        auto calculated = entry.calculatedData.toMap();
+        result->applyCalculatedData(calculated);
+    }
+    return  result;
+}
+
+
+/**
+ * @brief Construct a library from a cache entry.
+ *
+ * This constructs a library from the cache @p entry. The library will
+ * be owned by the @p parent object.
+ */
+Library *Library::decache(const QVariant &entry, QObject *parent)
+{
+    return decache(entry.value<LibraryCacheEntry>(), parent);
 }
 
 void Library::setName(const QString &name)
@@ -184,45 +170,20 @@ void Library::setName(const QString &name)
     if ( m_name != name ) {
         m_name = name;
         emit nameChanged();
-        save();
     }
 }
 
-/**
- * @brief Remove the library from the application.
- *
- * This method removes the library from the application. Basically, it emits the libraryDeleted()
- * signal and then schedules the Library object for deletion. If @p deleteFiles is set to
- * true, the data on disk will be removed. Otherwise, the library files will be preserved and
- * hence can be restored later.
- */
-void Library::deleteLibrary(bool deleteFiles)
-{
-    deleteLibrary(deleteFiles, std::function<void ()>());
-}
 
 /**
- * @brief Delete the library.
+ * @brief Delete the library data on disk.
  *
- * This is an overloaded version of the deleteLibrary() method. It supports an
- * additional @p callback argument, which is a callable function taking no arguments
- * and which returns nothing. This function is called as soon as the actual deletion
- * process is done.
- *
- * @note The callback might either get called in the calling thread or in an
- * arbitrary helper thread. Do not make any assumptions where it gets called.
+ * This function deletes the files belonging to the library on disk.
  */
-void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
+void Library::deleteLibrary()
 {
-    if (m_synchronizing) {
-        qCWarning(library) << "Cannot delete library" << this << this->name()
-                           << ": A sync is currently running.";
-        return;
-    }
     emit deletingLibrary(this);
     QString directory = m_directory;
-    m_directoryWatcher->setDirectory(QString());
-    if (isValid() && deleteFiles) {
+    if (isValid()) {
         QtConcurrent::run([=](){
             auto years = Library::years(directory);
             for (auto year : years) {
@@ -231,42 +192,34 @@ void Library::deleteLibrary(bool deleteFiles, std::function<void ()> callback)
                     QDir dir(directory + "/" + year + "/" + month);
                     for (auto entry : dir.entryList(QDir::Files)) {
                         if (!dir.remove(entry)) {
-                            qCWarning(library) << "Failed to remove file" << entry << "from"
+                            qCWarning(log) << "Failed to remove file" << entry << "from"
                                                << dir.absolutePath();
                         }
                     }
                     dir.cdUp();
                     if (!dir.rmdir(month)) {
-                        qCWarning(library) << "Failed to remove" << dir.absoluteFilePath(month);
+                        qCWarning(log) << "Failed to remove" << dir.absoluteFilePath(month);
                     }
                 }
                 if (!QDir(directory).rmdir(year)) {
-                    qCWarning(library) << "Failed to remove" << (directory + "/" + year);
+                    qCWarning(log) << "Failed to remove" << (directory + "/" + year);
                 }
             }
             QDir dir(directory);
             for (auto entry : dir.entryList(QDir::Files | QDir::Hidden)) {
                 if (!dir.remove(entry)) {
-                    qCWarning(library) << "Failed to remove" << entry
+                    qCWarning(log) << "Failed to remove" << entry
                                        << "from" << dir.absolutePath();
                 }
             }
             dir.cdUp();
             auto basename = QFileInfo(directory).baseName();
             if (!dir.rmdir(basename)) {
-                qCWarning(library) << "Failed to remove library directory" << dir.absolutePath();
-            }
-            if (callback) {
-                callback();
+                qCWarning(log) << "Failed to remove library directory" << dir.absolutePath();
             }
         });
-    } else {
-        if (callback) {
-            callback();
-        }
     }
     emit libraryDeleted(this);
-    deleteLater();
 }
 
 bool Library::load()
@@ -281,18 +234,6 @@ bool Library::load()
             fromMap(map);
             result = true;
         }
-    }
-    if (!m_loading && isValid()) {
-        setLoading(true);
-        LibraryLoader *loader = new LibraryLoader(this);
-        loader->setDirectory(m_directory);
-        connect(loader, &LibraryLoader::scanFinished, [=]() {
-            setLoading(false);
-            emit loadingFinished();
-            loader->deleteLater();
-        });
-        connect(loader, &LibraryLoader::itemLoaded, this, &Library::appendItem);
-        loader->scan();
     }
     return result;
 }
@@ -335,20 +276,6 @@ QVariant Library::syncLog()
     return result;
 }
 
-ItemContainer* Library::topLevelItems()
-{
-    return &m_topLevelItems;
-}
-
-ItemContainer* Library::todos()
-{
-    return &m_todos;
-}
-
-ItemContainer* Library::tasks()
-{
-    return &m_tasks;
-}
 
 /**
  * @brief Get the location of a new item.
@@ -356,7 +283,7 @@ ItemContainer* Library::tasks()
  * Returns an absolute path where a new item can be stored. Returns an empty
  * string if the library is invalid.
  */
-QString Library::newItemLocation() const
+QDir Library::newItemLocation() const
 {
     QString result;
     if (isValid()) {
@@ -364,7 +291,9 @@ QString Library::newItemLocation() const
         auto date = QDate::currentDate();
         auto subdir = QString("%1/%2");
         subdir = subdir.arg(date.year()).arg(date.month());
-        result = dir.absoluteFilePath(subdir);
+        if (dir.mkpath(subdir)) {
+            result = dir.absoluteFilePath(subdir);
+        }
     }
     return result;
 }
@@ -429,10 +358,6 @@ bool Library::isInDefaultLocation() const
     return result;
 }
 
-bool Library::loading() const
-{
-    return m_loading;
-}
 
 /**
  * @brief The UID of the library.
@@ -449,16 +374,13 @@ QUuid Library::uid() const
  */
 QStringList Library::tags() const
 {
-    QSet<QString> tags;
-    for (int i = 0; i < m_topLevelItems.count(); ++i) {
-        auto item = qSharedPointerDynamicCast<TopLevelItem>(m_topLevelItems.item(i));
-        for (auto tag : item->tags()) {
-            tags.insert(tag);
-        }
-    }
-    auto result = tags.values();
-    result.sort(Qt::CaseInsensitive);
-    return result;
+    return m_tags;
+}
+
+void Library::setTags(QStringList tags)
+{
+    m_tags = tags;
+    emit tagsChanged();
 }
 
 
@@ -494,32 +416,6 @@ bool Library::hasSynchronizer() const
 
 
 /**
- * @brief Indicates if the library is currently synchronizing.
- *
- * This property indicates if the library currently is
- * synchronizing, i.e. a background job is running which
- * synchronizes the local files of the library with some
- * storage server.
- */
-bool Library::synchronizing() const
-{
-    return m_synchronizing;
-}
-
-
-/**
- * @brief Set the synchronzing status of the library.
- */
-void Library::setSynchronizing(bool synchronizing)
-{
-    if (m_synchronizing != synchronizing) {
-        m_synchronizing = synchronizing;
-        emit synchronizingChanged();
-    }
-}
-
-
-/**
  * @brief Create a synchronizer for the library.
  *
  * This creates an instance of the Synchronizer class (or more precise, a
@@ -543,71 +439,67 @@ Synchronizer *Library::createSynchronizer(QObject *parent) const
 }
 
 
+
 /**
- * @brief Indicates that secrets for the library are missing.
+ * @brief The cache the library is connected to.
  *
- * This is a helper property which is used on the GUI domain only. It is
- * set by the application to flag the library as having missing login
- * credentials. This can happen if e.g. the user removed the credentials
- * from the platform specific credential store or some other error occurred
- * which causes the app from failing to re-read credentials.
- *
- * @sa setSecretsMissing
+ * This is the Cache object the Library is connected to. The library
+ * will automatically keep in sync with the set Cache.
  */
-bool Library::secretsMissing() const
+Cache *Library::cache() const
 {
-    return m_secretsMissing;
+    return m_cache.data();
 }
 
 
 /**
- * @brief Flag the libary as not having secrets required for synchronization.
+ * @brief Set the cache the library is associated with.
  */
-void Library::setSecretsMissing(bool secretsMissing)
+void Library::setCache(Cache *cache)
 {
-    if (m_secretsMissing != secretsMissing) {
-        m_secretsMissing = secretsMissing;
-        emit secretsMissingChanged();
+    if (m_cache != cache) {
+        if (m_cache != nullptr) {
+            disconnect(m_cache.data(), &Cache::dataChanged,
+                       this, &Library::onCacheChanged);
+            disconnect(this, &Library::changed,
+                       this, &Library::onChanged);
+        }
+        m_cache = cache;
+        if (m_cache != nullptr) {
+            connect(m_cache.data(), &Cache::dataChanged,
+                    this, &Library::onCacheChanged);
+            connect(this, &Library::changed,
+                    this, &Library::onChanged);
+        }
     }
 }
 
-
-/**
- * @brief Get the list of sync errors.
- *
- * The syncErrors property holds the list of sync error messages. By default,
- * the list should be empty, indicating that there are no sync errors. However,
- * if issues occur during sync, they are appended to this list and can be shown
- * in the user interface to let the user know something is wrong (e.g. a
- * password required to log in to a sync server changed and the user needs to
- * change it.
- */
-QStringList Library::syncErrors() const
+QVariant Library::toVariant()
 {
-    return m_syncErrors;
+    return toMap();
+}
+
+void Library::fromVariant(const QVariant &data)
+{
+    fromMap(data.toMap());
 }
 
 
 /**
- * @brief Appends a new sync error.
+ * @brief Get the key which is used to store the secrets required for sync.
  *
- * This appends the sync @p error (which is given as an error string) to the
- * list of sync errors.
+ * This returns a key (i.e. a string) which is used to store the secrets
+ * required to sync the library.
+ *
+ * @sa Application::secretsKeys
  */
-void Library::addSyncError(const QString& error)
+QString Library::synchronizerSecret() const
 {
-    m_syncErrors.append(error);
-    emit syncErrorsChanged();
-}
-
-
-/**
- * @brief Clears the list of sync errors.
- */
-void Library::clearSyncErrors()
-{
-    m_syncErrors.clear();
-    emit syncErrorsChanged();
+    QScopedPointer<Synchronizer> sync(createSynchronizer());
+    if (sync) {
+        return sync->secretsKey();
+    }
+    return QString();
 }
 
 
@@ -622,13 +514,42 @@ void Library::setUid(const QUuid& uid)
     }
 }
 
-void Library::setLoading(bool loading)
+void Library::onCacheChanged()
 {
-    if (m_loading != loading) {
-        m_loading = loading;
-        emit loadingChanged();
+    if (m_cache) {
+        auto q = new GetLibraryQuery();
+        q->setUid(m_uid);
+        connect(q, &GetLibraryQuery::libraryLoaded,
+                this, &Library::onLibraryDataLoadedFromCache,
+                Qt::QueuedConnection);
+        m_cache->run(q);
     }
 }
+
+void Library::onLibraryDataLoadedFromCache(const QVariant &entry)
+{
+    QSharedPointer<Library> lib(Library::decache(entry));
+    if (lib != nullptr) {
+        this->fromMap(lib->toMap());
+        applyCalculatedData(
+                    entry.value<LibraryCacheEntry>().calculatedData.toMap());
+    }
+}
+
+void Library::onChanged()
+{
+    if (m_cache != nullptr) {
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(this);
+        m_cache->run(q);
+    }
+}
+
+void Library::applyCalculatedData(const QVariantMap &properties)
+{
+    setTags(properties.value("tags", m_tags).toStringList());
+}
+
 
 QVariantMap Library::toMap() const
 {
@@ -642,28 +563,4 @@ void Library::fromMap(QVariantMap map)
 {
     setUid(map.value("uid", m_uid).toUuid());
     setName(map.value("name", m_name).toString());
-}
-
-void Library::appendItem(ItemPtr item)
-{
-    auto topLevelItem = qSharedPointerDynamicCast<TopLevelItem>(item);
-    if (!topLevelItem.isNull()) {
-        auto todoList = qSharedPointerDynamicCast<TodoList>(item);
-        if (todoList) {
-            todoList->m_library = this;
-        }
-        m_topLevelItems.updateOrInsert(item);
-        connect(topLevelItem.data(), &TopLevelItem::tagsChanged, this, &Library::tagsChanged);
-    } else {
-        auto todo = qSharedPointerDynamicCast<Todo>(item);
-        if (!todo.isNull()) {
-            todo->setLibrary(this);
-            m_todos.updateOrInsert(item);
-        } else {
-            auto task = qSharedPointerDynamicCast<Task>(item);
-            if (!task.isNull()) {
-                m_tasks.updateOrInsert(item);
-            }
-        }
-    }
 }

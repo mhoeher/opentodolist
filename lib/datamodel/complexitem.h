@@ -27,7 +27,9 @@ public:
     explicit ComplexItem(QObject *parent = nullptr);
     explicit ComplexItem(const QString &filename, QObject *parent = nullptr);
     explicit ComplexItem(const QDir &dir, QObject* parent = nullptr);
-    virtual ~ComplexItem();
+    ~ComplexItem() override;
+
+    QUuid parentId() const override;
 
     QDateTime dueTo() const;
     void setDueTo(const QDateTime &dueTo);
@@ -71,9 +73,6 @@ protected:
 };
 
 typedef QSharedPointer<ComplexItem> ComplexItemPtr;
-
-
-Q_DECLARE_LOGGING_CATEGORY(complexItem)
 
 
 #endif // COMPLEXITEM_H

@@ -92,8 +92,11 @@ Page {
 
         onAccepted: {
             if (newTodoEdit.text !== "") {
-                var todo = page.item.addTodo();
-                todo.title = newTodoEdit.displayText;
+                var properties = {
+                    "title": newTodoEdit.displayText
+                };
+                var todo = OTL.Application.addTodo(
+                            page.library, page.item, properties);
                 itemCreatedNotification.show(todo);
             }
             newTodoEdit.text = "";
@@ -106,25 +109,30 @@ Page {
         }
     }
 
-    OTL.ItemsModel {
-        id: todos
-        container: page.library.todos
-    }
-
     OTL.ItemsSortFilterModel {
         id: undoneTodos
-        sourceModel: todos
-        todoList: page.item.uid
-        onlyUndone: true
-        searchString: filterBar.text
+        sourceModel: OTL.ItemsModel {
+            cache: OTL.Application.cache
+            parentItem: page.item.uid
+            onlyUndone: true
+            searchString: filterBar.text
+        }
     }
 
     OTL.ItemsSortFilterModel {
         id: doneTodos
-        sourceModel: todos
-        todoList: page.item.uid
-        onlyDone: true
-        searchString: filterBar.text
+    }
+
+    Binding {
+        target: doneTodos
+        property: "sourceModel"
+        when: settings.showUndone
+        value: OTL.ItemsModel {
+            cache: OTL.Application.cache
+            parentItem: page.item.uid
+            onlyDone: true
+            searchString: filterBar.text
+        }
     }
 
     TextInputBar {

@@ -7,7 +7,6 @@
 #include <QPointer>
 
 
-class Library;
 class TodoList;
 class Task;
 
@@ -23,18 +22,16 @@ class Todo : public ComplexItem
 
     Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
-    Q_PROPERTY(Library* library READ library CONSTANT)
     Q_PROPERTY(int percentageDone READ percentageDone NOTIFY percentageDoneChanged)
-
-    friend class TodoList;
-    friend class Library;
 
 public:
 
     explicit Todo(const QString &filename, QObject *parent = nullptr);
     explicit Todo(QObject* parent = nullptr);
     explicit Todo(const QDir &dir, QObject *parent = nullptr);
-    virtual ~Todo();
+    ~Todo() override;
+
+    QUuid parentId() const override;
 
     bool done() const;
     void setDone(bool done);
@@ -42,11 +39,10 @@ public:
     QUuid todoListUid() const;
     void setTodoListUid(const QUuid& todoListUid);
 
-    Q_INVOKABLE Task* addTask();
-
     int percentageDone() const;
 
-    Library *library() const;
+    // Item interface
+    void applyCalculatedProperties(const QVariantMap &properties) override;
 
 signals:
 
@@ -58,22 +54,15 @@ public slots:
 
 protected:
 
-    // Item interface
+
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 
 private:
 
     QUuid m_todoListUid;
+    int m_percentageDone;
     bool m_done;
-
-    Library* m_library;
-
-    void setLibrary(Library* library);
-
-private slots:
-
-    void handleTaskChanged(int index);
 
 };
 

@@ -12,8 +12,7 @@ class SyncJob : public QObject
 {
     Q_OBJECT
 public:
-    explicit SyncJob(Library *library,
-                     const QString &libraryDirectory,
+    explicit SyncJob(const QString &libraryDirectory,
                      const QString &secret,
                      QObject *parent = nullptr);
 
@@ -21,10 +20,10 @@ public:
 
 signals:
 
-    void syncFinished(Library *library);
+    void syncFinished(QString libraryDirectory);
 
     void stopRequested();
-    void syncError(const QString& error);
+    void syncError(QString libraryDirectory, const QString& error);
 
 public slots:
 
@@ -32,9 +31,13 @@ public slots:
 
 private:
 
-    Library *m_library;
     QString  m_libraryDirectory;
     QString  m_secret;
+
+private slots:
+
+    void onSyncError(QString error);
+
 };
 
 #endif // SYNCJOB_H

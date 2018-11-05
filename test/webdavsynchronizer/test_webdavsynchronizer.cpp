@@ -10,6 +10,11 @@
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"
 #include "datamodel/task.h"
+#include "datastorage/cache.h"
+#include "datastorage/libraryloader.h"
+#include "models/itemsmodel.h"
+#include "models/librariesmodel.h"
+
 
 #include <QObject>
 #include <QObjectList>
@@ -405,11 +410,21 @@ void WebDAVSynchronizerTest::synchronize()
 
     Library library(dir1.path());
     library.save();
-    library.addNote();
-    library.addImage();
-    auto todoList = library.addTodoList();
-    auto todo = todoList->addTodo();
-    todo->addTask();
+    Note note(library.newItemLocation());
+    note.setLibraryId(library.uid());
+    note.save();
+    Image image(library.newItemLocation());
+    image.setLibraryId(library.uid());
+    image.save();
+    TodoList todoList(library.newItemLocation());
+    todoList.setLibraryId(library.uid());
+    todoList.save();
+    Todo todo(library.newItemLocation());
+    todo.setTodoListUid(todoList.uid());
+    todo.save();
+    Task task(library.newItemLocation());
+    task.setTodoUid(todo.uid());
+    task.save();
 
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
     QVERIFY(dav->mkdir(dirName));
@@ -429,29 +444,112 @@ void WebDAVSynchronizerTest::synchronize()
     davClient->setDirectory(dir2.path());
     davClient->synchronize();
 
-    Library library2(dir2.path());
-    QSignalSpy loadingFinished(&library2, &Library::loadingFinished);
-    QVERIFY(library2.load());
-    QVERIFY(loadingFinished.wait());
-    QThread::sleep(1);
-    QCOMPARE(library2.topLevelItems()->count(), 3);
-    QCOMPARE(library2.todos()->count(), 1);
-    QCOMPARE(library2.tasks()->count(), 1);
+    {
+        Library library2(dir2.path());
+        QTemporaryDir tmpDir;
+        Cache cache;
+        cache.setCacheDirectory(tmpDir.path());
+        QVERIFY(cache.open());
+        LibraryLoader loader;
+        loader.setLibraryId(library.uid());
+        loader.setCache(&cache);
+        loader.setDirectory(dir2.path());
+        loader.scan();
+        QSignalSpy spy(&loader, &LibraryLoader::scanFinished);
+        QVERIFY(spy.wait());
+
+        {
+            LibrariesModel libraries;
+            libraries.setCache(&cache);
+            QSignalSpy rowsInserted(&libraries, &LibrariesModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(libraries.rowCount(), 1);
+        }
+
+        {
+            ItemsModel items;
+            items.setCache(&cache);
+            items.setParentItem(library.uid());
+            QSignalSpy rowsInserted(&items, &ItemsModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(items.rowCount(), 3);
+        }
+
+        {
+            ItemsModel items;
+            items.setCache(&cache);
+            items.setParentItem(todoList.uid());
+            QSignalSpy rowsInserted(&items, &ItemsModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(items.rowCount(), 1);
+        }
+
+        {
+            ItemsModel items;
+            items.setCache(&cache);
+            items.setParentItem(todo.uid());
+            QSignalSpy rowsInserted(&items, &ItemsModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(items.rowCount(), 1);
+        }
+
+    }
 
     // Sync without changes should be "invariant"
     davClient->synchronize();
     davClient->synchronize();
     davClient->synchronize();
 
+    {
+        Library library2(dir2.path());
+        QTemporaryDir tmpDir;
+        Cache cache;
+        cache.setCacheDirectory(tmpDir.path());
+        QVERIFY(cache.open());
+        LibraryLoader loader;
+        loader.setLibraryId(library.uid());
+        loader.setCache(&cache);
+        loader.setDirectory(dir2.path());
+        loader.scan();
+        QSignalSpy spy(&loader, &LibraryLoader::scanFinished);
+        QVERIFY(spy.wait());
 
-    Library library3(dir2.path());
-    QSignalSpy loadingFinished2(&library3, &Library::loadingFinished);
-    QVERIFY(library3.load());
-    QVERIFY(loadingFinished2.wait());
-    QThread::sleep(1);
-    QCOMPARE(library3.topLevelItems()->count(), 3);
-    QCOMPARE(library3.todos()->count(), 1);
-    QCOMPARE(library3.tasks()->count(), 1);
+        {
+            LibrariesModel libraries;
+            libraries.setCache(&cache);
+            QSignalSpy rowsInserted(&libraries, &LibrariesModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(libraries.rowCount(), 1);
+        }
+
+        {
+            ItemsModel items;
+            items.setCache(&cache);
+            items.setParentItem(library.uid());
+            QSignalSpy rowsInserted(&items, &ItemsModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(items.rowCount(), 3);
+        }
+
+        {
+            ItemsModel items;
+            items.setCache(&cache);
+            items.setParentItem(todoList.uid());
+            QSignalSpy rowsInserted(&items, &ItemsModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(items.rowCount(), 1);
+        }
+
+        {
+            ItemsModel items;
+            items.setCache(&cache);
+            items.setParentItem(todo.uid());
+            QSignalSpy rowsInserted(&items, &ItemsModel::rowsInserted);
+            QVERIFY(rowsInserted.wait());
+            QCOMPARE(items.rowCount(), 1);
+        }
+
+    }
 }
 
 void WebDAVSynchronizerTest::synchronize_data()
