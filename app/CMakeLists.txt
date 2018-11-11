@@ -102,7 +102,7 @@ qt5_create_translation(
 qt5_add_translation(QM_FILES ${TS_FILES})
 target_sources(OpenTodoList PRIVATE
     ${QM_FILES}
-    ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
+    ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
 )
 file(WRITE  ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
     "<RCC>")
@@ -118,6 +118,15 @@ file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
 file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
     "</RCC>")
 
-add_custom_target(opentodolist-messages DEPENDS ${TS_FILES})
-add_custom_target(opentodolist-translations DEPENDS ${QM_FILES})
-add_dependencies(OpenTodoList opentodolist-translations)
+add_custom_command(
+    OUTPUT
+        ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
+    DEPENDS
+        ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
+        ${QM_FILES}
+    COMMAND
+        ${CMAKE_COMMAND} -E
+            copy
+            ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
+            ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
+)
