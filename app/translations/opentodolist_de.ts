@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutPage</name>
     <message>
@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Attach</source>
-        <translation>Anhängen</translation>
+        <translation type="vanished">Anhängen</translation>
     </message>
 </context>
 <context>
@@ -182,22 +182,22 @@
     </message>
     <message>
         <source>Selected folder: </source>
-        <translation>Ausgewähltes Verzeichnis: </translation>
+        <translation type="vanished">Ausgewähltes Verzeichnis: </translation>
     </message>
 </context>
 <context>
     <name>ImagePage</name>
     <message>
         <source>Delete Image?</source>
-        <translation>Bild löschen?</translation>
+        <translation type="vanished">Bild löschen?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation>Soll das Bild &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
+        <translation type="vanished">Soll das Bild &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notizen</translation>
+        <translation type="vanished">Notizen</translation>
     </message>
 </context>
 <context>
@@ -222,7 +222,7 @@
     </message>
     <message>
         <source>Set Due Date</source>
-        <translation>Enddatum setzen</translation>
+        <translation type="vanished">Enddatum setzen</translation>
     </message>
 </context>
 <context>
@@ -255,35 +255,35 @@
     <name>LibraryPage</name>
     <message>
         <source>Edit Sync Settings</source>
-        <translation>Synchronisationseinstellungen bearbeiten</translation>
+        <translation type="vanished">Synchronisationseinstellungen bearbeiten</translation>
     </message>
     <message>
         <source>Sync Now</source>
-        <translation>Synchronisation starten</translation>
+        <translation type="vanished">Synchronisation starten</translation>
     </message>
     <message>
         <source>Sync Log</source>
-        <translation>Synchronisationsablauf</translation>
+        <translation type="vanished">Synchronisationsablauf</translation>
     </message>
     <message>
         <source>Delete Library?</source>
-        <translation>Bibliothek löschen?</translation>
+        <translation type="vanished">Bibliothek löschen?</translation>
     </message>
     <message>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from  the application? &lt;em&gt;This will remove any files belonging to the library.&lt;/em&gt;</source>
-        <translation>Soll die Bibliothek &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? &lt;em&gt;Das wird alle Dateien, die zu ihr gehören, ebenfalls löschen.&lt;/em&gt;</translation>
+        <translation type="vanished">Soll die Bibliothek &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? &lt;em&gt;Das wird alle Dateien, die zu ihr gehören, ebenfalls löschen.&lt;/em&gt;</translation>
     </message>
     <message>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from the application? Note that the files inside the library will not be removed, so you can restore the library later on.</source>
-        <translation>Soll die Bibliothek &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit wieder zur Anwendung hinzugefügt werden kann.</translation>
+        <translation type="vanished">Soll die Bibliothek &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit wieder zur Anwendung hinzugefügt werden kann.</translation>
     </message>
     <message>
         <source>Delete Item?</source>
-        <translation>Eintrag löschen?</translation>
+        <translation type="vanished">Eintrag löschen?</translation>
     </message>
     <message>
         <source>Do you really want to delete the item &lt;strong&gt;%1&lt;/strong&gt; from the library? This action cannot be undone!</source>
-        <translation>Soll der Eintrag &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden!</translation>
+        <translation type="vanished">Soll der Eintrag &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden!</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="123"/>
@@ -352,7 +352,7 @@
     </message>
     <message>
         <source>Synchronizing library...</source>
-        <translation>Synchronisation der Bibliothek läuft...</translation>
+        <translation type="vanished">Synchronisation der Bibliothek läuft...</translation>
     </message>
 </context>
 <context>
@@ -413,11 +413,11 @@
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Bearbeiten</translation>
+        <translation type="vanished">&amp;Bearbeiten</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Ansicht</translation>
+        <translation type="vanished">&amp;Ansicht</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="157"/>
@@ -548,15 +548,15 @@
     <name>NotePage</name>
     <message>
         <source>Delete Note?</source>
-        <translation>Notiz löschen?</translation>
+        <translation type="vanished">Notiz löschen?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation>Soll die Notiz &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
+        <translation type="vanished">Soll die Notiz &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notizen</translation>
+        <translation type="vanished">Notizen</translation>
     </message>
 </context>
 <context>
@@ -568,7 +568,7 @@
     </message>
     <message>
         <source>Selected file: </source>
-        <translation>Ausgewählte Datei: </translation>
+        <translation type="vanished">Ausgewählte Datei: </translation>
     </message>
 </context>
 <context>
@@ -609,27 +609,27 @@
     <name>ScheduleView</name>
     <message>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
-        <translation>Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser Liste angezeigt.</translation>
+        <translation type="vanished">Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser Liste angezeigt.</translation>
     </message>
     <message>
         <source>Overdue</source>
-        <translation>Überfällig</translation>
+        <translation type="vanished">Überfällig</translation>
     </message>
     <message>
         <source>Today</source>
-        <translation>Heute</translation>
+        <translation type="vanished">Heute</translation>
     </message>
     <message>
         <source>Later This Week</source>
-        <translation>Später in dieser Woche</translation>
+        <translation type="vanished">Später in dieser Woche</translation>
     </message>
     <message>
         <source>Next Week</source>
-        <translation>Nächste Woche</translation>
+        <translation type="vanished">Nächste Woche</translation>
     </message>
     <message>
         <source>Coming Next</source>
-        <translation>Geplant für später</translation>
+        <translation type="vanished">Geplant für später</translation>
     </message>
 </context>
 <context>
@@ -669,15 +669,15 @@
     <name>StickyNote</name>
     <message>
         <source>Sticky Note Title</source>
-        <translation>Titel der Notiz</translation>
+        <translation type="vanished">Titel der Notiz</translation>
     </message>
     <message>
         <source>Note Content</source>
-        <translation>Inhalt der Notiz</translation>
+        <translation type="vanished">Inhalt der Notiz</translation>
     </message>
     <message>
         <source>All Todos Done :)</source>
-        <translation>Alle Aufgaben abgeschlossen :)</translation>
+        <translation type="vanished">Alle Aufgaben abgeschlossen :)</translation>
     </message>
 </context>
 <context>
@@ -773,11 +773,11 @@
     <name>TagsEditor</name>
     <message>
         <source>Add tag...</source>
-        <translation>Schlagwort hinzufügen...</translation>
+        <translation type="vanished">Schlagwort hinzufügen...</translation>
     </message>
     <message>
         <source>Or select an existing tag:</source>
-        <translation>Oder ein bestehendes Schlagwort auswählen:</translation>
+        <translation type="vanished">Oder ein bestehendes Schlagwort auswählen:</translation>
     </message>
     <message>
         <location filename="../Widgets/TagsEditor.qml" line="67"/>
@@ -789,22 +789,22 @@
     <name>TaskListView</name>
     <message>
         <source>Delete Task?</source>
-        <translation>Unteraufgabe löschen?</translation>
+        <translation type="vanished">Unteraufgabe löschen?</translation>
     </message>
     <message>
         <source>Do you want to delete the task &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation>Soll die Unteraufgabe &lt;strong&gt;%1&lt;/strong&gt; gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
+        <translation type="vanished">Soll die Unteraufgabe &lt;strong&gt;%1&lt;/strong&gt; gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <source>Add Task...</source>
-        <translation>Unteraufgabe hinzufügen...</translation>
+        <translation type="vanished">Unteraufgabe hinzufügen...</translation>
     </message>
 </context>
 <context>
     <name>TodoListItem</name>
     <message>
         <source>No open todos - everything catched up :-)</source>
-        <translation>Keine offenen Aufgaben - alles erledigt :-)</translation>
+        <translation type="vanished">Keine offenen Aufgaben - alles erledigt :-)</translation>
     </message>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="90"/>
@@ -816,11 +816,11 @@
     <name>TodoListPage</name>
     <message>
         <source>Delete Todo List?</source>
-        <translation>Aufgabenliste löschen?</translation>
+        <translation type="vanished">Aufgabenliste löschen?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation>Soll die Aufgabenliste &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
+        <translation type="vanished">Soll die Aufgabenliste &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="80"/>
@@ -844,33 +844,33 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notizen</translation>
+        <translation type="vanished">Notizen</translation>
     </message>
 </context>
 <context>
     <name>TodoListView</name>
     <message>
         <source>Delete Todo?</source>
-        <translation>Aufgabe löschen?</translation>
+        <translation type="vanished">Aufgabe löschen?</translation>
     </message>
     <message>
         <source>Do you want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation>Soll die Aufgabe &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
+        <translation type="vanished">Soll die Aufgabe &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <source>Add Todo...</source>
-        <translation>Aufgabe hinzufügen...</translation>
+        <translation type="vanished">Aufgabe hinzufügen...</translation>
     </message>
 </context>
 <context>
     <name>TodoPage</name>
     <message>
         <source>Delete Todo?</source>
-        <translation>Aufgabe löschen?</translation>
+        <translation type="vanished">Aufgabe löschen?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation>Soll die Aufgabe &lt;strong&gt;%1&lt;/strong&gt; gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
+        <translation type="vanished">Soll die Aufgabe &lt;strong&gt;%1&lt;/strong&gt; gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="54"/>
@@ -889,7 +889,7 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation>Notizen</translation>
+        <translation type="vanished">Notizen</translation>
     </message>
 </context>
 <context>
@@ -1157,11 +1157,11 @@
     <name>WebDAVSynchronizerSettingsPage</name>
     <message>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="vanished">Abbrechen</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="vanished">OK</translation>
     </message>
     <message>
         <location filename="../Pages/WebDAVSynchronizerSettingsPage.qml" line="39"/>

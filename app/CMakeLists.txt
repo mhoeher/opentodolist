@@ -117,3 +117,7 @@ file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
     "</qresource>")
 file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
     "</RCC>")
+
+add_custom_target(opentodolist-messages DEPENDS ${TS_FILES})
+add_custom_target(opentodolist-translations DEPENDS ${QM_FILES})
+add_dependencies(OpenTodoList opentodolist-translations)
