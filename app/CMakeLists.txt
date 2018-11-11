@@ -13,7 +13,6 @@ endif()
 set(APP_RESOURCES
     ./qml.qrc
     ./res.qrc
-    ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
 )
 
 # Find required Qt libraries
@@ -101,7 +100,10 @@ qt5_create_translation(
     ${TS_FILES}
 )
 qt5_add_translation(QM_FILES ${TS_FILES})
-target_sources(OpenTodoList PRIVATE ${QM_FILES})
+target_sources(OpenTodoList PRIVATE
+    ${QM_FILES}
+    ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
+)
 file(WRITE  ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
     "<RCC>")
 file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
