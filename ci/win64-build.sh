@@ -14,6 +14,7 @@ x86_64-w64-mingw32.shared-cmake \
     -DUSE_CREDENTIAL_STORE=ON \
     -DQTKEYCHAIN_STATIC=ON \
     ..
+x86_64-w64-mingw32.shared-cmake --build . -- opentodolist-translations
 x86_64-w64-mingw32.shared-cmake --build . --target all -- -j4
 
 cd ..

@@ -102,10 +102,10 @@ Page {
                                          7 * 25 * 60 * 60 * 1000);
 
             var timeSpans = {};
-            timeSpans[startOfToday.toISOString()] = "Today";
-            timeSpans[endOfToday.toISOString()] = "Later This Week";
-            timeSpans[endOfWeek.toISOString()] = "Next Week";
-            timeSpans[endOfNextWeek.toISOString()] = "Coming Next";
+            timeSpans[startOfToday.toISOString()] = qsTr("Today");
+            timeSpans[endOfToday.toISOString()] = qsTr("Later This Week");
+            timeSpans[endOfWeek.toISOString()] = qsTr("Next Week");
+            timeSpans[endOfNextWeek.toISOString()] = qsTr("Coming Next");
             items.timeSpans = timeSpans;
         }
     }

@@ -15,6 +15,7 @@ QTSDK=$QT_DIR/5.11.2/clang_64/
     -DQTKEYCHAIN_STATIC=ON \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 \
     ..
+make opentodolist-translations
 make -j2
 make test
 $QTSDK/bin/macdeployqt app/OpenTodoList.app/ -qmldir=../app

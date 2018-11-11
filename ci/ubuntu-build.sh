@@ -33,6 +33,7 @@ cmake \
     -DOPENTODOLIST_WITH_APPIMAGE_EXTRAS=ON \
     -DQTKEYCHAIN_STATIC=ON \
     ..
+cmake --build . -- opentodolist-translations
 cmake --build . --target all -- -j4
 cmake --build . --target test
 cmake --build . --target appimage
