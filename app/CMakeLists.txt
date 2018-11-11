@@ -132,5 +132,7 @@ add_custom_command(
 )
 
 add_custom_target(opentodolist-translations
-    DEPENDS ${QM_FILES}
+    DEPENDS
+        ${QM_FILES}
+        translations-copy.qrc
 )
