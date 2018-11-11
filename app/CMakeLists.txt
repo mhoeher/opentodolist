@@ -130,3 +130,7 @@ add_custom_command(
             ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
             ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
 )
+
+add_custom_target(opentodolist-translations
+    DEPENDS ${QM_FILES}
+)

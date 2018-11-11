@@ -36,6 +36,7 @@ cmake \
     -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
     -DOPENTODOLIST_ANDROID_EXTRA_LIBS="$EXTRA_LIBS" \
     ..
+cmake --build . -- opentodolist-translations
 cmake --build .
 
 # Prepare the Android Manifest:
