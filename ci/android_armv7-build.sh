@@ -41,7 +41,7 @@ cmake --build .
 
 # Prepare the Android Manifest:
 #   - Set version name from git
-#   - Increase version code by one
+#   - Calculate version code from pipeline IID
 OTL_VERSION="$(git describe --tags)"
 ../bin/increase-android-version-code ../app/android/AndroidManifest.xml 0
 ../bin/set-android-version-name ../app/android/AndroidManifest.xml \

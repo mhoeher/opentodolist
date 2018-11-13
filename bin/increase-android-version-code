@@ -18,7 +18,7 @@ manifest = sys.argv[1]
 vcode = None
 
 # If we run in CI and have code offset given, use it to calculate new version code:
-if len(sys.argv >= 3 and "CI_PIPELINE_IID" in os.environ):
+if len(sys.argv) >= 3 and "CI_PIPELINE_IID" in os.environ:
     PIPELINE_OFFSET = 612
     VERSIONCODE_OFFSET = 110
     vcode_offset = int(sys.argv[2])
