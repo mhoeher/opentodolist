@@ -43,7 +43,7 @@ cmake --build .
 #   - Set version name from git
 #   - Increase version code by one
 OTL_VERSION="$(git describe --tags)"
-../bin/increase-android-version-code ../app/android/AndroidManifest.xml
+../bin/increase-android-version-code ../app/android/AndroidManifest.xml 0
 ../bin/set-android-version-name ../app/android/AndroidManifest.xml \
     "$OTL_VERSION"
 
