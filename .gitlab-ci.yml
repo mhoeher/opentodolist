@@ -19,6 +19,9 @@ stages:
   - deploy
 
 
+before_script:
+  - echo "Job in pipeline with IID $CI_PIPELINE_IID"
+
 
 ################################################################################
 # Images Stage
