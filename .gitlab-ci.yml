@@ -192,7 +192,26 @@ android_x86:
 
 
 ################################################################################
-# Images Stage
+# Installed Stage
+################################################################################
+
+sign_apks:
+    stage: installer
+    tags:
+        - OpenTodoListPrivate
+    image: $ANDROID_IMAGE
+    script:
+        - ci/sign-apks.sh
+    artifacts:
+      paths:
+        - build-android-*/*-aligned.apk
+      expire_in: 1 week
+    dependencies:
+        - android_x86
+        - android_armv7
+
+################################################################################
+# Deploy Stage
 ################################################################################
 
 
@@ -207,6 +226,7 @@ github:
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
         - cp build-win32-vs/OpenTodoList-Windows-32bit-MSVC.exe uploads || echo "Skip deploying MSVC 32bit installer"
         - cp build-win64-vs/OpenTodoList-Windows-64bit-MSVC.exe uploads || echo "Skip deploying MSVC 64bit installer"
+        - cp build-android-*/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     when: manual
