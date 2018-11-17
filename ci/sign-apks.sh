@@ -8,7 +8,7 @@ jarsigner \
     -digestalg SHA1 \
     -keystore "$OPENTODOLIST_KEYSTORE" \
     -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
-    OpenTodoList-Android-armv7.apk mhoeher
+    OpenTodoList-Android-armv7.apk "$OPENTODOLIST_KEYSTORE_ALIAS"
 $ANDROID_SDK_ROOT/build-tools/27.0.3/zipalign \
     -v 4 \
     OpenTodoList-Android-armv7.apk \
@@ -21,7 +21,7 @@ jarsigner \
     -digestalg SHA1 \
     -keystore "$OPENTODOLIST_KEYSTORE" \
     -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
-    OpenTodoList-Android-x86.apk mhoeher
+    OpenTodoList-Android-x86.apk "$OPENTODOLIST_KEYSTORE_ALIAS"
 $ANDROID_SDK_ROOT/build-tools/27.0.3/zipalign \
     -v 4 \
     OpenTodoList-Android-x86.apk \
