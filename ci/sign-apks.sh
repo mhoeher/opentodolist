@@ -2,9 +2,6 @@
 
 set -e
 
-echo "Using keystore $OPENTODOLIST_KEYSTORE with alias $OPENTODOLIST_KEYSTORE_ALIAS"
-ls -lZ $OPENTODOLIST_KEYSTORE
-
 cd build-android-armv7
 jarsigner \
     -sigalg SHA1withRSA \
