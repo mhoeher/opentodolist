@@ -4,7 +4,7 @@ RUN \
     yum install -y \
         wget make cmake git java-1.8.0-openjdk java-1.8.0-openjdk-devel \
         libX11-xcb unzip extra-cmake-modules.noarch \
-        ncurses-compat-libs gradle \
+        ncurses-compat-libs gradle ninja-build \
         && \
     wget http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run && \
     chmod +x qt-unified-linux-x64-online.run && \
