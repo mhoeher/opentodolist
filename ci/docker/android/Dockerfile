@@ -32,6 +32,6 @@ RUN \
 ENV ANDROID_SDK_ROOT /opt/android/android-sdk
 ENV ANDROID_NDK /opt/android/android-ndk-r15c
 ENV ANDROID_NDK_ROOT /opt/android/android-ndk-r15c
-ENV QT_ARM_ROOT /opt/Qt/5.10.0/android_armv7/
-ENV QT_X86_ROOT /opt/Qt/5.10.0/android_x86/
+ENV QT_ARM_ROOT /opt/Qt/5.11.2/android_armv7/
+ENV QT_X86_ROOT /opt/Qt/5.11.2/android_x86/
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0

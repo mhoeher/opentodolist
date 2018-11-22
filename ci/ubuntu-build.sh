@@ -19,7 +19,7 @@ which cmake || (apt-get update && apt-get install -y cmake)
 
 desktop-file-validate templates/appimage/default.desktop
 
-source /opt/qt510/bin/qt510-env.sh || true
+source /opt/qt511/bin/qt511-env.sh || true
 export QT_QPA_PLATFORM=minimal
 
 mkdir -p build-ubuntu
