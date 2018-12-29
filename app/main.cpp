@@ -33,7 +33,7 @@ class QmlFileSystemWatcher : public QObject
 
 public:
 
-    QmlFileSystemWatcher(const QString baseUrl, QQmlApplicationEngine *engine, QObject *parent = 0) :
+    QmlFileSystemWatcher(const QString baseUrl, QQmlApplicationEngine *engine, QObject *parent = nullptr) :
         QObject(parent),
         m_baseUrl(baseUrl),
         m_engine(engine),

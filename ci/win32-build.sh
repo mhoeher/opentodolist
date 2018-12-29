@@ -22,8 +22,6 @@ cd ..
 mkdir -p deploy-win32/bin
 cp build-win32/app/OpenTodoList.exe deploy-win32/bin/
 
-apt-get update
-apt-get install -y wget python3
 wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
 chmod +x xwindeployqt
 ./xwindeployqt --toolchain-root /opt/mxe-x64-shared/ \

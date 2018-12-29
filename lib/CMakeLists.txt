@@ -100,7 +100,7 @@ find_package(Qt5Xml REQUIRED)
 find_package(Qt5Concurrent REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
-if(ANDROID)
+if(ANDROID OR WIN32)
     set(libtype STATIC)
 else()
     set(libtype SHARED)

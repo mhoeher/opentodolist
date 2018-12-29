@@ -11,7 +11,7 @@ RUN \
         git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev      \
         libtool-bin libltdl-dev libssl-dev libxml-parser-perl make  \
         openssl p7zip-full patch perl pkg-config python ruby scons  \
-        sed unzip wget xz-utils nsis &&                             \
+        sed unzip wget xz-utils nsis python3 &&                     \
 \
     cd opt && \
     mkdir mxe-i686-shared && \
