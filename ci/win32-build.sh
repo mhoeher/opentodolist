@@ -2,9 +2,8 @@
 
 set -e
 
-# Note: Paths need to be corrected on next image rebuild
-export PATH=/opt/mxe-x64-shared/usr/bin:$PATH
-export PATH=/opt/mxe-x64-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
+export PATH=/opt/mxe-i686-shared/usr/bin:$PATH
+export PATH=/opt/mxe-i686-shared/usr/i686-w64-mingw32.shared/qt5/bin:$PATH
 
 mkdir -p build-win32
 cd build-win32
@@ -21,10 +20,11 @@ i686-w64-mingw32.shared-cmake --build . --target all -- -j4
 cd ..
 mkdir -p deploy-win32/bin
 cp build-win32/app/OpenTodoList.exe deploy-win32/bin/
+cp build-win32/3rdparty/qlmdb/qlmdb/libqlmdb.dll deploy-win32/bin/
 
 wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
 chmod +x xwindeployqt
-./xwindeployqt --toolchain-root /opt/mxe-x64-shared/ \
+./xwindeployqt --toolchain-root /opt/mxe-i686-shared/ \
     --toolchain-arch i686-w64-mingw32.shared \
     --qml-dir ./app \
     --plugins bearer \

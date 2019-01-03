@@ -42,7 +42,7 @@ endif()
 
 
 # Configure the build in qlmdb library:
-if(ANDROID OR WIN32)
+if(ANDROID)
     set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
 endif()
 set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")

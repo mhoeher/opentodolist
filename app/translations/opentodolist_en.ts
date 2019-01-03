@@ -329,19 +329,6 @@
     </message>
 </context>
 <context>
-    <name>LogViewPage</name>
-    <message>
-        <location filename="../Pages/LogViewPage.qml" line="12"/>
-        <source>Synchronization Log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/LogViewPage.qml" line="20"/>
-        <source>Copy Log</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../Windows/MainWindow.qml" line="19"/>

@@ -5,7 +5,7 @@ set -e
 export PATH=/opt/mxe-x64-shared/usr/bin:$PATH
 export PATH=/opt/mxe-x64-shared/usr/x86_64-w64-mingw32.shared/qt5/bin:$PATH
 
-mkdir build-win64
+mkdir -p build-win64
 cd build-win64
 
 x86_64-w64-mingw32.shared-cmake \
@@ -20,6 +20,7 @@ x86_64-w64-mingw32.shared-cmake --build . --target all -- -j4
 cd ..
 mkdir -p deploy-win64/bin
 cp build-win64/app/OpenTodoList.exe deploy-win64/bin/
+cp build-win64/3rdparty/qlmdb/qlmdb/libqlmdb.dll deploy-win64/bin/
 
 wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
 chmod +x xwindeployqt
