@@ -45,7 +45,7 @@ build_image_win32:
     - dnf install -y --nogpgcheck podman buildah
     - cd ci/docker/win32
     - podman login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - buildah bud --isolation chroot -t $WIN32_IMAGE .
+    - buildah bud -t $WIN32_IMAGE .
     - buildah push $WIN32_IMAGE docker://$WIN32_IMAGE
   when: manual
 
@@ -58,7 +58,7 @@ build_image_win64:
     - dnf install -y --nogpgcheck podman buildah
     - cd ci/docker/win64
     - podman login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - buildah bud --isolation chroot -t $WIN64_IMAGE .
+    - buildah bud -t $WIN64_IMAGE .
     - buildah push $WIN64_IMAGE docker://$WIN64_IMAGE
   when: manual
 
