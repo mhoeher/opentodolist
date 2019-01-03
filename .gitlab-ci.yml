@@ -40,28 +40,26 @@ build_image_ubuntu:
 # Build the Win32 Image
 build_image_win32:
   stage: images
-  image: docker:git
-  services:
-  - docker:dind
+  image: fedora
   script:
+    - dnf install -y --nogpgcheck podman buildah
     - cd ci/docker/win32
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $WIN32_IMAGE .
-    - docker push $WIN32_IMAGE
+    - podman login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - buildah bud -t $WIN32_IMAGE .
+    - buildah push $WIN32_IMAGE docker://$WIN32_IMAGE
   when: manual
 
 
 # Build the Win64 Image
 build_image_win64:
   stage: images
-  image: docker:git
-  services:
-  - docker:dind
+  image: fedora
   script:
+    - dnf install -y --nogpgcheck podman buildah
     - cd ci/docker/win64
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $WIN64_IMAGE .
-    - docker push $WIN64_IMAGE
+    - podman login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - buildah bud -t $WIN64_IMAGE .
+    - buildah push $WIN64_IMAGE docker://$WIN64_IMAGE
   when: manual
 
 
@@ -125,34 +123,6 @@ win64_build:
     expire_in: 1 week
 
 
-# Windows Visual Studio 32bit Build
-win32_vs_build:
-  stage: build
-  tags:
-    - windows
-  script:
-    - .\\ci\\windows\\windows-msvc17-x32.bat
-  artifacts:
-    paths:
-      - build-win32-vs/OpenTodoList-Windows-32bit-MSVC.exe
-    expire_in: 1 week
-  when: manual
-
-
-# Windows Visual Studio 64bit Build
-win64_vs_build:
-  stage: build
-  tags:
-    - windows
-  script:
-    - .\\ci\\windows\\windows-msvc17-x64.bat
-  artifacts:
-    paths:
-      - build-win64-vs/OpenTodoList-Windows-64bit-MSVC.exe
-    expire_in: 1 week
-  when: manual
-
-
 # macOS build:
 macos:
   stage: build
@@ -192,7 +162,7 @@ android_x86:
 
 
 ################################################################################
-# Installed Stage
+# Installer Stage
 ################################################################################
 
 sign_apks:
