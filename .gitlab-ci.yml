@@ -9,6 +9,8 @@ variables:
     OWNCLOUD_IMAGE: owncloud
     CTEST_OUTPUT_ON_FAILURE: 1
     GIT_SUBMODULE_STRATEGY: recursive
+    # Use chroot isolation. See https://github.com/containers/buildah/issues/933
+    BUILDAH_ISOLATION: chroot
 
 
 stages:
