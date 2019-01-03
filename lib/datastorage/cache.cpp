@@ -53,13 +53,18 @@ void ItemsQueryRunnable::run()
     m_query->finish();
 }
 
-
 /**
  * @brief Constructor.
  */
 Cache::Cache(QObject *parent) : QObject(parent),
     m_cacheDirectory(),
-    m_cacheSize(3U * 1024U * 1024U * 1024U),
+    m_cacheSize(
+        #if QT_POINTER_SIZE == 4
+        1U * 1024U * 1024U * 1024U
+        #else
+        3U * 1024U * 1024U * 1024U
+        #endif
+        ),
     m_context(nullptr),
     m_global(),
     m_items(),

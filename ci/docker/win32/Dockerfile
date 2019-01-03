@@ -1,22 +1,49 @@
-FROM debian
-
-# Note: If build fails, check out this issue:
-#       https://github.com/mxe/mxe/issues/2011
+FROM fedora:rawhide
 
 RUN \
 \
-    apt-get update && \
-    apt-get install -y \
-        autoconf automake autopoint bash bison bzip2 flex gettext   \
-        git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev      \
-        libtool-bin libltdl-dev libssl-dev libxml-parser-perl make  \
-        openssl p7zip-full patch perl pkg-config python ruby scons  \
-        sed unzip wget xz-utils nsis &&                             \
-\
-    cd opt && \
-    mkdir mxe-i686-shared && \
-    cd mxe-i686-shared && \
-    git clone https://github.com/mxe/mxe.git . && \
-    make MXE_TARGETS='i686-w64-mingw32.shared' \
-        JOBS=4 \
-        qt5
+    dnf install -y --nogpgcheck \
+        cmake \
+        ninja-build \
+        python3 \
+        python \
+        git \
+        wget \
+        mingw32-qt5-qmake \
+        mingw32-qt5-qmldevtools \
+        mingw32-qt5-qmldevtools-devel \
+        mingw32-qt5-qt3d \
+        mingw32-qt5-qt3d-tools \
+        mingw32-qt5-qtactiveqt \
+        mingw32-qt5-qtbase \
+        mingw32-qt5-qtbase-devel \
+        mingw32-qt5-qtcharts \
+        mingw32-qt5-qtdeclarative \
+        mingw32-qt5-qtgraphicaleffects \
+        mingw32-qt5-qtimageformats \
+        mingw32-qt5-qtlocation \
+        mingw32-qt5-qtmultimedia \
+        mingw32-qt5-qtquickcontrols \
+        mingw32-qt5-qtsensors \
+        mingw32-qt5-qtserialport \
+        mingw32-qt5-qtsvg \
+        mingw32-qt5-qttools \
+        mingw32-qt5-qttools-tools \
+        mingw32-qt5-qttranslations \
+        mingw32-qt5-qtwebkit \
+        mingw32-qt5-qtwebsockets \
+        mingw32-qt5-qtwinextras \
+        mingw32-qt5-qtxmlpatterns \
+        mingw32-nsis \
+        mingw32-nsiswrapper \
+        \
+        && \
+        cd / && \
+        git clone https://github.com/qt/qtquickcontrols2.git && \
+        cd qtquickcontrols2 && \
+        git checkout v$(mingw32-qmake-qt5 -query QT_VERSION) && \
+        mingw32-qmake-qt5 && \
+        make -j4 && \
+        make install && \
+        cd .. && \
+        rm -rf qtquickcontrols2

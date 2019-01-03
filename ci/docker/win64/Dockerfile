@@ -1,19 +1,49 @@
-FROM debian
+FROM fedora:rawhide
 
 RUN \
 \
-    apt-get update && \
-    apt-get install -y \
-        autoconf automake autopoint bash bison bzip2 flex gettext   \
-        git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev      \
-        libtool-bin libltdl-dev libssl-dev libxml-parser-perl make  \
-        openssl p7zip-full patch perl pkg-config python ruby scons  \
-        sed unzip wget xz-utils nsis &&                             \
-\
-    cd opt && \
-    mkdir mxe-x64-shared && \
-    cd mxe-x64-shared && \
-    git clone https://github.com/mxe/mxe.git . && \
-    make MXE_TARGETS='x86_64-w64-mingw32.shared' \
-        JOBS=4 \
-        qt5
+    dnf install -y --nogpgcheck \
+        cmake \
+        ninja-build \
+        python3 \
+        python \
+        git \
+        wget \
+        mingw64-qt5-qmake \
+        mingw64-qt5-qmldevtools \
+        mingw64-qt5-qmldevtools-devel \
+        mingw64-qt5-qt3d \
+        mingw64-qt5-qt3d-tools \
+        mingw64-qt5-qtactiveqt \
+        mingw64-qt5-qtbase \
+        mingw64-qt5-qtbase-devel \
+        mingw64-qt5-qtcharts \
+        mingw64-qt5-qtdeclarative \
+        mingw64-qt5-qtgraphicaleffects \
+        mingw64-qt5-qtimageformats \
+        mingw64-qt5-qtlocation \
+        mingw64-qt5-qtmultimedia \
+        mingw64-qt5-qtquickcontrols \
+        mingw64-qt5-qtsensors \
+        mingw64-qt5-qtserialport \
+        mingw64-qt5-qtsvg \
+        mingw64-qt5-qttools \
+        mingw64-qt5-qttools-tools \
+        mingw64-qt5-qttranslations \
+        mingw64-qt5-qtwebkit \
+        mingw64-qt5-qtwebsockets \
+        mingw64-qt5-qtwinextras \
+        mingw64-qt5-qtxmlpatterns \
+        mingw32-nsis \
+        mingw32-nsiswrapper \
+        \
+        && \
+        cd / && \
+        git clone https://github.com/qt/qtquickcontrols2.git && \
+        cd qtquickcontrols2 && \
+        git checkout v$(mingw64-qmake-qt5 -query QT_VERSION) && \
+        mingw64-qmake-qt5 && \
+        make -j4 && \
+        make install && \
+        cd .. && \
+        rm -rf qtquickcontrols2
