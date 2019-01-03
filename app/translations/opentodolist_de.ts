@@ -394,12 +394,14 @@
 <context>
     <name>LogViewPage</name>
     <message>
+        <location filename="../Pages/LogViewPage.qml" line="12"/>
         <source>Synchronization Log</source>
-        <translation type="vanished">Synchronisationsereignisse</translation>
+        <translation>Synchronisationsereignisse</translation>
     </message>
     <message>
+        <location filename="../Pages/LogViewPage.qml" line="20"/>
         <source>Copy Log</source>
-        <translation type="vanished">Protokoll kopieren</translation>
+        <translation>Protokoll kopieren</translation>
     </message>
 </context>
 <context>
