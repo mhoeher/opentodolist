@@ -1,10 +1,15 @@
 #!/bin/bash
 
+set -e
+
 if [ -n "$CI" ]; then
     dnf install -y --nogpgcheck \
-        flatpak flatpak-builder
+        flatpak \
+        flatpak-builder \
+        libappstream-glib
 fi
 
+appstream-util validate-relax net.rpdev.OpenTodoList.appdata.xml
 
 flatpak remote-add \
     --if-not-exists \
