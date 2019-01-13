@@ -23,3 +23,6 @@ config.tests/*/*.o
 config.tests/qtkeychain/qtkeychain
 .qmake.stash
 CMakeLists.txt.user*
+/fp-app
+/fp-repo
+.flatpak-builder
