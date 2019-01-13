@@ -165,6 +165,10 @@ build_flatpak:
     image: fedora
     script:
         - ci/flatpak-build.sh
+    artifacts:
+      paths:
+        - fp-repo
+      expire_in: 1 week
 
 
 ################################################################################
@@ -209,3 +213,13 @@ github:
     only:
         - tags
 
+
+pages:
+    stage: deploy
+    image: fedora
+    script:
+        - mkdir public
+        - cp -r fp-repo public
+    artifacts:
+        paths:
+        - public
