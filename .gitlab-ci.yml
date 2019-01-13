@@ -159,6 +159,14 @@ android_x86:
     expire_in: 1 week
 
 
+# Build the app as Flatpak
+build_flatpak:
+    stage: build
+    image: fedora
+    script:
+        - ci/flatpak-build.sh
+
+
 ################################################################################
 # Installer Stage
 ################################################################################
