@@ -13,7 +13,8 @@
         "--filesystem=host",
         "--socket=pulseaudio",
         "--socket=session-bus",
-        "--share=network"
+        "--share=network",
+        "--device=dri"
     ],
 
     "modules": [
@@ -42,7 +43,7 @@
             ],
             "sources": [
                 {
-                    "type": "git",
+                    "type": "dir",
                     "path": "."
                 }
             ]
