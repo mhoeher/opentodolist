@@ -237,7 +237,7 @@ pages:
         - cp deploy-win32/OpenTodoList-Windows-32bit.exe public
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe public
         - cp build-android-*/*-aligned.apk public
-        - cp build-macos/app/OpenTodoList.dmg public
+        - cp build-macos/app/OpenTodoList.dmg public || echo "OpenTodoList.dmg was not built"
         - dnf install -y --nogpgcheck git
         - git describe --tags > public/version.txt
         - cd public
