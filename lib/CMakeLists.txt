@@ -137,3 +137,9 @@ target_link_libraries(opentodolist-common
     qt5keychain
     qlmdb
 )
+
+
+install(
+    TARGETS opentodolist-common
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)

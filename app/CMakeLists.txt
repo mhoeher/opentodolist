@@ -136,3 +136,10 @@ add_custom_target(opentodolist-translations
         ${QM_FILES}
         translations-copy.qrc
 )
+
+
+# Install the app:
+install(
+    TARGETS OpenTodoList
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

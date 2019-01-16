@@ -3,6 +3,7 @@ variables:
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     ANDROID_IMAGE: registry.gitlab.com/rpdev/opentodolist:android
+    FLATPAK_IMAGE: registry.gitlab.com/rpdev/opentodolist:flatpak
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
     CTEST_OUTPUT_ON_FAILURE: 1
@@ -72,6 +73,20 @@ build_image_android:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --pull -t $ANDROID_IMAGE .
     - docker push $ANDROID_IMAGE
+  when: manual
+
+
+# Build the Flatpak Image
+build_image_flatpak:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/flatpak
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $FLATPAK_IMAGE .
+    - docker push $FLATPAK_IMAGE
   when: manual
 
 
@@ -159,6 +174,18 @@ android_x86:
     expire_in: 1 week
 
 
+# Build the app as Flatpak
+build_flatpak:
+    stage: build
+    image: $FLATPAK_IMAGE
+    script:
+        - ci/flatpak-build.sh
+    artifacts:
+      paths:
+        - fp-repo
+      expire_in: 1 week
+
+
 ################################################################################
 # Installer Stage
 ################################################################################
@@ -192,8 +219,6 @@ github:
         - cp build-ubuntu/OpenTodoList-x86_64.AppImage uploads
         - cp deploy-win32/OpenTodoList-Windows-32bit.exe uploads
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
-        - cp build-win32-vs/OpenTodoList-Windows-32bit-MSVC.exe uploads || echo "Skip deploying MSVC 32bit installer"
-        - cp build-win64-vs/OpenTodoList-Windows-64bit-MSVC.exe uploads || echo "Skip deploying MSVC 64bit installer"
         - cp build-android-*/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
@@ -201,3 +226,24 @@ github:
     only:
         - tags
 
+
+pages:
+    stage: deploy
+    image: fedora
+    script:
+        - mkdir public
+        - cp -r fp-repo public
+        - cp build-ubuntu/OpenTodoList-x86_64.AppImage public
+        - cp deploy-win32/OpenTodoList-Windows-32bit.exe public
+        - cp deploy-win64/OpenTodoList-Windows-64bit.exe public
+        - cp build-android-*/*-aligned.apk public
+        - cp build-macos/app/OpenTodoList.dmg public
+        - dnf install -y --nogpgcheck git
+        - git describe --tags > public/version.txt
+        - cd public
+        - sha256sum * > sha256sums.txt
+    artifacts:
+        paths:
+        - public
+    only:
+        - master

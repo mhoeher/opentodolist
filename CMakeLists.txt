@@ -47,6 +47,30 @@ if(ANDROID)
 endif()
 set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
 
+# Install data files:
+set(APPLICATION_NAME OpenTodoList)
+set(APPLICATION_EXECUTABLE OpenTodoList)
+configure_file(
+    OpenTodoList.desktop.in
+    ${CMAKE_CURRENT_BINARY_DIR}/OpenTodoList.desktop
+)
+include(GNUInstallDirs)
+install(
+    DIRECTORY templates/icons/hicolor
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/
+)
+install(
+    FILES net.rpdev.OpenTodoList.appdata.xml
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/appdata
+)
+install(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/OpenTodoList.desktop
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
+)
+
+# Disable building translations in QtKeychain:
+set(BUILD_TRANSLATIONS NO CACHE BOOL "")
+
 
 # Include sub-directories:
 add_subdirectory(3rdparty)
@@ -57,9 +81,12 @@ add_subdirectory(test)
 
 # Show other, project-related files:
 file(GLOB_RECURSE OTHER_FILES
+    OpenTodoList.desktop.in
     README.md
     COPYING
     Doxyfile
+    net.rpdev.OpenTodoList.json
+    net.rpdev.OpenTodoList.appdata.xml
     doc/*
     .gitlab-ci.yml
     bin/*

@@ -27,7 +27,7 @@ add_custom_target(
     COMMAND
         cp -r ${CMAKE_CURRENT_SOURCE_DIR}/templates/icons/* AppImageBuild/usr/share/icons/hicolor/
     COMMAND
-        cp -r ${CMAKE_CURRENT_SOURCE_DIR}/templates/icons/64x64/apps/OpenTodoList.png AppImageBuild/
+    cp -r ${CMAKE_CURRENT_SOURCE_DIR}/templates/icons/hicolor/64x64/apps/OpenTodoList.png AppImageBuild/
     COMMAND
         ${LINUXDEPLOYQT} --appimage-extract
     COMMAND

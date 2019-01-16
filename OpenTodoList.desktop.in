@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Utility;
+Type=Application
+Exec=@APPLICATION_EXECUTABLE@
+Name=@APPLICATION_NAME@
+Comment=@APPLICATION_NAME@ todo list and note taking application
+GenericName=Todo List and Note Taking Application
+Icon=@APPLICATION_ICON_NAME@
+Keywords=@APPLICATION_NAME@;todo;note;
+X-GNOME-Autostart-Delay=3
