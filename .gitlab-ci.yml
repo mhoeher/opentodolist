@@ -232,7 +232,6 @@ pages:
     image: fedora
     script:
         - mkdir public
-        - cp -r fp-repo public
         - cp build-ubuntu/OpenTodoList-x86_64.AppImage public
         - cp deploy-win32/OpenTodoList-Windows-32bit.exe public
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe public
@@ -242,6 +241,8 @@ pages:
         - git describe --tags > public/version.txt
         - cd public
         - sha256sum * > sha256sums.txt
+        - cd ..
+        - cp -r fp-repo public
     artifacts:
         paths:
         - public
