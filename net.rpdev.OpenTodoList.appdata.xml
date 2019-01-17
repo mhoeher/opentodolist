@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>net.rpdev.OpenTodoList.desktop</id>
+  <id>net.rpdev.OpenTodoList</id>
   <name>OpenTodoList</name>
   <project_license>GPL-3.0+</project_license>
   <summary>Todo list and note taking application</summary>
@@ -18,4 +18,8 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://opentodolist.rpdev.net/</url>
+  <url type="bugtracker">https://gitlab.com/rpdev/opentodolist/issues</url>
+  <url type="contact">https://gitlab.com/rpdev/opentodolist</url>
+  <launchable type="destkop-id">net.rpdev.OpenTodoList.desktop</launchable>
+  <content_rating type="oars-1.0" />
 </component>

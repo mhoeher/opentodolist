@@ -1,7 +1,5 @@
 {
     "id": "net.rpdev.OpenTodoList",
-    "rename-icon": "OpenTodoList",
-    "rename-desktop-file": "OpenTodoList.desktop",
     "runtime": "org.kde.Platform",
     "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
@@ -12,7 +10,6 @@
         "--socket=wayland",
         "--filesystem=host",
         "--socket=pulseaudio",
-        "--socket=session-bus",
         "--share=network",
         "--device=dri"
     ],

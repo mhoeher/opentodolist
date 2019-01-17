@@ -51,8 +51,8 @@ set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
 set(APPLICATION_NAME OpenTodoList)
 set(APPLICATION_EXECUTABLE OpenTodoList)
 configure_file(
-    OpenTodoList.desktop.in
-    ${CMAKE_CURRENT_BINARY_DIR}/OpenTodoList.desktop
+    net.rpdev.OpenTodoList.desktop.in
+    ${CMAKE_CURRENT_BINARY_DIR}/net.rpdev.OpenTodoList.desktop
 )
 include(GNUInstallDirs)
 install(
@@ -64,7 +64,7 @@ install(
     DESTINATION ${CMAKE_INSTALL_DATADIR}/appdata
 )
 install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/OpenTodoList.desktop
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/net.rpdev.OpenTodoList.desktop
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 
