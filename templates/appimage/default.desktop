@@ -2,7 +2,7 @@
 Type=Application
 Name=OpenTodoList
 Exec=OpenTodoList %F
-Icon=OpenTodoList
+Icon=net.rpdev.OpenTodoList
 Comment=A note and task managing application
 Terminal=false
 Categories=Utility;
