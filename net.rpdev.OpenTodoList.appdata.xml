@@ -5,6 +5,7 @@
   <project_license>GPL-3.0+</project_license>
   <summary>Todo list and note taking application</summary>
   <metadata_license>CC0-1.0</metadata_license>
+  <developer_name>Martin Höher</developer_name>
   <description>
     <p>OpenTodoList is an todo list and note taking application. Create todo
     lists, notes and put other resources, arranging them in libraries.
@@ -13,12 +14,27 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <caption>A library</caption>
-      <image>https://opentodolist.rpdev.net/images/v3.7/material-1.png</image>
+      <caption>
+        Libraries can contain todo lists, notes and images
+      </caption>
+      <image>https://opentodolist.rpdev.net/images/appstream/library_page.png</image>
     </screenshot>
   </screenshots>
   <url type="homepage">https://opentodolist.rpdev.net/</url>
   <url type="bugtracker">https://gitlab.com/rpdev/opentodolist/issues</url>
   <launchable type="destkop-id">net.rpdev.OpenTodoList.desktop</launchable>
   <content_rating type="oars-1.0" />
+  <update_contact>martin_AT_rpdev.net</update_contact>
+
+  <releases>
+    <release version="3.9.0" date="2018-11-11">
+        <p>
+            This relase fixes the issues #208, #202, #90, #210, #207,
+            #193 and #191. The most notable change among these is the
+            introduction of an item cache, which speeds up several
+            aspects of the app (start-up, listing of large item
+            collections and so on).
+        </p>
+    </release>
+  </releases>
 </component>
