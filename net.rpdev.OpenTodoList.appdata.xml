@@ -7,10 +7,23 @@
   <metadata_license>CC0-1.0</metadata_license>
   <developer_name>Martin Höher</developer_name>
   <description>
-    <p>OpenTodoList is an todo list and note taking application. Create todo
-    lists, notes and put other resources, arranging them in libraries.
-    These libraries can be kept locally or synchronized with services
-    such as NextCloud or ownCloud to sync them across your devices.</p>
+    <p>
+        OpenTodoList is a todo list and note taking application. It is
+        available for Linux, macOS and Windows as well as on Android.
+        Your information can be shared across devices to keep everything
+        up date date, whereever you go.
+    </p>
+    <ul>
+        <li>Organize todo lists, notes and other items in libraries</li>
+        <li>Synchronize out-of-the-box with NextCloud, ownCloud and other WebDAV
+            servers
+        </li>
+        <li>Use sync clients of your choice to synchronize with arbitrary
+            services</li>
+        <li>Schedule items by setting due dates on them</li>
+        <li>Use Markdown in item titles and descriptions to format text
+            as you like</li>
+    </ul>
   </description>
   <screenshots>
     <screenshot type="default">
