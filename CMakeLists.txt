@@ -50,6 +50,7 @@ set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
 # Install data files:
 set(APPLICATION_NAME OpenTodoList)
 set(APPLICATION_EXECUTABLE OpenTodoList)
+set(APPLICATION_ICON_NAME net.rpdev.OpenTodoList)
 configure_file(
     net.rpdev.OpenTodoList.desktop.in
     ${CMAKE_CURRENT_BINARY_DIR}/net.rpdev.OpenTodoList.desktop
