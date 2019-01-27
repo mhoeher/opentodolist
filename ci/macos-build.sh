@@ -6,7 +6,12 @@ rm -rf build-macos
 mkdir build-macos
 cd build-macos
 
-QTSDK=$QT_DIR_MACOSX
+if [ ! -d "$QT_DIR" ]; then
+    echo "The variable QT_DIR is not set"
+    exit 1
+fi
+
+QTSDK=$QT_DIR
 
 /Applications/CMake.app/Contents/bin/cmake \
     -DCMAKE_PREFIX_PATH=$QTSDK \
