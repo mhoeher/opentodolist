@@ -50,7 +50,7 @@
       <ul>
         <li>#209: Update to Qt 5.11.2</li>
         <li>#211: Build ready to be used APKs in the CI</li>
-        <li>#215: Build the app as Flatpak<li>
+        <li>#215: Build the app as Flatpak</li>
         <li>#216: AppImage is no longer working</li>
         <li>#219: Improve AppData File</li>
         <li>#220: Desktop file needs icon specified</li>
