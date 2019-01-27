@@ -40,6 +40,22 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.10.0" date="2019-01-27">
+      <p>
+        This release is rather a maintenance release. It upgrades to at least
+        Qt 5.11 on all supported platforms, some even to Qt 5.12. The most interesting
+        part is probably that the app is now available via Flatpak. Here is the list of
+        all issues that went into the release:
+      </p>
+      <ul>
+        <li>#209: Update to Qt 5.11.2</li>
+        <li>#211: Build ready to be used APKs in the CI</li>
+        <li>#215: Build the app as Flatpak<li>
+        <li>#216: AppImage is no longer working</li>
+        <li>#219: Improve AppData File</li>
+        <li>#220: Desktop file needs icon specified</li>
+      </ul>
+    </release>
     <release version="3.9.0" date="2018-11-11">
         <p>
             This relase fixes the issues #208, #202, #90, #210, #207,
