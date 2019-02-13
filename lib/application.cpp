@@ -24,6 +24,7 @@
 #include "datamodel/todolist.h"
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
+#include "datastorage/librariesitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/libraryloader.h"
 #include "sync/synchronizer.h"
@@ -180,6 +181,26 @@ QList<QSharedPointer<Library> > Application::librariesFromConfig()
             } else {
                 qCWarning(log) << "Failed to load library from directory"
                                << directory;
+
+                // Try to restore JSON from cache - fix for
+                // https://gitlab.com/rpdev/opentodolist/issues/222
+                auto query = new LibrariesItemsQuery();
+                query->setIncludeCalculatedValues(false);
+                connect(query, &LibrariesItemsQuery::librariesAvailable,
+                        [=](QVariantList libraries) {
+                    for (const auto &entry : libraries) {
+                        auto cacheEntry = entry.value<LibraryCacheEntry>();
+                        if (cacheEntry.valid) {
+                            auto lib = Library::decache(cacheEntry);
+                            if (lib->directory() == directory) {
+                                lib->save();
+                                qCWarning(log) << "Restored library file in "
+                                               << directory;
+                            }
+                        }
+                    }
+                });
+                m_cache->run(query);
             }
         }
     }
@@ -329,7 +350,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
             watchLibraryForChanges(result);
         }
         auto q = new InsertOrUpdateItemsQuery();
-        q->add(result);
+        q->add(result, InsertOrUpdateItemsQuery::Save);
         m_cache->run(q);
         syncLibrary(result);
         result->setCache(m_cache);

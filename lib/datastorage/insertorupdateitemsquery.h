@@ -59,7 +59,7 @@ public:
 public slots:
 
     void add(Item *item, InsertFlags flags = NoFlags);
-    void add(Library* library);
+    void add(Library* library, InsertFlags flags = NoFlags);
 
 protected:
     // ItemsQuery interface
