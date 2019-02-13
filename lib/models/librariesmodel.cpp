@@ -149,7 +149,7 @@ void LibrariesModel::libraryChanged()
             emit dataChanged(index(idx), index(idx));
             if (!m_updating && m_cache != nullptr) {
                 auto q = new InsertOrUpdateItemsQuery();
-                q->add(lib);
+                q->add(lib, InsertOrUpdateItemsQuery::Save);
                 m_cache->run(q);
             }
         }

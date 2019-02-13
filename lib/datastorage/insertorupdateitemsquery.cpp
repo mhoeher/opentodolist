@@ -45,12 +45,15 @@ void InsertOrUpdateItemsQuery::add(Item *item, InsertFlags flags)
 /**
  * @brief Add the @p library to the list of libraries to be cached.
  */
-void InsertOrUpdateItemsQuery::add(Library *library)
+void InsertOrUpdateItemsQuery::add(Library *library, InsertFlags flags)
 {
     if (library != nullptr) {
         auto entry = library->encache();
         if (entry.valid) {
             m_libEntries.append(entry);
+            if (flags.testFlag(Save)) {
+                m_save.insert(library->uid());
+            }
         }
     }
 }
@@ -72,6 +75,14 @@ void InsertOrUpdateItemsQuery::run()
         }
         childrenCursor.put(Cache::RootId, id,
                            QLMDB::Cursor::NoDuplicateData);
+
+        if (m_save.contains(lib.id)) {
+            auto library = Library::decache(lib);
+            if (library->isValid()) {
+                library->save();
+                delete library;
+            }
+        }
     }
     for (auto item : m_itemEntries) {
         if (m_calcWeight.contains(item.id)) {

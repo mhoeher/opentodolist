@@ -540,7 +540,7 @@ void Library::onChanged()
 {
     if (m_cache != nullptr) {
         auto q = new InsertOrUpdateItemsQuery();
-        q->add(this);
+        q->add(this, InsertOrUpdateItemsQuery::Save);
         m_cache->run(q);
     }
 }

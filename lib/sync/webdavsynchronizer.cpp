@@ -228,7 +228,7 @@ void WebDAVSynchronizer::stopSync()
  *
  * This method will search for existing libraries in the current
  * remote directory and the OpenTodoList sub-folder (relative to the
- * remote directory). The
+ * remote directory).
  */
 void WebDAVSynchronizer::findExistingLibraries()
 {

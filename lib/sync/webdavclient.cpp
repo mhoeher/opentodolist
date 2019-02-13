@@ -366,8 +366,11 @@ bool WebDAVClient::deleteEntry(const QString& filename)
  * in the set, no changes compared to the last sync run were detected
  * and hence only local changes need to be pushed.
  */
-bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression directoryFilter,
-        bool pushOnly, QSet<QString> *changedDirs)
+bool WebDAVClient::syncDirectory(
+        const QString& directory,
+        QRegularExpression directoryFilter,
+        bool pushOnly,
+        QSet<QString> *changedDirs)
 {
     m_stopRequested = false;
     QSet<QString> _changedDirs;
