@@ -394,7 +394,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="321"/>
+        <location filename="../Windows/MainWindow.qml" line="319"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -755,110 +755,110 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="413"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="416"/>
         <source>Synchronizing &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="426"/>
-        <location filename="../../lib/sync/webdavclient.cpp" line="437"/>
-        <location filename="../../lib/sync/webdavclient.cpp" line="446"/>
-        <location filename="../../lib/sync/webdavclient.cpp" line="455"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="429"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="440"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="449"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="458"/>
         <source>Ignoring file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="465"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="468"/>
         <source>Skipping sync of directory &apos;%1&apos; as there were no local changes and we have been asked to push only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="523"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="526"/>
         <source>Failed to get entry list for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="540"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="543"/>
         <source>Pulling &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="550"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="553"/>
         <source>Pull conflict: Cannot pull file &apos;%1&apos; from &apos;%2&apos;  because a local directory with than name already exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="572"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="575"/>
         <source>Pull conflict: Cannot pull directory &apos;%1&apos; from &apos;%2&apos; because a file with that name already exists locally</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="597"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="600"/>
         <source>Cannot pull remote entry of type Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="611"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="614"/>
         <source>Removing &apos;%1&apos; locally</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="618"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="621"/>
         <source>Failed to remove local file &apos;%1&apos; from &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="633"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="636"/>
         <source>Failed to remove local directory &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="641"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="644"/>
         <source>Bad sync entry type of entry &apos;%1&apos; in &apos;%2&apos; when removing local entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="657"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="660"/>
         <source>Pushing &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="664"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="667"/>
         <source>Push conflict: Cannot push directory &apos;%1&apos; as a file with that name exists on the remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="681"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="684"/>
         <source>Push conflict: Cannot push local file &apos;%1&apos; because a directory with that name exists remotely</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="694"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="697"/>
         <source>Unexpected local type of entry &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="708"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="711"/>
         <source>Removing remote entry &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1022"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="1025"/>
         <source>There was an SSL error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1025"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="1028"/>
         <source>Problem establishing a secure connection to the server: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1036"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="1039"/>
         <source>There was a network error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1039"/>
+        <location filename="../../lib/sync/webdavclient.cpp" line="1042"/>
         <source>Authentication failed. Please check you username and password.</source>
         <translation type="unfinished"></translation>
     </message>
