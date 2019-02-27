@@ -32,10 +32,13 @@ Page {
             width: view.width
             ToolButton {
                 symbol: {
-                    "Debug": Icons.faInfo,
-                    "Warning": Icons.faExclamation,
-                    "Error": Icons.faTimesCircle
-                }[modelData.type] || Icons.faQuestionCircle
+                    var map = {
+                        "Debug": Icons.faInfo,
+                        "Warning": Icons.faExclamation,
+                        "Error": Icons.faTimesCircle
+                    };
+                    return map[modelData.type] || Icons.faQuestionCircle;
+                }
             }
             Label {
                 text: modelData.time

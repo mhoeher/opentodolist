@@ -288,8 +288,6 @@ ApplicationWindow {
             if (helpPage) {
                 stackView.pop(helpPage);
             } else {
-                librariesSideBar.currentLibrary = null;
-                librariesSideBar.currentTag = "";
                 helpPage = stackView.push(
                             aboutPage, {
                                 stack: stackView,

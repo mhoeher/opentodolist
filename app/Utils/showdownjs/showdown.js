@@ -952,1185 +952,1185 @@ showdown.helper.regexes = {
 /**
  * EMOJIS LIST
  */
-showdown.helper.emojis = {
-  '+1':'\ud83d\udc4d',
-  '-1':'\ud83d\udc4e',
-  '100':'\ud83d\udcaf',
-  '1234':'\ud83d\udd22',
-  '1st_place_medal':'\ud83e\udd47',
-  '2nd_place_medal':'\ud83e\udd48',
-  '3rd_place_medal':'\ud83e\udd49',
-  '8ball':'\ud83c\udfb1',
-  'a':'\ud83c\udd70\ufe0f',
-  'ab':'\ud83c\udd8e',
-  'abc':'\ud83d\udd24',
-  'abcd':'\ud83d\udd21',
-  'accept':'\ud83c\ude51',
-  'aerial_tramway':'\ud83d\udea1',
-  'airplane':'\u2708\ufe0f',
-  'alarm_clock':'\u23f0',
-  'alembic':'\u2697\ufe0f',
-  'alien':'\ud83d\udc7d',
-  'ambulance':'\ud83d\ude91',
-  'amphora':'\ud83c\udffa',
-  'anchor':'\u2693\ufe0f',
-  'angel':'\ud83d\udc7c',
-  'anger':'\ud83d\udca2',
-  'angry':'\ud83d\ude20',
-  'anguished':'\ud83d\ude27',
-  'ant':'\ud83d\udc1c',
-  'apple':'\ud83c\udf4e',
-  'aquarius':'\u2652\ufe0f',
-  'aries':'\u2648\ufe0f',
-  'arrow_backward':'\u25c0\ufe0f',
-  'arrow_double_down':'\u23ec',
-  'arrow_double_up':'\u23eb',
-  'arrow_down':'\u2b07\ufe0f',
-  'arrow_down_small':'\ud83d\udd3d',
-  'arrow_forward':'\u25b6\ufe0f',
-  'arrow_heading_down':'\u2935\ufe0f',
-  'arrow_heading_up':'\u2934\ufe0f',
-  'arrow_left':'\u2b05\ufe0f',
-  'arrow_lower_left':'\u2199\ufe0f',
-  'arrow_lower_right':'\u2198\ufe0f',
-  'arrow_right':'\u27a1\ufe0f',
-  'arrow_right_hook':'\u21aa\ufe0f',
-  'arrow_up':'\u2b06\ufe0f',
-  'arrow_up_down':'\u2195\ufe0f',
-  'arrow_up_small':'\ud83d\udd3c',
-  'arrow_upper_left':'\u2196\ufe0f',
-  'arrow_upper_right':'\u2197\ufe0f',
-  'arrows_clockwise':'\ud83d\udd03',
-  'arrows_counterclockwise':'\ud83d\udd04',
-  'art':'\ud83c\udfa8',
-  'articulated_lorry':'\ud83d\ude9b',
-  'artificial_satellite':'\ud83d\udef0',
-  'astonished':'\ud83d\ude32',
-  'athletic_shoe':'\ud83d\udc5f',
-  'atm':'\ud83c\udfe7',
-  'atom_symbol':'\u269b\ufe0f',
-  'avocado':'\ud83e\udd51',
-  'b':'\ud83c\udd71\ufe0f',
-  'baby':'\ud83d\udc76',
-  'baby_bottle':'\ud83c\udf7c',
-  'baby_chick':'\ud83d\udc24',
-  'baby_symbol':'\ud83d\udebc',
-  'back':'\ud83d\udd19',
-  'bacon':'\ud83e\udd53',
-  'badminton':'\ud83c\udff8',
-  'baggage_claim':'\ud83d\udec4',
-  'baguette_bread':'\ud83e\udd56',
-  'balance_scale':'\u2696\ufe0f',
-  'balloon':'\ud83c\udf88',
-  'ballot_box':'\ud83d\uddf3',
-  'ballot_box_with_check':'\u2611\ufe0f',
-  'bamboo':'\ud83c\udf8d',
-  'banana':'\ud83c\udf4c',
-  'bangbang':'\u203c\ufe0f',
-  'bank':'\ud83c\udfe6',
-  'bar_chart':'\ud83d\udcca',
-  'barber':'\ud83d\udc88',
-  'baseball':'\u26be\ufe0f',
-  'basketball':'\ud83c\udfc0',
-  'basketball_man':'\u26f9\ufe0f',
-  'basketball_woman':'\u26f9\ufe0f&zwj;\u2640\ufe0f',
-  'bat':'\ud83e\udd87',
-  'bath':'\ud83d\udec0',
-  'bathtub':'\ud83d\udec1',
-  'battery':'\ud83d\udd0b',
-  'beach_umbrella':'\ud83c\udfd6',
-  'bear':'\ud83d\udc3b',
-  'bed':'\ud83d\udecf',
-  'bee':'\ud83d\udc1d',
-  'beer':'\ud83c\udf7a',
-  'beers':'\ud83c\udf7b',
-  'beetle':'\ud83d\udc1e',
-  'beginner':'\ud83d\udd30',
-  'bell':'\ud83d\udd14',
-  'bellhop_bell':'\ud83d\udece',
-  'bento':'\ud83c\udf71',
-  'biking_man':'\ud83d\udeb4',
-  'bike':'\ud83d\udeb2',
-  'biking_woman':'\ud83d\udeb4&zwj;\u2640\ufe0f',
-  'bikini':'\ud83d\udc59',
-  'biohazard':'\u2623\ufe0f',
-  'bird':'\ud83d\udc26',
-  'birthday':'\ud83c\udf82',
-  'black_circle':'\u26ab\ufe0f',
-  'black_flag':'\ud83c\udff4',
-  'black_heart':'\ud83d\udda4',
-  'black_joker':'\ud83c\udccf',
-  'black_large_square':'\u2b1b\ufe0f',
-  'black_medium_small_square':'\u25fe\ufe0f',
-  'black_medium_square':'\u25fc\ufe0f',
-  'black_nib':'\u2712\ufe0f',
-  'black_small_square':'\u25aa\ufe0f',
-  'black_square_button':'\ud83d\udd32',
-  'blonde_man':'\ud83d\udc71',
-  'blonde_woman':'\ud83d\udc71&zwj;\u2640\ufe0f',
-  'blossom':'\ud83c\udf3c',
-  'blowfish':'\ud83d\udc21',
-  'blue_book':'\ud83d\udcd8',
-  'blue_car':'\ud83d\ude99',
-  'blue_heart':'\ud83d\udc99',
-  'blush':'\ud83d\ude0a',
-  'boar':'\ud83d\udc17',
-  'boat':'\u26f5\ufe0f',
-  'bomb':'\ud83d\udca3',
-  'book':'\ud83d\udcd6',
-  'bookmark':'\ud83d\udd16',
-  'bookmark_tabs':'\ud83d\udcd1',
-  'books':'\ud83d\udcda',
-  'boom':'\ud83d\udca5',
-  'boot':'\ud83d\udc62',
-  'bouquet':'\ud83d\udc90',
-  'bowing_man':'\ud83d\ude47',
-  'bow_and_arrow':'\ud83c\udff9',
-  'bowing_woman':'\ud83d\ude47&zwj;\u2640\ufe0f',
-  'bowling':'\ud83c\udfb3',
-  'boxing_glove':'\ud83e\udd4a',
-  'boy':'\ud83d\udc66',
-  'bread':'\ud83c\udf5e',
-  'bride_with_veil':'\ud83d\udc70',
-  'bridge_at_night':'\ud83c\udf09',
-  'briefcase':'\ud83d\udcbc',
-  'broken_heart':'\ud83d\udc94',
-  'bug':'\ud83d\udc1b',
-  'building_construction':'\ud83c\udfd7',
-  'bulb':'\ud83d\udca1',
-  'bullettrain_front':'\ud83d\ude85',
-  'bullettrain_side':'\ud83d\ude84',
-  'burrito':'\ud83c\udf2f',
-  'bus':'\ud83d\ude8c',
-  'business_suit_levitating':'\ud83d\udd74',
-  'busstop':'\ud83d\ude8f',
-  'bust_in_silhouette':'\ud83d\udc64',
-  'busts_in_silhouette':'\ud83d\udc65',
-  'butterfly':'\ud83e\udd8b',
-  'cactus':'\ud83c\udf35',
-  'cake':'\ud83c\udf70',
-  'calendar':'\ud83d\udcc6',
-  'call_me_hand':'\ud83e\udd19',
-  'calling':'\ud83d\udcf2',
-  'camel':'\ud83d\udc2b',
-  'camera':'\ud83d\udcf7',
-  'camera_flash':'\ud83d\udcf8',
-  'camping':'\ud83c\udfd5',
-  'cancer':'\u264b\ufe0f',
-  'candle':'\ud83d\udd6f',
-  'candy':'\ud83c\udf6c',
-  'canoe':'\ud83d\udef6',
-  'capital_abcd':'\ud83d\udd20',
-  'capricorn':'\u2651\ufe0f',
-  'car':'\ud83d\ude97',
-  'card_file_box':'\ud83d\uddc3',
-  'card_index':'\ud83d\udcc7',
-  'card_index_dividers':'\ud83d\uddc2',
-  'carousel_horse':'\ud83c\udfa0',
-  'carrot':'\ud83e\udd55',
-  'cat':'\ud83d\udc31',
-  'cat2':'\ud83d\udc08',
-  'cd':'\ud83d\udcbf',
-  'chains':'\u26d3',
-  'champagne':'\ud83c\udf7e',
-  'chart':'\ud83d\udcb9',
-  'chart_with_downwards_trend':'\ud83d\udcc9',
-  'chart_with_upwards_trend':'\ud83d\udcc8',
-  'checkered_flag':'\ud83c\udfc1',
-  'cheese':'\ud83e\uddc0',
-  'cherries':'\ud83c\udf52',
-  'cherry_blossom':'\ud83c\udf38',
-  'chestnut':'\ud83c\udf30',
-  'chicken':'\ud83d\udc14',
-  'children_crossing':'\ud83d\udeb8',
-  'chipmunk':'\ud83d\udc3f',
-  'chocolate_bar':'\ud83c\udf6b',
-  'christmas_tree':'\ud83c\udf84',
-  'church':'\u26ea\ufe0f',
-  'cinema':'\ud83c\udfa6',
-  'circus_tent':'\ud83c\udfaa',
-  'city_sunrise':'\ud83c\udf07',
-  'city_sunset':'\ud83c\udf06',
-  'cityscape':'\ud83c\udfd9',
-  'cl':'\ud83c\udd91',
-  'clamp':'\ud83d\udddc',
-  'clap':'\ud83d\udc4f',
-  'clapper':'\ud83c\udfac',
-  'classical_building':'\ud83c\udfdb',
-  'clinking_glasses':'\ud83e\udd42',
-  'clipboard':'\ud83d\udccb',
-  'clock1':'\ud83d\udd50',
-  'clock10':'\ud83d\udd59',
-  'clock1030':'\ud83d\udd65',
-  'clock11':'\ud83d\udd5a',
-  'clock1130':'\ud83d\udd66',
-  'clock12':'\ud83d\udd5b',
-  'clock1230':'\ud83d\udd67',
-  'clock130':'\ud83d\udd5c',
-  'clock2':'\ud83d\udd51',
-  'clock230':'\ud83d\udd5d',
-  'clock3':'\ud83d\udd52',
-  'clock330':'\ud83d\udd5e',
-  'clock4':'\ud83d\udd53',
-  'clock430':'\ud83d\udd5f',
-  'clock5':'\ud83d\udd54',
-  'clock530':'\ud83d\udd60',
-  'clock6':'\ud83d\udd55',
-  'clock630':'\ud83d\udd61',
-  'clock7':'\ud83d\udd56',
-  'clock730':'\ud83d\udd62',
-  'clock8':'\ud83d\udd57',
-  'clock830':'\ud83d\udd63',
-  'clock9':'\ud83d\udd58',
-  'clock930':'\ud83d\udd64',
-  'closed_book':'\ud83d\udcd5',
-  'closed_lock_with_key':'\ud83d\udd10',
-  'closed_umbrella':'\ud83c\udf02',
-  'cloud':'\u2601\ufe0f',
-  'cloud_with_lightning':'\ud83c\udf29',
-  'cloud_with_lightning_and_rain':'\u26c8',
-  'cloud_with_rain':'\ud83c\udf27',
-  'cloud_with_snow':'\ud83c\udf28',
-  'clown_face':'\ud83e\udd21',
-  'clubs':'\u2663\ufe0f',
-  'cocktail':'\ud83c\udf78',
-  'coffee':'\u2615\ufe0f',
-  'coffin':'\u26b0\ufe0f',
-  'cold_sweat':'\ud83d\ude30',
-  'comet':'\u2604\ufe0f',
-  'computer':'\ud83d\udcbb',
-  'computer_mouse':'\ud83d\uddb1',
-  'confetti_ball':'\ud83c\udf8a',
-  'confounded':'\ud83d\ude16',
-  'confused':'\ud83d\ude15',
-  'congratulations':'\u3297\ufe0f',
-  'construction':'\ud83d\udea7',
-  'construction_worker_man':'\ud83d\udc77',
-  'construction_worker_woman':'\ud83d\udc77&zwj;\u2640\ufe0f',
-  'control_knobs':'\ud83c\udf9b',
-  'convenience_store':'\ud83c\udfea',
-  'cookie':'\ud83c\udf6a',
-  'cool':'\ud83c\udd92',
-  'policeman':'\ud83d\udc6e',
-  'copyright':'\u00a9\ufe0f',
-  'corn':'\ud83c\udf3d',
-  'couch_and_lamp':'\ud83d\udecb',
-  'couple':'\ud83d\udc6b',
-  'couple_with_heart_woman_man':'\ud83d\udc91',
-  'couple_with_heart_man_man':'\ud83d\udc68&zwj;\u2764\ufe0f&zwj;\ud83d\udc68',
-  'couple_with_heart_woman_woman':'\ud83d\udc69&zwj;\u2764\ufe0f&zwj;\ud83d\udc69',
-  'couplekiss_man_man':'\ud83d\udc68&zwj;\u2764\ufe0f&zwj;\ud83d\udc8b&zwj;\ud83d\udc68',
-  'couplekiss_man_woman':'\ud83d\udc8f',
-  'couplekiss_woman_woman':'\ud83d\udc69&zwj;\u2764\ufe0f&zwj;\ud83d\udc8b&zwj;\ud83d\udc69',
-  'cow':'\ud83d\udc2e',
-  'cow2':'\ud83d\udc04',
-  'cowboy_hat_face':'\ud83e\udd20',
-  'crab':'\ud83e\udd80',
-  'crayon':'\ud83d\udd8d',
-  'credit_card':'\ud83d\udcb3',
-  'crescent_moon':'\ud83c\udf19',
-  'cricket':'\ud83c\udfcf',
-  'crocodile':'\ud83d\udc0a',
-  'croissant':'\ud83e\udd50',
-  'crossed_fingers':'\ud83e\udd1e',
-  'crossed_flags':'\ud83c\udf8c',
-  'crossed_swords':'\u2694\ufe0f',
-  'crown':'\ud83d\udc51',
-  'cry':'\ud83d\ude22',
-  'crying_cat_face':'\ud83d\ude3f',
-  'crystal_ball':'\ud83d\udd2e',
-  'cucumber':'\ud83e\udd52',
-  'cupid':'\ud83d\udc98',
-  'curly_loop':'\u27b0',
-  'currency_exchange':'\ud83d\udcb1',
-  'curry':'\ud83c\udf5b',
-  'custard':'\ud83c\udf6e',
-  'customs':'\ud83d\udec3',
-  'cyclone':'\ud83c\udf00',
-  'dagger':'\ud83d\udde1',
-  'dancer':'\ud83d\udc83',
-  'dancing_women':'\ud83d\udc6f',
-  'dancing_men':'\ud83d\udc6f&zwj;\u2642\ufe0f',
-  'dango':'\ud83c\udf61',
-  'dark_sunglasses':'\ud83d\udd76',
-  'dart':'\ud83c\udfaf',
-  'dash':'\ud83d\udca8',
-  'date':'\ud83d\udcc5',
-  'deciduous_tree':'\ud83c\udf33',
-  'deer':'\ud83e\udd8c',
-  'department_store':'\ud83c\udfec',
-  'derelict_house':'\ud83c\udfda',
-  'desert':'\ud83c\udfdc',
-  'desert_island':'\ud83c\udfdd',
-  'desktop_computer':'\ud83d\udda5',
-  'male_detective':'\ud83d\udd75\ufe0f',
-  'diamond_shape_with_a_dot_inside':'\ud83d\udca0',
-  'diamonds':'\u2666\ufe0f',
-  'disappointed':'\ud83d\ude1e',
-  'disappointed_relieved':'\ud83d\ude25',
-  'dizzy':'\ud83d\udcab',
-  'dizzy_face':'\ud83d\ude35',
-  'do_not_litter':'\ud83d\udeaf',
-  'dog':'\ud83d\udc36',
-  'dog2':'\ud83d\udc15',
-  'dollar':'\ud83d\udcb5',
-  'dolls':'\ud83c\udf8e',
-  'dolphin':'\ud83d\udc2c',
-  'door':'\ud83d\udeaa',
-  'doughnut':'\ud83c\udf69',
-  'dove':'\ud83d\udd4a',
-  'dragon':'\ud83d\udc09',
-  'dragon_face':'\ud83d\udc32',
-  'dress':'\ud83d\udc57',
-  'dromedary_camel':'\ud83d\udc2a',
-  'drooling_face':'\ud83e\udd24',
-  'droplet':'\ud83d\udca7',
-  'drum':'\ud83e\udd41',
-  'duck':'\ud83e\udd86',
-  'dvd':'\ud83d\udcc0',
-  'e-mail':'\ud83d\udce7',
-  'eagle':'\ud83e\udd85',
-  'ear':'\ud83d\udc42',
-  'ear_of_rice':'\ud83c\udf3e',
-  'earth_africa':'\ud83c\udf0d',
-  'earth_americas':'\ud83c\udf0e',
-  'earth_asia':'\ud83c\udf0f',
-  'egg':'\ud83e\udd5a',
-  'eggplant':'\ud83c\udf46',
-  'eight_pointed_black_star':'\u2734\ufe0f',
-  'eight_spoked_asterisk':'\u2733\ufe0f',
-  'electric_plug':'\ud83d\udd0c',
-  'elephant':'\ud83d\udc18',
-  'email':'\u2709\ufe0f',
-  'end':'\ud83d\udd1a',
-  'envelope_with_arrow':'\ud83d\udce9',
-  'euro':'\ud83d\udcb6',
-  'european_castle':'\ud83c\udff0',
-  'european_post_office':'\ud83c\udfe4',
-  'evergreen_tree':'\ud83c\udf32',
-  'exclamation':'\u2757\ufe0f',
-  'expressionless':'\ud83d\ude11',
-  'eye':'\ud83d\udc41',
-  'eye_speech_bubble':'\ud83d\udc41&zwj;\ud83d\udde8',
-  'eyeglasses':'\ud83d\udc53',
-  'eyes':'\ud83d\udc40',
-  'face_with_head_bandage':'\ud83e\udd15',
-  'face_with_thermometer':'\ud83e\udd12',
-  'fist_oncoming':'\ud83d\udc4a',
-  'factory':'\ud83c\udfed',
-  'fallen_leaf':'\ud83c\udf42',
-  'family_man_woman_boy':'\ud83d\udc6a',
-  'family_man_boy':'\ud83d\udc68&zwj;\ud83d\udc66',
-  'family_man_boy_boy':'\ud83d\udc68&zwj;\ud83d\udc66&zwj;\ud83d\udc66',
-  'family_man_girl':'\ud83d\udc68&zwj;\ud83d\udc67',
-  'family_man_girl_boy':'\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc66',
-  'family_man_girl_girl':'\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc67',
-  'family_man_man_boy':'\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc66',
-  'family_man_man_boy_boy':'\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc66&zwj;\ud83d\udc66',
-  'family_man_man_girl':'\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc67',
-  'family_man_man_girl_boy':'\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc66',
-  'family_man_man_girl_girl':'\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc67',
-  'family_man_woman_boy_boy':'\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc66&zwj;\ud83d\udc66',
-  'family_man_woman_girl':'\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc67',
-  'family_man_woman_girl_boy':'\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc66',
-  'family_man_woman_girl_girl':'\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc67',
-  'family_woman_boy':'\ud83d\udc69&zwj;\ud83d\udc66',
-  'family_woman_boy_boy':'\ud83d\udc69&zwj;\ud83d\udc66&zwj;\ud83d\udc66',
-  'family_woman_girl':'\ud83d\udc69&zwj;\ud83d\udc67',
-  'family_woman_girl_boy':'\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc66',
-  'family_woman_girl_girl':'\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc67',
-  'family_woman_woman_boy':'\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc66',
-  'family_woman_woman_boy_boy':'\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc66&zwj;\ud83d\udc66',
-  'family_woman_woman_girl':'\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc67',
-  'family_woman_woman_girl_boy':'\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc66',
-  'family_woman_woman_girl_girl':'\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc67',
-  'fast_forward':'\u23e9',
-  'fax':'\ud83d\udce0',
-  'fearful':'\ud83d\ude28',
-  'feet':'\ud83d\udc3e',
-  'female_detective':'\ud83d\udd75\ufe0f&zwj;\u2640\ufe0f',
-  'ferris_wheel':'\ud83c\udfa1',
-  'ferry':'\u26f4',
-  'field_hockey':'\ud83c\udfd1',
-  'file_cabinet':'\ud83d\uddc4',
-  'file_folder':'\ud83d\udcc1',
-  'film_projector':'\ud83d\udcfd',
-  'film_strip':'\ud83c\udf9e',
-  'fire':'\ud83d\udd25',
-  'fire_engine':'\ud83d\ude92',
-  'fireworks':'\ud83c\udf86',
-  'first_quarter_moon':'\ud83c\udf13',
-  'first_quarter_moon_with_face':'\ud83c\udf1b',
-  'fish':'\ud83d\udc1f',
-  'fish_cake':'\ud83c\udf65',
-  'fishing_pole_and_fish':'\ud83c\udfa3',
-  'fist_raised':'\u270a',
-  'fist_left':'\ud83e\udd1b',
-  'fist_right':'\ud83e\udd1c',
-  'flags':'\ud83c\udf8f',
-  'flashlight':'\ud83d\udd26',
-  'fleur_de_lis':'\u269c\ufe0f',
-  'flight_arrival':'\ud83d\udeec',
-  'flight_departure':'\ud83d\udeeb',
-  'floppy_disk':'\ud83d\udcbe',
-  'flower_playing_cards':'\ud83c\udfb4',
-  'flushed':'\ud83d\ude33',
-  'fog':'\ud83c\udf2b',
-  'foggy':'\ud83c\udf01',
-  'football':'\ud83c\udfc8',
-  'footprints':'\ud83d\udc63',
-  'fork_and_knife':'\ud83c\udf74',
-  'fountain':'\u26f2\ufe0f',
-  'fountain_pen':'\ud83d\udd8b',
-  'four_leaf_clover':'\ud83c\udf40',
-  'fox_face':'\ud83e\udd8a',
-  'framed_picture':'\ud83d\uddbc',
-  'free':'\ud83c\udd93',
-  'fried_egg':'\ud83c\udf73',
-  'fried_shrimp':'\ud83c\udf64',
-  'fries':'\ud83c\udf5f',
-  'frog':'\ud83d\udc38',
-  'frowning':'\ud83d\ude26',
-  'frowning_face':'\u2639\ufe0f',
-  'frowning_man':'\ud83d\ude4d&zwj;\u2642\ufe0f',
-  'frowning_woman':'\ud83d\ude4d',
-  'middle_finger':'\ud83d\udd95',
-  'fuelpump':'\u26fd\ufe0f',
-  'full_moon':'\ud83c\udf15',
-  'full_moon_with_face':'\ud83c\udf1d',
-  'funeral_urn':'\u26b1\ufe0f',
-  'game_die':'\ud83c\udfb2',
-  'gear':'\u2699\ufe0f',
-  'gem':'\ud83d\udc8e',
-  'gemini':'\u264a\ufe0f',
-  'ghost':'\ud83d\udc7b',
-  'gift':'\ud83c\udf81',
-  'gift_heart':'\ud83d\udc9d',
-  'girl':'\ud83d\udc67',
-  'globe_with_meridians':'\ud83c\udf10',
-  'goal_net':'\ud83e\udd45',
-  'goat':'\ud83d\udc10',
-  'golf':'\u26f3\ufe0f',
-  'golfing_man':'\ud83c\udfcc\ufe0f',
-  'golfing_woman':'\ud83c\udfcc\ufe0f&zwj;\u2640\ufe0f',
-  'gorilla':'\ud83e\udd8d',
-  'grapes':'\ud83c\udf47',
-  'green_apple':'\ud83c\udf4f',
-  'green_book':'\ud83d\udcd7',
-  'green_heart':'\ud83d\udc9a',
-  'green_salad':'\ud83e\udd57',
-  'grey_exclamation':'\u2755',
-  'grey_question':'\u2754',
-  'grimacing':'\ud83d\ude2c',
-  'grin':'\ud83d\ude01',
-  'grinning':'\ud83d\ude00',
-  'guardsman':'\ud83d\udc82',
-  'guardswoman':'\ud83d\udc82&zwj;\u2640\ufe0f',
-  'guitar':'\ud83c\udfb8',
-  'gun':'\ud83d\udd2b',
-  'haircut_woman':'\ud83d\udc87',
-  'haircut_man':'\ud83d\udc87&zwj;\u2642\ufe0f',
-  'hamburger':'\ud83c\udf54',
-  'hammer':'\ud83d\udd28',
-  'hammer_and_pick':'\u2692',
-  'hammer_and_wrench':'\ud83d\udee0',
-  'hamster':'\ud83d\udc39',
-  'hand':'\u270b',
-  'handbag':'\ud83d\udc5c',
-  'handshake':'\ud83e\udd1d',
-  'hankey':'\ud83d\udca9',
-  'hatched_chick':'\ud83d\udc25',
-  'hatching_chick':'\ud83d\udc23',
-  'headphones':'\ud83c\udfa7',
-  'hear_no_evil':'\ud83d\ude49',
-  'heart':'\u2764\ufe0f',
-  'heart_decoration':'\ud83d\udc9f',
-  'heart_eyes':'\ud83d\ude0d',
-  'heart_eyes_cat':'\ud83d\ude3b',
-  'heartbeat':'\ud83d\udc93',
-  'heartpulse':'\ud83d\udc97',
-  'hearts':'\u2665\ufe0f',
-  'heavy_check_mark':'\u2714\ufe0f',
-  'heavy_division_sign':'\u2797',
-  'heavy_dollar_sign':'\ud83d\udcb2',
-  'heavy_heart_exclamation':'\u2763\ufe0f',
-  'heavy_minus_sign':'\u2796',
-  'heavy_multiplication_x':'\u2716\ufe0f',
-  'heavy_plus_sign':'\u2795',
-  'helicopter':'\ud83d\ude81',
-  'herb':'\ud83c\udf3f',
-  'hibiscus':'\ud83c\udf3a',
-  'high_brightness':'\ud83d\udd06',
-  'high_heel':'\ud83d\udc60',
-  'hocho':'\ud83d\udd2a',
-  'hole':'\ud83d\udd73',
-  'honey_pot':'\ud83c\udf6f',
-  'horse':'\ud83d\udc34',
-  'horse_racing':'\ud83c\udfc7',
-  'hospital':'\ud83c\udfe5',
-  'hot_pepper':'\ud83c\udf36',
-  'hotdog':'\ud83c\udf2d',
-  'hotel':'\ud83c\udfe8',
-  'hotsprings':'\u2668\ufe0f',
-  'hourglass':'\u231b\ufe0f',
-  'hourglass_flowing_sand':'\u23f3',
-  'house':'\ud83c\udfe0',
-  'house_with_garden':'\ud83c\udfe1',
-  'houses':'\ud83c\udfd8',
-  'hugs':'\ud83e\udd17',
-  'hushed':'\ud83d\ude2f',
-  'ice_cream':'\ud83c\udf68',
-  'ice_hockey':'\ud83c\udfd2',
-  'ice_skate':'\u26f8',
-  'icecream':'\ud83c\udf66',
-  'id':'\ud83c\udd94',
-  'ideograph_advantage':'\ud83c\ude50',
-  'imp':'\ud83d\udc7f',
-  'inbox_tray':'\ud83d\udce5',
-  'incoming_envelope':'\ud83d\udce8',
-  'tipping_hand_woman':'\ud83d\udc81',
-  'information_source':'\u2139\ufe0f',
-  'innocent':'\ud83d\ude07',
-  'interrobang':'\u2049\ufe0f',
-  'iphone':'\ud83d\udcf1',
-  'izakaya_lantern':'\ud83c\udfee',
-  'jack_o_lantern':'\ud83c\udf83',
-  'japan':'\ud83d\uddfe',
-  'japanese_castle':'\ud83c\udfef',
-  'japanese_goblin':'\ud83d\udc7a',
-  'japanese_ogre':'\ud83d\udc79',
-  'jeans':'\ud83d\udc56',
-  'joy':'\ud83d\ude02',
-  'joy_cat':'\ud83d\ude39',
-  'joystick':'\ud83d\udd79',
-  'kaaba':'\ud83d\udd4b',
-  'key':'\ud83d\udd11',
-  'keyboard':'\u2328\ufe0f',
-  'keycap_ten':'\ud83d\udd1f',
-  'kick_scooter':'\ud83d\udef4',
-  'kimono':'\ud83d\udc58',
-  'kiss':'\ud83d\udc8b',
-  'kissing':'\ud83d\ude17',
-  'kissing_cat':'\ud83d\ude3d',
-  'kissing_closed_eyes':'\ud83d\ude1a',
-  'kissing_heart':'\ud83d\ude18',
-  'kissing_smiling_eyes':'\ud83d\ude19',
-  'kiwi_fruit':'\ud83e\udd5d',
-  'koala':'\ud83d\udc28',
-  'koko':'\ud83c\ude01',
-  'label':'\ud83c\udff7',
-  'large_blue_circle':'\ud83d\udd35',
-  'large_blue_diamond':'\ud83d\udd37',
-  'large_orange_diamond':'\ud83d\udd36',
-  'last_quarter_moon':'\ud83c\udf17',
-  'last_quarter_moon_with_face':'\ud83c\udf1c',
-  'latin_cross':'\u271d\ufe0f',
-  'laughing':'\ud83d\ude06',
-  'leaves':'\ud83c\udf43',
-  'ledger':'\ud83d\udcd2',
-  'left_luggage':'\ud83d\udec5',
-  'left_right_arrow':'\u2194\ufe0f',
-  'leftwards_arrow_with_hook':'\u21a9\ufe0f',
-  'lemon':'\ud83c\udf4b',
-  'leo':'\u264c\ufe0f',
-  'leopard':'\ud83d\udc06',
-  'level_slider':'\ud83c\udf9a',
-  'libra':'\u264e\ufe0f',
-  'light_rail':'\ud83d\ude88',
-  'link':'\ud83d\udd17',
-  'lion':'\ud83e\udd81',
-  'lips':'\ud83d\udc44',
-  'lipstick':'\ud83d\udc84',
-  'lizard':'\ud83e\udd8e',
-  'lock':'\ud83d\udd12',
-  'lock_with_ink_pen':'\ud83d\udd0f',
-  'lollipop':'\ud83c\udf6d',
-  'loop':'\u27bf',
-  'loud_sound':'\ud83d\udd0a',
-  'loudspeaker':'\ud83d\udce2',
-  'love_hotel':'\ud83c\udfe9',
-  'love_letter':'\ud83d\udc8c',
-  'low_brightness':'\ud83d\udd05',
-  'lying_face':'\ud83e\udd25',
-  'm':'\u24c2\ufe0f',
-  'mag':'\ud83d\udd0d',
-  'mag_right':'\ud83d\udd0e',
-  'mahjong':'\ud83c\udc04\ufe0f',
-  'mailbox':'\ud83d\udceb',
-  'mailbox_closed':'\ud83d\udcea',
-  'mailbox_with_mail':'\ud83d\udcec',
-  'mailbox_with_no_mail':'\ud83d\udced',
-  'man':'\ud83d\udc68',
-  'man_artist':'\ud83d\udc68&zwj;\ud83c\udfa8',
-  'man_astronaut':'\ud83d\udc68&zwj;\ud83d\ude80',
-  'man_cartwheeling':'\ud83e\udd38&zwj;\u2642\ufe0f',
-  'man_cook':'\ud83d\udc68&zwj;\ud83c\udf73',
-  'man_dancing':'\ud83d\udd7a',
-  'man_facepalming':'\ud83e\udd26&zwj;\u2642\ufe0f',
-  'man_factory_worker':'\ud83d\udc68&zwj;\ud83c\udfed',
-  'man_farmer':'\ud83d\udc68&zwj;\ud83c\udf3e',
-  'man_firefighter':'\ud83d\udc68&zwj;\ud83d\ude92',
-  'man_health_worker':'\ud83d\udc68&zwj;\u2695\ufe0f',
-  'man_in_tuxedo':'\ud83e\udd35',
-  'man_judge':'\ud83d\udc68&zwj;\u2696\ufe0f',
-  'man_juggling':'\ud83e\udd39&zwj;\u2642\ufe0f',
-  'man_mechanic':'\ud83d\udc68&zwj;\ud83d\udd27',
-  'man_office_worker':'\ud83d\udc68&zwj;\ud83d\udcbc',
-  'man_pilot':'\ud83d\udc68&zwj;\u2708\ufe0f',
-  'man_playing_handball':'\ud83e\udd3e&zwj;\u2642\ufe0f',
-  'man_playing_water_polo':'\ud83e\udd3d&zwj;\u2642\ufe0f',
-  'man_scientist':'\ud83d\udc68&zwj;\ud83d\udd2c',
-  'man_shrugging':'\ud83e\udd37&zwj;\u2642\ufe0f',
-  'man_singer':'\ud83d\udc68&zwj;\ud83c\udfa4',
-  'man_student':'\ud83d\udc68&zwj;\ud83c\udf93',
-  'man_teacher':'\ud83d\udc68&zwj;\ud83c\udfeb',
-  'man_technologist':'\ud83d\udc68&zwj;\ud83d\udcbb',
-  'man_with_gua_pi_mao':'\ud83d\udc72',
-  'man_with_turban':'\ud83d\udc73',
-  'tangerine':'\ud83c\udf4a',
-  'mans_shoe':'\ud83d\udc5e',
-  'mantelpiece_clock':'\ud83d\udd70',
-  'maple_leaf':'\ud83c\udf41',
-  'martial_arts_uniform':'\ud83e\udd4b',
-  'mask':'\ud83d\ude37',
-  'massage_woman':'\ud83d\udc86',
-  'massage_man':'\ud83d\udc86&zwj;\u2642\ufe0f',
-  'meat_on_bone':'\ud83c\udf56',
-  'medal_military':'\ud83c\udf96',
-  'medal_sports':'\ud83c\udfc5',
-  'mega':'\ud83d\udce3',
-  'melon':'\ud83c\udf48',
-  'memo':'\ud83d\udcdd',
-  'men_wrestling':'\ud83e\udd3c&zwj;\u2642\ufe0f',
-  'menorah':'\ud83d\udd4e',
-  'mens':'\ud83d\udeb9',
-  'metal':'\ud83e\udd18',
-  'metro':'\ud83d\ude87',
-  'microphone':'\ud83c\udfa4',
-  'microscope':'\ud83d\udd2c',
-  'milk_glass':'\ud83e\udd5b',
-  'milky_way':'\ud83c\udf0c',
-  'minibus':'\ud83d\ude90',
-  'minidisc':'\ud83d\udcbd',
-  'mobile_phone_off':'\ud83d\udcf4',
-  'money_mouth_face':'\ud83e\udd11',
-  'money_with_wings':'\ud83d\udcb8',
-  'moneybag':'\ud83d\udcb0',
-  'monkey':'\ud83d\udc12',
-  'monkey_face':'\ud83d\udc35',
-  'monorail':'\ud83d\ude9d',
-  'moon':'\ud83c\udf14',
-  'mortar_board':'\ud83c\udf93',
-  'mosque':'\ud83d\udd4c',
-  'motor_boat':'\ud83d\udee5',
-  'motor_scooter':'\ud83d\udef5',
-  'motorcycle':'\ud83c\udfcd',
-  'motorway':'\ud83d\udee3',
-  'mount_fuji':'\ud83d\uddfb',
-  'mountain':'\u26f0',
-  'mountain_biking_man':'\ud83d\udeb5',
-  'mountain_biking_woman':'\ud83d\udeb5&zwj;\u2640\ufe0f',
-  'mountain_cableway':'\ud83d\udea0',
-  'mountain_railway':'\ud83d\ude9e',
-  'mountain_snow':'\ud83c\udfd4',
-  'mouse':'\ud83d\udc2d',
-  'mouse2':'\ud83d\udc01',
-  'movie_camera':'\ud83c\udfa5',
-  'moyai':'\ud83d\uddff',
-  'mrs_claus':'\ud83e\udd36',
-  'muscle':'\ud83d\udcaa',
-  'mushroom':'\ud83c\udf44',
-  'musical_keyboard':'\ud83c\udfb9',
-  'musical_note':'\ud83c\udfb5',
-  'musical_score':'\ud83c\udfbc',
-  'mute':'\ud83d\udd07',
-  'nail_care':'\ud83d\udc85',
-  'name_badge':'\ud83d\udcdb',
-  'national_park':'\ud83c\udfde',
-  'nauseated_face':'\ud83e\udd22',
-  'necktie':'\ud83d\udc54',
-  'negative_squared_cross_mark':'\u274e',
-  'nerd_face':'\ud83e\udd13',
-  'neutral_face':'\ud83d\ude10',
-  'new':'\ud83c\udd95',
-  'new_moon':'\ud83c\udf11',
-  'new_moon_with_face':'\ud83c\udf1a',
-  'newspaper':'\ud83d\udcf0',
-  'newspaper_roll':'\ud83d\uddde',
-  'next_track_button':'\u23ed',
-  'ng':'\ud83c\udd96',
-  'no_good_man':'\ud83d\ude45&zwj;\u2642\ufe0f',
-  'no_good_woman':'\ud83d\ude45',
-  'night_with_stars':'\ud83c\udf03',
-  'no_bell':'\ud83d\udd15',
-  'no_bicycles':'\ud83d\udeb3',
-  'no_entry':'\u26d4\ufe0f',
-  'no_entry_sign':'\ud83d\udeab',
-  'no_mobile_phones':'\ud83d\udcf5',
-  'no_mouth':'\ud83d\ude36',
-  'no_pedestrians':'\ud83d\udeb7',
-  'no_smoking':'\ud83d\udead',
-  'non-potable_water':'\ud83d\udeb1',
-  'nose':'\ud83d\udc43',
-  'notebook':'\ud83d\udcd3',
-  'notebook_with_decorative_cover':'\ud83d\udcd4',
-  'notes':'\ud83c\udfb6',
-  'nut_and_bolt':'\ud83d\udd29',
-  'o':'\u2b55\ufe0f',
-  'o2':'\ud83c\udd7e\ufe0f',
-  'ocean':'\ud83c\udf0a',
-  'octopus':'\ud83d\udc19',
-  'oden':'\ud83c\udf62',
-  'office':'\ud83c\udfe2',
-  'oil_drum':'\ud83d\udee2',
-  'ok':'\ud83c\udd97',
-  'ok_hand':'\ud83d\udc4c',
-  'ok_man':'\ud83d\ude46&zwj;\u2642\ufe0f',
-  'ok_woman':'\ud83d\ude46',
-  'old_key':'\ud83d\udddd',
-  'older_man':'\ud83d\udc74',
-  'older_woman':'\ud83d\udc75',
-  'om':'\ud83d\udd49',
-  'on':'\ud83d\udd1b',
-  'oncoming_automobile':'\ud83d\ude98',
-  'oncoming_bus':'\ud83d\ude8d',
-  'oncoming_police_car':'\ud83d\ude94',
-  'oncoming_taxi':'\ud83d\ude96',
-  'open_file_folder':'\ud83d\udcc2',
-  'open_hands':'\ud83d\udc50',
-  'open_mouth':'\ud83d\ude2e',
-  'open_umbrella':'\u2602\ufe0f',
-  'ophiuchus':'\u26ce',
-  'orange_book':'\ud83d\udcd9',
-  'orthodox_cross':'\u2626\ufe0f',
-  'outbox_tray':'\ud83d\udce4',
-  'owl':'\ud83e\udd89',
-  'ox':'\ud83d\udc02',
-  'package':'\ud83d\udce6',
-  'page_facing_up':'\ud83d\udcc4',
-  'page_with_curl':'\ud83d\udcc3',
-  'pager':'\ud83d\udcdf',
-  'paintbrush':'\ud83d\udd8c',
-  'palm_tree':'\ud83c\udf34',
-  'pancakes':'\ud83e\udd5e',
-  'panda_face':'\ud83d\udc3c',
-  'paperclip':'\ud83d\udcce',
-  'paperclips':'\ud83d\udd87',
-  'parasol_on_ground':'\u26f1',
-  'parking':'\ud83c\udd7f\ufe0f',
-  'part_alternation_mark':'\u303d\ufe0f',
-  'partly_sunny':'\u26c5\ufe0f',
-  'passenger_ship':'\ud83d\udef3',
-  'passport_control':'\ud83d\udec2',
-  'pause_button':'\u23f8',
-  'peace_symbol':'\u262e\ufe0f',
-  'peach':'\ud83c\udf51',
-  'peanuts':'\ud83e\udd5c',
-  'pear':'\ud83c\udf50',
-  'pen':'\ud83d\udd8a',
-  'pencil2':'\u270f\ufe0f',
-  'penguin':'\ud83d\udc27',
-  'pensive':'\ud83d\ude14',
-  'performing_arts':'\ud83c\udfad',
-  'persevere':'\ud83d\ude23',
-  'person_fencing':'\ud83e\udd3a',
-  'pouting_woman':'\ud83d\ude4e',
-  'phone':'\u260e\ufe0f',
-  'pick':'\u26cf',
-  'pig':'\ud83d\udc37',
-  'pig2':'\ud83d\udc16',
-  'pig_nose':'\ud83d\udc3d',
-  'pill':'\ud83d\udc8a',
-  'pineapple':'\ud83c\udf4d',
-  'ping_pong':'\ud83c\udfd3',
-  'pisces':'\u2653\ufe0f',
-  'pizza':'\ud83c\udf55',
-  'place_of_worship':'\ud83d\uded0',
-  'plate_with_cutlery':'\ud83c\udf7d',
-  'play_or_pause_button':'\u23ef',
-  'point_down':'\ud83d\udc47',
-  'point_left':'\ud83d\udc48',
-  'point_right':'\ud83d\udc49',
-  'point_up':'\u261d\ufe0f',
-  'point_up_2':'\ud83d\udc46',
-  'police_car':'\ud83d\ude93',
-  'policewoman':'\ud83d\udc6e&zwj;\u2640\ufe0f',
-  'poodle':'\ud83d\udc29',
-  'popcorn':'\ud83c\udf7f',
-  'post_office':'\ud83c\udfe3',
-  'postal_horn':'\ud83d\udcef',
-  'postbox':'\ud83d\udcee',
-  'potable_water':'\ud83d\udeb0',
-  'potato':'\ud83e\udd54',
-  'pouch':'\ud83d\udc5d',
-  'poultry_leg':'\ud83c\udf57',
-  'pound':'\ud83d\udcb7',
-  'rage':'\ud83d\ude21',
-  'pouting_cat':'\ud83d\ude3e',
-  'pouting_man':'\ud83d\ude4e&zwj;\u2642\ufe0f',
-  'pray':'\ud83d\ude4f',
-  'prayer_beads':'\ud83d\udcff',
-  'pregnant_woman':'\ud83e\udd30',
-  'previous_track_button':'\u23ee',
-  'prince':'\ud83e\udd34',
-  'princess':'\ud83d\udc78',
-  'printer':'\ud83d\udda8',
-  'purple_heart':'\ud83d\udc9c',
-  'purse':'\ud83d\udc5b',
-  'pushpin':'\ud83d\udccc',
-  'put_litter_in_its_place':'\ud83d\udeae',
-  'question':'\u2753',
-  'rabbit':'\ud83d\udc30',
-  'rabbit2':'\ud83d\udc07',
-  'racehorse':'\ud83d\udc0e',
-  'racing_car':'\ud83c\udfce',
-  'radio':'\ud83d\udcfb',
-  'radio_button':'\ud83d\udd18',
-  'radioactive':'\u2622\ufe0f',
-  'railway_car':'\ud83d\ude83',
-  'railway_track':'\ud83d\udee4',
-  'rainbow':'\ud83c\udf08',
-  'rainbow_flag':'\ud83c\udff3\ufe0f&zwj;\ud83c\udf08',
-  'raised_back_of_hand':'\ud83e\udd1a',
-  'raised_hand_with_fingers_splayed':'\ud83d\udd90',
-  'raised_hands':'\ud83d\ude4c',
-  'raising_hand_woman':'\ud83d\ude4b',
-  'raising_hand_man':'\ud83d\ude4b&zwj;\u2642\ufe0f',
-  'ram':'\ud83d\udc0f',
-  'ramen':'\ud83c\udf5c',
-  'rat':'\ud83d\udc00',
-  'record_button':'\u23fa',
-  'recycle':'\u267b\ufe0f',
-  'red_circle':'\ud83d\udd34',
-  'registered':'\u00ae\ufe0f',
-  'relaxed':'\u263a\ufe0f',
-  'relieved':'\ud83d\ude0c',
-  'reminder_ribbon':'\ud83c\udf97',
-  'repeat':'\ud83d\udd01',
-  'repeat_one':'\ud83d\udd02',
-  'rescue_worker_helmet':'\u26d1',
-  'restroom':'\ud83d\udebb',
-  'revolving_hearts':'\ud83d\udc9e',
-  'rewind':'\u23ea',
-  'rhinoceros':'\ud83e\udd8f',
-  'ribbon':'\ud83c\udf80',
-  'rice':'\ud83c\udf5a',
-  'rice_ball':'\ud83c\udf59',
-  'rice_cracker':'\ud83c\udf58',
-  'rice_scene':'\ud83c\udf91',
-  'right_anger_bubble':'\ud83d\uddef',
-  'ring':'\ud83d\udc8d',
-  'robot':'\ud83e\udd16',
-  'rocket':'\ud83d\ude80',
-  'rofl':'\ud83e\udd23',
-  'roll_eyes':'\ud83d\ude44',
-  'roller_coaster':'\ud83c\udfa2',
-  'rooster':'\ud83d\udc13',
-  'rose':'\ud83c\udf39',
-  'rosette':'\ud83c\udff5',
-  'rotating_light':'\ud83d\udea8',
-  'round_pushpin':'\ud83d\udccd',
-  'rowing_man':'\ud83d\udea3',
-  'rowing_woman':'\ud83d\udea3&zwj;\u2640\ufe0f',
-  'rugby_football':'\ud83c\udfc9',
-  'running_man':'\ud83c\udfc3',
-  'running_shirt_with_sash':'\ud83c\udfbd',
-  'running_woman':'\ud83c\udfc3&zwj;\u2640\ufe0f',
-  'sa':'\ud83c\ude02\ufe0f',
-  'sagittarius':'\u2650\ufe0f',
-  'sake':'\ud83c\udf76',
-  'sandal':'\ud83d\udc61',
-  'santa':'\ud83c\udf85',
-  'satellite':'\ud83d\udce1',
-  'saxophone':'\ud83c\udfb7',
-  'school':'\ud83c\udfeb',
-  'school_satchel':'\ud83c\udf92',
-  'scissors':'\u2702\ufe0f',
-  'scorpion':'\ud83e\udd82',
-  'scorpius':'\u264f\ufe0f',
-  'scream':'\ud83d\ude31',
-  'scream_cat':'\ud83d\ude40',
-  'scroll':'\ud83d\udcdc',
-  'seat':'\ud83d\udcba',
-  'secret':'\u3299\ufe0f',
-  'see_no_evil':'\ud83d\ude48',
-  'seedling':'\ud83c\udf31',
-  'selfie':'\ud83e\udd33',
-  'shallow_pan_of_food':'\ud83e\udd58',
-  'shamrock':'\u2618\ufe0f',
-  'shark':'\ud83e\udd88',
-  'shaved_ice':'\ud83c\udf67',
-  'sheep':'\ud83d\udc11',
-  'shell':'\ud83d\udc1a',
-  'shield':'\ud83d\udee1',
-  'shinto_shrine':'\u26e9',
-  'ship':'\ud83d\udea2',
-  'shirt':'\ud83d\udc55',
-  'shopping':'\ud83d\udecd',
-  'shopping_cart':'\ud83d\uded2',
-  'shower':'\ud83d\udebf',
-  'shrimp':'\ud83e\udd90',
-  'signal_strength':'\ud83d\udcf6',
-  'six_pointed_star':'\ud83d\udd2f',
-  'ski':'\ud83c\udfbf',
-  'skier':'\u26f7',
-  'skull':'\ud83d\udc80',
-  'skull_and_crossbones':'\u2620\ufe0f',
-  'sleeping':'\ud83d\ude34',
-  'sleeping_bed':'\ud83d\udecc',
-  'sleepy':'\ud83d\ude2a',
-  'slightly_frowning_face':'\ud83d\ude41',
-  'slightly_smiling_face':'\ud83d\ude42',
-  'slot_machine':'\ud83c\udfb0',
-  'small_airplane':'\ud83d\udee9',
-  'small_blue_diamond':'\ud83d\udd39',
-  'small_orange_diamond':'\ud83d\udd38',
-  'small_red_triangle':'\ud83d\udd3a',
-  'small_red_triangle_down':'\ud83d\udd3b',
-  'smile':'\ud83d\ude04',
-  'smile_cat':'\ud83d\ude38',
-  'smiley':'\ud83d\ude03',
-  'smiley_cat':'\ud83d\ude3a',
-  'smiling_imp':'\ud83d\ude08',
-  'smirk':'\ud83d\ude0f',
-  'smirk_cat':'\ud83d\ude3c',
-  'smoking':'\ud83d\udeac',
-  'snail':'\ud83d\udc0c',
-  'snake':'\ud83d\udc0d',
-  'sneezing_face':'\ud83e\udd27',
-  'snowboarder':'\ud83c\udfc2',
-  'snowflake':'\u2744\ufe0f',
-  'snowman':'\u26c4\ufe0f',
-  'snowman_with_snow':'\u2603\ufe0f',
-  'sob':'\ud83d\ude2d',
-  'soccer':'\u26bd\ufe0f',
-  'soon':'\ud83d\udd1c',
-  'sos':'\ud83c\udd98',
-  'sound':'\ud83d\udd09',
-  'space_invader':'\ud83d\udc7e',
-  'spades':'\u2660\ufe0f',
-  'spaghetti':'\ud83c\udf5d',
-  'sparkle':'\u2747\ufe0f',
-  'sparkler':'\ud83c\udf87',
-  'sparkles':'\u2728',
-  'sparkling_heart':'\ud83d\udc96',
-  'speak_no_evil':'\ud83d\ude4a',
-  'speaker':'\ud83d\udd08',
-  'speaking_head':'\ud83d\udde3',
-  'speech_balloon':'\ud83d\udcac',
-  'speedboat':'\ud83d\udea4',
-  'spider':'\ud83d\udd77',
-  'spider_web':'\ud83d\udd78',
-  'spiral_calendar':'\ud83d\uddd3',
-  'spiral_notepad':'\ud83d\uddd2',
-  'spoon':'\ud83e\udd44',
-  'squid':'\ud83e\udd91',
-  'stadium':'\ud83c\udfdf',
-  'star':'\u2b50\ufe0f',
-  'star2':'\ud83c\udf1f',
-  'star_and_crescent':'\u262a\ufe0f',
-  'star_of_david':'\u2721\ufe0f',
-  'stars':'\ud83c\udf20',
-  'station':'\ud83d\ude89',
-  'statue_of_liberty':'\ud83d\uddfd',
-  'steam_locomotive':'\ud83d\ude82',
-  'stew':'\ud83c\udf72',
-  'stop_button':'\u23f9',
-  'stop_sign':'\ud83d\uded1',
-  'stopwatch':'\u23f1',
-  'straight_ruler':'\ud83d\udccf',
-  'strawberry':'\ud83c\udf53',
-  'stuck_out_tongue':'\ud83d\ude1b',
-  'stuck_out_tongue_closed_eyes':'\ud83d\ude1d',
-  'stuck_out_tongue_winking_eye':'\ud83d\ude1c',
-  'studio_microphone':'\ud83c\udf99',
-  'stuffed_flatbread':'\ud83e\udd59',
-  'sun_behind_large_cloud':'\ud83c\udf25',
-  'sun_behind_rain_cloud':'\ud83c\udf26',
-  'sun_behind_small_cloud':'\ud83c\udf24',
-  'sun_with_face':'\ud83c\udf1e',
-  'sunflower':'\ud83c\udf3b',
-  'sunglasses':'\ud83d\ude0e',
-  'sunny':'\u2600\ufe0f',
-  'sunrise':'\ud83c\udf05',
-  'sunrise_over_mountains':'\ud83c\udf04',
-  'surfing_man':'\ud83c\udfc4',
-  'surfing_woman':'\ud83c\udfc4&zwj;\u2640\ufe0f',
-  'sushi':'\ud83c\udf63',
-  'suspension_railway':'\ud83d\ude9f',
-  'sweat':'\ud83d\ude13',
-  'sweat_drops':'\ud83d\udca6',
-  'sweat_smile':'\ud83d\ude05',
-  'sweet_potato':'\ud83c\udf60',
-  'swimming_man':'\ud83c\udfca',
-  'swimming_woman':'\ud83c\udfca&zwj;\u2640\ufe0f',
-  'symbols':'\ud83d\udd23',
-  'synagogue':'\ud83d\udd4d',
-  'syringe':'\ud83d\udc89',
-  'taco':'\ud83c\udf2e',
-  'tada':'\ud83c\udf89',
-  'tanabata_tree':'\ud83c\udf8b',
-  'taurus':'\u2649\ufe0f',
-  'taxi':'\ud83d\ude95',
-  'tea':'\ud83c\udf75',
-  'telephone_receiver':'\ud83d\udcde',
-  'telescope':'\ud83d\udd2d',
-  'tennis':'\ud83c\udfbe',
-  'tent':'\u26fa\ufe0f',
-  'thermometer':'\ud83c\udf21',
-  'thinking':'\ud83e\udd14',
-  'thought_balloon':'\ud83d\udcad',
-  'ticket':'\ud83c\udfab',
-  'tickets':'\ud83c\udf9f',
-  'tiger':'\ud83d\udc2f',
-  'tiger2':'\ud83d\udc05',
-  'timer_clock':'\u23f2',
-  'tipping_hand_man':'\ud83d\udc81&zwj;\u2642\ufe0f',
-  'tired_face':'\ud83d\ude2b',
-  'tm':'\u2122\ufe0f',
-  'toilet':'\ud83d\udebd',
-  'tokyo_tower':'\ud83d\uddfc',
-  'tomato':'\ud83c\udf45',
-  'tongue':'\ud83d\udc45',
-  'top':'\ud83d\udd1d',
-  'tophat':'\ud83c\udfa9',
-  'tornado':'\ud83c\udf2a',
-  'trackball':'\ud83d\uddb2',
-  'tractor':'\ud83d\ude9c',
-  'traffic_light':'\ud83d\udea5',
-  'train':'\ud83d\ude8b',
-  'train2':'\ud83d\ude86',
-  'tram':'\ud83d\ude8a',
-  'triangular_flag_on_post':'\ud83d\udea9',
-  'triangular_ruler':'\ud83d\udcd0',
-  'trident':'\ud83d\udd31',
-  'triumph':'\ud83d\ude24',
-  'trolleybus':'\ud83d\ude8e',
-  'trophy':'\ud83c\udfc6',
-  'tropical_drink':'\ud83c\udf79',
-  'tropical_fish':'\ud83d\udc20',
-  'truck':'\ud83d\ude9a',
-  'trumpet':'\ud83c\udfba',
-  'tulip':'\ud83c\udf37',
-  'tumbler_glass':'\ud83e\udd43',
-  'turkey':'\ud83e\udd83',
-  'turtle':'\ud83d\udc22',
-  'tv':'\ud83d\udcfa',
-  'twisted_rightwards_arrows':'\ud83d\udd00',
-  'two_hearts':'\ud83d\udc95',
-  'two_men_holding_hands':'\ud83d\udc6c',
-  'two_women_holding_hands':'\ud83d\udc6d',
-  'u5272':'\ud83c\ude39',
-  'u5408':'\ud83c\ude34',
-  'u55b6':'\ud83c\ude3a',
-  'u6307':'\ud83c\ude2f\ufe0f',
-  'u6708':'\ud83c\ude37\ufe0f',
-  'u6709':'\ud83c\ude36',
-  'u6e80':'\ud83c\ude35',
-  'u7121':'\ud83c\ude1a\ufe0f',
-  'u7533':'\ud83c\ude38',
-  'u7981':'\ud83c\ude32',
-  'u7a7a':'\ud83c\ude33',
-  'umbrella':'\u2614\ufe0f',
-  'unamused':'\ud83d\ude12',
-  'underage':'\ud83d\udd1e',
-  'unicorn':'\ud83e\udd84',
-  'unlock':'\ud83d\udd13',
-  'up':'\ud83c\udd99',
-  'upside_down_face':'\ud83d\ude43',
-  'v':'\u270c\ufe0f',
-  'vertical_traffic_light':'\ud83d\udea6',
-  'vhs':'\ud83d\udcfc',
-  'vibration_mode':'\ud83d\udcf3',
-  'video_camera':'\ud83d\udcf9',
-  'video_game':'\ud83c\udfae',
-  'violin':'\ud83c\udfbb',
-  'virgo':'\u264d\ufe0f',
-  'volcano':'\ud83c\udf0b',
-  'volleyball':'\ud83c\udfd0',
-  'vs':'\ud83c\udd9a',
-  'vulcan_salute':'\ud83d\udd96',
-  'walking_man':'\ud83d\udeb6',
-  'walking_woman':'\ud83d\udeb6&zwj;\u2640\ufe0f',
-  'waning_crescent_moon':'\ud83c\udf18',
-  'waning_gibbous_moon':'\ud83c\udf16',
-  'warning':'\u26a0\ufe0f',
-  'wastebasket':'\ud83d\uddd1',
-  'watch':'\u231a\ufe0f',
-  'water_buffalo':'\ud83d\udc03',
-  'watermelon':'\ud83c\udf49',
-  'wave':'\ud83d\udc4b',
-  'wavy_dash':'\u3030\ufe0f',
-  'waxing_crescent_moon':'\ud83c\udf12',
-  'wc':'\ud83d\udebe',
-  'weary':'\ud83d\ude29',
-  'wedding':'\ud83d\udc92',
-  'weight_lifting_man':'\ud83c\udfcb\ufe0f',
-  'weight_lifting_woman':'\ud83c\udfcb\ufe0f&zwj;\u2640\ufe0f',
-  'whale':'\ud83d\udc33',
-  'whale2':'\ud83d\udc0b',
-  'wheel_of_dharma':'\u2638\ufe0f',
-  'wheelchair':'\u267f\ufe0f',
-  'white_check_mark':'\u2705',
-  'white_circle':'\u26aa\ufe0f',
-  'white_flag':'\ud83c\udff3\ufe0f',
-  'white_flower':'\ud83d\udcae',
-  'white_large_square':'\u2b1c\ufe0f',
-  'white_medium_small_square':'\u25fd\ufe0f',
-  'white_medium_square':'\u25fb\ufe0f',
-  'white_small_square':'\u25ab\ufe0f',
-  'white_square_button':'\ud83d\udd33',
-  'wilted_flower':'\ud83e\udd40',
-  'wind_chime':'\ud83c\udf90',
-  'wind_face':'\ud83c\udf2c',
-  'wine_glass':'\ud83c\udf77',
-  'wink':'\ud83d\ude09',
-  'wolf':'\ud83d\udc3a',
-  'woman':'\ud83d\udc69',
-  'woman_artist':'\ud83d\udc69&zwj;\ud83c\udfa8',
-  'woman_astronaut':'\ud83d\udc69&zwj;\ud83d\ude80',
-  'woman_cartwheeling':'\ud83e\udd38&zwj;\u2640\ufe0f',
-  'woman_cook':'\ud83d\udc69&zwj;\ud83c\udf73',
-  'woman_facepalming':'\ud83e\udd26&zwj;\u2640\ufe0f',
-  'woman_factory_worker':'\ud83d\udc69&zwj;\ud83c\udfed',
-  'woman_farmer':'\ud83d\udc69&zwj;\ud83c\udf3e',
-  'woman_firefighter':'\ud83d\udc69&zwj;\ud83d\ude92',
-  'woman_health_worker':'\ud83d\udc69&zwj;\u2695\ufe0f',
-  'woman_judge':'\ud83d\udc69&zwj;\u2696\ufe0f',
-  'woman_juggling':'\ud83e\udd39&zwj;\u2640\ufe0f',
-  'woman_mechanic':'\ud83d\udc69&zwj;\ud83d\udd27',
-  'woman_office_worker':'\ud83d\udc69&zwj;\ud83d\udcbc',
-  'woman_pilot':'\ud83d\udc69&zwj;\u2708\ufe0f',
-  'woman_playing_handball':'\ud83e\udd3e&zwj;\u2640\ufe0f',
-  'woman_playing_water_polo':'\ud83e\udd3d&zwj;\u2640\ufe0f',
-  'woman_scientist':'\ud83d\udc69&zwj;\ud83d\udd2c',
-  'woman_shrugging':'\ud83e\udd37&zwj;\u2640\ufe0f',
-  'woman_singer':'\ud83d\udc69&zwj;\ud83c\udfa4',
-  'woman_student':'\ud83d\udc69&zwj;\ud83c\udf93',
-  'woman_teacher':'\ud83d\udc69&zwj;\ud83c\udfeb',
-  'woman_technologist':'\ud83d\udc69&zwj;\ud83d\udcbb',
-  'woman_with_turban':'\ud83d\udc73&zwj;\u2640\ufe0f',
-  'womans_clothes':'\ud83d\udc5a',
-  'womans_hat':'\ud83d\udc52',
-  'women_wrestling':'\ud83e\udd3c&zwj;\u2640\ufe0f',
-  'womens':'\ud83d\udeba',
-  'world_map':'\ud83d\uddfa',
-  'worried':'\ud83d\ude1f',
-  'wrench':'\ud83d\udd27',
-  'writing_hand':'\u270d\ufe0f',
-  'x':'\u274c',
-  'yellow_heart':'\ud83d\udc9b',
-  'yen':'\ud83d\udcb4',
-  'yin_yang':'\u262f\ufe0f',
-  'yum':'\ud83d\ude0b',
-  'zap':'\u26a1\ufe0f',
-  'zipper_mouth_face':'\ud83e\udd10',
-  'zzz':'\ud83d\udca4',
+showdown.helper.emojis = {};
+  showdown.helper.emojis['+1'] = '\ud83d\udc4d';
+  showdown.helper.emojis['-1'] = '\ud83d\udc4e';
+  showdown.helper.emojis['100'] = '\ud83d\udcaf';
+  showdown.helper.emojis['1234'] = '\ud83d\udd22';
+  showdown.helper.emojis['1st_place_medal'] = '\ud83e\udd47';
+  showdown.helper.emojis['2nd_place_medal'] = '\ud83e\udd48';
+  showdown.helper.emojis['3rd_place_medal'] = '\ud83e\udd49';
+  showdown.helper.emojis['8ball'] = '\ud83c\udfb1';
+  showdown.helper.emojis['a'] = '\ud83c\udd70\ufe0f';
+  showdown.helper.emojis['ab'] = '\ud83c\udd8e';
+  showdown.helper.emojis['abc'] = '\ud83d\udd24';
+  showdown.helper.emojis['abcd'] = '\ud83d\udd21';
+  showdown.helper.emojis['accept'] = '\ud83c\ude51';
+  showdown.helper.emojis['aerial_tramway'] = '\ud83d\udea1';
+  showdown.helper.emojis['airplane'] = '\u2708\ufe0f';
+  showdown.helper.emojis['alarm_clock'] = '\u23f0';
+  showdown.helper.emojis['alembic'] = '\u2697\ufe0f';
+  showdown.helper.emojis['alien'] = '\ud83d\udc7d';
+  showdown.helper.emojis['ambulance'] = '\ud83d\ude91';
+  showdown.helper.emojis['amphora'] = '\ud83c\udffa';
+  showdown.helper.emojis['anchor'] = '\u2693\ufe0f';
+  showdown.helper.emojis['angel'] = '\ud83d\udc7c';
+  showdown.helper.emojis['anger'] = '\ud83d\udca2';
+  showdown.helper.emojis['angry'] = '\ud83d\ude20';
+  showdown.helper.emojis['anguished'] = '\ud83d\ude27';
+  showdown.helper.emojis['ant'] = '\ud83d\udc1c';
+  showdown.helper.emojis['apple'] = '\ud83c\udf4e';
+  showdown.helper.emojis['aquarius'] = '\u2652\ufe0f';
+  showdown.helper.emojis['aries'] = '\u2648\ufe0f';
+  showdown.helper.emojis['arrow_backward'] = '\u25c0\ufe0f';
+  showdown.helper.emojis['arrow_double_down'] = '\u23ec';
+  showdown.helper.emojis['arrow_double_up'] = '\u23eb';
+  showdown.helper.emojis['arrow_down'] = '\u2b07\ufe0f';
+  showdown.helper.emojis['arrow_down_small'] = '\ud83d\udd3d';
+  showdown.helper.emojis['arrow_forward'] = '\u25b6\ufe0f';
+  showdown.helper.emojis['arrow_heading_down'] = '\u2935\ufe0f';
+  showdown.helper.emojis['arrow_heading_up'] = '\u2934\ufe0f';
+  showdown.helper.emojis['arrow_left'] = '\u2b05\ufe0f';
+  showdown.helper.emojis['arrow_lower_left'] = '\u2199\ufe0f';
+  showdown.helper.emojis['arrow_lower_right'] = '\u2198\ufe0f';
+  showdown.helper.emojis['arrow_right'] = '\u27a1\ufe0f';
+  showdown.helper.emojis['arrow_right_hook'] = '\u21aa\ufe0f';
+  showdown.helper.emojis['arrow_up'] = '\u2b06\ufe0f';
+  showdown.helper.emojis['arrow_up_down'] = '\u2195\ufe0f';
+  showdown.helper.emojis['arrow_up_small'] = '\ud83d\udd3c';
+  showdown.helper.emojis['arrow_upper_left'] = '\u2196\ufe0f';
+  showdown.helper.emojis['arrow_upper_right'] = '\u2197\ufe0f';
+  showdown.helper.emojis['arrows_clockwise'] = '\ud83d\udd03';
+  showdown.helper.emojis['arrows_counterclockwise'] = '\ud83d\udd04';
+  showdown.helper.emojis['art'] = '\ud83c\udfa8';
+  showdown.helper.emojis['articulated_lorry'] = '\ud83d\ude9b';
+  showdown.helper.emojis['artificial_satellite'] = '\ud83d\udef0';
+  showdown.helper.emojis['astonished'] = '\ud83d\ude32';
+  showdown.helper.emojis['athletic_shoe'] = '\ud83d\udc5f';
+  showdown.helper.emojis['atm'] = '\ud83c\udfe7';
+  showdown.helper.emojis['atom_symbol'] = '\u269b\ufe0f';
+  showdown.helper.emojis['avocado'] = '\ud83e\udd51';
+  showdown.helper.emojis['b'] = '\ud83c\udd71\ufe0f';
+  showdown.helper.emojis['baby'] = '\ud83d\udc76';
+  showdown.helper.emojis['baby_bottle'] = '\ud83c\udf7c';
+  showdown.helper.emojis['baby_chick'] = '\ud83d\udc24';
+  showdown.helper.emojis['baby_symbol'] = '\ud83d\udebc';
+  showdown.helper.emojis['back'] = '\ud83d\udd19';
+  showdown.helper.emojis['bacon'] = '\ud83e\udd53';
+  showdown.helper.emojis['badminton'] = '\ud83c\udff8';
+  showdown.helper.emojis['baggage_claim'] = '\ud83d\udec4';
+  showdown.helper.emojis['baguette_bread'] = '\ud83e\udd56';
+  showdown.helper.emojis['balance_scale'] = '\u2696\ufe0f';
+  showdown.helper.emojis['balloon'] = '\ud83c\udf88';
+  showdown.helper.emojis['ballot_box'] = '\ud83d\uddf3';
+  showdown.helper.emojis['ballot_box_with_check'] = '\u2611\ufe0f';
+  showdown.helper.emojis['bamboo'] = '\ud83c\udf8d';
+  showdown.helper.emojis['banana'] = '\ud83c\udf4c';
+  showdown.helper.emojis['bangbang'] = '\u203c\ufe0f';
+  showdown.helper.emojis['bank'] = '\ud83c\udfe6';
+  showdown.helper.emojis['bar_chart'] = '\ud83d\udcca';
+  showdown.helper.emojis['barber'] = '\ud83d\udc88';
+  showdown.helper.emojis['baseball'] = '\u26be\ufe0f';
+  showdown.helper.emojis['basketball'] = '\ud83c\udfc0';
+  showdown.helper.emojis['basketball_man'] = '\u26f9\ufe0f';
+  showdown.helper.emojis['basketball_woman'] = '\u26f9\ufe0f&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['bat'] = '\ud83e\udd87';
+  showdown.helper.emojis['bath'] = '\ud83d\udec0';
+  showdown.helper.emojis['bathtub'] = '\ud83d\udec1';
+  showdown.helper.emojis['battery'] = '\ud83d\udd0b';
+  showdown.helper.emojis['beach_umbrella'] = '\ud83c\udfd6';
+  showdown.helper.emojis['bear'] = '\ud83d\udc3b';
+  showdown.helper.emojis['bed'] = '\ud83d\udecf';
+  showdown.helper.emojis['bee'] = '\ud83d\udc1d';
+  showdown.helper.emojis['beer'] = '\ud83c\udf7a';
+  showdown.helper.emojis['beers'] = '\ud83c\udf7b';
+  showdown.helper.emojis['beetle'] = '\ud83d\udc1e';
+  showdown.helper.emojis['beginner'] = '\ud83d\udd30';
+  showdown.helper.emojis['bell'] = '\ud83d\udd14';
+  showdown.helper.emojis['bellhop_bell'] = '\ud83d\udece';
+  showdown.helper.emojis['bento'] = '\ud83c\udf71';
+  showdown.helper.emojis['biking_man'] = '\ud83d\udeb4';
+  showdown.helper.emojis['bike'] = '\ud83d\udeb2';
+  showdown.helper.emojis['biking_woman'] = '\ud83d\udeb4&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['bikini'] = '\ud83d\udc59';
+  showdown.helper.emojis['biohazard'] = '\u2623\ufe0f';
+  showdown.helper.emojis['bird'] = '\ud83d\udc26';
+  showdown.helper.emojis['birthday'] = '\ud83c\udf82';
+  showdown.helper.emojis['black_circle'] = '\u26ab\ufe0f';
+  showdown.helper.emojis['black_flag'] = '\ud83c\udff4';
+  showdown.helper.emojis['black_heart'] = '\ud83d\udda4';
+  showdown.helper.emojis['black_joker'] = '\ud83c\udccf';
+  showdown.helper.emojis['black_large_square'] = '\u2b1b\ufe0f';
+  showdown.helper.emojis['black_medium_small_square'] = '\u25fe\ufe0f';
+  showdown.helper.emojis['black_medium_square'] = '\u25fc\ufe0f';
+  showdown.helper.emojis['black_nib'] = '\u2712\ufe0f';
+  showdown.helper.emojis['black_small_square'] = '\u25aa\ufe0f';
+  showdown.helper.emojis['black_square_button'] = '\ud83d\udd32';
+  showdown.helper.emojis['blonde_man'] = '\ud83d\udc71';
+  showdown.helper.emojis['blonde_woman'] = '\ud83d\udc71&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['blossom'] = '\ud83c\udf3c';
+  showdown.helper.emojis['blowfish'] = '\ud83d\udc21';
+  showdown.helper.emojis['blue_book'] = '\ud83d\udcd8';
+  showdown.helper.emojis['blue_car'] = '\ud83d\ude99';
+  showdown.helper.emojis['blue_heart'] = '\ud83d\udc99';
+  showdown.helper.emojis['blush'] = '\ud83d\ude0a';
+  showdown.helper.emojis['boar'] = '\ud83d\udc17';
+  showdown.helper.emojis['boat'] = '\u26f5\ufe0f';
+  showdown.helper.emojis['bomb'] = '\ud83d\udca3';
+  showdown.helper.emojis['book'] = '\ud83d\udcd6';
+  showdown.helper.emojis['bookmark'] = '\ud83d\udd16';
+  showdown.helper.emojis['bookmark_tabs'] = '\ud83d\udcd1';
+  showdown.helper.emojis['books'] = '\ud83d\udcda';
+  showdown.helper.emojis['boom'] = '\ud83d\udca5';
+  showdown.helper.emojis['boot'] = '\ud83d\udc62';
+  showdown.helper.emojis['bouquet'] = '\ud83d\udc90';
+  showdown.helper.emojis['bowing_man'] = '\ud83d\ude47';
+  showdown.helper.emojis['bow_and_arrow'] = '\ud83c\udff9';
+  showdown.helper.emojis['bowing_woman'] = '\ud83d\ude47&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['bowling'] = '\ud83c\udfb3';
+  showdown.helper.emojis['boxing_glove'] = '\ud83e\udd4a';
+  showdown.helper.emojis['boy'] = '\ud83d\udc66';
+  showdown.helper.emojis['bread'] = '\ud83c\udf5e';
+  showdown.helper.emojis['bride_with_veil'] = '\ud83d\udc70';
+  showdown.helper.emojis['bridge_at_night'] = '\ud83c\udf09';
+  showdown.helper.emojis['briefcase'] = '\ud83d\udcbc';
+  showdown.helper.emojis['broken_heart'] = '\ud83d\udc94';
+  showdown.helper.emojis['bug'] = '\ud83d\udc1b';
+  showdown.helper.emojis['building_construction'] = '\ud83c\udfd7';
+  showdown.helper.emojis['bulb'] = '\ud83d\udca1';
+  showdown.helper.emojis['bullettrain_front'] = '\ud83d\ude85';
+  showdown.helper.emojis['bullettrain_side'] = '\ud83d\ude84';
+  showdown.helper.emojis['burrito'] = '\ud83c\udf2f';
+  showdown.helper.emojis['bus'] = '\ud83d\ude8c';
+  showdown.helper.emojis['business_suit_levitating'] = '\ud83d\udd74';
+  showdown.helper.emojis['busstop'] = '\ud83d\ude8f';
+  showdown.helper.emojis['bust_in_silhouette'] = '\ud83d\udc64';
+  showdown.helper.emojis['busts_in_silhouette'] = '\ud83d\udc65';
+  showdown.helper.emojis['butterfly'] = '\ud83e\udd8b';
+  showdown.helper.emojis['cactus'] = '\ud83c\udf35';
+  showdown.helper.emojis['cake'] = '\ud83c\udf70';
+  showdown.helper.emojis['calendar'] = '\ud83d\udcc6';
+  showdown.helper.emojis['call_me_hand'] = '\ud83e\udd19';
+  showdown.helper.emojis['calling'] = '\ud83d\udcf2';
+  showdown.helper.emojis['camel'] = '\ud83d\udc2b';
+  showdown.helper.emojis['camera'] = '\ud83d\udcf7';
+  showdown.helper.emojis['camera_flash'] = '\ud83d\udcf8';
+  showdown.helper.emojis['camping'] = '\ud83c\udfd5';
+  showdown.helper.emojis['cancer'] = '\u264b\ufe0f';
+  showdown.helper.emojis['candle'] = '\ud83d\udd6f';
+  showdown.helper.emojis['candy'] = '\ud83c\udf6c';
+  showdown.helper.emojis['canoe'] = '\ud83d\udef6';
+  showdown.helper.emojis['capital_abcd'] = '\ud83d\udd20';
+  showdown.helper.emojis['capricorn'] = '\u2651\ufe0f';
+  showdown.helper.emojis['car'] = '\ud83d\ude97';
+  showdown.helper.emojis['card_file_box'] = '\ud83d\uddc3';
+  showdown.helper.emojis['card_index'] = '\ud83d\udcc7';
+  showdown.helper.emojis['card_index_dividers'] = '\ud83d\uddc2';
+  showdown.helper.emojis['carousel_horse'] = '\ud83c\udfa0';
+  showdown.helper.emojis['carrot'] = '\ud83e\udd55';
+  showdown.helper.emojis['cat'] = '\ud83d\udc31';
+  showdown.helper.emojis['cat2'] = '\ud83d\udc08';
+  showdown.helper.emojis['cd'] = '\ud83d\udcbf';
+  showdown.helper.emojis['chains'] = '\u26d3';
+  showdown.helper.emojis['champagne'] = '\ud83c\udf7e';
+  showdown.helper.emojis['chart'] = '\ud83d\udcb9';
+  showdown.helper.emojis['chart_with_downwards_trend'] = '\ud83d\udcc9';
+  showdown.helper.emojis['chart_with_upwards_trend'] = '\ud83d\udcc8';
+  showdown.helper.emojis['checkered_flag'] = '\ud83c\udfc1';
+  showdown.helper.emojis['cheese'] = '\ud83e\uddc0';
+  showdown.helper.emojis['cherries'] = '\ud83c\udf52';
+  showdown.helper.emojis['cherry_blossom'] = '\ud83c\udf38';
+  showdown.helper.emojis['chestnut'] = '\ud83c\udf30';
+  showdown.helper.emojis['chicken'] = '\ud83d\udc14';
+  showdown.helper.emojis['children_crossing'] = '\ud83d\udeb8';
+  showdown.helper.emojis['chipmunk'] = '\ud83d\udc3f';
+  showdown.helper.emojis['chocolate_bar'] = '\ud83c\udf6b';
+  showdown.helper.emojis['christmas_tree'] = '\ud83c\udf84';
+  showdown.helper.emojis['church'] = '\u26ea\ufe0f';
+  showdown.helper.emojis['cinema'] = '\ud83c\udfa6';
+  showdown.helper.emojis['circus_tent'] = '\ud83c\udfaa';
+  showdown.helper.emojis['city_sunrise'] = '\ud83c\udf07';
+  showdown.helper.emojis['city_sunset'] = '\ud83c\udf06';
+  showdown.helper.emojis['cityscape'] = '\ud83c\udfd9';
+  showdown.helper.emojis['cl'] = '\ud83c\udd91';
+  showdown.helper.emojis['clamp'] = '\ud83d\udddc';
+  showdown.helper.emojis['clap'] = '\ud83d\udc4f';
+  showdown.helper.emojis['clapper'] = '\ud83c\udfac';
+  showdown.helper.emojis['classical_building'] = '\ud83c\udfdb';
+  showdown.helper.emojis['clinking_glasses'] = '\ud83e\udd42';
+  showdown.helper.emojis['clipboard'] = '\ud83d\udccb';
+  showdown.helper.emojis['clock1'] = '\ud83d\udd50';
+  showdown.helper.emojis['clock10'] = '\ud83d\udd59';
+  showdown.helper.emojis['clock1030'] = '\ud83d\udd65';
+  showdown.helper.emojis['clock11'] = '\ud83d\udd5a';
+  showdown.helper.emojis['clock1130'] = '\ud83d\udd66';
+  showdown.helper.emojis['clock12'] = '\ud83d\udd5b';
+  showdown.helper.emojis['clock1230'] = '\ud83d\udd67';
+  showdown.helper.emojis['clock130'] = '\ud83d\udd5c';
+  showdown.helper.emojis['clock2'] = '\ud83d\udd51';
+  showdown.helper.emojis['clock230'] = '\ud83d\udd5d';
+  showdown.helper.emojis['clock3'] = '\ud83d\udd52';
+  showdown.helper.emojis['clock330'] = '\ud83d\udd5e';
+  showdown.helper.emojis['clock4'] = '\ud83d\udd53';
+  showdown.helper.emojis['clock430'] = '\ud83d\udd5f';
+  showdown.helper.emojis['clock5'] = '\ud83d\udd54';
+  showdown.helper.emojis['clock530'] = '\ud83d\udd60';
+  showdown.helper.emojis['clock6'] = '\ud83d\udd55';
+  showdown.helper.emojis['clock630'] = '\ud83d\udd61';
+  showdown.helper.emojis['clock7'] = '\ud83d\udd56';
+  showdown.helper.emojis['clock730'] = '\ud83d\udd62';
+  showdown.helper.emojis['clock8'] = '\ud83d\udd57';
+  showdown.helper.emojis['clock830'] = '\ud83d\udd63';
+  showdown.helper.emojis['clock9'] = '\ud83d\udd58';
+  showdown.helper.emojis['clock930'] = '\ud83d\udd64';
+  showdown.helper.emojis['closed_book'] = '\ud83d\udcd5';
+  showdown.helper.emojis['closed_lock_with_key'] = '\ud83d\udd10';
+  showdown.helper.emojis['closed_umbrella'] = '\ud83c\udf02';
+  showdown.helper.emojis['cloud'] = '\u2601\ufe0f';
+  showdown.helper.emojis['cloud_with_lightning'] = '\ud83c\udf29';
+  showdown.helper.emojis['cloud_with_lightning_and_rain'] = '\u26c8';
+  showdown.helper.emojis['cloud_with_rain'] = '\ud83c\udf27';
+  showdown.helper.emojis['cloud_with_snow'] = '\ud83c\udf28';
+  showdown.helper.emojis['clown_face'] = '\ud83e\udd21';
+  showdown.helper.emojis['clubs'] = '\u2663\ufe0f';
+  showdown.helper.emojis['cocktail'] = '\ud83c\udf78';
+  showdown.helper.emojis['coffee'] = '\u2615\ufe0f';
+  showdown.helper.emojis['coffin'] = '\u26b0\ufe0f';
+  showdown.helper.emojis['cold_sweat'] = '\ud83d\ude30';
+  showdown.helper.emojis['comet'] = '\u2604\ufe0f';
+  showdown.helper.emojis['computer'] = '\ud83d\udcbb';
+  showdown.helper.emojis['computer_mouse'] = '\ud83d\uddb1';
+  showdown.helper.emojis['confetti_ball'] = '\ud83c\udf8a';
+  showdown.helper.emojis['confounded'] = '\ud83d\ude16';
+  showdown.helper.emojis['confused'] = '\ud83d\ude15';
+  showdown.helper.emojis['congratulations'] = '\u3297\ufe0f';
+  showdown.helper.emojis['construction'] = '\ud83d\udea7';
+  showdown.helper.emojis['construction_worker_man'] = '\ud83d\udc77';
+  showdown.helper.emojis['construction_worker_woman'] = '\ud83d\udc77&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['control_knobs'] = '\ud83c\udf9b';
+  showdown.helper.emojis['convenience_store'] = '\ud83c\udfea';
+  showdown.helper.emojis['cookie'] = '\ud83c\udf6a';
+  showdown.helper.emojis['cool'] = '\ud83c\udd92';
+  showdown.helper.emojis['policeman'] = '\ud83d\udc6e';
+  showdown.helper.emojis['copyright'] = '\u00a9\ufe0f';
+  showdown.helper.emojis['corn'] = '\ud83c\udf3d';
+  showdown.helper.emojis['couch_and_lamp'] = '\ud83d\udecb';
+  showdown.helper.emojis['couple'] = '\ud83d\udc6b';
+  showdown.helper.emojis['couple_with_heart_woman_man'] = '\ud83d\udc91';
+  showdown.helper.emojis['couple_with_heart_man_man'] = '\ud83d\udc68&zwj;\u2764\ufe0f&zwj;\ud83d\udc68';
+  showdown.helper.emojis['couple_with_heart_woman_woman'] = '\ud83d\udc69&zwj;\u2764\ufe0f&zwj;\ud83d\udc69';
+  showdown.helper.emojis['couplekiss_man_man'] = '\ud83d\udc68&zwj;\u2764\ufe0f&zwj;\ud83d\udc8b&zwj;\ud83d\udc68';
+  showdown.helper.emojis['couplekiss_man_woman'] = '\ud83d\udc8f';
+  showdown.helper.emojis['couplekiss_woman_woman'] = '\ud83d\udc69&zwj;\u2764\ufe0f&zwj;\ud83d\udc8b&zwj;\ud83d\udc69';
+  showdown.helper.emojis['cow'] = '\ud83d\udc2e';
+  showdown.helper.emojis['cow2'] = '\ud83d\udc04';
+  showdown.helper.emojis['cowboy_hat_face'] = '\ud83e\udd20';
+  showdown.helper.emojis['crab'] = '\ud83e\udd80';
+  showdown.helper.emojis['crayon'] = '\ud83d\udd8d';
+  showdown.helper.emojis['credit_card'] = '\ud83d\udcb3';
+  showdown.helper.emojis['crescent_moon'] = '\ud83c\udf19';
+  showdown.helper.emojis['cricket'] = '\ud83c\udfcf';
+  showdown.helper.emojis['crocodile'] = '\ud83d\udc0a';
+  showdown.helper.emojis['croissant'] = '\ud83e\udd50';
+  showdown.helper.emojis['crossed_fingers'] = '\ud83e\udd1e';
+  showdown.helper.emojis['crossed_flags'] = '\ud83c\udf8c';
+  showdown.helper.emojis['crossed_swords'] = '\u2694\ufe0f';
+  showdown.helper.emojis['crown'] = '\ud83d\udc51';
+  showdown.helper.emojis['cry'] = '\ud83d\ude22';
+  showdown.helper.emojis['crying_cat_face'] = '\ud83d\ude3f';
+  showdown.helper.emojis['crystal_ball'] = '\ud83d\udd2e';
+  showdown.helper.emojis['cucumber'] = '\ud83e\udd52';
+  showdown.helper.emojis['cupid'] = '\ud83d\udc98';
+  showdown.helper.emojis['curly_loop'] = '\u27b0';
+  showdown.helper.emojis['currency_exchange'] = '\ud83d\udcb1';
+  showdown.helper.emojis['curry'] = '\ud83c\udf5b';
+  showdown.helper.emojis['custard'] = '\ud83c\udf6e';
+  showdown.helper.emojis['customs'] = '\ud83d\udec3';
+  showdown.helper.emojis['cyclone'] = '\ud83c\udf00';
+  showdown.helper.emojis['dagger'] = '\ud83d\udde1';
+  showdown.helper.emojis['dancer'] = '\ud83d\udc83';
+  showdown.helper.emojis['dancing_women'] = '\ud83d\udc6f';
+  showdown.helper.emojis['dancing_men'] = '\ud83d\udc6f&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['dango'] = '\ud83c\udf61';
+  showdown.helper.emojis['dark_sunglasses'] = '\ud83d\udd76';
+  showdown.helper.emojis['dart'] = '\ud83c\udfaf';
+  showdown.helper.emojis['dash'] = '\ud83d\udca8';
+  showdown.helper.emojis['date'] = '\ud83d\udcc5';
+  showdown.helper.emojis['deciduous_tree'] = '\ud83c\udf33';
+  showdown.helper.emojis['deer'] = '\ud83e\udd8c';
+  showdown.helper.emojis['department_store'] = '\ud83c\udfec';
+  showdown.helper.emojis['derelict_house'] = '\ud83c\udfda';
+  showdown.helper.emojis['desert'] = '\ud83c\udfdc';
+  showdown.helper.emojis['desert_island'] = '\ud83c\udfdd';
+  showdown.helper.emojis['desktop_computer'] = '\ud83d\udda5';
+  showdown.helper.emojis['male_detective'] = '\ud83d\udd75\ufe0f';
+  showdown.helper.emojis['diamond_shape_with_a_dot_inside'] = '\ud83d\udca0';
+  showdown.helper.emojis['diamonds'] = '\u2666\ufe0f';
+  showdown.helper.emojis['disappointed'] = '\ud83d\ude1e';
+  showdown.helper.emojis['disappointed_relieved'] = '\ud83d\ude25';
+  showdown.helper.emojis['dizzy'] = '\ud83d\udcab';
+  showdown.helper.emojis['dizzy_face'] = '\ud83d\ude35';
+  showdown.helper.emojis['do_not_litter'] = '\ud83d\udeaf';
+  showdown.helper.emojis['dog'] = '\ud83d\udc36';
+  showdown.helper.emojis['dog2'] = '\ud83d\udc15';
+  showdown.helper.emojis['dollar'] = '\ud83d\udcb5';
+  showdown.helper.emojis['dolls'] = '\ud83c\udf8e';
+  showdown.helper.emojis['dolphin'] = '\ud83d\udc2c';
+  showdown.helper.emojis['door'] = '\ud83d\udeaa';
+  showdown.helper.emojis['doughnut'] = '\ud83c\udf69';
+  showdown.helper.emojis['dove'] = '\ud83d\udd4a';
+  showdown.helper.emojis['dragon'] = '\ud83d\udc09';
+  showdown.helper.emojis['dragon_face'] = '\ud83d\udc32';
+  showdown.helper.emojis['dress'] = '\ud83d\udc57';
+  showdown.helper.emojis['dromedary_camel'] = '\ud83d\udc2a';
+  showdown.helper.emojis['drooling_face'] = '\ud83e\udd24';
+  showdown.helper.emojis['droplet'] = '\ud83d\udca7';
+  showdown.helper.emojis['drum'] = '\ud83e\udd41';
+  showdown.helper.emojis['duck'] = '\ud83e\udd86';
+  showdown.helper.emojis['dvd'] = '\ud83d\udcc0';
+  showdown.helper.emojis['e-mail'] = '\ud83d\udce7';
+  showdown.helper.emojis['eagle'] = '\ud83e\udd85';
+  showdown.helper.emojis['ear'] = '\ud83d\udc42';
+  showdown.helper.emojis['ear_of_rice'] = '\ud83c\udf3e';
+  showdown.helper.emojis['earth_africa'] = '\ud83c\udf0d';
+  showdown.helper.emojis['earth_americas'] = '\ud83c\udf0e';
+  showdown.helper.emojis['earth_asia'] = '\ud83c\udf0f';
+  showdown.helper.emojis['egg'] = '\ud83e\udd5a';
+  showdown.helper.emojis['eggplant'] = '\ud83c\udf46';
+  showdown.helper.emojis['eight_pointed_black_star'] = '\u2734\ufe0f';
+  showdown.helper.emojis['eight_spoked_asterisk'] = '\u2733\ufe0f';
+  showdown.helper.emojis['electric_plug'] = '\ud83d\udd0c';
+  showdown.helper.emojis['elephant'] = '\ud83d\udc18';
+  showdown.helper.emojis['email'] = '\u2709\ufe0f';
+  showdown.helper.emojis['end'] = '\ud83d\udd1a';
+  showdown.helper.emojis['envelope_with_arrow'] = '\ud83d\udce9';
+  showdown.helper.emojis['euro'] = '\ud83d\udcb6';
+  showdown.helper.emojis['european_castle'] = '\ud83c\udff0';
+  showdown.helper.emojis['european_post_office'] = '\ud83c\udfe4';
+  showdown.helper.emojis['evergreen_tree'] = '\ud83c\udf32';
+  showdown.helper.emojis['exclamation'] = '\u2757\ufe0f';
+  showdown.helper.emojis['expressionless'] = '\ud83d\ude11';
+  showdown.helper.emojis['eye'] = '\ud83d\udc41';
+  showdown.helper.emojis['eye_speech_bubble'] = '\ud83d\udc41&zwj;\ud83d\udde8';
+  showdown.helper.emojis['eyeglasses'] = '\ud83d\udc53';
+  showdown.helper.emojis['eyes'] = '\ud83d\udc40';
+  showdown.helper.emojis['face_with_head_bandage'] = '\ud83e\udd15';
+  showdown.helper.emojis['face_with_thermometer'] = '\ud83e\udd12';
+  showdown.helper.emojis['fist_oncoming'] = '\ud83d\udc4a';
+  showdown.helper.emojis['factory'] = '\ud83c\udfed';
+  showdown.helper.emojis['fallen_leaf'] = '\ud83c\udf42';
+  showdown.helper.emojis['family_man_woman_boy'] = '\ud83d\udc6a';
+  showdown.helper.emojis['family_man_boy'] = '\ud83d\udc68&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_boy_boy'] = '\ud83d\udc68&zwj;\ud83d\udc66&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_girl'] = '\ud83d\udc68&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_man_girl_boy'] = '\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_girl_girl'] = '\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_man_man_boy'] = '\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_man_boy_boy'] = '\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc66&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_man_girl'] = '\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_man_man_girl_boy'] = '\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_man_girl_girl'] = '\ud83d\udc68&zwj;\ud83d\udc68&zwj;\ud83d\udc67&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_man_woman_boy_boy'] = '\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc66&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_woman_girl'] = '\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_man_woman_girl_boy'] = '\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_man_woman_girl_girl'] = '\ud83d\udc68&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_woman_boy'] = '\ud83d\udc69&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_woman_boy_boy'] = '\ud83d\udc69&zwj;\ud83d\udc66&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_woman_girl'] = '\ud83d\udc69&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_woman_girl_boy'] = '\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_woman_girl_girl'] = '\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_woman_woman_boy'] = '\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_woman_woman_boy_boy'] = '\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc66&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_woman_woman_girl'] = '\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc67';
+  showdown.helper.emojis['family_woman_woman_girl_boy'] = '\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc66';
+  showdown.helper.emojis['family_woman_woman_girl_girl'] = '\ud83d\udc69&zwj;\ud83d\udc69&zwj;\ud83d\udc67&zwj;\ud83d\udc67';
+  showdown.helper.emojis['fast_forward'] = '\u23e9';
+  showdown.helper.emojis['fax'] = '\ud83d\udce0';
+  showdown.helper.emojis['fearful'] = '\ud83d\ude28';
+  showdown.helper.emojis['feet'] = '\ud83d\udc3e';
+  showdown.helper.emojis['female_detective'] = '\ud83d\udd75\ufe0f&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['ferris_wheel'] = '\ud83c\udfa1';
+  showdown.helper.emojis['ferry'] = '\u26f4';
+  showdown.helper.emojis['field_hockey'] = '\ud83c\udfd1';
+  showdown.helper.emojis['file_cabinet'] = '\ud83d\uddc4';
+  showdown.helper.emojis['file_folder'] = '\ud83d\udcc1';
+  showdown.helper.emojis['film_projector'] = '\ud83d\udcfd';
+  showdown.helper.emojis['film_strip'] = '\ud83c\udf9e';
+  showdown.helper.emojis['fire'] = '\ud83d\udd25';
+  showdown.helper.emojis['fire_engine'] = '\ud83d\ude92';
+  showdown.helper.emojis['fireworks'] = '\ud83c\udf86';
+  showdown.helper.emojis['first_quarter_moon'] = '\ud83c\udf13';
+  showdown.helper.emojis['first_quarter_moon_with_face'] = '\ud83c\udf1b';
+  showdown.helper.emojis['fish'] = '\ud83d\udc1f';
+  showdown.helper.emojis['fish_cake'] = '\ud83c\udf65';
+  showdown.helper.emojis['fishing_pole_and_fish'] = '\ud83c\udfa3';
+  showdown.helper.emojis['fist_raised'] = '\u270a';
+  showdown.helper.emojis['fist_left'] = '\ud83e\udd1b';
+  showdown.helper.emojis['fist_right'] = '\ud83e\udd1c';
+  showdown.helper.emojis['flags'] = '\ud83c\udf8f';
+  showdown.helper.emojis['flashlight'] = '\ud83d\udd26';
+  showdown.helper.emojis['fleur_de_lis'] = '\u269c\ufe0f';
+  showdown.helper.emojis['flight_arrival'] = '\ud83d\udeec';
+  showdown.helper.emojis['flight_departure'] = '\ud83d\udeeb';
+  showdown.helper.emojis['floppy_disk'] = '\ud83d\udcbe';
+  showdown.helper.emojis['flower_playing_cards'] = '\ud83c\udfb4';
+  showdown.helper.emojis['flushed'] = '\ud83d\ude33';
+  showdown.helper.emojis['fog'] = '\ud83c\udf2b';
+  showdown.helper.emojis['foggy'] = '\ud83c\udf01';
+  showdown.helper.emojis['football'] = '\ud83c\udfc8';
+  showdown.helper.emojis['footprints'] = '\ud83d\udc63';
+  showdown.helper.emojis['fork_and_knife'] = '\ud83c\udf74';
+  showdown.helper.emojis['fountain'] = '\u26f2\ufe0f';
+  showdown.helper.emojis['fountain_pen'] = '\ud83d\udd8b';
+  showdown.helper.emojis['four_leaf_clover'] = '\ud83c\udf40';
+  showdown.helper.emojis['fox_face'] = '\ud83e\udd8a';
+  showdown.helper.emojis['framed_picture'] = '\ud83d\uddbc';
+  showdown.helper.emojis['free'] = '\ud83c\udd93';
+  showdown.helper.emojis['fried_egg'] = '\ud83c\udf73';
+  showdown.helper.emojis['fried_shrimp'] = '\ud83c\udf64';
+  showdown.helper.emojis['fries'] = '\ud83c\udf5f';
+  showdown.helper.emojis['frog'] = '\ud83d\udc38';
+  showdown.helper.emojis['frowning'] = '\ud83d\ude26';
+  showdown.helper.emojis['frowning_face'] = '\u2639\ufe0f';
+  showdown.helper.emojis['frowning_man'] = '\ud83d\ude4d&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['frowning_woman'] = '\ud83d\ude4d';
+  showdown.helper.emojis['middle_finger'] = '\ud83d\udd95';
+  showdown.helper.emojis['fuelpump'] = '\u26fd\ufe0f';
+  showdown.helper.emojis['full_moon'] = '\ud83c\udf15';
+  showdown.helper.emojis['full_moon_with_face'] = '\ud83c\udf1d';
+  showdown.helper.emojis['funeral_urn'] = '\u26b1\ufe0f';
+  showdown.helper.emojis['game_die'] = '\ud83c\udfb2';
+  showdown.helper.emojis['gear'] = '\u2699\ufe0f';
+  showdown.helper.emojis['gem'] = '\ud83d\udc8e';
+  showdown.helper.emojis['gemini'] = '\u264a\ufe0f';
+  showdown.helper.emojis['ghost'] = '\ud83d\udc7b';
+  showdown.helper.emojis['gift'] = '\ud83c\udf81';
+  showdown.helper.emojis['gift_heart'] = '\ud83d\udc9d';
+  showdown.helper.emojis['girl'] = '\ud83d\udc67';
+  showdown.helper.emojis['globe_with_meridians'] = '\ud83c\udf10';
+  showdown.helper.emojis['goal_net'] = '\ud83e\udd45';
+  showdown.helper.emojis['goat'] = '\ud83d\udc10';
+  showdown.helper.emojis['golf'] = '\u26f3\ufe0f';
+  showdown.helper.emojis['golfing_man'] = '\ud83c\udfcc\ufe0f';
+  showdown.helper.emojis['golfing_woman'] = '\ud83c\udfcc\ufe0f&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['gorilla'] = '\ud83e\udd8d';
+  showdown.helper.emojis['grapes'] = '\ud83c\udf47';
+  showdown.helper.emojis['green_apple'] = '\ud83c\udf4f';
+  showdown.helper.emojis['green_book'] = '\ud83d\udcd7';
+  showdown.helper.emojis['green_heart'] = '\ud83d\udc9a';
+  showdown.helper.emojis['green_salad'] = '\ud83e\udd57';
+  showdown.helper.emojis['grey_exclamation'] = '\u2755';
+  showdown.helper.emojis['grey_question'] = '\u2754';
+  showdown.helper.emojis['grimacing'] = '\ud83d\ude2c';
+  showdown.helper.emojis['grin'] = '\ud83d\ude01';
+  showdown.helper.emojis['grinning'] = '\ud83d\ude00';
+  showdown.helper.emojis['guardsman'] = '\ud83d\udc82';
+  showdown.helper.emojis['guardswoman'] = '\ud83d\udc82&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['guitar'] = '\ud83c\udfb8';
+  showdown.helper.emojis['gun'] = '\ud83d\udd2b';
+  showdown.helper.emojis['haircut_woman'] = '\ud83d\udc87';
+  showdown.helper.emojis['haircut_man'] = '\ud83d\udc87&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['hamburger'] = '\ud83c\udf54';
+  showdown.helper.emojis['hammer'] = '\ud83d\udd28';
+  showdown.helper.emojis['hammer_and_pick'] = '\u2692';
+  showdown.helper.emojis['hammer_and_wrench'] = '\ud83d\udee0';
+  showdown.helper.emojis['hamster'] = '\ud83d\udc39';
+  showdown.helper.emojis['hand'] = '\u270b';
+  showdown.helper.emojis['handbag'] = '\ud83d\udc5c';
+  showdown.helper.emojis['handshake'] = '\ud83e\udd1d';
+  showdown.helper.emojis['hankey'] = '\ud83d\udca9';
+  showdown.helper.emojis['hatched_chick'] = '\ud83d\udc25';
+  showdown.helper.emojis['hatching_chick'] = '\ud83d\udc23';
+  showdown.helper.emojis['headphones'] = '\ud83c\udfa7';
+  showdown.helper.emojis['hear_no_evil'] = '\ud83d\ude49';
+  showdown.helper.emojis['heart'] = '\u2764\ufe0f';
+  showdown.helper.emojis['heart_decoration'] = '\ud83d\udc9f';
+  showdown.helper.emojis['heart_eyes'] = '\ud83d\ude0d';
+  showdown.helper.emojis['heart_eyes_cat'] = '\ud83d\ude3b';
+  showdown.helper.emojis['heartbeat'] = '\ud83d\udc93';
+  showdown.helper.emojis['heartpulse'] = '\ud83d\udc97';
+  showdown.helper.emojis['hearts'] = '\u2665\ufe0f';
+  showdown.helper.emojis['heavy_check_mark'] = '\u2714\ufe0f';
+  showdown.helper.emojis['heavy_division_sign'] = '\u2797';
+  showdown.helper.emojis['heavy_dollar_sign'] = '\ud83d\udcb2';
+  showdown.helper.emojis['heavy_heart_exclamation'] = '\u2763\ufe0f';
+  showdown.helper.emojis['heavy_minus_sign'] = '\u2796';
+  showdown.helper.emojis['heavy_multiplication_x'] = '\u2716\ufe0f';
+  showdown.helper.emojis['heavy_plus_sign'] = '\u2795';
+  showdown.helper.emojis['helicopter'] = '\ud83d\ude81';
+  showdown.helper.emojis['herb'] = '\ud83c\udf3f';
+  showdown.helper.emojis['hibiscus'] = '\ud83c\udf3a';
+  showdown.helper.emojis['high_brightness'] = '\ud83d\udd06';
+  showdown.helper.emojis['high_heel'] = '\ud83d\udc60';
+  showdown.helper.emojis['hocho'] = '\ud83d\udd2a';
+  showdown.helper.emojis['hole'] = '\ud83d\udd73';
+  showdown.helper.emojis['honey_pot'] = '\ud83c\udf6f';
+  showdown.helper.emojis['horse'] = '\ud83d\udc34';
+  showdown.helper.emojis['horse_racing'] = '\ud83c\udfc7';
+  showdown.helper.emojis['hospital'] = '\ud83c\udfe5';
+  showdown.helper.emojis['hot_pepper'] = '\ud83c\udf36';
+  showdown.helper.emojis['hotdog'] = '\ud83c\udf2d';
+  showdown.helper.emojis['hotel'] = '\ud83c\udfe8';
+  showdown.helper.emojis['hotsprings'] = '\u2668\ufe0f';
+  showdown.helper.emojis['hourglass'] = '\u231b\ufe0f';
+  showdown.helper.emojis['hourglass_flowing_sand'] = '\u23f3';
+  showdown.helper.emojis['house'] = '\ud83c\udfe0';
+  showdown.helper.emojis['house_with_garden'] = '\ud83c\udfe1';
+  showdown.helper.emojis['houses'] = '\ud83c\udfd8';
+  showdown.helper.emojis['hugs'] = '\ud83e\udd17';
+  showdown.helper.emojis['hushed'] = '\ud83d\ude2f';
+  showdown.helper.emojis['ice_cream'] = '\ud83c\udf68';
+  showdown.helper.emojis['ice_hockey'] = '\ud83c\udfd2';
+  showdown.helper.emojis['ice_skate'] = '\u26f8';
+  showdown.helper.emojis['icecream'] = '\ud83c\udf66';
+  showdown.helper.emojis['id'] = '\ud83c\udd94';
+  showdown.helper.emojis['ideograph_advantage'] = '\ud83c\ude50';
+  showdown.helper.emojis['imp'] = '\ud83d\udc7f';
+  showdown.helper.emojis['inbox_tray'] = '\ud83d\udce5';
+  showdown.helper.emojis['incoming_envelope'] = '\ud83d\udce8';
+  showdown.helper.emojis['tipping_hand_woman'] = '\ud83d\udc81';
+  showdown.helper.emojis['information_source'] = '\u2139\ufe0f';
+  showdown.helper.emojis['innocent'] = '\ud83d\ude07';
+  showdown.helper.emojis['interrobang'] = '\u2049\ufe0f';
+  showdown.helper.emojis['iphone'] = '\ud83d\udcf1';
+  showdown.helper.emojis['izakaya_lantern'] = '\ud83c\udfee';
+  showdown.helper.emojis['jack_o_lantern'] = '\ud83c\udf83';
+  showdown.helper.emojis['japan'] = '\ud83d\uddfe';
+  showdown.helper.emojis['japanese_castle'] = '\ud83c\udfef';
+  showdown.helper.emojis['japanese_goblin'] = '\ud83d\udc7a';
+  showdown.helper.emojis['japanese_ogre'] = '\ud83d\udc79';
+  showdown.helper.emojis['jeans'] = '\ud83d\udc56';
+  showdown.helper.emojis['joy'] = '\ud83d\ude02';
+  showdown.helper.emojis['joy_cat'] = '\ud83d\ude39';
+  showdown.helper.emojis['joystick'] = '\ud83d\udd79';
+  showdown.helper.emojis['kaaba'] = '\ud83d\udd4b';
+  showdown.helper.emojis['key'] = '\ud83d\udd11';
+  showdown.helper.emojis['keyboard'] = '\u2328\ufe0f';
+  showdown.helper.emojis['keycap_ten'] = '\ud83d\udd1f';
+  showdown.helper.emojis['kick_scooter'] = '\ud83d\udef4';
+  showdown.helper.emojis['kimono'] = '\ud83d\udc58';
+  showdown.helper.emojis['kiss'] = '\ud83d\udc8b';
+  showdown.helper.emojis['kissing'] = '\ud83d\ude17';
+  showdown.helper.emojis['kissing_cat'] = '\ud83d\ude3d';
+  showdown.helper.emojis['kissing_closed_eyes'] = '\ud83d\ude1a';
+  showdown.helper.emojis['kissing_heart'] = '\ud83d\ude18';
+  showdown.helper.emojis['kissing_smiling_eyes'] = '\ud83d\ude19';
+  showdown.helper.emojis['kiwi_fruit'] = '\ud83e\udd5d';
+  showdown.helper.emojis['koala'] = '\ud83d\udc28';
+  showdown.helper.emojis['koko'] = '\ud83c\ude01';
+  showdown.helper.emojis['label'] = '\ud83c\udff7';
+  showdown.helper.emojis['large_blue_circle'] = '\ud83d\udd35';
+  showdown.helper.emojis['large_blue_diamond'] = '\ud83d\udd37';
+  showdown.helper.emojis['large_orange_diamond'] = '\ud83d\udd36';
+  showdown.helper.emojis['last_quarter_moon'] = '\ud83c\udf17';
+  showdown.helper.emojis['last_quarter_moon_with_face'] = '\ud83c\udf1c';
+  showdown.helper.emojis['latin_cross'] = '\u271d\ufe0f';
+  showdown.helper.emojis['laughing'] = '\ud83d\ude06';
+  showdown.helper.emojis['leaves'] = '\ud83c\udf43';
+  showdown.helper.emojis['ledger'] = '\ud83d\udcd2';
+  showdown.helper.emojis['left_luggage'] = '\ud83d\udec5';
+  showdown.helper.emojis['left_right_arrow'] = '\u2194\ufe0f';
+  showdown.helper.emojis['leftwards_arrow_with_hook'] = '\u21a9\ufe0f';
+  showdown.helper.emojis['lemon'] = '\ud83c\udf4b';
+  showdown.helper.emojis['leo'] = '\u264c\ufe0f';
+  showdown.helper.emojis['leopard'] = '\ud83d\udc06';
+  showdown.helper.emojis['level_slider'] = '\ud83c\udf9a';
+  showdown.helper.emojis['libra'] = '\u264e\ufe0f';
+  showdown.helper.emojis['light_rail'] = '\ud83d\ude88';
+  showdown.helper.emojis['link'] = '\ud83d\udd17';
+  showdown.helper.emojis['lion'] = '\ud83e\udd81';
+  showdown.helper.emojis['lips'] = '\ud83d\udc44';
+  showdown.helper.emojis['lipstick'] = '\ud83d\udc84';
+  showdown.helper.emojis['lizard'] = '\ud83e\udd8e';
+  showdown.helper.emojis['lock'] = '\ud83d\udd12';
+  showdown.helper.emojis['lock_with_ink_pen'] = '\ud83d\udd0f';
+  showdown.helper.emojis['lollipop'] = '\ud83c\udf6d';
+  showdown.helper.emojis['loop'] = '\u27bf';
+  showdown.helper.emojis['loud_sound'] = '\ud83d\udd0a';
+  showdown.helper.emojis['loudspeaker'] = '\ud83d\udce2';
+  showdown.helper.emojis['love_hotel'] = '\ud83c\udfe9';
+  showdown.helper.emojis['love_letter'] = '\ud83d\udc8c';
+  showdown.helper.emojis['low_brightness'] = '\ud83d\udd05';
+  showdown.helper.emojis['lying_face'] = '\ud83e\udd25';
+  showdown.helper.emojis['m'] = '\u24c2\ufe0f';
+  showdown.helper.emojis['mag'] = '\ud83d\udd0d';
+  showdown.helper.emojis['mag_right'] = '\ud83d\udd0e';
+  showdown.helper.emojis['mahjong'] = '\ud83c\udc04\ufe0f';
+  showdown.helper.emojis['mailbox'] = '\ud83d\udceb';
+  showdown.helper.emojis['mailbox_closed'] = '\ud83d\udcea';
+  showdown.helper.emojis['mailbox_with_mail'] = '\ud83d\udcec';
+  showdown.helper.emojis['mailbox_with_no_mail'] = '\ud83d\udced';
+  showdown.helper.emojis['man'] = '\ud83d\udc68';
+  showdown.helper.emojis['man_artist'] = '\ud83d\udc68&zwj;\ud83c\udfa8';
+  showdown.helper.emojis['man_astronaut'] = '\ud83d\udc68&zwj;\ud83d\ude80';
+  showdown.helper.emojis['man_cartwheeling'] = '\ud83e\udd38&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['man_cook'] = '\ud83d\udc68&zwj;\ud83c\udf73';
+  showdown.helper.emojis['man_dancing'] = '\ud83d\udd7a';
+  showdown.helper.emojis['man_facepalming'] = '\ud83e\udd26&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['man_factory_worker'] = '\ud83d\udc68&zwj;\ud83c\udfed';
+  showdown.helper.emojis['man_farmer'] = '\ud83d\udc68&zwj;\ud83c\udf3e';
+  showdown.helper.emojis['man_firefighter'] = '\ud83d\udc68&zwj;\ud83d\ude92';
+  showdown.helper.emojis['man_health_worker'] = '\ud83d\udc68&zwj;\u2695\ufe0f';
+  showdown.helper.emojis['man_in_tuxedo'] = '\ud83e\udd35';
+  showdown.helper.emojis['man_judge'] = '\ud83d\udc68&zwj;\u2696\ufe0f';
+  showdown.helper.emojis['man_juggling'] = '\ud83e\udd39&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['man_mechanic'] = '\ud83d\udc68&zwj;\ud83d\udd27';
+  showdown.helper.emojis['man_office_worker'] = '\ud83d\udc68&zwj;\ud83d\udcbc';
+  showdown.helper.emojis['man_pilot'] = '\ud83d\udc68&zwj;\u2708\ufe0f';
+  showdown.helper.emojis['man_playing_handball'] = '\ud83e\udd3e&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['man_playing_water_polo'] = '\ud83e\udd3d&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['man_scientist'] = '\ud83d\udc68&zwj;\ud83d\udd2c';
+  showdown.helper.emojis['man_shrugging'] = '\ud83e\udd37&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['man_singer'] = '\ud83d\udc68&zwj;\ud83c\udfa4';
+  showdown.helper.emojis['man_student'] = '\ud83d\udc68&zwj;\ud83c\udf93';
+  showdown.helper.emojis['man_teacher'] = '\ud83d\udc68&zwj;\ud83c\udfeb';
+  showdown.helper.emojis['man_technologist'] = '\ud83d\udc68&zwj;\ud83d\udcbb';
+  showdown.helper.emojis['man_with_gua_pi_mao'] = '\ud83d\udc72';
+  showdown.helper.emojis['man_with_turban'] = '\ud83d\udc73';
+  showdown.helper.emojis['tangerine'] = '\ud83c\udf4a';
+  showdown.helper.emojis['mans_shoe'] = '\ud83d\udc5e';
+  showdown.helper.emojis['mantelpiece_clock'] = '\ud83d\udd70';
+  showdown.helper.emojis['maple_leaf'] = '\ud83c\udf41';
+  showdown.helper.emojis['martial_arts_uniform'] = '\ud83e\udd4b';
+  showdown.helper.emojis['mask'] = '\ud83d\ude37';
+  showdown.helper.emojis['massage_woman'] = '\ud83d\udc86';
+  showdown.helper.emojis['massage_man'] = '\ud83d\udc86&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['meat_on_bone'] = '\ud83c\udf56';
+  showdown.helper.emojis['medal_military'] = '\ud83c\udf96';
+  showdown.helper.emojis['medal_sports'] = '\ud83c\udfc5';
+  showdown.helper.emojis['mega'] = '\ud83d\udce3';
+  showdown.helper.emojis['melon'] = '\ud83c\udf48';
+  showdown.helper.emojis['memo'] = '\ud83d\udcdd';
+  showdown.helper.emojis['men_wrestling'] = '\ud83e\udd3c&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['menorah'] = '\ud83d\udd4e';
+  showdown.helper.emojis['mens'] = '\ud83d\udeb9';
+  showdown.helper.emojis['metal'] = '\ud83e\udd18';
+  showdown.helper.emojis['metro'] = '\ud83d\ude87';
+  showdown.helper.emojis['microphone'] = '\ud83c\udfa4';
+  showdown.helper.emojis['microscope'] = '\ud83d\udd2c';
+  showdown.helper.emojis['milk_glass'] = '\ud83e\udd5b';
+  showdown.helper.emojis['milky_way'] = '\ud83c\udf0c';
+  showdown.helper.emojis['minibus'] = '\ud83d\ude90';
+  showdown.helper.emojis['minidisc'] = '\ud83d\udcbd';
+  showdown.helper.emojis['mobile_phone_off'] = '\ud83d\udcf4';
+  showdown.helper.emojis['money_mouth_face'] = '\ud83e\udd11';
+  showdown.helper.emojis['money_with_wings'] = '\ud83d\udcb8';
+  showdown.helper.emojis['moneybag'] = '\ud83d\udcb0';
+  showdown.helper.emojis['monkey'] = '\ud83d\udc12';
+  showdown.helper.emojis['monkey_face'] = '\ud83d\udc35';
+  showdown.helper.emojis['monorail'] = '\ud83d\ude9d';
+  showdown.helper.emojis['moon'] = '\ud83c\udf14';
+  showdown.helper.emojis['mortar_board'] = '\ud83c\udf93';
+  showdown.helper.emojis['mosque'] = '\ud83d\udd4c';
+  showdown.helper.emojis['motor_boat'] = '\ud83d\udee5';
+  showdown.helper.emojis['motor_scooter'] = '\ud83d\udef5';
+  showdown.helper.emojis['motorcycle'] = '\ud83c\udfcd';
+  showdown.helper.emojis['motorway'] = '\ud83d\udee3';
+  showdown.helper.emojis['mount_fuji'] = '\ud83d\uddfb';
+  showdown.helper.emojis['mountain'] = '\u26f0';
+  showdown.helper.emojis['mountain_biking_man'] = '\ud83d\udeb5';
+  showdown.helper.emojis['mountain_biking_woman'] = '\ud83d\udeb5&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['mountain_cableway'] = '\ud83d\udea0';
+  showdown.helper.emojis['mountain_railway'] = '\ud83d\ude9e';
+  showdown.helper.emojis['mountain_snow'] = '\ud83c\udfd4';
+  showdown.helper.emojis['mouse'] = '\ud83d\udc2d';
+  showdown.helper.emojis['mouse2'] = '\ud83d\udc01';
+  showdown.helper.emojis['movie_camera'] = '\ud83c\udfa5';
+  showdown.helper.emojis['moyai'] = '\ud83d\uddff';
+  showdown.helper.emojis['mrs_claus'] = '\ud83e\udd36';
+  showdown.helper.emojis['muscle'] = '\ud83d\udcaa';
+  showdown.helper.emojis['mushroom'] = '\ud83c\udf44';
+  showdown.helper.emojis['musical_keyboard'] = '\ud83c\udfb9';
+  showdown.helper.emojis['musical_note'] = '\ud83c\udfb5';
+  showdown.helper.emojis['musical_score'] = '\ud83c\udfbc';
+  showdown.helper.emojis['mute'] = '\ud83d\udd07';
+  showdown.helper.emojis['nail_care'] = '\ud83d\udc85';
+  showdown.helper.emojis['name_badge'] = '\ud83d\udcdb';
+  showdown.helper.emojis['national_park'] = '\ud83c\udfde';
+  showdown.helper.emojis['nauseated_face'] = '\ud83e\udd22';
+  showdown.helper.emojis['necktie'] = '\ud83d\udc54';
+  showdown.helper.emojis['negative_squared_cross_mark'] = '\u274e';
+  showdown.helper.emojis['nerd_face'] = '\ud83e\udd13';
+  showdown.helper.emojis['neutral_face'] = '\ud83d\ude10';
+  showdown.helper.emojis['new'] = '\ud83c\udd95';
+  showdown.helper.emojis['new_moon'] = '\ud83c\udf11';
+  showdown.helper.emojis['new_moon_with_face'] = '\ud83c\udf1a';
+  showdown.helper.emojis['newspaper'] = '\ud83d\udcf0';
+  showdown.helper.emojis['newspaper_roll'] = '\ud83d\uddde';
+  showdown.helper.emojis['next_track_button'] = '\u23ed';
+  showdown.helper.emojis['ng'] = '\ud83c\udd96';
+  showdown.helper.emojis['no_good_man'] = '\ud83d\ude45&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['no_good_woman'] = '\ud83d\ude45';
+  showdown.helper.emojis['night_with_stars'] = '\ud83c\udf03';
+  showdown.helper.emojis['no_bell'] = '\ud83d\udd15';
+  showdown.helper.emojis['no_bicycles'] = '\ud83d\udeb3';
+  showdown.helper.emojis['no_entry'] = '\u26d4\ufe0f';
+  showdown.helper.emojis['no_entry_sign'] = '\ud83d\udeab';
+  showdown.helper.emojis['no_mobile_phones'] = '\ud83d\udcf5';
+  showdown.helper.emojis['no_mouth'] = '\ud83d\ude36';
+  showdown.helper.emojis['no_pedestrians'] = '\ud83d\udeb7';
+  showdown.helper.emojis['no_smoking'] = '\ud83d\udead';
+  showdown.helper.emojis['non-potable_water'] = '\ud83d\udeb1';
+  showdown.helper.emojis['nose'] = '\ud83d\udc43';
+  showdown.helper.emojis['notebook'] = '\ud83d\udcd3';
+  showdown.helper.emojis['notebook_with_decorative_cover'] = '\ud83d\udcd4';
+  showdown.helper.emojis['notes'] = '\ud83c\udfb6';
+  showdown.helper.emojis['nut_and_bolt'] = '\ud83d\udd29';
+  showdown.helper.emojis['o'] = '\u2b55\ufe0f';
+  showdown.helper.emojis['o2'] = '\ud83c\udd7e\ufe0f';
+  showdown.helper.emojis['ocean'] = '\ud83c\udf0a';
+  showdown.helper.emojis['octopus'] = '\ud83d\udc19';
+  showdown.helper.emojis['oden'] = '\ud83c\udf62';
+  showdown.helper.emojis['office'] = '\ud83c\udfe2';
+  showdown.helper.emojis['oil_drum'] = '\ud83d\udee2';
+  showdown.helper.emojis['ok'] = '\ud83c\udd97';
+  showdown.helper.emojis['ok_hand'] = '\ud83d\udc4c';
+  showdown.helper.emojis['ok_man'] = '\ud83d\ude46&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['ok_woman'] = '\ud83d\ude46';
+  showdown.helper.emojis['old_key'] = '\ud83d\udddd';
+  showdown.helper.emojis['older_man'] = '\ud83d\udc74';
+  showdown.helper.emojis['older_woman'] = '\ud83d\udc75';
+  showdown.helper.emojis['om'] = '\ud83d\udd49';
+  showdown.helper.emojis['on'] = '\ud83d\udd1b';
+  showdown.helper.emojis['oncoming_automobile'] = '\ud83d\ude98';
+  showdown.helper.emojis['oncoming_bus'] = '\ud83d\ude8d';
+  showdown.helper.emojis['oncoming_police_car'] = '\ud83d\ude94';
+  showdown.helper.emojis['oncoming_taxi'] = '\ud83d\ude96';
+  showdown.helper.emojis['open_file_folder'] = '\ud83d\udcc2';
+  showdown.helper.emojis['open_hands'] = '\ud83d\udc50';
+  showdown.helper.emojis['open_mouth'] = '\ud83d\ude2e';
+  showdown.helper.emojis['open_umbrella'] = '\u2602\ufe0f';
+  showdown.helper.emojis['ophiuchus'] = '\u26ce';
+  showdown.helper.emojis['orange_book'] = '\ud83d\udcd9';
+  showdown.helper.emojis['orthodox_cross'] = '\u2626\ufe0f';
+  showdown.helper.emojis['outbox_tray'] = '\ud83d\udce4';
+  showdown.helper.emojis['owl'] = '\ud83e\udd89';
+  showdown.helper.emojis['ox'] = '\ud83d\udc02';
+  showdown.helper.emojis['package'] = '\ud83d\udce6';
+  showdown.helper.emojis['page_facing_up'] = '\ud83d\udcc4';
+  showdown.helper.emojis['page_with_curl'] = '\ud83d\udcc3';
+  showdown.helper.emojis['pager'] = '\ud83d\udcdf';
+  showdown.helper.emojis['paintbrush'] = '\ud83d\udd8c';
+  showdown.helper.emojis['palm_tree'] = '\ud83c\udf34';
+  showdown.helper.emojis['pancakes'] = '\ud83e\udd5e';
+  showdown.helper.emojis['panda_face'] = '\ud83d\udc3c';
+  showdown.helper.emojis['paperclip'] = '\ud83d\udcce';
+  showdown.helper.emojis['paperclips'] = '\ud83d\udd87';
+  showdown.helper.emojis['parasol_on_ground'] = '\u26f1';
+  showdown.helper.emojis['parking'] = '\ud83c\udd7f\ufe0f';
+  showdown.helper.emojis['part_alternation_mark'] = '\u303d\ufe0f';
+  showdown.helper.emojis['partly_sunny'] = '\u26c5\ufe0f';
+  showdown.helper.emojis['passenger_ship'] = '\ud83d\udef3';
+  showdown.helper.emojis['passport_control'] = '\ud83d\udec2';
+  showdown.helper.emojis['pause_button'] = '\u23f8';
+  showdown.helper.emojis['peace_symbol'] = '\u262e\ufe0f';
+  showdown.helper.emojis['peach'] = '\ud83c\udf51';
+  showdown.helper.emojis['peanuts'] = '\ud83e\udd5c';
+  showdown.helper.emojis['pear'] = '\ud83c\udf50';
+  showdown.helper.emojis['pen'] = '\ud83d\udd8a';
+  showdown.helper.emojis['pencil2'] = '\u270f\ufe0f';
+  showdown.helper.emojis['penguin'] = '\ud83d\udc27';
+  showdown.helper.emojis['pensive'] = '\ud83d\ude14';
+  showdown.helper.emojis['performing_arts'] = '\ud83c\udfad';
+  showdown.helper.emojis['persevere'] = '\ud83d\ude23';
+  showdown.helper.emojis['person_fencing'] = '\ud83e\udd3a';
+  showdown.helper.emojis['pouting_woman'] = '\ud83d\ude4e';
+  showdown.helper.emojis['phone'] = '\u260e\ufe0f';
+  showdown.helper.emojis['pick'] = '\u26cf';
+  showdown.helper.emojis['pig'] = '\ud83d\udc37';
+  showdown.helper.emojis['pig2'] = '\ud83d\udc16';
+  showdown.helper.emojis['pig_nose'] = '\ud83d\udc3d';
+  showdown.helper.emojis['pill'] = '\ud83d\udc8a';
+  showdown.helper.emojis['pineapple'] = '\ud83c\udf4d';
+  showdown.helper.emojis['ping_pong'] = '\ud83c\udfd3';
+  showdown.helper.emojis['pisces'] = '\u2653\ufe0f';
+  showdown.helper.emojis['pizza'] = '\ud83c\udf55';
+  showdown.helper.emojis['place_of_worship'] = '\ud83d\uded0';
+  showdown.helper.emojis['plate_with_cutlery'] = '\ud83c\udf7d';
+  showdown.helper.emojis['play_or_pause_button'] = '\u23ef';
+  showdown.helper.emojis['point_down'] = '\ud83d\udc47';
+  showdown.helper.emojis['point_left'] = '\ud83d\udc48';
+  showdown.helper.emojis['point_right'] = '\ud83d\udc49';
+  showdown.helper.emojis['point_up'] = '\u261d\ufe0f';
+  showdown.helper.emojis['point_up_2'] = '\ud83d\udc46';
+  showdown.helper.emojis['police_car'] = '\ud83d\ude93';
+  showdown.helper.emojis['policewoman'] = '\ud83d\udc6e&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['poodle'] = '\ud83d\udc29';
+  showdown.helper.emojis['popcorn'] = '\ud83c\udf7f';
+  showdown.helper.emojis['post_office'] = '\ud83c\udfe3';
+  showdown.helper.emojis['postal_horn'] = '\ud83d\udcef';
+  showdown.helper.emojis['postbox'] = '\ud83d\udcee';
+  showdown.helper.emojis['potable_water'] = '\ud83d\udeb0';
+  showdown.helper.emojis['potato'] = '\ud83e\udd54';
+  showdown.helper.emojis['pouch'] = '\ud83d\udc5d';
+  showdown.helper.emojis['poultry_leg'] = '\ud83c\udf57';
+  showdown.helper.emojis['pound'] = '\ud83d\udcb7';
+  showdown.helper.emojis['rage'] = '\ud83d\ude21';
+  showdown.helper.emojis['pouting_cat'] = '\ud83d\ude3e';
+  showdown.helper.emojis['pouting_man'] = '\ud83d\ude4e&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['pray'] = '\ud83d\ude4f';
+  showdown.helper.emojis['prayer_beads'] = '\ud83d\udcff';
+  showdown.helper.emojis['pregnant_woman'] = '\ud83e\udd30';
+  showdown.helper.emojis['previous_track_button'] = '\u23ee';
+  showdown.helper.emojis['prince'] = '\ud83e\udd34';
+  showdown.helper.emojis['princess'] = '\ud83d\udc78';
+  showdown.helper.emojis['printer'] = '\ud83d\udda8';
+  showdown.helper.emojis['purple_heart'] = '\ud83d\udc9c';
+  showdown.helper.emojis['purse'] = '\ud83d\udc5b';
+  showdown.helper.emojis['pushpin'] = '\ud83d\udccc';
+  showdown.helper.emojis['put_litter_in_its_place'] = '\ud83d\udeae';
+  showdown.helper.emojis['question'] = '\u2753';
+  showdown.helper.emojis['rabbit'] = '\ud83d\udc30';
+  showdown.helper.emojis['rabbit2'] = '\ud83d\udc07';
+  showdown.helper.emojis['racehorse'] = '\ud83d\udc0e';
+  showdown.helper.emojis['racing_car'] = '\ud83c\udfce';
+  showdown.helper.emojis['radio'] = '\ud83d\udcfb';
+  showdown.helper.emojis['radio_button'] = '\ud83d\udd18';
+  showdown.helper.emojis['radioactive'] = '\u2622\ufe0f';
+  showdown.helper.emojis['railway_car'] = '\ud83d\ude83';
+  showdown.helper.emojis['railway_track'] = '\ud83d\udee4';
+  showdown.helper.emojis['rainbow'] = '\ud83c\udf08';
+  showdown.helper.emojis['rainbow_flag'] = '\ud83c\udff3\ufe0f&zwj;\ud83c\udf08';
+  showdown.helper.emojis['raised_back_of_hand'] = '\ud83e\udd1a';
+  showdown.helper.emojis['raised_hand_with_fingers_splayed'] = '\ud83d\udd90';
+  showdown.helper.emojis['raised_hands'] = '\ud83d\ude4c';
+  showdown.helper.emojis['raising_hand_woman'] = '\ud83d\ude4b';
+  showdown.helper.emojis['raising_hand_man'] = '\ud83d\ude4b&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['ram'] = '\ud83d\udc0f';
+  showdown.helper.emojis['ramen'] = '\ud83c\udf5c';
+  showdown.helper.emojis['rat'] = '\ud83d\udc00';
+  showdown.helper.emojis['record_button'] = '\u23fa';
+  showdown.helper.emojis['recycle'] = '\u267b\ufe0f';
+  showdown.helper.emojis['red_circle'] = '\ud83d\udd34';
+  showdown.helper.emojis['registered'] = '\u00ae\ufe0f';
+  showdown.helper.emojis['relaxed'] = '\u263a\ufe0f';
+  showdown.helper.emojis['relieved'] = '\ud83d\ude0c';
+  showdown.helper.emojis['reminder_ribbon'] = '\ud83c\udf97';
+  showdown.helper.emojis['repeat'] = '\ud83d\udd01';
+  showdown.helper.emojis['repeat_one'] = '\ud83d\udd02';
+  showdown.helper.emojis['rescue_worker_helmet'] = '\u26d1';
+  showdown.helper.emojis['restroom'] = '\ud83d\udebb';
+  showdown.helper.emojis['revolving_hearts'] = '\ud83d\udc9e';
+  showdown.helper.emojis['rewind'] = '\u23ea';
+  showdown.helper.emojis['rhinoceros'] = '\ud83e\udd8f';
+  showdown.helper.emojis['ribbon'] = '\ud83c\udf80';
+  showdown.helper.emojis['rice'] = '\ud83c\udf5a';
+  showdown.helper.emojis['rice_ball'] = '\ud83c\udf59';
+  showdown.helper.emojis['rice_cracker'] = '\ud83c\udf58';
+  showdown.helper.emojis['rice_scene'] = '\ud83c\udf91';
+  showdown.helper.emojis['right_anger_bubble'] = '\ud83d\uddef';
+  showdown.helper.emojis['ring'] = '\ud83d\udc8d';
+  showdown.helper.emojis['robot'] = '\ud83e\udd16';
+  showdown.helper.emojis['rocket'] = '\ud83d\ude80';
+  showdown.helper.emojis['rofl'] = '\ud83e\udd23';
+  showdown.helper.emojis['roll_eyes'] = '\ud83d\ude44';
+  showdown.helper.emojis['roller_coaster'] = '\ud83c\udfa2';
+  showdown.helper.emojis['rooster'] = '\ud83d\udc13';
+  showdown.helper.emojis['rose'] = '\ud83c\udf39';
+  showdown.helper.emojis['rosette'] = '\ud83c\udff5';
+  showdown.helper.emojis['rotating_light'] = '\ud83d\udea8';
+  showdown.helper.emojis['round_pushpin'] = '\ud83d\udccd';
+  showdown.helper.emojis['rowing_man'] = '\ud83d\udea3';
+  showdown.helper.emojis['rowing_woman'] = '\ud83d\udea3&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['rugby_football'] = '\ud83c\udfc9';
+  showdown.helper.emojis['running_man'] = '\ud83c\udfc3';
+  showdown.helper.emojis['running_shirt_with_sash'] = '\ud83c\udfbd';
+  showdown.helper.emojis['running_woman'] = '\ud83c\udfc3&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['sa'] = '\ud83c\ude02\ufe0f';
+  showdown.helper.emojis['sagittarius'] = '\u2650\ufe0f';
+  showdown.helper.emojis['sake'] = '\ud83c\udf76';
+  showdown.helper.emojis['sandal'] = '\ud83d\udc61';
+  showdown.helper.emojis['santa'] = '\ud83c\udf85';
+  showdown.helper.emojis['satellite'] = '\ud83d\udce1';
+  showdown.helper.emojis['saxophone'] = '\ud83c\udfb7';
+  showdown.helper.emojis['school'] = '\ud83c\udfeb';
+  showdown.helper.emojis['school_satchel'] = '\ud83c\udf92';
+  showdown.helper.emojis['scissors'] = '\u2702\ufe0f';
+  showdown.helper.emojis['scorpion'] = '\ud83e\udd82';
+  showdown.helper.emojis['scorpius'] = '\u264f\ufe0f';
+  showdown.helper.emojis['scream'] = '\ud83d\ude31';
+  showdown.helper.emojis['scream_cat'] = '\ud83d\ude40';
+  showdown.helper.emojis['scroll'] = '\ud83d\udcdc';
+  showdown.helper.emojis['seat'] = '\ud83d\udcba';
+  showdown.helper.emojis['secret'] = '\u3299\ufe0f';
+  showdown.helper.emojis['see_no_evil'] = '\ud83d\ude48';
+  showdown.helper.emojis['seedling'] = '\ud83c\udf31';
+  showdown.helper.emojis['selfie'] = '\ud83e\udd33';
+  showdown.helper.emojis['shallow_pan_of_food'] = '\ud83e\udd58';
+  showdown.helper.emojis['shamrock'] = '\u2618\ufe0f';
+  showdown.helper.emojis['shark'] = '\ud83e\udd88';
+  showdown.helper.emojis['shaved_ice'] = '\ud83c\udf67';
+  showdown.helper.emojis['sheep'] = '\ud83d\udc11';
+  showdown.helper.emojis['shell'] = '\ud83d\udc1a';
+  showdown.helper.emojis['shield'] = '\ud83d\udee1';
+  showdown.helper.emojis['shinto_shrine'] = '\u26e9';
+  showdown.helper.emojis['ship'] = '\ud83d\udea2';
+  showdown.helper.emojis['shirt'] = '\ud83d\udc55';
+  showdown.helper.emojis['shopping'] = '\ud83d\udecd';
+  showdown.helper.emojis['shopping_cart'] = '\ud83d\uded2';
+  showdown.helper.emojis['shower'] = '\ud83d\udebf';
+  showdown.helper.emojis['shrimp'] = '\ud83e\udd90';
+  showdown.helper.emojis['signal_strength'] = '\ud83d\udcf6';
+  showdown.helper.emojis['six_pointed_star'] = '\ud83d\udd2f';
+  showdown.helper.emojis['ski'] = '\ud83c\udfbf';
+  showdown.helper.emojis['skier'] = '\u26f7';
+  showdown.helper.emojis['skull'] = '\ud83d\udc80';
+  showdown.helper.emojis['skull_and_crossbones'] = '\u2620\ufe0f';
+  showdown.helper.emojis['sleeping'] = '\ud83d\ude34';
+  showdown.helper.emojis['sleeping_bed'] = '\ud83d\udecc';
+  showdown.helper.emojis['sleepy'] = '\ud83d\ude2a';
+  showdown.helper.emojis['slightly_frowning_face'] = '\ud83d\ude41';
+  showdown.helper.emojis['slightly_smiling_face'] = '\ud83d\ude42';
+  showdown.helper.emojis['slot_machine'] = '\ud83c\udfb0';
+  showdown.helper.emojis['small_airplane'] = '\ud83d\udee9';
+  showdown.helper.emojis['small_blue_diamond'] = '\ud83d\udd39';
+  showdown.helper.emojis['small_orange_diamond'] = '\ud83d\udd38';
+  showdown.helper.emojis['small_red_triangle'] = '\ud83d\udd3a';
+  showdown.helper.emojis['small_red_triangle_down'] = '\ud83d\udd3b';
+  showdown.helper.emojis['smile'] = '\ud83d\ude04';
+  showdown.helper.emojis['smile_cat'] = '\ud83d\ude38';
+  showdown.helper.emojis['smiley'] = '\ud83d\ude03';
+  showdown.helper.emojis['smiley_cat'] = '\ud83d\ude3a';
+  showdown.helper.emojis['smiling_imp'] = '\ud83d\ude08';
+  showdown.helper.emojis['smirk'] = '\ud83d\ude0f';
+  showdown.helper.emojis['smirk_cat'] = '\ud83d\ude3c';
+  showdown.helper.emojis['smoking'] = '\ud83d\udeac';
+  showdown.helper.emojis['snail'] = '\ud83d\udc0c';
+  showdown.helper.emojis['snake'] = '\ud83d\udc0d';
+  showdown.helper.emojis['sneezing_face'] = '\ud83e\udd27';
+  showdown.helper.emojis['snowboarder'] = '\ud83c\udfc2';
+  showdown.helper.emojis['snowflake'] = '\u2744\ufe0f';
+  showdown.helper.emojis['snowman'] = '\u26c4\ufe0f';
+  showdown.helper.emojis['snowman_with_snow'] = '\u2603\ufe0f';
+  showdown.helper.emojis['sob'] = '\ud83d\ude2d';
+  showdown.helper.emojis['soccer'] = '\u26bd\ufe0f';
+  showdown.helper.emojis['soon'] = '\ud83d\udd1c';
+  showdown.helper.emojis['sos'] = '\ud83c\udd98';
+  showdown.helper.emojis['sound'] = '\ud83d\udd09';
+  showdown.helper.emojis['space_invader'] = '\ud83d\udc7e';
+  showdown.helper.emojis['spades'] = '\u2660\ufe0f';
+  showdown.helper.emojis['spaghetti'] = '\ud83c\udf5d';
+  showdown.helper.emojis['sparkle'] = '\u2747\ufe0f';
+  showdown.helper.emojis['sparkler'] = '\ud83c\udf87';
+  showdown.helper.emojis['sparkles'] = '\u2728';
+  showdown.helper.emojis['sparkling_heart'] = '\ud83d\udc96';
+  showdown.helper.emojis['speak_no_evil'] = '\ud83d\ude4a';
+  showdown.helper.emojis['speaker'] = '\ud83d\udd08';
+  showdown.helper.emojis['speaking_head'] = '\ud83d\udde3';
+  showdown.helper.emojis['speech_balloon'] = '\ud83d\udcac';
+  showdown.helper.emojis['speedboat'] = '\ud83d\udea4';
+  showdown.helper.emojis['spider'] = '\ud83d\udd77';
+  showdown.helper.emojis['spider_web'] = '\ud83d\udd78';
+  showdown.helper.emojis['spiral_calendar'] = '\ud83d\uddd3';
+  showdown.helper.emojis['spiral_notepad'] = '\ud83d\uddd2';
+  showdown.helper.emojis['spoon'] = '\ud83e\udd44';
+  showdown.helper.emojis['squid'] = '\ud83e\udd91';
+  showdown.helper.emojis['stadium'] = '\ud83c\udfdf';
+  showdown.helper.emojis['star'] = '\u2b50\ufe0f';
+  showdown.helper.emojis['star2'] = '\ud83c\udf1f';
+  showdown.helper.emojis['star_and_crescent'] = '\u262a\ufe0f';
+  showdown.helper.emojis['star_of_david'] = '\u2721\ufe0f';
+  showdown.helper.emojis['stars'] = '\ud83c\udf20';
+  showdown.helper.emojis['station'] = '\ud83d\ude89';
+  showdown.helper.emojis['statue_of_liberty'] = '\ud83d\uddfd';
+  showdown.helper.emojis['steam_locomotive'] = '\ud83d\ude82';
+  showdown.helper.emojis['stew'] = '\ud83c\udf72';
+  showdown.helper.emojis['stop_button'] = '\u23f9';
+  showdown.helper.emojis['stop_sign'] = '\ud83d\uded1';
+  showdown.helper.emojis['stopwatch'] = '\u23f1';
+  showdown.helper.emojis['straight_ruler'] = '\ud83d\udccf';
+  showdown.helper.emojis['strawberry'] = '\ud83c\udf53';
+  showdown.helper.emojis['stuck_out_tongue'] = '\ud83d\ude1b';
+  showdown.helper.emojis['stuck_out_tongue_closed_eyes'] = '\ud83d\ude1d';
+  showdown.helper.emojis['stuck_out_tongue_winking_eye'] = '\ud83d\ude1c';
+  showdown.helper.emojis['studio_microphone'] = '\ud83c\udf99';
+  showdown.helper.emojis['stuffed_flatbread'] = '\ud83e\udd59';
+  showdown.helper.emojis['sun_behind_large_cloud'] = '\ud83c\udf25';
+  showdown.helper.emojis['sun_behind_rain_cloud'] = '\ud83c\udf26';
+  showdown.helper.emojis['sun_behind_small_cloud'] = '\ud83c\udf24';
+  showdown.helper.emojis['sun_with_face'] = '\ud83c\udf1e';
+  showdown.helper.emojis['sunflower'] = '\ud83c\udf3b';
+  showdown.helper.emojis['sunglasses'] = '\ud83d\ude0e';
+  showdown.helper.emojis['sunny'] = '\u2600\ufe0f';
+  showdown.helper.emojis['sunrise'] = '\ud83c\udf05';
+  showdown.helper.emojis['sunrise_over_mountains'] = '\ud83c\udf04';
+  showdown.helper.emojis['surfing_man'] = '\ud83c\udfc4';
+  showdown.helper.emojis['surfing_woman'] = '\ud83c\udfc4&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['sushi'] = '\ud83c\udf63';
+  showdown.helper.emojis['suspension_railway'] = '\ud83d\ude9f';
+  showdown.helper.emojis['sweat'] = '\ud83d\ude13';
+  showdown.helper.emojis['sweat_drops'] = '\ud83d\udca6';
+  showdown.helper.emojis['sweat_smile'] = '\ud83d\ude05';
+  showdown.helper.emojis['sweet_potato'] = '\ud83c\udf60';
+  showdown.helper.emojis['swimming_man'] = '\ud83c\udfca';
+  showdown.helper.emojis['swimming_woman'] = '\ud83c\udfca&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['symbols'] = '\ud83d\udd23';
+  showdown.helper.emojis['synagogue'] = '\ud83d\udd4d';
+  showdown.helper.emojis['syringe'] = '\ud83d\udc89';
+  showdown.helper.emojis['taco'] = '\ud83c\udf2e';
+  showdown.helper.emojis['tada'] = '\ud83c\udf89';
+  showdown.helper.emojis['tanabata_tree'] = '\ud83c\udf8b';
+  showdown.helper.emojis['taurus'] = '\u2649\ufe0f';
+  showdown.helper.emojis['taxi'] = '\ud83d\ude95';
+  showdown.helper.emojis['tea'] = '\ud83c\udf75';
+  showdown.helper.emojis['telephone_receiver'] = '\ud83d\udcde';
+  showdown.helper.emojis['telescope'] = '\ud83d\udd2d';
+  showdown.helper.emojis['tennis'] = '\ud83c\udfbe';
+  showdown.helper.emojis['tent'] = '\u26fa\ufe0f';
+  showdown.helper.emojis['thermometer'] = '\ud83c\udf21';
+  showdown.helper.emojis['thinking'] = '\ud83e\udd14';
+  showdown.helper.emojis['thought_balloon'] = '\ud83d\udcad';
+  showdown.helper.emojis['ticket'] = '\ud83c\udfab';
+  showdown.helper.emojis['tickets'] = '\ud83c\udf9f';
+  showdown.helper.emojis['tiger'] = '\ud83d\udc2f';
+  showdown.helper.emojis['tiger2'] = '\ud83d\udc05';
+  showdown.helper.emojis['timer_clock'] = '\u23f2';
+  showdown.helper.emojis['tipping_hand_man'] = '\ud83d\udc81&zwj;\u2642\ufe0f';
+  showdown.helper.emojis['tired_face'] = '\ud83d\ude2b';
+  showdown.helper.emojis['tm'] = '\u2122\ufe0f';
+  showdown.helper.emojis['toilet'] = '\ud83d\udebd';
+  showdown.helper.emojis['tokyo_tower'] = '\ud83d\uddfc';
+  showdown.helper.emojis['tomato'] = '\ud83c\udf45';
+  showdown.helper.emojis['tongue'] = '\ud83d\udc45';
+  showdown.helper.emojis['top'] = '\ud83d\udd1d';
+  showdown.helper.emojis['tophat'] = '\ud83c\udfa9';
+  showdown.helper.emojis['tornado'] = '\ud83c\udf2a';
+  showdown.helper.emojis['trackball'] = '\ud83d\uddb2';
+  showdown.helper.emojis['tractor'] = '\ud83d\ude9c';
+  showdown.helper.emojis['traffic_light'] = '\ud83d\udea5';
+  showdown.helper.emojis['train'] = '\ud83d\ude8b';
+  showdown.helper.emojis['train2'] = '\ud83d\ude86';
+  showdown.helper.emojis['tram'] = '\ud83d\ude8a';
+  showdown.helper.emojis['triangular_flag_on_post'] = '\ud83d\udea9';
+  showdown.helper.emojis['triangular_ruler'] = '\ud83d\udcd0';
+  showdown.helper.emojis['trident'] = '\ud83d\udd31';
+  showdown.helper.emojis['triumph'] = '\ud83d\ude24';
+  showdown.helper.emojis['trolleybus'] = '\ud83d\ude8e';
+  showdown.helper.emojis['trophy'] = '\ud83c\udfc6';
+  showdown.helper.emojis['tropical_drink'] = '\ud83c\udf79';
+  showdown.helper.emojis['tropical_fish'] = '\ud83d\udc20';
+  showdown.helper.emojis['truck'] = '\ud83d\ude9a';
+  showdown.helper.emojis['trumpet'] = '\ud83c\udfba';
+  showdown.helper.emojis['tulip'] = '\ud83c\udf37';
+  showdown.helper.emojis['tumbler_glass'] = '\ud83e\udd43';
+  showdown.helper.emojis['turkey'] = '\ud83e\udd83';
+  showdown.helper.emojis['turtle'] = '\ud83d\udc22';
+  showdown.helper.emojis['tv'] = '\ud83d\udcfa';
+  showdown.helper.emojis['twisted_rightwards_arrows'] = '\ud83d\udd00';
+  showdown.helper.emojis['two_hearts'] = '\ud83d\udc95';
+  showdown.helper.emojis['two_men_holding_hands'] = '\ud83d\udc6c';
+  showdown.helper.emojis['two_women_holding_hands'] = '\ud83d\udc6d';
+  showdown.helper.emojis['u5272'] = '\ud83c\ude39';
+  showdown.helper.emojis['u5408'] = '\ud83c\ude34';
+  showdown.helper.emojis['u55b6'] = '\ud83c\ude3a';
+  showdown.helper.emojis['u6307'] = '\ud83c\ude2f\ufe0f';
+  showdown.helper.emojis['u6708'] = '\ud83c\ude37\ufe0f';
+  showdown.helper.emojis['u6709'] = '\ud83c\ude36';
+  showdown.helper.emojis['u6e80'] = '\ud83c\ude35';
+  showdown.helper.emojis['u7121'] = '\ud83c\ude1a\ufe0f';
+  showdown.helper.emojis['u7533'] = '\ud83c\ude38';
+  showdown.helper.emojis['u7981'] = '\ud83c\ude32';
+  showdown.helper.emojis['u7a7a'] = '\ud83c\ude33';
+  showdown.helper.emojis['umbrella'] = '\u2614\ufe0f';
+  showdown.helper.emojis['unamused'] = '\ud83d\ude12';
+  showdown.helper.emojis['underage'] = '\ud83d\udd1e';
+  showdown.helper.emojis['unicorn'] = '\ud83e\udd84';
+  showdown.helper.emojis['unlock'] = '\ud83d\udd13';
+  showdown.helper.emojis['up'] = '\ud83c\udd99';
+  showdown.helper.emojis['upside_down_face'] = '\ud83d\ude43';
+  showdown.helper.emojis['v'] = '\u270c\ufe0f';
+  showdown.helper.emojis['vertical_traffic_light'] = '\ud83d\udea6';
+  showdown.helper.emojis['vhs'] = '\ud83d\udcfc';
+  showdown.helper.emojis['vibration_mode'] = '\ud83d\udcf3';
+  showdown.helper.emojis['video_camera'] = '\ud83d\udcf9';
+  showdown.helper.emojis['video_game'] = '\ud83c\udfae';
+  showdown.helper.emojis['violin'] = '\ud83c\udfbb';
+  showdown.helper.emojis['virgo'] = '\u264d\ufe0f';
+  showdown.helper.emojis['volcano'] = '\ud83c\udf0b';
+  showdown.helper.emojis['volleyball'] = '\ud83c\udfd0';
+  showdown.helper.emojis['vs'] = '\ud83c\udd9a';
+  showdown.helper.emojis['vulcan_salute'] = '\ud83d\udd96';
+  showdown.helper.emojis['walking_man'] = '\ud83d\udeb6';
+  showdown.helper.emojis['walking_woman'] = '\ud83d\udeb6&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['waning_crescent_moon'] = '\ud83c\udf18';
+  showdown.helper.emojis['waning_gibbous_moon'] = '\ud83c\udf16';
+  showdown.helper.emojis['warning'] = '\u26a0\ufe0f';
+  showdown.helper.emojis['wastebasket'] = '\ud83d\uddd1';
+  showdown.helper.emojis['watch'] = '\u231a\ufe0f';
+  showdown.helper.emojis['water_buffalo'] = '\ud83d\udc03';
+  showdown.helper.emojis['watermelon'] = '\ud83c\udf49';
+  showdown.helper.emojis['wave'] = '\ud83d\udc4b';
+  showdown.helper.emojis['wavy_dash'] = '\u3030\ufe0f';
+  showdown.helper.emojis['waxing_crescent_moon'] = '\ud83c\udf12';
+  showdown.helper.emojis['wc'] = '\ud83d\udebe';
+  showdown.helper.emojis['weary'] = '\ud83d\ude29';
+  showdown.helper.emojis['wedding'] = '\ud83d\udc92';
+  showdown.helper.emojis['weight_lifting_man'] = '\ud83c\udfcb\ufe0f';
+  showdown.helper.emojis['weight_lifting_woman'] = '\ud83c\udfcb\ufe0f&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['whale'] = '\ud83d\udc33';
+  showdown.helper.emojis['whale2'] = '\ud83d\udc0b';
+  showdown.helper.emojis['wheel_of_dharma'] = '\u2638\ufe0f';
+  showdown.helper.emojis['wheelchair'] = '\u267f\ufe0f';
+  showdown.helper.emojis['white_check_mark'] = '\u2705';
+  showdown.helper.emojis['white_circle'] = '\u26aa\ufe0f';
+  showdown.helper.emojis['white_flag'] = '\ud83c\udff3\ufe0f';
+  showdown.helper.emojis['white_flower'] = '\ud83d\udcae';
+  showdown.helper.emojis['white_large_square'] = '\u2b1c\ufe0f';
+  showdown.helper.emojis['white_medium_small_square'] = '\u25fd\ufe0f';
+  showdown.helper.emojis['white_medium_square'] = '\u25fb\ufe0f';
+  showdown.helper.emojis['white_small_square'] = '\u25ab\ufe0f';
+  showdown.helper.emojis['white_square_button'] = '\ud83d\udd33';
+  showdown.helper.emojis['wilted_flower'] = '\ud83e\udd40';
+  showdown.helper.emojis['wind_chime'] = '\ud83c\udf90';
+  showdown.helper.emojis['wind_face'] = '\ud83c\udf2c';
+  showdown.helper.emojis['wine_glass'] = '\ud83c\udf77';
+  showdown.helper.emojis['wink'] = '\ud83d\ude09';
+  showdown.helper.emojis['wolf'] = '\ud83d\udc3a';
+  showdown.helper.emojis['woman'] = '\ud83d\udc69';
+  showdown.helper.emojis['woman_artist'] = '\ud83d\udc69&zwj;\ud83c\udfa8';
+  showdown.helper.emojis['woman_astronaut'] = '\ud83d\udc69&zwj;\ud83d\ude80';
+  showdown.helper.emojis['woman_cartwheeling'] = '\ud83e\udd38&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['woman_cook'] = '\ud83d\udc69&zwj;\ud83c\udf73';
+  showdown.helper.emojis['woman_facepalming'] = '\ud83e\udd26&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['woman_factory_worker'] = '\ud83d\udc69&zwj;\ud83c\udfed';
+  showdown.helper.emojis['woman_farmer'] = '\ud83d\udc69&zwj;\ud83c\udf3e';
+  showdown.helper.emojis['woman_firefighter'] = '\ud83d\udc69&zwj;\ud83d\ude92';
+  showdown.helper.emojis['woman_health_worker'] = '\ud83d\udc69&zwj;\u2695\ufe0f';
+  showdown.helper.emojis['woman_judge'] = '\ud83d\udc69&zwj;\u2696\ufe0f';
+  showdown.helper.emojis['woman_juggling'] = '\ud83e\udd39&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['woman_mechanic'] = '\ud83d\udc69&zwj;\ud83d\udd27';
+  showdown.helper.emojis['woman_office_worker'] = '\ud83d\udc69&zwj;\ud83d\udcbc';
+  showdown.helper.emojis['woman_pilot'] = '\ud83d\udc69&zwj;\u2708\ufe0f';
+  showdown.helper.emojis['woman_playing_handball'] = '\ud83e\udd3e&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['woman_playing_water_polo'] = '\ud83e\udd3d&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['woman_scientist'] = '\ud83d\udc69&zwj;\ud83d\udd2c';
+  showdown.helper.emojis['woman_shrugging'] = '\ud83e\udd37&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['woman_singer'] = '\ud83d\udc69&zwj;\ud83c\udfa4';
+  showdown.helper.emojis['woman_student'] = '\ud83d\udc69&zwj;\ud83c\udf93';
+  showdown.helper.emojis['woman_teacher'] = '\ud83d\udc69&zwj;\ud83c\udfeb';
+  showdown.helper.emojis['woman_technologist'] = '\ud83d\udc69&zwj;\ud83d\udcbb';
+  showdown.helper.emojis['woman_with_turban'] = '\ud83d\udc73&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['womans_clothes'] = '\ud83d\udc5a';
+  showdown.helper.emojis['womans_hat'] = '\ud83d\udc52';
+  showdown.helper.emojis['women_wrestling'] = '\ud83e\udd3c&zwj;\u2640\ufe0f';
+  showdown.helper.emojis['womens'] = '\ud83d\udeba';
+  showdown.helper.emojis['world_map'] = '\ud83d\uddfa';
+  showdown.helper.emojis['worried'] = '\ud83d\ude1f';
+  showdown.helper.emojis['wrench'] = '\ud83d\udd27';
+  showdown.helper.emojis['writing_hand'] = '\u270d\ufe0f';
+  showdown.helper.emojis['x'] = '\u274c';
+  showdown.helper.emojis['yellow_heart'] = '\ud83d\udc9b';
+  showdown.helper.emojis['yen'] = '\ud83d\udcb4';
+  showdown.helper.emojis['yin_yang'] = '\u262f\ufe0f';
+  showdown.helper.emojis['yum'] = '\ud83d\ude0b';
+  showdown.helper.emojis['zap'] = '\u26a1\ufe0f';
+  showdown.helper.emojis['zipper_mouth_face'] = '\ud83e\udd10';
+  showdown.helper.emojis['zzz'] = '\ud83d\udca4';
 
   /* special emojis :P */
-  'octocat':  '<img width="20" height="20" align="absmiddle" src="data:image/png;base64,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">',
-  'showdown': '<img width="20" height="20" align="absmiddle" src="data:image/png;base64,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/GMzLdsAAECtaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzA2NyA3OS4xNTc3NDcsIDIwMTUvMDMvMzAtMjM6NDA6NDIgICAgICAgICI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgICAgICAgICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgICAgICAgICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgICAgICAgICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgICAgICAgICB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIgogICAgICAgICAgICB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cyk8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICAgPHhtcDpDcmVhdGVEYXRlPjIwMTUtMDEtMTVUMjE6MDE6MTlaPC94bXA6Q3JlYXRlRGF0ZT4KICAgICAgICAgPHhtcDpNZXRhZGF0YURhdGU+MjAxNy0xMC0yNFQxMzozMTozMCswMTowMDwveG1wOk1ldGFkYXRhRGF0ZT4KICAgICAgICAgPHhtcDpNb2RpZnlEYXRlPjIwMTctMTAtMjRUMTM6MzE6MzArMDE6MDA8L3htcDpNb2RpZnlEYXRlPgogICAgICAgICA8cGhvdG9zaG9wOkNvbG9yTW9kZT4zPC9waG90b3Nob3A6Q29sb3JNb2RlPgogICAgICAgICA8cGhvdG9zaG9wOklDQ1Byb2ZpbGU+c1JHQiBJRUM2MTk2Ni0yLjE8L3Bob3Rvc2hvcDpJQ0NQcm9maWxlPgogICAgICAgICA8cGhvdG9zaG9wOlRleHRMYXllcnM+CiAgICAgICAgICAgIDxyZGY6QmFnPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHBob3Rvc2hvcDpMYXllck5hbWU+UyAtPC9waG90b3Nob3A6TGF5ZXJOYW1lPgogICAgICAgICAgICAgICAgICA8cGhvdG9zaG9wOkxheWVyVGV4dD5TIC08L3Bob3Rvc2hvcDpMYXllclRleHQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICA8L3JkZjpCYWc+CiAgICAgICAgIDwvcGhvdG9zaG9wOlRleHRMYXllcnM+CiAgICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2UvcG5nPC9kYzpmb3JtYXQ+CiAgICAgICAgIDx4bXBNTTpJbnN0YW5jZUlEPnhtcC5paWQ6N2NkMzQxNzctOWYyZi0yNDRiLWEyYjQtMzU1MzJkY2Y1MWJiPC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06RG9jdW1lbnRJRD5hZG9iZTpkb2NpZDpwaG90b3Nob3A6M2E1YzgxYmYtYjhiNy0xMWU3LTk0NDktYTQ2MzdlZjJkNjMzPC94bXBNTTpEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06T3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6NjBDNUFFNjVGNjlDRTQxMTk0NUE4NTVFM0JDQTdFRUI8L3htcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOkhpc3Rvcnk+CiAgICAgICAgICAgIDxyZGY6U2VxPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5jcmVhdGVkPC9zdEV2dDphY3Rpb24+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6NjBDNUFFNjVGNjlDRTQxMTk0NUE4NTVFM0JDQTdFRUI8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMTUtMDEtMTVUMjE6MDE6MTlaPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgPC9yZGY6bGk+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDphY3Rpb24+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6ODZjNjBkMGQtOGY0Yy01ZTRlLWEwMjQtODI4ZWQyNTIwZDc3PC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6d2hlbj4yMDE3LTEwLTI0VDEzOjMxOjMwKzAxOjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cyk8L3N0RXZ0OnNvZnR3YXJlQWdlbnQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpjaGFuZ2VkPi88L3N0RXZ0OmNoYW5nZWQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5jb252ZXJ0ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnBhcmFtZXRlcnM+ZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZzwvc3RFdnQ6cGFyYW1ldGVycz4KICAgICAgICAgICAgICAgPC9yZGY6bGk+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPmRlcml2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnBhcmFtZXRlcnM+Y29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmc8L3N0RXZ0OnBhcmFtZXRlcnM+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5zYXZlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6aW5zdGFuY2VJRD54bXAuaWlkOjdjZDM0MTc3LTlmMmYtMjQ0Yi1hMmI0LTM1NTMyZGNmNTFiYjwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4+MjAxNy0xMC0yNFQxMzozMTozMCswMTowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnNvZnR3YXJlQWdlbnQ+QWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpPC9zdEV2dDpzb2Z0d2FyZUFnZW50PgogICAgICAgICAgICAgICAgICA8c3RFdnQ6Y2hhbmdlZD4vPC9zdEV2dDpjaGFuZ2VkPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgPC9yZGY6U2VxPgogICAgICAgICA8L3htcE1NOkhpc3Rvcnk+CiAgICAgICAgIDx4bXBNTTpEZXJpdmVkRnJvbSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgIDxzdFJlZjppbnN0YW5jZUlEPnhtcC5paWQ6ODZjNjBkMGQtOGY0Yy01ZTRlLWEwMjQtODI4ZWQyNTIwZDc3PC9zdFJlZjppbnN0YW5jZUlEPgogICAgICAgICAgICA8c3RSZWY6ZG9jdW1lbnRJRD54bXAuZGlkOjYwQzVBRTY1RjY5Q0U0MTE5NDVBODU1RTNCQ0E3RUVCPC9zdFJlZjpkb2N1bWVudElEPgogICAgICAgICAgICA8c3RSZWY6b3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6NjBDNUFFNjVGNjlDRTQxMTk0NUE4NTVFM0JDQTdFRUI8L3N0UmVmOm9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgPC94bXBNTTpEZXJpdmVkRnJvbT4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzIwMDAwLzEwMDAwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjAwMDAvMTAwMDA8L3RpZmY6WVJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+NjQ8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+NjQ8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0idyI/Pse7bzcAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAA1JJREFUeNrsm1+OmlAUhz+aeS9dwZggJn1AnRUMO6jpBgZXULuC2hWUWUGZBTSxKyiuoA4mfUBMnB04K5g+9DihRBHlyh/lJLwIXLgf99xzzu9etZeXFy7Z3nDh1gBoAFy4XeVtQNO0zNcapmUDfUBPnFoBfhQGq6IBaHmjwD4Ahmk5wAD4kKG5J8CNwsAFaHe6DvA9cc0wCgOv8gDka3vA9RHNPgo0D7hNnJtGYWBXxgV2dH4MfMnRRA+Y1WIO2NJ5F/ikoKm3tYsChmkNFHW+fmHQMC1dfHaXPQP3wM1yMdc2B/AOGALTWobBmI1Shu0UGCwX83XyRBQGawHntTtdG5gUNfxVu4CTNqNv6/wWGL7kCc+1AmCYVisl3I2ydD4GYZUCs7IjoLXrxHIx9w9tLAqDCfBwDrXAY457x+cAoCfuwRGjYFUnAGk+PsjR7s8Dn1VeLWCYVlpDw+VivjVHSHt+u9PVJbzGzZXQWTkAkz0V31fATUaEsjVJlQBs4FeGcteLgzgbAALBA+4y3voAeJL8nA0AHfClnM1qm1HhnYUidCSE+KzvSSJUTwAxCOMcpfETMFYpfRUKIAbCFhC3OTJJJwqDWS0BxED0JZ4Pjix1P2+E0loCSMBwyK4S/xc1ojBwag8gMU84cvTKGgmlAYhngu1O9xAXuVE5J1QCQCz3bwHuHvdQui5QKQAxEO6eEKpsFCgTRSXkvdoxSlBMCxhJJbgrrbZRtHCiShN0pRB6PeQ3ckBw2K0oKXMBVYJIP+Nvh9qulFivGoBt1lLQxowT2ykBXCfnhZIglgYACWmqXQv+baioBYCeiCQHm+QEg1O7RhF7hO4OhSAhcJKSFU7qBGADwZeqMMuXn6TUBw8qlaMrirNb4LdhWlP+SWD+cjFfxTpuS2GUpik+o3jFSEkqbJiWn0P0OMSGqlWiOu0TvD+FRHZKAE+oW+cfRmEwqlsesJJEJs8y91QqP+9UL6lqEtz2gpuNEY5sm9sIHln2DRa2aFKGJtiXkZEMiWtgVvRKUSUFkSKt2S7fAGgAXLYpmQQXf36MUChTZdUa2u8/rkvPA6Tz30r4eH3ybcBS5gJ6SaNXb+aABkA1AMxKenclBZLW/He4cYEGwEXb3wEASelexk6LIIIAAAAASUVORK5CYII=">'
-};
+  showdown.helper.emojis['octocat'] = '<img width="20" height="20" align="absmiddle" src="data:image/png;base64,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">';
+  showdown.helper.emojis['showdown'] = '<img width="20" height="20" align="absmiddle" src="data:image/png;base64,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/GMzLdsAAECtaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzA2NyA3OS4xNTc3NDcsIDIwMTUvMDMvMzAtMjM6NDA6NDIgICAgICAgICI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgICAgICAgICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgICAgICAgICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgICAgICAgICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgICAgICAgICB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIgogICAgICAgICAgICB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cyk8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICAgPHhtcDpDcmVhdGVEYXRlPjIwMTUtMDEtMTVUMjE6MDE6MTlaPC94bXA6Q3JlYXRlRGF0ZT4KICAgICAgICAgPHhtcDpNZXRhZGF0YURhdGU+MjAxNy0xMC0yNFQxMzozMTozMCswMTowMDwveG1wOk1ldGFkYXRhRGF0ZT4KICAgICAgICAgPHhtcDpNb2RpZnlEYXRlPjIwMTctMTAtMjRUMTM6MzE6MzArMDE6MDA8L3htcDpNb2RpZnlEYXRlPgogICAgICAgICA8cGhvdG9zaG9wOkNvbG9yTW9kZT4zPC9waG90b3Nob3A6Q29sb3JNb2RlPgogICAgICAgICA8cGhvdG9zaG9wOklDQ1Byb2ZpbGU+c1JHQiBJRUM2MTk2Ni0yLjE8L3Bob3Rvc2hvcDpJQ0NQcm9maWxlPgogICAgICAgICA8cGhvdG9zaG9wOlRleHRMYXllcnM+CiAgICAgICAgICAgIDxyZGY6QmFnPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHBob3Rvc2hvcDpMYXllck5hbWU+UyAtPC9waG90b3Nob3A6TGF5ZXJOYW1lPgogICAgICAgICAgICAgICAgICA8cGhvdG9zaG9wOkxheWVyVGV4dD5TIC08L3Bob3Rvc2hvcDpMYXllclRleHQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICA8L3JkZjpCYWc+CiAgICAgICAgIDwvcGhvdG9zaG9wOlRleHRMYXllcnM+CiAgICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2UvcG5nPC9kYzpmb3JtYXQ+CiAgICAgICAgIDx4bXBNTTpJbnN0YW5jZUlEPnhtcC5paWQ6N2NkMzQxNzctOWYyZi0yNDRiLWEyYjQtMzU1MzJkY2Y1MWJiPC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06RG9jdW1lbnRJRD5hZG9iZTpkb2NpZDpwaG90b3Nob3A6M2E1YzgxYmYtYjhiNy0xMWU3LTk0NDktYTQ2MzdlZjJkNjMzPC94bXBNTTpEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06T3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6NjBDNUFFNjVGNjlDRTQxMTk0NUE4NTVFM0JDQTdFRUI8L3htcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOkhpc3Rvcnk+CiAgICAgICAgICAgIDxyZGY6U2VxPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5jcmVhdGVkPC9zdEV2dDphY3Rpb24+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6NjBDNUFFNjVGNjlDRTQxMTk0NUE4NTVFM0JDQTdFRUI8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMTUtMDEtMTVUMjE6MDE6MTlaPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgPC9yZGY6bGk+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDphY3Rpb24+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6ODZjNjBkMGQtOGY0Yy01ZTRlLWEwMjQtODI4ZWQyNTIwZDc3PC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6d2hlbj4yMDE3LTEwLTI0VDEzOjMxOjMwKzAxOjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cyk8L3N0RXZ0OnNvZnR3YXJlQWdlbnQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpjaGFuZ2VkPi88L3N0RXZ0OmNoYW5nZWQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5jb252ZXJ0ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnBhcmFtZXRlcnM+ZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZzwvc3RFdnQ6cGFyYW1ldGVycz4KICAgICAgICAgICAgICAgPC9yZGY6bGk+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPmRlcml2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnBhcmFtZXRlcnM+Y29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmc8L3N0RXZ0OnBhcmFtZXRlcnM+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5zYXZlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6aW5zdGFuY2VJRD54bXAuaWlkOjdjZDM0MTc3LTlmMmYtMjQ0Yi1hMmI0LTM1NTMyZGNmNTFiYjwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4+MjAxNy0xMC0yNFQxMzozMTozMCswMTowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnNvZnR3YXJlQWdlbnQ+QWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpPC9zdEV2dDpzb2Z0d2FyZUFnZW50PgogICAgICAgICAgICAgICAgICA8c3RFdnQ6Y2hhbmdlZD4vPC9zdEV2dDpjaGFuZ2VkPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgPC9yZGY6U2VxPgogICAgICAgICA8L3htcE1NOkhpc3Rvcnk+CiAgICAgICAgIDx4bXBNTTpEZXJpdmVkRnJvbSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgIDxzdFJlZjppbnN0YW5jZUlEPnhtcC5paWQ6ODZjNjBkMGQtOGY0Yy01ZTRlLWEwMjQtODI4ZWQyNTIwZDc3PC9zdFJlZjppbnN0YW5jZUlEPgogICAgICAgICAgICA8c3RSZWY6ZG9jdW1lbnRJRD54bXAuZGlkOjYwQzVBRTY1RjY5Q0U0MTE5NDVBODU1RTNCQ0E3RUVCPC9zdFJlZjpkb2N1bWVudElEPgogICAgICAgICAgICA8c3RSZWY6b3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6NjBDNUFFNjVGNjlDRTQxMTk0NUE4NTVFM0JDQTdFRUI8L3N0UmVmOm9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgPC94bXBNTTpEZXJpdmVkRnJvbT4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzIwMDAwLzEwMDAwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjAwMDAvMTAwMDA8L3RpZmY6WVJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+NjQ8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+NjQ8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0idyI/Pse7bzcAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAA1JJREFUeNrsm1+OmlAUhz+aeS9dwZggJn1AnRUMO6jpBgZXULuC2hWUWUGZBTSxKyiuoA4mfUBMnB04K5g+9DihRBHlyh/lJLwIXLgf99xzzu9etZeXFy7Z3nDh1gBoAFy4XeVtQNO0zNcapmUDfUBPnFoBfhQGq6IBaHmjwD4Ahmk5wAD4kKG5J8CNwsAFaHe6DvA9cc0wCgOv8gDka3vA9RHNPgo0D7hNnJtGYWBXxgV2dH4MfMnRRA+Y1WIO2NJ5F/ikoKm3tYsChmkNFHW+fmHQMC1dfHaXPQP3wM1yMdc2B/AOGALTWobBmI1Shu0UGCwX83XyRBQGawHntTtdG5gUNfxVu4CTNqNv6/wWGL7kCc+1AmCYVisl3I2ydD4GYZUCs7IjoLXrxHIx9w9tLAqDCfBwDrXAY457x+cAoCfuwRGjYFUnAGk+PsjR7s8Dn1VeLWCYVlpDw+VivjVHSHt+u9PVJbzGzZXQWTkAkz0V31fATUaEsjVJlQBs4FeGcteLgzgbAALBA+4y3voAeJL8nA0AHfClnM1qm1HhnYUidCSE+KzvSSJUTwAxCOMcpfETMFYpfRUKIAbCFhC3OTJJJwqDWS0BxED0JZ4Pjix1P2+E0loCSMBwyK4S/xc1ojBwag8gMU84cvTKGgmlAYhngu1O9xAXuVE5J1QCQCz3bwHuHvdQui5QKQAxEO6eEKpsFCgTRSXkvdoxSlBMCxhJJbgrrbZRtHCiShN0pRB6PeQ3ckBw2K0oKXMBVYJIP+Nvh9qulFivGoBt1lLQxowT2ykBXCfnhZIglgYACWmqXQv+baioBYCeiCQHm+QEg1O7RhF7hO4OhSAhcJKSFU7qBGADwZeqMMuXn6TUBw8qlaMrirNb4LdhWlP+SWD+cjFfxTpuS2GUpik+o3jFSEkqbJiWn0P0OMSGqlWiOu0TvD+FRHZKAE+oW+cfRmEwqlsesJJEJs8y91QqP+9UL6lqEtz2gpuNEY5sm9sIHln2DRa2aFKGJtiXkZEMiWtgVvRKUSUFkSKt2S7fAGgAXLYpmQQXf36MUChTZdUa2u8/rkvPA6Tz30r4eH3ybcBS5gJ6SaNXb+aABkA1AMxKenclBZLW/He4cYEGwEXb3wEASelexk6LIIIAAAAASUVORK5CYII=">';
+
 
 /**
  * Created by Estevao on 31-05-2015.
