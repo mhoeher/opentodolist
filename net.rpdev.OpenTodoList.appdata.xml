@@ -40,6 +40,12 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.10.3" date="2019-02-27">
+        <p>
+            This is a bug fix release with patches some issues with the
+            Flatpak version of the app.
+        </p>
+    </release>
     <release version="3.10.0" date="2019-01-27">
       <p>
         This release is rather a maintenance release. It upgrades to at least
