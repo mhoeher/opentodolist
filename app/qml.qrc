@@ -106,5 +106,7 @@
         <file>Utils/markdown-formatter-worker.js</file>
         <file>Components/MarkdownConverter.qml</file>
         <file>Components/MarkdownLabel.qml</file>
+        <file>Widgets/ItemProgressEditor.qml</file>
+        <file>Components/Slider.qml</file>
     </qresource>
 </RCC>

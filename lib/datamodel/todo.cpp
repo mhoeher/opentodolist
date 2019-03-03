@@ -13,10 +13,12 @@ Todo::Todo(const QString &filename, QObject *parent) :
     ComplexItem(filename, parent),
     m_todoListUid(),
     m_percentageDone(0),
+    m_progress(-1),
     m_done(false)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
     connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
+    connect(this, &Todo::progressChanged, this, &ComplexItem::changed);
 }
 
 /**
@@ -32,10 +34,12 @@ Todo::Todo(QObject* parent) : Todo(QString(), parent)
 Todo::Todo(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
     m_todoListUid(),
     m_percentageDone(0),
+    m_progress(-1),
     m_done(false)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
     connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
+    connect(this, &Todo::progressChanged, this, &ComplexItem::changed);
 }
 
 /**
@@ -99,7 +103,11 @@ void Todo::setTodoListUid(const QUuid& todoListUid)
  */
 int Todo::percentageDone() const
 {
-    return m_percentageDone;
+    if (m_progress > -1) {
+        return m_progress;
+    } else {
+        return m_percentageDone;
+    }
 }
 
 void Todo::applyCalculatedProperties(const QVariantMap &properties)
@@ -119,6 +127,7 @@ QVariantMap Todo::toMap() const
     auto result = ComplexItem::toMap();
     result["todoListUid"] = m_todoListUid;
     result["done"] = m_done;
+    result["progress"] = m_progress;
     return result;
 }
 
@@ -127,4 +136,37 @@ void Todo::fromMap(QVariantMap map)
     ComplexItem::fromMap(map);
     setTodoListUid(map.value("todoListUid", m_todoListUid).toUuid());
     setDone(map.value("done", m_done).toBool());
+    setProgress(map.value("progress", -1).toInt());
+}
+
+
+/**
+ * @brief The progress of the todo.
+ *
+ * This value indicates the progress or state of completion of the todo.
+ * The progress value can be manually set to a value between 0 and 100
+ * where 0 means not yet started at all and 100 means completely done.
+ *
+ * Additionally, a value of -1 can be set.
+ *
+ * This this property is set to a value greater than -1, the
+ * percentageDone() property will be equal to the progress value.
+ */
+int Todo::progress() const
+{
+    return m_progress;
+}
+
+
+/**
+ * @brief Set the progress value of the todo.
+ */
+void Todo::setProgress(int progress)
+{
+    progress = qBound(-1, progress, 100);
+    if (m_progress != progress) {
+        m_progress = progress;
+        emit progressChanged();
+        emit percentageDoneChanged();
+    }
 }
