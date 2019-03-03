@@ -12,6 +12,7 @@ Item {
 
     property OTL.Library library: null
     property OTL.Image libraryItem: OTL.Image {}
+    property var model
 
     signal clicked()
     signal released(var mouse)
@@ -34,6 +35,14 @@ Item {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: item.clicked()
+        onPressAndHold: reorderOverlay.startDrag()
         onReleased: item.released(mouse)
+    }
+
+    ReorderableListViewOverlay {
+        id: reorderOverlay
+        anchors.fill: parent
+        model: item.model
+        layout: Qt.Horizontal
     }
 }
