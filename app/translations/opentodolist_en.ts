@@ -287,7 +287,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="308"/>
+        <location filename="../Pages/LibraryPage.qml" line="309"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -648,7 +648,7 @@
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="90"/>
+        <location filename="../Widgets/TodoListItem.qml" line="91"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished"></translation>
     </message>

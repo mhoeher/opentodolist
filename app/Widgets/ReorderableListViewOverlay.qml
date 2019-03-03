@@ -8,6 +8,7 @@ Item {
     id: root
 
     property var model
+    property int layout: Qt.Vertical
 
     function startDrag() {
         dragTile.Drag.active = true;
@@ -47,8 +48,8 @@ Item {
     }
 
     Rectangle {
-        width: parent.width
-        height: 3
+        width: root.layout === Qt.Vertical ? parent.width : 3
+        height: root.layout === Qt.Vertical ? 3 : parent.height
         color: Colors.color(Colors.teal)
         visible: upperDropArea.containsDrag
         z: 10
@@ -56,9 +57,10 @@ Item {
     }
 
     Rectangle {
-        width: parent.width
-        y: parent.height - 1
-        height: 3
+        width: root.layout === Qt.Vertical ? parent.width : 3
+        y: root.layout === Qt.Vertical ? parent.height - 1 : 0
+        x: root.layout === Qt.Vertical ? 0 : parent.width - 1
+        height: root.layout === Qt.Vertical ? 3 : parent.height
         color: Colors.color(Colors.teal)
         visible: lowerDropArea.containsDrag
         z: 10
@@ -68,10 +70,10 @@ Item {
         id: upperDropArea
         anchors {
             left: parent.left
-            right: parent.right
+            right: root.layout === Qt.Vertical ? parent.right : parent.horizontalCenter
             top: parent.top
+            bottom: root.layout === Qt.Vertical ? parent.verticalCenter : parent.bottom
         }
-        height: parent.height / 2
         keys: [dragTile.mimeType]
         onDropped: {
             var item = drag.source.item;
@@ -102,11 +104,11 @@ Item {
     DropArea {
         id: lowerDropArea
         anchors {
-            left: parent.left
+            left: root.layout === Qt.Vertical ? parent.left : parent.horizontalCenter
             right: parent.right
             bottom: parent.bottom
+            top: root.layout === Qt.Vertical ? parent.verticalCenter : parent.top
         }
-        height: parent.height / 2
         keys: [dragTile.mimeType]
         onDropped: {
             var item = drag.source.item;

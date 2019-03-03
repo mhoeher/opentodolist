@@ -346,7 +346,7 @@
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="308"/>
+        <location filename="../Pages/LibraryPage.qml" line="309"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation>Noch nichts hier! Die Bibliothek kann mit &lt;a href=&apos;#note&apos;&gt;Notizen&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;Aufgabenlisten&lt;/a&gt; oder &lt;a href=&apos;#image&apos;&gt;Bildern&lt;/a&gt; befüllt werden.</translation>
     </message>
@@ -807,7 +807,7 @@
         <translation type="vanished">Keine offenen Aufgaben - alles erledigt :-)</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="90"/>
+        <location filename="../Widgets/TodoListItem.qml" line="91"/>
         <source>✔ No open todos - everything done</source>
         <translation>✔ Keine offenen Aufgaben - alles erledigt</translation>
     </message>

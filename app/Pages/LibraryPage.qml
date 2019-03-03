@@ -277,15 +277,16 @@ Page {
                                        "Item.qml")
 
                 onLoaded: {
-                    item.libraryItem = object;
+                    item.libraryItem = Qt.binding(function() {
+                        return object;
+                    });
                     item.library = page.library;
+                    item.model = itemsModel;
                     item.onClicked.connect(function() {
+                        itemClicked(object);
                     });
                     item.onReleased.connect(function(mouse) {
                         switch (mouse.button) {
-                        case Qt.LeftButton:
-                            itemClicked(object);
-                            break;
                         case Qt.RightButton:
                             itemContextMenu.item = object;
                             itemContextMenu.parent = gridItem;
