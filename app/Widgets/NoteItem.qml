@@ -66,7 +66,11 @@ Item {
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: item.clicked()
+        onClicked: {
+            if (mouse.button === Qt.LeftButton) {
+                item.clicked()
+            }
+        }
         onPressAndHold: reorderOverlay.startDrag()
         onReleased: item.released(mouse)
     }
