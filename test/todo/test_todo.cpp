@@ -48,11 +48,17 @@ void TodoTest::testPersistence()
     QSignalSpy todoListUidChanged(&anotherTodo, &Todo::todoListUidChanged);
 
     QVERIFY(!todo.done());
+    QCOMPARE(todo.progress(), -1);
+    QCOMPARE(todo.percentageDone(), 0);
 
     QUuid uid = QUuid::createUuid();
 
     todo.setDone(true);
     todo.setTodoListUid(uid);
+    todo.setProgress(50);
+
+    QCOMPARE(todo.progress(), 50);
+    QCOMPARE(todo.percentageDone(), 50);
 
     anotherTodo.fromVariant(todo.toVariant());
 
@@ -61,6 +67,8 @@ void TodoTest::testPersistence()
 
     QVERIFY(anotherTodo.done());
     QCOMPARE(anotherTodo.todoListUid(), uid);
+    QCOMPARE(anotherTodo.progress(), 50);
+    QCOMPARE(anotherTodo.percentageDone(), 50);
 }
 
 

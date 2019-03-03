@@ -23,6 +23,7 @@ class Todo : public ComplexItem
     Q_PROPERTY(bool done READ done WRITE setDone NOTIFY doneChanged)
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
     Q_PROPERTY(int percentageDone READ percentageDone NOTIFY percentageDoneChanged)
+    Q_PROPERTY(int progress READ progress WRITE setProgress NOTIFY progressChanged)
 
 public:
 
@@ -44,11 +45,15 @@ public:
     // Item interface
     void applyCalculatedProperties(const QVariantMap &properties) override;
 
+    int progress() const;
+    void setProgress(int progress);
+
 signals:
 
     void doneChanged();
     void todoListUidChanged();
     void percentageDoneChanged();
+    void progressChanged();
 
 public slots:
 
@@ -62,6 +67,7 @@ private:
 
     QUuid m_todoListUid;
     int m_percentageDone;
+    int m_progress;
     bool m_done;
 
 };

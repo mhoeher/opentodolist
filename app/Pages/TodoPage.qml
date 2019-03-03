@@ -141,6 +141,11 @@ Page {
                     width: parent.width
                 }
 
+                ItemProgressEditor {
+                    item: page.item
+                    width: parent.width
+                }
+
                 Attachments {
                     item: page.item
                     width: parent.width
