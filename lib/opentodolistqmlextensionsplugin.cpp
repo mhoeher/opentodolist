@@ -19,6 +19,7 @@
 #include "sync/webdavsynchronizer.h"
 
 #include "utils/updateservice.h"
+#include "utils/syntaxhighlighter.h"
 
 #ifdef Q_OS_ANDROID
 #include "utils/android/androidfiledialog.h"
@@ -64,6 +65,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
               "Use sub-classes of abstract item model instead");
 
   qmlRegisterType<UpdateService>(uri, 1, 0, "UpdateService");
+  qmlRegisterType<SyntaxHighlighter>(uri, 1, 0, "SyntaxHighlighter");
 
 #ifdef Q_OS_ANDROID
   qmlRegisterType<AndroidFileDialog>(uri, 1, 0, "AndroidFileDialog");

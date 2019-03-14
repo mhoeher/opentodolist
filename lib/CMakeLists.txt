@@ -46,6 +46,7 @@ set(LIB_HEADERS
     utils/jsonutils.h
     utils/keystore.h
     utils/updateservice.h
+    utils/syntaxhighlighter.h
 
     ${LIB_HEADERS_ANDROID}
 )
@@ -85,6 +86,7 @@ set(LIB_SOURCES
     utils/jsonutils.cpp
     utils/keystore.cpp
     utils/updateservice.cpp
+    utils/syntaxhighlighter.cpp
 
     ${LIB_SOURCES_ANDROID}
 
@@ -99,6 +101,14 @@ find_package(Qt5Quick REQUIRED)
 find_package(Qt5Xml REQUIRED)
 find_package(Qt5Concurrent REQUIRED)
 find_package(Qt5Sql REQUIRED)
+
+# Find KDE Syntax Highlighting engine
+find_package(KF5SyntaxHighlighting)
+if(KF5SyntaxHighlighting_FOUND)
+    set(LIB_LIBRARIES ${LIB_LIBRARIES} KF5::SyntaxHighlighting)
+    set(LIB_DEFINES ${LIB_DEFINES} HAVE_KF5_SYNTAX_HIGHLIGHTING)
+endif()
+
 
 if(ANDROID OR WIN32)
     set(libtype STATIC)
@@ -121,6 +131,9 @@ target_include_directories(
         ${CMAKE_CURRENT_BINARY_DIR}/../3rdparty/qtkeychain
 )
 
+# Add compile definitions
+target_compile_definitions(opentodolist-common PRIVATE ${LIB_DEFINES})
+
 # Link against Qt libraries
 target_link_libraries(opentodolist-common
 
@@ -136,6 +149,9 @@ target_link_libraries(opentodolist-common
     # Third party libraries:
     qt5keychain
     qlmdb
+
+    # Optional libraries
+    ${LIB_LIBRARIES}
 )
 
 
