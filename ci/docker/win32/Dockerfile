@@ -4,11 +4,17 @@ RUN \
 \
     dnf install -y --nogpgcheck \
         cmake \
+        make \
         ninja-build \
         python3 \
         python \
         git \
         wget \
+        \
+        qt5-qtxmlpatterns-devel \
+        qt5-linguist \
+        appstream \
+        \
         mingw32-qt5-qmake \
         mingw32-qt5-qmldevtools \
         mingw32-qt5-qmldevtools-devel \

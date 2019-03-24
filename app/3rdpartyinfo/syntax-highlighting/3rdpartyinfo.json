@@ -1,0 +1,8 @@
+{
+    "name": "KDE Syntax Highlighting",
+    "author": "KDE",
+    "website": "https://github.com/KDE/syntax-highlighting",
+    "licenseUrl": "https://raw.githubusercontent.com/KDE/syntax-highlighting/master/COPYING",
+    "licenseType": "MIT",
+    "downloadUrl": "https://github.com/KDE/syntax-highlighting"
+}

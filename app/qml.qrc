@@ -108,5 +108,6 @@
         <file>Components/MarkdownLabel.qml</file>
         <file>Widgets/ItemProgressEditor.qml</file>
         <file>Components/Slider.qml</file>
+        <file>3rdpartyinfo/syntax-highlighting/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

@@ -73,6 +73,10 @@ Page {
                 Keys.onEscapePressed: focus = false
                 Keys.onBackPressed: focus = false
             }
+
+            OTL.SyntaxHighlighter {
+                document: textArea.textDocument
+            }
         }
     }
 }
