@@ -40,12 +40,19 @@ if(ANDROID)
     if(NOT "${OPENTODOLIST_ANDROID_EXTRA_LIBS}" STREQUAL "")
         set(EXTRA_LIBS "${EXTRA_LIBS},${OPENTODOLIST_ANDROID_EXTRA_LIBS}")
     endif()
+
+    set(
+        ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+        CACHE INTERNAL "Extra files for Android deployment"
+    )
+    set(
+        ANDROID_EXTRA_LIBS "${EXTRA_LIBS}"
+        CACHE INTERNAL "Extra libraries to include in APK"
+    )
     qt_android_build_apk(
         TARGET OpenTodoList
         PACKAGE_NAME net.rpdev.opentodolist
         QML_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}
-        ANDROID_EXTRA_FILES ${CMAKE_CURRENT_SOURCE_DIR}/android
-        EXTRA_LIBS "${EXTRA_LIBS}"
     )
 else()
     add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
