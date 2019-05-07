@@ -12,4 +12,4 @@
 	url = https://github.com/KDE/extra-cmake-modules.git
 [submodule "3rdparty/qt-cmake-android"]
 	path = 3rdparty/qt-cmake-android
-	url = git@gitlab.com:rpdev/qt-cmake-android.git
+	url = https://gitlab.com/rpdev/qt-cmake-android.git
