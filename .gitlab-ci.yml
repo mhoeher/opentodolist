@@ -59,7 +59,7 @@ build_image_win64:
   script:
     - dnf install -y --nogpgcheck podman buildah
     - cd ci/docker/win64
-    - podman login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - buildah bud -t $WIN64_IMAGE .
     - buildah push $WIN64_IMAGE docker://$WIN64_IMAGE
   when: manual
@@ -76,6 +76,48 @@ build_image_android_base:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --pull -t $ANDROID_BASE_IMAGE .
     - docker push $ANDROID_BASE_IMAGE
+  when: manual
+
+
+# Build the Android ARM Image
+build_image_android_arm:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/android-arm
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $ANDROID_ARM_IMAGE .
+    - docker push $ANDROID_ARM_IMAGE
+  when: manual
+
+
+# Build the Android ARM64 Image
+build_image_android_arm64:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/android-arm64
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $ANDROID_ARM64_IMAGE .
+    - docker push $ANDROID_ARM64_IMAGE
+  when: manual
+
+
+# Build the Android x86 Image
+build_image_android_x86:
+  stage: images
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - cd ci/docker/android-x86
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $ANDROID_X86_IMAGE .
+    - docker push $ANDROID_X86_IMAGE
   when: manual
 
 
@@ -209,7 +251,7 @@ sign_apks:
     stage: installer
     tags:
         - OpenTodoListPrivate
-    image: $ANDROID_IMAGE
+    image: $ANDROID_BASE_IMAGE
     script:
         - ci/sign-apks.sh
     artifacts:
