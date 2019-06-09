@@ -11,6 +11,7 @@ Pane {
     property OTL.Library currentLibrary: null
     property string currentTag: ""
     property string specialView: ""
+    property alias numberOfLibraries: librariesModel.count
 
     // For reopening the last view:
     property string lastLibrary: ""
