@@ -13,6 +13,8 @@
 #include <QVector>
 
 
+class QTemporaryDir;
+
 class Cache;
 class DirectoryWatcher;
 class Image;
@@ -115,6 +117,8 @@ private:
     QMap<QString, DirectoryWatcher*>
                             m_watchedDirectories;
     QSet<QString>           m_librariesWithChanges;
+    QSharedPointer<QTemporaryDir>
+                            m_tmpCacheDir;
 
     void saveLibraries();
     void loadLibraries();
