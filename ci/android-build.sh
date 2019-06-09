@@ -9,21 +9,21 @@ TARGET_ARCH="$(basename "$QT_ROOT" | sed -e 's/^android_//')"
 
 case $TARGET_ARCH in
     arm64_v8a)
-        OPENSSL_FLAGS=android-arm64
+        OPENSSL_FLAGS="android-arm64 -D__ANDROID_API__=21"
         ANDROID_VERSION_CODE_OFFSET=2
     ;;
     armv7)
-        OPENSSL_FLAGS=android-arm
+        OPENSSL_FLAGS="android-arm -D__ANDROID_API__=19"
         ANDROID_VERSION_CODE_OFFSET=0
     ;;
     # We currently do not build for x86_64, as there are no pre-compiled
     # Qt releases for this Android platform.
 #    x86_64)
-#        OPENSSL_FLAGS=android-x86_64
+#        OPENSSL_FLAGS="android-x86_64 -D__ANDROID_API__=21"
 #        ANDROID_VERSION_CODE_OFFSET=3
 #    ;;
     x86)
-        OPENSSL_FLAGS=android-x86
+        OPENSSL_FLAGS="android-x86 -D__ANDROID_API__=19"
         ANDROID_VERSION_CODE_OFFSET=1
     ;;
     *)
