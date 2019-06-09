@@ -28,12 +28,12 @@ case $TARGET_ARCH in
 #    x86_64)
 #        OPENSSL_ARCH=x86_64
 #        OPENSSL_API=21
-#        OPENSSL_CROSS_COMPILE=/bin/x86_64-linux-androideabi-
+#        OPENSSL_CROSS_COMPILE=/bin/x86_64-linux-android-
 #    ;;
     x86)
         OPENSSL_ARCH=x86
         OPENSSL_API=19
-        OPENSSL_CROSS_COMPILE=/bin/i686-linux-androideabi-
+        OPENSSL_CROSS_COMPILE=/bin/i686-linux-android-
         ANDROID_VERSION_CODE_OFFSET=1
     ;;
     *)
