@@ -10,3 +10,6 @@
 [submodule "3rdparty/KDE/extra-cmake-modules"]
 	path = 3rdparty/KDE/extra-cmake-modules
 	url = https://github.com/KDE/extra-cmake-modules.git
+[submodule "3rdparty/qt-cmake-android"]
+	path = 3rdparty/qt-cmake-android
+	url = https://gitlab.com/rpdev/qt-cmake-android.git

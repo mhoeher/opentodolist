@@ -1,4 +1,4 @@
-IMAGE ?= registry.gitlab.com/rpdev/opentodolist:android
+IMAGE ?= registry.gitlab.com/rpdev/opentodolist:android-base
 help:
 	@echo "Targets:"
 	@echo "  build - Build the image."

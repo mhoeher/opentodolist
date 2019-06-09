@@ -345,13 +345,11 @@ void WebDAVSynchronizerTest::etag()
 
     QTest::ignoreMessage(
                 QtWarningMsg,
-                QRegularExpression("QNetworkReply::NetworkError"
-                                   "\\(ContentNotFoundError\\)"));
+                QRegularExpression("QNetworkReply::ContentNotFoundError"));
     QVERIFY(dav->etag("sample2.txt") == "");
     QTest::ignoreMessage(
                 QtWarningMsg,
-                QRegularExpression("QNetworkReply::NetworkError"
-                                   "\\(ContentNotFoundError\\)"));
+                QRegularExpression("QNetworkReply::ContentNotFoundError"));
     QVERIFY(dav->etag("foo/bar/") == "");
 }
 

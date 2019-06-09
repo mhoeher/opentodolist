@@ -52,61 +52,15 @@ to control the build and tweak the configuration of the app:
 
 ## Building for Android
 
-To build for Android, you need to have the Android SDK and NDK set up.
-Then, call `cmake` passing it the required paths to your installations
-plus the Android version and ABI you want to build for.
-
-Examples:
-
-```bash
-mkdir build
-cd build
-
-# Configure for Android on ARM:
-cmake \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_CXX_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-g++ \
-    -DCMAKE_C_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc \
-    -DCMAKE_PREFIX_PATH:STRING=$QT_ARM_ROOT \
-    -DQT_QMAKE_EXECUTABLE:STRING=$QT_ARM_ROOT/bin/qmake \
-    -DCMAKE_SYSTEM_NAME=Android \
-    -DCMAKE_SYSTEM_VERSION=16 \
-    -DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a \
-    -DCMAKE_ANDROID_STL_TYPE=gnustl_shared \
-    -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
-    -DOPENTODOLIST_ANDROID_EXTRA_LIBS="$EXTRA_LIBS" \
-    ..
-
-# Configure for Android on x86:
-cmake \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_CXX_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-g++ \
-    -DCMAKE_C_COMPILER:STRING=$ANDROID_NDK_ROOT/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-gcc \
-    -DCMAKE_PREFIX_PATH:STRING=$QT_X86_ROOT \
-    -DQT_QMAKE_EXECUTABLE:STRING=$QT_X86_ROOT/bin/qmake \
-    -DCMAKE_SYSTEM_NAME=Android \
-    -DCMAKE_SYSTEM_VERSION=16 \
-    -DCMAKE_ANDROID_ARCH_ABI=x86 \
-    -DCMAKE_ANDROID_STL_TYPE=gnustl_shared \
-    -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
-    -DOPENTODOLIST_ANDROID_EXTRA_LIBS="$EXTRA_LIBS" \
-    ..
-```
-
-**Note:** If you want to the app to be able to connect to servers via
-secure channels (usually HTTPS), you must build OpenSSL for the desired
-Android target first and pass the paths to the created `libcrypto.so` and
-`libssl.so` - separated via a comma - via the
-`OPENTODOLIST_ANDROID_EXTRA_LIBS` variable to `cmake`.
-
-For more information about building for Android using cmake, refer to the
-[CMake toolchain documentation](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling-for-android).
+Building for Android is supported via
+[qt-cmake-android](https://gitlab.com/rpdev/qt-cmake-android). Basically,
+you just need to make sure you expose the paths to the Android NDK and SDK
+properly and provide the path to your Qt installation.
 
 
 ## Known Issues
 
-* The official Qt packages for Android you can download from the [qt.io](qt.io)
-  are build against the Android NDK r10e, which is quite old (at least at the
-  time of writing - where the most recent Qt release is 5.11.1). You better
-  stick with this NDK to build the app for Android. Release APKs of OpenTodoList
-  are build against r15c, so this NDK should work as well.
+* Building for Android requires at least Qt 5.12.3 as well as the Android
+  NDK r19c or up. There is no support for older versions, even though it
+  should be possible to build the app using lower versions. In particular,
+  there is no dedicated support for using GCC for Android targets.

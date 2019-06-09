@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.5.1)
 
+# Auto-detect Android build from within Qt Creator:
+include(./3rdparty/qt-cmake-android/cmake/autodetect-android-build.cmake)
+
 project(opentodolist)
 
 # Include modules:
 include(cmake/options.cmake)
 include(cmake/version.cmake)
 include(cmake/BuildLinuxAppImage.cmake)
-include(cmake/qt-android-mk-apk.cmake)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

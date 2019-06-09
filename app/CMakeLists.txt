@@ -37,15 +37,23 @@ endif()
 if(ANDROID)
     add_library(OpenTodoList SHARED ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
     set(EXTRA_LIBS $<TARGET_FILE:qt5keychain>)
-    if(NOT "${OPENTODOLIST_ANDROID_EXTRA_LIBS}" STREQUAL "")
-        set(EXTRA_LIBS "${EXTRA_LIBS},${OPENTODOLIST_ANDROID_EXTRA_LIBS}")
-    endif()
+
+    set(
+        ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+        CACHE INTERNAL "Extra files for Android deployment"
+    )
+    set(
+        ANDROID_EXTRA_LIBS
+        ${ANDROID_EXTRA_LIBS} ${EXTRA_LIBS}
+    )
+    list(REMOVE_DUPLICATES ANDROID_EXTRA_LIBS)
+    set(ANDROID_EXTRA_LIBS ${ANDROID_EXTRA_LIBS}
+        CACHE INTERNAL "Extra libraries to include in APK" FORCE
+    )
     qt_android_build_apk(
         TARGET OpenTodoList
         PACKAGE_NAME net.rpdev.opentodolist
         QML_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}
-        ANDROID_EXTRA_FILES ${CMAKE_CURRENT_SOURCE_DIR}/android
-        EXTRA_LIBS "${EXTRA_LIBS}"
     )
 else()
     add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
