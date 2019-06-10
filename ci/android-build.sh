@@ -7,23 +7,33 @@ export PROJECT_ROOT=$PWD
 
 TARGET_ARCH="$(basename "$QT_ROOT" | sed -e 's/^android_//')"
 
+# Note: A nice instruction on how to build OpenSSL is taken from
+# https://www.tal.org/tutorials/openssl_qt_android.
+
 case $TARGET_ARCH in
     arm64_v8a)
-        OPENSSL_FLAGS="android-arm64 -D__ANDROID_API__=21"
+        OPENSSL_ARCH=arm64
+        OPENSSL_API=21
+        OPENSSL_CROSS_COMPILE=/bin/aarch64-linux-android-
         ANDROID_VERSION_CODE_OFFSET=2
     ;;
     armv7)
-        OPENSSL_FLAGS="android-arm -D__ANDROID_API__=19"
+        OPENSSL_ARCH=arm
+        OPENSSL_API=19
+        OPENSSL_CROSS_COMPILE=/bin/arm-linux-androideabi-
         ANDROID_VERSION_CODE_OFFSET=0
     ;;
     # We currently do not build for x86_64, as there are no pre-compiled
     # Qt releases for this Android platform.
 #    x86_64)
-#        OPENSSL_FLAGS="android-x86_64 -D__ANDROID_API__=21"
-#        ANDROID_VERSION_CODE_OFFSET=3
+#        OPENSSL_ARCH=x86_64
+#        OPENSSL_API=21
+#        OPENSSL_CROSS_COMPILE=/bin/x86_64-linux-android-
 #    ;;
     x86)
-        OPENSSL_FLAGS="android-x86 -D__ANDROID_API__=19"
+        OPENSSL_ARCH=x86
+        OPENSSL_API=19
+        OPENSSL_CROSS_COMPILE=/bin/i686-linux-android-
         ANDROID_VERSION_CODE_OFFSET=1
     ;;
     *)
@@ -48,6 +58,9 @@ CMAKE_FLAGS="\
 "
 
 if [ -n "$CI" ]; then
+    # Ensure Python is installed:
+    which python || dnf install --refresh -y --nogpgcheck python
+
     # Install ECM:
     pushd 3rdparty/KDE/extra-cmake-modules
     rm -rf build-android-$TARGET_ARCH
@@ -71,19 +84,19 @@ if [ -n "$CI" ]; then
     rm -rf build-android-openssl-$TARGET_ARCH
     mkdir -p build-android-openssl-$TARGET_ARCH
     pushd build-android-openssl-$TARGET_ARCH
-    wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+    wget https://www.openssl.org/source/openssl-1.0.2s.tar.gz
     tar xf openssl-*.tar.gz
     rm openssl-*.tar.gz
     cd openssl-*
-    export ANDROID_NDK_HOME="$ANDROID_NDK_ROOT"
-    OLD_PATH="$PATH"
-    export PATH="$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/:$PATH"
-    ./Configure $OPENSSL_FLAGS
-    make \
-        CALC_VERSIONS="SHLIB_COMPAT=; SHLIB_SOVER=" \
-        build_libs -j4
+    sed -i -e 's/-mandroid//' Configure
+    $ANDROID_NDK_ROOT/build/tools/make_standalone_toolchain.py \
+        --arch $OPENSSL_ARCH --api $OPENSSL_API \
+        --install-dir $PWD/__ndk
+    CROSS_COMPILE=$PWD/__ndk$OPENSSL_CROSS_COMPILE ./Configure android shared
+    make ANDROID_DEV=$PWD/__ndk/sysroot/usr/ \
+        CALC_VERSIONS="SHLIB_COMPAT=; SHLIB_SOVER=" build_libs
+
     ANDROID_EXTRA_LIBS="$PWD/libcrypto.so;$PWD/libssl.so"
-    export PATH="$OLD_PATH"
     popd
 fi
 

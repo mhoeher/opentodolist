@@ -4,7 +4,7 @@ RUN \
         wget make cmake git java-1.8.0-openjdk java-1.8.0-openjdk-devel \
         libX11-xcb unzip extra-cmake-modules.noarch \
         ncurses-compat-libs gradle ninja-build \
-        qt5-qtxmlpatterns-devel qt5-linguist appstream \
+        qt5-qtxmlpatterns-devel qt5-linguist appstream python \
         && \
     cd /opt && \
     mkdir android && \

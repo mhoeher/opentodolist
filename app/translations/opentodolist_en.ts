@@ -209,17 +209,17 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="96"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="97"/>
         <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="131"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="132"/>
         <source>New Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="137"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="138"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>

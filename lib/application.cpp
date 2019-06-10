@@ -99,7 +99,39 @@ void Application::initialize(const QString &path)
         }
     }
     m_cache->setCacheDirectory(cacheDir);
-    m_cache->open();
+    // WA for https://gitlab.com/rpdev/opentodolist/issues/214:
+    // Try to use different directories for the cache - required if
+    // the user previously ran the app with a different architecture (and
+    // hence we cannot re-open the incompatible LMDB DB).
+    {
+        int i = 0;
+        while (!m_cache->open() && i < 10) {
+            auto secondaryCacheDir = cacheDir + "-" + QString::number(i++);
+            QDir dir(secondaryCacheDir);
+            if(!dir.exists()) {
+                if(!dir.mkpath(".")) {
+                    qWarning() << "Failed to create secondary cache directory"
+                               << secondaryCacheDir;
+                }
+            }
+            m_cache->setCacheDirectory(secondaryCacheDir);
+        }
+    }
+
+    if (!m_cache->isValid()) {
+        // If we still were not able to open a cache persistently,
+        // resort to using a temporary directory. This means, we would
+        // not cache between app restarts, but there should actually not
+        // be a reason why we run into this situation (unless we have file
+        // system corruptions or something like that).
+        m_tmpCacheDir.reset(new QTemporaryDir);
+        m_cache->setCacheDirectory(m_tmpCacheDir->path());
+        if (!m_cache->open()) {
+            qCWarning(log) << "Permanently failed to open a cache directory. "
+                              "The app should not crash, but it likely won't "
+                              "function as you might expect.";
+        }
+    }
 
     connect(m_cache, &Cache::librariesChanged,
             this, &Application::onLibrariesChanged);
@@ -800,10 +832,13 @@ Cache *Application::cache() const
 
 void Application::loadLibraries()
 {
+    qCDebug(log) << "Loading libraries...";
     m_secrets.clear();
     emit secretsKeysChanged();
 
     for (auto library : librariesFromConfig()) {
+        qCDebug(log) << "Loading library" << library->name() << "from"
+                       << library->directory();
         auto loader = new LibraryLoader();
         loader->setDirectory(library->directory());
         loader->setLibraryId(library->uid());
