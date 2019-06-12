@@ -20,7 +20,7 @@
 #ifdef OTL_USE_SINGLE_APPLICATION
 #include "singleapplication.h"
 #else
-#include <QGuiApplication>
+#include <QApplication>
 #endif
 
 #include <iostream>

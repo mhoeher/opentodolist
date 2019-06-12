@@ -65,7 +65,7 @@ set_target_properties(OpenTodoList PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_C
 if(NOT ANDROID)
     target_compile_definitions(OpenTodoList PRIVATE
         OTL_USE_SINGLE_APPLICATION
-        QAPPLICATION_CLASS=QGuiApplication)
+        QAPPLICATION_CLASS=QApplication)
     target_include_directories(OpenTodoList PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/SingleApplication)
 
