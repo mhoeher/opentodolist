@@ -30,5 +30,6 @@ RUN \
         git \
         cmake \
         libssl-dev \
+        ninja-build \
         && \
     apt-get clean
