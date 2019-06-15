@@ -139,6 +139,13 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 #endif
 
+#ifdef OPENTODOLIST_FLATPAK
+    // Copy over the included FontConfig configuration to the
+    // app's config dir:
+    QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
+                "/var/config/fontconfig/conf.d/90-otl-color-emoji.conf");
+#endif
+
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QTranslator translator;

@@ -9,6 +9,7 @@ project(opentodolist)
 include(cmake/options.cmake)
 include(cmake/version.cmake)
 include(cmake/BuildLinuxAppImage.cmake)
+include(cmake/Flatpak.cmake)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
