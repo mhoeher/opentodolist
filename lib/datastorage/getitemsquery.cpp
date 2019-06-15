@@ -211,25 +211,24 @@ const ItemPtr &GetItemsQuery::ChildrenIterator::operator*() const
 
 GetItemsQuery::ChildrenIterator::ChildrenIterator() :
     m_childrenCursor(nullptr),
-    m_dataCursor(nullptr)
+    m_dataCursor(nullptr),
+    m_id(),
+    m_item()
 {
 
 }
 
-GetItemsQuery::ChildrenIterator::ChildrenIterator(QLMDB::Cursor *childrenCursor, QLMDB::Cursor *dataCursor, const QUuid &id) :
+GetItemsQuery::ChildrenIterator::ChildrenIterator(
+        QLMDB::Cursor *childrenCursor,
+        QLMDB::Cursor *dataCursor, const QUuid &id) :
     m_childrenCursor(childrenCursor),
-    m_dataCursor(dataCursor)
+    m_dataCursor(dataCursor),
+    m_id(id),
+    m_item()
 {
-    auto it = m_childrenCursor->findKey(id.toByteArray());
-    if (it.isValid()) {
-        auto dit = m_dataCursor->findKey(it.value());
-        auto entry = ItemCacheEntry::fromByteArray(dit.value(), it.key());
-        m_item = ItemPtr(Item::decache(entry));
-    } else {
-        delete m_childrenCursor;
-        m_childrenCursor = nullptr;
-    }
+    ++(*this);
 }
+
 
 GetItemsQuery::ChildrenIterator::~ChildrenIterator()
 {
@@ -244,12 +243,22 @@ GetItemsQuery::ChildrenIterator::~ChildrenIterator()
 GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator ++()
 {
     if (m_childrenCursor != nullptr) {
-        auto it = m_childrenCursor->nextForCurrentKey();
-        if (it.isValid()) {
-            auto dit = m_dataCursor->findKey(it.value());
-            auto entry = ItemCacheEntry::fromByteArray(dit.value(), it.key());
-            m_item = ItemPtr(Item::decache(entry));
+        m_item.reset();
+        QLMDB::Cursor::FindResult it;
+        if (m_childrenCursor->current().isValid()) {
+            it = m_childrenCursor->nextForCurrentKey();
         } else {
+            it = m_childrenCursor->findKey(m_id.toByteArray());
+        }
+        while (!m_item && it.isValid()) {
+            auto dit = m_dataCursor->findKey(it.value());
+            if (dit.isValid()) {
+                auto entry = ItemCacheEntry::fromByteArray(dit.value(), it.key());
+                m_item = ItemPtr(Item::decache(entry));
+            }
+            it = m_childrenCursor->nextForCurrentKey();
+        }
+        if (!m_item) {
             delete m_childrenCursor;
             m_childrenCursor = nullptr;
         }
@@ -259,9 +268,7 @@ GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator ++()
 
 bool GetItemsQuery::ChildrenIterator::operator !=(const GetItemsQuery::ChildrenIterator &other)
 {
-    auto result = this->m_childrenCursor != nullptr ||
-            other.m_childrenCursor != nullptr;
-    return result;
+    return m_item || other.m_item;
 }
 
 GetItemsQuery::ChildrenIterator GetItemsQuery::ChildrenGenerator::begin()

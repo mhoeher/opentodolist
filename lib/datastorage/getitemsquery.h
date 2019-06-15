@@ -34,6 +34,7 @@ public:
     private:
         QLMDB::Cursor *m_childrenCursor;
         QLMDB::Cursor *m_dataCursor;
+        QUuid          m_id;
         ItemPtr m_item;
 
         explicit ChildrenIterator(
