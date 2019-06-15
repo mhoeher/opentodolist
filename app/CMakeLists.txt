@@ -89,6 +89,9 @@ target_link_libraries(
     Qt5::Widgets
 )
 
+if(OPENTODOLIST_FLATPAK)
+    target_compile_definitions(OpenTodoList PRIVATE OPENTODOLIST_FLATPAK)
+endif()
 
 file(GLOB_RECURSE TS_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp

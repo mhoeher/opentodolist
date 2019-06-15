@@ -36,7 +36,8 @@
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMAKE_INSTALL_LIBDIR=/app/lib",
-                "-DLIB_INSTALL_DIR=/app/lib"
+                "-DLIB_INSTALL_DIR=/app/lib",
+                "-DOPENTODOLIST_FLATPAK=ON"
             ],
             "sources": [
                 {
