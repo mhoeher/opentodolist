@@ -103,7 +103,25 @@ KeyStore::~KeyStore()
 {
 }
 
-void KeyStore::saveCredentials(const QString& key, const QString &value)
+
+/**
+ * @brief Store a secret.
+ *
+ * This stores the secret @p value using the @p key in the secure storage.
+ * By default, if we cannot access the secure storage, we save the secret to a
+ * fallback location. This fallback is only weakly encrypted and rather relies
+ * on the environment we run in to protect us (like access rights or a (full)
+ * disk encryption.
+ *
+ * If @p removeCopyFromInsecureFallbackOnSuccess is true, we won't try to
+ * write the secret to the fallback. Instead, we check if the secret has
+ * previously been stored in the fallback location and - if so - remove it from
+ * there in case the save operation succeeded. This can be used to transfer
+ * secrets to the secret store after it previously has been stored in the
+ * insecure fallback.
+ */
+void KeyStore::saveCredentials(const QString& key, const QString &value,
+                               bool removeCopyFromInsecureFallbackOnSuccess)
 {
     auto job = new QKeychain::WritePasswordJob(ServiceName);
     job->setKey(key);
@@ -116,14 +134,28 @@ void KeyStore::saveCredentials(const QString& key, const QString &value)
     connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
-            qCWarning(log) << "Failed to save credentials for" << key
-                                << ":" << job->errorString()
-                                << "- using fallback";
-            m_settings->beginGroup("Fallback");
-            m_settings->setValue(key, value);
-            m_settings->endGroup();
+            if (removeCopyFromInsecureFallbackOnSuccess) {
+                qCWarning(log) << "Failed to write secret for"
+                               << key << "to the secret store - giving up";
+            } else {
+                qCWarning(log) << "Failed to save credentials for" << key
+                                    << ":" << job->errorString()
+                                    << "- using fallback";
+                m_settings->beginGroup("Fallback");
+                m_settings->setValue(key, value);
+                m_settings->endGroup();
+            }
         } else {
             qCDebug(log) << "Successfully saved credentials for" << key;
+            if (removeCopyFromInsecureFallbackOnSuccess) {
+                m_settings->beginGroup("Fallback");
+                if (m_settings->contains(key)) {
+                    m_settings->remove(key);
+                    qCWarning(log) << "Removed secret for" << key
+                                   << "from the insecure fallback";
+                }
+                m_settings->endGroup();
+            }
         }
         emit credentialsSaved(key, success);
     });
@@ -149,6 +181,13 @@ void KeyStore::loadCredentials(const QString& key)
             m_settings->beginGroup("Fallback");
             if (m_settings->contains(key)) {
                 secret = m_settings->value(key).toString();
+
+                // We previously were unable to store the secret in the
+                // secret service and hence used the (insecure) fallback.
+                // Let's try again to write the secret to the secure storage
+                // and (if that succeeds) remove the secret from the fallback
+                // location:
+                saveCredentials(key, secret, true);
             } else {
                 success = false;
             }
