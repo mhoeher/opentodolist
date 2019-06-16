@@ -29,7 +29,8 @@ public:
     explicit KeyStore(QObject *parent = 0);
     virtual ~KeyStore();
 
-    void saveCredentials(const QString &key, const QString& value);
+    void saveCredentials(const QString &key, const QString& value,
+                         bool removeCopyFromInsecureFallbackOnSuccess = false);
     void loadCredentials(const QString &key);
     void deleteCredentials(const QString &key);
 

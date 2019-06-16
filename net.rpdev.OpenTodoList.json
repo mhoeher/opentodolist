@@ -11,7 +11,8 @@
         "--filesystem=host",
         "--socket=pulseaudio",
         "--share=network",
-        "--device=dri"
+        "--device=dri",
+        "--talk-name=org.freedesktop.secrets"
     ],
 
     "modules": [
