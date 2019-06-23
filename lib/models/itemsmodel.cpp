@@ -383,7 +383,7 @@ QString ItemsModel::timeSpanLabel(Item *item) const
     auto complexItem = qobject_cast<ComplexItem*>(item);
     if (complexItem && complexItem->dueTo().isValid()) {
         result = m_overdueLabel;
-        auto dueDate = complexItem->dueTo().toString(Qt::ISODate);
+        auto dueDate = complexItem->dueTo().date().toString("yyyy-MM-dd");
         // Note: Keys in the map are sorted, so we iterate from least to most
         //       recent entries:
         for (auto key : m_timeSpans.keys()) {

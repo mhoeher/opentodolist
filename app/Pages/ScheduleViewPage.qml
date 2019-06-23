@@ -82,30 +82,56 @@ Page {
         id: d
 
         property int hasScheduledItems: items.count > 0
+        property var locale: Qt.locale()
+
+        function d2s(date) {
+            return date.toLocaleDateString(locale, "yyyy-MM-dd");
+        }
 
         function updateTimes() {
-            var today = new Date();
-            var startOfToday = new Date(today.getFullYear(),
-                                        today.getMonth(),
-                                        today.getDate());
-            var endOfToday = new Date(today.getFullYear(),
-                                      today.getMonth(),
-                                      today.getDate() + 1);
+            var now = new Date();
+            var today = new Date(now.getFullYear(),
+                                 now.getMonth(),
+                                 now.getDate());
+            var tomorrow = new Date(now.getFullYear(),
+                                    now.getMonth(),
+                                    now.getDate() + 1);
+            var laterThisWeek = new Date(now.getFullYear(),
+                                         now.getMonth(),
+                                         now.getDate() + 2);
 
-            var locale = Qt.locale();
             var lastDayOfWeek = (locale.firstDayOfWeek + 6) % 7;
-            var offsetToEndOfWeek = (lastDayOfWeek - today.getDay() + 7) % 7;
+            var offsetToEndOfWeek = (lastDayOfWeek - now.getDay() + 7) % 7;
 
-            var endOfWeek = new Date(startOfToday.getTime() +
-                                     offsetToEndOfWeek * 24 * 60 * 60 * 1000 + 1);
-            var endOfNextWeek = new Date(endOfWeek.getTime() +
-                                         7 * 25 * 60 * 60 * 1000);
+            var timeOfOneDay = 24 * 60 * 60 * 1000;
+
+            var nextWeek = new Date(today.getTime() +
+                                    timeOfOneDay);
+            while (nextWeek.getDay() !== locale.firstDayOfWeek) {
+                nextWeek = new Date(nextWeek.getTime() + timeOfOneDay);
+            }
+
+            var comingNext = new Date(nextWeek.getTime() +
+                                      timeOfOneDay * 7);
+
+            // If tomorrow is already the first day of the next week,
+            // we "correct" the next week start date to the day after:
+            if (d2s(nextWeek) <= d2s(tomorrow)) {
+                nextWeek = new Date(nextWeek.getTime() + timeOfOneDay);
+            }
+
 
             var timeSpans = {};
-            timeSpans[startOfToday.toISOString()] = qsTr("Today");
-            timeSpans[endOfToday.toISOString()] = qsTr("Later This Week");
-            timeSpans[endOfWeek.toISOString()] = qsTr("Next Week");
-            timeSpans[endOfNextWeek.toISOString()] = qsTr("Coming Next");
+
+            timeSpans[d2s(today)] = qsTr("Today");
+            timeSpans[d2s(tomorrow)] = qsTr("Tomorrow");
+            if (d2s(laterThisWeek) < d2s(nextWeek)) {
+                // Only addd this, if the day after tomorrow is not already
+                // in the next week.
+                timeSpans[d2s(laterThisWeek)] = qsTr("Later This Week");
+            }
+            timeSpans[d2s(nextWeek)] = qsTr("Next Week");
+            timeSpans[d2s(comingNext)] = qsTr("Coming Next");
             items.timeSpans = timeSpans;
         }
     }
@@ -273,5 +299,4 @@ Page {
 
         SyncErrorViewPage {}
     }
-
 }

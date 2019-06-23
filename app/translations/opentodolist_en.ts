@@ -518,27 +518,32 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="105"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="126"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="106"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="127"/>
+        <source>Tomorrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/ScheduleViewPage.qml" line="131"/>
         <source>Later This Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="107"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="133"/>
         <source>Next Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="108"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="134"/>
         <source>Coming Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="227"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="253"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -971,27 +976,27 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="168"/>
+        <location filename="../main.cpp" line="175"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="174"/>
+        <location filename="../main.cpp" line="181"/>
         <source>QML Root Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="175"/>
+        <location filename="../main.cpp" line="182"/>
         <source>DIR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="181"/>
+        <location filename="../main.cpp" line="188"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="194"/>
+        <location filename="../main.cpp" line="201"/>
         <source>Remove shortcuts to the AppImage.</source>
         <translation type="unfinished"></translation>
     </message>
