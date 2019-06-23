@@ -246,10 +246,6 @@ Page {
         closeOnButtonClick: true
     }
 
-    BackgroundSymbol {
-        symbol: page.tag !== "" ? Icons.faTag : Icons.faTh
-    }
-
     ScrollView {
         id: scrollView
         anchors {
