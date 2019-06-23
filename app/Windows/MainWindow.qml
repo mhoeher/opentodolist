@@ -310,10 +310,6 @@ ApplicationWindow {
         anchors.fill: stackView
         visible: librariesSideBar.numberOfLibraries === 0
 
-        BackgroundSymbol {
-            symbol: Icons.faBook
-        }
-
         BackgroundLabel {
             text: Markdown.stylesheet +
                   qsTr("Start by <a href='#newLibrary'>creating a new " +

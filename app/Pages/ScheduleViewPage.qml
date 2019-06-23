@@ -218,10 +218,6 @@ Page {
         }
     }
 
-    BackgroundSymbol {
-        symbol: Icons.faClock
-    }
-
     BackgroundLabel {
         text: Markdown.stylesheet +
               qsTr("Nothing scheduled... Add a due date to items for them to " +
