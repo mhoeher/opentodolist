@@ -1,0 +1,48 @@
+name: opentodolist2
+version: 3.13.0
+confinement: strict
+grade: stable
+base: core18
+adopt-info: opentodolist2 # part to adopt appstream data from (first in parse list)
+apps:
+    opentodolist2:
+        command: OpenTodoList
+        plugs:
+        - kde-frameworks-5-plug
+        - home
+        - x11
+        - opengl
+        - network
+        - network-bind
+        - unity7
+        - pulseaudio
+        - desktop
+        - desktop-legacy
+        common-id: net.rpdev.OpenTodoList.desktop
+        desktop: "usr/share/applications/net.rpdev.OpenTodoList.desktop"
+# slots:
+    # session-dbus-interface:
+    #     interface: dbus
+    #     name: net.rpdev.OpenTodoList
+    #     bus: session
+    # kde-frameworks-5-plug:
+# plugs:
+#         content: kde-frameworks-5-core18-all
+#         interface: content
+#         default-provider: kde-frameworks-5-core18
+#         target: kf5 # target directory where the content is mounted i.e. $SNAP/kf5/
+parts:
+    opentodolist2:
+        build-snaps:
+        - kde-frameworks-5-core18-sdk
+        after:
+        - kde-frameworks-5-env
+        plugin: cmake
+        source: src
+        configflags:
+        - "-DCMAKE_INSTALL_PREFIX=/usr"
+        - "-DCMAKE_BUILD_TYPE=Release"
+        parse-info: [usr/share/metainfo/net.rpdev.OpenTodoList.appdata.xml]
+    kde-frameworks-5-env:
+        plugin: dump
+        source: https://github.com/apachelogger/kf5-snap-env.git
