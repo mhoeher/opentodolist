@@ -38,7 +38,7 @@ parts:
         after:
         - kde-frameworks-5-env
         plugin: cmake
-        source: src
+        source: .
         configflags:
         - "-DCMAKE_INSTALL_PREFIX=/usr"
         - "-DCMAKE_BUILD_TYPE=Release"
