@@ -1,11 +1,11 @@
-name: opentodolist2
+name: opentodolist
 version: 3.13.0
 confinement: strict
 grade: stable
 base: core18
-adopt-info: opentodolist2 # part to adopt appstream data from (first in parse list)
+adopt-info: opentodolist # part to adopt appstream data from (first in parse list)
 apps:
-    opentodolist2:
+    opentodolist:
         command: OpenTodoList
         plugs:
         - kde-frameworks-5-plug
@@ -32,7 +32,7 @@ apps:
 #         default-provider: kde-frameworks-5-core18
 #         target: kf5 # target directory where the content is mounted i.e. $SNAP/kf5/
 parts:
-    opentodolist2:
+    opentodolist:
         build-snaps:
         - kde-frameworks-5-core18-sdk
         after:
