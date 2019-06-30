@@ -40,6 +40,54 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.13.0" date="2019-06-30">
+        <p>
+          This release includes the following changes:
+        </p>
+        <ul>
+          <li>
+            #223: The has been packages as a snap. This makes it
+            super easy to install on Linux distributions including
+            snap.
+          </li>
+          <li>
+            #224: When running the app packages via Flatpak, passwords
+            are now written to the secrets store (like Gnome keyring or
+            the KDE Wallet). Before, they have been written to a less
+            secure fallback location.
+          </li>
+          <li>
+            #230: A bug has been fixed, which caused the app to crash when
+            using the search. This bug did not occur all the time.
+            In particular, it seemed to occur most often when the app
+            was run as an AppImage.
+          </li>
+          <li>
+            #237: The Schedule view has been extended and now includes
+            a Tomorrow section, showing all the items which are due on the
+            next day.
+          </li>
+          <li>
+            #238: Background images have been removed from most views. They
+            did not contribute to the usability of the app and even
+            worse made the app unnecessarily hard to use for users
+            who are sight impaired.
+          </li>
+          <li>
+            #232: A bug has been fixed which caused the app to not
+            allow the user to add images to a library when being run
+            as an AppImage.
+          </li>
+          <li>
+            #233: When being packages as Flatpak, the app now is able
+            to display color emoji out of the box.
+          </li>
+          <li>
+            #236: A bug has been fixed which caused items in the schedule
+            view to appear in the wrong section under some circumstances.
+          </li>
+        </ul>
+    </relase>
     <release version="3.12.0" date="2019-06-09">
         <p>
             This release adds the following new features to the app:
