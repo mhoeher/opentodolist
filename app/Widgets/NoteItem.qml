@@ -30,7 +30,7 @@ Item {
                 right: parent.right
                 top: parent.top
             }
-            height: titleLabel.height + padding
+            height: titleLabel.height + padding * 2
             backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
                                           Colors.shade100)
             clip: true
