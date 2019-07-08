@@ -47,6 +47,14 @@ of OpenTodoList](https://gitlab.com/rpdev/opentodolist/issues) and file a
 bug report there. Also make use of this if you want to request a new feature.
 
 
+# Help Translating the App
+
+If you like using the app, you can help to make it even better by helping
+us to translate it to other languages. Translation can be done easily
+via [poeditor.com](). Like the idea?
+Then [join the project](https://poeditor.com/join/project/ztvOymGNxn).
+
+
 # Supported Operating Systems
 
 OpenTodoList is developed in C++ on top of the Qt 5 framework. In theory that
