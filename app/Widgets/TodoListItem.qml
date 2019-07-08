@@ -31,7 +31,7 @@ Item {
                 right: parent.right
                 top: parent.top
             }
-            height: titleLabel.height + padding
+            height: titleLabel.height + padding * 2
             backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
                                           Colors.shade100)
 
@@ -59,6 +59,7 @@ Item {
 
                 width: parent.width
                 height: parent.height
+                spacing: 5
                 interactive: false
                 clip: true
                 model: OTL.ItemsSortFilterModel {

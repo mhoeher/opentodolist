@@ -109,5 +109,6 @@
         <file>Widgets/ItemProgressEditor.qml</file>
         <file>Components/Slider.qml</file>
         <file>3rdpartyinfo/syntax-highlighting/3rdpartyinfo.json</file>
+        <file>Components/Heading.qml</file>
     </qresource>
 </RCC>

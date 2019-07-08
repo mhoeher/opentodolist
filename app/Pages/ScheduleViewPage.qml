@@ -257,11 +257,11 @@ Page {
         model: sortedItems
         section {
             property: "dueToSpan"
-            delegate: Label {
+            delegate: Heading {
                 font.bold: true
                 text: section
                 width: parent.width
-                height: 30
+                padding: 10
             }
         }
 
