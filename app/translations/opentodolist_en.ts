@@ -20,7 +20,7 @@
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="44"/>
-        <source>(c) RPdev 2013-2018, version %1</source>
+        <source>(c) RPdev 2013-2019, version %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -287,7 +287,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="309"/>
+        <location filename="../Pages/LibraryPage.qml" line="305"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -394,7 +394,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="319"/>
+        <location filename="../Windows/MainWindow.qml" line="315"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -543,7 +543,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="253"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="249"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -653,7 +653,7 @@
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="91"/>
+        <location filename="../Widgets/TodoListItem.qml" line="92"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished"></translation>
     </message>

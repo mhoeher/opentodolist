@@ -20,8 +20,12 @@
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="44"/>
+        <source>(c) RPdev 2013-2019, version %1</source>
+        <translation type="unfinished">(c) RPdev 2013-2018, Version %1 {2013-2019,?}</translation>
+    </message>
+    <message>
         <source>(c) RPdev 2013-2018, version %1</source>
-        <translation>(c) RPdev 2013-2018, Version %1</translation>
+        <translation type="vanished">(c) RPdev 2013-2018, Version %1</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="59"/>
@@ -346,7 +350,7 @@
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="309"/>
+        <location filename="../Pages/LibraryPage.qml" line="305"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation>Noch nichts hier! Die Bibliothek kann mit &lt;a href=&apos;#note&apos;&gt;Notizen&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;Aufgabenlisten&lt;/a&gt; oder &lt;a href=&apos;#image&apos;&gt;Bildern&lt;/a&gt; befüllt werden.</translation>
     </message>
@@ -465,7 +469,7 @@
         <translation>Öffne die &amp;linke Seitenleiste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="319"/>
+        <location filename="../Windows/MainWindow.qml" line="315"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation>Eine &lt;a href=&apos;#newLibrary&apos;&gt;neue Bibliothek anlegen&lt;/a&gt;. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder.</translation>
     </message>
@@ -635,7 +639,7 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="253"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="249"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation>Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser Liste angezeigt.</translation>
     </message>
@@ -812,7 +816,7 @@
         <translation type="vanished">Keine offenen Aufgaben - alles erledigt :-)</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="91"/>
+        <location filename="../Widgets/TodoListItem.qml" line="92"/>
         <source>✔ No open todos - everything done</source>
         <translation>✔ Keine offenen Aufgaben - alles erledigt</translation>
     </message>

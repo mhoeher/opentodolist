@@ -149,6 +149,30 @@ add_custom_target(opentodolist-translations
 )
 
 
+# Helper targets to convert between *.ts and *.po files (for
+# external editing)
+get_target_property(LCONVERT_EXECUTABLE Qt5::lconvert IMPORTED_LOCATION)
+add_custom_target(opentodolist-po-to-ts)
+foreach(ts_file ${TS_FILES})
+    string(REGEX REPLACE "ts$" "po" po_file ${ts_file})
+    set(PO_FILES ${PO_FILES} ${po_file})
+    add_custom_command(
+        OUTPUT ${po_file}
+        COMMAND
+            ${LCONVERT_EXECUTABLE}
+                -i ${CMAKE_CURRENT_SOURCE_DIR}/${ts_file}
+                -o ${CMAKE_CURRENT_SOURCE_DIR}/${po_file}
+    )
+    add_custom_command(
+        TARGET opentodolist-po-to-ts
+        COMMAND
+            ${LCONVERT_EXECUTABLE}
+                -i ${CMAKE_CURRENT_SOURCE_DIR}/${po_file}
+                -o ${CMAKE_CURRENT_SOURCE_DIR}/${ts_file}
+    )
+endforeach()
+add_custom_target(opentodolist-ts-to-po DEPENDS ${PO_FILES})
+
 # Install the app:
 install(
     TARGETS OpenTodoList
