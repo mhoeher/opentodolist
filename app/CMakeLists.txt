@@ -104,6 +104,7 @@ file(GLOB_RECURSE TS_SOURCE_FILES
 set(TS_FILES
     translations/opentodolist_en.ts
     translations/opentodolist_de.ts
+    translations/opentodolist_fr.ts
 )
 qt5_create_translation(
     MESSAGES

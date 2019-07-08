@@ -1,0 +1,981 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Language: fr_FR\n"
+"X-Qt-Contexts: true\n"
+
+#: ../Pages/AboutPage.qml:13
+msgctxt "AboutPage|"
+msgid "About..."
+msgstr ""
+
+#: ../Pages/AboutPage.qml:30
+msgctxt "AboutPage|"
+msgid "OpenTodoList"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:37
+msgctxt "AboutPage|"
+msgid "A todo and task managing application."
+msgstr ""
+
+#: ../Pages/AboutPage.qml:44
+#, qt-format
+msgctxt "AboutPage|"
+msgid "(c) RPdev 2013-2019, version %1"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:59
+msgctxt "AboutPage|"
+msgid ""
+"OpenTodoList is released under the terms of the GNU General Public License "
+"version 3 or (at your choice) any later version. You can find a copy of the "
+"license below. Additionally, several libraries and resources are used. For "
+"detailed information about their license terms, please refer to the <a "
+"href='3rdparty'>3rd Party Software</a> page."
+msgstr ""
+
+#: ../Pages/AboutThirdPartyPage.qml:10
+msgctxt "AboutThirdPartyPage|"
+msgid "Used Libraries and Resources"
+msgstr ""
+
+#: ../Pages/AboutThirdPartyPage.qml:46
+#, qt-format
+msgctxt "AboutThirdPartyPage|"
+msgid "Author: <a href='%2'>%1</a>"
+msgstr ""
+
+#: ../Pages/AboutThirdPartyPage.qml:53
+#, qt-format
+msgctxt "AboutThirdPartyPage|"
+msgid "License: <a href='%1'>%2</a>"
+msgstr ""
+
+#: ../Pages/AboutThirdPartyPage.qml:60
+#, qt-format
+msgctxt "AboutThirdPartyPage|"
+msgid "Download: <a href='%1'>%1</a>"
+msgstr ""
+
+#: ../Widgets/Attachments.qml:22
+msgctxt "Attachments|"
+msgid "Attach File"
+msgstr ""
+
+#: ../Widgets/Attachments.qml:35
+msgctxt "Attachments|"
+msgid "Delete Attachment?"
+msgstr ""
+
+#: ../Widgets/Attachments.qml:39
+#, qt-format
+msgctxt "Attachments|"
+msgid ""
+"Are you sure you want to delete the attachment <strong>%1</strong>? This "
+"action cannot be undone."
+msgstr ""
+
+#: ../Widgets/Attachments.qml:61
+msgctxt "Attachments|"
+msgid "Attachments"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:14
+msgctxt "ColorMenu|"
+msgid "Color"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:17
+msgctxt "ColorMenu|"
+msgid "White"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:24
+msgctxt "ColorMenu|"
+msgid "Red"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:31
+msgctxt "ColorMenu|"
+msgid "Green"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:38
+msgctxt "ColorMenu|"
+msgid "Blue"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:45
+msgctxt "ColorMenu|"
+msgid "Yellow"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:52
+msgctxt "ColorMenu|"
+msgid "Orange"
+msgstr ""
+
+#: ../Menues/ColorMenu.qml:59
+msgctxt "ColorMenu|"
+msgid "Lilac"
+msgstr ""
+
+#: ../Windows/DeleteItemDialog.qml:18
+msgctxt "DeleteItemDialog|"
+msgid "Delete Item?"
+msgstr ""
+
+#: ../Windows/DeleteItemDialog.qml:31
+#, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the image <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+
+#: ../Windows/DeleteItemDialog.qml:35
+#, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
+"be undone."
+msgstr ""
+
+#: ../Windows/DeleteItemDialog.qml:39
+#, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+
+#: ../Windows/DeleteItemDialog.qml:43
+#, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the task <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+
+#: ../Windows/DeleteItemDialog.qml:47
+#, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the note <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+
+#: ../Windows/DeleteLibraryDialog.qml:18
+msgctxt "DeleteLibraryDialog|"
+msgid "Delete Library?"
+msgstr ""
+
+#: ../Windows/DeleteLibraryDialog.qml:32
+#, qt-format
+msgctxt "DeleteLibraryDialog|"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from  the "
+"application? <em>This will remove any files belonging to the library.</em>"
+msgstr ""
+
+#: ../Windows/DeleteLibraryDialog.qml:39
+#, qt-format
+msgctxt "DeleteLibraryDialog|"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from the "
+"application? Note that the files inside the library will not be removed, so "
+"you can restore the library later on."
+msgstr ""
+
+#: ../Windows/FolderSelectionDialog.qml:16
+msgctxt "FolderSelectionDialog|"
+msgid "Select a Folder"
+msgstr ""
+
+#: ../Widgets/ItemCreatedNotification.qml:62
+#, qt-format
+msgctxt "ItemCreatedNotification|"
+msgid "<strong>%1</strong> has been created."
+msgstr ""
+
+#: ../Widgets/ItemCreatedNotification.qml:67
+msgctxt "ItemCreatedNotification|"
+msgid "Open"
+msgstr ""
+
+#: ../Widgets/ItemDueDateEditor.qml:30
+msgctxt "ItemDueDateEditor|"
+msgid "Due on"
+msgstr ""
+
+#: ../Widgets/ItemNotesEditor.qml:28
+msgctxt "ItemNotesEditor|"
+msgid "Notes"
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:97
+msgctxt "LibrariesSideBar|"
+msgid "Schedule"
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:132
+msgctxt "LibrariesSideBar|"
+msgid "New Library"
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:138
+msgctxt "LibrariesSideBar|"
+msgid "About..."
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:123
+msgctxt "LibraryPage|"
+msgid "Red"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:130
+msgctxt "LibraryPage|"
+msgid "Green"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:137
+msgctxt "LibraryPage|"
+msgid "Blue"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:144
+msgctxt "LibraryPage|"
+msgid "Yellow"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:151
+msgctxt "LibraryPage|"
+msgid "Orange"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:158
+msgctxt "LibraryPage|"
+msgid "Lilac"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:165
+msgctxt "LibraryPage|"
+msgid "White"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:175
+msgctxt "LibraryPage|"
+msgid "Rename"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:180
+msgctxt "LibraryPage|"
+msgid "Delete"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:217
+msgctxt "LibraryPage|"
+msgid "Note Title"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:230
+msgctxt "LibraryPage|"
+msgid "Todo List Title"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:243
+msgctxt "LibraryPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:305
+msgctxt "LibraryPage|"
+msgid ""
+"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr ""
+
+#: ../Menues/LibraryPageMenu.qml:17
+msgctxt "LibraryPageMenu|"
+msgid "Edit Sync Settings"
+msgstr ""
+
+#: ../Menues/LibraryPageMenu.qml:33
+msgctxt "LibraryPageMenu|"
+msgid "Sync Now"
+msgstr ""
+
+#: ../Menues/LibraryPageMenu.qml:44
+msgctxt "LibraryPageMenu|"
+msgid "Sync Log"
+msgstr ""
+
+#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:34
+#, qt-format
+msgctxt "LibrarySecretsMissingNotificationBar|"
+msgid "The secrets for synchronizing the library %1 are missing."
+msgstr ""
+
+#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:39
+msgctxt "LibrarySecretsMissingNotificationBar|"
+msgid "Ignore"
+msgstr ""
+
+#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:43
+msgctxt "LibrarySecretsMissingNotificationBar|"
+msgid "Enter Secrets"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:12
+msgctxt "LogViewPage|"
+msgid "Synchronization Log"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:20
+msgctxt "LogViewPage|"
+msgid "Copy Log"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:19
+msgctxt "MainWindow|"
+msgid "OpenTodoList"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:157
+msgctxt "MainWindow|"
+msgid "New &Library"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:168
+msgctxt "MainWindow|"
+msgid "New &Note"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:176
+msgctxt "MainWindow|"
+msgid "New &Todo List"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:184
+msgctxt "MainWindow|"
+msgid "New &Image"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:192
+msgctxt "MainWindow|"
+msgid "&Quit"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:200
+msgctxt "MainWindow|"
+msgid "&Find"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:208
+msgctxt "MainWindow|"
+msgid "Go &Back"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:217
+msgctxt "MainWindow|"
+msgid "Open Last &Created Item"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:225
+msgctxt "MainWindow|"
+msgid "Open &Left Side Bar"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:315
+msgctxt "MainWindow|"
+msgid ""
+"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+"used to store different kinds of items like notes, todo lists and images."
+msgstr ""
+
+#: ../Pages/MarkdownEditorPage.qml:22
+msgctxt "MarkdownEditorPage|"
+msgid "Edit Notes"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:18
+msgctxt "NewLibraryPage|"
+msgid "Create Library"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:22
+msgctxt "NewLibraryPage|"
+msgid "Create"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:38
+msgctxt "NewLibraryPage|"
+msgid "Cancel"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:57
+msgctxt "NewLibraryPage|"
+msgid "Library Name:"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:65
+msgctxt "NewLibraryPage|"
+msgid "My New Library"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:72
+msgctxt "NewLibraryPage|"
+msgid "Create Library in Default Location"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:79
+msgctxt "NewLibraryPage|"
+msgid ""
+"The items you add to the library will be stored in the default location for "
+"libraries."
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:81
+msgctxt "NewLibraryPage|"
+msgid ""
+"Please select a directory into which the library items shall be saved. You "
+"can also select an existing library directory. In this case, the library "
+"will be imported."
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:108
+msgctxt "NewLibraryPage|"
+msgid "Please select a library location"
+msgstr ""
+
+#: ../Widgets/NewTopLevelItemButton.qml:37
+msgctxt "NewTopLevelItemButton|"
+msgid "Note"
+msgstr ""
+
+#: ../Widgets/NewTopLevelItemButton.qml:41
+msgctxt "NewTopLevelItemButton|"
+msgid "Todo List"
+msgstr ""
+
+#: ../Widgets/NewTopLevelItemButton.qml:45
+msgctxt "NewTopLevelItemButton|"
+msgid "Image"
+msgstr ""
+
+#: ../Windows/OpenFileDialog.qml:17
+msgctxt "OpenFileDialog|"
+msgid "Select a File"
+msgstr ""
+
+#: ../Windows/OpenImageDialog.qml:19
+msgctxt "OpenImageDialog|"
+msgid "Select Image"
+msgstr ""
+
+#: ../Windows/RenameItemDialog.qml:21
+msgctxt "RenameItemDialog|"
+msgid "Rename Item"
+msgstr ""
+
+#: ../Windows/RenameItemDialog.qml:32
+msgctxt "RenameItemDialog|"
+msgid "Enter item title..."
+msgstr ""
+
+#: ../Windows/RenameLibraryDialog.qml:19
+msgctxt "RenameLibraryDialog|"
+msgid "Rename Library"
+msgstr ""
+
+#: ../Windows/RenameLibraryDialog.qml:36
+msgctxt "RenameLibraryDialog|"
+msgid "Enter library title..."
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:70
+msgctxt "ScheduleViewPage|"
+msgid "Overdue"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:126
+msgctxt "ScheduleViewPage|"
+msgid "Today"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:127
+msgctxt "ScheduleViewPage|"
+msgid "Tomorrow"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:131
+msgctxt "ScheduleViewPage|"
+msgid "Later This Week"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:133
+msgctxt "ScheduleViewPage|"
+msgid "Next Week"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:134
+msgctxt "ScheduleViewPage|"
+msgid "Coming Next"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:249
+msgctxt "ScheduleViewPage|"
+msgid "Nothing scheduled... Add a due date to items for them to appear here."
+msgstr ""
+
+#: ../Widgets/SyncErrorNotificationBar.qml:41
+msgctxt "SyncErrorNotificationBar|"
+msgid ""
+"There were errors when synchronizing the library. Please ensure that the "
+"library settings are up to date."
+msgstr ""
+
+#: ../Widgets/SyncErrorNotificationBar.qml:47
+msgctxt "SyncErrorNotificationBar|"
+msgid "Ignore"
+msgstr ""
+
+#: ../Widgets/SyncErrorNotificationBar.qml:51
+msgctxt "SyncErrorNotificationBar|"
+msgid "View"
+msgstr ""
+
+#: ../Widgets/SyncIndicatorBar.qml:61
+msgctxt "SyncIndicatorBar|"
+msgid "Synchronizing library..."
+msgstr ""
+
+#: ../Pages/SyncLibrarySelectionPage.qml:16
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Create Library"
+msgstr ""
+
+#: ../Pages/SyncLibrarySelectionPage.qml:28
+msgctxt "SyncLibrarySelectionPage|"
+msgid "OK"
+msgstr ""
+
+#: ../Pages/SyncLibrarySelectionPage.qml:45
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Cancel"
+msgstr ""
+
+#: ../Pages/SyncLibrarySelectionPage.qml:78
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Create new library on server"
+msgstr ""
+
+#: ../Pages/SyncLibrarySelectionPage.qml:96
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Searching for existing libraries..."
+msgstr ""
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:15
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "Cancel"
+msgstr ""
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:20
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "OK"
+msgstr ""
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:44
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "NextCloud"
+msgstr ""
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:51
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "ownCloud"
+msgstr ""
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:58
+#: ../Pages/SynchronizerBackendSelectionPage.qml:59
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "WebDAV"
+msgstr ""
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:65
+#: ../Pages/SynchronizerBackendSelectionPage.qml:66
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "Local Library"
+msgstr ""
+
+#: ../Widgets/TagsEditor.qml:67
+msgctxt "TagsEditor|"
+msgid "Tags"
+msgstr ""
+
+#: ../Widgets/TodoListItem.qml:92
+msgctxt "TodoListItem|"
+msgid "✔ No open todos - everything done"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:80
+msgctxt "TodoListPage|"
+msgid "Add Todo"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:140
+msgctxt "TodoListPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:169
+msgctxt "TodoListPage|"
+msgid "Todos"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:180
+msgctxt "TodoListPage|"
+msgid "Completed Todos"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:54
+msgctxt "TodoPage|"
+msgid "Add Task"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:98
+msgctxt "TodoPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr ""
+
+#: ../Pages/TodoPage.qml:127
+msgctxt "TodoPage|"
+msgid "Tasks"
+msgstr ""
+
+#: ../Widgets/UpdateNotificationBar.qml:41
+#, qt-format
+msgctxt "UpdateNotificationBar|"
+msgid "An update to OpenTodoList %1 is available."
+msgstr ""
+
+#: ../Widgets/UpdateNotificationBar.qml:47
+msgctxt "UpdateNotificationBar|"
+msgid "Ignore"
+msgstr ""
+
+#: ../Widgets/UpdateNotificationBar.qml:51
+msgctxt "UpdateNotificationBar|"
+msgid "Download"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:119
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid ""
+"Unexpected HTTP code received when getting remote folder entry list: '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:181
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Failed to open file '%1' for writing: %2"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:188
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Download failed with HTTP code %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:194
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Failed to open intermediate download file: %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:250
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Uploading failed with HTTP code %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:255
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Failed to open file '%1' for reading: %2"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:264
+msgctxt "WebDAVClient|"
+msgid "Server did not send eTag when uploading"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:314
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Deleting remote file failed with HTTP code %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:416
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Synchronizing '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:429 ../../lib/sync/webdavclient.cpp:440
+#: ../../lib/sync/webdavclient.cpp:449 ../../lib/sync/webdavclient.cpp:458
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Ignoring file %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:468
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid ""
+"Skipping sync of directory '%1' as there were no local changes and we have "
+"been asked to push only"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:526
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Failed to get entry list for '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:543
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Pulling '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:553
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid ""
+"Pull conflict: Cannot pull file '%1' from '%2'  because a local directory "
+"with than name already exists"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:575
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid ""
+"Pull conflict: Cannot pull directory '%1' from '%2' because a file with that "
+"name already exists locally"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:600
+msgctxt "WebDAVClient|"
+msgid "Cannot pull remote entry of type Unknown"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:614
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Removing '%1' locally"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:621
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Failed to remove local file '%1' from '%2'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:636
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Failed to remove local directory '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:644
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Bad sync entry type of entry '%1' in '%2' when removing local entry"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:660
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Pushing '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:667
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid ""
+"Push conflict: Cannot push directory '%1' as a file with that name exists on "
+"the remote"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:684
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid ""
+"Push conflict: Cannot push local file '%1' because a directory with that "
+"name exists remotely"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:697
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Unexpected local type of entry '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:711
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Removing remote entry '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:1025
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "There was an SSL error: %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:1028
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "Problem establishing a secure connection to the server: %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:1039
+#, qt-format
+msgctxt "WebDAVClient|"
+msgid "There was a network error: %1"
+msgstr ""
+
+#: ../../lib/sync/webdavclient.cpp:1042
+msgctxt "WebDAVClient|"
+msgid "Authentication failed. Please check you username and password."
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:20
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "OK"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:20
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Validate"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:38
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Cancel"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:84
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Server Address:"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:90
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "https://..."
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:96
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "User name:"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:108
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Password:"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:122
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Ignore SSL Errors"
+msgstr ""
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:128
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:97
+msgctxt "WebDAVSynchronizer|"
+msgid "Starting synchronization"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:124
+msgctxt "WebDAVSynchronizer|"
+msgid "The last sync did not run through - doing a full sync"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:131
+msgctxt "WebDAVSynchronizer|"
+msgid "Failed to create sync lock:"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:140
+msgctxt "WebDAVSynchronizer|"
+msgid "Creating the remote top level directory"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:152
+#, qt-format
+msgctxt "WebDAVSynchronizer|"
+msgid "Failed to prepare remote directory '%1' for sync"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:174
+msgctxt "WebDAVSynchronizer|"
+msgid "Failed to synchronize top level directory!"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:188
+#: ../../lib/sync/webdavsynchronizer.cpp:200
+#, qt-format
+msgctxt "WebDAVSynchronizer|"
+msgid "Failed to synchronize '%1'"
+msgstr ""
+
+#: ../../lib/sync/webdavsynchronizer.cpp:213
+msgctxt "WebDAVSynchronizer|"
+msgid "Synchronization finished"
+msgstr ""
+
+#: ../Pages/WebDAVSynchronizerSettingsPage.qml:39
+msgctxt "WebDAVSynchronizerSettingsPage|"
+msgid "User name"
+msgstr ""
+
+#: ../Pages/WebDAVSynchronizerSettingsPage.qml:52
+msgctxt "WebDAVSynchronizerSettingsPage|"
+msgid "Password"
+msgstr ""
+
+#: ../main.cpp:175
+msgctxt "main|"
+msgid "Manage your personal data."
+msgstr ""
+
+#: ../main.cpp:181
+msgctxt "main|"
+msgid "QML Root Directory"
+msgstr ""
+
+#: ../main.cpp:182
+msgctxt "main|"
+msgid "DIR"
+msgstr ""
+
+#: ../main.cpp:188
+msgctxt "main|"
+msgid "Switch on some optimizations for touchscreens."
+msgstr ""
+
+#: ../main.cpp:201
+msgctxt "main|"
+msgid "Remove shortcuts to the AppImage."
+msgstr ""
