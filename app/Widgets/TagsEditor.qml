@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -13,36 +14,51 @@ Column {
     
     property OTL.TopLevelItem item: null
     property var library: null
+
+    function addTag() {
+        newTagDialog.open();
+    }
     
     width: parent.width
 
     CenteredDialog {
         id: newTagDialog
 
-        ComboBox {
-            id: comboBox
+        Column {
 
-            model: {
-                var library = editor.library;
-                var result = [];
-                if (library) {
-                    for (var i = 0; i < library.tags.length; ++i) {
-                        var attached = false;
-                        for (var j = 0; j < item.tags.length; ++j) {
-                            if (library.tags[i] === item.tags[j]) {
-                                attached = true;
-                                break;
+            spacing: 10
+
+            Heading {
+                level: 2
+                text: qsTr("Add Tag")
+            }
+
+            ComboBox {
+                id: comboBox
+
+                model: {
+                    var library = editor.library;
+                    var result = [];
+                    if (library) {
+                        for (var i = 0; i < library.tags.length; ++i) {
+                            var attached = false;
+                            for (var j = 0; j < item.tags.length; ++j) {
+                                if (library.tags[i] === item.tags[j]) {
+                                    attached = true;
+                                    break;
+                                }
+                            }
+                            if (!attached) {
+                                result.push(library.tags[i]);
                             }
                         }
-                        if (!attached) {
-                            result.push(library.tags[i]);
-                        }
                     }
+                    return result;
                 }
-                return result;
+                editable: true
             }
-            editable: true
         }
+
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: {
             if (comboBox.editText !== "") {
@@ -52,31 +68,9 @@ Column {
         }
         onRejected: comboBox.editText = ""
     }
-    
-    RowLayout {
-        width: parent.width
-
-        ToolButton {
-            id: decorativeIcon
-            symbol: Icons.faTags
-            background: Item {}
-        }
-
-        Label {
-            Layout.fillWidth: true
-            text: qsTr("Tags")
-            font.bold: true
-        }
-
-        ToolButton {
-            symbol: Icons.faPlus
-            onClicked: newTagDialog.open()
-        }
-    }
 
     Flow {
-        x: decorativeIcon.width
-        width: parent.width - x
+        width: parent.width
         spacing: 5
 
         Repeater {
@@ -88,13 +82,15 @@ Column {
                 bottomPadding: 0
                 background: Rectangle {
                     id: tagBackground
-                    color: Colors.color(Colors.green, Colors.shade200)
+                    color: Colors.color(Colors.green, Colors.shade600)
                     border {
                         width: 1
-                        color: Qt.darker(tagBackground.color)
+                        color: Qt.lighter(tagBackground.color, 1.1)
                     }
-                    radius: height / 2
+                    radius: height / 3
                 }
+                Material.foreground: "white"
+
                 RowLayout {
                     Label {
                         text: modelData

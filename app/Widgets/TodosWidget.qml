@@ -12,11 +12,10 @@ Column {
     id: root
 
     property alias model: repeater.model
-    property alias decorativeSymbol: decorativeIcon.symbol
-    property alias decorativeSymbolFont: decorativeIcon.font.family
     property alias symbol: headerIcon.symbol
     property alias symbolFont: headerIcon.font.family
     property alias title: headerLabel.text
+    property alias headerItemVisible: headerIcon.visible
 
     signal headerButtonClicked()
     signal todoClicked(var todo)
@@ -24,17 +23,18 @@ Column {
     RowLayout {
         width: parent.width
 
-        ToolButton {
-            id: decorativeIcon
-            symbol: Icons.faTags
-            background: Item {}
-        }
-
-        Label {
+        Heading {
             id: headerLabel
 
+            level: 2
             Layout.fillWidth: true
             font.bold: true
+        }
+
+        Item {
+            visible: !headerIcon.visible
+            width: headerIcon.width
+            height: headerIcon.height
         }
 
         ToolButton {
@@ -56,9 +56,9 @@ Column {
     }
 
     Column {
-        x: decorativeIcon.width
-        width: parent.width - x
+        width: parent.width
         clip: true
+        spacing: 10
 
         Repeater {
             id: repeater
@@ -80,7 +80,6 @@ Column {
                                               Icons.faCircle
                         anchors.verticalCenter: parent.verticalCenter
                         onClicked: object.done = !object.done
-                        background: Item {}
                     }
                     Column {
                         Layout.fillWidth: true
@@ -112,7 +111,14 @@ Column {
                             }
                         }
                     }
+                    Item {
+                        visible: !toggleSwipeOpened.visible
+                        width: toggleSwipeOpened.width
+                        height: toggleSwipeOpened.height
+                    }
+
                     ToolButton {
+                        id: toggleSwipeOpened
                         visible: swipeDelegate.hovered
                         symbol: swipeDelegate.swipe.position === 0 ?
                                     Icons.faChevronLeft :

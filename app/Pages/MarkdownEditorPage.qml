@@ -5,7 +5,7 @@ import OpenTodoList 1.0 as OTL
 import "../Components"
 
 
-Page {
+Pane {
     id: editor
     
     property OTL.ComplexItem item: null
@@ -19,12 +19,13 @@ Page {
         accepted();
     }
 
-    title: qsTr("Edit Notes")
+    //title: qsTr("Edit Notes")
 
     Component.onCompleted: {
         if (item !== null) {
             textArea.text = item.notes;
         }
+        textArea.forceActiveFocus();
     }
     Component.onDestruction: {
         if (item !== null) {

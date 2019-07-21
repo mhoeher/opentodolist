@@ -14,6 +14,10 @@ Item {
 
     property OTL.ComplexItem item
 
+    function attach() {
+        dialog.open();
+    }
+
     height: childrenRect.height
 
     OpenFileDialog {
@@ -46,26 +50,12 @@ Item {
         }
     }
 
-    RowLayout {
+    Heading {
         id: header
-        width: parent.width
 
-        ToolButton {
-            id: decorativeIcon
-            symbol: Icons.faPaperclip
-            background: Item {}
-        }
-
-        Label {
-            font.bold: true
-            text: qsTr("Attachments")
-            Layout.fillWidth: true
-        }
-
-        ToolButton {
-            symbol: Icons.faPlus
-            onClicked: dialog.open()
-        }
+        level: 2
+        text: qsTr("Attachments")
+        visible: item.item.attachments.length > 0
     }
 
     Column {

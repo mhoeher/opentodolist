@@ -13,18 +13,11 @@ Column {
 
     property OTL.ComplexItem item: OTL.ComplexItem {}
 
+
     RowLayout {
         width: parent.width
-
-        ToolButton {
-            id: decorativeItem
-            background: Item {}
-            symbol: Icons.faStickyNote
-            font.family: Fonts.icons
-        }
-
-        Label {
-            font.bold: true
+        Heading {
+            level: 2
             text: qsTr("Notes")
             Layout.fillWidth: true
         }
@@ -35,9 +28,10 @@ Column {
         }
     }
 
-    Frame {
-        width: parent.width - x
-        x: decorativeItem.width
+    Item {
+        width: parent.width
+        height: childrenRect.height
+        visible: !loader.item
 
         MouseArea {
             id: mouseArea
@@ -45,23 +39,41 @@ Column {
             width: parent.width
             height: childrenRect.height
             implicitHeight: height
-            onClicked: page.openPage(notesEditor, {"item": item})
+            //onClicked: page.openPage(notesEditor, {"item": item})
+            onClicked: loader.sourceComponent = notesEditor
 
             MarkdownLabel {
                 width: parent.width
                 textFormat: Text.RichText
                 markdown: page.item.notes
             }
+
+            Label {
+                width: parent.width
+                text: qsTr("No notes added yet - click here to add some.")
+                color: Colors.color(Colors.grey)
+                visible: page.item.notes === ""
+            }
         }
+    }
+
+    Loader {
+        id: loader
+
+        width: parent.width
+        visible: !!item
     }
 
     Component {
         id: notesEditor
 
-        MarkdownEditorPage {
+        MarkdownEditor {
             id: editor
 
-            backgroundColor: background.backgroundColor
+            item: root.item
+            onDoneEditing: {
+                loader.sourceComponent = undefined;
+            }
         }
     }
 }

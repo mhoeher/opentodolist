@@ -24,6 +24,14 @@ Page {
         renameItemDialog.renameItem(item);
     }
 
+    function addTag() {
+        tagsEditor.addTag();
+    }
+
+    function attach() {
+        attachments.attach();
+    }
+
     title: titleText.text
 
     MarkdownConverter {
@@ -42,39 +50,47 @@ Page {
     }
 
     Pane {
-        id: background
-
+        anchors.fill: parent
         backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+    }
+
+    ScrollView {
+        id: scrollView
+
         anchors.fill: parent
 
-        ScrollView {
-            id: scrollView
+        Pane {
+            id: background
 
-            anchors.fill: parent
+            backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+            width: scrollView.width
 
             Column {
-                width: scrollView.width
+                width: parent.width
+                spacing: 20
+
+                ItemPageHeader {
+                    item: page.item
+                }
+
+                TagsEditor {
+                    id: tagsEditor
+                    item: page.item
+                    library: page.library
+                    width: parent.width
+                }
 
                 ItemNotesEditor {
                     item: page.item
                     width: parent.width
                 }
 
-                ItemDueDateEditor {
-                    item: page.item
-                    width: parent.width
-                }
-
                 Attachments {
+                    id: attachments
                     item: page.item
                     width: parent.width
                 }
 
-                TagsEditor {
-                    item: page.item
-                    library: page.library
-                    width: parent.width
-                }
             }
         }
     }

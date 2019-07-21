@@ -47,9 +47,4 @@ RowLayout {
             dialog.open();
         }
     }
-
-    DateSelectionDialog {
-        id: dialog
-        onAccepted: root.item.dueTo = selectedDate
-    }
 }

@@ -30,6 +30,10 @@ Page {
         filterBar.edit.forceActiveFocus()
     }
 
+    function attach() {
+        attachments.attach();
+    }
+
     title: itemTitle.text
 
     MarkdownConverter {
@@ -102,10 +106,12 @@ Page {
     }
 
     Pane {
-        id: background
+        anchors.fill: parent
+        backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+    }
 
-        backgroundColor: Colors.color(Colors.itemColor(page.todoList),
-                                      Colors.shade50)
+    ScrollView {
+        id: scrollView
         anchors {
             left: parent.left
             right: parent.right
@@ -113,32 +119,19 @@ Page {
             bottom: parent.bottom
         }
 
-        ScrollView {
-            id: scrollView
+        Pane {
+            id: background
 
-            anchors.fill: parent
+            backgroundColor: Colors.color(Colors.itemColor(page.todoList),
+                                          Colors.shade50)
+            width: scrollView.width
+
 
             Column {
-                width: scrollView.width
+                width: parent.width
 
-                TodosWidget {
-                    width: parent.width
-                    model: tasks
-                    title: qsTr("Tasks")
-                    decorativeSymbol: Icons.faCircle
-                    decorativeSymbolFont: Fonts.icons
-                    symbol: Icons.faPlus
-                    onHeaderButtonClicked: newTaskDialog.open()
-                }
-
-                ItemNotesEditor {
+                ItemPageHeader {
                     item: page.item
-                    width: parent.width
-                }
-
-                ItemDueDateEditor {
-                    item: page.item
-                    width: parent.width
                 }
 
                 ItemProgressEditor {
@@ -146,12 +139,37 @@ Page {
                     width: parent.width
                 }
 
-                Attachments {
+                ItemNotesEditor {
                     item: page.item
                     width: parent.width
                 }
+
+                TodosWidget {
+                    width: parent.width
+                    model: tasks
+                    title: qsTr("Tasks")
+                    headerItemVisible: false
+                    onHeaderButtonClicked: newTaskDialog.open()
+                }
+
+                Attachments {
+                    id: attachments
+                    item: page.item
+                    width: parent.width
+                }
+
+                Item {
+                    width: 1
+                    height: newItemButton.height
+                }
             }
         }
+    }
+
+    NewItemButton {
+        id: newItemButton
+
+        onClicked: newTaskDialog.open()
     }
 }
 

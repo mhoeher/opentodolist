@@ -110,5 +110,8 @@
         <file>Components/Slider.qml</file>
         <file>3rdpartyinfo/syntax-highlighting/3rdpartyinfo.json</file>
         <file>Components/Heading.qml</file>
+        <file>Widgets/NewItemButton.qml</file>
+        <file>Widgets/ItemPageHeader.qml</file>
+        <file>Widgets/MarkdownEditor.qml</file>
     </qresource>
 </RCC>
