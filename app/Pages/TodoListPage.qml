@@ -58,6 +58,22 @@ Page {
         }
     }
 
+    function setDueDate(dueDate) {
+        if (todoDrawer.visible) {
+            todoPage.setDueDate(dueDate);
+        } else {
+            page.item.dueTo =  dueDate;
+        }
+    }
+
+    function getDueDate() {
+        if (todoDrawer.visible) {
+            return todoPage.getDueDate();
+        } else {
+            return page.item.dueTo;
+        }
+    }
+
     property var goBack: todoDrawer.visible ? function() {
         todoDrawer.close();
     } : undefined
@@ -260,9 +276,19 @@ Page {
     }
 
     MouseArea {
+        id: pageBackground
         anchors.fill: parent
         enabled: todoDrawer.visible
         onClicked: todoDrawer.close()
+    }
+
+    Rectangle {
+        // Use own dim effect. This is required, because under certain
+        // circumstances, the dim is not removed when closing the
+        // todo list page.
+        anchors.fill: parent
+        opacity: todoDrawer.position * 0.5
+        color: "black"
     }
 
     Drawer {
@@ -275,7 +301,7 @@ Page {
         clip: true
         interactive: false
         modal: false
-        dim: true
+        dim: false // use own dim effect
 
         TodoPage {
             id: todoPage

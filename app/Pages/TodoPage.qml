@@ -34,6 +34,14 @@ Page {
         attachments.attach();
     }
 
+    function setDueDate(dueDate) {
+        page.item.dueTo =  dueDate;
+    }
+
+    function getDueDate() {
+        return page.item.dueTo;
+    }
+
     title: itemTitle.text
 
     MarkdownConverter {

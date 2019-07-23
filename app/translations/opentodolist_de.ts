@@ -429,52 +429,52 @@
         <translation type="vanished">&amp;Ansicht</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="188"/>
+        <location filename="../Windows/MainWindow.qml" line="187"/>
         <source>New &amp;Library</source>
         <translation>Neue &amp;Bibliothek</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="199"/>
+        <location filename="../Windows/MainWindow.qml" line="198"/>
         <source>New &amp;Note</source>
         <translation>Neue &amp;Notiz</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="207"/>
+        <location filename="../Windows/MainWindow.qml" line="206"/>
         <source>New &amp;Todo List</source>
         <translation>Neue &amp;Aufgabenliste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="215"/>
+        <location filename="../Windows/MainWindow.qml" line="214"/>
         <source>New &amp;Image</source>
         <translation>Neues B&amp;ild</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="223"/>
+        <location filename="../Windows/MainWindow.qml" line="222"/>
         <source>&amp;Quit</source>
         <translation>B&amp;eenden</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="231"/>
+        <location filename="../Windows/MainWindow.qml" line="230"/>
         <source>&amp;Find</source>
         <translation>&amp;Suche</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="239"/>
+        <location filename="../Windows/MainWindow.qml" line="238"/>
         <source>Go &amp;Back</source>
         <translation>&amp;Zurückgehen</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="248"/>
+        <location filename="../Windows/MainWindow.qml" line="247"/>
         <source>Open Last &amp;Created Item</source>
         <translation>Öffne zuletzt &amp;erzeugten Eintrag</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="256"/>
+        <location filename="../Windows/MainWindow.qml" line="255"/>
         <source>Open &amp;Left Side Bar</source>
         <translation>Öffne die &amp;linke Seitenleiste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="346"/>
+        <location filename="../Windows/MainWindow.qml" line="345"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation>Eine &lt;a href=&apos;#newLibrary&apos;&gt;neue Bibliothek anlegen&lt;/a&gt;. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder.</translation>
     </message>
@@ -840,22 +840,22 @@
         <translation type="vanished">Soll die Aufgabenliste &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="109"/>
+        <location filename="../Pages/TodoListPage.qml" line="125"/>
         <source>Add Todo</source>
         <translation>Aufgabe hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="169"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Search term 1, search term 2, ...</source>
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="225"/>
+        <location filename="../Pages/TodoListPage.qml" line="241"/>
         <source>Todos</source>
         <translation>Aufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="235"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Completed Todos</source>
         <translation>Erledigte Aufgaben</translation>
     </message>
@@ -890,17 +890,17 @@
         <translation type="vanished">Soll die Aufgabe &lt;strong&gt;%1&lt;/strong&gt; gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="58"/>
+        <location filename="../Pages/TodoPage.qml" line="66"/>
         <source>Add Task</source>
         <translation>Unteraufgabe hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="102"/>
+        <location filename="../Pages/TodoPage.qml" line="110"/>
         <source>Search term 1, search term 2, ...</source>
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="150"/>
+        <location filename="../Pages/TodoPage.qml" line="158"/>
         <source>Tasks</source>
         <translation>Unteraufgaben</translation>
     </message>

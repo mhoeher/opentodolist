@@ -137,22 +137,22 @@ ApplicationWindow {
             }
 
             ToolButton {
+                symbol: Icons.faCalendarCheck
+                visible: stackView.currentItem &&
+                         typeof(stackView.currentItem.setDueDate) === "function"
+                Layout.alignment: Qt.AlignVCenter
+                onClicked: {
+                    dueDateSelectionDialog.selectedDate =
+                            stackView.currentItem.getDueDate();
+                    dueDateSelectionDialog.open();
+                }
+            }
+
+            ToolButton {
                 symbol: Icons.faTrashAlt
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 Layout.alignment: Qt.AlignVCenter
                 onClicked: stackView.currentItem.deleteItem()
-            }
-            ToolButton {
-                symbol: Icons.faCalendarCheck
-                visible: stackView.currentItem &&
-                         typeof(stackView.currentItem.item) !== "undefined" &&
-                         typeof(stackView.currentItem.item.dueTo) !== "undefined"
-                Layout.alignment: Qt.AlignVCenter
-                onClicked: {
-                    dueDateSelectionDialog.selectedDate =
-                            stackView.currentItem.item.dueTo;
-                    dueDateSelectionDialog.open();
-                }
             }
 
             ToolButton {
@@ -178,8 +178,7 @@ ApplicationWindow {
 
     DateSelectionDialog {
         id: dueDateSelectionDialog
-        onAccepted: stackView.currentItem.item.dueTo =
-                    selectedDate
+        onAccepted: stackView.currentItem.setDueDate(selectedDate)
     }
 
     Action {

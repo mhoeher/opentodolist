@@ -11,8 +11,8 @@ GridLayout {
     property int counter: 0
     property OTL.Item item: null
 
-    columns: pageHeadingRow.width + pageMetaRow.width + 10 >
-             parent.width ? 2 : 3
+    columns: pageHeading.width + pageMetaRow.width + 10 >
+             parent.width ? 1 : 2
     width: parent.width
 
     MarkdownConverter {
@@ -20,28 +20,16 @@ GridLayout {
         markdown: root.item.title
     }
 
-    RowLayout {
-        id: pageHeadingRow
-
+    Heading {
+        id: pageHeading
+        text: "<strong>%1</strong>%2".arg(
+                  titleText.text).arg(
+                  root.counter > 0 ? " (%1)".arg(root.counter) :
+                                     "")
+        width: Math.min(parent.width, contentWidth)
+        wrapMode: "WrapAtWordBoundaryOrAnywhere"
+        font.bold: false
         Layout.fillWidth: true
-
-        Heading {
-            id: pageHeading
-            text: titleText.text
-            width: Math.min(parent.width, contentWidth)
-            wrapMode: "WrapAtWordBoundaryOrAnywhere"
-        }
-
-        Heading {
-            visible: root.counter > 0
-            text: "(" + root.counter + ")"
-            font.bold: false
-        }
-    }
-
-    Item {
-        Layout.fillWidth: true
-        height: 1
     }
 
     RowLayout {
