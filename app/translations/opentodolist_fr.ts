@@ -691,7 +691,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="158"/>
+        <location filename="../Pages/TodoPage.qml" line="159"/>
         <source>Tasks</source>
         <translation type="unfinished"></translation>
     </message>

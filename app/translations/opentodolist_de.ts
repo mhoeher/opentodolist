@@ -900,7 +900,7 @@
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="158"/>
+        <location filename="../Pages/TodoPage.qml" line="159"/>
         <source>Tasks</source>
         <translation>Unteraufgaben</translation>
     </message>

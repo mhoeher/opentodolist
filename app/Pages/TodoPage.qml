@@ -115,7 +115,8 @@ Page {
 
     Pane {
         anchors.fill: parent
-        backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+        backgroundColor: Colors.color(
+                             Colors.itemColor(page.todoList), Colors.shade50)
     }
 
     ScrollView {
