@@ -302,6 +302,7 @@ Page {
         interactive: false
         modal: false
         dim: false // use own dim effect
+        onOpened: todoPage.forceActiveFocus()
 
         TodoPage {
             id: todoPage
@@ -311,6 +312,24 @@ Page {
             anchors.fill: parent
             todoList: page.item
             library: page.library
+
+            Action {
+                enabled: todoDrawer.open
+                shortcut: StandardKey.Back
+                onTriggered: todoDrawer.close()
+            }
+
+            Action {
+                enabled: todoDrawer.open
+                shortcut: "Esc"
+                onTriggered: todoDrawer.close()
+            }
+
+            Action {
+                enabled: todoDrawer.open
+                shortcut: "Back"
+                onTriggered: todoDrawer.close()
+            }
         }
     }
 }
