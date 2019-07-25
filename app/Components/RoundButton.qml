@@ -14,7 +14,7 @@ RoundButton {
 
     font.family: Fonts.icons
     font.pixelSize: height / 2
-    width: Screen.width / Screen.devicePixelRatio < 460 ? 40 : 56
+    width: 56
     height: width
 
     Material.background: backgroundColor
