@@ -34,7 +34,6 @@ GridLayout {
 
     RowLayout {
         id: pageMetaRow
-        anchors.right: parent.right
 
         Text {
             color: Colors.color(Colors.grey)

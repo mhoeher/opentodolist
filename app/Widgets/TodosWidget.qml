@@ -78,12 +78,10 @@ Column {
                         font.family: Fonts.icons
                         symbol: object.done ? Icons.faCheckCircle :
                                               Icons.faCircle
-                        anchors.verticalCenter: parent.verticalCenter
                         onClicked: object.done = !object.done
                     }
                     Column {
                         Layout.fillWidth: true
-                        anchors.verticalCenter: parent.verticalCenter
 
                         MarkdownLabel {
                             markdown: object.title

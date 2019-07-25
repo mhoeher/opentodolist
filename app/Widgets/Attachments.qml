@@ -61,7 +61,6 @@ Item {
     Column {
         anchors {
             left: parent.left
-            leftMargin: decorativeIcon.width
             right: parent.right
             top: header.bottom
         }
