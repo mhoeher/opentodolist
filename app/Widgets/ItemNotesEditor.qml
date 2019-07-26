@@ -12,6 +12,11 @@ Column {
     id: root
 
     property OTL.ComplexItem item: OTL.ComplexItem {}
+    readonly property bool editing: !!loader.item
+
+    function finishEditing() {
+        loader.item.doneEditing();
+    }
 
 
     RowLayout {

@@ -18,6 +18,12 @@ Page {
     signal closePage()
     signal openPage(var component, var properties)
 
+    readonly property bool editingNotes: itemNotesEditor.editing
+
+    function finishEditingNotes() {
+        itemNotesEditor.finishEditing();
+    }
+
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
     }
@@ -149,6 +155,7 @@ Page {
                 }
 
                 ItemNotesEditor {
+                    id: itemNotesEditor
                     item: page.item
                     width: parent.width
                 }
@@ -179,6 +186,7 @@ Page {
         id: newItemButton
 
         onClicked: newTaskDialog.open()
+        visible: !itemNotesEditor
     }
 }
 

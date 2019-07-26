@@ -14,6 +14,16 @@ Column {
 
     signal doneEditing()
 
+    Action {
+        shortcut: "Esc"
+        onTriggered: editor.doneEditing()
+    }
+
+    Action {
+        shortcut: "Back"
+        onTriggered: editor.doneEditing()
+    }
+
     QtObject {
         id: d
 
@@ -50,6 +60,15 @@ Column {
 
         font.family: "Courier New, Courier, Fixed"
         padding: 20
+        rightPadding: {
+            switch (Qt.platform.os) {
+            case "android":
+                return 40;
+            default:
+                return padding;
+            }
+        }
+
         onTextChanged: saveTimer.start()
 
         Keys.onEscapePressed: editor.doneEditing()

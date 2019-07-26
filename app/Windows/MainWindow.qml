@@ -237,7 +237,11 @@ ApplicationWindow {
 
         text: qsTr("Go &Back")
         shortcut: StandardKey.Back
-        onTriggered: if (stackView.canGoBack) { stackView.goBack(); }
+        onTriggered: {
+            if (stackView.canGoBack) {
+                stackView.goBack();
+            }
+        }
     }
 
     Action {

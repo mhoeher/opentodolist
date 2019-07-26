@@ -76,6 +76,8 @@ Page {
 
     property var goBack: todoDrawer.visible ? function() {
         todoDrawer.close();
+    } : itemNotesEditor.editing ? function() {
+        itemNotesEditor.finishEditing();
     } : undefined
 
     title: titleText.text
@@ -231,6 +233,7 @@ Page {
                 }
 
                 ItemNotesEditor {
+                    id: itemNotesEditor
                     item: page.item
                     width: parent.width
                 }
@@ -273,6 +276,7 @@ Page {
         id: newItemButton
 
         onClicked: newTodoDialog.open()
+        visible: !itemNotesEditor.editing
     }
 
     MouseArea {
@@ -303,6 +307,11 @@ Page {
         modal: false
         dim: false // use own dim effect
         onOpened: todoPage.forceActiveFocus()
+        onClosed: {
+            if (todoPage.editingNotes) {
+                todoPage.finishEditingNotes();
+            }
+        }
 
         TodoPage {
             id: todoPage
@@ -313,22 +322,30 @@ Page {
             todoList: page.item
             library: page.library
 
+            function backAction() {
+                if (editingNotes) {
+                    finishEditingNotes();
+                } else {
+                    todoDrawer.close();
+                }
+            }
+
             Action {
                 enabled: todoDrawer.open
                 shortcut: StandardKey.Back
-                onTriggered: todoDrawer.close()
+                onTriggered: todoPage.backAction()
             }
 
             Action {
                 enabled: todoDrawer.open
                 shortcut: "Esc"
-                onTriggered: todoDrawer.close()
+                onTriggered: todoPage.backAction()
             }
 
             Action {
                 enabled: todoDrawer.open
                 shortcut: "Back"
-                onTriggered: todoDrawer.close()
+                onTriggered: todoPage.backAction()
             }
         }
     }

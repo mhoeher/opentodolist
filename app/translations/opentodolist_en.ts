@@ -201,12 +201,12 @@
 <context>
     <name>ItemNotesEditor</name>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="21"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="26"/>
         <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="53"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="58"/>
         <source>No notes added yet - click here to add some.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -389,17 +389,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="247"/>
+        <location filename="../Windows/MainWindow.qml" line="251"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="255"/>
+        <location filename="../Windows/MainWindow.qml" line="259"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="345"/>
+        <location filename="../Windows/MainWindow.qml" line="349"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,22 +658,22 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="125"/>
+        <location filename="../Pages/TodoListPage.qml" line="127"/>
         <source>Add Todo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="185"/>
+        <location filename="../Pages/TodoListPage.qml" line="187"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="241"/>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Todos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <location filename="../Pages/TodoListPage.qml" line="254"/>
         <source>Completed Todos</source>
         <translation type="unfinished"></translation>
     </message>
@@ -681,17 +681,17 @@
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="66"/>
+        <location filename="../Pages/TodoPage.qml" line="72"/>
         <source>Add Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="110"/>
+        <location filename="../Pages/TodoPage.qml" line="116"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="159"/>
+        <location filename="../Pages/TodoPage.qml" line="166"/>
         <source>Tasks</source>
         <translation type="unfinished"></translation>
     </message>
