@@ -15,6 +15,10 @@ Page {
 
     signal closePage()
     signal openPage(var component, var properties)
+
+    property var goBack: itemNotesEditor.editing ? function() {
+        itemNotesEditor.finishEditing();
+    } : undefined
     
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
@@ -89,6 +93,7 @@ Page {
                 }
 
                 ItemNotesEditor {
+                    id: itemNotesEditor
                     item: page.item
                     width: parent.width
                 }
