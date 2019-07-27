@@ -214,6 +214,7 @@ Page {
                                 object.done = !object.done;
                                 break;
                             default:
+                                object.dueTo = new Date("");
                                 break;
                             }
                         }
