@@ -5,15 +5,14 @@ import "../Components"
 import "../Utils"
 import "../Fonts"
 
-GridLayout {
+Item {
     id: root
 
     property int counter: 0
     property OTL.Item item: null
 
-    columns: pageHeading.width + pageMetaRow.width + 10 >
-             parent.width ? 1 : 2
     width: parent.width
+    height: childrenRect.height * 2
 
     MarkdownConverter {
         id: titleText
@@ -26,14 +25,22 @@ GridLayout {
                   titleText.text).arg(
                   root.counter > 0 ? " (%1)".arg(root.counter) :
                                      "")
-        width: Math.min(parent.width, contentWidth)
+        width: parent.width
         wrapMode: "WrapAtWordBoundaryOrAnywhere"
         font.bold: false
-        Layout.fillWidth: true
     }
 
     RowLayout {
         id: pageMetaRow
+
+        readonly property bool belowHeading: pageMetaRow.width +
+                                             pageHeading.contentWidth +
+                                             50 >
+                                             page.width
+
+        anchors.top: pageMetaRow.belowHeading ? pageHeading.bottom : parent.top
+        anchors.right: parent.right
+        anchors.verticalCenter: pageMetaRow.belowHeading ? undefined : pageHeading.verticalCenter
 
         Text {
             color: Colors.color(Colors.grey)
@@ -50,3 +57,4 @@ GridLayout {
         }
     }
 }
+

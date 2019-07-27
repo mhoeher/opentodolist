@@ -16,9 +16,12 @@ Column {
     property alias symbolFont: headerIcon.font.family
     property alias title: headerLabel.text
     property alias headerItemVisible: headerIcon.visible
+    property alias allowCreatingNewItems: newItemRow.visible
+    property alias newItemPlaceholderText: newItemTitelEdit.placeholderText
 
     signal headerButtonClicked()
     signal todoClicked(var todo)
+    signal createNewItem(string title)
 
     RowLayout {
         width: parent.width
@@ -53,6 +56,38 @@ Column {
         id: d
 
         property SwipeDelegate openSwipeDelegate: null
+    }
+
+    RowLayout {
+        id: newItemRow
+
+        visible: false
+        width: parent.width
+
+        Item {
+            width: newItemButton.width
+            height: newItemButton.height
+        }
+
+        TextField {
+            id: newItemTitelEdit
+            Layout.fillWidth: true
+            onAccepted: newItemButton.clicked()
+        }
+
+        ToolButton {
+            id: newItemButton
+            symbol: Icons.faPlus
+            enabled: newItemTitelEdit.displayText !== ""
+            onClicked: {
+                var title = newItemTitelEdit.displayText;
+                if (title !== "") {
+                    root.createNewItem(newItemTitelEdit.displayText);
+                    newItemTitelEdit.clear();
+                    newItemTitelEdit.forceActiveFocus();
+                }
+            }
+        }
     }
 
     Column {

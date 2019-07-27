@@ -67,41 +67,6 @@ Page {
         id: renameItemDialog
     }
 
-    CenteredDialog {
-        id: newTaskDialog
-        title: qsTr("Add Task")
-        width: idealDialogWidth
-
-        TextField {
-            id: newTaskEdit
-
-            width: newTaskDialog.availableWidth
-            Keys.onEnterPressed: newTaskDialog.accept()
-            Keys.onReturnPressed: newTaskDialog.accept()
-        }
-
-        standardButtons: Dialog.Ok | Dialog.Cancel
-
-        onAccepted: {
-            if (newTaskEdit.text !== "") {
-                var properties = {
-                    "title": newTaskEdit.text
-                };
-                var task = OTL.Application.addTask(
-                            page.library,
-                            page.item,
-                            properties);
-            }
-            newTaskEdit.text = "";
-        }
-        onRejected: {
-            newTaskEdit.text = "";
-        }
-        onOpened: {
-            newTaskEdit.forceActiveFocus()
-        }
-    }
-
     OTL.ItemsSortFilterModel {
         id: tasks
         sourceModel: OTL.ItemsModel {
@@ -165,7 +130,17 @@ Page {
                     model: tasks
                     title: qsTr("Tasks")
                     headerItemVisible: false
-                    onHeaderButtonClicked: newTaskDialog.open()
+                    allowCreatingNewItems: true
+                    newItemPlaceholderText: qsTr("Add new task...")
+                    onCreateNewItem: {
+                        var properties = {
+                            "title": title
+                        };
+                        var task = OTL.Application.addTask(
+                                    page.library,
+                                    page.item,
+                                    properties);
+                    }
                 }
 
                 Attachments {
@@ -173,20 +148,8 @@ Page {
                     item: page.item
                     width: parent.width
                 }
-
-                Item {
-                    width: 1
-                    height: newItemButton.height
-                }
             }
         }
-    }
-
-    NewItemButton {
-        id: newItemButton
-
-        onClicked: newTaskDialog.open()
-        visible: !itemNotesEditor
     }
 }
 

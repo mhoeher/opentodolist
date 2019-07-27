@@ -643,7 +643,7 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="249"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="250"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation>Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser Liste angezeigt.</translation>
     </message>
@@ -840,22 +840,26 @@
         <translation type="vanished">Soll die Aufgabenliste &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="127"/>
         <source>Add Todo</source>
-        <translation>Aufgabe hinzufügen</translation>
+        <translation type="vanished">Aufgabe hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="187"/>
+        <location filename="../Pages/TodoListPage.qml" line="153"/>
         <source>Search term 1, search term 2, ...</source>
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="210"/>
         <source>Todos</source>
         <translation>Aufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="254"/>
+        <location filename="../Pages/TodoListPage.qml" line="214"/>
+        <source>Add new todo...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="230"/>
         <source>Completed Todos</source>
         <translation>Erledigte Aufgaben</translation>
     </message>
@@ -890,19 +894,23 @@
         <translation type="vanished">Soll die Aufgabe &lt;strong&gt;%1&lt;/strong&gt; gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="72"/>
         <source>Add Task</source>
-        <translation>Unteraufgabe hinzufügen</translation>
+        <translation type="vanished">Unteraufgabe hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="116"/>
+        <location filename="../Pages/TodoPage.qml" line="81"/>
         <source>Search term 1, search term 2, ...</source>
         <translation>Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="166"/>
+        <location filename="../Pages/TodoPage.qml" line="131"/>
         <source>Tasks</source>
         <translation>Unteraufgaben</translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoPage.qml" line="134"/>
+        <source>Add new task...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Notes</source>

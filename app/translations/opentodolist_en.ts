@@ -540,7 +540,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="249"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="250"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,22 +658,22 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="127"/>
-        <source>Add Todo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="187"/>
+        <location filename="../Pages/TodoListPage.qml" line="153"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="210"/>
         <source>Todos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="254"/>
+        <location filename="../Pages/TodoListPage.qml" line="214"/>
+        <source>Add new todo...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="230"/>
         <source>Completed Todos</source>
         <translation type="unfinished"></translation>
     </message>
@@ -681,18 +681,18 @@
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="72"/>
-        <source>Add Task</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoPage.qml" line="116"/>
+        <location filename="../Pages/TodoPage.qml" line="81"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="166"/>
+        <location filename="../Pages/TodoPage.qml" line="131"/>
         <source>Tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoPage.qml" line="134"/>
+        <source>Add new task...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

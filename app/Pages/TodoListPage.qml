@@ -122,40 +122,6 @@ Page {
         id: renameItemDialog
     }
 
-    CenteredDialog {
-        id: newTodoDialog
-        title: qsTr("Add Todo")
-        width: idealDialogWidth
-
-        TextField {
-            id: newTodoEdit
-
-            width: newTodoDialog.availableWidth
-            Keys.onEnterPressed: newTodoDialog.accept()
-            Keys.onReturnPressed: newTodoDialog.accept()
-        }
-
-        standardButtons: Dialog.Ok | Dialog.Cancel
-
-        onAccepted: {
-            if (newTodoEdit.text !== "") {
-                var properties = {
-                    "title": newTodoEdit.displayText
-                };
-                var todo = OTL.Application.addTodo(
-                            page.library, page.item, properties);
-                itemCreatedNotification.show(todo);
-            }
-            newTodoEdit.text = "";
-        }
-        onRejected: {
-            newTodoEdit.text = "";
-        }
-        onOpened: {
-            newTodoEdit.forceActiveFocus()
-        }
-    }
-
     OTL.ItemsSortFilterModel {
         id: undoneTodos
         sourceModel: OTL.ItemsModel {
@@ -244,8 +210,18 @@ Page {
                     title: qsTr("Todos")
                     symbol: Icons.faPlus
                     headerItemVisible: false
+                    allowCreatingNewItems: true
+                    newItemPlaceholderText: qsTr("Add new todo...")
                     onHeaderButtonClicked: newTodoDialog.open()
                     onTodoClicked: d.openTodo(todo)
+                    onCreateNewItem: {
+                        var properties = {
+                            "title": title
+                        };
+                        var todo = OTL.Application.addTodo(
+                                    page.library, page.item, properties);
+                        itemCreatedNotification.show(todo);
+                    }
                 }
 
                 TodosWidget {
@@ -263,20 +239,8 @@ Page {
                     item: page.item
                     width: parent.width
                 }
-
-                Item {
-                    height: newItemButton.height
-                    width: 1
-                }
             }
         }
-    }
-
-    NewItemButton {
-        id: newItemButton
-
-        onClicked: newTodoDialog.open()
-        visible: !itemNotesEditor.editing
     }
 
     MouseArea {
