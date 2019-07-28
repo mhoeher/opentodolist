@@ -70,9 +70,6 @@ Pane {
                 padding: 5
 
                 font.family: "Courier New, Courier, Fixed"
-
-                Keys.onEscapePressed: focus = false
-                Keys.onBackPressed: focus = false
             }
 
             OTL.SyntaxHighlighter {

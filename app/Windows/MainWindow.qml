@@ -174,11 +174,19 @@ ApplicationWindow {
         id: d
 
         property bool completed: false
+
+        function afterPopupClosed() {
+            if (typeof(stackView.currentItem.afterPopupClosedAction) ===
+                    "function") {
+                stackView.currentItem.afterPopupClosedAction()
+            }
+        }
     }
 
     DateSelectionDialog {
         id: dueDateSelectionDialog
         onAccepted: stackView.currentItem.setDueDate(selectedDate)
+        onClosed: d.afterPopupClosed()
     }
 
     Action {
@@ -232,12 +240,14 @@ ApplicationWindow {
         onTriggered: searchToolButton.clicked(null)
     }
 
-    Action {
-        id: goBackAction
-
-        text: qsTr("Go &Back")
-        shortcut: StandardKey.Back
-        onTriggered: {
+    Shortcut {
+        id: goBackShortcut
+        sequences: [
+            StandardKey.Back,
+            "Esc",
+            "Back"
+        ]
+        onActivated: {
             if (stackView.canGoBack) {
                 stackView.goBack();
             }

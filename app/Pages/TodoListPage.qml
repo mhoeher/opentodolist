@@ -50,6 +50,12 @@ Page {
                                                   tagsEditor.addTag();
                                               }
 
+    function afterPopupClosedAction() {
+        if (todoPage.item) {
+            todoDrawer.open();
+        }
+    }
+
     function attach() {
         if (todoDrawer.visible) {
             todoPage.attach();
@@ -243,22 +249,6 @@ Page {
         }
     }
 
-    MouseArea {
-        id: pageBackground
-        anchors.fill: parent
-        enabled: todoDrawer.visible
-        onClicked: todoDrawer.close()
-    }
-
-    Rectangle {
-        // Use own dim effect. This is required, because under certain
-        // circumstances, the dim is not removed when closing the
-        // todo list page.
-        anchors.fill: parent
-        opacity: todoDrawer.position * 0.5
-        color: "black"
-    }
-
     Drawer {
         id: todoDrawer
 
@@ -267,9 +257,7 @@ Page {
         height: page.height
         parent: MainWindow.contentItem
         clip: true
-        interactive: false
-        modal: false
-        dim: false // use own dim effect
+        dim: true
         onOpened: todoPage.forceActiveFocus()
         onClosed: {
             if (todoPage.editingNotes) {
@@ -285,6 +273,7 @@ Page {
             anchors.fill: parent
             todoList: page.item
             library: page.library
+            parentDrawer: todoDrawer
 
             function backAction() {
                 if (editingNotes) {
@@ -292,24 +281,6 @@ Page {
                 } else {
                     todoDrawer.close();
                 }
-            }
-
-            Action {
-                enabled: todoDrawer.open
-                shortcut: StandardKey.Back
-                onTriggered: todoPage.backAction()
-            }
-
-            Action {
-                enabled: todoDrawer.open
-                shortcut: "Esc"
-                onTriggered: todoPage.backAction()
-            }
-
-            Action {
-                enabled: todoDrawer.open
-                shortcut: "Back"
-                onTriggered: todoPage.backAction()
             }
         }
     }

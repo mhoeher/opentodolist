@@ -13,6 +13,7 @@ Item {
     id: item
 
     property OTL.ComplexItem item
+    readonly property OpenFileDialog openFileDialog: dialog
 
     function attach() {
         dialog.open();

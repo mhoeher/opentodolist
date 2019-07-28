@@ -14,6 +14,7 @@ Page {
     property OTL.Todo item: OTL.Todo {}
     property OTL.Library library: null
     property OTL.TodoList todoList: null
+    property Drawer parentDrawer: null
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -33,7 +34,8 @@ Page {
     }
 
     function find() {
-        filterBar.edit.forceActiveFocus()
+        filterBar.edit.forceActiveFocus();
+        d.reopenDrawer();
     }
 
     function attach() {
@@ -50,6 +52,16 @@ Page {
 
     title: itemTitle.text
 
+    QtObject {
+        id: d
+
+        function reopenDrawer() {
+            if (page.parentDrawer) {
+                page.parentDrawer.open();
+            }
+        }
+    }
+
     MarkdownConverter {
         id: itemTitle
         markdown: item.title
@@ -61,10 +73,12 @@ Page {
         onAccepted: {
             page.closePage();
         }
+        onClosed: d.reopenDrawer()
     }
 
     RenameItemDialog {
         id: renameItemDialog
+        onClosed: d.reopenDrawer()
     }
 
     OTL.ItemsSortFilterModel {
@@ -150,6 +164,11 @@ Page {
                 }
             }
         }
+    }
+
+    Connections {
+        target: attachments.openFileDialog
+        onClosed: d.reopenDrawer()
     }
 }
 

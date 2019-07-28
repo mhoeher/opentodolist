@@ -14,16 +14,6 @@ Column {
 
     signal doneEditing()
 
-    Action {
-        shortcut: "Esc"
-        onTriggered: editor.doneEditing()
-    }
-
-    Action {
-        shortcut: "Back"
-        onTriggered: editor.doneEditing()
-    }
-
     QtObject {
         id: d
 
@@ -70,9 +60,9 @@ Column {
         }
 
         onTextChanged: saveTimer.start()
-
-        Keys.onEscapePressed: editor.doneEditing()
-        Keys.onBackPressed: editor.doneEditing()
+        onFocusChanged: if (!focus) {
+                            editor.doneEditing()
+                        }
     }
 
     Timer {

@@ -72,6 +72,7 @@ Column {
         TextField {
             id: newItemTitelEdit
             Layout.fillWidth: true
+            selectByMouse: true
             onAccepted: newItemButton.clicked()
         }
 
