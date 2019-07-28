@@ -6,6 +6,8 @@ msgstr ""
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: OpenTodoList\n"
 "Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: de_DE\n"
 
 #: ../Pages/AboutPage.qml:13
 msgctxt "AboutPage|"
@@ -23,15 +25,26 @@ msgid "A todo and task managing application."
 msgstr "Eine Anwendung zur Aufgabenplanung und für Notizen."
 
 #: ../Pages/AboutPage.qml:44
-#, fuzzy
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2019, version %1"
 msgstr "(c) RPdev 2013-2018, Version %1 {2013-2019,?}"
 
 #: ../Pages/AboutPage.qml:59
 msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "OpenTodoList wird under den Bedingungen der GNU General Public License Version 3 oder (falls erwünscht) jeder Nachfolgeversion veröffentlicht. Eine Kopie der Lizenz findet sich weiter unten. Zusätzlich werden weitere Bibliotheken und Resourcen benutzt. Für detaillierte Informationen zu deren Lizenzbedingungen, bitte unter <a href='3rdparty'>Drittanbietersoftware</a> weiterlesen."
+msgid ""
+"OpenTodoList is released under the terms of the GNU General Public License "
+"version 3 or (at your choice) any later version. You can find a copy of the "
+"license below. Additionally, several libraries and resources are used. For "
+"detailed information about their license terms, please refer to the <a "
+"href='3rdparty'>3rd Party Software</a> page."
+msgstr ""
+"OpenTodoList wird under den Bedingungen der GNU General Public License "
+"Version 3 oder (falls erwünscht) jeder Nachfolgeversion veröffentlicht. Eine "
+"Kopie der Lizenz findet sich weiter unten. Zusätzlich werden weitere "
+"Bibliotheken und Resourcen benutzt. Für detaillierte Informationen zu deren "
+"Lizenzbedingungen, bitte unter <a href='3rdparty'>Drittanbietersoftware</a> "
+"weiterlesen."
 
 #: ../Pages/AboutThirdPartyPage.qml:10
 msgctxt "AboutThirdPartyPage|"
@@ -39,16 +52,19 @@ msgid "Used Libraries and Resources"
 msgstr "Verwendete Bibliotheken und Resources"
 
 #: ../Pages/AboutThirdPartyPage.qml:46
+#, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
 msgstr "Autor: <a href='%2'>%1</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:53
+#, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
 msgstr "Lizenz: <a href='%1'>%2</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:60
+#, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Download: <a href='%1'>%1</a>"
@@ -64,9 +80,14 @@ msgid "Delete Attachment?"
 msgstr "Anhang löschen?"
 
 #: ../Widgets/Attachments.qml:39
+#, qt-format
 msgctxt "Attachments|"
-msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "Soll der Anhang <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Are you sure you want to delete the attachment <strong>%1</strong>? This "
+"action cannot be undone."
+msgstr ""
+"Soll der Anhang <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Widgets/Attachments.qml:61
 msgctxt "Attachments|"
@@ -119,29 +140,54 @@ msgid "Delete Item?"
 msgstr "Eintrag löschen?"
 
 #: ../Windows/DeleteItemDialog.qml:31
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Soll das Bild <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the image <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll das Bild <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:35
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Aufgabenliste <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
+"be undone."
+msgstr ""
+"Soll die Aufgabenliste <strong>%1</strong> wirklich gelöscht werden? Diese "
+"Aktion kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:39
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Aufgabe <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll die Aufgabe <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:43
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Unteraufgabe <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the task <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll die Unteraufgabe <strong>%1</strong> wirklich gelöscht werden? Diese "
+"Aktion kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:47
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Notiz <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the note <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll die Notiz <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteLibraryDialog.qml:18
 msgctxt "DeleteLibraryDialog|"
@@ -149,14 +195,26 @@ msgid "Delete Library?"
 msgstr "Bibliothek löschen?"
 
 #: ../Windows/DeleteLibraryDialog.qml:32
+#, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? <em>Das wird alle Dateien, die zu ihr gehören, ebenfalls löschen.</em>"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from  the "
+"application? <em>This will remove any files belonging to the library.</em>"
+msgstr ""
+"Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? <em>Das "
+"wird alle Dateien, die zu ihr gehören, ebenfalls löschen.</em>"
 
 #: ../Windows/DeleteLibraryDialog.qml:39
+#, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit wieder zur Anwendung hinzugefügt werden kann."
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from the "
+"application? Note that the files inside the library will not be removed, so "
+"you can restore the library later on."
+msgstr ""
+"Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? Dateien, "
+"die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit "
+"wieder zur Anwendung hinzugefügt werden kann."
 
 #: ../Windows/FolderSelectionDialog.qml:16
 msgctxt "FolderSelectionDialog|"
@@ -164,6 +222,7 @@ msgid "Select a Folder"
 msgstr "Verzeichnis auswählen"
 
 #: ../Widgets/ItemCreatedNotification.qml:62
+#, qt-format
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
 msgstr "<strong>%1</strong> wurde erzeugt."
@@ -260,8 +319,13 @@ msgstr "Suchbegriff 1, Suchbegriff 2, ..."
 
 #: ../Pages/LibraryPage.qml:305
 msgctxt "LibraryPage|"
-msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr "Noch nichts hier! Die Bibliothek kann mit <a href='#note'>Notizen</a>, <a href='#todolist'>Aufgabenlisten</a> oder <a href='#image'>Bildern</a> befüllt werden."
+msgid ""
+"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr ""
+"Noch nichts hier! Die Bibliothek kann mit <a href='#note'>Notizen</a>, <a "
+"href='#todolist'>Aufgabenlisten</a> oder <a href='#image'>Bildern</a> "
+"befüllt werden."
 
 #: ../Menues/LibraryPageMenu.qml:17
 msgctxt "LibraryPageMenu|"
@@ -279,6 +343,7 @@ msgid "Sync Log"
 msgstr "Synchronisationsablauf"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:34
+#, qt-format
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "The secrets for synchronizing the library %1 are missing."
 msgstr "Zugangsdaten zur Synchronisation der Bibliothek %1 fehlen."
@@ -355,8 +420,12 @@ msgstr "Öffne die &linke Seitenleiste"
 
 #: ../Windows/MainWindow.qml:315
 msgctxt "MainWindow|"
-msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
-msgstr "Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."
+msgid ""
+"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+"used to store different kinds of items like notes, todo lists and images."
+msgstr ""
+"Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken "
+"enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."
 
 #: ../Pages/MarkdownEditorPage.qml:22
 msgctxt "MarkdownEditorPage|"
@@ -395,13 +464,23 @@ msgstr "Bibliothek im Standardverzeichnis anlegen"
 
 #: ../Pages/NewLibraryPage.qml:79
 msgctxt "NewLibraryPage|"
-msgid "The items you add to the library will be stored in the default location for libraries."
-msgstr "Die Einträge, die zur Bibliothek hinzugefügt werden, werden im Standardverzeichnis für Bibliotheken abgelegt."
+msgid ""
+"The items you add to the library will be stored in the default location for "
+"libraries."
+msgstr ""
+"Die Einträge, die zur Bibliothek hinzugefügt werden, werden im "
+"Standardverzeichnis für Bibliotheken abgelegt."
 
 #: ../Pages/NewLibraryPage.qml:81
 msgctxt "NewLibraryPage|"
-msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
-msgstr "Bitte ein Verzeichnis auswählen, in welchem die Bibliothek abgelegt werden soll. Es kann außerdem ein bestehendes Bibliotheksverzeichnis ausgewählt werden. In diesem Fall wird diese in die Anwendung importiert."
+msgid ""
+"Please select a directory into which the library items shall be saved. You "
+"can also select an existing library directory. In this case, the library "
+"will be imported."
+msgstr ""
+"Bitte ein Verzeichnis auswählen, in welchem die Bibliothek abgelegt werden "
+"soll. Es kann außerdem ein bestehendes Bibliotheksverzeichnis ausgewählt "
+"werden. In diesem Fall wird diese in die Anwendung importiert."
 
 #: ../Pages/NewLibraryPage.qml:108
 msgctxt "NewLibraryPage|"
@@ -481,7 +560,9 @@ msgstr "Geplant für später"
 #: ../Pages/ScheduleViewPage.qml:249
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr "Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser Liste angezeigt."
+msgstr ""
+"Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser "
+"Liste angezeigt."
 
 #: ../Pages/ScheduleViewPage.qml:70
 msgctxt "ScheduleViewPage|"
@@ -490,8 +571,12 @@ msgstr "Überfällig"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:41
 msgctxt "SyncErrorNotificationBar|"
-msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Es sind Fehler beim Synchronisieren der Anwendung aufgetreten. Bitte sicherstellen, dass die Einstellungen der Bibliothek korrekt sind."
+msgid ""
+"There were errors when synchronizing the library. Please ensure that the "
+"library settings are up to date."
+msgstr ""
+"Es sind Fehler beim Synchronisieren der Anwendung aufgetreten. Bitte "
+"sicherstellen, dass die Einstellungen der Bibliothek korrekt sind."
 
 #: ../Widgets/SyncErrorNotificationBar.qml:47
 msgctxt "SyncErrorNotificationBar|"
@@ -611,6 +696,7 @@ msgid "Tasks"
 msgstr "Unteraufgaben"
 
 #: ../Widgets/UpdateNotificationBar.qml:41
+#, qt-format
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
 msgstr "Die neue Version OpenTodoList %1 ist verfügbar."
@@ -626,31 +712,40 @@ msgid "Download"
 msgstr "Herunterladen"
 
 #: ../../lib/sync/webdavclient.cpp:119
+#, qt-format
 msgctxt "WebDAVClient|"
-msgid "Unexpected HTTP code received when getting remote folder entry list: '%1'"
-msgstr "Unerwarteter Fehlercode beim Auflisten der Verzeichnisinhalte auf dem Server: '%1'"
+msgid ""
+"Unexpected HTTP code received when getting remote folder entry list: '%1'"
+msgstr ""
+"Unerwarteter Fehlercode beim Auflisten der Verzeichnisinhalte auf dem "
+"Server: '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:181
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to open file '%1' for writing: %2"
 msgstr "Kann Datei '%1' nicht zum Schreiben öffnen: %2"
 
 #: ../../lib/sync/webdavclient.cpp:188
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Download failed with HTTP code %1"
 msgstr "Herunterladen fehlgeschlagen mit Fehlernummer %1"
 
 #: ../../lib/sync/webdavclient.cpp:194
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to open intermediate download file: %1"
 msgstr "Kann temporäre heruntergeladene Datei nicht öffnen: %1"
 
 #: ../../lib/sync/webdavclient.cpp:250
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Uploading failed with HTTP code %1"
 msgstr "Hochladen fehlgeschlagen mit Fehlernummer %1"
 
 #: ../../lib/sync/webdavclient.cpp:255
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to open file '%1' for reading: %2"
 msgstr "Kann Datei '%1' nicht zum Lesen öffnen: %2"
@@ -661,45 +756,65 @@ msgid "Server did not send eTag when uploading"
 msgstr "Server hat keinen eTag nach dem hochladen zurückgeliefert"
 
 #: ../../lib/sync/webdavclient.cpp:314
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Deleting remote file failed with HTTP code %1"
 msgstr "Löschen von Datei auf dem Server fehlgeschlagen mit Fehlernummer %1"
 
 #: ../../lib/sync/webdavclient.cpp:416
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Synchronizing '%1'"
 msgstr "Synchronisiere '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:429 ../../lib/sync/webdavclient.cpp:440
 #: ../../lib/sync/webdavclient.cpp:449 ../../lib/sync/webdavclient.cpp:458
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Ignoring file %1"
 msgstr "Ignoriere Datei %1"
 
 #: ../../lib/sync/webdavclient.cpp:468
+#, qt-format
 msgctxt "WebDAVClient|"
-msgid "Skipping sync of directory '%1' as there were no local changes and we have been asked to push only"
-msgstr "Überspringe Synchronisation von Verzeichnis '%1', da keine lokalen Änderungen vorliegen und die Synchronisation um Modus Nur-Hochladen läuft"
+msgid ""
+"Skipping sync of directory '%1' as there were no local changes and we have "
+"been asked to push only"
+msgstr ""
+"Überspringe Synchronisation von Verzeichnis '%1', da keine lokalen "
+"Änderungen vorliegen und die Synchronisation um Modus Nur-Hochladen läuft"
 
 #: ../../lib/sync/webdavclient.cpp:526
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to get entry list for '%1'"
 msgstr "Fehler beim Auflisten der Verzeichnisinhalte von '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:543
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Pulling '%1'"
 msgstr "Herunterladen von '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:553
+#, qt-format
 msgctxt "WebDAVClient|"
-msgid "Pull conflict: Cannot pull file '%1' from '%2'  because a local directory with than name already exists"
-msgstr "Konflikt beim Herunnterladen von Datei '%1'von '%2', weil ein lokales Verzeichnis mit dem selben Namen bereits existiert"
+msgid ""
+"Pull conflict: Cannot pull file '%1' from '%2'  because a local directory "
+"with than name already exists"
+msgstr ""
+"Konflikt beim Herunnterladen von Datei '%1'von '%2', weil ein lokales "
+"Verzeichnis mit dem selben Namen bereits existiert"
 
 #: ../../lib/sync/webdavclient.cpp:575
+#, qt-format
 msgctxt "WebDAVClient|"
-msgid "Pull conflict: Cannot pull directory '%1' from '%2' because a file with that name already exists locally"
-msgstr "Konflikt beim Herunterladen von '%1' von '%2', weil bereits eine lokale Datei mit dem selben Namen existiert"
+msgid ""
+"Pull conflict: Cannot pull directory '%1' from '%2' because a file with that "
+"name already exists locally"
+msgstr ""
+"Konflikt beim Herunterladen von '%1' von '%2', weil bereits eine lokale "
+"Datei mit dem selben Namen existiert"
 
 #: ../../lib/sync/webdavclient.cpp:600
 msgctxt "WebDAVClient|"
@@ -707,61 +822,82 @@ msgid "Cannot pull remote entry of type Unknown"
 msgstr "Kann Eintrag vom Type Unbekannt nicht vom Server herunterladen"
 
 #: ../../lib/sync/webdavclient.cpp:614
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Removing '%1' locally"
 msgstr "Entferne '%1' lokal"
 
 #: ../../lib/sync/webdavclient.cpp:621
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to remove local file '%1' from '%2'"
 msgstr "Fehler beim Löschen der lokalen Datei '%1' von '%2'"
 
 #: ../../lib/sync/webdavclient.cpp:636
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to remove local directory '%1'"
 msgstr "Fehler beim Löschen des lokalen Verzeichnises '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:644
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Bad sync entry type of entry '%1' in '%2' when removing local entry"
 msgstr "Ungültiger Synchronisationseintrag von '%1' in '%2'"
 
 #: ../../lib/sync/webdavclient.cpp:660
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Pushing '%1'"
 msgstr "Hochladen von '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:667
+#, qt-format
 msgctxt "WebDAVClient|"
-msgid "Push conflict: Cannot push directory '%1' as a file with that name exists on the remote"
-msgstr "Konflikt beim Hochladen: Kann Verzeichnis '%1' nicht hochladen, da bereits eine Datei mit dem selben Namen auf dem Server existiert"
+msgid ""
+"Push conflict: Cannot push directory '%1' as a file with that name exists on "
+"the remote"
+msgstr ""
+"Konflikt beim Hochladen: Kann Verzeichnis '%1' nicht hochladen, da bereits "
+"eine Datei mit dem selben Namen auf dem Server existiert"
 
 #: ../../lib/sync/webdavclient.cpp:684
+#, qt-format
 msgctxt "WebDAVClient|"
-msgid "Push conflict: Cannot push local file '%1' because a directory with that name exists remotely"
-msgstr "Konflikt beim Hochladen: Kann lokale Datei '%1' nicht hochladen, da auf dem Server bereits ein Verzeichnis mit dem selben Namen existiert"
+msgid ""
+"Push conflict: Cannot push local file '%1' because a directory with that "
+"name exists remotely"
+msgstr ""
+"Konflikt beim Hochladen: Kann lokale Datei '%1' nicht hochladen, da auf dem "
+"Server bereits ein Verzeichnis mit dem selben Namen existiert"
 
 #: ../../lib/sync/webdavclient.cpp:697
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Unexpected local type of entry '%1'"
 msgstr "Unerwarteter Typ von lokalem Eintrag '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:711
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Removing remote entry '%1'"
 msgstr "Entferne Eintrag '%1' auf dem Server"
 
 #: ../../lib/sync/webdavclient.cpp:1025
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "There was an SSL error: %1"
 msgstr "SSL-Fehler ist aufgetreten: %1"
 
 #: ../../lib/sync/webdavclient.cpp:1028
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "Problem establishing a secure connection to the server: %1"
-msgstr "Problem beim Herstellen einer sicheren Verbindung zum Server aufgetreten: %1"
+msgstr ""
+"Problem beim Herstellen einer sicheren Verbindung zum Server aufgetreten: %1"
 
 #: ../../lib/sync/webdavclient.cpp:1039
+#, qt-format
 msgctxt "WebDAVClient|"
 msgid "There was a network error: %1"
 msgstr "Netzwerkproblem aufgetreten: %1"
@@ -769,7 +905,8 @@ msgstr "Netzwerkproblem aufgetreten: %1"
 #: ../../lib/sync/webdavclient.cpp:1042
 msgctxt "WebDAVClient|"
 msgid "Authentication failed. Please check you username and password."
-msgstr "Authentifikation fehlgeschlagen. Bitte Benutzernamen und Passwort überprüfen."
+msgstr ""
+"Authentifikation fehlgeschlagen. Bitte Benutzernamen und Passwort überprüfen."
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:20
 msgctxt "WebDAVConnectionSettingsPage|"
@@ -813,8 +950,12 @@ msgstr "SSL Probleme ignorieren"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:128
 msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Kann keine Verbindung zum Server aufbauen. Bitte den Benutzernamen, das Passwort sowie die Adresse des Servers überprüfen und erneut versuchen."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+"Kann keine Verbindung zum Server aufbauen. Bitte den Benutzernamen, das "
+"Passwort sowie die Adresse des Servers überprüfen und erneut versuchen."
 
 #: ../../lib/sync/webdavsynchronizer.cpp:97
 msgctxt "WebDAVSynchronizer|"
@@ -824,13 +965,14 @@ msgstr "Starte Synchronisation"
 #: ../../lib/sync/webdavsynchronizer.cpp:124
 msgctxt "WebDAVSynchronizer|"
 msgid "The last sync did not run through - doing a full sync"
-msgstr "Die letzte Synchronisation wurde nicht durchlaufen - eine vollständige Synchronisation wurde durchgeführt."
+msgstr ""
+"Die letzte Synchronisation wurde nicht durchlaufen - eine vollständige "
+"Synchronisation wurde durchgeführt."
 
 #: ../../lib/sync/webdavsynchronizer.cpp:131
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Es konnte keine Synchronisationssperre erstellt werden:\n"
-""
 
 #: ../../lib/sync/webdavsynchronizer.cpp:140
 msgctxt "WebDAVSynchronizer|"
@@ -838,17 +980,22 @@ msgid "Creating the remote top level directory"
 msgstr "Erstellen des Remote-Verzeichnisses der obersten Ebene"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:152
+#, qt-format
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to prepare remote directory '%1' for sync"
-msgstr "Das Verzeichnis'%1' konnte nicht für die Synchronisierung vorbereitet werden."
+msgstr ""
+"Das Verzeichnis'%1' konnte nicht für die Synchronisierung vorbereitet werden."
 
 #: ../../lib/sync/webdavsynchronizer.cpp:174
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to synchronize top level directory!"
-msgstr "Die Synchronisation des Top-Level-Verzeichnisses konnte nicht durchgeführt werden"
+msgstr ""
+"Die Synchronisation des Top-Level-Verzeichnisses konnte nicht durchgeführt "
+"werden"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:188
 #: ../../lib/sync/webdavsynchronizer.cpp:200
+#, qt-format
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to synchronize '%1'"
 msgstr "konnte nicht syncronisiert werden '%1'"
@@ -892,4 +1039,3 @@ msgstr "Optimierungen für berührungsempfindliche Bildschirme aktivieren."
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
 msgstr "AppImage-Integration entfernen."
-
