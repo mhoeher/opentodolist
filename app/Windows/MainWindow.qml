@@ -250,6 +250,10 @@ ApplicationWindow {
         onActivated: {
             if (stackView.canGoBack) {
                 stackView.goBack();
+            } else {
+                if (Qt.platform.os === "android") {
+                    Qt.quit();
+                }
             }
         }
     }
