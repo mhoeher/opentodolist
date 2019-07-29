@@ -33,6 +33,11 @@ Page {
         renameItemDialog.renameItem(item);
     }
 
+    function setDueDate() {
+        dueDateSelectionDialog.selectedDate = item.dueTo;
+        dueDateSelectionDialog.open();
+    }
+
     function find() {
         filterBar.edit.forceActiveFocus();
         d.reopenDrawer();
@@ -40,14 +45,6 @@ Page {
 
     function attach() {
         attachments.attach();
-    }
-
-    function setDueDate(dueDate) {
-        page.item.dueTo =  dueDate;
-    }
-
-    function getDueDate() {
-        return page.item.dueTo;
     }
 
     title: itemTitle.text
@@ -73,6 +70,12 @@ Page {
         onAccepted: {
             page.closePage();
         }
+        onClosed: d.reopenDrawer()
+    }
+
+    DateSelectionDialog {
+        id: dueDateSelectionDialog
+        onAccepted: page.item.dueTo = selectedDate
         onClosed: d.reopenDrawer()
     }
 

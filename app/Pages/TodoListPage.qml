@@ -50,12 +50,6 @@ Page {
                                                   tagsEditor.addTag();
                                               }
 
-    function afterPopupClosedAction() {
-        if (todoPage.item) {
-            todoDrawer.open();
-        }
-    }
-
     function attach() {
         if (todoDrawer.visible) {
             todoPage.attach();
@@ -64,27 +58,14 @@ Page {
         }
     }
 
-    function setDueDate(dueDate) {
+    function setDueDate() {
         if (todoDrawer.visible) {
-            todoPage.setDueDate(dueDate);
+            todoPage.setDueDate();
         } else {
-            page.item.dueTo =  dueDate;
+            dueDateSelectionDialog.selectedDate = item.dueTo;
+            dueDateSelectionDialog.open();
         }
     }
-
-    function getDueDate() {
-        if (todoDrawer.visible) {
-            return todoPage.getDueDate();
-        } else {
-            return page.item.dueTo;
-        }
-    }
-
-    property var goBack: todoDrawer.visible ? function() {
-        todoDrawer.close();
-    } : itemNotesEditor.editing ? function() {
-        itemNotesEditor.finishEditing();
-    } : undefined
 
     title: titleText.text
 
@@ -117,6 +98,11 @@ Page {
         onAccepted: {
             page.closePage();
         }
+    }
+
+    DateSelectionDialog {
+        id: dueDateSelectionDialog
+        onAccepted: page.item.dueTo = selectedDate
     }
 
     ItemCreatedNotification {

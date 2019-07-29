@@ -1238,47 +1238,47 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="195"/>
+        <location filename="../Windows/MainWindow.qml" line="178"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Neue &amp;Bibliothek</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="206"/>
+        <location filename="../Windows/MainWindow.qml" line="189"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Neue &amp;Notiz</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="214"/>
+        <location filename="../Windows/MainWindow.qml" line="197"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Neue &amp;Aufgabenliste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="222"/>
+        <location filename="../Windows/MainWindow.qml" line="205"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Neues B&amp;ild</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="230"/>
+        <location filename="../Windows/MainWindow.qml" line="213"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">B&amp;eenden</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="238"/>
+        <location filename="../Windows/MainWindow.qml" line="221"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Suche</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="261"/>
+        <location filename="../Windows/MainWindow.qml" line="248"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Öffne zuletzt &amp;erzeugten Eintrag</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="269"/>
+        <location filename="../Windows/MainWindow.qml" line="256"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Öffne die &amp;linke Seitenleiste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="359"/>
+        <location filename="../Windows/MainWindow.qml" line="346"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Eine &lt;a href=&apos;#newLibrary&apos;&gt;neue Bibliothek anlegen&lt;/a&gt;. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder.</translation>
     </message>
@@ -1537,22 +1537,22 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="159"/>
+        <location filename="../Pages/TodoListPage.qml" line="145"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="216"/>
+        <location filename="../Pages/TodoListPage.qml" line="202"/>
         <source>Todos</source>
         <translation type="unfinished">Aufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="220"/>
+        <location filename="../Pages/TodoListPage.qml" line="206"/>
         <source>Add new todo...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="236"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Completed Todos</source>
         <translation type="unfinished">Erledigte Aufgaben</translation>
     </message>
@@ -1560,17 +1560,17 @@
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="95"/>
+        <location filename="../Pages/TodoPage.qml" line="98"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="145"/>
+        <location filename="../Pages/TodoPage.qml" line="148"/>
         <source>Tasks</source>
         <translation type="unfinished">Unteraufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="148"/>
+        <location filename="../Pages/TodoPage.qml" line="151"/>
         <source>Add new task...</source>
         <translation type="unfinished"></translation>
     </message>

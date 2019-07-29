@@ -141,11 +141,7 @@ ApplicationWindow {
                 visible: stackView.currentItem &&
                          typeof(stackView.currentItem.setDueDate) === "function"
                 Layout.alignment: Qt.AlignVCenter
-                onClicked: {
-                    dueDateSelectionDialog.selectedDate =
-                            stackView.currentItem.getDueDate();
-                    dueDateSelectionDialog.open();
-                }
+                onClicked: stackView.currentItem.setDueDate()
             }
 
             ToolButton {
@@ -174,19 +170,6 @@ ApplicationWindow {
         id: d
 
         property bool completed: false
-
-        function afterPopupClosed() {
-            if (typeof(stackView.currentItem.afterPopupClosedAction) ===
-                    "function") {
-                stackView.currentItem.afterPopupClosedAction()
-            }
-        }
-    }
-
-    DateSelectionDialog {
-        id: dueDateSelectionDialog
-        onAccepted: stackView.currentItem.setDueDate(selectedDate)
-        onClosed: d.afterPopupClosed()
     }
 
     Action {

@@ -36,12 +36,9 @@ Page {
         attachments.attach();
     }
 
-    function setDueDate(dueDate) {
-        page.item.dueTo =  dueDate;
-    }
-
-    function getDueDate() {
-        return page.item.dueTo;
+    function setDueDate() {
+        dueDateSelectionDialog.selectedDate = item.dueTo;
+        dueDateSelectionDialog.open();
     }
 
     title: titleText.text
@@ -60,6 +57,11 @@ Page {
 
     RenameItemDialog {
         id: renameItemDialog
+    }
+
+    DateSelectionDialog {
+        id: dueDateSelectionDialog
+        onAccepted: page.item.dueTo = selectedDate
     }
 
     Pane {
