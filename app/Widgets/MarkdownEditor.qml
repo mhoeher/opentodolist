@@ -46,18 +46,22 @@ Column {
     TextArea {
         id: textArea
 
-        width: parent.width
+        anchors {
+            left: parent.left
+            right: parent.right
+            leftMargin: {
+                switch (Qt.platform.os) {
+                case "android":
+                    return 50;
+                default:
+                    return 20;
+                }
+            }
+            rightMargin: textArea.anchors.leftMargin
+        }
+
 
         font.family: "Courier New, Courier, Fixed"
-        padding: 20
-        rightPadding: {
-            switch (Qt.platform.os) {
-            case "android":
-                return 40;
-            default:
-                return padding;
-            }
-        }
 
         onTextChanged: saveTimer.start()
         onFocusChanged: if (!focus) {

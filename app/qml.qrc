@@ -80,7 +80,6 @@
         <file>Widgets/NoteItem.qml</file>
         <file>Widgets/TodoListItem.qml</file>
         <file>Utils/Colors.qml</file>
-        <file>Pages/MarkdownEditorPage.qml</file>
         <file>Components/TextArea.qml</file>
         <file>Widgets/TagsEditor.qml</file>
         <file>Widgets/Attachments.qml</file>
