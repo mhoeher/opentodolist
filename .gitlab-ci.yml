@@ -6,6 +6,7 @@ variables:
     ANDROID_ARM_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-arm
     ANDROID_ARM64_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-arm64
     ANDROID_X86_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-x86
+    ANDROID_X64_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-x64
     FLATPAK_IMAGE: registry.gitlab.com/rpdev/opentodolist:flatpak
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
@@ -231,6 +232,17 @@ android_x86:
     expire_in: 1 week
 
 
+# Android build x86_64
+android_x64:
+  stage: build
+  image: $ANDROID_X64_IMAGE
+  script:
+    - ci/android-build.sh
+  artifacts:
+    paths:
+      - build-android-x86_64/OpenTodoList-Android-x86_64.apk
+    expire_in: 1 week
+
 # Build the app as Flatpak
 build_flatpak:
     stage: build
@@ -260,6 +272,7 @@ sign_apks:
       expire_in: 1 week
     dependencies:
         - android_x86
+        - android_x64
         - android_armv7
         - android_arm64_v8a
 

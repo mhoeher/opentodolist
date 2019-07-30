@@ -27,7 +27,7 @@ Controller.prototype.ComponentSelectionPageCallback = function() {
     var widget = gui.pageById(QInstaller.ComponentSelection);
 
     widget.deselectAll();
-    widget.selectComponent("qt.qt5.5130.android_armv7");
+    widget.selectComponent("qt.qt5.5130.android_x86_64");
     widget.selectComponent("qt.qt5.5130.qtremoteobjects");
 
     gui.clickButton(buttons.NextButton);

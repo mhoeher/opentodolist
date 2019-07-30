@@ -6,4 +6,4 @@ RUN \
     ./qt-unified-linux-x64-online.run --script qt-installer-script.js \
         --platform minimal --no-force-installations -v
 
-ENV QT_ROOT /opt/Qt/5.13.0/android_x86/
+ENV QT_ROOT /opt/Qt/5.13.0/android_x86_64/
