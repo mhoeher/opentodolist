@@ -244,11 +244,15 @@ Page {
         parent: MainWindow.contentItem
         clip: true
         dim: true
-        onOpened: todoPage.forceActiveFocus()
+        onOpened: {
+            todoPage.forceActiveFocus();
+            interactive = true;
+        }
         onClosed: {
             if (todoPage.editingNotes) {
                 todoPage.finishEditingNotes();
             }
+            interactive = false;
         }
 
         TodoPage {
