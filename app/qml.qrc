@@ -112,5 +112,6 @@
         <file>Widgets/NewItemButton.qml</file>
         <file>Widgets/ItemPageHeader.qml</file>
         <file>Widgets/MarkdownEditor.qml</file>
+        <file>3rdpartyinfo/noto-color-emoji/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

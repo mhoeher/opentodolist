@@ -6,5 +6,8 @@
         <file>res/OpenTodoList80.png</file>
         <file>res/OpenTodoList250.png</file>
         <file>res/COPYING</file>
+        <file>Fonts/NotoColorEmoji-unhinted/LICENSE_OFL.txt</file>
+        <file>Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf</file>
+        <file>Fonts/NotoColorEmoji-unhinted/README</file>
     </qresource>
 </RCC>

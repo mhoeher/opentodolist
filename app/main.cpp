@@ -8,6 +8,7 @@
 #include <QFileSystemWatcher>
 #include <QFont>
 #include <QFontInfo>
+#include <QFontDatabase>
 #include <QIcon>
 #include <QLocale>
 #include <QLoggingCategory>
@@ -119,8 +120,6 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    //qputenv("QT_QUICK_CONTROLS_STYLE", "material");
-
     // Let the app decide which scale factor to apply
 #ifdef Q_OS_ANDROID
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
@@ -138,6 +137,14 @@ int main(int argc, char *argv[])
 #else
     QGuiApplication app(argc, argv);
 #endif
+
+    // Load color emoji font:
+    QFontDatabase::addApplicationFont(
+                ":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
+
+    // TODO: Can we somehow set the font application wide for color emojis
+    // without messing everything else up?
+    //app.setFont(QFont(QStringLiteral("Noto Color Emoji, sans-serif")));
 
 #ifdef OPENTODOLIST_FLATPAK
     // Copy over the included FontConfig configuration to the

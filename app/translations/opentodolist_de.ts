@@ -1853,27 +1853,27 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="175"/>
+        <location filename="../main.cpp" line="182"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Persönliche Daten verwalten.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="181"/>
+        <location filename="../main.cpp" line="188"/>
         <source>QML Root Directory</source>
         <translation type="unfinished">QML Wurzelverzeichnis</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="182"/>
+        <location filename="../main.cpp" line="189"/>
         <source>DIR</source>
         <translation type="unfinished">VERZEICHNIS</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="188"/>
+        <location filename="../main.cpp" line="195"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Optimierungen für berührungsempfindliche Bildschirme aktivieren.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="201"/>
+        <location filename="../main.cpp" line="208"/>
         <source>Remove shortcuts to the AppImage.</source>
         <translation type="unfinished">AppImage-Integration entfernen.</translation>
     </message>
