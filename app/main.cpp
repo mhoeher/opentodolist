@@ -111,6 +111,8 @@ private:
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    
 #ifdef OPENTODOLIST_IS_APPIMAGE
     // In the current AppImage build, we do not deploy the
     // Qt wayland plugin. Hence, fall back to x11/xcb.
@@ -149,11 +151,16 @@ int main(int argc, char *argv[])
 #ifdef OPENTODOLIST_FLATPAK
     // Copy over the included FontConfig configuration to the
     // app's config dir:
-    QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
-                "/var/config/fontconfig/conf.d/90-otl-color-emoji.conf");
+    {
+        QDir dir("/var/config/fontconfig/conf.d");
+        if (dir.mkpath(".")) {
+            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
+                dir.absoluteFilePath("90-otl-color-emoji.conf"));
+        }
+    }
 #endif
 
-    app.setAttribute(Qt::AA_EnableHighDpiScaling);
+    
 
     QTranslator translator;
     // look up e.g. :/translations/myapp_de.qm
