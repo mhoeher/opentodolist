@@ -142,16 +142,19 @@ int main(int argc, char *argv[])
     QFontDatabase::addApplicationFont(
                 ":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
 
-    // TODO: Can we somehow set the font application wide for color emojis
-    // without messing everything else up?
-    //app.setFont(QFont(QStringLiteral("Noto Color Emoji, sans-serif")));
-
-#ifdef OPENTODOLIST_FLATPAK
-    // Copy over the included FontConfig configuration to the
-    // app's config dir:
-    QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
-                "/var/config/fontconfig/conf.d/90-otl-color-emoji.conf");
-#endif
+    // Use Noto Color Emoji as substitution font for color emojies:
+    {
+        const auto FontTypes = {
+            QFontDatabase::GeneralFont,
+            QFontDatabase::FixedFont,
+            QFontDatabase::TitleFont,
+            QFontDatabase::SmallestReadableFont
+        };
+        for (auto fontType : FontTypes) {
+            auto font = QFontDatabase::systemFont(fontType);
+            QFont::insertSubstitution(font.family(), "Noto Color Emoji");
+        }
+    }
 
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
 
