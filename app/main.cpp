@@ -111,6 +111,8 @@ private:
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    
 #ifdef OPENTODOLIST_IS_APPIMAGE
     // In the current AppImage build, we do not deploy the
     // Qt wayland plugin. Hence, fall back to x11/xcb.
@@ -155,8 +157,6 @@ int main(int argc, char *argv[])
             QFont::insertSubstitution(font.family(), "Noto Color Emoji");
         }
     }
-
-    app.setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QTranslator translator;
     // look up e.g. :/translations/myapp_de.qm

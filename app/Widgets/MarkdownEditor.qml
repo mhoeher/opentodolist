@@ -82,6 +82,7 @@ Column {
         anchors.rightMargin: 10
         backgroundColor: Colors.positiveColor
         symbol: Icons.faCheck
+        font.family: Fonts.solidIcons
     }
 
     OTL.SyntaxHighlighter {
