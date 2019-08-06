@@ -145,18 +145,27 @@ int main(int argc, char *argv[])
                 ":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
 
     // Use Noto Color Emoji as substitution font for color emojies:
+    // {
+    //     const auto FontTypes = {
+    //         QFontDatabase::GeneralFont,
+    //         QFontDatabase::FixedFont,
+    //         QFontDatabase::TitleFont,
+    //         QFontDatabase::SmallestReadableFont
+    //     };
+    //     for (auto fontType : FontTypes) {
+    //         auto font = QFontDatabase::systemFont(fontType);
+    //         QFont::insertSubstitution(font.family(), "Noto Color Emoji");
+    //     }
+    // }
+    #ifdef OPENTODOLIST_FLATPAK
     {
-        const auto FontTypes = {
-            QFontDatabase::GeneralFont,
-            QFontDatabase::FixedFont,
-            QFontDatabase::TitleFont,
-            QFontDatabase::SmallestReadableFont
-        };
-        for (auto fontType : FontTypes) {
-            auto font = QFontDatabase::systemFont(fontType);
-            QFont::insertSubstitution(font.family(), "Noto Color Emoji");
+        QDir dir("/var/config/fontconfig/conf.d");
+        if (dir.mkpath(".")) {
+            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
+            dir.absoluteFilePath("90-otl-color-emoji.conf"));
         }
     }
+    #endif
 
     QTranslator translator;
     // look up e.g. :/translations/myapp_de.qm
