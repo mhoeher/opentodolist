@@ -16,12 +16,29 @@ Page {
     signal closePage()
     signal openPage(var component, var properties)
 
+    property var goBack: itemNotesEditor.editing ? function() {
+        itemNotesEditor.finishEditing();
+    } : undefined
+
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
     }
 
     function renameItem() {
         renameItemDialog.renameItem(item);
+    }
+
+    function addTag() {
+        tagsEditor.addTag();
+    }
+
+    function attach() {
+        attachments.attach();
+    }
+
+    function setDueDate() {
+        dueDateSelectionDialog.selectedDate = item.dueTo;
+        dueDateSelectionDialog.open();
     }
 
     title: titleText.text
@@ -42,19 +59,41 @@ Page {
         id: renameItemDialog
     }
 
-    Pane {
-        id: background
+    DateSelectionDialog {
+        id: dueDateSelectionDialog
+        onAccepted: page.item.dueTo = selectedDate
+    }
 
+    Pane {
+        anchors.fill: parent
         backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+    }
+
+    ScrollView {
+        id: scrollView
+
         anchors.fill: parent
 
-        ScrollView {
-            id: scrollView
+        Pane {
+            id: background
 
-            anchors.fill: parent
+            backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+            width: scrollView.width
 
             Column {
-                width: scrollView.width
+                width: parent.width
+                spacing: 20
+
+                ItemPageHeader {
+                    item: page.item
+                }
+
+                TagsEditor {
+                    id: tagsEditor
+                    item: page.item
+                    library: page.library
+                    width: parent.width
+                }
 
                 Frame {
                     width: parent.width
@@ -67,28 +106,25 @@ Page {
                         width: parent.width
                         height: parent.width * sourceSize.height / sourceSize.width
                     }
+
+                    MouseArea {
+                        anchors.fill: image
+                        onClicked: Qt.openUrlExternally(item.imageUrl)
+                    }
                 }
 
                 ItemNotesEditor {
-                    item: page.item
-                    width: parent.width
-                }
-
-                ItemDueDateEditor {
+                    id: itemNotesEditor
                     item: page.item
                     width: parent.width
                 }
 
                 Attachments {
+                    id: attachments
                     item: page.item
                     width: parent.width
                 }
 
-                TagsEditor {
-                    item: page.item
-                    library: page.library
-                    width: parent.width
-                }
             }
         }
     }

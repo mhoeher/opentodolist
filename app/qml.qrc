@@ -80,7 +80,6 @@
         <file>Widgets/NoteItem.qml</file>
         <file>Widgets/TodoListItem.qml</file>
         <file>Utils/Colors.qml</file>
-        <file>Pages/MarkdownEditorPage.qml</file>
         <file>Components/TextArea.qml</file>
         <file>Widgets/TagsEditor.qml</file>
         <file>Widgets/Attachments.qml</file>
@@ -110,5 +109,9 @@
         <file>Components/Slider.qml</file>
         <file>3rdpartyinfo/syntax-highlighting/3rdpartyinfo.json</file>
         <file>Components/Heading.qml</file>
+        <file>Widgets/NewItemButton.qml</file>
+        <file>Widgets/ItemPageHeader.qml</file>
+        <file>Widgets/MarkdownEditor.qml</file>
+        <file>3rdpartyinfo/noto-color-emoji/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

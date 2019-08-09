@@ -61,17 +61,17 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr ""
 
-#: ../Widgets/Attachments.qml:22
+#: ../Widgets/Attachments.qml:27
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr ""
 
-#: ../Widgets/Attachments.qml:35
+#: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr ""
 
-#: ../Widgets/Attachments.qml:39
+#: ../Widgets/Attachments.qml:44
 #, qt-format
 msgctxt "Attachments|"
 msgid ""
@@ -79,7 +79,7 @@ msgid ""
 "action cannot be undone."
 msgstr ""
 
-#: ../Widgets/Attachments.qml:61
+#: ../Widgets/Attachments.qml:58
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr ""
@@ -212,9 +212,14 @@ msgctxt "ItemDueDateEditor|"
 msgid "Due on"
 msgstr ""
 
-#: ../Widgets/ItemNotesEditor.qml:28
+#: ../Widgets/ItemNotesEditor.qml:26
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
+msgstr ""
+
+#: ../Widgets/ItemNotesEditor.qml:58
+msgctxt "ItemNotesEditor|"
+msgid "No notes added yet - click here to add some."
 msgstr ""
 
 #: ../Widgets/LibrariesSideBar.qml:97
@@ -345,61 +350,51 @@ msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:157
+#: ../Windows/MainWindow.qml:195
 msgctxt "MainWindow|"
 msgid "New &Library"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:168
+#: ../Windows/MainWindow.qml:206
 msgctxt "MainWindow|"
 msgid "New &Note"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:176
+#: ../Windows/MainWindow.qml:214
 msgctxt "MainWindow|"
 msgid "New &Todo List"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:184
+#: ../Windows/MainWindow.qml:222
 msgctxt "MainWindow|"
 msgid "New &Image"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:192
+#: ../Windows/MainWindow.qml:230
 msgctxt "MainWindow|"
 msgid "&Quit"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:200
+#: ../Windows/MainWindow.qml:238
 msgctxt "MainWindow|"
 msgid "&Find"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:208
-msgctxt "MainWindow|"
-msgid "Go &Back"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:217
+#: ../Windows/MainWindow.qml:261
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:225
+#: ../Windows/MainWindow.qml:269
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:315
+#: ../Windows/MainWindow.qml:359
 msgctxt "MainWindow|"
 msgid ""
 "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
 "used to store different kinds of items like notes, todo lists and images."
-msgstr ""
-
-#: ../Pages/MarkdownEditorPage.qml:22
-msgctxt "MarkdownEditorPage|"
-msgid "Edit Notes"
 msgstr ""
 
 #: ../Pages/NewLibraryPage.qml:18
@@ -527,7 +522,7 @@ msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:249
+#: ../Pages/ScheduleViewPage.qml:250
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr ""
@@ -611,9 +606,9 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr ""
 
-#: ../Widgets/TagsEditor.qml:67
+#: ../Widgets/TagsEditor.qml:33
 msgctxt "TagsEditor|"
-msgid "Tags"
+msgid "Add Tag"
 msgstr ""
 
 #: ../Widgets/TodoListItem.qml:92
@@ -621,39 +616,39 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:80
-msgctxt "TodoListPage|"
-msgid "Add Todo"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:140
+#: ../Pages/TodoListPage.qml:159
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:169
+#: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:180
+#: ../Pages/TodoListPage.qml:220
+msgctxt "TodoListPage|"
+msgid "Add new todo..."
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:236
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:54
-msgctxt "TodoPage|"
-msgid "Add Task"
-msgstr ""
-
-#: ../Pages/TodoPage.qml:98
+#: ../Pages/TodoPage.qml:95
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoPage.qml:127
+#: ../Pages/TodoPage.qml:145
 msgctxt "TodoPage|"
 msgid "Tasks"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:148
+msgctxt "TodoPage|"
+msgid "Add new task..."
 msgstr ""
 
 #: ../Widgets/UpdateNotificationBar.qml:41

@@ -14,9 +14,16 @@ Page {
     property OTL.Todo item: OTL.Todo {}
     property OTL.Library library: null
     property OTL.TodoList todoList: null
+    property Drawer parentDrawer: null
 
     signal closePage()
     signal openPage(var component, var properties)
+
+    readonly property bool editingNotes: itemNotesEditor.editing
+
+    function finishEditingNotes() {
+        itemNotesEditor.finishEditing();
+    }
 
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
@@ -26,11 +33,31 @@ Page {
         renameItemDialog.renameItem(item);
     }
 
+    function setDueDate() {
+        dueDateSelectionDialog.selectedDate = item.dueTo;
+        dueDateSelectionDialog.open();
+    }
+
     function find() {
-        filterBar.edit.forceActiveFocus()
+        filterBar.edit.forceActiveFocus();
+        d.reopenDrawer();
+    }
+
+    function attach() {
+        attachments.attach();
     }
 
     title: itemTitle.text
+
+    QtObject {
+        id: d
+
+        function reopenDrawer() {
+            if (page.parentDrawer) {
+                page.parentDrawer.open();
+            }
+        }
+    }
 
     MarkdownConverter {
         id: itemTitle
@@ -43,45 +70,18 @@ Page {
         onAccepted: {
             page.closePage();
         }
+        onClosed: d.reopenDrawer()
+    }
+
+    DateSelectionDialog {
+        id: dueDateSelectionDialog
+        onAccepted: page.item.dueTo = selectedDate
+        onClosed: d.reopenDrawer()
     }
 
     RenameItemDialog {
         id: renameItemDialog
-    }
-
-    CenteredDialog {
-        id: newTaskDialog
-        title: qsTr("Add Task")
-        width: idealDialogWidth
-
-        TextField {
-            id: newTaskEdit
-
-            width: newTaskDialog.availableWidth
-            Keys.onEnterPressed: newTaskDialog.accept()
-            Keys.onReturnPressed: newTaskDialog.accept()
-        }
-
-        standardButtons: Dialog.Ok | Dialog.Cancel
-
-        onAccepted: {
-            if (newTaskEdit.text !== "") {
-                var properties = {
-                    "title": newTaskEdit.text
-                };
-                var task = OTL.Application.addTask(
-                            page.library,
-                            page.item,
-                            properties);
-            }
-            newTaskEdit.text = "";
-        }
-        onRejected: {
-            newTaskEdit.text = "";
-        }
-        onOpened: {
-            newTaskEdit.forceActiveFocus()
-        }
+        onClosed: d.reopenDrawer()
     }
 
     OTL.ItemsSortFilterModel {
@@ -102,10 +102,13 @@ Page {
     }
 
     Pane {
-        id: background
+        anchors.fill: parent
+        backgroundColor: Colors.color(
+                             Colors.itemColor(page.todoList), Colors.shade50)
+    }
 
-        backgroundColor: Colors.color(Colors.itemColor(page.todoList),
-                                      Colors.shade50)
+    ScrollView {
+        id: scrollView
         anchors {
             left: parent.left
             right: parent.right
@@ -113,32 +116,19 @@ Page {
             bottom: parent.bottom
         }
 
-        ScrollView {
-            id: scrollView
+        Pane {
+            id: background
 
-            anchors.fill: parent
+            backgroundColor: Colors.color(Colors.itemColor(page.todoList),
+                                          Colors.shade50)
+            width: scrollView.width
+
 
             Column {
-                width: scrollView.width
+                width: parent.width
 
-                TodosWidget {
-                    width: parent.width
-                    model: tasks
-                    title: qsTr("Tasks")
-                    decorativeSymbol: Icons.faCircle
-                    decorativeSymbolFont: Fonts.icons
-                    symbol: Icons.faPlus
-                    onHeaderButtonClicked: newTaskDialog.open()
-                }
-
-                ItemNotesEditor {
+                ItemPageHeader {
                     item: page.item
-                    width: parent.width
-                }
-
-                ItemDueDateEditor {
-                    item: page.item
-                    width: parent.width
                 }
 
                 ItemProgressEditor {
@@ -146,12 +136,42 @@ Page {
                     width: parent.width
                 }
 
+                ItemNotesEditor {
+                    id: itemNotesEditor
+                    item: page.item
+                    width: parent.width
+                }
+
+                TodosWidget {
+                    width: parent.width
+                    model: tasks
+                    title: qsTr("Tasks")
+                    headerItemVisible: false
+                    allowCreatingNewItems: true
+                    newItemPlaceholderText: qsTr("Add new task...")
+                    onCreateNewItem: {
+                        var properties = {
+                            "title": title
+                        };
+                        var task = OTL.Application.addTask(
+                                    page.library,
+                                    page.item,
+                                    properties);
+                    }
+                }
+
                 Attachments {
+                    id: attachments
                     item: page.item
                     width: parent.width
                 }
             }
         }
+    }
+
+    Connections {
+        target: attachments.openFileDialog
+        onClosed: d.reopenDrawer()
     }
 }
 

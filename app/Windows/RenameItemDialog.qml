@@ -8,10 +8,10 @@ import "../Components"
 CenteredDialog {
     id: dialog
     
-    property OTL.Item __item
+    property OTL.Item item
     
     function renameItem(item) {
-        __item = item;
+        dialog.item = item;
         edit.text = item.title;
         dialog.open();
         edit.forceActiveFocus();
@@ -23,7 +23,7 @@ CenteredDialog {
     
     onAccepted: {
         if (edit.text !== "") {
-            __item.title = edit.displayText;
+            item.title = edit.displayText;
         }
     }
     

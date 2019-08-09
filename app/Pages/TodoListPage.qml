@@ -1,5 +1,8 @@
 import QtQuick 2.5
+import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
+
+import QtQuick.Controls 2.5
 
 import OpenTodoList 1.0 as OTL
 
@@ -19,15 +22,49 @@ Page {
     signal openPage(var component, var properties)
 
     function deleteItem() {
-        confirmDeleteDialog.deleteItem(item);
+        if (todoDrawer.visible) {
+            todoPage.deleteItem();
+        } else {
+            confirmDeleteDialog.deleteItem(item);
+        }
     }
 
     function renameItem() {
-        renameItemDialog.renameItem(item);
+        if (todoDrawer.visible) {
+            todoPage.renameItem();
+        } else {
+            renameItemDialog.renameItem(item);
+        }
     }
 
     function find() {
-        filterBar.edit.forceActiveFocus()
+        if (todoDrawer.visible) {
+            todoPage.find();
+        } else {
+            filterBar.edit.forceActiveFocus();
+        }
+    }
+
+    property var addTag: todoDrawer.visible ? undefined :
+                                              function() {
+                                                  tagsEditor.addTag();
+                                              }
+
+    function attach() {
+        if (todoDrawer.visible) {
+            todoPage.attach();
+        } else {
+            attachments.attach();
+        }
+    }
+
+    function setDueDate() {
+        if (todoDrawer.visible) {
+            todoPage.setDueDate();
+        } else {
+            dueDateSelectionDialog.selectedDate = item.dueTo;
+            dueDateSelectionDialog.open();
+        }
     }
 
     title: titleText.text
@@ -42,15 +79,12 @@ Page {
         id: d
 
         function openTodo(todo) {
-            page.openPage(
-                        Qt.resolvedUrl("TodoPage.qml"),
-                        {
-                            item: todo,
-                            todoList: page.item,
-                            library: page.library
-                        });
+            todoPage.item = todo;
+            todoDrawer.open();
         }
     }
+
+    Component.onDestruction: todoDrawer.close()
 
     Settings {
         id: settings
@@ -66,6 +100,11 @@ Page {
         }
     }
 
+    DateSelectionDialog {
+        id: dueDateSelectionDialog
+        onAccepted: page.item.dueTo = selectedDate
+    }
+
     ItemCreatedNotification {
         id: itemCreatedNotification
         onOpen: d.openTodo(item)
@@ -73,40 +112,6 @@ Page {
 
     RenameItemDialog {
         id: renameItemDialog
-    }
-
-    CenteredDialog {
-        id: newTodoDialog
-        title: qsTr("Add Todo")
-        width: idealDialogWidth
-
-        TextField {
-            id: newTodoEdit
-
-            width: newTodoDialog.availableWidth
-            Keys.onEnterPressed: newTodoDialog.accept()
-            Keys.onReturnPressed: newTodoDialog.accept()
-        }
-
-        standardButtons: Dialog.Ok | Dialog.Cancel
-
-        onAccepted: {
-            if (newTodoEdit.text !== "") {
-                var properties = {
-                    "title": newTodoEdit.displayText
-                };
-                var todo = OTL.Application.addTodo(
-                            page.library, page.item, properties);
-                itemCreatedNotification.show(todo);
-            }
-            newTodoEdit.text = "";
-        }
-        onRejected: {
-            newTodoEdit.text = "";
-        }
-        onOpened: {
-            newTodoEdit.forceActiveFocus()
-        }
     }
 
     OTL.ItemsSortFilterModel {
@@ -143,10 +148,19 @@ Page {
         closeOnButtonClick: true
     }
 
-    Pane {
-        id: background
+    DateSelectionDialog {
+        id: dialog
+        onAccepted: page.item.dueTo = selectedDate
+    }
 
+    Pane {
+        anchors.fill: parent
         backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+    }
+
+    ScrollView {
+        id: scrollView
+
         anchors {
             left: parent.left
             right: parent.right
@@ -154,57 +168,108 @@ Page {
             bottom: parent.bottom
         }
 
+        Pane {
+            id: background
 
-        ScrollView {
-            id: scrollView
-
-            anchors.fill: parent
+            backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
+            width: scrollView.width
 
             Column {
-                width: scrollView.width
+                width: parent.width
+                spacing: 20
+
+                ItemPageHeader {
+                    counter: undoneTodos.count
+                    item: page.item
+                }
+
+                TagsEditor {
+                    id: tagsEditor
+                    item: page.item
+                    library: page.library
+                    width: parent.width
+                }
+
+                ItemNotesEditor {
+                    id: itemNotesEditor
+                    item: page.item
+                    width: parent.width
+                }
 
                 TodosWidget {
                     width: parent.width
                     model: undoneTodos
                     title: qsTr("Todos")
-                    decorativeSymbol: Icons.faCircle
-                    decorativeSymbolFont: Fonts.icons
                     symbol: Icons.faPlus
+                    headerItemVisible: false
+                    allowCreatingNewItems: true
+                    newItemPlaceholderText: qsTr("Add new todo...")
                     onHeaderButtonClicked: newTodoDialog.open()
                     onTodoClicked: d.openTodo(todo)
+                    onCreateNewItem: {
+                        var properties = {
+                            "title": title
+                        };
+                        var todo = OTL.Application.addTodo(
+                                    page.library, page.item, properties);
+                        itemCreatedNotification.show(todo);
+                    }
                 }
 
                 TodosWidget {
                     width: parent.width
                     model: settings.showUndone ? doneTodos : null
                     title: qsTr("Completed Todos")
-                    decorativeSymbol: Icons.faCheckCircle
-                    decorativeSymbolFont: Fonts.icons
                     symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
                     onHeaderButtonClicked: settings.showUndone =
                                            !settings.showUndone
                     onTodoClicked: d.openTodo(todo)
                 }
 
-                ItemNotesEditor {
-                    item: page.item
-                    width: parent.width
-                }
-
-                ItemDueDateEditor {
-                    item: page.item
-                    width: parent.width
-                }
-
                 Attachments {
+                    id: attachments
                     item: page.item
                     width: parent.width
                 }
+            }
+        }
+    }
 
-                TagsEditor {
-                    item: page.item
-                    library: page.library
-                    width: parent.width
+    Drawer {
+        id: todoDrawer
+
+        edge: Qt.RightEdge
+        width: page.width > 400 ? page.width / 3 * 2 : page.width
+        height: page.height
+        parent: MainWindow.contentItem
+        clip: true
+        dim: true
+        onOpened: {
+            todoPage.forceActiveFocus();
+            interactive = true;
+        }
+        onClosed: {
+            if (todoPage.editingNotes) {
+                todoPage.finishEditingNotes();
+            }
+            interactive = false;
+        }
+
+        TodoPage {
+            id: todoPage
+
+            width: todoDrawer.width
+            height: todoDrawer.height
+            anchors.fill: parent
+            todoList: page.item
+            library: page.library
+            parentDrawer: todoDrawer
+
+            function backAction() {
+                if (editingNotes) {
+                    finishEditingNotes();
+                } else {
+                    todoDrawer.close();
                 }
             }
         }

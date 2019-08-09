@@ -46,10 +46,7 @@ Pane {
         TextField {
             id: edit
             Layout.fillWidth: true
-            Keys.onEscapePressed: focus = false
-            Keys.onBackPressed: focus = false
-            Keys.onEnterPressed: __createIfValidInput()
-            Keys.onReturnPressed: __createIfValidInput()
+            onAccepted: __createIfValidInput()
             selectByMouse: true
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }

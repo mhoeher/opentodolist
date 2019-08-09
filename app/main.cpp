@@ -8,6 +8,7 @@
 #include <QFileSystemWatcher>
 #include <QFont>
 #include <QFontInfo>
+#include <QFontDatabase>
 #include <QIcon>
 #include <QLocale>
 #include <QLoggingCategory>
@@ -110,6 +111,8 @@ private:
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    
 #ifdef OPENTODOLIST_IS_APPIMAGE
     // In the current AppImage build, we do not deploy the
     // Qt wayland plugin. Hence, fall back to x11/xcb.
@@ -118,8 +121,6 @@ int main(int argc, char *argv[])
         qputenv("QT_QPA_PLATFORM", "xcb");
     }
 #endif
-
-    //qputenv("QT_QUICK_CONTROLS_STYLE", "material");
 
     // Let the app decide which scale factor to apply
 #ifdef Q_OS_ANDROID
@@ -139,14 +140,32 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 #endif
 
-#ifdef OPENTODOLIST_FLATPAK
-    // Copy over the included FontConfig configuration to the
-    // app's config dir:
-    QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
-                "/var/config/fontconfig/conf.d/90-otl-color-emoji.conf");
-#endif
+    // Load color emoji font:
+    QFontDatabase::addApplicationFont(
+                ":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
 
-    app.setAttribute(Qt::AA_EnableHighDpiScaling);
+    // Use Noto Color Emoji as substitution font for color emojies:
+    // {
+    //     const auto FontTypes = {
+    //         QFontDatabase::GeneralFont,
+    //         QFontDatabase::FixedFont,
+    //         QFontDatabase::TitleFont,
+    //         QFontDatabase::SmallestReadableFont
+    //     };
+    //     for (auto fontType : FontTypes) {
+    //         auto font = QFontDatabase::systemFont(fontType);
+    //         QFont::insertSubstitution(font.family(), "Noto Color Emoji");
+    //     }
+    // }
+    #ifdef OPENTODOLIST_FLATPAK
+    {
+        QDir dir("/var/config/fontconfig/conf.d");
+        if (dir.mkpath(".")) {
+            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
+            dir.absoluteFilePath("90-otl-color-emoji.conf"));
+        }
+    }
+    #endif
 
     QTranslator translator;
     // look up e.g. :/translations/myapp_de.qm

@@ -12,29 +12,32 @@ Column {
     id: root
 
     property alias model: repeater.model
-    property alias decorativeSymbol: decorativeIcon.symbol
-    property alias decorativeSymbolFont: decorativeIcon.font.family
     property alias symbol: headerIcon.symbol
     property alias symbolFont: headerIcon.font.family
     property alias title: headerLabel.text
+    property alias headerItemVisible: headerIcon.visible
+    property alias allowCreatingNewItems: newItemRow.visible
+    property alias newItemPlaceholderText: newItemTitelEdit.placeholderText
 
     signal headerButtonClicked()
     signal todoClicked(var todo)
+    signal createNewItem(string title)
 
     RowLayout {
         width: parent.width
 
-        ToolButton {
-            id: decorativeIcon
-            symbol: Icons.faTags
-            background: Item {}
-        }
-
-        Label {
+        Heading {
             id: headerLabel
 
+            level: 2
             Layout.fillWidth: true
             font.bold: true
+        }
+
+        Item {
+            visible: !headerIcon.visible
+            width: headerIcon.width
+            height: headerIcon.height
         }
 
         ToolButton {
@@ -55,10 +58,43 @@ Column {
         property SwipeDelegate openSwipeDelegate: null
     }
 
+    RowLayout {
+        id: newItemRow
+
+        visible: false
+        width: parent.width
+
+        Item {
+            width: newItemButton.width
+            height: newItemButton.height
+        }
+
+        TextField {
+            id: newItemTitelEdit
+            Layout.fillWidth: true
+            selectByMouse: true
+            onAccepted: newItemButton.clicked()
+        }
+
+        ToolButton {
+            id: newItemButton
+            symbol: Icons.faPlus
+            enabled: newItemTitelEdit.displayText !== ""
+            onClicked: {
+                var title = newItemTitelEdit.displayText;
+                if (title !== "") {
+                    root.createNewItem(newItemTitelEdit.displayText);
+                    newItemTitelEdit.clear();
+                    newItemTitelEdit.forceActiveFocus();
+                }
+            }
+        }
+    }
+
     Column {
-        x: decorativeIcon.width
-        width: parent.width - x
+        width: parent.width
         clip: true
+        spacing: 10
 
         Repeater {
             id: repeater
@@ -78,13 +114,10 @@ Column {
                         font.family: Fonts.icons
                         symbol: object.done ? Icons.faCheckCircle :
                                               Icons.faCircle
-                        anchors.verticalCenter: parent.verticalCenter
                         onClicked: object.done = !object.done
-                        background: Item {}
                     }
                     Column {
                         Layout.fillWidth: true
-                        anchors.verticalCenter: parent.verticalCenter
 
                         MarkdownLabel {
                             markdown: object.title
@@ -112,7 +145,14 @@ Column {
                             }
                         }
                     }
+                    Item {
+                        visible: !toggleSwipeOpened.visible
+                        width: toggleSwipeOpened.width
+                        height: toggleSwipeOpened.height
+                    }
+
                     ToolButton {
+                        id: toggleSwipeOpened
                         visible: swipeDelegate.hovered
                         symbol: swipeDelegate.swipe.position === 0 ?
                                     Icons.faChevronLeft :

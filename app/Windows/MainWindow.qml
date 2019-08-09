@@ -21,12 +21,6 @@ ApplicationWindow {
     width: 640
     height: 480
 
-    //    signal openLocalLibrary()
-
-    //    function focus() {
-    //        rootItem.forceActiveFocus();
-    //    }
-
     function viewLibrary(lib, tag, special) {
         lib = lib || librariesSideBar.currentLibrary;
         tag = tag || librariesSideBar.currentTag;
@@ -69,7 +63,7 @@ ApplicationWindow {
             ToolButton {
                 symbol: Icons.faArrowLeft
                 visible: stackView.canGoBack
-                onClicked: stackView.pop()
+                onClicked: stackView.goBack()
                 Layout.alignment: Qt.AlignVCenter
             }
 
@@ -116,6 +110,24 @@ ApplicationWindow {
             }
 
             ToolButton {
+                id: addTagButton
+
+                symbol: Icons.faTag
+                visible: stackView.currentItem && (typeof(stackView.currentItem["addTag"]) === "function")
+                onClicked: stackView.currentItem.addTag()
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            ToolButton {
+                id: addAttachmentButton
+
+                symbol: Icons.faPaperclip
+                visible: stackView.currentItem && (typeof(stackView.currentItem["attach"]) === "function")
+                onClicked: stackView.currentItem.attach()
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            ToolButton {
                 id: searchToolButton
 
                 symbol: Icons.faSearch
@@ -125,11 +137,20 @@ ApplicationWindow {
             }
 
             ToolButton {
+                symbol: Icons.faCalendarCheck
+                visible: stackView.currentItem &&
+                         typeof(stackView.currentItem.setDueDate) === "function"
+                Layout.alignment: Qt.AlignVCenter
+                onClicked: stackView.currentItem.setDueDate()
+            }
+
+            ToolButton {
                 symbol: Icons.faTrashAlt
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 Layout.alignment: Qt.AlignVCenter
                 onClicked: stackView.currentItem.deleteItem()
             }
+
             ToolButton {
                 symbol: Icons.faEllipsisV
                 visible: stackView.hasPageMenu
@@ -202,12 +223,22 @@ ApplicationWindow {
         onTriggered: searchToolButton.clicked(null)
     }
 
-    Action {
-        id: goBackAction
-
-        text: qsTr("Go &Back")
-        shortcut: StandardKey.Back
-        onTriggered: if (stackView.canGoBack) { stackView.pop(); }
+    Shortcut {
+        id: goBackShortcut
+        sequences: [
+            StandardKey.Back,
+            "Esc",
+            "Back"
+        ]
+        onActivated: {
+            if (stackView.canGoBack) {
+                stackView.goBack();
+            } else {
+                if (Qt.platform.os === "android") {
+                    Qt.quit();
+                }
+            }
+        }
     }
 
     Action {
@@ -258,8 +289,8 @@ ApplicationWindow {
 
     onClosing: {
         if (Qt.platform.os === "android") {
-            if (stackView.depth > 1) {
-                stackView.pop();
+            if (stackView.canGoBack) {
+                stackView.goBack();
                 close.accepted = false;
                 return;
             }
@@ -329,13 +360,23 @@ ApplicationWindow {
                                (typeof(currentItem.sync) === "function")
         property bool syncRunning: !!currentItem && !!currentItem.syncRunning
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
-        property bool canGoBack: currentItem !== null && depth > 1
+        property bool canGoBack: currentItem !== null &&
+                                 (depth > 1 ||
+                                  typeof(currentItem.goBack) === "function")
 
         property bool hasItem: currentItem &&
                                currentItem.item !== undefined
         property bool hasColor: hasItem && currentItem.item.color !== undefined
         property bool isCheckable: hasItem && currentItem.item.done !== undefined
         property bool isChecked: isCheckable ? currentItem.item.done : false
+
+        function goBack() {
+            if (typeof(currentItem.goBack) === "function") {
+                currentItem.goBack();
+            } else {
+                stackView.pop();
+            }
+        }
 
         anchors {
             left: staticLeftSideBar.right
@@ -367,7 +408,7 @@ ApplicationWindow {
     Connections {
         target: stackView.currentItem
         ignoreUnknownSignals: true
-        onClosePage: stackView.pop()
+        onClosePage: stackView.goBack()
         onOpenPage: stackView.push(component, properties)
         onClearAndOpenPage: {
             stackView.clear();

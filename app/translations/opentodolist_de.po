@@ -3,893 +3,2015 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: OpenTodoList\n"
-"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: de_DE\n"
+"X-Qt-Contexts: true\n"
+
+#~ msgctxt "AboutPage~|"
+#~ msgid "About..."
+#~ msgstr "Über die Anwendung..."
+
+#~ msgctxt "AboutPage~|"
+#~ msgid "OpenTodoList"
+#~ msgstr "OpenTodoList"
+
+#~ msgctxt "AboutPage~|"
+#~ msgid "A todo and task managing application."
+#~ msgstr "Eine Anwendung zur Aufgabenplanung und für Notizen."
+
+#, fuzzy, qt-format
+#~ msgctxt "AboutPage~|"
+#~ msgid "(c) RPdev 2013-2019, version %1"
+#~ msgstr "(c) RPdev 2013-2018, Version %1 {2013-2019,?}"
+
+#~ msgctxt "AboutPage~|"
+#~ msgid ""
+#~ "OpenTodoList is released under the terms of the GNU General Public "
+#~ "License version 3 or (at your choice) any later version. You can find a "
+#~ "copy of the license below. Additionally, several libraries and resources "
+#~ "are used. For detailed information about their license terms, please "
+#~ "refer to the <a href='3rdparty'>3rd Party Software</a> page."
+#~ msgstr ""
+#~ "OpenTodoList wird under den Bedingungen der GNU General Public License "
+#~ "Version 3 oder (falls erwünscht) jeder Nachfolgeversion veröffentlicht. "
+#~ "Eine Kopie der Lizenz findet sich weiter unten. Zusätzlich werden weitere "
+#~ "Bibliotheken und Resourcen benutzt. Für detaillierte Informationen zu "
+#~ "deren Lizenzbedingungen, bitte unter <a "
+#~ "href='3rdparty'>Drittanbietersoftware</a> weiterlesen."
+
+#~ msgctxt "AboutThirdPartyPage~|"
+#~ msgid "Used Libraries and Resources"
+#~ msgstr "Verwendete Bibliotheken und Resources"
+
+#, qt-format
+#~ msgctxt "AboutThirdPartyPage~|"
+#~ msgid "Author: <a href='%2'>%1</a>"
+#~ msgstr "Autor: <a href='%2'>%1</a>"
+
+#, qt-format
+#~ msgctxt "AboutThirdPartyPage~|"
+#~ msgid "License: <a href='%1'>%2</a>"
+#~ msgstr "Lizenz: <a href='%1'>%2</a>"
+
+#, qt-format
+#~ msgctxt "AboutThirdPartyPage~|"
+#~ msgid "Download: <a href='%1'>%1</a>"
+#~ msgstr "Download: <a href='%1'>%1</a>"
+
+#~ msgctxt "Attachments~|"
+#~ msgid "Attach File"
+#~ msgstr "Datei anhängen"
+
+#~ msgctxt "Attachments~|"
+#~ msgid "Delete Attachment?"
+#~ msgstr "Anhang löschen?"
+
+#, qt-format
+#~ msgctxt "Attachments~|"
+#~ msgid ""
+#~ "Are you sure you want to delete the attachment <strong>%1</strong>? This "
+#~ "action cannot be undone."
+#~ msgstr ""
+#~ "Soll der Anhang <strong>%1</strong> wirklich gelöscht werden? Diese "
+#~ "Aktion kann nicht rückgängig gemacht werden."
+
+#~ msgctxt "Attachments~|"
+#~ msgid "Attachments"
+#~ msgstr "Anhänge"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Color"
+#~ msgstr "Farbe"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "White"
+#~ msgstr "Weiß"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Red"
+#~ msgstr "Rot"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Green"
+#~ msgstr "Grün"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Blue"
+#~ msgstr "Blau"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Yellow"
+#~ msgstr "Gelb"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Orange"
+#~ msgstr "Orange"
+
+#~ msgctxt "ColorMenu~|"
+#~ msgid "Lilac"
+#~ msgstr "Lila"
+
+#~ msgctxt "DeleteItemDialog~|"
+#~ msgid "Delete Item?"
+#~ msgstr "Eintrag löschen?"
+
+#, qt-format
+#~ msgctxt "DeleteItemDialog~|"
+#~ msgid ""
+#~ "Do you really want to delete the image <strong>%1</strong>? This cannot "
+#~ "be undone."
+#~ msgstr ""
+#~ "Soll das Bild <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+#~ "kann nicht rückgängig gemacht werden."
+
+#, qt-format
+#~ msgctxt "DeleteItemDialog~|"
+#~ msgid ""
+#~ "Do you really want to delete the todo list <strong>%1</strong>? This "
+#~ "cannot be undone."
+#~ msgstr ""
+#~ "Soll die Aufgabenliste <strong>%1</strong> wirklich gelöscht werden? "
+#~ "Diese Aktion kann nicht rückgängig gemacht werden."
+
+#, qt-format
+#~ msgctxt "DeleteItemDialog~|"
+#~ msgid ""
+#~ "Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+#~ "undone."
+#~ msgstr ""
+#~ "Soll die Aufgabe <strong>%1</strong> wirklich gelöscht werden? Diese "
+#~ "Aktion kann nicht rückgängig gemacht werden."
+
+#, qt-format
+#~ msgctxt "DeleteItemDialog~|"
+#~ msgid ""
+#~ "Do you really want to delete the task <strong>%1</strong>? This cannot be "
+#~ "undone."
+#~ msgstr ""
+#~ "Soll die Unteraufgabe <strong>%1</strong> wirklich gelöscht werden? Diese "
+#~ "Aktion kann nicht rückgängig gemacht werden."
+
+#, qt-format
+#~ msgctxt "DeleteItemDialog~|"
+#~ msgid ""
+#~ "Do you really want to delete the note <strong>%1</strong>? This cannot be "
+#~ "undone."
+#~ msgstr ""
+#~ "Soll die Notiz <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+#~ "kann nicht rückgängig gemacht werden."
+
+#~ msgctxt "DeleteLibraryDialog~|"
+#~ msgid "Delete Library?"
+#~ msgstr "Bibliothek löschen?"
+
+#, qt-format
+#~ msgctxt "DeleteLibraryDialog~|"
+#~ msgid ""
+#~ "Do you really want to remove the library <strong>%1</strong> from  the "
+#~ "application? <em>This will remove any files belonging to the library.</em>"
+#~ msgstr ""
+#~ "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? <em>Das "
+#~ "wird alle Dateien, die zu ihr gehören, ebenfalls löschen.</em>"
+
+#, qt-format
+#~ msgctxt "DeleteLibraryDialog~|"
+#~ msgid ""
+#~ "Do you really want to remove the library <strong>%1</strong> from the "
+#~ "application? Note that the files inside the library will not be removed, "
+#~ "so you can restore the library later on."
+#~ msgstr ""
+#~ "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? "
+#~ "Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie "
+#~ "jederzeit wieder zur Anwendung hinzugefügt werden kann."
+
+#~ msgctxt "FolderSelectionDialog~|"
+#~ msgid "Select a Folder"
+#~ msgstr "Verzeichnis auswählen"
+
+#, qt-format
+#~ msgctxt "ItemCreatedNotification~|"
+#~ msgid "<strong>%1</strong> has been created."
+#~ msgstr "<strong>%1</strong> wurde erzeugt."
+
+#~ msgctxt "ItemCreatedNotification~|"
+#~ msgid "Open"
+#~ msgstr "Öffnen"
+
+#~ msgctxt "ItemDueDateEditor~|"
+#~ msgid "Due on"
+#~ msgstr "Fällig zum"
+
+#~ msgctxt "ItemNotesEditor~|"
+#~ msgid "Notes"
+#~ msgstr "Notizen"
+
+#~ msgctxt "LibrariesSideBar~|"
+#~ msgid "Schedule"
+#~ msgstr "Zeitplan"
+
+#~ msgctxt "LibrariesSideBar~|"
+#~ msgid "New Library"
+#~ msgstr "Neue Bibliothek"
+
+#~ msgctxt "LibrariesSideBar~|"
+#~ msgid "About..."
+#~ msgstr "Über die Anwendung..."
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Red"
+#~ msgstr "Rot"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Green"
+#~ msgstr "Grün"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Blue"
+#~ msgstr "Blau"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Yellow"
+#~ msgstr "Gelb"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Orange"
+#~ msgstr "Orange"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Lilac"
+#~ msgstr "Lila"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "White"
+#~ msgstr "Weiß"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Rename"
+#~ msgstr "Umbenennen"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Delete"
+#~ msgstr "Löschen"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Note Title"
+#~ msgstr "Titel der Notiz"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Todo List Title"
+#~ msgstr "Titel der Aufgabenliste"
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid "Search term 1, search term 2, ..."
+#~ msgstr "Suchbegriff 1, Suchbegriff 2, ..."
+
+#~ msgctxt "LibraryPage~|"
+#~ msgid ""
+#~ "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+#~ "href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+#~ msgstr ""
+#~ "Noch nichts hier! Die Bibliothek kann mit <a href='#note'>Notizen</a>, <a "
+#~ "href='#todolist'>Aufgabenlisten</a> oder <a href='#image'>Bildern</a> "
+#~ "befüllt werden."
+
+#~ msgctxt "LibraryPageMenu~|"
+#~ msgid "Edit Sync Settings"
+#~ msgstr "Synchronisationseinstellungen bearbeiten"
+
+#~ msgctxt "LibraryPageMenu~|"
+#~ msgid "Sync Now"
+#~ msgstr "Synchronisation starten"
+
+#~ msgctxt "LibraryPageMenu~|"
+#~ msgid "Sync Log"
+#~ msgstr "Synchronisationsablauf"
+
+#, qt-format
+#~ msgctxt "LibrarySecretsMissingNotificationBar~|"
+#~ msgid "The secrets for synchronizing the library %1 are missing."
+#~ msgstr "Zugangsdaten zur Synchronisation der Bibliothek %1 fehlen."
+
+#~ msgctxt "LibrarySecretsMissingNotificationBar~|"
+#~ msgid "Ignore"
+#~ msgstr "Ignorieren"
+
+#~ msgctxt "LibrarySecretsMissingNotificationBar~|"
+#~ msgid "Enter Secrets"
+#~ msgstr "Zugangsdaten eingeben"
+
+#~ msgctxt "LogViewPage~|"
+#~ msgid "Synchronization Log"
+#~ msgstr "Synchronisationsereignisse"
+
+#~ msgctxt "LogViewPage~|"
+#~ msgid "Copy Log"
+#~ msgstr "Protokoll kopieren"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "OpenTodoList"
+#~ msgstr "OpenTodoList"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "New &Library"
+#~ msgstr "Neue &Bibliothek"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "New &Note"
+#~ msgstr "Neue &Notiz"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "New &Todo List"
+#~ msgstr "Neue &Aufgabenliste"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "New &Image"
+#~ msgstr "Neues B&ild"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "&Quit"
+#~ msgstr "B&eenden"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "&Find"
+#~ msgstr "&Suche"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "Go &Back"
+#~ msgstr "&Zurückgehen"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "Open Last &Created Item"
+#~ msgstr "Öffne zuletzt &erzeugten Eintrag"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid "Open &Left Side Bar"
+#~ msgstr "Öffne die &linke Seitenleiste"
+
+#~ msgctxt "MainWindow~|"
+#~ msgid ""
+#~ "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+#~ "used to store different kinds of items like notes, todo lists and images."
+#~ msgstr ""
+#~ "Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken "
+#~ "enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."
+
+#~ msgctxt "MarkdownEditorPage~|"
+#~ msgid "Edit Notes"
+#~ msgstr "Notizen bearbeiten"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "Create Library"
+#~ msgstr "Bibliothek anlegen"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "Create"
+#~ msgstr "Erstellen"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "Library Name:"
+#~ msgstr "Name der Bibliothek:"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "My New Library"
+#~ msgstr "Meine neue Bibliothek"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "Create Library in Default Location"
+#~ msgstr "Bibliothek im Standardverzeichnis anlegen"
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid ""
+#~ "The items you add to the library will be stored in the default location "
+#~ "for libraries."
+#~ msgstr ""
+#~ "Die Einträge, die zur Bibliothek hinzugefügt werden, werden im "
+#~ "Standardverzeichnis für Bibliotheken abgelegt."
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid ""
+#~ "Please select a directory into which the library items shall be saved. "
+#~ "You can also select an existing library directory. In this case, the "
+#~ "library will be imported."
+#~ msgstr ""
+#~ "Bitte ein Verzeichnis auswählen, in welchem die Bibliothek abgelegt "
+#~ "werden soll. Es kann außerdem ein bestehendes Bibliotheksverzeichnis "
+#~ "ausgewählt werden. In diesem Fall wird diese in die Anwendung importiert."
+
+#~ msgctxt "NewLibraryPage~|"
+#~ msgid "Please select a library location"
+#~ msgstr "Bitte ein Verzeichnis für die Bibliothek auswählen"
+
+#~ msgctxt "NewTopLevelItemButton~|"
+#~ msgid "Note"
+#~ msgstr "Notiz"
+
+#~ msgctxt "NewTopLevelItemButton~|"
+#~ msgid "Todo List"
+#~ msgstr "Aufgabenliste"
+
+#~ msgctxt "NewTopLevelItemButton~|"
+#~ msgid "Image"
+#~ msgstr "Bild"
+
+#~ msgctxt "OpenFileDialog~|"
+#~ msgid "Select a File"
+#~ msgstr "Datei auswählen"
+
+#~ msgctxt "OpenImageDialog~|"
+#~ msgid "Select Image"
+#~ msgstr "Bild auswählen"
+
+#~ msgctxt "RenameItemDialog~|"
+#~ msgid "Rename Item"
+#~ msgstr "Eintrag umbenennen"
+
+#~ msgctxt "RenameItemDialog~|"
+#~ msgid "Enter item title..."
+#~ msgstr "Titel für den Eintrag..."
+
+#~ msgctxt "RenameLibraryDialog~|"
+#~ msgid "Rename Library"
+#~ msgstr "Bibliothek umbenennen"
+
+#~ msgctxt "RenameLibraryDialog~|"
+#~ msgid "Enter library title..."
+#~ msgstr "Bibliotheksnamen eingeben..."
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid "Today"
+#~ msgstr "Heute"
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid "Tomorrow"
+#~ msgstr "Morgen"
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid "Later This Week"
+#~ msgstr "Später in dieser Woche"
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid "Next Week"
+#~ msgstr "Nächste Woche"
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid "Coming Next"
+#~ msgstr "Geplant für später"
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid ""
+#~ "Nothing scheduled... Add a due date to items for them to appear here."
+#~ msgstr ""
+#~ "Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in "
+#~ "dieser Liste angezeigt."
+
+#~ msgctxt "ScheduleViewPage~|"
+#~ msgid "Overdue"
+#~ msgstr "Überfällig"
+
+#~ msgctxt "SyncErrorNotificationBar~|"
+#~ msgid ""
+#~ "There were errors when synchronizing the library. Please ensure that the "
+#~ "library settings are up to date."
+#~ msgstr ""
+#~ "Es sind Fehler beim Synchronisieren der Anwendung aufgetreten. Bitte "
+#~ "sicherstellen, dass die Einstellungen der Bibliothek korrekt sind."
+
+#~ msgctxt "SyncErrorNotificationBar~|"
+#~ msgid "Ignore"
+#~ msgstr "Ignorieren"
+
+#~ msgctxt "SyncErrorNotificationBar~|"
+#~ msgid "View"
+#~ msgstr "Überprüfen"
+
+#~ msgctxt "SyncIndicatorBar~|"
+#~ msgid "Synchronizing library..."
+#~ msgstr "Synchronisation der Bibliothek läuft..."
+
+#~ msgctxt "SyncLibrarySelectionPage~|"
+#~ msgid "Create Library"
+#~ msgstr "Bibliothek anlegen"
+
+#~ msgctxt "SyncLibrarySelectionPage~|"
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgctxt "SyncLibrarySelectionPage~|"
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgctxt "SyncLibrarySelectionPage~|"
+#~ msgid "Create new library on server"
+#~ msgstr "Neue Bibliothek auf dem Server anlegen"
+
+#~ msgctxt "SyncLibrarySelectionPage~|"
+#~ msgid "Searching for existing libraries..."
+#~ msgstr "Suche bestehende Bibliotheken..."
+
+#~ msgctxt "SynchronizerBackendSelectionPage~|"
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgctxt "SynchronizerBackendSelectionPage~|"
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgctxt "SynchronizerBackendSelectionPage~|"
+#~ msgid "NextCloud"
+#~ msgstr "NextCloud"
+
+#~ msgctxt "SynchronizerBackendSelectionPage~|"
+#~ msgid "ownCloud"
+#~ msgstr "ownCloud"
+
+#~ msgctxt "SynchronizerBackendSelectionPage~|"
+#~ msgid "WebDAV"
+#~ msgstr "WebDAV"
+
+#~ msgctxt "SynchronizerBackendSelectionPage~|"
+#~ msgid "Local Library"
+#~ msgstr "Lokale Bibliothek"
+
+#~ msgctxt "TagsEditor~|"
+#~ msgid "Tags"
+#~ msgstr "Schlagwörter"
+
+#~ msgctxt "TodoListItem~|"
+#~ msgid "✔ No open todos - everything done"
+#~ msgstr "✔ Keine offenen Aufgaben - alles erledigt"
+
+#~ msgctxt "TodoListPage~|"
+#~ msgid "Add Todo"
+#~ msgstr "Aufgabe hinzufügen"
+
+#~ msgctxt "TodoListPage~|"
+#~ msgid "Search term 1, search term 2, ..."
+#~ msgstr "Suchbegriff 1, Suchbegriff 2, ..."
+
+#~ msgctxt "TodoListPage~|"
+#~ msgid "Todos"
+#~ msgstr "Aufgaben"
+
+#~ msgctxt "TodoListPage~|"
+#~ msgid "Completed Todos"
+#~ msgstr "Erledigte Aufgaben"
+
+#~ msgctxt "TodoPage~|"
+#~ msgid "Add Task"
+#~ msgstr "Unteraufgabe hinzufügen"
+
+#~ msgctxt "TodoPage~|"
+#~ msgid "Search term 1, search term 2, ..."
+#~ msgstr "Suchbegriff 1, Suchbegriff 2, ..."
+
+#~ msgctxt "TodoPage~|"
+#~ msgid "Tasks"
+#~ msgstr "Unteraufgaben"
+
+#, qt-format
+#~ msgctxt "UpdateNotificationBar~|"
+#~ msgid "An update to OpenTodoList %1 is available."
+#~ msgstr "Die neue Version OpenTodoList %1 ist verfügbar."
+
+#~ msgctxt "UpdateNotificationBar~|"
+#~ msgid "Ignore"
+#~ msgstr "Ignorieren"
+
+#~ msgctxt "UpdateNotificationBar~|"
+#~ msgid "Download"
+#~ msgstr "Herunterladen"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid ""
+#~ "Unexpected HTTP code received when getting remote folder entry list: '%1'"
+#~ msgstr ""
+#~ "Unerwarteter Fehlercode beim Auflisten der Verzeichnisinhalte auf dem "
+#~ "Server: '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Failed to open file '%1' for writing: %2"
+#~ msgstr "Kann Datei '%1' nicht zum Schreiben öffnen: %2"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Download failed with HTTP code %1"
+#~ msgstr "Herunterladen fehlgeschlagen mit Fehlernummer %1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Failed to open intermediate download file: %1"
+#~ msgstr "Kann temporäre heruntergeladene Datei nicht öffnen: %1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Uploading failed with HTTP code %1"
+#~ msgstr "Hochladen fehlgeschlagen mit Fehlernummer %1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Failed to open file '%1' for reading: %2"
+#~ msgstr "Kann Datei '%1' nicht zum Lesen öffnen: %2"
+
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Server did not send eTag when uploading"
+#~ msgstr "Server hat keinen eTag nach dem hochladen zurückgeliefert"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Deleting remote file failed with HTTP code %1"
+#~ msgstr "Löschen von Datei auf dem Server fehlgeschlagen mit Fehlernummer %1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Synchronizing '%1'"
+#~ msgstr "Synchronisiere '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Ignoring file %1"
+#~ msgstr "Ignoriere Datei %1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid ""
+#~ "Skipping sync of directory '%1' as there were no local changes and we "
+#~ "have been asked to push only"
+#~ msgstr ""
+#~ "Überspringe Synchronisation von Verzeichnis '%1', da keine lokalen "
+#~ "Änderungen vorliegen und die Synchronisation um Modus Nur-Hochladen läuft"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Failed to get entry list for '%1'"
+#~ msgstr "Fehler beim Auflisten der Verzeichnisinhalte von '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Pulling '%1'"
+#~ msgstr "Herunterladen von '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid ""
+#~ "Pull conflict: Cannot pull file '%1' from '%2'  because a local directory "
+#~ "with than name already exists"
+#~ msgstr ""
+#~ "Konflikt beim Herunnterladen von Datei '%1'von '%2', weil ein lokales "
+#~ "Verzeichnis mit dem selben Namen bereits existiert"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid ""
+#~ "Pull conflict: Cannot pull directory '%1' from '%2' because a file with "
+#~ "that name already exists locally"
+#~ msgstr ""
+#~ "Konflikt beim Herunterladen von '%1' von '%2', weil bereits eine lokale "
+#~ "Datei mit dem selben Namen existiert"
+
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Cannot pull remote entry of type Unknown"
+#~ msgstr "Kann Eintrag vom Type Unbekannt nicht vom Server herunterladen"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Removing '%1' locally"
+#~ msgstr "Entferne '%1' lokal"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Failed to remove local file '%1' from '%2'"
+#~ msgstr "Fehler beim Löschen der lokalen Datei '%1' von '%2'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Failed to remove local directory '%1'"
+#~ msgstr "Fehler beim Löschen des lokalen Verzeichnises '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Bad sync entry type of entry '%1' in '%2' when removing local entry"
+#~ msgstr "Ungültiger Synchronisationseintrag von '%1' in '%2'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Pushing '%1'"
+#~ msgstr "Hochladen von '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid ""
+#~ "Push conflict: Cannot push directory '%1' as a file with that name exists "
+#~ "on the remote"
+#~ msgstr ""
+#~ "Konflikt beim Hochladen: Kann Verzeichnis '%1' nicht hochladen, da "
+#~ "bereits eine Datei mit dem selben Namen auf dem Server existiert"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid ""
+#~ "Push conflict: Cannot push local file '%1' because a directory with that "
+#~ "name exists remotely"
+#~ msgstr ""
+#~ "Konflikt beim Hochladen: Kann lokale Datei '%1' nicht hochladen, da auf "
+#~ "dem Server bereits ein Verzeichnis mit dem selben Namen existiert"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Unexpected local type of entry '%1'"
+#~ msgstr "Unerwarteter Typ von lokalem Eintrag '%1'"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Removing remote entry '%1'"
+#~ msgstr "Entferne Eintrag '%1' auf dem Server"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "There was an SSL error: %1"
+#~ msgstr "SSL-Fehler ist aufgetreten: %1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Problem establishing a secure connection to the server: %1"
+#~ msgstr ""
+#~ "Problem beim Herstellen einer sicheren Verbindung zum Server aufgetreten: "
+#~ "%1"
+
+#, qt-format
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "There was a network error: %1"
+#~ msgstr "Netzwerkproblem aufgetreten: %1"
+
+#~ msgctxt "WebDAVClient~|"
+#~ msgid "Authentication failed. Please check you username and password."
+#~ msgstr ""
+#~ "Authentifikation fehlgeschlagen. Bitte Benutzernamen und Passwort "
+#~ "überprüfen."
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "Validate"
+#~ msgstr "Überprüfen"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "Server Address:"
+#~ msgstr "Serveradresse:"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "https://..."
+#~ msgstr "https://..."
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "User name:"
+#~ msgstr "Benutzername:"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "Password:"
+#~ msgstr "Passwort:"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid "Ignore SSL Errors"
+#~ msgstr "SSL Probleme ignorieren"
+
+#~ msgctxt "WebDAVConnectionSettingsPage~|"
+#~ msgid ""
+#~ "Failed to connect to the server. Please check your user name, password "
+#~ "and the server address and retry."
+#~ msgstr ""
+#~ "Kann keine Verbindung zum Server aufbauen. Bitte den Benutzernamen, das "
+#~ "Passwort sowie die Adresse des Servers überprüfen und erneut versuchen."
+
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Starting synchronization"
+#~ msgstr "Starte Synchronisation"
+
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "The last sync did not run through - doing a full sync"
+#~ msgstr ""
+#~ "Die letzte Synchronisation wurde nicht durchlaufen - eine vollständige "
+#~ "Synchronisation wurde durchgeführt."
+
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Failed to create sync lock:"
+#~ msgstr "Es konnte keine Synchronisationssperre erstellt werden:\n"
+
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Creating the remote top level directory"
+#~ msgstr "Erstellen des Remote-Verzeichnisses der obersten Ebene"
+
+#, qt-format
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Failed to prepare remote directory '%1' for sync"
+#~ msgstr ""
+#~ "Das Verzeichnis'%1' konnte nicht für die Synchronisierung vorbereitet "
+#~ "werden."
+
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Failed to synchronize top level directory!"
+#~ msgstr ""
+#~ "Die Synchronisation des Top-Level-Verzeichnisses konnte nicht "
+#~ "durchgeführt werden"
+
+#, qt-format
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Failed to synchronize '%1'"
+#~ msgstr "konnte nicht syncronisiert werden '%1'"
+
+#~ msgctxt "WebDAVSynchronizer~|"
+#~ msgid "Synchronization finished"
+#~ msgstr "Synchronisation beendet"
+
+#~ msgctxt "WebDAVSynchronizerSettingsPage~|"
+#~ msgid "User name"
+#~ msgstr "Benutzername"
+
+#~ msgctxt "WebDAVSynchronizerSettingsPage~|"
+#~ msgid "Password"
+#~ msgstr "Passwort"
+
+#~ msgctxt "main~|"
+#~ msgid "Manage your personal data."
+#~ msgstr "Persönliche Daten verwalten."
+
+#~ msgctxt "main~|"
+#~ msgid "QML Root Directory"
+#~ msgstr "QML Wurzelverzeichnis"
+
+#~ msgctxt "main~|"
+#~ msgid "DIR"
+#~ msgstr "VERZEICHNIS"
+
+#~ msgctxt "main~|"
+#~ msgid "Switch on some optimizations for touchscreens."
+#~ msgstr "Optimierungen für berührungsempfindliche Bildschirme aktivieren."
+
+#~ msgctxt "main~|"
+#~ msgid "Remove shortcuts to the AppImage."
+#~ msgstr "AppImage-Integration entfernen."
 
 #: ../Pages/AboutPage.qml:13
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "About..."
 msgstr "Über die Anwendung..."
 
 #: ../Pages/AboutPage.qml:30
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
 #: ../Pages/AboutPage.qml:37
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Eine Anwendung zur Aufgabenplanung und für Notizen."
 
 #: ../Pages/AboutPage.qml:44
-#, fuzzy
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2019, version %1"
 msgstr "(c) RPdev 2013-2018, Version %1 {2013-2019,?}"
 
 #: ../Pages/AboutPage.qml:59
+#, fuzzy
 msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "OpenTodoList wird under den Bedingungen der GNU General Public License Version 3 oder (falls erwünscht) jeder Nachfolgeversion veröffentlicht. Eine Kopie der Lizenz findet sich weiter unten. Zusätzlich werden weitere Bibliotheken und Resourcen benutzt. Für detaillierte Informationen zu deren Lizenzbedingungen, bitte unter <a href='3rdparty'>Drittanbietersoftware</a> weiterlesen."
+msgid ""
+"OpenTodoList is released under the terms of the GNU General Public License "
+"version 3 or (at your choice) any later version. You can find a copy of the "
+"license below. Additionally, several libraries and resources are used. For "
+"detailed information about their license terms, please refer to the <a "
+"href='3rdparty'>3rd Party Software</a> page."
+msgstr ""
+"OpenTodoList wird under den Bedingungen der GNU General Public License "
+"Version 3 oder (falls erwünscht) jeder Nachfolgeversion veröffentlicht. Eine "
+"Kopie der Lizenz findet sich weiter unten. Zusätzlich werden weitere "
+"Bibliotheken und Resourcen benutzt. Für detaillierte Informationen zu deren "
+"Lizenzbedingungen, bitte unter <a href='3rdparty'>Drittanbietersoftware</a> "
+"weiterlesen."
 
 #: ../Pages/AboutThirdPartyPage.qml:10
+#, fuzzy
 msgctxt "AboutThirdPartyPage|"
 msgid "Used Libraries and Resources"
 msgstr "Verwendete Bibliotheken und Resources"
 
 #: ../Pages/AboutThirdPartyPage.qml:46
+#, fuzzy, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
 msgstr "Autor: <a href='%2'>%1</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:53
+#, fuzzy, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
 msgstr "Lizenz: <a href='%1'>%2</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:60
+#, fuzzy, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Download: <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:22
+#: ../Widgets/Attachments.qml:27
+#, fuzzy
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Datei anhängen"
 
-#: ../Widgets/Attachments.qml:35
+#: ../Widgets/Attachments.qml:40
+#, fuzzy
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Anhang löschen?"
 
-#: ../Widgets/Attachments.qml:39
+#: ../Widgets/Attachments.qml:44
+#, fuzzy, qt-format
 msgctxt "Attachments|"
-msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "Soll der Anhang <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Are you sure you want to delete the attachment <strong>%1</strong>? This "
+"action cannot be undone."
+msgstr ""
+"Soll der Anhang <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
-#: ../Widgets/Attachments.qml:61
+#: ../Widgets/Attachments.qml:58
+#, fuzzy
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Anhänge"
 
 #: ../Menues/ColorMenu.qml:14
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Color"
 msgstr "Farbe"
 
 #: ../Menues/ColorMenu.qml:17
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "White"
 msgstr "Weiß"
 
 #: ../Menues/ColorMenu.qml:24
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Red"
 msgstr "Rot"
 
 #: ../Menues/ColorMenu.qml:31
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Green"
 msgstr "Grün"
 
 #: ../Menues/ColorMenu.qml:38
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Blue"
 msgstr "Blau"
 
 #: ../Menues/ColorMenu.qml:45
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Yellow"
 msgstr "Gelb"
 
 #: ../Menues/ColorMenu.qml:52
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Orange"
 msgstr "Orange"
 
 #: ../Menues/ColorMenu.qml:59
+#, fuzzy
 msgctxt "ColorMenu|"
 msgid "Lilac"
 msgstr "Lila"
 
 #: ../Windows/DeleteItemDialog.qml:18
+#, fuzzy
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
 msgstr "Eintrag löschen?"
 
 #: ../Windows/DeleteItemDialog.qml:31
+#, fuzzy, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Soll das Bild <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the image <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll das Bild <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:35
+#, fuzzy, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Aufgabenliste <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
+"be undone."
+msgstr ""
+"Soll die Aufgabenliste <strong>%1</strong> wirklich gelöscht werden? Diese "
+"Aktion kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:39
+#, fuzzy, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Aufgabe <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll die Aufgabe <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:43
+#, fuzzy, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Unteraufgabe <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the task <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll die Unteraufgabe <strong>%1</strong> wirklich gelöscht werden? Diese "
+"Aktion kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteItemDialog.qml:47
+#, fuzzy, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Soll die Notiz <strong>%1</strong> wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Do you really want to delete the note <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Soll die Notiz <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
 
 #: ../Windows/DeleteLibraryDialog.qml:18
+#, fuzzy
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
 msgstr "Bibliothek löschen?"
 
 #: ../Windows/DeleteLibraryDialog.qml:32
+#, fuzzy, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? <em>Das wird alle Dateien, die zu ihr gehören, ebenfalls löschen.</em>"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from  the "
+"application? <em>This will remove any files belonging to the library.</em>"
+msgstr ""
+"Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? <em>Das "
+"wird alle Dateien, die zu ihr gehören, ebenfalls löschen.</em>"
 
 #: ../Windows/DeleteLibraryDialog.qml:39
+#, fuzzy, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit wieder zur Anwendung hinzugefügt werden kann."
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from the "
+"application? Note that the files inside the library will not be removed, so "
+"you can restore the library later on."
+msgstr ""
+"Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? Dateien, "
+"die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit "
+"wieder zur Anwendung hinzugefügt werden kann."
 
 #: ../Windows/FolderSelectionDialog.qml:16
+#, fuzzy
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Verzeichnis auswählen"
 
 #: ../Widgets/ItemCreatedNotification.qml:62
+#, fuzzy, qt-format
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
 msgstr "<strong>%1</strong> wurde erzeugt."
 
 #: ../Widgets/ItemCreatedNotification.qml:67
+#, fuzzy
 msgctxt "ItemCreatedNotification|"
 msgid "Open"
 msgstr "Öffnen"
 
 #: ../Widgets/ItemDueDateEditor.qml:30
+#, fuzzy
 msgctxt "ItemDueDateEditor|"
 msgid "Due on"
 msgstr "Fällig zum"
 
-#: ../Widgets/ItemNotesEditor.qml:28
+#: ../Widgets/ItemNotesEditor.qml:26
+#, fuzzy
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notizen"
 
+#: ../Widgets/ItemNotesEditor.qml:58
+msgctxt "ItemNotesEditor|"
+msgid "No notes added yet - click here to add some."
+msgstr ""
+
 #: ../Widgets/LibrariesSideBar.qml:97
+#, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Zeitplan"
 
 #: ../Widgets/LibrariesSideBar.qml:132
+#, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Neue Bibliothek"
 
 #: ../Widgets/LibrariesSideBar.qml:138
+#, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Über die Anwendung..."
 
 #: ../Pages/LibraryPage.qml:123
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Rot"
 
 #: ../Pages/LibraryPage.qml:130
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Grün"
 
 #: ../Pages/LibraryPage.qml:137
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Blau"
 
 #: ../Pages/LibraryPage.qml:144
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Gelb"
 
 #: ../Pages/LibraryPage.qml:151
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Orange"
 
 #: ../Pages/LibraryPage.qml:158
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lila"
 
 #: ../Pages/LibraryPage.qml:165
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Weiß"
 
 #: ../Pages/LibraryPage.qml:175
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Umbenennen"
 
 #: ../Pages/LibraryPage.qml:180
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Löschen"
 
 #: ../Pages/LibraryPage.qml:217
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Titel der Notiz"
 
 #: ../Pages/LibraryPage.qml:230
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Titel der Aufgabenliste"
 
 #: ../Pages/LibraryPage.qml:243
+#, fuzzy
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Suchbegriff 1, Suchbegriff 2, ..."
 
 #: ../Pages/LibraryPage.qml:305
+#, fuzzy
 msgctxt "LibraryPage|"
-msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr "Noch nichts hier! Die Bibliothek kann mit <a href='#note'>Notizen</a>, <a href='#todolist'>Aufgabenlisten</a> oder <a href='#image'>Bildern</a> befüllt werden."
+msgid ""
+"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr ""
+"Noch nichts hier! Die Bibliothek kann mit <a href='#note'>Notizen</a>, <a "
+"href='#todolist'>Aufgabenlisten</a> oder <a href='#image'>Bildern</a> "
+"befüllt werden."
 
 #: ../Menues/LibraryPageMenu.qml:17
+#, fuzzy
 msgctxt "LibraryPageMenu|"
 msgid "Edit Sync Settings"
 msgstr "Synchronisationseinstellungen bearbeiten"
 
 #: ../Menues/LibraryPageMenu.qml:33
+#, fuzzy
 msgctxt "LibraryPageMenu|"
 msgid "Sync Now"
 msgstr "Synchronisation starten"
 
 #: ../Menues/LibraryPageMenu.qml:44
+#, fuzzy
 msgctxt "LibraryPageMenu|"
 msgid "Sync Log"
 msgstr "Synchronisationsablauf"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:34
+#, fuzzy, qt-format
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "The secrets for synchronizing the library %1 are missing."
 msgstr "Zugangsdaten zur Synchronisation der Bibliothek %1 fehlen."
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:39
+#, fuzzy
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Ignore"
 msgstr "Ignorieren"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:43
+#, fuzzy
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Enter Secrets"
 msgstr "Zugangsdaten eingeben"
 
 #: ../Pages/LogViewPage.qml:12
+#, fuzzy
 msgctxt "LogViewPage|"
 msgid "Synchronization Log"
 msgstr "Synchronisationsereignisse"
 
 #: ../Pages/LogViewPage.qml:20
+#, fuzzy
 msgctxt "LogViewPage|"
 msgid "Copy Log"
 msgstr "Protokoll kopieren"
 
 #: ../Windows/MainWindow.qml:19
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Windows/MainWindow.qml:157
+#: ../Windows/MainWindow.qml:195
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Library"
 msgstr "Neue &Bibliothek"
 
-#: ../Windows/MainWindow.qml:168
+#: ../Windows/MainWindow.qml:206
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Note"
 msgstr "Neue &Notiz"
 
-#: ../Windows/MainWindow.qml:176
+#: ../Windows/MainWindow.qml:214
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Todo List"
 msgstr "Neue &Aufgabenliste"
 
-#: ../Windows/MainWindow.qml:184
+#: ../Windows/MainWindow.qml:222
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Image"
 msgstr "Neues B&ild"
 
-#: ../Windows/MainWindow.qml:192
+#: ../Windows/MainWindow.qml:230
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "&Quit"
 msgstr "B&eenden"
 
-#: ../Windows/MainWindow.qml:200
+#: ../Windows/MainWindow.qml:238
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "&Find"
 msgstr "&Suche"
 
-#: ../Windows/MainWindow.qml:208
-msgctxt "MainWindow|"
-msgid "Go &Back"
-msgstr "&Zurückgehen"
-
-#: ../Windows/MainWindow.qml:217
+#: ../Windows/MainWindow.qml:261
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
 msgstr "Öffne zuletzt &erzeugten Eintrag"
 
-#: ../Windows/MainWindow.qml:225
+#: ../Windows/MainWindow.qml:269
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Öffne die &linke Seitenleiste"
 
-#: ../Windows/MainWindow.qml:315
+#: ../Windows/MainWindow.qml:359
+#, fuzzy
 msgctxt "MainWindow|"
-msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
-msgstr "Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."
-
-#: ../Pages/MarkdownEditorPage.qml:22
-msgctxt "MarkdownEditorPage|"
-msgid "Edit Notes"
-msgstr "Notizen bearbeiten"
+msgid ""
+"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+"used to store different kinds of items like notes, todo lists and images."
+msgstr ""
+"Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken "
+"enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."
 
 #: ../Pages/NewLibraryPage.qml:18
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "Create Library"
 msgstr "Bibliothek anlegen"
 
 #: ../Pages/NewLibraryPage.qml:22
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "Create"
 msgstr "Erstellen"
 
 #: ../Pages/NewLibraryPage.qml:38
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: ../Pages/NewLibraryPage.qml:57
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "Library Name:"
 msgstr "Name der Bibliothek:"
 
 #: ../Pages/NewLibraryPage.qml:65
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "My New Library"
 msgstr "Meine neue Bibliothek"
 
 #: ../Pages/NewLibraryPage.qml:72
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "Create Library in Default Location"
 msgstr "Bibliothek im Standardverzeichnis anlegen"
 
 #: ../Pages/NewLibraryPage.qml:79
+#, fuzzy
 msgctxt "NewLibraryPage|"
-msgid "The items you add to the library will be stored in the default location for libraries."
-msgstr "Die Einträge, die zur Bibliothek hinzugefügt werden, werden im Standardverzeichnis für Bibliotheken abgelegt."
+msgid ""
+"The items you add to the library will be stored in the default location for "
+"libraries."
+msgstr ""
+"Die Einträge, die zur Bibliothek hinzugefügt werden, werden im "
+"Standardverzeichnis für Bibliotheken abgelegt."
 
 #: ../Pages/NewLibraryPage.qml:81
+#, fuzzy
 msgctxt "NewLibraryPage|"
-msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
-msgstr "Bitte ein Verzeichnis auswählen, in welchem die Bibliothek abgelegt werden soll. Es kann außerdem ein bestehendes Bibliotheksverzeichnis ausgewählt werden. In diesem Fall wird diese in die Anwendung importiert."
+msgid ""
+"Please select a directory into which the library items shall be saved. You "
+"can also select an existing library directory. In this case, the library "
+"will be imported."
+msgstr ""
+"Bitte ein Verzeichnis auswählen, in welchem die Bibliothek abgelegt werden "
+"soll. Es kann außerdem ein bestehendes Bibliotheksverzeichnis ausgewählt "
+"werden. In diesem Fall wird diese in die Anwendung importiert."
 
 #: ../Pages/NewLibraryPage.qml:108
+#, fuzzy
 msgctxt "NewLibraryPage|"
 msgid "Please select a library location"
 msgstr "Bitte ein Verzeichnis für die Bibliothek auswählen"
 
 #: ../Widgets/NewTopLevelItemButton.qml:37
+#, fuzzy
 msgctxt "NewTopLevelItemButton|"
 msgid "Note"
 msgstr "Notiz"
 
 #: ../Widgets/NewTopLevelItemButton.qml:41
+#, fuzzy
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo List"
 msgstr "Aufgabenliste"
 
 #: ../Widgets/NewTopLevelItemButton.qml:45
+#, fuzzy
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
 msgstr "Bild"
 
 #: ../Windows/OpenFileDialog.qml:17
+#, fuzzy
 msgctxt "OpenFileDialog|"
 msgid "Select a File"
 msgstr "Datei auswählen"
 
 #: ../Windows/OpenImageDialog.qml:19
+#, fuzzy
 msgctxt "OpenImageDialog|"
 msgid "Select Image"
 msgstr "Bild auswählen"
 
 #: ../Windows/RenameItemDialog.qml:21
+#, fuzzy
 msgctxt "RenameItemDialog|"
 msgid "Rename Item"
 msgstr "Eintrag umbenennen"
 
 #: ../Windows/RenameItemDialog.qml:32
+#, fuzzy
 msgctxt "RenameItemDialog|"
 msgid "Enter item title..."
 msgstr "Titel für den Eintrag..."
 
 #: ../Windows/RenameLibraryDialog.qml:19
+#, fuzzy
 msgctxt "RenameLibraryDialog|"
 msgid "Rename Library"
 msgstr "Bibliothek umbenennen"
 
 #: ../Windows/RenameLibraryDialog.qml:36
+#, fuzzy
 msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Bibliotheksnamen eingeben..."
 
+#: ../Pages/ScheduleViewPage.qml:70
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Overdue"
+msgstr "Überfällig"
+
 #: ../Pages/ScheduleViewPage.qml:126
+#, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Heute"
 
 #: ../Pages/ScheduleViewPage.qml:127
+#, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Morgen"
 
 #: ../Pages/ScheduleViewPage.qml:131
+#, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Später in dieser Woche"
 
 #: ../Pages/ScheduleViewPage.qml:133
+#, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Nächste Woche"
 
 #: ../Pages/ScheduleViewPage.qml:134
+#, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Geplant für später"
 
-#: ../Pages/ScheduleViewPage.qml:249
+#: ../Pages/ScheduleViewPage.qml:250
+#, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr "Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser Liste angezeigt."
-
-#: ../Pages/ScheduleViewPage.qml:70
-msgctxt "ScheduleViewPage|"
-msgid "Overdue"
-msgstr "Überfällig"
+msgstr ""
+"Nichts geplant... Einträge, die ein Enddatum gesetzt haben, werden in dieser "
+"Liste angezeigt."
 
 #: ../Widgets/SyncErrorNotificationBar.qml:41
+#, fuzzy
 msgctxt "SyncErrorNotificationBar|"
-msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Es sind Fehler beim Synchronisieren der Anwendung aufgetreten. Bitte sicherstellen, dass die Einstellungen der Bibliothek korrekt sind."
+msgid ""
+"There were errors when synchronizing the library. Please ensure that the "
+"library settings are up to date."
+msgstr ""
+"Es sind Fehler beim Synchronisieren der Anwendung aufgetreten. Bitte "
+"sicherstellen, dass die Einstellungen der Bibliothek korrekt sind."
 
 #: ../Widgets/SyncErrorNotificationBar.qml:47
+#, fuzzy
 msgctxt "SyncErrorNotificationBar|"
 msgid "Ignore"
 msgstr "Ignorieren"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:51
+#, fuzzy
 msgctxt "SyncErrorNotificationBar|"
 msgid "View"
 msgstr "Überprüfen"
 
 #: ../Widgets/SyncIndicatorBar.qml:61
+#, fuzzy
 msgctxt "SyncIndicatorBar|"
 msgid "Synchronizing library..."
 msgstr "Synchronisation der Bibliothek läuft..."
 
 #: ../Pages/SyncLibrarySelectionPage.qml:16
+#, fuzzy
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create Library"
 msgstr "Bibliothek anlegen"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:28
+#, fuzzy
 msgctxt "SyncLibrarySelectionPage|"
 msgid "OK"
 msgstr "OK"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:45
+#, fuzzy
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:78
+#, fuzzy
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create new library on server"
 msgstr "Neue Bibliothek auf dem Server anlegen"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:96
+#, fuzzy
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Searching for existing libraries..."
 msgstr "Suche bestehende Bibliotheken..."
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:15
+#, fuzzy
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:20
+#, fuzzy
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "OK"
 msgstr "OK"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:44
+#, fuzzy
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "NextCloud"
 msgstr "NextCloud"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:51
+#, fuzzy
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "ownCloud"
 msgstr "ownCloud"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:58
 #: ../Pages/SynchronizerBackendSelectionPage.qml:59
+#, fuzzy
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:65
 #: ../Pages/SynchronizerBackendSelectionPage.qml:66
+#, fuzzy
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Lokale Bibliothek"
 
-#: ../Widgets/TagsEditor.qml:67
+#: ../Widgets/TagsEditor.qml:33
 msgctxt "TagsEditor|"
-msgid "Tags"
-msgstr "Schlagwörter"
+msgid "Add Tag"
+msgstr ""
 
 #: ../Widgets/TodoListItem.qml:92
+#, fuzzy
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Keine offenen Aufgaben - alles erledigt"
 
-#: ../Pages/TodoListPage.qml:80
-msgctxt "TodoListPage|"
-msgid "Add Todo"
-msgstr "Aufgabe hinzufügen"
-
-#: ../Pages/TodoListPage.qml:140
+#: ../Pages/TodoListPage.qml:159
+#, fuzzy
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Suchbegriff 1, Suchbegriff 2, ..."
 
-#: ../Pages/TodoListPage.qml:169
+#: ../Pages/TodoListPage.qml:216
+#, fuzzy
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Aufgaben"
 
-#: ../Pages/TodoListPage.qml:180
+#: ../Pages/TodoListPage.qml:220
+msgctxt "TodoListPage|"
+msgid "Add new todo..."
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:236
+#, fuzzy
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Erledigte Aufgaben"
 
-#: ../Pages/TodoPage.qml:54
-msgctxt "TodoPage|"
-msgid "Add Task"
-msgstr "Unteraufgabe hinzufügen"
-
-#: ../Pages/TodoPage.qml:98
+#: ../Pages/TodoPage.qml:95
+#, fuzzy
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Suchbegriff 1, Suchbegriff 2, ..."
 
-#: ../Pages/TodoPage.qml:127
+#: ../Pages/TodoPage.qml:145
+#, fuzzy
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Unteraufgaben"
 
+#: ../Pages/TodoPage.qml:148
+msgctxt "TodoPage|"
+msgid "Add new task..."
+msgstr ""
+
 #: ../Widgets/UpdateNotificationBar.qml:41
+#, fuzzy, qt-format
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
 msgstr "Die neue Version OpenTodoList %1 ist verfügbar."
 
 #: ../Widgets/UpdateNotificationBar.qml:47
+#, fuzzy
 msgctxt "UpdateNotificationBar|"
 msgid "Ignore"
 msgstr "Ignorieren"
 
 #: ../Widgets/UpdateNotificationBar.qml:51
+#, fuzzy
 msgctxt "UpdateNotificationBar|"
 msgid "Download"
 msgstr "Herunterladen"
 
 #: ../../lib/sync/webdavclient.cpp:119
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
-msgid "Unexpected HTTP code received when getting remote folder entry list: '%1'"
-msgstr "Unerwarteter Fehlercode beim Auflisten der Verzeichnisinhalte auf dem Server: '%1'"
+msgid ""
+"Unexpected HTTP code received when getting remote folder entry list: '%1'"
+msgstr ""
+"Unerwarteter Fehlercode beim Auflisten der Verzeichnisinhalte auf dem "
+"Server: '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:181
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to open file '%1' for writing: %2"
 msgstr "Kann Datei '%1' nicht zum Schreiben öffnen: %2"
 
 #: ../../lib/sync/webdavclient.cpp:188
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Download failed with HTTP code %1"
 msgstr "Herunterladen fehlgeschlagen mit Fehlernummer %1"
 
 #: ../../lib/sync/webdavclient.cpp:194
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to open intermediate download file: %1"
 msgstr "Kann temporäre heruntergeladene Datei nicht öffnen: %1"
 
 #: ../../lib/sync/webdavclient.cpp:250
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Uploading failed with HTTP code %1"
 msgstr "Hochladen fehlgeschlagen mit Fehlernummer %1"
 
 #: ../../lib/sync/webdavclient.cpp:255
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to open file '%1' for reading: %2"
 msgstr "Kann Datei '%1' nicht zum Lesen öffnen: %2"
 
 #: ../../lib/sync/webdavclient.cpp:264
+#, fuzzy
 msgctxt "WebDAVClient|"
 msgid "Server did not send eTag when uploading"
 msgstr "Server hat keinen eTag nach dem hochladen zurückgeliefert"
 
 #: ../../lib/sync/webdavclient.cpp:314
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Deleting remote file failed with HTTP code %1"
 msgstr "Löschen von Datei auf dem Server fehlgeschlagen mit Fehlernummer %1"
 
 #: ../../lib/sync/webdavclient.cpp:416
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Synchronizing '%1'"
 msgstr "Synchronisiere '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:429 ../../lib/sync/webdavclient.cpp:440
 #: ../../lib/sync/webdavclient.cpp:449 ../../lib/sync/webdavclient.cpp:458
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Ignoring file %1"
 msgstr "Ignoriere Datei %1"
 
 #: ../../lib/sync/webdavclient.cpp:468
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
-msgid "Skipping sync of directory '%1' as there were no local changes and we have been asked to push only"
-msgstr "Überspringe Synchronisation von Verzeichnis '%1', da keine lokalen Änderungen vorliegen und die Synchronisation um Modus Nur-Hochladen läuft"
+msgid ""
+"Skipping sync of directory '%1' as there were no local changes and we have "
+"been asked to push only"
+msgstr ""
+"Überspringe Synchronisation von Verzeichnis '%1', da keine lokalen "
+"Änderungen vorliegen und die Synchronisation um Modus Nur-Hochladen läuft"
 
 #: ../../lib/sync/webdavclient.cpp:526
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to get entry list for '%1'"
 msgstr "Fehler beim Auflisten der Verzeichnisinhalte von '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:543
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Pulling '%1'"
 msgstr "Herunterladen von '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:553
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
-msgid "Pull conflict: Cannot pull file '%1' from '%2'  because a local directory with than name already exists"
-msgstr "Konflikt beim Herunnterladen von Datei '%1'von '%2', weil ein lokales Verzeichnis mit dem selben Namen bereits existiert"
+msgid ""
+"Pull conflict: Cannot pull file '%1' from '%2'  because a local directory "
+"with than name already exists"
+msgstr ""
+"Konflikt beim Herunnterladen von Datei '%1'von '%2', weil ein lokales "
+"Verzeichnis mit dem selben Namen bereits existiert"
 
 #: ../../lib/sync/webdavclient.cpp:575
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
-msgid "Pull conflict: Cannot pull directory '%1' from '%2' because a file with that name already exists locally"
-msgstr "Konflikt beim Herunterladen von '%1' von '%2', weil bereits eine lokale Datei mit dem selben Namen existiert"
+msgid ""
+"Pull conflict: Cannot pull directory '%1' from '%2' because a file with that "
+"name already exists locally"
+msgstr ""
+"Konflikt beim Herunterladen von '%1' von '%2', weil bereits eine lokale "
+"Datei mit dem selben Namen existiert"
 
 #: ../../lib/sync/webdavclient.cpp:600
+#, fuzzy
 msgctxt "WebDAVClient|"
 msgid "Cannot pull remote entry of type Unknown"
 msgstr "Kann Eintrag vom Type Unbekannt nicht vom Server herunterladen"
 
 #: ../../lib/sync/webdavclient.cpp:614
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Removing '%1' locally"
 msgstr "Entferne '%1' lokal"
 
 #: ../../lib/sync/webdavclient.cpp:621
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to remove local file '%1' from '%2'"
 msgstr "Fehler beim Löschen der lokalen Datei '%1' von '%2'"
 
 #: ../../lib/sync/webdavclient.cpp:636
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Failed to remove local directory '%1'"
 msgstr "Fehler beim Löschen des lokalen Verzeichnises '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:644
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Bad sync entry type of entry '%1' in '%2' when removing local entry"
 msgstr "Ungültiger Synchronisationseintrag von '%1' in '%2'"
 
 #: ../../lib/sync/webdavclient.cpp:660
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Pushing '%1'"
 msgstr "Hochladen von '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:667
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
-msgid "Push conflict: Cannot push directory '%1' as a file with that name exists on the remote"
-msgstr "Konflikt beim Hochladen: Kann Verzeichnis '%1' nicht hochladen, da bereits eine Datei mit dem selben Namen auf dem Server existiert"
+msgid ""
+"Push conflict: Cannot push directory '%1' as a file with that name exists on "
+"the remote"
+msgstr ""
+"Konflikt beim Hochladen: Kann Verzeichnis '%1' nicht hochladen, da bereits "
+"eine Datei mit dem selben Namen auf dem Server existiert"
 
 #: ../../lib/sync/webdavclient.cpp:684
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
-msgid "Push conflict: Cannot push local file '%1' because a directory with that name exists remotely"
-msgstr "Konflikt beim Hochladen: Kann lokale Datei '%1' nicht hochladen, da auf dem Server bereits ein Verzeichnis mit dem selben Namen existiert"
+msgid ""
+"Push conflict: Cannot push local file '%1' because a directory with that "
+"name exists remotely"
+msgstr ""
+"Konflikt beim Hochladen: Kann lokale Datei '%1' nicht hochladen, da auf dem "
+"Server bereits ein Verzeichnis mit dem selben Namen existiert"
 
 #: ../../lib/sync/webdavclient.cpp:697
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Unexpected local type of entry '%1'"
 msgstr "Unerwarteter Typ von lokalem Eintrag '%1'"
 
 #: ../../lib/sync/webdavclient.cpp:711
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Removing remote entry '%1'"
 msgstr "Entferne Eintrag '%1' auf dem Server"
 
 #: ../../lib/sync/webdavclient.cpp:1025
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "There was an SSL error: %1"
 msgstr "SSL-Fehler ist aufgetreten: %1"
 
 #: ../../lib/sync/webdavclient.cpp:1028
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "Problem establishing a secure connection to the server: %1"
-msgstr "Problem beim Herstellen einer sicheren Verbindung zum Server aufgetreten: %1"
+msgstr ""
+"Problem beim Herstellen einer sicheren Verbindung zum Server aufgetreten: %1"
 
 #: ../../lib/sync/webdavclient.cpp:1039
+#, fuzzy, qt-format
 msgctxt "WebDAVClient|"
 msgid "There was a network error: %1"
 msgstr "Netzwerkproblem aufgetreten: %1"
 
 #: ../../lib/sync/webdavclient.cpp:1042
+#, fuzzy
 msgctxt "WebDAVClient|"
 msgid "Authentication failed. Please check you username and password."
-msgstr "Authentifikation fehlgeschlagen. Bitte Benutzernamen und Passwort überprüfen."
+msgstr ""
+"Authentifikation fehlgeschlagen. Bitte Benutzernamen und Passwort überprüfen."
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:20
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "OK"
 msgstr "OK"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:20
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Validate"
 msgstr "Überprüfen"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:38
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:84
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Server Address:"
 msgstr "Serveradresse:"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:90
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "https://..."
 msgstr "https://..."
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:96
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "User name:"
 msgstr "Benutzername:"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:108
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Password:"
 msgstr "Passwort:"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:122
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Ignore SSL Errors"
 msgstr "SSL Probleme ignorieren"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:128
+#, fuzzy
 msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Kann keine Verbindung zum Server aufbauen. Bitte den Benutzernamen, das Passwort sowie die Adresse des Servers überprüfen und erneut versuchen."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+"Kann keine Verbindung zum Server aufbauen. Bitte den Benutzernamen, das "
+"Passwort sowie die Adresse des Servers überprüfen und erneut versuchen."
 
 #: ../../lib/sync/webdavsynchronizer.cpp:97
+#, fuzzy
 msgctxt "WebDAVSynchronizer|"
 msgid "Starting synchronization"
 msgstr "Starte Synchronisation"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:124
+#, fuzzy
 msgctxt "WebDAVSynchronizer|"
 msgid "The last sync did not run through - doing a full sync"
-msgstr "Die letzte Synchronisation wurde nicht durchlaufen - eine vollständige Synchronisation wurde durchgeführt."
+msgstr ""
+"Die letzte Synchronisation wurde nicht durchlaufen - eine vollständige "
+"Synchronisation wurde durchgeführt."
 
 #: ../../lib/sync/webdavsynchronizer.cpp:131
+#, fuzzy
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Es konnte keine Synchronisationssperre erstellt werden:\n"
-""
 
 #: ../../lib/sync/webdavsynchronizer.cpp:140
+#, fuzzy
 msgctxt "WebDAVSynchronizer|"
 msgid "Creating the remote top level directory"
 msgstr "Erstellen des Remote-Verzeichnisses der obersten Ebene"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:152
+#, fuzzy, qt-format
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to prepare remote directory '%1' for sync"
-msgstr "Das Verzeichnis'%1' konnte nicht für die Synchronisierung vorbereitet werden."
+msgstr ""
+"Das Verzeichnis'%1' konnte nicht für die Synchronisierung vorbereitet werden."
 
 #: ../../lib/sync/webdavsynchronizer.cpp:174
+#, fuzzy
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to synchronize top level directory!"
-msgstr "Die Synchronisation des Top-Level-Verzeichnisses konnte nicht durchgeführt werden"
+msgstr ""
+"Die Synchronisation des Top-Level-Verzeichnisses konnte nicht durchgeführt "
+"werden"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:188
 #: ../../lib/sync/webdavsynchronizer.cpp:200
+#, fuzzy, qt-format
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to synchronize '%1'"
 msgstr "konnte nicht syncronisiert werden '%1'"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:213
+#, fuzzy
 msgctxt "WebDAVSynchronizer|"
 msgid "Synchronization finished"
 msgstr "Synchronisation beendet"
 
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:39
+#, fuzzy
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "User name"
 msgstr "Benutzername"
 
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:52
+#, fuzzy
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "Password"
 msgstr "Passwort"
 
 #: ../main.cpp:175
+#, fuzzy
 msgctxt "main|"
 msgid "Manage your personal data."
 msgstr "Persönliche Daten verwalten."
 
 #: ../main.cpp:181
+#, fuzzy
 msgctxt "main|"
 msgid "QML Root Directory"
 msgstr "QML Wurzelverzeichnis"
 
 #: ../main.cpp:182
+#, fuzzy
 msgctxt "main|"
 msgid "DIR"
 msgstr "VERZEICHNIS"
 
 #: ../main.cpp:188
+#, fuzzy
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Optimierungen für berührungsempfindliche Bildschirme aktivieren."
 
 #: ../main.cpp:201
+#, fuzzy
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
 msgstr "AppImage-Integration entfernen."
-

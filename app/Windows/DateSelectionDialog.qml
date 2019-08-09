@@ -4,6 +4,7 @@ import Qt.labs.calendar 1.0
 
 import "../Components"
 import "../Fonts"
+import "../Utils"
 
 CenteredDialog {
     id: dialog
@@ -83,31 +84,39 @@ CenteredDialog {
         Item { width: 1; height: 1 }
 
         DayOfWeekRow {
+            id: dayOfWeekRow
             locale: grid.locale
             Layout.fillWidth: true
         }
 
         WeekNumberColumn {
+            id: weekNumbers
             month: grid.month
             year: grid.year
             locale: grid.locale
             Layout.fillHeight: true
         }
 
+        FontMetrics {
+            id: fontMetrics
+        }
+
         MonthGrid {
             id: grid
+
             delegate: ToolButton {
                 opacity: model.month === grid.month ? 1.0 : 0.5
                 text: model.day
                 font.pixelSize: grid.font.pixelSize
                 checked: d.dateEquals(model.date, dialog.selectedDate)
+                background: Rectangle {
+                    color: Colors.color(Colors.green)
+                    opacity: 0.5
+                    radius: Math.max(width, height) / 2
+                    visible: checked
+                }
                 onClicked: dialog.selectedDate = date
             }
-        }
-
-        Label {
-            Layout.columnSpan: 2
-            text: dialog.selectedDate.toLocaleDateString()
         }
     }
 }
