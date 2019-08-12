@@ -350,47 +350,47 @@ msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:195
+#: ../Windows/MainWindow.qml:178
 msgctxt "MainWindow|"
 msgid "New &Library"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:206
+#: ../Windows/MainWindow.qml:189
 msgctxt "MainWindow|"
 msgid "New &Note"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:214
+#: ../Windows/MainWindow.qml:197
 msgctxt "MainWindow|"
 msgid "New &Todo List"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:222
+#: ../Windows/MainWindow.qml:205
 msgctxt "MainWindow|"
 msgid "New &Image"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:230
+#: ../Windows/MainWindow.qml:213
 msgctxt "MainWindow|"
 msgid "&Quit"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:238
+#: ../Windows/MainWindow.qml:221
 msgctxt "MainWindow|"
 msgid "&Find"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:261
+#: ../Windows/MainWindow.qml:248
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:269
+#: ../Windows/MainWindow.qml:256
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:359
+#: ../Windows/MainWindow.qml:346
 msgctxt "MainWindow|"
 msgid ""
 "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
@@ -616,37 +616,37 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:159
+#: ../Pages/TodoListPage.qml:145
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:216
+#: ../Pages/TodoListPage.qml:202
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:220
+#: ../Pages/TodoListPage.qml:206
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:236
+#: ../Pages/TodoListPage.qml:222
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:95
+#: ../Pages/TodoPage.qml:98
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoPage.qml:145
+#: ../Pages/TodoPage.qml:148
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:148
+#: ../Pages/TodoPage.qml:151
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr ""
@@ -950,27 +950,27 @@ msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "Password"
 msgstr ""
 
-#: ../main.cpp:175
+#: ../main.cpp:194
 msgctxt "main|"
 msgid "Manage your personal data."
 msgstr ""
 
-#: ../main.cpp:181
+#: ../main.cpp:200
 msgctxt "main|"
 msgid "QML Root Directory"
 msgstr ""
 
-#: ../main.cpp:182
+#: ../main.cpp:201
 msgctxt "main|"
 msgid "DIR"
 msgstr ""
 
-#: ../main.cpp:188
+#: ../main.cpp:207
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr ""
 
-#: ../main.cpp:201
+#: ../main.cpp:220
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
 msgstr ""

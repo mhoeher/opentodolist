@@ -968,27 +968,27 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="189"/>
+        <location filename="../main.cpp" line="194"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="195"/>
+        <location filename="../main.cpp" line="200"/>
         <source>QML Root Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="196"/>
+        <location filename="../main.cpp" line="201"/>
         <source>DIR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="202"/>
+        <location filename="../main.cpp" line="207"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="215"/>
+        <location filename="../main.cpp" line="220"/>
         <source>Remove shortcuts to the AppImage.</source>
         <translation type="unfinished"></translation>
     </message>
