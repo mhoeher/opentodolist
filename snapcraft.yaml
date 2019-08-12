@@ -1,5 +1,5 @@
 name: opentodolist
-version: 3.13.0
+version: 3.14.0
 confinement: strict
 grade: stable
 base: core18
