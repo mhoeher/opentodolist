@@ -82,6 +82,15 @@ Page {
             todoPage.item = todo;
             todoDrawer.open();
         }
+
+        property int sortTodosRole: {
+            switch (settings.sortTodosBy) {
+            case "title": return OTL.ItemsModel.TitleRole;
+            case "dueTo": return OTL.ItemsModel.DueToRole;
+            case "weight": // fall through
+            default: return OTL.ItemsModel.WeightRole;
+            }
+        }
     }
 
     Component.onDestruction: todoDrawer.close()
@@ -91,6 +100,7 @@ Page {
         category: "TodoListPage"
 
         property bool showUndone: false
+        property string sortTodosBy: "weight"
     }
 
     DeleteItemDialog {
@@ -116,6 +126,7 @@ Page {
 
     OTL.ItemsSortFilterModel {
         id: undoneTodos
+        sortRole: d.sortTodosRole
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             parentItem: page.item.uid
@@ -126,6 +137,7 @@ Page {
 
     OTL.ItemsSortFilterModel {
         id: doneTodos
+        sortRole: d.sortTodosRole
     }
 
     Binding {
@@ -197,14 +209,26 @@ Page {
                 }
 
                 TodosWidget {
+                    id: undoneTodosWidget
                     width: parent.width
                     model: undoneTodos
                     title: qsTr("Todos")
-                    symbol: Icons.faPlus
-                    headerItemVisible: false
+                    symbol: {
+                        switch (settings.sortTodosBy) {
+                        case "title":
+                            return Icons.faSortAlphaDown;
+                        case "dueTo":
+                            return Icons.faSortNumericDown;
+                        case "weight":
+                            // fall through
+                        default:
+                            return Icons.faSort;
+                        }
+                    }
                     allowCreatingNewItems: true
                     newItemPlaceholderText: qsTr("Add new todo...")
-                    onHeaderButtonClicked: newTodoDialog.open()
+                    allowSorting: settings.sortTodosBy === "weight"
+                    onHeaderButtonClicked: sortTodosByMenu.open()
                     onTodoClicked: d.openTodo(todo)
                     onCreateNewItem: {
                         var properties = {
@@ -216,11 +240,29 @@ Page {
                     }
                 }
 
+                Menu {
+                    id: sortTodosByMenu
+                    parent: undoneTodosWidget.headerItem
+                    MenuItem {
+                        text: qsTr("Sort Manually")
+                        onTriggered: settings.sortTodosBy = "weight"
+                    }
+                    MenuItem {
+                        text: qsTr("Sort By Name")
+                        onTriggered: settings.sortTodosBy = "title"
+                    }
+                    MenuItem {
+                        text: qsTr("Sort By Due Date")
+                        onTriggered: settings.sortTodosBy = "dueTo"
+                    }
+                }
+
                 TodosWidget {
                     width: parent.width
                     model: settings.showUndone ? doneTodos : null
                     title: qsTr("Completed Todos")
                     symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
+                    allowSorting: settings.sortTodosBy === "weight"
                     onHeaderButtonClicked: settings.showUndone =
                                            !settings.showUndone
                     onTodoClicked: d.openTodo(todo)

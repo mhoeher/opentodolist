@@ -51,7 +51,8 @@ public:
         ItemRole = Qt::UserRole,
         WeightRole,
         DueToRole,
-        DueToSpanRole
+        DueToSpanRole,
+        TitleRole
     };
 
     Q_ENUM(Roles)
