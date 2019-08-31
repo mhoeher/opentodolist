@@ -101,6 +101,8 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
             return timeSpanLabel(item);
         case WeightRole:
             return item->weight();
+        case TitleRole:
+            return item->title();
         default:
             break;
         }
@@ -115,6 +117,7 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     result.insert(WeightRole, "weight");
     result.insert(DueToRole, "dueTo");
     result.insert(DueToSpanRole, "dueToSpan");
+    result.insert(TitleRole, "title");
     return result;
 }
 

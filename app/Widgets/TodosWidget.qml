@@ -18,6 +18,8 @@ Column {
     property alias headerItemVisible: headerIcon.visible
     property alias allowCreatingNewItems: newItemRow.visible
     property alias newItemPlaceholderText: newItemTitelEdit.placeholderText
+    property ToolButton headerItem: headerIcon
+    property bool allowSorting: true
 
     signal headerButtonClicked()
     signal todoClicked(var todo)
@@ -185,8 +187,10 @@ Column {
                     root.todoClicked(object);
                 }
                 onPressAndHold: {
-                    d.openSwipeDelegate = null;
-                    reorderOverlay.startDrag();
+                    if (root.allowSorting) {
+                        d.openSwipeDelegate = null;
+                        reorderOverlay.startDrag();
+                    }
                 }
                 swipe.onOpened: d.openSwipeDelegate = swipeDelegate
 
