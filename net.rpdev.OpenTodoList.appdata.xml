@@ -40,6 +40,20 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.15.0" date="2019-09-08">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #235: Todos inside a todo list can now be ordered by their
+                title or due date. In addition, manual sorting is still
+                possible as well.
+            </li>
+            <li>
+                #246: It is now possible to set a due date when creating a new
+                todo.
+            </li>
+        </ul>
+    </release>
     <release version="3.13.0" date="2019-06-30">
         <p>
           This release includes the following changes:
