@@ -653,22 +653,37 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="145"/>
+        <location filename="../Pages/TodoListPage.qml" line="157"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="202"/>
+        <location filename="../Pages/TodoListPage.qml" line="215"/>
         <source>Todos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="206"/>
+        <location filename="../Pages/TodoListPage.qml" line="229"/>
         <source>Add new todo...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="222"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <source>Sort Manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="255"/>
+        <source>Sort By Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="259"/>
+        <source>Sort By Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="267"/>
         <source>Completed Todos</source>
         <translation type="unfinished"></translation>
     </message>
@@ -688,6 +703,14 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="151"/>
         <source>Add new task...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TodosWidget</name>
+    <message>
+        <location filename="../Widgets/TodosWidget.qml" line="129"/>
+        <source>Due on: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
