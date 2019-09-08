@@ -29,7 +29,7 @@ plugs:
 parts:
     opentodolist:
         build-snaps:
-        - kde-frameworks-5-core18-sdk
+        - kde-frameworks-5-core18-sdk/stable
         build-packages:
         - build-essential
         after:
