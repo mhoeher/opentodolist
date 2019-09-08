@@ -20,10 +20,11 @@ Column {
     property alias newItemPlaceholderText: newItemTitelEdit.placeholderText
     property ToolButton headerItem: headerIcon
     property bool allowSorting: true
+    property bool allowSettingDueDate: false
 
     signal headerButtonClicked()
     signal todoClicked(var todo)
-    signal createNewItem(string title)
+    signal createNewItem(string title, var args)
 
     RowLayout {
         width: parent.width
@@ -54,42 +55,96 @@ Column {
 
     DeleteItemDialog { id: deleteDialog }
 
+    DateSelectionDialog {
+        id: dateDialog
+        onAccepted: newItemRow.dueDate = selectedDate
+    }
+
     QtObject {
         id: d
 
         property SwipeDelegate openSwipeDelegate: null
     }
 
-    RowLayout {
+    GridLayout {
         id: newItemRow
 
+        property var dueDate: new Date("")
+
+        columns: 4
         visible: false
         width: parent.width
 
         Item {
             width: newItemButton.width
             height: newItemButton.height
+            Layout.row: 0
+            Layout.column: 0
         }
 
         TextField {
             id: newItemTitelEdit
             Layout.fillWidth: true
             selectByMouse: true
+            Layout.row: 0
+            Layout.column: 1
             onAccepted: newItemButton.clicked()
+        }
+
+        ToolButton {
+            symbol: Icons.faCalendarAlt
+            visible: root.allowSettingDueDate
+            Layout.row: 0
+            Layout.column: 2
+            onClicked: {
+                dateDialog.selectedDate = newItemRow.dueDate;
+                dateDialog.open();
+            }
         }
 
         ToolButton {
             id: newItemButton
             symbol: Icons.faPlus
             enabled: newItemTitelEdit.displayText !== ""
+            Layout.column: 3
+            Layout.row: 0
             onClicked: {
                 var title = newItemTitelEdit.displayText;
                 if (title !== "") {
-                    root.createNewItem(newItemTitelEdit.displayText);
+                    var args = {};
+                    if (DateUtils.validDate(newItemRow.dueDate)) {
+                        args.dueTo = newItemRow.dueDate;
+                        newItemRow.dueDate = new Date("");
+                    }
+                    root.createNewItem(newItemTitelEdit.displayText, args);
                     newItemTitelEdit.clear();
                     newItemTitelEdit.forceActiveFocus();
                 }
             }
+        }
+
+        Label {
+            text: {
+                if (DateUtils.validDate(newItemRow.dueDate)) {
+                    return qsTr("Due on: %1").arg(
+                                newItemRow.dueDate.toLocaleDateString());
+                } else {
+                    return "";
+                }
+            }
+            visible: DateUtils.validDate(newItemRow.dueDate)
+            Layout.row: 1
+            Layout.column: 1
+            Layout.columnSpan: 2
+            Layout.fillWidth: true
+        }
+
+        ToolButton {
+            symbol: Icons.faTimes
+            onClicked: newItemRow.dueDate = new Date("")
+            visible: DateUtils.validDate(newItemRow.dueDate)
+            Layout.row: 1
+            Layout.column: 3
         }
     }
 
