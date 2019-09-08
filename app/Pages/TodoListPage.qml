@@ -228,12 +228,16 @@ Page {
                     allowCreatingNewItems: true
                     newItemPlaceholderText: qsTr("Add new todo...")
                     allowSorting: settings.sortTodosBy === "weight"
+                    allowSettingDueDate: true
                     onHeaderButtonClicked: sortTodosByMenu.open()
                     onTodoClicked: d.openTodo(todo)
                     onCreateNewItem: {
                         var properties = {
-                            "title": title
+                            "title": title,
                         };
+                        if (args.dueTo) {
+                            properties.dueTo = args.dueTo
+                        }
                         var todo = OTL.Application.addTodo(
                                     page.library, page.item, properties);
                         itemCreatedNotification.show(todo);

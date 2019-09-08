@@ -668,22 +668,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="247"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Sort Manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <location filename="../Pages/TodoListPage.qml" line="255"/>
         <source>Sort By Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="255"/>
+        <location filename="../Pages/TodoListPage.qml" line="259"/>
         <source>Sort By Due Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="263"/>
+        <location filename="../Pages/TodoListPage.qml" line="267"/>
         <source>Completed Todos</source>
         <translation type="unfinished"></translation>
     </message>
@@ -703,6 +703,14 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="151"/>
         <source>Add new task...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TodosWidget</name>
+    <message>
+        <location filename="../Widgets/TodosWidget.qml" line="129"/>
+        <source>Due on: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
