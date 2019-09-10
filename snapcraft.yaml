@@ -32,6 +32,7 @@ parts:
         - kde-frameworks-5-core18-sdk/stable
         build-packages:
         - build-essential
+        - libgl1-mesa-dev
         after:
         - kde-frameworks-5-env
         plugin: cmake
