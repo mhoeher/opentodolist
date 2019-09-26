@@ -8,9 +8,7 @@
         <file>qtquickcontrols2.conf</file>
         <file>Windows/MainWindow.qml</file>
         <file>Components/ApplicationWindow.qml</file>
-        <file>Components/ToolBar.qml</file>
         <file>Components/ToolButton.qml</file>
-        <file>Components/Button.qml</file>
         <file>3rdpartyinfo/fontawesome/3rdpartyinfo.json</file>
         <file>Fonts/Icons.qml</file>
         <file>Fonts/fontawesome-free-5.0.9/fa-brands-400.ttf</file>
@@ -20,14 +18,9 @@
         <file>Fonts/fontawesome-free-5.0.9/README.md</file>
         <file>Fonts/Fonts.qml</file>
         <file>Fonts/qmldir</file>
-        <file>Components/Action.qml</file>
-        <file>Components/Drawer.qml</file>
         <file>Widgets/BackgroundLabel.qml</file>
         <file>Widgets/BackgroundSymbol.qml</file>
         <file>Components/Label.qml</file>
-        <file>Components/Frame.qml</file>
-        <file>Components/Pane.qml</file>
-        <file>Components/StackView.qml</file>
         <file>Widgets/ItemCreatedNotification.qml</file>
         <file>Utils/Markdown.qml</file>
         <file>Utils/qmldir</file>
@@ -35,12 +28,7 @@
         <file>Utils/showdownjs/showdown.js</file>
         <file>Widgets/LibrariesSideBar.qml</file>
         <file>Widgets/LibrarySideBarButton.qml</file>
-        <file>Components/ItemDelegate.qml</file>
-        <file>Components/ScrollView.qml</file>
         <file>Menues/ColorMenu.qml</file>
-        <file>Components/Menu.qml</file>
-        <file>Components/MenuItem.qml</file>
-        <file>Components/MenuSeparator.qml</file>
         <file>Pages/AboutPage.qml</file>
         <file>Pages/AboutThirdPartyPage.qml</file>
         <file>Pages/ImagePage.qml</file>
@@ -56,7 +44,6 @@
         <file>Pages/WebDAVConnectionSettingsPage.qml</file>
         <file>Pages/WebDAVSynchronizerSettingsPage.qml</file>
         <file>Widgets/UpdateNotificationBar.qml</file>
-        <file>Components/Page.qml</file>
         <file>Menues/LibraryPageMenu.qml</file>
         <file>Windows/CenteredDialog.qml</file>
         <file>Windows/DateSelectionDialog.qml</file>
@@ -65,17 +52,14 @@
         <file>Windows/OpenImageDialog.qml</file>
         <file>Windows/RenameItemDialog.qml</file>
         <file>Windows/RenameLibraryDialog.qml</file>
-        <file>Components/Dialog.qml</file>
         <file>Windows/+android/OpenImageDialog.qml</file>
         <file>Components/TextField.qml</file>
-        <file>Components/ButtonGroup.qml</file>
         <file>Widgets/LibrarySecretsMissingNotificationBar.qml</file>
         <file>Widgets/NewTopLevelItemButton.qml</file>
         <file>Widgets/SyncErrorNotificationBar.qml</file>
         <file>Widgets/SyncIndicatorBar.qml</file>
         <file>Widgets/TextInputBar.qml</file>
         <file>Components/RoundButton.qml</file>
-        <file>Components/ScrollBar.qml</file>
         <file>Widgets/ImageItem.qml</file>
         <file>Widgets/NoteItem.qml</file>
         <file>Widgets/TodoListItem.qml</file>
@@ -85,33 +69,29 @@
         <file>Widgets/Attachments.qml</file>
         <file>Widgets/ItemDueDateEditor.qml</file>
         <file>Utils/DateUtils.qml</file>
-        <file>Components/ComboBox.qml</file>
         <file>Widgets/ItemNotesEditor.qml</file>
-        <file>Components/CheckBox.qml</file>
         <file>Widgets/TodosWidget.qml</file>
-        <file>Components/SwipeDelegate.qml</file>
         <file>Windows/DeleteItemDialog.qml</file>
         <file>Windows/DeleteLibraryDialog.qml</file>
         <file>Widgets/ReorderableListViewOverlay.qml</file>
-        <file>Components/DialogButtonBox.qml</file>
         <file>Pages/sync_backends/cloud.png</file>
         <file>Pages/sync_backends/disk.png</file>
         <file>Pages/sync_backends/nextcloud.png</file>
         <file>Pages/sync_backends/owncloud.png</file>
-        <file>Components/RadioButton.qml</file>
-        <file>Components/BusyIndicator.qml</file>
         <file>Pages/ScheduleViewPage.qml</file>
         <file>Widgets/ProgressItemOverlay.qml</file>
         <file>Utils/markdown-formatter-worker.js</file>
         <file>Components/MarkdownConverter.qml</file>
         <file>Components/MarkdownLabel.qml</file>
         <file>Widgets/ItemProgressEditor.qml</file>
-        <file>Components/Slider.qml</file>
         <file>3rdpartyinfo/syntax-highlighting/3rdpartyinfo.json</file>
         <file>Components/Heading.qml</file>
         <file>Widgets/NewItemButton.qml</file>
         <file>Widgets/ItemPageHeader.qml</file>
         <file>Widgets/MarkdownEditor.qml</file>
         <file>3rdpartyinfo/noto-color-emoji/3rdpartyinfo.json</file>
+        <file>Widgets/ItemPane.qml</file>
+        <file>Widgets/ItemPage.qml</file>
+        <file>Widgets/ItemScrollView.qml</file>
     </qresource>
 </RCC>

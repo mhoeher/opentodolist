@@ -1,5 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 import Qt.labs.calendar 1.0
 
 import "../Components"
@@ -109,10 +111,9 @@ CenteredDialog {
                 text: model.day
                 font.pixelSize: grid.font.pixelSize
                 checked: d.dateEquals(model.date, dialog.selectedDate)
-                background: Rectangle {
-                    color: Colors.color(Colors.green)
+                background: Pane {
+                    Material.background: Material.Green
                     opacity: 0.5
-                    radius: Math.max(width, height) / 2
                     visible: checked
                 }
                 onClicked: dialog.selectedDate = date

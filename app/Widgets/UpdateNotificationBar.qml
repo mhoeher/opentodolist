@@ -1,5 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import "../Components"
 
@@ -16,7 +18,8 @@ Pane {
         left: parent.left
         right: parent.right
     }
-    backgroundColor: info
+    Material.background: Material.Green
+
     y: shown ? parent.height - height : parent.height
 
     OTL.UpdateService {

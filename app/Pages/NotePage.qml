@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -7,11 +8,11 @@ import "../Windows"
 import "../Widgets"
 import "../Utils"
 
-Page {
+ItemPage {
     id: page
     
-    property OTL.Note item: OTL.Note {}
     property var library: null
+    property OTL.Note item: OTL.Note {}
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -42,6 +43,7 @@ Page {
     }
 
     title: titleText.text
+    topLevelItem: item
 
     MarkdownConverter {
         id: titleText
@@ -63,50 +65,40 @@ Page {
         id: renameItemDialog
     }
 
-    Pane {
-        anchors.fill: parent
-        backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
-    }
-
-    ScrollView {
+    ItemScrollView {
         id: scrollView
 
         anchors.fill: parent
+        item: page.item
+        padding: 10
 
-        Pane {
-            id: background
+        Column {
+            width: parent.width
+            spacing: 20
 
-            backgroundColor: Colors.color(Colors.itemColor(item), Colors.shade50)
-            width: scrollView.width
-
-            Column {
-                width: parent.width
-                spacing: 20
-
-                ItemPageHeader {
-                    item: page.item
-                }
-
-                TagsEditor {
-                    id: tagsEditor
-                    item: page.item
-                    library: page.library
-                    width: parent.width
-                }
-
-                ItemNotesEditor {
-                    id: itemNotesEditor
-                    item: page.item
-                    width: parent.width
-                }
-
-                Attachments {
-                    id: attachments
-                    item: page.item
-                    width: parent.width
-                }
-
+            ItemPageHeader {
+                item: page.item
             }
+
+            TagsEditor {
+                id: tagsEditor
+                item: page.item
+                library: page.library
+                width: parent.width
+            }
+
+            ItemNotesEditor {
+                id: itemNotesEditor
+                item: page.item
+                width: parent.width
+            }
+
+            Attachments {
+                id: attachments
+                item: page.item
+                width: parent.width
+            }
+
         }
     }
 }

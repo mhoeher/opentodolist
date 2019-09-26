@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -17,13 +19,14 @@ Item {
     signal clicked()
     signal released(var mouse)
 
-    Pane {
+    ItemPane {
         anchors.fill: parent
         anchors.margins: 5
-        elevation: 6
+        Material.elevation: 6
+        item: item.libraryItem
         padding: 0
 
-        Pane {
+        ItemPane {
             id: title
 
             anchors {
@@ -32,8 +35,8 @@ Item {
                 top: parent.top
             }
             height: titleLabel.height + padding * 2
-            backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
-                                          Colors.shade100)
+            item: item.libraryItem
+            shade: midShade
 
             MarkdownLabel {
                 id: titleLabel
@@ -44,15 +47,14 @@ Item {
             }
         }
 
-        Pane {
+        ItemPane {
             anchors {
                 left: parent.left
                 right: parent.right
                 top: title.bottom
                 bottom: parent.bottom
             }
-            backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
-                                          Colors.shade50)
+            item: item.libraryItem
 
             ListView {
                 id: openTodosList

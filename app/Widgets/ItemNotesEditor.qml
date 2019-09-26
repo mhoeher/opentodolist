@@ -1,4 +1,6 @@
 import QtQuick 2.10
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.3
 
 import OpenTodoList 1.0 as OTL
@@ -56,7 +58,7 @@ Column {
             Label {
                 width: parent.width
                 text: qsTr("No notes added yet - click here to add some.")
-                color: Colors.color(Colors.grey)
+                Material.foreground: Material.Grey
                 visible: page.item.notes === ""
             }
         }

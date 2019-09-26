@@ -1,9 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 import "../Utils"
 
 
@@ -85,7 +87,7 @@ Page {
                         width: parent.width
                         font.bold: true
                     }
-                    TextField {
+                    Components.TextField {
                         id: url
                         placeholderText: qsTr("https://...")
                         width: parent.width
@@ -98,7 +100,7 @@ Page {
                         width: parent.width
                     }
 
-                    TextField {
+                    Components.TextField {
                         id: username
                         width: parent.width
                         inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
@@ -110,7 +112,7 @@ Page {
                         font.bold: true
                     }
 
-                    TextField {
+                    Components.TextField {
                         id: password
                         echoMode: TextInput.Password
                         width: parent.width
@@ -128,7 +130,7 @@ Page {
                         text: qsTr("Failed to connect to the server. Please " +
                                    "check your user name, password and the " +
                                    "server address and retry.")
-                        color: Colors.color(Colors.red)
+                        Material.foreground: Material.Red
                         width: parent.width
                         visible: d.validated && !dav.valid
                     }

@@ -1,9 +1,10 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 import "../Utils"
 import "../Fonts"
 import "../Windows"
@@ -18,7 +19,7 @@ Column {
     property alias headerItemVisible: headerIcon.visible
     property alias allowCreatingNewItems: newItemRow.visible
     property alias newItemPlaceholderText: newItemTitelEdit.placeholderText
-    property ToolButton headerItem: headerIcon
+    property Components.ToolButton headerItem: headerIcon
     property bool allowSorting: true
     property bool allowSettingDueDate: false
 
@@ -29,7 +30,7 @@ Column {
     RowLayout {
         width: parent.width
 
-        Heading {
+        Components.Heading {
             id: headerLabel
 
             level: 2
@@ -43,7 +44,7 @@ Column {
             height: headerIcon.height
         }
 
-        ToolButton {
+        Components.ToolButton {
             id: headerIcon
 
             symbol: Icons.faPlus
@@ -82,7 +83,7 @@ Column {
             Layout.column: 0
         }
 
-        TextField {
+        Components.TextField {
             id: newItemTitelEdit
             Layout.fillWidth: true
             selectByMouse: true
@@ -91,7 +92,7 @@ Column {
             onAccepted: newItemButton.clicked()
         }
 
-        ToolButton {
+        Components.ToolButton {
             symbol: Icons.faCalendarAlt
             visible: root.allowSettingDueDate
             Layout.row: 0
@@ -102,7 +103,7 @@ Column {
             }
         }
 
-        ToolButton {
+        Components.ToolButton {
             id: newItemButton
             symbol: Icons.faPlus
             enabled: newItemTitelEdit.displayText !== ""
@@ -139,7 +140,7 @@ Column {
             Layout.fillWidth: true
         }
 
-        ToolButton {
+        Components.ToolButton {
             symbol: Icons.faTimes
             onClicked: newItemRow.dueDate = new Date("")
             visible: DateUtils.validDate(newItemRow.dueDate)
@@ -167,7 +168,7 @@ Column {
                 contentItem: RowLayout {
                     width: parent.width
 
-                    ToolButton {
+                    Components.ToolButton {
                         font.family: Fonts.icons
                         symbol: object.done ? Icons.faCheckCircle :
                                               Icons.faCircle
@@ -176,7 +177,7 @@ Column {
                     Column {
                         Layout.fillWidth: true
 
-                        MarkdownLabel {
+                        Components.MarkdownLabel {
                             markdown: object.title
                             width: parent.width
                         }
@@ -208,7 +209,7 @@ Column {
                         height: toggleSwipeOpened.height
                     }
 
-                    ToolButton {
+                    Components.ToolButton {
                         id: toggleSwipeOpened
                         visible: swipeDelegate.hovered
                         symbol: swipeDelegate.swipe.position === 0 ?
@@ -228,11 +229,11 @@ Column {
                     anchors.right: parent.right
                     height: parent.height
 
-                    ToolButton {
+                    Components.ToolButton {
                         symbol: Icons.faPencilAlt
                         onClicked: renameDialog.renameItem(object)
                     }
-                    ToolButton {
+                    Components.ToolButton {
                         symbol: Icons.faTrash
                         onClicked: deleteDialog.deleteItem(object)
                     }

@@ -1,7 +1,9 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.12
 
 import "../Components"
 import "../Fonts"
+import "../Utils"
 
 import OpenTodoList 1.0 as OTL
 
@@ -143,6 +145,27 @@ Pane {
                     sidebar.aboutPageRequested();
                     sidebar.close();
                 }
+            }
+
+            LibrarySideBarButton {
+                text: qsTr("Light Theme")
+                symbol: Icons.faSun
+                highlighted: Colors.theme === Colors.lightTheme
+                onClicked: Colors.theme = Colors.lightTheme
+            }
+
+            LibrarySideBarButton {
+                text: qsTr("Dark Theme")
+                symbol: Icons.faMoon
+                highlighted: Colors.theme === Colors.darkTheme
+                onClicked: Colors.theme = Colors.darkTheme
+            }
+
+            LibrarySideBarButton {
+                text: qsTr("Automartic Theme")
+                symbol: Icons.faAndroid
+                highlighted: Colors.theme === Colors.systemTheme
+                onClicked: Colors.theme = Colors.systemTheme
             }
         }
 

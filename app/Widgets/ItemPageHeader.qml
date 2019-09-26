@@ -1,4 +1,6 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 import OpenTodoList 1.0 as OTL
 import "../Components"
@@ -42,11 +44,11 @@ Item {
         anchors.right: parent.right
         anchors.verticalCenter: pageMetaRow.belowHeading ? undefined : pageHeading.verticalCenter
 
-        Text {
-            color: Colors.color(Colors.grey)
+        Label {
             visible: DateUtils.validDate(root.item.dueTo)
             text: root.item.dueTo.toLocaleDateString()
             Layout.alignment: Qt.AlignVCenter
+            Material.foreground: Material.Grey
         }
 
         ToolButton {

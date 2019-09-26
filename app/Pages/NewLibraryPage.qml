@@ -1,9 +1,10 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 import "../Windows"
 import "../Fonts"
 
@@ -59,7 +60,7 @@ Page {
                     visible: libraryName.visible
                 }
 
-                TextField {
+                Components.TextField {
                     id: libraryName
                     property bool inputOkay: !visible || text !== ""
                     placeholderText: qsTr("My New Library")
@@ -90,7 +91,7 @@ Page {
                     width: parent.width
                     visible: !useDefaultLocation.checked
 
-                    TextField {
+                    Components.TextField {
                         id: directoryEdit
 
                         property bool inputOkay: selectedNameOk && selectedDirOk

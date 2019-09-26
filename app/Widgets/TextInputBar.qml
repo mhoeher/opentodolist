@@ -1,13 +1,15 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
-import "../Components"
+import "../Components" as Components
 import "../Fonts"
 
 Pane {
     id: root
     
-    property TextField edit: edit
+    property Components.TextField edit: edit
     property alias placeholderText: edit.placeholderText
     property bool showWhenNonEmpty: false
     property alias symbol: button.symbol
@@ -26,11 +28,10 @@ Pane {
         }
     }
     
-    backgroundColor: info
     width: parent.width
     y: __visible ? 0 : -height
     z: 1
-    elevation: 6
+    Material.elevation: 6
     visible: y > -height
     
     Behavior on y { SmoothedAnimation { duration: 500 } }
@@ -43,7 +44,7 @@ Pane {
         }
         height: childrenRect.height
 
-        TextField {
+        Components.TextField {
             id: edit
             Layout.fillWidth: true
             onAccepted: __createIfValidInput()
@@ -51,7 +52,7 @@ Pane {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
-        ToolButton {
+        Components.ToolButton {
             id: button
 
             symbol: Icons.faPlus

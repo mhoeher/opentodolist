@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -18,7 +20,7 @@ Pane {
     }
     
     y: parent.height
-    backgroundColor: nonInteractive
+    Material.background: Material.Grey
     width: parent.width
     state: syncRunning ? "visible" : ""
     

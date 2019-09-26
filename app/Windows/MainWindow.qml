@@ -1,6 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import "../Components"
 import "../Fonts"
@@ -170,6 +172,24 @@ ApplicationWindow {
         id: d
 
         property bool completed: false
+    }
+
+    Action {
+        text: qsTr("Light Theme")
+        shortcut: qsTr("Ctrl+Shift+L")
+        onTriggered: Colors.theme = Colors.lightTheme
+    }
+
+    Action {
+        text: qsTr("Dark Theme")
+        shortcut: qsTr("Ctrl+Shift+D")
+        onTriggered: Colors.theme = Colors.darkTheme
+    }
+
+    Action {
+        text: qsTr("System Theme")
+        shortcut: qsTr("Ctrl+Shift+S")
+        onTriggered: Colors.theme = Colors.systemTheme
     }
 
     Action {
@@ -393,7 +413,7 @@ ApplicationWindow {
         id: staticLeftSideBar
         width: librariesSideBar.compact ? 0 : Math.min(300, window.width / 3)
         height: parent.height
-        elevation: 6
+        Material.elevation: 6
         visible: width > 0
     }
 

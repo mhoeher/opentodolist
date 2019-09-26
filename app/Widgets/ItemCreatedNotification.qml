@@ -1,5 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 import "../Components"
 import "../Utils"
 
@@ -23,7 +25,7 @@ Pane {
 
     signal open(OTL.Item item)
 
-    backgroundColor: info
+    Material.background:  Material.Green
     z: 11
     anchors {
         left: parent.left

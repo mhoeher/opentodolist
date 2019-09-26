@@ -1,9 +1,11 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.1
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 import "../Utils"
 
 
@@ -17,12 +19,11 @@ Item {
     signal clicked()
     signal released(var mouse)
 
-    Pane {
+    ItemPane {
         anchors.fill: parent
         anchors.margins: 5
-        elevation: 6
-        backgroundColor: Colors.color(Colors.itemColor(item.libraryItem),
-                                      Colors.shade50)
+        Material.elevation: 6
+        item: item.libraryItem
 
         Image {
             source: item.libraryItem.imageUrl

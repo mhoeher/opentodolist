@@ -1,5 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
 import Qt.labs.folderlistmodel 2.2
 
 import OpenTodoList 1.0 as OTL
