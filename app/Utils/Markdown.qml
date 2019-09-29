@@ -14,7 +14,7 @@ Item {
             text-decoration: none;
         }
     </style>
-    ".arg(Colors.color(Colors.linkColor))
+    ".arg(Colors.linkColor)
 
     function scheduleFormat(text) {
         worker.sendMessage({ text: text });

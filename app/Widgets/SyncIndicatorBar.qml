@@ -20,7 +20,7 @@ Pane {
     }
     
     y: parent.height
-    Material.background: Material.Grey
+    Material.elevation: 6
     width: parent.width
     state: syncRunning ? "visible" : ""
     

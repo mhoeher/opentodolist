@@ -10,22 +10,39 @@ import OpenTodoList 1.0 as OTL
 Item {
     id: root
 
-    readonly property string lightTheme: "light"
-    readonly property string darkTheme: "dark"
-    readonly property string systemTheme: "system"
+    readonly property var themes: [
+        qsTr("System"),
+        qsTr("Light"),
+        qsTr("Dark")
+    ]
+
+    readonly property string systemTheme: themes[0].toLowerCase()
+    readonly property string lightTheme: themes[1].toLowerCase()
+    readonly property string darkTheme: themes[2].toLowerCase()
+
+
     readonly property var materialBackground: Material.background
     readonly property int materialTheme: Material.theme
-    readonly property int syntaxHighlightingTheme: {
+
+    readonly property bool usingDarkColorTheme: {
         if (theme === lightTheme) {
-            return OTL.SyntaxHighlighter.Light;
+            return false;
         } else if (theme === darkTheme) {
-            return OTL.SyntaxHighlighter.Dark;
+            return true;
         } else {
             if (materialTheme === Material.Dark) {
-                return OTL.SyntaxHighlighter.Dark;
+                return true;
             } else {
-                return OTL.SyntaxHighlighter.Light;
+                return false;
             }
+        }
+    }
+
+    readonly property int syntaxHighlightingTheme: {
+        if (usingDarkColorTheme) {
+            return OTL.SyntaxHighlighter.Dark;
+        } else {
+            return OTL.SyntaxHighlighter.Light;
         }
     }
 
@@ -42,7 +59,13 @@ Item {
     // Pre-defined colors for specific "roles":
     readonly property int positiveColor: Material.Green
     readonly property int negativeColor: Material.Red
-    readonly property int linkColor: Material.Teal
+    readonly property color linkColor: {
+        if (usingDarkColorTheme) {
+            return Material.color(Material.LightGreen);
+        } else {
+            return Material.color(Material.Teal);
+        }
+    }
 
     // Pre-defined shades:
     readonly property int shade50: Material.Shade50

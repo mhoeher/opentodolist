@@ -22,10 +22,12 @@ Pane {
     property bool previousLibraryOpened: false
 
     property bool helpVisible: false
+    property bool settingsVisible: false
     property bool compact: false
 
     signal newLibrary()
     signal aboutPageRequested()
+    signal settingsPageRequested()
     signal close()
 
     function reopenLastLibrary() {
@@ -40,6 +42,13 @@ Pane {
             }
         }
         previousLibraryOpened = true;
+    }
+
+    function showSettings() {
+        settingsVisible = true;
+        helpVisible = false;
+        sidebar.settingsPageRequested();
+        sidebar.close();
     }
 
     clip: true
@@ -90,6 +99,7 @@ Pane {
                             currentTag = "";
                             specialView = "";
                             helpVisible = false;
+                            settingsVisible = false;
                             sidebar.close();
                         }
                     }
@@ -105,6 +115,7 @@ Pane {
                             currentTag = "";
                             specialView = "schedule";
                             helpVisible = false;
+                            settingsVisible = false;
                             sidebar.close();
                         }
                     }
@@ -123,6 +134,7 @@ Pane {
                                 currentTag = modelData;
                                 specialView = "";
                                 helpVisible = false;
+                                settingsVisible = false;
                                 sidebar.close();
                             }
                         }
@@ -137,35 +149,22 @@ Pane {
             }
 
             LibrarySideBarButton {
+                text: qsTr("Settings")
+                symbol: Icons.faWrench
+                highlighted: settingsVisible
+                onClicked: sidebar.showSettings()
+            }
+
+            LibrarySideBarButton {
                 text: qsTr("About...")
                 symbol: Icons.faInfo
                 highlighted: helpVisible
                 onClicked: {
                     helpVisible = true;
+                    settingsVisible = false;
                     sidebar.aboutPageRequested();
                     sidebar.close();
                 }
-            }
-
-            LibrarySideBarButton {
-                text: qsTr("Light Theme")
-                symbol: Icons.faSun
-                highlighted: Colors.theme === Colors.lightTheme
-                onClicked: Colors.theme = Colors.lightTheme
-            }
-
-            LibrarySideBarButton {
-                text: qsTr("Dark Theme")
-                symbol: Icons.faMoon
-                highlighted: Colors.theme === Colors.darkTheme
-                onClicked: Colors.theme = Colors.darkTheme
-            }
-
-            LibrarySideBarButton {
-                text: qsTr("Automartic Theme")
-                symbol: Icons.faAndroid
-                highlighted: Colors.theme === Colors.systemTheme
-                onClicked: Colors.theme = Colors.systemTheme
             }
         }
 

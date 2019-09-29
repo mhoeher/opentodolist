@@ -93,5 +93,7 @@
         <file>Widgets/ItemPane.qml</file>
         <file>Widgets/ItemPage.qml</file>
         <file>Widgets/ItemScrollView.qml</file>
+        <file>Pages/SettingsPage.qml</file>
+        <file>Pages/SettingsPageForm.ui.qml</file>
     </qresource>
 </RCC>

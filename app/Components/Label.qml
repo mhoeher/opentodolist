@@ -13,7 +13,7 @@ Label {
 
     onLinkActivated: linkHandler(link)
     textFormat: Text.StyledText
-    linkColor: Material.color(Colors.linkColor)
+    linkColor: Colors.linkColor
 
     MouseArea {
         anchors.fill: parent

@@ -119,6 +119,24 @@
     </message>
 </context>
 <context>
+    <name>Colors</name>
+    <message>
+        <location filename="../Utils/Colors.qml" line="14"/>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Colors.qml" line="15"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Colors.qml" line="16"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DeleteItemDialog</name>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
@@ -214,33 +232,23 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="99"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="109"/>
         <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="134"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="146"/>
         <source>New Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="140"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="159"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="151"/>
-        <source>Light Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="158"/>
-        <source>Dark Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="165"/>
-        <source>Automartic Theme</source>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="152"/>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -369,77 +377,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="178"/>
-        <source>Light Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Windows/MainWindow.qml" line="179"/>
-        <source>Ctrl+Shift+L</source>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="184"/>
-        <source>Dark Theme</source>
+        <location filename="../Windows/MainWindow.qml" line="180"/>
+        <source>Ctrl+,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="185"/>
-        <source>Ctrl+Shift+D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="190"/>
-        <source>System Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="191"/>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="198"/>
+        <location filename="../Windows/MainWindow.qml" line="187"/>
         <source>New &amp;Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="209"/>
+        <location filename="../Windows/MainWindow.qml" line="198"/>
         <source>New &amp;Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="217"/>
+        <location filename="../Windows/MainWindow.qml" line="206"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="225"/>
+        <location filename="../Windows/MainWindow.qml" line="214"/>
         <source>New &amp;Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="233"/>
+        <location filename="../Windows/MainWindow.qml" line="222"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="241"/>
+        <location filename="../Windows/MainWindow.qml" line="230"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="268"/>
+        <location filename="../Windows/MainWindow.qml" line="257"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="276"/>
+        <location filename="../Windows/MainWindow.qml" line="265"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="366"/>
+        <location filename="../Windows/MainWindow.qml" line="373"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -587,6 +575,24 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="251"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPageForm.ui</name>
+    <message>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="31"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="37"/>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="44"/>
+        <source>Theme:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

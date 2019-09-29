@@ -46,6 +46,7 @@ ApplicationWindow {
     }
 
     property Item helpPage: null
+    property Item settingsPage: null
 
     header: ToolBar {
         leftPadding: 10
@@ -175,21 +176,9 @@ ApplicationWindow {
     }
 
     Action {
-        text: qsTr("Light Theme")
-        shortcut: qsTr("Ctrl+Shift+L")
-        onTriggered: Colors.theme = Colors.lightTheme
-    }
-
-    Action {
-        text: qsTr("Dark Theme")
-        shortcut: qsTr("Ctrl+Shift+D")
-        onTriggered: Colors.theme = Colors.darkTheme
-    }
-
-    Action {
-        text: qsTr("System Theme")
-        shortcut: qsTr("Ctrl+Shift+S")
-        onTriggered: Colors.theme = Colors.systemTheme
+        text: qsTr("Settings")
+        shortcut: qsTr("Ctrl+,")
+        onTriggered: librariesSideBar.showSettings()
     }
 
     Action {
@@ -342,10 +331,28 @@ ApplicationWindow {
                 helpPage = stackView.push(
                             aboutPage, {
                                 stack: stackView,
-                                onClosed: function() { helpPage = null; }
+                                onClosed: function() {
+                                    helpPage = null;
+                                    librariesSideBar.helpVisible = false;
+                                }
                             });
             }
         }
+        onSettingsPageRequested: {
+            if (settingsPage) {
+                stackView.pop(settingsPage);
+            } else {
+                settingsPage = stackView.push(
+                            settingsPageComponent, {
+                                stack: stackView,
+                                onClosed: function() {
+                                    settingsPage = null;
+                                    librariesSideBar.settingsVisible = false;
+                                }
+                            });
+            }
+        }
+
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
 
@@ -456,7 +463,14 @@ ApplicationWindow {
 
     Component {
         id: aboutPage
+
         AboutPage {}
+    }
+
+    Component {
+        id: settingsPageComponent
+
+        SettingsPage {}
     }
 
     Component {
