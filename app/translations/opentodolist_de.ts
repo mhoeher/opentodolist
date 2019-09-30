@@ -121,17 +121,17 @@
 <context>
     <name>Colors</name>
     <message>
-        <location filename="../Utils/Colors.qml" line="14"/>
+        <location filename="../Utils/Colors.qml" line="16"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Colors.qml" line="15"/>
+        <location filename="../Utils/Colors.qml" line="17"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Colors.qml" line="16"/>
+        <location filename="../Utils/Colors.qml" line="18"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
