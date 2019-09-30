@@ -10,15 +10,34 @@ import OpenTodoList 1.0 as OTL
 Item {
     id: root
 
-    readonly property var themes: [
-        qsTr("System"),
-        qsTr("Light"),
-        qsTr("Dark")
-    ]
+    readonly property string systemTheme: "system"
+    readonly property string lightTheme: "light"
+    readonly property string darkTheme: "dark"
+    readonly property string systemThemeName: qsTr("System")
+    readonly property string lightThemeName: qsTr("Light")
+    readonly property string darkThemeName: qsTr("Dark")
 
-    readonly property string systemTheme: themes[0].toLowerCase()
-    readonly property string lightTheme: themes[1].toLowerCase()
-    readonly property string darkTheme: themes[2].toLowerCase()
+    readonly property var themeNamesToIdMap: {
+        var result = {};
+        result[systemThemeName] = systemTheme;
+        result[lightThemeName] = lightTheme;
+        result[darkThemeName] = darkTheme;
+        return result;
+    }
+
+    readonly property var themeIdsToNameMap: {
+        var result = {};
+        result[systemTheme] = systemThemeName;
+        result[lightTheme] = lightThemeName;
+        result[darkTheme] = darkThemeName;
+        return result;
+    }
+
+    readonly property var themeNames: [
+        systemThemeName,
+        lightThemeName,
+        darkThemeName
+    ]
 
 
     readonly property var materialBackground: Material.background

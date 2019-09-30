@@ -10,22 +10,29 @@ SettingsPageForm {
     height: stack.height
 
     onClose: {
-        console.warn("Foo");
         stack.pop();
     }
-    Component.onCompleted: {
-        var theme = Utils.Colors.theme;
-        var themes = Utils.Colors.themes;
-        for (var i = 0; i < themes.length; ++i) {
-            if (theme === themes[i].toLowerCase()) {
-                themeEdit.currentIndex = i;
-                break;
+
+    themeEdit.currentIndex: {
+        var currentTheme = Utils.Colors.theme;
+        var themeName = Utils.Colors.themeIdsToNameMap[Utils.Colors.theme];
+        if (themeName) {
+            var idx = Utils.Colors.themeNames.indexOf(themeName);
+            if (idx >= 0) {
+                return idx;
             }
         }
+        return 0;
     }
-    themeEdit.model: Utils.Colors.themes
+    themeEdit.model: Utils.Colors.themeNames
     themeEdit.onCurrentIndexChanged: {
-        var idx = themeEdit.currentIndex;
-        Utils.Colors.theme = Utils.Colors.themes[idx].toLowerCase();
+        var selectedTheme = themeEdit.model[themeEdit.currentIndex];
+        if (selectedTheme) {
+            var theme = Utils.Colors.themeNamesToIdMap[selectedTheme];
+            if (theme) {
+
+                Utils.Colors.theme = theme;
+            }
+        }
     }
 }
