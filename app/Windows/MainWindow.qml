@@ -1,6 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import "../Components"
 import "../Fonts"
@@ -44,6 +46,7 @@ ApplicationWindow {
     }
 
     property Item helpPage: null
+    property Item settingsPage: null
 
     header: ToolBar {
         leftPadding: 10
@@ -170,6 +173,12 @@ ApplicationWindow {
         id: d
 
         property bool completed: false
+    }
+
+    Action {
+        text: qsTr("Settings")
+        shortcut: qsTr("Ctrl+,")
+        onTriggered: librariesSideBar.showSettings()
     }
 
     Action {
@@ -322,10 +331,28 @@ ApplicationWindow {
                 helpPage = stackView.push(
                             aboutPage, {
                                 stack: stackView,
-                                onClosed: function() { helpPage = null; }
+                                onClosed: function() {
+                                    helpPage = null;
+                                    librariesSideBar.helpVisible = false;
+                                }
                             });
             }
         }
+        onSettingsPageRequested: {
+            if (settingsPage) {
+                stackView.pop(settingsPage);
+            } else {
+                settingsPage = stackView.push(
+                            settingsPageComponent, {
+                                stack: stackView,
+                                onClosed: function() {
+                                    settingsPage = null;
+                                    librariesSideBar.settingsVisible = false;
+                                }
+                            });
+            }
+        }
+
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
 
@@ -393,7 +420,7 @@ ApplicationWindow {
         id: staticLeftSideBar
         width: librariesSideBar.compact ? 0 : Math.min(300, window.width / 3)
         height: parent.height
-        elevation: 6
+        Material.elevation: 6
         visible: width > 0
     }
 
@@ -436,7 +463,14 @@ ApplicationWindow {
 
     Component {
         id: aboutPage
+
         AboutPage {}
+    }
+
+    Component {
+        id: settingsPageComponent
+
+        SettingsPage {}
     }
 
     Component {

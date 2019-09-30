@@ -1,7 +1,9 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.12
 
 import "../Components"
 import "../Fonts"
+import "../Utils"
 
 import OpenTodoList 1.0 as OTL
 
@@ -20,10 +22,12 @@ Pane {
     property bool previousLibraryOpened: false
 
     property bool helpVisible: false
+    property bool settingsVisible: false
     property bool compact: false
 
     signal newLibrary()
     signal aboutPageRequested()
+    signal settingsPageRequested()
     signal close()
 
     function reopenLastLibrary() {
@@ -38,6 +42,13 @@ Pane {
             }
         }
         previousLibraryOpened = true;
+    }
+
+    function showSettings() {
+        settingsVisible = true;
+        helpVisible = false;
+        sidebar.settingsPageRequested();
+        sidebar.close();
     }
 
     clip: true
@@ -88,6 +99,7 @@ Pane {
                             currentTag = "";
                             specialView = "";
                             helpVisible = false;
+                            settingsVisible = false;
                             sidebar.close();
                         }
                     }
@@ -103,6 +115,7 @@ Pane {
                             currentTag = "";
                             specialView = "schedule";
                             helpVisible = false;
+                            settingsVisible = false;
                             sidebar.close();
                         }
                     }
@@ -121,6 +134,7 @@ Pane {
                                 currentTag = modelData;
                                 specialView = "";
                                 helpVisible = false;
+                                settingsVisible = false;
                                 sidebar.close();
                             }
                         }
@@ -135,11 +149,19 @@ Pane {
             }
 
             LibrarySideBarButton {
+                text: qsTr("Settings")
+                symbol: Icons.faWrench
+                highlighted: settingsVisible
+                onClicked: sidebar.showSettings()
+            }
+
+            LibrarySideBarButton {
                 text: qsTr("About...")
                 symbol: Icons.faInfo
                 highlighted: helpVisible
                 onClicked: {
                     helpVisible = true;
+                    settingsVisible = false;
                     sidebar.aboutPageRequested();
                     sidebar.close();
                 }

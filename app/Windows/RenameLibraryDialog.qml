@@ -1,8 +1,9 @@
 import QtQuick 2.10
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 
 
 CenteredDialog {
@@ -31,7 +32,7 @@ CenteredDialog {
         property OTL.Library library
     }
 
-    TextField {
+    Components.TextField {
         id: edit
         placeholderText: qsTr("Enter library title...")
         onAccepted: dialog.accept()

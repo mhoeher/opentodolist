@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -8,7 +9,7 @@ import "../Windows"
 import "../Widgets"
 import "../Utils"
 
-Page {
+ItemPage {
     id: page
 
     property OTL.Todo item: OTL.Todo {}
@@ -48,6 +49,7 @@ Page {
     }
 
     title: itemTitle.text
+    topLevelItem: todoList
 
     QtObject {
         id: d
@@ -101,13 +103,7 @@ Page {
         closeOnButtonClick: true
     }
 
-    Pane {
-        anchors.fill: parent
-        backgroundColor: Colors.color(
-                             Colors.itemColor(page.todoList), Colors.shade50)
-    }
-
-    ScrollView {
+    ItemScrollView {
         id: scrollView
         anchors {
             left: parent.left
@@ -115,56 +111,50 @@ Page {
             top: filterBar.bottom
             bottom: parent.bottom
         }
-
-        Pane {
-            id: background
-
-            backgroundColor: Colors.color(Colors.itemColor(page.todoList),
-                                          Colors.shade50)
-            width: scrollView.width
+        item: page.todoList
+        padding: 10
 
 
-            Column {
+        Column {
+            width: parent.width
+
+            ItemPageHeader {
+                item: page.item
+            }
+
+            ItemProgressEditor {
+                item: page.item
                 width: parent.width
+            }
 
-                ItemPageHeader {
-                    item: page.item
-                }
+            ItemNotesEditor {
+                id: itemNotesEditor
+                item: page.item
+                width: parent.width
+            }
 
-                ItemProgressEditor {
-                    item: page.item
-                    width: parent.width
+            TodosWidget {
+                width: parent.width
+                model: tasks
+                title: qsTr("Tasks")
+                headerItemVisible: false
+                allowCreatingNewItems: true
+                newItemPlaceholderText: qsTr("Add new task...")
+                onCreateNewItem: {
+                    var properties = {
+                        "title": title
+                    };
+                    var task = OTL.Application.addTask(
+                                page.library,
+                                page.item,
+                                properties);
                 }
+            }
 
-                ItemNotesEditor {
-                    id: itemNotesEditor
-                    item: page.item
-                    width: parent.width
-                }
-
-                TodosWidget {
-                    width: parent.width
-                    model: tasks
-                    title: qsTr("Tasks")
-                    headerItemVisible: false
-                    allowCreatingNewItems: true
-                    newItemPlaceholderText: qsTr("Add new task...")
-                    onCreateNewItem: {
-                        var properties = {
-                            "title": title
-                        };
-                        var task = OTL.Application.addTask(
-                                    page.library,
-                                    page.item,
-                                    properties);
-                    }
-                }
-
-                Attachments {
-                    id: attachments
-                    item: page.item
-                    width: parent.width
-                }
+            Attachments {
+                id: attachments
+                item: page.item
+                width: parent.width
             }
         }
     }

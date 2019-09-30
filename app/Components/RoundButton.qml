@@ -18,5 +18,5 @@ RoundButton {
     height: width
 
     Material.background: backgroundColor
-    Material.foreground: "white"
+    //Material.foreground: "white"
 }

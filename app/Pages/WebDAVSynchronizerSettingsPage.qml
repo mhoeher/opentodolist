@@ -1,9 +1,10 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 
 Page {
     id: page
@@ -41,7 +42,7 @@ Page {
                     width: parent.width
                 }
 
-                TextField {
+               Components.TextField {
                     id: username
                     width: parent.width
                     text: page.synchronizer.username
@@ -53,7 +54,7 @@ Page {
                     font.bold: true
                 }
 
-                TextField {
+                Components.TextField {
                     id: password
                     width: parent.width
                     text: page.synchronizer.password

@@ -1,9 +1,10 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 
 Page {
     id: page
@@ -86,7 +87,7 @@ Page {
                         }
                     }
 
-                    TextField {
+                    Components.TextField {
                         id: newLibraryName
                         visible: createNewLibrary.checked
                         Layout.fillWidth: true

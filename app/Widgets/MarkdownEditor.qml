@@ -1,8 +1,10 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
-import "../Components"
+import "../Components" as Components
 import "../Utils"
 import "../Fonts"
 
@@ -43,7 +45,7 @@ Column {
         onNotesChanged: textArea.text = item.notes
     }
 
-    TextArea {
+    Components.TextArea {
         id: textArea
 
         anchors {
@@ -76,7 +78,7 @@ Column {
         onTriggered: d.saveText()
     }
 
-    RoundButton {
+    Components.RoundButton {
         onClicked: editor.doneEditing()
         anchors.right: parent.right
         anchors.rightMargin: 10
@@ -87,5 +89,6 @@ Column {
 
     OTL.SyntaxHighlighter {
         document: textArea.textDocument
+        theme: Colors.syntaxHighlightingTheme
     }
 }

@@ -1,5 +1,6 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import "../Utils"
 
@@ -12,7 +13,7 @@ Label {
 
     onLinkActivated: linkHandler(link)
     textFormat: Text.StyledText
-    linkColor: Colors.color(Colors.linkColor)
+    linkColor: Colors.linkColor
 
     MouseArea {
         anchors.fill: parent

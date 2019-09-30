@@ -91,10 +91,10 @@ if [ -n "$CI" ]; then
         CC=clang \
         ANDROID_API=$OPENSSL_API bash -c \
         "\
-        (./Configure android-$OPENSSL_ARCH -D__ANDROID_API__=$OPENSSL_API && \
-         make -j4 build_libs) \
+        (./Configure shared android-$OPENSSL_ARCH -D__ANDROID_API__=$OPENSSL_API && \
+         make -j4 SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs) \
          "
-    ANDROID_EXTRA_LIBS="$PWD/libcrypto.so;$PWD/libssl.so"
+    ANDROID_EXTRA_LIBS="$PWD/libcrypto_1_1.so;$PWD/libssl_1_1.so"
     popd
 fi
 

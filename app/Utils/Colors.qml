@@ -1,52 +1,94 @@
 pragma Singleton
 
 import QtQuick 2.10
-import QtQuick.Controls.Material 2.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
+import Qt.labs.settings 1.1
 
 import OpenTodoList 1.0 as OTL
 
 Item {
-    // Pre-defined colors:
-    readonly property int red: Material.Red
-    readonly property int pink: Material.Pink
-    readonly property int purple: Material.Purple
-    readonly property int deepPurple: Material.DeepPurple
-    readonly property int indigo: Material.Indigo
-    readonly property int blue: Material.Blue
-    readonly property int lightBlue: Material.LightBlue
-    readonly property int cyan: Material.Cyan
-    readonly property int teal: Material.Teal
-    readonly property int green: Material.Green
-    readonly property int lightGreen: Material.LightGreen
-    readonly property int lime: Material.Lime
-    readonly property int yellow: Material.Yellow
-    readonly property int amber: Material.Amber
-    readonly property int orange: Material.Orange
-    readonly property int deepOrange: Material.DeepOrange
-    readonly property int brown: Material.Brown
-    readonly property int grey: Material.Grey
-    readonly property int blueGrey: Material.BlueGrey
+    id: root
+
+    readonly property string systemTheme: "system"
+    readonly property string lightTheme: "light"
+    readonly property string darkTheme: "dark"
+    readonly property string systemThemeName: qsTr("System")
+    readonly property string lightThemeName: qsTr("Light")
+    readonly property string darkThemeName: qsTr("Dark")
+
+    readonly property var themeNamesToIdMap: {
+        var result = {};
+        result[systemThemeName] = systemTheme;
+        result[lightThemeName] = lightTheme;
+        result[darkThemeName] = darkTheme;
+        return result;
+    }
+
+    readonly property var themeIdsToNameMap: {
+        var result = {};
+        result[systemTheme] = systemThemeName;
+        result[lightTheme] = lightThemeName;
+        result[darkTheme] = darkThemeName;
+        return result;
+    }
+
+    readonly property var themeNames: [
+        systemThemeName,
+        lightThemeName,
+        darkThemeName
+    ]
+
+
+    readonly property var materialBackground: Material.background
+    readonly property int materialTheme: Material.theme
+
+    readonly property bool usingDarkColorTheme: {
+        if (theme === lightTheme) {
+            return false;
+        } else if (theme === darkTheme) {
+            return true;
+        } else {
+            if (materialTheme === Material.Dark) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    readonly property int syntaxHighlightingTheme: {
+        if (usingDarkColorTheme) {
+            return OTL.SyntaxHighlighter.Dark;
+        } else {
+            return OTL.SyntaxHighlighter.Light;
+        }
+    }
+
+    property string theme: systemTheme
+
+    Material.theme: {
+        switch (theme) {
+            case lightTheme: return Material.Light;
+            case darkTheme: return Material.Dark;
+            case systemTheme: return Material.System;
+        }
+    }
 
     // Pre-defined colors for specific "roles":
-    readonly property int positiveColor: green
-    readonly property int negativeColor: red
-    readonly property int linkColor: teal
+    readonly property int positiveColor: Material.Green
+    readonly property int negativeColor: Material.Red
+    readonly property color linkColor: {
+        if (usingDarkColorTheme) {
+            return Material.color(Material.LightGreen);
+        } else {
+            return Material.color(Material.Teal);
+        }
+    }
 
     // Pre-defined shades:
     readonly property int shade50: Material.Shade50
     readonly property int shade100: Material.Shade100
-    readonly property int shade200: Material.Shade200
-    readonly property int shade300: Material.Shade300
-    readonly property int shade400: Material.Shade400
-    readonly property int shade500: Material.Shade500
-    readonly property int shade600: Material.Shade600
-    readonly property int shade700: Material.Shade700
-    readonly property int shade800: Material.Shade800
-    readonly property int shade900: Material.Shade900
-    readonly property int shadeA100: Material.ShadeA100
-    readonly property int shadeA200: Material.ShadeA200
-    readonly property int shadeA400: Material.ShadeA400
-    readonly property int shadeA700: Material.ShadeA700
 
     function color(base, shade) {
         if (shade !== undefined) {
@@ -76,5 +118,23 @@ Item {
         case OTL.TopLevelItem.Lilac:
             return Material.Purple;
         }
+    }
+
+    function materialItemBackgroundColor(item, shade=0.1) {
+        var result = materialBackground;
+        if (item !== null) {
+            var c = itemColor(item);
+            c = Material.color(c);
+            c.a = shade;
+            result = Qt.tint(result, c);
+        }
+        return result;
+    }
+
+
+    Settings {
+        category: "Colors"
+
+        property alias theme: root.theme
     }
 }

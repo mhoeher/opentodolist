@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
@@ -82,7 +83,8 @@ Column {
                 bottomPadding: 0
                 background: Rectangle {
                     id: tagBackground
-                    color: Colors.color(Colors.green, Colors.shade600)
+
+                    color: Material.color(Material.Green, Material.Shade600)
                     border {
                         width: 1
                         color: Qt.lighter(tagBackground.color, 1.1)

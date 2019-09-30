@@ -1,4 +1,6 @@
 import QtQuick 2.10
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -15,11 +17,11 @@ Item {
         dragTile.Drag.startDrag();
     }
 
-    Rectangle {
+    Pane {
         id: itemBackground
         visible: dragTile.Drag.active
         anchors.fill: parent
-        color: Colors.color(Colors.teal)
+        Material.background: Material.Teal
         opacity: 0.2
         z: 9
     }
@@ -47,10 +49,10 @@ Item {
         }
     }
 
-    Rectangle {
+    Pane {
         width: root.layout === Qt.Vertical ? parent.width : 3
         height: root.layout === Qt.Vertical ? 3 : parent.height
-        color: Colors.color(Colors.teal)
+        Material.background: Material.Teal
         visible: upperDropArea.containsDrag
         z: 10
         y: -1
@@ -61,7 +63,7 @@ Item {
         y: root.layout === Qt.Vertical ? parent.height - 1 : 0
         x: root.layout === Qt.Vertical ? 0 : parent.width - 1
         height: root.layout === Qt.Vertical ? 3 : parent.height
-        color: Colors.color(Colors.teal)
+        Material.background: Material.Teal
         visible: lowerDropArea.containsDrag
         z: 10
     }
@@ -83,7 +85,7 @@ Item {
             var thisWeight = object.weight;
             if (index === 0) {
                 var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
-                if (diff == 0) {
+                if (diff === 0) {
                     diff = Math.random() + 0.1;
                 }
                 item.weight = thisWeight - diff;
@@ -118,7 +120,7 @@ Item {
             var thisWeight = object.weight;
             if (index === root.model.count - 1) {
                 var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
-                if (diff == 0) {
+                if (diff === 0) {
                     diff = Math.random() + 0.1;
                 }
                 item.weight = thisWeight + diff;
