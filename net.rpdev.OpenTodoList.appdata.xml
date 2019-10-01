@@ -40,6 +40,21 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.16.0" date="2019-10-01">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #252: The KDE runtime used for the Flatpak build has been
+                updated to v5.13.
+            </li>
+            <li>
+                #253: The app now supports a dark theme. In the newly added
+                settings page, the user can select the preferred theme for the
+                Material style. One can select either the Light or Dark theme
+                or opt to follow the system color palette.
+            </li>
+        </ul>
+    </release>
     <release version="3.15.0" date="2019-09-08">
         <p>This release includes the following changes:</p>
         <ul>
