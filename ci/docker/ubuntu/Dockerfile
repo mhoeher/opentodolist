@@ -1,35 +1,40 @@
 FROM ubuntu:xenial
+
+ADD qt-installer-script.js /
+
 RUN \
     apt-get update && \
     apt-get install -y software-properties-common wget curl && \
-    add-apt-repository --yes ppa:beineri/opt-qt-5.12.3-xenial && \
     wget http://ftp.de.debian.org/debian/pool/main/p/patchelf/patchelf_0.8-2_amd64.deb && \
     dpkg -i patchelf_0.8-2_amd64.deb && \
     rm patchelf_0.8-2_amd64.deb && \
     apt-get update && \
     apt-get install -y \
-        qt512base \
-        qt512declarative \
-        qt512tools \
-        qt512svg \
-        qt512graphicaleffects \
-        qt512imageformats \
-        qt512translations \
-        qt512quickcontrols \
-        qt512quickcontrols2 \
-        qt512x11extras \
-        qt512websockets \
-        qt512webchannel \
-        qt512webengine \
-        qt512remoteobjects \
-        qt512wayland \
         build-essential \
+        libfontconfig1 \
+        desktop-file-utils \
+        libwayland-dev \
+        libwayland-egl1-mesa \
+        libwayland-server0 \
+        libgles2-mesa-dev \
+        libxkbcommon-dev \
         libgl1-mesa-dev \
         libfuse2 \
-        desktop-file-utils \
         git \
         cmake \
         libssl-dev \
         ninja-build \
+        libxrender1 \
+        libxkbcommon-x11-0 \
+        libodbc1 \
+        libpq5 \
         && \
+    wget http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run && \
+    chmod +x qt-unified-linux-x64-online.run && \
+    ./qt-unified-linux-x64-online.run --script qt-installer-script.js \
+        --platform minimal --no-force-installations -v && \
+    rm qt-unified-linux-x64-online.run \
+    && \
     apt-get clean
+
+ENV QT_ROOT /opt/Qt/5.13.1/gcc_64

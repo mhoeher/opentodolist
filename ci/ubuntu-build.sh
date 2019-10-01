@@ -2,7 +2,7 @@
 
 set -e
 
-PREFIX_PATH=/opt/qt512
+PREFIX_PATH=$QT_ROOT
 
 which ninja-build || (apt-get update && apt-get install -y ninja-build)
 

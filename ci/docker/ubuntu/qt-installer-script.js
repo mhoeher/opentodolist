@@ -6,7 +6,7 @@ function Controller() {
 }
 
 Controller.prototype.WelcomePageCallback = function() {
-    gui.clickButton(buttons.NextButton, 3000);
+    gui.clickButton(buttons.NextButton, 10000);
 }
 
 Controller.prototype.CredentialsPageCallback = function() {
@@ -27,8 +27,7 @@ Controller.prototype.ComponentSelectionPageCallback = function() {
     var widget = gui.pageById(QInstaller.ComponentSelection);
 
     widget.deselectAll();
-    widget.selectComponent("qt.qt5.5100.gcc_64");
-    widget.selectComponent("qt.qt5.5100.qtremoteobjects");
+    widget.selectComponent("qt.qt5.5131.gcc_64");
 
     gui.clickButton(buttons.NextButton);
 }
