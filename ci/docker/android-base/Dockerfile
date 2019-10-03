@@ -21,7 +21,7 @@ RUN \
     (sleep 5 ; while true ; do sleep 1 ; printf 'y\r\n' ; done ) | \
         ./android-sdk/tools/bin/sdkmanager --update && \
     (sleep 5 ; while true ; do sleep 1 ; printf 'y\r\n' ; done ) | \
-        ./android-sdk/tools/bin/sdkmanager "platforms;android-26" "build-tools;27.0.3" && \
+        ./android-sdk/tools/bin/sdkmanager "platforms;android-26" "build-tools;28.0.3" && \
     yum clean all
 
 ENV ANDROID_SDK_ROOT /opt/android/android-sdk
