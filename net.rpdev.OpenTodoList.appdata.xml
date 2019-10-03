@@ -40,6 +40,14 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.16.1" date="2019-10-03">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #255: Update Android release to Qt 5.13.1.
+            </li>
+        </ul>
+    </release>
     <release version="3.16.0" date="2019-10-01">
         <p>This release includes the following changes:</p>
         <ul>

@@ -91,6 +91,7 @@ file(GLOB_RECURSE OTHER_FILES
     Doxyfile
     net.rpdev.OpenTodoList.json
     net.rpdev.OpenTodoList.appdata.xml
+    snapcraft.yaml
     doc/*
     .gitlab-ci.yml
     bin/*
