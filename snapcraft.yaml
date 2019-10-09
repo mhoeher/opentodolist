@@ -22,10 +22,10 @@ apps:
         desktop: "usr/share/applications/net.rpdev.OpenTodoList.desktop"
 plugs:
     kde-frameworks-5-plug:
-        content: kde-frameworks-5-all
-        interface: content
-        default-provider: kde-frameworks-5
-        target: kf5
+        interface: content # type
+        content: kde-frameworks-5-core18-all # the slot
+        default-provider: kde-frameworks-5-core18 # the snap which provides the slot (ideally)
+        target: kf5 # the target path where we want the content snap mounted into our scope
 parts:
     opentodolist:
         build-snaps:
