@@ -26,3 +26,4 @@ CMakeLists.txt.user*
 /fp-app
 /fp-repo
 .flatpak-builder
+/ios-build
