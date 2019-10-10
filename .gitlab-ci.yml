@@ -193,7 +193,6 @@ macos:
     paths:
       - build-macos/app/OpenTodoList.dmg
     expire_in: 1 week
-  when: manual
 
 
 # Android build ARMv7
