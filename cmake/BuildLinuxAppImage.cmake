@@ -1,4 +1,4 @@
-find_package(Qt5Core REQUIRED)
+find_package(Qt5 COMPONENTS REQUIRED Core)
 get_target_property(QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
 
 set(LINUXDEPLOYQT_URL
@@ -27,7 +27,7 @@ add_custom_target(
     COMMAND
         cp -r ${CMAKE_CURRENT_SOURCE_DIR}/templates/icons/* AppImageBuild/usr/share/icons/hicolor/
     COMMAND
-    cp -r ${CMAKE_CURRENT_SOURCE_DIR}/templates/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png AppImageBuild/
+        cp -r ${CMAKE_CURRENT_SOURCE_DIR}/templates/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png AppImageBuild/
     COMMAND
         ${LINUXDEPLOYQT} --appimage-extract
     COMMAND
