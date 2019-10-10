@@ -47,7 +47,7 @@ void LibrariesModelTest::run()
         QVERIFY(finished.wait());
     }
 
-    QVERIFY(rowsInserted.wait());
+    QVERIFY(model.rowCount() == 1 || rowsInserted.wait());
     {
         auto idx = model.index(0);
         auto l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
@@ -66,7 +66,7 @@ void LibrariesModelTest::run()
         QVERIFY(finished.wait());
     }
 
-    QVERIFY(rowsInserted.wait());
+    QVERIFY(model.rowCount() == 2 || rowsInserted.wait());
     {
         auto idx = model.index(0);
         auto l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
