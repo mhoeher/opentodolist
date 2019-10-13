@@ -1,12 +1,4 @@
 TEMPLATE = subdirs
-CONFIG += ordered
-
-qrc.depends =
-qrc.commands = perl $$PWD/bin/mk-qrc.pl \
-               --dir $$PWD/OpenTodoList/qml/ \
-               --base $$PWD/OpenTodoList/ \
-               --out $$PWD/OpenTodoList/OpenTodoList.qrc
-QMAKE_EXTRA_TARGETS += qrc
 
 OTHER_FILES += \
     README.md \
@@ -23,15 +15,7 @@ OTHER_FILES += \
     templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
     templates/appimage/default.desktop \
     $$files(templates/nsis/*,true) \
-    $$files(ci/docker/android/*) \
-    $$files(ci/docker/fedora/*) \
-    $$files(ci/docker/fedora_system/*) \
-    $$files(ci/docker/ubuntu/*) \
-    $$files(ci/docker/win32/*) \
-    $$files(ci/docker/win64/*) \
-    $$files(ci/windows/*) \
-    $$files(ci/android/*) \
-    $$files(ci/*.*) \
+    $$files(ci/*,true) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \
 
@@ -39,7 +23,12 @@ OTHER_FILES += \
 SUBDIRS += \
     lib \
     app \
-    test
+    test \
+    3rdparty
+
+lib.depends += 3rdparty
+app.depends += lib
+test.depends += lib
 
 include(config.pri)
 # include(installer.pri)

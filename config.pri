@@ -1,5 +1,5 @@
 # The application version
-system(git describe) {
+system(git describe --tags) {
     OPENTODOLIST_VERSION = $$system(git describe --tags)
 } else {
     OPENTODOLIST_VERSION = 3.8.0-unknown
@@ -19,7 +19,7 @@ DEFINES += OPENTODOLIST_VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 QMAKE_TARGET_COMPANY = "RPdev"
 QMAKE_TARGET_PRODUCT = "OpenTodoList"
 QMAKE_TARGET_DESCRIPTION = "A todo and task management application"
-QMAKE_TARGET_COPYRIGHT = "(c) RPdev 2014-2018"
+QMAKE_TARGET_COPYRIGHT = "(c) RPdev 2014-2019"
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
