@@ -11,9 +11,9 @@ if [ -n "$CI" ]; then
         http://nextcloud/index.php
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
             http://owncloud/index.php
-    CMAKE_EXTRA_FLAGS="
-        -DOPENTODOLIST_NEXTCLOUD_TEST_URL=http://admin:admin@nextcloud/
-        -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
+    QMAKE_EXTRA_FLAGS="
+        NEXTCLOUD_URL=http://admin:admin@nextcloud/
+        OWNCLOUD_URL=http://admin:admin@owncloud/
     "
 
     # Install ECM:
@@ -37,7 +37,8 @@ fi
 
 which cmake || (apt-get update && apt-get install -y cmake)
 
-[ -f /usr/lib/x86_64-linux-gnu/libssl.so ] || (apt-get update && apt-get install -y libssl-dev)
+[ -f /usr/lib/x86_64-linux-gnu/libssl.so ] || \
+    (apt-get update && apt-get install -y libssl-dev)
 
 desktop-file-validate templates/appimage/default.desktop
 
@@ -47,18 +48,14 @@ export QT_QPA_PLATFORM=minimal
 mkdir -p build-ubuntu
 cd build-ubuntu
 
-cmake \
-    -DCMAKE_PREFIX_PATH=$PREFIX_PATH \
-    -GNinja \
-    $CMAKE_EXTRA_FLAGS \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
-    -DOPENTODOLIST_WITH_APPIMAGE_EXTRAS=ON \
-    -DQTKEYCHAIN_STATIC=ON \
+$QT_ROOT/bin/qmake \
+    CONFIG+=release \
+    CONFIG+=with_appimage_extras \
+    CONFIG+=with_update_service \
+    CONFIG+=qlmdb_with_static_libs \
+    INSTALL_PREFIX=/usr \
+    $QMAKE_EXTRA_FLAGS \
     ..
-cmake --build . -- opentodolist-translations
-cmake --build . --target all -- -j4
-cmake --build . --target test
-cmake --build . --target appimage
-
-make OpenTodoList-x86_64.AppImage
+make -j4
+make check
+make appimage
