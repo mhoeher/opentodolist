@@ -20,6 +20,7 @@ appimage.commands = \
         AppImageBuild/usr/bin/OpenTodoList \
         -qmldir=$$PWD/app \
         -qmake=$$QMAKE_QMAKE \
-        -appimage
+        -appimage && \
+    mv OpenTodoList-*-x86_64.AppImage OpenTodoList-x86_64.AppImage
 
 QMAKE_EXTRA_TARGETS += linuxdeployqt appimagetool appimage
