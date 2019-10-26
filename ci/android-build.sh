@@ -52,61 +52,57 @@ CMAKE_FLAGS_3RDPARTY="\
     -DCMAKE_TOOLCHAIN_FILE=$PROJECT_ROOT/3rdparty/qt-cmake-android/cmake/toolchain-android.cmake
 "
 
-CMAKE_FLAGS="\
-    $CMAKE_FLAGS_3RDPARTY
-"
-
 if [ -n "$CI" ]; then
     # Ensure Python is installed:
     which python || dnf install --refresh -y --nogpgcheck python
 
-    # Install ECM:
-    pushd 3rdparty/KDE/extra-cmake-modules
-    rm -rf build-android-$TARGET_ARCH
-    mkdir -p build-android-$TARGET_ARCH
-    cd build-android-$TARGET_ARCH
-    cmake $CMAKE_FLAGS_3RDPARTY ..
-    cmake --build .
-    cmake --build . --target install
-    popd
+     # Install ECM:
+     pushd 3rdparty/KDE/extra-cmake-modules
+     rm -rf build-android-$TARGET_ARCH
+     mkdir -p build-android-$TARGET_ARCH
+     cd build-android-$TARGET_ARCH
+     cmake $CMAKE_FLAGS_3RDPARTY ..
+     cmake --build .
+     cmake --build . --target install
+     popd
 
-    # Install KDE syntax highlighting
-    pushd 3rdparty/KDE/syntax-highlighting/
-    rm -rf build-android-$TARGET_ARCH
-    mkdir -p build-android-$TARGET_ARCH
-    cd build-android-$TARGET_ARCH
-    cmake $CMAKE_FLAGS_3RDPARTY -DKF5_HOST_TOOLING=/usr ..
-    cmake --build .
-    cmake --build . --target install
-    popd
+     # Install KDE syntax highlighting
+     pushd 3rdparty/KDE/syntax-highlighting/
+     rm -rf build-android-$TARGET_ARCH
+     mkdir -p build-android-$TARGET_ARCH
+     cd build-android-$TARGET_ARCH
+     cmake $CMAKE_FLAGS_3RDPARTY -DKF5_HOST_TOOLING=/usr ..
+     cmake --build .
+     cmake --build . --target install
+     popd
 
-    rm -rf build-android-openssl-$TARGET_ARCH
-    mkdir -p build-android-openssl-$TARGET_ARCH
+     rm -rf build-android-openssl-$TARGET_ARCH
+     mkdir -p build-android-openssl-$TARGET_ARCH
     pushd build-android-openssl-$TARGET_ARCH
-    wget https://www.openssl.org/source/openssl-1.1.1b.tar.gz
-    tar xf openssl-*.tar.gz
-    rm openssl-*.tar.gz
+     wget https://www.openssl.org/source/openssl-1.1.1b.tar.gz
+     tar xf openssl-*.tar.gz
+     rm openssl-*.tar.gz
     cd openssl-*
-    PATH=$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/:$PATH \
-        CC=clang \
-        ANDROID_API=$OPENSSL_API bash -c \
-        "\
-        (./Configure shared android-$OPENSSL_ARCH -D__ANDROID_API__=$OPENSSL_API && \
-         make -j4 SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs) \
-         "
-    ANDROID_EXTRA_LIBS="$PWD/libcrypto_1_1.so;$PWD/libssl_1_1.so"
+     PATH=$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/:$PATH \
+         CC=clang \
+         ANDROID_API=$OPENSSL_API bash -c \
+         "\
+         (./Configure shared android-$OPENSSL_ARCH -D__ANDROID_API__=$OPENSSL_API && \
+          make -j4 SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs) \
+          "
+    ANDROID_EXTRA_LIBS="$PWD/libcrypto_1_1.so $PWD/libssl_1_1.so"
     popd
 fi
 
+rm -rf build-android-$TARGET_ARCH
 mkdir -p build-android-$TARGET_ARCH
 cd build-android-$TARGET_ARCH
-cmake \
-    $CMAKE_FLAGS \
-    "-DANDROID_EXTRA_LIBS=$ANDROID_EXTRA_LIBS" \
-    -DANDROID_PACKAGE_SOURCE_DIR=$PROJECT_ROOT/app/android \
+qmake \
+    CONFIG+=release \
+    CONFIG+=qlmdb_with_builtin_lmdb \
+    ANDROID_EXTRA_LIBS="$ANDROID_EXTRA_LIBS" \
     ..
-cmake --build . -- opentodolist-translations
-cmake --build .
+make -j4
 
 
 # Prepare the Android Manifest:
@@ -121,7 +117,14 @@ OTL_VERSION="$(git describe --tags)"
     "$OTL_VERSION"
 
 # Build the APK:
-cmake --build . -- OpenTodoList-apk
+make install INSTALL_ROOT=$PWD/android
+androiddeployqt \
+    --output $PWD/android \
+    --verbose \
+    --gradle \
+    --release \
+    --deployment bundled \
+    --input app/android-libOpenTodoList.so-deployment-settings.json
 
-cp ./app/OpenTodoList-apk-build/build/outputs/apk/release/OpenTodoList-apk-build-release-unsigned.apk \
+cp android/build/outputs/apk/release/android-release-unsigned.apk \
     OpenTodoList-Android-${TARGET_ARCH}.apk

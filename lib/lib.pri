@@ -12,4 +12,4 @@ win32:CONFIG(release, debug|release) {
     LIBS *= -L$$shadowed($$PWD)
 }
 
-LIBS *= -lopentodolist
+LIBS *= -lopentodolist-core

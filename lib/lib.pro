@@ -3,8 +3,15 @@ include(../config.pri)
 QT       += qml quick xml concurrent sql
 QT       -= gui
 
+
+qtHaveModule(KSyntaxHighlighting) {
+    QT += KSyntaxHighlighting
+    DEFINES += HAVE_KF5_SYNTAX_HIGHLIGHTING
+}
+
+
 TEMPLATE = lib
-TARGET = opentodolist
+TARGET = opentodolist-core
 CONFIG += c++11 create_prl
 
 INCLUDEPATH += datamodel datastorage models

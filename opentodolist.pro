@@ -18,6 +18,7 @@ OTHER_FILES += \
     $$files(ci/*,true) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \
+    $$files(doc/*,true)
 
 
 SUBDIRS += \

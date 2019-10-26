@@ -2,7 +2,7 @@
 system(git describe --tags) {
     OPENTODOLIST_VERSION = $$system(git describe --tags)
 } else {
-    OPENTODOLIST_VERSION = 3.8.0-unknown
+    OPENTODOLIST_VERSION = 3.0.0-unknown
 }
 
 with_update_service {
@@ -40,7 +40,7 @@ defineTest(setupTest) {
 
     CONFIG += c++11
     TARGET = tst_$${1}test
-    CONFIG  += console testcase
+    CONFIG  += console testcase no_testcase_installs
     CONFIG  -= app_bundle
     TEMPLATE = app
     DEFINES += SRCDIR=\\\"$$PWD/\\\"
