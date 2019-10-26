@@ -18,7 +18,8 @@ OTHER_FILES += \
     $$files(ci/*,true) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \
-    $$files(doc/*,true)
+    $$files(doc/*,true) \
+    $$files(net.rpdev.OpenTodoList.*)
 
 
 SUBDIRS += \
@@ -74,3 +75,4 @@ with_appimage_extras {
 }
 
 include(appimage.pri)
+include(qmake/flatpak.pri)

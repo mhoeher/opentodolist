@@ -96,6 +96,11 @@ HEADERS += \
     utils/syntaxhighlighter.h \
     utils/updateservice.h
 
+
+target.path = $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB
+INSTALLS += target
+
+
 android {
     QT += androidextras
     HEADERS += utils/android/androidfiledialog.h
