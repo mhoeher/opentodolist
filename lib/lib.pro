@@ -18,7 +18,16 @@ INCLUDEPATH += datamodel datastorage models
 
 # Include QLMDB library:
 INCLUDEPATH += ../3rdparty/qlmdb
-LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/ -lqlmdb
+win32 {
+    CONFIG(release, release|debug) {
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release
+    } else {
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug
+    }
+} else {
+    LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/
+}
+LIBS *= -lqlmdb
 QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/
 
 SOURCES += \
