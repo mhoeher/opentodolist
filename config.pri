@@ -47,7 +47,7 @@ defineTest(setupTest) {
     DEFINES += SRCBINDIR=\\\"$$OUT_PWD/\\\"
     QT += testlib xml concurrent
     QT -= gui
-    QMAKE_RPATHDIR = $$OUT_PWD/../../lib
+    QMAKE_RPATHDIR = $$OUT_PWD/../../lib $$OUT_PWD/../../3rdparty/qlmdb/qlmdb
 
     export(CONFIG)
     export(TARGET)

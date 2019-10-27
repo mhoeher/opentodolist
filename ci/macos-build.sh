@@ -17,6 +17,7 @@ QTSDK=$QT_DIR
 if [ -n "$CI" ]; then
     # Install ECM:
     pushd 3rdparty/KDE/extra-cmake-modules
+    rm -rf build-macos
     mkdir -p build-macos
     cd build-macos
     cmake \
@@ -30,6 +31,7 @@ if [ -n "$CI" ]; then
 
     # Install KDE syntax highlighting
     pushd 3rdparty/KDE/syntax-highlighting/
+    rm -rf build-macos
     mkdir -p build-macos
     cd build-macos
     cmake \
@@ -41,22 +43,26 @@ if [ -n "$CI" ]; then
     cmake --build .
     cmake --build . --target install
     popd
+
+    QMAKE_EXTRA_ARGS="\
+        INCLUDEPATH+=$PACKAGES_DIR/include/ \
+        LIBS+=-L$PACKAGES_DIR/lib"
+    
+    export QMAKEPATH=$QMAKEPATH:$PACKAGES_DIR
 fi
 
+#rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
-cmake \
-    -GNinja \
-    -DCMAKE_PREFIX_PATH=$QTSDK\;$PACKAGES_DIR \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
-    -DQTKEYCHAIN_STATIC=ON \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 \
+$QTSDK/bin/qmake \
+    CONFIG+=release \
+    CONFIG+=with_update_service \
+    CONFIG+=qlmdb_with_static_libs \
+    $QMAKE_EXTRA_ARGS \
     ..
-cmake --build . --target opentodolist-translations
-cmake --build . -- -j2
-cmake --build . -- test
+make -j4
+make check
 $QTSDK/bin/macdeployqt app/OpenTodoList.app/ -qmldir=../app
 
 # Prepare a "beautified" folder:

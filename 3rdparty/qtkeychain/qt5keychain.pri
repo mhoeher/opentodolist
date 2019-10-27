@@ -52,11 +52,11 @@ win32 {
 }
 
 mac {
-    LIBS *= "-framework Security" "-framework Foundation"
-    ios {
-        SOURCES *= $$QT5KEYCHAIN_PWD/keychain_ios.mm
-    } else {
-        SOURCES *= $$QT5KEYCHAIN_PWD/keychain_mac.cpp
-    }
+    LIBS += -framework Security -framework Foundation
+    SOURCES *= $$QT5KEYCHAIN_PWD/keychain_mac.cpp
 }
 
+ios {
+    LIBS += -framework Security -framework Foundation
+    SOURCES *= $$QT5KEYCHAIN_PWD/keychain_ios.mm
+}

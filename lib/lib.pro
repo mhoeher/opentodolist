@@ -13,13 +13,14 @@ qtHaveModule(KSyntaxHighlighting) {
 TEMPLATE = lib
 TARGET = opentodolist-core
 CONFIG += c++11 create_prl
+macos:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models
 
 # Include QLMDB library:
 INCLUDEPATH += ../3rdparty/qlmdb
 win32 {
-    CONFIG(release, release|debug) {
+    CONFIG(release, debug|release) {
         LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release
     } else {
         LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug
