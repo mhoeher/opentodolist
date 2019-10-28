@@ -13,7 +13,7 @@ qtHaveModule(KSyntaxHighlighting) {
 TEMPLATE = lib
 TARGET = opentodolist-core
 CONFIG += c++11 create_prl
-macos:CONFIG += static
+macos|android:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models
 

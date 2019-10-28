@@ -73,6 +73,11 @@ with_appimage_extras {
 } else {
     message("    AppImage Extras:        DISABLED")
 }
+qtHaveModule(KSyntaxHighlighting) {
+    message("    Syntax Highlightling:   ENABLED")
+} else {
+    message("    Syntax Highlightling:   DISABLED")
+}
 
 include(appimage.pri)
 include(qmake/flatpak.pri)
