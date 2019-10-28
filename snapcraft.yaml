@@ -35,11 +35,11 @@ parts:
         - libgl1-mesa-dev
         after:
         - kde-frameworks-5-env
-        plugin: cmake
+        plugin: qmake
         source: .
-        configflags:
-        - "-DCMAKE_INSTALL_PREFIX=/usr"
-        - "-DCMAKE_BUILD_TYPE=Release"
+        options:
+        - "INSTALL_PREFIX=/usr"
+        - "CONFIG+=release"
         parse-info: [usr/share/appdata/net.rpdev.OpenTodoList.appdata.xml]
     kde-frameworks-5-env:
         plugin: dump
