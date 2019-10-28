@@ -20,7 +20,7 @@ if [ -n "$CI" ]; then
     pushd 3rdparty/KDE/extra-cmake-modules
     mkdir -p build-ubuntu
     cd build-ubuntu
-    cmake -DCMAKE_PREFIX_PATH=$PREFIX_PATH -GNinja ..
+    cmake -DCMAKE_PREFIX_PATH=$PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$QT_ROOT -GNinja ..
     cmake --build .
     cmake --build . --target install
     popd
@@ -29,7 +29,7 @@ if [ -n "$CI" ]; then
     pushd 3rdparty/KDE/syntax-highlighting/
     mkdir -p build-ubuntu
     cd build-ubuntu
-    cmake -DCMAKE_PREFIX_PATH=$PREFIX_PATH -GNinja ..
+    cmake -DCMAKE_PREFIX_PATH=$PREFIX_PATH -DCMAKE_INSTALL_PREFIX=$QT_ROOT -GNinja ..
     cmake --build .
     cmake --build . --target install
     popd
