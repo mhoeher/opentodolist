@@ -9,5 +9,8 @@
         <file>Fonts/NotoColorEmoji-unhinted/LICENSE_OFL.txt</file>
         <file>Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf</file>
         <file>Fonts/NotoColorEmoji-unhinted/README</file>
+        <file>Utils/markdown-formatter-worker.js</file>
+        <file>Utils/showdownjs/3rdpartyinfo.json</file>
+        <file>Utils/showdownjs/showdown.js</file>
     </qresource>
 </RCC>

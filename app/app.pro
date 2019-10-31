@@ -5,6 +5,16 @@ include(../config.pri)
 include(../lib/lib.pri)
 
 QT += qml quick xml concurrent widgets
+
+# Use Qt Quick Compiler for release builds:
+CONFIG(release, debug|release) {
+    # Note: This option must come before the embed_translations option,
+    #       otherwise, running qmake yields errors.
+    #       See https://bugreports.qt.io/browse/QTBUG-79672
+    CONFIG += qtquickcompiler
+    QTQUICK_COMPILER_SKIPPED_RESOURCES += res.qrc
+}
+
 CONFIG += c++11 lrelease embed_translations
 
 SOURCES += main.cpp
@@ -17,6 +27,7 @@ RESOURCES += \
     include(../3rdparty/SingleApplication/singleapplication.pri)
     DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QGuiApplication
 }
+
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
@@ -72,6 +83,3 @@ TRANSLATIONS += \
     translations/opentodolist_fr.ts
 
 QM_FILES_RESOURCE_PREFIX = :/translations/
-
-OTHER_FILES *= \
-    $$files(qmldir,true)
