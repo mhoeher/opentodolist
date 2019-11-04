@@ -60,6 +60,11 @@ make qmake_all
 make -j4
 make install
 
+# Remove some extra files we don't need to deploy
+rm -f \
+    $PWD/../$DEPLOY_DIR/bin/*.dll.a \
+    $PWD/../$DEPLOY_DIR/bin/*.prl
+
 cd ..
 
 cp \
@@ -69,8 +74,10 @@ cp \
     \
     $DEPLOY_DIR/bin/
 
-wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
-chmod +x xwindeployqt
+if [ ! -f xwindeployqt ]; then
+    wget https://gitlab.com/rpdev/xwindeployqt/raw/master/xwindeployqt
+    chmod +x xwindeployqt
+fi
 ./xwindeployqt \
     --driver fedora-mingw \
     --qml-dir app \

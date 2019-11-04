@@ -118,6 +118,7 @@ OTL_VERSION="$(git describe --tags)"
 
 # Build the APK:
 make install INSTALL_ROOT=$PWD/android
+rm -f $PWD/android/libs/*/libtst*.so # Remove unit tests
 androiddeployqt \
     --output $PWD/android \
     --verbose \
