@@ -3,11 +3,33 @@ include(../config.pri)
 QT       += qml quick xml concurrent sql
 QT       -= gui
 
+
+qtHaveModule(KSyntaxHighlighting) {
+    QT += KSyntaxHighlighting
+    DEFINES += HAVE_KF5_SYNTAX_HIGHLIGHTING
+}
+
+
 TEMPLATE = lib
-TARGET = opentodolist
-CONFIG += static c++11 create_prl
+TARGET = opentodolist-core
+CONFIG += c++11 create_prl
+macos|android:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models
+
+# Include QLMDB library:
+INCLUDEPATH += ../3rdparty/qlmdb
+win32 {
+    CONFIG(release, debug|release) {
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release
+    } else {
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug
+    }
+} else {
+    LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/
+}
+LIBS *= -lqlmdb
+QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/
 
 SOURCES += \
     application.cpp \
@@ -20,13 +42,21 @@ SOURCES += \
     datamodel/task.cpp \
     datamodel/todo.cpp \
     datamodel/todolist.cpp \
+    datastorage/cache.cpp \
+    datastorage/deleteitemsquery.cpp \
+    datastorage/getitemquery.cpp \
+    datastorage/getitemsquery.cpp \
+    datastorage/getlibraryitemsuidsitemsquery.cpp \
+    datastorage/getlibraryquery.cpp \
+    datastorage/insertorupdateitemsquery.cpp \
+    datastorage/itemsquery.cpp \
+    datastorage/librariesitemsquery.cpp \
+    models/librariesmodel.cpp \
     opentodolistqmlextensionsplugin.cpp \
     fileutils.cpp \
-    datastorage/itemcontainer.cpp \
     datastorage/libraryloader.cpp \
     models/itemsmodel.cpp \
     models/itemssortfiltermodel.cpp \
-    migrators/migrator_2_x_to_3_x.cpp \
     utils/directorywatcher.cpp \
     utils/keystore.cpp \
     sync/synchronizer.cpp \
@@ -35,6 +65,7 @@ SOURCES += \
     sync/webdavclient.cpp \
     sync/syncrunner.cpp \
     sync/syncjob.cpp \
+    utils/syntaxhighlighter.cpp \
     utils/updateservice.cpp
 
 HEADERS += \
@@ -48,14 +79,22 @@ HEADERS += \
     datamodel/task.h \
     datamodel/todo.h \
     datamodel/todolist.h \
+    datastorage/cache.h \
+    datastorage/deleteitemsquery.h \
+    datastorage/getitemquery.h \
+    datastorage/getitemsquery.h \
+    datastorage/getlibraryitemsuidsitemsquery.h \
+    datastorage/getlibraryquery.h \
+    datastorage/insertorupdateitemsquery.h \
+    datastorage/itemsquery.h \
+    datastorage/librariesitemsquery.h \
+    models/librariesmodel.h \
     opentodolistqmlextensionsplugin.h \
     fileutils.h \
     abstractitemmodel.h \
-    datastorage/itemcontainer.h \
     datastorage/libraryloader.h \
     models/itemsmodel.h \
     models/itemssortfiltermodel.h \
-    migrators/migrator_2_x_to_3_x.h \
     utils/directorywatcher.h \
     utils/keystore.h \
     sync/synchronizer.h \
@@ -64,7 +103,13 @@ HEADERS += \
     sync/webdavclient.h \
     sync/syncrunner.h \
     sync/syncjob.h \
+    utils/syntaxhighlighter.h \
     utils/updateservice.h
+
+
+target.path = $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB
+INSTALLS += target
+
 
 android {
     QT += androidextras

@@ -2,8 +2,9 @@
 #define ITEMSQUERY_H
 
 #include <QObject>
-#include <QSharedPointer>
 #include <QSet>
+#include <QSharedPointer>
+#include <QVariant>
 
 class Cache;
 class ItemsQueryRunnable;

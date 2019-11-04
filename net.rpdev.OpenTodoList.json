@@ -34,12 +34,11 @@
         },
         {
             "name": "opentodolist",
-            "buildsystem": "cmake-ninja",
+            "buildsystem": "qmake",
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=Release",
-                "-DCMAKE_INSTALL_LIBDIR=/app/lib",
-                "-DLIB_INSTALL_DIR=/app/lib",
-                "-DOPENTODOLIST_FLATPAK=ON"
+                "CONFIG+=release",
+                "INSTALL_PREFIX=/app",
+                "CONFIG+=opentodolist_flatpak"
             ],
             "sources": [
                 {

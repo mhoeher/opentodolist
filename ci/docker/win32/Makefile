@@ -11,4 +11,4 @@ publish:
 	buildah push docker://${IMAGE}
 
 login:
-	podman login registry.gitlab.com
+	buildah login registry.gitlab.com
