@@ -253,18 +253,6 @@ flatpak:
         - fp-repo
       expire_in: 1 week
 
-# Build the app as Snap
-snap:
-    stage: build
-    image: docker:git
-    services:
-        - docker:dind
-    script:
-        - sh ./ci/snapcraft-build.sh
-    artifacts:
-      paths:
-        - "*.snap"
-      expire_in: 1 week
 
 ################################################################################
 # Installer Stage
