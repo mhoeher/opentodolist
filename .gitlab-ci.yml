@@ -260,7 +260,7 @@ snap:
     services:
         - docker:dind
     script:
-        - ./ci/snapcraft-build.sh
+        - sh ./ci/snapcraft-build.sh
     artifacts:
       paths:
         - "*.snap"
