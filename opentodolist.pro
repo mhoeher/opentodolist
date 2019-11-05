@@ -26,12 +26,15 @@ OTHER_FILES += \
 SUBDIRS += \
     lib \
     app \
-    test \
     3rdparty
 
 lib.depends += 3rdparty
 app.depends += lib
-test.depends += lib
+
+!ios {
+    SUBDIRS += tests
+    tests.depends += lib
+}
 
 include(config.pri)
 # include(installer.pri)

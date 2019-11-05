@@ -1,10 +1,3 @@
-# The application version
-system(git describe --tags) {
-    OPENTODOLIST_VERSION = $$system(git describe --tags)
-} else {
-    OPENTODOLIST_VERSION = 3.0.0-unknown
-}
-
 with_update_service {
     DEFINES *= OPENTODOLIST_WITH_UPDATE_SERVICE
 }
@@ -13,8 +6,6 @@ with_appimage_extras {
     DEFINES *= OPENTODOLIST_IS_APPIMAGE
 }
 
-# Pass in values via defines
-DEFINES += OPENTODOLIST_VERSION=\\\"$$OPENTODOLIST_VERSION\\\"
 
 QMAKE_TARGET_COMPANY = "RPdev"
 QMAKE_TARGET_PRODUCT = "OpenTodoList"

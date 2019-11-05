@@ -51,7 +51,7 @@ win32 {
     DEFINES *= USE_CREDENTIAL_STORE
 }
 
-mac {
+mac:!ios {
     LIBS += -framework Security -framework Foundation
     SOURCES *= $$QT5KEYCHAIN_PWD/keychain_mac.cpp
 }

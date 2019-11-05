@@ -28,6 +28,13 @@ RESOURCES += \
     DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QGuiApplication
 }
 
+# Set VERSION variable, it is required for apps on some platforms,
+# such as the iOS simulator:
+system(git describe --tags) {
+    VERSION = $$system(git describe --tags)
+} else {
+    VERSION = 3.0.0-unknown
+}
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
