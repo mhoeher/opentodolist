@@ -4,6 +4,7 @@
 #include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
+#include <QVariant>
 
 #include "datamodel/image.h"
 #include "datamodel/library.h"

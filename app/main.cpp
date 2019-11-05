@@ -5,7 +5,6 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QFile>
-#include <QFileSystemWatcher>
 #include <QFont>
 #include <QFontInfo>
 #include <QFontDatabase>
@@ -17,6 +16,7 @@
 #include <QScreen>
 #include <QSslSocket>
 #include <QTranslator>
+#include <QSysInfo>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
 #include "singleapplication.h"
@@ -25,88 +25,6 @@
 #endif
 
 #include <iostream>
-
-
-class QmlFileSystemWatcher : public QObject
-{
-    Q_OBJECT
-    Q_PROPERTY(bool modified READ modified NOTIFY modifiedChanged)
-
-public:
-
-    QmlFileSystemWatcher(const QString baseUrl, QQmlApplicationEngine *engine, QObject *parent = nullptr) :
-        QObject(parent),
-        m_baseUrl(baseUrl),
-        m_engine(engine),
-        m_modified(false)
-  #ifdef OPENTODOLIST_DEBUG
-      , m_watcher(new QFileSystemWatcher(this))
-  #endif
-    {
-        Q_CHECK_PTR(m_engine);
-#ifdef OPENTODOLIST_DEBUG
-        if (QDir(m_baseUrl).exists()) {
-            watchPath();
-            connect(m_watcher, &QFileSystemWatcher::fileChanged, [this](const QString &file) {
-                qDebug() << "File" << file << "has changed.";
-                m_modified = true;
-                watchPath();
-                emit modifiedChanged();
-            });
-            connect(m_watcher, &QFileSystemWatcher::directoryChanged, [this](const QString &dir) {
-                m_modified = true;
-                qDebug() << "Directory" << dir << "has changed.";
-                watchPath();
-                emit modifiedChanged();
-            });
-        }
-#endif
-    }
-
-    bool modified() const { return m_modified; }
-
-public slots:
-
-    void reload() {
-#ifdef OPENTODOLIST_DEBUG
-        m_engine->clearComponentCache();
-        m_engine->load(QUrl(m_baseUrl + "main.qml"));
-        m_modified = false;
-        emit modifiedChanged();
-#endif
-    }
-
-signals:
-
-    void modifiedChanged();
-
-private:
-
-    QString                 m_baseUrl;
-    QQmlApplicationEngine  *m_engine;
-    bool                    m_modified;
-#ifdef OPENTODOLIST_DEBUG
-    QFileSystemWatcher     *m_watcher;
-#endif
-
-    void watchPath() {
-#ifdef OPENTODOLIST_DEBUG
-        if (!m_watcher->directories().isEmpty()) {
-            m_watcher->removePaths(m_watcher->directories());
-        }
-        if (!m_watcher->files().isEmpty()) {
-            m_watcher->removePaths(m_watcher->files());
-        }
-        m_watcher->addPath(m_baseUrl);
-        QDirIterator it(m_baseUrl, QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
-        while (it.hasNext()) {
-            QString entry = it.next();
-            m_watcher->addPath(entry);
-        }
-#endif
-    }
-
-};
 
 
 int main(int argc, char *argv[])
@@ -129,7 +47,7 @@ int main(int argc, char *argv[])
 
     //qSetMessagePattern("%{file}(%{line}): %{message}");
 #ifdef OPENTODOLIST_DEBUG
-    QLoggingCategory(0).setEnabled(QtDebugMsg, true);
+    QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
 #endif
 
 #ifdef OTL_USE_SINGLE_APPLICATION
@@ -244,39 +162,6 @@ int main(int argc, char *argv[])
     OpenTodoListQmlExtensionsPlugin plugin;
     plugin.registerTypes("OpenTodoList");
 
-#ifdef OPENTODOLIST_DEBUG
-    QmlFileSystemWatcher watcher(qmlBase, &engine);
-    engine.rootContext()->setContextProperty("qmlFileSystemWatcher", &watcher);
-#endif
-
-
-    engine.rootContext()->setContextProperty("debugMode",
-                                             QVariant(
-                                             #ifdef OPENTODOLIST_DEBUG
-                                                 true
-                                             #else
-                                                 false
-                                             #endif
-                                                 )
-                                             );
-
-    // Enable touch optimizations, this flag is controlled via CLI, additionally, it
-    // is set implicitly on some platforms:
-    {
-        bool enableTouchOptimizations =
-        #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_QNX) || defined(Q_OS_WINPHONE)
-                true
-        #else
-                false
-        #endif
-                ;
-        if (parser.isSet(enableTouchOption))
-        {
-            enableTouchOptimizations = true;
-        }
-        engine.rootContext()->setContextProperty("enableTouchOptimizations",
-                                                 enableTouchOptimizations);
-    }
 #ifdef OTL_USE_SINGLE_APPLICATION
     engine.rootContext()->setContextProperty("application", &app);
 #endif
@@ -288,6 +173,15 @@ int main(int argc, char *argv[])
                 "qmlBaseDirectory", qmlBase);
     engine.load(QUrl(qmlBase + "main.qml"));
 
+    // Print diagnostic information
+    qWarning() << "System ABI:" << QSysInfo::buildAbi();
+    qWarning() << "Build CPU Architecture:" << QSysInfo::buildCpuArchitecture();
+    qWarning() << "Current CPU Architecture:"
+               << QSysInfo::currentCpuArchitecture();
+    qWarning() << "Kernel Type:" << QSysInfo::kernelType();
+    qWarning() << "Kernel Version:" << QSysInfo::kernelVersion();
+    qWarning() << "Product Name:" << QSysInfo::prettyProductName();
+
     // Print SSL information for debugging
     qWarning() << "OpenSSL version Qt was built against:"
                << QSslSocket::sslLibraryBuildVersionString();
@@ -296,5 +190,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-
-#include "main.moc"

@@ -27,7 +27,7 @@ stages:
 ################################################################################
 
 # Build the Linux (Ubuntu) Image
-build_image_ubuntu:
+image::appimage:
   stage: images
   image: docker:git
   services:
@@ -41,7 +41,7 @@ build_image_ubuntu:
 
 
 # Build the Win32 Image
-build_image_win32:
+image::win32:
   stage: images
   image: fedora
   script:
@@ -54,7 +54,7 @@ build_image_win32:
 
 
 # Build the Win64 Image
-build_image_win64:
+image::win64:
   stage: images
   image: fedora
   script:
@@ -67,7 +67,7 @@ build_image_win64:
 
 
 # Build the Android Base Image
-build_image_android_base:
+image::android_base:
   stage: images
   image: docker:git
   services:
@@ -81,7 +81,7 @@ build_image_android_base:
 
 
 # Build the Android ARM Image
-build_image_android_arm:
+image::android_arm:
   stage: images
   image: docker:git
   services:
@@ -95,7 +95,7 @@ build_image_android_arm:
 
 
 # Build the Android ARM64 Image
-build_image_android_arm64:
+image::android_arm64:
   stage: images
   image: docker:git
   services:
@@ -109,7 +109,7 @@ build_image_android_arm64:
 
 
 # Build the Android x86 Image
-build_image_android_x86:
+image::android_x86:
   stage: images
   image: docker:git
   services:
@@ -123,7 +123,7 @@ build_image_android_x86:
 
 
 # Build the Flatpak Image
-build_image_flatpak:
+image::flatpak:
   stage: images
   image: docker:git
   services:
@@ -142,7 +142,7 @@ build_image_flatpak:
 
 
 # Ubuntu build including AppImage
-ubuntu_appimage:
+appimage:
   stage: build
   image: $UBUNTU_IMAGE
   services:
@@ -159,7 +159,7 @@ ubuntu_appimage:
 
 
 # Windows 32bit build
-win32_build:
+win32:
   stage: build
   image: $WIN32_IMAGE
   script:
@@ -171,7 +171,7 @@ win32_build:
 
 
 # Windows 64bit build
-win64_build:
+win64:
   stage: build
   image: $WIN64_IMAGE
   script:
@@ -243,7 +243,7 @@ android_x64:
     expire_in: 1 week
 
 # Build the app as Flatpak
-build_flatpak:
+flatpak:
     stage: build
     image: $FLATPAK_IMAGE
     script:
@@ -291,6 +291,7 @@ github:
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
         - cp build-android-*/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
+        - cp *.snap uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     when: manual
     only:

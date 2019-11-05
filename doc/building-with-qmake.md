@@ -2,7 +2,7 @@
 
 The following components are required to build OpenTodoList:
 
-* Qt >= 5.10.0
+* Qt >= 5.12.0
 
 Building with `qmake` is the easiest way, especially as
 `qmake` comes with Qt, which you anyway need.
@@ -38,7 +38,6 @@ The following configuration switches are supported:
 | **Switch** | **Description** |
 | ---------- | --------------- |
 | `with_update_service` | Enable checking for new releases of the app. |
-| `with_nextcloud_tests` | Enable testing against NextCloud and ownCloud test instances. |
 | `with_appimage_extras` | Enable special handling when building the app as AppImage. |
 
 
