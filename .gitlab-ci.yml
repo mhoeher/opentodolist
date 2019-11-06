@@ -195,6 +195,19 @@ macos:
     expire_in: 1 week
 
 
+# iOS build:
+ios:
+  stage: build
+  tags:
+    - macos
+  script:
+    - ci/ios-build.sh
+  artifacts:
+    paths:
+      - build-ios/app/Release-*/OpenTodoList.app
+    expire_in: 1 week
+
+
 # Android build ARMv7
 android_armv7:
   stage: build
