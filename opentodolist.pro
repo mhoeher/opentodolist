@@ -32,8 +32,8 @@ lib.depends += 3rdparty
 app.depends += lib
 
 !ios {
-    SUBDIRS += tests
-    tests.depends += lib
+    SUBDIRS += test
+    test.depends += lib
 }
 
 include(config.pri)
