@@ -291,7 +291,6 @@ github:
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
         - cp build-android-*/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
-        - cp *.snap uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     when: manual
     only:
