@@ -1,5 +1,5 @@
 name: opentodolist
-version: 3.16.1
+version: git
 confinement: strict
 grade: stable
 base: core18
