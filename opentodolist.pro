@@ -81,4 +81,4 @@ qtHaveModule(KSyntaxHighlighting) {
 }
 
 include(appimage.pri)
-include(qmake/flatpak.pri)
+include(qmake/qmake.pri)
