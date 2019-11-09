@@ -62,26 +62,12 @@ message("    Binary Install Prefix:  $$INSTALL_PREFIX$$INSTALL_SUFFIX_BIN")
 message("    Library Install Prefix: $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB")
 message("    QtKeychain:             $$QT_KEYCHAIN_MODE")
 message("    Libsecret:              $$LIBSECRET_MODE")
-with_update_service {
-    message("    Update Service:         ENABLED")
-} else {
-    message("    Update Service:         DISABLED")
-}
-with_nextcloud_tests {
-    message("    WebDAV NextCloud Tests: ENABLED")
-} else {
-    message("    WebDAV NextCloud Tests: DISABLED")
-}
-with_appimage_extras {
-    message("    AppImage Extras:        ENABLED")
-} else {
-    message("    AppImage Extras:        DISABLED")
-}
-qtHaveModule(KSyntaxHighlighting) {
-    message("    Syntax Highlightling:   ENABLED")
-} else {
-    message("    Syntax Highlightling:   DISABLED")
-}
+message("    Update Service:         $$WITH_UPDATE_SERVICE_FLAG")
+message("    Test against NextCloud: $$WITH_NEXTCLOUD_TEST_FLAG")
+message("    Test against ownCloud:  $$WITH_OWNCLOUD_TEST_FLAG")
+message("    AppImage Extras:        $$WITH_APPIMAGE_EXTRAS_FLAG")
+message("    KDE Syntax Highlighter: $$WITH_KDE_SYNTAX_HIGHLIGHTING_FLAGS")
+
 
 include(appimage.pri)
-include(qmake/flatpak.pri)
+include(qmake/qmake.pri)

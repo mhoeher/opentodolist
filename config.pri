@@ -27,6 +27,37 @@ CONFIG(debug, debug|release) {
     DEFINES += OPENTODOLIST_DEBUG
 }
 
+!equals(NEXTCLOUD_URL,"") {
+    WITH_NEXTCLOUD_TEST_FLAG = "Enabled"
+} else {
+    WITH_NEXTCLOUD_TEST_FLAG = "Disabled"
+}
+
+!equals(OWNCLOUD_URL,"") {
+    WITH_OWNCLOUD_TEST_FLAG = "Enabled"
+} else {
+    WITH_OWNCLOUD_TEST_FLAG = "Disabled"
+}
+
+with_update_service {
+    WITH_UPDATE_SERVICE_FLAG = "Enabled"
+} else {
+    WITH_UPDATE_SERVICE_FLAG = "Disabled"
+}
+
+with_appimage_extras {
+    WITH_APPIMAGE_EXTRAS_FLAG = "Enabled"
+} else {
+    WITH_APPIMAGE_EXTRAS_FLAG = "Disabled"
+}
+
+qtHaveModule(KSyntaxHighlighting) {
+    WITH_KDE_SYNTAX_HIGHLIGHTING_FLAGS = "Enabled"
+} else {
+    WITH_KDE_SYNTAX_HIGHLIGHTING_FLAGS = "Disabled"
+}
+
+
 defineTest(setupTest) {
 
     CONFIG += c++11
