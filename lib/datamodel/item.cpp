@@ -281,6 +281,7 @@ void Item::setCache(Cache *cache)
     }
 }
 
+
 /**
  * @brief The weight of the item.
  *
@@ -393,7 +394,7 @@ ItemCacheEntry Item::encache() const
     result.parentId = parentId();
     result.data = toMap();
     QVariantMap meta;
-    meta["filename"] = m_filename;
+    meta["filename"] = FileUtils::toPersistedPath(m_filename);
     result.metaData = meta;
     result.valid = true;
     return result;
@@ -406,7 +407,9 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
         result = Item::createItem(entry.data.toMap(), parent);
         result->applyCalculatedProperties(entry.calculatedData.toMap());
         auto meta = entry.metaData.toMap();
-        result->setFilename(meta["filename"].toString());
+        auto path = meta["filename"].toString();
+        path = FileUtils::fromPersistedPath(path);
+        result->setFilename(path);
         auto topLevelItem = qobject_cast<TopLevelItem*>(result);
         if (topLevelItem != nullptr) {
             topLevelItem->setLibraryId(entry.parentId);

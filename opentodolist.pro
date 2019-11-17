@@ -9,13 +9,8 @@ OTHER_FILES += \
     .qmake.conf \
     bin/* \
     cmake/* \
-    templates/installer/config/config.xml \
-    templates/installer/config/controller.js \
-    templates/installer/packages/net.rpdev.OpenTodoList/meta/script.js \
-    templates/installer/packages/net.rpdev.OpenTodoList/meta/package.xml \
-    templates/appimage/default.desktop \
     snapcraft.yaml \
-    $$files(templates/nsis/*,true) \
+    $$files(templates/*,true) \
     $$files(ci/*,true) \
     $$files(config.tests/qtkeychain/*) \
     $$files(config.tests/libsecret/*) \

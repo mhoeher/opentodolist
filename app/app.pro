@@ -90,3 +90,14 @@ TRANSLATIONS += \
     translations/opentodolist_fr.ts
 
 QM_FILES_RESOURCE_PREFIX = :/translations/
+
+# iOS specific setup
+ios {
+    QMAKE_TARGET_BUNDLE_PREFIX = net.rpdev
+    QMAKE_INFO_PLIST = ios/Info.plist
+
+    ios_icon.files = $$files($$PWD/ios/AppIcon/AppIcon*.png)
+    QMAKE_BUNDLE_DATA += ios_icon
+    OTHER_FILES += $$files($$PWD/ios/AppIcon/AppIcon*.png)
+}
+

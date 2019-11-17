@@ -92,5 +92,6 @@
         <file>Widgets/ItemScrollView.qml</file>
         <file>Pages/SettingsPage.qml</file>
         <file>Pages/SettingsPageForm.ui.qml</file>
+        <file>Windows/+ios/OpenImageDialog.qml</file>
     </qresource>
 </RCC>

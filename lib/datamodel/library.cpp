@@ -10,6 +10,7 @@
 #include "datastorage/cache.h"
 #include "datastorage/getlibraryquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
+#include "fileutils.h"
 #include "toplevelitem.h"
 #include "todolist.h"
 #include "todo.h"
@@ -122,7 +123,7 @@ LibraryCacheEntry Library::encache() const
     result.id = m_uid;
     result.data = toMap();
     QVariantMap meta;
-    meta["directory"] = m_directory;
+    meta["directory"] = FileUtils::toPersistedPath(m_directory);
     result.metaData = meta;
     result.valid = true;
     return result;
@@ -141,7 +142,9 @@ Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
     if (entry.valid) {
         auto meta = entry.metaData.toMap();
         if (meta.contains("directory")) {
-            result = new Library(meta["directory"].toString(), parent);
+            auto path = meta["directory"].toString();
+            path = FileUtils::fromPersistedPath(path);
+            result = new Library(path, parent);
         } else {
             result = new Library(parent);
         }
@@ -348,7 +351,7 @@ bool Library::isInDefaultLocation() const
 {
     bool result = false;
     if (isValid()) {
-        auto defaultLibrariesLocation = Application::defaultLibrariesLocation();
+        auto defaultLibrariesLocation = Library::defaultLibrariesLocation();
         defaultLibrariesLocation = QDir::cleanPath(defaultLibrariesLocation);
 
         auto thisDir = QFileInfo(m_directory).absoluteDir().path();
@@ -500,6 +503,23 @@ QString Library::synchronizerSecret() const
         return sync->secretsKey();
     }
     return QString();
+}
+
+
+/**
+ * @brief Get the location where libraries are stored by default.
+ *
+ * This returns the location where libraries are stored by default. If
+ * the directory does not exist yet, it is created.
+ */
+QString Library::defaultLibrariesLocation()
+{
+    QString result;
+    result = QStandardPaths::writableLocation(
+                QStandardPaths::AppLocalDataLocation);
+    result =  QDir(result).absolutePath();
+    QDir(result).mkpath(".");
+    return result;
 }
 
 

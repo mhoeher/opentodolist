@@ -123,6 +123,8 @@ public:
 
     QString synchronizerSecret() const;
 
+    static QString defaultLibrariesLocation();
+
 signals:
 
     /**

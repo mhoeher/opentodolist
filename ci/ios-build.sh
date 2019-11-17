@@ -9,6 +9,8 @@ pushd build-ios
 $QMAKE \
     -spec macx-ios-clang \
     CONFIG+=release \
+    CONFIG+=iphoneos \
+    CONFIG+=device \
     ..
 make -j4
 popd

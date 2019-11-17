@@ -132,6 +132,7 @@ public:
     Cache *cache() const;
     void setCache(Cache *cache);
 
+
 public slots:
 
 signals:

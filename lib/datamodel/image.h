@@ -17,7 +17,7 @@ public:
     explicit Image(const QString& filename, QObject *parent = nullptr);
     explicit Image(QObject *parent = nullptr);
     explicit Image(const QDir &dir, QObject *parent = nullptr);
-    virtual ~Image();
+    ~Image() override;
 
     /**
      * @brief The path to the image relative to the item's directory.
