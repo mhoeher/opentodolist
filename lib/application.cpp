@@ -34,6 +34,7 @@
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
 #include "utils/directorywatcher.h"
+#include "fileutils.h"
 
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
@@ -206,6 +207,7 @@ QList<QSharedPointer<Library> > Application::librariesFromConfig()
     for (auto i = 0; i < count; ++i) {
         m_settings->setArrayIndex(i);
         auto directory = m_settings->value("directory").toString();
+        directory = FileUtils::fromPersistedPath(directory);
         if (directory != "" && QDir(directory).exists()) {
             auto lib = QSharedPointer<Library>(new Library(directory));
             if (lib->load()) {
@@ -234,6 +236,14 @@ QList<QSharedPointer<Library> > Application::librariesFromConfig()
                 });
                 m_cache->run(query);
             }
+        } else {
+            qCWarning(log) << "Library directory"
+                           << directory
+                           << "does not exist!";
+            QDir d(Library::defaultLibrariesLocation());
+            for (const auto &entry : d.entryList()) {
+                qCWarning(log) << "    " << entry;
+            }
         }
     }
     m_settings->endArray();
@@ -246,7 +256,9 @@ void Application::librariesToConfig(QList<QSharedPointer<Library> > libraries)
     m_settings->beginWriteArray("LibraryDirectories", libraries.length());
     for (auto i = 0; i < libraries.length(); ++i) {
         m_settings->setArrayIndex(i);
-        m_settings->setValue("directory", libraries[i]->directory());
+        auto dir = libraries[i]->directory();
+        dir = FileUtils::toPersistedPath(dir);
+        m_settings->setValue("directory", dir);
     }
     m_settings->endArray();
 }
@@ -264,6 +276,7 @@ void Application::syncLibrariesWithCache(
         loader->scan();
     }
 }
+
 
 template<typename T>
 void Application::watchLibraryForChanges(T library)
@@ -326,7 +339,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
 
     auto synchronizerCls = parameters.value("synchronizer").toString();
     auto localPath = parameters.value(
-                "localPath", librariesLocation()).toString();
+                "localPath", Library::defaultLibrariesLocation()).toString();
     auto name = parameters.value("name").toString();
     QUuid uid;
     if (parameters.contains("uid") &&
@@ -338,7 +351,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
     auto path = parameters.value("path").toString();
 
     if (!isLibraryDir(QUrl::fromLocalFile(localPath)) ||
-            localPath == librariesLocation()) {
+            localPath == Library::defaultLibrariesLocation()) {
         auto modLocalPath = localPath + "/" + uid.toString();
         if (QDir(modLocalPath).exists()) {
             // Do not re-use existing directory:
@@ -863,21 +876,7 @@ void Application::loadLibraries()
  */
 QString Application::librariesLocation() const
 {
-    return defaultLibrariesLocation();
-}
-
-
-/**
- * @brief Get the location where libraries are stored by default.
- */
-QString Application::defaultLibrariesLocation()
-{
-    QString result;
-    result = QStandardPaths::writableLocation(
-                QStandardPaths::AppLocalDataLocation);
-    result =  QDir(result).absolutePath();
-    QDir(result).mkpath(".");
-    return result;
+    return Library::defaultLibrariesLocation();
 }
 
 

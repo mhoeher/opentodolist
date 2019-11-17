@@ -28,6 +28,13 @@ RESOURCES += \
     DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QGuiApplication
 }
 
+# Set VERSION variable, it is required for apps on some platforms,
+# such as the iOS simulator:
+system(git describe --tags) {
+    VERSION = $$system(git describe --tags)
+} else {
+    VERSION = 3.0.0-unknown
+}
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
@@ -83,3 +90,14 @@ TRANSLATIONS += \
     translations/opentodolist_fr.ts
 
 QM_FILES_RESOURCE_PREFIX = :/translations/
+
+# iOS specific setup
+ios {
+    QMAKE_TARGET_BUNDLE_PREFIX = net.rpdev
+    QMAKE_INFO_PLIST = ios/Info.plist
+
+    ios_icon.files = $$files($$PWD/ios/AppIcon/AppIcon*.png)
+    QMAKE_BUNDLE_DATA += ios_icon
+    OTHER_FILES += $$files($$PWD/ios/AppIcon/AppIcon*.png)
+}
+

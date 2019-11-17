@@ -13,7 +13,7 @@
    height="58.6875"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="OpenTodoList.svg"
    inkscape:export-filename="/home/martin/devel/projects/OpenTodoList/OpenTodoList/qml/OpenTodoList/res/OpenTodoList_80.png"
    inkscape:export-xdpi="122.75"
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="47.671876"
-     inkscape:cy="16.445184"
+     inkscape:zoom="7.919596"
+     inkscape:cx="22.80157"
+     inkscape:cy="19.310692"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -37,10 +37,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1920"
-     inkscape:window-height="1012"
+     inkscape:window-width="1680"
+     inkscape:window-height="1005"
      inkscape:window-x="0"
-     inkscape:window-y="-1"
+     inkscape:window-y="1"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -68,23 +68,23 @@
        y="384.25446"
        rx="6.0999999" />
     <g
-       id="g3764"
-       transform="translate(21.22735,-3.2500095)">
+       id="g3351"
+       transform="translate(-0.46933847,10e-6)">
       <text
          sodipodi:linespacing="125%"
          id="text2985"
-         y="441.04041"
-         x="135.14189"
-         style="font-size:67.94538116px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:FontAwesome;-inkscape-font-specification:FontAwesome"
+         y="433.3537"
+         x="162.09636"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:55.54567719px;line-height:125%;font-family:FontAwesome;-inkscape-font-specification:FontAwesome;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
          xml:space="preserve"><tspan
-           y="441.04041"
-           x="135.14189"
+           y="433.3537"
+           x="162.09636"
            id="tspan2987"
            sodipodi:role="line">✔</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path2989"
-         d="m 155.9375,391.46875 c -13.73809,0 -24.875,11.13691 -24.875,24.875 0,13.73809 11.13691,24.875 24.875,24.875 8.15698,0 15.40124,-3.93431 19.9375,-10 -3.85692,3.98809 -9.26378,6.46875 -15.25,6.46875 -11.71573,0 -21.21875,-9.50302 -21.21875,-21.21875 0,-11.71573 9.50302,-21.21875 21.21875,-21.21875 6.46932,0 12.23405,2.90252 16.125,7.46875 -4.44412,-6.77482 -12.10488,-11.25 -20.8125,-11.25 z"
+         d="m 177.16485,388.21874 c -13.73809,0 -24.875,11.13691 -24.875,24.875 0,13.73809 11.13691,24.875 24.875,24.875 8.15698,0 15.40124,-3.93431 19.9375,-10 -3.85692,3.98809 -9.26378,6.46875 -15.25,6.46875 -11.71573,0 -21.21875,-9.50302 -21.21875,-21.21875 0,-11.71573 9.50302,-21.21875 21.21875,-21.21875 6.46932,0 12.23405,2.90252 16.125,7.46875 -4.44412,-6.77482 -12.10488,-11.25 -20.8125,-11.25 z"
          style="fill:#2b7c00;fill-opacity:1;stroke:none" />
     </g>
   </g>

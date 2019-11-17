@@ -26,6 +26,8 @@
 
 #include <iostream>
 
+#include "../lib/opentodolist_version.h"
+
 
 int main(int argc, char *argv[])
 {

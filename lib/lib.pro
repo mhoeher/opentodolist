@@ -107,6 +107,16 @@ HEADERS += \
     utils/updateservice.h
 
 
+# Make git version available in code
+system(git describe --tags) {
+    OPENTODOLIST_VERSION = $$system(git describe --tags)
+} else {
+    OPENTODOLIST_VERSION = 3.0.0-unknown
+}
+OTHER_FILES += opentodolist_version.h.in
+QMAKE_SUBSTITUTES += opentodolist_version.h.in
+
+
 target.path = $$INSTALL_PREFIX$$INSTALL_SUFFIX_LIB
 INSTALLS += target
 

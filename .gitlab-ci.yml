@@ -195,6 +195,19 @@ macos:
     expire_in: 1 week
 
 
+# iOS build:
+ios:
+  stage: build
+  tags:
+    - macos
+  script:
+    - ci/ios-build.sh
+  artifacts:
+    paths:
+      - build-ios/app/Release-*/OpenTodoList.app
+    expire_in: 1 week
+
+
 # Android build ARMv7
 android_armv7:
   stage: build
@@ -291,7 +304,6 @@ github:
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
         - cp build-android-*/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
-        - cp *.snap uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     when: manual
     only:

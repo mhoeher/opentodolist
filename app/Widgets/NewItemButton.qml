@@ -1,10 +1,10 @@
 import QtQuick 2.10
 
-import "../Components"
+import "../Components" as Components
 import "../Fonts"
 import "../Utils"
 
-RoundButton {
+Components.RoundButton {
     id: newItemButton
 
     signal newItem()
