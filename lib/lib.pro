@@ -135,3 +135,13 @@ config_qtkeychain {
 }
 
 include(../3rdparty/simplecrypt.pri)
+
+config_libsecret {
+    # If we found libsecret, load it:
+    CONFIG *= link_pkgconfig
+    PKGCONFIG += libsecret-1
+
+    # Set HAVE_LIBSECRET for qtkeychain:
+    config_libsecret:DEFINES += HAVE_LIBSECRET
+
+}
