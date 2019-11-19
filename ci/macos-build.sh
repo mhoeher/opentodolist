@@ -63,7 +63,14 @@ $QTSDK/bin/qmake \
     ..
 make -j4
 make check
-$QTSDK/bin/macdeployqt app/OpenTodoList.app/ -qmldir=../app
+$QTSDK/bin/macdeployqt \
+    app/OpenTodoList.app/ \
+    -qmldir=../app \
+    -appstore-compliant \
+    -codesign="Apple Distribution: Martin Hoeher (786Z636JV9)"
+
+# Make sure the app has been signed:
+codesign -v app/OpenTodoList.app
 
 # Prepare a "beautified" folder:
 cd app
