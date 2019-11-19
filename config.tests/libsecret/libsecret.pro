@@ -1,2 +1,3 @@
 SOURCES += main.cpp
-LIBS += -lsecret-1
+CONFIG += link_pkgconfig
+PKGCONFIG += libsecret-1
