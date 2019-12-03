@@ -13,4 +13,21 @@ $QMAKE \
     CONFIG+=device \
     ..
 make -j4
+cd app
+
+# Instruction based on
+# https://medium.com/xcblog/xcodebuild-deploy-ios-app-from-command-line-c6defff0d8b8
+xcodebuild \
+    -project OpenTodoList.xcodeproj \
+    -scheme OpenTodoList \
+    -sdk iphoneos \
+    -configuration AppStoreDistribution \
+    archive \
+    -archivePath $PWD/build/OpenTodoList.xcarchive
+xcodebuild \
+    -exportArchive \
+    -archivePath $PWD/build/OpenTodoList.xcarchive \
+    -exportPath $PWD/build \
+    -exportOptionsPlist $PWD/../../app/ios/exportOptions.plist \
+    -allowProvisioningUpdates
 popd

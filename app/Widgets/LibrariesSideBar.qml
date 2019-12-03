@@ -166,6 +166,35 @@ Pane {
                     sidebar.close();
                 }
             }
+            LibrarySideBarButton {
+                visible: isDebugBuild
+                text: qsTr("Create Default Library")
+                onClicked: {
+                    var args = {
+                        "name": "My Library"
+                    };
+                    var lib = OTL.Application.addLibrary(args);
+
+                    var note = OTL.Application.addNote(lib, {});
+                    note.title = "A Note";
+                    note.notes = "* This is a note\n* It stores arbitrary text";
+
+                    var todoList = OTL.Application.addTodoList(lib, {});
+                    todoList.title = "A Todo List";
+                    todoList.notes = "* Todo lists contain todos.\n" +
+                            "* Todos in turn can contain tasks.";
+
+                    var todo1 = OTL.Application.addTodo(lib, todoList, {});
+                    todo1.title = "A todo";
+
+                    var todo2 = OTL.Application.addTodo(lib, todoList, {});
+                    todo2.title = "Another Todo";
+
+                    var image = OTL.Application.addImage(lib, {});
+                    image.title = "An Image";
+                    image.image = ":/sample.png";
+                }
+            }
         }
 
         Connections {

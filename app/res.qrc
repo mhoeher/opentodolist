@@ -12,5 +12,6 @@
         <file>Utils/markdown-formatter-worker.js</file>
         <file>Utils/showdownjs/3rdpartyinfo.json</file>
         <file>Utils/showdownjs/showdown.js</file>
+        <file>sample.png</file>
     </qresource>
 </RCC>

@@ -101,3 +101,6 @@ ios {
     OTHER_FILES += $$files($$PWD/ios/AppIcon/AppIcon*.png)
 }
 
+DISTFILES += \
+    ios/exportOptions.plist
+
