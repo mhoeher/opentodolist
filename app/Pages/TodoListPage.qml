@@ -68,6 +68,11 @@ ItemPage {
         }
     }
 
+    property var goBack: todoDrawer.visible ?
+                             function() {
+                                 todoDrawer.close();
+                             } : null
+
     title: titleText.text
     topLevelItem: item
 
