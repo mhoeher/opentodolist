@@ -89,7 +89,7 @@ TRANSLATIONS += \
     translations/opentodolist_de.ts \
     translations/opentodolist_fr.ts
 
-QM_FILES_RESOURCE_PREFIX = :/translations/
+QM_FILES_RESOURCE_PREFIX = /translations
 
 # iOS specific setup
 ios {
@@ -100,4 +100,3 @@ ios {
     QMAKE_BUNDLE_DATA += ios_icon
     OTHER_FILES += $$files($$PWD/ios/AppIcon/AppIcon*.png)
 }
-

@@ -66,6 +66,7 @@ SOURCES += \
     sync/syncrunner.cpp \
     sync/syncjob.cpp \
     utils/syntaxhighlighter.cpp \
+    utils/translations.cpp \
     utils/updateservice.cpp
 
 HEADERS += \
@@ -104,6 +105,7 @@ HEADERS += \
     sync/syncrunner.h \
     sync/syncjob.h \
     utils/syntaxhighlighter.h \
+    utils/translations.h \
     utils/updateservice.h
 
 

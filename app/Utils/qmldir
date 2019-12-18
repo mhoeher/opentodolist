@@ -1,3 +1,4 @@
 singleton Colors 1.0 Colors.qml
 singleton DateUtils 1.0 DateUtils.qml
 singleton Markdown 1.0 Markdown.qml
+singleton Translations 1.0 Translations.qml
