@@ -180,7 +180,7 @@ ItemPage {
         padding: 10
 
         Column {
-            width: parent.width
+            width: scrollView.contentItem.width
             spacing: 20
 
             ItemPageHeader {
