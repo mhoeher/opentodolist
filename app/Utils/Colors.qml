@@ -42,6 +42,13 @@ Item {
 
     readonly property var materialBackground: Material.background
     readonly property int materialTheme: Material.theme
+    readonly property color materialOverlayDimColor: {
+        if (usingDarkColorTheme) {
+            return Qt.rgba(1, 1, 1, 1);
+        } else {
+            return Qt.rgba(0, 0, 0, 1);
+        }
+    }
 
     readonly property bool usingDarkColorTheme: {
         if (theme === lightTheme) {

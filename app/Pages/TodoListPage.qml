@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.0
 import Qt.labs.settings 1.0
 
 import QtQuick.Controls 2.12
@@ -278,25 +279,49 @@ ItemPage {
         }
     }
 
-    Drawer {
+    Pane {
+        anchors.fill: parent
+        visible: todoDrawer.visible
+        opacity: 0.6 * todoDrawer.position
+        Material.background: Colors.materialOverlayDimColor
+
+        MouseArea {
+            anchors.fill: parent
+            enabled: todoDrawer.visible
+            onClicked: todoDrawer.close()
+        }
+    }
+
+    Pane {
         id: todoDrawer
 
-        edge: Qt.RightEdge
-        width: page.width > 400 ? page.width / 3 * 2 : page.width
-        height: page.height
-        parent: MainWindow.contentItem
-        clip: true
-        dim: true
-        onOpened: {
-            todoPage.forceActiveFocus();
-            interactive = true;
+        function open() {
+            state = "open";
+            forceActiveFocus();
         }
-        onClosed: {
+
+        function close() {
+            state = "closed";
             if (todoPage.editingNotes) {
                 todoPage.finishEditingNotes();
             }
-            interactive = false;
         }
+
+        readonly property double position: {
+            var openX = page.width - todoDrawer.width;
+            var closedX = page.width;
+            return 1 - (openX - x) / (openX - closedX);
+        }
+
+        state: "closed"
+
+        Material.elevation: visible ? 10 : 0
+
+        width: page.width > 400 ? page.width / 3 * 2 : page.width
+        height: page.height
+        clip: true
+        x: parent.width
+        visible: false
 
         TodoPage {
             id: todoPage
@@ -313,6 +338,32 @@ ItemPage {
                     finishEditingNotes();
                 } else {
                     todoDrawer.close();
+                }
+            }
+        }
+
+        states: State {
+            name: "open"
+
+            PropertyChanges {
+                target: todoDrawer
+                visible: true
+                x: page.width - todoDrawer.width
+            }
+        }
+
+        transitions: Transition {
+            from: "closed"
+            to: "open"
+            reversible: true
+
+            SequentialAnimation {
+                PropertyAnimation {
+                    properties: "visible"
+                }
+                NumberAnimation {
+                    properties: "x"
+                    duration: 100
                 }
             }
         }
