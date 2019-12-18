@@ -1,6 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.0
 
 import OpenTodoList 1.0 as OTL
 
@@ -59,6 +60,16 @@ Column {
     DateSelectionDialog {
         id: dateDialog
         onAccepted: newItemRow.dueDate = selectedDate
+    }
+
+    DateSelectionDialog {
+        id: dateDialogForExistingItem
+
+        property var item: null
+
+        onAccepted: if (item !== null) {
+                        item.dueTo = selectedDate;
+                    }
     }
 
     QtObject {
@@ -231,17 +242,51 @@ Column {
 
                     Components.ToolButton {
                         symbol: Icons.faPencilAlt
-                        onClicked: renameDialog.renameItem(object)
+                        onClicked: {
+                            renameDialog.renameItem(object);
+                            swipeDelegate.swipe.close();
+                        }
+                    }
+                    Components.ToolButton {
+                        symbol: Icons.faCalendarAlt
+                        visible: root.allowSettingDueDate
+                        onClicked: {
+                            dateDialogForExistingItem.item = object;
+                            dateDialogForExistingItem.open();
+                            swipeDelegate.swipe.close();
+                        }
                     }
                     Components.ToolButton {
                         symbol: Icons.faTrash
                         onClicked: deleteDialog.deleteItem(object)
                     }
                 }
+                swipe.left: Pane {
+                    height: swipeDelegate.height
+                    width: swipeDelegate.width / 2
+                    Material.background: Colors.positiveColor
+
+                    Components.Label {
+                        text: object.done ?
+                                  qsTr("Swipe to mark undone") :
+                                  qsTr("Swipe to mark done")
+                        wrapMode: "WrapAtWordBoundaryOrAnywhere"
+                        width: parent.width / 2
+                        anchors.fill: parent
+                    }
+                }
+
                 onClicked: {
                     d.openSwipeDelegate = null;
                     root.todoClicked(object);
                 }
+                swipe.onCompleted: {
+                    if (swipe.position > 0) {
+                        // Swipe from left to right to mark items as (un)done.
+                        object.done = !object.done;
+                    }
+                }
+
                 onPressAndHold: {
                     if (root.allowSorting) {
                         d.openSwipeDelegate = null;
