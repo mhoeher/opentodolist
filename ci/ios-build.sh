@@ -4,6 +4,7 @@ set -e
 
 QMAKE=$QT_DIR_IOS/bin/qmake
 
+export XCODEBUILD_FLAGS="-allowProvisioningUpdates"
 mkdir -p build-ios
 pushd build-ios
 $QMAKE \
@@ -12,6 +13,7 @@ $QMAKE \
     CONFIG+=iphoneos \
     CONFIG+=device \
     ..
+make qmake_all
 make -j4
 cd app
 
@@ -23,7 +25,8 @@ xcodebuild \
     -sdk iphoneos \
     -configuration AppStoreDistribution \
     archive \
-    -archivePath $PWD/build/OpenTodoList.xcarchive
+    -archivePath $PWD/build/OpenTodoList.xcarchive \
+    -allowProvisioningUpdates
 xcodebuild \
     -exportArchive \
     -archivePath $PWD/build/OpenTodoList.xcarchive \
