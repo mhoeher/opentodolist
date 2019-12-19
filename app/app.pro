@@ -51,6 +51,8 @@ system(git describe --tags) {
     VERSION = 3.0.0-unknown
 }
 
+message("Building OpenTodoList v$$VERSION")
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
 
