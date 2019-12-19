@@ -106,6 +106,10 @@ ios {
     ios_icon.files = $$files($$PWD/ios/AppIcon/AppIcon*.png)
     QMAKE_BUNDLE_DATA += ios_icon
     OTHER_FILES += $$files($$PWD/ios/AppIcon/AppIcon*.png)
+
+    # See https://appbus.wordpress.com/2017/10/06/ios-11-and-xcode-9-in-qt-5-9-x-projects/
+    QMAKE_ASSET_CATALOGS = $$PWD/ios/Images.xcassets
+    QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
 }
 
 DISTFILES += \
