@@ -36,6 +36,14 @@ system(git describe --tags) {
         # upload to the app store won't work. Hence, strip everything after the first
         # '-' character:
         VERSION = $$system(git describe --tags | sed -e 's/-.*//')
+
+        # Also, when we run in CI, append the pipeline IID, this makes sure,
+        # we get monotonically increasing version numbers (just in case we
+        # want to release to TestFlight between releases):
+        PIPELINE_IID = $$getenv(CI_PIPELINE_IID)
+        !isEmpty(PIPELINE_IID) {
+            VERSION = $${VERSION}.$$PIPELINE_IID
+        }
     } else {
         VERSION = $$system(git describe --tags)
     }
