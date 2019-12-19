@@ -339,3 +339,5 @@ appstore:
     when: manual
     script:
         - xcrun altool --upload-app --type ios --file build-ios/app/build/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
+    dependencies:
+      - ios

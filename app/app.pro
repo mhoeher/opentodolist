@@ -31,7 +31,14 @@ RESOURCES += \
 # Set VERSION variable, it is required for apps on some platforms,
 # such as the iOS simulator:
 system(git describe --tags) {
-    VERSION = $$system(git describe --tags)
+    ios {
+        # On iOS, we need to set this to a "pure" version number, as otherwise
+        # upload to the app store won't work. Hence, strip everything after the first
+        # '-' character:
+        VERSION = $$system(git describe --tags | sed -e 's/-.*//')
+    } else {
+        VERSION = $$system(git describe --tags)
+    }
 } else {
     VERSION = 3.0.0-unknown
 }
