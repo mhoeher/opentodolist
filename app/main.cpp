@@ -173,6 +173,11 @@ int main(int argc, char *argv[])
                 "defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
     engine.rootContext()->setContextProperty(
                 "qmlBaseDirectory", qmlBase);
+#ifdef OPENTODOLIST_DEBUG
+    engine.rootContext()->setContextProperty("isDebugBuild", true);
+#else
+    engine.rootContext()->setContextProperty("isDebugBuild", false);
+#endif
     engine.load(QUrl(qmlBase + "main.qml"));
 
     // Print diagnostic information
