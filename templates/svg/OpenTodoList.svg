@@ -13,11 +13,11 @@
    height="58.6875"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.4 (unknown)"
    sodipodi:docname="OpenTodoList.svg"
-   inkscape:export-filename="/home/martin/devel/projects/OpenTodoList/OpenTodoList/qml/OpenTodoList/res/OpenTodoList_80.png"
-   inkscape:export-xdpi="122.75"
-   inkscape:export-ydpi="122.75">
+   inkscape:export-filename="/home/martin/opentodolist_1024x1024.png"
+   inkscape:export-xdpi="1675.3"
+   inkscape:export-ydpi="1675.3">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -28,19 +28,19 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.919596"
-     inkscape:cx="22.80157"
+     inkscape:cx="-12.111827"
      inkscape:cy="19.310692"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="text2985"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1680"
-     inkscape:window-height="1005"
+     inkscape:window-width="3200"
+     inkscape:window-height="1689"
      inkscape:window-x="0"
-     inkscape:window-y="1"
+     inkscape:window-y="50"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -70,17 +70,15 @@
     <g
        id="g3351"
        transform="translate(-0.46933847,10e-6)">
-      <text
-         sodipodi:linespacing="125%"
-         id="text2985"
-         y="433.3537"
-         x="162.09636"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:55.54567719px;line-height:125%;font-family:FontAwesome;-inkscape-font-specification:FontAwesome;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
-           y="433.3537"
-           x="162.09636"
-           id="tspan2987"
-           sodipodi:role="line">✔</tspan></text>
+      <g
+         aria-label="✔"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.97358322px;line-height:0%;font-family:FontAwesome;-inkscape-font-specification:FontAwesome;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.24779868"
+         id="text2985">
+        <path
+           d="m 171.03604,410.96188 q 1.31987,0 1.99672,2.16594 1.35371,4.06112 1.92904,4.06112 0.43995,0 0.91375,-0.67686 9.50979,-13.97702 17.5982,-19.89949 3.41811,-2.50436 6.667,-2.50436 4.29803,0 5.17794,0.27074 0.37227,0.10153 0.37227,0.84606 0,0.60917 -0.77839,1.52293 -21.76084,24.9759 -25.92349,32.48897 -1.4214,2.57205 -6.56549,2.57205 -1.69213,0 -3.55348,-0.87991 -0.77838,-0.40611 -2.70741,-5.17793 -2.43668,-6.024 -2.43668,-10.55892 0,-1.65829 2.36899,-2.74126 3.2489,-1.48908 4.87335,-1.48908 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:69.30982208px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.24779868"
+           id="path12" />
+      </g>
       <path
          inkscape:connector-curvature="0"
          id="path2989"
