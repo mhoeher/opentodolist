@@ -204,7 +204,7 @@ ios:
     - ci/ios-build.sh
   artifacts:
     paths:
-      - build-ios/app/Release-*/OpenTodoList.app
+      - build-ios/app/build/OpenTodoList.ipa
     expire_in: 1 week
 
 
@@ -331,3 +331,13 @@ pages:
         - public
     only:
         - master
+
+appstore:
+    stage: deploy
+    tags:
+        - macos
+    when: manual
+    script:
+        - xcrun altool --upload-app --type ios --file build-ios/app/build/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
+    dependencies:
+      - ios
