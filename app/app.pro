@@ -37,12 +37,18 @@ system(git describe --tags) {
         # '-' character:
         VERSION = $$system(git describe --tags | sed -e 's/-.*//')
 
-        # Also, when we run in CI, append the pipeline IID, this makes sure,
-        # we get monotonically increasing version numbers (just in case we
-        # want to release to TestFlight between releases):
+        # One more difficulty: On iOS, the version number should only contain
+        # three components. The app's version also has three, however, to be
+        # able to upload between releases (e.g. to upload to TestFlight),
+        # we need to ensure that each build gets a new, unique version number.
+        # We ensure this by stripping the patch level away and replacing it
+        # with the pipeline number (which is monotonically increasing).
         PIPELINE_IID = $$getenv(CI_PIPELINE_IID)
         !isEmpty(PIPELINE_IID) {
-            VERSION = $${VERSION}.$$PIPELINE_IID
+            VERSION_SPLIT = $$split(VERSION, .)
+            V_MAJ = $$member(VERSION_SPLIT, 0)
+            V_MIN = $$member(VERSION_SPLIT, 1)
+            VERSION = $${V_MAJ}.$${V_MIN}.$$PIPELINE_IID
         }
     } else {
         VERSION = $$system(git describe --tags)
