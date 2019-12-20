@@ -83,6 +83,7 @@ Page {
                                    "shall be saved. You can also select an existing library " +
                                    "directory. In this case, the library will be imported.")
                     width: parent.width
+                    wrapMode: "WrapAtWordBoundaryOrAnywhere"
                 }
 
                 Item { height: 20; width: 1 }

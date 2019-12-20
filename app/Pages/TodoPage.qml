@@ -116,7 +116,7 @@ ItemPage {
 
 
         Column {
-            width: parent.width
+            width: scrollView.contentItem.width
 
             ItemPageHeader {
                 item: page.item
