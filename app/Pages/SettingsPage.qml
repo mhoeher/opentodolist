@@ -35,4 +35,20 @@ SettingsPageForm {
             }
         }
     }
+
+    languageEdit.model: Utils.Translations.languages
+    languageEdit.textRole: "name"
+    languageEdit.currentIndex: {
+        var model = Utils.Translations.languages;
+        for (var i = 0; i < model.count; ++i) {
+            var lang = model.get(i);
+            if (lang.key === translations.language) {
+                return i;
+            }
+        }
+    }
+    languageEdit.onCurrentIndexChanged: {
+        var lang = Utils.Translations.languages.get(languageEdit.currentIndex);
+        translations.language = lang.key;
+    }
 }

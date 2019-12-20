@@ -9,13 +9,11 @@
 #include <QFontInfo>
 #include <QFontDatabase>
 #include <QIcon>
-#include <QLocale>
 #include <QLoggingCategory>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QScreen>
 #include <QSslSocket>
-#include <QTranslator>
 #include <QSysInfo>
 
 #ifdef OTL_USE_SINGLE_APPLICATION
@@ -27,6 +25,7 @@
 #include <iostream>
 
 #include "../lib/opentodolist_version.h"
+#include "utils/translations.h"
 
 
 int main(int argc, char *argv[])
@@ -87,21 +86,6 @@ int main(int argc, char *argv[])
     }
     #endif
 
-    QTranslator translator;
-    // look up e.g. :/translations/myapp_de.qm
-
-    {
-        auto l = QLocale();
-        auto uiLanguages = l.uiLanguages();
-        for (auto uiLanguage : uiLanguages) {
-            QString fileName = ":/translations/opentodolist_" + uiLanguage;
-            if (translator.load(fileName, QString(), "-", ".qm")) {
-                qDebug() << "Found translation for" << uiLanguage;
-                break;
-            }
-        }
-    }
-
     QCoreApplication::setApplicationName("OpenTodoList");
     QCoreApplication::setApplicationVersion(OPENTODOLIST_VERSION);
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
@@ -148,6 +132,7 @@ int main(int argc, char *argv[])
     parser.process(app);
 
     QQmlApplicationEngine engine;
+    OpenTodoList::Translations translations(&engine);
     QString qmlBase = "qrc:/";
 
 #ifdef OPENTODOLIST_DEBUG

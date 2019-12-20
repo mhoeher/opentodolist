@@ -12,6 +12,7 @@ Page {
 
     width: 400
     height: 600
+    property alias languageEdit: languageEdit
     padding: 10
     footer: DialogButtonBox {
         id: buttons
@@ -41,6 +42,16 @@ Page {
             }
 
             Label {
+                id: label
+                text: qsTr("Language:")
+            }
+
+            ComboBox {
+                id: languageEdit
+                Layout.fillWidth: true
+            }
+
+            Label {
                 text: qsTr("Theme:")
             }
 
@@ -62,3 +73,4 @@ Designer {
     D{i:2;anchors_height:113;anchors_width:175}
 }
 ##^##*/
+

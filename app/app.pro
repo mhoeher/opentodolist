@@ -112,7 +112,7 @@ TRANSLATIONS += \
     translations/opentodolist_de.ts \
     translations/opentodolist_fr.ts
 
-QM_FILES_RESOURCE_PREFIX = :/translations/
+QM_FILES_RESOURCE_PREFIX = /translations
 
 # iOS specific setup
 ios {
@@ -128,6 +128,6 @@ ios {
     QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
 }
 
-DISTFILES += \
+OTHER_FILES += \
     ios/exportOptions.plist
 
