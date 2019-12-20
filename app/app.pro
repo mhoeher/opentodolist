@@ -31,10 +31,33 @@ RESOURCES += \
 # Set VERSION variable, it is required for apps on some platforms,
 # such as the iOS simulator:
 system(git describe --tags) {
-    VERSION = $$system(git describe --tags)
+    ios {
+        # On iOS, we need to set this to a "pure" version number, as otherwise
+        # upload to the app store won't work. Hence, strip everything after the first
+        # '-' character:
+        VERSION = $$system(git describe --tags | sed -e 's/-.*//')
+
+        # One more difficulty: On iOS, the version number should only contain
+        # three components. The app's version also has three, however, to be
+        # able to upload between releases (e.g. to upload to TestFlight),
+        # we need to ensure that each build gets a new, unique version number.
+        # We ensure this by stripping the patch level away and replacing it
+        # with the pipeline number (which is monotonically increasing).
+        PIPELINE_IID = $$getenv(CI_PIPELINE_IID)
+        !isEmpty(PIPELINE_IID) {
+            VERSION_SPLIT = $$split(VERSION, .)
+            V_MAJ = $$member(VERSION_SPLIT, 0)
+            V_MIN = $$member(VERSION_SPLIT, 1)
+            VERSION = $${V_MAJ}.$${V_MIN}.$$PIPELINE_IID
+        }
+    } else {
+        VERSION = $$system(git describe --tags)
+    }
 } else {
     VERSION = 3.0.0-unknown
 }
+
+message("Building OpenTodoList v$$VERSION")
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
@@ -99,5 +122,12 @@ ios {
     ios_icon.files = $$files($$PWD/ios/AppIcon/AppIcon*.png)
     QMAKE_BUNDLE_DATA += ios_icon
     OTHER_FILES += $$files($$PWD/ios/AppIcon/AppIcon*.png)
+
+    # See https://appbus.wordpress.com/2017/10/06/ios-11-and-xcode-9-in-qt-5-9-x-projects/
+    QMAKE_ASSET_CATALOGS = $$PWD/ios/Images.xcassets
+    QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
 }
+
+DISTFILES += \
+    ios/exportOptions.plist
 
