@@ -52,7 +52,9 @@ public:
         WeightRole,
         DueToRole,
         DueToSpanRole,
-        TitleRole
+        TitleRole,
+        CreatedAtRole,
+        UpdatedAtRole
     };
 
     Q_ENUM(Roles)

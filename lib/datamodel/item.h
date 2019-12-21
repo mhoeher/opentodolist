@@ -9,9 +9,11 @@
 #include <QString>
 #include <QUuid>
 #include <QVariantMap>
+#include <QDateTime>
 
 
 class Cache;
+class ItemChangedInhibitor;
 
 /**
  * @brief Represents an arbitrary item stored in the cache.
@@ -51,6 +53,10 @@ class Item : public QObject
     Q_PROPERTY(QString filename READ filename NOTIFY filenameChanged)
     Q_PROPERTY(double weight READ weight WRITE setWeight NOTIFY weightChanged)
     Q_PROPERTY(bool isValid READ isValid NOTIFY filenameChanged)
+    Q_PROPERTY(QDateTime createdAt READ createdAt NOTIFY createdAtChanged)
+    Q_PROPERTY(QDateTime updatedAt READ updatedAt NOTIFY updatedAtChanged)
+
+    friend class ItemChangedInhibitor;
 
 public:
 
@@ -133,6 +139,10 @@ public:
     void setCache(Cache *cache);
 
 
+    QDateTime createdAt() const;
+
+    QDateTime updatedAt() const;
+
 public slots:
 
 signals:
@@ -142,6 +152,8 @@ signals:
     void isValidChanged();
     void filenameChanged();
     void weightChanged();
+    void createdAtChanged();
+    void updatedAtChanged();
 
     /**
      * @brief The item has been deleted.
@@ -181,6 +193,8 @@ private:
     QPointer<Cache> m_cache;
     QString     m_filename;
     QString     m_title;
+    QDateTime   m_createdAt;
+    QDateTime   m_updatedAt;
     QUuid       m_uid;
     double      m_weight;
     bool        m_loading;
@@ -192,6 +206,7 @@ private:
     void onCacheChanged();
     void onItemDataLoadedFromCache(const QVariant &entry);
     void onChanged();
+    void setUpdateAt();
 
 };
 

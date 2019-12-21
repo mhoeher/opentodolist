@@ -23,6 +23,28 @@
 const QString Item::FileNameSuffix = "otl";
 
 
+class ItemChangedInhibitor
+{
+public:
+
+    explicit ItemChangedInhibitor(Item* item) {
+        q_check_ptr(item);
+        m_item = item;
+        m_loading = item->m_loading;
+        m_item->m_loading = true;
+    }
+
+    ~ItemChangedInhibitor() {
+        m_item->m_loading = m_loading;
+    }
+
+private:
+
+    Item* m_item;
+    bool m_loading;
+};
+
+
 /**
  * @brief Constructor.
  */
@@ -78,6 +100,8 @@ Item::Item(QObject* parent) :
     m_cache(),
     m_filename(),
     m_title(),
+    m_createdAt(QDateTime::currentDateTimeUtc()),
+    m_updatedAt(m_createdAt),
     m_uid(QUuid::createUuid()),
     m_loading(false)
 {
@@ -152,10 +176,8 @@ bool Item::load()
     bool ok = false;
     auto map = JsonUtils::loadMap(m_filename, &ok);
     if (ok) {
-        auto loading = m_loading;
-        m_loading = true;
+        ItemChangedInhibitor inhibitor(this);
         fromMap(map);
-        m_loading = loading;
     }
     return ok;
 }
@@ -205,12 +227,10 @@ QVariant Item::toVariant() const
  */
 void Item::fromVariant(QVariant data)
 {
+    ItemChangedInhibitor inhibitor(this);
     QVariantMap map = data.toMap();
     setFilename(map.value("filename", m_filename).toString());
-    auto loading = m_loading;
-    m_loading = true;
     fromMap(map.value("data", QVariantMap()).toMap());
-    m_loading = loading;
 }
 
 /**
@@ -221,6 +241,12 @@ QVariantMap Item::toMap() const
     QVariantMap result;
     result["itemType"] = itemType();
     result["uid"] = m_uid;
+    if (m_createdAt.isValid()) {
+        result["createdAt"] = m_createdAt.toString(Qt::ISODate);
+    }
+    if (m_updatedAt.isValid()) {
+        result["updatedAt"] = m_updatedAt.toString(Qt::ISODate);
+    }
     result["title"] = m_title;
     result["weight"] = m_weight;
     return result;
@@ -232,8 +258,46 @@ QVariantMap Item::toMap() const
 void Item::fromMap(QVariantMap map)
 {
     setUid(map.value("uid", m_uid).toUuid());
+    m_createdAt = QDateTime::fromString(
+                map.value("createdAt").toString(), Qt::ISODate);
+    m_updatedAt = QDateTime::fromString(
+                map.value("updatedAt").toString(), Qt::ISODate);
     setTitle(map.value("title", m_title).toString());
     setWeight(map.value("weight", m_weight).toDouble());
+}
+
+
+/**
+ * @brief The date and time when the item was last updated.
+ */
+QDateTime Item::updatedAt() const
+{
+    if (m_updatedAt.isValid()) {
+        return m_updatedAt;
+    } else {
+        // For old items which have no updatedAt timestamp yet, assume
+        // an old one so they always sort last.
+        QDateTime result;
+        result.setTime_t(0);
+        return result;
+    }
+}
+
+
+/**
+ * @brief The date and time when the item has been created.
+ */
+QDateTime Item::createdAt() const
+{
+    if (m_createdAt.isValid()) {
+        return m_createdAt;
+    } else {
+        // For old items which have no createdAt timestamp yet, assume
+        // an old one so they always sort last.
+        QDateTime result;
+        result.setTime_t(0);
+        return result;
+    }
 }
 
 
@@ -246,7 +310,7 @@ void Item::fromMap(QVariantMap map)
  */
 void Item::applyCalculatedProperties(const QVariantMap &properties)
 {
-    Q_UNUSED(properties);
+    Q_UNUSED(properties)
 }
 
 
@@ -329,6 +393,7 @@ Item* Item::createItem(QVariantMap map, QObject* parent)
 {
     auto result = createItem(map.value("itemType").toString(), parent);
     if (result != nullptr) {
+        ItemChangedInhibitor inhibitor(result);
         result->fromMap(map);
     }
     return result;
@@ -381,6 +446,7 @@ Item* Item::createItemFromFile(QString filename, QObject* parent)
     if (ok) {
         result = createItem(map, parent);
         if (result != nullptr) {
+            ItemChangedInhibitor inhibitor(result);
             result->setFilename(filename);
         }
     }
@@ -405,6 +471,7 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
     Item *result = nullptr;
     if (entry.valid) {
         result = Item::createItem(entry.data.toMap(), parent);
+        ItemChangedInhibitor inhibitor(result);
         result->applyCalculatedProperties(entry.calculatedData.toMap());
         auto meta = entry.metaData.toMap();
         auto path = meta["filename"].toString();
@@ -468,6 +535,10 @@ void Item::setFilename(const QString& filename)
 
 void Item::setupChangedSignal()
 {
+    // Update the updateAt property for every change:
+    connect(this, &Item::changed, this, &Item::setUpdateAt);
+
+    // Connect individual property update signals to the changed signal:
     connect(this, &Item::titleChanged, this, &Item::changed);
     connect(this, &Item::uidChanged, this, &Item::changed);
     connect(this, &Item::filenameChanged, this, &Item::changed);
@@ -490,6 +561,7 @@ void Item::onItemDataLoadedFromCache(const QVariant &entry)
 {
     ItemPtr item(Item::decache(entry));
     if (item != nullptr) {
+        ItemChangedInhibitor inhibitor(this);
         this->fromMap(item->toMap());
         this->applyCalculatedProperties(
                     entry.value<ItemCacheEntry>().calculatedData.toMap());
@@ -505,13 +577,20 @@ void Item::onChanged()
     }
 }
 
+void Item::setUpdateAt()
+{
+    if (!m_loading) {
+        m_updatedAt = QDateTime::currentDateTimeUtc();
+    }
+}
+
 /**
    @brief Write an item to a debug stream.
  */
 QDebug operator<<(QDebug debug, const Item *item)
 {
     QDebugStateSaver saver(debug);
-    Q_UNUSED(saver);
+    Q_UNUSED(saver)
 
     if (item) {
         debug.nospace() << item->itemType() << "(\"" << item->title() << "\" [" << item->uid() << "])";
