@@ -95,6 +95,8 @@ ItemPage {
             switch (settings.sortTodosBy) {
             case "title": return OTL.ItemsModel.TitleRole;
             case "dueTo": return OTL.ItemsModel.DueToRole;
+            case "createdAt": return OTL.ItemsModel.CreatedAtRole;
+            case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
             case "weight": // fall through
             default: return OTL.ItemsModel.WeightRole;
             }
@@ -218,6 +220,10 @@ ItemPage {
                         return Icons.faSortAlphaDown;
                     case "dueTo":
                         return Icons.faSortNumericDown;
+                    case "createdAt":
+                        return Icons.faSortNumericDown;
+                    case "updatedAt":
+                        return Icons.faSortNumericDown;
                     case "weight":
                         // fall through
                     default:
@@ -247,16 +253,34 @@ ItemPage {
                 id: sortTodosByMenu
                 parent: undoneTodosWidget.headerItem
                 MenuItem {
-                    text: qsTr("Sort Manually")
+                    text: qsTr("Manually")
+                    checked: settings.sortTodosBy === "weight"
+                    checkable: true
                     onTriggered: settings.sortTodosBy = "weight"
                 }
                 MenuItem {
-                    text: qsTr("Sort By Name")
+                    text: qsTr("Name")
+                    checked: settings.sortTodosBy === "title"
+                    checkable: true
                     onTriggered: settings.sortTodosBy = "title"
                 }
                 MenuItem {
-                    text: qsTr("Sort By Due Date")
+                    text: qsTr("Due Date")
+                    checked: settings.sortTodosBy === "dueTo"
+                    checkable: true
                     onTriggered: settings.sortTodosBy = "dueTo"
+                }
+                MenuItem {
+                    text: qsTr("Created At")
+                    checked: settings.sortTodosBy === "createdAt"
+                    checkable: true
+                    onTriggered: settings.sortTodosBy = "createdAt";
+                }
+                MenuItem {
+                    text: qsTr("Updated At")
+                    checked: settings.sortTodosBy === "updatedAt"
+                    checkable: true
+                    onTriggered: settings.sortTodosBy = "updatedAt";
                 }
             }
 

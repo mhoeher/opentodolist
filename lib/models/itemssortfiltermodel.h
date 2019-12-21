@@ -24,6 +24,9 @@ signals:
 
     void countChanged();
 
+    // QSortFilterProxyModel interface
+protected:
+    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 };
 
 #endif // ITEMSSORTFILTERMODEL_H

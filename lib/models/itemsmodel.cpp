@@ -103,6 +103,10 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
             return item->weight();
         case TitleRole:
             return item->title();
+        case CreatedAtRole:
+            return item->createdAt();
+        case UpdatedAtRole:
+            return item->updatedAt();
         default:
             break;
         }
@@ -118,6 +122,8 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     result.insert(DueToRole, "dueTo");
     result.insert(DueToSpanRole, "dueToSpan");
     result.insert(TitleRole, "title");
+    result.insert(CreatedAtRole, "createdAt");
+    result.insert(UpdatedAtRole, "updatedAt");
     return result;
 }
 
