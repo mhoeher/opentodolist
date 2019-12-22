@@ -140,6 +140,16 @@ ApplicationWindow {
             }
 
             ToolButton {
+                id: sortToolButton
+
+                symbol: Icons.faSort
+                visible: stackView.currentItem &&
+                         typeof(stackView.currentItem.sort) === "function"
+                onClicked: stackView.currentItem.sort()
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            ToolButton {
                 symbol: Icons.faCalendarCheck
                 visible: stackView.currentItem &&
                          typeof(stackView.currentItem.setDueDate) === "function"

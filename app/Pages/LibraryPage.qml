@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
+import Qt.labs.settings 1.1
 
 import OpenTodoList 1.0 as OTL
 
@@ -48,6 +49,10 @@ Page {
         renameLibraryDialog.renameLibrary(library);
     }
 
+    function sort() {
+        sortByMenu.open();
+    }
+
     property bool syncRunning: {
         return library &&
                 OTL.Application.directoriesWithRunningSync.indexOf(
@@ -62,6 +67,14 @@ Page {
 
     clip: true
     title: library.name
+
+    Settings {
+        id: settings
+
+        property string sortBy: "weight"
+
+        category: "LibraryPage"
+    }
 
     QtObject {
         id: d
@@ -205,12 +218,33 @@ Page {
 
     OTL.ItemsSortFilterModel {
         id: itemsModel
+
+        /**
+         * @brief The role to sort by.
+         *
+         * This is a helper property, which is required in order to
+         * get notified when the sort role changes (this is not the case
+         * with the default sortRole property of QSortFilterProxyModel).
+         */
+        readonly property int effectiveSortRole: {
+            switch (settings.sortBy) {
+            case "dueTo": return OTL.ItemsModel.DueToRole;
+            case "title": return OTL.ItemsModel.TitleRole;
+            case "createdAt": return OTL.ItemsModel.CreatedAtRole;
+            case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
+
+                // By default, order manually:
+            default: return OTL.ItemsModel.WeightRole;
+            }
+        }
+
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             tag: page.tag
             searchString: filterBar.text
             parentItem: page.library.uid
         }
+        sortRole: effectiveSortRole
     }
 
     TextInputBar {
@@ -274,6 +308,10 @@ Page {
                                        "Item.qml")
 
                 onLoaded: {
+                    item.allowReordering = Qt.binding(function() {
+                        return itemsModel.effectiveSortRole ===
+                                OTL.ItemsModel.WeightRole;
+                    });
                     item.libraryItem = Qt.binding(function() {
                         return object;
                     });
@@ -367,6 +405,48 @@ Page {
         id: itemCreatedNotification
 
         onOpen: itemClicked(item)
+    }
+
+    Menu {
+        id: sortByMenu
+
+        title: qsTr("Sort By")
+        anchors.centerIn: parent
+
+        MenuItem {
+            text: qsTr("Manually")
+            checkable: true
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.WeightRole
+            onTriggered: settings.sortBy = "weight"
+        }
+
+        MenuItem {
+            text: qsTr("Title")
+            checkable: true
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.TitleRole
+            onTriggered: settings.sortBy = "title"
+        }
+
+        MenuItem {
+            text: qsTr("Due To")
+            checkable: true
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.DueToRole
+            onTriggered: settings.sortBy = "dueTo"
+        }
+
+        MenuItem {
+            text: qsTr("Created At")
+            checkable: true
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.CreatedAtRole
+            onTriggered: settings.sortBy = "createdAt"
+        }
+
+        MenuItem {
+            text: qsTr("Updated At")
+            checkable: true
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.UpdatedAtRole
+            onTriggered: settings.sortBy = "updatedAt"
+        }
     }
 
 }
