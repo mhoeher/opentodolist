@@ -14,6 +14,7 @@ Item {
     property OTL.Library library: null
     property OTL.Note libraryItem: OTL.Note {}
     property var model
+    property bool allowReordering: true
 
     signal clicked()
     signal released(var mouse)
@@ -73,7 +74,9 @@ Item {
                 item.clicked()
             }
         }
-        onPressAndHold: reorderOverlay.startDrag()
+        onPressAndHold: if (item.allowReordering) {
+                            reorderOverlay.startDrag();
+                        }
         onReleased: item.released(mouse)
     }
 
