@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Utility;
+Type=Application
+Exec=OpenTodoList
+Name=OpenTodoList
+Comment=OpenTodoList todo list and note taking application
+GenericName=Todo List and Note Taking Application
+Icon=net.rpdev.OpenTodoList
+Keywords=OpenTodoList;todo;note;
+X-GNOME-Autostart-Delay=3
