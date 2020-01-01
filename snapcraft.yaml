@@ -6,9 +6,8 @@ base: core18
 adopt-info: opentodolist # part to adopt appstream data from (first in parse list)
 apps:
     opentodolist:
-        command: kf5-launch OpenTodoList
+        command: OpenTodoList-launcher
         plugs:
-        - kde-frameworks-5-plug
         - home
         - x11
         - opengl
@@ -20,27 +19,101 @@ apps:
         - desktop-legacy
         common-id: net.rpdev.OpenTodoList
         desktop: "usr/share/applications/net.rpdev.OpenTodoList.desktop"
-plugs:
-    kde-frameworks-5-plug:
-        interface: content # type
-        content: kde-frameworks-5-core18-all # the slot
-        default-provider: kde-frameworks-5-core18 # the snap which provides the slot (ideally)
-        target: kf5 # the target path where we want the content snap mounted into our scope
+
 parts:
     opentodolist:
-        build-snaps:
-        - kde-frameworks-5-core18-sdk/stable
-        build-packages:
-        - build-essential
-        - libgl1-mesa-dev
-        after:
-        - kde-frameworks-5-env
-        plugin: qmake
-        source: .
-        options:
-        - "INSTALL_PREFIX=/usr"
-        - "CONFIG+=release"
-        parse-info: [usr/share/appdata/net.rpdev.OpenTodoList.appdata.xml]
-    kde-frameworks-5-env:
         plugin: dump
-        source: https://github.com/apachelogger/kf5-snap-env.git
+        source: ./
+        parse-info: [net.rpdev.OpenTodoList.appdata.xml]
+        override-build: ./ci/snapcraft-build.sh
+        stage-packages:
+            - libasn1-8-heimdal
+            - libatk-bridge2.0-0
+            - libatk1.0-0
+            - libatspi2.0-0
+            - libavahi-client3
+            - libavahi-common3
+            - libcairo-gobject2
+            - libcairo2
+            - libclang1-6.0
+            - libcups2
+            - libdatrie1
+            - libdrm2
+            - libepoxy0
+            - libfontconfig1
+            - libfreetype6
+            - libgdk-pixbuf2.0-0
+            - libgl1
+            - libgl1-mesa-dri
+            - libglvnd0
+            - libglx0
+            - libgraphite2-3
+            - libgssapi3-heimdal
+            - libgtk-3-0
+            - libharfbuzz0b
+            - libhcrypto4-heimdal
+            - libheimbase1-heimdal
+            - libheimntlm0-heimdal
+            - libhx509-5-heimdal
+            - libice6
+            - libicu60
+            - libjbig0
+            - libjpeg-turbo8
+            - libkrb5-26-heimdal
+            - liblcms2-2
+            - libldap-2.4-2
+            - libllvm6.0
+            - libltdl7
+            - libmng2
+            - libmtdev1
+            - libmysqlclient20
+            - libodbc1
+            - libpango-1.0-0
+            - libpangocairo-1.0-0
+            - libpangoft2-1.0-0
+            - libpixman-1-0
+            - libpng16-16
+            - libpq5
+            - libroken18-heimdal
+            - libsasl2-2
+            - libsm6
+            - libsybdb5
+            - libthai0
+            - libtiff5
+            - libwayland-client0
+            - libwayland-cursor0
+            - libwayland-egl1
+            - libwayland-server0
+            - libwebp6
+            - libwebpdemux2
+            - libwind0-heimdal
+            - libx11-6
+            - libx11-xcb1
+            - libxau6
+            - libxcb-glx0
+            - libxcb-icccm4
+            - libxcb-image0
+            - libxcb-keysyms1
+            - libxcb-randr0
+            - libxcb-render-util0
+            - libxcb-render0
+            - libxcb-shape0
+            - libxcb-shm0
+            - libxcb-sync1
+            - libxcb-util1
+            - libxcb-xfixes0
+            - libxcb-xinerama0
+            - libxcb-xkb1
+            - libxcb1
+            - libxcomposite1
+            - libxcursor1
+            - libxdamage1
+            - libxdmcp6
+            - libxext6
+            - libxfixes3
+            - libxi6
+            - libxinerama1
+            - libxkbcommon-x11-0
+            - libxkbcommon0
+            - libxrandr2
+            - libxrender1
