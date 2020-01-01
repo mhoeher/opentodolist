@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Code inspired from
+# https://github.com/ubuntu/snappy-playpen/blob/master/hellogl/opengl-launch
+case "$SNAP_ARCH" in
+amd64) ARCH="x86_64-linux-gnu";;
+armhf) ARCH="arm-linux-gnueabihf";;
+*)     ARCH="$SNAP_ARCH-linux-gnu";;
+esac
+
+# Tell libGL where to find the drivers
+export LIBGL_DRIVERS_PATH=$SNAP/usr/lib/$ARCH/dri
+
+LD_LIBRARY_PATH=$SNAP/lib:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$SNAP/lib/$ARCH:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$SNAP/usr/lib:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$(echo $SNAP/opt/qt5*/lib):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+$SNAP/usr/bin/OpenTodoList "$@"
