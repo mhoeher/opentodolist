@@ -130,4 +130,3 @@ ios {
 
 OTHER_FILES += \
     ios/exportOptions.plist
-

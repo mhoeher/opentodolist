@@ -49,10 +49,13 @@ ApplicationWindow {
     property Item settingsPage: null
 
     header: ToolBar {
+        id: headerToolBar
         leftPadding: 10
         rightPadding: 10
 
         RowLayout {
+            id: toolBarLayout
+
             width: parent.width
 
             ToolButton {
@@ -63,20 +66,13 @@ ApplicationWindow {
                 checked: dynamicLeftDrawer.visible
                 onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
             }
+
             ToolButton {
+                id: backToolButton
+
                 symbol: Icons.faArrowLeft
                 visible: stackView.canGoBack
                 onClicked: stackView.goBack()
-                Layout.alignment: Qt.AlignVCenter
-            }
-
-            ToolButton {
-                symbol: stackView.isChecked ? Icons.faCheckCircle :
-                                              Icons.faCircle
-                font.family: Fonts.icons
-                visible: stackView.isCheckable
-                onClicked: stackView.currentItem.item.done =
-                           !stackView.currentItem.item.done
                 Layout.alignment: Qt.AlignVCenter
             }
 
@@ -95,76 +91,38 @@ ApplicationWindow {
                 }
             }
 
-            ToolButton {
-                symbol: Icons.faPencilAlt
-                visible: stackView.currentItem && typeof(stackView.currentItem["renameItem"]) === "function"
-                Layout.alignment: Qt.AlignVCenter
-                onClicked: stackView.currentItem.renameItem()
-            }
+            Repeater {
+                model: d.visibleDynamicToolBarButtons
 
-            ToolButton {
-                symbol: Icons.faPaintBrush
-                menu: ColorMenu {
-                    y: window.header.height
-                    item: stackView.hasColor ? stackView.currentItem.item : null
+                delegate: ToolButton {
+                    action: modelData
+                    menu: action.menu
+                    symbol: action.symbol
+                    visible: action.visible
+                    Layout.alignment: Qt.AlignVCenter
                 }
-                Layout.alignment: Qt.AlignVCenter
-                visible: menu.item !== null
             }
 
             ToolButton {
-                id: addTagButton
-
-                symbol: Icons.faTag
-                visible: stackView.currentItem && (typeof(stackView.currentItem["addTag"]) === "function")
-                onClicked: stackView.currentItem.addTag()
+                id: dynamicPageActionsMenu
+                visible: d.visibleDynamicPageMenuItems.length > 0
+                symbol: Icons.faChevronDown
                 Layout.alignment: Qt.AlignVCenter
+                menu: Menu {
+                    y: headerToolBar.height
+                    Repeater {
+                        model: d.visibleDynamicPageMenuItems
+                        delegate: MenuItem {
+                            action: modelData
+                            visible: action.visible
+                        }
+                    }
+                }
             }
 
             ToolButton {
-                id: addAttachmentButton
+                id: pageMenuToolButton
 
-                symbol: Icons.faPaperclip
-                visible: stackView.currentItem && (typeof(stackView.currentItem["attach"]) === "function")
-                onClicked: stackView.currentItem.attach()
-                Layout.alignment: Qt.AlignVCenter
-            }
-
-            ToolButton {
-                id: searchToolButton
-
-                symbol: Icons.faSearch
-                visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
-                onClicked: stackView.currentItem.find()
-                Layout.alignment: Qt.AlignVCenter
-            }
-
-            ToolButton {
-                id: sortToolButton
-
-                symbol: Icons.faSort
-                visible: stackView.currentItem &&
-                         typeof(stackView.currentItem.sort) === "function"
-                onClicked: stackView.currentItem.sort()
-                Layout.alignment: Qt.AlignVCenter
-            }
-
-            ToolButton {
-                symbol: Icons.faCalendarCheck
-                visible: stackView.currentItem &&
-                         typeof(stackView.currentItem.setDueDate) === "function"
-                Layout.alignment: Qt.AlignVCenter
-                onClicked: stackView.currentItem.setDueDate()
-            }
-
-            ToolButton {
-                symbol: Icons.faTrashAlt
-                visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
-                Layout.alignment: Qt.AlignVCenter
-                onClicked: stackView.currentItem.deleteItem()
-            }
-
-            ToolButton {
                 symbol: Icons.faEllipsisV
                 visible: stackView.hasPageMenu
                 Layout.alignment: Qt.AlignVCenter
@@ -183,6 +141,147 @@ ApplicationWindow {
         id: d
 
         property bool completed: false
+
+        // The list of all available page actions
+        property list<ToolBarAction> dynamicPageActions
+
+        // The list of all page actions which are visible
+        property var visibleDynamicPageActions
+
+        property int widthForDynamicPageToolButtons: {
+            // Calculate the space available for dynamic tool buttons:
+            var availableWidth = toolBarLayout.width;
+            // We need some space for the "static" buttons:
+            availableWidth -=
+                    sidebarControl.width * (sidebarControl.visible ? 1 : 0) +
+                    backToolButton.width * (backToolButton.visible ? 1 : 0) +
+                    dynamicPageActionsMenu.width +
+                    pageMenuToolButton.width * (pageMenuToolButton.visible ? 1 : 0);
+            // Reserve some "minimum" space for the label:
+            availableWidth -= Math.min(
+                    pageMenuToolButton.width * 4,
+                        pageTitleLabel.contentWidth);
+
+            // Cap to 0:
+            return Math.max(availableWidth, 0);
+        }
+
+        property int numVisibleDynamicToolBarButtons: {
+            var numButtons = widthForDynamicPageToolButtons /
+                    pageMenuToolButton.width;
+            numButtons = parseInt(numButtons);
+            // Cap to maximum number of available actions:
+            numButtons = Math.min(numButtons, visibleDynamicPageActions.length);
+            return numButtons;
+        }
+
+        property int numVisibleDynamicPageMenuItems: {
+            return visibleDynamicPageActions.length -
+                    numVisibleDynamicToolBarButtons;
+        }
+
+        property var visibleDynamicToolBarButtons
+        property var visibleDynamicPageMenuItems
+
+        dynamicPageActions: [
+            ToolBarAction {
+                symbol: Icons.faPencilAlt
+                text: qsTr("Rename")
+                visible: {
+                    return stackView.currentItem &&
+                            typeof(stackView.currentItem["renameItem"]) ===
+                            "function";
+                }
+                onTriggered: stackView.currentItem.renameItem()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faPaintBrush
+                text: qsTr("Color")
+                menu: ColorMenu {
+                    anchors.centerIn: parent
+                    item: stackView.hasColor ? stackView.currentItem.item : null
+                    parent: window.contentItem
+                }
+                visible: menu.item !== null
+            },
+
+            ToolBarAction {
+                symbol: Icons.faTag
+                text: qsTr("Add Tag")
+                visible: stackView.currentItem && (typeof(stackView.currentItem["addTag"]) === "function")
+                onTriggered: stackView.currentItem.addTag()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faPaperclip
+                text: qsTr("Attach File")
+                visible: stackView.currentItem && (typeof(stackView.currentItem["attach"]) === "function")
+                onTriggered: stackView.currentItem.attach()
+            },
+
+            ToolBarAction {
+                id: searchToolButtonAction
+
+                symbol: Icons.faSearch
+                text: qsTr("Search")
+                visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
+                onTriggered: stackView.currentItem.find()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faSort
+                text: qsTr("Sort")
+                visible: stackView.currentItem &&
+                         typeof(stackView.currentItem.sort) === "function"
+                onTriggered: stackView.currentItem.sort()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faCalendarCheck
+                text: qsTr("Set Due Date")
+                visible: stackView.currentItem &&
+                         typeof(stackView.currentItem.setDueDate) === "function"
+                onTriggered: stackView.currentItem.setDueDate()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faTrashAlt
+                text: qsTr("Delete")
+                visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
+                onTriggered: stackView.currentItem.deleteItem()
+            }
+        ]
+
+        visibleDynamicPageActions: {
+            var result = [];
+            for (var i = 0; i < dynamicPageActions.length; ++i) {
+                var action = dynamicPageActions[i];
+                if (action.visible) {
+                    result.push(action);
+                }
+            }
+            return result;
+        }
+
+        visibleDynamicToolBarButtons: {
+            var result = [];
+            for (var i = 0; i < numVisibleDynamicToolBarButtons; ++i) {
+                var action = visibleDynamicPageActions[i];
+                result.push(action);
+            }
+            return result;
+        }
+
+        visibleDynamicPageMenuItems: {
+            var result = [];
+            for (var i = 0; i < numVisibleDynamicPageMenuItems; ++i) {
+                var action = visibleDynamicPageActions[
+                        numVisibleDynamicToolBarButtons + i];
+                result.push(action);
+            }
+            return result;
+        }
     }
 
     Action {
@@ -239,7 +338,7 @@ ApplicationWindow {
 
         text: qsTr("&Find")
         shortcut: StandardKey.Find
-        onTriggered: searchToolButton.clicked(null)
+        onTriggered: searchToolButtonAction.clicked(null)
     }
 
     Shortcut {
