@@ -23,7 +23,7 @@ RESOURCES += \
     qml.qrc \
     res.qrc
 
-!ios&!android {
+!ios:!android {
     include(../3rdparty/SingleApplication/singleapplication.pri)
     DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QGuiApplication
 }
