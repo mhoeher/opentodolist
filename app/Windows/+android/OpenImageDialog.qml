@@ -39,7 +39,7 @@ Item {
         id: component
 
         OTL.AndroidFileDialog {
-            type: AndroidFileDialog.SelectImage
+            type: OTL.AndroidFileDialog.SelectImage
             receiver: d
         }
     }

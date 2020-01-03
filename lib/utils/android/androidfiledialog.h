@@ -73,6 +73,8 @@ private:
     bool openFile();
     bool openImage();
 
+    bool ensureCanAccessImages();
+
 };
 
 #endif // ANDROIDFILEDIALOG_H

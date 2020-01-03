@@ -2,7 +2,13 @@
 
 #include <QFuture>
 #include <QFutureWatcher>
+#include <QLoggingCategory>
+#include <QSaveFile>
 #include <QtConcurrent>
+
+
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Image", QtDebugMsg);
+
 
 /**
  * @brief Constructor.
@@ -72,11 +78,59 @@ void Image::setImage(const QString &image)
                     if (!fi.exists()) {
                         return;
                     }
+
+                    // 1. Remove existing image (if any):
                     QFile file(directory() + "/" + m_image);
-                    file.remove();
-                    QString targetFileName = QUuid::createUuid().toString() + ".res." + fi.completeSuffix();
-                    QDir(directory()).mkpath(".");
-                    QFile::copy(image, directory() + "/" + targetFileName);
+                    if (file.exists() && !m_image.isEmpty()) {
+                        // Empty image would yield path to folder, which cannot
+                        // be deleted via QFile (which is what we want).
+                        if (!file.remove()) {
+                            qCWarning(log) << "Failed to remove existing image "
+                                              "file"
+                                           << file.fileName()
+                                           << ":"
+                                           << file.errorString();
+                        }
+                    }
+
+                    // 2. Create folder to put image into (if needed):
+                    {
+                        QDir dir(directory());
+                        if (!dir.exists()) {
+                            if (!dir.mkpath(".")) {
+                                qCWarning(log) << "Failed to created item "
+                                                  "directory"
+                                               << dir.absolutePath();
+                            }
+                        }
+                    }
+
+                    // 3. Copy over the external file:
+                    QString targetFileName = QUuid::createUuid().toString() +
+                            ".res." + fi.completeSuffix();
+                    auto targetFilePath = directory() + "/" + targetFileName;
+                    QFile src(image);
+                    if (src.open(QIODevice::ReadOnly)) {
+                        QSaveFile dst(targetFilePath);
+                        if (dst.open(QIODevice::WriteOnly)) {
+                            while (!src.atEnd()) {
+                                dst.write(src.read(1024));
+                            }
+                            dst.commit();
+                        } else {
+                            qCWarning(log) << "Failed to open"
+                                           << targetFilePath
+                                           << "for writing:"
+                                           << dst.errorString();
+                        }
+                        src.close();
+                    } else {
+                        qCWarning(log) << "Failed to open"
+                                       << image
+                                       << "for reading:"
+                                       << src.errorString();
+                    }
+
                     m_image = targetFileName;
                     emit imageChanged();
                 }
