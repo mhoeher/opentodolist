@@ -23,8 +23,6 @@ bool AndroidFileDialog::open()
         return openFile();
     case SelectImage:
         return openImage();
-    default:
-        return false;
     }
 }
 
@@ -66,6 +64,10 @@ bool AndroidFileDialog::openFile()
 
 bool AndroidFileDialog::openImage()
 {
+    if (!ensureCanAccessImages()) {
+        return false;
+    }
+
     QAndroidJniObject ACTION_PICK = QAndroidJniObject::getStaticObjectField(
                 "android/content/Intent",
                 "ACTION_PICK",
@@ -94,6 +96,19 @@ bool AndroidFileDialog::openImage()
     } else {
         return false;
     }
+}
+
+bool AndroidFileDialog::ensureCanAccessImages()
+{
+    const auto ReadExtStorage = "android.permission.READ_EXTERNAL_STORAGE";
+    if (QtAndroid::checkPermission(ReadExtStorage) ==
+            QtAndroid::PermissionResult::Denied) {
+        auto resultHash = QtAndroid::requestPermissionsSync(
+                    QStringList({ReadExtStorage}));
+        if(resultHash[ReadExtStorage] == QtAndroid::PermissionResult::Denied)
+            return false;
+    }
+    return true;
 }
 
 AndroidFileDialog::Type AndroidFileDialog::type() const

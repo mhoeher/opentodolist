@@ -94,5 +94,6 @@
         <file>Pages/SettingsPageForm.ui.qml</file>
         <file>Windows/+ios/OpenImageDialog.qml</file>
         <file>Utils/Translations.qml</file>
+        <file>Components/ToolBarAction.qml</file>
     </qresource>
 </RCC>
