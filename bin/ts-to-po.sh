@@ -12,7 +12,9 @@ cd "$(dirname "$(dirname "$(readlink -f "$0")")")"
 cd app/translations
 
 for file in *.ts; do
+    rm $(basename $file .ts).po
     "$LCONVERT" \
         -i $file \
-        -o $(basename $file .ts).po
+        -o $(basename $file .ts).po \
+        --no-obsolete
 done
