@@ -40,6 +40,75 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.18.0" date="2020-01-04">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #280: Fixed an issue which caused the app to crash when
+                terminating it on Android and iOS.
+            </li>
+            <li>
+                #203: Fixed opening images from the Gallery on Android
+                devices.
+            </li>
+            <li>
+                #277: Properly install a *.desktop file, which is required
+                for some systems like Flatpak to extract meta information.
+            </li>
+            <li>
+                #256: The user experience using the Snap version of the app
+                has been improved. Concrete, the snap contains all of the
+                dependencies, so it is no longer required to run
+                some cryptic "connect" commands manually after the installation.
+            </li>
+            <li>
+                #261: Items in the library page can now be sorted (e.g.
+                by name or due date).
+            </li>
+            <li>
+                #271: When running on mobile devices or when the app window
+                is rather small, dynamicall show tool bar icons and do not
+                cut them off. Additionally, show a menu which contains all
+                actions which are not currently shown as toolbar icons.
+            </li>
+            <li>
+                #272: The app is now properly packaged and available via
+                the iOS app store.
+            </li>
+            <li>
+                #262: Store the created at and updated at timestamps. These
+                properties can be used when sorting items e.g. in the library
+                page or inside a todo list.
+            </li>
+            <li>
+                #259: Fix the app translations. They now work again.
+                Additionally, users can select the language to show the app
+                in using the settings.
+            </li>
+            <li>
+                #264: In todo and tasks lists, one can now use a swipe
+                from left to right to mark the todo or task as done (or undone).
+            </li>
+            <li>
+                #274: Improved the todo drawer. There were several usability
+                issues with the previous implementation, such that it did not
+                resize properly and it was not possible to use swipe gestures
+                in it.
+            </li>
+            <li>
+                #247: Added a button to set the due date in the swipe menu
+                in todo lists to quickly add a date.
+            </li>
+            <li>
+                #282: Generate proper version numbers for iOS release.
+            </li>
+            <li>
+                #279: Ensure the app generates proper file names when adding
+                images. This is especially important on iOS when adding
+                images from the gallery.
+            </li>
+        </ul>
+    </release>
     <release version="3.16.1" date="2019-10-03">
         <p>This release includes the following changes:</p>
         <ul>
