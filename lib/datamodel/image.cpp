@@ -107,28 +107,42 @@ void Image::setImage(const QString &image)
 
                     // 3. Copy over the external file:
                     QString targetFileName = QUuid::createUuid().toString() +
-                            ".res." + fi.completeSuffix();
+                            ".res.";
+                    auto completeSuffix = fi.completeSuffix();
+                    if (completeSuffix.contains("?")) {
+                        // On some platforms (e.g. iOS), we get a URL with
+                        // additional parameters (i.e. ?key=val). Keep only
+                        // the suffix and remove everything after the first
+                        // question mark character:
+                        completeSuffix = completeSuffix.split("?").first();
+                    }
+                    targetFileName += completeSuffix;
                     auto targetFilePath = directory() + "/" + targetFileName;
-                    QFile src(image);
-                    if (src.open(QIODevice::ReadOnly)) {
-                        QSaveFile dst(targetFilePath);
-                        if (dst.open(QIODevice::WriteOnly)) {
-                            while (!src.atEnd()) {
-                                dst.write(src.read(1024));
+
+                    // First, try to copy the file as is:
+                    if (!QFile::copy(image, targetFilePath)) {
+                        // Simple copy did not work, manually copy the file:
+                        QFile src(image);
+                        if (src.open(QIODevice::ReadOnly)) {
+                            QSaveFile dst(targetFilePath);
+                            if (dst.open(QIODevice::WriteOnly)) {
+                                while (!src.atEnd()) {
+                                    dst.write(src.read(1024));
+                                }
+                                dst.commit();
+                            } else {
+                                qCWarning(log) << "Failed to open"
+                                               << targetFilePath
+                                               << "for writing:"
+                                               << dst.errorString();
                             }
-                            dst.commit();
+                            src.close();
                         } else {
                             qCWarning(log) << "Failed to open"
-                                           << targetFilePath
-                                           << "for writing:"
-                                           << dst.errorString();
+                                           << image
+                                           << "for reading:"
+                                           << src.errorString();
                         }
-                        src.close();
-                    } else {
-                        qCWarning(log) << "Failed to open"
-                                       << image
-                                       << "for reading:"
-                                       << src.errorString();
                     }
 
                     m_image = targetFileName;
