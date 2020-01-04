@@ -20,7 +20,7 @@
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="45"/>
-        <source>(c) RPdev 2013-2019, version %1</source>
+        <source>(c) RPdev 2013-2020, version %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

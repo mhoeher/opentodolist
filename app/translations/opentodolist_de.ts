@@ -989,8 +989,12 @@
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="45"/>
+        <source>(c) RPdev 2013-2020, version %1</source>
+        <translation type="unfinished">(c) RPdev 2013-2019, Version %1 {2013-2019,?} {2013-2020,?} {1?}</translation>
+    </message>
+    <message>
         <source>(c) RPdev 2013-2019, version %1</source>
-        <translation type="unfinished">(c) RPdev 2013-2019, Version %1 {2013-2019,?}</translation>
+        <translation type="obsolete">(c) RPdev 2013-2019, Version %1 {2013-2019,?}</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="60"/>

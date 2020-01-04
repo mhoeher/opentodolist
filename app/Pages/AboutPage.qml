@@ -42,7 +42,7 @@ Page {
             }
 
             Label {
-                text: qsTr("(c) RPdev 2013-2019, version %1").arg(applicationVersion)
+                text: qsTr("(c) RPdev 2013-2020, version %1").arg(applicationVersion)
                 width: parent.width
                 padding: 5
             }

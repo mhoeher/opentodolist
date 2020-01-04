@@ -25,7 +25,7 @@ msgstr ""
 #: ../Pages/AboutPage.qml:45
 #, qt-format
 msgctxt "AboutPage|"
-msgid "(c) RPdev 2013-2019, version %1"
+msgid "(c) RPdev 2013-2020, version %1"
 msgstr ""
 
 #: ../Pages/AboutPage.qml:60

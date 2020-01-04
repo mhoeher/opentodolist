@@ -948,8 +948,13 @@ msgstr "Eine Anwendung zur Aufgabenplanung und für Notizen."
 #: ../Pages/AboutPage.qml:45
 #, fuzzy, qt-format
 msgctxt "AboutPage|"
-msgid "(c) RPdev 2013-2019, version %1"
-msgstr "(c) RPdev 2013-2019, Version %1 {2013-2019,?}"
+msgid "(c) RPdev 2013-2020, version %1"
+msgstr "(c) RPdev 2013-2019, Version %1 {2013-2019,?} {2013-2020,?} {1?}"
+
+#, qt-format
+#~ msgctxt "AboutPage|"
+#~ msgid "(c) RPdev 2013-2019, version %1"
+#~ msgstr "(c) RPdev 2013-2019, Version %1 {2013-2019,?}"
 
 #: ../Pages/AboutPage.qml:60
 #, fuzzy
