@@ -2,6 +2,484 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name></name>
+    <message>
+        <source>About...</source>
+        <comment>AboutPage|</comment>
+        <translation type="vanished">Au sujet de...</translation>
+    </message>
+    <message>
+        <source>OpenTodoList</source>
+        <comment>AboutPage|</comment>
+        <translation type="vanished">OpenTodoList</translation>
+    </message>
+    <message>
+        <source>A todo and task managing application.</source>
+        <comment>AboutPage|</comment>
+        <translation type="vanished">Une application de gestion des tâches et des tâches.</translation>
+    </message>
+    <message>
+        <source>Used Libraries and Resources</source>
+        <comment>AboutThirdPartyPage|</comment>
+        <translation type="vanished">Bibliothèques et ressources d&apos;occasion</translation>
+    </message>
+    <message>
+        <source>Attach File</source>
+        <comment>Attachments|</comment>
+        <translation type="vanished">Fichier joint</translation>
+    </message>
+    <message>
+        <source>Delete Attachment?</source>
+        <comment>Attachments|</comment>
+        <translation type="vanished">Supprimer pièce jointe ?</translation>
+    </message>
+    <message>
+        <source>Attachments</source>
+        <comment>Attachments|</comment>
+        <translation type="vanished">Attachments</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Couleur</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Blanc</translation>
+    </message>
+    <message>
+        <source>Red</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Rouge</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Vert</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Bleu</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Jaune</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Orange</translation>
+    </message>
+    <message>
+        <source>Lilac</source>
+        <comment>ColorMenu|</comment>
+        <translation type="vanished">Lilas</translation>
+    </message>
+    <message>
+        <source>Delete Item?</source>
+        <comment>DeleteItemDialog|</comment>
+        <translation type="vanished">Supprimer un élément ?</translation>
+    </message>
+    <message>
+        <source>Delete Library?</source>
+        <comment>DeleteLibraryDialog|</comment>
+        <translation type="vanished">Supprimer la bibliothèque ?</translation>
+    </message>
+    <message>
+        <source>Select a Folder</source>
+        <comment>FolderSelectionDialog|</comment>
+        <translation type="vanished">Sélectionnez un dossier</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <comment>ItemCreatedNotification|</comment>
+        <translation type="vanished">Ouvrir</translation>
+    </message>
+    <message>
+        <source>Due on</source>
+        <comment>ItemDueDateEditor|</comment>
+        <translation type="vanished">Dû le</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <comment>ItemNotesEditor|</comment>
+        <translation type="vanished">Notes sur les</translation>
+    </message>
+    <message>
+        <source>Schedule</source>
+        <comment>LibrariesSideBar|</comment>
+        <translation type="vanished">Calendrier</translation>
+    </message>
+    <message>
+        <source>New Library</source>
+        <comment>LibrariesSideBar|</comment>
+        <translation type="vanished">Nouvelle bibliothèque</translation>
+    </message>
+    <message>
+        <source>About...</source>
+        <comment>LibrariesSideBar|</comment>
+        <translation type="vanished">A propos de...</translation>
+    </message>
+    <message>
+        <source>Red</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Rouge</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Vert</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Bleu</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Jaune</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Orange</translation>
+    </message>
+    <message>
+        <source>Lilac</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Lilas</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Blanc</translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Renommer</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Supprimer</translation>
+    </message>
+    <message>
+        <source>Note Title</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Note Titre</translation>
+    </message>
+    <message>
+        <source>Todo List Title</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Titre de la liste de tâches</translation>
+    </message>
+    <message>
+        <source>Search term 1, search term 2, ...</source>
+        <comment>LibraryPage|</comment>
+        <translation type="vanished">Terme de recherche 1, terme de recherche 2, ....</translation>
+    </message>
+    <message>
+        <source>Edit Sync Settings</source>
+        <comment>LibraryPageMenu|</comment>
+        <translation type="vanished">Modifier les paramètres de synchronisation</translation>
+    </message>
+    <message>
+        <source>Sync Now</source>
+        <comment>LibraryPageMenu|</comment>
+        <translation type="vanished">Synchroniser maintenant</translation>
+    </message>
+    <message>
+        <source>Sync Log</source>
+        <comment>LibraryPageMenu|</comment>
+        <translation type="vanished">Synchroniser le journal</translation>
+    </message>
+    <message>
+        <source>The secrets for synchronizing the library %1 are missing.</source>
+        <comment>LibrarySecretsMissingNotificationBar|</comment>
+        <translation type="vanished">Les secrets pour synchroniser la bibliothèque %1 sont manquants.</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <comment>LibrarySecretsMissingNotificationBar|</comment>
+        <translation type="vanished">Ignorer</translation>
+    </message>
+    <message>
+        <source>Enter Secrets</source>
+        <comment>LibrarySecretsMissingNotificationBar|</comment>
+        <translation type="vanished">Entrez Secrets</translation>
+    </message>
+    <message>
+        <source>Synchronization Log</source>
+        <comment>LogViewPage|</comment>
+        <translation type="vanished">Journal de synchronisation</translation>
+    </message>
+    <message>
+        <source>Copy Log</source>
+        <comment>LogViewPage|</comment>
+        <translation type="vanished">Copier le journal</translation>
+    </message>
+    <message>
+        <source>OpenTodoList</source>
+        <comment>MainWindow|</comment>
+        <translation type="vanished">OuvrirTodoList</translation>
+    </message>
+    <message>
+        <source>New &amp;Library</source>
+        <comment>MainWindow|</comment>
+        <translation type="vanished">Nouveau &amp;Bibliothèque</translation>
+    </message>
+    <message>
+        <source>Edit Notes</source>
+        <comment>MarkdownEditorPage|</comment>
+        <translation type="vanished">Éditer les notes</translation>
+    </message>
+    <message>
+        <source>Create Library</source>
+        <comment>NewLibraryPage|</comment>
+        <translation type="vanished">Création d&apos;une librairie</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <comment>NewLibraryPage|</comment>
+        <translation type="vanished">Créer</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>NewLibraryPage|</comment>
+        <translation type="vanished">Annuler</translation>
+    </message>
+    <message>
+        <source>Library Name:</source>
+        <comment>NewLibraryPage|</comment>
+        <translation type="vanished">Nom de la bibliothèque :</translation>
+    </message>
+    <message>
+        <source>Overdue</source>
+        <comment>ScheduleViewPage|</comment>
+        <translation type="vanished">En retard</translation>
+    </message>
+    <message>
+        <source>There were errors when synchronizing the library. Please ensure that the library settings are up to date.</source>
+        <comment>SyncErrorNotificationBar|</comment>
+        <translation type="vanished">Il y a eu des erreurs lors de la synchronisation de la bibliothèque. Veuillez vous assurer que les paramètres de la bibliothèque sont à jour.</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <comment>SyncErrorNotificationBar|</comment>
+        <translation type="vanished">Ignorez</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <comment>SyncErrorNotificationBar|</comment>
+        <translation type="vanished">Afficher</translation>
+    </message>
+    <message>
+        <source>Synchronizing library...</source>
+        <comment>SyncIndicatorBar|</comment>
+        <translation type="vanished">Bibliothèque de synchronisation....</translation>
+    </message>
+    <message>
+        <source>Create Library</source>
+        <comment>SyncLibrarySelectionPage|</comment>
+        <translation type="vanished">Créer une bibliothèque</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>SyncLibrarySelectionPage|</comment>
+        <translation type="vanished">Annuler</translation>
+    </message>
+    <message>
+        <source>Create new library on server</source>
+        <comment>SyncLibrarySelectionPage|</comment>
+        <translation type="vanished">Créer une nouvelle bibliothèque sur le serveur</translation>
+    </message>
+    <message>
+        <source>Searching for existing libraries...</source>
+        <comment>SyncLibrarySelectionPage|</comment>
+        <translation type="vanished">Recherche de bibliothèques existantes...</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>SynchronizerBackendSelectionPage|</comment>
+        <translation type="vanished">Annuler</translation>
+    </message>
+    <message>
+        <source>Local Library</source>
+        <comment>SynchronizerBackendSelectionPage|</comment>
+        <translation type="vanished">Bibliothèque locale</translation>
+    </message>
+    <message>
+        <source>Search term 1, search term 2, ...</source>
+        <comment>TodoListPage|</comment>
+        <translation type="vanished">Terme de recherche 1, terme de recherche 2, ....</translation>
+    </message>
+    <message>
+        <source>Todos</source>
+        <comment>TodoListPage|</comment>
+        <translation type="vanished">Todos</translation>
+    </message>
+    <message>
+        <source>Completed Todos</source>
+        <comment>TodoListPage|</comment>
+        <translation type="vanished">Todos achevés</translation>
+    </message>
+    <message>
+        <source>Add Task</source>
+        <comment>TodoPage|</comment>
+        <translation type="vanished">Ajouter Tâche</translation>
+    </message>
+    <message>
+        <source>Search term 1, search term 2, ...</source>
+        <comment>TodoPage|</comment>
+        <translation type="vanished">Terme de recherche 1, terme de recherche 2, ....</translation>
+    </message>
+    <message>
+        <source>Tasks</source>
+        <comment>TodoPage|</comment>
+        <translation type="vanished">Étranger</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <comment>UpdateNotificationBar|</comment>
+        <translation type="vanished">Ignorer</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <comment>UpdateNotificationBar|</comment>
+        <translation type="vanished">Télécharger</translation>
+    </message>
+    <message>
+        <source>Validate</source>
+        <comment>WebDAVConnectionSettingsPage|</comment>
+        <translation type="vanished">Valider</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <comment>WebDAVConnectionSettingsPage|</comment>
+        <translation type="vanished">Annuler</translation>
+    </message>
+    <message>
+        <source>Server Address:</source>
+        <comment>WebDAVConnectionSettingsPage|</comment>
+        <translation type="vanished">Adresse du serveur :</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <comment>WebDAVConnectionSettingsPage|</comment>
+        <translation type="vanished">Mot de passe:</translation>
+    </message>
+    <message>
+        <source>Starting synchronization</source>
+        <comment>WebDAVSynchronizer|</comment>
+        <translation type="vanished">Démarrage de la synchronisation</translation>
+    </message>
+    <message>
+        <source>Failed to create sync lock:</source>
+        <comment>WebDAVSynchronizer|</comment>
+        <translation type="vanished">Échec de la création du verrouillage de synchronisation:</translation>
+    </message>
+    <message>
+        <source>Failed to prepare remote directory &apos;%1&apos; for sync</source>
+        <comment>WebDAVSynchronizer|</comment>
+        <translation type="vanished">Échec de la préparation du répertoire distant &apos;%1&apos; pour la synchro</translation>
+    </message>
+    <message>
+        <source>Failed to synchronize top level directory!</source>
+        <comment>WebDAVSynchronizer|</comment>
+        <translation type="vanished">Impossible de synchroniser le répertoire de premier niveau !</translation>
+    </message>
+    <message>
+        <source>Failed to synchronize &apos;%1&apos;</source>
+        <comment>WebDAVSynchronizer|</comment>
+        <translation type="vanished">Impossible de synchroniser &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <source>Synchronization finished</source>
+        <comment>WebDAVSynchronizer|</comment>
+        <translation type="vanished">Synchronisation terminée</translation>
+    </message>
+    <message>
+        <source>User name</source>
+        <comment>WebDAVSynchronizerSettingsPage|</comment>
+        <translation type="vanished">Nom d&apos;utilisateur</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <comment>WebDAVSynchronizerSettingsPage|</comment>
+        <translation type="vanished">Mot de passe</translation>
+    </message>
+    <message>
+        <source>Manage your personal data.</source>
+        <comment>main|</comment>
+        <translation type="vanished">Gérer vos données personnelles.</translation>
+    </message>
+    <message>
+        <source>Switch on some optimizations for touchscreens.</source>
+        <comment>main|</comment>
+        <translation type="vanished">Activez certaines optimisations pour les écrans tactiles.</translation>
+    </message>
+    <message>
+        <source>Sort Manually</source>
+        <comment>TodoListPage|</comment>
+        <translation type="vanished">Tri manuel</translation>
+    </message>
+    <message>
+        <source>Sort By Name</source>
+        <comment>TodoListPage|</comment>
+        <translation type="vanished">Trier par nom</translation>
+    </message>
+    <message>
+        <source>Sort By Due Date</source>
+        <comment>TodoListPage|</comment>
+        <translation type="vanished">Trier par date d&apos;échéance</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <comment>Colors|</comment>
+        <translation type="vanished">Système</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <comment>Colors|</comment>
+        <translation type="vanished">Clair</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <comment>Colors|</comment>
+        <translation type="vanished">Sombre</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <comment>LibrariesSideBar|</comment>
+        <translation type="vanished">Paramètres</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <comment>MainWindow|</comment>
+        <translation type="vanished">Paramètres</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <comment>SettingsPageForm.ui|</comment>
+        <translation type="vanished">Paramètres</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <comment>SettingsPageForm.ui|</comment>
+        <translation type="vanished">Interface utilisateur</translation>
+    </message>
+    <message>
+        <source>Theme:</source>
+        <comment>SettingsPageForm.ui|</comment>
+        <translation type="vanished">Thème:</translation>
+    </message>
+</context>
+<context>
     <name>AboutPage</name>
     <message>
         <location filename="../Pages/AboutPage.qml" line="14"/>
@@ -16,7 +494,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="38"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Une application de gestion des tâches et des tâches.</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="45"/>
@@ -34,7 +512,7 @@
     <message>
         <location filename="../Pages/AboutThirdPartyPage.qml" line="11"/>
         <source>Used Libraries and Resources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliothèques et ressources d&apos;occasion</translation>
     </message>
     <message>
         <location filename="../Pages/AboutThirdPartyPage.qml" line="47"/>
@@ -57,12 +535,12 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fichier joint</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supprimer pièce jointe ?</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
@@ -72,7 +550,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Attachments</translation>
     </message>
 </context>
 <context>
@@ -80,42 +558,42 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Couleur</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="18"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Blanc</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="25"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rouge</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="32"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vert</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="39"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bleu</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="46"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jaune</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="53"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orange</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="60"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lilas</translation>
     </message>
 </context>
 <context>
@@ -123,17 +601,17 @@
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Système</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Clair</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="18"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sombre</translation>
     </message>
 </context>
 <context>
@@ -141,7 +619,7 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supprimer un élément ?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
@@ -174,7 +652,7 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supprimer la bibliothèque ?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
@@ -192,7 +670,7 @@
     <message>
         <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
         <source>Select a Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionnez un dossier</translation>
     </message>
 </context>
 <context>
@@ -205,7 +683,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ouvrir</translation>
     </message>
 </context>
 <context>
@@ -213,7 +691,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="30"/>
         <source>Due on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dû le</translation>
     </message>
 </context>
 <context>
@@ -221,7 +699,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="28"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notes sur les</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="60"/>
@@ -234,17 +712,17 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="109"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Calendrier</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="146"/>
         <source>New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nouvelle bibliothèque</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="152"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="159"/>
@@ -262,62 +740,62 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="137"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rouge</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="144"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vert</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="151"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bleu</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="158"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jaune</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="165"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orange</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="172"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lilas</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="179"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Blanc</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="189"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Renommer</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supprimer</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="252"/>
         <source>Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Note Titre</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="265"/>
         <source>Todo List Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titre de la liste de tâches</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="278"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="344"/>
@@ -360,17 +838,17 @@
     <message>
         <location filename="../Menues/LibraryPageMenu.qml" line="18"/>
         <source>Edit Sync Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Modifier les paramètres de synchronisation</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageMenu.qml" line="34"/>
         <source>Sync Now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Synchroniser maintenant</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageMenu.qml" line="45"/>
         <source>Sync Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Synchroniser le journal</translation>
     </message>
 </context>
 <context>
@@ -378,7 +856,7 @@
     <message>
         <location filename="../Widgets/LibrarySecretsMissingNotificationBar.qml" line="36"/>
         <source>The secrets for synchronizing the library %1 are missing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Les secrets pour synchroniser la bibliothèque %1 sont manquants.</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrarySecretsMissingNotificationBar.qml" line="41"/>
@@ -388,7 +866,7 @@
     <message>
         <location filename="../Widgets/LibrarySecretsMissingNotificationBar.qml" line="45"/>
         <source>Enter Secrets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Entrez Secrets</translation>
     </message>
 </context>
 <context>
@@ -396,12 +874,12 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="13"/>
         <source>Synchronization Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Journal de synchronisation</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="21"/>
         <source>Copy Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier le journal</translation>
     </message>
 </context>
 <context>
@@ -414,12 +892,12 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="189"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Renommer</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="200"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Couleur</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="211"/>
@@ -429,7 +907,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="218"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fichier joint</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="227"/>
@@ -449,12 +927,12 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="250"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Supprimer</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="289"/>
@@ -464,7 +942,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="296"/>
         <source>New &amp;Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nouveau &amp;Bibliothèque</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="307"/>
@@ -517,17 +995,17 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="23"/>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Créer</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="39"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="58"/>
         <source>Library Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nom de la bibliothèque :</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="66"/>
@@ -621,7 +1099,7 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="71"/>
         <source>Overdue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">En retard</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="127"/>
@@ -659,12 +1137,12 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="38"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Interface utilisateur</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="46"/>
@@ -674,7 +1152,7 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="55"/>
         <source>Theme:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Thème:</translation>
     </message>
 </context>
 <context>
@@ -682,7 +1160,7 @@
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
         <source>There were errors when synchronizing the library. Please ensure that the library settings are up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Il y a eu des erreurs lors de la synchronisation de la bibliothèque. Veuillez vous assurer que les paramètres de la bibliothèque sont à jour.</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
@@ -692,7 +1170,7 @@
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afficher</translation>
     </message>
 </context>
 <context>
@@ -700,7 +1178,7 @@
     <message>
         <location filename="../Widgets/SyncIndicatorBar.qml" line="63"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliothèque de synchronisation....</translation>
     </message>
 </context>
 <context>
@@ -718,17 +1196,17 @@
     <message>
         <location filename="../Pages/SyncLibrarySelectionPage.qml" line="46"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../Pages/SyncLibrarySelectionPage.qml" line="79"/>
         <source>Create new library on server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Créer une nouvelle bibliothèque sur le serveur</translation>
     </message>
     <message>
         <location filename="../Pages/SyncLibrarySelectionPage.qml" line="97"/>
         <source>Searching for existing libraries...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Recherche de bibliothèques existantes...</translation>
     </message>
 </context>
 <context>
@@ -736,7 +1214,7 @@
     <message>
         <location filename="../Pages/SynchronizerBackendSelectionPage.qml" line="16"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../Pages/SynchronizerBackendSelectionPage.qml" line="21"/>
@@ -763,7 +1241,7 @@
         <location filename="../Pages/SynchronizerBackendSelectionPage.qml" line="66"/>
         <location filename="../Pages/SynchronizerBackendSelectionPage.qml" line="67"/>
         <source>Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliothèque locale</translation>
     </message>
 </context>
 <context>
@@ -787,12 +1265,12 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="167"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="216"/>
         <source>Todos</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todos</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="234"/>
@@ -827,7 +1305,7 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="290"/>
         <source>Completed Todos</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todos achevés</translation>
     </message>
 </context>
 <context>
@@ -835,12 +1313,12 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="100"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="139"/>
         <source>Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Étranger</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="142"/>
@@ -904,7 +1382,7 @@
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Télécharger</translation>
     </message>
 </context>
 <context>
@@ -917,17 +1395,17 @@
     <message>
         <location filename="../Pages/WebDAVConnectionSettingsPage.qml" line="22"/>
         <source>Validate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valider</translation>
     </message>
     <message>
         <location filename="../Pages/WebDAVConnectionSettingsPage.qml" line="40"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../Pages/WebDAVConnectionSettingsPage.qml" line="86"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adresse du serveur :</translation>
     </message>
     <message>
         <location filename="../Pages/WebDAVConnectionSettingsPage.qml" line="92"/>
@@ -942,7 +1420,7 @@
     <message>
         <location filename="../Pages/WebDAVConnectionSettingsPage.qml" line="110"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mot de passe:</translation>
     </message>
     <message>
         <location filename="../Pages/WebDAVConnectionSettingsPage.qml" line="124"/>
@@ -960,12 +1438,12 @@
     <message>
         <location filename="../Pages/WebDAVSynchronizerSettingsPage.qml" line="40"/>
         <source>User name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../Pages/WebDAVSynchronizerSettingsPage.qml" line="53"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mot de passe</translation>
     </message>
 </context>
 <context>
@@ -973,7 +1451,7 @@
     <message>
         <location filename="../main.cpp" line="98"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gérer vos données personnelles.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -988,7 +1466,7 @@
     <message>
         <location filename="../main.cpp" line="111"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activez certaines optimisations pour les écrans tactiles.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="124"/>
