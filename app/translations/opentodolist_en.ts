@@ -242,81 +242,116 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="152"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="159"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="152"/>
-        <source>Settings</source>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="171"/>
+        <source>Create Default Library</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="124"/>
+        <location filename="../Pages/LibraryPage.qml" line="137"/>
         <source>Red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="131"/>
+        <location filename="../Pages/LibraryPage.qml" line="144"/>
         <source>Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="138"/>
+        <location filename="../Pages/LibraryPage.qml" line="151"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="145"/>
+        <location filename="../Pages/LibraryPage.qml" line="158"/>
         <source>Yellow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="152"/>
+        <location filename="../Pages/LibraryPage.qml" line="165"/>
         <source>Orange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="159"/>
+        <location filename="../Pages/LibraryPage.qml" line="172"/>
         <source>Lilac</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="166"/>
+        <location filename="../Pages/LibraryPage.qml" line="179"/>
         <source>White</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="176"/>
+        <location filename="../Pages/LibraryPage.qml" line="189"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="181"/>
+        <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="218"/>
+        <location filename="../Pages/LibraryPage.qml" line="252"/>
         <source>Note Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="231"/>
+        <location filename="../Pages/LibraryPage.qml" line="265"/>
         <source>Todo List Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="244"/>
+        <location filename="../Pages/LibraryPage.qml" line="278"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="306"/>
+        <location filename="../Pages/LibraryPage.qml" line="344"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="413"/>
+        <source>Sort By</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="417"/>
+        <source>Manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="424"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="431"/>
+        <source>Due To</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="438"/>
+        <source>Created At</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="445"/>
+        <source>Updated At</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -377,57 +412,97 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="179"/>
+        <location filename="../Windows/MainWindow.qml" line="189"/>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="200"/>
+        <source>Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="211"/>
+        <source>Add Tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="218"/>
+        <source>Attach File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="227"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="234"/>
+        <source>Sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="242"/>
+        <source>Set Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="250"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="180"/>
+        <location filename="../Windows/MainWindow.qml" line="289"/>
         <source>Ctrl+,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="187"/>
+        <location filename="../Windows/MainWindow.qml" line="296"/>
         <source>New &amp;Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="198"/>
+        <location filename="../Windows/MainWindow.qml" line="307"/>
         <source>New &amp;Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="206"/>
+        <location filename="../Windows/MainWindow.qml" line="315"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="214"/>
+        <location filename="../Windows/MainWindow.qml" line="323"/>
         <source>New &amp;Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="222"/>
+        <location filename="../Windows/MainWindow.qml" line="331"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="230"/>
+        <location filename="../Windows/MainWindow.qml" line="339"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="257"/>
+        <location filename="../Windows/MainWindow.qml" line="366"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="265"/>
+        <location filename="../Windows/MainWindow.qml" line="374"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="373"/>
+        <location filename="../Windows/MainWindow.qml" line="482"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -475,7 +550,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="109"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="110"/>
         <source>Please select a library location</source>
         <translation type="unfinished"></translation>
     </message>
@@ -509,6 +584,7 @@
 <context>
     <name>OpenImageDialog</name>
     <message>
+        <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
         <translation type="unfinished"></translation>
@@ -581,17 +657,22 @@
 <context>
     <name>SettingsPageForm.ui</name>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="31"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="32"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="37"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="38"/>
         <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="44"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="46"/>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="55"/>
         <source>Theme:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -696,7 +777,7 @@
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="94"/>
+        <location filename="../Widgets/TodoListItem.qml" line="95"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished"></translation>
     </message>
@@ -704,37 +785,47 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="159"/>
+        <location filename="../Pages/TodoListPage.qml" line="167"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="208"/>
+        <location filename="../Pages/TodoListPage.qml" line="216"/>
         <source>Todos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="222"/>
+        <location filename="../Pages/TodoListPage.qml" line="234"/>
         <source>Add new todo...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
-        <source>Sort Manually</source>
+        <location filename="../Pages/TodoListPage.qml" line="256"/>
+        <source>Manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="248"/>
-        <source>Sort By Name</source>
+        <location filename="../Pages/TodoListPage.qml" line="262"/>
+        <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="252"/>
-        <source>Sort By Due Date</source>
+        <location filename="../Pages/TodoListPage.qml" line="268"/>
+        <source>Due Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="260"/>
+        <location filename="../Pages/TodoListPage.qml" line="274"/>
+        <source>Created At</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="280"/>
+        <source>Updated At</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="290"/>
         <source>Completed Todos</source>
         <translation type="unfinished"></translation>
     </message>
@@ -760,8 +851,41 @@
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="130"/>
+        <location filename="../Widgets/TodosWidget.qml" line="141"/>
         <source>Due on: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/TodosWidget.qml" line="271"/>
+        <source>Swipe to mark undone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/TodosWidget.qml" line="272"/>
+        <source>Swipe to mark done</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Translations</name>
+    <message>
+        <location filename="../Utils/Translations.qml" line="14"/>
+        <source>System Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Translations.qml" line="18"/>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Translations.qml" line="22"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Translations.qml" line="26"/>
+        <source>French</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -780,157 +904,6 @@
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WebDAVClient</name>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="119"/>
-        <source>Unexpected HTTP code received when getting remote folder entry list: &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="181"/>
-        <source>Failed to open file &apos;%1&apos; for writing: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="188"/>
-        <source>Download failed with HTTP code %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="194"/>
-        <source>Failed to open intermediate download file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="250"/>
-        <source>Uploading failed with HTTP code %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="255"/>
-        <source>Failed to open file &apos;%1&apos; for reading: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="264"/>
-        <source>Server did not send eTag when uploading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="314"/>
-        <source>Deleting remote file failed with HTTP code %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="416"/>
-        <source>Synchronizing &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="429"/>
-        <location filename="../../lib/sync/webdavclient.cpp" line="440"/>
-        <location filename="../../lib/sync/webdavclient.cpp" line="449"/>
-        <location filename="../../lib/sync/webdavclient.cpp" line="458"/>
-        <source>Ignoring file %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="468"/>
-        <source>Skipping sync of directory &apos;%1&apos; as there were no local changes and we have been asked to push only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="526"/>
-        <source>Failed to get entry list for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="543"/>
-        <source>Pulling &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="553"/>
-        <source>Pull conflict: Cannot pull file &apos;%1&apos; from &apos;%2&apos;  because a local directory with than name already exists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="575"/>
-        <source>Pull conflict: Cannot pull directory &apos;%1&apos; from &apos;%2&apos; because a file with that name already exists locally</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="600"/>
-        <source>Cannot pull remote entry of type Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="614"/>
-        <source>Removing &apos;%1&apos; locally</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="621"/>
-        <source>Failed to remove local file &apos;%1&apos; from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="636"/>
-        <source>Failed to remove local directory &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="644"/>
-        <source>Bad sync entry type of entry &apos;%1&apos; in &apos;%2&apos; when removing local entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="660"/>
-        <source>Pushing &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="667"/>
-        <source>Push conflict: Cannot push directory &apos;%1&apos; as a file with that name exists on the remote</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="684"/>
-        <source>Push conflict: Cannot push local file &apos;%1&apos; because a directory with that name exists remotely</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="697"/>
-        <source>Unexpected local type of entry &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="711"/>
-        <source>Removing remote entry &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1025"/>
-        <source>There was an SSL error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1028"/>
-        <source>Problem establishing a secure connection to the server: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1039"/>
-        <source>There was a network error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavclient.cpp" line="1042"/>
-        <source>Authentication failed. Please check you username and password.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -983,50 +956,6 @@
     </message>
 </context>
 <context>
-    <name>WebDAVSynchronizer</name>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="97"/>
-        <source>Starting synchronization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="124"/>
-        <source>The last sync did not run through - doing a full sync</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="131"/>
-        <source>Failed to create sync lock:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="140"/>
-        <source>Creating the remote top level directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="152"/>
-        <source>Failed to prepare remote directory &apos;%1&apos; for sync</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="174"/>
-        <source>Failed to synchronize top level directory!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="188"/>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="200"/>
-        <source>Failed to synchronize &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="213"/>
-        <source>Synchronization finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>WebDAVSynchronizerSettingsPage</name>
     <message>
         <location filename="../Pages/WebDAVSynchronizerSettingsPage.qml" line="40"/>
@@ -1042,27 +971,27 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="194"/>
+        <location filename="../main.cpp" line="98"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="200"/>
+        <location filename="../main.cpp" line="104"/>
         <source>QML Root Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="201"/>
+        <location filename="../main.cpp" line="105"/>
         <source>DIR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="207"/>
+        <location filename="../main.cpp" line="111"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="220"/>
+        <location filename="../main.cpp" line="124"/>
         <source>Remove shortcuts to the AppImage.</source>
         <translation type="unfinished"></translation>
     </message>
