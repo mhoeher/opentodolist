@@ -279,9 +279,36 @@ Column {
                 }
 
                 onClicked: {
-                    d.openSwipeDelegate = null;
-                    root.todoClicked(object);
+                    // Delay evaluation, as it overlaps with double clicks:
+                    if (!delayedClickTimer.afterDoubleClick) {
+                        delayedClickTimer.start();
+                    }
+                    delayedClickTimer.afterDoubleClick = false;
                 }
+
+                onDoubleClicked: {
+                    // Remember that we detected a double click:
+                    delayedClickTimer.afterDoubleClick = true;
+
+                    // Handle the double click:
+                    delayedClickTimer.stop();
+                    renameDialog.renameItem(object);
+                }
+
+
+                Timer {
+                    id: delayedClickTimer
+
+                    property bool afterDoubleClick: false
+
+                    interval: 300
+                    repeat: false
+                    onTriggered: {
+                        d.openSwipeDelegate = null;
+                        root.todoClicked(object);
+                    }
+                }
+
                 swipe.onCompleted: {
                     if (swipe.position > 0) {
                         // Swipe from left to right to mark items as (un)done.
