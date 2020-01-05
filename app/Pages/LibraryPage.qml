@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
-import Qt.labs.settings 1.1
+import Qt.labs.settings 1.0
 
 import OpenTodoList 1.0 as OTL
 
