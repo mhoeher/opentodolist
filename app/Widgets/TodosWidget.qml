@@ -279,12 +279,10 @@ Column {
                 }
 
                 onClicked: {
-                    console.debug("Clicked");
                     d.openSwipeDelegate = null;
                     root.todoClicked(object);
                 }
                 swipe.onCompleted: {
-                    console.debug("Completed");
                     if (swipe.position > 0) {
                         // Swipe from left to right to mark items as (un)done.
                         swipeDelegate.toggleDoneOnClose = true;
@@ -301,7 +299,6 @@ Column {
                     }
                 }
                 swipe.onClosed: {
-                    console.debug("Closed");
                     if (swipeDelegate.toggleDoneOnClose) {
                         object.done = !object.done;
                         swipeDelegate.toggleDoneOnClose = false;
