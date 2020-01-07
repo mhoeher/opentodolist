@@ -603,17 +603,6 @@ QVariant Application::loadValue(const QString &name,
     return result;
 }
 
-/**
- * @brief Reads a file and returns its content
- */
-QString Application::readFile(const QString &fileName) const
-{
-    QFile file(fileName);
-    if (file.open(QIODevice::ReadOnly)) {
-        return file.readAll();
-    }
-    return QString();
-}
 
 /**
  * @brief A list of all 3rd party information found in the apps resource system.

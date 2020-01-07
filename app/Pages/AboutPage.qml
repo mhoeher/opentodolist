@@ -13,19 +13,16 @@ Page {
 
     title: qsTr("About...")
 
-    Component {
-        id: thirdPartyPage
-
-        AboutThirdPartyPage {}
-    }
-
     ScrollView {
         id: scrollView
 
         anchors.fill: parent
 
+        padding: 10
+
         Column {
-            width: page.width - 2 * padding
+            width: page.width - 2 * scrollView.padding
+            spacing: 10
 
             Label {
                 text: qsTr("OpenTodoList")
@@ -42,13 +39,15 @@ Page {
             }
 
             Label {
-                text: qsTr("(c) RPdev 2013-2020, version %1").arg(applicationVersion)
+                text: qsTr("(c) RPdev 2013-2020, version %1").arg(
+                          applicationVersion)
                 width: parent.width
                 padding: 5
             }
 
             Label {
-                text: "<a href='%1'>%1</a>".arg("https://opentodolist.rpdev.net/")
+                text: "<a href='%1'>%1</a>".arg(
+                          "https://opentodolist.rpdev.net/")
                 width: parent.width
                 onLinkActivated: Qt.openUrlExternally(link)
                 padding: 5
@@ -57,24 +56,112 @@ Page {
             Label {
                 function linkHandler(link) {}
 
-                text: qsTr("OpenTodoList is released under the terms of the GNU General Public " +
-                           "License version 3 or (at your choice) any later version. You can find a " +
-                           "copy of the license below. Additionally, several libraries and resources " +
-                           "are used. For detailed information about their license terms, please " +
-                           "refer to the <a href='3rdparty'>3rd Party Software</a> page.")
+                text: qsTr("OpenTodoList is released under the terms of the " +
+                           "<a href='app-license'>GNU General Public License" +
+                           "</a> version 3 or (at your " +
+                           "choice) any later version.")
                 width: parent.width
                 onLinkActivated: {
-                    if (link == "3rdparty") {
-                        page.openPage(thirdPartyPage, {});
+                    switch (link) {
+                    case "app-license":
+                        Qt.openUrlExternally(
+                                    "https://gitlab.com/rpdev/opentodolist/" +
+                                    "raw/master/COPYING");
+                        break;
                     }
                 }
                 padding: 5
             }
 
+            Button {
+                anchors.right: parent.right
+                text: qsTr("Report an Issue")
+                onClicked: Qt.openUrlExternally(
+                               "https://gitlab.com/rpdev/opentodolist/" +
+                               "issues/new")
+            }
+
+            Item {
+                width: 1
+                height: 10
+            }
+
             Label {
-                text: OTL.Application.readFile(":/res/COPYING")
+                font.bold: true
+                text: qsTr("Third Party Libraries and Resources")
+            }
+
+            Repeater {
+                model: OTL.Application.find3rdPartyInfos()
+                delegate: itemDelegate
+            }
+        }
+    }
+
+    Component {
+        id: itemDelegate
+
+        ItemDelegate {
+            property var item: modelData
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            width: parent.width
+
+            contentItem: GridLayout {
+                id: column
                 width: parent.width
-                padding: 5
+                columnSpacing: 5
+                rowSpacing: 5
+                columns: 2
+
+                Label {
+                    id: itemTitle
+                    text: item.name
+                    font.bold: true
+                    Layout.columnSpan: 2
+                }
+
+                Label {
+                    text: qsTr("Author:")
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    text: qsTr("<a href='%2'>%1</a>").arg(
+                              item.author).arg(item.website)
+                    Layout.fillWidth: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+
+                Label {
+                    text: qsTr("License:")
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    text: qsTr("<a href='%1'>%2</a>").arg(
+                              item.licenseUrl).arg(item.licenseType)
+                    Layout.fillWidth: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+
+                Label {
+                    text: qsTr("Download:")
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    text: qsTr("<a href='%1'>%1</a>").arg(
+                              item.downloadUrl)
+                    Layout.fillWidth: true
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
             }
         }
     }

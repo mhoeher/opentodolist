@@ -28,7 +28,6 @@
         <file>Widgets/LibrarySideBarButton.qml</file>
         <file>Menues/ColorMenu.qml</file>
         <file>Pages/AboutPage.qml</file>
-        <file>Pages/AboutThirdPartyPage.qml</file>
         <file>Pages/ImagePage.qml</file>
         <file>Pages/LibraryPage.qml</file>
         <file>Pages/LogViewPage.qml</file>
