@@ -19,12 +19,17 @@ ItemDelegate {
             width: root.indent * 10
         }
 
+
         Label {
             id: sym
             font {
                 family: Fonts.solidIcons
                 bold: root.bold
             }
+            width: root.height
+            height: width
+            Layout.minimumWidth: root.height / 2
+            Layout.alignment: Qt.AlignHCenter
         }
 
         Label {

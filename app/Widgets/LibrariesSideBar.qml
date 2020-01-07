@@ -149,6 +149,13 @@ Pane {
             }
 
             LibrarySideBarButton {
+                text: qsTr("Translate The App...")
+                symbol: Icons.faLanguage
+                onClicked: Qt.openUrlExternally(
+                               "https://poeditor.com/join/project/ztvOymGNxn")
+            }
+
+            LibrarySideBarButton {
                 text: qsTr("Settings")
                 symbol: Icons.faWrench
                 highlighted: settingsVisible
