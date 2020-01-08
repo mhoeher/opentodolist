@@ -939,7 +939,7 @@ WebDAVClient::EntryList WebDAVClient::parseEntryList(
     QDomDocument doc;
     QString errorMsg;
     int errorLine;
-    if (doc.setContent(reply, &errorMsg, &errorLine)) {
+    if (doc.setContent(reply, true, &errorMsg, &errorLine)) {
         result = parsePropFindResponse(baseUrl, doc, directory);
     } else {
         qCWarning(log) << "Failed to parse WebDAV response:"
@@ -955,14 +955,14 @@ WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(
     auto baseDir = QDir::cleanPath(baseUrl.path() + "/" + directory);
     auto root = response.documentElement();
     auto rootTagName = root.tagName();
-    if (rootTagName == "d:multistatus") {
-        auto resp = root.firstChildElement("d:response");
+    if (rootTagName == "multistatus") {
+        auto resp = root.firstChildElement("response");
         while (resp.isElement()) {
             auto entry = parseResponseEntry(resp, baseDir);
             if (entry.type != Invalid) {
                 result << entry;
             }
-            resp = resp.nextSiblingElement("d:response");
+            resp = resp.nextSiblingElement("response");
         }
     } else {
         qCWarning(log) << "Received invalid WebDAV response from"
@@ -978,19 +978,19 @@ WebDAVClient::Entry WebDAVClient::parseResponseEntry(
     auto type = File;
     QString etag;
 
-    auto propstats = element.elementsByTagName("d:propstat");
+    auto propstats = element.elementsByTagName("propstat");
     for (int i = 0; i < propstats.length(); ++i) {
         auto propstat = propstats.at(i).toElement();
-        auto status = propstat.firstChildElement("d:status");
+        auto status = propstat.firstChildElement("status");
         if (status.text().endsWith("200 OK")) {
-            auto prop = propstat.firstChildElement("d:prop");
+            auto prop = propstat.firstChildElement("prop");
             auto child = prop.firstChildElement();
             while (child.isElement()) {
-                if (child.tagName() == "d:resourcetype") {
-                    if (child.firstChildElement().tagName() == "d:collection") {
+                if (child.tagName() == "resourcetype") {
+                    if (child.firstChildElement().tagName() == "collection") {
                         type = Directory;
                     }
-                } else if (child.tagName() == "d:getetag") {
+                } else if (child.tagName() == "getetag") {
                     etag = child.text();
                 } else {
                     qCWarning(log) << "Unknown DAV Property:"
@@ -1006,7 +1006,7 @@ WebDAVClient::Entry WebDAVClient::parseResponseEntry(
 
 
     QString path = QByteArray::fromPercentEncoding(
-                element.firstChildElement("d:href").text().toUtf8());
+                element.firstChildElement("href").text().toUtf8());
 
     path = QDir(baseDir).relativeFilePath(path);
     Entry result;
