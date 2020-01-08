@@ -133,6 +133,7 @@ Page {
                         Material.foreground: Material.Red
                         width: parent.width
                         visible: d.validated && !dav.valid
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     }
 
                     BusyIndicator {
