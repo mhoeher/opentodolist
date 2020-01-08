@@ -180,12 +180,12 @@ void Application::initialize(const QString &path)
                     auto currentDateTime = QDateTime::currentDateTime();
                     auto diff = currentDateTime.toMSecsSinceEpoch() -
                             lastSync.toMSecsSinceEpoch();
-                    if (diff >= (1000 * 60 * 60)) {
-                        // Sync every hour
+                    if (diff >= (1000 * 60 * 15)) {
+                        // Sync every 15min
                         qCDebug(log) << "Library" << lib
                                              << lib->name()
                                              << "has not been synced for"
-                                             << "more than an hour,"
+                                             << "more than 15min,"
                                              << "starting sync now";
                         runSync = true;
                     }
@@ -345,6 +345,19 @@ Library *Application::addLibrary(const QVariantMap &parameters)
     if (parameters.contains("uid") &&
             parameters.value("uid").toString() != "") {
         uid = parameters.value("uid").toUuid();
+
+        // Sanity check: Test if we already have a library with that UID.
+        // If this is the case, assume that the user tried to add the
+        // same library to the app for a second time. We must prevent
+        // this, as it causes infinite sync loops if we would just select
+        // another directory to store this one in:
+        for (auto lib : librariesFromConfig()) {
+            if (lib->uid() == uid) {
+                auto ret = new Library(lib->directory());
+                ret->load();
+                return ret;
+            }
+        }
     } else {
         uid = QUuid::createUuid();
     }
@@ -878,24 +891,28 @@ void Application::onLibrarySyncFinished(QString directory)
             sync->setLastSync(QDateTime::currentDateTime());
             sync->save();
         }
+
+        // Unmark directory as having running sync:
         auto dirs = directoriesWithRunningSync();
         dirs.removeAll(directory);
         setDirectoriesWithRunningSync(dirs);
+
+        if (m_librariesWithChanges.contains(lib.directory())) {
+            m_librariesWithChanges.remove(lib.directory());
+            runSyncForLibrary(&lib);
+        }
+
         auto libs = librariesFromConfig();
-        for (auto lib : libs) {
-            if (lib->directory() == directory) {
+        for (auto libFromConfig : libs) {
+            if (libFromConfig->directory() == directory) {
                 auto loader = new LibraryLoader();
                 loader->setCache(m_cache);
-                loader->setLibraryId(lib->uid());
+                loader->setLibraryId(libFromConfig->uid());
                 loader->setDirectory(directory);
                 connect(loader, &LibraryLoader::scanFinished,
                         loader, &LibraryLoader::deleteLater);
                 loader->scan();
             }
-        }
-        if (m_librariesWithChanges.contains(lib.directory())) {
-            m_librariesWithChanges.remove(lib.directory());
-            runSyncForLibrary(&lib);
         }
     }
 }
