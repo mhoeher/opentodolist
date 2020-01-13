@@ -61,6 +61,7 @@ SOURCES += \
     utils/keystore.cpp \
     sync/synchronizer.cpp \
     utils/jsonutils.cpp \
+    sync/account.cpp \
     sync/webdavsynchronizer.cpp \
     sync/webdavclient.cpp \
     sync/syncrunner.cpp \
@@ -100,6 +101,7 @@ HEADERS += \
     utils/keystore.h \
     sync/synchronizer.h \
     utils/jsonutils.h \
+    sync/account.h \
     sync/webdavsynchronizer.h \
     sync/webdavclient.h \
     sync/syncrunner.h \
