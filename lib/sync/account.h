@@ -2,6 +2,7 @@
 #define ACCOUNT_H
 
 #include <QObject>
+#include <QUuid>
 
 class Account : public QObject
 {
@@ -32,6 +33,9 @@ public:
     Q_ENUM(Type);
 
 
+    QUuid uid() const;
+    void setUid(const QUuid &uid);
+
     Type type() const;
     void setType(const Type &type);
 
@@ -52,6 +56,7 @@ public:
 
 signals:
 
+    void uidChanged();
     void typeChanged();
     void usernameChanged();
     void passwordChanged();
@@ -61,6 +66,7 @@ signals:
 
 private:
 
+    QUuid m_uid;
     Type m_type;
     QString m_username;
     QString m_password;

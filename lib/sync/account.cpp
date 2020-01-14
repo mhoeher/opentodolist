@@ -22,6 +22,7 @@
  * @brief Constructor.
  */
 Account::Account(QObject *parent) : QObject(parent),
+    m_uid(QUuid::createUuid()),
     m_type(Invalid),
     m_username(),
     m_password(),
@@ -168,5 +169,26 @@ void Account::setDisableCertificateChecks(bool disableCertificateChecks)
     if (m_disableCertificateChecks != disableCertificateChecks) {
         m_disableCertificateChecks = disableCertificateChecks;
         emit disableCertificateChecksChanged();
+    }
+}
+
+
+/**
+ * @brief The globally unique ID of the account.
+ */
+QUuid Account::uid() const
+{
+    return m_uid;
+}
+
+
+/**
+ * @brief Set the globally unique ID of the account.
+ */
+void Account::setUid(const QUuid &uid)
+{
+    if (m_uid != uid) {
+        m_uid = uid;
+        emit uidChanged();
     }
 }
