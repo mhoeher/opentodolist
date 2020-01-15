@@ -311,6 +311,38 @@ Application::~Application()
 
 
 /**
+ * @brief Save the Account to the application configuration.
+ *
+ * This saves the @p account to the application settings.
+ */
+void Application::saveAccount(Account *account)
+{
+    Q_UNUSED(account);
+}
+
+
+/**
+ * @brief Save the secrets of the @p account.
+ */
+void Application::saveAccountSecrets(Account *account)
+{
+    Q_UNUSED(account);
+}
+
+
+/**
+ * @brief Remove the account from the application.
+ *
+ * This removes the settings of the account. Additionally,
+ * all libraries, belonging to that account will be removed, too.
+ */
+void Application::removeAccount(Account *account)
+{
+    Q_UNUSED(account);
+}
+
+
+/**
  * @brief Create a new library.
  *
  * This creates a new library using the given @p parameters. The following

@@ -15,6 +15,7 @@
 
 class QTemporaryDir;
 
+class Account;
 class Cache;
 class DirectoryWatcher;
 class Image;
@@ -51,6 +52,10 @@ public:
     explicit Application(QString applicationDir, QObject *parent = nullptr);
 
     virtual ~Application();
+
+    Q_INVOKABLE void saveAccount(Account *account);
+    Q_INVOKABLE void saveAccountSecrets(Account *account);
+    Q_INVOKABLE void removeAccount(Account *account);
 
     Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
     Q_INVOKABLE void deleteLibrary(Library *library);

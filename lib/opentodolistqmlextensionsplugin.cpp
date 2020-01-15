@@ -15,6 +15,7 @@
 #include "models/librariesmodel.h"
 #include "models/itemssortfiltermodel.h"
 
+#include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
 
@@ -37,6 +38,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 {
   //@uri OpenTodoList
 
+  qmlRegisterType<Account>(uri, 1, 0, "Account");
   qmlRegisterSingletonType<Application>(
               uri, 1, 0, "Application",
               OpenTodoListQmlExtensionsPlugin::createApplication);
