@@ -1,3 +1,5 @@
+#include <QSettings>
+
 #include "account.h"
 
 
@@ -27,7 +29,6 @@ Account::Account(QObject *parent) : QObject(parent),
     m_username(),
     m_password(),
     m_baseUrl(),
-    m_useInsecureConnection(false),
     m_disableCertificateChecks(false)
 {
 
@@ -123,31 +124,6 @@ void Account::setBaseUrl(const QString &baseUrl)
 
 
 /**
- * @brief Shall an insecure connection to the server be used.
- *
- * This property determines if an insecure connection to the server is used.
- * By default (false), only secure (i.e. `https://`) connection are made.
- * If this property is set to true, insecure (`http://`) ones are used instead.
- */
-bool Account::useInsecureConnection() const
-{
-    return m_useInsecureConnection;
-}
-
-
-/**
- * @brief Set if the account shall use insecure connections to the server.
- */
-void Account::setUseInsecureConnection(bool useInsecureConnection)
-{
-    if (m_useInsecureConnection != useInsecureConnection) {
-        m_useInsecureConnection = useInsecureConnection;
-        emit useInsecureConnectionChanged();
-    }
-}
-
-
-/**
  * @brief Shall certificate checks be skipped.
  *
  * If this property is false (the default) and secure connections to the
@@ -169,6 +145,50 @@ void Account::setDisableCertificateChecks(bool disableCertificateChecks)
     if (m_disableCertificateChecks != disableCertificateChecks) {
         m_disableCertificateChecks = disableCertificateChecks;
         emit disableCertificateChecksChanged();
+    }
+}
+
+
+/**
+ * @brief Save the account to the @p settings.
+ */
+void Account::save(QSettings *settings)
+{
+    // TODO: Implement me
+    Q_UNUSED(settings);
+}
+
+
+/**
+ * @brief Restore the account from the @p settings.
+ */
+void Account::load(QSettings *settings)
+{
+    // TODO: Implement me
+    Q_UNUSED(settings);
+}
+
+
+/**
+ * @brief The name of the account.
+ *
+ * This is the human readable name of the account. It is used inside
+ * the application to identify the account.
+ */
+QString Account::name() const
+{
+    return m_name;
+}
+
+
+/**
+ * @brief Set the name of the account.
+ */
+void Account::setName(const QString &name)
+{
+    if (m_name != name) {
+        m_name = name;
+        emit nameChanged();
     }
 }
 

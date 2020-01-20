@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QUuid>
 
+class QSettings;
+
 class Account : public QObject
 {
     Q_OBJECT
@@ -14,9 +16,6 @@ class Account : public QObject
                NOTIFY passwordChanged)
     Q_PROPERTY(QString baseUrl READ baseUrl WRITE setBaseUrl
                NOTIFY baseUrlChanged)
-    Q_PROPERTY(bool useInsecureConnection READ useInsecureConnection
-               WRITE setUseInsecureConnection
-               NOTIFY useInsecureConnectionChanged)
     Q_PROPERTY(bool disableCertificateChecks READ disableCertificateChecks
                WRITE setDisableCertificateChecks
                NOTIFY disableCertificateChecksChanged)
@@ -48,30 +47,33 @@ public:
     QString baseUrl() const;
     void setBaseUrl(const QString &baseUrl);
 
-    bool useInsecureConnection() const;
-    void setUseInsecureConnection(bool useInsecureConnection);
-
     bool disableCertificateChecks() const;
     void setDisableCertificateChecks(bool disableCertificateChecks);
+
+    void save(QSettings *settings);
+    void load(QSettings *settings);
+
+    QString name() const;
+    void setName(const QString &name);
 
 signals:
 
     void uidChanged();
     void typeChanged();
+    void nameChanged();
     void usernameChanged();
     void passwordChanged();
     void baseUrlChanged();
-    void useInsecureConnectionChanged();
     void disableCertificateChecksChanged();
 
 private:
 
     QUuid m_uid;
     Type m_type;
+    QString m_name;
     QString m_username;
     QString m_password;
     QString m_baseUrl;
-    bool m_useInsecureConnection;
     bool m_disableCertificateChecks;
 
 };

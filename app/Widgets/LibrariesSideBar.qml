@@ -23,11 +23,13 @@ Pane {
 
     property bool helpVisible: false
     property bool settingsVisible: false
+    property bool accountsVisible: false
     property bool compact: false
 
     signal newLibrary()
     signal aboutPageRequested()
     signal settingsPageRequested()
+    signal accountsPageRequested()
     signal close()
 
     function reopenLastLibrary() {
@@ -47,7 +49,16 @@ Pane {
     function showSettings() {
         settingsVisible = true;
         helpVisible = false;
+        accountsVisible = false;
         sidebar.settingsPageRequested();
+        sidebar.close();
+    }
+
+    function showAccounts() {
+        accountsVisible = true;
+        helpVisible = false;
+        settingsVisible = false;
+        sidebar.accountsPageRequested();
         sidebar.close();
     }
 
@@ -153,6 +164,13 @@ Pane {
                 symbol: Icons.faLanguage
                 onClicked: Qt.openUrlExternally(
                                "https://poeditor.com/join/project/ztvOymGNxn")
+            }
+
+            LibrarySideBarButton {
+                text: qsTr("Accounts")
+                symbol: Icons.faUser
+                highlighted: accountsVisible
+                onClicked: sidebar.showAccounts()
             }
 
             LibrarySideBarButton {

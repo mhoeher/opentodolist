@@ -47,6 +47,7 @@ ApplicationWindow {
 
     property Item helpPage: null
     property Item settingsPage: null
+    property Item accountsPage: null
 
     header: ToolBar {
         id: headerToolBar
@@ -461,6 +462,20 @@ ApplicationWindow {
                             });
             }
         }
+        onAccountsPageRequested: {
+            if (accountsPage) {
+                stackView.pop(accountsPage);
+            } else {
+                accountsPage = stackView.push(
+                            accountsPageComponent, {
+                                stack: stackView,
+                                onClosed: function() {
+                                    accountsPage = null;
+                                    librariesSideBar.accountsVisible = false;
+                                }
+                            });
+            }
+        }
 
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
@@ -580,6 +595,12 @@ ApplicationWindow {
         id: settingsPageComponent
 
         SettingsPage {}
+    }
+
+    Component {
+        id: accountsPageComponent
+
+        AccountsPage {}
     }
 
     Component {

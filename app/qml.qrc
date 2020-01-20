@@ -94,5 +94,12 @@
         <file>Windows/+ios/OpenImageDialog.qml</file>
         <file>Utils/Translations.qml</file>
         <file>Components/ToolBarAction.qml</file>
+        <file>Pages/AccountsPage.qml</file>
+        <file>Pages/AccountsPageForm.ui.qml</file>
+        <file>Components/qmldir</file>
+        <file>Pages/AccountTypeSelectionPage.qml</file>
+        <file>Pages/AccountTypeSelectionPageForm.ui.qml</file>
+        <file>Pages/NewWebDAVAccountPage.qml</file>
+        <file>Pages/NewWebDAVAccountPageForm.ui.qml</file>
     </qresource>
 </RCC>

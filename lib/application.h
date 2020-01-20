@@ -56,6 +56,8 @@ public:
     Q_INVOKABLE void saveAccount(Account *account);
     Q_INVOKABLE void saveAccountSecrets(Account *account);
     Q_INVOKABLE void removeAccount(Account *account);
+    Q_INVOKABLE Account* loadAccount(const QUuid &uid);
+    Q_INVOKABLE QList<QUuid> accountUids();
 
     Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
     Q_INVOKABLE void deleteLibrary(Library *library);

@@ -27,6 +27,7 @@
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/libraryloader.h"
+#include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
 #include "sync/syncrunner.h"
@@ -317,7 +318,13 @@ Application::~Application()
  */
 void Application::saveAccount(Account *account)
 {
-    Q_UNUSED(account);
+    if (account != nullptr) {
+        m_settings->beginGroup("Accounts");
+        m_settings->beginGroup(account->uid().toString());
+        account->save(m_settings);
+        m_settings->endGroup();
+        m_settings->endGroup();
+    }
 }
 
 
@@ -326,7 +333,12 @@ void Application::saveAccount(Account *account)
  */
 void Application::saveAccountSecrets(Account *account)
 {
-    Q_UNUSED(account);
+    if (account != nullptr) {
+        m_keyStore->saveCredentials(account->uid().toString(),
+                                    account->password());
+        m_secrets.insert(account->uid().toString(),
+                         account->password());
+    }
 }
 
 
@@ -338,7 +350,62 @@ void Application::saveAccountSecrets(Account *account)
  */
 void Application::removeAccount(Account *account)
 {
-    Q_UNUSED(account);
+    if (account != nullptr) {
+        m_settings->beginGroup("Accounts");
+        m_settings->beginGroup(account->uid().toString());
+        for (const auto &key : m_settings->allKeys()) {
+            m_settings->remove(key);
+        }
+        m_keyStore->deleteCredentials(account->uid().toString());
+        m_settings->endGroup();
+        m_settings->endGroup();
+    }
+    // TODO: Remove all libraries that belong to this account
+}
+
+
+/**
+ * @brief Load an account from the app settings.
+ *
+ * This loads the account with the given @p uid from the settings of
+ * the app. If no such account is stored, the function returns a
+ * null pointer.
+ *
+ * @note Owenership goes over to the caller.
+ */
+Account *Application::loadAccount(const QUuid &uid)
+{
+    Account *result = nullptr;
+    if (!uid.isNull()) {
+        m_settings->beginGroup("Accounts");
+        if (m_settings->contains(uid.toString())) {
+            m_settings->beginGroup(uid.toString());
+            result = new Account();
+            result->setUid(uid);
+            result->load(m_settings);
+            m_settings->endGroup();
+        }
+        m_settings->endGroup();
+    }
+    return result;
+}
+
+
+/**
+ * @brief Get the list of UIDs of the accounts.
+ */
+QList<QUuid> Application::accountUids()
+{
+    QList<QUuid> result;
+    m_settings->beginGroup("Accounts");
+    for (const auto &key : m_settings->allKeys()) {
+        auto uid = QUuid::fromString(key);
+        if (!uid.isNull()) {
+            result << uid;
+        }
+    }
+    m_settings->endGroup();
+    return result;
 }
 
 
@@ -902,6 +969,16 @@ void Application::loadLibraries()
         }
         watchLibraryForChanges(library);
     }
+
+    // Load secrets of all accounts:
+    m_settings->beginGroup("Accounts");
+    for (const auto key : m_settings->allKeys()) {
+        auto uid = QUuid::fromString(key);
+        if (!uid.isNull()) {
+            m_keyStore->loadCredentials(key);
+        }
+    }
+    m_settings->endGroup();
 }
 
 
