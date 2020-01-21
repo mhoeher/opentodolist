@@ -6,8 +6,12 @@ import Fonts 1.0 as Fonts
 import Utils 1.0 as Utils
 
 Page {
+    id: page
+
     property alias accounts: listView.model
     property alias roundButton: roundButton
+
+    signal accountSelected(var account)
 
     title: qsTr("Accounts")
 
@@ -22,8 +26,15 @@ Page {
         }
         model: defaultData
         delegate: ItemDelegate {
+            id: itemDelegate
+
             text: name
             width: parent.width
+
+            Connections {
+                target: itemDelegate
+                onClicked: page.accountSelected(account)
+            }
         }
     }
 

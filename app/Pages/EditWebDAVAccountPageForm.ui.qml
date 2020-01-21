@@ -20,7 +20,7 @@ Page {
     property alias busyIndicator: busyIndicator
     property alias passwordEdit: passwordEdit
 
-    title: qsTr("Connection Settings")
+    title: qsTr("Edit Account")
     footer: DialogButtonBox {
         id: buttons
 
@@ -40,8 +40,18 @@ Page {
             rowSpacing: 10
 
             Components.Heading {
-                text: qsTr("Connection Settings")
+                text: qsTr("Edit Account")
                 Layout.columnSpan: 2
+                Layout.fillWidth: true
+            }
+
+            Components.Label {
+                text: qsTr("Name:")
+            }
+
+            TextField {
+                id: accountNameEdit
+
                 Layout.fillWidth: true
             }
 
@@ -91,16 +101,6 @@ Page {
                 id: disableCertificateChecksEdit
 
                 text: qsTr("Disable Certificate Checks")
-            }
-
-            Components.Label {
-                text: qsTr("Name:")
-            }
-
-            TextField {
-                id: accountNameEdit
-
-                Layout.fillWidth: true
             }
 
             Components.Label {

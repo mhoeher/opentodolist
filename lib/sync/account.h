@@ -10,6 +10,7 @@ class Account : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(Account::Type type READ type WRITE setType NOTIFY typeChanged)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString username READ username WRITE setUsername
                NOTIFY usernameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword

@@ -324,6 +324,7 @@ void Application::saveAccount(Account *account)
         account->save(m_settings);
         m_settings->endGroup();
         m_settings->endGroup();
+        emit accountsChanged();
     }
 }
 
@@ -359,6 +360,7 @@ void Application::removeAccount(Account *account)
         m_keyStore->deleteCredentials(account->uid().toString());
         m_settings->endGroup();
         m_settings->endGroup();
+        emit accountsChanged();
     }
     // TODO: Remove all libraries that belong to this account
 }
@@ -378,7 +380,7 @@ Account *Application::loadAccount(const QUuid &uid)
     Account *result = nullptr;
     if (!uid.isNull()) {
         m_settings->beginGroup("Accounts");
-        if (m_settings->contains(uid.toString())) {
+        if (m_settings->childGroups().contains(uid.toString())) {
             m_settings->beginGroup(uid.toString());
             result = new Account();
             result->setUid(uid);
@@ -394,11 +396,11 @@ Account *Application::loadAccount(const QUuid &uid)
 /**
  * @brief Get the list of UIDs of the accounts.
  */
-QList<QUuid> Application::accountUids()
+QVariantList Application::accountUids()
 {
-    QList<QUuid> result;
+    QVariantList result;
     m_settings->beginGroup("Accounts");
-    for (const auto &key : m_settings->allKeys()) {
+    for (const auto &key : m_settings->childGroups()) {
         auto uid = QUuid::fromString(key);
         if (!uid.isNull()) {
             result << uid;
@@ -971,14 +973,9 @@ void Application::loadLibraries()
     }
 
     // Load secrets of all accounts:
-    m_settings->beginGroup("Accounts");
-    for (const auto key : m_settings->allKeys()) {
-        auto uid = QUuid::fromString(key);
-        if (!uid.isNull()) {
-            m_keyStore->loadCredentials(key);
-        }
+    for (const auto &uid : accountUids()) {
+        m_keyStore->loadCredentials(uid.toString());
     }
-    m_settings->endGroup();
 }
 
 

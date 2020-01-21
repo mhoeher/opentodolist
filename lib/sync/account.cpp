@@ -154,8 +154,12 @@ void Account::setDisableCertificateChecks(bool disableCertificateChecks)
  */
 void Account::save(QSettings *settings)
 {
-    // TODO: Implement me
-    Q_UNUSED(settings);
+    q_check_ptr(settings);
+    settings->setValue("type", QVariant::fromValue(m_type));
+    settings->setValue("username", m_username);
+    settings->setValue("name", m_name);
+    settings->setValue("baseUrl", m_baseUrl);
+    settings->setValue("disableCertificateChecks", m_disableCertificateChecks);
 }
 
 
@@ -164,8 +168,15 @@ void Account::save(QSettings *settings)
  */
 void Account::load(QSettings *settings)
 {
-    // TODO: Implement me
-    Q_UNUSED(settings);
+    q_check_ptr(settings);
+    m_type = settings->value(
+                "type", QVariant::fromValue(m_type)).value<Type>();
+    m_username = settings->value("username", m_username).toString();
+    m_name = settings->value("name", m_name).toString();
+    m_baseUrl = settings->value("baseUrl", m_baseUrl).toString();
+    m_disableCertificateChecks = settings->value(
+                "disableCertificateChecks",
+                m_disableCertificateChecks).toBool();
 }
 
 

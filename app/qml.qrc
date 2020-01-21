@@ -101,5 +101,8 @@
         <file>Pages/AccountTypeSelectionPageForm.ui.qml</file>
         <file>Pages/NewWebDAVAccountPage.qml</file>
         <file>Pages/NewWebDAVAccountPageForm.ui.qml</file>
+        <file>Utils/Accounts.qml</file>
+        <file>Pages/EditWebDAVAccountPage.qml</file>
+        <file>Pages/EditWebDAVAccountPageForm.ui.qml</file>
     </qresource>
 </RCC>
