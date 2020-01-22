@@ -279,6 +279,41 @@ void Application::syncLibrariesWithCache(
 }
 
 
+/**
+ * @brief Internally add the @p library.
+ *
+ * This method adds the library to the internal list of libraries,
+ * ensures it is added to the cache and its content (if already
+ * present) loaded fromm disk.
+ */
+void Application::internallyAddLibrary(Library *library)
+{
+    auto q = new InsertOrUpdateItemsQuery();
+    q->add(library, InsertOrUpdateItemsQuery::Save);
+    m_cache->run(q);
+    syncLibrary(library);
+    library->setCache(m_cache);
+    auto libs = librariesFromConfig();
+    libs << QSharedPointer<Library>(Library::decache(library->encache()));
+    librariesToConfig(libs);
+}
+
+
+/**
+ * @brief Check if the given @p uid refers to a known library.
+ */
+bool Application::isLibraryUid(const QUuid &uid)
+{
+    auto libs = librariesFromConfig();
+    for (const auto &lib : libs) {
+        if (lib->uid() == uid) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 template<typename T>
 void Application::watchLibraryForChanges(T library)
 {
@@ -339,6 +374,7 @@ void Application::saveAccountSecrets(Account *account)
                                     account->password());
         m_secrets.insert(account->uid().toString(),
                          account->password());
+        emit accountsChanged();
     }
 }
 
@@ -388,6 +424,8 @@ Account *Application::loadAccount(const QUuid &uid)
             m_settings->endGroup();
         }
         m_settings->endGroup();
+        result->setPassword(
+                    m_secrets.value(result->uid().toString()).toString());
     }
     return result;
 }
@@ -516,6 +554,85 @@ Library *Application::addLibrary(const QVariantMap &parameters)
         auto libs = librariesFromConfig();
         libs << QSharedPointer<Library>(Library::decache(result->encache()));
         librariesToConfig(libs);
+    }
+    return result;
+}
+
+
+/**
+ * @brief Create a new local library.
+ *
+ * This will create a new library, which is stored locally in the
+ * default library location.
+ */
+Library *Application::addLocalLibrary(const QString &name)
+{
+    Library *result = nullptr;
+    auto uid = QUuid::createUuid();
+    QDir dir(Library::defaultLibrariesLocation());
+    if (!dir.exists() && !dir.mkpath(".")) {
+        qCWarning(log) << "Failed to create libraries location in"
+                       << Library::defaultLibrariesLocation();
+    } else if (dir.mkdir(uid.toString())) {
+        auto path = dir.absoluteFilePath(uid.toString());
+        result = new Library(path);
+        result->setName(name);
+        result->setUid(uid);
+        result->save();
+
+        watchLibraryForChanges(result);
+        internallyAddLibrary(result);
+    } else {
+        qCWarning(log) << "Failed to create directory for new "
+                          "library in "
+                       << Library::defaultLibrariesLocation();
+    }
+
+    return result;
+}
+
+
+/**
+ * @brief Add a local @p directory as a library.
+ *
+ * This method adds the local @p directory as a library to the application.
+ * If the directory points to an existing library location, the library
+ * is loaded as-is. Otherwise, a new library is initialized in this
+ * directory.
+ */
+Library *Application::addLibraryDirectory(const QString &directory)
+{
+    Library *result = nullptr;
+    QDir dir(directory);
+    if (dir.exists()) {
+        if (isLibraryDir(directory)) {
+            result = new Library(directory);
+            if (result->load()) {
+                if (!isLibraryUid(result->uid())) {
+                    internallyAddLibrary(result);
+                    watchLibraryForChanges(result);
+                } else {
+                  qCWarning(log) << "Library in"
+                                 << directory
+                                 << "is already register";
+                  delete result;
+                  result = nullptr;
+                }
+            } else {
+                qCWarning(log) << "Failed to load library from"
+                               << directory;
+                delete result;
+                result = nullptr;
+            }
+        } else {
+            result = new Library(directory);
+            result->setName(QFileInfo(directory).fileName());
+            internallyAddLibrary(result);
+            watchLibraryForChanges(result);
+        }
+    } else {
+        qCWarning(log) << "Cannot add" << directory
+                       << "as library: It does not exist";
     }
     return result;
 }

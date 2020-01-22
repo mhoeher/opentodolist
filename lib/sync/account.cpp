@@ -31,7 +31,6 @@ Account::Account(QObject *parent) : QObject(parent),
     m_baseUrl(),
     m_disableCertificateChecks(false)
 {
-
 }
 
 /**
@@ -155,7 +154,7 @@ void Account::setDisableCertificateChecks(bool disableCertificateChecks)
 void Account::save(QSettings *settings)
 {
     q_check_ptr(settings);
-    settings->setValue("type", QVariant::fromValue(m_type));
+    settings->setValue("type", QVariant::fromValue(m_type).toString());
     settings->setValue("username", m_username);
     settings->setValue("name", m_name);
     settings->setValue("baseUrl", m_baseUrl);
@@ -170,7 +169,7 @@ void Account::load(QSettings *settings)
 {
     q_check_ptr(settings);
     m_type = settings->value(
-                "type", QVariant::fromValue(m_type)).value<Type>();
+                "type", QVariant::fromValue(m_type).toString()).value<Type>();
     m_username = settings->value("username", m_username).toString();
     m_name = settings->value("name", m_name).toString();
     m_baseUrl = settings->value("baseUrl", m_baseUrl).toString();
@@ -200,6 +199,29 @@ void Account::setName(const QString &name)
     if (m_name != name) {
         m_name = name;
         emit nameChanged();
+    }
+}
+
+
+/**
+ * @brief Convert the account type to WebDAV server type.
+ *
+ * If the account represents a connection to a WebDAV like service,
+ * return the appropriate WebDAV synchronizer type.
+ *
+ * For other accounts, this returns the `Unknown` server type.
+ */
+WebDAVSynchronizer::WebDAVServerType Account::toWebDAVServerType() const
+{
+    switch (m_type) {
+    case NextCloud:
+        return WebDAVSynchronizer::NextCloud;
+    case OwnCloud:
+        return WebDAVSynchronizer::OwnCloud;
+    case WebDAV:
+        return WebDAVSynchronizer::Generic;
+    default:
+        return WebDAVSynchronizer::Unknown;
     }
 }
 

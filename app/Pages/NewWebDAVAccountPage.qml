@@ -7,7 +7,10 @@ NewWebDAVAccountPageForm {
     id: page
 
     signal closePage()
+    signal returnToPage(Page page)
     signal openPage(var component, var properties)
+
+    property Page anchorPage: null
 
     buttons.onRejected: closePage()
     scrollView.enabled: !dav.validating
@@ -63,7 +66,7 @@ NewWebDAVAccountPageForm {
             if (d.validated && valid) {
                 OTL.Application.saveAccount(account);
                 OTL.Application.saveAccountSecrets(account);
-                page.closePage();
+                page.returnToPage(page.anchorPage);
             }
         }
     }

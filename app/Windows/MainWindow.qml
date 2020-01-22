@@ -521,8 +521,10 @@ ApplicationWindow {
         property bool isCheckable: hasItem && currentItem.item.done !== undefined
         property bool isChecked: isCheckable ? currentItem.item.done : false
 
-        function goBack() {
-            if (typeof(currentItem.goBack) === "function") {
+        function goBack(page) {
+            if (page !== undefined && page !== null) {
+                stackView.pop(page);
+            } else if (typeof(currentItem.goBack) === "function") {
                 currentItem.goBack();
             } else {
                 stackView.pop();
@@ -560,6 +562,7 @@ ApplicationWindow {
         target: stackView.currentItem
         ignoreUnknownSignals: true
         onClosePage: stackView.goBack()
+        onReturnToPage: stackView.goBack(page)
         onOpenPage: stackView.push(component, properties)
         onClearAndOpenPage: {
             stackView.clear();

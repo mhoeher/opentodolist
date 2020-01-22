@@ -3,12 +3,18 @@ import QtQuick.Controls 2.5
 
 import OpenTodoList 1.0 as OTL
 
+import "../Windows" 1.0 as Windows
+
 EditWebDAVAccountPageForm {
     id: page
 
     property OTL.Account account
 
     signal closePage()
+
+    function deleteItem() {
+        deleteAccountDialog.deleteAccount(account);
+    }
 
     usernameEdit.text: account.username
     passwordEdit.text: account.password
@@ -20,6 +26,10 @@ EditWebDAVAccountPageForm {
     busyIndicator.visible: dav.validating
     buttons.onRejected: closePage()
 
+    Component.onCompleted: {
+        d.okButton = buttons.standardButton(DialogButtonBox.Ok);
+    }
+
     QtObject {
         id: d
 
@@ -27,8 +37,16 @@ EditWebDAVAccountPageForm {
         property AbstractButton okButton: null
     }
 
+    Binding {
+        target: d.okButton
+        property: "enabled"
+        value: accountNameEdit.displayText !== ""
+    }
+
     OTL.WebDAVSynchronizer {
         id: dav
+
+        serverType: page.account.toWebDAVServerType()
 
         onValidatingChanged: {
             if (!validating) {
@@ -54,20 +72,23 @@ EditWebDAVAccountPageForm {
     Connections {
         target: d.okButton
         onClicked: {
-            if (accountNameEdit.text !== "") {
-                var url = serverAddressEdit.text;
-                if (!/https?:\/\//i.exec(url)) {
-                    url = "https://" + url;
-                }
-                dav.serverType = type;
-                dav.url = url;
-                dav.username = usernameEdit.text;
-                dav.password = passwordEdit.text;
-                dav.disableCertificateCheck = disableCertificateChecksEdit.checked;
-                d.validated = false;
-                dav.validate();
+            var url = serverAddressEdit.text;
+            if (!/https?:\/\//i.exec(url)) {
+                url = "https://" + url;
             }
+            dav.url = url;
+            dav.username = usernameEdit.text;
+            dav.password = passwordEdit.text;
+            dav.disableCertificateCheck = disableCertificateChecksEdit.checked;
+            d.validated = false;
+            dav.validate();
         }
+    }
+
+    Windows.DeleteAccountDialog {
+        id: deleteAccountDialog
+
+        onAccepted: page.closePage()
     }
 
 }

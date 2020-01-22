@@ -52,7 +52,7 @@ CenteredDialog {
     }
 
     Label {
-        width: parent.width
+        width: dialog.availableWidth
         text: {
             if (d.item) {
                 var msg;

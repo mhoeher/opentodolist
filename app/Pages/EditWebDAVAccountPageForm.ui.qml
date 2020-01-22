@@ -34,7 +34,7 @@ Page {
         padding: 10
 
         GridLayout {
-            width: scrollView.contentItem.width
+            width: scrollView.availableWidth
             columns: 2
             columnSpacing: 10
             rowSpacing: 10

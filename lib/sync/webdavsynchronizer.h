@@ -20,7 +20,7 @@ class WebDAVSynchronizer : public Synchronizer
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
     Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
-    Q_PROPERTY(WebDAVServerType serverType READ serverType WRITE setServerType NOTIFY serverTypeChanged)
+    Q_PROPERTY(WebDAVSynchronizer::WebDAVServerType serverType READ serverType WRITE setServerType NOTIFY serverTypeChanged)
 
 #ifdef WEBDAV_SYNCHRONIZER_TEST
     friend class WebDAVSynchronizerTest;

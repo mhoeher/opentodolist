@@ -104,5 +104,6 @@
         <file>Utils/Accounts.qml</file>
         <file>Pages/EditWebDAVAccountPage.qml</file>
         <file>Pages/EditWebDAVAccountPageForm.ui.qml</file>
+        <file>Windows/DeleteAccountDialog.qml</file>
     </qresource>
 </RCC>

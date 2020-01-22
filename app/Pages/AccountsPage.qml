@@ -9,7 +9,9 @@ AccountsPageForm {
     signal openPage(var component, var properties)
 
     roundButton.onClicked: {
-        page.openPage(Qt.resolvedUrl("./AccountTypeSelectionPage.qml"), {});
+        page.openPage(Qt.resolvedUrl("./AccountTypeSelectionPage.qml"), {
+                      anchorPage: page
+                      });
     }
     accounts: accountList.accounts
     onAccountSelected: {
@@ -17,7 +19,6 @@ AccountsPageForm {
         case OTL.Account.NextCloud:
         case OTL.Account.OwnCloud:
         case OTL.Account.WebDAV:
-        case OTL.Account.Invalid:
             page.openPage(Qt.resolvedUrl("./EditWebDAVAccountPage.qml"), {
                           account: account
                           });

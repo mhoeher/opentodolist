@@ -60,6 +60,8 @@ public:
     Q_INVOKABLE QVariantList accountUids();
 
     Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
+    Q_INVOKABLE Library* addLocalLibrary(const QString &name);
+    Q_INVOKABLE Library* addLibraryDirectory(const QString &directory);
     Q_INVOKABLE void deleteLibrary(Library *library);
     Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
     Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
@@ -143,6 +145,9 @@ private:
 
     template<typename T>
     void watchLibraryForChanges(T library);
+
+    void internallyAddLibrary(Library* library);
+    bool isLibraryUid(const QUuid &uid);
 
 private slots:
 

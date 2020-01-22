@@ -7,6 +7,8 @@ AccountTypeSelectionPageForm {
     signal closePage()
     signal openPage(var component, var properties)
 
+    property Page anchorPage: null
+
     buttonBox.onRejected: closePage()
     buttonBox.onAccepted: {
         switch (selectedAccountType) {
@@ -16,7 +18,8 @@ AccountTypeSelectionPageForm {
             page.openPage(
                         Qt.resolvedUrl("./NewWebDAVAccountPage.qml"),
                         {
-                            "type": selectedAccountType
+                            "type": selectedAccountType,
+                            "anchorPage": page.anchorPage
                         });
             break;
         default:

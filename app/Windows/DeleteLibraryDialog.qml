@@ -47,7 +47,7 @@ CenteredDialog {
     }
 
     Label {
-        width: parent.width
+        width: dialog.availableWidth
         text: {
             if (d.library) {
                 if (d.library.isInDefaultLocation) {
