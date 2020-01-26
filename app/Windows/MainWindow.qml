@@ -432,7 +432,7 @@ ApplicationWindow {
         onSpecialViewChanged: changeLibraryTimer.restart()
         onNewLibrary: {
             stackView.clear();
-            stackView.push(newSyncedLibraryPage);
+            stackView.push(newLibraryPage);
         }
         onAboutPageRequested: {
             if (helpPage) {
@@ -607,65 +607,28 @@ ApplicationWindow {
     }
 
     Component {
-        id: newSyncedLibraryPage
-
-        SynchronizerBackendSelectionPage {
-            onCancelled: window.viewLibrary()
-            onBackendSelected: {
-                switch (synchronizer.synchronizer) {
-                case "WebDAVSynchronizer":
-                    stackView.replace(webDavConnectionSetupPage,
-                                      {"synchronizer": synchronizer});
-                    break;
-                case "":
-                    stackView.replace(newLocalLibraryPage);
-                    break;
-                }
-            }
-        }
-    }
-
-    Component {
-        id: webDavConnectionSetupPage
-
-        WebDAVConnectionSettingsPage {
-            onCancelled: window.viewLibrary()
-            onConnectionDataAvailable: {
-                stackView.replace(
-                            existingLibrarySelectionPage,
-                            {"synchronizer": synchronizer});
-            }
-        }
-    }
-
-    Component {
-        id: existingLibrarySelectionPage
-
-        SyncLibrarySelectionPage {
-            onCancelled: window.viewLibrary()
-            onLibraryAvailable: {
-                stackView.replace(
-                            newLocalLibraryPage,
-                            {"synchronizer": synchronizer});
-            }
-        }
-    }
-
-    Component {
-        id: newLocalLibraryPage
+        id: newLibraryPage
 
         NewLibraryPage {
-            onCancelled: window.viewLibrary()
-            onLibraryAvailable: {
-                var lib = OTL.Application.addLibrary(synchronizer);
-                if (lib !== null) {
-                    librariesSideBar.currentLibrary = lib;
+            onLibraryCreated: {
+                console.debug("Library ", library, " created");
+                if (library) {
+                    librariesSideBar.currentLibrary = library;
                     librariesSideBar.currentTag = "";
-                } else {
-                    console.error("Failed to create library!");
-                    window.viewLibrary();
                 }
             }
+
+//            onCancelled: window.viewLibrary()
+//            onLibraryAvailable: {
+//                var lib = OTL.Application.addLibrary(synchronizer);
+//                if (lib !== null) {
+//                    librariesSideBar.currentLibrary = lib;
+//                    librariesSideBar.currentTag = "";
+//                } else {
+//                    console.error("Failed to create library!");
+//                    window.viewLibrary();
+//                }
+//            }
         }
     }
 

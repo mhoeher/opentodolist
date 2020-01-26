@@ -148,6 +148,7 @@ private:
 
     void internallyAddLibrary(Library* library);
     bool isLibraryUid(const QUuid &uid);
+    QSharedPointer<Library> libraryById(const QUuid &uid);
 
 private slots:
 

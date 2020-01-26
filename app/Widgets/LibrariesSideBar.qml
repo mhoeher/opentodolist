@@ -159,12 +159,6 @@ Pane {
                 onClicked: sidebar.newLibrary()
             }
 
-            LibrarySideBarButton {
-                text: qsTr("Translate The App...")
-                symbol: Icons.faLanguage
-                onClicked: Qt.openUrlExternally(
-                               "https://poeditor.com/join/project/ztvOymGNxn")
-            }
 
             LibrarySideBarButton {
                 text: qsTr("Accounts")
@@ -181,6 +175,13 @@ Pane {
             }
 
             LibrarySideBarButton {
+                text: qsTr("Translate The App...")
+                symbol: Icons.faLanguage
+                onClicked: Qt.openUrlExternally(
+                               "https://poeditor.com/join/project/ztvOymGNxn")
+            }
+
+            LibrarySideBarButton {
                 text: qsTr("About...")
                 symbol: Icons.faInfo
                 highlighted: helpVisible
@@ -191,6 +192,7 @@ Pane {
                     sidebar.close();
                 }
             }
+
             LibrarySideBarButton {
                 visible: isDebugBuild
                 text: qsTr("Create Default Library")

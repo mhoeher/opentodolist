@@ -304,13 +304,25 @@ void Application::internallyAddLibrary(Library *library)
  */
 bool Application::isLibraryUid(const QUuid &uid)
 {
+    return libraryById(uid) != nullptr;
+}
+
+
+/**
+ * @brief Find a library by its @p uid.
+ *
+ * Returns the library with the given uid or a nullptr if no such library
+ * exists.
+ */
+QSharedPointer<Library> Application::libraryById(const QUuid &uid)
+{
     auto libs = librariesFromConfig();
     for (const auto &lib : libs) {
         if (lib->uid() == uid) {
-            return true;
+            return lib;
         }
     }
-    return false;
+    return nullptr;
 }
 
 
@@ -608,7 +620,8 @@ Library *Application::addLibraryDirectory(const QString &directory)
         if (isLibraryDir(directory)) {
             result = new Library(directory);
             if (result->load()) {
-                if (!isLibraryUid(result->uid())) {
+                auto existingLib = libraryById(result->uid());
+                if (existingLib == nullptr) {
                     internallyAddLibrary(result);
                     watchLibraryForChanges(result);
                 } else {
@@ -616,7 +629,11 @@ Library *Application::addLibraryDirectory(const QString &directory)
                                  << directory
                                  << "is already register";
                   delete result;
-                  result = nullptr;
+                  result = Library::decache(existingLib->encache());
+                  result->setCache(m_cache);
+                  // Return here - we do not want to add this a second time
+                  // to our list:
+                  return result;
                 }
             } else {
                 qCWarning(log) << "Failed to load library from"

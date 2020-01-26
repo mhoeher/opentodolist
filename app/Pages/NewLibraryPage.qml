@@ -8,124 +8,137 @@ import "../Components" as Components
 import "../Windows"
 import "../Fonts"
 
-Page {
+NewLibraryPageForm {
     id: page
 
-    signal libraryAvailable(var synchronizer)
-    signal cancelled()
+    signal openPage(var component, var properties)
+    signal libraryCreated(OTL.Library library)
 
-    property var synchronizer: ({})
+    addLocalLibraryDelegate.onClicked: page.openPage(newLocalLibraryPage, {})
 
-    title: qsTr("Create Library")
-    footer: DialogButtonBox {
+    Component {
+        id: newLocalLibraryPage
 
-        Button {
-            text: qsTr("Create")
-            enabled: libraryName.inputOkay && directoryEdit.inputOkay
-            onClicked: {
-                var synchronizer = page.synchronizer;
-                if (libraryName.visible) {
-                    synchronizer.name = libraryName.text;
-                }
-                if (!useDefaultLocation.checked) {
-                    synchronizer.localPath = directoryEdit.text;
-                }
-                page.libraryAvailable(synchronizer);
-            }
-            DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
-        }
-
-        Button {
-            text: qsTr("Cancel")
-            onClicked: page.cancelled()
-            DialogButtonBox.buttonRole: DialogButtonBox.RejectRole
+        NewLocalLibraryPage {
+            onLibraryCreated: page.libraryCreated(library)
         }
     }
 
-    ScrollView {
-        id: scrollView
-        anchors.fill: parent
+//    signal libraryAvailable(var synchronizer)
+//    signal cancelled()
 
-        Pane {
-            width: scrollView.width
+//    property var synchronizer: ({})
 
-            Column {
-                id: column
-                width: parent.width
+//    title: qsTr("Create Library")
+//    footer: DialogButtonBox {
 
-                Label {
-                    font.bold: true
-                    text: qsTr("Library Name:")
-                    width: parent.width
-                    visible: libraryName.visible
-                }
+//        Button {
+//            text: qsTr("Create")
+//            enabled: libraryName.inputOkay && directoryEdit.inputOkay
+//            onClicked: {
+//                var synchronizer = page.synchronizer;
+//                if (libraryName.visible) {
+//                    synchronizer.name = libraryName.text;
+//                }
+//                if (!useDefaultLocation.checked) {
+//                    synchronizer.localPath = directoryEdit.text;
+//                }
+//                page.libraryAvailable(synchronizer);
+//            }
+//            DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
+//        }
 
-                Components.TextField {
-                    id: libraryName
-                    property bool inputOkay: !visible || text !== ""
-                    placeholderText: qsTr("My New Library")
-                    width: parent.width
-                    visible: !synchronizer || synchronizer["name"] === undefined
-                }
+//        Button {
+//            text: qsTr("Cancel")
+//            onClicked: page.cancelled()
+//            DialogButtonBox.buttonRole: DialogButtonBox.RejectRole
+//        }
+//    }
 
-                CheckBox {
-                    id: useDefaultLocation
-                    text: qsTr("Create Library in Default Location")
-                    checked: true
-                    width: parent.width
-                }
+//    ScrollView {
+//        id: scrollView
+//        anchors.fill: parent
 
-                Label {
-                    text: useDefaultLocation.checked ?
-                              qsTr("The items you add to the library will be stored in the " +
-                                   "default location for libraries.") :
-                              qsTr("Please select a directory into which the library items " +
-                                   "shall be saved. You can also select an existing library " +
-                                   "directory. In this case, the library will be imported.")
-                    width: parent.width
-                    wrapMode: "WrapAtWordBoundaryOrAnywhere"
-                }
+//        Pane {
+//            width: scrollView.width
 
-                Item { height: 20; width: 1 }
+//            Column {
+//                id: column
+//                width: parent.width
 
-                RowLayout {
-                    width: parent.width
-                    visible: !useDefaultLocation.checked
+//                Label {
+//                    font.bold: true
+//                    text: qsTr("Library Name:")
+//                    width: parent.width
+//                    visible: libraryName.visible
+//                }
 
-                    Components.TextField {
-                        id: directoryEdit
+//                Components.TextField {
+//                    id: libraryName
+//                    property bool inputOkay: !visible || text !== ""
+//                    placeholderText: qsTr("My New Library")
+//                    width: parent.width
+//                    visible: !synchronizer || synchronizer["name"] === undefined
+//                }
 
-                        property bool inputOkay: selectedNameOk && selectedDirOk
-                        property bool selectedNameOk: {
-                            return useDefaultLocation.checked || text !== "";
-                        }
-                        property bool selectedDirOk: {
-                            return  (libraryName.visible ||
-                                    !OTL.Application.isLibraryDir(
-                                         OTL.Application.localFileToUrl(text))) &&
-                                    (useDefaultLocation.checked ||
-                                     OTL.Application.directoryExists(text));
-                        }
+//                CheckBox {
+//                    id: useDefaultLocation
+//                    text: qsTr("Create Library in Default Location")
+//                    checked: true
+//                    width: parent.width
+//                }
 
-                        placeholderText: qsTr("Please select a library location")
-                        Layout.fillWidth: true
-                    }
+//                Label {
+//                    text: useDefaultLocation.checked ?
+//                              qsTr("The items you add to the library will be stored in the " +
+//                                   "default location for libraries.") :
+//                              qsTr("Please select a directory into which the library items " +
+//                                   "shall be saved. You can also select an existing library " +
+//                                   "directory. In this case, the library will be imported.")
+//                    width: parent.width
+//                    wrapMode: "WrapAtWordBoundaryOrAnywhere"
+//                }
 
-                    ToolButton {
-                        text: Icons.faFolderOpen
-                        onClicked: {
-                            selectFolder.open();
-                        }
-                    }
-                }
-            }
-        }
-    }
+//                Item { height: 20; width: 1 }
 
-    FolderSelectionDialog {
-        id: selectFolder
-        onAccepted: directoryEdit.text = OTL.Application.urlToLocalFile(
-                        selectFolder.folder)
-        folder: OTL.Application.librariesLocation
-    }
+//                RowLayout {
+//                    width: parent.width
+//                    visible: !useDefaultLocation.checked
+
+//                    Components.TextField {
+//                        id: directoryEdit
+
+//                        property bool inputOkay: selectedNameOk && selectedDirOk
+//                        property bool selectedNameOk: {
+//                            return useDefaultLocation.checked || text !== "";
+//                        }
+//                        property bool selectedDirOk: {
+//                            return  (libraryName.visible ||
+//                                    !OTL.Application.isLibraryDir(
+//                                         OTL.Application.localFileToUrl(text))) &&
+//                                    (useDefaultLocation.checked ||
+//                                     OTL.Application.directoryExists(text));
+//                        }
+
+//                        placeholderText: qsTr("Please select a library location")
+//                        Layout.fillWidth: true
+//                    }
+
+//                    ToolButton {
+//                        text: Icons.faFolderOpen
+//                        onClicked: {
+//                            selectFolder.open();
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+//    FolderSelectionDialog {
+//        id: selectFolder
+//        onAccepted: directoryEdit.text = OTL.Application.urlToLocalFile(
+//                        selectFolder.folder)
+//        folder: OTL.Application.librariesLocation
+//    }
 }
