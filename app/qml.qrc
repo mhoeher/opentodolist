@@ -105,5 +105,7 @@
         <file>Pages/NewLibraryPageForm.ui.qml</file>
         <file>Pages/NewLocalLibraryPage.qml</file>
         <file>Pages/NewLocalLibraryPageForm.ui.qml</file>
+        <file>Pages/NewLibraryInFolderPage.qml</file>
+        <file>Pages/NewLibraryInFolderPageForm.ui.qml</file>
     </qresource>
 </RCC>

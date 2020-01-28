@@ -15,11 +15,20 @@ NewLibraryPageForm {
     signal libraryCreated(OTL.Library library)
 
     addLocalLibraryDelegate.onClicked: page.openPage(newLocalLibraryPage, {})
+    addFolderAsLibraryDelegate.onClicked: page.openPage(newLibraryInFolderPage, {})
 
     Component {
         id: newLocalLibraryPage
 
         NewLocalLibraryPage {
+            onLibraryCreated: page.libraryCreated(library)
+        }
+    }
+
+    Component {
+        id: newLibraryInFolderPage
+
+        NewLibraryInFolderPage {
             onLibraryCreated: page.libraryCreated(library)
         }
     }

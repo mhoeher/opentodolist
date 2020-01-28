@@ -9,6 +9,8 @@ Page {
 
     property alias buttons: buttonBox
     property alias nameEdit: nameEdit
+    property alias folderPathEdit: folderPathEdit
+    property alias openFolderButton: openFolderButton
 
     footer: DialogButtonBox {
         id: buttonBox
@@ -23,25 +25,34 @@ Page {
             id: grid
 
             width: page.width - 2 * 10
-            columns: 2
+            columns: 3
 
             Components.Heading {
-                text: qsTr("Create a Local Library")
+                text: qsTr("Open a Folder as a Library")
                 Layout.fillWidth: true
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
             }
 
             Label {
                 Layout.maximumWidth: grid.width
-                Layout.columnSpan: 2
-                text: qsTr("A local library is stored solely on your device - "
-                           + "this makes it perfect for the privacy concise!" + "<br/><br/>"
-                           + "Use it when you want to store information only "
-                           + "locally and back up all your data regularly "
-                           + "via other mechanisms. If you need to access your "
-                           + "information across several devices, create a "
-                           + "library which is synced instead.")
+                Layout.columnSpan: 3
+                text: qsTr("You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.")
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+
+            Label {
+                text: qsTr("Folder:")
+            }
+
+            TextField {
+                id: folderPathEdit
+                placeholderText: qsTr("Path to a folder to use as a library")
+                Layout.fillWidth: true
+            }
+
+            Button {
+                id: openFolderButton
+                text: qsTr("Select")
             }
 
             Label {
@@ -52,6 +63,7 @@ Page {
                 id: nameEdit
                 placeholderText: qsTr("My Local Library Name")
                 Layout.fillWidth: true
+                Layout.columnSpan: 2
             }
         }
     }

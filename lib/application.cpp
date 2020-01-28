@@ -956,6 +956,24 @@ bool Application::isLibraryDir(const QUrl &url) const
     return result;
 }
 
+/**
+ * @brief Get the name of a library from its directory.
+ * 
+ * This method takes the path to a library and - if the path points to a valid
+ * library folder - returns the name of it. When the directory is not a library folder, this
+ * returns an empty string.
+ */
+QString Application::libraryNameFromDir(const QUrl &url) const
+{
+    if (isLibraryDir(url)) {
+        auto path = url.toLocalFile();
+        Library lib(path);
+        if (lib.load()) {
+            return lib.name();
+        }
+    }
+    return QString();
+}
 
 /**
  * @brief Returns the home location of the current user.

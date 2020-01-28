@@ -84,6 +84,7 @@ public:
     Q_INVOKABLE bool directoryExists(const QString &directory) const;
     Q_INVOKABLE QString basename(const QString &filename) const;
     Q_INVOKABLE bool isLibraryDir(const QUrl &url) const;
+    Q_INVOKABLE QString libraryNameFromDir(const QUrl &url) const;
 
     QString librariesLocation() const;
 
