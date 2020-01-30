@@ -611,7 +611,6 @@ ApplicationWindow {
 
         NewLibraryPage {
             onLibraryCreated: {
-                console.debug("Library ", library, " created");
                 if (library) {
                     librariesSideBar.currentLibrary = library;
                     librariesSideBar.currentTag = "";

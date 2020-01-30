@@ -617,7 +617,7 @@ Library *Application::addLibraryDirectory(const QString &directory)
     Library *result = nullptr;
     QDir dir(directory);
     if (dir.exists()) {
-        if (isLibraryDir(directory)) {
+        if (isLibraryDir(QUrl::fromLocalFile(directory))) {
             result = new Library(directory);
             if (result->load()) {
                 auto existingLib = libraryById(result->uid());
@@ -642,10 +642,16 @@ Library *Application::addLibraryDirectory(const QString &directory)
                 result = nullptr;
             }
         } else {
-            result = new Library(directory);
-            result->setName(QFileInfo(directory).fileName());
-            internallyAddLibrary(result);
-            watchLibraryForChanges(result);
+            auto uid = QUuid::createUuid();
+            QDir dir_(directory);
+            if (dir_.mkdir(uid.toString())) {
+                result = new Library(dir_.absoluteFilePath(uid.toString()));
+                result->setUid(uid);
+                internallyAddLibrary(result);
+                watchLibraryForChanges(result);
+            } else {
+                qCWarning(log) << "Failed to create new library folder in" << directory;
+            }
         }
     } else {
         qCWarning(log) << "Cannot add" << directory
@@ -958,7 +964,7 @@ bool Application::isLibraryDir(const QUrl &url) const
 
 /**
  * @brief Get the name of a library from its directory.
- * 
+ *
  * This method takes the path to a library and - if the path points to a valid
  * library folder - returns the name of it. When the directory is not a library folder, this
  * returns an empty string.

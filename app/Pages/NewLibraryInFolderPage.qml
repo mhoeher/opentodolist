@@ -21,11 +21,13 @@ NewLibraryInFolderPageForm {
         id: d
 
         property AbstractButton okButton: null
-        property bool isLibraryDir: OTL.Application.isLibraryDir(folderPathEdit.displayText)
+        property bool isLibraryDir: OTL.Application.isLibraryDir(
+                                        OTL.Application.localFileToUrl(folderPathEdit.displayText))
 
         onIsLibraryDirChanged: {
             if (isLibraryDir) {
-                nameEdit.text = OTL.Application.libraryNameFromDir(folderPathEdit.displayText);
+                nameEdit.text = OTL.Application.libraryNameFromDir(
+                            OTL.Application.localFileToUrl(folderPathEdit.displayText));
             } else {
                 nameEdit.clear();
             }
@@ -35,8 +37,21 @@ NewLibraryInFolderPageForm {
     Binding {
         target: d.okButton
         property: "enabled"
-        value: OTL.Application.directoryExists(folderPathEdit.displayText) && !d.isLibraryDir |
+        value: OTL.Application.directoryExists(folderPathEdit.displayText) && !d.isLibraryDir ||
                nameEdit.displayText !== ""
+    }
+
+    Connections {
+        target: d.okButton
+        onClicked: {
+            var lib = OTL.Application.addLibraryDirectory(folderPathEdit.displayText);
+            if (lib) {
+                if (nameEdit.enabled) {
+                    lib.name = nameEdit.displayText;
+                }
+                page.libraryCreated(lib);
+            }
+        }
     }
 
     FolderSelectionDialog {

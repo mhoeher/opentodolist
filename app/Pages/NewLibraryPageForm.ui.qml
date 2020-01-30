@@ -41,7 +41,7 @@ Page {
 
             Components.Heading {
                 level: 2
-                text: qsTr("Synced Libraries")
+                text: qsTr("Add Libraries From Your Accounts")
                 padding: 10
             }
 

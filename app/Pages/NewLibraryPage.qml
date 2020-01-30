@@ -7,6 +7,7 @@ import OpenTodoList 1.0 as OTL
 import "../Components" as Components
 import "../Windows"
 import "../Fonts"
+import Utils 1.0 as Utils
 
 NewLibraryPageForm {
     id: page
@@ -16,6 +17,16 @@ NewLibraryPageForm {
 
     addLocalLibraryDelegate.onClicked: page.openPage(newLocalLibraryPage, {})
     addFolderAsLibraryDelegate.onClicked: page.openPage(newLibraryInFolderPage, {})
+    accountsList.model: accountsModel.accounts
+    addAccountButton.onClicked: page.openPage(Qt.resolvedUrl("./AccountTypeSelectionPage.qml"), {
+                                                  anchorPage: page
+                                                  });
+
+
+    /* On iOS, we currently have no notion of a "file system" in that sense. So
+      don't even show this to the user. */
+    addFolderAsLibraryDelegate.visible: Qt.platform.os !== "ios"
+
 
     Component {
         id: newLocalLibraryPage
@@ -31,6 +42,10 @@ NewLibraryPageForm {
         NewLibraryInFolderPage {
             onLibraryCreated: page.libraryCreated(library)
         }
+    }
+
+    Utils.Accounts {
+        id: accountsModel
     }
 
 //    signal libraryAvailable(var synchronizer)
