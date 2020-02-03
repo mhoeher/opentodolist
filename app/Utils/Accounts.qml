@@ -16,12 +16,16 @@ Item {
     QtObject {
         id: d
 
+        property var accountObjects: ([])
+
         function refresh() {
+            var accountList = [];
             listModel.clear();
             var uids = OTL.Application.accountUids();
             for (var i = 0; i < uids.length; ++i) {
                 var account = OTL.Application.loadAccount(uids[i]);
                 if (account !== null) {
+                    accountList.push(account);
                     listModel.append({
                                     "name": account.name,
                                     "type": account.type,
@@ -31,6 +35,7 @@ Item {
                                 });
                 }
             }
+            d.accountObjects = accountList;
         }
     }
 

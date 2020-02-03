@@ -211,7 +211,7 @@ void Account::setName(const QString &name)
  *
  * For other accounts, this returns the `Unknown` server type.
  */
-WebDAVSynchronizer::WebDAVServerType Account::toWebDAVServerType() const
+QVariant Account::toWebDAVServerType() const
 {
     switch (m_type) {
     case NextCloud:

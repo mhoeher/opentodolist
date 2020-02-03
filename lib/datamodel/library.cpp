@@ -487,25 +487,6 @@ void Library::fromVariant(const QVariant &data)
     fromMap(data.toMap());
 }
 
-
-/**
- * @brief Get the key which is used to store the secrets required for sync.
- *
- * This returns a key (i.e. a string) which is used to store the secrets
- * required to sync the library.
- *
- * @sa Application::secretsKeys
- */
-QString Library::synchronizerSecret() const
-{
-    QScopedPointer<Synchronizer> sync(createSynchronizer());
-    if (sync) {
-        return sync->secretsKey();
-    }
-    return QString();
-}
-
-
 /**
  * @brief Get the location where libraries are stored by default.
  *

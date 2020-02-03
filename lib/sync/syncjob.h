@@ -2,8 +2,10 @@
 #define SYNCJOB_H
 
 #include <QObject>
+#include <QSharedPointer>
 
 class Library;
+class Account;
 
 /**
  * @brief A synchronizing job.
@@ -12,8 +14,7 @@ class SyncJob : public QObject
 {
     Q_OBJECT
 public:
-    explicit SyncJob(const QString &libraryDirectory,
-                     const QString &secret,
+    explicit SyncJob(const QString &libraryDirectory, QSharedPointer<Account> account,
                      QObject *parent = nullptr);
 
     void execute();
@@ -32,12 +33,11 @@ public slots:
 private:
 
     QString  m_libraryDirectory;
-    QString  m_secret;
+    QSharedPointer<Account> m_account;
 
 private slots:
 
-    void onSyncError(QString error);
-
+    void onSyncError(const QString &error);
 };
 
 #endif // SYNCJOB_H

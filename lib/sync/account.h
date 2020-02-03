@@ -59,7 +59,7 @@ public:
     QString name() const;
     void setName(const QString &name);
 
-    Q_INVOKABLE WebDAVSynchronizer::WebDAVServerType toWebDAVServerType() const;
+    Q_INVOKABLE QVariant toWebDAVServerType() const;
 
 signals:
 

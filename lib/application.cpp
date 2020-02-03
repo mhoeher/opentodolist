@@ -2,8 +2,8 @@
 
 #include <QClipboard>
 #include <QCoreApplication>
-#include <QDebug>
 #include <QDateTime>
+#include <QDebug>
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
@@ -150,10 +150,15 @@ void Application::initialize(const QString &path)
                     QScopedPointer<Synchronizer> sync(
                                 lib->createSynchronizer());
                     if (sync) {
-                        if (sync->secretsKey() == key) {
-                            qCDebug(log) << "Start-up sync of"
-                                                 << lib << lib->name();
-                            runSyncForLibrary(lib);
+                        if (sync->accountUid().isNull() && sync->uid().toString() == key) {
+                            // Found an old-style synchronizer. Auto-create an account from it:
+                            importAccountFromSynchronizer(key, value);
+                        } else {
+                            QSharedPointer<Account> account(loadAccount(sync->accountUid()));
+                            if (account && account->uid().toString() == key) {
+                                qCDebug(log) << "Start-up sync of" << lib << lib->name();
+                                runSyncForLibrary(lib);
+                            }
                         }
                     }
                 }
@@ -325,6 +330,79 @@ QSharedPointer<Library> Application::libraryById(const QUuid &uid)
     return nullptr;
 }
 
+/**
+ * @brief Import Accounts by inspecting old-style synchronizers.
+ *
+ * This is a helper method which is used to automatically create Accounts from existing, old-style
+ * synchronizers.
+ */
+void Application::importAccountsFromSynchronizers()
+{
+    for (const auto &lib : librariesFromConfig()) {
+        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+        if (sync) {
+            if (sync->accountUid().isNull()) {
+                // The synchronizer is not connected to an Account. Assume we need to import it.
+                m_keyStore->loadCredentials(sync->uid().toString());
+            }
+        }
+    }
+}
+
+void Application::importAccountFromSynchronizer(const QString &syncUid, const QString &password)
+{
+    // Load all accounts:
+    QList<QSharedPointer<Account>> accounts;
+    for (const auto &accountId : accountUids()) {
+        accounts << QSharedPointer<Account>(loadAccount(accountId.toString()));
+    }
+
+    // Find the synchronizer:
+    for (const auto &lib : librariesFromConfig()) {
+        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+        if (sync && sync->uid().toString() == syncUid) {
+            // The next should always be the case - before the introduction to accounts, we only
+            // had WebDAV synchronizers:
+            auto davSync = qobject_cast<WebDAVSynchronizer *>(sync.data());
+            if (davSync) {
+                // Check if we (meanwhile) have an account that maps to the same URL+username:
+                for (const auto &account : accounts) {
+                    if (QUrl(account->baseUrl()) == davSync->url()
+                        && account->username() == davSync->username()) {
+                        // Connect the synchronizer to the existing account:
+                        davSync->setAccountUid(account->uid());
+                        davSync->save();
+                        return;
+                    }
+                }
+
+                // The synchronizer does not have an account ID set,
+                // assume, it is not yet ported and create one from it:
+                auto attrs =
+                        JsonUtils::loadMap(sync->directory() + "/" + Synchronizer::SaveFileName);
+                Account account;
+                account.setDisableCertificateChecks(attrs["disableCertificateCheck"].toBool());
+                auto serverType = attrs["serverType"].toString();
+                if (serverType == "NextCloud") {
+                    account.setType(Account::NextCloud);
+                } else if (serverType == "OwnCloud") {
+                    account.setType(Account::OwnCloud);
+                } else if (serverType == "Generic") {
+                    account.setType(Account::WebDAV);
+                }
+                account.setBaseUrl(attrs["url"].toString());
+                account.setUsername(attrs["username"].toString());
+                account.setName(account.username() + "@" + QUrl(account.baseUrl()).host());
+                account.setPassword(password);
+                saveAccount(&account);
+                saveAccountSecrets(&account);
+                sync->setAccountUid(account.uid());
+                sync->save();
+                return;
+            }
+        }
+    }
+}
 
 template<typename T>
 void Application::watchLibraryForChanges(T library)
@@ -486,7 +564,8 @@ QVariantList Application::accountUids()
  */
 Library *Application::addLibrary(const QVariantMap &parameters)
 {
-    Library* result = nullptr;
+    return nullptr;
+    /*Library* result = nullptr;
 
     auto synchronizerCls = parameters.value("synchronizer").toString();
     auto localPath = parameters.value(
@@ -567,7 +646,7 @@ Library *Application::addLibrary(const QVariantMap &parameters)
         libs << QSharedPointer<Library>(Library::decache(result->encache()));
         librariesToConfig(libs);
     }
-    return result;
+    return result;*/
 }
 
 
@@ -1001,50 +1080,11 @@ bool Application::folderExists(const QUrl &url) const
 
 
 /**
- * @brief Get the secrets for a synchronizer.
- *
- * Get the secrets for the synchronizer @p sync. If no secrets
- * for the synchronizer where stored, an empty string is returned.
- */
-QString Application::secretForSynchronizer(Synchronizer *sync)
-{
-    QString result;
-    if (sync != nullptr) {
-        auto key = sync->secretsKey();
-        if (!key.isEmpty() && m_secrets.contains(key)) {
-            result = m_secrets.value(key).toString();
-        }
-    }
-    return result;
-}
-
-
-/**
  * @brief Start synchronizing the @p library.
  */
 void Application::syncLibrary(Library *library)
 {
     runSyncForLibrary(library);
-}
-
-
-/**
- * @brief Save the secrets for a synchronizer.
- *
- * This saves the secrets of the given Synchronizer @p sync to the
- * key store.
- */
-void Application::saveSynchronizerSecrets(Synchronizer *sync)
-{
-    if (sync != nullptr) {
-        auto key = sync->secretsKey();
-        if (!key.isEmpty()) {
-            auto secret = sync->secret();
-            m_keyStore->saveCredentials(key, secret);
-            m_secrets[key] = secret;
-            emit secretsKeysChanged();
-        }
-    }
 }
 
 
@@ -1120,13 +1160,6 @@ void Application::loadLibraries()
         connect(loader, &LibraryLoader::scanFinished,
                 loader, &LibraryLoader::deleteLater);
         loader->scan();
-        QScopedPointer<Synchronizer> sync(library->createSynchronizer());
-        if (sync) {
-            auto key = sync->secretsKey();
-            if (!key.isEmpty()) {
-                m_keyStore->loadCredentials(key);
-            }
-        }
         watchLibraryForChanges(library);
     }
 
@@ -1134,6 +1167,9 @@ void Application::loadLibraries()
     for (const auto &uid : accountUids()) {
         m_keyStore->loadCredentials(uid.toString());
     }
+
+    // Trigger import of old-style synchronizers:
+    importAccountsFromSynchronizers();
 }
 
 
@@ -1217,22 +1253,15 @@ void Application::runSyncForLibrary(T library)
             if (!sync) {
                 return;
             }
-            auto key = sync->secretsKey();
-            QString secret;
-            if (!key.isEmpty()) {
-                if (m_secrets.contains(key)) {
-                    secret = m_secrets.value(key).toString();
-                } else {
-                    qCWarning(log) << "Missing sync secret for library"
-                                           << library << library->name();
-                    return;
-                }
+            QSharedPointer<Account> account(loadAccount(sync->accountUid()));
+            if (!account || !m_secrets.contains(account->uid().toString())) {
+                return;
             }
             setDirectoriesWithRunningSync(
                         directoriesWithRunningSync() << library->directory());
             m_syncErrors.remove(library->directory());
             emit syncErrorsChanged();
-            auto job = new SyncJob(library->directory(), secret);
+            auto job = new SyncJob(library->directory(), account);
             connect(qApp, &QCoreApplication::aboutToQuit, job, &SyncJob::stop);
             connect(job, &SyncJob::syncFinished,
                     this, &Application::onLibrarySyncFinished,

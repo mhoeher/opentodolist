@@ -48,10 +48,8 @@ public:
     void stopSync() override;
     void findExistingLibraries() override;
     QVariantMap toMap() const override;
-    void fromMap(const QVariantMap& map) override;
-    QString secretsKey() const override;
-    QString secret() const override;
-    void setSecret(const QString &secret) override;
+    void fromMap(const QVariantMap &map) override;
+    void setAccount(Account *account) override;
 
     QString remoteDirectory() const;
     void setRemoteDirectory(const QString& remoteDirectory);

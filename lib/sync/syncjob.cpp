@@ -14,11 +14,8 @@
  * are called, as it might get deleted while the sync is running
  * in the background.
  */
-SyncJob::SyncJob(const QString &libraryDirectory,
-                 const QString &secret,
-                 QObject *parent) : QObject(parent),
-    m_libraryDirectory(libraryDirectory),
-    m_secret(secret)
+SyncJob::SyncJob(const QString &libraryDirectory, QSharedPointer<Account> account, QObject *parent)
+    : QObject(parent), m_libraryDirectory(libraryDirectory), m_account(account)
 {
 
 }
@@ -32,20 +29,17 @@ void SyncJob::execute()
     if (!m_libraryDirectory.isEmpty()) {
         QScopedPointer<Synchronizer> sync(
                     Synchronizer::fromDirectory(m_libraryDirectory));
-        sync->loadLog();
         if (sync) {
-            auto key = sync->secretsKey();
-            if (!key.isEmpty()) {
-                sync->setSecret(m_secret);
-            }
+            sync->loadLog();
+            sync->setAccount(m_account.data());
             connect(this, &SyncJob::stopRequested,
                     sync.data(), &Synchronizer::stopSync,
                     Qt::QueuedConnection);
             connect(sync.data(), &Synchronizer::syncError,
                     this, &SyncJob::onSyncError);
             sync->synchronize();
+            sync->saveLog();
         }
-        sync->saveLog();
     }
     emit syncFinished(m_libraryDirectory);
 }
@@ -55,7 +49,7 @@ void SyncJob::stop()
     emit stopRequested();
 }
 
-void SyncJob::onSyncError(QString error)
+void SyncJob::onSyncError(const QString &error)
 {
     emit syncError(m_libraryDirectory, error);
 }

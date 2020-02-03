@@ -91,8 +91,6 @@ public:
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
-    Q_INVOKABLE QString secretForSynchronizer(Synchronizer* sync);
-
     Cache *cache() const;
 
     QStringList directoriesWithRunningSync() const;
@@ -105,7 +103,6 @@ public:
 public slots:
 
     void syncLibrary(Library *library);
-    void saveSynchronizerSecrets(Synchronizer *sync);
     void copyToClipboard(const QString &text);
 
 signals:
@@ -150,6 +147,9 @@ private:
     void internallyAddLibrary(Library* library);
     bool isLibraryUid(const QUuid &uid);
     QSharedPointer<Library> libraryById(const QUuid &uid);
+
+    void importAccountsFromSynchronizers();
+    void importAccountFromSynchronizer(const QString &syncUid, const QString &password);
 
 private slots:
 
