@@ -21,6 +21,7 @@ NewLibraryPageForm {
     addAccountButton.onClicked: page.openPage(Qt.resolvedUrl("./AccountTypeSelectionPage.qml"), {
                                                   anchorPage: page
                                                   });
+    onAccountSelected: page.openPage(newLibaryFromAccountPage, {account: account })
 
 
     /* On iOS, we currently have no notion of a "file system" in that sense. So
@@ -41,6 +42,13 @@ NewLibraryPageForm {
 
         NewLibraryInFolderPage {
             onLibraryCreated: page.libraryCreated(library)
+        }
+    }
+
+    Component {
+        id: newLibaryFromAccountPage
+
+        NewLibraryFromAccountPage {
         }
     }
 

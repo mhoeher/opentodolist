@@ -63,10 +63,11 @@ Page {
                     id: accountDelegate
 
                     text: name
+                    width: parent.width
 
                     Connections {
                         target: accountDelegate
-                        onClicked: page.accountSelected(objectData)
+                        onClicked: page.accountSelected(account)
                     }
                 }
             }
