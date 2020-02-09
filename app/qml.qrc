@@ -36,7 +36,6 @@
         <file>Pages/SyncErrorViewPage.qml</file>
         <file>Pages/TodoListPage.qml</file>
         <file>Pages/TodoPage.qml</file>
-        <file>Pages/WebDAVSynchronizerSettingsPage.qml</file>
         <file>Widgets/UpdateNotificationBar.qml</file>
         <file>Menues/LibraryPageMenu.qml</file>
         <file>Windows/CenteredDialog.qml</file>
