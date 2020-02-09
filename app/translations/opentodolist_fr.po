@@ -12,55 +12,101 @@ msgctxt "AboutPage|"
 msgid "About..."
 msgstr ""
 
-#: ../Pages/AboutPage.qml:31
+#: ../Pages/AboutPage.qml:28
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:38
+#: ../Pages/AboutPage.qml:35
 #, fuzzy
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Une application de gestion des tâches et des tâches."
 
-#: ../Pages/AboutPage.qml:45
+#: ../Pages/AboutPage.qml:42
 #, qt-format
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:60
+#: ../Pages/AboutPage.qml:59
 msgctxt "AboutPage|"
 msgid ""
-"OpenTodoList is released under the terms of the GNU General Public License "
-"version 3 or (at your choice) any later version. You can find a copy of the "
-"license below. Additionally, several libraries and resources are used. For "
-"detailed information about their license terms, please refer to the <a "
-"href='3rdparty'>3rd Party Software</a> page."
+"OpenTodoList is released under the terms of the <a href='app-license'>GNU "
+"General Public License</a> version 3 or (at your choice) any later version."
 msgstr ""
 
-#: ../Pages/AboutThirdPartyPage.qml:11
-#, fuzzy
-msgctxt "AboutThirdPartyPage|"
-msgid "Used Libraries and Resources"
-msgstr "Bibliothèques et ressources d'occasion"
-
-#: ../Pages/AboutThirdPartyPage.qml:47
-#, qt-format
-msgctxt "AboutThirdPartyPage|"
-msgid "Author: <a href='%2'>%1</a>"
+#: ../Pages/AboutPage.qml:78
+msgctxt "AboutPage|"
+msgid "Report an Issue"
 msgstr ""
 
-#: ../Pages/AboutThirdPartyPage.qml:54
-#, qt-format
-msgctxt "AboutThirdPartyPage|"
-msgid "License: <a href='%1'>%2</a>"
+#: ../Pages/AboutPage.qml:91
+msgctxt "AboutPage|"
+msgid "Third Party Libraries and Resources"
 msgstr ""
 
-#: ../Pages/AboutThirdPartyPage.qml:61
+#: ../Pages/AboutPage.qml:128
+msgctxt "AboutPage|"
+msgid "Author:"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:133
 #, qt-format
-msgctxt "AboutThirdPartyPage|"
-msgid "Download: <a href='%1'>%1</a>"
+msgctxt "AboutPage|"
+msgid "<a href='%2'>%1</a>"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:141
+msgctxt "AboutPage|"
+msgid "License:"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:146
+#, qt-format
+msgctxt "AboutPage|"
+msgid "<a href='%1'>%2</a>"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:154
+msgctxt "AboutPage|"
+msgid "Download:"
+msgstr ""
+
+#: ../Pages/AboutPage.qml:159
+#, qt-format
+msgctxt "AboutPage|"
+msgid "<a href='%1'>%1</a>"
+msgstr ""
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "Select Account Type"
+msgstr ""
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "Account Type"
+msgstr ""
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "NextCloud"
+msgstr ""
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:51
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "ownCloud"
+msgstr ""
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:56
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "WebDAV"
+msgstr ""
+
+#: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
+msgctxt "AccountsPageForm.ui|"
+msgid "Accounts"
 msgstr ""
 
 #: ../Widgets/Attachments.qml:28
@@ -155,6 +201,21 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Sombre"
 
+#: ../Windows/DeleteAccountDialog.qml:19
+msgctxt "DeleteAccountDialog|"
+msgid "Delete Account?"
+msgstr ""
+
+#: ../Windows/DeleteAccountDialog.qml:36
+#, qt-format
+msgctxt "DeleteAccountDialog|"
+msgid ""
+"Do you really want to remove the account <strong>%1</strong>? This will "
+"remove all libraries belonging to the account from your "
+"device?<br/><br/><i>Note: You can restore them from the server by adding "
+"back the account.</i>"
+msgstr ""
+
 #: ../Windows/DeleteItemDialog.qml:19
 #, fuzzy
 msgctxt "DeleteItemDialog|"
@@ -224,6 +285,62 @@ msgid ""
 "you can restore the library later on."
 msgstr ""
 
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "Edit Account"
+msgstr ""
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "Name:"
+msgstr ""
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:59
+#, fuzzy
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "Server Address:"
+msgstr "Adresse du serveur :"
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:65
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "https://myserver.example.com"
+msgstr ""
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:71
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "User:"
+msgstr ""
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:77
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "User Name"
+msgstr ""
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
+#, fuzzy
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "Password:"
+msgstr "Mot de passe:"
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
+#, fuzzy
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "Password"
+msgstr "Mot de passe"
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid "Disable Certificate Checks"
+msgstr ""
+
+#: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
+msgctxt "EditWebDAVAccountPageForm.ui|"
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+
 #: ../Windows/FolderSelectionDialog.qml:17
 #, fuzzy
 msgctxt "FolderSelectionDialog|"
@@ -259,30 +376,40 @@ msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:109
+#: ../Widgets/LibrariesSideBar.qml:120
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Calendrier"
 
-#: ../Widgets/LibrariesSideBar.qml:146
+#: ../Widgets/LibrariesSideBar.qml:157
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nouvelle bibliothèque"
 
-#: ../Widgets/LibrariesSideBar.qml:152
+#: ../Widgets/LibrariesSideBar.qml:164
+msgctxt "LibrariesSideBar|"
+msgid "Accounts"
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:171
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../Widgets/LibrariesSideBar.qml:159
+#: ../Widgets/LibrariesSideBar.qml:178
+msgctxt "LibrariesSideBar|"
+msgid "Translate The App..."
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:185
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:171
+#: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr ""
@@ -366,32 +493,32 @@ msgid ""
 "href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:413
+#: ../Pages/LibraryPage.qml:408
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:417
+#: ../Pages/LibraryPage.qml:412
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:424
+#: ../Pages/LibraryPage.qml:419
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:431
+#: ../Pages/LibraryPage.qml:426
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:438
+#: ../Pages/LibraryPage.qml:433
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:440
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr ""
@@ -414,23 +541,6 @@ msgctxt "LibraryPageMenu|"
 msgid "Sync Log"
 msgstr "Synchroniser le journal"
 
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
-#, fuzzy, qt-format
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "The secrets for synchronizing the library %1 are missing."
-msgstr "Les secrets pour synchroniser la bibliothèque %1 sont manquants."
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "Ignore"
-msgstr ""
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
-#, fuzzy
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "Enter Secrets"
-msgstr "Entrez Secrets"
-
 #: ../Pages/LogViewPage.qml:13
 #, fuzzy
 msgctxt "LogViewPage|"
@@ -448,160 +558,247 @@ msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:189
+#: ../Windows/MainWindow.qml:190
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../Windows/MainWindow.qml:200
+#: ../Windows/MainWindow.qml:201
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Color"
 msgstr "Couleur"
 
-#: ../Windows/MainWindow.qml:211
+#: ../Windows/MainWindow.qml:212
 msgctxt "MainWindow|"
 msgid "Add Tag"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:218
+#: ../Windows/MainWindow.qml:219
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Attach File"
 msgstr "Fichier joint"
 
-#: ../Windows/MainWindow.qml:227
+#: ../Windows/MainWindow.qml:228
 msgctxt "MainWindow|"
 msgid "Search"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:234
+#: ../Windows/MainWindow.qml:235
 msgctxt "MainWindow|"
 msgid "Sort"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:242
+#: ../Windows/MainWindow.qml:243
 msgctxt "MainWindow|"
 msgid "Set Due Date"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:250
+#: ../Windows/MainWindow.qml:251
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../Windows/MainWindow.qml:288
+#: ../Windows/MainWindow.qml:289
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../Windows/MainWindow.qml:289
+#: ../Windows/MainWindow.qml:290
 msgctxt "MainWindow|"
 msgid "Ctrl+,"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:296
+#: ../Windows/MainWindow.qml:297
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Library"
 msgstr "Nouveau &Bibliothèque"
 
-#: ../Windows/MainWindow.qml:307
+#: ../Windows/MainWindow.qml:308
 msgctxt "MainWindow|"
 msgid "New &Note"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:315
+#: ../Windows/MainWindow.qml:316
 msgctxt "MainWindow|"
 msgid "New &Todo List"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:323
+#: ../Windows/MainWindow.qml:324
 msgctxt "MainWindow|"
 msgid "New &Image"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:331
+#: ../Windows/MainWindow.qml:332
 msgctxt "MainWindow|"
 msgid "&Quit"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:339
+#: ../Windows/MainWindow.qml:340
 msgctxt "MainWindow|"
 msgid "&Find"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:366
+#: ../Windows/MainWindow.qml:367
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:374
+#: ../Windows/MainWindow.qml:375
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:482
+#: ../Windows/MainWindow.qml:497
 msgctxt "MainWindow|"
 msgid ""
 "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
 "used to store different kinds of items like notes, todo lists and images."
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:19
-msgctxt "NewLibraryPage|"
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Create Library in Account"
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid ""
+"A library created in an account is synchronized with it. This allows to "
+"easily back up a library to a server and later on restore it from there. "
+"Additionally, such libraries can be shared with other users (if the server "
+"allows this)."
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Existing Libraries"
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Select an existing library on the server to add it to the app."
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "No libraries were found on the server."
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Searching existing libraries..."
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Create a New Library"
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid ""
+"Create a new library, which will be synchronized with the server. Such a "
+"library can be added to the app on other devices as well to synchronize data."
+msgstr ""
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "My new library's name"
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Open a Folder as a Library"
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid ""
+"You can use any folder as a location for a library.<br/><br/>This is "
+"especially useful when you want to use another tool (like a sync client of a "
+"cloud provider) to sync your data with a server."
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Folder:"
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Path to a folder to use as a library"
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Select"
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Name:"
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "My Local Library Name"
+msgstr ""
+
+#: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
+msgctxt "NewLibraryPageForm.ui|"
 msgid "Create Library"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:23
+#: ../Pages/NewLibraryPageForm.ui.qml:32
 #, fuzzy
-msgctxt "NewLibraryPage|"
-msgid "Create"
-msgstr "Créer"
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Local Library"
+msgstr "Bibliothèque locale"
 
-#: ../Pages/NewLibraryPage.qml:39
-#, fuzzy
-msgctxt "NewLibraryPage|"
-msgid "Cancel"
-msgstr "Annuler"
-
-#: ../Pages/NewLibraryPage.qml:58
-#, fuzzy
-msgctxt "NewLibraryPage|"
-msgid "Library Name:"
-msgstr "Nom de la bibliothèque :"
-
-#: ../Pages/NewLibraryPage.qml:66
-msgctxt "NewLibraryPage|"
-msgid "My New Library"
+#: ../Pages/NewLibraryPageForm.ui.qml:38
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Use Folder as Library"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:73
-msgctxt "NewLibraryPage|"
-msgid "Create Library in Default Location"
+#: ../Pages/NewLibraryPageForm.ui.qml:44
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Add Libraries From Your Accounts"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:80
-msgctxt "NewLibraryPage|"
+#: ../Pages/NewLibraryPageForm.ui.qml:79
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Add Account"
+msgstr ""
+
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:29
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "Create a Local Library"
+msgstr ""
+
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:37
+msgctxt "NewLocalLibraryPageForm.ui|"
 msgid ""
-"The items you add to the library will be stored in the default location for "
-"libraries."
+"A local library is stored solely on your device - this makes it perfect for "
+"the privacy concise!<br/><br/>Use it when you want to store information only "
+"locally and back up all your data regularly via other mechanisms. If you "
+"need to access your information across several devices, create a library "
+"which is synced instead."
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:82
-msgctxt "NewLibraryPage|"
-msgid ""
-"Please select a directory into which the library items shall be saved. You "
-"can also select an existing library directory. In this case, the library "
-"will be imported."
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:48
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "Name:"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:110
-msgctxt "NewLibraryPage|"
-msgid "Please select a library location"
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:53
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "My Local Library Name"
 msgstr ""
 
 #: ../Widgets/NewTopLevelItemButton.qml:38
@@ -617,6 +814,67 @@ msgstr ""
 #: ../Widgets/NewTopLevelItemButton.qml:46
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPage.qml:24
+msgctxt "NewWebDAVAccountPage|"
+msgid "Account Name"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Connection Settings"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
+#, fuzzy
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Server Address:"
+msgstr "Adresse du serveur :"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "https://myserver.example.com"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "User:"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "User Name"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
+#, fuzzy
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Password:"
+msgstr "Mot de passe:"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
+#, fuzzy
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Password"
+msgstr "Mot de passe"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Disable Certificate Checks"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Name:"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
 
 #: ../Windows/OpenFileDialog.qml:18
@@ -735,68 +993,6 @@ msgctxt "SyncIndicatorBar|"
 msgid "Synchronizing library..."
 msgstr "Bibliothèque de synchronisation...."
 
-#: ../Pages/SyncLibrarySelectionPage.qml:17
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Create Library"
-msgstr ""
-
-#: ../Pages/SyncLibrarySelectionPage.qml:29
-msgctxt "SyncLibrarySelectionPage|"
-msgid "OK"
-msgstr ""
-
-#: ../Pages/SyncLibrarySelectionPage.qml:46
-#, fuzzy
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Cancel"
-msgstr "Annuler"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:79
-#, fuzzy
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Create new library on server"
-msgstr "Créer une nouvelle bibliothèque sur le serveur"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:97
-#, fuzzy
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Searching for existing libraries..."
-msgstr "Recherche de bibliothèques existantes..."
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:16
-#, fuzzy
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "Cancel"
-msgstr "Annuler"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:21
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "OK"
-msgstr ""
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:45
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "NextCloud"
-msgstr ""
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:52
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "ownCloud"
-msgstr ""
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:59
-#: ../Pages/SynchronizerBackendSelectionPage.qml:60
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "WebDAV"
-msgstr ""
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:66
-#: ../Pages/SynchronizerBackendSelectionPage.qml:67
-#, fuzzy
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "Local Library"
-msgstr "Bibliothèque locale"
-
 #: ../Widgets/TagsEditor.qml:34
 msgctxt "TagsEditor|"
 msgid "Add Tag"
@@ -878,12 +1074,12 @@ msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr ""
 
-#: ../Widgets/TodosWidget.qml:271
+#: ../Widgets/TodosWidget.qml:273
 msgctxt "TodosWidget|"
 msgid "Swipe to mark undone"
 msgstr ""
 
-#: ../Widgets/TodosWidget.qml:272
+#: ../Widgets/TodosWidget.qml:274
 msgctxt "TodosWidget|"
 msgid "Swipe to mark done"
 msgstr ""
@@ -924,69 +1120,6 @@ msgstr ""
 msgctxt "UpdateNotificationBar|"
 msgid "Download"
 msgstr "Télécharger"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:22
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "OK"
-msgstr ""
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:22
-#, fuzzy
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Validate"
-msgstr "Valider"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:40
-#, fuzzy
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Cancel"
-msgstr "Annuler"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:86
-#, fuzzy
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Server Address:"
-msgstr "Adresse du serveur :"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:92
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "https://..."
-msgstr ""
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:98
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "User name:"
-msgstr ""
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:110
-#, fuzzy
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Password:"
-msgstr "Mot de passe:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:124
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Ignore SSL Errors"
-msgstr ""
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:130
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid ""
-"Failed to connect to the server. Please check your user name, password and "
-"the server address and retry."
-msgstr ""
-
-#: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
-#, fuzzy
-msgctxt "WebDAVSynchronizerSettingsPage|"
-msgid "User name"
-msgstr "Nom d'utilisateur"
-
-#: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
-#, fuzzy
-msgctxt "WebDAVSynchronizerSettingsPage|"
-msgid "Password"
-msgstr "Mot de passe"
 
 #: ../main.cpp:98
 #, fuzzy
