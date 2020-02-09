@@ -538,118 +538,6 @@ QVariantList Application::accountUids()
     return result;
 }
 
-
-/**
- * @brief Create a new library.
- *
- * This creates a new library using the given @p parameters. The following
- * keys are assumed to be provided (some of them optional):
- *
- * - name: The name of the library.
- * - localPath: The path where to create the library in.
- * - synchronizer: The type (class name) of synchronizer to use.
- * - serverType: For some synchronizer classes, the concrete sub-type of the
- *   server.
- * - uid: The UID to use for the library.
- * - path: The remote path of the library.
- *
- * If no synchronizer is specified and localPath points to a location
- * with an existing library, that library will be imported. In this
- * case, any other attributes are ignored.
- *
- * The function returns a Library object which represents the library just
- * created. The ownership of the returned object is transferred to the caller.
- * In case of invalid input parameters or issues creating the library, a
- * null pointer is returned.
- */
-Library *Application::addLibrary(const QVariantMap &parameters)
-{
-    return nullptr;
-    /*Library* result = nullptr;
-
-    auto synchronizerCls = parameters.value("synchronizer").toString();
-    auto localPath = parameters.value(
-                "localPath", Library::defaultLibrariesLocation()).toString();
-    auto name = parameters.value("name").toString();
-    QUuid uid;
-    if (parameters.contains("uid") &&
-            parameters.value("uid").toString() != "") {
-        uid = parameters.value("uid").toUuid();
-
-        // Sanity check: Test if we already have a library with that UID.
-        // If this is the case, assume that the user tried to add the
-        // same library to the app for a second time. We must prevent
-        // this, as it causes infinite sync loops if we would just select
-        // another directory to store this one in:
-        for (auto lib : librariesFromConfig()) {
-            if (lib->uid() == uid) {
-                auto ret = new Library(lib->directory());
-                ret->load();
-                return ret;
-            }
-        }
-    } else {
-        uid = QUuid::createUuid();
-    }
-    auto path = parameters.value("path").toString();
-
-    if (!isLibraryDir(QUrl::fromLocalFile(localPath)) ||
-            localPath == Library::defaultLibrariesLocation()) {
-        auto modLocalPath = localPath + "/" + uid.toString();
-        if (QDir(modLocalPath).exists()) {
-            // Do not re-use existing directory:
-            localPath += "/" + QUuid::createUuid().toString();
-        } else {
-            localPath = modLocalPath;
-        }
-    }
-
-    QDir(localPath).mkpath(".");
-
-    if (QDir(localPath).exists()) {
-        result = new Library(localPath);
-        result->setUid(uid);
-        result->setName(name);
-        if (!synchronizerCls.isEmpty()) {
-            if (synchronizerCls == "WebDAVSynchronizer") {
-                auto sync = new WebDAVSynchronizer();
-                auto type = parameters.value("serverType")
-                        .value<WebDAVSynchronizer::WebDAVServerType>();
-                sync->setServerType(type);
-                sync->setUrl(parameters.value("url").toUrl());
-                sync->setUsername(parameters.value("username").toString());
-                sync->setPassword(parameters.value("password").toString());
-                sync->setDisableCertificateCheck(
-                            parameters.value(
-                                "disableCertificateCheck").toBool());
-                sync->setDirectory(result->directory());
-                if (path.isEmpty()) {
-                    path = "OpenTodoList/" + uid.toString() + ".otl";
-                    sync->setCreateDirs(true);
-                }
-                sync->setRemoteDirectory(path);
-                sync->save();
-                m_keyStore->saveCredentials(sync->secretsKey(), sync->secret());
-                m_secrets.insert(sync->secretsKey(), sync->secret());
-                emit secretsKeysChanged();
-                delete sync;
-            }
-        } else {
-            watchLibraryForChanges(result);
-        }
-        auto q = new InsertOrUpdateItemsQuery();
-        q->add(result, InsertOrUpdateItemsQuery::Save);
-        m_cache->run(q);
-        syncLibrary(result);
-        result->setCache(m_cache);
-        auto libs = librariesFromConfig();
-        libs << QSharedPointer<Library>(Library::decache(result->encache()));
-        librariesToConfig(libs);
-    }
-    return result;*/
-}
-
-
 /**
  * @brief Create a new local library.
  *
@@ -739,6 +627,105 @@ Library *Application::addLibraryDirectory(const QString &directory)
     return result;
 }
 
+/**
+ * @brief Add a new library to the given account.
+ *
+ * This methods adds a new library to the @p account. The library is given the specified @p name.
+ * Returns the newly created library.
+ *
+ * @note The caller takes ownership of the returned object.
+ */
+Library *Application::addNewLibraryToAccount(Account *account, const QString &name)
+{
+    Library *result = nullptr;
+    if (account && !name.isEmpty()) {
+        auto uid = QUuid::createUuid();
+        QDir dir(Library::defaultLibrariesLocation());
+        if (!dir.exists() && !dir.mkpath(".")) {
+            qCWarning(log) << "Failed to create libraries location in"
+                           << Library::defaultLibrariesLocation();
+        } else if (dir.mkdir(uid.toString())) {
+            auto path = dir.absoluteFilePath(uid.toString());
+            result = new Library(path);
+            result->setName(name);
+            result->setUid(uid);
+            result->save();
+
+            switch (account->type()) {
+            case Account::NextCloud:
+            case Account::OwnCloud:
+            case Account::WebDAV: {
+                WebDAVSynchronizer sync;
+                sync.setDirectory(result->directory());
+                sync.setAccountUid(account->uid());
+                sync.setServerType(account->toWebDAVServerType()
+                                           .value<WebDAVSynchronizer::WebDAVServerType>());
+                sync.setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
+                sync.setCreateDirs(true);
+                sync.save();
+                break;
+            }
+            case Account::Invalid:
+                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
+                               << "function";
+            }
+
+            watchLibraryForChanges(result);
+            internallyAddLibrary(result);
+        } else {
+            qCWarning(log) << "Failed to create directory for new "
+                              "library in "
+                           << Library::defaultLibrariesLocation();
+        }
+    }
+    return result;
+}
+
+Library *Application::addExistingLibraryToAccount(Account *account,
+                                                  const SynchronizerExistingLibrary &library)
+{
+    Library *result = nullptr;
+    if (account && !library.uid().isNull() && !isLibraryUid(library.uid())) {
+        auto uid = library.uid();
+        QDir dir(Library::defaultLibrariesLocation());
+        if (!dir.exists() && !dir.mkpath(".")) {
+            qCWarning(log) << "Failed to create libraries location in"
+                           << Library::defaultLibrariesLocation();
+        } else if (dir.mkdir(uid.toString())) {
+            auto path = dir.absoluteFilePath(uid.toString());
+            result = new Library(path);
+            result->setName(library.name());
+            result->setUid(uid);
+            result->save();
+
+            switch (account->type()) {
+            case Account::NextCloud:
+            case Account::OwnCloud:
+            case Account::WebDAV: {
+                WebDAVSynchronizer sync;
+                sync.setDirectory(result->directory());
+                sync.setAccountUid(account->uid());
+                sync.setServerType(account->toWebDAVServerType()
+                                           .value<WebDAVSynchronizer::WebDAVServerType>());
+                sync.setRemoteDirectory(library.path());
+                sync.save();
+                break;
+            }
+            case Account::Invalid:
+                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
+                               << "function";
+            }
+
+            watchLibraryForChanges(result);
+            internallyAddLibrary(result);
+        } else {
+            qCWarning(log) << "Failed to create directory for new "
+                              "library in "
+                           << Library::defaultLibrariesLocation();
+        }
+    }
+    return result;
+}
 
 /**
  * @brief Delete the library.
@@ -1078,6 +1065,13 @@ bool Application::folderExists(const QUrl &url) const
     return url.isValid() && QDir(url.toLocalFile()).exists();
 }
 
+/**
+ * @brief Check if the @p uid refers to an existing library in the app.
+ */
+bool Application::libraryExists(const QUuid &uid)
+{
+    return isLibraryUid(uid);
+}
 
 /**
  * @brief Start synchronizing the @p library.

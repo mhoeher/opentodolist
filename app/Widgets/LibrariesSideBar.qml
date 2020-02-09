@@ -197,10 +197,7 @@ Pane {
                 visible: isDebugBuild
                 text: qsTr("Create Default Library")
                 onClicked: {
-                    var args = {
-                        "name": "My Library"
-                    };
-                    var lib = OTL.Application.addLibrary(args);
+                    var lib = OTL.Application.addLocalLibrary("My Library");
 
                     var note = OTL.Application.addNote(lib, {});
                     note.title = "A Note";

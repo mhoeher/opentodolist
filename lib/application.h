@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include "datamodel/library.h"
+#include "sync/synchronizer.h"
 
 #include <QLoggingCategory>
 #include <QObject>
@@ -59,9 +60,11 @@ public:
     Q_INVOKABLE Account* loadAccount(const QUuid &uid);
     Q_INVOKABLE QVariantList accountUids();
 
-    Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
     Q_INVOKABLE Library* addLocalLibrary(const QString &name);
     Q_INVOKABLE Library* addLibraryDirectory(const QString &directory);
+    Q_INVOKABLE Library *addNewLibraryToAccount(Account *account, const QString &name);
+    Q_INVOKABLE Library *addExistingLibraryToAccount(Account *account,
+                                                     const SynchronizerExistingLibrary &library);
     Q_INVOKABLE void deleteLibrary(Library *library);
     Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
     Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
@@ -90,6 +93,8 @@ public:
 
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
+
+    Q_INVOKABLE bool libraryExists(const QUuid &uid);
 
     Cache *cache() const;
 

@@ -373,11 +373,6 @@ Page {
         library: page.library
     }
 
-    LibrarySecretsMissingNotificationBar {
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
-
     SyncErrorNotificationBar {
         readonly property var syncErrors: {
             if (page.library) {

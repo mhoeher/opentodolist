@@ -48,7 +48,6 @@
         <file>Windows/RenameLibraryDialog.qml</file>
         <file>Windows/+android/OpenImageDialog.qml</file>
         <file>Components/TextField.qml</file>
-        <file>Widgets/LibrarySecretsMissingNotificationBar.qml</file>
         <file>Widgets/NewTopLevelItemButton.qml</file>
         <file>Widgets/SyncErrorNotificationBar.qml</file>
         <file>Widgets/SyncIndicatorBar.qml</file>

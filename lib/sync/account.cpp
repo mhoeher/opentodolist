@@ -220,11 +220,49 @@ QVariant Account::toWebDAVServerType() const
         return WebDAVSynchronizer::OwnCloud;
     case WebDAV:
         return WebDAVSynchronizer::Generic;
-    default:
+    case Invalid:
         return WebDAVSynchronizer::Unknown;
     }
 }
 
+/**
+ * @brief Create a synchronizer from the account.
+ *
+ * This creates a synchronizer from the account which can be used for querying the remote server.
+ *
+ * @note The caller takes ownership of the create object.
+ */
+Synchronizer *Account::createSynchronizer() const
+{
+    switch (m_type) {
+    case NextCloud: {
+        auto sync = new WebDAVSynchronizer;
+        sync->setUsername(m_username);
+        sync->setPassword(m_password);
+        sync->setUrl(m_baseUrl);
+        sync->setServerType(WebDAVSynchronizer::NextCloud);
+        return sync;
+    }
+    case OwnCloud: {
+        auto sync = new WebDAVSynchronizer;
+        sync->setUsername(m_username);
+        sync->setPassword(m_password);
+        sync->setUrl(m_baseUrl);
+        sync->setServerType(WebDAVSynchronizer::OwnCloud);
+        return sync;
+    }
+    case WebDAV: {
+        auto sync = new WebDAVSynchronizer;
+        sync->setUsername(m_username);
+        sync->setPassword(m_password);
+        sync->setUrl(m_baseUrl);
+        sync->setServerType(WebDAVSynchronizer::Generic);
+        return sync;
+    }
+    case Invalid:
+        return nullptr;
+    }
+}
 
 /**
  * @brief The globally unique ID of the account.

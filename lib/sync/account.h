@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QUuid>
 
+#include "synchronizer.h"
 #include "webdavsynchronizer.h"
 
 class QSettings;
@@ -60,6 +61,7 @@ public:
     void setName(const QString &name);
 
     Q_INVOKABLE QVariant toWebDAVServerType() const;
+    Q_INVOKABLE Synchronizer *createSynchronizer() const;
 
 signals:
 
