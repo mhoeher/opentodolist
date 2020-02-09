@@ -60,7 +60,6 @@ class Library : public QObject
     Q_PROPERTY(QString directory READ directory CONSTANT)
     Q_PROPERTY(bool hasSynchronizer READ hasSynchronizer CONSTANT)
     Q_PROPERTY(bool isInDefaultLocation READ isInDefaultLocation CONSTANT)
-    Q_PROPERTY(QString synchronizerSecret READ synchronizerSecret CONSTANT)
 
     friend class Application;
 
@@ -120,8 +119,6 @@ public:
     QVariant toVariant();
     void fromVariant(const QVariant &data);
     void applyCalculatedData(const QVariantMap &properties);
-
-    QString synchronizerSecret() const;
 
     static QString defaultLibrariesLocation();
 

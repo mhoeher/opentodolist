@@ -8,6 +8,7 @@
 #include <QUuid>
 #include <QVariantMap>
 
+class Account;
 
 /**
  * @brief Encapsulate information about an existing library.
@@ -60,8 +61,6 @@ class Synchronizer : public QObject
     Q_PROPERTY(bool isNull READ isNull NOTIFY directoryChanged)
     Q_PROPERTY(QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
     Q_PROPERTY(QString type READ type CONSTANT)
-    Q_PROPERTY(QString secret READ secret WRITE setSecret NOTIFY secretChanged)
-    Q_PROPERTY(QString secretsKey READ secretsKey CONSTANT)
 public:
 
     enum LogType {
@@ -141,10 +140,6 @@ public:
 
     virtual QVariantMap toMap() const;
     virtual void fromMap(const QVariantMap &map);
-    virtual QString secretsKey() const;
-    virtual QString secret() const;
-    virtual void setSecret(const QString& secret);
-
 
     QVariantList existingLibraries() const;
 
@@ -165,6 +160,11 @@ public:
     QList<LogEntry> log() const;
     bool loadLog();
     bool saveLog();
+
+    QUuid accountUid() const;
+    void setAccountUid(const QUuid &accountUid);
+
+    virtual void setAccount(Account *account);
 
 signals:
 
@@ -191,6 +191,7 @@ protected:
 private:
 
     QUuid   m_uuid;
+    QUuid m_accountUid;
     bool    m_validating;
     bool    m_valid;
     bool    m_synchronizing;

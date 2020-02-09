@@ -274,8 +274,6 @@ Page {
         library: page.library
     }
 
-    LibrarySecretsMissingNotificationBar { library: page.library }
-
     SyncErrorNotificationBar {
         readonly property var syncErrors: {
             if (page.library) {

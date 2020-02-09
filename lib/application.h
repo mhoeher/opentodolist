@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include "datamodel/library.h"
+#include "sync/synchronizer.h"
 
 #include <QLoggingCategory>
 #include <QObject>
@@ -15,6 +16,7 @@
 
 class QTemporaryDir;
 
+class Account;
 class Cache;
 class DirectoryWatcher;
 class Image;
@@ -52,7 +54,17 @@ public:
 
     virtual ~Application();
 
-    Q_INVOKABLE Library* addLibrary(const QVariantMap& parameters);
+    Q_INVOKABLE void saveAccount(Account *account);
+    Q_INVOKABLE void saveAccountSecrets(Account *account);
+    Q_INVOKABLE void removeAccount(Account *account);
+    Q_INVOKABLE Account* loadAccount(const QUuid &uid);
+    Q_INVOKABLE QVariantList accountUids();
+
+    Q_INVOKABLE Library* addLocalLibrary(const QString &name);
+    Q_INVOKABLE Library* addLibraryDirectory(const QString &directory);
+    Q_INVOKABLE Library *addNewLibraryToAccount(Account *account, const QString &name);
+    Q_INVOKABLE Library *addExistingLibraryToAccount(Account *account,
+                                                     const SynchronizerExistingLibrary &library);
     Q_INVOKABLE void deleteLibrary(Library *library);
     Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
     Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
@@ -75,13 +87,14 @@ public:
     Q_INVOKABLE bool directoryExists(const QString &directory) const;
     Q_INVOKABLE QString basename(const QString &filename) const;
     Q_INVOKABLE bool isLibraryDir(const QUrl &url) const;
+    Q_INVOKABLE QString libraryNameFromDir(const QUrl &url) const;
 
     QString librariesLocation() const;
 
     Q_INVOKABLE QUrl homeLocation() const;
     Q_INVOKABLE bool folderExists(const QUrl &url) const;
 
-    Q_INVOKABLE QString secretForSynchronizer(Synchronizer* sync);
+    Q_INVOKABLE bool libraryExists(const QUuid &uid);
 
     Cache *cache() const;
 
@@ -95,7 +108,6 @@ public:
 public slots:
 
     void syncLibrary(Library *library);
-    void saveSynchronizerSecrets(Synchronizer *sync);
     void copyToClipboard(const QString &text);
 
 signals:
@@ -103,6 +115,7 @@ signals:
     void directoriesWithRunningSyncChanged();
     void syncErrorsChanged();
     void secretsKeysChanged();
+    void accountsChanged();
 
 private:
 
@@ -135,6 +148,13 @@ private:
 
     template<typename T>
     void watchLibraryForChanges(T library);
+
+    void internallyAddLibrary(Library* library);
+    bool isLibraryUid(const QUuid &uid);
+    QSharedPointer<Library> libraryById(const QUuid &uid);
+
+    void importAccountsFromSynchronizers();
+    void importAccountFromSynchronizer(const QString &syncUid, const QString &password);
 
 private slots:
 

@@ -1,0 +1,10 @@
+ApplicationWindow 1.0 ApplicationWindow.qml
+MarkdownConverter 1.0 MarkdownConverter.qml
+TextArea 1.0 TextArea.qml
+ToolButton 1.0 ToolButton.qml
+Heading 1.0 Heading.qml
+MarkdownLabel 1.0 MarkdownLabel.qml
+TextField 1.0 TextField.qml
+Label 1.0 Label.qml
+RoundButton 1.0 RoundButton.qml
+ToolBarAction 1.0 ToolBarAction.qml

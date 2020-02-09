@@ -28,10 +28,12 @@ void SynchronizerTest::fromDirectory()
     for (auto serverType : {WebDAVSynchronizer::NextCloud,
             WebDAVSynchronizer::OwnCloud, WebDAVSynchronizer::Generic}) {
         QTemporaryDir dir;
+        QUuid syncUid;
         {
             WebDAVSynchronizer sync;
             sync.setServerType(serverType);
             sync.setDirectory(dir.path());
+            syncUid = sync.uid();
             QVERIFY(sync.save());
         }
         {
@@ -39,7 +41,7 @@ void SynchronizerTest::fromDirectory()
             Q_CHECK_PTR(sync);
             auto s = dynamic_cast<WebDAVSynchronizer*>(sync);
             QVERIFY(s != nullptr);
-            QCOMPARE(s->serverType(), serverType);
+            QCOMPARE(s->uid(), syncUid);
             delete sync;
         }
     }

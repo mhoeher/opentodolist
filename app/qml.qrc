@@ -34,12 +34,8 @@
         <file>Pages/NewLibraryPage.qml</file>
         <file>Pages/NotePage.qml</file>
         <file>Pages/SyncErrorViewPage.qml</file>
-        <file>Pages/SynchronizerBackendSelectionPage.qml</file>
-        <file>Pages/SyncLibrarySelectionPage.qml</file>
         <file>Pages/TodoListPage.qml</file>
         <file>Pages/TodoPage.qml</file>
-        <file>Pages/WebDAVConnectionSettingsPage.qml</file>
-        <file>Pages/WebDAVSynchronizerSettingsPage.qml</file>
         <file>Widgets/UpdateNotificationBar.qml</file>
         <file>Menues/LibraryPageMenu.qml</file>
         <file>Windows/CenteredDialog.qml</file>
@@ -51,7 +47,6 @@
         <file>Windows/RenameLibraryDialog.qml</file>
         <file>Windows/+android/OpenImageDialog.qml</file>
         <file>Components/TextField.qml</file>
-        <file>Widgets/LibrarySecretsMissingNotificationBar.qml</file>
         <file>Widgets/NewTopLevelItemButton.qml</file>
         <file>Widgets/SyncErrorNotificationBar.qml</file>
         <file>Widgets/SyncIndicatorBar.qml</file>
@@ -94,5 +89,23 @@
         <file>Windows/+ios/OpenImageDialog.qml</file>
         <file>Utils/Translations.qml</file>
         <file>Components/ToolBarAction.qml</file>
+        <file>Pages/AccountsPage.qml</file>
+        <file>Pages/AccountsPageForm.ui.qml</file>
+        <file>Components/qmldir</file>
+        <file>Pages/AccountTypeSelectionPage.qml</file>
+        <file>Pages/AccountTypeSelectionPageForm.ui.qml</file>
+        <file>Pages/NewWebDAVAccountPage.qml</file>
+        <file>Pages/NewWebDAVAccountPageForm.ui.qml</file>
+        <file>Utils/Accounts.qml</file>
+        <file>Pages/EditWebDAVAccountPage.qml</file>
+        <file>Pages/EditWebDAVAccountPageForm.ui.qml</file>
+        <file>Windows/DeleteAccountDialog.qml</file>
+        <file>Pages/NewLibraryPageForm.ui.qml</file>
+        <file>Pages/NewLocalLibraryPage.qml</file>
+        <file>Pages/NewLocalLibraryPageForm.ui.qml</file>
+        <file>Pages/NewLibraryInFolderPage.qml</file>
+        <file>Pages/NewLibraryInFolderPageForm.ui.qml</file>
+        <file>Pages/NewLibraryFromAccountPage.qml</file>
+        <file>Pages/NewLibraryFromAccountPageForm.ui.qml</file>
     </qresource>
 </RCC>

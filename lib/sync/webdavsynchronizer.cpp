@@ -1,14 +1,14 @@
-#include "webdavsynchronizer.h"
-
-#include "webdavclient.h"
-
+#include "account.h"
 #include "datamodel/library.h"
+#include "webdavclient.h"
+#include "webdavsynchronizer.h"
 
 #include <QBuffer>
 #include <QDir>
 #include <QDomDocument>
 #include <QEventLoop>
 #include <QFileInfo>
+#include <QLoggingCategory>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -20,23 +20,19 @@
 #include <QTemporaryFile>
 #include <QTimer>
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg)
 
+        const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
 
-
-const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
-
-
-WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent) :
-    Synchronizer(parent),
-    m_remoteDirectory(),
-    m_disableCertificateCheck(false),
-    m_username(),
-    m_password(),
-    m_createDirs(false),
-    m_stopRequested(false),
-    m_findExistingEntriesWatcher()
+WebDAVSynchronizer::WebDAVSynchronizer(QObject *parent)
+    : Synchronizer(parent),
+      m_remoteDirectory(),
+      m_disableCertificateCheck(false),
+      m_username(),
+      m_password(),
+      m_createDirs(false),
+      m_stopRequested(false),
+      m_findExistingEntriesWatcher()
 {
     connect(&m_findExistingEntriesWatcher,
             &QFutureWatcher<QVariantList>::finished, [=]() {
@@ -293,39 +289,39 @@ void WebDAVSynchronizer::findExistingLibraries()
 QVariantMap WebDAVSynchronizer::toMap() const
 {
     auto result = Synchronizer::toMap();
-    result["username"] = m_username;
     result["remoteDirectory"] = m_remoteDirectory;
-    result["disableCertificateCheck"] = m_disableCertificateCheck;
-    result["url"] = m_url;
-    result["serverType"] = QVariant::fromValue(m_serverType);
     result["createDirs"] = m_createDirs;
     return result;
 }
 
 void WebDAVSynchronizer::fromMap(const QVariantMap& map)
 {
-    m_username = map.value("username").toString();
     m_remoteDirectory = map.value("remoteDirectory").toString();
-    m_disableCertificateCheck = map.value("disableCertificateCheck").toBool();
-    m_url = map.value("url").toUrl();
-    m_serverType = map.value("serverType").value<WebDAVServerType>();
     m_createDirs = map.value("createDirs", false).toBool();
     Synchronizer::fromMap(map);
 }
 
-QString WebDAVSynchronizer::secretsKey() const
+void WebDAVSynchronizer::setAccount(Account *account)
 {
-    return this->uid().toString();
-}
-
-QString WebDAVSynchronizer::secret() const
-{
-    return password();
-}
-
-void WebDAVSynchronizer::setSecret(const QString &secret)
-{
-    setPassword(secret);
+    m_username = account->username();
+    m_password = account->password();
+    m_disableCertificateCheck = account->disableCertificateChecks();
+    m_url = account->baseUrl();
+    switch (account->type()) {
+    case Account::NextCloud:
+        m_serverType = NextCloud;
+        break;
+    case Account::OwnCloud:
+        m_serverType = OwnCloud;
+        break;
+    case Account::WebDAV:
+        m_serverType = Generic;
+        break;
+    default:
+        qCWarning(::log) << "Invalid account type" << account->type();
+        m_serverType = Unknown;
+        break;
+    }
 }
 
 QString WebDAVSynchronizer::remoteDirectory() const

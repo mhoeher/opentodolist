@@ -30,17 +30,19 @@ const int Synchronizer::MaxLogEntries;
  * @sa isNull property). The @sa setDirectory method must be used to point the synchronizer
  * to an existing local directory.
  */
-Synchronizer::Synchronizer(QObject *parent) : QObject(parent),
-    m_uuid(QUuid::createUuid()),
-    m_validating(false),
-    m_valid(false),
-    m_synchronizing(false),
-    m_creatingDirectory(false),
-    m_findingLibraries(false),
-    m_directory(),
-    m_existingLibraries(),
-    m_lastSync(),
-    m_log()
+Synchronizer::Synchronizer(QObject *parent)
+    : QObject(parent),
+      m_uuid(QUuid::createUuid()),
+      m_accountUid(),
+      m_validating(false),
+      m_valid(false),
+      m_synchronizing(false),
+      m_creatingDirectory(false),
+      m_findingLibraries(false),
+      m_directory(),
+      m_existingLibraries(),
+      m_lastSync(),
+      m_log()
 {
 }
 
@@ -196,6 +198,30 @@ void Synchronizer::setFindingLibraries(bool findingLibraries)
         m_findingLibraries = findingLibraries;
         emit findingLibrariesChanged();
     }
+}
+
+QUuid Synchronizer::accountUid() const
+{
+    return m_accountUid;
+}
+
+void Synchronizer::setAccountUid(const QUuid &accountUid)
+{
+    m_accountUid = accountUid;
+}
+
+/**
+ * @brief Set the Account object to which the synchronizer belongs to.
+ *
+ * This method is called to pass in the Account to which this synchronizer belongs to.
+ * The synchronizer can use it to pull out additional settings required to work.
+ *
+ * The default implementation does nothing. Concrete sub-classes should override this method
+ * to extract whatever information they need.
+ */
+void Synchronizer::setAccount(Account *account)
+{
+    Q_UNUSED(account);
 }
 
 bool Synchronizer::loadLog()
@@ -475,6 +501,9 @@ QVariantMap Synchronizer::toMap() const
     result.insert("type", QString(metaObject()->className()));
     result.insert("uid", m_uuid);
     result.insert("lastSync", m_lastSync);
+    if (!m_accountUid.isNull()) {
+        result.insert("account", m_accountUid);
+    }
     return result;
 }
 
@@ -489,45 +518,8 @@ void Synchronizer::fromMap(const QVariantMap& map)
 {
     m_uuid = map.value("uid", m_uuid).toUuid();
     m_lastSync = map.value("lastSync", m_lastSync).toDateTime();
+    m_accountUid = map.value("account", QUuid()).toUuid();
 }
-
-
-/**
- * @brief Get a unique key used for storing the secrets of the synchronizer.
- *
- * The default implementation returns an empty string, indicating that the
- * synchronizer does not need any secrets. If a concrete implementation needs
- * to have secrets stored in a platform specific secret store, it shall return
- * a (unique) key which is used to identify the secret within the store.
- */
-QString Synchronizer::secretsKey() const
-{
-    return QString();
-}
-
-
-/**
- * @brief The synchronizer's secret.
- *
- * The default implementation just returns an empty string. If a synchronizer
- * uses any secrets, it shall return it by implementing this method. In
- * addition, the secretsKey() method must be implemented to return a non-empty
- * string.
- */
-QString Synchronizer::secret() const
-{
-    return QString();
-}
-
-
-/**
- * @brief Set the secret required by the synchronizer.
- */
-void Synchronizer::setSecret(const QString &secret)
-{
-    Q_UNUSED(secret);
-}
-
 
 /**
  * @brief Constructor.

@@ -47,6 +47,7 @@ ApplicationWindow {
 
     property Item helpPage: null
     property Item settingsPage: null
+    property Item accountsPage: null
 
     header: ToolBar {
         id: headerToolBar
@@ -431,7 +432,7 @@ ApplicationWindow {
         onSpecialViewChanged: changeLibraryTimer.restart()
         onNewLibrary: {
             stackView.clear();
-            stackView.push(newSyncedLibraryPage);
+            stackView.push(newLibraryPage);
         }
         onAboutPageRequested: {
             if (helpPage) {
@@ -457,6 +458,20 @@ ApplicationWindow {
                                 onClosed: function() {
                                     settingsPage = null;
                                     librariesSideBar.settingsVisible = false;
+                                }
+                            });
+            }
+        }
+        onAccountsPageRequested: {
+            if (accountsPage) {
+                stackView.pop(accountsPage);
+            } else {
+                accountsPage = stackView.push(
+                            accountsPageComponent, {
+                                stack: stackView,
+                                onClosed: function() {
+                                    accountsPage = null;
+                                    librariesSideBar.accountsVisible = false;
                                 }
                             });
             }
@@ -506,8 +521,10 @@ ApplicationWindow {
         property bool isCheckable: hasItem && currentItem.item.done !== undefined
         property bool isChecked: isCheckable ? currentItem.item.done : false
 
-        function goBack() {
-            if (typeof(currentItem.goBack) === "function") {
+        function goBack(page) {
+            if (page !== undefined && page !== null) {
+                stackView.pop(page);
+            } else if (typeof(currentItem.goBack) === "function") {
                 currentItem.goBack();
             } else {
                 stackView.pop();
@@ -545,6 +562,7 @@ ApplicationWindow {
         target: stackView.currentItem
         ignoreUnknownSignals: true
         onClosePage: stackView.goBack()
+        onReturnToPage: stackView.goBack(page)
         onOpenPage: stackView.push(component, properties)
         onClearAndOpenPage: {
             stackView.clear();
@@ -583,65 +601,33 @@ ApplicationWindow {
     }
 
     Component {
-        id: newSyncedLibraryPage
+        id: accountsPageComponent
 
-        SynchronizerBackendSelectionPage {
-            onCancelled: window.viewLibrary()
-            onBackendSelected: {
-                switch (synchronizer.synchronizer) {
-                case "WebDAVSynchronizer":
-                    stackView.replace(webDavConnectionSetupPage,
-                                      {"synchronizer": synchronizer});
-                    break;
-                case "":
-                    stackView.replace(newLocalLibraryPage);
-                    break;
-                }
-            }
-        }
+        AccountsPage {}
     }
 
     Component {
-        id: webDavConnectionSetupPage
-
-        WebDAVConnectionSettingsPage {
-            onCancelled: window.viewLibrary()
-            onConnectionDataAvailable: {
-                stackView.replace(
-                            existingLibrarySelectionPage,
-                            {"synchronizer": synchronizer});
-            }
-        }
-    }
-
-    Component {
-        id: existingLibrarySelectionPage
-
-        SyncLibrarySelectionPage {
-            onCancelled: window.viewLibrary()
-            onLibraryAvailable: {
-                stackView.replace(
-                            newLocalLibraryPage,
-                            {"synchronizer": synchronizer});
-            }
-        }
-    }
-
-    Component {
-        id: newLocalLibraryPage
+        id: newLibraryPage
 
         NewLibraryPage {
-            onCancelled: window.viewLibrary()
-            onLibraryAvailable: {
-                var lib = OTL.Application.addLibrary(synchronizer);
-                if (lib !== null) {
-                    librariesSideBar.currentLibrary = lib;
+            onLibraryCreated: {
+                if (library) {
+                    librariesSideBar.currentLibrary = library;
                     librariesSideBar.currentTag = "";
-                } else {
-                    console.error("Failed to create library!");
-                    window.viewLibrary();
                 }
             }
+
+//            onCancelled: window.viewLibrary()
+//            onLibraryAvailable: {
+//                var lib = OTL.Application.addLibrary(synchronizer);
+//                if (lib !== null) {
+//                    librariesSideBar.currentLibrary = lib;
+//                    librariesSideBar.currentTag = "";
+//                } else {
+//                    console.error("Failed to create library!");
+//                    window.viewLibrary();
+//                }
+//            }
         }
     }
 

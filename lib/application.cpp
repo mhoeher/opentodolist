@@ -2,8 +2,8 @@
 
 #include <QClipboard>
 #include <QCoreApplication>
-#include <QDebug>
 #include <QDateTime>
+#include <QDebug>
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
@@ -27,6 +27,7 @@
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/libraryloader.h"
+#include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
 #include "sync/syncrunner.h"
@@ -149,10 +150,15 @@ void Application::initialize(const QString &path)
                     QScopedPointer<Synchronizer> sync(
                                 lib->createSynchronizer());
                     if (sync) {
-                        if (sync->secretsKey() == key) {
-                            qCDebug(log) << "Start-up sync of"
-                                                 << lib << lib->name();
-                            runSyncForLibrary(lib);
+                        if (sync->accountUid().isNull() && sync->uid().toString() == key) {
+                            // Found an old-style synchronizer. Auto-create an account from it:
+                            importAccountFromSynchronizer(key, value);
+                        } else {
+                            QSharedPointer<Account> account(loadAccount(sync->accountUid()));
+                            if (account && account->uid().toString() == key) {
+                                qCDebug(log) << "Start-up sync of" << lib << lib->name();
+                                runSyncForLibrary(lib);
+                            }
                         }
                     }
                 }
@@ -278,6 +284,126 @@ void Application::syncLibrariesWithCache(
 }
 
 
+/**
+ * @brief Internally add the @p library.
+ *
+ * This method adds the library to the internal list of libraries,
+ * ensures it is added to the cache and its content (if already
+ * present) loaded fromm disk.
+ */
+void Application::internallyAddLibrary(Library *library)
+{
+    auto q = new InsertOrUpdateItemsQuery();
+    q->add(library, InsertOrUpdateItemsQuery::Save);
+    m_cache->run(q);
+    syncLibrary(library);
+    library->setCache(m_cache);
+    auto libs = librariesFromConfig();
+    libs << QSharedPointer<Library>(Library::decache(library->encache()));
+    librariesToConfig(libs);
+}
+
+
+/**
+ * @brief Check if the given @p uid refers to a known library.
+ */
+bool Application::isLibraryUid(const QUuid &uid)
+{
+    return libraryById(uid) != nullptr;
+}
+
+
+/**
+ * @brief Find a library by its @p uid.
+ *
+ * Returns the library with the given uid or a nullptr if no such library
+ * exists.
+ */
+QSharedPointer<Library> Application::libraryById(const QUuid &uid)
+{
+    auto libs = librariesFromConfig();
+    for (const auto &lib : libs) {
+        if (lib->uid() == uid) {
+            return lib;
+        }
+    }
+    return nullptr;
+}
+
+/**
+ * @brief Import Accounts by inspecting old-style synchronizers.
+ *
+ * This is a helper method which is used to automatically create Accounts from existing, old-style
+ * synchronizers.
+ */
+void Application::importAccountsFromSynchronizers()
+{
+    for (const auto &lib : librariesFromConfig()) {
+        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+        if (sync) {
+            if (sync->accountUid().isNull()) {
+                // The synchronizer is not connected to an Account. Assume we need to import it.
+                m_keyStore->loadCredentials(sync->uid().toString());
+            }
+        }
+    }
+}
+
+void Application::importAccountFromSynchronizer(const QString &syncUid, const QString &password)
+{
+    // Load all accounts:
+    QList<QSharedPointer<Account>> accounts;
+    for (const auto &accountId : accountUids()) {
+        accounts << QSharedPointer<Account>(loadAccount(accountId.toString()));
+    }
+
+    // Find the synchronizer:
+    for (const auto &lib : librariesFromConfig()) {
+        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+        if (sync && sync->uid().toString() == syncUid) {
+            // The next should always be the case - before the introduction to accounts, we only
+            // had WebDAV synchronizers:
+            auto davSync = qobject_cast<WebDAVSynchronizer *>(sync.data());
+            if (davSync) {
+                // Check if we (meanwhile) have an account that maps to the same URL+username:
+                for (const auto &account : accounts) {
+                    if (QUrl(account->baseUrl()) == davSync->url()
+                        && account->username() == davSync->username()) {
+                        // Connect the synchronizer to the existing account:
+                        davSync->setAccountUid(account->uid());
+                        davSync->save();
+                        return;
+                    }
+                }
+
+                // The synchronizer does not have an account ID set,
+                // assume, it is not yet ported and create one from it:
+                auto attrs =
+                        JsonUtils::loadMap(sync->directory() + "/" + Synchronizer::SaveFileName);
+                Account account;
+                account.setDisableCertificateChecks(attrs["disableCertificateCheck"].toBool());
+                auto serverType = attrs["serverType"].toString();
+                if (serverType == "NextCloud") {
+                    account.setType(Account::NextCloud);
+                } else if (serverType == "OwnCloud") {
+                    account.setType(Account::OwnCloud);
+                } else if (serverType == "Generic") {
+                    account.setType(Account::WebDAV);
+                }
+                account.setBaseUrl(attrs["url"].toString());
+                account.setUsername(attrs["username"].toString());
+                account.setName(account.username() + "@" + QUrl(account.baseUrl()).host());
+                account.setPassword(password);
+                saveAccount(&account);
+                saveAccountSecrets(&account);
+                sync->setAccountUid(account.uid());
+                sync->save();
+                return;
+            }
+        }
+    }
+}
+
 template<typename T>
 void Application::watchLibraryForChanges(T library)
 {
@@ -311,114 +437,295 @@ Application::~Application()
 
 
 /**
- * @brief Create a new library.
+ * @brief Save the Account to the application configuration.
  *
- * This creates a new library using the given @p parameters. The following
- * keys are assumed to be provided (some of them optional):
- *
- * - name: The name of the library.
- * - localPath: The path where to create the library in.
- * - synchronizer: The type (class name) of synchronizer to use.
- * - serverType: For some synchronizer classes, the concrete sub-type of the
- *   server.
- * - uid: The UID to use for the library.
- * - path: The remote path of the library.
- *
- * If no synchronizer is specified and localPath points to a location
- * with an existing library, that library will be imported. In this
- * case, any other attributes are ignored.
- *
- * The function returns a Library object which represents the library just
- * created. The ownership of the returned object is transferred to the caller.
- * In case of invalid input parameters or issues creating the library, a
- * null pointer is returned.
+ * This saves the @p account to the application settings.
  */
-Library *Application::addLibrary(const QVariantMap &parameters)
+void Application::saveAccount(Account *account)
 {
-    Library* result = nullptr;
-
-    auto synchronizerCls = parameters.value("synchronizer").toString();
-    auto localPath = parameters.value(
-                "localPath", Library::defaultLibrariesLocation()).toString();
-    auto name = parameters.value("name").toString();
-    QUuid uid;
-    if (parameters.contains("uid") &&
-            parameters.value("uid").toString() != "") {
-        uid = parameters.value("uid").toUuid();
-
-        // Sanity check: Test if we already have a library with that UID.
-        // If this is the case, assume that the user tried to add the
-        // same library to the app for a second time. We must prevent
-        // this, as it causes infinite sync loops if we would just select
-        // another directory to store this one in:
-        for (auto lib : librariesFromConfig()) {
-            if (lib->uid() == uid) {
-                auto ret = new Library(lib->directory());
-                ret->load();
-                return ret;
-            }
-        }
-    } else {
-        uid = QUuid::createUuid();
+    if (account != nullptr) {
+        m_settings->beginGroup("Accounts");
+        m_settings->beginGroup(account->uid().toString());
+        account->save(m_settings);
+        m_settings->endGroup();
+        m_settings->endGroup();
+        emit accountsChanged();
     }
-    auto path = parameters.value("path").toString();
+}
 
-    if (!isLibraryDir(QUrl::fromLocalFile(localPath)) ||
-            localPath == Library::defaultLibrariesLocation()) {
-        auto modLocalPath = localPath + "/" + uid.toString();
-        if (QDir(modLocalPath).exists()) {
-            // Do not re-use existing directory:
-            localPath += "/" + QUuid::createUuid().toString();
-        } else {
-            localPath = modLocalPath;
-        }
+
+/**
+ * @brief Save the secrets of the @p account.
+ */
+void Application::saveAccountSecrets(Account *account)
+{
+    if (account != nullptr) {
+        m_keyStore->saveCredentials(account->uid().toString(),
+                                    account->password());
+        m_secrets.insert(account->uid().toString(),
+                         account->password());
+        emit accountsChanged();
     }
+}
 
-    QDir(localPath).mkpath(".");
 
-    if (QDir(localPath).exists()) {
-        result = new Library(localPath);
-        result->setUid(uid);
-        result->setName(name);
-        if (!synchronizerCls.isEmpty()) {
-            if (synchronizerCls == "WebDAVSynchronizer") {
-                auto sync = new WebDAVSynchronizer();
-                auto type = parameters.value("serverType")
-                        .value<WebDAVSynchronizer::WebDAVServerType>();
-                sync->setServerType(type);
-                sync->setUrl(parameters.value("url").toUrl());
-                sync->setUsername(parameters.value("username").toString());
-                sync->setPassword(parameters.value("password").toString());
-                sync->setDisableCertificateCheck(
-                            parameters.value(
-                                "disableCertificateCheck").toBool());
-                sync->setDirectory(result->directory());
-                if (path.isEmpty()) {
-                    path = "OpenTodoList/" + uid.toString() + ".otl";
-                    sync->setCreateDirs(true);
-                }
-                sync->setRemoteDirectory(path);
-                sync->save();
-                m_keyStore->saveCredentials(sync->secretsKey(), sync->secret());
-                m_secrets.insert(sync->secretsKey(), sync->secret());
-                emit secretsKeysChanged();
-                delete sync;
-            }
-        } else {
-            watchLibraryForChanges(result);
+/**
+ * @brief Remove the account from the application.
+ *
+ * This removes the settings of the account. Additionally,
+ * all libraries, belonging to that account will be removed, too.
+ */
+void Application::removeAccount(Account *account)
+{
+    if (account != nullptr) {
+        m_settings->beginGroup("Accounts");
+        m_settings->beginGroup(account->uid().toString());
+        for (const auto &key : m_settings->allKeys()) {
+            m_settings->remove(key);
         }
-        auto q = new InsertOrUpdateItemsQuery();
-        q->add(result, InsertOrUpdateItemsQuery::Save);
-        m_cache->run(q);
-        syncLibrary(result);
-        result->setCache(m_cache);
-        auto libs = librariesFromConfig();
-        libs << QSharedPointer<Library>(Library::decache(result->encache()));
-        librariesToConfig(libs);
+        m_keyStore->deleteCredentials(account->uid().toString());
+        m_settings->endGroup();
+        m_settings->endGroup();
+        emit accountsChanged();
+    }
+    // TODO: Remove all libraries that belong to this account
+}
+
+
+/**
+ * @brief Load an account from the app settings.
+ *
+ * This loads the account with the given @p uid from the settings of
+ * the app. If no such account is stored, the function returns a
+ * null pointer.
+ *
+ * @note Owenership goes over to the caller.
+ */
+Account *Application::loadAccount(const QUuid &uid)
+{
+    Account *result = nullptr;
+    if (!uid.isNull()) {
+        m_settings->beginGroup("Accounts");
+        if (m_settings->childGroups().contains(uid.toString())) {
+            m_settings->beginGroup(uid.toString());
+            result = new Account();
+            result->setUid(uid);
+            result->load(m_settings);
+            m_settings->endGroup();
+        }
+        m_settings->endGroup();
+        result->setPassword(
+                    m_secrets.value(result->uid().toString()).toString());
     }
     return result;
 }
 
+
+/**
+ * @brief Get the list of UIDs of the accounts.
+ */
+QVariantList Application::accountUids()
+{
+    QVariantList result;
+    m_settings->beginGroup("Accounts");
+    for (const auto &key : m_settings->childGroups()) {
+        auto uid = QUuid::fromString(key);
+        if (!uid.isNull()) {
+            result << uid;
+        }
+    }
+    m_settings->endGroup();
+    return result;
+}
+
+/**
+ * @brief Create a new local library.
+ *
+ * This will create a new library, which is stored locally in the
+ * default library location.
+ */
+Library *Application::addLocalLibrary(const QString &name)
+{
+    Library *result = nullptr;
+    auto uid = QUuid::createUuid();
+    QDir dir(Library::defaultLibrariesLocation());
+    if (!dir.exists() && !dir.mkpath(".")) {
+        qCWarning(log) << "Failed to create libraries location in"
+                       << Library::defaultLibrariesLocation();
+    } else if (dir.mkdir(uid.toString())) {
+        auto path = dir.absoluteFilePath(uid.toString());
+        result = new Library(path);
+        result->setName(name);
+        result->setUid(uid);
+        result->save();
+
+        watchLibraryForChanges(result);
+        internallyAddLibrary(result);
+    } else {
+        qCWarning(log) << "Failed to create directory for new "
+                          "library in "
+                       << Library::defaultLibrariesLocation();
+    }
+
+    return result;
+}
+
+
+/**
+ * @brief Add a local @p directory as a library.
+ *
+ * This method adds the local @p directory as a library to the application.
+ * If the directory points to an existing library location, the library
+ * is loaded as-is. Otherwise, a new library is initialized in this
+ * directory.
+ */
+Library *Application::addLibraryDirectory(const QString &directory)
+{
+    Library *result = nullptr;
+    QDir dir(directory);
+    if (dir.exists()) {
+        if (isLibraryDir(QUrl::fromLocalFile(directory))) {
+            result = new Library(directory);
+            if (result->load()) {
+                auto existingLib = libraryById(result->uid());
+                if (existingLib == nullptr) {
+                    internallyAddLibrary(result);
+                    watchLibraryForChanges(result);
+                } else {
+                  qCWarning(log) << "Library in"
+                                 << directory
+                                 << "is already register";
+                  delete result;
+                  result = Library::decache(existingLib->encache());
+                  result->setCache(m_cache);
+                  // Return here - we do not want to add this a second time
+                  // to our list:
+                  return result;
+                }
+            } else {
+                qCWarning(log) << "Failed to load library from"
+                               << directory;
+                delete result;
+                result = nullptr;
+            }
+        } else {
+            auto uid = QUuid::createUuid();
+            QDir dir_(directory);
+            if (dir_.mkdir(uid.toString())) {
+                result = new Library(dir_.absoluteFilePath(uid.toString()));
+                result->setUid(uid);
+                internallyAddLibrary(result);
+                watchLibraryForChanges(result);
+            } else {
+                qCWarning(log) << "Failed to create new library folder in" << directory;
+            }
+        }
+    } else {
+        qCWarning(log) << "Cannot add" << directory
+                       << "as library: It does not exist";
+    }
+    return result;
+}
+
+/**
+ * @brief Add a new library to the given account.
+ *
+ * This methods adds a new library to the @p account. The library is given the specified @p name.
+ * Returns the newly created library.
+ *
+ * @note The caller takes ownership of the returned object.
+ */
+Library *Application::addNewLibraryToAccount(Account *account, const QString &name)
+{
+    Library *result = nullptr;
+    if (account && !name.isEmpty()) {
+        auto uid = QUuid::createUuid();
+        QDir dir(Library::defaultLibrariesLocation());
+        if (!dir.exists() && !dir.mkpath(".")) {
+            qCWarning(log) << "Failed to create libraries location in"
+                           << Library::defaultLibrariesLocation();
+        } else if (dir.mkdir(uid.toString())) {
+            auto path = dir.absoluteFilePath(uid.toString());
+            result = new Library(path);
+            result->setName(name);
+            result->setUid(uid);
+            result->save();
+
+            switch (account->type()) {
+            case Account::NextCloud:
+            case Account::OwnCloud:
+            case Account::WebDAV: {
+                WebDAVSynchronizer sync;
+                sync.setDirectory(result->directory());
+                sync.setAccountUid(account->uid());
+                sync.setServerType(account->toWebDAVServerType()
+                                           .value<WebDAVSynchronizer::WebDAVServerType>());
+                sync.setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
+                sync.setCreateDirs(true);
+                sync.save();
+                break;
+            }
+            case Account::Invalid:
+                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
+                               << "function";
+            }
+
+            watchLibraryForChanges(result);
+            internallyAddLibrary(result);
+        } else {
+            qCWarning(log) << "Failed to create directory for new "
+                              "library in "
+                           << Library::defaultLibrariesLocation();
+        }
+    }
+    return result;
+}
+
+Library *Application::addExistingLibraryToAccount(Account *account,
+                                                  const SynchronizerExistingLibrary &library)
+{
+    Library *result = nullptr;
+    if (account && !library.uid().isNull() && !isLibraryUid(library.uid())) {
+        auto uid = library.uid();
+        QDir dir(Library::defaultLibrariesLocation());
+        if (!dir.exists() && !dir.mkpath(".")) {
+            qCWarning(log) << "Failed to create libraries location in"
+                           << Library::defaultLibrariesLocation();
+        } else if (dir.mkdir(uid.toString())) {
+            auto path = dir.absoluteFilePath(uid.toString());
+            result = new Library(path);
+            result->setName(library.name());
+            result->setUid(uid);
+            result->save();
+
+            switch (account->type()) {
+            case Account::NextCloud:
+            case Account::OwnCloud:
+            case Account::WebDAV: {
+                WebDAVSynchronizer sync;
+                sync.setDirectory(result->directory());
+                sync.setAccountUid(account->uid());
+                sync.setServerType(account->toWebDAVServerType()
+                                           .value<WebDAVSynchronizer::WebDAVServerType>());
+                sync.setRemoteDirectory(library.path());
+                sync.save();
+                break;
+            }
+            case Account::Invalid:
+                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
+                               << "function";
+            }
+
+            watchLibraryForChanges(result);
+            internallyAddLibrary(result);
+        } else {
+            qCWarning(log) << "Failed to create directory for new "
+                              "library in "
+                           << Library::defaultLibrariesLocation();
+        }
+    }
+    return result;
+}
 
 /**
  * @brief Delete the library.
@@ -721,6 +1028,24 @@ bool Application::isLibraryDir(const QUrl &url) const
     return result;
 }
 
+/**
+ * @brief Get the name of a library from its directory.
+ *
+ * This method takes the path to a library and - if the path points to a valid
+ * library folder - returns the name of it. When the directory is not a library folder, this
+ * returns an empty string.
+ */
+QString Application::libraryNameFromDir(const QUrl &url) const
+{
+    if (isLibraryDir(url)) {
+        auto path = url.toLocalFile();
+        Library lib(path);
+        if (lib.load()) {
+            return lib.name();
+        }
+    }
+    return QString();
+}
 
 /**
  * @brief Returns the home location of the current user.
@@ -740,25 +1065,13 @@ bool Application::folderExists(const QUrl &url) const
     return url.isValid() && QDir(url.toLocalFile()).exists();
 }
 
-
 /**
- * @brief Get the secrets for a synchronizer.
- *
- * Get the secrets for the synchronizer @p sync. If no secrets
- * for the synchronizer where stored, an empty string is returned.
+ * @brief Check if the @p uid refers to an existing library in the app.
  */
-QString Application::secretForSynchronizer(Synchronizer *sync)
+bool Application::libraryExists(const QUuid &uid)
 {
-    QString result;
-    if (sync != nullptr) {
-        auto key = sync->secretsKey();
-        if (!key.isEmpty() && m_secrets.contains(key)) {
-            result = m_secrets.value(key).toString();
-        }
-    }
-    return result;
+    return isLibraryUid(uid);
 }
-
 
 /**
  * @brief Start synchronizing the @p library.
@@ -766,26 +1079,6 @@ QString Application::secretForSynchronizer(Synchronizer *sync)
 void Application::syncLibrary(Library *library)
 {
     runSyncForLibrary(library);
-}
-
-
-/**
- * @brief Save the secrets for a synchronizer.
- *
- * This saves the secrets of the given Synchronizer @p sync to the
- * key store.
- */
-void Application::saveSynchronizerSecrets(Synchronizer *sync)
-{
-    if (sync != nullptr) {
-        auto key = sync->secretsKey();
-        if (!key.isEmpty()) {
-            auto secret = sync->secret();
-            m_keyStore->saveCredentials(key, secret);
-            m_secrets[key] = secret;
-            emit secretsKeysChanged();
-        }
-    }
 }
 
 
@@ -861,15 +1154,16 @@ void Application::loadLibraries()
         connect(loader, &LibraryLoader::scanFinished,
                 loader, &LibraryLoader::deleteLater);
         loader->scan();
-        QScopedPointer<Synchronizer> sync(library->createSynchronizer());
-        if (sync) {
-            auto key = sync->secretsKey();
-            if (!key.isEmpty()) {
-                m_keyStore->loadCredentials(key);
-            }
-        }
         watchLibraryForChanges(library);
     }
+
+    // Load secrets of all accounts:
+    for (const auto &uid : accountUids()) {
+        m_keyStore->loadCredentials(uid.toString());
+    }
+
+    // Trigger import of old-style synchronizers:
+    importAccountsFromSynchronizers();
 }
 
 
@@ -953,22 +1247,15 @@ void Application::runSyncForLibrary(T library)
             if (!sync) {
                 return;
             }
-            auto key = sync->secretsKey();
-            QString secret;
-            if (!key.isEmpty()) {
-                if (m_secrets.contains(key)) {
-                    secret = m_secrets.value(key).toString();
-                } else {
-                    qCWarning(log) << "Missing sync secret for library"
-                                           << library << library->name();
-                    return;
-                }
+            QSharedPointer<Account> account(loadAccount(sync->accountUid()));
+            if (!account || !m_secrets.contains(account->uid().toString())) {
+                return;
             }
             setDirectoriesWithRunningSync(
                         directoriesWithRunningSync() << library->directory());
             m_syncErrors.remove(library->directory());
             emit syncErrorsChanged();
-            auto job = new SyncJob(library->directory(), secret);
+            auto job = new SyncJob(library->directory(), account);
             connect(qApp, &QCoreApplication::aboutToQuit, job, &SyncJob::stop);
             connect(job, &SyncJob::syncFinished,
                     this, &Application::onLibrarySyncFinished,

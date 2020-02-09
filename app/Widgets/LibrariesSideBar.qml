@@ -23,11 +23,13 @@ Pane {
 
     property bool helpVisible: false
     property bool settingsVisible: false
+    property bool accountsVisible: false
     property bool compact: false
 
     signal newLibrary()
     signal aboutPageRequested()
     signal settingsPageRequested()
+    signal accountsPageRequested()
     signal close()
 
     function reopenLastLibrary() {
@@ -47,7 +49,16 @@ Pane {
     function showSettings() {
         settingsVisible = true;
         helpVisible = false;
+        accountsVisible = false;
         sidebar.settingsPageRequested();
+        sidebar.close();
+    }
+
+    function showAccounts() {
+        accountsVisible = true;
+        helpVisible = false;
+        settingsVisible = false;
+        sidebar.accountsPageRequested();
         sidebar.close();
     }
 
@@ -148,11 +159,12 @@ Pane {
                 onClicked: sidebar.newLibrary()
             }
 
+
             LibrarySideBarButton {
-                text: qsTr("Translate The App...")
-                symbol: Icons.faLanguage
-                onClicked: Qt.openUrlExternally(
-                               "https://poeditor.com/join/project/ztvOymGNxn")
+                text: qsTr("Accounts")
+                symbol: Icons.faUser
+                highlighted: accountsVisible
+                onClicked: sidebar.showAccounts()
             }
 
             LibrarySideBarButton {
@@ -160,6 +172,13 @@ Pane {
                 symbol: Icons.faWrench
                 highlighted: settingsVisible
                 onClicked: sidebar.showSettings()
+            }
+
+            LibrarySideBarButton {
+                text: qsTr("Translate The App...")
+                symbol: Icons.faLanguage
+                onClicked: Qt.openUrlExternally(
+                               "https://poeditor.com/join/project/ztvOymGNxn")
             }
 
             LibrarySideBarButton {
@@ -173,14 +192,12 @@ Pane {
                     sidebar.close();
                 }
             }
+
             LibrarySideBarButton {
                 visible: isDebugBuild
                 text: qsTr("Create Default Library")
                 onClicked: {
-                    var args = {
-                        "name": "My Library"
-                    };
-                    var lib = OTL.Application.addLibrary(args);
+                    var lib = OTL.Application.addLocalLibrary("My Library");
 
                     var note = OTL.Application.addNote(lib, {});
                     note.title = "A Note";
