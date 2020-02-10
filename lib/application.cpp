@@ -478,6 +478,18 @@ void Application::saveAccountSecrets(Account *account)
 void Application::removeAccount(Account *account)
 {
     if (account != nullptr) {
+        for (auto &lib : librariesFromConfig()) {
+            QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+            if (sync) {
+                if (sync->accountUid() == account->uid()) {
+                    qCDebug(log) << "Removing library" << lib->name() << lib->uid()
+                                 << "as it belongs to account" << account->name() << account->uid()
+                                 << "which is removed";
+                    deleteLibrary(lib.data());
+                }
+            }
+        }
+
         m_settings->beginGroup("Accounts");
         m_settings->beginGroup(account->uid().toString());
         for (const auto &key : m_settings->allKeys()) {
@@ -488,7 +500,6 @@ void Application::removeAccount(Account *account)
         m_settings->endGroup();
         emit accountsChanged();
     }
-    // TODO: Remove all libraries that belong to this account
 }
 
 
