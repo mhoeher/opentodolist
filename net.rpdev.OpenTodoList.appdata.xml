@@ -40,6 +40,30 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.19.0" date="2020-02-12">
+      <p>This release includes the following changes:</p>
+      <ul>
+          <li>
+              #285: The app now has "accounts", which makes handling of multiple
+              libraries on the same server much easier.
+          </li>
+          <li>
+              #283: Close swipe delegates in todo lists after toggling done state.
+          </li>
+          <li>
+              #281: Double click todos/tasks to change their name.
+          </li>
+          <li>
+              #286: Add link to the app's POEditor.com page in the side bar.
+          </li>
+          <li>
+              #287: Improve about/license page.
+          </li>
+          <li>
+              #288: Fix sync with LuckyCloud (and with this a lot more WebDAV servers).
+          </li>
+      </ul>
+  </release>
     <release version="3.18.0" date="2020-01-04">
         <p>This release includes the following changes:</p>
         <ul>
