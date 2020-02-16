@@ -368,11 +368,6 @@ Page {
         onNewTodoList: page.newTodoList()
     }
 
-    SyncIndicatorBar {
-        id: syncIndicatorBar
-        library: page.library
-    }
-
     SyncErrorNotificationBar {
         readonly property var syncErrors: {
             if (page.library) {

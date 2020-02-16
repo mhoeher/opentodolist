@@ -101,12 +101,6 @@ android {
 }
 
 
-# Add QML/JS files when running lupdate:
-lupdate_only {
-    SOURCES += $$files(*.qml,true) $$files(*.js,true)
-}
-
-
 TRANSLATIONS += \
     translations/opentodolist_en.ts \
     translations/opentodolist_de.ts \

@@ -49,7 +49,6 @@
         <file>Components/TextField.qml</file>
         <file>Widgets/NewTopLevelItemButton.qml</file>
         <file>Widgets/SyncErrorNotificationBar.qml</file>
-        <file>Widgets/SyncIndicatorBar.qml</file>
         <file>Widgets/TextInputBar.qml</file>
         <file>Components/RoundButton.qml</file>
         <file>Widgets/ImageItem.qml</file>
