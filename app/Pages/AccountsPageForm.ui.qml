@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.13
+import QtQuick.Controls 2.5
 
 import Components 1.0 as Components
 import Fonts 1.0 as Fonts
