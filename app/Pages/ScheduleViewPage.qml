@@ -19,6 +19,11 @@ Page {
         library: page.library
         onOpenPage: page.openPage(component, properties)
     }
+    property bool syncRunning: {
+        return library &&
+                OTL.Application.directoriesWithRunningSync.indexOf(
+                    library.directory) >= 0;
+    }
 
     signal openPage(var component, var properties)
 
@@ -267,11 +272,6 @@ Page {
             }
         }
 
-    }
-
-    SyncIndicatorBar {
-        id: syncIndicatorBar
-        library: page.library
     }
 
     SyncErrorNotificationBar {

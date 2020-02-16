@@ -77,6 +77,20 @@ ApplicationWindow {
                 Layout.alignment: Qt.AlignVCenter
             }
 
+            BusyIndicator {
+                id: busyIndicator
+
+                visible: stackView.syncRunning
+                implicitHeight: backToolButton.height
+                implicitWidth: implicitHeight
+                hoverEnabled: true
+
+                ToolTip.visible: busyIndicator.hovered
+                ToolTip.delay: 1000
+                ToolTip.timeout: 5000
+                ToolTip.text: qsTr("Synchronizing library...")
+            }
+
             Label {
                 id: pageTitleLabel
                 Layout.fillWidth: true
@@ -156,6 +170,7 @@ ApplicationWindow {
             availableWidth -=
                     sidebarControl.width * (sidebarControl.visible ? 1 : 0) +
                     backToolButton.width * (backToolButton.visible ? 1 : 0) +
+                    busyIndicator.implicitWidth * (busyIndicator.visible ? 1 : 0) +
                     dynamicPageActionsMenu.width +
                     pageMenuToolButton.width * (pageMenuToolButton.visible ? 1 : 0);
             // Reserve some "minimum" space for the label:
