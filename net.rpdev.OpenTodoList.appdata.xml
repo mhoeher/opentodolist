@@ -40,6 +40,20 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.19.1" date="2020-02-17">
+      <p>This release includes the following changes:</p>
+      <ul>
+          <li>
+              #295: Due dates of items creates in some time zones are no longer shown one day off.
+          </li>
+          <li>
+              #296: Fix an issue which causes the app to not start anymore on Windows.
+          </li>
+          <li>
+              #294: When a library is currently synchronized, an indication is shown in the tool bar (instead of a custom overlay footer), which would cover the content and prevent users from interacting.
+          </li>
+      </ul>
+    </release>
     <release version="3.19.0" date="2020-02-12">
       <p>This release includes the following changes:</p>
       <ul>
