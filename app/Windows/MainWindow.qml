@@ -313,7 +313,7 @@ ApplicationWindow {
         shortcut: StandardKey.New
         onTriggered: {
             stackView.clear();
-            stackView.push(newSyncedLibraryPage);
+            stackView.push(newLibraryPage);
         }
     }
 
