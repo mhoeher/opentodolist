@@ -32,7 +32,7 @@ NewWebDAVAccountPageForm {
     QtObject {
         id: d
 
-        property AbstractButton okButton: null
+        property var okButton: null
         property bool validated: false
     }
 

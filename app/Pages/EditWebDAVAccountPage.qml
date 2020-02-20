@@ -34,7 +34,7 @@ EditWebDAVAccountPageForm {
         id: d
 
         property bool validated: false
-        property AbstractButton okButton: null
+        property var okButton: null
     }
 
     Binding {

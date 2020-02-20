@@ -24,7 +24,7 @@ NewLocalLibraryPageForm {
     QtObject {
         id: d
 
-        property AbstractButton okButton
+        property var okButton
     }
 
     Binding {

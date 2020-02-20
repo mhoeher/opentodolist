@@ -20,7 +20,7 @@ NewLibraryInFolderPageForm {
     QtObject {
         id: d
 
-        property AbstractButton okButton: null
+        property var okButton: null
         property bool isLibraryDir: OTL.Application.isLibraryDir(
                                         OTL.Application.localFileToUrl(folderPathEdit.displayText))
 
