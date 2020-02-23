@@ -9,7 +9,7 @@ import Utils 1.0 as Utils
 Page {
     id: page
 
-    property string type: ""
+    property int type: -1
     property alias buttons: buttons
     property alias serverAddressEdit: serverAddressEdit
     property alias usernameEdit: usernameEdit

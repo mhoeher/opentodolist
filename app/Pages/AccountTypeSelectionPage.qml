@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.5
+import OpenTodoList 1.0 as OTL
 
 AccountTypeSelectionPageForm {
     id: page
@@ -11,16 +12,27 @@ AccountTypeSelectionPageForm {
 
     buttonBox.onRejected: closePage()
     buttonBox.onAccepted: {
+        var webDavTypeMap = {
+            "WebDAV": OTL.Account.WebDAV,
+            "OwnCloud": OTL.Account.OwnCloud,
+            "NextCloud": OTL.Account.NextCloud
+        };
+
         switch (selectedAccountType) {
         case "WebDAV":
-        case "OwnCloud":
         case "NextCloud":
-            page.openPage(
-                        Qt.resolvedUrl("./NewWebDAVAccountPage.qml"),
-                        {
-                            "type": selectedAccountType,
-                            "anchorPage": page.anchorPage
-                        });
+        case "OwnCloud":
+            var type = webDavTypeMap[selectedAccountType];
+            if (type !== undefined) {
+                page.openPage(
+                            Qt.resolvedUrl("./NewWebDAVAccountPage.qml"),
+                            {
+                                "type": type,
+                                "anchorPage": page.anchorPage
+                            });
+            } else {
+                console.error("Cannot handle WebDAV server type", selectedAccountType);
+            }
             break;
         default:
             console.error("Unhandled account type ", selectedAccountType,
