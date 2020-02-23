@@ -39,7 +39,7 @@ NewLibraryFromAccountPageForm {
 
         property OTL.Synchronizer sync: page.account.createSynchronizer()
 
-        property AbstractButton okButton: buttons.standardButton(DialogButtonBox.Ok)
+        property var okButton: buttons.standardButton(DialogButtonBox.Ok)
 
         Component.onCompleted: sync.findExistingLibraries()
     }

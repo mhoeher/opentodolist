@@ -32,7 +32,7 @@ NewWebDAVAccountPageForm {
     QtObject {
         id: d
 
-        property AbstractButton okButton: null
+        property var okButton: null
         property bool validated: false
     }
 
@@ -43,7 +43,20 @@ NewWebDAVAccountPageForm {
             if (!/https?:\/\//i.exec(url)) {
                 url = "https://" + url;
             }
-            dav.serverType = type;
+            switch (account.type) {
+            case OTL.Account.NextCloud:
+                dav.serverType = OTL.WebDAVSynchronizer.NextCloud;
+                break;
+            case OTL.Account.OwnCloud:
+                dav.serverType = OTL.WebDAVSynchronizer.OwnCloud;
+                break;
+            case OTL.Account.WebDAV:
+                dav.serverType = OTL.WebDAVSynchronizer.Generic;
+                break;
+            default:
+                console.error("Unhandled account type", account.type);
+                return;
+            }
             dav.url = url;
             dav.username = usernameEdit.text;
             dav.password = passwordEdit.text;
