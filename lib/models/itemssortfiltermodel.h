@@ -7,10 +7,6 @@
 #include <QSortFilterProxyModel>
 #include <QUuid>
 
-class Item;
-class Task;
-class Todo;
-
 class ItemsSortFilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT

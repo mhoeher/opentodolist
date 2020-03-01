@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.0
 
 import OpenTodoList 1.0 as OTL
 
@@ -7,6 +8,7 @@ import "../Components"
 import "../Windows"
 import "../Widgets"
 import "../Utils"
+import "../Fonts"
 
 ItemPage {
     id: page
@@ -56,6 +58,10 @@ ItemPage {
         onAccepted: page.closePage()
     }
 
+    DeleteItemDialog {
+        id: confirmDeletePageDialog
+    }
+
     DateSelectionDialog {
         id: dueDateSelectionDialog
         onAccepted: page.item.dueTo = selectedDate
@@ -87,10 +93,122 @@ ItemPage {
                 width: parent.width
             }
 
+            RowLayout {
+                width: parent.width
+
+                TabBar {
+                    id: pageTabBar
+                    Layout.fillWidth: true
+                    clip: true
+
+                    TabButton {
+                        id: mainPageTabButton
+
+                        text: qsTr("Main Page")
+                        width: implicitWidth
+                    }
+
+                    Repeater {
+                        model: OTL.ItemsSortFilterModel {
+                            id: pagesModel
+
+                            sortRole: OTL.ItemsModel.WeightRole
+                            sourceModel: OTL.ItemsModel {
+                                cache: OTL.Application.cache
+                                parentItem: page.item.uid
+                                onCountChanged: {
+                                    var lastPage = itemNotesEditor.lastPageCreated;
+                                    if (lastPage !== null) {
+                                        for (var i = 0; i < count; ++i) {
+                                            var idx = index(i, 0);
+                                            var modelPage = data(idx, OTL.ItemsModel.ItemRole);
+                                            if (modelPage.uid === lastPage.uid) {
+                                                pageTabBar.setCurrentIndex(i + 1);
+                                                itemNotesEditor.lastPageCreated = null;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        delegate: TabButton {
+                            text: title
+                            width: implicitWidth
+                        }
+                    }
+                }
+                ToolButton {
+                    symbol: Icons.faChevronDown
+                    visible: pageTabBar.contentWidth > pageTabBar.width
+
+                    onClicked: pageMenu.popup()
+
+                    Menu {
+                        id: pageMenu
+
+                        modal: true
+
+                        MenuItem {
+                            text: mainPageTabButton.text
+                            onClicked: pageTabBar.setCurrentIndex(0)
+                        }
+
+                        Repeater {
+                            model: pagesModel
+                            delegate: MenuItem {
+                                text: title
+                                onTriggered: pageTabBar.setCurrentIndex(index + 1)
+                            }
+                        }
+                    }
+                }
+                ToolButton {
+                    symbol: Icons.faPlus
+                    onClicked: {
+                        var args = {
+                            "title": qsTr("New Page")
+                        };
+
+                        var notePage = OTL.Application.addNotePage(
+                                    page.library, page.item, args);
+                        itemNotesEditor.lastPageCreated = notePage;
+                    }
+                }
+            }
+
             ItemNotesEditor {
                 id: itemNotesEditor
-                item: page.item
+
+                property OTL.ComplexItem editingItem: {
+                    if (pageTabBar.currentIndex === 0) {
+                        return page.item;
+                    } else {
+                        return pagesModel.data(
+                                    pagesModel.index(
+                                        pageTabBar.currentIndex - 1, 0),
+                                    OTL.ItemsModel.ItemRole);
+                    }
+                }
+                property OTL.NotePage lastPageCreated: null
+
                 width: parent.width
+                extraButton.visible: pageTabBar.currentIndex > 0
+                extraButton.onClicked: {
+                    renameItemDialog.renameItem(editingItem);
+                }
+                extraButton2.visible: pageTabBar.currentIndex > 0
+                extraButton2.onClicked: {
+                    confirmDeletePageDialog.deleteItem(editingItem);
+                }
+
+
+                onEditingItemChanged: {
+                    // Indirection: Make sure we save before changing item to be edited.
+                    finishEditing();
+                    item = editingItem;
+                }
+                Component.onCompleted: item = editingItem
             }
 
             Attachments {

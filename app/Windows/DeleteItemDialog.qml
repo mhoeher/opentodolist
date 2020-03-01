@@ -49,6 +49,10 @@ CenteredDialog {
                                                    "to delete the note " +
                                                    "<strong>%1</strong>? This " +
                                                    "cannot be undone.")
+        readonly property string deleteNotePage: qsTr("Do you really want " +
+                                                     "to delete the page " +
+                                                     "<strong>%1</strong>? This " +
+                                                     "cannot be undone.")
     }
 
     Label {
@@ -71,6 +75,9 @@ CenteredDialog {
                     break;
                 case "Note":
                     msg = d.deleteNote;
+                    break;
+                case "NotePage":
+                    msg = d.deleteNotePage;
                     break;
                 default:
                     console.debug("Warning: Unhandled item type " +

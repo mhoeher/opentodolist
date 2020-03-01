@@ -102,9 +102,12 @@ android {
 
 
 TRANSLATIONS += \
-    translations/opentodolist_en.ts \
     translations/opentodolist_de.ts \
-    translations/opentodolist_fr.ts
+    translations/opentodolist_en.ts \
+    translations/opentodolist_es.ts \
+    translations/opentodolist_fr.ts \
+    translations/opentodolist_nl.ts \
+    translations/opentodolist_tr.ts \
 
 QM_FILES_RESOURCE_PREFIX = /translations
 

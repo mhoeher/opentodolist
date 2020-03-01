@@ -6,10 +6,6 @@
 #include <QObject>
 #include <QPointer>
 
-
-class TodoList;
-class Task;
-
 /**
  * @brief A single todo inside a todo list.
  *

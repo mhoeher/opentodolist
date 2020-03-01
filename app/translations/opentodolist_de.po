@@ -279,6 +279,14 @@ msgstr ""
 "Soll die Notiz <strong>%1</strong> wirklich gelöscht werden? Diese Aktion "
 "kann nicht rückgängig gemacht werden."
 
+#: ../Windows/DeleteItemDialog.qml:52
+#, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the page <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+
 #: ../Windows/DeleteLibraryDialog.qml:19
 #, fuzzy
 msgctxt "DeleteLibraryDialog|"
@@ -390,13 +398,13 @@ msgctxt "ItemDueDateEditor|"
 msgid "Due on"
 msgstr "Fällig zum"
 
-#: ../Widgets/ItemNotesEditor.qml:28
+#: ../Widgets/ItemNotesEditor.qml:31
 #, fuzzy
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notizen"
 
-#: ../Widgets/ItemNotesEditor.qml:60
+#: ../Widgets/ItemNotesEditor.qml:80
 #, fuzzy
 msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
@@ -525,37 +533,37 @@ msgstr ""
 "href='#todolist'>Aufgabenlisten</a> oder <a href='#image'>Bildern</a> "
 "befüllt werden."
 
-#: ../Pages/LibraryPage.qml:408
+#: ../Pages/LibraryPage.qml:403
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Sortierung"
 
-#: ../Pages/LibraryPage.qml:412
+#: ../Pages/LibraryPage.qml:407
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manuell"
 
-#: ../Pages/LibraryPage.qml:419
+#: ../Pages/LibraryPage.qml:414
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Titel"
 
-#: ../Pages/LibraryPage.qml:426
+#: ../Pages/LibraryPage.qml:421
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Fällig Am"
 
-#: ../Pages/LibraryPage.qml:433
+#: ../Pages/LibraryPage.qml:428
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Angelegt Am"
 
-#: ../Pages/LibraryPage.qml:440
+#: ../Pages/LibraryPage.qml:435
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Updated At"
@@ -597,115 +605,121 @@ msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Windows/MainWindow.qml:190
+#: ../Windows/MainWindow.qml:91
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Synchronizing library..."
+msgstr "Synchronisation der Bibliothek läuft..."
+
+#: ../Windows/MainWindow.qml:205
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: ../Windows/MainWindow.qml:201
+#: ../Windows/MainWindow.qml:216
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Color"
 msgstr "Farbe"
 
-#: ../Windows/MainWindow.qml:212
+#: ../Windows/MainWindow.qml:227
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Add Tag"
 msgstr "Neues Schlagwort hinzufügen"
 
-#: ../Windows/MainWindow.qml:219
+#: ../Windows/MainWindow.qml:234
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Attach File"
 msgstr "Datei anhängen"
 
-#: ../Windows/MainWindow.qml:228
+#: ../Windows/MainWindow.qml:243
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Search"
 msgstr "Suchen"
 
-#: ../Windows/MainWindow.qml:235
+#: ../Windows/MainWindow.qml:250
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ../Windows/MainWindow.qml:243
+#: ../Windows/MainWindow.qml:258
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Set Due Date"
 msgstr "Fällig Am"
 
-#: ../Windows/MainWindow.qml:251
+#: ../Windows/MainWindow.qml:266
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../Windows/MainWindow.qml:289
+#: ../Windows/MainWindow.qml:304
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:305
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Ctrl+,"
 msgstr "Ctrl+,"
 
-#: ../Windows/MainWindow.qml:297
+#: ../Windows/MainWindow.qml:312
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Library"
 msgstr "Neue &Bibliothek"
 
-#: ../Windows/MainWindow.qml:308
+#: ../Windows/MainWindow.qml:323
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Note"
 msgstr "Neue &Notiz"
 
-#: ../Windows/MainWindow.qml:316
+#: ../Windows/MainWindow.qml:331
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Todo List"
 msgstr "Neue &Aufgabenliste"
 
-#: ../Windows/MainWindow.qml:324
+#: ../Windows/MainWindow.qml:339
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Image"
 msgstr "Neues B&ild"
 
-#: ../Windows/MainWindow.qml:332
+#: ../Windows/MainWindow.qml:347
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "&Quit"
 msgstr "B&eenden"
 
-#: ../Windows/MainWindow.qml:340
+#: ../Windows/MainWindow.qml:355
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "&Find"
 msgstr "&Suche"
 
-#: ../Windows/MainWindow.qml:367
+#: ../Windows/MainWindow.qml:382
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
 msgstr "Öffne zuletzt &erzeugten Eintrag"
 
-#: ../Windows/MainWindow.qml:375
+#: ../Windows/MainWindow.qml:390
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Öffne die &linke Seitenleiste"
 
-#: ../Windows/MainWindow.qml:497
+#: ../Windows/MainWindow.qml:512
 #, fuzzy
 msgctxt "MainWindow|"
 msgid ""
@@ -938,6 +952,16 @@ msgstr ""
 "Kann keine Verbindung zum Server aufbauen. Bitte den Benutzernamen, das "
 "Passwort sowie die Adresse des Servers überprüfen und erneut versuchen."
 
+#: ../Pages/NotePage.qml:107
+msgctxt "NotePage|"
+msgid "Main Page"
+msgstr ""
+
+#: ../Pages/NotePage.qml:170
+msgctxt "NotePage|"
+msgid "New Page"
+msgstr ""
+
 #: ../Windows/OpenFileDialog.qml:18
 #, fuzzy
 msgctxt "OpenFileDialog|"
@@ -974,43 +998,43 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Bibliotheksnamen eingeben..."
 
-#: ../Pages/ScheduleViewPage.qml:71
+#: ../Pages/ScheduleViewPage.qml:76
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Überfällig"
 
-#: ../Pages/ScheduleViewPage.qml:127
+#: ../Pages/ScheduleViewPage.qml:132
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Heute"
 
-#: ../Pages/ScheduleViewPage.qml:128
+#: ../Pages/ScheduleViewPage.qml:133
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Morgen"
 
-#: ../Pages/ScheduleViewPage.qml:132
+#: ../Pages/ScheduleViewPage.qml:137
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Später in dieser Woche"
 
-#: ../Pages/ScheduleViewPage.qml:134
+#: ../Pages/ScheduleViewPage.qml:139
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Nächste Woche"
 
-#: ../Pages/ScheduleViewPage.qml:135
+#: ../Pages/ScheduleViewPage.qml:140
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Geplant für später"
 
-#: ../Pages/ScheduleViewPage.qml:251
+#: ../Pages/ScheduleViewPage.qml:256
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
@@ -1063,12 +1087,6 @@ msgstr "Ignorieren"
 msgctxt "SyncErrorNotificationBar|"
 msgid "View"
 msgstr "Überprüfen"
-
-#: ../Widgets/SyncIndicatorBar.qml:63
-#, fuzzy
-msgctxt "SyncIndicatorBar|"
-msgid "Synchronizing library..."
-msgstr "Synchronisation der Bibliothek läuft..."
 
 #: ../Widgets/TagsEditor.qml:34
 #, fuzzy

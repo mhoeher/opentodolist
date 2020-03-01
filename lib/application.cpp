@@ -19,6 +19,7 @@
 
 #include "datamodel/image.h"
 #include "datamodel/note.h"
+#include "datamodel/notepage.h"
 #include "datamodel/task.h"
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
@@ -797,6 +798,30 @@ Note *Application::addNote(Library *library, QVariantMap properties)
     return note;
 }
 
+NotePage *Application::addNotePage(Library *library, Note *note, QVariantMap properties)
+{
+    NotePage *page = nullptr;
+    if (library != nullptr && note != nullptr) {
+        if (library->isValid()) {
+            QDir dir(library->newItemLocation());
+            dir.mkpath(".");
+            page = new NotePage(dir);
+        } else {
+            page = new NotePage();
+        }
+        for (auto property : properties.keys()) {
+            auto value = properties.value(property);
+            page->setProperty(property.toUtf8(), value);
+        }
+        page->setNoteUid(note->uid());
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(page, InsertOrUpdateItemsQuery::CreateNewItem);
+        m_cache->run(q);
+        page->setCache(m_cache);
+    }
+    return page;
+}
+
 Image* Application::addImage(Library *library, QVariantMap properties)
 {
     Image *image = nullptr;
@@ -1267,7 +1292,8 @@ void Application::runSyncForLibrary(T library)
             m_syncErrors.remove(library->directory());
             emit syncErrorsChanged();
             auto job = new SyncJob(library->directory(), account);
-            connect(qApp, &QCoreApplication::aboutToQuit, job, &SyncJob::stop);
+            connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, job,
+                    &SyncJob::stop);
             connect(job, &SyncJob::syncFinished,
                     this, &Application::onLibrarySyncFinished,
                     Qt::QueuedConnection);

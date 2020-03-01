@@ -6,6 +6,7 @@
 #include "datamodel/item.h"
 #include "datamodel/library.h"
 #include "datamodel/note.h"
+#include "datamodel/notepage.h"
 #include "datamodel/task.h"
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
@@ -48,6 +49,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<Item>(uri, 1, 0, "Item");
   qmlRegisterType<Library>(uri, 1, 0, "Library");
   qmlRegisterType<Note>(uri, 1, 0, "Note");
+  qmlRegisterType<NotePage>(uri, 1, 0, "NotePage");
   qmlRegisterType<Task>(uri, 1, 0, "Task");
   qmlRegisterType<Todo>(uri, 1, 0, "Todo");
   qmlRegisterType<TodoList>(uri, 1, 0, "TodoList");
