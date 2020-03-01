@@ -235,6 +235,11 @@
         <source>Do you really want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
+        <source>Do you really want to delete the page &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DeleteLibraryDialog</name>
@@ -340,12 +345,12 @@
 <context>
     <name>ItemNotesEditor</name>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="28"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="31"/>
         <source>Notes</source>
         <translation type="unfinished">Notes sur les</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="60"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="80"/>
         <source>No notes added yet - click here to add some.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -840,6 +845,19 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="111"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NotePage</name>
+    <message>
+        <location filename="../Pages/NotePage.qml" line="107"/>
+        <source>Main Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NotePage.qml" line="170"/>
+        <source>New Page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
