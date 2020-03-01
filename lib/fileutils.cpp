@@ -28,12 +28,12 @@ bool FileUtils::isSubDirOrFile(const QString &dir, const QString &subDir)
  */
 QString FileUtils::toPersistedPath(const QString &path)
 {
-    auto result = path;
     auto libsLocation = Library::defaultLibrariesLocation();
-    if (result.startsWith(libsLocation)) {
-        result = "<APPROOT>" + result.mid(libsLocation.length());
+    if (path.startsWith(libsLocation)) {
+        return "<APPROOT>" + path.mid(libsLocation.length());
+    } else {
+        return path;
     }
-    return result;
 }
 
 

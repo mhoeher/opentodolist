@@ -2,6 +2,7 @@
 
 #include "image.h"
 #include "note.h"
+#include "notepage.h"
 #include "todolist.h"
 #include "todo.h"
 #include "task.h"
@@ -427,6 +428,8 @@ Item* Item::createItem(QString itemType, QObject* parent)
         return new Image(parent);
     } else if (itemType == "Note") {
         return new Note(parent);
+    } else if (itemType == "NotePage") {
+        return new NotePage(parent);
     } else if (itemType == "TodoList") {
         return new TodoList(parent);
     } else if (itemType == "Todo") {
@@ -471,15 +474,17 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
     Item *result = nullptr;
     if (entry.valid) {
         result = Item::createItem(entry.data.toMap(), parent);
-        ItemChangedInhibitor inhibitor(result);
-        result->applyCalculatedProperties(entry.calculatedData.toMap());
-        auto meta = entry.metaData.toMap();
-        auto path = meta["filename"].toString();
-        path = FileUtils::fromPersistedPath(path);
-        result->setFilename(path);
-        auto topLevelItem = qobject_cast<TopLevelItem*>(result);
-        if (topLevelItem != nullptr) {
-            topLevelItem->setLibraryId(entry.parentId);
+        if (result) {
+            ItemChangedInhibitor inhibitor(result);
+            result->applyCalculatedProperties(entry.calculatedData.toMap());
+            auto meta = entry.metaData.toMap();
+            auto path = meta["filename"].toString();
+            path = FileUtils::fromPersistedPath(path);
+            result->setFilename(path);
+            auto topLevelItem = qobject_cast<TopLevelItem *>(result);
+            if (topLevelItem != nullptr) {
+                topLevelItem->setLibraryId(entry.parentId);
+            }
         }
     }
     return result;

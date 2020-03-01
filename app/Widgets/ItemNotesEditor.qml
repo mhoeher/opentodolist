@@ -15,11 +15,14 @@ Column {
 
     property OTL.ComplexItem item: OTL.ComplexItem {}
     readonly property bool editing: !!loader.item
+    property alias extraButton: extraButton
+    property alias extraButton2: extraButton2
 
     function finishEditing() {
-        loader.item.doneEditing();
+        if (loader.item) {
+            loader.item.doneEditing();
+        }
     }
-
 
     RowLayout {
         width: parent.width
@@ -30,7 +33,19 @@ Column {
         }
 
         ToolButton {
+            id: extraButton2
+            visible: false
+            symbol: Icons.faTrash
+        }
+
+        ToolButton {
+            id: extraButton
+            visible: false
             symbol: Icons.faPencilAlt
+        }
+
+        ToolButton {
+            symbol: Icons.faICursor
             onClicked: mouseArea.clicked(undefined)
         }
     }
@@ -46,20 +61,25 @@ Column {
             width: parent.width
             height: childrenRect.height
             implicitHeight: height
-            //onClicked: page.openPage(notesEditor, {"item": item})
             onClicked: loader.sourceComponent = notesEditor
 
             MarkdownLabel {
+                id: markdownLabel
+
                 width: parent.width
                 textFormat: Text.RichText
-                markdown: page.item.notes
+                markdown: if (root.item) {
+                              return root.item.notes
+                          } else {
+                              return ""
+                          }
             }
 
             Label {
                 width: parent.width
                 text: qsTr("No notes added yet - click here to add some.")
                 Material.foreground: Material.Grey
-                visible: page.item.notes === ""
+                visible: root.item.notes === ""
             }
         }
     }

@@ -33,15 +33,16 @@ QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/
 
 SOURCES += \
     application.cpp \
-    datamodel/library.cpp \
-    datamodel/item.cpp \
     datamodel/complexitem.cpp \
-    datamodel/toplevelitem.cpp \
-    datamodel/note.cpp \
     datamodel/image.cpp \
+    datamodel/item.cpp \
+    datamodel/library.cpp \
+    datamodel/note.cpp \
+    datamodel/notepage.cpp \
     datamodel/task.cpp \
     datamodel/todo.cpp \
     datamodel/todolist.cpp \
+    datamodel/toplevelitem.cpp \
     datastorage/cache.cpp \
     datastorage/deleteitemsquery.cpp \
     datastorage/getitemquery.cpp \
@@ -51,36 +52,38 @@ SOURCES += \
     datastorage/insertorupdateitemsquery.cpp \
     datastorage/itemsquery.cpp \
     datastorage/librariesitemsquery.cpp \
-    models/librariesmodel.cpp \
-    opentodolistqmlextensionsplugin.cpp \
-    fileutils.cpp \
     datastorage/libraryloader.cpp \
+    fileutils.cpp \
     models/itemsmodel.cpp \
     models/itemssortfiltermodel.cpp \
-    utils/directorywatcher.cpp \
-    utils/keystore.cpp \
-    sync/synchronizer.cpp \
-    utils/jsonutils.cpp \
+    models/librariesmodel.cpp \
+    opentodolistqmlextensionsplugin.cpp \
     sync/account.cpp \
-    sync/webdavsynchronizer.cpp \
-    sync/webdavclient.cpp \
-    sync/syncrunner.cpp \
+    sync/synchronizer.cpp \
     sync/syncjob.cpp \
+    sync/syncrunner.cpp \
+    sync/webdavclient.cpp \
+    sync/webdavsynchronizer.cpp \
+    utils/directorywatcher.cpp \
+    utils/jsonutils.cpp \
+    utils/keystore.cpp \
     utils/syntaxhighlighter.cpp \
     utils/translations.cpp \
-    utils/updateservice.cpp
+    utils/updateservice.cpp \
 
 HEADERS += \
+    abstractitemmodel.h \
     application.h \
-    datamodel/library.h \
-    datamodel/item.h \
     datamodel/complexitem.h \
-    datamodel/toplevelitem.h \
-    datamodel/note.h \
     datamodel/image.h \
+    datamodel/item.h \
+    datamodel/library.h \
+    datamodel/note.h \
+    datamodel/notepage.h \
     datamodel/task.h \
     datamodel/todo.h \
     datamodel/todolist.h \
+    datamodel/toplevelitem.h \
     datastorage/cache.h \
     datastorage/deleteitemsquery.h \
     datastorage/getitemquery.h \
@@ -90,25 +93,24 @@ HEADERS += \
     datastorage/insertorupdateitemsquery.h \
     datastorage/itemsquery.h \
     datastorage/librariesitemsquery.h \
-    models/librariesmodel.h \
-    opentodolistqmlextensionsplugin.h \
-    fileutils.h \
-    abstractitemmodel.h \
     datastorage/libraryloader.h \
+    fileutils.h \
     models/itemsmodel.h \
     models/itemssortfiltermodel.h \
-    utils/directorywatcher.h \
-    utils/keystore.h \
-    sync/synchronizer.h \
-    utils/jsonutils.h \
+    models/librariesmodel.h \
+    opentodolistqmlextensionsplugin.h \
     sync/account.h \
-    sync/webdavsynchronizer.h \
-    sync/webdavclient.h \
-    sync/syncrunner.h \
+    sync/synchronizer.h \
     sync/syncjob.h \
+    sync/syncrunner.h \
+    sync/webdavclient.h \
+    sync/webdavsynchronizer.h \
+    utils/directorywatcher.h \
+    utils/jsonutils.h \
+    utils/keystore.h \
     utils/syntaxhighlighter.h \
     utils/translations.h \
-    utils/updateservice.h
+    utils/updateservice.h \
 
 
 # Make git version available in code

@@ -22,6 +22,7 @@ class DirectoryWatcher;
 class Image;
 class KeyStore;
 class Note;
+class NotePage;
 class Task;
 class Todo;
 class TodoList;
@@ -67,6 +68,7 @@ public:
                                                      const SynchronizerExistingLibrary &library);
     Q_INVOKABLE void deleteLibrary(Library *library);
     Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
+    Q_INVOKABLE NotePage *addNotePage(Library *library, Note *note, QVariantMap properties);
     Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
     Q_INVOKABLE TodoList* addTodoList(Library *library, QVariantMap properties);
     Q_INVOKABLE Todo* addTodo(Library *library, TodoList* todoList, QVariantMap properties);

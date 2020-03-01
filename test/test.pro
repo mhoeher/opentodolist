@@ -24,3 +24,4 @@ SUBDIRS += library
 SUBDIRS += synchronizer
 SUBDIRS += todo
 SUBDIRS += webdavsynchronizer
+SUBDIRS += notepage

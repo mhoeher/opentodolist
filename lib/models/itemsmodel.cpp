@@ -6,6 +6,7 @@
 #include "datamodel/complexitem.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"
+#include "datamodel/notepage.h"
 
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
@@ -509,6 +510,16 @@ std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn
                             if (itemMatches(task, words)) {
                                 result = true;
                                 break;
+                            }
+                        }
+                    } else {
+                        auto note = item.dynamicCast<Note>();
+                        if (note) {
+                            for (auto page : query->childrenOf(note->uid())) {
+                                if (itemMatches(page, words)) {
+                                    result = true;
+                                    break;
+                                }
                             }
                         }
                     }
