@@ -40,6 +40,15 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.20.0" date="2020-03-02">
+      <p>This release includes the following changes:</p>
+      <ul>
+          <li>
+              #197: It is now possible to add additional pages of text to a note (hence, making
+              notes a kind of notebook instead).
+          </li>
+      </ul>
+    </release>
     <release version="3.19.1" date="2020-02-17">
       <p>This release includes the following changes:</p>
       <ul>
