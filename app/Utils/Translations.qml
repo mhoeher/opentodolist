@@ -22,6 +22,10 @@ Item {
             name: qsTr("English")
         }
         ListElement {
+            key: "it"
+            name: qsTr("Italian")
+        }
+        ListElement {
             key: "es"
             name: qsTr("Spanish")
         }
