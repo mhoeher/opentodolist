@@ -2,6 +2,12 @@
 
 set -e
 
+if [ -n "$CI" ]; then
+    if [ ! -f /bin/find ]; then
+        dnf install -y --nogpgcheck findutils
+    fi
+fi
+
 if [ "$TARGET" == win64 ]; then
     BUILD_DIR=build-win64
     DEPLOY_DIR=deploy-win64
@@ -87,6 +93,11 @@ fi
     --plugins bearer \
     --mingw-arch $MXE_DIR \
     $DEPLOY_DIR/bin/
+
+# Strip debug symbols to reduce file size:
+find $DEPLOY_DIR/bin/ \
+    -name '*.exe' -or -name '*.dll' \
+    -exec mingw-strip {} \;
 
 cp templates/nsis/$INSTALLER_FILE $DEPLOY_DIR/
 cd $DEPLOY_DIR
