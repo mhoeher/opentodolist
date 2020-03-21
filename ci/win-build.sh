@@ -2,6 +2,12 @@
 
 set -e
 
+if [ -n "$CI" ]; then
+    if [ ! -f /bin/find ]; then
+        dnf install -y --nogpgcheck findutils
+    fi
+fi
+
 if [ "$TARGET" == win64 ]; then
     BUILD_DIR=build-win64
     DEPLOY_DIR=deploy-win64

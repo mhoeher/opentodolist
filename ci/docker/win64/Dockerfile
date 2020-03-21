@@ -4,6 +4,7 @@ RUN \
 \
     dnf install -y --nogpgcheck \
         cmake \
+        findutils \
         make \
         ninja-build \
         python3 \
