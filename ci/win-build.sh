@@ -88,6 +88,11 @@ fi
     --mingw-arch $MXE_DIR \
     $DEPLOY_DIR/bin/
 
+# Strip debug symbols to reduce file size:
+find $DEPLOY_DIR/bin/ \
+    -name '*.exe' -or -name '*.dll' \
+    -exec mingw-strip {} \;
+
 cp templates/nsis/$INSTALLER_FILE $DEPLOY_DIR/
 cd $DEPLOY_DIR
 makensis $INSTALLER_FILE
