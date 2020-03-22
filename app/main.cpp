@@ -31,20 +31,6 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    
-#ifdef OPENTODOLIST_IS_APPIMAGE
-    // In the current AppImage build, we do not deploy the
-    // Qt wayland plugin. Hence, fall back to x11/xcb.
-    auto platform = qgetenv("QT_QPA_PLATFORM");
-    if (platform == "wayland") {
-        qputenv("QT_QPA_PLATFORM", "xcb");
-    }
-#endif
-
-    // Let the app decide which scale factor to apply
-#ifdef Q_OS_ANDROID
-    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-#endif
 
     //qSetMessagePattern("%{file}(%{line}): %{message}");
 #ifdef OPENTODOLIST_DEBUG
@@ -163,7 +149,18 @@ int main(int argc, char *argv[])
 #else
     engine.rootContext()->setContextProperty("isDebugBuild", false);
 #endif
-    engine.load(QUrl(qmlBase + "main.qml"));
+
+    auto url = QUrl(qmlBase + "main.qml");
+
+    QObject::connect(
+            &engine, &QQmlApplicationEngine::objectCreated, &app,
+            [url](QObject *obj, const QUrl &objUrl) {
+                if (!obj && url == objUrl)
+                    QCoreApplication::exit(-1);
+            },
+            Qt::QueuedConnection);
+
+    engine.load(url);
 
     // Print diagnostic information
     qWarning() << "System ABI:" << QSysInfo::buildAbi();
