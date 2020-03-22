@@ -20,6 +20,7 @@ appimage.commands = \
         AppImageBuild/usr/bin/OpenTodoList \
         -qmldir=$$PWD/app \
         -qmake=$$QMAKE_QMAKE \
+        -extra-plugins=platforms/libqwayland-generic.so,platformthemes,platforminputcontexts \
         -appimage && \
     mv OpenTodoList-*-x86_64.AppImage OpenTodoList-x86_64.AppImage
 
