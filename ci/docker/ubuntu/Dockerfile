@@ -20,6 +20,7 @@ RUN \
         libxkbcommon-dev \
         libgl1-mesa-dev \
         libfuse2 \
+        libxcomposite1 \
         git \
         cmake \
         libssl-dev \
