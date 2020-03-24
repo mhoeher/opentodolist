@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.10
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
 import Qt.labs.settings 1.0
@@ -104,7 +104,7 @@ Page {
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(defaultFontPixelSize, 5) * 30;
+            var minWidth = Math.max(fontMetrics.height, 5) * 30;
             var result = page.width / minWidth;
             result = Math.ceil(result);
             result = Math.max(result, 1);
@@ -119,6 +119,11 @@ Page {
         }
 
     }
+
+    FontMetrics {
+        id: fontMetrics
+    }
+
 
     RenameLibraryDialog { id: renameLibraryDialog }
     DeleteLibraryDialog { id: deleteLibraryDialog }

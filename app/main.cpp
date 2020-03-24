@@ -141,8 +141,6 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty(
                 "applicationVersion", QVariant(OPENTODOLIST_VERSION));
     engine.rootContext()->setContextProperty(
-                "defaultFontPixelSize", QFontInfo(QFont()).pixelSize());
-    engine.rootContext()->setContextProperty(
                 "qmlBaseDirectory", qmlBase);
 #ifdef OPENTODOLIST_DEBUG
     engine.rootContext()->setContextProperty("isDebugBuild", true);
