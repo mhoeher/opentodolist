@@ -80,6 +80,8 @@ public:
 
     Q_INVOKABLE QVariant find3rdPartyInfos() const;
 
+    Q_INVOKABLE bool saveTextToFile(const QUrl &fileUrl, const QString &text) const;
+
     Q_INVOKABLE QString urlToLocalFile(const QUrl &url) const;
     Q_INVOKABLE QUrl localFileToUrl(const QString &localFile) const;
     Q_INVOKABLE QUrl cleanPath(const QUrl &url) const;
