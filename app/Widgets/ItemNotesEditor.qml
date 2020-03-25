@@ -121,6 +121,9 @@ Column {
             qsTr("All files") + " (*)"
         ]
         fileMode: FileDialog.SaveFile
-        onAccepted: OTL.Application.saveTextToFile(file, root.item.notes)
+        onAccepted: OTL.Application.saveTextToFile(
+                        file,
+                        "# " + root.item.title + "\n\n" + root.item.notes
+                        )
     }
 }
