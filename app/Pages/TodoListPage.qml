@@ -13,12 +13,18 @@ import "../Fonts"
 import "../Windows"
 import "../Widgets"
 import "../Utils"
+import "../Menues"
 
 ItemPage {
     id: page
 
     property var library: null
     property OTL.TodoList item: OTL.TodoList {}
+    property Menu pageMenu: LibraryPageMenu {
+        x: page.width
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
+    }
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -187,120 +193,136 @@ ItemPage {
         item: page.item
         padding: 10
 
-        Column {
+        Flickable {
+            id: flickable
             width: scrollView.contentItem.width
-            spacing: 20
+            contentWidth: width
+            contentHeight: column.height
 
-            ItemPageHeader {
-                counter: undoneTodos.count
-                item: page.item
-            }
+            Column {
+                id: column
 
-            TagsEditor {
-                id: tagsEditor
-                item: page.item
-                library: page.library
-                width: parent.width
-            }
+                width: scrollView.contentItem.width
+                spacing: 20
 
-            ItemNotesEditor {
-                id: itemNotesEditor
-                item: page.item
-                width: parent.width
-            }
+                ItemPageHeader {
+                    counter: undoneTodos.count
+                    item: page.item
+                }
 
-            TodosWidget {
-                id: undoneTodosWidget
-                width: parent.width
-                model: undoneTodos
-                title: qsTr("Todos")
-                symbol: {
-                    switch (settings.sortTodosBy) {
-                    case "title":
-                        return Icons.faSortAlphaDown;
-                    case "dueTo":
-                        return Icons.faSortNumericDown;
-                    case "createdAt":
-                        return Icons.faSortNumericDown;
-                    case "updatedAt":
-                        return Icons.faSortNumericDown;
-                    case "weight":
-                        // fall through
-                    default:
-                        return Icons.faSort;
+                TagsEditor {
+                    id: tagsEditor
+                    item: page.item
+                    library: page.library
+                    width: parent.width
+                }
+
+                ItemNotesEditor {
+                    id: itemNotesEditor
+                    item: page.item
+                    width: parent.width
+                }
+
+                TodosWidget {
+                    id: undoneTodosWidget
+                    width: parent.width
+                    model: undoneTodos
+                    title: qsTr("Todos")
+                    symbol: {
+                        switch (settings.sortTodosBy) {
+                        case "title":
+                            return Icons.faSortAlphaDown;
+                        case "dueTo":
+                            return Icons.faSortNumericDown;
+                        case "createdAt":
+                            return Icons.faSortNumericDown;
+                        case "updatedAt":
+                            return Icons.faSortNumericDown;
+                        case "weight":
+                            // fall through
+                        default:
+                            return Icons.faSort;
+                        }
+                    }
+                    allowCreatingNewItems: true
+                    newItemPlaceholderText: qsTr("Add new todo...")
+                    allowSorting: settings.sortTodosBy === "weight"
+                    allowSettingDueDate: true
+                    onHeaderButtonClicked: sortTodosByMenu.open()
+                    onTodoClicked: d.openTodo(todo)
+                    onCreateNewItem: {
+                        var properties = {
+                            "title": title,
+                        };
+                        if (args.dueTo) {
+                            properties.dueTo = args.dueTo
+                        }
+                        var todo = OTL.Application.addTodo(
+                                    page.library, page.item, properties);
+                        itemCreatedNotification.show(todo);
                     }
                 }
-                allowCreatingNewItems: true
-                newItemPlaceholderText: qsTr("Add new todo...")
-                allowSorting: settings.sortTodosBy === "weight"
-                allowSettingDueDate: true
-                onHeaderButtonClicked: sortTodosByMenu.open()
-                onTodoClicked: d.openTodo(todo)
-                onCreateNewItem: {
-                    var properties = {
-                        "title": title,
-                    };
-                    if (args.dueTo) {
-                        properties.dueTo = args.dueTo
+
+                Menu {
+                    id: sortTodosByMenu
+                    parent: undoneTodosWidget.headerItem
+                    MenuItem {
+                        text: qsTr("Manually")
+                        checked: settings.sortTodosBy === "weight"
+                        checkable: true
+                        onTriggered: settings.sortTodosBy = "weight"
                     }
-                    var todo = OTL.Application.addTodo(
-                                page.library, page.item, properties);
-                    itemCreatedNotification.show(todo);
+                    MenuItem {
+                        text: qsTr("Name")
+                        checked: settings.sortTodosBy === "title"
+                        checkable: true
+                        onTriggered: settings.sortTodosBy = "title"
+                    }
+                    MenuItem {
+                        text: qsTr("Due Date")
+                        checked: settings.sortTodosBy === "dueTo"
+                        checkable: true
+                        onTriggered: settings.sortTodosBy = "dueTo"
+                    }
+                    MenuItem {
+                        text: qsTr("Created At")
+                        checked: settings.sortTodosBy === "createdAt"
+                        checkable: true
+                        onTriggered: settings.sortTodosBy = "createdAt";
+                    }
+                    MenuItem {
+                        text: qsTr("Updated At")
+                        checked: settings.sortTodosBy === "updatedAt"
+                        checkable: true
+                        onTriggered: settings.sortTodosBy = "updatedAt";
+                    }
                 }
-            }
 
-            Menu {
-                id: sortTodosByMenu
-                parent: undoneTodosWidget.headerItem
-                MenuItem {
-                    text: qsTr("Manually")
-                    checked: settings.sortTodosBy === "weight"
-                    checkable: true
-                    onTriggered: settings.sortTodosBy = "weight"
+                TodosWidget {
+                    width: parent.width
+                    model: settings.showUndone ? doneTodos : null
+                    title: qsTr("Completed Todos")
+                    symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
+                    allowSorting: settings.sortTodosBy === "weight"
+                    onHeaderButtonClicked: settings.showUndone =
+                                           !settings.showUndone
+                    onTodoClicked: d.openTodo(todo)
                 }
-                MenuItem {
-                    text: qsTr("Name")
-                    checked: settings.sortTodosBy === "title"
-                    checkable: true
-                    onTriggered: settings.sortTodosBy = "title"
-                }
-                MenuItem {
-                    text: qsTr("Due Date")
-                    checked: settings.sortTodosBy === "dueTo"
-                    checkable: true
-                    onTriggered: settings.sortTodosBy = "dueTo"
-                }
-                MenuItem {
-                    text: qsTr("Created At")
-                    checked: settings.sortTodosBy === "createdAt"
-                    checkable: true
-                    onTriggered: settings.sortTodosBy = "createdAt";
-                }
-                MenuItem {
-                    text: qsTr("Updated At")
-                    checked: settings.sortTodosBy === "updatedAt"
-                    checkable: true
-                    onTriggered: settings.sortTodosBy = "updatedAt";
-                }
-            }
 
-            TodosWidget {
-                width: parent.width
-                model: settings.showUndone ? doneTodos : null
-                title: qsTr("Completed Todos")
-                symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
-                allowSorting: settings.sortTodosBy === "weight"
-                onHeaderButtonClicked: settings.showUndone =
-                                       !settings.showUndone
-                onTodoClicked: d.openTodo(todo)
-            }
-
-            Attachments {
-                id: attachments
-                item: page.item
-                width: parent.width
+                Attachments {
+                    id: attachments
+                    item: page.item
+                    width: parent.width
+                }
             }
         }
+    }
+
+    PullToRefreshOverlay {
+        anchors.fill: scrollView
+        refreshEnabled: page.library.hasSynchronizer
+        flickable: flickable
+        onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
     Pane {

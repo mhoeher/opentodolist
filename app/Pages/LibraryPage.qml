@@ -343,6 +343,13 @@ Page {
         }
     }    
 
+    PullToRefreshOverlay {
+        anchors.fill: scrollView
+        refreshEnabled: page.library.hasSynchronizer
+        flickable: grid
+        onRefresh: OTL.Application.syncLibrary(page.library)
+    }
+
     BackgroundLabel {
         visible: itemsModel.count === 0
         text: Markdown.stylesheet +

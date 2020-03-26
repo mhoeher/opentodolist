@@ -9,6 +9,7 @@ import "../Windows"
 import "../Widgets"
 import "../Utils"
 import "../Fonts"
+import "../Menues"
 
 ItemPage {
     id: page
@@ -22,6 +23,12 @@ ItemPage {
     property var goBack: itemNotesEditor.editing ? function() {
         itemNotesEditor.finishEditing();
     } : undefined
+
+    property Menu pageMenu: LibraryPageMenu {
+        x: page.width
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
+    }
     
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
@@ -78,146 +85,162 @@ ItemPage {
         item: page.item
         padding: 10
 
-        Column {
+        Flickable {
+            id: flickable
             width: scrollView.contentItem.width
-            spacing: 20
+            contentWidth: width
+            contentHeight: column.height
 
-            ItemPageHeader {
-                item: page.item
-            }
+            Column {
+                id: column
 
-            TagsEditor {
-                id: tagsEditor
-                item: page.item
-                library: page.library
-                width: parent.width
-            }
+                width: scrollView.contentItem.width
+                spacing: 20
 
-            RowLayout {
-                width: parent.width
+                ItemPageHeader {
+                    item: page.item
+                }
 
-                TabBar {
-                    id: pageTabBar
-                    Layout.fillWidth: true
-                    clip: true
+                TagsEditor {
+                    id: tagsEditor
+                    item: page.item
+                    library: page.library
+                    width: parent.width
+                }
 
-                    TabButton {
-                        id: mainPageTabButton
+                RowLayout {
+                    width: parent.width
 
-                        text: qsTr("Main Page")
-                        width: implicitWidth
-                    }
+                    TabBar {
+                        id: pageTabBar
+                        Layout.fillWidth: true
+                        clip: true
 
-                    Repeater {
-                        model: OTL.ItemsSortFilterModel {
-                            id: pagesModel
+                        TabButton {
+                            id: mainPageTabButton
 
-                            sortRole: OTL.ItemsModel.WeightRole
-                            sourceModel: OTL.ItemsModel {
-                                cache: OTL.Application.cache
-                                parentItem: page.item.uid
-                                onCountChanged: {
-                                    var lastPage = itemNotesEditor.lastPageCreated;
-                                    if (lastPage !== null) {
-                                        for (var i = 0; i < count; ++i) {
-                                            var idx = index(i, 0);
-                                            var modelPage = data(idx, OTL.ItemsModel.ItemRole);
-                                            if (modelPage.uid === lastPage.uid) {
-                                                pageTabBar.setCurrentIndex(i + 1);
-                                                itemNotesEditor.lastPageCreated = null;
-                                                break;
+                            text: qsTr("Main Page")
+                            width: implicitWidth
+                        }
+
+                        Repeater {
+                            model: OTL.ItemsSortFilterModel {
+                                id: pagesModel
+
+                                sortRole: OTL.ItemsModel.WeightRole
+                                sourceModel: OTL.ItemsModel {
+                                    cache: OTL.Application.cache
+                                    parentItem: page.item.uid
+                                    onCountChanged: {
+                                        var lastPage = itemNotesEditor.lastPageCreated;
+                                        if (lastPage !== null) {
+                                            for (var i = 0; i < count; ++i) {
+                                                var idx = index(i, 0);
+                                                var modelPage = data(idx, OTL.ItemsModel.ItemRole);
+                                                if (modelPage.uid === lastPage.uid) {
+                                                    pageTabBar.setCurrentIndex(i + 1);
+                                                    itemNotesEditor.lastPageCreated = null;
+                                                    break;
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                        }
-                        delegate: TabButton {
-                            text: title
-                            width: implicitWidth
-                        }
-                    }
-                }
-                ToolButton {
-                    symbol: Icons.faChevronDown
-                    visible: pageTabBar.contentWidth > pageTabBar.width
-
-                    onClicked: pageMenu.popup()
-
-                    Menu {
-                        id: pageMenu
-
-                        modal: true
-
-                        MenuItem {
-                            text: mainPageTabButton.text
-                            onClicked: pageTabBar.setCurrentIndex(0)
-                        }
-
-                        Repeater {
-                            model: pagesModel
-                            delegate: MenuItem {
+                            delegate: TabButton {
                                 text: title
-                                onTriggered: pageTabBar.setCurrentIndex(index + 1)
+                                width: implicitWidth
                             }
                         }
                     }
-                }
-                ToolButton {
-                    symbol: Icons.faPlus
-                    onClicked: {
-                        var args = {
-                            "title": qsTr("New Page")
-                        };
+                    ToolButton {
+                        symbol: Icons.faChevronDown
+                        visible: pageTabBar.contentWidth > pageTabBar.width
 
-                        var notePage = OTL.Application.addNotePage(
-                                    page.library, page.item, args);
-                        itemNotesEditor.lastPageCreated = notePage;
+                        onClicked: pageMenu.popup()
+
+                        Menu {
+                            id: pageMenu
+
+                            modal: true
+
+                            MenuItem {
+                                text: mainPageTabButton.text
+                                onClicked: pageTabBar.setCurrentIndex(0)
+                            }
+
+                            Repeater {
+                                model: pagesModel
+                                delegate: MenuItem {
+                                    text: title
+                                    onTriggered: pageTabBar.setCurrentIndex(index + 1)
+                                }
+                            }
+                        }
+                    }
+                    ToolButton {
+                        symbol: Icons.faPlus
+                        onClicked: {
+                            var args = {
+                                "title": qsTr("New Page")
+                            };
+
+                            var notePage = OTL.Application.addNotePage(
+                                        page.library, page.item, args);
+                            itemNotesEditor.lastPageCreated = notePage;
+                        }
                     }
                 }
-            }
 
-            ItemNotesEditor {
-                id: itemNotesEditor
+                ItemNotesEditor {
+                    id: itemNotesEditor
 
-                property OTL.ComplexItem editingItem: {
-                    if (pageTabBar.currentIndex === 0) {
-                        return page.item;
-                    } else {
-                        return pagesModel.data(
-                                    pagesModel.index(
-                                        pageTabBar.currentIndex - 1, 0),
-                                    OTL.ItemsModel.ItemRole);
+                    property OTL.ComplexItem editingItem: {
+                        if (pageTabBar.currentIndex === 0) {
+                            return page.item;
+                        } else {
+                            return pagesModel.data(
+                                        pagesModel.index(
+                                            pageTabBar.currentIndex - 1, 0),
+                                        OTL.ItemsModel.ItemRole);
+                        }
                     }
-                }
-                property OTL.NotePage lastPageCreated: null
+                    property OTL.NotePage lastPageCreated: null
 
-                width: parent.width
-                extraButton.visible: pageTabBar.currentIndex > 0
-                extraButton.onClicked: {
-                    renameItemDialog.renameItem(editingItem);
-                }
-                extraButton2.visible: pageTabBar.currentIndex > 0
-                extraButton2.onClicked: {
-                    confirmDeletePageDialog.deleteItem(editingItem);
-                }
+                    width: parent.width
+                    extraButton.visible: pageTabBar.currentIndex > 0
+                    extraButton.onClicked: {
+                        renameItemDialog.renameItem(editingItem);
+                    }
+                    extraButton2.visible: pageTabBar.currentIndex > 0
+                    extraButton2.onClicked: {
+                        confirmDeletePageDialog.deleteItem(editingItem);
+                    }
 
 
-                onEditingItemChanged: {
-                    // Indirection: Make sure we save before changing item to be edited.
-                    finishEditing();
-                    item = editingItem;
+                    onEditingItemChanged: {
+                        // Indirection: Make sure we save before changing item to be edited.
+                        finishEditing();
+                        item = editingItem;
+                    }
+                    Component.onCompleted: item = editingItem
                 }
-                Component.onCompleted: item = editingItem
+
+                Attachments {
+                    id: attachments
+                    item: page.item
+                    width: parent.width
+                }
+
             }
-
-            Attachments {
-                id: attachments
-                item: page.item
-                width: parent.width
-            }
-
         }
+    }
+
+    PullToRefreshOverlay {
+        anchors.fill: scrollView
+        refreshEnabled: page.library.hasSynchronizer
+        flickable: flickable
+        onRefresh: OTL.Application.syncLibrary(page.library)
     }
 }
 

@@ -7,6 +7,7 @@ import "../Components"
 import "../Windows"
 import "../Widgets"
 import "../Utils"
+import "../Menues"
 
 ItemPage {
     id: page
@@ -20,6 +21,12 @@ ItemPage {
     property var goBack: itemNotesEditor.editing ? function() {
         itemNotesEditor.finishEditing();
     } : undefined
+
+    property Menu pageMenu: LibraryPageMenu {
+        x: page.width
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
+    }
 
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
@@ -73,52 +80,69 @@ ItemPage {
         item: page.item
         padding: 10
 
-        Column {
-            width: scrollView.contentItem.width
-            spacing: 20
+        Flickable {
+            id: flickable
 
-            ItemPageHeader {
-                item: page.item
-            }
+            width: scrollView.width
+            contentWidth: width
+            contentHeight: column.height
 
-            TagsEditor {
-                id: tagsEditor
-                item: page.item
-                library: page.library
-                width: parent.width
-            }
+            Column {
+                id: column
+                width: flickable.width
+                spacing: 20
 
-            Frame {
-                width: parent.width
-                height: image.height + padding * 2
+                ItemPageHeader {
+                    item: page.item
+                }
 
-                Image {
-                    id: image
-
-                    source: item.imageUrl
+                TagsEditor {
+                    id: tagsEditor
+                    item: page.item
+                    library: page.library
                     width: parent.width
-                    height: parent.width * sourceSize.height / sourceSize.width
                 }
 
-                MouseArea {
-                    anchors.fill: image
-                    onClicked: Qt.openUrlExternally(item.imageUrl)
+                Frame {
+                    width: parent.width
+                    height: image.height + padding * 2
+
+                    Image {
+                        id: image
+
+                        source: item.imageUrl
+                        width: parent.width
+                        height: parent.width * sourceSize.height / sourceSize.width
+                    }
+
+                    MouseArea {
+                        anchors.fill: image
+                        onClicked: Qt.openUrlExternally(item.imageUrl)
+                    }
                 }
-            }
 
-            ItemNotesEditor {
-                id: itemNotesEditor
-                item: page.item
-                width: parent.width
-            }
+                ItemNotesEditor {
+                    id: itemNotesEditor
+                    item: page.item
+                    width: parent.width
+                }
 
-            Attachments {
-                id: attachments
-                item: page.item
-                width: parent.width
+                Attachments {
+                    id: attachments
+                    item: page.item
+                    width: parent.width
+                }
             }
 
         }
     }
+
+    PullToRefreshOverlay {
+        anchors.fill: scrollView
+        refreshEnabled: page.library.hasSynchronizer
+        flickable: flickable
+        onRefresh: OTL.Application.syncLibrary(page.library)
+    }
+
 }
 
