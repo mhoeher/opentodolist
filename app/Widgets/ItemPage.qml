@@ -9,5 +9,11 @@ import "../Utils" as Utils
 Page {
     property OTL.TopLevelItem topLevelItem: null
 
+    property bool syncRunning: {
+        return library &&
+                OTL.Application.directoriesWithRunningSync.indexOf(
+                    library.directory) >= 0;
+    }
+
     Material.background: Utils.Colors.materialItemBackgroundColor(topLevelItem)
 }
