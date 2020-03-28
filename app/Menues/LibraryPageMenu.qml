@@ -13,22 +13,6 @@ Menu {
     property OTL.Library library
 
     signal openPage(var component, var properties)
-
-    MenuItem {
-        text: qsTr("Edit Sync Settings")
-        enabled: menu.library.hasSynchronizer
-        onClicked: {
-            var sync = menu.library.createSynchronizer();
-            if (sync !== null) {
-                var key = sync.secretsKey;
-                if (key !== "") {
-                    sync.secret = OTL.Application.secretForSynchronizer(sync);
-                }
-                var url = Qt.resolvedUrl("../Pages/" + sync.type + "SettingsPage.qml");
-                menu.openPage(url, {"synchronizer": sync});
-            }
-        }
-    }
     
     MenuItem {
         text: qsTr("Sync Now")
@@ -38,8 +22,6 @@ Menu {
             OTL.Application.syncLibrary(library);
         }
     }
-    
-    MenuSeparator {}
     
     MenuItem {
         text: qsTr("Sync Log")

@@ -114,49 +114,63 @@ ItemPage {
         item: page.todoList
         padding: 10
 
-
-        Column {
+        Flickable {
+            id: flickable
             width: scrollView.contentItem.width
+            contentWidth: width
+            contentHeight: column.height
 
-            ItemPageHeader {
-                item: page.item
-            }
+            Column {
+                id: column
+                width: scrollView.contentItem.width
 
-            ItemProgressEditor {
-                item: page.item
-                width: parent.width
-            }
+                ItemPageHeader {
+                    item: page.item
+                }
 
-            ItemNotesEditor {
-                id: itemNotesEditor
-                item: page.item
-                width: parent.width
-            }
+                ItemProgressEditor {
+                    item: page.item
+                    width: parent.width
+                }
 
-            TodosWidget {
-                width: parent.width
-                model: tasks
-                title: qsTr("Tasks")
-                headerItemVisible: false
-                allowCreatingNewItems: true
-                newItemPlaceholderText: qsTr("Add new task...")
-                onCreateNewItem: {
-                    var properties = {
-                        "title": title
-                    };
-                    var task = OTL.Application.addTask(
-                                page.library,
-                                page.item,
-                                properties);
+                ItemNotesEditor {
+                    id: itemNotesEditor
+                    item: page.item
+                    width: parent.width
+                }
+
+                TodosWidget {
+                    width: parent.width
+                    model: tasks
+                    title: qsTr("Tasks")
+                    headerItemVisible: false
+                    allowCreatingNewItems: true
+                    newItemPlaceholderText: qsTr("Add new task...")
+                    onCreateNewItem: {
+                        var properties = {
+                            "title": title
+                        };
+                        var task = OTL.Application.addTask(
+                                    page.library,
+                                    page.item,
+                                    properties);
+                    }
+                }
+
+                Attachments {
+                    id: attachments
+                    item: page.item
+                    width: parent.width
                 }
             }
-
-            Attachments {
-                id: attachments
-                item: page.item
-                width: parent.width
-            }
         }
+    }
+
+    PullToRefreshOverlay {
+        anchors.fill: scrollView
+        refreshEnabled: page.library.hasSynchronizer
+        flickable: flickable
+        onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
     Connections {

@@ -259,6 +259,7 @@ Page {
     }
 
     ListView {
+        id: listView
         anchors.fill: parent
         delegate: itemDelegate
         model: sortedItems
@@ -271,7 +272,13 @@ Page {
                 padding: 10
             }
         }
+    }
 
+    PullToRefreshOverlay {
+        anchors.fill: listView
+        refreshEnabled: page.library.hasSynchronizer
+        flickable: listView
+        onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
     SyncErrorNotificationBar {

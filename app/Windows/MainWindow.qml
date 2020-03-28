@@ -523,7 +523,7 @@ ApplicationWindow {
         id: stackView
 
         property bool hasSync: !!currentItem &&
-                               (typeof(currentItem.sync) === "function")
+                               (typeof(currentItem.syncRunning) === "boolean")
         property bool syncRunning: !!currentItem && !!currentItem.syncRunning
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
         property bool canGoBack: currentItem !== null &&
