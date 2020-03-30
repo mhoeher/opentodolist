@@ -58,6 +58,7 @@ ApplicationWindow {
             id: toolBarLayout
 
             width: parent.width
+            height: parent.height
 
             ToolButton {
                 id: sidebarControl
@@ -74,6 +75,16 @@ ApplicationWindow {
                 symbol: Icons.faArrowLeft
                 visible: stackView.canGoBack
                 onClicked: stackView.goBack()
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            ToolButton {
+                id: problemsButton
+
+                symbol: Icons.faExclamationTriangle
+                visible: OTL.Application.problemManager.problems.length > 0
+                onClicked: stackView.replace(problemsPage)
+                Material.foreground: Colors.negativeColor
                 Layout.alignment: Qt.AlignVCenter
             }
 
@@ -169,6 +180,7 @@ ApplicationWindow {
             // We need some space for the "static" buttons:
             availableWidth -=
                     sidebarControl.width * (sidebarControl.visible ? 1 : 0) +
+                    problemsButton.width * (problemsButton.visible ? 1 : 0) +
                     backToolButton.width * (backToolButton.visible ? 1 : 0) +
                     busyIndicator.implicitWidth * (busyIndicator.visible ? 1 : 0) +
                     dynamicPageActionsMenu.width +
@@ -619,6 +631,12 @@ ApplicationWindow {
         id: accountsPageComponent
 
         AccountsPage {}
+    }
+
+    Component {
+        id: problemsPage
+
+        ProblemsPage {}
     }
 
     Component {

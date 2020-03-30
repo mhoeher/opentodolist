@@ -107,5 +107,7 @@
         <file>Pages/NewLibraryFromAccountPage.qml</file>
         <file>Pages/NewLibraryFromAccountPageForm.ui.qml</file>
         <file>Components/PullToRefreshOverlay.qml</file>
+        <file>Pages/ProblemsPage.qml</file>
+        <file>Pages/ProblemsPageForm.ui.qml</file>
     </qresource>
 </RCC>

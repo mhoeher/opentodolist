@@ -3,6 +3,8 @@
 
 #include "datamodel/library.h"
 #include "sync/synchronizer.h"
+#include "utils/problem.h"
+#include "utils/problemmanager.h"
 
 #include <QLoggingCategory>
 #include <QObject>
@@ -12,7 +14,6 @@
 #include <QUrl>
 #include <QVariantMap>
 #include <QVector>
-
 
 class QTemporaryDir;
 
@@ -27,7 +28,6 @@ class Task;
 class Todo;
 class TodoList;
 
-
 /**
  * @brief The main class of the application
  *
@@ -40,39 +40,37 @@ class Application : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
-    Q_PROPERTY(Cache* cache READ cache CONSTANT)
-    Q_PROPERTY(QStringList directoriesWithRunningSync
-               READ directoriesWithRunningSync
-               NOTIFY directoriesWithRunningSyncChanged)
+    Q_PROPERTY(Cache *cache READ cache CONSTANT)
+    Q_PROPERTY(QStringList directoriesWithRunningSync READ directoriesWithRunningSync NOTIFY
+                       directoriesWithRunningSyncChanged)
     Q_PROPERTY(QVariantMap syncErrors READ syncErrors NOTIFY syncErrorsChanged)
-    Q_PROPERTY(QStringList secretsKeys READ secretsKeys
-               NOTIFY secretsKeysChanged)
+    Q_PROPERTY(QStringList secretsKeys READ secretsKeys NOTIFY secretsKeysChanged)
+    Q_PROPERTY(ProblemManager *problemManager READ problemManager CONSTANT)
 
 public:
-
     explicit Application(QObject *parent = nullptr);
-    explicit Application(QString applicationDir, QObject *parent = nullptr);
+    explicit Application(const QString &applicationDir, QObject *parent = nullptr);
 
     virtual ~Application();
 
     Q_INVOKABLE void saveAccount(Account *account);
     Q_INVOKABLE void saveAccountSecrets(Account *account);
     Q_INVOKABLE void removeAccount(Account *account);
-    Q_INVOKABLE Account* loadAccount(const QUuid &uid);
+    Q_INVOKABLE Account *loadAccount(const QUuid &uid);
     Q_INVOKABLE QVariantList accountUids();
 
-    Q_INVOKABLE Library* addLocalLibrary(const QString &name);
-    Q_INVOKABLE Library* addLibraryDirectory(const QString &directory);
+    Q_INVOKABLE Library *addLocalLibrary(const QString &name);
+    Q_INVOKABLE Library *addLibraryDirectory(const QString &directory);
     Q_INVOKABLE Library *addNewLibraryToAccount(Account *account, const QString &name);
     Q_INVOKABLE Library *addExistingLibraryToAccount(Account *account,
                                                      const SynchronizerExistingLibrary &library);
     Q_INVOKABLE void deleteLibrary(Library *library);
-    Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
+    Q_INVOKABLE Note *addNote(Library *library, QVariantMap properties);
     Q_INVOKABLE NotePage *addNotePage(Library *library, Note *note, QVariantMap properties);
-    Q_INVOKABLE Image *addImage(Library* library, QVariantMap properties);
-    Q_INVOKABLE TodoList* addTodoList(Library *library, QVariantMap properties);
-    Q_INVOKABLE Todo* addTodo(Library *library, TodoList* todoList, QVariantMap properties);
-    Q_INVOKABLE Task* addTask(Library *library, Todo *todo, QVariantMap properties);
+    Q_INVOKABLE Image *addImage(Library *library, QVariantMap properties);
+    Q_INVOKABLE TodoList *addTodoList(Library *library, QVariantMap properties);
+    Q_INVOKABLE Todo *addTodo(Library *library, TodoList *todoList, QVariantMap properties);
+    Q_INVOKABLE Task *addTask(Library *library, Todo *todo, QVariantMap properties);
     Q_INVOKABLE void deleteItem(Item *item);
 
     Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
@@ -109,6 +107,8 @@ public:
 
     QStringList secretsKeys() const;
 
+    ProblemManager *problemManager() const;
+
 public slots:
 
     void syncLibrary(Library *library);
@@ -122,26 +122,23 @@ signals:
     void accountsChanged();
 
 private:
-
-    QSettings              *m_settings;
-    Cache                  *m_cache;
-    KeyStore               *m_keyStore;
-    QVariantMap             m_secrets;
-    QStringList             m_directoriesWithRunningSync;
-    QVariantMap             m_syncErrors;
-    QMap<QString, DirectoryWatcher*>
-                            m_watchedDirectories;
-    QSet<QString>           m_librariesWithChanges;
-    QSharedPointer<QTemporaryDir>
-                            m_tmpCacheDir;
+    QSettings *m_settings;
+    Cache *m_cache;
+    KeyStore *m_keyStore;
+    ProblemManager *m_problemManager;
+    QVariantMap m_secrets;
+    QStringList m_directoriesWithRunningSync;
+    QVariantMap m_syncErrors;
+    QMap<QString, DirectoryWatcher *> m_watchedDirectories;
+    QSet<QString> m_librariesWithChanges;
+    QSharedPointer<QTemporaryDir> m_tmpCacheDir;
 
     void saveLibraries();
     void loadLibraries();
 
-
     void initialize(const QString &path = QString());
 
-    void connectItemToCache(Item* item);
+    void connectItemToCache(Item *item);
 
     QList<QSharedPointer<Library>> librariesFromConfig();
     void librariesToConfig(QList<QSharedPointer<Library>> libraries);
@@ -153,7 +150,7 @@ private:
     template<typename T>
     void watchLibraryForChanges(T library);
 
-    void internallyAddLibrary(Library* library);
+    void internallyAddLibrary(Library *library);
     bool isLibraryUid(const QUuid &uid);
     QSharedPointer<Library> libraryById(const QUuid &uid);
 
@@ -165,8 +162,6 @@ private slots:
     void onLibrarySyncFinished(QString directory);
     void onLibrarySyncError(QString directory, QString error);
     void onLibrariesChanged(QVariantList librariesUids);
-
 };
-
 
 #endif // APPLICATION_H

@@ -22,6 +22,8 @@
 
 #include "utils/updateservice.h"
 #include "utils/syntaxhighlighter.h"
+#include "utils/problem.h"
+#include "utils/problemmanager.h"
 
 #ifdef Q_OS_ANDROID
 #include "utils/android/androidfiledialog.h"
@@ -57,6 +59,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
   qmlRegisterType<ItemsModel>(uri, 1, 0, "ItemsModel");
   qmlRegisterType<LibrariesModel>(uri, 1, 0, "LibrariesModel");
   qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
+  qmlRegisterType<ProblemManager>(uri, 1, 0, "ProblemManager");
 
   qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                            "Use specific synchronizer");
