@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
     QCoreApplication::setOrganizationName("RPdev");
 
-    app.setWindowIcon(QIcon(":/res/OpenTodoList80.png"));
+    app.setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(
