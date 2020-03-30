@@ -67,6 +67,8 @@ SOURCES += \
     utils/directorywatcher.cpp \
     utils/jsonutils.cpp \
     utils/keystore.cpp \
+    utils/problem.cpp \
+    utils/problemmanager.cpp \
     utils/syntaxhighlighter.cpp \
     utils/translations.cpp \
     utils/updateservice.cpp \
@@ -108,6 +110,8 @@ HEADERS += \
     utils/directorywatcher.h \
     utils/jsonutils.h \
     utils/keystore.h \
+    utils/problem.h \
+    utils/problemmanager.h \
     utils/syntaxhighlighter.h \
     utils/translations.h \
     utils/updateservice.h \
