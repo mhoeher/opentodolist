@@ -979,6 +979,23 @@ QVariant Application::find3rdPartyInfos() const
     return result;
 }
 
+bool Application::saveTextToFile(const QUrl &fileUrl, const QString &text) const
+{
+    if (fileUrl.isValid() && fileUrl.isLocalFile()) {
+        auto localPath = fileUrl.toLocalFile();
+        QFile outputFile(localPath);
+        if (outputFile.open(QIODevice::WriteOnly)) {
+            outputFile.write(text.toUtf8());
+            outputFile.close();
+            return true;
+        } else {
+            qCWarning(log) << "Failed to open" << localPath
+                           << "for writing:" << outputFile.errorString();
+        }
+    }
+    return false;
+}
+
 /**
  * @brief Convert a URL to a local file name.
  */

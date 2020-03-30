@@ -25,7 +25,7 @@ RESOURCES += \
 
 !ios:!android {
     include(../3rdparty/SingleApplication/singleapplication.pri)
-    DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QGuiApplication
+    DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QApplication
 }
 
 # Set VERSION variable, it is required for apps on some platforms,

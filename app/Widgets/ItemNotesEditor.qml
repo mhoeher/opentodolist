@@ -2,6 +2,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.3
+import Qt.labs.platform 1.0
 
 import OpenTodoList 1.0 as OTL
 
@@ -42,6 +43,12 @@ Column {
             id: extraButton
             visible: false
             symbol: Icons.faPencilAlt
+        }
+
+        ToolButton {
+            symbol: Icons.faShareAlt
+            visible: Qt.platform.os !== "ios" && Qt.platform.os !== "android"
+            onClicked: saveNotesDialog.open()
         }
 
         ToolButton {
@@ -102,5 +109,21 @@ Column {
                 loader.sourceComponent = undefined;
             }
         }
+    }
+
+    FileDialog {
+        id: saveNotesDialog
+        title: qsTr("Export to File...")
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        defaultSuffix: ".md"
+        nameFilters: [
+            qsTr("Markdown files") + " (*.md)",
+            qsTr("All files") + " (*)"
+        ]
+        fileMode: FileDialog.SaveFile
+        onAccepted: OTL.Application.saveTextToFile(
+                        file,
+                        "# " + root.item.title + "\n\n" + root.item.notes
+                        )
     }
 }
