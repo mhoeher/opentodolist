@@ -2,9 +2,6 @@
     <qresource prefix="/">
         <file>res/OpenTodoList.icns</file>
         <file>res/OpenTodoList.ico</file>
-        <file>res/OpenTodoList64.png</file>
-        <file>res/OpenTodoList80.png</file>
-        <file>res/OpenTodoList250.png</file>
         <file>res/COPYING</file>
         <file>Fonts/NotoColorEmoji-unhinted/LICENSE_OFL.txt</file>
         <file>Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf</file>
@@ -13,5 +10,10 @@
         <file>Utils/showdownjs/3rdpartyinfo.json</file>
         <file>Utils/showdownjs/showdown.js</file>
         <file>sample.png</file>
+        <file>icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png</file>
+        <file>icons/hicolor/16x16/apps/net.rpdev.OpenTodoList.png</file>
+        <file>icons/hicolor/256x256/apps/net.rpdev.OpenTodoList.png</file>
+        <file>icons/hicolor/32x32/apps/net.rpdev.OpenTodoList.png</file>
+        <file>icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png</file>
     </qresource>
 </RCC>

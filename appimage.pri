@@ -13,8 +13,8 @@ appimage.commands = \
     make install INSTALL_ROOT=$$OUT_PWD/AppImageBuild && \
     cp $$PWD/templates/appimage/default.desktop AppImageBuild/ && \
     mkdir -p AppImageBuild/usr/share/icons/hicolor/ && \
-    cp -r $$PWD/templates/icons/* AppImageBuild/usr/share/icons/hicolor/ && \
-    cp -r $$PWD/templates/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png AppImageBuild/ && \
+    cp -r $$PWD/app/icons/* AppImageBuild/usr/share/icons/hicolor/ && \
+    cp -r $$PWD/app/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png AppImageBuild/ && \
     $$LINUXDEPLOYQT --appimage-extract && \
     ./squashfs-root/AppRun \
         AppImageBuild/usr/bin/OpenTodoList \
