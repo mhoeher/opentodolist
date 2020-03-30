@@ -116,6 +116,37 @@ def mk_appicon(icon, icon_transparent, output_dir, inkscape=None):
     ]
     check_call(args)
 
+    # Create macOS iconset (note: needs post-processing on
+    # macOS due to lack of iconutil):
+    out_dir = join(
+        output_dir, "app", "appicon", "macos", "OpenTodoList.iconset"
+    )
+    _mkdirs(out_dir)
+    icons = [
+        {"name": "icon_16x16.png", "size": 16},
+        {"name": "icon_16x16@2x.png", "size": 32},
+        {"name": "icon_32x32.png", "size": 32},
+        {"name": "icon_32x32@2x.png", "size": 64},
+        {"name": "icon_128x128.png", "size": 128},
+        {"name": "icon_128x128@2x.png", "size": 256},
+        {"name": "icon_256x256.png", "size": 256},
+        {"name": "icon_256x256@2x.png", "size": 512},
+        {"name": "icon_512x512.png", "size": 512},
+        {"name": "icon_512x512@2x.png", "size": 1024},
+    ]
+    for i in icons:
+        out_file = join(out_dir, i["name"])
+        args = [
+            inkscape,
+            "-z",
+            "-o", out_file,
+            "-w", str(i["size"]),
+            "-h", str(i["size"]),
+            icon_transparent
+        ]
+        check_call(args)
+
+
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
