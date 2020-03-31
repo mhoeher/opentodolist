@@ -13,6 +13,7 @@ Menu {
     property OTL.TopLevelItem __effectiveItem: item || __defaultItem
 
     title: qsTr("Color")
+    modal: true
 
     MenuItem {
         text: qsTr("White")

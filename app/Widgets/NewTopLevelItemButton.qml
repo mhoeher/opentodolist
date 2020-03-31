@@ -33,6 +33,7 @@ RoundButton {
 
         y: newItemButton.y - height
         x: newItemButton.x - width / 2
+        modal: true
 
         MenuItem {
             text: qsTr("Note")

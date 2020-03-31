@@ -136,6 +136,7 @@ ApplicationWindow {
                 Layout.alignment: Qt.AlignVCenter
                 menu: Menu {
                     y: headerToolBar.height
+                    modal: true
                     Repeater {
                         model: d.visibleDynamicPageMenuItems
                         delegate: MenuItem {

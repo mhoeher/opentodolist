@@ -20,7 +20,7 @@ ItemPage {
     signal closePage()
     signal openPage(var component, var properties)
 
-    readonly property bool editingNotes: itemNotesEditor.editing
+    readonly property alias editingNotes: d.editingNotes
 
     function finishEditingNotes() {
         itemNotesEditor.finishEditing();
@@ -45,7 +45,7 @@ ItemPage {
     }
 
     function attach() {
-        attachments.attach();
+        d.attach();
     }
 
     title: itemTitle.text
@@ -53,6 +53,10 @@ ItemPage {
 
     QtObject {
         id: d
+
+        property bool editingNotes: false
+
+        signal attach()
 
         function reopenDrawer() {
             if (page.parentDrawer) {
@@ -112,17 +116,26 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.todoList
-        padding: 10
 
-        Flickable {
-            id: flickable
-            width: scrollView.contentItem.width
-            contentWidth: width
-            contentHeight: column.height
-
-            Column {
+        TodosWidget {
+            width: parent.width
+            model: tasks
+            title: qsTr("Tasks")
+            headerItemVisible: false
+            allowCreatingNewItems: true
+            newItemPlaceholderText: qsTr("Add new task...")
+            onCreateNewItem: {
+                var properties = {
+                    "title": title
+                };
+                var task = OTL.Application.addTask(
+                            page.library,
+                            page.item,
+                            properties);
+            }
+            headerComponent: Column {
                 id: column
-                width: scrollView.contentItem.width
+                width: parent.width
 
                 ItemPageHeader {
                     item: page.item
@@ -137,30 +150,29 @@ ItemPage {
                     id: itemNotesEditor
                     item: page.item
                     width: parent.width
-                }
 
-                TodosWidget {
-                    width: parent.width
-                    model: tasks
-                    title: qsTr("Tasks")
-                    headerItemVisible: false
-                    allowCreatingNewItems: true
-                    newItemPlaceholderText: qsTr("Add new task...")
-                    onCreateNewItem: {
-                        var properties = {
-                            "title": title
-                        };
-                        var task = OTL.Application.addTask(
-                                    page.library,
-                                    page.item,
-                                    properties);
+                    Binding {
+                        target: d
+                        property: "editingNotes"
+                        value: itemNotesEditor.editing
                     }
                 }
 
-                Attachments {
-                    id: attachments
-                    item: page.item
-                    width: parent.width
+            }
+
+            footerComponent: Attachments {
+                id: attachments
+                item: page.item
+                width: parent.width
+
+                Connections {
+                    target: d
+                    onAttach: attach()
+                }
+
+                Connections {
+                    target: openFileDialog
+                    onClosed: d.reopenDrawer()
                 }
             }
         }
@@ -169,13 +181,8 @@ ItemPage {
     PullToRefreshOverlay {
         anchors.fill: scrollView
         refreshEnabled: page.library.hasSynchronizer
-        flickable: flickable
+        flickable: todosWidget
         onRefresh: OTL.Application.syncLibrary(page.library)
-    }
-
-    Connections {
-        target: attachments.openFileDialog
-        onClosed: d.reopenDrawer()
     }
 }
 
