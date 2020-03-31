@@ -51,14 +51,8 @@ ItemPage {
         dueDateSelectionDialog.open();
     }
 
-    title: titleText.text
+    title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
-
-    MarkdownConverter {
-        id: titleText
-        markdown: item.title
-        strip: true
-    }
     
     DeleteItemDialog {
         id: confirmDeleteDialog

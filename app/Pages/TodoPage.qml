@@ -48,7 +48,7 @@ ItemPage {
         d.attach();
     }
 
-    title: itemTitle.text
+    title: Markdown.markdownToPlainText(item.title)
     topLevelItem: todoList
 
     QtObject {
@@ -63,12 +63,6 @@ ItemPage {
                 page.parentDrawer.open();
             }
         }
-    }
-
-    MarkdownConverter {
-        id: itemTitle
-        markdown: item.title
-        strip: true
     }
 
     DeleteItemDialog {

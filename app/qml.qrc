@@ -71,8 +71,6 @@
         <file>Pages/sync_backends/owncloud.png</file>
         <file>Pages/ScheduleViewPage.qml</file>
         <file>Widgets/ProgressItemOverlay.qml</file>
-        <file>Components/MarkdownConverter.qml</file>
-        <file>Components/MarkdownLabel.qml</file>
         <file>Widgets/ItemProgressEditor.qml</file>
         <file>3rdpartyinfo/syntax-highlighting/3rdpartyinfo.json</file>
         <file>Components/Heading.qml</file>
@@ -109,5 +107,6 @@
         <file>Components/PullToRefreshOverlay.qml</file>
         <file>Pages/ProblemsPage.qml</file>
         <file>Pages/ProblemsPageForm.ui.qml</file>
+        <file>Utils/TextUtils.js</file>
     </qresource>
 </RCC>

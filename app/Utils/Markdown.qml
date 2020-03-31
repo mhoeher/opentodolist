@@ -4,6 +4,8 @@ import QtQuick 2.0
 
 import OpenTodoList 1.0 as OTL
 
+import "./TextUtils.js" as TextUtils
+
 Item {
     id: root
 
@@ -16,16 +18,11 @@ Item {
     </style>
     ".arg(Colors.linkColor)
 
-    function scheduleFormat(text) {
-        worker.sendMessage({ text: text });
+    function markdownToHtml(text) {
+        return stylesheet + TextUtils.markdownToHtml(text);
     }
 
-    signal markdownReady(string text, string result)
-
-    WorkerScript {
-        id: worker
-
-        source: "markdown-formatter-worker.js"
-        onMessage: root.markdownReady(messageObject.text, messageObject.result)
+    function markdownToPlainText(text) {
+        return OTL.Application.htmlToPlainText(TextUtils.markdownToHtml(text));
     }
 }

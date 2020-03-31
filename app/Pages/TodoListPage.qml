@@ -80,14 +80,9 @@ ItemPage {
                                  todoDrawer.close();
                              } : null
 
-    title: titleText.text
+    title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
-    MarkdownConverter {
-        id: titleText
-        markdown: item.title
-        strip: true
-    }
 
     QtObject {
         id: d

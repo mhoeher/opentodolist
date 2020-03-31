@@ -225,8 +225,9 @@ ListView {
             Column {
                 Layout.fillWidth: true
 
-                Components.MarkdownLabel {
-                    markdown: object.title
+                Components.Label {
+                    text: Markdown.markdownToHtml(object.title)
+                    textFormat: Text.RichText
                     width: parent.width
                 }
                 Item {

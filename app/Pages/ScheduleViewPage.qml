@@ -230,10 +230,11 @@ Page {
                         }
                         onHeightChanged: cntItem.updateImplicitHeight()
                     }
-                    MarkdownLabel {
+                    Label {
                         id: itemTitle
 
-                        markdown: object.title
+                        text: Markdown.markdownToHtml(object.title)
+                        textFormat: Text.RichText
                         anchors {
                             left: itemSymbol.right
                             right: parent.right

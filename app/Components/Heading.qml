@@ -1,7 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-Label {
+import "." as Controls
+
+Controls.Label {
     property int level: 1
 
     FontMetrics {
