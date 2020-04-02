@@ -13,6 +13,38 @@ allows you to use any kind of third party synchronization tool (like DropBox)
 to sync your information.
 
 
+## Download 
+
+### Android
+
+The app is available on Android. You can get it on the following stores:
+
+
+<a href='https://play.google.com/store/apps/details?id=net.rpdev.opentodolist'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+<a href='https://apt.izzysoft.de/fdroid/index/apk/net.rpdev.opentodolist'><img alt='Get it on IzzyOnDroid' src='./assets/IzzyOnDroid.png'/></a>
+
+To add the IzzyOnDroid F-Droid repository to your device, follow the instructions [here](https://apt.izzysoft.de/fdroid/).
+
+
+### iOS
+
+The app is available on the iOS App Store:
+
+<a href="https://apps.apple.com/us/app/opentodolist/id1490013766?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-gb/badge-lrg.svg?releaseDate=2020-01-02&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;"></a>
+
+
+### Desktop Systems
+
+Pre-build packages of the app for Linux, macOS and Windows are hosted on [GitHub](https://github.com/mhoeher/opentodolist/releases).
+
+Additionally, you can find the app on the following stores:
+
+<a href="https://snapcraft.io/opentodolist">
+<img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"></a>
+<a href='https://flathub.org/apps/details/net.rpdev.OpenTodoList'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+
+
+
 ## License
 
 This program is free software: you can redistribute it and/or modify
@@ -20,16 +52,6 @@ it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
 as published by the Free Software Foundation, either version 3 of the License,
 or (at your option) any later version.
-
-
-## Download
-
-Pre-build packages of the app are hosted on
-[GitHub](https://github.com/mhoeher/opentodolist/releases). In addition,
-the app is available in the following app stores:
-
-
-[<img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" width="250"/>](https://play.google.com/store/apps/details?id=net.rpdev.opentodolist)
 
 
 ## Get Help
@@ -94,10 +116,10 @@ git submodule update --init
 to clone the submodules. You also might want to run this command regularly
 after pulling new changes.
 
-The application is mainly build using `cmake`. There still is some support
-for `qmake`, but this will be removed soon.
+The application is mainly build using `qmake`. There still is some support
+for `cmake`, but it is currently not maintained.
 
-* Continue with [Build Instructions using `cmake`](./doc/building-with-cmake.md)
 * Continue with [Build Instructions using `qmake`](./doc/building-with-qmake.md)
+* Continue with [Build Instructions using `cmake`](./doc/building-with-cmake.md)
 
 
