@@ -20,9 +20,10 @@
 #include <QTemporaryFile>
 #include <QTimer>
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
 
-        const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
+const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
+const QString WebDAVSynchronizer::SyncErrorFileName = ".webdav-sync-had-errors";
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject *parent)
     : Synchronizer(parent),
@@ -34,13 +35,11 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject *parent)
       m_stopRequested(false),
       m_findExistingEntriesWatcher()
 {
-    connect(&m_findExistingEntriesWatcher,
-            &QFutureWatcher<QVariantList>::finished, [=]() {
+    connect(&m_findExistingEntriesWatcher, &QFutureWatcher<QVariantList>::finished, [=]() {
         setExistingLibraries(m_findExistingEntriesWatcher.result());
         setFindingLibraries(false);
     });
-    connect(this, &WebDAVSynchronizer::passwordChanged,
-            this, &WebDAVSynchronizer::secretChanged);
+    connect(this, &WebDAVSynchronizer::passwordChanged, this, &WebDAVSynchronizer::secretChanged);
 }
 
 WebDAVSynchronizer::~WebDAVSynchronizer()
@@ -54,8 +53,7 @@ QUrl WebDAVSynchronizer::baseUrl() const
 {
     switch (m_serverType) {
     case NextCloud:
-    case OwnCloud:
-    {
+    case OwnCloud: {
         auto url = m_url.toString();
         if (!url.endsWith("/")) {
             url += "/";
@@ -75,8 +73,7 @@ void WebDAVSynchronizer::validate()
     auto reply = dav->listDirectoryRequest("/");
     reply->setParent(this);
     connect(reply, &QNetworkReply::finished, [=]() {
-        auto code = reply->attribute(
-                    QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (code == HTTPStatusCode::WebDAVMultiStatus) {
             endValidation(true);
         } else {
@@ -92,19 +89,11 @@ void WebDAVSynchronizer::synchronize()
     if (!directory().isEmpty() && !synchronizing()) {
         debug() << tr("Starting synchronization");
         auto dav = createDAVClient(this);
-        connect(this, &WebDAVSynchronizer::stopRequested,
-                dav, &WebDAVClient::stopSync);
-        connect(dav, &WebDAVClient::debug, [=](const QString& message) {
-            debug() << message;
-        });
-        connect(dav, &WebDAVClient::warning, [=](const QString& message) {
-            warning() << message;
-        });
-        connect(dav, &WebDAVClient::error, [=](const QString& message) {
-            error() << message;
-        });
-        connect(dav, &WebDAVClient::syncError,
-                this, &WebDAVSynchronizer::syncError);
+        connect(this, &WebDAVSynchronizer::stopRequested, dav, &WebDAVClient::stopSync);
+        connect(dav, &WebDAVClient::debug, [=](const QString &message) { debug() << message; });
+        connect(dav, &WebDAVClient::warning, [=](const QString &message) { warning() << message; });
+        connect(dav, &WebDAVClient::error, [=](const QString &message) { error() << message; });
+        connect(dav, &WebDAVClient::syncError, this, &WebDAVSynchronizer::syncError);
         setSynchronizing(true);
         m_stopRequested = false;
         bool fullSync = false;
@@ -115,17 +104,26 @@ void WebDAVSynchronizer::synchronize()
                 // i.e. request etags for all directories.
                 fullSync = true;
                 qCWarning(::log) << "The last sync did not "
-                                                 "complete - doing a full "
-                                                 "sync";
+                                    "complete - doing a full "
+                                    "sync";
                 warning() << tr("The last sync did not run through - "
                                 "doing a full sync");
             }
+            if (syncDir.exists(SyncErrorFileName)) {
+                // The last sync encountered errors - do a full sync to ensure we
+                // pull all changes.
+                fullSync = true;
+                qCWarning(::log) << "The last sync did complete with errors - do a full sync";
+                warning() << tr("The last sync completed with errors - doing a full sync");
+                if (!syncDir.remove(SyncErrorFileName)) {
+                    qCWarning(::log) << "Failed to remove the sync error lock file";
+                    warning() << tr("Failed to remove the error lock file");
+                }
+            }
             QFile file(syncDir.absoluteFilePath(SyncLockFileName));
             if (!file.open(QIODevice::WriteOnly)) {
-                qCWarning(::log) << "Failed to create sync lock:"
-                                              << file.errorString();
-                error() << tr("Failed to create sync lock:")
-                        << file.errorString();
+                qCWarning(::log) << "Failed to create sync lock:" << file.errorString();
+                error() << tr("Failed to create sync lock:") << file.errorString();
             } else {
                 file.close();
             }
@@ -142,11 +140,10 @@ void WebDAVSynchronizer::synchronize()
                 if (dav->etag(rpath) == "") {
                     auto ok = dav->mkdir(rpath);
                     if (!ok) {
-                        qCWarning(::log)
-                                << "Failed to prepare remote dir" << rpath
-                                << "for sync.";
+                        qCWarning(::log) << "Failed to prepare remote dir" << rpath << "for sync.";
                         error() << tr("Failed to prepare remote directory '%1' "
-                                      "for sync").arg(rpath);
+                                      "for sync")
+                                           .arg(rpath);
                         dirsOkay = false;
                         break;
                     } else {
@@ -163,12 +160,11 @@ void WebDAVSynchronizer::synchronize()
 
         if (dirsOkay) {
             QSet<QString> changedYearDirs;
-            if (!dav->syncDirectory("/",
-                               QRegularExpression("\\d\\d\\d\\d"),
-                               false,
+            if (!dav->syncDirectory("/", QRegularExpression("\\d\\d\\d\\d"), false,
                                     &changedYearDirs)) {
                 warning() << tr("Failed to synchronize top level "
                                 "directory!");
+                touchErrorLock();
             }
             // Sync the year directory:
             QDir dir(directory());
@@ -177,24 +173,22 @@ void WebDAVSynchronizer::synchronize()
                     break;
                 }
                 QSet<QString> changedMonthDirs;
-                if (!dav->syncDirectory("/" + yearDir,
-                                   QRegularExpression("\\d\\d?"),
-                                   fullSync || !changedYearDirs.contains(yearDir),
+                if (!dav->syncDirectory("/" + yearDir, QRegularExpression("\\d\\d?"),
+                                        fullSync || !changedYearDirs.contains(yearDir),
                                         &changedMonthDirs)) {
-                    warning() << tr("Failed to synchronize '%1'").arg(
-                                     "/" + yearDir);
+                    warning() << tr("Failed to synchronize '%1'").arg("/" + yearDir);
+                    touchErrorLock();
                 }
                 QDir ydir(dir.absoluteFilePath(yearDir));
-                for (auto monthDir : ydir.entryList(
-                         QDir::Dirs | QDir::NoDotAndDotDot)) {
+                for (auto monthDir : ydir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
                     if (m_stopRequested) {
                         break;
                     }
-                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir,
-                                       QRegularExpression(),
+                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir, QRegularExpression(),
                                             fullSync || !changedMonthDirs.contains(monthDir))) {
-                        warning() << tr("Failed to synchronize '%1'").arg(
-                                         "/" + yearDir + "/" + monthDir);
+                        warning() << tr("Failed to synchronize '%1'")
+                                             .arg("/" + yearDir + "/" + monthDir);
+                        touchErrorLock();
                     }
                 }
             }
@@ -217,8 +211,6 @@ void WebDAVSynchronizer::stopSync()
     emit stopRequested();
 }
 
-
-
 /**
  * @brief Search for existing libraries.
  *
@@ -236,8 +228,7 @@ void WebDAVSynchronizer::findExistingLibraries()
     auto remoteDirectory = this->remoteDirectory();
     auto directory = this->directory();
 
-    m_findExistingEntriesWatcher.setFuture(
-                QtConcurrent::run([=]() -> QVariantList {
+    m_findExistingEntriesWatcher.setFuture(QtConcurrent::run([=]() -> QVariantList {
         WebDAVClient client;
         client.setBaseUrl(baseUrl);
         client.setUsername(username);
@@ -247,13 +238,11 @@ void WebDAVSynchronizer::findExistingLibraries()
         client.setDirectory(directory);
 
         QStringList dirsToCheck;
-        for (auto baseDir : QStringList({"/", "/OpenTodoList"})) {
+        for (auto baseDir : QStringList({ "/", "/OpenTodoList" })) {
             auto entryList = client.entryList(baseDir);
             for (auto entry : entryList) {
-                if (entry.type == WebDAVClient::Directory &&
-                        entry.name.endsWith(".otl")) {
-                    dirsToCheck.append(client.mkpath(baseDir + "/" +
-                                                     entry.name));
+                if (entry.type == WebDAVClient::Directory && entry.name.endsWith(".otl")) {
+                    dirsToCheck.append(client.mkpath(baseDir + "/" + entry.name));
                 }
             };
         }
@@ -262,8 +251,7 @@ void WebDAVSynchronizer::findExistingLibraries()
             QByteArray json;
             QBuffer buffer(&json);
             buffer.open(QIODevice::WriteOnly);
-            if (client.download(dir + "/" + Library::LibraryFileName,
-                                &buffer)) {
+            if (client.download(dir + "/" + Library::LibraryFileName, &buffer)) {
                 if (!json.isEmpty()) {
                     auto doc = QJsonDocument::fromJson(json);
                     if (doc.isObject()) {
@@ -285,7 +273,6 @@ void WebDAVSynchronizer::findExistingLibraries()
     }));
 }
 
-
 QVariantMap WebDAVSynchronizer::toMap() const
 {
     auto result = Synchronizer::toMap();
@@ -294,7 +281,7 @@ QVariantMap WebDAVSynchronizer::toMap() const
     return result;
 }
 
-void WebDAVSynchronizer::fromMap(const QVariantMap& map)
+void WebDAVSynchronizer::fromMap(const QVariantMap &map)
 {
     m_remoteDirectory = map.value("remoteDirectory").toString();
     m_createDirs = map.value("createDirs", false).toBool();
@@ -329,7 +316,7 @@ QString WebDAVSynchronizer::remoteDirectory() const
     return m_remoteDirectory;
 }
 
-void WebDAVSynchronizer::setRemoteDirectory(const QString& remoteDirectory)
+void WebDAVSynchronizer::setRemoteDirectory(const QString &remoteDirectory)
 {
     if (m_remoteDirectory != remoteDirectory) {
         m_remoteDirectory = remoteDirectory;
@@ -356,7 +343,7 @@ QString WebDAVSynchronizer::username() const
     return m_username;
 }
 
-void WebDAVSynchronizer::setUsername(const QString& username)
+void WebDAVSynchronizer::setUsername(const QString &username)
 {
     if (m_username != username) {
         m_username = username;
@@ -370,7 +357,7 @@ QString WebDAVSynchronizer::password() const
     return m_password;
 }
 
-void WebDAVSynchronizer::setPassword(const QString& password)
+void WebDAVSynchronizer::setPassword(const QString &password)
 {
     if (m_password != password) {
         m_password = password;
@@ -379,7 +366,6 @@ void WebDAVSynchronizer::setPassword(const QString& password)
     }
 }
 
-
 /**
  * @brief The URL to connect to.
  */
@@ -387,7 +373,6 @@ QUrl WebDAVSynchronizer::url() const
 {
     return m_url;
 }
-
 
 /**
  * @brief Set the server URL.
@@ -401,7 +386,6 @@ void WebDAVSynchronizer::setUrl(const QUrl &url)
     }
 }
 
-
 /**
  * @brief Create a DAV client.
  *
@@ -411,7 +395,7 @@ void WebDAVSynchronizer::setUrl(const QUrl &url)
  *
  * @note Ownership of the object goes to the caller.
  */
-WebDAVClient* WebDAVSynchronizer::createDAVClient(QObject *parent)
+WebDAVClient *WebDAVSynchronizer::createDAVClient(QObject *parent)
 {
     auto result = new WebDAVClient(parent);
     result->setBaseUrl(baseUrl());
@@ -422,7 +406,6 @@ WebDAVClient* WebDAVSynchronizer::createDAVClient(QObject *parent)
     result->setDirectory(directory());
     return result;
 }
-
 
 /**
  * @brief The type of WebDAV server to connect to.
@@ -449,4 +432,18 @@ bool WebDAVSynchronizer::createDirs() const
 void WebDAVSynchronizer::setCreateDirs(bool createDirs)
 {
     m_createDirs = createDirs;
+}
+
+void WebDAVSynchronizer::touchErrorLock()
+{
+    QDir dir(directory());
+    if (!dir.exists(SyncErrorFileName)) {
+        QFile file(dir.absoluteFilePath(SyncErrorFileName));
+        if (!file.open(QIODevice::WriteOnly)) {
+            qCWarning(::log) << "Failed to create error lock:" << file.errorString();
+            error() << tr("Failed to create error lock:") << file.errorString();
+        } else {
+            file.close();
+        }
+    }
 }

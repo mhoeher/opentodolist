@@ -223,6 +223,7 @@ QVariant Account::toWebDAVServerType() const
     case Invalid:
         return WebDAVSynchronizer::Unknown;
     }
+    return QVariant();
 }
 
 /**
@@ -262,6 +263,7 @@ Synchronizer *Account::createSynchronizer() const
     case Invalid:
         return nullptr;
     }
+    return nullptr;
 }
 
 /**
