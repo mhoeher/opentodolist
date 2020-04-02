@@ -79,7 +79,7 @@ if [ -n "$CI" ]; then
      rm -rf build-android-openssl-$TARGET_ARCH
      mkdir -p build-android-openssl-$TARGET_ARCH
     pushd build-android-openssl-$TARGET_ARCH
-     wget https://www.openssl.org/source/openssl-1.1.1b.tar.gz
+     wget https://www.openssl.org/source/old/1.1.1/openssl-1.1.1b.tar.gz
      tar xf openssl-*.tar.gz
      rm openssl-*.tar.gz
     cd openssl-*

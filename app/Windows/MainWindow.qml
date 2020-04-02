@@ -413,24 +413,21 @@ ApplicationWindow {
         librariesSideBar.lastTag = OTL.Application.loadValue("lastTag", "");
         librariesSideBar.lastSpecialView = OTL.Application.loadValue("specialView", "");
 
+        let maximized = OTL.Application.loadValue("maximized", false);
+        console.log("Maximized: ", maximized, typeof(maximized));
         if (OTL.Application.loadValue("maximized", "false") === "true") {
+            console.debug("Maximizing window on startup");
             window.visibility = Window.Maximized;
         }
-        onVisibilityChanged.connect(function() {
-            OTL.Application.saveValue(
-                        "maximized", visibility === Window.Maximized);
-        });
-        onWidthChanged.connect(function() {
-            if (visibility === Window.Windowed) {
-                OTL.Application.saveValue("width", width);
-            }
-        });
-        onHeightChanged.connect(function() {
-            if (visibility === Window.Windowed) {
-                OTL.Application.saveValue("height", height);
-            }
-        });
         d.completed = true;
+    }
+
+    Component.onDestruction: {
+        OTL.Application.saveValue("maximized", visibility === Window.Maximized);
+        if (visibility === Window.Windowed) {
+            OTL.Application.saveValue("width", width);
+            OTL.Application.saveValue("height", height);
+        }
     }
 
     onClosing: {
@@ -674,3 +671,4 @@ ApplicationWindow {
     }
 
 }
+
