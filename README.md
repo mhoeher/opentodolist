@@ -20,8 +20,8 @@ to sync your information.
 The app is available on Android. You can get it on the following stores:
 
 
-<a href='https://play.google.com/store/apps/details?id=net.rpdev.opentodolist'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-<a href='https://apt.izzysoft.de/fdroid/index/apk/net.rpdev.opentodolist'><img alt='Get it on IzzyOnDroid' src='./assets/IzzyOnDroid.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=net.rpdev.opentodolist'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height='40'/></a>
+<a href='https://apt.izzysoft.de/fdroid/index/apk/net.rpdev.opentodolist'><img alt='Get it on IzzyOnDroid' src='./assets/IzzyOnDroid.png' height='40'/></a>
 
 To add the IzzyOnDroid F-Droid repository to your device, follow the instructions [here](https://apt.izzysoft.de/fdroid/).
 
@@ -30,7 +30,7 @@ To add the IzzyOnDroid F-Droid repository to your device, follow the instruction
 
 The app is available on the iOS App Store:
 
-<a href="https://apps.apple.com/us/app/opentodolist/id1490013766?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-gb/badge-lrg.svg?releaseDate=2020-01-02&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;"></a>
+<a href="https://apps.apple.com/us/app/opentodolist/id1490013766?mt=8"><img src="https://linkmaker.itunes.apple.com/en-gb/badge-lrg.svg?releaseDate=2020-01-02&kind=iossoftware&bubble=ios_apps" width='135px' height='40'/></a>
 
 
 ### Desktop Systems
@@ -40,8 +40,8 @@ Pre-build packages of the app for Linux, macOS and Windows are hosted on [GitHub
 Additionally, you can find the app on the following stores:
 
 <a href="https://snapcraft.io/opentodolist">
-<img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"></a>
-<a href='https://flathub.org/apps/details/net.rpdev.OpenTodoList'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+<img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" height="40"></a>
+<a href='https://flathub.org/apps/details/net.rpdev.OpenTodoList'><img height='40' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
 
 
