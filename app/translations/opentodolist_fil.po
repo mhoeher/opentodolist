@@ -3,361 +3,1233 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Language: fil\n"
-"X-Qt-Contexts: true\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: OpenTodoList\n"
+"Language: fil\n"
 
 #: ../Pages/AboutPage.qml:14
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr ""
+msgstr "Tungkol sa ..."
 
 #: ../Pages/AboutPage.qml:28
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
-msgstr ""
+msgstr "OpenTodoList"
 
 #: ../Pages/AboutPage.qml:35
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
-msgstr ""
+msgstr "Isang todo at gawain sa pamamahala ng gawain."
 
-#: ../Pages/AboutPage.qml:42
-#, qt-format
+#: ../Pages/AboutPage.qml:60
 msgctxt "AboutPage|"
-msgid "(c) RPdev 2013-2020, version %1"
-msgstr ""
+msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
+msgstr "Ang OpenTodoList ay pinakawalan sa ilalim ng mga tuntunin ng GNU General Public License na bersyon 3 o (sa gusto mo) anumang bersyon. Maaari kang makahanap ng isang kopya ng lisensya sa ibaba. Bilang karagdagan, ginagamit ang ilang mga aklatan at mapagkukunan. Para sa detalyadong impormasyon tungkol sa kanilang mga tuntunin sa lisensya, mangyaring sumangguni sa <a href='3rdparty'> 3rd Party Software </a> na pahina."
 
-#: ../Pages/AboutPage.qml:59
-msgctxt "AboutPage|"
-msgid ""
-"OpenTodoList is released under the terms of the <a href='app-license'>GNU "
-"General Public License</a> version 3 or (at your choice) any later version."
-msgstr ""
+#: ../Pages/AboutThirdPartyPage.qml:11
+msgctxt "AboutThirdPartyPage|"
+msgid "Used Libraries and Resources"
+msgstr "Ginamit na Mga Aklatan at Mga Mapagkukunan"
 
-#: ../Pages/AboutPage.qml:78
-msgctxt "AboutPage|"
-msgid "Report an Issue"
-msgstr ""
+#: ../Pages/AboutThirdPartyPage.qml:47
+msgctxt "AboutThirdPartyPage|"
+msgid "Author: <a href='%2'>%1</a>"
+msgstr "May-akda: <a href='%2'>% 1 </a>"
 
-#: ../Pages/AboutPage.qml:91
-msgctxt "AboutPage|"
-msgid "Third Party Libraries and Resources"
-msgstr ""
+#: ../Pages/AboutThirdPartyPage.qml:54
+msgctxt "AboutThirdPartyPage|"
+msgid "License: <a href='%1'>%2</a>"
+msgstr "Lisensya: <a href='%1'>% 2 </a>"
 
-#: ../Pages/AboutPage.qml:128
-msgctxt "AboutPage|"
-msgid "Author:"
-msgstr ""
-
-#: ../Pages/AboutPage.qml:133
-#, qt-format
-msgctxt "AboutPage|"
-msgid "<a href='%2'>%1</a>"
-msgstr ""
-
-#: ../Pages/AboutPage.qml:141
-msgctxt "AboutPage|"
-msgid "License:"
-msgstr ""
-
-#: ../Pages/AboutPage.qml:146
-#, qt-format
-msgctxt "AboutPage|"
-msgid "<a href='%1'>%2</a>"
-msgstr ""
-
-#: ../Pages/AboutPage.qml:154
-msgctxt "AboutPage|"
-msgid "Download:"
-msgstr ""
-
-#: ../Pages/AboutPage.qml:159
-#, qt-format
-msgctxt "AboutPage|"
-msgid "<a href='%1'>%1</a>"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "Select Account Type"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "Account Type"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "NextCloud"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:51
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "ownCloud"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:56
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "WebDAV"
-msgstr ""
-
-#: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
-msgctxt "AccountsPageForm.ui|"
-msgid "Accounts"
-msgstr ""
+#: ../Pages/AboutThirdPartyPage.qml:61
+msgctxt "AboutThirdPartyPage|"
+msgid "Download: <a href='%1'>%1</a>"
+msgstr "Pag-download: <a href='%1'>% 1 </a>"
 
 #: ../Widgets/Attachments.qml:28
 msgctxt "Attachments|"
 msgid "Attach File"
-msgstr ""
+msgstr "Maglakip ng file"
 
 #: ../Widgets/Attachments.qml:41
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
-msgstr ""
+msgstr "Tanggalin ang Attachment?"
 
 #: ../Widgets/Attachments.qml:45
-#, qt-format
 msgctxt "Attachments|"
-msgid ""
-"Are you sure you want to delete the attachment <strong>%1</strong>? This "
-"action cannot be undone."
-msgstr ""
+msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
+msgstr "Sigurado ka bang gusto mong tanggalin ang attachment <strong>%1</strong>? Ang gawaing ito ay hindi pwedeng baguhin."
 
 #: ../Widgets/Attachments.qml:59
 msgctxt "Attachments|"
 msgid "Attachments"
-msgstr ""
+msgstr "Mga Attachment"
 
 #: ../Menues/ColorMenu.qml:15
 msgctxt "ColorMenu|"
 msgid "Color"
-msgstr ""
+msgstr "Kulay"
 
 #: ../Menues/ColorMenu.qml:19
 msgctxt "ColorMenu|"
 msgid "White"
-msgstr ""
+msgstr "Puti"
 
 #: ../Menues/ColorMenu.qml:26
 msgctxt "ColorMenu|"
 msgid "Red"
-msgstr ""
+msgstr "Pula"
 
 #: ../Menues/ColorMenu.qml:33
 msgctxt "ColorMenu|"
 msgid "Green"
-msgstr ""
+msgstr "Berde"
 
 #: ../Menues/ColorMenu.qml:40
 msgctxt "ColorMenu|"
 msgid "Blue"
-msgstr ""
+msgstr "Bughaw"
 
 #: ../Menues/ColorMenu.qml:47
 msgctxt "ColorMenu|"
 msgid "Yellow"
-msgstr ""
+msgstr "Dilaw"
 
 #: ../Menues/ColorMenu.qml:54
 msgctxt "ColorMenu|"
 msgid "Orange"
-msgstr ""
+msgstr "Orange"
 
 #: ../Menues/ColorMenu.qml:61
 msgctxt "ColorMenu|"
 msgid "Lilac"
-msgstr ""
-
-#: ../Utils/Colors.qml:16
-msgctxt "Colors|"
-msgid "System"
-msgstr ""
-
-#: ../Utils/Colors.qml:17
-msgctxt "Colors|"
-msgid "Light"
-msgstr ""
-
-#: ../Utils/Colors.qml:18
-msgctxt "Colors|"
-msgid "Dark"
-msgstr ""
-
-#: ../Windows/DeleteAccountDialog.qml:19
-msgctxt "DeleteAccountDialog|"
-msgid "Delete Account?"
-msgstr ""
-
-#: ../Windows/DeleteAccountDialog.qml:36
-#, qt-format
-msgctxt "DeleteAccountDialog|"
-msgid ""
-"Do you really want to remove the account <strong>%1</strong>? This will "
-"remove all libraries belonging to the account from your "
-"device?<br/><br/><i>Note: You can restore them from the server by adding "
-"back the account.</i>"
-msgstr ""
+msgstr "Lilac"
 
 #: ../Windows/DeleteItemDialog.qml:19
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
-msgstr ""
+msgstr "Tanggalin ang Item?"
 
 #: ../Windows/DeleteItemDialog.qml:32
-#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid ""
-"Do you really want to delete the image <strong>%1</strong>? This cannot be "
-"undone."
-msgstr ""
+msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
+msgstr "Nais mo bang tanggalin ang imahe <strong>% 1</strong>? Hindi ito mababago."
 
 #: ../Windows/DeleteItemDialog.qml:36
-#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid ""
-"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
-"be undone."
-msgstr ""
+msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
+msgstr "Nais mo bang tanggalin ang listahan ng todo <strong>% 1</strong>? Hindi ito mababago."
 
 #: ../Windows/DeleteItemDialog.qml:40
-#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid ""
-"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
-"undone."
-msgstr ""
+msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
+msgstr "Nais mo bang tanggalin ang todo <strong>% 1 </strong>? Hindi ito mababago."
 
 #: ../Windows/DeleteItemDialog.qml:44
-#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid ""
-"Do you really want to delete the task <strong>%1</strong>? This cannot be "
-"undone."
-msgstr ""
+msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
+msgstr "Nais mo bang tanggalin ang gawain <strong>% 1</strong>? Hindi ito mababago."
 
 #: ../Windows/DeleteItemDialog.qml:48
-#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid ""
-"Do you really want to delete the note <strong>%1</strong>? This cannot be "
-"undone."
-msgstr ""
-
-#: ../Windows/DeleteItemDialog.qml:52
-#, qt-format
-msgctxt "DeleteItemDialog|"
-msgid ""
-"Do you really want to delete the page <strong>%1</strong>? This cannot be "
-"undone."
-msgstr ""
+msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
+msgstr "Nais mo bang tanggalin ang tala <strong>% 1</strong>? Hindi ito mababago."
 
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
-msgstr ""
+msgstr "Tanggalin ang Library?"
 
 #: ../Windows/DeleteLibraryDialog.qml:33
-#, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid ""
-"Do you really want to remove the library <strong>%1</strong> from  the "
-"application? <em>This will remove any files belonging to the library.</em>"
-msgstr ""
+msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
+msgstr "Nais mo bang alisin ang library <strong>%1 </strong> mula sa application? <em> Tatanggalin nito ang anumang mga file na kabilang sa library.</em>"
 
 #: ../Windows/DeleteLibraryDialog.qml:40
-#, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid ""
-"Do you really want to remove the library <strong>%1</strong> from the "
-"application? Note that the files inside the library will not be removed, so "
-"you can restore the library later on."
-msgstr ""
+msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
+msgstr "Nais mo bang alisin ang library <strong>% 1</strong> mula sa application? Tandaan na ang mga file sa loob ng library ay hindi aalisin, upang maibalik mo ang silid-aklatan sa susunod."
+
+#: ../Windows/FolderSelectionDialog.qml:17
+msgctxt "FolderSelectionDialog|"
+msgid "Select a Folder"
+msgstr "Pumili ng isang Folder"
+
+#: ../Widgets/ItemCreatedNotification.qml:64
+msgctxt "ItemCreatedNotification|"
+msgid "<strong>%1</strong> has been created."
+msgstr "Ang <strong>%1</strong> ay nilikha."
+
+#: ../Widgets/ItemCreatedNotification.qml:69
+msgctxt "ItemCreatedNotification|"
+msgid "Open"
+msgstr "Buksan"
+
+#: ../Widgets/ItemDueDateEditor.qml:30
+msgctxt "ItemDueDateEditor|"
+msgid "Due on"
+msgstr "Dahil sa"
+
+#: ../Widgets/ItemNotesEditor.qml:32
+msgctxt "ItemNotesEditor|"
+msgid "Notes"
+msgstr "Mga Tala"
+
+#: ../Widgets/LibrariesSideBar.qml:120
+msgctxt "LibrariesSideBar|"
+msgid "Schedule"
+msgstr "Iskedyul"
+
+#: ../Widgets/LibrariesSideBar.qml:157
+msgctxt "LibrariesSideBar|"
+msgid "New Library"
+msgstr "Bagong Library"
+
+#: ../Widgets/LibrariesSideBar.qml:185
+msgctxt "LibrariesSideBar|"
+msgid "About..."
+msgstr "Tungkol sa ..."
+
+#: ../Pages/LibraryPage.qml:144
+msgctxt "LibraryPage|"
+msgid "Red"
+msgstr "Pula"
+
+#: ../Pages/LibraryPage.qml:151
+msgctxt "LibraryPage|"
+msgid "Green"
+msgstr "Berde"
+
+#: ../Pages/LibraryPage.qml:158
+msgctxt "LibraryPage|"
+msgid "Blue"
+msgstr "Asul"
+
+#: ../Pages/LibraryPage.qml:165
+msgctxt "LibraryPage|"
+msgid "Yellow"
+msgstr "Dilaw"
+
+#: ../Pages/LibraryPage.qml:172
+msgctxt "LibraryPage|"
+msgid "Orange"
+msgstr "Orange"
+
+#: ../Pages/LibraryPage.qml:179
+msgctxt "LibraryPage|"
+msgid "Lilac"
+msgstr "Lilac"
+
+#: ../Pages/LibraryPage.qml:186
+msgctxt "LibraryPage|"
+msgid "White"
+msgstr "Puti"
+
+#: ../Pages/LibraryPage.qml:196
+msgctxt "LibraryPage|"
+msgid "Rename"
+msgstr "Palitan ang pangalan"
+
+#: ../Pages/LibraryPage.qml:201
+msgctxt "LibraryPage|"
+msgid "Delete"
+msgstr "Tanggalin"
+
+#: ../Pages/LibraryPage.qml:259
+msgctxt "LibraryPage|"
+msgid "Note Title"
+msgstr "Pamagat ng Tala"
+
+#: ../Pages/LibraryPage.qml:272
+msgctxt "LibraryPage|"
+msgid "Todo List Title"
+msgstr "Pamagat ng Listahan ng Listahan"
+
+#: ../Pages/LibraryPage.qml:285
+msgctxt "LibraryPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr "Paghahanap ng term 1, term sa paghahanap, ..."
+
+#: ../Pages/LibraryPage.qml:358
+msgctxt "LibraryPage|"
+msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr "Wala pa dito! Magsimula sa pamamagitan ng pagdaragdag ng isang <a href='#note'> tala </a>, <a href='#todolist'> listahan ng todo </a> o <a href='#image'> imahe </a>."
+
+#: ../Menues/LibraryPageMenu.qml:18
+msgctxt "LibraryPageMenu|"
+msgid "Edit Sync Settings"
+msgstr "I-edit ang Mga Setting ng Pag-sync"
+
+#: ../Menues/LibraryPageMenu.qml:20
+msgctxt "LibraryPageMenu|"
+msgid "Sync Now"
+msgstr "I-sync Ngayon"
+
+#: ../Menues/LibraryPageMenu.qml:29
+msgctxt "LibraryPageMenu|"
+msgid "Sync Log"
+msgstr "Mag-sync Log"
+
+#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
+msgctxt "LibrarySecretsMissingNotificationBar|"
+msgid "The secrets for synchronizing the library %1 are missing."
+msgstr "Ang mga lihim para sa pag-synchronize ng library %1 ay nawawala."
+
+#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
+msgctxt "LibrarySecretsMissingNotificationBar|"
+msgid "Ignore"
+msgstr "Huwag pansinin"
+
+#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
+msgctxt "LibrarySecretsMissingNotificationBar|"
+msgid "Enter Secrets"
+msgstr "Ipasok ang Mga Lihim"
+
+#: ../Pages/LogViewPage.qml:13
+msgctxt "LogViewPage|"
+msgid "Synchronization Log"
+msgstr "Pag-synchronise Log"
+
+#: ../Pages/LogViewPage.qml:22
+msgctxt "LogViewPage|"
+msgid "Copy Log"
+msgstr "Kopya ng Kopya"
+
+#: ../Windows/MainWindow.qml:21
+msgctxt "MainWindow|"
+msgid "OpenTodoList"
+msgstr "OpenTodoList"
+
+#: ../Windows/MainWindow.qml:325
+msgctxt "MainWindow|"
+msgid "New &Library"
+msgstr "Bago &Library"
+
+#: ../Windows/MainWindow.qml:336
+msgctxt "MainWindow|"
+msgid "New &Note"
+msgstr "Bago &Tandaan"
+
+#: ../Windows/MainWindow.qml:344
+msgctxt "MainWindow|"
+msgid "New &Todo List"
+msgstr "Bago &Listahan ng Todo"
+
+#: ../Windows/MainWindow.qml:352
+msgctxt "MainWindow|"
+msgid "New &Image"
+msgstr "Bago &Imahe"
+
+#: ../Windows/MainWindow.qml:360
+msgctxt "MainWindow|"
+msgid "&Quit"
+msgstr "&Tumahimik"
+
+#: ../Windows/MainWindow.qml:368
+msgctxt "MainWindow|"
+msgid "&Find"
+msgstr "&Maghanap"
+
+#: ../Windows/MainWindow.qml:395
+msgctxt "MainWindow|"
+msgid "Open Last &Created Item"
+msgstr "Buksan ang Huling &Nilikha na Item"
+
+#: ../Windows/MainWindow.qml:403
+msgctxt "MainWindow|"
+msgid "Open &Left Side Bar"
+msgstr "Buksan &Kaliwa Side Bar"
+
+#: ../Windows/MainWindow.qml:522
+msgctxt "MainWindow|"
+msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
+msgstr "Magsimula sa pamamagitan ng <a href='#newLibrary'> paglikha ng isang bagong library </a>. Ginagamit ang mga aklatan upang mag-imbak ng iba't ibang uri ng mga item tulad ng mga tala, listahan ng todo at imahe."
+
+#: ../Pages/NewLibraryPage.qml:19
+msgctxt "NewLibraryPage|"
+msgid "Create Library"
+msgstr "Lumikha ng Library"
+
+#: ../Pages/NewLibraryPage.qml:23
+msgctxt "NewLibraryPage|"
+msgid "Create"
+msgstr "Lumikha"
+
+#: ../Pages/NewLibraryPage.qml:39
+msgctxt "NewLibraryPage|"
+msgid "Cancel"
+msgstr "Pagkansela"
+
+#: ../Pages/NewLibraryPage.qml:58
+msgctxt "NewLibraryPage|"
+msgid "Library Name:"
+msgstr "Pangalan ng Library:"
+
+#: ../Pages/NewLibraryPage.qml:66
+msgctxt "NewLibraryPage|"
+msgid "My New Library"
+msgstr "Aking Bagong Library"
+
+#: ../Pages/NewLibraryPage.qml:73
+msgctxt "NewLibraryPage|"
+msgid "Create Library in Default Location"
+msgstr "Lumikha ng Library sa Lugar ng Default"
+
+#: ../Pages/NewLibraryPage.qml:80
+msgctxt "NewLibraryPage|"
+msgid "The items you add to the library will be stored in the default location for libraries."
+msgstr "Ang mga item na idadagdag mo sa library ay maiimbak sa default na lokasyon para sa mga aklatan."
+
+#: ../Pages/NewLibraryPage.qml:82
+msgctxt "NewLibraryPage|"
+msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
+msgstr "Mangyaring pumili ng isang direktoryo kung saan mai-save ang mga item sa aklatan. Maaari ka ring pumili ng isang umiiral na direktoryo ng library. Sa kasong ito, mai-import ang aklatan."
+
+#: ../Pages/NewLibraryPage.qml:110
+msgctxt "NewLibraryPage|"
+msgid "Please select a library location"
+msgstr "Mangyaring pumili ng lokasyon ng library"
+
+#: ../Widgets/NewTopLevelItemButton.qml:39
+msgctxt "NewTopLevelItemButton|"
+msgid "Note"
+msgstr "Tandaan"
+
+#: ../Widgets/NewTopLevelItemButton.qml:43
+msgctxt "NewTopLevelItemButton|"
+msgid "Todo List"
+msgstr "Listahan ng Todo"
+
+#: ../Widgets/NewTopLevelItemButton.qml:47
+msgctxt "NewTopLevelItemButton|"
+msgid "Image"
+msgstr "Imahe"
+
+#: ../Windows/OpenFileDialog.qml:18
+msgctxt "OpenFileDialog|"
+msgid "Select a File"
+msgstr "Pumili ng isang File"
+
+#: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
+msgctxt "OpenImageDialog|"
+msgid "Select Image"
+msgstr "Piliin ang Imahe"
+
+#: ../Windows/RenameItemDialog.qml:23
+msgctxt "RenameItemDialog|"
+msgid "Rename Item"
+msgstr "Palitan ang pangalan ng item"
+
+#: ../Windows/RenameItemDialog.qml:34
+msgctxt "RenameItemDialog|"
+msgid "Enter item title..."
+msgstr "Ipasok ang pamagat ng item ..."
+
+#: ../Windows/RenameLibraryDialog.qml:20
+msgctxt "RenameLibraryDialog|"
+msgid "Rename Library"
+msgstr "Palitan ang pangalan ng Library"
+
+#: ../Windows/RenameLibraryDialog.qml:37
+msgctxt "RenameLibraryDialog|"
+msgid "Enter library title..."
+msgstr "Ipasok ang pamagat ng aklatan ..."
+
+#: ../Pages/ScheduleViewPage.qml:132
+msgctxt "ScheduleViewPage|"
+msgid "Today"
+msgstr "Ngayon"
+
+#: ../Pages/ScheduleViewPage.qml:133
+msgctxt "ScheduleViewPage|"
+msgid "Tomorrow"
+msgstr "Bukas"
+
+#: ../Pages/ScheduleViewPage.qml:137
+msgctxt "ScheduleViewPage|"
+msgid "Later This Week"
+msgstr "Mamaya This Week"
+
+#: ../Pages/ScheduleViewPage.qml:139
+msgctxt "ScheduleViewPage|"
+msgid "Next Week"
+msgstr "Susunod na linggo"
+
+#: ../Pages/ScheduleViewPage.qml:140
+msgctxt "ScheduleViewPage|"
+msgid "Coming Next"
+msgstr "Paparating"
+
+#: ../Pages/ScheduleViewPage.qml:257
+msgctxt "ScheduleViewPage|"
+msgid "Nothing scheduled... Add a due date to items for them to appear here."
+msgstr "Walang naka-iskedyul ... Magdagdag ng isang takdang petsa sa mga item para sa kanila na lumitaw dito."
+
+#: ../Pages/ScheduleViewPage.qml:76
+msgctxt "ScheduleViewPage|"
+msgid "Overdue"
+msgstr "Overdue"
+
+#: ../Widgets/SyncErrorNotificationBar.qml:43
+msgctxt "SyncErrorNotificationBar|"
+msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
+msgstr "May mga pagkakamali sa pag-synchronize ng library. Mangyaring tiyaking napapanahon ang mga setting ng aklatan."
+
+#: ../Widgets/SyncErrorNotificationBar.qml:49
+msgctxt "SyncErrorNotificationBar|"
+msgid "Ignore"
+msgstr "Huwag pansinin"
+
+#: ../Widgets/SyncErrorNotificationBar.qml:53
+msgctxt "SyncErrorNotificationBar|"
+msgid "View"
+msgstr "Tingnan"
+
+#: ../Widgets/SyncIndicatorBar.qml:63
+msgctxt "SyncIndicatorBar|"
+msgid "Synchronizing library..."
+msgstr "Pag-synchronize ng library ..."
+
+#: ../Pages/SyncLibrarySelectionPage.qml:17
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Create Library"
+msgstr "Lumikha ng Library"
+
+#: ../Pages/SyncLibrarySelectionPage.qml:29
+msgctxt "SyncLibrarySelectionPage|"
+msgid "OK"
+msgstr "OK"
+
+#: ../Pages/SyncLibrarySelectionPage.qml:46
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Cancel"
+msgstr "Pagkansela"
+
+#: ../Pages/SyncLibrarySelectionPage.qml:79
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Create new library on server"
+msgstr "Lumikha ng bagong library sa server"
+
+#: ../Pages/SyncLibrarySelectionPage.qml:97
+msgctxt "SyncLibrarySelectionPage|"
+msgid "Searching for existing libraries..."
+msgstr "Paghahanap para sa mayroon nang mga aklatan ..."
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:16
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "Cancel"
+msgstr "Pagkansela"
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:21
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "OK"
+msgstr "OK"
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:45
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "NextCloud"
+msgstr "NextCloud"
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:52
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "ownCloud"
+msgstr "ownCloud"
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:59
+#: ../Pages/SynchronizerBackendSelectionPage.qml:60
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "WebDAV"
+msgstr "WebDAV"
+
+#: ../Pages/SynchronizerBackendSelectionPage.qml:66
+#: ../Pages/SynchronizerBackendSelectionPage.qml:67
+msgctxt "SynchronizerBackendSelectionPage|"
+msgid "Local Library"
+msgstr "Lokal na Library"
+
+#: ../Widgets/TodoListItem.qml:97
+msgctxt "TodoListItem|"
+msgid "✔ No open todos - everything done"
+msgstr "✔ Walang bukas na todos - tapos na ang lahat"
+
+#: ../Pages/TodoListPage.qml:154
+msgctxt "TodoListPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr "Paghahanap ng term 1, term sa paghahanap, ..."
+
+#: ../Pages/TodoListPage.qml:217
+msgctxt "TodoListPage|"
+msgid "Todos"
+msgstr "Todos"
+
+#: ../Pages/TodoListPage.qml:290
+msgctxt "TodoListPage|"
+msgid "Completed Todos"
+msgstr "Natapos ang Todos"
+
+#: ../Pages/TodoPage.qml:98
+msgctxt "TodoPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr "Paghahanap ng term 1, term sa paghahanap, ..."
+
+#: ../Pages/TodoPage.qml:117
+msgctxt "TodoPage|"
+msgid "Tasks"
+msgstr "Mga Gawain"
+
+#: ../Widgets/UpdateNotificationBar.qml:44
+msgctxt "UpdateNotificationBar|"
+msgid "An update to OpenTodoList %1 is available."
+msgstr "Ang isang pag-update sa OpenTodoList % 1 ay magagamit."
+
+#: ../Widgets/UpdateNotificationBar.qml:50
+msgctxt "UpdateNotificationBar|"
+msgid "Ignore"
+msgstr "Huwag pansinin"
+
+#: ../Widgets/UpdateNotificationBar.qml:54
+msgctxt "UpdateNotificationBar|"
+msgid "Download"
+msgstr "Pag-download"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:22
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "OK"
+msgstr "OK"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:22
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Validate"
+msgstr "Patunayan"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:40
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Cancel"
+msgstr "Pagkansela"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:86
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Server Address:"
+msgstr "Address ng server:"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:92
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "https://..."
+msgstr "https://..."
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:98
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "User name:"
+msgstr "Pangalan ng gumagamit:"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:110
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Password:"
+msgstr "Password:"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:124
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Ignore SSL Errors"
+msgstr "Huwag pansinin ang Mga SSL na Mali"
+
+#: ../Pages/WebDAVConnectionSettingsPage.qml:130
+msgctxt "WebDAVConnectionSettingsPage|"
+msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgstr "Di nakakonekta sa server. Mangyaring suriin ang iyong pangalan ng gumagamit, password at ang address ng server at muling subukan."
+
+#: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
+msgctxt "WebDAVSynchronizerSettingsPage|"
+msgid "User name"
+msgstr "Pangalan ng gumagamit"
+
+#: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
+msgctxt "WebDAVSynchronizerSettingsPage|"
+msgid "Password"
+msgstr "Password"
+
+#: ../main.cpp:84
+msgctxt "main|"
+msgid "Manage your personal data."
+msgstr "Pamahalaan ang iyong personal na data."
+
+#: ../main.cpp:90
+msgctxt "main|"
+msgid "QML Root Directory"
+msgstr "Directory ng QML Root"
+
+#: ../main.cpp:91
+msgctxt "main|"
+msgid "DIR"
+msgstr "DIR"
+
+#: ../main.cpp:97
+msgctxt "main|"
+msgid "Switch on some optimizations for touchscreens."
+msgstr "Lumipat sa ilang mga pag-optimize para sa mga touchscreens."
+
+#: ../main.cpp:110
+msgctxt "main|"
+msgid "Remove shortcuts to the AppImage."
+msgstr "Alisin ang mga shortcut sa AppImage."
+
+#: ../Widgets/ItemNotesEditor.qml:85
+msgctxt "ItemNotesEditor|"
+msgid "No notes added yet - click here to add some."
+msgstr "Wala pang mga tala na naidagdag - mag-click dito upang magdagdag ng ilan."
+
+#: ../Widgets/TagsEditor.qml:34
+msgctxt "TagsEditor|"
+msgid "Add Tag"
+msgstr "Magdagdag ng tag"
+
+#: ../Pages/TodoListPage.qml:237
+msgctxt "TodoListPage|"
+msgid "Add new todo..."
+msgstr "Magdagdag ng bagong todo ..."
+
+#: ../Pages/TodoPage.qml:120
+msgctxt "TodoPage|"
+msgid "Add new task..."
+msgstr "Magdagdag ng bagong gawain ..."
+
+#: ../Widgets/TodosWidget.qml:168
+msgctxt "TodosWidget|"
+msgid "Due on: %1"
+msgstr "Dahil sa:%1"
+
+#: ../Utils/Colors.qml:16
+msgctxt "Colors|"
+msgid "System"
+msgstr "System"
+
+#: ../Utils/Colors.qml:17
+msgctxt "Colors|"
+msgid "Light"
+msgstr "Liwanag"
+
+#: ../Utils/Colors.qml:18
+msgctxt "Colors|"
+msgid "Dark"
+msgstr "Madilim"
+
+#: ../Widgets/LibrariesSideBar.qml:171
+msgctxt "LibrariesSideBar|"
+msgid "Settings"
+msgstr "Mga setting"
+
+#: ../Windows/MainWindow.qml:317
+msgctxt "MainWindow|"
+msgid "Settings"
+msgstr "Mga setting"
+
+#: ../Windows/MainWindow.qml:318
+msgctxt "MainWindow|"
+msgid "Ctrl+,"
+msgstr "Ctrl+,"
+
+#: ../Pages/SettingsPageForm.ui.qml:32
+msgctxt "SettingsPageForm.ui|"
+msgid "Settings"
+msgstr "Mga setting"
+
+#: ../Pages/SettingsPageForm.ui.qml:38
+msgctxt "SettingsPageForm.ui|"
+msgid "User Interface"
+msgstr "User Interface"
+
+#: ../Pages/SettingsPageForm.ui.qml:55
+msgctxt "SettingsPageForm.ui|"
+msgid "Theme:"
+msgstr "Tema:"
+
+#: ../Widgets/LibrariesSideBar.qml:198
+msgctxt "LibrariesSideBar|"
+msgid "Create Default Library"
+msgstr "Lumikha ng Default Library"
+
+#: ../Pages/LibraryPage.qml:417
+msgctxt "LibraryPage|"
+msgid "Sort By"
+msgstr "Pagsunud-sunurin ayon"
+
+#: ../Pages/LibraryPage.qml:422
+msgctxt "LibraryPage|"
+msgid "Manually"
+msgstr "Manu-manong"
+
+#: ../Pages/LibraryPage.qml:429
+msgctxt "LibraryPage|"
+msgid "Title"
+msgstr "Pamagat"
+
+#: ../Pages/LibraryPage.qml:436
+msgctxt "LibraryPage|"
+msgid "Due To"
+msgstr "Dahil sa"
+
+#: ../Pages/LibraryPage.qml:443
+msgctxt "LibraryPage|"
+msgid "Created At"
+msgstr "Nilikha Sa"
+
+#: ../Pages/LibraryPage.qml:450
+msgctxt "LibraryPage|"
+msgid "Updated At"
+msgstr "Nai-update Sa"
+
+#: ../Windows/MainWindow.qml:218
+msgctxt "MainWindow|"
+msgid "Rename"
+msgstr "Palitan ang pangalan"
+
+#: ../Windows/MainWindow.qml:229
+msgctxt "MainWindow|"
+msgid "Color"
+msgstr "Kulay"
+
+#: ../Windows/MainWindow.qml:240
+msgctxt "MainWindow|"
+msgid "Add Tag"
+msgstr "Magdagdag ng tag"
+
+#: ../Windows/MainWindow.qml:247
+msgctxt "MainWindow|"
+msgid "Attach File"
+msgstr "Maglakip ng file"
+
+#: ../Windows/MainWindow.qml:256
+msgctxt "MainWindow|"
+msgid "Search"
+msgstr "Paghahanap"
+
+#: ../Windows/MainWindow.qml:263
+msgctxt "MainWindow|"
+msgid "Sort"
+msgstr "Pagsunud-sunurin ayon"
+
+#: ../Windows/MainWindow.qml:271
+msgctxt "MainWindow|"
+msgid "Set Due Date"
+msgstr "Itakda ang Takdang Petsa"
+
+#: ../Windows/MainWindow.qml:279
+msgctxt "MainWindow|"
+msgid "Delete"
+msgstr "Tanggalin"
+
+#: ../Pages/SettingsPageForm.ui.qml:46
+msgctxt "SettingsPageForm.ui|"
+msgid "Language:"
+msgstr "Wika:"
+
+#: ../Pages/TodoListPage.qml:171
+msgctxt "TodoListPage|"
+msgid "Manually"
+msgstr "Manu-manong"
+
+#: ../Pages/TodoListPage.qml:177
+msgctxt "TodoListPage|"
+msgid "Name"
+msgstr "Pangalan"
+
+#: ../Pages/TodoListPage.qml:183
+msgctxt "TodoListPage|"
+msgid "Due Date"
+msgstr "Takdang petsa"
+
+#: ../Pages/TodoListPage.qml:189
+msgctxt "TodoListPage|"
+msgid "Created At"
+msgstr "Nilikha Sa"
+
+#: ../Pages/TodoListPage.qml:195
+msgctxt "TodoListPage|"
+msgid "Updated At"
+msgstr "Nai-update Sa"
+
+#: ../Widgets/TodosWidget.qml:309
+msgctxt "TodosWidget|"
+msgid "Swipe to mark undone"
+msgstr "Mag-swipe upang markahan ang pagbawi"
+
+#: ../Widgets/TodosWidget.qml:310
+msgctxt "TodosWidget|"
+msgid "Swipe to mark done"
+msgstr "Mag-swipe upang markahan ang tapos na"
+
+#: ../Utils/Translations.qml:14
+msgctxt "Translations|"
+msgid "System Language"
+msgstr "Wika ng System"
+
+#: ../Utils/Translations.qml:22
+msgctxt "Translations|"
+msgid "German"
+msgstr "Aleman"
+
+#: ../Utils/Translations.qml:30
+msgctxt "Translations|"
+msgid "English"
+msgstr "Ingles"
+
+#: ../Utils/Translations.qml:42
+msgctxt "Translations|"
+msgid "French"
+msgstr "Pranses"
+
+#: ../Pages/AboutPage.qml:42
+msgctxt "AboutPage|"
+msgid "(c) RPdev 2013-2020, version %1"
+msgstr "(c) RPdev 2013-2020, bersyon% 1"
+
+#: ../Pages/AboutPage.qml:59
+msgctxt "AboutPage|"
+msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
+msgstr "Ang OpenTodoList ay pinakawalan sa ilalim ng mga tuntunin ng <a href='app-license'> GNU General Public License </a> bersyon 3 o (sa gusto mo) anumang bersyon sa ibang pagkakataon."
+
+#: ../Pages/AboutPage.qml:78
+msgctxt "AboutPage|"
+msgid "Report an Issue"
+msgstr "Mag-ulat ng Isyu"
+
+#: ../Pages/AboutPage.qml:91
+msgctxt "AboutPage|"
+msgid "Third Party Libraries and Resources"
+msgstr "Mga Aklatan at Mga Mapagkukunan ng Third Party"
+
+#: ../Pages/AboutPage.qml:128
+msgctxt "AboutPage|"
+msgid "Author:"
+msgstr "May-akda:"
+
+#: ../Pages/AboutPage.qml:133
+msgctxt "AboutPage|"
+msgid "<a href='%2'>%1</a>"
+msgstr "<a href='%2'>%1</a>"
+
+#: ../Pages/AboutPage.qml:141
+msgctxt "AboutPage|"
+msgid "License:"
+msgstr "Lisensya:"
+
+#: ../Pages/AboutPage.qml:146
+msgctxt "AboutPage|"
+msgid "<a href='%1'>%2</a>"
+msgstr "<a href='%1'>%2</a>"
+
+#: ../Pages/AboutPage.qml:154
+msgctxt "AboutPage|"
+msgid "Download:"
+msgstr "I-download:"
+
+#: ../Pages/AboutPage.qml:159
+msgctxt "AboutPage|"
+msgid "<a href='%1'>%1</a>"
+msgstr "<a href='%1'>%1</a>"
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "Select Account Type"
+msgstr "Piliin ang Uri ng Account"
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "Account Type"
+msgstr "Uri ng Account"
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "NextCloud"
+msgstr "NextCloud"
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:51
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "ownCloud"
+msgstr "ownCloud"
+
+#: ../Pages/AccountTypeSelectionPageForm.ui.qml:56
+msgctxt "AccountTypeSelectionPageForm.ui|"
+msgid "WebDAV"
+msgstr "WebDAV"
+
+#: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
+msgctxt "AccountsPageForm.ui|"
+msgid "Accounts"
+msgstr "Mga Account"
+
+#: ../Windows/DeleteAccountDialog.qml:19
+msgctxt "DeleteAccountDialog|"
+msgid "Delete Account?"
+msgstr "Tanggalin ang Account?"
+
+#: ../Windows/DeleteAccountDialog.qml:36
+msgctxt "DeleteAccountDialog|"
+msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
+msgstr "Nais mo bang alisin ang account <strong>% 1</strong>? Tatanggalin nito ang lahat ng mga aklatan na kabilang sa account sa iyong aparato? <br/><br/><i>Tandaan: Maaari mong ibalik ang mga ito mula sa server sa pamamagitan ng pagdaragdag ng account</i>"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Edit Account"
-msgstr ""
+msgstr "I-edit ang iyong account"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Name:"
-msgstr ""
+msgstr "Pangalan:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:59
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Address ng server:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:65
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:71
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "User:"
-msgstr ""
+msgstr "Gumagamit:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:77
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "User Name"
-msgstr ""
+msgstr "Pangalan ng Gumagamit"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Huwag paganahin ang Mga Suriin sa Sertipiko"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
 msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid ""
-"Failed to connect to the server. Please check your user name, password and "
-"the server address and retry."
-msgstr ""
+msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgstr "Di nakakonekta sa server. Mangyaring suriin ang iyong pangalan ng gumagamit, password at ang address ng server at muling subukan."
 
-#: ../Windows/FolderSelectionDialog.qml:17
-msgctxt "FolderSelectionDialog|"
-msgid "Select a Folder"
-msgstr ""
+#: ../Widgets/LibrariesSideBar.qml:164
+msgctxt "LibrariesSideBar|"
+msgid "Accounts"
+msgstr "Mga Account"
 
-#: ../Widgets/ItemCreatedNotification.qml:64
-#, qt-format
-msgctxt "ItemCreatedNotification|"
-msgid "<strong>%1</strong> has been created."
-msgstr ""
+#: ../Widgets/LibrariesSideBar.qml:178
+msgctxt "LibrariesSideBar|"
+msgid "Translate The App..."
+msgstr "Isalin ang App ..."
 
-#: ../Widgets/ItemCreatedNotification.qml:69
-msgctxt "ItemCreatedNotification|"
-msgid "Open"
-msgstr ""
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Create Library in Account"
+msgstr "Lumikha ng Library sa Account"
 
-#: ../Widgets/ItemDueDateEditor.qml:30
-msgctxt "ItemDueDateEditor|"
-msgid "Due on"
-msgstr ""
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
+msgstr "Ang isang aklatan na nilikha sa isang account ay naka-synchronize dito. Pinapayagan nitong madaling i-back up ang isang library sa isang server at kalaunan ay maibalik ito mula doon. Bilang karagdagan, ang mga naturang aklatan ay maaaring ibahagi sa iba pang mga."
 
-#: ../Widgets/ItemNotesEditor.qml:32
-msgctxt "ItemNotesEditor|"
-msgid "Notes"
-msgstr ""
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Existing Libraries"
+msgstr "Mga umiiral na Aklatan"
 
-#: ../Widgets/ItemNotesEditor.qml:85
-msgctxt "ItemNotesEditor|"
-msgid "No notes added yet - click here to add some."
-msgstr ""
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Select an existing library on the server to add it to the app."
+msgstr "Pumili ng isang umiiral na library sa server upang idagdag ito sa app."
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "No libraries were found on the server."
+msgstr "Walang natagpuan ang mga aklatan sa server."
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Searching existing libraries..."
+msgstr "Paghahanap ng umiiral na mga aklatan..."
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Create a New Library"
+msgstr "Lumikha ng isang Bagong Library"
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
+msgstr "Lumikha ng isang bagong library, na mai-synchronize sa server. Ang nasabing isang silid-aklatan ay maaaring idagdag sa app sa iba pang mga aparato pati na rin upang ma-synchronize ang data."
+
+#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
+msgctxt "NewLibraryFromAccountPageForm.ui|"
+msgid "My new library's name"
+msgstr "Ang pangalan ng aking bagong aklatan"
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Open a Folder as a Library"
+msgstr "Magbukas ng isang Folder bilang isang Library"
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
+msgstr "Maaari kang gumamit ng anumang folder bilang isang lokasyon para sa isang silid-aklatan."
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Folder:"
+msgstr "Folder:"
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Path to a folder to use as a library"
+msgstr "Landas sa isang folder upang magamit bilang isang aklatan"
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Select"
+msgstr "Piliin"
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "Name:"
+msgstr "Pangalan:"
+
+#: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
+msgctxt "NewLibraryInFolderPageForm.ui|"
+msgid "My Local Library Name"
+msgstr "Aking Pangalan ng Lokal na Library"
+
+#: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Create Library"
+msgstr "Lumikha ng Library"
+
+#: ../Pages/NewLibraryPageForm.ui.qml:32
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Local Library"
+msgstr "Lokal na Library"
+
+#: ../Pages/NewLibraryPageForm.ui.qml:38
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Use Folder as Library"
+msgstr "Gumamit ng Folder bilang Library"
+
+#: ../Pages/NewLibraryPageForm.ui.qml:44
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Add Libraries From Your Accounts"
+msgstr "Magdagdag ng Mga Aklatan Mula sa Iyong Mga Account"
+
+#: ../Pages/NewLibraryPageForm.ui.qml:79
+msgctxt "NewLibraryPageForm.ui|"
+msgid "Add Account"
+msgstr "Magdagdag ng account"
+
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:29
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "Create a Local Library"
+msgstr "Lumikha ng isang Lokal na Library"
+
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:37
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
+msgstr "Ang isang lokal na aklatan ay naka-imbak lamang sa iyong aparato - ginagawang perpekto ito para sa madaling maintindihan ng privacy!<br/><br/>Gamitin ito kapag nais mong mag-imbak lamang ng impormasyon ng lokal at i-back up ang lahat ng iyong data nang regular sa pamamagitan ng iba pang mga mekanismo. Kung kailangan mong ma-access ang iyong impormasyon sa maraming mga aparato, lumikha ng isang aklatan na naka-sync sa halip."
+
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:48
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "Name:"
+msgstr "Pangalan:"
+
+#: ../Pages/NewLocalLibraryPageForm.ui.qml:53
+msgctxt "NewLocalLibraryPageForm.ui|"
+msgid "My Local Library Name"
+msgstr "Aking Pangalan ng Lokal na Library"
+
+#: ../Pages/NewWebDAVAccountPage.qml:24
+msgctxt "NewWebDAVAccountPage|"
+msgid "Account Name"
+msgstr "Pangalan ng Account"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Connection Settings"
+msgstr "Mga Setting ng Koneksyon"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Server Address:"
+msgstr "Address ng server:"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "https://myserver.example.com"
+msgstr "https://myserver.example.com"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "User:"
+msgstr "Gumagamit:"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "User Name"
+msgstr "Pangalan ng Gumagamit"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Password:"
+msgstr "Password:"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Password"
+msgstr "Password"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Disable Certificate Checks"
+msgstr "Huwag paganahin ang Mga Suriin sa Sertipiko"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Name:"
+msgstr "Pangalan:"
+
+#: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
+msgctxt "NewWebDAVAccountPageForm.ui|"
+msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgstr "Di nakakonekta sa server. Mangyaring suriin ang iyong pangalan ng gumagamit, password at ang address ng server at muling subukan."
+
+#: ../Windows/DeleteItemDialog.qml:52
+msgctxt "DeleteItemDialog|"
+msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
+msgstr "Nais mo bang tanggalin ang pahina <strong>% 1</strong>? Hindi ito mababago."
+
+#: ../Windows/MainWindow.qml:102
+msgctxt "MainWindow|"
+msgid "Synchronizing library..."
+msgstr "Pag-synchronize ng library ..."
+
+#: ../Pages/NotePage.qml:116
+msgctxt "NotePage|"
+msgid "Main Page"
+msgstr "Pangunahing Pahina"
+
+#: ../Pages/NotePage.qml:179
+msgctxt "NotePage|"
+msgid "New Page"
+msgstr "Bagong pahina"
 
 #: ../Widgets/ItemNotesEditor.qml:114
 msgctxt "ItemNotesEditor|"
@@ -374,497 +1246,6 @@ msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:120
-msgctxt "LibrariesSideBar|"
-msgid "Schedule"
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:157
-msgctxt "LibrariesSideBar|"
-msgid "New Library"
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:164
-msgctxt "LibrariesSideBar|"
-msgid "Accounts"
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:171
-msgctxt "LibrariesSideBar|"
-msgid "Settings"
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:178
-msgctxt "LibrariesSideBar|"
-msgid "Translate The App..."
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:185
-msgctxt "LibrariesSideBar|"
-msgid "About..."
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:198
-msgctxt "LibrariesSideBar|"
-msgid "Create Default Library"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:144
-msgctxt "LibraryPage|"
-msgid "Red"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:151
-msgctxt "LibraryPage|"
-msgid "Green"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:158
-msgctxt "LibraryPage|"
-msgid "Blue"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:165
-msgctxt "LibraryPage|"
-msgid "Yellow"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:172
-msgctxt "LibraryPage|"
-msgid "Orange"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:179
-msgctxt "LibraryPage|"
-msgid "Lilac"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:186
-msgctxt "LibraryPage|"
-msgid "White"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:196
-msgctxt "LibraryPage|"
-msgid "Rename"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:201
-msgctxt "LibraryPage|"
-msgid "Delete"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:259
-msgctxt "LibraryPage|"
-msgid "Note Title"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:272
-msgctxt "LibraryPage|"
-msgid "Todo List Title"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:285
-msgctxt "LibraryPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:358
-msgctxt "LibraryPage|"
-msgid ""
-"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
-"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:417
-msgctxt "LibraryPage|"
-msgid "Sort By"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:422
-msgctxt "LibraryPage|"
-msgid "Manually"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:429
-msgctxt "LibraryPage|"
-msgid "Title"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:436
-msgctxt "LibraryPage|"
-msgid "Due To"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:443
-msgctxt "LibraryPage|"
-msgid "Created At"
-msgstr ""
-
-#: ../Pages/LibraryPage.qml:450
-msgctxt "LibraryPage|"
-msgid "Updated At"
-msgstr ""
-
-#: ../Menues/LibraryPageMenu.qml:20
-msgctxt "LibraryPageMenu|"
-msgid "Sync Now"
-msgstr ""
-
-#: ../Menues/LibraryPageMenu.qml:29
-msgctxt "LibraryPageMenu|"
-msgid "Sync Log"
-msgstr ""
-
-#: ../Pages/LogViewPage.qml:13
-msgctxt "LogViewPage|"
-msgid "Synchronization Log"
-msgstr ""
-
-#: ../Pages/LogViewPage.qml:22
-msgctxt "LogViewPage|"
-msgid "Copy Log"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:21
-msgctxt "MainWindow|"
-msgid "OpenTodoList"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:102
-msgctxt "MainWindow|"
-msgid "Synchronizing library..."
-msgstr ""
-
-#: ../Windows/MainWindow.qml:218
-msgctxt "MainWindow|"
-msgid "Rename"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:229
-msgctxt "MainWindow|"
-msgid "Color"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:240
-msgctxt "MainWindow|"
-msgid "Add Tag"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:247
-msgctxt "MainWindow|"
-msgid "Attach File"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:256
-msgctxt "MainWindow|"
-msgid "Search"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:263
-msgctxt "MainWindow|"
-msgid "Sort"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:271
-msgctxt "MainWindow|"
-msgid "Set Due Date"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:279
-msgctxt "MainWindow|"
-msgid "Delete"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:317
-msgctxt "MainWindow|"
-msgid "Settings"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:318
-msgctxt "MainWindow|"
-msgid "Ctrl+,"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:325
-msgctxt "MainWindow|"
-msgid "New &Library"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:336
-msgctxt "MainWindow|"
-msgid "New &Note"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:344
-msgctxt "MainWindow|"
-msgid "New &Todo List"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:352
-msgctxt "MainWindow|"
-msgid "New &Image"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:360
-msgctxt "MainWindow|"
-msgid "&Quit"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:368
-msgctxt "MainWindow|"
-msgid "&Find"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:395
-msgctxt "MainWindow|"
-msgid "Open Last &Created Item"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:403
-msgctxt "MainWindow|"
-msgid "Open &Left Side Bar"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:522
-msgctxt "MainWindow|"
-msgid ""
-"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
-"used to store different kinds of items like notes, todo lists and images."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create Library in Account"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid ""
-"A library created in an account is synchronized with it. This allows to "
-"easily back up a library to a server and later on restore it from there. "
-"Additionally, such libraries can be shared with other users (if the server "
-"allows this)."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Existing Libraries"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Select an existing library on the server to add it to the app."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "No libraries were found on the server."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Searching existing libraries..."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create a New Library"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid ""
-"Create a new library, which will be synchronized with the server. Such a "
-"library can be added to the app on other devices as well to synchronize data."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "My new library's name"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Open a Folder as a Library"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid ""
-"You can use any folder as a location for a library.<br/><br/>This is "
-"especially useful when you want to use another tool (like a sync client of a "
-"cloud provider) to sync your data with a server."
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Folder:"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Path to a folder to use as a library"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Select"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Name:"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "My Local Library Name"
-msgstr ""
-
-#: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Create Library"
-msgstr ""
-
-#: ../Pages/NewLibraryPageForm.ui.qml:32
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Local Library"
-msgstr ""
-
-#: ../Pages/NewLibraryPageForm.ui.qml:38
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Use Folder as Library"
-msgstr ""
-
-#: ../Pages/NewLibraryPageForm.ui.qml:44
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Add Libraries From Your Accounts"
-msgstr ""
-
-#: ../Pages/NewLibraryPageForm.ui.qml:79
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Add Account"
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:29
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "Create a Local Library"
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:37
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid ""
-"A local library is stored solely on your device - this makes it perfect for "
-"the privacy concise!<br/><br/>Use it when you want to store information only "
-"locally and back up all your data regularly via other mechanisms. If you "
-"need to access your information across several devices, create a library "
-"which is synced instead."
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:48
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "Name:"
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:53
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "My Local Library Name"
-msgstr ""
-
-#: ../Widgets/NewTopLevelItemButton.qml:39
-msgctxt "NewTopLevelItemButton|"
-msgid "Note"
-msgstr ""
-
-#: ../Widgets/NewTopLevelItemButton.qml:43
-msgctxt "NewTopLevelItemButton|"
-msgid "Todo List"
-msgstr ""
-
-#: ../Widgets/NewTopLevelItemButton.qml:47
-msgctxt "NewTopLevelItemButton|"
-msgid "Image"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPage.qml:24
-msgctxt "NewWebDAVAccountPage|"
-msgid "Account Name"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Connection Settings"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Server Address:"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "https://myserver.example.com"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "User:"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "User Name"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Password:"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Password"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Disable Certificate Checks"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Name:"
-msgstr ""
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid ""
-"Failed to connect to the server. Please check your user name, password and "
-"the server address and retry."
-msgstr ""
-
-#: ../Pages/NotePage.qml:116
-msgctxt "NotePage|"
-msgid "Main Page"
-msgstr ""
-
-#: ../Pages/NotePage.qml:179
-msgctxt "NotePage|"
-msgid "New Page"
-msgstr ""
-
-#: ../Windows/OpenFileDialog.qml:18
-msgctxt "OpenFileDialog|"
-msgid "Select a File"
-msgstr ""
-
-#: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
-msgctxt "OpenImageDialog|"
-msgid "Select Image"
-msgstr ""
-
 #: ../Pages/ProblemsPage.qml:21
 msgctxt "ProblemsPage|"
 msgid "Missing secrets for account"
@@ -875,202 +1256,14 @@ msgctxt "ProblemsPageForm.ui|"
 msgid "Problems Detected"
 msgstr ""
 
-#: ../Windows/RenameItemDialog.qml:23
-msgctxt "RenameItemDialog|"
-msgid "Rename Item"
-msgstr ""
-
-#: ../Windows/RenameItemDialog.qml:34
-msgctxt "RenameItemDialog|"
-msgid "Enter item title..."
-msgstr ""
-
-#: ../Windows/RenameLibraryDialog.qml:20
-msgctxt "RenameLibraryDialog|"
-msgid "Rename Library"
-msgstr ""
-
-#: ../Windows/RenameLibraryDialog.qml:37
-msgctxt "RenameLibraryDialog|"
-msgid "Enter library title..."
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:76
-msgctxt "ScheduleViewPage|"
-msgid "Overdue"
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:132
-msgctxt "ScheduleViewPage|"
-msgid "Today"
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:133
-msgctxt "ScheduleViewPage|"
-msgid "Tomorrow"
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:137
-msgctxt "ScheduleViewPage|"
-msgid "Later This Week"
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:139
-msgctxt "ScheduleViewPage|"
-msgid "Next Week"
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:140
-msgctxt "ScheduleViewPage|"
-msgid "Coming Next"
-msgstr ""
-
-#: ../Pages/ScheduleViewPage.qml:257
-msgctxt "ScheduleViewPage|"
-msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr ""
-
-#: ../Pages/SettingsPageForm.ui.qml:32
-msgctxt "SettingsPageForm.ui|"
-msgid "Settings"
-msgstr ""
-
-#: ../Pages/SettingsPageForm.ui.qml:38
-msgctxt "SettingsPageForm.ui|"
-msgid "User Interface"
-msgstr ""
-
-#: ../Pages/SettingsPageForm.ui.qml:46
-msgctxt "SettingsPageForm.ui|"
-msgid "Language:"
-msgstr ""
-
-#: ../Pages/SettingsPageForm.ui.qml:55
-msgctxt "SettingsPageForm.ui|"
-msgid "Theme:"
-msgstr ""
-
-#: ../Widgets/SyncErrorNotificationBar.qml:43
-msgctxt "SyncErrorNotificationBar|"
-msgid ""
-"There were errors when synchronizing the library. Please ensure that the "
-"library settings are up to date."
-msgstr ""
-
-#: ../Widgets/SyncErrorNotificationBar.qml:49
-msgctxt "SyncErrorNotificationBar|"
-msgid "Ignore"
-msgstr ""
-
-#: ../Widgets/SyncErrorNotificationBar.qml:53
-msgctxt "SyncErrorNotificationBar|"
-msgid "View"
-msgstr ""
-
-#: ../Widgets/TagsEditor.qml:34
-msgctxt "TagsEditor|"
-msgid "Add Tag"
-msgstr ""
-
-#: ../Widgets/TodoListItem.qml:97
-msgctxt "TodoListItem|"
-msgid "✔ No open todos - everything done"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:154
-msgctxt "TodoListPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:217
-msgctxt "TodoListPage|"
-msgid "Todos"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:237
-msgctxt "TodoListPage|"
-msgid "Add new todo..."
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:171
-msgctxt "TodoListPage|"
-msgid "Manually"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:177
-msgctxt "TodoListPage|"
-msgid "Name"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:183
-msgctxt "TodoListPage|"
-msgid "Due Date"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:189
-msgctxt "TodoListPage|"
-msgid "Created At"
-msgstr ""
-
-#: ../Pages/TodoListPage.qml:195
-msgctxt "TodoListPage|"
-msgid "Updated At"
-msgstr ""
-
-#: ../Pages/TodoPage.qml:98
-msgctxt "TodoPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr ""
-
-#: ../Pages/TodoPage.qml:117
-msgctxt "TodoPage|"
-msgid "Tasks"
-msgstr ""
-
-#: ../Pages/TodoPage.qml:120
-msgctxt "TodoPage|"
-msgid "Add new task..."
-msgstr ""
-
-#: ../Widgets/TodosWidget.qml:168
-#, qt-format
-msgctxt "TodosWidget|"
-msgid "Due on: %1"
-msgstr ""
-
-#: ../Widgets/TodosWidget.qml:309
-msgctxt "TodosWidget|"
-msgid "Swipe to mark undone"
-msgstr ""
-
-#: ../Widgets/TodosWidget.qml:310
-msgctxt "TodosWidget|"
-msgid "Swipe to mark done"
-msgstr ""
-
-#: ../Utils/Translations.qml:14
-msgctxt "Translations|"
-msgid "System Language"
-msgstr ""
-
 #: ../Utils/Translations.qml:18
 msgctxt "Translations|"
 msgid "Danish"
 msgstr ""
 
-#: ../Utils/Translations.qml:22
-msgctxt "Translations|"
-msgid "German"
-msgstr ""
-
 #: ../Utils/Translations.qml:26
 msgctxt "Translations|"
 msgid "Greek"
-msgstr ""
-
-#: ../Utils/Translations.qml:30
-msgctxt "Translations|"
-msgid "English"
 msgstr ""
 
 #: ../Utils/Translations.qml:38
@@ -1096,11 +1289,6 @@ msgstr ""
 #: ../Utils/Translations.qml:34
 msgctxt "Translations|"
 msgid "Spanish"
-msgstr ""
-
-#: ../Utils/Translations.qml:42
-msgctxt "Translations|"
-msgid "French"
 msgstr ""
 
 #: ../Utils/Translations.qml:54
@@ -1133,43 +1321,3 @@ msgctxt "Translations|"
 msgid "Turkish"
 msgstr ""
 
-#: ../Widgets/UpdateNotificationBar.qml:44
-#, qt-format
-msgctxt "UpdateNotificationBar|"
-msgid "An update to OpenTodoList %1 is available."
-msgstr ""
-
-#: ../Widgets/UpdateNotificationBar.qml:50
-msgctxt "UpdateNotificationBar|"
-msgid "Ignore"
-msgstr ""
-
-#: ../Widgets/UpdateNotificationBar.qml:54
-msgctxt "UpdateNotificationBar|"
-msgid "Download"
-msgstr ""
-
-#: ../main.cpp:84
-msgctxt "main|"
-msgid "Manage your personal data."
-msgstr ""
-
-#: ../main.cpp:90
-msgctxt "main|"
-msgid "QML Root Directory"
-msgstr ""
-
-#: ../main.cpp:91
-msgctxt "main|"
-msgid "DIR"
-msgstr ""
-
-#: ../main.cpp:97
-msgctxt "main|"
-msgid "Switch on some optimizations for touchscreens."
-msgstr ""
-
-#: ../main.cpp:110
-msgctxt "main|"
-msgid "Remove shortcuts to the AppImage."
-msgstr ""
