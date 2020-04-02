@@ -39,9 +39,10 @@ Item {
             shade: midShade
             clip: true
 
-            MarkdownLabel{
+            Label {
                 id: titleLabel
-                markdown: item.libraryItem.title
+                text: Markdown.markdownToHtml(item.libraryItem.title)
+                textFormat: Text.RichText
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 width: parent.width
@@ -57,9 +58,10 @@ Item {
             }
             item: item.libraryItem
 
-            MarkdownLabel {
+            Label {
                 anchors.fill: parent
-                markdown: item.libraryItem.notes
+                text: Markdown.markdownToHtml(item.libraryItem.notes)
+                textFormat: Text.RichText
                 elide: Text.ElideRight
                 clip: true
             }

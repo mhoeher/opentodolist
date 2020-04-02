@@ -84,15 +84,9 @@ CenteredDialog {
                                   d.item.itemType);
                     return;
                 }
-                return msg.arg(converter.text);
+                return msg.arg(Markdown.markdownToPlainText(d.item.title));
             }
             return "";
-        }
-
-        MarkdownConverter {
-            id: converter
-            markdown: d.item ? d.item.title : ""
-            strip: true
         }
     }
 }

@@ -76,12 +76,7 @@ Pane {
 
         property bool shown: false
         property OTL.Item item: null
-        property string itemName: markdownConverter.text
-    }
-
-    MarkdownConverter {
-        id: markdownConverter
-        markdown: d.item ? d.item.title : ""
+        property string itemName: Markdown.markdownToHtml(d.item.title)
     }
 
     Timer {

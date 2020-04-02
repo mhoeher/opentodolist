@@ -16,20 +16,16 @@ Item {
     width: parent.width
     height: childrenRect.height * 2
 
-    MarkdownConverter {
-        id: titleText
-        markdown: root.item.title
-    }
-
     Heading {
         id: pageHeading
         text: "<strong>%1</strong>%2".arg(
-                  titleText.text).arg(
+                  Markdown.markdownToHtml(root.item.title)).arg(
                   root.counter > 0 ? " (%1)".arg(root.counter) :
                                      "")
         width: parent.width
         wrapMode: "WrapAtWordBoundaryOrAnywhere"
         font.bold: false
+        textFormat: Text.RichText
     }
 
     RowLayout {

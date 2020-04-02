@@ -16,6 +16,7 @@ Page {
 
     property Menu pageMenu: Menu {
         x: page.width
+        modal: true
 
         MenuItem {
             text: qsTr("Copy Log")

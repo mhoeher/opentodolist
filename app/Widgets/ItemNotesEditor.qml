@@ -70,13 +70,11 @@ Column {
             implicitHeight: height
             onClicked: loader.sourceComponent = notesEditor
 
-            MarkdownLabel {
-                id: markdownLabel
-
+            Label {
                 width: parent.width
                 textFormat: Text.RichText
-                markdown: if (root.item) {
-                              return root.item.notes
+                text: if (root.item) {
+                              return Markdown.markdownToHtml(root.item.notes)
                           } else {
                               return ""
                           }

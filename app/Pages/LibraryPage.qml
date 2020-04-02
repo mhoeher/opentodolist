@@ -136,6 +136,8 @@ Page {
         property OTL.TopLevelItem item: null
         property var color: item ? item.color : OTL.TopLevelItem.White
 
+        modal: true
+
         ButtonGroup { id: colorButtons }
 
         MenuItem {
@@ -414,6 +416,7 @@ Page {
 
         title: qsTr("Sort By")
         anchors.centerIn: parent
+        modal: true
 
         MenuItem {
             text: qsTr("Manually")

@@ -39,9 +39,10 @@ Item {
             item: item.libraryItem
             shade: midShade
 
-            MarkdownLabel {
+            Label {
                 id: titleLabel
-                markdown: item.libraryItem.title
+                text: Markdown.markdownToHtml(item.libraryItem.title)
+                textFormat: Text.RichText
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 width: parent.width
@@ -78,8 +79,9 @@ Item {
                         font.family: Fonts.icons
                         text: Icons.faCircle
                     }
-                    MarkdownLabel {
-                        markdown: object.title
+                    Label {
+                        text: Markdown.markdownToHtml(object.title)
+                        textFormat: Text.RichText
                         elide: Text.ElideRight
                         Layout.fillWidth: true
                         wrapMode: Text.NoWrap

@@ -13,6 +13,8 @@ Menu {
     property OTL.Library library
 
     signal openPage(var component, var properties)
+
+    modal: true
     
     MenuItem {
         text: qsTr("Sync Now")
