@@ -89,6 +89,7 @@ private:
     QString m_password;
     bool m_createDirs;
     bool m_stopRequested;
+    bool m_hasSyncErrors;
     WebDAVServerType m_serverType;
     QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
 

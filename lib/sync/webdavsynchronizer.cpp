@@ -33,6 +33,7 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject *parent)
       m_password(),
       m_createDirs(false),
       m_stopRequested(false),
+      m_hasSyncErrors(false),
       m_findExistingEntriesWatcher()
 {
     connect(&m_findExistingEntriesWatcher, &QFutureWatcher<QVariantList>::finished, [=]() {
@@ -96,6 +97,7 @@ void WebDAVSynchronizer::synchronize()
         connect(dav, &WebDAVClient::syncError, this, &WebDAVSynchronizer::syncError);
         setSynchronizing(true);
         m_stopRequested = false;
+        m_hasSyncErrors = false;
         bool fullSync = false;
         {
             QDir syncDir(directory());
@@ -115,10 +117,6 @@ void WebDAVSynchronizer::synchronize()
                 fullSync = true;
                 qCWarning(::log) << "The last sync did complete with errors - do a full sync";
                 warning() << tr("The last sync completed with errors - doing a full sync");
-                if (!syncDir.remove(SyncErrorFileName)) {
-                    qCWarning(::log) << "Failed to remove the sync error lock file";
-                    warning() << tr("Failed to remove the error lock file");
-                }
             }
             QFile file(syncDir.absoluteFilePath(SyncLockFileName));
             if (!file.open(QIODevice::WriteOnly)) {
@@ -196,6 +194,12 @@ void WebDAVSynchronizer::synchronize()
         if (!m_stopRequested) {
             QDir syncDir(directory());
             syncDir.remove(SyncLockFileName);
+            if (syncDir.exists(SyncErrorFileName) && !m_hasSyncErrors) {
+                if (!syncDir.remove(SyncErrorFileName)) {
+                    qCWarning(::log) << "Failed to remove the sync error lock file";
+                    warning() << tr("Failed to remove the error lock file");
+                }
+            }
         }
         setSynchronizing(false);
         delete dav;
@@ -436,6 +440,7 @@ void WebDAVSynchronizer::setCreateDirs(bool createDirs)
 
 void WebDAVSynchronizer::touchErrorLock()
 {
+    m_hasSyncErrors = true;
     QDir dir(directory());
     if (!dir.exists(SyncErrorFileName)) {
         QFile file(dir.absoluteFilePath(SyncErrorFileName));
