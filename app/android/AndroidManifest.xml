@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <manifest android:installLocation="auto" android:versionCode="112" android:versionName="3.13.0-26-g9287dbb" package="net.rpdev.opentodolist" xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:icon="@drawable/icon" android:label="OpenTodoList" android:name="org.qtproject.qt5.android.bindings.QtApplication">
+    <application android:icon="@mipmap/ic_launcher" android:label="OpenTodoList" android:name="org.qtproject.qt5.android.bindings.QtApplication">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:label="@string/app_name" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:screenOrientation="unspecified">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
