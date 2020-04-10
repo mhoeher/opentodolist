@@ -69,6 +69,11 @@ Pane {
             text: qsTr("Open")
             onClicked: root.open(d.item)
         }
+
+        Button {
+            text: qsTr("Dismiss")
+            onClicked: d.shown = false
+        }
     }
 
     QtObject {
