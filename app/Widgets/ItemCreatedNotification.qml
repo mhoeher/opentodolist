@@ -76,7 +76,7 @@ Pane {
 
         property bool shown: false
         property OTL.Item item: null
-        property string itemName: d.item ? Markdown.markdownToHtml(d.item.title) : ""
+        property string itemName: d.item ? Markdown.markdownToPlainText(d.item.title) : ""
     }
 
     Timer {
