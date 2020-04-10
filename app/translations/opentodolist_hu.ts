@@ -357,17 +357,17 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="114"/>
         <source>Export to File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exportálás a fájlba ...</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="118"/>
         <source>Markdown files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Markdown fájlok</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minden fájl</translation>
     </message>
 </context>
 <context>
@@ -894,7 +894,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="21"/>
         <source>Missing secrets for account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hiányoznak a fiók hozzáférési adatai</translation>
     </message>
 </context>
 <context>
@@ -903,7 +903,7 @@
         <location filename="../Pages/ProblemsPageForm.ui.qml" line="13"/>
         <location filename="../Pages/ProblemsPageForm.ui.qml" line="23"/>
         <source>Problems Detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Felismert problémák</translation>
     </message>
 </context>
 <context>
@@ -1116,7 +1116,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="18"/>
         <source>Danish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dán</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="22"/>
@@ -1126,7 +1126,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Görög</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="30"/>
@@ -1136,12 +1136,12 @@
     <message>
         <location filename="../Utils/Translations.qml" line="34"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spanyol</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="38"/>
         <source>Filipino</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filippínó</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="42"/>
@@ -1151,47 +1151,47 @@
     <message>
         <location filename="../Utils/Translations.qml" line="46"/>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Magyar</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="50"/>
         <source>Italian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Olasz</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="54"/>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Holland</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="58"/>
         <source>Norwegian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Norvég</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="62"/>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fényesít</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="66"/>
         <source>Portuguese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Portugál</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="70"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Portugál (Brazília)</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="74"/>
         <source>Turkish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Török</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="78"/>
         <source>Vietnamese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vietnami</translation>
     </message>
 </context>
 <context>
