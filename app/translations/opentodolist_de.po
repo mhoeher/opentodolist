@@ -1240,90 +1240,90 @@ msgstr "Neue Seite"
 #: ../Widgets/ItemNotesEditor.qml:114
 msgctxt "ItemNotesEditor|"
 msgid "Export to File..."
-msgstr ""
+msgstr "In eine Datei exportieren..."
 
 #: ../Widgets/ItemNotesEditor.qml:118
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
-msgstr ""
+msgstr "Markdown-Dateien"
 
 #: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
 msgid "All files"
-msgstr ""
+msgstr "Alle Dateien"
 
 #: ../Pages/ProblemsPage.qml:21
 msgctxt "ProblemsPage|"
 msgid "Missing secrets for account"
-msgstr ""
+msgstr "Fehlende Zugangsdaten für das Konto"
 
 #: ../Pages/ProblemsPageForm.ui.qml:13 ../Pages/ProblemsPageForm.ui.qml:23
 msgctxt "ProblemsPageForm.ui|"
 msgid "Problems Detected"
-msgstr ""
+msgstr "Entdeckte Probleme"
 
 #: ../Utils/Translations.qml:18
 msgctxt "Translations|"
 msgid "Danish"
-msgstr ""
+msgstr "Dänisch"
 
 #: ../Utils/Translations.qml:26
 msgctxt "Translations|"
 msgid "Greek"
-msgstr ""
+msgstr "Griechisch"
 
 #: ../Utils/Translations.qml:38
 msgctxt "Translations|"
 msgid "Filipino"
-msgstr ""
+msgstr "Philippinisch"
 
 #: ../Utils/Translations.qml:46
 msgctxt "Translations|"
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungarisch"
 
 #: ../Utils/Translations.qml:50
 msgctxt "Translations|"
 msgid "Italian"
-msgstr ""
+msgstr "Italienisch"
 
 #: ../Utils/Translations.qml:78
 msgctxt "Translations|"
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamesisch"
 
 #: ../Utils/Translations.qml:34
 msgctxt "Translations|"
 msgid "Spanish"
-msgstr ""
+msgstr "Spanisch"
 
 #: ../Utils/Translations.qml:54
 msgctxt "Translations|"
 msgid "Dutch"
-msgstr ""
+msgstr "Niederländisch"
 
 #: ../Utils/Translations.qml:58
 msgctxt "Translations|"
 msgid "Norwegian"
-msgstr ""
+msgstr "Norwegisch"
 
 #: ../Utils/Translations.qml:62
 msgctxt "Translations|"
 msgid "Polish"
-msgstr ""
+msgstr "Polnisch"
 
 #: ../Utils/Translations.qml:66
 msgctxt "Translations|"
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugiesisch"
 
 #: ../Utils/Translations.qml:70
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugiesisch (Brasilien)"
 
 #: ../Utils/Translations.qml:74
 msgctxt "Translations|"
 msgid "Turkish"
-msgstr ""
+msgstr "Türkisch"
 
