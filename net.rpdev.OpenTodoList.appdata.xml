@@ -40,6 +40,18 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.21.1" date="2020-04-10">
+      <p>This release includes the following changes:</p>
+      <ul>
+          <li>
+              #313: Fix the Launcher Icon an Android.
+          </li>
+          <li>
+              #314: Fix a potential crash during start up, when the user had library created in
+              old releases.
+          </li>
+      </ul>
+    </release>
     <release version="3.20.0" date="2020-03-02">
       <p>This release includes the following changes:</p>
       <ul>
