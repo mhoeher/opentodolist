@@ -514,10 +514,10 @@ Account *Application::loadAccount(const QUuid &uid)
             result = new Account();
             result->setUid(uid);
             result->load(m_settings);
+            result->setPassword(m_secrets.value(result->uid().toString()).toString());
             m_settings->endGroup();
         }
         m_settings->endGroup();
-        result->setPassword(m_secrets.value(result->uid().toString()).toString());
     }
     return result;
 }
