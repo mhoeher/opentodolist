@@ -69,6 +69,11 @@ Pane {
             text: qsTr("Open")
             onClicked: root.open(d.item)
         }
+
+        Button {
+            text: qsTr("Dismiss")
+            onClicked: d.shown = false
+        }
     }
 
     QtObject {
@@ -76,7 +81,7 @@ Pane {
 
         property bool shown: false
         property OTL.Item item: null
-        property string itemName: d.item ? Markdown.markdownToHtml(d.item.title) : ""
+        property string itemName: d.item ? Markdown.markdownToPlainText(d.item.title) : ""
     }
 
     Timer {
