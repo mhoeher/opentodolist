@@ -7,12 +7,7 @@
 #include "datamodel/library.h"
 #include "datastorage/deleteitemsquery.h"
 
-DeleteItemsQuery::DeleteItemsQuery(QObject *parent) :
-    ItemsQuery(parent),
-    m_itemsToDelete()
-{
-
-}
+DeleteItemsQuery::DeleteItemsQuery(QObject *parent) : ItemsQuery(parent), m_itemsToDelete() {}
 
 void DeleteItemsQuery::deleteItem(const Item *item)
 {
@@ -42,7 +37,6 @@ void DeleteItemsQuery::deleteLibrary(const QUuid &uid, bool deleteLibraryDir)
     }
 }
 
-
 void DeleteItemsQuery::run()
 {
     QLMDB::Transaction t(*context());
@@ -56,9 +50,8 @@ void DeleteItemsQuery::run()
             if (itemToDelete.isLibrary && itemToDelete.deleteLibraryDir) {
                 auto libData = items()->get(t, itemToDelete.uid.toByteArray());
                 if (!libData.isEmpty()) {
-                    auto lib = Library::decache(
-                                LibraryCacheEntry::fromByteArray(
-                                    libData, itemToDelete.uid.toByteArray()));
+                    auto lib = Library::decache(LibraryCacheEntry::fromByteArray(
+                            libData, itemToDelete.uid.toByteArray()));
                     if (lib) {
                         lib->deleteLibrary();
                         delete lib;
@@ -76,9 +69,7 @@ void DeleteItemsQuery::run()
                     // be unreachable and hence spam our cache.
                     auto itemData = items()->get(t, nextId);
                     if (!itemData.isEmpty()) {
-                        auto item = Item::decache(
-                                    ItemCacheEntry::fromByteArray(
-                                        itemData, nextId));
+                        auto item = Item::decache(ItemCacheEntry::fromByteArray(itemData, nextId));
                         if (item != nullptr) {
                             item->deleteItem();
                             delete item;

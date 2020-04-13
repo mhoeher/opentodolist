@@ -7,25 +7,21 @@
 
 class ImageTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init();
-  void testProperties();
-  void testPersistence();
-  void testSaveLoad();
-  void cleanup();
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init();
+    void testProperties();
+    void testPersistence();
+    void testSaveLoad();
+    void cleanup();
+    void cleanupTestCase() {}
 
 private:
-
-  QTemporaryDir *m_dir;
-
+    QTemporaryDir *m_dir;
 };
-
-
 
 void ImageTest::init()
 {

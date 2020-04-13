@@ -4,14 +4,11 @@
 #include "datamodel/library.h"
 #include "datastorage/getlibraryitemsuidsitemsquery.h"
 
-
-GetLibraryItemsUIDsItemsQuery::GetLibraryItemsUIDsItemsQuery(QObject *parent) :
-    ItemsQuery(parent),
-    m_itemQueue()
+GetLibraryItemsUIDsItemsQuery::GetLibraryItemsUIDsItemsQuery(QObject *parent)
+    : ItemsQuery(parent), m_itemQueue()
 {
     qRegisterMetaType<QSet<QUuid>>();
 }
-
 
 /**
  * @brief Add a library to the query.
@@ -26,7 +23,6 @@ void GetLibraryItemsUIDsItemsQuery::addLibrary(const Library *library)
     }
 }
 
-
 /**
  * @brief Add a library to the query.
  *
@@ -39,7 +35,6 @@ void GetLibraryItemsUIDsItemsQuery::addLibrary(const QUuid uid)
         m_itemQueue << uid;
     }
 }
-
 
 void GetLibraryItemsUIDsItemsQuery::run()
 {

@@ -16,37 +16,32 @@
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 
-
 class GetItemsQueryTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void run();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void run();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void GetItemsQueryTest::run()
 {
-//    QTest::ignoreMessage(QtDebugMsg,
-//                         QRegularExpression(".*Cache is uninitialized.*"));
+    //    QTest::ignoreMessage(QtDebugMsg,
+    //                         QRegularExpression(".*Cache is uninitialized.*"));
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
-    cache.setCacheSize(1024*1024);
+    cache.setCacheSize(1024 * 1024);
     QVERIFY(cache.open());
 
     {
         auto q = new GetItemsQuery();
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
@@ -90,78 +85,65 @@ void GetItemsQueryTest::run()
 
     {
         auto q = new GetItemsQuery();
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 5);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray(),
-                        items.at(1).value<ItemCacheEntry>().toByteArray(),
-                        items.at(2).value<ItemCacheEntry>().toByteArray(),
-                        items.at(3).value<ItemCacheEntry>().toByteArray(),
-                        items.at(4).value<ItemCacheEntry>().toByteArray(),
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todoList.encache().toByteArray(),
-                        todo.encache().toByteArray(),
-                        task.encache().toByteArray(),
-                        note.encache().toByteArray(),
-                        image.encache().toByteArray(),
-                    });
+        QSet<QByteArray> got = QSet<QByteArray>({
+                items.at(0).value<ItemCacheEntry>().toByteArray(),
+                items.at(1).value<ItemCacheEntry>().toByteArray(),
+                items.at(2).value<ItemCacheEntry>().toByteArray(),
+                items.at(3).value<ItemCacheEntry>().toByteArray(),
+                items.at(4).value<ItemCacheEntry>().toByteArray(),
+        });
+        QSet<QByteArray> expected = QSet<QByteArray>({
+                todoList.encache().toByteArray(),
+                todo.encache().toByteArray(),
+                task.encache().toByteArray(),
+                note.encache().toByteArray(),
+                image.encache().toByteArray(),
+        });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(lib.uid());
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 3);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray(),
-                        items.at(1).value<ItemCacheEntry>().toByteArray(),
-                        items.at(2).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todoList.encache().toByteArray(),
-                        note.encache().toByteArray(),
-                        image.encache().toByteArray(),
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray(),
+                                   items.at(1).value<ItemCacheEntry>().toByteArray(),
+                                   items.at(2).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({
+                todoList.encache().toByteArray(),
+                note.encache().toByteArray(),
+                image.encache().toByteArray(),
+        });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 1);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todo.encache().toByteArray()
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({ todo.encache().toByteArray() });
         QCOMPARE(got, expected);
     }
 
@@ -169,46 +151,34 @@ void GetItemsQueryTest::run()
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
         q->setRecursive(true);
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 2);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray(),
-                        items.at(1).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todo.encache().toByteArray(),
-                        task.encache().toByteArray()
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray(),
+                                   items.at(1).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected =
+                QSet<QByteArray>({ todo.encache().toByteArray(), task.encache().toByteArray() });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(todo.uid());
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 1);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        task.encache().toByteArray()
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({ task.encache().toByteArray() });
         QCOMPARE(got, expected);
     }
 
@@ -238,100 +208,81 @@ void GetItemsQueryTest::run()
 
     {
         auto q = new GetItemsQuery();
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 5);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray(),
-                        items.at(1).value<ItemCacheEntry>().toByteArray(),
-                        items.at(2).value<ItemCacheEntry>().toByteArray(),
-                        items.at(3).value<ItemCacheEntry>().toByteArray(),
-                        items.at(4).value<ItemCacheEntry>().toByteArray(),
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todoList.encache().toByteArray(),
-                        todo.encache().toByteArray(),
-                        task.encache().toByteArray(),
-                        note.encache().toByteArray(),
-                        image.encache().toByteArray(),
-                    });
+        QSet<QByteArray> got = QSet<QByteArray>({
+                items.at(0).value<ItemCacheEntry>().toByteArray(),
+                items.at(1).value<ItemCacheEntry>().toByteArray(),
+                items.at(2).value<ItemCacheEntry>().toByteArray(),
+                items.at(3).value<ItemCacheEntry>().toByteArray(),
+                items.at(4).value<ItemCacheEntry>().toByteArray(),
+        });
+        QSet<QByteArray> expected = QSet<QByteArray>({
+                todoList.encache().toByteArray(),
+                todo.encache().toByteArray(),
+                task.encache().toByteArray(),
+                note.encache().toByteArray(),
+                image.encache().toByteArray(),
+        });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(lib.uid());
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 3);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray(),
-                        items.at(1).value<ItemCacheEntry>().toByteArray(),
-                        items.at(2).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todoList.encache().toByteArray(),
-                        note.encache().toByteArray(),
-                        image.encache().toByteArray(),
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray(),
+                                   items.at(1).value<ItemCacheEntry>().toByteArray(),
+                                   items.at(2).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({
+                todoList.encache().toByteArray(),
+                note.encache().toByteArray(),
+                image.encache().toByteArray(),
+        });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 1);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todo.encache().toByteArray()
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({ todo.encache().toByteArray() });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(todo.uid());
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 1);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        task.encache().toByteArray()
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({ task.encache().toByteArray() });
         QCOMPARE(got, expected);
     }
 
@@ -346,33 +297,24 @@ void GetItemsQueryTest::run()
             }
             return false;
         });
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 1);
-        QSet<QByteArray> got = QSet<QByteArray>(
-        {
-                        items.at(0).value<ItemCacheEntry>().toByteArray()
-                    });
-        QSet<QByteArray> expected = QSet<QByteArray>(
-        {
-                        todo.encache().toByteArray()
-                    });
+        QSet<QByteArray> got =
+                QSet<QByteArray>({ items.at(0).value<ItemCacheEntry>().toByteArray() });
+        QSet<QByteArray> expected = QSet<QByteArray>({ todo.encache().toByteArray() });
         QCOMPARE(got, expected);
     }
 
     {
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
-        q->setItemFilter([=](ItemPtr, GetItemsQuery*) {
-            return false;
-        });
-        QSignalSpy itemsAvailable(
-                    q, &GetItemsQuery::itemsAvailable);
+        q->setItemFilter([=](ItemPtr, GetItemsQuery *) { return false; });
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());

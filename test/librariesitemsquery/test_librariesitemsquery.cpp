@@ -14,37 +14,32 @@
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/librariesitemsquery.h"
 
-
 class LibrariesItemsQueryTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void run();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void run();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void LibrariesItemsQueryTest::run()
 {
-//    QTest::ignoreMessage(QtDebugMsg,
-//                         QRegularExpression(".*Cache is uninitialized.*"));
+    //    QTest::ignoreMessage(QtDebugMsg,
+    //                         QRegularExpression(".*Cache is uninitialized.*"));
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
-    cache.setCacheSize(1024*1024);
+    cache.setCacheSize(1024 * 1024);
     QVERIFY(cache.open());
 
     {
         auto q = new LibrariesItemsQuery();
-        QSignalSpy librariesAvailable(
-                    q, &LibrariesItemsQuery::librariesAvailable);
+        QSignalSpy librariesAvailable(q, &LibrariesItemsQuery::librariesAvailable);
         QSignalSpy destroyed(q, &LibrariesItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
@@ -88,8 +83,7 @@ void LibrariesItemsQueryTest::run()
 
     {
         auto q = new LibrariesItemsQuery();
-        QSignalSpy librariesAvailable(
-                    q, &LibrariesItemsQuery::librariesAvailable);
+        QSignalSpy librariesAvailable(q, &LibrariesItemsQuery::librariesAvailable);
         QSignalSpy destroyed(q, &LibrariesItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
@@ -128,8 +122,7 @@ void LibrariesItemsQueryTest::run()
 
     {
         auto q = new LibrariesItemsQuery();
-        QSignalSpy librariesAvailable(
-                    q, &LibrariesItemsQuery::librariesAvailable);
+        QSignalSpy librariesAvailable(q, &LibrariesItemsQuery::librariesAvailable);
         QSignalSpy destroyed(q, &LibrariesItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());

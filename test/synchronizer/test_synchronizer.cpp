@@ -8,25 +8,22 @@
 
 class SynchronizerTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void fromDirectory();
-  void logging();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void fromDirectory();
+    void logging();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void SynchronizerTest::fromDirectory()
 {
-    for (auto serverType : {WebDAVSynchronizer::NextCloud,
-            WebDAVSynchronizer::OwnCloud, WebDAVSynchronizer::Generic}) {
+    for (auto serverType : { WebDAVSynchronizer::NextCloud, WebDAVSynchronizer::OwnCloud,
+                             WebDAVSynchronizer::Generic }) {
         QTemporaryDir dir;
         QUuid syncUid;
         {
@@ -39,7 +36,7 @@ void SynchronizerTest::fromDirectory()
         {
             auto sync = Synchronizer::fromDirectory(dir.path());
             Q_CHECK_PTR(sync);
-            auto s = dynamic_cast<WebDAVSynchronizer*>(sync);
+            auto s = dynamic_cast<WebDAVSynchronizer *>(sync);
             QVERIFY(s != nullptr);
             QCOMPARE(s->uid(), syncUid);
             delete sync;
@@ -49,11 +46,8 @@ void SynchronizerTest::fromDirectory()
         QTemporaryDir dir;
         QVariantMap map;
         map["type"] = "foo";
-        JsonUtils::patchJsonFile(dir.path() + "/" + Synchronizer::SaveFileName,
-                                 map);
-        QTest::ignoreMessage(
-                    QtWarningMsg,
-                    QRegularExpression(".*Unknown synchronizer type.*"));
+        JsonUtils::patchJsonFile(dir.path() + "/" + Synchronizer::SaveFileName, map);
+        QTest::ignoreMessage(QtWarningMsg, QRegularExpression(".*Unknown synchronizer type.*"));
         auto sync = Synchronizer::fromDirectory(dir.path());
         QVERIFY(sync == nullptr);
     }
@@ -100,8 +94,7 @@ void SynchronizerTest::logging()
         sync.debug() << "Bar";
         QCOMPARE(sync.log().length(), Synchronizer::MaxLogEntries);
         QCOMPARE(sync.log()[0].message, QString("Foo "));
-        QCOMPARE(sync.log()[Synchronizer::MaxLogEntries-1].message,
-                QString("Bar "));
+        QCOMPARE(sync.log()[Synchronizer::MaxLogEntries - 1].message, QString("Bar "));
     }
 }
 

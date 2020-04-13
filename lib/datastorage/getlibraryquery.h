@@ -26,7 +26,6 @@ protected:
     void run() override;
 
 private:
-
     QUuid m_uid;
 };
 

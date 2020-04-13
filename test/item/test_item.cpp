@@ -24,11 +24,8 @@ private slots:
     void cleanupTestCase() {}
 
 private:
-
     QTemporaryDir *m_dir;
-
 };
-
 
 void ItemTest::init()
 {

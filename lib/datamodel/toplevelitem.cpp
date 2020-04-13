@@ -2,14 +2,11 @@
 
 #include <QMetaEnum>
 
-
 /**
  * @brief Constructor.
  */
-TopLevelItem::TopLevelItem(const QString& filename, QObject* parent) :
-    ComplexItem (filename, parent),
-    m_color(White),
-    m_tags()
+TopLevelItem::TopLevelItem(const QString &filename, QObject *parent)
+    : ComplexItem(filename, parent), m_color(White), m_tags()
 {
     connect(this, &TopLevelItem::colorChanged, this, &ComplexItem::changed);
     connect(this, &TopLevelItem::tagsChanged, this, &ComplexItem::changed);
@@ -18,16 +15,13 @@ TopLevelItem::TopLevelItem(const QString& filename, QObject* parent) :
 /**
  * @brief Constructor.
  */
-TopLevelItem::TopLevelItem(QObject* parent) : TopLevelItem(QString(), parent)
-{
-}
+TopLevelItem::TopLevelItem(QObject *parent) : TopLevelItem(QString(), parent) {}
 
 /**
  * @brief Constructor.
  */
-TopLevelItem::TopLevelItem(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
-    m_color(White),
-    m_tags()
+TopLevelItem::TopLevelItem(const QDir &dir, QObject *parent)
+    : ComplexItem(dir, parent), m_color(White), m_tags()
 {
     connect(this, &TopLevelItem::colorChanged, this, &ComplexItem::changed);
     connect(this, &TopLevelItem::tagsChanged, this, &ComplexItem::changed);
@@ -36,9 +30,7 @@ TopLevelItem::TopLevelItem(const QDir& dir, QObject* parent) : ComplexItem(dir, 
 /**
  * @brief Destructor.
  */
-TopLevelItem::~TopLevelItem()
-{
-}
+TopLevelItem::~TopLevelItem() {}
 
 QUuid TopLevelItem::parentId() const
 {
@@ -64,7 +56,7 @@ void TopLevelItem::setColor(const Color &color)
     }
 }
 
-void TopLevelItem::setColor(const QString& color)
+void TopLevelItem::setColor(const QString &color)
 {
     QMetaEnum e = QMetaEnum::fromType<Color>();
     bool ok;
@@ -85,10 +77,9 @@ QStringList TopLevelItem::tags() const
     return m_tags;
 }
 
-void TopLevelItem::setTags(const QStringList& tags)
+void TopLevelItem::setTags(const QStringList &tags)
 {
-    if (m_tags != tags)
-    {
+    if (m_tags != tags) {
         m_tags = tags;
         emit tagsChanged();
     }
@@ -100,10 +91,9 @@ void TopLevelItem::setTags(const QStringList& tags)
  * This adds a new tag to the item. If the tag already has been attached to the item before,
  * this method has no effect.
  */
-void TopLevelItem::addTag(const QString& tag)
+void TopLevelItem::addTag(const QString &tag)
 {
-    if (!m_tags.contains(tag))
-    {
+    if (!m_tags.contains(tag)) {
         m_tags.append(tag);
         m_tags.sort();
         emit tagsChanged();
@@ -126,7 +116,7 @@ void TopLevelItem::removeTagAt(int index)
 /**
  * @brief Removes the @p tag from the item (if it is assigned).
  */
-void TopLevelItem::removeTag(const QString& tag)
+void TopLevelItem::removeTag(const QString &tag)
 {
     auto index = m_tags.indexOf(tag);
     if (index >= 0) {
@@ -137,11 +127,10 @@ void TopLevelItem::removeTag(const QString& tag)
 /**
  * @brief Returns true if the item has been tagged with the given @p tag.
  */
-bool TopLevelItem::hasTag(const QString& tag) const
+bool TopLevelItem::hasTag(const QString &tag) const
 {
     return m_tags.contains(tag);
 }
-
 
 /**
  * @brief The ID of the library the item belongs to.
@@ -150,7 +139,6 @@ QUuid TopLevelItem::libraryId() const
 {
     return m_libraryId;
 }
-
 
 /**
  * @brief Set the library ID.

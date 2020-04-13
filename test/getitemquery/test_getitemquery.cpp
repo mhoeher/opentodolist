@@ -17,26 +17,23 @@
 
 class GetItemQueryTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void run();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void run();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void GetItemQueryTest::run()
 {
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
-    cache.setCacheSize(1024*1024);
+    cache.setCacheSize(1024 * 1024);
     QVERIFY(cache.open());
 
     Library lib;

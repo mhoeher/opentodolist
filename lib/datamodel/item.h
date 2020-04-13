@@ -11,20 +11,19 @@
 #include <QVariantMap>
 #include <QDateTime>
 
-
 class Cache;
 class ItemChangedInhibitor;
 
 /**
  * @brief Represents an arbitrary item stored in the cache.
  */
-struct ItemCacheEntry {
+struct ItemCacheEntry
+{
     ItemCacheEntry();
     ItemCacheEntry(const ItemCacheEntry &other) = default;
 
     QByteArray toByteArray() const;
-    static ItemCacheEntry fromByteArray(const QByteArray &data,
-                                        const QByteArray &id);
+    static ItemCacheEntry fromByteArray(const QByteArray &data, const QByteArray &id);
 
     QUuid id;
     QUuid parentId;
@@ -35,7 +34,6 @@ struct ItemCacheEntry {
 };
 
 Q_DECLARE_METATYPE(ItemCacheEntry)
-
 
 /**
  * @brief Base class for all items in a library.
@@ -59,14 +57,11 @@ class Item : public QObject
     friend class ItemChangedInhibitor;
 
 public:
-
     static const QString FileNameSuffix;
 
-    explicit Item(QObject* parent = nullptr);
-    explicit Item(const QString &filename,
-                  QObject *parent = nullptr);
-    explicit Item(const QDir &dir,
-                  QObject *parent = nullptr);
+    explicit Item(QObject *parent = nullptr);
+    explicit Item(const QString &filename, QObject *parent = nullptr);
+    explicit Item(const QDir &dir, QObject *parent = nullptr);
     virtual ~Item();
 
     /**
@@ -86,7 +81,6 @@ public:
     Q_INVOKABLE void fromVariant(QVariant data);
 
     virtual void applyCalculatedProperties(const QVariantMap &properties);
-
 
     /**
      * @brief Check if the item is valid.
@@ -130,14 +124,11 @@ public:
     static Item *createItemFromFile(QString filename, QObject *parent = nullptr);
 
     ItemCacheEntry encache() const;
-    static Item* decache(const ItemCacheEntry &entry,
-                         QObject* parent = nullptr);
-    static Item* decache(const QVariant &entry,
-                         QObject* parent = nullptr);
+    static Item *decache(const ItemCacheEntry &entry, QObject *parent = nullptr);
+    static Item *decache(const QVariant &entry, QObject *parent = nullptr);
 
     Cache *cache() const;
     void setCache(Cache *cache);
-
 
     QDateTime createdAt() const;
 
@@ -184,20 +175,18 @@ signals:
     void saved();
 
 protected:
-
     virtual QVariantMap toMap() const;
     virtual void fromMap(QVariantMap map);
 
 private:
-
     QPointer<Cache> m_cache;
-    QString     m_filename;
-    QString     m_title;
-    QDateTime   m_createdAt;
-    QDateTime   m_updatedAt;
-    QUuid       m_uid;
-    double      m_weight;
-    bool        m_loading;
+    QString m_filename;
+    QString m_title;
+    QDateTime m_createdAt;
+    QDateTime m_updatedAt;
+    QUuid m_uid;
+    double m_weight;
+    bool m_loading;
 
     void setFilename(const QString &filename);
 

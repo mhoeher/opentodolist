@@ -16,7 +16,6 @@ class InsertOrUpdateItemsQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
-
     /**
      * @brief Run special instructions upon insertion/update.
      *
@@ -59,19 +58,17 @@ public:
 public slots:
 
     void add(Item *item, InsertFlags flags = NoFlags);
-    void add(Library* library, InsertFlags flags = NoFlags);
+    void add(Library *library, InsertFlags flags = NoFlags);
 
 protected:
     // ItemsQuery interface
     void run() override;
 
 private:
-
     QList<ItemCacheEntry> m_itemEntries;
     QList<LibraryCacheEntry> m_libEntries;
     QSet<QUuid> m_calcWeight;
     QSet<QUuid> m_save;
-
 };
 
 #endif // INSERTORUPDATEITEMSQUERY_H

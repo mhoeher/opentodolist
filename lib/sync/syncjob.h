@@ -24,15 +24,14 @@ signals:
     void syncFinished(QString libraryDirectory);
 
     void stopRequested();
-    void syncError(QString libraryDirectory, const QString& error);
+    void syncError(QString libraryDirectory, const QString &error);
 
 public slots:
 
     void stop();
 
 private:
-
-    QString  m_libraryDirectory;
+    QString m_libraryDirectory;
     QSharedPointer<Account> m_account;
 
 private slots:

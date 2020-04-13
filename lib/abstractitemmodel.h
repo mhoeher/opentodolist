@@ -10,10 +10,9 @@ class AbstractListModel : public QAbstractListModel
 public:
     explicit AbstractListModel(QObject *parent = nullptr) : QAbstractListModel(parent) {}
     virtual ~AbstractListModel() {}
-    
+
 signals:
     void itemPropertiesChanged();
-    
 };
 
 #endif // ABSTRACTITEMMODEL_H

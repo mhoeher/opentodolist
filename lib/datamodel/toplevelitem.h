@@ -17,24 +17,14 @@ class TopLevelItem : public ComplexItem
 
     Q_PROPERTY(Color color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(QStringList tags READ tags WRITE setTags NOTIFY tagsChanged)
-    Q_PROPERTY(QUuid libraryId READ libraryId WRITE setLibraryId
-               NOTIFY libraryIdChanged)
+    Q_PROPERTY(QUuid libraryId READ libraryId WRITE setLibraryId NOTIFY libraryIdChanged)
 public:
-
-    enum Color {
-        White,
-        Red,
-        Green,
-        Blue,
-        Orange,
-        Yellow,
-        Lilac
-    };
+    enum Color { White, Red, Green, Blue, Orange, Yellow, Lilac };
 
     Q_ENUM(Color)
 
-    explicit TopLevelItem(const QString &filename, QObject* parent = nullptr);
-    explicit TopLevelItem(QObject* parent = nullptr);
+    explicit TopLevelItem(const QString &filename, QObject *parent = nullptr);
+    explicit TopLevelItem(QObject *parent = nullptr);
     explicit TopLevelItem(const QDir &dir, QObject *parent = nullptr);
     ~TopLevelItem() override;
 
@@ -45,7 +35,7 @@ public:
     void setColor(const QString &color);
 
     QStringList tags() const;
-    void setTags(const QStringList& tags);
+    void setTags(const QStringList &tags);
     Q_INVOKABLE void addTag(const QString &tag);
     Q_INVOKABLE void removeTagAt(int index);
     Q_INVOKABLE void removeTag(const QString &tag);
@@ -63,9 +53,7 @@ signals:
 public slots:
 
 protected:
-
 private:
-
     QUuid m_libraryId;
     Color m_color;
     QStringList m_tags;

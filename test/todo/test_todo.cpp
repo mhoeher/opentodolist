@@ -6,7 +6,6 @@
 #include <QTemporaryDir>
 #include <QTest>
 
-
 class TodoTest : public QObject
 {
     Q_OBJECT
@@ -18,7 +17,6 @@ private slots:
     void testPersistence();
     void cleanupTestCase() {}
 };
-
 
 void TodoTest::testProperties()
 {
@@ -38,7 +36,6 @@ void TodoTest::testProperties()
 
     QVERIFY(todo.done());
     QCOMPARE(todo.todoListUid(), uid);
-
 }
 
 void TodoTest::testPersistence()
@@ -70,7 +67,6 @@ void TodoTest::testPersistence()
     QCOMPARE(anotherTodo.progress(), 50);
     QCOMPARE(anotherTodo.percentageDone(), 50);
 }
-
 
 QTEST_MAIN(TodoTest)
 #include "test_todo.moc"

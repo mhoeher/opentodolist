@@ -3,13 +3,7 @@
 #include "datamodel/library.h"
 #include "datastorage/getlibraryquery.h"
 
-
-GetLibraryQuery::GetLibraryQuery(QObject *parent) :
-    ItemsQuery(parent),
-    m_uid()
-{
-
-}
+GetLibraryQuery::GetLibraryQuery(QObject *parent) : ItemsQuery(parent), m_uid() {}
 
 QUuid GetLibraryQuery::uid() const
 {

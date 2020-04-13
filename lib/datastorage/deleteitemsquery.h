@@ -31,8 +31,8 @@ signals:
     void itemDeleted();
 
 private:
-
-    struct ItemToDelete {
+    struct ItemToDelete
+    {
         QUuid uid;
         bool isLibrary;
         bool deleteLibraryDir;

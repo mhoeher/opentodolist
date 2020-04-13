@@ -14,26 +14,24 @@
 #include "models/itemsmodel.h"
 #include "models/librariesmodel.h"
 
-
 class ApplicationTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  QTemporaryDir *m_appDir;
-  Application   *m_app;
-  
-private slots:  
-  void init();
-  void testLibraryHandling();
-  void cleanup();
-  
+    QTemporaryDir *m_appDir;
+    Application *m_app;
+
+private slots:
+    void init();
+    void testLibraryHandling();
+    void cleanup();
 };
 
 void ApplicationTest::init()
 {
-  m_appDir = new QTemporaryDir();
-  QVERIFY2(m_appDir->isValid(), "Failed to create temporary directory.");
-  m_app = new Application(m_appDir->path());
+    m_appDir = new QTemporaryDir();
+    QVERIFY2(m_appDir->isValid(), "Failed to create temporary directory.");
+    m_app = new Application(m_appDir->path());
 }
 
 void ApplicationTest::testLibraryHandling()
@@ -41,10 +39,7 @@ void ApplicationTest::testLibraryHandling()
     LibrariesModel libraries;
     libraries.setCache(m_app->cache());
 
-    QSharedPointer<Library> lib(m_app->addLibrary(
-                QVariantMap({
-                                { "Name", "A library"}
-                            })));
+    QSharedPointer<Library> lib(m_app->addLibrary(QVariantMap({ { "Name", "A library" } })));
     QVERIFY(lib != nullptr);
 
     {
@@ -58,26 +53,16 @@ void ApplicationTest::testLibraryHandling()
     topLevelItems.setParentItem(lib->uid());
 
     QSharedPointer<TodoList> todoList(
-                m_app->addTodoList(
-                    lib.data(),
-                    QVariantMap({
-                                    {"title", "A todo list"}
-                                })));
+            m_app->addTodoList(lib.data(), QVariantMap({ { "title", "A todo list" } })));
     {
         QSignalSpy rowsAdded(&topLevelItems, &ItemsModel::rowsInserted);
         QVERIFY(rowsAdded.wait());
         QCOMPARE(topLevelItems.count(), 1);
-        QCOMPARE(
-                    topLevelItems.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->uid(),
+        QCOMPARE(topLevelItems.index(0).data(ItemsModel::ItemRole).value<Item *>()->uid(),
                  todoList->uid());
-        QCOMPARE(
-                    topLevelItems.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->title(),
+        QCOMPARE(topLevelItems.index(0).data(ItemsModel::ItemRole).value<Item *>()->title(),
                  todoList->title());
-        QCOMPARE(
-                    topLevelItems.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->itemType(),
+        QCOMPARE(topLevelItems.index(0).data(ItemsModel::ItemRole).value<Item *>()->itemType(),
                  todoList->itemType());
     }
 
@@ -86,27 +71,14 @@ void ApplicationTest::testLibraryHandling()
     todos.setParentItem(todoList->uid());
 
     QSharedPointer<Todo> todo(
-                m_app->addTodo(
-                    lib.data(),
-                    todoList.data(),
-                    QVariantMap({
-                                    {"title", "A todo"}
-                                })));
+            m_app->addTodo(lib.data(), todoList.data(), QVariantMap({ { "title", "A todo" } })));
     {
         QSignalSpy rowsAdded(&todos, &ItemsModel::rowsInserted);
         QVERIFY(rowsAdded.wait());
         QCOMPARE(todos.count(), 1);
-        QCOMPARE(
-                    todos.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->uid(),
-                 todo->uid());
-        QCOMPARE(
-                    todos.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->title(),
-                 todo->title());
-        QCOMPARE(
-                    todos.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->itemType(),
+        QCOMPARE(todos.index(0).data(ItemsModel::ItemRole).value<Item *>()->uid(), todo->uid());
+        QCOMPARE(todos.index(0).data(ItemsModel::ItemRole).value<Item *>()->title(), todo->title());
+        QCOMPARE(todos.index(0).data(ItemsModel::ItemRole).value<Item *>()->itemType(),
                  todo->itemType());
     }
 
@@ -115,85 +87,49 @@ void ApplicationTest::testLibraryHandling()
     tasks.setParentItem(todo->uid());
 
     QSharedPointer<Task> task(
-                m_app->addTask(
-                    lib.data(),
-                    todo.data(),
-                    QVariantMap({
-                                    {"title", "A task"}
-                                })));
+            m_app->addTask(lib.data(), todo.data(), QVariantMap({ { "title", "A task" } })));
     {
         QSignalSpy rowsAdded(&tasks, &ItemsModel::rowsInserted);
         QVERIFY(rowsAdded.wait());
         QCOMPARE(tasks.count(), 1);
-        QCOMPARE(
-                    tasks.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->uid(),
-                 task->uid());
-        QCOMPARE(
-                    tasks.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->title(),
-                 task->title());
-        QCOMPARE(
-                    tasks.index(0).data(
-                        ItemsModel::ItemRole).value<Item*>()->itemType(),
+        QCOMPARE(tasks.index(0).data(ItemsModel::ItemRole).value<Item *>()->uid(), task->uid());
+        QCOMPARE(tasks.index(0).data(ItemsModel::ItemRole).value<Item *>()->title(), task->title());
+        QCOMPARE(tasks.index(0).data(ItemsModel::ItemRole).value<Item *>()->itemType(),
                  task->itemType());
     }
 
-    QSharedPointer<Note> note(
-                m_app->addNote(
-                    lib.data(),
-                    QVariantMap({
-                                    {"title", "A note"}
-                                })));
+    QSharedPointer<Note> note(m_app->addNote(lib.data(), QVariantMap({ { "title", "A note" } })));
     {
         QSignalSpy rowsAdded(&topLevelItems, &ItemsModel::rowsInserted);
         QVERIFY(rowsAdded.wait());
         QCOMPARE(topLevelItems.count(), 2);
-        QCOMPARE(
-                    topLevelItems.index(1).data(
-                        ItemsModel::ItemRole).value<Item*>()->uid(),
+        QCOMPARE(topLevelItems.index(1).data(ItemsModel::ItemRole).value<Item *>()->uid(),
                  note->uid());
-        QCOMPARE(
-                    topLevelItems.index(1).data(
-                        ItemsModel::ItemRole).value<Item*>()->title(),
+        QCOMPARE(topLevelItems.index(1).data(ItemsModel::ItemRole).value<Item *>()->title(),
                  note->title());
-        QCOMPARE(
-                    topLevelItems.index(1).data(
-                        ItemsModel::ItemRole).value<Item*>()->itemType(),
+        QCOMPARE(topLevelItems.index(1).data(ItemsModel::ItemRole).value<Item *>()->itemType(),
                  note->itemType());
     }
 
     QSharedPointer<Image> image(
-                m_app->addImage(
-                    lib.data(),
-                    QVariantMap({
-                                    {"title", "An image"}
-                                })));
+            m_app->addImage(lib.data(), QVariantMap({ { "title", "An image" } })));
     {
         QSignalSpy rowsAdded(&topLevelItems, &ItemsModel::rowsInserted);
         QVERIFY(rowsAdded.wait());
         QCOMPARE(topLevelItems.count(), 3);
-        QCOMPARE(
-                    topLevelItems.index(2).data(
-                        ItemsModel::ItemRole).value<Item*>()->uid(),
+        QCOMPARE(topLevelItems.index(2).data(ItemsModel::ItemRole).value<Item *>()->uid(),
                  image->uid());
-        QCOMPARE(
-                    topLevelItems.index(2).data(
-                        ItemsModel::ItemRole).value<Item*>()->title(),
+        QCOMPARE(topLevelItems.index(2).data(ItemsModel::ItemRole).value<Item *>()->title(),
                  image->title());
-        QCOMPARE(
-                    topLevelItems.index(2).data(
-                        ItemsModel::ItemRole).value<Item*>()->itemType(),
+        QCOMPARE(topLevelItems.index(2).data(ItemsModel::ItemRole).value<Item *>()->itemType(),
                  image->itemType());
     }
-
 }
-
 
 void ApplicationTest::cleanup()
 {
-  delete m_app;
-  delete m_appDir;
+    delete m_app;
+    delete m_appDir;
 }
 
 QTEST_MAIN(ApplicationTest)

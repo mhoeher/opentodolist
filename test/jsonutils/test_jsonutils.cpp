@@ -6,30 +6,24 @@
 #include <QTemporaryDir>
 #include <QTest>
 
-
-using JsonUtils::patchJsonFile;
 using JsonUtils::loadMap;
-
+using JsonUtils::patchJsonFile;
 
 class JsonUtilsTest : public QObject
 {
-  Q_OBJECT
-
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void testLoadMap();
-  void testLoadMapWithNonExistingFile();
-  void testLoadMapWithInvalidFile();
-  void testPatchJsonFile();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void testLoadMap();
+    void testLoadMapWithNonExistingFile();
+    void testLoadMapWithInvalidFile();
+    void testPatchJsonFile();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void JsonUtilsTest::testLoadMap()
 {
@@ -65,9 +59,7 @@ void JsonUtilsTest::testLoadMapWithInvalidFile()
     file.write(QString("{\"Foo\": Hello World, \"Bar\": 10").toUtf8());
     file.close();
     bool ok;
-    QTest::ignoreMessage(QtWarningMsg,
-                         QRegularExpression(
-                             ".*Failed to parse.*illegal number.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression(".*Failed to parse.*illegal number.*"));
     auto map = loadMap(filename, &ok);
     QVERIFY(!ok);
     QCOMPARE(map.size(), 0);

@@ -12,26 +12,23 @@
 
 class GetLibraryQueryTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void run();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void run();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void GetLibraryQueryTest::run()
 {
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
-    cache.setCacheSize(1024*1024);
+    cache.setCacheSize(1024 * 1024);
     QVERIFY(cache.open());
 
     Library lib;
@@ -55,8 +52,7 @@ void GetLibraryQueryTest::run()
         QSignalSpy libraryLoaded(q, &GetLibraryQuery::libraryLoaded);
         cache.run(q);
         QVERIFY(libraryLoaded.wait());
-        QSharedPointer<Library> l(
-                    Library::decache(libraryLoaded.value(0).value(0)));
+        QSharedPointer<Library> l(Library::decache(libraryLoaded.value(0).value(0)));
         QVERIFY(l != nullptr);
         QCOMPARE(l->uid(), lib.uid());
         QCOMPARE(l->name(), lib.name());

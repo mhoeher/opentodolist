@@ -7,29 +7,27 @@
 #include <QJsonParseError>
 #include <QSaveFile>
 
-
 namespace JsonUtils {
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.JsonUtils", QtWarningMsg)
 
-/**
- * @brief Write a JSON file, keeping existing properties in the file.
- *
- * This function can be used to write the properties contained in @p data to the
- * filename. If filename points to an existing file, any properties that exist in the
- * file but not in data will be preserved.
- *
- * The intention of this function is to keep a set of files backwards compatible (e.g. if
- * users switch between versions of the application).
- *
- * The function returns true on success or false otherwise.
- *
- * Note that this function will not touch the target file if there are no
- * changed. If you need to know if the file was actually written, pass in a
- * pointer to a boolean via the @p changed parameter.
- */
-bool patchJsonFile(const QString& filename, const QVariantMap& data,
-                   bool* changed)
+        /**
+         * @brief Write a JSON file, keeping existing properties in the file.
+         *
+         * This function can be used to write the properties contained in @p data to the
+         * filename. If filename points to an existing file, any properties that exist in the
+         * file but not in data will be preserved.
+         *
+         * The intention of this function is to keep a set of files backwards compatible (e.g. if
+         * users switch between versions of the application).
+         *
+         * The function returns true on success or false otherwise.
+         *
+         * Note that this function will not touch the target file if there are no
+         * changed. If you need to know if the file was actually written, pass in a
+         * pointer to a boolean via the @p changed parameter.
+         */
+        bool patchJsonFile(const QString &filename, const QVariantMap &data, bool *changed)
 {
     bool result = false;
     QFile file(filename);
@@ -44,13 +42,11 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
             if (error.error == QJsonParseError::NoError) {
                 properties = doc.toVariant().toMap();
             } else {
-                qCWarning(log) << "Failed to parse" << filename << ":"
-                                     << error.errorString();
+                qCWarning(log) << "Failed to parse" << filename << ":" << error.errorString();
             }
             file.close();
         } else {
-            qCWarning(log) << "Failed to open" << filename << "for reading:"
-                                 << file.errorString();
+            qCWarning(log) << "Failed to open" << filename << "for reading:" << file.errorString();
         }
     }
     for (auto key : data.keys()) {
@@ -67,12 +63,11 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
             result = saveFile.commit();
             hasChanged = result;
         } else {
-            qCWarning(log) << "Failed to open" << filename << "for writing:"
-                                 << file.errorString();
+            qCWarning(log) << "Failed to open" << filename << "for writing:" << file.errorString();
         }
     } else {
         qCDebug(log) << "File" << filename << "was not changed - "
-                           << "skipping rewrite";
+                     << "skipping rewrite";
         result = true;
     }
     if (changed != nullptr) {
@@ -81,11 +76,10 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
     return result;
 }
 
-
 /**
  * @brief Load a variant map from a JSON file.
  */
-QVariantMap loadMap(const QString& filename, bool* ok)
+QVariantMap loadMap(const QString &filename, bool *ok)
 {
     bool success = false;
     QVariantMap result;
@@ -97,13 +91,11 @@ QVariantMap loadMap(const QString& filename, bool* ok)
             result = doc.toVariant().toMap();
             success = true;
         } else {
-            qCWarning(log) << "Failed to parse" << filename << ":"
-                                 << error.errorString();
+            qCWarning(log) << "Failed to parse" << filename << ":" << error.errorString();
         }
         file.close();
     } else {
-        qCDebug(log) << "Failed to open" << filename << "for reading:"
-                             << file.errorString();
+        qCDebug(log) << "Failed to open" << filename << "for reading:" << file.errorString();
     }
     if (ok != nullptr) {
         *ok = success;
@@ -112,4 +104,3 @@ QVariantMap loadMap(const QString& filename, bool* ok)
 }
 
 }
-

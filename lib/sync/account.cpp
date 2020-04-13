@@ -2,7 +2,6 @@
 
 #include "account.h"
 
-
 /**
  * @class Account
  * @brief Represents a connection to a server.
@@ -23,13 +22,14 @@
 /**
  * @brief Constructor.
  */
-Account::Account(QObject *parent) : QObject(parent),
-    m_uid(QUuid::createUuid()),
-    m_type(Invalid),
-    m_username(),
-    m_password(),
-    m_baseUrl(),
-    m_disableCertificateChecks(false)
+Account::Account(QObject *parent)
+    : QObject(parent),
+      m_uid(QUuid::createUuid()),
+      m_type(Invalid),
+      m_username(),
+      m_password(),
+      m_baseUrl(),
+      m_disableCertificateChecks(false)
 {
 }
 
@@ -44,7 +44,6 @@ Account::Type Account::type() const
     return m_type;
 }
 
-
 /**
  * @brief Set the account @p type.
  */
@@ -56,7 +55,6 @@ void Account::setType(const Type &type)
     }
 }
 
-
 /**
  * @brief The username to use to log in.
  */
@@ -64,7 +62,6 @@ QString Account::username() const
 {
     return m_username;
 }
-
 
 /**
  * @brief Set the @p username to use to log in.
@@ -77,7 +74,6 @@ void Account::setUsername(const QString &username)
     }
 }
 
-
 /**
  * @brief The password used to log in to the server.
  */
@@ -85,7 +81,6 @@ QString Account::password() const
 {
     return m_password;
 }
-
 
 /**
  * @brief Set the password used to log in to the password.
@@ -98,7 +93,6 @@ void Account::setPassword(const QString &password)
     }
 }
 
-
 /**
  * @brief The base URL used to connect to the server.
  *
@@ -108,7 +102,6 @@ QString Account::baseUrl() const
 {
     return m_baseUrl;
 }
-
 
 /**
  * @brief Set the @p baseUrl of the server to connect to.
@@ -120,7 +113,6 @@ void Account::setBaseUrl(const QString &baseUrl)
         emit baseUrlChanged();
     }
 }
-
 
 /**
  * @brief Shall certificate checks be skipped.
@@ -135,7 +127,6 @@ bool Account::disableCertificateChecks() const
     return m_disableCertificateChecks;
 }
 
-
 /**
  * @brief Set if certificate checks shall be skiped.
  */
@@ -146,7 +137,6 @@ void Account::setDisableCertificateChecks(bool disableCertificateChecks)
         emit disableCertificateChecksChanged();
     }
 }
-
 
 /**
  * @brief Save the account to the @p settings.
@@ -161,23 +151,19 @@ void Account::save(QSettings *settings)
     settings->setValue("disableCertificateChecks", m_disableCertificateChecks);
 }
 
-
 /**
  * @brief Restore the account from the @p settings.
  */
 void Account::load(QSettings *settings)
 {
     q_check_ptr(settings);
-    m_type = settings->value(
-                "type", QVariant::fromValue(m_type).toString()).value<Type>();
+    m_type = settings->value("type", QVariant::fromValue(m_type).toString()).value<Type>();
     m_username = settings->value("username", m_username).toString();
     m_name = settings->value("name", m_name).toString();
     m_baseUrl = settings->value("baseUrl", m_baseUrl).toString();
-    m_disableCertificateChecks = settings->value(
-                "disableCertificateChecks",
-                m_disableCertificateChecks).toBool();
+    m_disableCertificateChecks =
+            settings->value("disableCertificateChecks", m_disableCertificateChecks).toBool();
 }
-
 
 /**
  * @brief The name of the account.
@@ -190,7 +176,6 @@ QString Account::name() const
     return m_name;
 }
 
-
 /**
  * @brief Set the name of the account.
  */
@@ -201,7 +186,6 @@ void Account::setName(const QString &name)
         emit nameChanged();
     }
 }
-
 
 /**
  * @brief Convert the account type to WebDAV server type.
@@ -273,7 +257,6 @@ QUuid Account::uid() const
 {
     return m_uid;
 }
-
 
 /**
  * @brief Set the globally unique ID of the account.

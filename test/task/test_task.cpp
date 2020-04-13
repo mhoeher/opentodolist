@@ -7,17 +7,15 @@
 
 class TaskTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void testProperties();
-  void testPersistence();
-  void cleanupTestCase() {}
-
+    void initTestCase() {}
+    void testProperties();
+    void testPersistence();
+    void cleanupTestCase() {}
 };
-
 
 void TaskTest::testProperties()
 {

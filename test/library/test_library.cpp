@@ -16,7 +16,6 @@
 #include <QTemporaryDir>
 #include <QTest>
 
-
 #include <iostream>
 
 class LibraryTest : public QObject
@@ -36,11 +35,8 @@ private slots:
     void cleanup();
 
 private:
-
     QTemporaryDir *m_dir;
-
 };
-
 
 void LibraryTest::init()
 {
@@ -61,7 +57,6 @@ void LibraryTest::testProperties()
     QCOMPARE(lib.name(), QString("My Library"));
 }
 
-
 void LibraryTest::testLoad()
 {
     Library lib(m_dir->path());
@@ -78,8 +73,7 @@ void LibraryTest::testFromJson()
     lib.fromJson("{"
                  "\"name\": \"foo\","
                  "\"uid\": \"{6ca12b27-fc18-4257-9460-ef8dfed622bb}\""
-                 "}"
-                );
+                 "}");
     QCOMPARE(lib.uid(), QUuid("{6ca12b27-fc18-4257-9460-ef8dfed622bb}"));
     QCOMPARE(lib.name(), QString("foo"));
 }

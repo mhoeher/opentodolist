@@ -23,10 +23,9 @@ class ComplexItem : public Item
     Q_PROPERTY(QString notes READ notes WRITE setNotes NOTIFY notesChanged)
     Q_PROPERTY(QStringList attachments READ attachments NOTIFY attachmentsChanged)
 public:
-
     explicit ComplexItem(QObject *parent = nullptr);
     explicit ComplexItem(const QString &filename, QObject *parent = nullptr);
-    explicit ComplexItem(const QDir &dir, QObject* parent = nullptr);
+    explicit ComplexItem(const QDir &dir, QObject *parent = nullptr);
     ~ComplexItem() override;
 
     QUuid parentId() const override;
@@ -38,7 +37,7 @@ public:
     void setNotes(const QString &notes);
 
     QStringList attachments() const;
-    Q_INVOKABLE QString attachmentFileName(const QString& filename);
+    Q_INVOKABLE QString attachmentFileName(const QString &filename);
 
     // Item interface
     bool deleteItem() override;
@@ -52,15 +51,12 @@ signals:
 public slots:
 
     void attachFile(const QString &filename);
-    void detachFile(const QString& filename);
-
+    void detachFile(const QString &filename);
 
 protected:
-
 private:
-
-    QDateTime   m_dueTo;
-    QString     m_notes;
+    QDateTime m_dueTo;
+    QString m_notes;
     QStringList m_attachments;
 
     void setupConnections();
@@ -73,6 +69,5 @@ protected:
 };
 
 typedef QSharedPointer<ComplexItem> ComplexItemPtr;
-
 
 #endif // COMPLEXITEM_H

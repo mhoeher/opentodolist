@@ -13,8 +13,7 @@ class Image : public TopLevelItem
     Q_PROPERTY(QUrl imageUrl READ imageUrl NOTIFY imageChanged)
     Q_PROPERTY(bool validImage READ validImage NOTIFY imageChanged)
 public:
-
-    explicit Image(const QString& filename, QObject *parent = nullptr);
+    explicit Image(const QString &filename, QObject *parent = nullptr);
     explicit Image(QObject *parent = nullptr);
     explicit Image(const QDir &dir, QObject *parent = nullptr);
     ~Image() override;
@@ -36,20 +35,16 @@ signals:
      */
     void imageChanged();
 
-
 public slots:
 
 protected:
-
     // Item interface
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
     bool deleteItem() override;
 
 private:
-
     QString m_image;
-
 };
 
 typedef QSharedPointer<Image> ImagePtr;

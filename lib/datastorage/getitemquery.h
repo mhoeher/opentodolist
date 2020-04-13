@@ -6,7 +6,6 @@
 
 #include "datastorage/itemsquery.h"
 
-
 /**
  * @brief Load a single item from the cache.
  */
@@ -19,7 +18,6 @@ public:
     QUuid uid() const;
     void setUid(const QUuid &uid);
 
-
 signals:
 
     void itemLoaded(const QVariant &data);
@@ -31,9 +29,7 @@ protected:
     void run() override;
 
 private:
-
     QUuid m_uid;
-
 };
 
 #endif // GETITEMQUERY_H

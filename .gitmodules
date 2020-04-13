@@ -13,3 +13,6 @@
 [submodule "3rdparty/qt-cmake-android"]
 	path = 3rdparty/qt-cmake-android
 	url = https://gitlab.com/rpdev/qt-cmake-android.git
+[submodule "3rdparty/run-clang-format"]
+	path = 3rdparty/run-clang-format
+	url = ../run-clang-format.git

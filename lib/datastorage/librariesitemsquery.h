@@ -32,7 +32,6 @@ protected:
     void run() override;
 
 private:
-
     bool m_includeCalculatedValues;
 };
 

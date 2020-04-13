@@ -5,16 +5,14 @@
 #include <QTemporaryDir>
 #include <QTest>
 
-
 class TodoListTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void cleanupTestCase() {}
-
+    void initTestCase() {}
+    void cleanupTestCase() {}
 };
 
 QTEST_MAIN(TodoListTest)

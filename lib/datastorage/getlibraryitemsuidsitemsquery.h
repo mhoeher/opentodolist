@@ -26,7 +26,6 @@ signals:
 public slots:
 
 private:
-
     QQueue<QUuid> m_itemQueue;
 
     // ItemsQuery interface

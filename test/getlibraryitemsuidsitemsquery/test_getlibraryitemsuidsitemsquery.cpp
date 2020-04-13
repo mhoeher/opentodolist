@@ -18,34 +18,30 @@
 
 class GetLibraryItemsUIDsItemsQueryTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void run();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void run();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void GetLibraryItemsUIDsItemsQueryTest::run()
 {
-//    QTest::ignoreMessage(QtDebugMsg,
-//                         QRegularExpression(".*Cache is uninitialized.*"));
+    //    QTest::ignoreMessage(QtDebugMsg,
+    //                         QRegularExpression(".*Cache is uninitialized.*"));
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
-    cache.setCacheSize(1024*1024);
+    cache.setCacheSize(1024 * 1024);
     QVERIFY(cache.open());
 
     {
         auto q = new GetLibraryItemsUIDsItemsQuery();
-        QSignalSpy uidsAvailable(
-                    q, &GetLibraryItemsUIDsItemsQuery::uidsAvailable);
+        QSignalSpy uidsAvailable(q, &GetLibraryItemsUIDsItemsQuery::uidsAvailable);
         QSignalSpy destroyed(q, &GetLibraryItemsUIDsItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
@@ -90,21 +86,19 @@ void GetLibraryItemsUIDsItemsQueryTest::run()
     {
         auto q = new GetLibraryItemsUIDsItemsQuery();
         q->addLibrary(&lib);
-        QSignalSpy uidsAvailable(
-                    q, &GetLibraryItemsUIDsItemsQuery::uidsAvailable);
+        QSignalSpy uidsAvailable(q, &GetLibraryItemsUIDsItemsQuery::uidsAvailable);
         QSignalSpy destroyed(q, &GetLibraryItemsUIDsItemsQuery::destroyed);
         cache.run(q);
         QVERIFY(destroyed.wait());
         QCOMPARE(uidsAvailable.count(), 1);
         auto got = uidsAvailable.at(0).at(0).value<QSet<QUuid>>();
-        auto expected = QSet<QUuid>(
-        {
-                        todoList.uid(),
-                        todo.uid(),
-                        task.uid(),
-                        note.uid(),
-                        image.uid(),
-                    });
+        auto expected = QSet<QUuid>({
+                todoList.uid(),
+                todo.uid(),
+                task.uid(),
+                note.uid(),
+                image.uid(),
+        });
         QCOMPARE(got, expected);
     }
 }

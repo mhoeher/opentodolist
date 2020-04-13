@@ -19,7 +19,7 @@ public:
     virtual ~LibraryLoader();
 
     QString directory() const;
-    void setDirectory(const QString& directory);
+    void setDirectory(const QString &directory);
 
     QUuid libraryId() const;
     void setLibraryId(const QUuid &libraryId);
@@ -39,9 +39,9 @@ public slots:
     void scan();
 
 private:
-
-    struct DirectoryScanResult {
-        InsertOrUpdateItemsQuery* query;
+    struct DirectoryScanResult
+    {
+        InsertOrUpdateItemsQuery *query;
         QSet<QUuid> itemsToDelete;
     };
 

@@ -4,29 +4,25 @@
 #include "datamodel/library.h"
 #include "datastorage/itemsquery.h"
 
-
 /**
  * @brief Constructor.
  */
-ItemsQuery::ItemsQuery(QObject *parent) : QObject(parent),
-    m_context(),
-    m_global(),
-    m_items(),
-    m_children(),
-    m_dataChanged(false),
-    m_changedLibrariesUids(),
-    m_changedParentUids()
+ItemsQuery::ItemsQuery(QObject *parent)
+    : QObject(parent),
+      m_context(),
+      m_global(),
+      m_items(),
+      m_children(),
+      m_dataChanged(false),
+      m_changedLibrariesUids(),
+      m_changedParentUids()
 {
 }
-
 
 /**
  * @brief Destructor.
  */
-ItemsQuery::~ItemsQuery()
-{
-}
-
+ItemsQuery::~ItemsQuery() {}
 
 /**
  * @brief The database containing global settings.
@@ -36,7 +32,6 @@ QSharedPointer<QLMDB::Database> ItemsQuery::global() const
     return m_global;
 }
 
-
 /**
  * @brief The database containing item data.
  */
@@ -45,7 +40,6 @@ QSharedPointer<QLMDB::Database> ItemsQuery::items() const
     return m_items;
 }
 
-
 /**
  * @brief The database containing parent/child relationships.
  */
@@ -53,7 +47,6 @@ QSharedPointer<QLMDB::Database> ItemsQuery::children() const
 {
     return m_children;
 }
-
 
 /**
  * @brief Indicate that the query changed the cache contents.
@@ -67,7 +60,6 @@ void ItemsQuery::setDataChanged(bool changed)
     m_dataChanged = changed;
 }
 
-
 /**
  * @brief Returns true if the query has changed the cache.
  *
@@ -77,7 +69,6 @@ bool ItemsQuery::hasDataChanged() const
 {
     return m_dataChanged;
 }
-
 
 /**
  * @brief Mark an item as changed.
@@ -109,7 +100,6 @@ void ItemsQuery::markAsChanged(QLMDB::Transaction &transaction, QByteArray id)
     }
 }
 
-
 /**
  * @brief The context of the cache data base.
  */
@@ -117,7 +107,6 @@ QSharedPointer<QLMDB::Context> ItemsQuery::context() const
 {
     return m_context;
 }
-
 
 /**
  * @brief Indicate that the query is done.

@@ -7,14 +7,13 @@
 
 bool FileUtils::isSubDirOrFile(const QString &dir, const QString &subDir)
 {
-  QString parDir = QDir::fromNativeSeparators(dir);
-  QString childDir = QDir::fromNativeSeparators(subDir);
-  if (!parDir.endsWith("/")) {
-    parDir = parDir + "/";
-  }
-  return childDir.startsWith(parDir) || (dir == subDir);
+    QString parDir = QDir::fromNativeSeparators(dir);
+    QString childDir = QDir::fromNativeSeparators(subDir);
+    if (!parDir.endsWith("/")) {
+        parDir = parDir + "/";
+    }
+    return childDir.startsWith(parDir) || (dir == subDir);
 }
-
 
 /**
  * @brief Convert a path to make it suitable for persisting.
@@ -36,7 +35,6 @@ QString FileUtils::toPersistedPath(const QString &path)
     }
 }
 
-
 /**
  * @brief Get a path from its persisted form.
  *
@@ -48,8 +46,7 @@ QString FileUtils::fromPersistedPath(const QString &path)
     auto result = path;
     QString placeholder = "<APPROOT>";
     if (result.startsWith(placeholder)) {
-        result = Library::defaultLibrariesLocation() +
-                result.mid(placeholder.length());
+        result = Library::defaultLibrariesLocation() + result.mid(placeholder.length());
     }
     return result;
 }

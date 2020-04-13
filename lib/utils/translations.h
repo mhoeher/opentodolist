@@ -13,8 +13,7 @@ namespace OpenTodoList {
 class Translations : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString language READ language WRITE setLanguage
-               NOTIFY languageChanged)
+    Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
 public:
     explicit Translations(QQmlEngine *engine, QObject *parent = nullptr);
 
@@ -30,7 +29,6 @@ signals:
 public slots:
 
 private:
-
     QQmlEngine *m_engine;
     QTranslator *m_translator;
     QString m_language;

@@ -10,19 +10,16 @@
 
 class LibrariesModelTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void run();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void run();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void LibrariesModelTest::run()
 {
@@ -50,7 +47,7 @@ void LibrariesModelTest::run()
     QVERIFY(model.rowCount() == 1 || rowsInserted.wait());
     {
         auto idx = model.index(0);
-        auto l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
+        auto l = idx.data(LibrariesModel::LibraryRole).value<Library *>();
         QCOMPARE(l->name(), QString("Library 1"));
         QCOMPARE(l->uid(), lib.uid());
     }
@@ -69,12 +66,12 @@ void LibrariesModelTest::run()
     QVERIFY(model.rowCount() == 2 || rowsInserted.wait());
     {
         auto idx = model.index(0);
-        auto l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
+        auto l = idx.data(LibrariesModel::LibraryRole).value<Library *>();
         QCOMPARE(l->name(), QString("Library 1"));
         QCOMPARE(l->uid(), lib.uid());
 
         idx = model.index(1);
-        l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
+        l = idx.data(LibrariesModel::LibraryRole).value<Library *>();
         QCOMPARE(l->name(), QString("Library 2"));
         QCOMPARE(l->uid(), lib2.uid());
     }
@@ -93,16 +90,15 @@ void LibrariesModelTest::run()
 
     {
         auto idx = model.index(0);
-        auto l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
+        auto l = idx.data(LibrariesModel::LibraryRole).value<Library *>();
         QCOMPARE(l->name(), QString("Changed Library"));
         QCOMPARE(l->uid(), lib.uid());
 
         idx = model.index(1);
-        l = idx.data(LibrariesModel::LibraryRole).value<Library*>();
+        l = idx.data(LibrariesModel::LibraryRole).value<Library *>();
         QCOMPARE(l->name(), QString("Library 2"));
         QCOMPARE(l->uid(), lib2.uid());
     }
-
 }
 
 QTEST_MAIN(LibrariesModelTest)

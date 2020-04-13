@@ -17,9 +17,7 @@
 SyncJob::SyncJob(const QString &libraryDirectory, QSharedPointer<Account> account, QObject *parent)
     : QObject(parent), m_libraryDirectory(libraryDirectory), m_account(account)
 {
-
 }
-
 
 /**
  * @brief Run the synchronization.
@@ -27,16 +25,13 @@ SyncJob::SyncJob(const QString &libraryDirectory, QSharedPointer<Account> accoun
 void SyncJob::execute()
 {
     if (!m_libraryDirectory.isEmpty()) {
-        QScopedPointer<Synchronizer> sync(
-                    Synchronizer::fromDirectory(m_libraryDirectory));
+        QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(m_libraryDirectory));
         if (sync) {
             sync->loadLog();
             sync->setAccount(m_account.data());
-            connect(this, &SyncJob::stopRequested,
-                    sync.data(), &Synchronizer::stopSync,
+            connect(this, &SyncJob::stopRequested, sync.data(), &Synchronizer::stopSync,
                     Qt::QueuedConnection);
-            connect(sync.data(), &Synchronizer::syncError,
-                    this, &SyncJob::onSyncError);
+            connect(sync.data(), &Synchronizer::syncError, this, &SyncJob::onSyncError);
             sync->synchronize();
             sync->saveLog();
         }

@@ -12,14 +12,11 @@
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.LibrariesItemsQuery", QtDebugMsg)
 
-
-LibrariesItemsQuery::LibrariesItemsQuery(QObject *parent) :
-    ItemsQuery(parent),
-    m_includeCalculatedValues(false)
+        LibrariesItemsQuery::LibrariesItemsQuery(QObject *parent)
+    : ItemsQuery(parent), m_includeCalculatedValues(false)
 {
     qRegisterMetaType<LibraryCacheEntry>();
 }
-
 
 void LibrariesItemsQuery::run()
 {
@@ -33,8 +30,7 @@ void LibrariesItemsQuery::run()
     while (it.isValid()) {
         auto item = itemsCursor.findKey(it.value());
         if (item.isValid()) {
-            auto entry = LibraryCacheEntry::fromByteArray(
-                        item.value(), item.key());
+            auto entry = LibraryCacheEntry::fromByteArray(item.value(), item.key());
             if (entry.valid) {
                 if (m_includeCalculatedValues) {
                     QSet<QString> tags;
@@ -42,8 +38,7 @@ void LibrariesItemsQuery::run()
                     while (topIt.isValid()) {
                         auto data = items()->get(topIt.value());
                         if (!data.isNull()) {
-                            auto itemEntry = ItemCacheEntry::fromByteArray(
-                                        data, item.key());
+                            auto itemEntry = ItemCacheEntry::fromByteArray(data, item.key());
                             if (itemEntry.valid) {
                                 ItemPtr item_(Item::decache(itemEntry));
                                 auto topLevelItem = item_.objectCast<TopLevelItem>();
@@ -63,9 +58,7 @@ void LibrariesItemsQuery::run()
                 result << QVariant::fromValue(entry);
             }
         } else {
-            qCWarning(log) << "Failed to find item"
-                           << item.value()
-                           << "in item cache!";
+            qCWarning(log) << "Failed to find item" << item.value() << "in item cache!";
             items()->remove(t, Cache::RootId, item.key());
         }
         it = childrenCursor.nextForCurrentKey();

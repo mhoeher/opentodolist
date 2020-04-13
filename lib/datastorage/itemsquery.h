@@ -21,6 +21,7 @@ class ItemsQuery : public QObject
     Q_OBJECT
     friend class ItemsQueryRunnable;
     friend class Cache;
+
 public:
     explicit ItemsQuery(QObject *parent = nullptr);
     ~ItemsQuery() override;
@@ -56,7 +57,6 @@ protected:
     void setDataChanged(bool changed = true);
     bool hasDataChanged() const;
 
-
     /**
      * @brief Run the query.
      *
@@ -69,7 +69,6 @@ protected:
     virtual void markAsChanged(QLMDB::Transaction &transaction, QByteArray id);
 
 private:
-
     QSharedPointer<QLMDB::Context> m_context;
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;

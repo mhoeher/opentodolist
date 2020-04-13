@@ -6,7 +6,6 @@
 
 class SyncJob;
 
-
 /**
  * @brief Run sync jobs.
  */
@@ -20,7 +19,6 @@ public:
     void run() override;
 
 private:
-
     SyncJob *m_job;
 };
 

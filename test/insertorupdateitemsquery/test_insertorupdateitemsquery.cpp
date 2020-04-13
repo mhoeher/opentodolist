@@ -15,28 +15,25 @@
 
 class InsertOrUpdateItemsQueryTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void insertOrUpdate();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void insertOrUpdate();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
-
-
-
 
 void InsertOrUpdateItemsQueryTest::insertOrUpdate()
 {
-//    QTest::ignoreMessage(QtDebugMsg,
-//                         QRegularExpression(".*Cache is uninitialized.*"));
+    //    QTest::ignoreMessage(QtDebugMsg,
+    //                         QRegularExpression(".*Cache is uninitialized.*"));
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
-    cache.setCacheSize(1024*1024);
+    cache.setCacheSize(1024 * 1024);
     QVERIFY(cache.open());
 
     Library lib;
@@ -75,8 +72,7 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 1);
         QCOMPARE(librariesChanged.count(), 1);
-        QCOMPARE(librariesChanged.at(0).at(0).toList().at(0).toUuid(),
-                 lib.uid());
+        QCOMPARE(librariesChanged.at(0).at(0).toList().at(0).toUuid(), lib.uid());
     }
 
     {
@@ -122,7 +118,7 @@ void InsertOrUpdateItemsQueryTest::insertOrUpdate()
         cache.run(q);
 
         QVERIFY(cacheFinished.wait());
-            QCOMPARE(finished.count(), 1);
+        QCOMPARE(finished.count(), 1);
         QCOMPARE(dataChanged.count(), 1);
     }
 }

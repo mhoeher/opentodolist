@@ -5,7 +5,6 @@
 #include <QSharedPointer>
 #include <QVariant>
 
-
 // Forward declarations:
 namespace QLMDB {
 class Context;
@@ -59,7 +58,6 @@ signals:
      */
     void dataChanged();
 
-
     /**
      * @brief One or more libraries have changed.
      *
@@ -79,7 +77,6 @@ signals:
 public slots:
 
 private:
-
     QString m_cacheDirectory;
     size_t m_cacheSize;
 

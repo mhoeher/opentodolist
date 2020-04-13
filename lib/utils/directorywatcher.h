@@ -38,9 +38,8 @@ public slots:
     void setDirectory(const QString &directory);
 
 private:
-
-    QThread                 *m_thread;
-    DirectoryWatcherWorker  *m_worker;
+    QThread *m_thread;
+    DirectoryWatcherWorker *m_worker;
 };
 
 class DirectoryWatcherWorker : public QObject
@@ -50,7 +49,7 @@ class DirectoryWatcherWorker : public QObject
     friend class DirectoryWatcher;
 
     QFileSystemWatcher *m_watcher;
-    QString             m_directory;
+    QString m_directory;
 
     explicit DirectoryWatcherWorker();
     virtual ~DirectoryWatcherWorker();

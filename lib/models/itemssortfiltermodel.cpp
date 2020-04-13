@@ -10,20 +10,15 @@
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
 
-ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
-    QSortFilterProxyModel(parent)
+ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
     setSortRole(ItemsModel::WeightRole);
     sort(0);
 
-    connect(this, &ItemsSortFilterModel::rowsInserted,
-            this, &ItemsSortFilterModel::countChanged);
-    connect(this, &ItemsSortFilterModel::rowsRemoved,
-            this, &ItemsSortFilterModel::countChanged);
-    connect(this, &ItemsSortFilterModel::modelReset,
-            this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::rowsInserted, this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::rowsRemoved, this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::modelReset, this, &ItemsSortFilterModel::countChanged);
 }
-
 
 /**
  * @brief The number of items in the model.
@@ -33,7 +28,8 @@ int ItemsSortFilterModel::count() const
     return rowCount();
 }
 
-bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
+bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left,
+                                    const QModelIndex &source_right) const
 {
     switch (sortRole()) {
 
@@ -46,8 +42,7 @@ bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left, const QModel
     // For the DueTo role, apply a little trick: Sort by the due to role
     // data (converted to a string), but append an 'X'. This causes
     // Any items with a valid due date to appear first in listings.
-    case ItemsModel::DueToRole:
-    {
+    case ItemsModel::DueToRole: {
         auto left_dt = source_left.data(ItemsModel::DueToRole).toString();
         auto right_dt = source_right.data(ItemsModel::DueToRole).toString();
         return left_dt + "x" < right_dt + "x";

@@ -3,24 +3,21 @@
 #include <QtConcurrent>
 #include <QTextDocument>
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.ComplexItem", QtWarningMsg)
 
-
-/**
- * @brief Constructor.
- */
-ComplexItem::ComplexItem(QObject* parent) : ComplexItem(QString(), parent)
+        /**
+         * @brief Constructor.
+         */
+        ComplexItem::ComplexItem(QObject *parent)
+    : ComplexItem(QString(), parent)
 {
 }
 
 /**
  * @brief Constructor.
  */
-ComplexItem::ComplexItem(const QString& filename, QObject* parent) : Item(filename, parent),
-    m_dueTo(),
-    m_notes(),
-    m_attachments()
+ComplexItem::ComplexItem(const QString &filename, QObject *parent)
+    : Item(filename, parent), m_dueTo(), m_notes(), m_attachments()
 {
     setupConnections();
 }
@@ -28,10 +25,8 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent) : Item(filena
 /**
  * @brief Constructor.
  */
-ComplexItem::ComplexItem(const QDir& dir, QObject* parent) : Item(dir, parent),
-    m_dueTo(),
-    m_notes(),
-    m_attachments()
+ComplexItem::ComplexItem(const QDir &dir, QObject *parent)
+    : Item(dir, parent), m_dueTo(), m_notes(), m_attachments()
 {
     setupConnections();
 }
@@ -39,9 +34,7 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent) : Item(dir, parent),
 /**
  * @brief Destructor.
  */
-ComplexItem::~ComplexItem()
-{
-}
+ComplexItem::~ComplexItem() {}
 
 QUuid ComplexItem::parentId() const
 {
@@ -115,7 +108,6 @@ QString ComplexItem::attachmentFileName(const QString &filename)
     return result;
 }
 
-
 /**
  * @brief Attach a file to the item.
  *
@@ -132,8 +124,8 @@ void ComplexItem::attachFile(const QString &filename)
             int i = 0;
             while (dir.exists(targetFileName)) {
                 ++i;
-                targetFileName = fi.baseName() + "-" + QString::number(i) +
-                        "." + fi.completeSuffix();
+                targetFileName =
+                        fi.baseName() + "-" + QString::number(i) + "." + fi.completeSuffix();
             }
             QFile::copy(filename, dir.absoluteFilePath(targetFileName));
             m_attachments.append(targetFileName);
@@ -142,7 +134,6 @@ void ComplexItem::attachFile(const QString &filename)
         }
     }
 }
-
 
 /**
  * @brief Remove an attachment.
@@ -158,8 +149,7 @@ void ComplexItem::detachFile(const QString &filename)
             auto directory = this->directory();
             QDir dir(directory);
             if (!dir.remove(filename)) {
-                qCWarning(log) << "Failed to remove" << filename
-                                       << "from" << dir.path();
+                qCWarning(log) << "Failed to remove" << filename << "from" << dir.path();
             }
             m_attachments.removeAll(filename);
             emit attachmentsChanged();
@@ -182,7 +172,6 @@ void ComplexItem::setAttachments(const QStringList &attachments)
     }
 }
 
-
 QVariantMap ComplexItem::toMap() const
 {
     auto result = Item::toMap();
@@ -191,7 +180,6 @@ QVariantMap ComplexItem::toMap() const
     result["attachments"] = m_attachments;
     return result;
 }
-
 
 void ComplexItem::fromMap(QVariantMap map)
 {
@@ -209,8 +197,8 @@ bool ComplexItem::deleteItem()
             QFile file(path);
             if (file.exists()) {
                 if (!file.remove()) {
-                    qCWarning(log) << "Failed to remove attachment"
-                                           << path << ":" << file.errorString();
+                    qCWarning(log)
+                            << "Failed to remove attachment" << path << ":" << file.errorString();
                 }
             }
         }

@@ -6,16 +6,12 @@
 #include <QSaveFile>
 #include <QtConcurrent>
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Image", QtDebugMsg);
-
 
 /**
  * @brief Constructor.
  */
-Image::Image(const QString &filename, QObject *parent) :
-    TopLevelItem(filename, parent),
-    m_image()
+Image::Image(const QString &filename, QObject *parent) : TopLevelItem(filename, parent), m_image()
 {
     connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
@@ -23,15 +19,12 @@ Image::Image(const QString &filename, QObject *parent) :
 /**
  * @brief Constructor.
  */
-Image::Image(QObject* parent) : Image(QString(), parent)
-{
-}
+Image::Image(QObject *parent) : Image(QString(), parent) {}
 
 /**
  * @brief Constructor.
  */
-Image::Image(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent),
-    m_image()
+Image::Image(const QDir &dir, QObject *parent) : TopLevelItem(dir, parent), m_image()
 {
     connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
@@ -39,9 +32,7 @@ Image::Image(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent),
 /**
  * @brief Destructor.
  */
-Image::~Image()
-{
-}
+Image::~Image() {}
 
 /**
  * @brief Set the image path.
@@ -87,9 +78,7 @@ void Image::setImage(const QString &image)
                         if (!file.remove()) {
                             qCWarning(log) << "Failed to remove existing image "
                                               "file"
-                                           << file.fileName()
-                                           << ":"
-                                           << file.errorString();
+                                           << file.fileName() << ":" << file.errorString();
                         }
                     }
 
@@ -106,8 +95,7 @@ void Image::setImage(const QString &image)
                     }
 
                     // 3. Copy over the external file:
-                    QString targetFileName = QUuid::createUuid().toString() +
-                            ".res.";
+                    QString targetFileName = QUuid::createUuid().toString() + ".res.";
                     auto completeSuffix = fi.completeSuffix();
                     if (completeSuffix.contains("?")) {
                         // On some platforms (e.g. iOS), we get a URL with
@@ -131,17 +119,13 @@ void Image::setImage(const QString &image)
                                 }
                                 dst.commit();
                             } else {
-                                qCWarning(log) << "Failed to open"
-                                               << targetFilePath
-                                               << "for writing:"
-                                               << dst.errorString();
+                                qCWarning(log) << "Failed to open" << targetFilePath
+                                               << "for writing:" << dst.errorString();
                             }
                             src.close();
                         } else {
-                            qCWarning(log) << "Failed to open"
-                                           << image
-                                           << "for reading:"
-                                           << src.errorString();
+                            qCWarning(log) << "Failed to open" << image
+                                           << "for reading:" << src.errorString();
                         }
                     }
 

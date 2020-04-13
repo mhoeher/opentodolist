@@ -1,29 +1,21 @@
 #include "task.h"
 
+Task::Task(QObject *parent) : Task(QString(), parent) {}
 
-Task::Task(QObject* parent) : Task(QString(), parent)
-{
-}
-
-Task::Task(const QDir& dir, QObject* parent) : Item(dir, parent),
-    m_done(false),
-    m_todoUid()
+Task::Task(const QDir &dir, QObject *parent) : Item(dir, parent), m_done(false), m_todoUid()
 {
     connect(this, &Task::doneChanged, this, &Task::changed);
     connect(this, &Task::todoUidChanged, this, &Task::changed);
 }
 
-Task::Task(const QString &filename, QObject* parent) : Item(filename, parent),
-    m_done(false),
-    m_todoUid(QUuid())
+Task::Task(const QString &filename, QObject *parent)
+    : Item(filename, parent), m_done(false), m_todoUid(QUuid())
 {
     connect(this, &Task::doneChanged, this, &Task::changed);
     connect(this, &Task::todoUidChanged, this, &Task::changed);
 }
 
-Task::~Task()
-{
-}
+Task::~Task() {}
 
 QUuid Task::parentId() const
 {
@@ -57,7 +49,7 @@ QUuid Task::todoUid() const
     return m_todoUid;
 }
 
-void Task::setTodoUid(const QUuid& todoUid)
+void Task::setTodoUid(const QUuid &todoUid)
 {
     if (m_todoUid != todoUid) {
         m_todoUid = todoUid;

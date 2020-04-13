@@ -16,14 +16,10 @@ class AndroidFileDialog : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(Type type READ type WRITE setType NOTIFY typeChanged)
-    Q_PROPERTY(QObject* receiver READ receiver WRITE setReceiver NOTIFY receiverChanged)
+    Q_PROPERTY(QObject *receiver READ receiver WRITE setReceiver NOTIFY receiverChanged)
 
 public:
-
-    enum Type {
-        SelectFile,
-        SelectImage
-    };
+    enum Type { SelectFile, SelectImage };
 
     Q_ENUM(Type)
 
@@ -47,14 +43,13 @@ public slots:
     bool open();
 
 private:
-
-    class ResultReceiver : public QAndroidActivityResultReceiver {
+    class ResultReceiver : public QAndroidActivityResultReceiver
+    {
 
     public:
         explicit ResultReceiver(AndroidFileDialog *dialog);
         virtual ~ResultReceiver();
-        void handleActivityResult(int receiverRequestCode,
-                                  int resultCode,
+        void handleActivityResult(int receiverRequestCode, int resultCode,
                                   const QAndroidJniObject &data);
         QString uriToPath(QAndroidJniObject uri);
 
@@ -73,7 +68,6 @@ private:
     bool openImage();
 
     bool ensureCanAccessImages();
-
 };
 
 #endif // ANDROIDFILEDIALOG_H

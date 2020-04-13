@@ -6,27 +6,26 @@
 
 class CacheTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init();
-  void constructor();
-  void cacheDirectory();
-  void open();
-  void cleanup();
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init();
+    void constructor();
+    void cacheDirectory();
+    void open();
+    void cleanup();
+    void cleanupTestCase() {}
 
 private:
+    QTemporaryDir *tempDir;
 
-  QTemporaryDir *tempDir;
-
-  static const size_t CACHE_SIZE = 1024 * 1024;
+    static const size_t CACHE_SIZE = 1024 * 1024;
 };
 
-
-void CacheTest::init() {
+void CacheTest::init()
+{
     tempDir = new QTemporaryDir();
 }
 
@@ -48,9 +47,10 @@ void CacheTest::open()
     {
         Cache c;
         QVERIFY(!c.isValid());
-        QTest::ignoreMessage(QtWarningMsg, "Failed to open cache directory \"\""
-                                           " : \"Empty path passed to "
-                                           "environment\"");
+        QTest::ignoreMessage(QtWarningMsg,
+                             "Failed to open cache directory \"\""
+                             " : \"Empty path passed to "
+                             "environment\"");
         QVERIFY(!c.open());
         QVERIFY(!c.isValid());
     }
@@ -59,15 +59,16 @@ void CacheTest::open()
         QVERIFY(!c.isValid());
         c.setCacheDirectory(tempDir->path());
         c.setCacheSize(CACHE_SIZE);
-//        QTest::ignoreMessage(QtDebugMsg,
-//                             "Cache is uninitialized - "
-//                             "initializing to Version 0 now");
+        //        QTest::ignoreMessage(QtDebugMsg,
+        //                             "Cache is uninitialized - "
+        //                             "initializing to Version 0 now");
         QVERIFY(c.open());
         QVERIFY(c.isValid());
     }
 }
 
-void CacheTest::cleanup() {
+void CacheTest::cleanup()
+{
     delete tempDir;
 }
 

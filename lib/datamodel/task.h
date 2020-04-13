@@ -5,7 +5,6 @@
 
 #include <QObject>
 
-
 /**
  *  @brief Represents a task inside a todo.
  *
@@ -21,7 +20,6 @@ class Task : public Item
     Q_PROPERTY(QUuid todoUid READ todoUid WRITE setTodoUid NOTIFY todoUidChanged)
 
 public:
-
     explicit Task(QObject *parent = nullptr);
     explicit Task(const QString &filename, QObject *parent = nullptr);
     explicit Task(const QDir &dir, QObject *parent = nullptr);
@@ -33,7 +31,7 @@ public:
     void setDone(bool done);
 
     QUuid todoUid() const;
-    void setTodoUid(const QUuid& todoUid);
+    void setTodoUid(const QUuid &todoUid);
 
 signals:
 
@@ -43,10 +41,8 @@ signals:
 public slots:
 
 private:
-
     bool m_done;
     QUuid m_todoUid;
-
 
 protected:
     // Item interface

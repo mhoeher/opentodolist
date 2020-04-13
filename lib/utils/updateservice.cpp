@@ -9,18 +9,16 @@
 
 #include "opentodolist_version.h"
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.UpdateService", QtDebugMsg)
 
-
-UpdateService::UpdateService(QObject *parent) : QObject(parent)
+        UpdateService::UpdateService(QObject *parent)
+    : QObject(parent)
 {
 #ifdef OPENTODOLIST_WITH_UPDATE_SERVICE
     auto updateTimer = new QTimer(this);
-    updateTimer->setInterval(1000*60*60*24);
+    updateTimer->setInterval(1000 * 60 * 60 * 24);
     updateTimer->setSingleShot(false);
-    connect(updateTimer, &QTimer::timeout,
-            this, &UpdateService::checkForUpdates);
+    connect(updateTimer, &QTimer::timeout, this, &UpdateService::checkForUpdates);
     updateTimer->start();
     checkForUpdates();
 #endif
@@ -33,14 +31,14 @@ void UpdateService::checkForUpdates()
     QNetworkRequest req(updateUrl);
     auto reply = nam->get(req);
     if (reply) {
-        connect(reply, static_cast<void(QNetworkReply::*)
-                (QNetworkReply::NetworkError)>(&QNetworkReply::error),
+        connect(reply,
+                static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(
+                        &QNetworkReply::error),
                 [=](QNetworkReply::NetworkError error) {
-            qCWarning(log) << "Failed to get update information:"
-                                     << error;
-            reply->deleteLater();
-            nam->deleteLater();
-        });
+                    qCWarning(log) << "Failed to get update information:" << error;
+                    reply->deleteLater();
+                    nam->deleteLater();
+                });
         connect(reply, &QNetworkReply::finished, [=]() {
             qCDebug(log) << "Received reply, checking...";
             auto doc = QJsonDocument::fromJson(reply->readAll());
@@ -49,16 +47,12 @@ void UpdateService::checkForUpdates()
                 if (info.contains("tag_name")) {
                     auto tagName = info.value("tag_name").toString();
                     qCDebug(log) << "Latest release:" << tagName;
-                    auto currentVersion = QVersionNumber::fromString(
-                                OPENTODOLIST_VERSION);
+                    auto currentVersion = QVersionNumber::fromString(OPENTODOLIST_VERSION);
                     auto latestVersion = QVersionNumber::fromString(tagName);
                     if (latestVersion > currentVersion) {
-                        emit updateAvailable(
-                                    tagName,
-                                    QUrl(info.value("html_url").toString()));
+                        emit updateAvailable(tagName, QUrl(info.value("html_url").toString()));
                     } else {
-                        qCDebug(log)
-                                << "Already running latest version";
+                        qCDebug(log) << "Already running latest version";
                     }
                 }
             }

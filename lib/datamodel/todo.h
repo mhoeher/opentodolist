@@ -22,9 +22,8 @@ class Todo : public ComplexItem
     Q_PROPERTY(int progress READ progress WRITE setProgress NOTIFY progressChanged)
 
 public:
-
     explicit Todo(const QString &filename, QObject *parent = nullptr);
-    explicit Todo(QObject* parent = nullptr);
+    explicit Todo(QObject *parent = nullptr);
     explicit Todo(const QDir &dir, QObject *parent = nullptr);
     ~Todo() override;
 
@@ -34,7 +33,7 @@ public:
     void setDone(bool done);
 
     QUuid todoListUid() const;
-    void setTodoListUid(const QUuid& todoListUid);
+    void setTodoListUid(const QUuid &todoListUid);
 
     int percentageDone() const;
 
@@ -54,18 +53,14 @@ signals:
 public slots:
 
 protected:
-
-
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 
 private:
-
     QUuid m_todoListUid;
     int m_percentageDone;
     int m_progress;
     bool m_done;
-
 };
 
 typedef QSharedPointer<Todo> TodoPtr;

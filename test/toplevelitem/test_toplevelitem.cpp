@@ -16,7 +16,6 @@ private slots:
     void testPersistence();
     void testTags();
     void cleanupTestCase() {}
-
 };
 
 void TopLevelItemTest::testProperties()
@@ -28,13 +27,13 @@ void TopLevelItemTest::testProperties()
     QCOMPARE(item.color(), TopLevelItem::White);
 
     item.setColor(TopLevelItem::Green);
-    item.setTags({"Hello", "World"});
+    item.setTags({ "Hello", "World" });
 
     QCOMPARE(colorChanged.count(), 1);
     QCOMPARE(tagsChanged.count(), 1);
 
     QCOMPARE(item.color(), TopLevelItem::Green);
-    QCOMPARE(item.tags(), QStringList({"Hello", "World"}));
+    QCOMPARE(item.tags(), QStringList({ "Hello", "World" }));
 }
 
 void TopLevelItemTest::testPersistence()
@@ -46,7 +45,7 @@ void TopLevelItemTest::testPersistence()
     QCOMPARE(item.color(), TopLevelItem::White);
 
     item.setColor(TopLevelItem::Green);
-    item.setTags({"Hello", "World"});
+    item.setTags({ "Hello", "World" });
 
     anotherItem.fromVariant(item.toVariant());
 
@@ -54,7 +53,7 @@ void TopLevelItemTest::testPersistence()
     QCOMPARE(tagsChanged.count(), 1);
 
     QCOMPARE(anotherItem.color(), TopLevelItem::Green);
-    QCOMPARE(anotherItem.tags(), QStringList({"Hello", "World"}));
+    QCOMPARE(anotherItem.tags(), QStringList({ "Hello", "World" }));
 }
 
 void TopLevelItemTest::testTags()
@@ -63,11 +62,11 @@ void TopLevelItemTest::testTags()
     QSignalSpy tagsChanged(&item, &TopLevelItem::tagsChanged);
     QCOMPARE(item.tags(), QStringList());
     item.addTag("Tag 2");
-    QCOMPARE(item.tags(), QStringList({"Tag 2"}));
+    QCOMPARE(item.tags(), QStringList({ "Tag 2" }));
     item.addTag("Tag 1");
-    QCOMPARE(item.tags(), QStringList({"Tag 1", "Tag 2"}));
+    QCOMPARE(item.tags(), QStringList({ "Tag 1", "Tag 2" }));
     item.removeTagAt(1);
-    QCOMPARE(item.tags(), QStringList({"Tag 1"}));
+    QCOMPARE(item.tags(), QStringList({ "Tag 1" }));
     QCOMPARE(tagsChanged.count(), 3);
 }
 
