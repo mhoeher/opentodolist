@@ -1,4 +1,21 @@
-#include "opentodolistqmlextensionsplugin.h"
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <QCommandLineParser>
 #include <QDebug>
@@ -16,61 +33,60 @@
 #include <QSslSocket>
 #include <QSysInfo>
 
-#ifdef OTL_USE_SINGLE_APPLICATION
-#include "singleapplication.h"
-#else
-#include <QApplication>
-#endif
-
 #include <iostream>
+
+#include "opentodolistqmlextensionsplugin.h"
+
+#ifdef OTL_USE_SINGLE_APPLICATION
+#    include "singleapplication.h"
+#else
+#    include <QApplication>
+#endif
 
 #include "../lib/opentodolist_version.h"
 #include "utils/translations.h"
-
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    //qSetMessagePattern("%{file}(%{line}): %{message}");
+    // qSetMessagePattern("%{file}(%{line}): %{message}");
 #ifdef OPENTODOLIST_DEBUG
     QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
 #endif
 
 #ifdef OTL_USE_SINGLE_APPLICATION
     SingleApplication app(argc, argv, false,
-                          SingleApplication::User |
-                          SingleApplication::ExcludeAppPath);
+                          SingleApplication::User | SingleApplication::ExcludeAppPath);
 #else
     QGuiApplication app(argc, argv);
 #endif
 
     // Load color emoji font:
-    QFontDatabase::addApplicationFont(
-                ":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
+    QFontDatabase::addApplicationFont(":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
 
-    // Use Noto Color Emoji as substitution font for color emojies:
-    // {
-    //     const auto FontTypes = {
-    //         QFontDatabase::GeneralFont,
-    //         QFontDatabase::FixedFont,
-    //         QFontDatabase::TitleFont,
-    //         QFontDatabase::SmallestReadableFont
-    //     };
-    //     for (auto fontType : FontTypes) {
-    //         auto font = QFontDatabase::systemFont(fontType);
-    //         QFont::insertSubstitution(font.family(), "Noto Color Emoji");
-    //     }
-    // }
-    #ifdef OPENTODOLIST_FLATPAK
+// Use Noto Color Emoji as substitution font for color emojies:
+// {
+//     const auto FontTypes = {
+//         QFontDatabase::GeneralFont,
+//         QFontDatabase::FixedFont,
+//         QFontDatabase::TitleFont,
+//         QFontDatabase::SmallestReadableFont
+//     };
+//     for (auto fontType : FontTypes) {
+//         auto font = QFontDatabase::systemFont(fontType);
+//         QFont::insertSubstitution(font.family(), "Noto Color Emoji");
+//     }
+// }
+#ifdef OPENTODOLIST_FLATPAK
     {
         QDir dir("/var/config/fontconfig/conf.d");
         if (dir.mkpath(".")) {
             QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
-            dir.absoluteFilePath("90-otl-color-emoji.conf"));
+                        dir.absoluteFilePath("90-otl-color-emoji.conf"));
         }
     }
-    #endif
+#endif
 
     QCoreApplication::setApplicationName("OpenTodoList");
     QCoreApplication::setApplicationVersion(OPENTODOLIST_VERSION);
@@ -81,22 +97,22 @@ int main(int argc, char *argv[])
 
     QCommandLineParser parser;
     parser.setApplicationDescription(
-                QCoreApplication::translate("main", "Manage your personal data."));
+            QCoreApplication::translate("main", "Manage your personal data."));
     parser.addHelpOption();
     parser.addVersionOption();
 
 #ifdef OPENTODOLIST_DEBUG
-    QCommandLineOption qmlRootOption = {{"Q", "qml-root"},
-                                        QCoreApplication::translate("main", "QML Root Directory"),
-                                        QCoreApplication::translate("main", "DIR")};
+    QCommandLineOption qmlRootOption = { { "Q", "qml-root" },
+                                         QCoreApplication::translate("main", "QML Root Directory"),
+                                         QCoreApplication::translate("main", "DIR") };
     parser.addOption(qmlRootOption);
 #endif
 
     // Enable touch screen optimizations
-    QCommandLineOption enableTouchOption = {{"T", "enable-touch"},
-                                            QCoreApplication::translate(
-                                            "main",
-                                            "Switch on some optimizations for touchscreens.")};
+    QCommandLineOption enableTouchOption = {
+        { "T", "enable-touch" },
+        QCoreApplication::translate("main", "Switch on some optimizations for touchscreens.")
+    };
     parser.addOption(enableTouchOption);
 
     // If APPDIR is set, assume we are running from AppImage.
@@ -107,9 +123,7 @@ int main(int argc, char *argv[])
 #ifdef OPENTODOLIST_IS_APPIMAGE
     QCommandLineOption removeDesktopIntegrationOption = {
         "remove-appimage-desktop-integration",
-        QCoreApplication::translate(
-        "main",
-        "Remove shortcuts to the AppImage.")
+        QCoreApplication::translate("main", "Remove shortcuts to the AppImage.")
     };
     parser.addOption(removeDesktopIntegrationOption);
 
@@ -138,10 +152,8 @@ int main(int argc, char *argv[])
 #ifdef OTL_USE_SINGLE_APPLICATION
     engine.rootContext()->setContextProperty("application", &app);
 #endif
-    engine.rootContext()->setContextProperty(
-                "applicationVersion", QVariant(OPENTODOLIST_VERSION));
-    engine.rootContext()->setContextProperty(
-                "qmlBaseDirectory", qmlBase);
+    engine.rootContext()->setContextProperty("applicationVersion", QVariant(OPENTODOLIST_VERSION));
+    engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
 #ifdef OPENTODOLIST_DEBUG
     engine.rootContext()->setContextProperty("isDebugBuild", true);
 #else
@@ -163,8 +175,7 @@ int main(int argc, char *argv[])
     // Print diagnostic information
     qWarning() << "System ABI:" << QSysInfo::buildAbi();
     qWarning() << "Build CPU Architecture:" << QSysInfo::buildCpuArchitecture();
-    qWarning() << "Current CPU Architecture:"
-               << QSysInfo::currentCpuArchitecture();
+    qWarning() << "Current CPU Architecture:" << QSysInfo::currentCpuArchitecture();
     qWarning() << "Kernel Type:" << QSysInfo::kernelType();
     qWarning() << "Kernel Version:" << QSysInfo::kernelVersion();
     qWarning() << "Product Name:" << QSysInfo::prettyProductName();
@@ -172,8 +183,7 @@ int main(int argc, char *argv[])
     // Print SSL information for debugging
     qWarning() << "OpenSSL version Qt was built against:"
                << QSslSocket::sslLibraryBuildVersionString();
-    qWarning() << "OpenSSL version loaded:"
-               << QSslSocket::sslLibraryVersionString();
+    qWarning() << "OpenSSL version loaded:" << QSslSocket::sslLibraryVersionString();
 
     return app.exec();
 }

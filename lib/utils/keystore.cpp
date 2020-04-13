@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "keystore.h"
 
 #include <QCoreApplication>
@@ -6,26 +25,21 @@
 #include <QSettings>
 
 #ifdef OTL_USE_SYSTEM_QT5KEYCHAIN
-#include <qt5keychain/keychain.h>
+#    include <qt5keychain/keychain.h>
 #else
-#include <qtkeychain/keychain.h>
+#    include <qtkeychain/keychain.h>
 #endif
 
 #include <simplecrypt.h>
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.KeyStore", QtDebugMsg)
 
+        const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
 
-const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
-
-
-namespace{
-
+namespace {
 
 static const quint64 SecureSettingsKey = Q_UINT64_C(0x0c14257ce25f252f);
 static QSettings::Format KeyStoreSettingsFormat = QSettings::InvalidFormat;
-
 
 /**
  * @brief Helper method to write settings in a "secured" way.
@@ -37,7 +51,8 @@ static QSettings::Format KeyStoreSettingsFormat = QSettings::InvalidFormat;
  * to not store any stuff unencrypted (especially on desktop systems, where potentially
  * multiple users have access to the device).
  */
-bool securedWriteSettings(QIODevice &device, const QSettings::SettingsMap &map) {
+bool securedWriteSettings(QIODevice &device, const QSettings::SettingsMap &map)
+{
     bool result = false;
     auto doc = QJsonDocument::fromVariant(map);
     auto data = doc.toJson();
@@ -50,13 +65,13 @@ bool securedWriteSettings(QIODevice &device, const QSettings::SettingsMap &map) 
     return result;
 }
 
-
 /**
  * @brief Read securely written settings.
  *
  * This is the reverse of the securedWriteSettings() functions.
  */
-bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map) {
+bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map)
+{
     bool result = false;
     auto data = device.readAll();
     SimpleCrypt simpleCrypt(SecureSettingsKey);
@@ -68,30 +83,24 @@ bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map) {
         result = true;
     } else {
         qCWarning(log) << "Failed to read key store, encountered a JSON"
-                               "parse error:"
-                            << error.errorString();
+                          "parse error:"
+                       << error.errorString();
     }
     return result;
 }
 
-}
-
+} // namespace
 
 /**
  * @brief Constructor.
  */
-KeyStore::KeyStore(QObject *parent) : QObject(parent),
-    m_settings(nullptr)
+KeyStore::KeyStore(QObject *parent) : QObject(parent), m_settings(nullptr)
 {
     registerSettingsFormat();
     if (KeyStoreSettingsFormat != QSettings::InvalidFormat) {
-        m_settings = new QSettings(
-                    KeyStoreSettingsFormat,
-                    QSettings::UserScope,
-                    QCoreApplication::organizationName(),
-                    QCoreApplication::applicationName(),
-                    this
-                    );
+        m_settings = new QSettings(KeyStoreSettingsFormat, QSettings::UserScope,
+                                   QCoreApplication::organizationName(),
+                                   QCoreApplication::applicationName(), this);
         m_settings->setFallbacksEnabled(false);
     }
 }
@@ -99,10 +108,7 @@ KeyStore::KeyStore(QObject *parent) : QObject(parent),
 /**
  * @brief Destructor.
  */
-KeyStore::~KeyStore()
-{
-}
-
+KeyStore::~KeyStore() {}
 
 /**
  * @brief Store a secret.
@@ -120,7 +126,7 @@ KeyStore::~KeyStore()
  * secrets to the secret store after it previously has been stored in the
  * insecure fallback.
  */
-void KeyStore::saveCredentials(const QString& key, const QString &value,
+void KeyStore::saveCredentials(const QString &key, const QString &value,
                                bool removeCopyFromInsecureFallbackOnSuccess)
 {
     auto job = new QKeychain::WritePasswordJob(ServiceName);
@@ -131,16 +137,15 @@ void KeyStore::saveCredentials(const QString& key, const QString &value,
         job->setSettings(m_settings);
     }
     job->setAutoDelete(true);
-    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
+    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job *) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
             if (removeCopyFromInsecureFallbackOnSuccess) {
-                qCWarning(log) << "Failed to write secret for"
-                               << key << "to the secret store - giving up";
+                qCWarning(log) << "Failed to write secret for" << key
+                               << "to the secret store - giving up";
             } else {
-                qCWarning(log) << "Failed to save credentials for" << key
-                                    << ":" << job->errorString()
-                                    << "- using fallback";
+                qCWarning(log) << "Failed to save credentials for" << key << ":"
+                               << job->errorString() << "- using fallback";
                 m_settings->beginGroup("Fallback");
                 m_settings->setValue(key, value);
                 m_settings->endGroup();
@@ -151,8 +156,7 @@ void KeyStore::saveCredentials(const QString& key, const QString &value,
                 m_settings->beginGroup("Fallback");
                 if (m_settings->contains(key)) {
                     m_settings->remove(key);
-                    qCWarning(log) << "Removed secret for" << key
-                                   << "from the insecure fallback";
+                    qCWarning(log) << "Removed secret for" << key << "from the insecure fallback";
                 }
                 m_settings->endGroup();
             }
@@ -162,7 +166,7 @@ void KeyStore::saveCredentials(const QString& key, const QString &value,
     job->start();
 }
 
-void KeyStore::loadCredentials(const QString& key)
+void KeyStore::loadCredentials(const QString &key)
 {
     auto job = new QKeychain::ReadPasswordJob(ServiceName);
     job->setKey(key);
@@ -171,13 +175,12 @@ void KeyStore::loadCredentials(const QString& key)
         job->setSettings(m_settings);
     }
     job->setAutoDelete(true);
-    connect(job, &QKeychain::ReadPasswordJob::finished, [=](QKeychain::Job*) {
+    connect(job, &QKeychain::ReadPasswordJob::finished, [=](QKeychain::Job *) {
         bool success = true;
         QString secret = job->textData();
         if (job->error() != QKeychain::NoError) {
-            qCWarning(log) << "Failed to read credentials for" << key
-                                << ":" << job->errorString()
-                                << "- trying fallback";
+            qCWarning(log) << "Failed to read credentials for" << key << ":" << job->errorString()
+                           << "- trying fallback";
             m_settings->beginGroup("Fallback");
             if (m_settings->contains(key)) {
                 secret = m_settings->value(key).toString();
@@ -200,7 +203,7 @@ void KeyStore::loadCredentials(const QString& key)
     job->start();
 }
 
-void KeyStore::deleteCredentials(const QString& key)
+void KeyStore::deleteCredentials(const QString &key)
 {
     // Remove from fallback (in case we stored twice):
     m_settings->beginGroup("Fallback");
@@ -215,11 +218,11 @@ void KeyStore::deleteCredentials(const QString& key)
         job->setSettings(m_settings);
     }
     job->setAutoDelete(true);
-    connect(job, &QKeychain::DeletePasswordJob::finished, [=](QKeychain::Job*) {
+    connect(job, &QKeychain::DeletePasswordJob::finished, [=](QKeychain::Job *) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
-            qCWarning(log) << "Failed to delete credentials for" << key
-                                << ":" << job->errorString();
+            qCWarning(log) << "Failed to delete credentials for" << key << ":"
+                           << job->errorString();
             success = false;
         } else {
             qCDebug(log) << "Successfully deleted credentials for" << key;
@@ -237,9 +240,9 @@ void KeyStore::deleteCredentials(const QString& key)
  * testing purposes only, as outside the key store there should be no need to
  * ever use such a settings object.
  */
-QSettings* KeyStore::createSettingsFile(const QString& filename, QObject* parent)
+QSettings *KeyStore::createSettingsFile(const QString &filename, QObject *parent)
 {
-    QSettings* result = nullptr;
+    QSettings *result = nullptr;
 
     if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
         registerSettingsFormat();
@@ -257,9 +260,6 @@ void KeyStore::registerSettingsFormat()
 {
     if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
         KeyStoreSettingsFormat = QSettings::registerFormat(
-                    "otlks",
-                    &securedReadSettings,
-                    &securedWriteSettings,
-                    Qt::CaseSensitive);
+                "otlks", &securedReadSettings, &securedWriteSettings, Qt::CaseSensitive);
     }
 }

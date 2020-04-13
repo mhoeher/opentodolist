@@ -1,5 +1,24 @@
-#ifndef SYNCHRONIZER_H
-#define SYNCHRONIZER_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef SYNC_SYNCHRONIZER_H_
+#define SYNC_SYNCHRONIZER_H_
 
 #include <QDebug>
 #include <QDateTime>
@@ -13,7 +32,8 @@ class Account;
 /**
  * @brief Encapsulate information about an existing library.
  */
-class SynchronizerExistingLibrary {
+class SynchronizerExistingLibrary
+{
     Q_GADGET
 
     Q_PROPERTY(QString name READ name)
@@ -21,8 +41,7 @@ class SynchronizerExistingLibrary {
     Q_PROPERTY(QUuid uid READ uid)
 
 public:
-
-    explicit SynchronizerExistingLibrary();
+    SynchronizerExistingLibrary();
 
     QString name() const;
     void setName(const QString &name);
@@ -30,15 +49,13 @@ public:
     QString path() const;
     void setPath(const QString &path);
 
-
     QUuid uid() const;
     void setUid(const QUuid &uid);
 
 private:
-
     QString m_name;
     QString m_path;
-    QUuid   m_uid;
+    QUuid m_uid;
 };
 
 /**
@@ -59,19 +76,16 @@ class Synchronizer : public QObject
     Q_PROPERTY(bool findingLibraries READ findingLibraries NOTIFY findingLibrariesChanged)
     Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged)
     Q_PROPERTY(bool isNull READ isNull NOTIFY directoryChanged)
-    Q_PROPERTY(QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
+    Q_PROPERTY(
+            QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
     Q_PROPERTY(QString type READ type CONSTANT)
 public:
-
-    enum LogType {
-        Debug,
-        Warning,
-        Error
-    };
+    enum LogType { Debug, Warning, Error };
 
     Q_ENUM(LogType)
 
-    struct LogEntry {
+    struct LogEntry
+    {
         QDateTime time;
         LogType type;
         QString message;
@@ -89,7 +103,7 @@ public:
     bool synchronizing() const;
 
     QString directory() const;
-    void setDirectory(const QString& directory);
+    void setDirectory(const QString &directory);
     bool isNull() const;
 
     Q_INVOKABLE bool save() const;
@@ -97,7 +111,7 @@ public:
 
     QString type() const;
 
-    static Synchronizer* fromDirectory(const QString &dir, QObject* parent = nullptr);
+    static Synchronizer *fromDirectory(const QString &dir, QObject *parent = nullptr);
 
     /**
      * @brief Validate the connection to the backend.
@@ -114,7 +128,6 @@ public:
      * The method shall be implemented non-blocking.
      */
     Q_INVOKABLE virtual void validate() = 0;
-
 
     /**
      * @brief Synchronize the local directory with the backend.
@@ -145,7 +158,6 @@ public:
 
     bool findingLibraries() const;
 
-
     QUuid uid() const;
 
     QDateTime lastSync() const;
@@ -175,7 +187,7 @@ signals:
     void existingLibrariesChanged();
     void findingLibrariesChanged();
     void secretChanged();
-    void syncError(const QString& message);
+    void syncError(const QString &message);
 
 public slots:
 
@@ -189,29 +201,22 @@ protected:
     void setFindingLibraries(bool findingLibraries);
 
 private:
-
-    QUuid   m_uuid;
+    QUuid m_uuid;
     QUuid m_accountUid;
-    bool    m_validating;
-    bool    m_valid;
-    bool    m_synchronizing;
-    bool    m_creatingDirectory;
-    bool    m_findingLibraries;
+    bool m_validating;
+    bool m_valid;
+    bool m_synchronizing;
+    bool m_creatingDirectory;
+    bool m_findingLibraries;
     QString m_directory;
-    QVariantList
-            m_existingLibraries;
-    QDateTime
-            m_lastSync;
-    QList<LogEntry>
-            m_log;
+    QVariantList m_existingLibraries;
+    QDateTime m_lastSync;
+    QList<LogEntry> m_log;
 
     template<LogType Type>
     inline QDebug createDebugStream();
-
 };
-
 
 Q_DECLARE_METATYPE(SynchronizerExistingLibrary)
 
-
-#endif // SYNCHRONIZER_H
+#endif // SYNC_SYNCHRONIZER_H_

@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <QLoggingCategory>
 #include <QRunnable>
 #include <QScopedPointer>
@@ -10,19 +29,17 @@
 #include "cache.h"
 #include "itemsquery.h"
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Cache", QtWarningMsg)
 
-
-const QByteArray Cache::RootId = "---root-item---";
+        const QByteArray Cache::RootId = "---root-item---";
 const QByteArray Cache::VersionKey = "OpenTodoList.Cache.Version";
 const QByteArray Cache::Version_0 = "0";
-
 
 /**
  * @brief Runs an ItemQuery.
  */
-class ItemsQueryRunnable : public QRunnable {
+class ItemsQueryRunnable : public QRunnable
+{
 public:
     explicit ItemsQueryRunnable(ItemsQuery *query);
 
@@ -33,16 +50,10 @@ private:
     QScopedPointer<ItemsQuery> m_query;
 };
 
-
 /**
  * @brief Creates a runner which runs the @p query on the @p cache.
  */
-ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery *query) :
-    QRunnable(),
-    m_query(query)
-{
-}
-
+ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery *query) : QRunnable(), m_query(query) {}
 
 /**
  * @brief Implementation of QRunnable::run().
@@ -56,32 +67,29 @@ void ItemsQueryRunnable::run()
 /**
  * @brief Constructor.
  */
-Cache::Cache(QObject *parent) : QObject(parent),
-    m_cacheDirectory(),
-    m_cacheSize(
-        #if QT_POINTER_SIZE == 4
-        1U * 1024U * 1024U * 1024U
-        #else
-        3U * 1024U * 1024U * 1024U
-        #endif
-        ),
-    m_context(nullptr),
-    m_global(),
-    m_items(),
-    m_children(),
-    m_threadPool(new QThreadPool(this)),
-    m_valid(false)
+Cache::Cache(QObject *parent)
+    : QObject(parent),
+      m_cacheDirectory(),
+      m_cacheSize(
+#if QT_POINTER_SIZE == 4
+              1U * 1024U * 1024U * 1024U
+#else
+              3U * 1024U * 1024U * 1024U
+#endif
+              ),
+      m_context(nullptr),
+      m_global(),
+      m_items(),
+      m_children(),
+      m_threadPool(new QThreadPool(this)),
+      m_valid(false)
 {
 }
-
 
 /**
  * @brief Destructor.
  */
-Cache::~Cache()
-{
-}
-
+Cache::~Cache() {}
 
 /**
  * @brief The directory where the on-disk cache is stored.
@@ -91,7 +99,6 @@ QString Cache::cacheDirectory() const
     return m_cacheDirectory;
 }
 
-
 /**
  * @brief Set the directory where the on-disk cache is stored.
  */
@@ -99,7 +106,6 @@ void Cache::setCacheDirectory(const QString &cacheDirectory)
 {
     m_cacheDirectory = cacheDirectory;
 }
-
 
 /**
  * @brief The maximum size of the cache.
@@ -109,7 +115,6 @@ size_t Cache::cacheSize() const
     return m_cacheSize;
 }
 
-
 /**
  * @brief Set the maximum size of the cache to @p envSize.
  */
@@ -117,7 +122,6 @@ void Cache::setCacheSize(size_t envSize)
 {
     m_cacheSize = envSize;
 }
-
 
 /**
  * @brief Open the cache.
@@ -144,12 +148,11 @@ bool Cache::open()
                                   "least 10MB.";
                 break;
             } else {
-                qCWarning(log) << "Failed to open cache with size of"
-                               << cacheSize << "bytes, trying smaller cache...";
+                qCWarning(log) << "Failed to open cache with size of" << cacheSize
+                               << "bytes, trying smaller cache...";
             }
         } else {
-            qCWarning(log) << "Failed to open cache directory"
-                           << m_context->path() << ":"
+            qCWarning(log) << "Failed to open cache directory" << m_context->path() << ":"
                            << m_context->lastErrorString();
             m_context.clear();
             break;
@@ -167,12 +170,10 @@ bool Cache::open()
     return m_valid;
 }
 
-
 bool Cache::isValid() const
 {
     return m_valid;
 }
-
 
 /**
  * @brief Run a query on the cache.
@@ -195,51 +196,37 @@ void Cache::run(ItemsQuery *query)
             query->m_global = m_global;
             query->m_items = m_items;
             query->m_children = m_children;
-            connect(query, &ItemsQuery::dataChanged,
-                    this, &Cache::dataChanged,
+            connect(query, &ItemsQuery::dataChanged, this, &Cache::dataChanged,
                     Qt::QueuedConnection);
-            connect(query, &ItemsQuery::librariesChanged,
-                    this, &Cache::librariesChanged,
+            connect(query, &ItemsQuery::librariesChanged, this, &Cache::librariesChanged,
                     Qt::QueuedConnection);
-            connect(query, &ItemsQuery::finished,
-                    this, &Cache::finished,
-                    Qt::QueuedConnection);
+            connect(query, &ItemsQuery::finished, this, &Cache::finished, Qt::QueuedConnection);
             m_threadPool->start(new ItemsQueryRunnable(query));
         }
     }
 }
 
-
 bool Cache::openDBs()
 {
-    m_global = QSharedPointer<QLMDB::Database>(
-                new QLMDB::Database(*m_context));
-    m_items = QSharedPointer<QLMDB::Database>(
-                new QLMDB::Database(*m_context, "items"));
-    m_children = QSharedPointer<QLMDB::Database>(
-                new QLMDB::Database(*m_context, "children",
-                                    QLMDB::Database::Create |
-                                    QLMDB::Database::MultiValues));
+    m_global = QSharedPointer<QLMDB::Database>(new QLMDB::Database(*m_context));
+    m_items = QSharedPointer<QLMDB::Database>(new QLMDB::Database(*m_context, "items"));
+    m_children = QSharedPointer<QLMDB::Database>(new QLMDB::Database(
+            *m_context, "children", QLMDB::Database::Create | QLMDB::Database::MultiValues));
     if (m_global->isValid()) {
         if (m_items->isValid()) {
             if (m_children->isValid()) {
                 m_valid = true;
             } else {
-                qCWarning(log) << "Failed to open children cache:"
-                               << m_children->lastErrorString();
+                qCWarning(log) << "Failed to open children cache:" << m_children->lastErrorString();
             }
         } else {
-            qCWarning(log) << "Failed to open item cache:"
-                           << m_children->lastErrorString();
+            qCWarning(log) << "Failed to open item cache:" << m_children->lastErrorString();
         }
     } else {
-        qCWarning(log) << "Failed to open global cache:"
-                       << m_global->lastErrorString();
+        qCWarning(log) << "Failed to open global cache:" << m_global->lastErrorString();
     }
-    return m_global->isValid() && m_items->isValid() &&
-            m_children->isValid();
+    return m_global->isValid() && m_items->isValid() && m_children->isValid();
 }
-
 
 bool Cache::initVersion0()
 {

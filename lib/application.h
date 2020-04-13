@@ -1,10 +1,24 @@
-#ifndef APPLICATION_H
-#define APPLICATION_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include "datamodel/library.h"
-#include "sync/synchronizer.h"
-#include "utils/problem.h"
-#include "utils/problemmanager.h"
+#ifndef APPLICATION_H_
+#define APPLICATION_H_
 
 #include <QLoggingCategory>
 #include <QObject>
@@ -14,6 +28,11 @@
 #include <QUrl>
 #include <QVariantMap>
 #include <QVector>
+
+#include "datamodel/library.h"
+#include "sync/synchronizer.h"
+#include "utils/problem.h"
+#include "utils/problemmanager.h"
 
 class QTemporaryDir;
 
@@ -164,4 +183,4 @@ private slots:
     void onLibrariesChanged(QVariantList librariesUids);
 };
 
-#endif // APPLICATION_H
+#endif // APPLICATION_H_

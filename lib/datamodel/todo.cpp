@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "todo.h"
 
 #include <QQmlEngine>
@@ -5,16 +24,15 @@
 #include "library.h"
 #include "task.h"
 
-
 /**
  * @brief Constructor.
  */
-Todo::Todo(const QString &filename, QObject *parent) :
-    ComplexItem(filename, parent),
-    m_todoListUid(),
-    m_percentageDone(0),
-    m_progress(-1),
-    m_done(false)
+Todo::Todo(const QString &filename, QObject *parent)
+    : ComplexItem(filename, parent),
+      m_todoListUid(),
+      m_percentageDone(0),
+      m_progress(-1),
+      m_done(false)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
     connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
@@ -24,18 +42,13 @@ Todo::Todo(const QString &filename, QObject *parent) :
 /**
  * @brief Constructor.
  */
-Todo::Todo(QObject* parent) : Todo(QString(), parent)
-{
-}
+Todo::Todo(QObject *parent) : Todo(QString(), parent) {}
 
 /**
  * @brief Constructor.
  */
-Todo::Todo(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
-    m_todoListUid(),
-    m_percentageDone(0),
-    m_progress(-1),
-    m_done(false)
+Todo::Todo(const QDir &dir, QObject *parent)
+    : ComplexItem(dir, parent), m_todoListUid(), m_percentageDone(0), m_progress(-1), m_done(false)
 {
     connect(this, &Todo::todoListUidChanged, this, &ComplexItem::changed);
     connect(this, &Todo::doneChanged, this, &ComplexItem::changed);
@@ -45,10 +58,7 @@ Todo::Todo(const QDir& dir, QObject* parent) : ComplexItem(dir, parent),
 /**
  * @brief Destructor.
  */
-Todo::~Todo()
-{
-
-}
+Todo::~Todo() {}
 
 QUuid Todo::parentId() const
 {
@@ -85,14 +95,13 @@ QUuid Todo::todoListUid() const
 /**
  * @brief Set the todo list UUID.
  */
-void Todo::setTodoListUid(const QUuid& todoListUid)
+void Todo::setTodoListUid(const QUuid &todoListUid)
 {
     if (m_todoListUid != todoListUid) {
         m_todoListUid = todoListUid;
         emit todoListUidChanged();
     }
 }
-
 
 /**
  * @brief Get the completion state of the todo.
@@ -113,14 +122,12 @@ int Todo::percentageDone() const
 void Todo::applyCalculatedProperties(const QVariantMap &properties)
 {
     ComplexItem::applyCalculatedProperties(properties);
-    auto percentage = properties.value(
-                "percentageDone", m_percentageDone).toInt();
+    auto percentage = properties.value("percentageDone", m_percentageDone).toInt();
     if (percentage != m_percentageDone) {
         m_percentageDone = percentage;
         emit percentageDoneChanged();
     }
 }
-
 
 QVariantMap Todo::toMap() const
 {
@@ -139,7 +146,6 @@ void Todo::fromMap(QVariantMap map)
     setProgress(map.value("progress", -1).toInt());
 }
 
-
 /**
  * @brief The progress of the todo.
  *
@@ -156,7 +162,6 @@ int Todo::progress() const
 {
     return m_progress;
 }
-
 
 /**
  * @brief Set the progress value of the todo.

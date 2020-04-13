@@ -1,4 +1,23 @@
-#include "translations.h"
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "utils/translations.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -31,10 +50,8 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Translator", QtDebugMsg);
  * previously selected language settings (if present) and tries to use
  * a suitable translations file.
  */
-Translations::Translations(QQmlEngine *engine, QObject *parent) :
-    QObject(parent),
-    m_engine(engine),
-    m_translator(new QTranslator(this))
+Translations::Translations(QQmlEngine *engine, QObject *parent)
+    : QObject(parent), m_engine(engine), m_translator(new QTranslator(this))
 {
     q_check_ptr(m_engine);
     QCoreApplication::installTranslator(m_translator);
@@ -43,7 +60,6 @@ Translations::Translations(QQmlEngine *engine, QObject *parent) :
     m_engine->rootContext()->setContextProperty("translations", this);
 }
 
-
 /**
  * @brief The currently selected language for translations.
  */
@@ -51,7 +67,6 @@ QString Translations::language() const
 {
     return m_language;
 }
-
 
 /**
  * @brief Set the @p language to show the application in.
@@ -66,7 +81,6 @@ void Translations::setLanguage(const QString &language)
     }
 }
 
-
 /**
  * @brief Get a list of all available languages.
  *
@@ -77,8 +91,8 @@ QStringList Translations::allLanguages() const
 {
     QStringList result;
     result << "";
-    for (const auto &entry : QDir(":/translations").entryList(
-        {"opentodolist_*.qm"}, QDir::Files)) {
+    for (const auto &entry :
+         QDir(":/translations").entryList({ "opentodolist_*.qm" }, QDir::Files)) {
         auto key = entry.mid(13, entry.length() - 16);
         if (!result.contains(key)) {
             result << key;
@@ -86,7 +100,6 @@ QStringList Translations::allLanguages() const
     }
     return result;
 }
-
 
 void Translations::load()
 {
@@ -97,7 +110,6 @@ void Translations::load()
     settings.endGroup();
 }
 
-
 void Translations::save()
 {
     QSettings settings;
@@ -106,38 +118,27 @@ void Translations::save()
     settings.endGroup();
 }
 
-
 void Translations::apply()
 {
     if (!m_language.isEmpty()) {
-        QString filename = ":/translations/opentodolist_" +
-                m_language + ".qm";
+        QString filename = ":/translations/opentodolist_" + m_language + ".qm";
         if (QFile::exists(filename)) {
             m_translator->load(filename);
-            qCDebug(log) << "Loaded translations from file"
-                         << filename;
+            qCDebug(log) << "Loaded translations from file" << filename;
             m_engine->retranslate();
             return;
         } else {
-            qCWarning(log) << "Explicitly requested translation file"
-                           << filename
-                           << "not found";
+            qCWarning(log) << "Explicitly requested translation file" << filename << "not found";
         }
     }
 
     auto systemLocale = QLocale::system();
-    if (m_translator->load(
-                systemLocale,
-                "opentodolist",
-                "_",
-                ":/translations/")) {
+    if (m_translator->load(systemLocale, "opentodolist", "_", ":/translations/")) {
         qCDebug(log) << "Successfully loaded translation"
-                     << "for UI languages"
-                     << systemLocale.uiLanguages();
+                     << "for UI languages" << systemLocale.uiLanguages();
         m_engine->retranslate();
     } else {
-        qCDebug(log) << "No translations found for UI languages"
-                     << systemLocale.uiLanguages();
+        qCDebug(log) << "No translations found for UI languages" << systemLocale.uiLanguages();
     }
 }
 

@@ -1,10 +1,29 @@
-#ifndef TODO_H
-#define TODO_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include "complexitem.h"
+#ifndef DATAMODEL_TODO_H_
+#define DATAMODEL_TODO_H_
 
 #include <QObject>
 #include <QPointer>
+
+#include "complexitem.h"
 
 /**
  * @brief A single todo inside a todo list.
@@ -22,9 +41,8 @@ class Todo : public ComplexItem
     Q_PROPERTY(int progress READ progress WRITE setProgress NOTIFY progressChanged)
 
 public:
-
     explicit Todo(const QString &filename, QObject *parent = nullptr);
-    explicit Todo(QObject* parent = nullptr);
+    explicit Todo(QObject *parent = nullptr);
     explicit Todo(const QDir &dir, QObject *parent = nullptr);
     ~Todo() override;
 
@@ -34,7 +52,7 @@ public:
     void setDone(bool done);
 
     QUuid todoListUid() const;
-    void setTodoListUid(const QUuid& todoListUid);
+    void setTodoListUid(const QUuid &todoListUid);
 
     int percentageDone() const;
 
@@ -54,20 +72,16 @@ signals:
 public slots:
 
 protected:
-
-
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
 
 private:
-
     QUuid m_todoListUid;
     int m_percentageDone;
     int m_progress;
     bool m_done;
-
 };
 
 typedef QSharedPointer<Todo> TodoPtr;
 
-#endif // TODO_H
+#endif // DATAMODEL_TODO_H_

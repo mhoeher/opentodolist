@@ -1,27 +1,42 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "synchronizer.h"
-
-#include "webdavsynchronizer.h"
-
-#include <functional>
 
 #include <QDir>
 #include <QFile>
 #include <QMap>
 #include <QMetaObject>
 
-#include "utils/jsonutils.h"
+#include <functional>
 
+#include "webdavsynchronizer.h"
+#include "utils/jsonutils.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Synchronizer", QtWarningMsg)
 
-
-/**
- * @brief The default file name for storing synchronizer settings.
- */
-const QString Synchronizer::SaveFileName = ".opentodolist.synchronizer";
+        /**
+         * @brief The default file name for storing synchronizer settings.
+         */
+        const QString Synchronizer::SaveFileName = ".opentodolist.synchronizer";
 const QString Synchronizer::LogFileName = ".opentodolist.sync.log";
 const int Synchronizer::MaxLogEntries;
-
 
 /**
  * @brief Constructor.
@@ -46,14 +61,10 @@ Synchronizer::Synchronizer(QObject *parent)
 {
 }
 
-
 /**
  * @brief Destructor.
  */
-Synchronizer::~Synchronizer()
-{
-}
-
+Synchronizer::~Synchronizer() {}
 
 /**
  * @brief A validating is currently running.
@@ -69,7 +80,6 @@ bool Synchronizer::validating() const
     return m_validating;
 }
 
-
 /**
  * @brief Synchronizer::setValidating
  *
@@ -83,7 +93,6 @@ void Synchronizer::setValidating(bool validating)
     }
 }
 
-
 /**
  * @brief Indicates whether a connection to the backend can be established.
  *
@@ -96,7 +105,6 @@ bool Synchronizer::valid() const
 {
     return m_valid;
 }
-
 
 /**
  * @brief Set the valid property.
@@ -112,7 +120,6 @@ void Synchronizer::setValid(bool valid)
     }
 }
 
-
 /**
  * @brief A synchronization is currently running.
  *
@@ -124,7 +131,6 @@ bool Synchronizer::synchronizing() const
 {
     return m_synchronizing;
 }
-
 
 /**
  * @brief Set the synchronizing property.
@@ -139,7 +145,6 @@ void Synchronizer::setSynchronizing(bool synchronizing)
         emit synchronizingChanged();
     }
 }
-
 
 /**
  * @brief Begin validation.
@@ -173,7 +178,6 @@ void Synchronizer::endValidation(bool valid)
     setValid(valid);
 }
 
-
 /**
  * @brief Set the list of existing libraries.
  */
@@ -184,7 +188,6 @@ void Synchronizer::setExistingLibraries(const QVariantList &existingLibraries)
         emit existingLibrariesChanged();
     }
 }
-
 
 /**
  * @brief Set the finding libraries status.
@@ -246,8 +249,7 @@ bool Synchronizer::loadLog()
             logFile.close();
             result = true;
         } else {
-            qCWarning(::log) << "Failed to open log for reading:"
-                                    << logFile.errorString();
+            qCWarning(::log) << "Failed to open log for reading:" << logFile.errorString();
         }
     }
     return result;
@@ -267,19 +269,16 @@ bool Synchronizer::saveLog()
                 map["message"] = entry.message;
                 list.append(map);
             }
-            auto json = QJsonDocument::fromVariant(list).toJson(
-                        QJsonDocument::Indented);
+            auto json = QJsonDocument::fromVariant(list).toJson(QJsonDocument::Indented);
             log.write(json);
             log.close();
             result = true;
         } else {
-            qCWarning(::log) << "Failed to open log file for writing:"
-                                    << log.errorString();
+            qCWarning(::log) << "Failed to open log file for writing:" << log.errorString();
         }
     }
     return result;
 }
-
 
 /**
  * @brief Returns the log of the synchronizer.
@@ -288,7 +287,6 @@ QList<Synchronizer::LogEntry> Synchronizer::log() const
 {
     return m_log;
 }
-
 
 /**
  * @brief Get a debug stream to write a debug log entry.
@@ -301,7 +299,6 @@ QDebug Synchronizer::debug()
     return createDebugStream<Debug>();
 }
 
-
 /**
  * @brief Get a debug stream to write a warning log entry.
  *
@@ -312,7 +309,6 @@ QDebug Synchronizer::warning()
 {
     return createDebugStream<Warning>();
 }
-
 
 /**
  * @brief Get a debug stream to write an error log entry.
@@ -330,7 +326,6 @@ void Synchronizer::setLastSync(const QDateTime &lastSync)
     m_lastSync = lastSync;
 }
 
-
 /**
  * @brief The date and time when the last sync has been run.
  */
@@ -338,7 +333,6 @@ QDateTime Synchronizer::lastSync() const
 {
     return m_lastSync;
 }
-
 
 /**
  * @brief The UID of the synchronizer.
@@ -353,12 +347,10 @@ bool Synchronizer::findingLibraries() const
     return m_findingLibraries;
 }
 
-
 QVariantList Synchronizer::existingLibraries() const
 {
     return m_existingLibraries;
 }
-
 
 /**
  * @brief The local directory to sync.
@@ -372,15 +364,13 @@ QString Synchronizer::directory() const
     return m_directory;
 }
 
-
 /**
  * @brief Set the local directory to sync.
  */
-void Synchronizer::setDirectory(const QString& directory)
+void Synchronizer::setDirectory(const QString &directory)
 {
     m_directory = directory;
 }
-
 
 /**
  * @brief Indicates if the synchronizer is valid.
@@ -392,7 +382,6 @@ bool Synchronizer::isNull() const
 {
     return m_directory.isEmpty() || !QDir(m_directory).exists();
 }
-
 
 /**
  * @brief Save the settings of the synchronizer.
@@ -411,7 +400,6 @@ bool Synchronizer::save() const
     return result;
 }
 
-
 /**
  * @brief Load settings from the synchronizer's directory.
  */
@@ -428,7 +416,6 @@ void Synchronizer::restore()
     }
 }
 
-
 /**
  * @brief Get the type name (aka the class name) of the synchronizer.
  */
@@ -437,20 +424,15 @@ QString Synchronizer::type() const
     return metaObject()->className();
 }
 
-
 /**
  * @brief Get the synchronizer for the given @p directory.
  */
-Synchronizer* Synchronizer::fromDirectory(const QString& directory,
-                                                QObject* parent)
+Synchronizer *Synchronizer::fromDirectory(const QString &directory, QObject *parent)
 {
-    Synchronizer* result = nullptr;
+    Synchronizer *result = nullptr;
     if (!directory.isEmpty()) {
-        static QMap<QString, std::function<Synchronizer* (QObject*)>> Synchronizers = {
-            {
-                "WebDAVSynchronizer",
-                [](QObject* parent) { return new WebDAVSynchronizer(parent); }
-            }
+        static QMap<QString, std::function<Synchronizer *(QObject *)>> Synchronizers = {
+            { "WebDAVSynchronizer", [](QObject *parent) { return new WebDAVSynchronizer(parent); } }
         };
         QDir dir(directory);
         auto absFilePath = dir.absoluteFilePath(SaveFileName);
@@ -470,7 +452,6 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
     return result;
 }
 
-
 /**
  * @brief Start searching for existing libraries.
  *
@@ -482,10 +463,7 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory,
  * can implement it if the appropriate functionality is supported by
  * the respective backends.
  */
-void Synchronizer::findExistingLibraries()
-{
-}
-
+void Synchronizer::findExistingLibraries() {}
 
 /**
  * @brief Save the settings of the synchronizer to a variant map.
@@ -507,14 +485,13 @@ QVariantMap Synchronizer::toMap() const
     return result;
 }
 
-
 /**
  * @brief Restore the serializer from a variant map.
  *
  * This is the reverse operation to @sa toMap(). It takes a variant map and extracts the settings
  * stored, applying them one by one to the properties of the synchronizer.
  */
-void Synchronizer::fromMap(const QVariantMap& map)
+void Synchronizer::fromMap(const QVariantMap &map)
 {
     m_uuid = map.value("uid", m_uuid).toUuid();
     m_lastSync = map.value("lastSync", m_lastSync).toDateTime();
@@ -524,12 +501,7 @@ void Synchronizer::fromMap(const QVariantMap& map)
 /**
  * @brief Constructor.
  */
-SynchronizerExistingLibrary::SynchronizerExistingLibrary() :
-    m_name(),
-    m_path()
-{
-}
-
+SynchronizerExistingLibrary::SynchronizerExistingLibrary() : m_name(), m_path() {}
 
 /**
  * @brief The name if the library.
@@ -539,7 +511,6 @@ QString SynchronizerExistingLibrary::name() const
     return m_name;
 }
 
-
 /**
  * @brief Set the library name.
  */
@@ -548,7 +519,6 @@ void SynchronizerExistingLibrary::setName(const QString &name)
     m_name = name;
 }
 
-
 /**
  * @brief The path (relative to the Synchronizer's remote directory).
  */
@@ -556,7 +526,6 @@ QString SynchronizerExistingLibrary::path() const
 {
     return m_path;
 }
-
 
 /**
  * @brief Set the path of the library.

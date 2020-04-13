@@ -1,4 +1,23 @@
-#include "itemssortfiltermodel.h"
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "models/itemssortfiltermodel.h"
 
 #include <QUuid>
 
@@ -10,20 +29,15 @@
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
 
-ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) :
-    QSortFilterProxyModel(parent)
+ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
     setSortRole(ItemsModel::WeightRole);
-    sort(0);
+    sort(0); // NOLINT
 
-    connect(this, &ItemsSortFilterModel::rowsInserted,
-            this, &ItemsSortFilterModel::countChanged);
-    connect(this, &ItemsSortFilterModel::rowsRemoved,
-            this, &ItemsSortFilterModel::countChanged);
-    connect(this, &ItemsSortFilterModel::modelReset,
-            this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::rowsInserted, this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::rowsRemoved, this, &ItemsSortFilterModel::countChanged);
+    connect(this, &ItemsSortFilterModel::modelReset, this, &ItemsSortFilterModel::countChanged);
 }
-
 
 /**
  * @brief The number of items in the model.
@@ -33,7 +47,8 @@ int ItemsSortFilterModel::count() const
     return rowCount();
 }
 
-bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
+bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left,
+                                    const QModelIndex &source_right) const
 {
     switch (sortRole()) {
 
@@ -46,8 +61,7 @@ bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left, const QModel
     // For the DueTo role, apply a little trick: Sort by the due to role
     // data (converted to a string), but append an 'X'. This causes
     // Any items with a valid due date to appear first in listings.
-    case ItemsModel::DueToRole:
-    {
+    case ItemsModel::DueToRole: {
         auto left_dt = source_left.data(ItemsModel::DueToRole).toString();
         auto right_dt = source_right.data(ItemsModel::DueToRole).toString();
         return left_dt + "x" < right_dt + "x";

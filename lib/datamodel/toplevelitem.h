@@ -1,9 +1,28 @@
-#ifndef TOPLEVELITEM_H
-#define TOPLEVELITEM_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include "complexitem.h"
+#ifndef DATAMODEL_TOPLEVELITEM_H_
+#define DATAMODEL_TOPLEVELITEM_H_
 
 #include <QObject>
+
+#include "complexitem.h"
 
 /**
  * @brief Base class for all top level items.
@@ -17,24 +36,14 @@ class TopLevelItem : public ComplexItem
 
     Q_PROPERTY(Color color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(QStringList tags READ tags WRITE setTags NOTIFY tagsChanged)
-    Q_PROPERTY(QUuid libraryId READ libraryId WRITE setLibraryId
-               NOTIFY libraryIdChanged)
+    Q_PROPERTY(QUuid libraryId READ libraryId WRITE setLibraryId NOTIFY libraryIdChanged)
 public:
-
-    enum Color {
-        White,
-        Red,
-        Green,
-        Blue,
-        Orange,
-        Yellow,
-        Lilac
-    };
+    enum Color { White, Red, Green, Blue, Orange, Yellow, Lilac };
 
     Q_ENUM(Color)
 
-    explicit TopLevelItem(const QString &filename, QObject* parent = nullptr);
-    explicit TopLevelItem(QObject* parent = nullptr);
+    explicit TopLevelItem(const QString &filename, QObject *parent = nullptr);
+    explicit TopLevelItem(QObject *parent = nullptr);
     explicit TopLevelItem(const QDir &dir, QObject *parent = nullptr);
     ~TopLevelItem() override;
 
@@ -45,7 +54,7 @@ public:
     void setColor(const QString &color);
 
     QStringList tags() const;
-    void setTags(const QStringList& tags);
+    void setTags(const QStringList &tags);
     Q_INVOKABLE void addTag(const QString &tag);
     Q_INVOKABLE void removeTagAt(int index);
     Q_INVOKABLE void removeTag(const QString &tag);
@@ -63,9 +72,7 @@ signals:
 public slots:
 
 protected:
-
 private:
-
     QUuid m_libraryId;
     Color m_color;
     QStringList m_tags;
@@ -78,4 +85,4 @@ protected:
 
 typedef QSharedPointer<TopLevelItem> TopLevelItemPtr;
 
-#endif // TOPLEVELITEM_H
+#endif // DATAMODEL_TOPLEVELITEM_H_

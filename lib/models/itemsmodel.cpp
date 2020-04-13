@@ -1,7 +1,26 @@
-#include <QQmlEngine>
-#include <QDateTime>
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "itemsmodel.h"
+
+#include <QQmlEngine>
+#include <QDateTime>
 
 #include "datamodel/complexitem.h"
 #include "datamodel/todolist.h"
@@ -11,33 +30,31 @@
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 
-
-ItemsModel::ItemsModel(QObject *parent) :
-    QAbstractListModel(parent),
-    m_cache(),
-    m_items(),
-    m_ids(),
-    m_fetchTimer(),
-    m_parentItem(),
-    m_searchString(),
-    m_tag(),
-    m_onlyDone(false),
-    m_onlyUndone(false),
-    m_onlyWithDueDate(false),
-    m_defaultSearchResult(true),
-    m_recursive(false),
-    m_updating(false)
+ItemsModel::ItemsModel(QObject *parent)
+    : QAbstractListModel(parent),
+      m_cache(),
+      m_items(),
+      m_ids(),
+      m_fetchTimer(),
+      m_parentItem(),
+      m_searchString(),
+      m_tag(),
+      m_onlyDone(false),
+      m_onlyUndone(false),
+      m_onlyWithDueDate(false),
+      m_defaultSearchResult(true),
+      m_recursive(false),
+      m_updating(false)
 {
     m_fetchTimer.setInterval(100);
-    connect(&m_fetchTimer, &QTimer::timeout,
-            this, &ItemsModel::fetch);
+    connect(&m_fetchTimer, &QTimer::timeout, this, &ItemsModel::fetch);
     m_fetchTimer.setSingleShot(true);
 }
 
 /**
  * @brief The item cache the model works on.
  */
-Cache* ItemsModel::cache() const
+Cache *ItemsModel::cache() const
 {
     return m_cache.data();
 }
@@ -45,18 +62,16 @@ Cache* ItemsModel::cache() const
 /**
  * @brief Set the item container.
  */
-void ItemsModel::setCache(Cache* cache)
+void ItemsModel::setCache(Cache *cache)
 {
     if (cache != m_cache) {
         if (m_cache != nullptr) {
-            disconnect(m_cache.data(), &Cache::dataChanged,
-                       this, &ItemsModel::triggerFetch);
+            disconnect(m_cache.data(), &Cache::dataChanged, this, &ItemsModel::triggerFetch);
         }
         reset();
         m_cache = cache;
         if (m_cache != nullptr) {
-            connect(m_cache.data(), &Cache::dataChanged,
-                    this, &ItemsModel::triggerFetch);
+            connect(m_cache.data(), &Cache::dataChanged, this, &ItemsModel::triggerFetch);
         }
         emit cacheChanged();
     }
@@ -70,7 +85,7 @@ int ItemsModel::count() const
     return rowCount();
 }
 
-int ItemsModel::rowCount(const QModelIndex& parent) const
+int ItemsModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid()) {
         return m_ids.length();
@@ -79,7 +94,7 @@ int ItemsModel::rowCount(const QModelIndex& parent) const
     }
 }
 
-QVariant ItemsModel::data(const QModelIndex& index, int role) const
+QVariant ItemsModel::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
     if (row < m_ids.length()) {
@@ -88,10 +103,9 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
         switch (role) {
         case Qt::DisplayRole:
         case ItemRole:
-            return QVariant::fromValue<QObject*>(item);
-        case DueToRole:
-        {
-            auto complexItem = qobject_cast<ComplexItem*>(item);
+            return QVariant::fromValue<QObject *>(item);
+        case DueToRole: {
+            auto complexItem = qobject_cast<ComplexItem *>(item);
             if (complexItem) {
                 return complexItem->dueTo().toString(Qt::ISODate);
             } else {
@@ -128,7 +142,6 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     return result;
 }
 
-
 /**
  * @brief The ID of the parent item to retrieve items for.
  */
@@ -136,7 +149,6 @@ QUuid ItemsModel::parentItem() const
 {
     return m_parentItem;
 }
-
 
 /**
  * @brief Set the parent item to retrieve items for.
@@ -150,7 +162,6 @@ void ItemsModel::setParentItem(const QUuid &parentItem)
     }
 }
 
-
 /**
  * @brief Only include items which match the given search string.
  */
@@ -158,7 +169,6 @@ QString ItemsModel::searchString() const
 {
     return m_searchString;
 }
-
 
 /**
  * @brief Set the search string.
@@ -172,7 +182,6 @@ void ItemsModel::setSearchString(const QString &searchString)
     }
 }
 
-
 /**
  * @brief Only include items which have the given tag.
  */
@@ -180,7 +189,6 @@ QString ItemsModel::tag() const
 {
     return m_tag;
 }
-
 
 /**
  * @brief Set the tag used for filtering.
@@ -194,7 +202,6 @@ void ItemsModel::setTag(const QString &tag)
     }
 }
 
-
 /**
  * @brief Include only items which have their "done" property set to true.
  */
@@ -202,7 +209,6 @@ bool ItemsModel::onlyDone() const
 {
     return m_onlyDone;
 }
-
 
 /**
  * @brief Set if only done items shall be included.
@@ -216,7 +222,6 @@ void ItemsModel::setOnlyDone(bool value)
     }
 }
 
-
 /**
  * @brief Include only items which have their "done" property set to false.
  */
@@ -224,7 +229,6 @@ bool ItemsModel::onlyUndone() const
 {
     return m_onlyUndone;
 }
-
 
 /**
  * @brief Set if only undone items shall be included.
@@ -238,7 +242,6 @@ void ItemsModel::setOnlyUndone(bool value)
     }
 }
 
-
 /**
  * @brief Only include open items which have a due date set.
  */
@@ -246,7 +249,6 @@ bool ItemsModel::onlyWithDueDate() const
 {
     return m_onlyWithDueDate;
 }
-
 
 /**
  * @brief Set if only open items with a due date set shall be included.
@@ -260,7 +262,6 @@ void ItemsModel::setOnlyWithDueDate(bool value)
     }
 }
 
-
 /**
  * @brief The default search/filter result.
  *
@@ -273,7 +274,6 @@ bool ItemsModel::defaultSearchResult() const
     return m_defaultSearchResult;
 }
 
-
 /**
  * @brief Set the default search/filter result.
  */
@@ -283,10 +283,8 @@ void ItemsModel::setDefaultSearchResult(bool defaultSearchResult)
         m_defaultSearchResult = defaultSearchResult;
         triggerFetch();
         emit defaultSearchResultChanged();
-
     }
 }
-
 
 /**
  * @brief Shall items be retrieved recursively.
@@ -301,7 +299,6 @@ bool ItemsModel::recursive() const
     return m_recursive;
 }
 
-
 /**
  * @brief Set if items shall be retrieved recursively.
  */
@@ -314,7 +311,6 @@ void ItemsModel::setRecursive(bool recursive)
     }
 }
 
-
 /**
  * @brief The label used for overdue items.
  */
@@ -322,7 +318,6 @@ QString ItemsModel::overdueLabel() const
 {
     return m_overdueLabel;
 }
-
 
 /**
  * @brief Set the label used for overdue items.
@@ -339,7 +334,6 @@ void ItemsModel::setOverdueLabel(const QString &overdueLabel)
     }
 }
 
-
 /**
  * @brief Time span definitions.
  *
@@ -352,7 +346,6 @@ QVariantMap ItemsModel::timeSpans() const
 {
     return m_timeSpans;
 }
-
 
 /**
  * @brief Set the time spans used for grouping items by due date.
@@ -369,16 +362,15 @@ void ItemsModel::setTimeSpans(const QVariantMap &timeSpans)
     }
 }
 
-
-bool ItemsModel::itemMatches(ItemPtr item, QStringList words) {
+bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
+{
     for (auto word : words) {
         if (item->title().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
             return true;
         }
         auto complexItem = item.dynamicCast<ComplexItem>();
         if (complexItem != nullptr) {
-            if (complexItem->notes().indexOf(
-                        word, 0, Qt::CaseInsensitive) >= 0) {
+            if (complexItem->notes().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
                 return true;
             }
         }
@@ -386,11 +378,10 @@ bool ItemsModel::itemMatches(ItemPtr item, QStringList words) {
     return false;
 }
 
-
 QString ItemsModel::timeSpanLabel(Item *item) const
 {
     QString result;
-    auto complexItem = qobject_cast<ComplexItem*>(item);
+    auto complexItem = qobject_cast<ComplexItem *>(item);
     if (complexItem && complexItem->dueTo().isValid()) {
         result = m_overdueLabel;
         auto dueDate = complexItem->dueTo().date().toString("yyyy-MM-dd");
@@ -404,7 +395,6 @@ QString ItemsModel::timeSpanLabel(Item *item) const
     }
     return result;
 }
-
 
 void ItemsModel::reset()
 {
@@ -436,7 +426,7 @@ void ItemsModel::fetch()
         auto itemMatchesFilter = getFilterFn();
         auto defaultSearchResult = m_defaultSearchResult;
 
-        q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
+        q->setItemFilter([=](ItemPtr item, GetItemsQuery *query) {
             auto result = true;
             if (itemMatchesFilter) {
                 result = itemMatchesFilter(item, query);
@@ -455,8 +445,7 @@ void ItemsModel::fetch()
                     result = false;
                 }
             }
-            if (onlyWithDueDate &&
-                    !item->property("dueTo").toDateTime().isValid()) {
+            if (onlyWithDueDate && !item->property("dueTo").toDateTime().isValid()) {
                 result = false;
             }
             if (!tag.isEmpty()) {
@@ -466,18 +455,15 @@ void ItemsModel::fetch()
             }
             return result;
         });
-        connect(q, &GetItemsQuery::itemsAvailable,
-                this, &ItemsModel::update,
-                Qt::QueuedConnection);
+        connect(q, &GetItemsQuery::itemsAvailable, this, &ItemsModel::update, Qt::QueuedConnection);
         m_cache->run(q);
     }
 }
 
-std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn() const
+std::function<bool(ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn() const
 {
-    auto words = m_searchString.split(QRegExp("\\s+"),
-                                      QString::SkipEmptyParts);
-    std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
+    auto words = m_searchString.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+    std::function<bool(ItemPtr, GetItemsQuery *)> itemMatchesFilter;
     if (!words.isEmpty()) {
         itemMatchesFilter = [=](ItemPtr item, GetItemsQuery *query) {
             bool result = false;
@@ -491,14 +477,11 @@ std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn
                             result = true;
                             break;
                         } else {
-                            for (auto task :
-                                 query->childrenOf(todo->uid())) {
-                                if (itemMatches(task, words)) {
-                                    result = true;
-                                    break;
-                                }
-                            }
-                            if (result) {
+                            auto tasks = query->childrenOf(todo->uid());
+                            if (std::any_of(tasks.begin(), tasks.end(), [=](const ItemPtr task) {
+                                    return itemMatches(task, words);
+                                })) {
+                                result = true;
                                 break;
                             }
                         }
@@ -506,21 +489,17 @@ std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn
                 } else {
                     auto todo = item.dynamicCast<Todo>();
                     if (todo) {
-                        for (auto task : query->childrenOf(todo->uid())) {
-                            if (itemMatches(task, words)) {
-                                result = true;
-                                break;
-                            }
-                        }
+                        auto tasks = query->childrenOf(todo->uid());
+                        result = std::any_of(tasks.begin(), tasks.end(), [=](const ItemPtr task) {
+                            return itemMatches(task, words);
+                        });
                     } else {
                         auto note = item.dynamicCast<Note>();
                         if (note) {
-                            for (auto page : query->childrenOf(note->uid())) {
-                                if (itemMatches(page, words)) {
-                                    result = true;
-                                    break;
-                                }
-                            }
+                            auto pages = query->childrenOf(note->uid());
+                            result = std::any_of(
+                                    pages.begin(), pages.end(),
+                                    [=](const ItemPtr page) { return itemMatches(page, words); });
                         }
                     }
                 }
@@ -540,7 +519,7 @@ void ItemsModel::update(QVariantList items)
 {
     m_updating = true;
     auto idsToDelete = QSet<QUuid>::fromList(m_ids);
-    QList<Item*> newItems;
+    QList<Item *> newItems;
     for (auto data : items) {
         auto item = Item::decache(data, this);
         auto id = item->uid();
@@ -548,12 +527,12 @@ void ItemsModel::update(QVariantList items)
             auto existingItem = m_items.value(id);
             existingItem->fromVariant(item->toVariant());
             existingItem->applyCalculatedProperties(
-                        data.value<ItemCacheEntry>().calculatedData.toMap());
+                    data.value<ItemCacheEntry>().calculatedData.toMap());
             delete item;
             idsToDelete.remove(id);
         } else {
-            auto item = Item::decache(data, this);
-            newItems << item;
+            auto item_ = Item::decache(data, this);
+            newItems << item_;
         }
     }
 
@@ -569,13 +548,9 @@ void ItemsModel::update(QVariantList items)
     }
 
     if (!newItems.isEmpty()) {
-        beginInsertRows(
-                    QModelIndex(),
-                    m_ids.length(),
-                    m_ids.length() + newItems.length() - 1);
+        beginInsertRows(QModelIndex(), m_ids.length(), m_ids.length() + newItems.length() - 1);
         for (auto item : newItems) {
-            connect(item, &Item::changed,
-                    this, &ItemsModel::itemChanged);
+            connect(item, &Item::changed, this, &ItemsModel::itemChanged);
             m_ids.append(item->uid());
             m_items.insert(item->uid(), item);
             QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);
@@ -592,7 +567,7 @@ void ItemsModel::update(QVariantList items)
 
 void ItemsModel::itemChanged()
 {
-    auto item = qobject_cast<Item*>(sender());
+    auto item = qobject_cast<Item *>(sender());
     if (item) {
         auto id = item->uid();
         if (m_items.contains(id)) {
@@ -607,4 +582,3 @@ void ItemsModel::itemChanged()
         }
     }
 }
-

@@ -1,21 +1,40 @@
-#include "datamodel/complexitem.h"
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <QTemporaryDir>
 #include <QObject>
 #include <QSignalSpy>
 #include <QTest>
 
+#include "datamodel/complexitem.h"
+
 class ComplexItemTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void testProperties();
-  void testPersistence();
-  void attachments();
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void testProperties();
+    void testPersistence();
+    void attachments();
+    void cleanupTestCase() {}
 };
 
 void ComplexItemTest::testProperties()
@@ -64,17 +83,17 @@ void ComplexItemTest::attachments()
 
     item.attachFile(d.absoluteFilePath("res/foo.txt"));
     QCOMPARE(attachmentsChanged.count(), 1);
-    QCOMPARE(item.attachments(), QStringList({"foo.txt"}));
+    QCOMPARE(item.attachments(), QStringList({ "foo.txt" }));
     QVERIFY(QFile(item.attachmentFileName("foo.txt")).exists());
 
     item.attachFile(d.absoluteFilePath("res/foo.txt"));
     QCOMPARE(attachmentsChanged.count(), 2);
-    QCOMPARE(item.attachments(), QStringList({"foo-1.txt", "foo.txt"}));
+    QCOMPARE(item.attachments(), QStringList({ "foo-1.txt", "foo.txt" }));
     QVERIFY(QFile(item.attachmentFileName("foo-1.txt")).exists());
 
     item.detachFile("foo.txt");
     QCOMPARE(attachmentsChanged.count(), 3);
-    QCOMPARE(item.attachments(), QStringList({"foo-1.txt"}));
+    QCOMPARE(item.attachments(), QStringList({ "foo-1.txt" }));
     QVERIFY(QFile(item.attachmentFileName("foo-1.txt")).exists());
     QVERIFY(!QFile(item.attachmentFileName("foo.txt")).exists());
     item.save();
@@ -83,7 +102,6 @@ void ComplexItemTest::attachments()
     QVERIFY(QFile(attachmentPath).exists());
     QVERIFY(item.deleteItem());
     QVERIFY(!QFile(attachmentPath).exists());
-
 }
 
 QTEST_MAIN(ComplexItemTest)

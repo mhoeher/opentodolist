@@ -1,32 +1,47 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <qlmdb/database.h>
 
 #include "datamodel/item.h"
 #include "datamodel/library.h"
 #include "datastorage/itemsquery.h"
 
-
 /**
  * @brief Constructor.
  */
-ItemsQuery::ItemsQuery(QObject *parent) : QObject(parent),
-    m_context(),
-    m_global(),
-    m_items(),
-    m_children(),
-    m_dataChanged(false),
-    m_changedLibrariesUids(),
-    m_changedParentUids()
+ItemsQuery::ItemsQuery(QObject *parent)
+    : QObject(parent),
+      m_context(),
+      m_global(),
+      m_items(),
+      m_children(),
+      m_dataChanged(false),
+      m_changedLibrariesUids(),
+      m_changedParentUids()
 {
 }
-
 
 /**
  * @brief Destructor.
  */
-ItemsQuery::~ItemsQuery()
-{
-}
-
+ItemsQuery::~ItemsQuery() {}
 
 /**
  * @brief The database containing global settings.
@@ -36,7 +51,6 @@ QSharedPointer<QLMDB::Database> ItemsQuery::global() const
     return m_global;
 }
 
-
 /**
  * @brief The database containing item data.
  */
@@ -45,7 +59,6 @@ QSharedPointer<QLMDB::Database> ItemsQuery::items() const
     return m_items;
 }
 
-
 /**
  * @brief The database containing parent/child relationships.
  */
@@ -53,7 +66,6 @@ QSharedPointer<QLMDB::Database> ItemsQuery::children() const
 {
     return m_children;
 }
-
 
 /**
  * @brief Indicate that the query changed the cache contents.
@@ -67,7 +79,6 @@ void ItemsQuery::setDataChanged(bool changed)
     m_dataChanged = changed;
 }
 
-
 /**
  * @brief Returns true if the query has changed the cache.
  *
@@ -78,17 +89,17 @@ bool ItemsQuery::hasDataChanged() const
     return m_dataChanged;
 }
 
-
 /**
  * @brief Mark an item as changed.
  *
  * This marks the item with the given @p id as changed. This will cause the
  * librariesChanged() signal to be emitted when the transaction is done.
  */
-void ItemsQuery::markAsChanged(QLMDB::Transaction &transaction, QByteArray id)
+void ItemsQuery::markAsChanged(QLMDB::Transaction *transaction, QByteArray id)
 {
+    q_check_ptr(transaction);
     while (!m_changedParentUids.contains(id)) {
-        auto entry = m_items->get(transaction, id);
+        auto entry = m_items->get(*transaction, id);
         if (!entry.isEmpty()) {
             auto itemEntry = ItemCacheEntry::fromByteArray(entry, id);
             if (itemEntry.valid) {
@@ -109,7 +120,6 @@ void ItemsQuery::markAsChanged(QLMDB::Transaction &transaction, QByteArray id)
     }
 }
 
-
 /**
  * @brief The context of the cache data base.
  */
@@ -117,7 +127,6 @@ QSharedPointer<QLMDB::Context> ItemsQuery::context() const
 {
     return m_context;
 }
-
 
 /**
  * @brief Indicate that the query is done.

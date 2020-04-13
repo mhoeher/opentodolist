@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "image.h"
 
 #include <QFuture>
@@ -6,16 +25,12 @@
 #include <QSaveFile>
 #include <QtConcurrent>
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Image", QtDebugMsg);
-
 
 /**
  * @brief Constructor.
  */
-Image::Image(const QString &filename, QObject *parent) :
-    TopLevelItem(filename, parent),
-    m_image()
+Image::Image(const QString &filename, QObject *parent) : TopLevelItem(filename, parent), m_image()
 {
     connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
@@ -23,15 +38,12 @@ Image::Image(const QString &filename, QObject *parent) :
 /**
  * @brief Constructor.
  */
-Image::Image(QObject* parent) : Image(QString(), parent)
-{
-}
+Image::Image(QObject *parent) : Image(QString(), parent) {}
 
 /**
  * @brief Constructor.
  */
-Image::Image(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent),
-    m_image()
+Image::Image(const QDir &dir, QObject *parent) : TopLevelItem(dir, parent), m_image()
 {
     connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
@@ -39,9 +51,7 @@ Image::Image(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent),
 /**
  * @brief Destructor.
  */
-Image::~Image()
-{
-}
+Image::~Image() {}
 
 /**
  * @brief Set the image path.
@@ -87,9 +97,7 @@ void Image::setImage(const QString &image)
                         if (!file.remove()) {
                             qCWarning(log) << "Failed to remove existing image "
                                               "file"
-                                           << file.fileName()
-                                           << ":"
-                                           << file.errorString();
+                                           << file.fileName() << ":" << file.errorString();
                         }
                     }
 
@@ -106,8 +114,7 @@ void Image::setImage(const QString &image)
                     }
 
                     // 3. Copy over the external file:
-                    QString targetFileName = QUuid::createUuid().toString() +
-                            ".res.";
+                    QString targetFileName = QUuid::createUuid().toString() + ".res.";
                     auto completeSuffix = fi.completeSuffix();
                     if (completeSuffix.contains("?")) {
                         // On some platforms (e.g. iOS), we get a URL with
@@ -120,7 +127,7 @@ void Image::setImage(const QString &image)
                     auto targetFilePath = directory() + "/" + targetFileName;
 
                     // First, try to copy the file as is:
-                    if (!QFile::copy(image, targetFilePath)) {
+                    if (!QFile::copy(image, targetFilePath)) { // NOLINT
                         // Simple copy did not work, manually copy the file:
                         QFile src(image);
                         if (src.open(QIODevice::ReadOnly)) {
@@ -131,17 +138,13 @@ void Image::setImage(const QString &image)
                                 }
                                 dst.commit();
                             } else {
-                                qCWarning(log) << "Failed to open"
-                                               << targetFilePath
-                                               << "for writing:"
-                                               << dst.errorString();
+                                qCWarning(log) << "Failed to open" << targetFilePath
+                                               << "for writing:" << dst.errorString();
                             }
                             src.close();
                         } else {
-                            qCWarning(log) << "Failed to open"
-                                           << image
-                                           << "for reading:"
-                                           << src.errorString();
+                            qCWarning(log) << "Failed to open" << image
+                                           << "for reading:" << src.errorString();
                         }
                     }
 

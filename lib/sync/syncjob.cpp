@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "syncjob.h"
 
 #include "synchronizer.h"
@@ -17,9 +36,7 @@
 SyncJob::SyncJob(const QString &libraryDirectory, QSharedPointer<Account> account, QObject *parent)
     : QObject(parent), m_libraryDirectory(libraryDirectory), m_account(account)
 {
-
 }
-
 
 /**
  * @brief Run the synchronization.
@@ -27,16 +44,13 @@ SyncJob::SyncJob(const QString &libraryDirectory, QSharedPointer<Account> accoun
 void SyncJob::execute()
 {
     if (!m_libraryDirectory.isEmpty()) {
-        QScopedPointer<Synchronizer> sync(
-                    Synchronizer::fromDirectory(m_libraryDirectory));
+        QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(m_libraryDirectory));
         if (sync) {
             sync->loadLog();
             sync->setAccount(m_account.data());
-            connect(this, &SyncJob::stopRequested,
-                    sync.data(), &Synchronizer::stopSync,
+            connect(this, &SyncJob::stopRequested, sync.data(), &Synchronizer::stopSync,
                     Qt::QueuedConnection);
-            connect(sync.data(), &Synchronizer::syncError,
-                    this, &SyncJob::onSyncError);
+            connect(sync.data(), &Synchronizer::syncError, this, &SyncJob::onSyncError);
             sync->synchronize();
             sync->saveLog();
         }

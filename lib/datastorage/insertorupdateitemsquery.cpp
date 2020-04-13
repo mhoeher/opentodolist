@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <QJsonDocument>
 #include <QRandomGenerator>
 
@@ -13,14 +32,10 @@
 #include "datastorage/cache.h"
 #include "datastorage/insertorupdateitemsquery.h"
 
-InsertOrUpdateItemsQuery::InsertOrUpdateItemsQuery(QObject *parent) :
-    ItemsQuery(parent),
-    m_itemEntries(),
-    m_libEntries()
+InsertOrUpdateItemsQuery::InsertOrUpdateItemsQuery(QObject *parent)
+    : ItemsQuery(parent), m_itemEntries(), m_libEntries()
 {
-
 }
-
 
 /**
  * @brief Add the @p item to the list of items to be cached.
@@ -40,7 +55,6 @@ void InsertOrUpdateItemsQuery::add(Item *item, InsertFlags flags)
         }
     }
 }
-
 
 /**
  * @brief Add the @p library to the list of libraries to be cached.
@@ -71,10 +85,9 @@ void InsertOrUpdateItemsQuery::run()
         auto it = itemCursor.findKey(id);
         if (!it.isValid() || it.value() != data) {
             itemCursor.put(id, data);
-            markAsChanged(t, id);
+            markAsChanged(&t, id);
         }
-        childrenCursor.put(Cache::RootId, id,
-                           QLMDB::Cursor::NoDuplicateData);
+        childrenCursor.put(Cache::RootId, id, QLMDB::Cursor::NoDuplicateData);
 
         if (m_save.contains(lib.id)) {
             auto library = Library::decache(lib);
@@ -93,8 +106,7 @@ void InsertOrUpdateItemsQuery::run()
             for (auto childId : childIds) {
                 auto data = items()->get(t, childId);
                 if (!data.isNull()) {
-                    auto siblingItem = Item::decache(
-                                ItemCacheEntry::fromByteArray(data, childId));
+                    auto siblingItem = Item::decache(ItemCacheEntry::fromByteArray(data, childId));
                     if (siblingItem) {
                         weight = qMax(weight, siblingItem->weight());
                         delete siblingItem;
@@ -118,9 +130,8 @@ void InsertOrUpdateItemsQuery::run()
         auto it = itemCursor.findKey(id);
         if (!it.isValid() || it.value() != data) {
             itemCursor.put(id, data);
-            markAsChanged(t, id);
+            markAsChanged(&t, id);
         }
-        childrenCursor.put(item.parentId.toByteArray(), id,
-                           QLMDB::Cursor::NoDuplicateData);
+        childrenCursor.put(item.parentId.toByteArray(), id, QLMDB::Cursor::NoDuplicateData);
     }
 }

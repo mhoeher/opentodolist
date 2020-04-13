@@ -1,5 +1,24 @@
-#ifndef ITEMSMODEL_H
-#define ITEMSMODEL_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef MODELS_ITEMSMODEL_H_
+#define MODELS_ITEMSMODEL_H_
 
 #include <QAbstractListModel>
 #include <QDateTime>
@@ -13,7 +32,6 @@
 
 class GetItemsQuery;
 
-
 /**
  * @brief A model working on a Cache.
  *
@@ -25,27 +43,22 @@ class GetItemsQuery;
 class ItemsModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
+    Q_PROPERTY(Cache *cache READ cache WRITE setCache NOTIFY cacheChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
-    Q_PROPERTY(QUuid parentItem READ parentItem WRITE setParentItem
-               NOTIFY parentItemChanged)
-    Q_PROPERTY(QString searchString READ searchString WRITE setSearchString
-               NOTIFY searchStringChanged)
+    Q_PROPERTY(QUuid parentItem READ parentItem WRITE setParentItem NOTIFY parentItemChanged)
+    Q_PROPERTY(
+            QString searchString READ searchString WRITE setSearchString NOTIFY searchStringChanged)
     Q_PROPERTY(QString tag READ tag WRITE setTag NOTIFY tagChanged)
-    Q_PROPERTY(bool onlyDone READ onlyDone WRITE setOnlyDone
-               NOTIFY onlyDoneChanged)
-    Q_PROPERTY(bool onlyUndone READ onlyUndone WRITE setOnlyUndone
-               NOTIFY onlyUndoneChanged)
-    Q_PROPERTY(bool onlyWithDueDate READ onlyWithDueDate
-               WRITE setOnlyWithDueDate NOTIFY onlyWithDueDateChanged)
-    Q_PROPERTY(bool defaultSearchResult READ defaultSearchResult
-               WRITE setDefaultSearchResult NOTIFY defaultSearchResultChanged)
-    Q_PROPERTY(bool recursive READ recursive WRITE setRecursive
-               NOTIFY recursiveChanged)
-    Q_PROPERTY(QString overdueLabel READ overdueLabel WRITE setOverdueLabel
-               NOTIFY overdueLabelChanged)
-    Q_PROPERTY(QVariantMap timeSpans READ timeSpans WRITE setTimeSpans
-               NOTIFY timeSpansChanged)
+    Q_PROPERTY(bool onlyDone READ onlyDone WRITE setOnlyDone NOTIFY onlyDoneChanged)
+    Q_PROPERTY(bool onlyUndone READ onlyUndone WRITE setOnlyUndone NOTIFY onlyUndoneChanged)
+    Q_PROPERTY(bool onlyWithDueDate READ onlyWithDueDate WRITE setOnlyWithDueDate NOTIFY
+                       onlyWithDueDateChanged)
+    Q_PROPERTY(bool defaultSearchResult READ defaultSearchResult WRITE setDefaultSearchResult NOTIFY
+                       defaultSearchResultChanged)
+    Q_PROPERTY(bool recursive READ recursive WRITE setRecursive NOTIFY recursiveChanged)
+    Q_PROPERTY(
+            QString overdueLabel READ overdueLabel WRITE setOverdueLabel NOTIFY overdueLabelChanged)
+    Q_PROPERTY(QVariantMap timeSpans READ timeSpans WRITE setTimeSpans NOTIFY timeSpansChanged)
 public:
     enum Roles {
         ItemRole = Qt::UserRole,
@@ -61,14 +74,14 @@ public:
 
     explicit ItemsModel(QObject *parent = nullptr);
 
-    Cache* cache() const;
+    Cache *cache() const;
     void setCache(Cache *cache);
 
     int count() const;
 
     // QAbstractItemModel interface
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
     QUuid parentItem() const;
@@ -119,9 +132,8 @@ signals:
 public slots:
 
 private:
-
     QPointer<Cache> m_cache;
-    QHash<QUuid, Item*> m_items;
+    QHash<QUuid, Item *> m_items;
     QList<QUuid> m_ids;
     QTimer m_fetchTimer;
     QUuid m_parentItem;
@@ -147,10 +159,10 @@ private slots:
 
     void reset();
     void fetch();
-    std::function<bool(ItemPtr item, GetItemsQuery* query)> getFilterFn() const;
+    std::function<bool(ItemPtr item, GetItemsQuery *query)> getFilterFn() const;
     void triggerFetch();
     void update(QVariantList items);
     void itemChanged();
 };
 
-#endif // ITEMSMODEL_H
+#endif // MODELS_ITEMSMODEL_H_

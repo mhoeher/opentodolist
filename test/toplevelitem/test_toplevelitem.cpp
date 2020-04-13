@@ -1,9 +1,28 @@
-#include "datamodel/toplevelitem.h"
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <QObject>
 #include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
+
+#include "datamodel/toplevelitem.h"
 
 class TopLevelItemTest : public QObject
 {
@@ -16,7 +35,6 @@ private slots:
     void testPersistence();
     void testTags();
     void cleanupTestCase() {}
-
 };
 
 void TopLevelItemTest::testProperties()
@@ -28,13 +46,13 @@ void TopLevelItemTest::testProperties()
     QCOMPARE(item.color(), TopLevelItem::White);
 
     item.setColor(TopLevelItem::Green);
-    item.setTags({"Hello", "World"});
+    item.setTags({ "Hello", "World" });
 
     QCOMPARE(colorChanged.count(), 1);
     QCOMPARE(tagsChanged.count(), 1);
 
     QCOMPARE(item.color(), TopLevelItem::Green);
-    QCOMPARE(item.tags(), QStringList({"Hello", "World"}));
+    QCOMPARE(item.tags(), QStringList({ "Hello", "World" }));
 }
 
 void TopLevelItemTest::testPersistence()
@@ -46,7 +64,7 @@ void TopLevelItemTest::testPersistence()
     QCOMPARE(item.color(), TopLevelItem::White);
 
     item.setColor(TopLevelItem::Green);
-    item.setTags({"Hello", "World"});
+    item.setTags({ "Hello", "World" });
 
     anotherItem.fromVariant(item.toVariant());
 
@@ -54,7 +72,7 @@ void TopLevelItemTest::testPersistence()
     QCOMPARE(tagsChanged.count(), 1);
 
     QCOMPARE(anotherItem.color(), TopLevelItem::Green);
-    QCOMPARE(anotherItem.tags(), QStringList({"Hello", "World"}));
+    QCOMPARE(anotherItem.tags(), QStringList({ "Hello", "World" }));
 }
 
 void TopLevelItemTest::testTags()
@@ -63,11 +81,11 @@ void TopLevelItemTest::testTags()
     QSignalSpy tagsChanged(&item, &TopLevelItem::tagsChanged);
     QCOMPARE(item.tags(), QStringList());
     item.addTag("Tag 2");
-    QCOMPARE(item.tags(), QStringList({"Tag 2"}));
+    QCOMPARE(item.tags(), QStringList({ "Tag 2" }));
     item.addTag("Tag 1");
-    QCOMPARE(item.tags(), QStringList({"Tag 1", "Tag 2"}));
+    QCOMPARE(item.tags(), QStringList({ "Tag 1", "Tag 2" }));
     item.removeTagAt(1);
-    QCOMPARE(item.tags(), QStringList({"Tag 1"}));
+    QCOMPARE(item.tags(), QStringList({ "Tag 1" }));
     QCOMPARE(tagsChanged.count(), 3);
 }
 

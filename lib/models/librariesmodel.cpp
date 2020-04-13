@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <QSet>
 #include <QQmlEngine>
 
@@ -7,21 +26,14 @@
 #include "datastorage/insertorupdateitemsquery.h"
 #include "models/librariesmodel.h"
 
-
 /**
  * @brief Constructor.
  */
-LibrariesModel::LibrariesModel(QObject *parent) :
-    QAbstractListModel(parent),
-    m_cache(nullptr),
-    m_libraries(),
-    m_uids(),
-    m_updating(false)
+LibrariesModel::LibrariesModel(QObject *parent)
+    : QAbstractListModel(parent), m_cache(nullptr), m_libraries(), m_uids(), m_updating(false)
 {
-    connect(this, &LibrariesModel::rowsInserted,
-            this, &LibrariesModel::countChanged);
-    connect(this, &LibrariesModel::rowsRemoved,
-            this, &LibrariesModel::countChanged);
+    connect(this, &LibrariesModel::rowsInserted, this, &LibrariesModel::countChanged);
+    connect(this, &LibrariesModel::rowsRemoved, this, &LibrariesModel::countChanged);
 }
 
 /**
@@ -32,7 +44,6 @@ Cache *LibrariesModel::cache() const
     return m_cache.data();
 }
 
-
 /**
  * @brief Set the cache property.
  */
@@ -40,13 +51,11 @@ void LibrariesModel::setCache(Cache *cache)
 {
     if (m_cache != cache) {
         if (m_cache) {
-            disconnect(m_cache.data(), &Cache::dataChanged,
-                       this, &LibrariesModel::fetch);
+            disconnect(m_cache.data(), &Cache::dataChanged, this, &LibrariesModel::fetch);
         }
         m_cache = cache;
         if (m_cache) {
-            connect(m_cache.data(), &Cache::dataChanged,
-                    this, &LibrariesModel::fetch);
+            connect(m_cache.data(), &Cache::dataChanged, this, &LibrariesModel::fetch);
         } else {
             beginResetModel();
             m_uids.clear();
@@ -60,7 +69,6 @@ void LibrariesModel::setCache(Cache *cache)
     }
 }
 
-
 /**
  * @brief The number of libraries in the model.
  */
@@ -68,7 +76,6 @@ int LibrariesModel::count() const
 {
     return rowCount();
 }
-
 
 /**
  * @brief Get the library for the given @p row.
@@ -81,14 +88,13 @@ Library *LibrariesModel::get(int row) const
     return nullptr;
 }
 
-
 void LibrariesModel::fetch()
 {
     if (m_cache) {
         auto q = new LibrariesItemsQuery();
         q->setIncludeCalculatedValues(true);
-        connect(q, &LibrariesItemsQuery::librariesAvailable,
-                this, &LibrariesModel::librariesAvailable);
+        connect(q, &LibrariesItemsQuery::librariesAvailable, this,
+                &LibrariesModel::librariesAvailable);
         m_cache->run(q);
     }
 }
@@ -97,7 +103,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
 {
     m_updating = true;
     auto librariesToRemove = QSet<QUuid>::fromList(m_uids);
-    QList<Library*> newItems;
+    QList<Library *> newItems;
     for (auto entry : libraries) {
         auto lib = Library::decache(entry, this);
         auto uid = lib->uid();
@@ -105,8 +111,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
         if (m_libraries.contains(uid)) {
             auto l = m_libraries.value(uid);
             l->fromVariant(lib->toVariant());
-            l->applyCalculatedData(
-                        entry.value<LibraryCacheEntry>().calculatedData.toMap());
+            l->applyCalculatedData(entry.value<LibraryCacheEntry>().calculatedData.toMap());
             delete lib;
         } else {
             newItems << lib;
@@ -128,8 +133,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
         beginInsertRows(QModelIndex(), firstIndex, lastIndex);
         for (auto lib : newItems) {
             QQmlEngine::setObjectOwnership(lib, QQmlEngine::CppOwnership);
-            connect(lib, &Library::changed,
-                    this, &LibrariesModel::libraryChanged);
+            connect(lib, &Library::changed, this, &LibrariesModel::libraryChanged);
             m_uids.append(lib->uid());
             m_libraries.insert(lib->uid(), lib);
         }
@@ -141,7 +145,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
 
 void LibrariesModel::libraryChanged()
 {
-    auto lib = qobject_cast<Library*>(sender());
+    auto lib = qobject_cast<Library *>(sender());
     if (lib) {
         auto uid = lib->uid();
         auto idx = m_uids.indexOf(uid);

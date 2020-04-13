@@ -1,10 +1,28 @@
-#ifndef TASK_H
-#define TASK_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include "item.h"
+#ifndef DATAMODEL_TASK_H_
+#define DATAMODEL_TASK_H_
 
 #include <QObject>
 
+#include "item.h"
 
 /**
  *  @brief Represents a task inside a todo.
@@ -21,7 +39,6 @@ class Task : public Item
     Q_PROPERTY(QUuid todoUid READ todoUid WRITE setTodoUid NOTIFY todoUidChanged)
 
 public:
-
     explicit Task(QObject *parent = nullptr);
     explicit Task(const QString &filename, QObject *parent = nullptr);
     explicit Task(const QDir &dir, QObject *parent = nullptr);
@@ -33,7 +50,7 @@ public:
     void setDone(bool done);
 
     QUuid todoUid() const;
-    void setTodoUid(const QUuid& todoUid);
+    void setTodoUid(const QUuid &todoUid);
 
 signals:
 
@@ -43,10 +60,8 @@ signals:
 public slots:
 
 private:
-
     bool m_done;
     QUuid m_todoUid;
-
 
 protected:
     // Item interface
@@ -56,4 +71,4 @@ protected:
 
 typedef QSharedPointer<Task> TaskPtr;
 
-#endif // TASK_H
+#endif // DATAMODEL_TASK_H_

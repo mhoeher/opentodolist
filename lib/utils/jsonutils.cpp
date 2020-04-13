@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "jsonutils.h"
 
 #include <QDir>
@@ -7,29 +26,27 @@
 #include <QJsonParseError>
 #include <QSaveFile>
 
-
 namespace JsonUtils {
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.JsonUtils", QtWarningMsg)
 
-/**
- * @brief Write a JSON file, keeping existing properties in the file.
- *
- * This function can be used to write the properties contained in @p data to the
- * filename. If filename points to an existing file, any properties that exist in the
- * file but not in data will be preserved.
- *
- * The intention of this function is to keep a set of files backwards compatible (e.g. if
- * users switch between versions of the application).
- *
- * The function returns true on success or false otherwise.
- *
- * Note that this function will not touch the target file if there are no
- * changed. If you need to know if the file was actually written, pass in a
- * pointer to a boolean via the @p changed parameter.
- */
-bool patchJsonFile(const QString& filename, const QVariantMap& data,
-                   bool* changed)
+        /**
+         * @brief Write a JSON file, keeping existing properties in the file.
+         *
+         * This function can be used to write the properties contained in @p data to the
+         * filename. If filename points to an existing file, any properties that exist in the
+         * file but not in data will be preserved.
+         *
+         * The intention of this function is to keep a set of files backwards compatible (e.g. if
+         * users switch between versions of the application).
+         *
+         * The function returns true on success or false otherwise.
+         *
+         * Note that this function will not touch the target file if there are no
+         * changed. If you need to know if the file was actually written, pass in a
+         * pointer to a boolean via the @p changed parameter.
+         */
+        bool patchJsonFile(const QString &filename, const QVariantMap &data, bool *changed)
 {
     bool result = false;
     QFile file(filename);
@@ -44,13 +61,11 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
             if (error.error == QJsonParseError::NoError) {
                 properties = doc.toVariant().toMap();
             } else {
-                qCWarning(log) << "Failed to parse" << filename << ":"
-                                     << error.errorString();
+                qCWarning(log) << "Failed to parse" << filename << ":" << error.errorString();
             }
             file.close();
         } else {
-            qCWarning(log) << "Failed to open" << filename << "for reading:"
-                                 << file.errorString();
+            qCWarning(log) << "Failed to open" << filename << "for reading:" << file.errorString();
         }
     }
     for (auto key : data.keys()) {
@@ -67,12 +82,11 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
             result = saveFile.commit();
             hasChanged = result;
         } else {
-            qCWarning(log) << "Failed to open" << filename << "for writing:"
-                                 << file.errorString();
+            qCWarning(log) << "Failed to open" << filename << "for writing:" << file.errorString();
         }
     } else {
         qCDebug(log) << "File" << filename << "was not changed - "
-                           << "skipping rewrite";
+                     << "skipping rewrite";
         result = true;
     }
     if (changed != nullptr) {
@@ -81,11 +95,10 @@ bool patchJsonFile(const QString& filename, const QVariantMap& data,
     return result;
 }
 
-
 /**
  * @brief Load a variant map from a JSON file.
  */
-QVariantMap loadMap(const QString& filename, bool* ok)
+QVariantMap loadMap(const QString &filename, bool *ok)
 {
     bool success = false;
     QVariantMap result;
@@ -97,13 +110,11 @@ QVariantMap loadMap(const QString& filename, bool* ok)
             result = doc.toVariant().toMap();
             success = true;
         } else {
-            qCWarning(log) << "Failed to parse" << filename << ":"
-                                 << error.errorString();
+            qCWarning(log) << "Failed to parse" << filename << ":" << error.errorString();
         }
         file.close();
     } else {
-        qCDebug(log) << "Failed to open" << filename << "for reading:"
-                             << file.errorString();
+        qCDebug(log) << "Failed to open" << filename << "for reading:" << file.errorString();
     }
     if (ok != nullptr) {
         *ok = success;
@@ -111,5 +122,4 @@ QVariantMap loadMap(const QString& filename, bool* ok)
     return result;
 }
 
-}
-
+} // namespace JsonUtils

@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "application.h"
 
 #include <QClipboard>
@@ -314,12 +333,13 @@ bool Application::isLibraryUid(const QUuid &uid)
 QSharedPointer<Library> Application::libraryById(const QUuid &uid)
 {
     auto libs = librariesFromConfig();
-    for (const auto &lib : libs) {
-        if (lib->uid() == uid) {
-            return lib;
-        }
+    auto result = std::find_if(libs.begin(), libs.end(),
+                               [uid](QSharedPointer<Library> lib) { return lib->uid() == uid; });
+    if (result != libs.end()) {
+        return *result;
+    } else {
+        return nullptr;
     }
-    return nullptr;
 }
 
 /**
@@ -358,14 +378,16 @@ void Application::importAccountFromSynchronizer(const QString &syncUid, const QS
             auto davSync = qobject_cast<WebDAVSynchronizer *>(sync.data());
             if (davSync) {
                 // Check if we (meanwhile) have an account that maps to the same URL+username:
-                for (const auto &account : accounts) {
-                    if (QUrl(account->baseUrl()) == davSync->url()
-                        && account->username() == davSync->username()) {
-                        // Connect the synchronizer to the existing account:
-                        davSync->setAccountUid(account->uid());
-                        davSync->save();
-                        return;
-                    }
+                auto existingAccount =
+                        std::find_if(accounts.begin(), accounts.end(),
+                                     [davSync](QSharedPointer<Account> account) {
+                                         return account->username() == davSync->username()
+                                                 && QUrl(account->baseUrl()) == davSync->url();
+                                     });
+                if (existingAccount != accounts.end()) {
+                    // Connect the synchronizer to the existing account:
+                    davSync->setAccountUid((*existingAccount)->uid());
+                    davSync->save();
                 }
 
                 // The synchronizer does not have an account ID set,
