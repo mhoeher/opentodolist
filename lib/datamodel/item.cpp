@@ -1,17 +1,23 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "item.h"
-
-#include "image.h"
-#include "note.h"
-#include "notepage.h"
-#include "todolist.h"
-#include "todo.h"
-#include "task.h"
-
-#include "fileutils.h"
-#include "utils/jsonutils.h"
-#include "datastorage/cache.h"
-#include "datastorage/getitemquery.h"
-#include "datastorage/insertorupdateitemsquery.h"
 
 #include <QDebug>
 #include <QDir>
@@ -20,6 +26,20 @@
 #include <QtGlobal>
 #include <QVariant>
 #include <QVariantMap>
+
+#include "datamodel/image.h"
+#include "datamodel/note.h"
+#include "datamodel/notepage.h"
+#include "datamodel/todolist.h"
+#include "datamodel/todo.h"
+#include "datamodel/task.h"
+
+#include "fileutils.h"
+#include "utils/jsonutils.h"
+#include "datastorage/cache.h"
+#include "datastorage/getitemquery.h"
+#include "datastorage/insertorupdateitemsquery.h"
+
 
 const QString Item::FileNameSuffix = "otl";
 

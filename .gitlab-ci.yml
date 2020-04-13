@@ -142,11 +142,27 @@ image::flatpak:
 
 
 # Run cppcheck static code checker:
-appimage:
+cppcheck:
   stage: build
   image: fedora
   script:
     - ci/cppcheck.sh
+
+
+# Run clang-format code formatter check:
+clang-format:
+  stage: build
+  image: fedora
+  script:
+    - ci/clang-format.sh
+
+
+# Run cpplint static code checker:
+cpplint:
+  stage: build
+  image: fedora
+  script:
+    - ci/cpplint.sh
 
 
 # Ubuntu build including AppImage

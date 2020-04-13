@@ -1,7 +1,24 @@
-#ifndef WEBDAVCLIENT_H
-#define WEBDAVCLIENT_H
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include <tuple>
+#ifndef SYNC_WEBDAVCLIENT_H_
+#define SYNC_WEBDAVCLIENT_H_
 
 #include <QDateTime>
 #include <QLoggingCategory>
@@ -10,6 +27,8 @@
 #include <QRegularExpression>
 #include <QSqlDatabase>
 #include <QUrl>
+
+#include <tuple>
 
 class QDir;
 class QDomDocument;
@@ -160,21 +179,21 @@ private:
     // Sync DB Handling
     QSqlDatabase openSyncDb();
     void closeSyncDb();
-    void insertSyncDBEntry(QSqlDatabase &db, const SyncEntry &entry);
-    SyncEntryMap findSyncDBEntries(QSqlDatabase &db, const QString &parent);
-    void removeDirFromSyncDB(QSqlDatabase &db, const SyncEntry &entry);
-    void removeFileFromSyncDB(QSqlDatabase &db, const SyncEntry &entry);
+    void insertSyncDBEntry(QSqlDatabase *db, const SyncEntry &entry);
+    SyncEntryMap findSyncDBEntries(QSqlDatabase *db, const QString &parent);
+    void removeDirFromSyncDB(QSqlDatabase *db, const SyncEntry &entry);
+    void removeFileFromSyncDB(QSqlDatabase *db, const SyncEntry &entry);
 
     // File System Utils
     bool rmLocalDir(const QString &dir, int maxDepth = 0);
 
     // syncDirectory() split down methods:
-    void mergeLocalInfoWithSyncList(QDir &d, const QString &dir, SyncEntryMap &entries);
+    void mergeLocalInfoWithSyncList(const QDir &d, const QString &dir, SyncEntryMap &entries);
     bool mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QString &dir);
-    bool pullEntry(SyncEntry &entry, QSqlDatabase &db);
-    bool removeLocalEntry(SyncEntry &entry, QSqlDatabase &db);
-    bool pushEntry(SyncEntry &entry, QSqlDatabase &db);
-    bool removeRemoteEntry(const SyncEntry &entry, QSqlDatabase &db);
+    bool pullEntry(SyncEntry &entry, QSqlDatabase *db);
+    bool removeLocalEntry(SyncEntry &entry, QSqlDatabase *db);
+    bool pushEntry(SyncEntry &entry, QSqlDatabase *db);
+    bool removeRemoteEntry(const SyncEntry &entry, QSqlDatabase *db);
     bool skipEntry(const SyncEntry &entry, SyncStepDirection direction,
                    const QRegularExpression &dirFilter);
 };
@@ -261,4 +280,4 @@ inline bool operator==(HTTPStatusCode lhs, int rhs)
     return static_cast<int>(lhs) == rhs;
 }
 
-#endif // WEBDAVCLIENT_H
+#endif // SYNC_WEBDAVCLIENT_H_

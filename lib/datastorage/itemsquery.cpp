@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <qlmdb/database.h>
 
 #include "datamodel/item.h"
@@ -76,10 +95,11 @@ bool ItemsQuery::hasDataChanged() const
  * This marks the item with the given @p id as changed. This will cause the
  * librariesChanged() signal to be emitted when the transaction is done.
  */
-void ItemsQuery::markAsChanged(QLMDB::Transaction &transaction, QByteArray id)
+void ItemsQuery::markAsChanged(QLMDB::Transaction *transaction, QByteArray id)
 {
+    q_check_ptr(transaction);
     while (!m_changedParentUids.contains(id)) {
-        auto entry = m_items->get(transaction, id);
+        auto entry = m_items->get(*transaction, id);
         if (!entry.isEmpty()) {
             auto itemEntry = ItemCacheEntry::fromByteArray(entry, id);
             if (itemEntry.valid) {

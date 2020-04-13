@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "webdavclient.h"
 
 #include <QCoreApplication>
@@ -359,7 +378,7 @@ bool WebDAVClient::syncDirectory(const QString &directory, QRegularExpression di
 
         auto db = openSyncDb();
         dbConnName = db.databaseName();
-        auto entries = findSyncDBEntries(db, dir);
+        auto entries = findSyncDBEntries(&db, dir);
 
         mergeLocalInfoWithSyncList(d, dir, entries);
 
@@ -403,14 +422,14 @@ bool WebDAVClient::syncDirectory(const QString &directory, QRegularExpression di
                     if (entry.remoteType == Directory) {
                         _changedDirs.insert(entry.entry);
                     }
-                    result = result && pullEntry(entry, db);
+                    result = result && pullEntry(entry, &db);
                 } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(log) << "Ignoring" << entry.path();
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
-                    result = result && removeLocalEntry(entry, db);
+                    result = result && removeLocalEntry(entry, &db);
                 } else if (!entry.lastModDate.isNull()
                            && entry.lastModDate != entry.previousLasModDate) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
@@ -418,14 +437,14 @@ bool WebDAVClient::syncDirectory(const QString &directory, QRegularExpression di
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
-                    result = result && pushEntry(entry, db);
+                    result = result && pushEntry(entry, &db);
                 } else if (entry.lastModDate.isNull() && !entry.previousLasModDate.isNull()) {
                     if (skipEntry(entry, Upload, directoryFilter)) {
                         qCDebug(log) << "Ignoring" << entry.path();
                         emit debug(tr("Ignoring file %1").arg(entry.path()));
                         continue;
                     }
-                    result = result && removeRemoteEntry(entry, db);
+                    result = result && removeRemoteEntry(entry, &db);
                 }
             }
         } else {
@@ -450,7 +469,8 @@ bool WebDAVClient::syncDirectory(const QString &directory, QRegularExpression di
 /**
  * @brief Merge a sync entry list with local file data.
  */
-void WebDAVClient::mergeLocalInfoWithSyncList(QDir &d, const QString &dir, SyncEntryMap &entries)
+void WebDAVClient::mergeLocalInfoWithSyncList(const QDir &d, const QString &dir,
+                                              SyncEntryMap &entries)
 {
     for (auto entry : d.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
         QFileInfo fi(d.absoluteFilePath(entry));
@@ -495,7 +515,7 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QStr
 /**
  * @brief Pull an entry from the server.
  */
-bool WebDAVClient::pullEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
+bool WebDAVClient::pullEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
 {
     qCDebug(log) << "Pulling" << entry.path();
     emit debug(tr("Pulling '%1'").arg(entry.path()));
@@ -558,7 +578,7 @@ bool WebDAVClient::pullEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 /**
  * @brief Remove a local file or directory.
  */
-bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
+bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
 {
     qCDebug(log) << "Removing" << entry.path() << "locally";
     emit debug(tr("Removing '%1' locally").arg(entry.path()));
@@ -599,7 +619,7 @@ bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase
 /**
  * @brief Push an entry to the server.
  */
-bool WebDAVClient::pushEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
+bool WebDAVClient::pushEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
 {
     qCDebug(log) << "Pushing" << entry.path();
     emit debug(tr("Pushing '%1'").arg(entry.path()));
@@ -644,7 +664,7 @@ bool WebDAVClient::pushEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 /**
  * @brief Remove an entry on the server.
  */
-bool WebDAVClient::removeRemoteEntry(const WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
+bool WebDAVClient::removeRemoteEntry(const WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
 {
     qCDebug(log) << "Removing" << entry.path() << "remotely";
     emit debug(tr("Removing remote entry '%1'").arg(entry.path()));
@@ -1033,9 +1053,9 @@ QSqlDatabase WebDAVClient::openSyncDb()
  * This inserts the entry into the SyncDB. The current modification date and
  * etag will be stored in the DB.
  */
-void WebDAVClient::insertSyncDBEntry(QSqlDatabase &db, const WebDAVClient::SyncEntry &entry)
+void WebDAVClient::insertSyncDBEntry(QSqlDatabase *db, const WebDAVClient::SyncEntry &entry)
 {
-    QSqlQuery query(db);
+    QSqlQuery query(*db);
     query.prepare("INSERT OR REPLACE INTO files "
                   "(parent, entry, modificationDate, etag) "
                   "VALUES (?, ?, ?, ?);");
@@ -1056,10 +1076,10 @@ void WebDAVClient::insertSyncDBEntry(QSqlDatabase &db, const WebDAVClient::SyncE
  * will have their previousLastModDate and previousEtag entries
  * set.
  */
-WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase &db, const QString &parent)
+WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase *db, const QString &parent)
 {
     QMap<QString, SyncEntry> result;
-    QSqlQuery query(db);
+    QSqlQuery query(*db);
     query.prepare("SELECT parent, entry, modificationDate, etag "
                   "FROM files WHERE parent = ?;");
     query.addBindValue(parent);
@@ -1082,9 +1102,9 @@ WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase &db, con
 /**
  * @brief Remove a directory from the SyncDB.
  */
-void WebDAVClient::removeDirFromSyncDB(QSqlDatabase &db, const SyncEntry &entry)
+void WebDAVClient::removeDirFromSyncDB(QSqlDatabase *db, const SyncEntry &entry)
 {
-    QSqlQuery query(db);
+    QSqlQuery query(*db);
     query.prepare("DELETE FROM files "
                   "WHERE parent LIKE '%' || ? OR (parent = ? AND entry = ?);");
     query.addBindValue(entry.path());
@@ -1100,9 +1120,9 @@ void WebDAVClient::removeDirFromSyncDB(QSqlDatabase &db, const SyncEntry &entry)
 /**
  * @brief Remove a single entry from the SyncDB.
  */
-void WebDAVClient::removeFileFromSyncDB(QSqlDatabase &db, const WebDAVClient::SyncEntry &entry)
+void WebDAVClient::removeFileFromSyncDB(QSqlDatabase *db, const WebDAVClient::SyncEntry &entry)
 {
-    QSqlQuery query(db);
+    QSqlQuery query(*db);
     query.prepare("DELETE FROM files WHERE parent = ? AND entry = ?;");
     query.addBindValue(entry.parent);
     query.addBindValue(entry.entry);

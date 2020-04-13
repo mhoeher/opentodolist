@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <QQueue>
 
 #include <qlmdb/cursor.h>
@@ -35,11 +54,11 @@ void GetItemsQuery::run()
                 if (m_itemFilter) {
                     auto item = ItemPtr(Item::decache(entry));
                     if (m_itemFilter(item, this)) {
-                        calculateValues(entry, item.data());
+                        calculateValues(&entry, item.data());
                         result << QVariant::fromValue(entry);
                     }
                 } else {
-                    calculateValues(entry);
+                    calculateValues(&entry);
                     result << QVariant::fromValue(entry);
                 }
             }
@@ -64,11 +83,11 @@ void GetItemsQuery::run()
                     if (m_itemFilter) {
                         auto item = ItemPtr(Item::decache(entry));
                         if (m_itemFilter(item, this)) {
-                            calculateValues(entry, item.data());
+                            calculateValues(&entry, item.data());
                             result << QVariant::fromValue(entry);
                         }
                     } else {
-                        calculateValues(entry);
+                        calculateValues(&entry);
                         result << QVariant::fromValue(entry);
                     }
                 }
@@ -80,22 +99,23 @@ void GetItemsQuery::run()
     emit itemsAvailable(result);
 }
 
-void GetItemsQuery::calculateValues(ItemCacheEntry &entry, Item *item)
+void GetItemsQuery::calculateValues(ItemCacheEntry *entry, Item *item)
 {
+    q_check_ptr(entry);
     if (m_calculateProperties) {
         QVariantMap properties;
 
         if (!item) {
-            ItemPtr itemPtr(Item::decache(entry));
+            ItemPtr itemPtr(Item::decache(*entry));
             item = itemPtr.data();
         }
 
         auto todo = qobject_cast<Todo *>(item);
         if (todo != nullptr) {
-            properties["percentageDone"] = percentageForTodo(entry.id.toByteArray());
+            properties["percentageDone"] = percentageForTodo(entry->id.toByteArray());
         }
 
-        entry.calculatedData = properties;
+        entry->calculatedData = properties;
     }
 }
 

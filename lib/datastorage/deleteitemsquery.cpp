@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <QQueue>
 
 #include <qlmdb/transaction.h>
@@ -43,7 +62,7 @@ void DeleteItemsQuery::run()
     for (auto itemToDelete : m_itemsToDelete) {
         if (!itemToDelete.uid.isNull()) {
             QQueue<QByteArray> queue;
-            queue << itemToDelete.uid.toByteArray();
+            queue << itemToDelete.uid.toByteArray(); // NOLINT
 
             // If the item is a library and we are requested to delete the
             // library directory, do it now:
@@ -74,11 +93,11 @@ void DeleteItemsQuery::run()
                             item->deleteItem();
                             delete item;
                         }
-                        markAsChanged(t, item->uid().toByteArray());
+                        markAsChanged(&t, item->uid().toByteArray());
                     }
                 } else {
                     if (!items()->get(t, nextId).isNull()) {
-                        markAsChanged(t, nextId);
+                        markAsChanged(&t, nextId);
                     }
                 }
                 items()->remove(t, nextId);
