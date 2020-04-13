@@ -37,13 +37,11 @@
 
 #include "opentodolistqmlextensionsplugin.h"
 
-
 #ifdef OTL_USE_SINGLE_APPLICATION
 #    include "singleapplication.h"
 #else
 #    include <QApplication>
 #endif
-
 
 #include "../lib/opentodolist_version.h"
 #include "utils/translations.h"

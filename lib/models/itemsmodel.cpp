@@ -22,7 +22,6 @@
 #include <QQmlEngine>
 #include <QDateTime>
 
-
 #include "datamodel/complexitem.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"

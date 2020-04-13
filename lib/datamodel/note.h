@@ -24,7 +24,6 @@
 
 #include "toplevelitem.h"
 
-
 /**
  * @brief A class representing a single note.
  *

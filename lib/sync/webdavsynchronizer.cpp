@@ -39,7 +39,6 @@
 #include "webdavclient.h"
 #include "webdavsynchronizer.h"
 
-
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
 
 const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";

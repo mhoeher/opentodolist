@@ -24,7 +24,6 @@
 
 #include "item.h"
 
-
 /**
  *  @brief Represents a task inside a todo.
  *

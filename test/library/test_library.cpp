@@ -37,7 +37,6 @@
 #include "datastorage/cache.h"
 #include "models/itemsmodel.h"
 
-
 class LibraryTest : public QObject
 {
 

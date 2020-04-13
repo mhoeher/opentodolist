@@ -40,7 +40,6 @@
 #include "datastorage/getitemquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 
-
 const QString Item::FileNameSuffix = "otl";
 
 class ItemChangedInhibitor
