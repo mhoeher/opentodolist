@@ -51,8 +51,7 @@ private:
     class ResultReceiver : public QAndroidActivityResultReceiver {
 
     public:
-
-        ResultReceiver(AndroidFileDialog *dialog);
+        explicit ResultReceiver(AndroidFileDialog *dialog);
         virtual ~ResultReceiver();
         void handleActivityResult(int receiverRequestCode,
                                   int resultCode,

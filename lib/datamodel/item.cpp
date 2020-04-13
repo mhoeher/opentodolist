@@ -96,28 +96,24 @@ ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray &data, const QByte
  *
  * @sa isValid()
  */
-Item::Item(QObject* parent) :
-    QObject(parent),
-    m_cache(),
-    m_filename(),
-    m_title(),
-    m_createdAt(QDateTime::currentDateTimeUtc()),
-    m_updatedAt(m_createdAt),
-    m_uid(QUuid::createUuid()),
-    m_loading(false)
-{
-    setupChangedSignal();
-}
+Item::Item(QObject *parent) : Item(QString(), parent) {}
 
 /**
  * @brief Create an item.
  *
  * This constructor creates an item which stores its data in the @p filename.
  */
-Item::Item(const QString& filename, QObject* parent) :
-    Item(parent)
+Item::Item(const QString &filename, QObject *parent)
+    : QObject(parent),
+      m_cache(),
+      m_filename(filename),
+      m_title(),
+      m_createdAt(QDateTime::currentDateTimeUtc()),
+      m_updatedAt(m_createdAt),
+      m_uid(QUuid::createUuid()),
+      m_loading(false)
 {
-    m_filename = filename;
+    setupChangedSignal();
 }
 
 /**
@@ -125,11 +121,9 @@ Item::Item(const QString& filename, QObject* parent) :
  */
 Item::Item(const QDir& dir, QObject* parent) : Item(parent)
 {
-    m_filename = QString();
     if (dir.exists()) {
         m_filename = dir.absoluteFilePath(m_uid.toString() + "." + FileNameSuffix);
     }
-    setupChangedSignal();
 }
 
 /**
@@ -422,7 +416,7 @@ Item* Item::createItem(QVariant variant, QObject* parent)
  * This creates an item from a string which holds an item type name. If the string
  * does not match one of the known item names, this function returns a null pointer.
  */
-Item* Item::createItem(QString itemType, QObject* parent)
+Item *Item::createItem(const QString &itemType, QObject *parent)
 {
     if (itemType == "Image") {
         return new Image(parent);

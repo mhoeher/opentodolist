@@ -141,6 +141,14 @@ image::flatpak:
 ################################################################################
 
 
+# Run cppcheck static code checker:
+appimage:
+  stage: build
+  image: fedora
+  script:
+    - ci/cppcheck.sh
+
+
 # Ubuntu build including AppImage
 appimage:
   stage: build

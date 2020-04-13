@@ -186,7 +186,7 @@ private:
     bool pullEntry(SyncEntry& entry, QSqlDatabase& db);
     bool removeLocalEntry(SyncEntry& entry, QSqlDatabase& db);
     bool pushEntry(SyncEntry& entry, QSqlDatabase& db);
-    bool removeRemoteEntry(SyncEntry& entry, QSqlDatabase& db);
+    bool removeRemoteEntry(const SyncEntry &entry, QSqlDatabase& db);
     bool skipEntry(const SyncEntry &entry, SyncStepDirection direction,
                    const QRegularExpression &dirFilter);
 };

@@ -2,6 +2,7 @@
 #define GETITEMSQUERY_H
 
 #include <functional>
+#include <iterator>
 
 #include <QObject>
 
@@ -20,7 +21,7 @@ class GetItemsQuery : public ItemsQuery
 public:
     class ChildrenGenerator;
 
-    class ChildrenIterator
+    class ChildrenIterator : public std::iterator<std::forward_iterator_tag, ItemPtr>
     {
         friend class ChildrenGenerator;
     public:
@@ -30,6 +31,7 @@ public:
         const ItemPtr& operator*() const;
         ChildrenIterator& operator ++();
         bool operator !=(const ChildrenIterator &other);
+        bool operator==(const ChildrenIterator &other);
 
     private:
         QLMDB::Cursor *m_childrenCursor;

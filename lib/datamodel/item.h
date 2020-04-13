@@ -126,7 +126,7 @@ public:
 
     static Item *createItem(QVariantMap map, QObject *parent = nullptr);
     static Item *createItem(QVariant variant, QObject *parent = nullptr);
-    static Item *createItem(QString itemType, QObject *parent = nullptr);
+    static Item *createItem(const QString &itemType, QObject *parent = nullptr);
     static Item *createItemFromFile(QString filename, QObject *parent = nullptr);
 
     ItemCacheEntry encache() const;
@@ -207,7 +207,6 @@ private:
     void onItemDataLoadedFromCache(const QVariant &entry);
     void onChanged();
     void setUpdateAt();
-
 };
 
 typedef QSharedPointer<Item> ItemPtr;

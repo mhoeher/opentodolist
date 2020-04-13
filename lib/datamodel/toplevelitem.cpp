@@ -67,7 +67,6 @@ void TopLevelItem::setColor(const Color &color)
 void TopLevelItem::setColor(const QString& color)
 {
     QMetaEnum e = QMetaEnum::fromType<Color>();
-    QString currentColor = e.valueToKey(m_color);
     bool ok;
     Color c = static_cast<Color>(e.keysToValue(qUtf8Printable(color), &ok));
     if (ok) {

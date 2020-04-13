@@ -704,8 +704,7 @@ bool WebDAVClient::pushEntry(
 /**
  * @brief Remove an entry on the server.
  */
-bool WebDAVClient::removeRemoteEntry(
-        WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
+bool WebDAVClient::removeRemoteEntry(const WebDAVClient::SyncEntry &entry, QSqlDatabase &db)
 {
     qCDebug(log) << "Removing" << entry.path() << "remotely";
     emit debug(tr("Removing remote entry '%1'").arg(entry.path()));

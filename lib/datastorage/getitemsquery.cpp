@@ -271,6 +271,11 @@ bool GetItemsQuery::ChildrenIterator::operator !=(const GetItemsQuery::ChildrenI
     return m_item || other.m_item;
 }
 
+bool GetItemsQuery::ChildrenIterator::operator==(const GetItemsQuery::ChildrenIterator &other)
+{
+    return !(*this != other);
+}
+
 GetItemsQuery::ChildrenIterator GetItemsQuery::ChildrenGenerator::begin()
 {
     auto childrenCursor = new QLMDB::Cursor(*m_query->m_transaction,

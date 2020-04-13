@@ -13,7 +13,7 @@ class SyncJob;
 class SyncRunner : public QRunnable
 {
 public:
-    SyncRunner(SyncJob *job);
+    explicit SyncRunner(SyncJob *job);
     virtual ~SyncRunner();
 
     // QRunnable interface

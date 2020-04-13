@@ -491,14 +491,11 @@ std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn
                             result = true;
                             break;
                         } else {
-                            for (auto task :
-                                 query->childrenOf(todo->uid())) {
-                                if (itemMatches(task, words)) {
-                                    result = true;
-                                    break;
-                                }
-                            }
-                            if (result) {
+                            auto tasks = query->childrenOf(todo->uid());
+                            if (std::any_of(tasks.begin(), tasks.end(), [=](const ItemPtr task) {
+                                    return itemMatches(task, words);
+                                })) {
+                                result = true;
                                 break;
                             }
                         }
@@ -506,21 +503,17 @@ std::function<bool (ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn
                 } else {
                     auto todo = item.dynamicCast<Todo>();
                     if (todo) {
-                        for (auto task : query->childrenOf(todo->uid())) {
-                            if (itemMatches(task, words)) {
-                                result = true;
-                                break;
-                            }
-                        }
+                        auto tasks = query->childrenOf(todo->uid());
+                        result = std::any_of(tasks.begin(), tasks.end(), [=](const ItemPtr task) {
+                            return itemMatches(task, words);
+                        });
                     } else {
                         auto note = item.dynamicCast<Note>();
                         if (note) {
-                            for (auto page : query->childrenOf(note->uid())) {
-                                if (itemMatches(page, words)) {
-                                    result = true;
-                                    break;
-                                }
-                            }
+                            auto pages = query->childrenOf(note->uid());
+                            result = std::any_of(
+                                    pages.begin(), pages.end(),
+                                    [=](const ItemPtr page) { return itemMatches(page, words); });
                         }
                     }
                 }
@@ -552,8 +545,8 @@ void ItemsModel::update(QVariantList items)
             delete item;
             idsToDelete.remove(id);
         } else {
-            auto item = Item::decache(data, this);
-            newItems << item;
+            auto item_ = Item::decache(data, this);
+            newItems << item_;
         }
     }
 

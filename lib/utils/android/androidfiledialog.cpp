@@ -5,9 +5,11 @@
 #include <QUrl>
 #include <QVariant>
 
-AndroidFileDialog::AndroidFileDialog(QObject *parent) : QObject(parent),
-    m_receiver(new ResultReceiver(this)),
-    m_type(SelectFile)
+AndroidFileDialog::AndroidFileDialog(QObject *parent)
+    : QObject(parent),
+      m_receiver(new ResultReceiver(this)),
+      m_resultReceiver(nullptr),
+      m_type(SelectFile)
 {
 }
 
@@ -33,8 +35,10 @@ QObject *AndroidFileDialog::receiver() const
 
 void AndroidFileDialog::setReceiver(QObject *receiver)
 {
+    m_resultReceiver = receiver;
     if (m_resultReceiver != receiver) {
         m_resultReceiver = receiver;
+        emit receiverChanged();
     }
 }
 
@@ -147,12 +151,14 @@ void AndroidFileDialog::ResultReceiver::handleActivityResult(
             QAndroidJniObject uri = data.callObjectMethod(
                         "getData", "()Landroid/net/Uri;");
             path = uriToPath(uri);
+            break;
         }
         case EXISTING_IMAGE_NAME_REQUEST:
         {
             QAndroidJniObject uri = data.callObjectMethod(
                         "getData", "()Landroid/net/Uri;");
             path = uriToPath(uri);
+            break;
         }
         }
     }

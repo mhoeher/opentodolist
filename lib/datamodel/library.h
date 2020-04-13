@@ -104,9 +104,9 @@ public:
 
     QUuid uid() const;
     QStringList tags() const;
-    void setTags(QStringList tags);
+    void setTags(const QStringList &tags);
 
-    void fromJson(const QByteArray data);
+    void fromJson(const QByteArray &data);
 
     bool hasSynchronizer() const;
 

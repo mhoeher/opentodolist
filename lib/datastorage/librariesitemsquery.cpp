@@ -45,9 +45,8 @@ void LibrariesItemsQuery::run()
                             auto itemEntry = ItemCacheEntry::fromByteArray(
                                         data, item.key());
                             if (itemEntry.valid) {
-                                ItemPtr item(Item::decache(itemEntry));
-                                auto topLevelItem = item.objectCast<
-                                        TopLevelItem>();
+                                ItemPtr item_(Item::decache(itemEntry));
+                                auto topLevelItem = item_.objectCast<TopLevelItem>();
                                 if (topLevelItem != nullptr) {
                                     for (auto tag : topLevelItem->tags()) {
                                         tags.insert(tag);

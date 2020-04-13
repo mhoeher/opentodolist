@@ -78,26 +78,19 @@ LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray &data, const
 /**
    @brief Set the name of the library.
  */
-Library::Library(QObject* parent) : QObject(parent),
-    m_uid(QUuid::createUuid()),
-    m_name(),
-    m_directory(),
-    m_itemDataChanged(false)
-{
-    connect(this, &Library::uidChanged,
-            this, &Library::changed);
-    connect(this, &Library::nameChanged,
-            this, &Library::changed);
-    connect(this, &Library::tagsChanged,
-            this, &Library::changed);
-    connect(this, &Library::changed,
-            this, &Library::onChanged);
-}
+Library::Library(QObject *parent) : Library(QString(), parent) {}
 
-Library::Library(const QString& directory, QObject* parent) :
-    Library(parent)
+Library::Library(const QString &directory, QObject *parent)
+    : QObject(parent),
+      m_uid(QUuid::createUuid()),
+      m_name(),
+      m_directory(directory),
+      m_itemDataChanged(false)
 {
-    m_directory = directory;
+    connect(this, &Library::uidChanged, this, &Library::changed);
+    connect(this, &Library::nameChanged, this, &Library::changed);
+    connect(this, &Library::tagsChanged, this, &Library::changed);
+    connect(this, &Library::changed, this, &Library::onChanged);
 }
 
 Library::~Library()
@@ -380,7 +373,7 @@ QStringList Library::tags() const
     return m_tags;
 }
 
-void Library::setTags(QStringList tags)
+void Library::setTags(const QStringList &tags)
 {
     m_tags = tags;
     emit tagsChanged();
@@ -390,7 +383,7 @@ void Library::setTags(QStringList tags)
 /**
  * @brief Initialize the propertoes of the library from the JSON @p data.
  */
-void Library::fromJson(const QByteArray data)
+void Library::fromJson(const QByteArray &data)
 {
     auto doc = QJsonDocument::fromJson(data);
     if (doc.isObject()) {
