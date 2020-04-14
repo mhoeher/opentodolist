@@ -1,4 +1,4 @@
-FROM fedora:30
+FROM fedora:rawhide
 
 RUN \
 \
@@ -7,8 +7,8 @@ RUN \
         findutils \
         make \
         ninja-build \
-        python3 \
         python \
+        python2 \
         git \
         wget \
         \
@@ -41,6 +41,7 @@ RUN \
         mingw32-qt5-qtwebsockets \
         mingw32-qt5-qtwinextras \
         mingw32-qt5-qtxmlpatterns \
+        mingw32-angleproject \
         mingw32-nsis \
         mingw32-nsiswrapper \
         \
