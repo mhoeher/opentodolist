@@ -4,12 +4,25 @@ ADD qt-installer-script.js /
 
 RUN \
     apt-get update && \
-    apt-get install -y software-properties-common wget curl && \
+    apt-get install -y \
+        software-properties-common \
+        wget \
+        curl && \
     wget http://ftp.de.debian.org/debian/pool/main/p/patchelf/patchelf_0.8-2_amd64.deb && \
     dpkg -i patchelf_0.8-2_amd64.deb && \
     rm patchelf_0.8-2_amd64.deb && \
+    add-apt-repository -y ppa:beineri/opt-qt-5.14.1-xenial && \
     apt-get update && \
     apt-get install -y \
+        qt514base \
+        qt514declarative \
+        qt514imageformats \
+        qt514quickcontrols2 \
+        qt514svg \
+        qt514translations \
+        qt514wayland \
+        qt514x11extras \
+        qt514tools \
         build-essential \
         libfontconfig1 \
         desktop-file-utils \
@@ -29,13 +42,7 @@ RUN \
         libxkbcommon-x11-0 \
         libodbc1 \
         libpq5 \
-        && \
-    wget http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run && \
-    chmod +x qt-unified-linux-x64-online.run && \
-    ./qt-unified-linux-x64-online.run --script qt-installer-script.js \
-        --platform minimal --no-force-installations -v && \
-    rm qt-unified-linux-x64-online.run \
     && \
     apt-get clean
 
-ENV QT_ROOT /opt/Qt/5.13.1/gcc_64
+ENV QT_ROOT /opt/qt514

@@ -11,18 +11,18 @@ apt-get install -y \
     libgl1-mesa-dev \
     git \
     qtbase5-dev
-add-apt-repository -y ppa:beineri/opt-qt-5.13.2-bionic
+add-apt-repository -y ppa:beineri/opt-qt-5.14.1-bionic
 apt -y update
 apt-get install -y \
-    qt513base \
-    qt513declarative \
-    qt513imageformats \
-    qt513quickcontrols2 \
-    qt513svg \
-    qt513translations \
-    qt513wayland \
-    qt513x11extras \
-    qt513tools
+    qt514base \
+    qt514declarative \
+    qt514imageformats \
+    qt514quickcontrols2 \
+    qt514svg \
+    qt514translations \
+    qt514wayland \
+    qt514x11extras \
+    qt514tools
 mkdir -p build-snapcraft
 cd build-snapcraft
 /opt/qt5*/bin/qmake \
