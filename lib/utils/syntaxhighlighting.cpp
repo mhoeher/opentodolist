@@ -19,12 +19,13 @@
 
 #include "syntaxhighlighting.h"
 
+#include <QDebug>
+
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/repository.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/syntaxhighlighter.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
 
-#include <QDebug>
 
 /**
  * @brief Constructor.
