@@ -1,7 +1,5 @@
 FROM ubuntu:xenial
 
-ADD qt-installer-script.js /
-
 RUN \
     apt-get update && \
     apt-get install -y \

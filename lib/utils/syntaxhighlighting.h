@@ -23,15 +23,10 @@
 #include <QObject>
 #include <QQuickTextDocument>
 
-#ifdef HAVE_KF5_SYNTAX_HIGHLIGHTING
-#    include <KF5/KSyntaxHighlighting/SyntaxHighlighter>
-#    include <KF5/KSyntaxHighlighting/Repository>
-#else
 namespace KSyntaxHighlighting {
 class SyntaxHighlighter;
 class Repository;
 }
-#endif
 
 /**
  * @brief Syntax highligher for QML.

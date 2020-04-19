@@ -43,7 +43,9 @@
 #    include <QApplication>
 #endif
 
-#include "../lib/opentodolist_version.h"
+#ifndef OPENTODOLIST_VERSION
+#    include "../lib/opentodolist_version.h"
+#endif
 #include "utils/translations.h"
 
 int main(int argc, char *argv[])

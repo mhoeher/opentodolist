@@ -51,12 +51,6 @@ with_appimage_extras {
     WITH_APPIMAGE_EXTRAS_FLAG = "Disabled"
 }
 
-qtHaveModule(KSyntaxHighlighting) {
-    WITH_KDE_SYNTAX_HIGHLIGHTING_FLAGS = "Enabled"
-} else {
-    WITH_KDE_SYNTAX_HIGHLIGHTING_FLAGS = "Disabled"
-}
-
 
 defineTest(setupTest) {
 

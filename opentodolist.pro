@@ -26,7 +26,7 @@ SUBDIRS += \
 lib.depends += 3rdparty
 app.depends += lib
 
-!ios {
+!ios:!android {
     SUBDIRS += test
     test.depends += lib
 }
@@ -61,7 +61,6 @@ message("    Update Service:         $$WITH_UPDATE_SERVICE_FLAG")
 message("    Test against NextCloud: $$WITH_NEXTCLOUD_TEST_FLAG")
 message("    Test against ownCloud:  $$WITH_OWNCLOUD_TEST_FLAG")
 message("    AppImage Extras:        $$WITH_APPIMAGE_EXTRAS_FLAG")
-message("    KDE Syntax Highlighter: $$WITH_KDE_SYNTAX_HIGHLIGHTING_FLAGS")
 
 
 include(appimage.pri)

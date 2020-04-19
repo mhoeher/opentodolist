@@ -20,31 +20,6 @@ if [ -n "$CI" ]; then
         NEXTCLOUD_URL=http://admin:admin@nextcloud/
         OWNCLOUD_URL=http://admin:admin@owncloud/
     "
-
-    # Install ECM:
-    pushd 3rdparty/KDE/extra-cmake-modules
-    mkdir -p build-ubuntu
-    cd build-ubuntu
-    cmake \
-        -DCMAKE_PREFIX_PATH=$PREFIX_PATH \
-        -DCMAKE_INSTALL_PREFIX=$QT_ROOT \
-        -GNinja ..
-    cmake --build .
-    cmake --build . --target install
-    popd
-
-    # Install KDE syntax highlighting
-    pushd 3rdparty/KDE/syntax-highlighting/
-    mkdir -p build-ubuntu
-    cd build-ubuntu
-    cmake \
-        -DCMAKE_PREFIX_PATH=$PREFIX_PATH \
-        -DCMAKE_INSTALL_PREFIX=$QT_ROOT \
-        -DKDE_INSTALL_LIBDIR=$QT_ROOT/lib \
-        -GNinja ..
-    cmake --build .
-    cmake --build . --target install
-    popd
 fi
 
 which cmake || (apt-get update && apt-get install -y cmake)

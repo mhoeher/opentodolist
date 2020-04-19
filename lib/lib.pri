@@ -12,4 +12,9 @@ win32:CONFIG(release, debug|release) {
     LIBS *= -L$$shadowed($$PWD)
 }
 
-LIBS *= -lopentodolist-core
+android:versionAtLeast(QT_VERSION, 5.14.0) {
+    # Link against right architecture version starting with Qt 5.14 for Android
+    LIBS *= -lopentodolist-core_$$QT_ARCH
+} else {
+    LIBS *= -lopentodolist-core
+}
