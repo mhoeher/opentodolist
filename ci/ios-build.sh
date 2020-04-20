@@ -9,7 +9,7 @@ mkdir -p build-ios
 pushd build-ios
 $QMAKE \
     -spec macx-ios-clang \
-    CONFIG+=release \
+    -config release \
     CONFIG+=iphoneos \
     CONFIG+=device \
     ..

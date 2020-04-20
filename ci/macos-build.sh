@@ -18,7 +18,7 @@ mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
 $QTSDK/bin/qmake \
-    CONFIG+=release \
+    -config release \
     CONFIG+=with_update_service \
     CONFIG+=qlmdb_with_static_libs \
     ..

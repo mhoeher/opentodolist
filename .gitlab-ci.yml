@@ -285,6 +285,7 @@ sign_apks:
         - android_x64
         - android_armv7
         - android_arm64_v8a
+        - android_aab
 
 ################################################################################
 # Deploy Stage

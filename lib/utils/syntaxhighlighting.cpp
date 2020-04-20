@@ -26,7 +26,6 @@
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/syntaxhighlighter.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
 
-
 /**
  * @brief Constructor.
  */
