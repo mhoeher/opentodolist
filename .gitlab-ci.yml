@@ -193,7 +193,7 @@ android_armv7:
     - ci/android-build.sh
   artifacts:
     paths:
-      - build-android/OpenTodoList-Android-armv7.apk
+      - build-android/OpenTodoList-Android-armeabi-v7a.apk
     expire_in: 1 week
   variables:
     ANDROID_ABIS: armeabi-v7a
@@ -207,7 +207,7 @@ android_arm64_v8a:
     - ci/android-build.sh
   artifacts:
     paths:
-      - build-android/OpenTodoList-Android-arm64_v8a.apk
+      - build-android/OpenTodoList-Android-arm64-v8a.apk
     expire_in: 1 week
   variables:
     ANDROID_ABIS: arm64-v8a
@@ -278,7 +278,8 @@ sign_apks:
         - ci/sign-apks.sh
     artifacts:
       paths:
-        - build-android-*/*-aligned.apk
+        - build-android/*-aligned.apk
+        - build-android/*-aligned.aab
       expire_in: 1 week
     dependencies:
         - android_x86

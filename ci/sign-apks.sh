@@ -3,7 +3,7 @@
 set -e
 
 pushd build-android
-for arch in armv7 arm64_v8a x86 x86_64; do
+for arch in armeabi-v7a arm64-v8a x86_64 x86; do
     jarsigner \
         -sigalg SHA1withRSA \
         -digestalg SHA1 \
