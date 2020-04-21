@@ -74,14 +74,8 @@ INSTALLS += target
 
 OTHER_FILES += $$files(android/*,true)
 
-
-contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-    OPENSSL_PREBUILD_DIR = \
-        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18
-}
-contains(ANDROID_TARGET_ARCH,x86) {
-    OPENSSL_PREBUILD_DIR = \
-        $$PWD/../pre-build/android/openssl/x86-4.9-api-18/
+android {
+    QT += androidextras
 }
 
 TRANSLATIONS += \
