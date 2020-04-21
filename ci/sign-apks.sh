@@ -2,6 +2,11 @@
 
 set -e
 
+# Note: Starting from some recent (2020-04-21) Android SDK release,
+# we have to run zipalign twice: The first round will fail, when we
+# rerun on the intermediate file, it succeeds. See also
+# this SO post: https://stackoverflow.com/a/38074885/6367098
+
 pushd build-android
 for arch in armeabi-v7a arm64-v8a x86_64 x86; do
     jarsigner \
@@ -13,8 +18,11 @@ for arch in armeabi-v7a arm64-v8a x86_64 x86; do
     $ANDROID_SDK_ROOT/build-tools/*/zipalign \
         -v 4 \
         OpenTodoList-Android-${arch}.apk \
-        OpenTodoList-Android-${arch}-aligned.apk \
-        || echo "Warning: zipalign verification failed"
+        OpenTodoList-Android-${arch}-tmp.apk || true
+    $ANDROID_SDK_ROOT/build-tools/*/zipalign \
+        -v 4 \
+        OpenTodoList-Android-${arch}-tmp.apk \
+        OpenTodoList-Android-${arch}-aligned.apk
 done
 jarsigner \
     -sigalg SHA1withRSA \
@@ -25,6 +33,9 @@ jarsigner \
 $ANDROID_SDK_ROOT/build-tools/*/zipalign \
     -v 4 \
     OpenTodoList-Android.aab \
-    OpenTodoList-Android-aligned.aab \
-    || echo "Warning: zipalign verification failed"
+    OpenTodoList-Android-tmp.aab || true
+$ANDROID_SDK_ROOT/build-tools/*/zipalign \
+    -v 4 \
+    OpenTodoList-Android-tmp.aab \
+    OpenTodoList-Android-aligned.aab
 popd
