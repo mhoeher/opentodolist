@@ -13,7 +13,8 @@ for arch in armeabi-v7a arm64-v8a x86_64 x86; do
     $ANDROID_SDK_ROOT/build-tools/*/zipalign \
         -v 4 \
         OpenTodoList-Android-${arch}.apk \
-        OpenTodoList-Android-${arch}-aligned.apk
+        OpenTodoList-Android-${arch}-aligned.apk \
+        || echo "Warning: zipalign verification failed"
 done
 jarsigner \
     -sigalg SHA1withRSA \
@@ -24,5 +25,6 @@ jarsigner \
 $ANDROID_SDK_ROOT/build-tools/*/zipalign \
     -v 4 \
     OpenTodoList-Android.aab \
-    OpenTodoList-Android-aligned.aab
+    OpenTodoList-Android-aligned.aab \
+    || echo "Warning: zipalign verification failed"
 popd
