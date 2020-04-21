@@ -273,7 +273,7 @@ sign_apks:
     stage: installer
     tags:
         - OpenTodoListPrivate
-    image: $ANDROID_BASE_IMAGE
+    image: $ANDROID_IMAGE
     script:
         - ci/sign-apks.sh
     artifacts:
