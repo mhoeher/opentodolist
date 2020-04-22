@@ -28,6 +28,6 @@ jarsigner \
     OpenTodoList.aab "$OPENTODOLIST_KEYSTORE_ALIAS"
 $ANDROID_SDK_ROOT/build-tools/*/zipalign \
     -v 4 \
-    OpenTodoList-Android.aab \
-    OpenTodoList-Android-aligned.aab
+    OpenTodoList.aab \
+    OpenTodoList-aligned.aab
 popd
