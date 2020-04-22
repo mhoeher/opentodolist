@@ -36,7 +36,7 @@ if [ `echo "$ANDROID_ABIS" | wc -w` -gt 1 ]; then
         --release \
         --deployment bundled \
         --input app/android-OpenTodoList-deployment-settings.json
-    cp android/build/outputs/bundle/release/android-build-release.aab \
+    cp android/build/outputs/bundle/release/android-release.aab \
         OpenTodoList.aab
 else
     # Building a single APK
