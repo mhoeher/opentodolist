@@ -18,10 +18,6 @@ for arch in armeabi-v7a arm64-v8a x86_64 x86; do
     $ANDROID_SDK_ROOT/build-tools/*/zipalign \
         -v 4 \
         OpenTodoList-Android-${arch}.apk \
-        OpenTodoList-Android-${arch}-tmp.apk || true
-    $ANDROID_SDK_ROOT/build-tools/*/zipalign \
-        -v 4 \
-        OpenTodoList-Android-${arch}-tmp.apk \
         OpenTodoList-Android-${arch}-aligned.apk
 done
 jarsigner \
@@ -33,9 +29,5 @@ jarsigner \
 $ANDROID_SDK_ROOT/build-tools/*/zipalign \
     -v 4 \
     OpenTodoList-Android.aab \
-    OpenTodoList-Android-tmp.aab || true
-$ANDROID_SDK_ROOT/build-tools/*/zipalign \
-    -v 4 \
-    OpenTodoList-Android-tmp.aab \
     OpenTodoList-Android-aligned.aab
 popd
