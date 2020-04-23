@@ -26,10 +26,17 @@ if [ `echo "$ANDROID_ABIS" | wc -w` -gt 1 ]; then
         ../app/android/AndroidManifest.xml 0
     python ../bin/set-android-version-name \
         ../app/android/AndroidManifest.xml "$OTL_VERSION"
-    pushd app
-    make aab
-    popd
-    cp ./app/android-build/build/outputs/bundle/release/android-build-release.aab \
+    make install INSTALL_ROOT=$PWD/android
+    rm -f $PWD/android/libs/*/libtst*.so # Remove unit tests
+    androiddeployqt \
+        --output $PWD/android \
+        --verbose \
+        --aab \
+        --gradle \
+        --release \
+        --deployment bundled \
+        --input app/android-OpenTodoList-deployment-settings.json
+    cp android/build/outputs/bundle/release/android-release.aab \
         OpenTodoList.aab
 else
     # Building a single APK
@@ -55,9 +62,15 @@ else
         ../app/android/AndroidManifest.xml $VERSION_OFFSET
     python ../bin/set-android-version-name \
         ../app/android/AndroidManifest.xml "$OTL_VERSION"
-    pushd app
-    make apk
-    popd
-    cp app/android-build/build/outputs/apk/debug/android-build-debug.apk \
-       OpenTodoList-Android-$ANDROID_ABIS.apk
+    make install INSTALL_ROOT=$PWD/android
+    rm -f $PWD/android/libs/*/libtst*.so # Remove unit tests
+    androiddeployqt \
+        --output $PWD/android \
+        --verbose \
+        --gradle \
+        --release \
+        --deployment bundled \
+        --input app/android-OpenTodoList-deployment-settings.json
+    cp android/build/outputs/apk/release/android-release-unsigned.apk \
+        OpenTodoList-Android-${ANDROID_ABIS}.apk
 fi

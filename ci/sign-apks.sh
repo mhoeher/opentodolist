@@ -2,8 +2,13 @@
 
 set -e
 
+# Note: Starting from some recent (2020-04-21) Android SDK release,
+# we have to run zipalign twice: The first round will fail, when we
+# rerun on the intermediate file, it succeeds. See also
+# this SO post: https://stackoverflow.com/a/38074885/6367098
+
 pushd build-android
-for arch in armv7 arm64_v8a x86 x86_64; do
+for arch in armeabi-v7a arm64-v8a x86_64 x86; do
     jarsigner \
         -sigalg SHA1withRSA \
         -digestalg SHA1 \
@@ -23,6 +28,6 @@ jarsigner \
     OpenTodoList.aab "$OPENTODOLIST_KEYSTORE_ALIAS"
 $ANDROID_SDK_ROOT/build-tools/*/zipalign \
     -v 4 \
-    OpenTodoList-Android.aab \
-    OpenTodoList-Android-aligned.aab
+    OpenTodoList.aab \
+    OpenTodoList-aligned.aab
 popd

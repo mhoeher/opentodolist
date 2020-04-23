@@ -36,7 +36,7 @@ codesign -v app/OpenTodoList.app
 # Prepare a "beautified" folder:
 cd app
 mkdir dmg.in
-rsync -a OpenTodoList.app dmg.in/
+cp -r OpenTodoList.app dmg.in
 cp ../../templates/macos/DS_Store ./dmg.in/.DS_Store
 cd dmg.in
 ln -s /Applications ./Applications
