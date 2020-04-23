@@ -197,6 +197,7 @@ android_armv7:
     expire_in: 1 week
   variables:
     ANDROID_ABIS: armeabi-v7a
+    ANDROID_NDK_PLATFORM: android-21
 
 
 # Android build ARM64
@@ -211,6 +212,7 @@ android_arm64_v8a:
     expire_in: 1 week
   variables:
     ANDROID_ABIS: arm64-v8a
+    ANDROID_NDK_PLATFORM: android-21
 
 
 # Android build x86
@@ -225,6 +227,7 @@ android_x86:
     expire_in: 1 week
   variables:
     ANDROID_ABIS: x86
+    ANDROID_NDK_PLATFORM: android-21
 
 
 # Android build x86_64
@@ -239,6 +242,7 @@ android_x64:
     expire_in: 1 week
   variables:
     ANDROID_ABIS: x86_64
+    ANDROID_NDK_PLATFORM: android-21
 
 # Android AAB
 android_aab:
@@ -252,6 +256,7 @@ android_aab:
     expire_in: 1 week
   variables:
     ANDROID_ABIS: "armeabi-v7a arm64-v8a x86 x86_64"
+    ANDROID_NDK_PLATFORM: android-21
 
 # Build the app as Flatpak
 flatpak:
