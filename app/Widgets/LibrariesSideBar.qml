@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.12
+import Qt.labs.settings 1.0
 
 import "../Components"
 import "../Fonts"
@@ -73,6 +74,40 @@ Pane {
             return !!lib && !!sidebar.currentLibrary &&
                     lib.uid === sidebar.currentLibrary.uid;
         }
+
+        property var collapsedLibraries: []
+
+        function collapse(library) {
+            let ids = [];
+            let append = true;
+            for (let i = 0; i < d.collapsedLibraries.length; ++i) {
+                let id = d.collapsedLibraries[i];
+                if (id === library.uid.toString()) {
+                    append = false;
+                }
+                ids.push(id);
+            }
+            if (append) {
+                ids.push(library.uid.toString());
+            }
+            d.collapsedLibraries = ids;
+        }
+
+        function expand(library) {
+            let ids = [];
+            for (let i = 0; i < d.collapsedLibraries.length; ++i) {
+                let id = d.collapsedLibraries[i];
+                if (id !== library.uid.toString()) {
+                    ids.push(id);
+                }
+            }
+            d.collapsedLibraries = ids;
+        }
+    }
+
+    Settings {
+        category: "LibrariesSideBar"
+        property alias collapsedLibraries: d.collapsedLibraries
     }
 
     ScrollView {
@@ -94,17 +129,26 @@ Pane {
                 delegate: Column {
                     id: librarySection
 
+                    readonly property bool collapsed: {
+                        for (var i = 0; i < d.collapsedLibraries.length; ++i) {
+                            if (d.collapsedLibraries[i] === library.uid.toString()) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+
                     width: parent.width
 
                     LibrarySideBarButton {
-                        indent: 1
                         text: library.name
                         bold: true
-                        symbol: library.hasSynchronizer ?
-                                    Icons.faCloud :
-                                    Icons.faFolderOpen
+                        symbol: librarySection.collapsed ?
+                                    Icons.faChevronRight :
+                                    Icons.faChevronDown
                         highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === ""
+                        symbolIsClickable: true
                         onClicked: {
                             currentLibrary = library;
                             currentTag = "";
@@ -113,12 +157,20 @@ Pane {
                             settingsVisible = false;
                             sidebar.close();
                         }
+                        onSymbolClicked: {
+                            if (librarySection.collapsed) {
+                                d.expand(library);
+                            } else {
+                                d.collapse(library);
+                            }
+                        }
                     }
 
                     LibrarySideBarButton {
-                        indent: 2
+                        indent: 1
                         text: qsTr("Schedule")
                         symbol: Icons.faClock
+                        visible: !librarySection.collapsed
                         highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === "schedule"
                         onClicked: {
@@ -134,7 +186,8 @@ Pane {
                     Repeater {
                         model: library.tags
                         delegate: LibrarySideBarButton {
-                            indent: 2
+                            indent: 1
+                            visible: !librarySection.collapsed
                             text: modelData
                             symbol: Icons.faTag
                             highlighted: d.isSelectedLibrary(library) &&
