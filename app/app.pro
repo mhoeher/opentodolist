@@ -23,6 +23,12 @@ RESOURCES += \
     qml.qrc \
     res.qrc
 
+# Do not strip files from resources (which causes e.g. the app from no longer starting if the Qt
+# version got updated). See https://gitlab.com/rpdev/opentodolist/-/issues/324.
+QTQUICK_COMPILER_RETAINED_RESOURCES += \
+    qml.qrc \
+    res.qrc
+
 !ios:!android {
     include(../3rdparty/SingleApplication/singleapplication.pri)
     DEFINES += OTL_USE_SINGLE_APPLICATION QAPPLICATION_CLASS=QApplication
