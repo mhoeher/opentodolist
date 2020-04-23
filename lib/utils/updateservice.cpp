@@ -26,7 +26,9 @@
 #include <QTimer>
 #include <QVersionNumber>
 
-#include "opentodolist_version.h"
+#ifndef OPENTODOLIST_VERSION
+#    include "opentodolist_version.h"
+#endif
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.UpdateService", QtDebugMsg)
 

@@ -30,30 +30,6 @@ else
         /usr/$MXE_DIR/sys-root/mingw/bin/libssl-1_1.dll"
 fi
 
-if [ -n "$CI" ]; then
-    # Install ECM
-    pushd 3rdparty/KDE/extra-cmake-modules
-    mkdir -p $BUILD_DIR
-    cd $BUILD_DIR
-    $CMAKE -GNinja ..
-    cmake --build .
-    cmake --build . --target install
-    popd
-
-    # Install KDE syntax highlighting
-    pushd 3rdparty/KDE/syntax-highlighting
-    mkdir -p $BUILD_DIR
-    cd $BUILD_DIR
-    $CMAKE -GNinja -DKF5_HOST_TOOLING=/usr ..
-    cmake --build .
-    cmake --build . --target install
-    sed -i \
-        -e 's#INTERFACE_INCLUDE_DIRECTORIES "/usr/i686-w64-mingw32/sys-root/mingw/include/KF5/KSyntaxHighlighting;/usr/i686-w64-mingw32/sys-root/mingw/include/KF5;/usr/i686-w64-mingw32/sys-root/mingw/include"#INTERFACE_INCLUDE_DIRECTORIES "/usr/i686-w64-mingw32/sys-root/mingw/include/KF5/KSyntaxHighlighting;/usr/i686-w64-mingw32/sys-root/mingw/include/KF5"#g' \
-        -e 's#INTERFACE_INCLUDE_DIRECTORIES "/usr/x86_64-w64-mingw32/sys-root/mingw/include/KF5/KSyntaxHighlighting;/usr/x86_64-w64-mingw32/sys-root/mingw/include/KF5;/usr/x86_64-w64-mingw32/sys-root/mingw/include"#INTERFACE_INCLUDE_DIRECTORIES "/usr/x86_64-w64-mingw32/sys-root/mingw/include/KF5/KSyntaxHighlighting;/usr/x86_64-w64-mingw32/sys-root/mingw/include/KF5"#g' \
-        /usr/$MXE_DIR/sys-root/mingw/lib/cmake/KF5SyntaxHighlighting/KF5SyntaxHighlightingTargets.cmake
-    popd
-fi
-
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 

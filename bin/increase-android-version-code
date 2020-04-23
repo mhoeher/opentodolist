@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python
 # QT-CI Project
 # License: Apache-2.0
 # https://github.com/benlau/qtci
@@ -23,7 +23,7 @@ if len(sys.argv) >= 3 and "CI_PIPELINE_IID" in os.environ:
     VERSIONCODE_OFFSET = 650
     vcode_offset = int(sys.argv[2])
     pipeline_iid = int(os.environ["CI_PIPELINE_IID"])
-    vcode = VERSIONCODE_OFFSET + (pipeline_iid - PIPELINE_OFFSET) * 4 + vcode_offset
+    vcode = VERSIONCODE_OFFSET + (pipeline_iid - PIPELINE_OFFSET) * 5 + vcode_offset
 
 
 dom1 = parse(manifest)

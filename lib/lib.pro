@@ -3,17 +3,10 @@ include(../config.pri)
 QT       += qml quick xml concurrent sql
 QT       -= gui
 
-
-qtHaveModule(KSyntaxHighlighting) {
-    QT += KSyntaxHighlighting
-    DEFINES += HAVE_KF5_SYNTAX_HIGHLIGHTING
-}
-
-
 TEMPLATE = lib
 TARGET = opentodolist-core
 CONFIG += c++11 create_prl
-macos|android:CONFIG += static
+macos:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models
 
@@ -28,7 +21,13 @@ win32 {
 } else {
     LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/
 }
-LIBS *= -lqlmdb
+android:versionAtLeast(QT_VERSION, 5.14.0) {
+    # On Android starting with v5.14, the Qt installation is multi arch,
+    # so we need to link explicitly against the correct QLMDB library:
+    LIBS *= -lqlmdb_$$QT_ARCH
+} else {
+    LIBS *= -lqlmdb
+}
 QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/
 
 SOURCES += \
@@ -69,7 +68,7 @@ SOURCES += \
     utils/keystore.cpp \
     utils/problem.cpp \
     utils/problemmanager.cpp \
-    utils/syntaxhighlighter.cpp \
+    utils/syntaxhighlighting.cpp \
     utils/translations.cpp \
     utils/updateservice.cpp \
 
@@ -112,7 +111,7 @@ HEADERS += \
     utils/keystore.h \
     utils/problem.h \
     utils/problemmanager.h \
-    utils/syntaxhighlighter.h \
+    utils/syntaxhighlighting.h \
     utils/translations.h \
     utils/updateservice.h \
 
@@ -155,3 +154,6 @@ config_libsecret {
     config_libsecret:DEFINES += HAVE_LIBSECRET
 
 }
+
+
+include(./qmake/kf5-syntax-highlighting.pri)

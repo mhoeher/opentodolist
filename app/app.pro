@@ -57,8 +57,6 @@ system(git describe --tags) {
     VERSION = 3.0.0-unknown
 }
 
-message("Building OpenTodoList v$$VERSION")
-
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
 
@@ -76,30 +74,9 @@ INSTALLS += target
 
 OTHER_FILES += $$files(android/*,true)
 
-
-contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-    OPENSSL_PREBUILD_DIR = \
-        $$PWD/../pre-build/android/openssl/arm-linux-androideabi-4.9-api-18
-}
-contains(ANDROID_TARGET_ARCH,x86) {
-    OPENSSL_PREBUILD_DIR = \
-        $$PWD/../pre-build/android/openssl/x86-4.9-api-18/
-}
 android {
-    exists($$OPENSSL_PREBUILD_DIR/libcrypto.so):
-    exists($$OPENSSL_PREBUILD_DIR/libssl.so) {
-        ANDROID_EXTRA_LIBS = \
-            $$OPENSSL_PREBUILD_DIR/libcrypto.so \
-            $$OPENSSL_PREBUILD_DIR/libssl.so
-        message("OpenSSL libraries for Android found - your build will support HTTPS")
-    } else {
-        warning("No prebuilt OpenSSL libraries found for Android.")
-        warning("Your build will not support HTTPS connections!")
-        warning("To fix this, build OpenSSL libraries and put them into")
-        warning("$$OPENSSL_PREBUILD_DIR")
-    }
+    QT += androidextras
 }
-
 
 TRANSLATIONS += \
     $$files(translations/*.ts)
@@ -122,3 +99,5 @@ ios {
 
 OTHER_FILES += \
     ios/exportOptions.plist
+
+include(qmake/qmake.pri)

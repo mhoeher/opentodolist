@@ -2,11 +2,7 @@ variables:
     WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
     WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
-    ANDROID_BASE_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-base
-    ANDROID_ARM_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-arm
-    ANDROID_ARM64_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-arm64
-    ANDROID_X86_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-x86
-    ANDROID_X64_IMAGE: registry.gitlab.com/rpdev/opentodolist:android-x64
+    ANDROID_IMAGE: registry.gitlab.com/rpdev/opentodolist:android
     FLATPAK_IMAGE: registry.gitlab.com/rpdev/opentodolist:flatpak
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
@@ -66,61 +62,18 @@ image::win64:
   when: manual
 
 
-# Build the Android Base Image
+# Build the Android Image
 image::android_base:
   stage: images
   image: docker:git
   services:
   - docker:dind
   script:
-    - cd ci/docker/android-base
+    - cd ci/docker/android
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $ANDROID_BASE_IMAGE .
-    - docker push $ANDROID_BASE_IMAGE
+    - docker build --pull -t $ANDROID_IMAGE .
+    - docker push $ANDROID_IMAGE
   when: manual
-
-
-# Build the Android ARM Image
-image::android_arm:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/android-arm
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $ANDROID_ARM_IMAGE .
-    - docker push $ANDROID_ARM_IMAGE
-  when: manual
-
-
-# Build the Android ARM64 Image
-image::android_arm64:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/android-arm64
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $ANDROID_ARM64_IMAGE .
-    - docker push $ANDROID_ARM64_IMAGE
-  when: manual
-
-
-# Build the Android x86 Image
-image::android_x86:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/android-x86
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $ANDROID_X86_IMAGE .
-    - docker push $ANDROID_X86_IMAGE
-  when: manual
-
 
 # Build the Flatpak Image
 image::flatpak:
@@ -235,49 +188,75 @@ ios:
 # Android build ARMv7
 android_armv7:
   stage: build
-  image: $ANDROID_ARM_IMAGE
+  image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
   artifacts:
     paths:
-      - build-android-armv7/OpenTodoList-Android-armv7.apk
+      - build-android/OpenTodoList-Android-armeabi-v7a.apk
     expire_in: 1 week
+  variables:
+    ANDROID_ABIS: armeabi-v7a
+    ANDROID_NDK_PLATFORM: android-21
 
 
 # Android build ARM64
 android_arm64_v8a:
   stage: build
-  image: $ANDROID_ARM64_IMAGE
+  image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
   artifacts:
     paths:
-      - build-android-arm64_v8a/OpenTodoList-Android-arm64_v8a.apk
+      - build-android/OpenTodoList-Android-arm64-v8a.apk
     expire_in: 1 week
+  variables:
+    ANDROID_ABIS: arm64-v8a
+    ANDROID_NDK_PLATFORM: android-21
 
 
 # Android build x86
 android_x86:
   stage: build
-  image: $ANDROID_X86_IMAGE
+  image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
   artifacts:
     paths:
-      - build-android-x86/OpenTodoList-Android-x86.apk
+      - build-android/OpenTodoList-Android-x86.apk
     expire_in: 1 week
+  variables:
+    ANDROID_ABIS: x86
+    ANDROID_NDK_PLATFORM: android-21
 
 
 # Android build x86_64
 android_x64:
   stage: build
-  image: $ANDROID_X64_IMAGE
+  image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
   artifacts:
     paths:
-      - build-android-x86_64/OpenTodoList-Android-x86_64.apk
+      - build-android/OpenTodoList-Android-x86_64.apk
     expire_in: 1 week
+  variables:
+    ANDROID_ABIS: x86_64
+    ANDROID_NDK_PLATFORM: android-21
+
+# Android AAB
+android_aab:
+  stage: build
+  image: $ANDROID_IMAGE
+  script:
+    - ci/android-build.sh
+  artifacts:
+    paths:
+      - build-android/OpenTodoList.aab
+    expire_in: 1 week
+  variables:
+    ANDROID_ABIS: "armeabi-v7a arm64-v8a x86 x86_64"
+    ANDROID_NDK_PLATFORM: android-21
 
 # Build the app as Flatpak
 flatpak:
@@ -299,18 +278,20 @@ sign_apks:
     stage: installer
     tags:
         - OpenTodoListPrivate
-    image: $ANDROID_BASE_IMAGE
+    image: $ANDROID_IMAGE
     script:
         - ci/sign-apks.sh
     artifacts:
       paths:
-        - build-android-*/*-aligned.apk
+        - build-android/*-aligned.apk
+        - build-android/*-aligned.aab
       expire_in: 1 week
     dependencies:
         - android_x86
         - android_x64
         - android_armv7
         - android_arm64_v8a
+        - android_aab
 
 ################################################################################
 # Deploy Stage

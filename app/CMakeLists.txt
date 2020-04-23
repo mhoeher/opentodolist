@@ -35,7 +35,7 @@ if(APPLE)
 endif()
 
 if(ANDROID)
-    add_library(OpenTodoList SHARED ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+    add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
     set(EXTRA_LIBS $<TARGET_FILE:qt5keychain>)
 
     set(
@@ -49,11 +49,6 @@ if(ANDROID)
     list(REMOVE_DUPLICATES ANDROID_EXTRA_LIBS)
     set(ANDROID_EXTRA_LIBS ${ANDROID_EXTRA_LIBS}
         CACHE INTERNAL "Extra libraries to include in APK" FORCE
-    )
-    qt_android_build_apk(
-        TARGET OpenTodoList
-        PACKAGE_NAME net.rpdev.opentodolist
-        QML_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}
     )
 else()
     add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
@@ -101,11 +96,7 @@ file(GLOB_RECURSE TS_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../lib/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../lib/*.h
 )
-set(TS_FILES
-    translations/opentodolist_en.ts
-    translations/opentodolist_de.ts
-    translations/opentodolist_fr.ts
-)
+file(GLOB TS_FILES translations/*.ts)
 qt5_create_translation(
     MESSAGES
     ${TS_SOURCE_FILES}

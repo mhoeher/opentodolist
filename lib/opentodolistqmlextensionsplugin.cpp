@@ -40,7 +40,7 @@
 #include "sync/webdavsynchronizer.h"
 
 #include "utils/updateservice.h"
-#include "utils/syntaxhighlighter.h"
+#include "utils/syntaxhighlighting.h"
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
 

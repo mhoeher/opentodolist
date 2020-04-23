@@ -2,7 +2,6 @@
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-add_subdirectory(application)
 add_subdirectory(cache)
 add_subdirectory(complexitem)
 add_subdirectory(item)

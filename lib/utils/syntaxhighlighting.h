@@ -17,21 +17,16 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef UTILS_SYNTAXHIGHLIGHTER_H_
-#define UTILS_SYNTAXHIGHLIGHTER_H_
+#ifndef UTILS_SYNTAXHIGHLIGHTING_H_
+#define UTILS_SYNTAXHIGHLIGHTING_H_
 
 #include <QObject>
 #include <QQuickTextDocument>
 
-#ifdef HAVE_KF5_SYNTAX_HIGHLIGHTING
-#    include <KF5/KSyntaxHighlighting/SyntaxHighlighter>
-#    include <KF5/KSyntaxHighlighting/Repository>
-#else
 namespace KSyntaxHighlighting {
 class SyntaxHighlighter;
 class Repository;
 }
-#endif
 
 /**
  * @brief Syntax highligher for QML.
@@ -71,4 +66,4 @@ private:
     void applyTheme();
 };
 
-#endif // UTILS_SYNTAXHIGHLIGHTER_H_
+#endif // UTILS_SYNTAXHIGHLIGHTING_H_

@@ -33,6 +33,7 @@ for dir in app lib test; do
         --linelength=100 \
         --quiet \
         --root=. \
+        --exclude=qmake \
         .; then
         success=1
     fi

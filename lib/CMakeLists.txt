@@ -18,6 +18,7 @@ set(LIB_HEADERS
     datamodel/item.h
     datamodel/library.h
     datamodel/note.h
+    datamodel/notepage.h
     datamodel/task.h
     datamodel/todo.h
     datamodel/todolist.h
@@ -37,6 +38,7 @@ set(LIB_HEADERS
     models/itemssortfiltermodel.h
     models/librariesmodel.h
     opentodolistqmlextensionsplugin.h
+    sync/account.h
     sync/synchronizer.h
     sync/syncjob.h
     sync/syncrunner.h
@@ -47,6 +49,9 @@ set(LIB_HEADERS
     utils/keystore.h
     utils/updateservice.h
     utils/syntaxhighlighter.h
+    utils/problem.h
+    utils/problemmanager.h
+    utils/translations.h
 
     ${LIB_HEADERS_ANDROID}
 )
@@ -58,6 +63,7 @@ set(LIB_SOURCES
     datamodel/item.cpp
     datamodel/library.cpp
     datamodel/note.cpp
+    datamodel/notepage.cpp
     datamodel/task.cpp
     datamodel/todo.cpp
     datamodel/todolist.cpp
@@ -77,6 +83,7 @@ set(LIB_SOURCES
     models/itemssortfiltermodel.cpp
     models/librariesmodel.cpp
     opentodolistqmlextensionsplugin.cpp
+    sync/account.cpp
     sync/synchronizer.cpp
     sync/syncjob.cpp
     sync/syncrunner.cpp
@@ -87,6 +94,9 @@ set(LIB_SOURCES
     utils/keystore.cpp
     utils/updateservice.cpp
     utils/syntaxhighlighter.cpp
+    utils/problem.cpp
+    utils/problemmanager.cpp
+    utils/translations.cpp
 
     ${LIB_SOURCES_ANDROID}
 

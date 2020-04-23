@@ -23,7 +23,7 @@
 #include <QTest>
 #include <QSignalSpy>
 
-#include "notepage.h"
+#include "datamodel/notepage.h"
 
 class NotePageTest : public QObject
 {
