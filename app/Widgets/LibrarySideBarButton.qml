@@ -11,6 +11,9 @@ ItemDelegate {
     property alias symbol: sym.text
     property int indent: 0
     property bool bold: false
+    property alias symbolIsClickable: symMouseArea.enabled
+
+    signal symbolClicked()
 
     width: parent.width
     contentItem: RowLayout {
@@ -30,6 +33,12 @@ ItemDelegate {
             height: width
             Layout.minimumWidth: root.height / 2
             Layout.alignment: Qt.AlignHCenter
+
+            MouseArea {
+                id: symMouseArea
+                anchors.fill: parent
+                onClicked: root.symbolClicked()
+            }
         }
 
         Label {
