@@ -413,6 +413,11 @@ msgctxt "ItemCreatedNotification|"
 msgid "Open"
 msgstr "Nyisd ki"
 
+#: ../Widgets/ItemCreatedNotification.qml:74
+msgctxt "ItemCreatedNotification|"
+msgid "Dismiss"
+msgstr ""
+
 #: ../Widgets/ItemDueDateEditor.qml:30
 #, fuzzy
 msgctxt "ItemDueDateEditor|"
@@ -450,43 +455,43 @@ msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr "Minden fájl"
 
-#: ../Widgets/LibrariesSideBar.qml:120
+#: ../Widgets/LibrariesSideBar.qml:171
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Menetrend"
 
-#: ../Widgets/LibrariesSideBar.qml:157
+#: ../Widgets/LibrariesSideBar.qml:210
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Új könyvtár"
 
-#: ../Widgets/LibrariesSideBar.qml:164
+#: ../Widgets/LibrariesSideBar.qml:217
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Fiókok"
 
-#: ../Widgets/LibrariesSideBar.qml:171
+#: ../Widgets/LibrariesSideBar.qml:224
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Beállítások"
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:231
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Az alkalmazás lefordítása..."
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:238
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Ról ről..."
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:251
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
@@ -1399,31 +1404,31 @@ msgctxt "UpdateNotificationBar|"
 msgid "Download"
 msgstr "Letöltés"
 
-#: ../main.cpp:84
+#: ../main.cpp:102
 #, fuzzy
 msgctxt "main|"
 msgid "Manage your personal data."
 msgstr "Kezelje személyes adatait."
 
-#: ../main.cpp:90
+#: ../main.cpp:108
 #, fuzzy
 msgctxt "main|"
 msgid "QML Root Directory"
 msgstr "QML gyökérkönyvtár"
 
-#: ../main.cpp:91
+#: ../main.cpp:109
 #, fuzzy
 msgctxt "main|"
 msgid "DIR"
 msgstr "DIR"
 
-#: ../main.cpp:97
+#: ../main.cpp:116
 #, fuzzy
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Kapcsolja be az érintőképernyők néhány optimalizálását."
 
-#: ../main.cpp:110
+#: ../main.cpp:128
 #, fuzzy
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."

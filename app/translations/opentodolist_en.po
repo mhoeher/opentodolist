@@ -345,6 +345,11 @@ msgctxt "ItemCreatedNotification|"
 msgid "Open"
 msgstr ""
 
+#: ../Widgets/ItemCreatedNotification.qml:74
+msgctxt "ItemCreatedNotification|"
+msgid "Dismiss"
+msgstr ""
+
 #: ../Widgets/ItemDueDateEditor.qml:30
 msgctxt "ItemDueDateEditor|"
 msgid "Due on"
@@ -375,37 +380,37 @@ msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:120
+#: ../Widgets/LibrariesSideBar.qml:171
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:157
+#: ../Widgets/LibrariesSideBar.qml:210
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:164
+#: ../Widgets/LibrariesSideBar.qml:217
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:171
+#: ../Widgets/LibrariesSideBar.qml:224
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:231
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:238
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:251
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr ""
@@ -1150,27 +1155,27 @@ msgctxt "UpdateNotificationBar|"
 msgid "Download"
 msgstr ""
 
-#: ../main.cpp:84
+#: ../main.cpp:102
 msgctxt "main|"
 msgid "Manage your personal data."
 msgstr ""
 
-#: ../main.cpp:90
+#: ../main.cpp:108
 msgctxt "main|"
 msgid "QML Root Directory"
 msgstr ""
 
-#: ../main.cpp:91
+#: ../main.cpp:109
 msgctxt "main|"
 msgid "DIR"
 msgstr ""
 
-#: ../main.cpp:97
+#: ../main.cpp:116
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr ""
 
-#: ../main.cpp:110
+#: ../main.cpp:128
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
 msgstr ""

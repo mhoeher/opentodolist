@@ -333,6 +333,11 @@
         <source>Open</source>
         <translation type="unfinished">Açık</translation>
     </message>
+    <message>
+        <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
+        <source>Dismiss</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ItemDueDateEditor</name>
@@ -373,37 +378,37 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="120"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="171"/>
         <source>Schedule</source>
         <translation type="unfinished">Schedule</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="157"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>New Library</source>
         <translation type="unfinished">Yeni Kütüphane</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="164"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
         <source>Accounts</source>
         <translation type="unfinished">Hesaplar</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="171"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="224"/>
         <source>Settings</source>
         <translation type="unfinished">Ayarlar</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="178"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="231"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Uygulamayı Çevir ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="185"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
         <source>About...</source>
         <translation type="unfinished">Hakkında...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="251"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Varsayılan Kitaplık Oluştur</translation>
     </message>
@@ -1214,27 +1219,27 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="84"/>
+        <location filename="../main.cpp" line="102"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Kişisel verilerinizi yönetin.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="108"/>
         <source>QML Root Directory</source>
         <translation type="unfinished">QML Kök Dizini</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="91"/>
+        <location filename="../main.cpp" line="109"/>
         <source>DIR</source>
         <translation type="unfinished">DIR</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="116"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Dokunmatik ekranlar için bazı optimizasyonları açın.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="110"/>
+        <location filename="../main.cpp" line="128"/>
         <source>Remove shortcuts to the AppImage.</source>
         <translation type="unfinished">AppImage kısayollarını kaldırın.</translation>
     </message>

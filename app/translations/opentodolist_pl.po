@@ -414,6 +414,11 @@ msgctxt "ItemCreatedNotification|"
 msgid "Open"
 msgstr "Otwarte"
 
+#: ../Widgets/ItemCreatedNotification.qml:74
+msgctxt "ItemCreatedNotification|"
+msgid "Dismiss"
+msgstr ""
+
 #: ../Widgets/ItemDueDateEditor.qml:30
 #, fuzzy
 msgctxt "ItemDueDateEditor|"
@@ -450,43 +455,43 @@ msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr "Wszystkie akta"
 
-#: ../Widgets/LibrariesSideBar.qml:120
+#: ../Widgets/LibrariesSideBar.qml:171
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Rozkład jazdy"
 
-#: ../Widgets/LibrariesSideBar.qml:157
+#: ../Widgets/LibrariesSideBar.qml:210
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nowa biblioteka"
 
-#: ../Widgets/LibrariesSideBar.qml:164
+#: ../Widgets/LibrariesSideBar.qml:217
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Rachunki"
 
-#: ../Widgets/LibrariesSideBar.qml:171
+#: ../Widgets/LibrariesSideBar.qml:224
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:231
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Przetłumaczyć aplikację..."
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:238
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Około..."
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:251
 #, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
@@ -1398,31 +1403,31 @@ msgctxt "UpdateNotificationBar|"
 msgid "Download"
 msgstr "Pobierz"
 
-#: ../main.cpp:84
+#: ../main.cpp:102
 #, fuzzy
 msgctxt "main|"
 msgid "Manage your personal data."
 msgstr "Zarządzaj swoimi danymi osobowymi.\n"
 
-#: ../main.cpp:90
+#: ../main.cpp:108
 #, fuzzy
 msgctxt "main|"
 msgid "QML Root Directory"
 msgstr "Katalog główny QML"
 
-#: ../main.cpp:91
+#: ../main.cpp:109
 #, fuzzy
 msgctxt "main|"
 msgid "DIR"
 msgstr "DIR"
 
-#: ../main.cpp:97
+#: ../main.cpp:116
 #, fuzzy
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Włączyć niektóre optymalizacje dla ekranów dotykowych."
 
-#: ../main.cpp:110
+#: ../main.cpp:128
 #, fuzzy
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
