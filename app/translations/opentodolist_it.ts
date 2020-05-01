@@ -74,12 +74,12 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="17"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Selezionare il tipo di conto</translation>
+        <translation type="unfinished">Selezionare il tipo di Account</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="28"/>
         <source>Account Type</source>
-        <translation type="unfinished">Tipo di conto</translation>
+        <translation type="unfinished">Tipo di Account</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="46"/>
@@ -103,7 +103,7 @@
         <location filename="../Pages/AccountsPageForm.ui.qml" line="16"/>
         <location filename="../Pages/AccountsPageForm.ui.qml" line="24"/>
         <source>Accounts</source>
-        <translation type="unfinished">Conti</translation>
+        <translation type="unfinished">Account</translation>
     </message>
 </context>
 <context>
@@ -265,7 +265,8 @@
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="23"/>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="43"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Modifica conto</translation>
+        <translation type="unfinished">Modifica Account
+</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="49"/>
@@ -390,7 +391,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
         <source>Accounts</source>
-        <translation type="unfinished">Conti</translation>
+        <translation type="unfinished">Account</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="224"/>
@@ -650,7 +651,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="44"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">Crea libreria in conto</translation>
+        <translation type="unfinished">Crea libreria nell&apos;account</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="53"/>
@@ -757,7 +758,7 @@
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="79"/>
         <source>Add Account</source>
-        <translation type="unfinished">Aggiungi un conto</translation>
+        <translation type="unfinished">Aggiungi un Account</translation>
     </message>
 </context>
 <context>
@@ -806,7 +807,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="24"/>
         <source>Account Name</source>
-        <translation type="unfinished">Nome del conto</translation>
+        <translation type="unfinished">Nome dell&apos;Account</translation>
     </message>
 </context>
 <context>
@@ -898,7 +899,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="21"/>
         <source>Missing secrets for account</source>
-        <translation type="unfinished">Dati di accesso mancanti per il conto</translation>
+        <translation type="unfinished">Dati di accesso mancanti per l&apos;account</translation>
     </message>
 </context>
 <context>

@@ -280,7 +280,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="65"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="71"/>
@@ -305,7 +305,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="103"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Desabilitar Cheques de Certificado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="111"/>
@@ -468,7 +468,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="272"/>
         <source>Todo List Title</source>
-        <translation type="unfinished">Todo Título da Lista</translation>
+        <translation type="unfinished">Título da Lista de afazeres</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="285"/>
@@ -516,12 +516,12 @@
     <message>
         <location filename="../Menues/LibraryPageMenu.qml" line="20"/>
         <source>Sync Now</source>
-        <translation type="unfinished">Sinc Agora</translation>
+        <translation type="unfinished">Sincronizar Agora</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageMenu.qml" line="29"/>
         <source>Sync Log</source>
-        <translation type="unfinished">Log de Sincronização</translation>
+        <translation type="unfinished">Sincronizar</translation>
     </message>
 </context>
 <context>
@@ -572,7 +572,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="256"/>
         <source>Search</source>
-        <translation type="unfinished">Busca</translation>
+        <translation type="unfinished">Buscar</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="263"/>
@@ -607,22 +607,22 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="336"/>
         <source>New &amp;Note</source>
-        <translation type="unfinished">Novo &amp;Nota</translation>
+        <translation type="unfinished">Nova &amp;Nota</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="344"/>
         <source>New &amp;Todo List</source>
-        <translation type="unfinished">New &amp;All List</translation>
+        <translation type="unfinished">Nova &amp;Lista de afazeres</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="352"/>
         <source>New &amp;Image</source>
-        <translation type="unfinished">Novo &amp;Imagem</translation>
+        <translation type="unfinished">Nova &amp;Imagem</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="360"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">&amp;Saia</translation>
+        <translation type="unfinished">&amp;Sair</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="368"/>
@@ -632,17 +632,17 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="395"/>
         <source>Open Last &amp;Created Item</source>
-        <translation type="unfinished">Abrir Último &amp;Criado Item</translation>
+        <translation type="unfinished">Abrir Último &amp;Item criado</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="403"/>
         <source>Open &amp;Left Side Bar</source>
-        <translation type="unfinished">Aberto &amp;Barra Lateral Esquerda</translation>
+        <translation type="unfinished">Abrir &amp;Barra Lateral Esquerda</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="522"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
-        <translation type="unfinished">Comece por &lt;a href=&apos;#newLibrary&apos;&gt;criando uma nova biblioteca&lt;/a&gt;. As bibliotecas são usadas para armazenar diferentes tipos de itens como notas, todas as listas e imagens.</translation>
+        <translation type="unfinished">Comece por &lt;a href=&apos;#newLibrary&apos;&gt;criando uma nova biblioteca&lt;/a&gt;. As bibliotecas são usadas para armazenar diferentes tipos de itens como notas, listas de afazeres e imagens.</translation>
     </message>
 </context>
 <context>
@@ -788,12 +788,12 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="39"/>
         <source>Note</source>
-        <translation type="unfinished">Note</translation>
+        <translation type="unfinished">Nota</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished">All List</translation>
+        <translation type="unfinished">Lista de afazeres</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="47"/>
@@ -825,7 +825,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="55"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="61"/>
@@ -850,7 +850,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="93"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Desabilitar Cheques de Certificado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="97"/>
@@ -890,7 +890,7 @@
         <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
-        <translation type="unfinished">Selecione Imagem</translation>
+        <translation type="unfinished">Selecione uma Imagem</translation>
     </message>
 </context>
 <context>
@@ -1028,7 +1028,7 @@
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="97"/>
         <source>✔ No open todos - everything done</source>
-        <translation type="unfinished">✔ Sem todos abertos - tudo feito</translation>
+        <translation type="unfinished">✔ Sem afazeres abertos - tudo feito</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1066,12 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="217"/>
         <source>Todos</source>
-        <translation type="unfinished">Todos</translation>
+        <translation type="unfinished">Afazeres</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="237"/>
         <source>Add new todo...</source>
-        <translation type="unfinished">Adicionar novo todo...</translation>
+        <translation type="unfinished">Adicionar novo afazere...</translation>
     </message>
 </context>
 <context>

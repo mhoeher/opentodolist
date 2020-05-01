@@ -100,6 +100,9 @@ cppcheck:
   image: fedora
   script:
     - ci/cppcheck.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
 
 
 # Run clang-format code formatter check:
@@ -108,6 +111,9 @@ clang-format:
   image: fedora
   script:
     - ci/clang-format.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
 
 
 # Run cpplint static code checker:
@@ -116,6 +122,9 @@ cpplint:
   image: fedora
   script:
     - ci/cpplint.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
 
 
 # Ubuntu build including AppImage
@@ -129,6 +138,9 @@ appimage:
       alias: owncloud
   script:
     - ci/ubuntu-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-ubuntu/OpenTodoList-x86_64.AppImage
@@ -141,6 +153,9 @@ win32:
   image: $WIN32_IMAGE
   script:
     - ./ci/win32-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - deploy-win32/OpenTodoList-Windows-32bit.exe
@@ -153,6 +168,9 @@ win64:
   image: $WIN64_IMAGE
   script:
     - ./ci/win64-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - deploy-win64/OpenTodoList-Windows-64bit.exe
@@ -166,6 +184,9 @@ macos:
     - macos
   script:
     - ci/macos-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-macos/app/OpenTodoList.dmg
@@ -179,6 +200,9 @@ ios:
     - macos
   script:
     - ci/ios-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-ios/app/build/OpenTodoList.ipa
@@ -191,6 +215,9 @@ android_armv7:
   image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-android/OpenTodoList-Android-armeabi-v7a.apk
@@ -206,6 +233,9 @@ android_arm64_v8a:
   image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-android/OpenTodoList-Android-arm64-v8a.apk
@@ -221,6 +251,9 @@ android_x86:
   image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-android/OpenTodoList-Android-x86.apk
@@ -236,6 +269,9 @@ android_x64:
   image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-android/OpenTodoList-Android-x86_64.apk
@@ -250,6 +286,9 @@ android_aab:
   image: $ANDROID_IMAGE
   script:
     - ci/android-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-android/OpenTodoList.aab
@@ -264,6 +303,9 @@ flatpak:
     image: $FLATPAK_IMAGE
     script:
         - ci/flatpak-build.sh
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - fp-repo
@@ -281,6 +323,9 @@ sign_apks:
     image: $ANDROID_IMAGE
     script:
         - ci/sign-apks.sh
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - build-android/*-aligned.apk
@@ -310,6 +355,9 @@ github:
         - cp build-android-*/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     when: manual
     only:
         - tags
@@ -322,5 +370,8 @@ appstore:
     when: manual
     script:
         - xcrun altool --upload-app --type ios --file build-ios/app/build/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     dependencies:
       - ios

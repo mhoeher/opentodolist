@@ -103,7 +103,7 @@
         <location filename="../Pages/AccountsPageForm.ui.qml" line="16"/>
         <location filename="../Pages/AccountsPageForm.ui.qml" line="24"/>
         <source>Accounts</source>
-        <translation type="unfinished">Rachunki</translation>
+        <translation type="unfinished">Konta</translation>
     </message>
 </context>
 <context>
@@ -390,7 +390,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
         <source>Accounts</source>
-        <translation type="unfinished">Rachunki</translation>
+        <translation type="unfinished">Konta</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="224"/>
