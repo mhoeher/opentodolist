@@ -1319,66 +1319,86 @@ msgid "Spanish"
 msgstr "Espanyol"
 
 #: ../Utils/Translations.qml:38
+msgctxt "Translations|"
+msgid "Spanish (Latin America & Caribbean)"
+msgstr ""
+
+#: ../Utils/Translations.qml:42
 #, fuzzy
 msgctxt "Translations|"
 msgid "Filipino"
 msgstr "Pilipino"
 
-#: ../Utils/Translations.qml:42
+#: ../Utils/Translations.qml:46
 #, fuzzy
 msgctxt "Translations|"
 msgid "French"
 msgstr "Pranses"
 
-#: ../Utils/Translations.qml:46
+#: ../Utils/Translations.qml:50
 #, fuzzy
 msgctxt "Translations|"
 msgid "Hungarian"
 msgstr "Hungarian"
 
-#: ../Utils/Translations.qml:50
+#: ../Utils/Translations.qml:54
 #, fuzzy
 msgctxt "Translations|"
 msgid "Italian"
 msgstr "Italyano"
 
-#: ../Utils/Translations.qml:54
+#: ../Utils/Translations.qml:58
 #, fuzzy
 msgctxt "Translations|"
 msgid "Dutch"
 msgstr "Dutch"
 
-#: ../Utils/Translations.qml:58
+#: ../Utils/Translations.qml:62
 #, fuzzy
 msgctxt "Translations|"
 msgid "Norwegian"
 msgstr "Norwegian"
 
-#: ../Utils/Translations.qml:62
+#: ../Utils/Translations.qml:66
 #, fuzzy
 msgctxt "Translations|"
 msgid "Polish"
 msgstr "Polish"
 
-#: ../Utils/Translations.qml:66
+#: ../Utils/Translations.qml:70
 #, fuzzy
 msgctxt "Translations|"
 msgid "Portuguese"
 msgstr "Portuges"
 
-#: ../Utils/Translations.qml:70
+#: ../Utils/Translations.qml:74
 #, fuzzy
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
 msgstr "Portuges (Brazil)"
 
-#: ../Utils/Translations.qml:74
+#: ../Utils/Translations.qml:78
+msgctxt "Translations|"
+msgid "Russian"
+msgstr ""
+
+#: ../Utils/Translations.qml:82
+msgctxt "Translations|"
+msgid "Swedish"
+msgstr ""
+
+#: ../Utils/Translations.qml:86
+msgctxt "Translations|"
+msgid "Turkmen"
+msgstr ""
+
+#: ../Utils/Translations.qml:90
 #, fuzzy
 msgctxt "Translations|"
 msgid "Turkish"
 msgstr "Turko"
 
-#: ../Utils/Translations.qml:78
+#: ../Utils/Translations.qml:94
 #, fuzzy
 msgctxt "Translations|"
 msgid "Vietnamese"

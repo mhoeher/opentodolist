@@ -1086,55 +1086,75 @@ msgstr ""
 
 #: ../Utils/Translations.qml:38
 msgctxt "Translations|"
-msgid "Filipino"
+msgid "Spanish (Latin America & Caribbean)"
 msgstr ""
 
 #: ../Utils/Translations.qml:42
 msgctxt "Translations|"
-msgid "French"
+msgid "Filipino"
 msgstr ""
 
 #: ../Utils/Translations.qml:46
 msgctxt "Translations|"
-msgid "Hungarian"
+msgid "French"
 msgstr ""
 
 #: ../Utils/Translations.qml:50
 msgctxt "Translations|"
-msgid "Italian"
+msgid "Hungarian"
 msgstr ""
 
 #: ../Utils/Translations.qml:54
 msgctxt "Translations|"
-msgid "Dutch"
+msgid "Italian"
 msgstr ""
 
 #: ../Utils/Translations.qml:58
 msgctxt "Translations|"
-msgid "Norwegian"
+msgid "Dutch"
 msgstr ""
 
 #: ../Utils/Translations.qml:62
 msgctxt "Translations|"
-msgid "Polish"
+msgid "Norwegian"
 msgstr ""
 
 #: ../Utils/Translations.qml:66
 msgctxt "Translations|"
-msgid "Portuguese"
+msgid "Polish"
 msgstr ""
 
 #: ../Utils/Translations.qml:70
 msgctxt "Translations|"
-msgid "Portuguese (Brazil)"
+msgid "Portuguese"
 msgstr ""
 
 #: ../Utils/Translations.qml:74
 msgctxt "Translations|"
-msgid "Turkish"
+msgid "Portuguese (Brazil)"
 msgstr ""
 
 #: ../Utils/Translations.qml:78
+msgctxt "Translations|"
+msgid "Russian"
+msgstr ""
+
+#: ../Utils/Translations.qml:82
+msgctxt "Translations|"
+msgid "Swedish"
+msgstr ""
+
+#: ../Utils/Translations.qml:86
+msgctxt "Translations|"
+msgid "Turkmen"
+msgstr ""
+
+#: ../Utils/Translations.qml:90
+msgctxt "Translations|"
+msgid "Turkish"
+msgstr ""
+
+#: ../Utils/Translations.qml:94
 msgctxt "Translations|"
 msgid "Vietnamese"
 msgstr ""

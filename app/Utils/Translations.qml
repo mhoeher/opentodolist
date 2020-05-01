@@ -34,6 +34,10 @@ Item {
             name: qsTr("Spanish")
         }
         ListElement {
+            key: "es_LA_C"
+            name: qsTr("Spanish (Latin America & Caribbean)")
+        }
+        ListElement {
             key: "fil"
             name: qsTr("Filipino")
         }
@@ -68,6 +72,18 @@ Item {
         ListElement {
             key: "pt_BR"
             name: qsTr("Portuguese (Brazil)")
+        }
+        ListElement {
+            key: "ru"
+            name: qsTr("Russian")
+        }
+        ListElement {
+            key: "sv"
+            name: qsTr("Swedish")
+        }
+        ListElement {
+            key: "tk"
+            name: qsTr("Turkmen")
         }
         ListElement {
             key: "tr"
