@@ -40,6 +40,31 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.22.0" date="2020-05-01">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #320: Allow to collapse/expand libraries in the side bar.
+            </li>
+            <li>
+                #324: Retain QML files in the app (so it continues to work even if the used Qt
+                version is updated without recompiling the app).
+            </li>
+            <li>
+                #315: Update to Qt 5.14.2 for most target platforms.
+            </li>
+            <li>
+                #322: Also use new icon on iOS.
+            </li>
+            <li>
+                #323, #316: Do not show HTML code in the popup indicating that a new item has been
+                created.
+            </li>
+            <li>
+                #170: The code is now checked by some static code checkers.
+            </li>
+        </ul>
+      </release>
     <release version="3.21.1" date="2020-04-10">
       <p>This release includes the following changes:</p>
       <ul>
