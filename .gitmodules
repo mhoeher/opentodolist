@@ -12,4 +12,4 @@
 	url = https://gitlab.com/rpdev/qt-cmake-android.git
 [submodule "3rdparty/run-clang-format"]
 	path = 3rdparty/run-clang-format
-	url = ../run-clang-format.git
+	url = https://gitlab.com/rpdev/run-clang-format.git
