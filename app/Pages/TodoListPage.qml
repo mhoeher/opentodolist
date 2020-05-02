@@ -4,8 +4,6 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.0
 import Qt.labs.settings 1.0
 
-import QtQuick.Controls 2.12
-
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
@@ -55,7 +53,7 @@ ItemPage {
 
     property var addTag: todoDrawer.visible ? undefined :
                                               function() {
-                                                  tagsEditor.addTag();
+                                                  d.openTagsEditor();
                                               }
 
     function attach() {
@@ -99,6 +97,7 @@ ItemPage {
         }
 
         signal attach()
+        signal openTagsEditor()
 
         function openTodo(todo) {
             todoPage.item = todo;
@@ -267,6 +266,11 @@ ItemPage {
                     item: page.item
                     library: page.library
                     width: parent.width
+
+                    Connections {
+                        target: d
+                        onOpenTagsEditor: tagsEditor.addTag()
+                    }
                 }
 
                 ItemNotesEditor {
