@@ -15,7 +15,7 @@ ItemPage {
     property OTL.Todo item: OTL.Todo {}
     property OTL.Library library: null
     property OTL.TodoList todoList: null
-    property Drawer parentDrawer: null
+    property Item parentDrawer: null
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -112,6 +112,8 @@ ItemPage {
         item: page.todoList
 
         TodosWidget {
+            id: todosWidget
+
             width: parent.width
             model: tasks
             title: qsTr("Tasks")
