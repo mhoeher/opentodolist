@@ -352,7 +352,7 @@ github:
         - cp build-ubuntu/OpenTodoList-x86_64.AppImage uploads
         - cp deploy-win32/OpenTodoList-Windows-32bit.exe uploads
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
-        - cp build-android-*/*-aligned.apk uploads
+        - cp build-android/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     except:
