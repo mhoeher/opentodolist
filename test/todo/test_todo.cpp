@@ -34,6 +34,7 @@ private slots:
     void initTestCase() {}
     void testProperties();
     void testPersistence();
+    void recurrence();
     void cleanupTestCase() {}
 };
 
@@ -85,6 +86,14 @@ void TodoTest::testPersistence()
     QCOMPARE(anotherTodo.todoListUid(), uid);
     QCOMPARE(anotherTodo.progress(), 50);
     QCOMPARE(anotherTodo.percentageDone(), 50);
+}
+
+void TodoTest::recurrence()
+{
+    // Marking a todo as done when no recurrence is set should just set its done flag to true.
+    Todo todo;
+    todo.markCurrentOccurrenceAsDone();
+    QVERIFY(todo.done());
 }
 
 QTEST_MAIN(TodoTest)

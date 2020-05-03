@@ -124,7 +124,7 @@ public slots:
 
     void attachFile(const QString &filename);
     void detachFile(const QString &filename);
-    void markCurrentOccurrenceAsDone();
+    void markCurrentOccurrenceAsDone(const QDateTime &today = QDateTime());
 
 protected:
 private:
