@@ -80,6 +80,10 @@ private:
     int m_percentageDone;
     int m_progress;
     bool m_done;
+
+    // ComplexItem interface
+protected:
+    void markItemAsDone() override;
 };
 
 typedef QSharedPointer<Todo> TodoPtr;

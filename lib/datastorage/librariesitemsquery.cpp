@@ -71,7 +71,7 @@ void LibrariesItemsQuery::run()
                         topIt = topLevelItemIdsCursor.nextForCurrentKey();
                     }
                     QVariantMap calculated;
-                    calculated["tags"] = QStringList(tags.toList());
+                    calculated["tags"] = QStringList(tags.values());
                     entry.calculatedData = calculated;
                 }
                 result << QVariant::fromValue(entry);

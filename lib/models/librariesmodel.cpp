@@ -102,7 +102,11 @@ void LibrariesModel::fetch()
 void LibrariesModel::librariesAvailable(QVariantList libraries)
 {
     m_updating = true;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    auto librariesToRemove = QSet<QUuid>(m_uids.begin(), m_uids.end());
+#else
     auto librariesToRemove = QSet<QUuid>::fromList(m_uids);
+#endif
     QList<Library *> newItems;
     for (auto entry : libraries) {
         auto lib = Library::decache(entry, this);

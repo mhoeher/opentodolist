@@ -36,7 +36,14 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.ComplexItem", QtWarningMsg)
  * @brief Constructor.
  */
 ComplexItem::ComplexItem(const QString &filename, QObject *parent)
-    : Item(filename, parent), m_dueTo(), m_notes(), m_attachments()
+    : Item(filename, parent),
+      m_dueTo(),
+      m_notes(),
+      m_attachments(),
+      m_recurrencePattern(NoRecurrence),
+      m_recurrenceSchedule(RelativeToOriginalDueDate),
+      m_nextDueTo(),
+      m_recurInterval(0)
 {
     setupConnections();
 }
@@ -45,7 +52,14 @@ ComplexItem::ComplexItem(const QString &filename, QObject *parent)
  * @brief Constructor.
  */
 ComplexItem::ComplexItem(const QDir &dir, QObject *parent)
-    : Item(dir, parent), m_dueTo(), m_notes(), m_attachments()
+    : Item(dir, parent),
+      m_dueTo(),
+      m_notes(),
+      m_attachments(),
+      m_recurrencePattern(NoRecurrence),
+      m_recurrenceSchedule(RelativeToOriginalDueDate),
+      m_nextDueTo(),
+      m_recurInterval(0)
 {
     setupConnections();
 }
@@ -176,11 +190,144 @@ void ComplexItem::detachFile(const QString &filename)
     }
 }
 
+void ComplexItem::markCurrentOccurrenceAsDone()
+{
+    // Mark the current occurrence of this item as done
+}
+
+/**
+ * @brief The recurrence interval.
+ *
+ * This is the interval between recurrences of the item.
+ *
+ * @sa RecurrencePattern::RecurEveryNDays
+ */
+int ComplexItem::recurInterval() const
+{
+    return m_recurInterval;
+}
+
+/**
+ * @brief Set the recurrence pattern.
+ */
+void ComplexItem::setRecurInterval(int recurInterval)
+{
+    if (m_recurInterval != recurInterval) {
+        m_recurInterval = recurInterval;
+        emit recurIntervalChanged();
+    }
+}
+
+/**
+ * @brief Returns the effective next date on which an item is due to.
+ *
+ * This is a calculated property, which indicates when the item is next due. If an item has
+ * no recurrence pattern set, this is equal to the dueTo property. If an item has a recurrence
+ * pattern set and a past instance of the item has already been marked as done, this equals the
+ * nextDueTo property.
+ */
+QDateTime ComplexItem::effectiveDueTo() const
+{
+    if (m_nextDueTo.isValid() && m_dueTo.isValid() && m_nextDueTo > m_dueTo) {
+        return m_nextDueTo;
+    } else {
+        return m_dueTo;
+    }
+}
+
+/**
+ * @brief Indicates if the item recurs.
+ *
+ * An item recurs in the following cases:
+ *
+ * - It has a recurrence pattern other than RecurrencePattern::NoRecurrence set.
+ * - If the recurrence pattern RecurrencePattern::RecurEveryNDays is set, the
+ *   recurInterval must be greater than 1.
+ */
+bool ComplexItem::isRecurring() const
+{
+    return m_recurrencePattern != NoRecurrence
+            && (m_recurrencePattern == RecurEveryNDays && m_recurInterval > 0);
+}
+
+/**
+ * @brief The next due date of the item.
+ *
+ * This holds the next due date of the item. This property is set when an occurrence of the item is
+ * marked as done and the item has a recurrence pattern set.
+ */
+QDateTime ComplexItem::nextDueTo() const
+{
+    return m_nextDueTo;
+}
+
+/**
+ * @brief Set the next due date of the item.
+ */
+void ComplexItem::setNextDueTo(const QDateTime &nextDueTo)
+{
+    if (m_nextDueTo != nextDueTo) {
+        m_nextDueTo = nextDueTo;
+        emit nextDueToChanged();
+    }
+}
+
+/**
+ * @brief Determines how the next due date is selected.
+ *
+ * This property determines how the next due to date of an item is selected when an instance is
+ * marked as done.
+ */
+ComplexItem::RecurrenceSchedule ComplexItem::recurrenceSchedule() const
+{
+    return m_recurrenceSchedule;
+}
+
+/**
+ * @brief Set the recurrence scheduling mode of the item.
+ */
+void ComplexItem::setRecurrenceSchedule(const RecurrenceSchedule &recurrenceSchedule)
+{
+    if (m_recurrenceSchedule != recurrenceSchedule) {
+        m_recurrenceSchedule = recurrenceSchedule;
+        emit recurrenceScheduleChanged();
+    }
+}
+
+/**
+ * @brief The pattern in which the item recurs.
+ */
+ComplexItem::RecurrencePattern ComplexItem::recurrencePattern() const
+{
+    return m_recurrencePattern;
+}
+
+/**
+ * @brief Set the recurrence pattern of the item.
+ */
+void ComplexItem::setRecurrencePattern(const RecurrencePattern &recurrencePattern)
+{
+    if (m_recurrencePattern != recurrencePattern) {
+        m_recurrencePattern = recurrencePattern;
+        emit recurrencePatternChanged();
+    }
+}
+
 void ComplexItem::setupConnections()
 {
     connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::changed);
     connect(this, &ComplexItem::notesChanged, this, &ComplexItem::changed);
     connect(this, &ComplexItem::attachmentsChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::recurrencePatternChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::recurrenceScheduleChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::recurIntervalChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::nextDueToChanged, this, &ComplexItem::changed);
+
+    connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::effectiveDueToChanged);
+    connect(this, &ComplexItem::nextDueToChanged, this, &ComplexItem::effectiveDueToChanged);
+
+    connect(this, &ComplexItem::recurrencePatternChanged, this, &ComplexItem::isRecurringChanged);
+    connect(this, &ComplexItem::recurInterval, this, &ComplexItem::isRecurringChanged);
 }
 
 void ComplexItem::setAttachments(const QStringList &attachments)
@@ -197,6 +344,11 @@ QVariantMap ComplexItem::toMap() const
     result["dueTo"] = m_dueTo;
     result["notes"] = m_notes;
     result["attachments"] = m_attachments;
+    result["recurrencePattern"] = QVariant::fromValue(m_recurrencePattern);
+    result["recurrenceSchedule"] = QVariant::fromValue(m_recurrenceSchedule);
+    result["nextDueTo"] = m_nextDueTo;
+    result["recurInterval"] = m_recurInterval;
+
     return result;
 }
 
@@ -206,6 +358,23 @@ void ComplexItem::fromMap(QVariantMap map)
     setDueTo(map.value("dueTo", m_dueTo).toDateTime());
     setNotes(map.value("notes", m_notes).toString());
     setAttachments(map.value("attachments", m_attachments).toStringList());
+    setRecurrencePattern(map.value("recurrencePattern", QVariant::fromValue(m_recurrencePattern))
+                                 .value<RecurrencePattern>());
+    setRecurrenceSchedule(map.value("recurrenceSchedule", QVariant::fromValue(m_recurrenceSchedule))
+                                  .value<RecurrenceSchedule>());
+    setNextDueTo(map.value("nextDueTo", m_nextDueTo).toDateTime());
+    setRecurInterval(map.value("recurInterval", m_recurInterval).toInt());
+}
+
+/**
+ * @brief Mark the item as done.
+ *
+ * This marks this item as "done". By default, this removed any set due dates from the item.
+ * Concrete sub-classes can change the behavior to better fit their usage patterns.
+ */
+void ComplexItem::markItemAsDone()
+{
+    setDueTo(QDateTime());
 }
 
 bool ComplexItem::deleteItem()

@@ -34,6 +34,7 @@ private slots:
     void testProperties();
     void testPersistence();
     void attachments();
+    void recurrence();
     void cleanupTestCase() {}
 };
 
@@ -102,6 +103,37 @@ void ComplexItemTest::attachments()
     QVERIFY(QFile(attachmentPath).exists());
     QVERIFY(item.deleteItem());
     QVERIFY(!QFile(attachmentPath).exists());
+}
+
+/**
+ * @brief Excercise the recurrence functionality of items.
+ */
+void ComplexItemTest::recurrence()
+{
+    {
+        // By default, recurrence should be off with same defaults:
+        ComplexItem item;
+        QCOMPARE(item.recurrencePattern(), ComplexItem::NoRecurrence);
+        QCOMPARE(item.recurrenceSchedule(), ComplexItem::RelativeToOriginalDueDate);
+        QCOMPARE(item.recurInterval(), 0);
+        QVERIFY(item.nextDueTo().isNull());
+    }
+
+    {
+        // Recurrence data shall be saved and restored properly:
+        ComplexItem item;
+        item.setRecurrencePattern(ComplexItem::RecurEveryNDays);
+        item.setRecurInterval(14);
+        item.setRecurrenceSchedule(ComplexItem::RelativeToCurrentDate);
+        item.setNextDueTo(QDateTime::currentDateTime());
+
+        ComplexItem item2;
+        item2.fromVariant(item.toVariant());
+        QCOMPARE(item2.recurrencePattern(), ComplexItem::RecurEveryNDays);
+        QCOMPARE(item2.recurrenceSchedule(), ComplexItem::RelativeToCurrentDate);
+        QCOMPARE(item2.recurInterval(), 14);
+        QCOMPARE(item2.nextDueTo(), item.nextDueTo());
+    }
 }
 
 QTEST_MAIN(ComplexItemTest)

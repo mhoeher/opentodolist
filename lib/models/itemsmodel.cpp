@@ -518,7 +518,11 @@ void ItemsModel::triggerFetch()
 void ItemsModel::update(QVariantList items)
 {
     m_updating = true;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
     auto idsToDelete = QSet<QUuid>::fromList(m_ids);
+#else
+    auto idsToDelete = QSet<QUuid>(m_ids.begin(), m_ids.end());
+#endif
     QList<Item *> newItems;
     for (auto data : items) {
         auto item = Item::decache(data, this);
