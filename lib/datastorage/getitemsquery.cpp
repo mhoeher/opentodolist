@@ -234,12 +234,6 @@ GetItemsQuery::ChildrenIterator::ChildrenIterator(QLMDB::Cursor *childrenCursor,
 
 GetItemsQuery::ChildrenIterator::~ChildrenIterator()
 {
-    if (m_childrenCursor != nullptr) {
-        delete m_childrenCursor;
-    }
-    if (m_dataCursor != nullptr) {
-        delete m_dataCursor;
-    }
 }
 
 GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator++()
@@ -261,7 +255,6 @@ GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator++()
             it = m_childrenCursor->nextForCurrentKey();
         }
         if (!m_item) {
-            delete m_childrenCursor;
             m_childrenCursor = nullptr;
         }
     }
