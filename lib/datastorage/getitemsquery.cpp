@@ -232,9 +232,7 @@ GetItemsQuery::ChildrenIterator::ChildrenIterator(QLMDB::Cursor *childrenCursor,
     ++(*this);
 }
 
-GetItemsQuery::ChildrenIterator::~ChildrenIterator()
-{
-}
+GetItemsQuery::ChildrenIterator::~ChildrenIterator() {}
 
 GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator++()
 {
