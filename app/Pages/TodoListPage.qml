@@ -248,7 +248,7 @@ ItemPage {
             headerComponent: Column {
                 id: column
 
-                width: scrollView.contentItem.width
+                width: parent.width
                 spacing: 20
 
                 ItemPageHeader {

@@ -26,6 +26,8 @@ GridLayout {
     Heading {
         level: 2
         text: qsTr("Due on") + " " + root.item.effectiveDueTo.toLocaleDateString()
+        wrapMode: "WrapAtWordBoundaryOrAnywhere"
+        Layout.fillWidth: true
     }
 
     ToolButton {
@@ -54,8 +56,7 @@ GridLayout {
         text: {
             let result = "";
             if (root.item.isRecurring) {
-                result = qsTr("First due on") + " " +
-                        root.item.dueTo.toLocaleDateString();
+                result = qsTr("First due on %1.").arg(root.item.dueTo.toLocaleDateString());
             }
             return result;
         }
@@ -90,7 +91,7 @@ GridLayout {
     }
 
     ToolButton {
-        symbol: Icons.faCalendarTimes
+        symbol: Icons.faSync
         font.family: Fonts.icons
         background: Item {}
         onClicked: recurrenceDialog.edit(root.item)
