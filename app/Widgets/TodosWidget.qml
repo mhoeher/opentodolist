@@ -233,13 +233,13 @@ ListView {
                 Item {
                     height: 10
                     width: 1
-                    visible: object.dueTo !== undefined &&
-                             DateUtils.validDate(object.dueTo)
+                    visible: object.effectiveDueTo !== undefined &&
+                             DateUtils.validDate(object.effectiveDueTo)
                 }
                 RowLayout {
                     width: parent.width
-                    visible: object.dueTo !== undefined &&
-                             DateUtils.validDate(object.dueTo)
+                    visible: object.effectiveDueTo !== undefined &&
+                             DateUtils.validDate(object.effectiveDueTo)
                     opacity: 0.5
 
                     Label {
@@ -248,7 +248,7 @@ ListView {
                     }
                     Label {
                         Layout.fillWidth: true
-                        text: DateUtils.format(object.dueTo)
+                        text: DateUtils.format(object.effectiveDueTo)
                     }
                 }
             }

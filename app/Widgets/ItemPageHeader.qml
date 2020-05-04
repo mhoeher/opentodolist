@@ -14,7 +14,7 @@ Item {
     property OTL.Item item: null
 
     width: parent.width
-    height: childrenRect.height * 2
+    height: childrenRect.height * 1.5
 
     Heading {
         id: pageHeading
@@ -26,33 +26,6 @@ Item {
         wrapMode: "WrapAtWordBoundaryOrAnywhere"
         font.bold: false
         textFormat: Text.RichText
-    }
-
-    RowLayout {
-        id: pageMetaRow
-
-        readonly property bool belowHeading: pageMetaRow.width +
-                                             pageHeading.contentWidth +
-                                             50 >
-                                             page.width
-
-        anchors.top: pageMetaRow.belowHeading ? pageHeading.bottom : parent.top
-        anchors.right: parent.right
-        anchors.verticalCenter: pageMetaRow.belowHeading ? undefined : pageHeading.verticalCenter
-
-        Label {
-            visible: DateUtils.validDate(root.item.dueTo)
-            text: root.item.dueTo.toLocaleDateString()
-            Layout.alignment: Qt.AlignVCenter
-            Material.foreground: Material.Grey
-        }
-
-        ToolButton {
-            symbol: Icons.faCalendarMinus
-            visible: DateUtils.validDate(root.item.dueTo)
-            Layout.alignment: Qt.AlignVCenter
-            onClicked: root.item.dueTo = new Date("")
-        }
     }
 }
 

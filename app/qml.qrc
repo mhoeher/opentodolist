@@ -108,5 +108,6 @@
         <file>Pages/ProblemsPage.qml</file>
         <file>Pages/ProblemsPageForm.ui.qml</file>
         <file>Utils/TextUtils.js</file>
+        <file>Windows/RecurrenceDialog.qml</file>
     </qresource>
 </RCC>

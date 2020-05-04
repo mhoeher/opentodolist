@@ -112,8 +112,17 @@ QVariant ItemsModel::data(const QModelIndex &index, int role) const
                 return QVariant();
             }
         }
+        case EffectiveDueToRole: {
+            auto complexItem = qobject_cast<ComplexItem *>(item);
+            if (complexItem) {
+                return complexItem->effectiveDueTo().toString(Qt::ISODate);
+            } else {
+                return QVariant();
+            }
+        }
         case DueToSpanRole:
-            return timeSpanLabel(item);
+        case EffectiveDueToSpanRole:
+            return timeSpanLabel(item, role);
         case WeightRole:
             return item->weight();
         case TitleRole:
@@ -139,6 +148,8 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     result.insert(TitleRole, "title");
     result.insert(CreatedAtRole, "createdAt");
     result.insert(UpdatedAtRole, "updatedAt");
+    result.insert(EffectiveDueToRole, "effectiveDueTo");
+    result.insert(EffectiveDueToSpanRole, "effectiveDueToSpan");
     return result;
 }
 
@@ -378,13 +389,27 @@ bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
     return false;
 }
 
-QString ItemsModel::timeSpanLabel(Item *item) const
+QString ItemsModel::timeSpanLabel(Item *item, int role) const
 {
     QString result;
     auto complexItem = qobject_cast<ComplexItem *>(item);
-    if (complexItem && complexItem->dueTo().isValid()) {
+    QDateTime dueTo;
+    if (complexItem) {
+        switch (role) {
+        case DueToSpanRole:
+            dueTo = complexItem->dueTo();
+            break;
+        case EffectiveDueToSpanRole:
+            dueTo = complexItem->effectiveDueTo();
+            break;
+        default:
+            break;
+        }
+    }
+
+    if (dueTo.isValid()) {
         result = m_overdueLabel;
-        auto dueDate = complexItem->dueTo().date().toString("yyyy-MM-dd");
+        auto dueDate = dueTo.date().toString("yyyy-MM-dd");
         // Note: Keys in the map are sorted, so we iterate from least to most
         //       recent entries:
         for (auto key : m_timeSpans.keys()) {

@@ -67,7 +67,9 @@ public:
         DueToSpanRole,
         TitleRole,
         CreatedAtRole,
-        UpdatedAtRole
+        UpdatedAtRole,
+        EffectiveDueToRole,
+        EffectiveDueToSpanRole
     };
 
     Q_ENUM(Roles)
@@ -153,7 +155,7 @@ private:
 
     static bool itemMatches(ItemPtr item, QStringList words);
 
-    QString timeSpanLabel(Item *item) const;
+    QString timeSpanLabel(Item *item, int role) const;
 
 private slots:
 

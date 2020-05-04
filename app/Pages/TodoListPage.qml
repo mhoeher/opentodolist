@@ -88,7 +88,7 @@ ItemPage {
         property int sortTodosRole: {
             switch (settings.sortTodosBy) {
             case "title": return OTL.ItemsModel.TitleRole;
-            case "dueTo": return OTL.ItemsModel.DueToRole;
+            case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
             case "createdAt": return OTL.ItemsModel.CreatedAtRole;
             case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
             case "weight": // fall through
@@ -154,11 +154,6 @@ ItemPage {
         symbol: Icons.faTimes
         showWhenNonEmpty: true
         closeOnButtonClick: true
-    }
-
-    DateSelectionDialog {
-        id: dialog
-        onAccepted: page.item.dueTo = selectedDate
     }
 
     Menu {
@@ -271,6 +266,12 @@ ItemPage {
                         target: d
                         onOpenTagsEditor: tagsEditor.addTag()
                     }
+                }
+
+                ItemDueDateEditor {
+                    id: itemDueDateEditor
+                    item: page.item
+                    width: parent.width
                 }
 
                 ItemNotesEditor {

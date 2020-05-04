@@ -81,7 +81,7 @@ Page {
     OTL.ItemsSortFilterModel {
         id: sortedItems
         sourceModel: items
-        sortRole: OTL.ItemsModel.DueToRole
+        sortRole: OTL.ItemsModel.EffectiveDueToRole
     }
 
     QtObject {
@@ -214,16 +214,7 @@ Page {
                             }
                         }
                         font.family: Fonts.icons
-                        onClicked: {
-                            switch (object.itemType) {
-                            case "Todo":
-                                object.done = !object.done;
-                                break;
-                            default:
-                                object.dueTo = new Date("");
-                                break;
-                            }
-                        }
+                        onClicked: object.markCurrentOccurrenceAsDone()
                         anchors {
                             left: parent.left
                             verticalCenter: parent.verticalCenter
@@ -265,7 +256,7 @@ Page {
         delegate: itemDelegate
         model: sortedItems
         section {
-            property: "dueToSpan"
+            property: "effectiveDueToSpan"
             delegate: Heading {
                 font.bold: true
                 text: section
