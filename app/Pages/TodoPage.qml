@@ -142,6 +142,12 @@ ItemPage {
                     width: parent.width
                 }
 
+                ItemDueDateEditor {
+                    id: itemDueDateEditor
+                    item: page.item
+                    width: parent.width
+                }
+
                 ItemNotesEditor {
                     id: itemNotesEditor
                     item: page.item

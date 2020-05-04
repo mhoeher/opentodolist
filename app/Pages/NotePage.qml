@@ -102,6 +102,12 @@ ItemPage {
                     width: parent.width
                 }
 
+                ItemDueDateEditor {
+                    id: itemDueDateEditor
+                    item: page.item
+                    width: parent.width
+                }
+
                 RowLayout {
                     width: parent.width
 

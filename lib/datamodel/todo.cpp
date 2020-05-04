@@ -79,7 +79,11 @@ bool Todo::done() const
 void Todo::setDone(bool done)
 {
     if (m_done != done) {
-        m_done = done;
+        if (isRecurring() && done) {
+            markCurrentOccurrenceAsDone();
+        } else {
+            m_done = done;
+        }
         emit doneChanged();
     }
 }
@@ -144,6 +148,15 @@ void Todo::fromMap(QVariantMap map)
     setTodoListUid(map.value("todoListUid", m_todoListUid).toUuid());
     setDone(map.value("done", m_done).toBool());
     setProgress(map.value("progress", -1).toInt());
+}
+
+/**
+ * @brief Implementation of ComplexItem::markItemAsDone().
+ */
+void Todo::markItemAsDone()
+{
+    m_done = true;
+    emit doneChanged();
 }
 
 /**

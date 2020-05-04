@@ -235,7 +235,7 @@ Page {
          */
         readonly property int effectiveSortRole: {
             switch (settings.sortBy) {
-            case "dueTo": return OTL.ItemsModel.DueToRole;
+            case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
             case "title": return OTL.ItemsModel.TitleRole;
             case "createdAt": return OTL.ItemsModel.CreatedAtRole;
             case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
