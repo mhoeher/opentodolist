@@ -46,6 +46,8 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVClient", QtDebugMsg)
       m_password(),
       m_stopRequested(false)
 {
+    // Follow redirects as long as we don't change to a less secure one (aka https -> http):
+    m_networkAccessManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 }
 
 QString WebDAVClient::remoteDirectory() const
