@@ -190,10 +190,10 @@ ListView {
 
     footer: Pane {
         width: parent.width
-        height: column.contentHeight
+        height: footerColumn.contentHeight
 
         Column {
-            id: column
+            id: footerColumn
             width: parent.width
 
             Loader {
@@ -203,196 +203,24 @@ ListView {
         }
     }
 
-    delegate: SwipeDelegate {
+    delegate: TodosWidgetDelegate {
         id: swipeDelegate
+        model: root.model
+        item: object
+        allowSorting: root.allowSorting
+        onItemPressedAndHold: showContextMenu({x: 0, y: 0})
+        onItemClicked: root.todoClicked(item)
 
-        property bool toggleDoneOnClose: false
-
-        width: parent.width
-        padding: 0
-        topPadding: 0
-        bottomPadding: 0
-        hoverEnabled: true
-        contentItem: RowLayout {
-            width: parent.width
-
-            Components.ToolButton {
-                font.family: Fonts.icons
-                symbol: object.done ? Icons.faCheckCircle :
-                                      Icons.faCircle
-                onClicked: object.done = !object.done
-            }
-            Column {
-                Layout.fillWidth: true
-
-                Components.Label {
-                    text: Markdown.markdownToHtml(object.title)
-                    textFormat: Text.RichText
-                    width: parent.width
-                }
-                Item {
-                    height: 10
-                    width: 1
-                    visible: object.effectiveDueTo !== undefined &&
-                             DateUtils.validDate(object.effectiveDueTo)
-                }
-                RowLayout {
-                    width: parent.width
-                    visible: object.effectiveDueTo !== undefined &&
-                             DateUtils.validDate(object.effectiveDueTo)
-                    opacity: 0.5
-
-                    Label {
-                        font.family: Fonts.icons
-                        text: Icons.faCalendarAlt
-                    }
-                    Label {
-                        Layout.fillWidth: true
-                        text: DateUtils.format(object.effectiveDueTo)
-                    }
-                }
-            }
-            Item {
-                visible: !toggleSwipeOpened.visible
-                width: toggleSwipeOpened.width
-                height: toggleSwipeOpened.height
-            }
-
-            Components.ToolButton {
-                id: toggleSwipeOpened
-                visible: swipeDelegate.hovered
-                symbol: swipeDelegate.swipe.position === 0 ?
-                            Icons.faChevronLeft :
-                            Icons.faChevronRight
-                onClicked: {
-                    if (swipeDelegate.swipe.position === 0) {
-                        swipeDelegate.swipe.open(
-                                    SwipeDelegate.Right);
-                    } else {
-                        swipeDelegate.swipe.close();
-                    }
-                }
-            }
-        }
-        swipe.right: Row {
-            anchors.right: parent.right
-            height: parent.height
-
-            Components.ToolButton {
-                symbol: Icons.faPencilAlt
-                onClicked: {
-                    renameDialog.renameItem(object);
-                    swipeDelegate.swipe.close();
-                }
-            }
-            Components.ToolButton {
-                symbol: Icons.faCalendarAlt
-                visible: root.allowSettingDueDate
-                onClicked: {
-                    dateDialogForExistingItem.item = object;
-                    dateDialogForExistingItem.open();
-                    swipeDelegate.swipe.close();
-                }
-            }
-            Components.ToolButton {
-                symbol: Icons.faTrash
-                onClicked: deleteDialog.deleteItem(object)
-            }
-        }
-        swipe.left: Pane {
-            height: swipeDelegate.height
-            width: swipeDelegate.width / 2
-            Material.background: Colors.positiveColor
-
-            Components.Label {
-                text: object.done ?
-                          qsTr("Swipe to mark undone") :
-                          qsTr("Swipe to mark done")
-                wrapMode: "WrapAtWordBoundaryOrAnywhere"
-                width: parent.width / 2
-                anchors.fill: parent
-            }
+        function showContextMenu(mouse) {
+            itemActionMenu.actions = swipeDelegate.itemActions;
+            itemActionMenu.parent = swipeDelegate;
+            itemActionMenu.popup(mouse.x, mouse.y);
         }
 
-        onClicked: {
-            // Delay evaluation, as it overlaps with double clicks:
-            if (!delayedClickTimer.afterDoubleClick) {
-                delayedClickTimer.start();
-            }
-            delayedClickTimer.afterDoubleClick = false;
-        }
-
-        onDoubleClicked: {
-            // Remember that we detected a double click:
-            delayedClickTimer.afterDoubleClick = true;
-
-            // Handle the double click:
-            delayedClickTimer.stop();
-            renameDialog.renameItem(object);
-        }
-
-
-        Timer {
-            id: delayedClickTimer
-
-            property bool afterDoubleClick: false
-
-            interval: 300
-            repeat: false
-            onTriggered: {
-                d.openSwipeDelegate = null;
-                root.todoClicked(object);
-            }
-        }
-
-        swipe.onCompleted: {
-            if (swipe.position > 0) {
-                // Swipe from left to right to mark items as (un)done.
-                swipeDelegate.toggleDoneOnClose = true;
-                swipeDelegate.swipe.close();
-            } else {
-                d.openSwipeDelegate = swipeDelegate;
-            }
-        }
-
-        onPressAndHold: {
-            if (root.allowSorting) {
-                d.openSwipeDelegate = null;
-                reorderOverlay.startDrag();
-            }
-        }
-        swipe.onClosed: {
-            if (swipeDelegate.toggleDoneOnClose) {
-                object.done = !object.done;
-                swipeDelegate.toggleDoneOnClose = false;
-            }
-        }
-
-        Connections {
-            target: d
-            onOpenSwipeDelegateChanged: if (d.openSwipeDelegate !==
-                                                swipeDelegate) {
-                                            swipeDelegate.swipe.close();
-                                        }
-        }
-
-        ProgressItemOverlay {
-            item: object
-            height: background.height
-            x: {
-                if (swipeDelegate.swipe.rightItem) {
-                    return swipeDelegate.swipe.position *
-                            swipeDelegate.swipe.rightItem.width;
-                } else {
-                    return 0;
-                }
-            }
-        }
-
-        ReorderableListViewOverlay {
-            id: reorderOverlay
+        MouseArea {
             anchors.fill: parent
-            model: root.model
+            acceptedButtons: Qt.RightButton
+            onClicked: showContextMenu(mouse)
         }
     }
 
@@ -402,18 +230,8 @@ ListView {
         property SwipeDelegate openSwipeDelegate: null
     }
 
-    RenameItemDialog { id: renameDialog }
-
-    DeleteItemDialog { id: deleteDialog }
-
-    DateSelectionDialog {
-        id: dateDialogForExistingItem
-
-        property var item: null
-
-        onAccepted: if (item !== null) {
-                        item.dueTo = selectedDate;
-                    }
+    Components.ItemActionMenu {
+        id: itemActionMenu
     }
 }
 

@@ -250,10 +250,30 @@ Page {
         visible: !d.hasScheduledItems
     }
 
-    ListView {
+    TodosWidget {
         id: listView
         anchors.fill: parent
-        delegate: itemDelegate
+        header: null
+        allowSorting: false
+        onTodoClicked: {
+            switch (todo.itemType) {
+            case "Note":
+                page.openPage(notePage, { item: todo });
+                break;
+            case "TodoList":
+                page.openPage(todoListPage, { item: todo });
+                break;
+            case "Todo":
+                page.openPage(todoPage, { item: todo });
+                break;
+            case "Image":
+                page.openPage(imagePage, { item: todo });
+                break;
+            default:
+                console.warn("Unhandled item type: " + todo.itemType);
+                break;
+            }
+        }
         model: sortedItems
         section {
             property: "effectiveDueToSpan"
