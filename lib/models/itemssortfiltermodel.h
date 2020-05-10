@@ -35,6 +35,8 @@ public:
 
     int count() const;
 
+    Q_INVOKABLE int roleFromName(const QString &roleName) const;
+
 signals:
 
     void countChanged();

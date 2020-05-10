@@ -47,6 +47,14 @@ int ItemsSortFilterModel::count() const
     return rowCount();
 }
 
+/**
+ * @brief Get the role from the role name.
+ */
+int ItemsSortFilterModel::roleFromName(const QString &roleName) const
+{
+    return roleNames().key(roleName.toUtf8(), -1);
+}
+
 bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left,
                                     const QModelIndex &source_right) const
 {

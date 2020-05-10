@@ -208,6 +208,24 @@ ListView {
         model: root.model
         item: object
         allowSorting: root.allowSorting
+        drawSeperator: {
+            let result = true;
+            if (index == root.model.rowCount() - 1) {
+                // Dont draw separator for last item
+                result = false;
+            } else if (root.section.property !== "") {
+                // Check if this is the last item in the current section.
+                // Don't draw a separator for it in this case
+                let nextItemSection = root.model.data(root.model.index(index + 1, 0),
+                                               root.model.roleFromName(root.section.property));
+                console.debug(ListView.section, "<=>", nextItemSection, root.section.property);
+                if (ListView.section !== nextItemSection) {
+                    result = false;
+                }
+            }
+            return result;
+        }
+
         onItemPressedAndHold: showContextMenu({x: 0, y: 0})
         onItemClicked: root.todoClicked(item)
 

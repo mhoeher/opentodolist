@@ -27,14 +27,15 @@ SwipeDelegate {
                                             deleteAction
                                         ])
     property bool allowSorting: false
+    property bool drawSeperator: true
 
     signal itemPressedAndHold()
     signal itemClicked()
     
     width: parent.width
     padding: 0
-    topPadding: 0
-    bottomPadding: 0
+    topPadding: fontMetrics.height / 2
+    bottomPadding: topPadding
     hoverEnabled: true
     contentItem: RowLayout {
         width: parent.width
@@ -60,9 +61,9 @@ SwipeDelegate {
             onClicked: {
                 switch (swipeDelegate.item.itemType) {
                 case "Task":
+                case "Todo":
                     swipeDelegate.item.done = !swipeDelegate.item.done;
                     break;
-                case "Todo":
                 case "TodoList":
                 case "Note":
                 case "Image":
@@ -82,7 +83,7 @@ SwipeDelegate {
                 width: parent.width
             }
             Item {
-                height: 10
+                height: fontMetrics.height / 4
                 width: 1
                 visible: swipeDelegate.item.effectiveDueTo !== undefined &&
                          DateUtils.validDate(swipeDelegate.item.effectiveDueTo)
@@ -201,10 +202,18 @@ SwipeDelegate {
     }
     swipe.onClosed: {
         if (swipeDelegate.toggleDoneOnClose) {
-            if (typeof(swipeDelegate.item.markCurrentOccurrenceAsDone) === "function") {
-                swipeDelegate.item.markCurrentOccurrenceAsDone();
-            } else {
-                swipeDelegate.item.done = !swipeDelegate.item.done;
+            let item = swipeDelegate.item;
+            switch (item.itemType) {
+            case "Todo":
+            case "Task":
+                item.done = !item.done;
+                break;
+            default:
+                if (typeof(item.markCurrentOccurrenceAsDone) === "function") {
+                    item.markCurrentOccurrenceAsDone();
+                } else {
+                    console.warn("Cannot toggle done state for", item, "of type", item.itemType);
+                }
             }
             swipeDelegate.toggleDoneOnClose = false;
         }
@@ -249,6 +258,18 @@ SwipeDelegate {
             swipeDelegate.itemClicked();
         }
     }
+
+    Rectangle {
+        visible: swipeDelegate.drawSeperator
+        width: parent.width * 0.8
+        height: 2
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        color: Material.color(Material.Grey)
+        opacity: 0.1
+    }
+
+    FontMetrics { id: fontMetrics }
 
     Actions.RenameItem { id: renameAction; item: swipeDelegate.item }
     Actions.SetDueTo { id: setDueToAction; item: swipeDelegate.item }

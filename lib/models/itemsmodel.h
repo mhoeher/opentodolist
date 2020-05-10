@@ -116,6 +116,8 @@ public:
     QVariantMap timeSpans() const;
     void setTimeSpans(const QVariantMap &timeSpans);
 
+    Q_INVOKABLE int roleFromName(const QString &roleName) const;
+
 signals:
 
     void cacheChanged();
