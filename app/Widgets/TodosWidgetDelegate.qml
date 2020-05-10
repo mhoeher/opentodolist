@@ -17,6 +17,7 @@ SwipeDelegate {
     property var model: null
     property bool toggleDoneOnClose: false
     property OTL.Item item: OTL.Item {}
+    property bool hideDueDate: false
     readonly property var itemActions: ([
                                             renameAction,
                                             setDueTodayAction,
@@ -86,12 +87,14 @@ SwipeDelegate {
                 height: fontMetrics.height / 4
                 width: 1
                 visible: swipeDelegate.item.effectiveDueTo !== undefined &&
-                         DateUtils.validDate(swipeDelegate.item.effectiveDueTo)
+                         DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
+                         !swipeDelegate.hideDueDate
             }
             RowLayout {
                 width: parent.width
                 visible: swipeDelegate.item.effectiveDueTo !== undefined &&
-                         DateUtils.validDate(swipeDelegate.item.effectiveDueTo)
+                         DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
+                         !swipeDelegate.hideDueDate
                 opacity: 0.5
                 
                 Label {

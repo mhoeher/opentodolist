@@ -32,6 +32,7 @@ ListView {
     property string newItemPlaceholderText
     property bool allowSorting: true
     property bool allowSettingDueDate: false
+    property var hideDueToLabelForSectionsFunction: null
 
     signal headerButtonClicked()
     signal headerButton2Clicked()
@@ -208,6 +209,8 @@ ListView {
         model: root.model
         item: object
         allowSorting: root.allowSorting
+        hideDueDate: typeof(root.hideDueToLabelForSectionsFunction) === "function" ?
+                         root.hideDueToLabelForSectionsFunction(ListView.section) : false
         drawSeperator: {
             let result = true;
             if (index == root.model.rowCount() - 1) {

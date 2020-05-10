@@ -94,6 +94,9 @@ Page {
             return date.toLocaleDateString(locale, "yyyy-MM-dd");
         }
 
+        readonly property string todayLabel: qsTr("Today")
+        readonly property string tomorrowLabel: qsTr("Tomorrow")
+
         function updateTimes() {
             var now = new Date();
             var today = new Date(now.getFullYear(),
@@ -129,8 +132,8 @@ Page {
 
             var timeSpans = {};
 
-            timeSpans[d2s(today)] = qsTr("Today");
-            timeSpans[d2s(tomorrow)] = qsTr("Tomorrow");
+            timeSpans[d2s(today)] = todayLabel;
+            timeSpans[d2s(tomorrow)] = tomorrowLabel;
             if (d2s(laterThisWeek) < d2s(nextWeek)) {
                 // Only addd this, if the day after tomorrow is not already
                 // in the next week.
@@ -255,6 +258,10 @@ Page {
         anchors.fill: parent
         header: null
         allowSorting: false
+        hideDueToLabelForSectionsFunction: function(section) {
+            return section === d.todayLabel || section === d.tomorrowLabel;
+        }
+
         onTodoClicked: {
             switch (todo.itemType) {
             case "Note":
