@@ -129,7 +129,6 @@ WebDAVClient::EntryList WebDAVClient::entryList(const QString &directory, bool *
     dir = QDir::cleanPath(dir);
     auto reply = listDirectoryRequest(dir);
     connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
-    connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
     bool status = false;
     waitForReplyToFinish(reply);
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -166,12 +165,10 @@ bool WebDAVClient::download(const QString &filename, QIODevice *targetDevice)
         url.setUserName(username());
         url.setPassword(password());
         request.setUrl(url);
-        request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
         auto reply = m_networkAccessManager->get(request);
         file->setParent(reply);
         connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
         connect(reply, &QNetworkReply::readyRead, [=]() { file->write(reply->readAll()); });
-        connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
         connect(qApp, &QCoreApplication::aboutToQuit, reply, &QNetworkReply::abort);
         waitForReplyToFinish(reply);
         file->write(reply->readAll());
@@ -239,10 +236,8 @@ bool WebDAVClient::upload(const QString &filename, QString *etag)
         request.setUrl(url);
         request.setHeader(QNetworkRequest::ContentLengthHeader, file->size());
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/octet-stream");
-        request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
         auto reply = m_networkAccessManager->put(request, file);
         connect(qApp, &QCoreApplication::aboutToQuit, reply, &QNetworkReply::abort);
-        connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
         connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
         file->setParent(reply);
         waitForReplyToFinish(reply);
@@ -285,7 +280,6 @@ bool WebDAVClient::mkdir(const QString &dirname, QString *etag)
     auto result = false;
     auto reply = createDirectoryRequest(this->remoteDirectory() + "/" + dirname);
     connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
-    connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
     QString currentEtag = "no-etag-retrieved-yet";
     waitForReplyToFinish(reply);
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
@@ -309,10 +303,8 @@ bool WebDAVClient::deleteEntry(const QString &filename)
     url.setUserName(username());
     url.setPassword(password());
     request.setUrl(url);
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     auto reply = m_networkAccessManager->deleteResource(request);
     connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
-    connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
     connect(qApp, &QCoreApplication::aboutToQuit, reply, &QNetworkReply::abort);
     waitForReplyToFinish(reply);
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -721,16 +713,6 @@ bool WebDAVClient::skipEntry(const WebDAVClient::SyncEntry &entry,
     return false;
 }
 
-void WebDAVClient::onReplyRedirected(const QUrl &newUrl)
-{
-    auto reply = qobject_cast<QNetworkReply *>(sender());
-    if (reply != nullptr) {
-        qCDebug(log) << "Reply got redirected from"
-                     << reply->url().toString(QUrl::PrettyDecoded | QUrl::RemoveUserInfo) << "to"
-                     << newUrl.toString(QUrl::PrettyDecoded | QUrl::RemoveUserInfo);
-    }
-}
-
 /**
  * @brief Get the current etag of a file or directory.
  *
@@ -831,12 +813,10 @@ QNetworkReply *WebDAVClient::listDirectoryRequest(const QString &directory)
     request.setRawHeader("Depth", "1");
     request.setHeader(QNetworkRequest::ContentLengthHeader, requestData.size());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=utf-8");
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     auto buffer = new QBuffer;
     buffer->setData(requestData);
     auto reply = m_networkAccessManager->sendCustomRequest(request, "PROPFIND", buffer);
     connect(qApp, &QCoreApplication::aboutToQuit, reply, &QNetworkReply::abort);
-    connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
     buffer->setParent(reply);
     prepareReply(reply);
     return reply;
@@ -868,7 +848,6 @@ QNetworkReply *WebDAVClient::etagRequest(const QString &filename)
     request.setRawHeader("Depth", "0");
     request.setHeader(QNetworkRequest::ContentLengthHeader, requestData.size());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=utf-8");
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     auto buffer = new QBuffer;
     buffer->setData(requestData);
     auto reply = m_networkAccessManager->sendCustomRequest(request, "PROPFIND", buffer);
@@ -888,10 +867,8 @@ QNetworkReply *WebDAVClient::createDirectoryRequest(const QString &directory)
     url.setUserName(m_username);
     url.setPassword(m_password);
     request.setUrl(url);
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     auto reply = m_networkAccessManager->sendCustomRequest(request, "MKCOL");
     connect(qApp, &QCoreApplication::aboutToQuit, reply, &QNetworkReply::abort);
-    connect(reply, &QNetworkReply::redirected, this, &WebDAVClient::onReplyRedirected);
     prepareReply(reply);
     return reply;
 }
