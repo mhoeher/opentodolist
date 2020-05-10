@@ -175,6 +175,7 @@ int main(int argc, char *argv[])
     engine.load(url);
 
     // Print diagnostic information
+    qWarning() << "App version:" << QCoreApplication::applicationVersion();
     qWarning() << "System ABI:" << QSysInfo::buildAbi();
     qWarning() << "Build CPU Architecture:" << QSysInfo::buildCpuArchitecture();
     qWarning() << "Current CPU Architecture:" << QSysInfo::currentCpuArchitecture();

@@ -196,6 +196,7 @@ private:
     bool removeRemoteEntry(const SyncEntry &entry, QSqlDatabase *db);
     bool skipEntry(const SyncEntry &entry, SyncStepDirection direction,
                    const QRegularExpression &dirFilter);
+    void onReplyRedirected(const QUrl &newUrl);
 };
 
 enum class HTTPStatusCode {
