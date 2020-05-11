@@ -111,7 +111,13 @@ CenteredDialog {
                 opacity: model.month === grid.month ? 1.0 : 0.5
                 text: model.day
                 font.pixelSize: grid.font.pixelSize
-                checked: d.dateEquals(localDate, dialog.selectedDate)
+                checked: {
+                    if (dialog) {
+                        return d.dateEquals(localDate, dialog.selectedDate);
+                    } else {
+                        return false;
+                    }
+                }
                 background: Pane {
                     Material.background: Material.Green
                     opacity: 0.5

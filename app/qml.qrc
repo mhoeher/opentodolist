@@ -109,5 +109,17 @@
         <file>Pages/ProblemsPageForm.ui.qml</file>
         <file>Utils/TextUtils.js</file>
         <file>Windows/RecurrenceDialog.qml</file>
+        <file>Widgets/TodosWidgetDelegate.qml</file>
+        <file>Utils/ItemUtils.qml</file>
+        <file>Components/ItemAction.qml</file>
+        <file>Components/ItemActionToolButtons.qml</file>
+        <file>Actions/RenameItem.qml</file>
+        <file>Actions/DeleteItem.qml</file>
+        <file>Actions/SetDueTo.qml</file>
+        <file>Components/ItemActionMenu.qml</file>
+        <file>Actions/SetDueToday.qml</file>
+        <file>Actions/SetDueTomorrow.qml</file>
+        <file>Actions/SetDueThisWeek.qml</file>
+        <file>Actions/SetDueNextWeek.qml</file>
     </qresource>
 </RCC>

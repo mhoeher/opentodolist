@@ -373,6 +373,14 @@ void ItemsModel::setTimeSpans(const QVariantMap &timeSpans)
     }
 }
 
+/**
+ * @brief Get the role from the @p roleName.
+ */
+int ItemsModel::roleFromName(const QString &roleName) const
+{
+    return roleNames().key(roleName.toUtf8(), -1);
+}
+
 bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
 {
     for (auto word : words) {
