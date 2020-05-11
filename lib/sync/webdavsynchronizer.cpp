@@ -90,18 +90,18 @@ void WebDAVSynchronizer::validate()
 {
     beginValidation();
     auto dav = createDAVClient(this);
-    auto reply = dav->listDirectoryRequest("/");
-    reply->setParent(this);
-    connect(reply, &QNetworkReply::finished, [=]() {
-        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == HTTPStatusCode::WebDAVMultiStatus) {
-            endValidation(true);
-        } else {
-            endValidation(false);
-        }
-        reply->deleteLater();
-        dav->deleteLater();
-    });
+    auto reply = dav->sendDAVRequest(dav->listDirectoryRequest("/"));
+    // TODO: Run in separate thread!
+
+    // At this point, the reply already finished
+    auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (code == HTTPStatusCode::WebDAVMultiStatus) {
+        endValidation(true);
+    } else {
+        endValidation(false);
+    }
+    reply->deleteLater();
+    dav->deleteLater();
 }
 
 void WebDAVSynchronizer::synchronize()
@@ -181,6 +181,7 @@ void WebDAVSynchronizer::synchronize()
                                     &changedYearDirs)) {
                 warning() << tr("Failed to synchronize top level "
                                 "directory!");
+                qCWarning(::log) << "Failed to sync top level directory";
                 touchErrorLock();
             }
             // Sync the year directory:

@@ -137,6 +137,18 @@ private:
         }
     };
 
+    /**
+     * @brief Represents a network request to be sent to the server
+     */
+    struct DAVRequest
+    {
+        QUrl url;
+        QByteArray verb;
+        QByteArray data;
+        QString filename;
+        std::function<void(QNetworkRequest &)> prepareRequest;
+    };
+
     typedef QList<Entry> EntryList;
     typedef QMap<QString, SyncEntry> SyncEntryMap;
 
@@ -165,16 +177,16 @@ private:
     static std::tuple<QString, QString> splitpath(const QString &path);
     QString urlString() const;
 
-    QNetworkReply *listDirectoryRequest(const QString &directory);
-    QNetworkReply *etagRequest(const QString &filename);
-    QNetworkReply *createDirectoryRequest(const QString &directory);
+    DAVRequest listDirectoryRequest(const QString &directory);
+    DAVRequest etagRequest(const QString &filename);
+    DAVRequest createDirectoryRequest(const QString &directory);
     static EntryList parseEntryList(const QUrl &baseUrl, const QString &directory,
                                     const QByteArray &reply);
     static EntryList parsePropFindResponse(const QUrl &baseUrl, const QDomDocument &response,
                                            const QString &directory);
     static Entry parseResponseEntry(const QDomElement &element, const QString &baseDir);
     void prepareReply(QNetworkReply *reply) const;
-    static void waitForReplyToFinish(QNetworkReply *reply);
+    QNetworkReply *sendDAVRequest(const DAVRequest &request);
 
     // Sync DB Handling
     QSqlDatabase openSyncDb();
