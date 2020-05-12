@@ -22,6 +22,7 @@
 #include <QDomDocument>
 #include <QEventLoop>
 #include <QFileInfo>
+#include <QFutureWatcher>
 #include <QLoggingCategory>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -33,6 +34,7 @@
 #include <QSqlRecord>
 #include <QTemporaryFile>
 #include <QTimer>
+#include <QtConcurrent>
 
 #include "account.h"
 #include "datamodel/library.h"
@@ -89,19 +91,32 @@ QUrl WebDAVSynchronizer::baseUrl() const
 void WebDAVSynchronizer::validate()
 {
     beginValidation();
-    auto dav = createDAVClient(this);
-    auto reply = dav->sendDAVRequest(dav->listDirectoryRequest("/"));
-    // TODO: Run in separate thread!
+    auto watcher = new QFutureWatcher<bool>(this);
+    auto syncSettings = toFullMap();
+    connect(watcher, &QFutureWatcher<bool>::finished, [=]() {
+        if (watcher->future().resultCount() > 0) {
+            endValidation(watcher->result());
+        } else {
+            endValidation(false);
+        }
+    });
+    watcher->setFuture(QtConcurrent::run([=]() {
+        WebDAVSynchronizer sync;
+        sync.fromFullMap(syncSettings);
+        auto dav = sync.createDAVClient();
+        auto reply = dav->sendDAVRequest(dav->listDirectoryRequest("/"));
 
-    // At this point, the reply already finished
-    auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    if (code == HTTPStatusCode::WebDAVMultiStatus) {
-        endValidation(true);
-    } else {
-        endValidation(false);
-    }
-    reply->deleteLater();
-    dav->deleteLater();
+        // At this point, the reply already finished
+        auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (code == HTTPStatusCode::WebDAVMultiStatus) {
+            endValidation(true);
+        } else {
+            endValidation(false);
+        }
+        reply->deleteLater();
+        dav->deleteLater();
+        return code == HTTPStatusCode::WebDAVMultiStatus;
+    }));
 }
 
 void WebDAVSynchronizer::synchronize()
@@ -471,4 +486,24 @@ void WebDAVSynchronizer::touchErrorLock()
             file.close();
         }
     }
+}
+
+QVariantMap WebDAVSynchronizer::toFullMap() const
+{
+    QVariantMap result;
+    result["url"] = m_url;
+    result["username"] = m_username;
+    result["password"] = m_password;
+    result["remoteDir"] = m_remoteDirectory;
+    result["serverType"] = m_serverType;
+    return result;
+}
+
+void WebDAVSynchronizer::fromFullMap(const QVariantMap &map)
+{
+    m_url = map["url"].toUrl();
+    m_username = map["username"].toString();
+    m_password = map["password"].toString();
+    m_remoteDirectory = map["remoteDir"].toString();
+    m_serverType = map["serverType"].value<WebDAVServerType>();
 }
