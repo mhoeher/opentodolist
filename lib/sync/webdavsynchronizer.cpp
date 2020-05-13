@@ -166,9 +166,9 @@ void WebDAVSynchronizer::synchronize()
             debug() << tr("Creating the remote top level directory");
             dav->setRemoteDirectory("");
             auto parts = QDir::cleanPath(m_remoteDirectory).split("/");
-            QString rpath;
+            QString rpath = "/";
             for (auto part : parts) {
-                rpath += "/" + part;
+                rpath += part + "/";
                 if (dav->etag(rpath) == "") {
                     auto ok = dav->mkdir(rpath);
                     if (!ok) {
@@ -206,7 +206,7 @@ void WebDAVSynchronizer::synchronize()
                     break;
                 }
                 QSet<QString> changedMonthDirs;
-                if (!dav->syncDirectory("/" + yearDir, QRegularExpression("\\d\\d?"),
+                if (!dav->syncDirectory("/" + yearDir + "/", QRegularExpression("\\d\\d?"),
                                         fullSync || !changedYearDirs.contains(yearDir),
                                         &changedMonthDirs)) {
                     warning() << tr("Failed to synchronize '%1'").arg("/" + yearDir);
@@ -217,7 +217,8 @@ void WebDAVSynchronizer::synchronize()
                     if (m_stopRequested) {
                         break;
                     }
-                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir, QRegularExpression(),
+                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir + "/",
+                                            QRegularExpression(),
                                             fullSync || !changedMonthDirs.contains(monthDir))) {
                         warning() << tr("Failed to synchronize '%1'")
                                              .arg("/" + yearDir + "/" + monthDir);
