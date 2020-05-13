@@ -22,6 +22,7 @@
 #include <QDomDocument>
 #include <QEventLoop>
 #include <QFileInfo>
+#include <QFutureWatcher>
 #include <QLoggingCategory>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -33,6 +34,7 @@
 #include <QSqlRecord>
 #include <QTemporaryFile>
 #include <QTimer>
+#include <QtConcurrent>
 
 #include "account.h"
 #include "datamodel/library.h"
@@ -89,10 +91,22 @@ QUrl WebDAVSynchronizer::baseUrl() const
 void WebDAVSynchronizer::validate()
 {
     beginValidation();
-    auto dav = createDAVClient(this);
-    auto reply = dav->listDirectoryRequest("/");
-    reply->setParent(this);
-    connect(reply, &QNetworkReply::finished, [=]() {
+    auto watcher = new QFutureWatcher<bool>(this);
+    auto syncSettings = toFullMap();
+    connect(watcher, &QFutureWatcher<bool>::finished, [=]() {
+        if (watcher->future().resultCount() > 0) {
+            endValidation(watcher->result());
+        } else {
+            endValidation(false);
+        }
+    });
+    watcher->setFuture(QtConcurrent::run([=]() {
+        WebDAVSynchronizer sync;
+        sync.fromFullMap(syncSettings);
+        auto dav = sync.createDAVClient();
+        auto reply = dav->sendDAVRequest(dav->listDirectoryRequest("/"));
+
+        // At this point, the reply already finished
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (code == HTTPStatusCode::WebDAVMultiStatus) {
             endValidation(true);
@@ -101,7 +115,8 @@ void WebDAVSynchronizer::validate()
         }
         reply->deleteLater();
         dav->deleteLater();
-    });
+        return code == HTTPStatusCode::WebDAVMultiStatus;
+    }));
 }
 
 void WebDAVSynchronizer::synchronize()
@@ -151,9 +166,9 @@ void WebDAVSynchronizer::synchronize()
             debug() << tr("Creating the remote top level directory");
             dav->setRemoteDirectory("");
             auto parts = QDir::cleanPath(m_remoteDirectory).split("/");
-            QString rpath;
+            QString rpath = "/";
             for (auto part : parts) {
-                rpath += "/" + part;
+                rpath += part + "/";
                 if (dav->etag(rpath) == "") {
                     auto ok = dav->mkdir(rpath);
                     if (!ok) {
@@ -181,6 +196,7 @@ void WebDAVSynchronizer::synchronize()
                                     &changedYearDirs)) {
                 warning() << tr("Failed to synchronize top level "
                                 "directory!");
+                qCWarning(::log) << "Failed to sync top level directory";
                 touchErrorLock();
             }
             // Sync the year directory:
@@ -190,7 +206,7 @@ void WebDAVSynchronizer::synchronize()
                     break;
                 }
                 QSet<QString> changedMonthDirs;
-                if (!dav->syncDirectory("/" + yearDir, QRegularExpression("\\d\\d?"),
+                if (!dav->syncDirectory("/" + yearDir + "/", QRegularExpression("\\d\\d?"),
                                         fullSync || !changedYearDirs.contains(yearDir),
                                         &changedMonthDirs)) {
                     warning() << tr("Failed to synchronize '%1'").arg("/" + yearDir);
@@ -201,7 +217,8 @@ void WebDAVSynchronizer::synchronize()
                     if (m_stopRequested) {
                         break;
                     }
-                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir, QRegularExpression(),
+                    if (!dav->syncDirectory("/" + yearDir + "/" + monthDir + "/",
+                                            QRegularExpression(),
                                             fullSync || !changedMonthDirs.contains(monthDir))) {
                         warning() << tr("Failed to synchronize '%1'")
                                              .arg("/" + yearDir + "/" + monthDir);
@@ -470,4 +487,24 @@ void WebDAVSynchronizer::touchErrorLock()
             file.close();
         }
     }
+}
+
+QVariantMap WebDAVSynchronizer::toFullMap() const
+{
+    QVariantMap result;
+    result["url"] = m_url;
+    result["username"] = m_username;
+    result["password"] = m_password;
+    result["remoteDir"] = m_remoteDirectory;
+    result["serverType"] = m_serverType;
+    return result;
+}
+
+void WebDAVSynchronizer::fromFullMap(const QVariantMap &map)
+{
+    m_url = map["url"].toUrl();
+    m_username = map["username"].toString();
+    m_password = map["password"].toString();
+    m_remoteDirectory = map["remoteDir"].toString();
+    m_serverType = map["serverType"].value<WebDAVServerType>();
 }

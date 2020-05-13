@@ -110,6 +110,8 @@ public:
     Q_INVOKABLE bool isLibraryDir(const QUrl &url) const;
     Q_INVOKABLE QString libraryNameFromDir(const QUrl &url) const;
 
+    Q_INVOKABLE QString sha256(const QString &text) const;
+
     QString librariesLocation() const;
 
     Q_INVOKABLE QUrl homeLocation() const;

@@ -113,6 +113,9 @@ private:
     QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
 
     void touchErrorLock();
+
+    QVariantMap toFullMap() const;
+    void fromFullMap(const QVariantMap &map);
 };
 
 #endif // SYNC_WEBDAVSYNCHRONIZER_H_

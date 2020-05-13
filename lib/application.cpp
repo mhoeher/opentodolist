@@ -1095,6 +1095,14 @@ QString Application::libraryNameFromDir(const QUrl &url) const
 }
 
 /**
+ * @brief Get the SHA256 hash over the @p text.
+ */
+QString Application::sha256(const QString &text) const
+{
+    return QCryptographicHash::hash(text.toUtf8(), QCryptographicHash::Sha256).toHex();
+}
+
+/**
  * @brief Returns the home location of the current user.
  */
 QUrl Application::homeLocation() const
