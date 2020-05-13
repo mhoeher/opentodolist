@@ -109,8 +109,6 @@ CenteredDialog {
             delegate: ToolButton {
                 property var localDate: new Date(year, month, day)
                 opacity: model.month === grid.month ? 1.0 : 0.5
-                text: model.day
-                font.pixelSize: grid.font.pixelSize
                 checked: {
                     if (dialog) {
                         return d.dateEquals(localDate, dialog.selectedDate);
@@ -123,6 +121,13 @@ CenteredDialog {
                     opacity: 0.5
                     visible: checked
                 }
+                contentItem: Label {
+                    text: model.day
+                    font.pixelSize: grid.font.pixelSize
+                    font.bold: d.dateEquals(localDate, new Date()) // Make today bold
+                    wrapMode: "NoWrap"
+                }
+
                 onClicked: dialog.selectedDate = localDate
             }
         }
