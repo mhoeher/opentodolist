@@ -24,6 +24,7 @@
 #include <QLoggingCategory>
 #include <QNetworkAccessManager>
 #include <QObject>
+#include <QPointer>
 #include <QRegularExpression>
 #include <QSqlDatabase>
 #include <QUrl>
@@ -31,6 +32,7 @@
 #include <tuple>
 
 class QDir;
+class QFile;
 class QDomDocument;
 class QDomElement;
 class QNetworkAccessManager;
@@ -146,6 +148,7 @@ private:
         QByteArray verb;
         QByteArray data;
         QString filename;
+        QPointer<QFile> outputFile;
         std::function<void(QNetworkRequest &)> prepareRequest;
     };
 

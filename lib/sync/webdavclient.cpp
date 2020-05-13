@@ -168,9 +168,9 @@ bool WebDAVClient::download(const QString &filename, QIODevice *targetDevice)
         DAVRequest request;
         request.url = QUrl(urlString() + mkpath(remoteDirectory() + "/" + filename));
         request.verb = HTTP_GET;
+        request.outputFile = file;
         auto reply = sendDAVRequest(request);
         file->setParent(reply);
-        file->write(reply->readAll());
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (code == HTTPStatusCode::OK) {
             if (targetDevice != nullptr) {
@@ -1001,12 +1001,24 @@ QNetworkReply *WebDAVClient::sendDAVRequest(const WebDAVClient::DAVRequest &requ
         prepareReply(rep);
         connect(rep, &QNetworkReply::finished, rep, &QNetworkReply::deleteLater);
 
+        if (request.outputFile != nullptr) {
+            request.outputFile->resize(0);
+        }
+
         QEventLoop loop;
         connect(rep, &QNetworkReply::finished, &loop, &QEventLoop::quit);
         connect(rep, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
                 [&](QNetworkReply::NetworkError) { loop.quit(); });
         connect(qApp, &QCoreApplication::aboutToQuit, rep, &QNetworkReply::abort);
+        connect(rep, &QNetworkReply::readyRead, [=]() {
+            if (request.outputFile != nullptr) {
+                request.outputFile->write(rep->readAll());
+            }
+        });
         loop.exec();
+        if (request.outputFile != nullptr) {
+            request.outputFile->write(rep->readAll());
+        }
 
         auto redirectTargetAttr = rep->attribute(QNetworkRequest::RedirectionTargetAttribute);
         if (!redirectTargetAttr.isValid()) {
