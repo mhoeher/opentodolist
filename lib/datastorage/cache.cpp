@@ -60,8 +60,10 @@ ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery *query) : QRunnable(), m_query
  */
 void ItemsQueryRunnable::run()
 {
+    qCDebug(log) << "Running query" << m_query.data();
     m_query->run();
     m_query->finish();
+    qCDebug(log) << "Query" << m_query.data() << "finished";
 }
 
 /**
