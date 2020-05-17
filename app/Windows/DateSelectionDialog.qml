@@ -108,6 +108,7 @@ CenteredDialog {
 
             delegate: ToolButton {
                 property var localDate: new Date(year, month, day)
+                property bool isToday: d.dateEquals(localDate, new Date()) // Highlight today
                 opacity: model.month === grid.month ? 1.0 : 0.5
                 checked: {
                     if (dialog) {
@@ -117,9 +118,18 @@ CenteredDialog {
                     }
                 }
                 background: Pane {
-                    Material.background: Material.Green
+                    Material.background: {
+                        if (checked) {
+                            return Material.Green;
+                        } else if (isToday) {
+                            return Material.Purple;
+                        } else {
+                            return "white";
+                        }
+                    }
                     opacity: 0.5
-                    visible: checked
+                    visible: checked || isToday
+                    enabled: false
                 }
                 contentItem: Label {
                     text: model.day
