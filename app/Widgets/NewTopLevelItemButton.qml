@@ -8,9 +8,13 @@ import "../Utils"
 RoundButton {
     id: newItemButton
 
+    property bool createTodos: false
+    property bool createImages: true
+
     signal newTodoList()
     signal newImage()
     signal newNote()
+    signal newTodo()
 
     anchors {
         right: parent.right
@@ -36,16 +40,25 @@ RoundButton {
         modal: true
 
         MenuItem {
-            text: qsTr("Note")
-            onTriggered: newItemButton.newNote()
-        }
-        MenuItem {
             text: qsTr("Todo List")
             onTriggered: newItemButton.newTodoList()
         }
         MenuItem {
+            id: newTodoMenuItem
+            text: qsTr("Todo")
+            onTriggered: newItemButton.newTodo()
+            visible: newItemButton.createTodos
+            height: visible ? implicitHeight : 0
+        }
+        MenuItem {
+            text: qsTr("Note")
+            onTriggered: newItemButton.newNote()
+        }
+        MenuItem {
             text: qsTr("Image")
             onTriggered: newItemButton.newImage()
+            visible: newItemButton.createImages
+            height: visible ? implicitHeight : 0
         }
     }
 }

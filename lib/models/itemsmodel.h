@@ -59,6 +59,7 @@ class ItemsModel : public QAbstractListModel
     Q_PROPERTY(
             QString overdueLabel READ overdueLabel WRITE setOverdueLabel NOTIFY overdueLabelChanged)
     Q_PROPERTY(QVariantMap timeSpans READ timeSpans WRITE setTimeSpans NOTIFY timeSpansChanged)
+    Q_PROPERTY(QString itemType READ itemType WRITE setItemType NOTIFY itemTypeChanged)
 public:
     enum Roles {
         ItemRole = Qt::UserRole,
@@ -69,7 +70,8 @@ public:
         CreatedAtRole,
         UpdatedAtRole,
         EffectiveDueToRole,
-        EffectiveDueToSpanRole
+        EffectiveDueToSpanRole,
+        UidRole
     };
 
     Q_ENUM(Roles)
@@ -118,6 +120,9 @@ public:
 
     Q_INVOKABLE int roleFromName(const QString &roleName) const;
 
+    QString itemType() const;
+    void setItemType(const QString &itemType);
+
 signals:
 
     void cacheChanged();
@@ -132,6 +137,7 @@ signals:
     void recursiveChanged();
     void overdueLabelChanged();
     void timeSpansChanged();
+    void itemTypeChanged();
 
 public slots:
 
@@ -144,6 +150,7 @@ private:
 
     QString m_searchString;
     QString m_tag;
+    QString m_itemType;
     bool m_onlyDone;
     bool m_onlyUndone;
     bool m_onlyWithDueDate;

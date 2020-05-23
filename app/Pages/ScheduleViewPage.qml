@@ -9,6 +9,7 @@ import "../Menues"
 import "../Fonts"
 import "../Utils"
 import "../Widgets"
+import "../Windows"
 
 Page {
     id: page
@@ -143,6 +144,26 @@ Page {
             timeSpans[d2s(comingNext)] = qsTr("Coming Next");
             items.timeSpans = timeSpans;
         }
+
+        function openItemInPage(item) {
+            switch (item.itemType) {
+            case "Note":
+                page.openPage(notePage, { item: item });
+                break;
+            case "TodoList":
+                page.openPage(todoListPage, { item: item });
+                break;
+            case "Todo":
+                page.openPage(todoPage, { item: item });
+                break;
+            case "Image":
+                page.openPage(imagePage, { item: item });
+                break;
+            default:
+                console.warn("Unhandled item type: " + item.itemType);
+                break;
+            }
+        }
     }
 
     Component {
@@ -158,26 +179,7 @@ Page {
 
                 width: parent.width
 
-                onClicked: {
-                    switch (object.itemType) {
-                    case "Note":
-                        page.openPage(notePage, { item: object });
-                        break;
-                    case "TodoList":
-                        page.openPage(todoListPage, { item: object });
-                        break;
-                    case "Todo":
-                        page.openPage(todoPage, { item: object });
-                        break;
-                    case "Image":
-                        page.openPage(imagePage, { item: object });
-                        break;
-                    default:
-                        console.warn("Unhandled item type: " + object.itemType);
-                        break;
-                    }
-                }
-
+                onClicked: d.openItemInPage(object)
                 contentItem: Item {
                     id: cntItem
 
@@ -314,6 +316,44 @@ Page {
                                     {
                                         errors: syncErrors
                                     })
+    }
+
+    NewTopLevelItemButton {
+        createTodos: true
+        createImages: false
+
+        onNewTodoList: newItemDialog.createTodoList()
+        onNewTodo: newItemDialog.createTodo()
+        onNewNote: newItemDialog.createNote()
+    }
+
+    ItemCreatedNotification {
+        id: itemCreatedNotification
+
+        onOpen: d.openItemInPage(item)
+    }
+
+    NewItemWithDueDateDialog {
+        id: newItemDialog
+
+        library: page.library
+        onAccepted: {
+            let args = {title: newItemTitle, dueTo: newItemDueOn};
+            switch (itemType) {
+            case "TodoList":
+                var newItem = OTL.Application.addTodoList(page.library, args);
+                break;
+            case "Todo":
+                newItem = OTL.Application.addTodo(page.library, parentItem, args);
+                break;
+            case "Note":
+                newItem = OTL.Application.addNote(page.library, args);
+                break;
+            }
+            if (newItem) {
+                itemCreatedNotification.show(newItem);
+            }
+        }
     }
 
     Component {

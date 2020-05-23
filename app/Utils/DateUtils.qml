@@ -5,7 +5,7 @@ import QtQuick 2.0
 Item {
     function validDate(date) {
         // Invalid dates are unequal to themselves
-        return date.getTime() === date.getTime();
+        return date !== null && date.getTime() === date.getTime();
     }
 
     function format(date) {
