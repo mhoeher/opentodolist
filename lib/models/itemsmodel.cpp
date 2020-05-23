@@ -127,6 +127,8 @@ QVariant ItemsModel::data(const QModelIndex &index, int role) const
             return item->weight();
         case TitleRole:
             return item->title();
+        case UidRole:
+            return item->uid();
         case CreatedAtRole:
             return item->createdAt();
         case UpdatedAtRole:
@@ -150,6 +152,7 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     result.insert(UpdatedAtRole, "updatedAt");
     result.insert(EffectiveDueToRole, "effectiveDueTo");
     result.insert(EffectiveDueToSpanRole, "effectiveDueToSpan");
+    result.insert(UidRole, "uid");
     return result;
 }
 
@@ -381,6 +384,26 @@ int ItemsModel::roleFromName(const QString &roleName) const
     return roleNames().key(roleName.toUtf8(), -1);
 }
 
+/**
+ * @brief Include only items with the given type.
+ */
+QString ItemsModel::itemType() const
+{
+    return m_itemType;
+}
+
+/**
+ * @brief Set the itemType filter property.
+ */
+void ItemsModel::setItemType(const QString &itemType)
+{
+    if (m_itemType != itemType) {
+        m_itemType = itemType;
+        triggerFetch();
+        emit itemTypeChanged();
+    }
+}
+
 bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
 {
     for (auto word : words) {
@@ -458,8 +481,12 @@ void ItemsModel::fetch()
         auto onlyWithDueDate = m_onlyWithDueDate;
         auto itemMatchesFilter = getFilterFn();
         auto defaultSearchResult = m_defaultSearchResult;
+        auto itemType = m_itemType;
 
         q->setItemFilter([=](ItemPtr item, GetItemsQuery *query) {
+            if (!itemType.isEmpty() && item->itemType() != itemType) {
+                return false;
+            }
             auto result = true;
             if (itemMatchesFilter) {
                 result = itemMatchesFilter(item, query);

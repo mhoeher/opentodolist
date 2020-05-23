@@ -221,7 +221,6 @@ ListView {
                 // Don't draw a separator for it in this case
                 let nextItemSection = root.model.data(root.model.index(index + 1, 0),
                                                root.model.roleFromName(root.section.property));
-                console.debug(ListView.section, "<=>", nextItemSection, root.section.property);
                 if (ListView.section !== nextItemSection) {
                     result = false;
                 }

@@ -121,5 +121,6 @@
         <file>Actions/SetDueTomorrow.qml</file>
         <file>Actions/SetDueThisWeek.qml</file>
         <file>Actions/SetDueNextWeek.qml</file>
+        <file>Windows/NewItemWithDueDateDialog.qml</file>
     </qresource>
 </RCC>
