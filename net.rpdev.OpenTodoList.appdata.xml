@@ -40,6 +40,45 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.23.0" date="2020-06-01">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #337: Allow to quickly add new items on the scheduling page.
+            </li>
+            <li>
+                #292: Disable auto-backup on Android.
+            </li>
+            <li>
+                #340 and 343: Highlight the today in the due date selection dialog.
+            </li>
+            <li>
+                #342: More white-space in todo/task lists.
+            </li>
+            <li>
+                #339: Deal with redirects of WebDAV servers (and implement special handling, as
+                this seems to be required for some WebDAV backends).
+            </li>
+            <li>
+                #338: Allow to quickly re-schedule items on the schedule page.
+            </li>
+            <li>
+                #332: Implement recurring items.
+            </li>
+            <li>
+                #334: Fix a crash when using the search function.
+            </li>
+            <li>
+                #330: Fix a unit test that sporadically failed.
+            </li>
+            <li>
+                #329: It is possible again to add tags to todo lists.
+            </li>
+            <li>
+                #331: Fix the git submodule URLs used (they need to be absolute in our case).
+            </li>
+        </ul>
+      </release>
       <release version="3.22.0" date="2020-05-01">
         <p>This release includes the following changes:</p>
         <ul>
