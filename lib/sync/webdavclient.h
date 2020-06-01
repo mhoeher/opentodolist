@@ -20,6 +20,8 @@
 #ifndef SYNC_WEBDAVCLIENT_H_
 #define SYNC_WEBDAVCLIENT_H_
 
+#include <tuple>
+
 #include <QDateTime>
 #include <QLoggingCategory>
 #include <QNetworkAccessManager>
@@ -29,7 +31,6 @@
 #include <QSqlDatabase>
 #include <QUrl>
 
-#include <tuple>
 
 class QDir;
 class QFile;

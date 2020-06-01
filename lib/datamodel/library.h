@@ -20,13 +20,13 @@
 #ifndef DATAMODEL_LIBRARY_H_
 #define DATAMODEL_LIBRARY_H_
 
+#include <functional>
+
 #include <QDir>
 #include <QLoggingCategory>
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
-
-#include <functional>
 
 #include "image.h"
 #include "note.h"
