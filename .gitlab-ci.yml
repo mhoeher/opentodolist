@@ -108,7 +108,7 @@ cppcheck:
 # Run clang-format code formatter check:
 clang-format:
   stage: build
-  image: fedora
+  image: fedora:32 # Force to F32 for now - required to get clang-format passing
   script:
     - ci/clang-format.sh
   except:
