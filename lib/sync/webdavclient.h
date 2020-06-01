@@ -31,7 +31,6 @@
 #include <QSqlDatabase>
 #include <QUrl>
 
-
 class QDir;
 class QFile;
 class QDomDocument;
@@ -53,33 +52,33 @@ class WebDAVClient : public QObject
     friend class WebDAVSynchronizerTest;
 #endif
 public:
-    explicit WebDAVClient(QObject *parent = nullptr);
+    explicit WebDAVClient(QObject* parent = nullptr);
 
     QUrl baseUrl() const;
-    void setBaseUrl(const QUrl &baseUrl);
+    void setBaseUrl(const QUrl& baseUrl);
 
     QString remoteDirectory() const;
-    void setRemoteDirectory(const QString &remoteDirectory);
+    void setRemoteDirectory(const QString& remoteDirectory);
 
     QString directory() const;
-    void setDirectory(const QString &directory);
+    void setDirectory(const QString& directory);
 
     bool disableCertificateCheck() const;
     void setDisableCertificateCheck(bool disableCertificateCheck);
 
     QString username() const;
-    void setUsername(const QString &username);
+    void setUsername(const QString& username);
 
     QString password() const;
-    void setPassword(const QString &password);
+    void setPassword(const QString& password);
 
 signals:
 
     void stopRequested();
 
-    void debug(const QString &message) const;
-    void warning(const QString &message) const;
-    void error(const QString &message) const;
+    void debug(const QString& message) const;
+    void warning(const QString& message) const;
+    void error(const QString& message) const;
 
     /**
      * @brief Indicates errors during synchronization.
@@ -87,7 +86,7 @@ signals:
      * This signal is emitted to indicate issues during sync operations.
      * The @p message string contains more detailed information.
      */
-    void syncError(const QString &message) const;
+    void syncError(const QString& message) const;
 
 public slots:
 
@@ -150,13 +149,13 @@ private:
         QByteArray data;
         QString filename;
         QPointer<QFile> outputFile;
-        std::function<void(QNetworkRequest &)> prepareRequest;
+        std::function<void(QNetworkRequest&)> prepareRequest;
     };
 
     typedef QList<Entry> EntryList;
     typedef QMap<QString, SyncEntry> SyncEntryMap;
 
-    QNetworkAccessManager *m_networkAccessManager;
+    QNetworkAccessManager* m_networkAccessManager;
     QUrl m_baseUrl;
     QString m_remoteDirectory;
     QString m_directory;
@@ -165,53 +164,53 @@ private:
     QString m_password;
     bool m_stopRequested;
 
-    EntryList entryList(const QString &directory, bool *ok = nullptr);
-    bool download(const QString &filename, QIODevice *targetDevice = nullptr);
-    QByteArray getRemoteFileContents(const QString &filename);
-    bool upload(const QString &filename, QString *etag = nullptr);
-    bool mkdir(const QString &dirname, QString *etag = nullptr);
-    bool deleteEntry(const QString &filename);
-    bool syncDirectory(const QString &directory,
+    EntryList entryList(const QString& directory, bool* ok = nullptr);
+    bool download(const QString& filename, QIODevice* targetDevice = nullptr);
+    QByteArray getRemoteFileContents(const QString& filename);
+    bool upload(const QString& filename, QString* etag = nullptr);
+    bool mkdir(const QString& dirname, QString* etag = nullptr);
+    bool deleteEntry(const QString& filename);
+    bool syncDirectory(const QString& directory,
                        QRegularExpression directoryFilter = QRegularExpression(".*"),
-                       bool pushOnly = false, QSet<QString> *changedDirs = nullptr);
-    QString etag(const QString &filename);
+                       bool pushOnly = false, QSet<QString>* changedDirs = nullptr);
+    QString etag(const QString& filename);
 
     // Path and URL utility functions
-    static QString mkpath(const QString &path);
-    static std::tuple<QString, QString> splitpath(const QString &path);
+    static QString mkpath(const QString& path);
+    static std::tuple<QString, QString> splitpath(const QString& path);
     QString urlString() const;
 
-    DAVRequest listDirectoryRequest(const QString &directory);
-    DAVRequest etagRequest(const QString &filename);
-    DAVRequest createDirectoryRequest(const QString &directory);
-    static EntryList parseEntryList(const QUrl &baseUrl, const QString &directory,
-                                    const QByteArray &reply);
-    static EntryList parsePropFindResponse(const QUrl &baseUrl, const QDomDocument &response,
-                                           const QString &directory);
-    static Entry parseResponseEntry(const QDomElement &element, const QString &baseDir);
-    void prepareReply(QNetworkReply *reply) const;
-    QNetworkReply *sendDAVRequest(const DAVRequest &request);
+    DAVRequest listDirectoryRequest(const QString& directory);
+    DAVRequest etagRequest(const QString& filename);
+    DAVRequest createDirectoryRequest(const QString& directory);
+    static EntryList parseEntryList(const QUrl& baseUrl, const QString& directory,
+                                    const QByteArray& reply);
+    static EntryList parsePropFindResponse(const QUrl& baseUrl, const QDomDocument& response,
+                                           const QString& directory);
+    static Entry parseResponseEntry(const QDomElement& element, const QString& baseDir);
+    void prepareReply(QNetworkReply* reply) const;
+    QNetworkReply* sendDAVRequest(const DAVRequest& request);
 
     // Sync DB Handling
     QSqlDatabase openSyncDb();
     void closeSyncDb();
-    void insertSyncDBEntry(QSqlDatabase *db, const SyncEntry &entry);
-    SyncEntryMap findSyncDBEntries(QSqlDatabase *db, const QString &parent);
-    void removeDirFromSyncDB(QSqlDatabase *db, const SyncEntry &entry);
-    void removeFileFromSyncDB(QSqlDatabase *db, const SyncEntry &entry);
+    void insertSyncDBEntry(QSqlDatabase* db, const SyncEntry& entry);
+    SyncEntryMap findSyncDBEntries(QSqlDatabase* db, const QString& parent);
+    void removeDirFromSyncDB(QSqlDatabase* db, const SyncEntry& entry);
+    void removeFileFromSyncDB(QSqlDatabase* db, const SyncEntry& entry);
 
     // File System Utils
-    bool rmLocalDir(const QString &dir, int maxDepth = 0);
+    bool rmLocalDir(const QString& dir, int maxDepth = 0);
 
     // syncDirectory() split down methods:
-    void mergeLocalInfoWithSyncList(const QDir &d, const QString &dir, SyncEntryMap &entries);
-    bool mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QString &dir);
-    bool pullEntry(SyncEntry &entry, QSqlDatabase *db);
-    bool removeLocalEntry(SyncEntry &entry, QSqlDatabase *db);
-    bool pushEntry(SyncEntry &entry, QSqlDatabase *db);
-    bool removeRemoteEntry(const SyncEntry &entry, QSqlDatabase *db);
-    bool skipEntry(const SyncEntry &entry, SyncStepDirection direction,
-                   const QRegularExpression &dirFilter);
+    void mergeLocalInfoWithSyncList(const QDir& d, const QString& dir, SyncEntryMap& entries);
+    bool mergeRemoteInfoWithSyncList(SyncEntryMap& entries, const QString& dir);
+    bool pullEntry(SyncEntry& entry, QSqlDatabase* db);
+    bool removeLocalEntry(SyncEntry& entry, QSqlDatabase* db);
+    bool pushEntry(SyncEntry& entry, QSqlDatabase* db);
+    bool removeRemoteEntry(const SyncEntry& entry, QSqlDatabase* db);
+    bool skipEntry(const SyncEntry& entry, SyncStepDirection direction,
+                   const QRegularExpression& dirFilter);
 };
 
 enum class HTTPStatusCode {

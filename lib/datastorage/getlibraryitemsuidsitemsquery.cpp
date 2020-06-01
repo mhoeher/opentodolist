@@ -23,7 +23,7 @@
 #include "datamodel/library.h"
 #include "datastorage/getlibraryitemsuidsitemsquery.h"
 
-GetLibraryItemsUIDsItemsQuery::GetLibraryItemsUIDsItemsQuery(QObject *parent)
+GetLibraryItemsUIDsItemsQuery::GetLibraryItemsUIDsItemsQuery(QObject* parent)
     : ItemsQuery(parent), m_itemQueue()
 {
     qRegisterMetaType<QSet<QUuid>>();
@@ -35,7 +35,7 @@ GetLibraryItemsUIDsItemsQuery::GetLibraryItemsUIDsItemsQuery(QObject *parent)
  * This will cause the query to retrieve all UIDs of items in the
  * @p library. The retrieval is done recursively.
  */
-void GetLibraryItemsUIDsItemsQuery::addLibrary(const Library *library)
+void GetLibraryItemsUIDsItemsQuery::addLibrary(const Library* library)
 {
     if (library != nullptr) {
         addLibrary(library->uid());
@@ -63,7 +63,7 @@ void GetLibraryItemsUIDsItemsQuery::run()
     while (!m_itemQueue.isEmpty()) {
         auto nextId = m_itemQueue.dequeue();
         auto children = this->children()->getAll(t, nextId.toByteArray());
-        for (auto &child : children) {
+        for (auto& child : children) {
             auto cid = QUuid(child);
             if (!result.contains(cid)) {
                 result << cid;

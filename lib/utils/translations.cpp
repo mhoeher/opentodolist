@@ -50,7 +50,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Translator", QtDebugMsg);
  * previously selected language settings (if present) and tries to use
  * a suitable translations file.
  */
-Translations::Translations(QQmlEngine *engine, QObject *parent)
+Translations::Translations(QQmlEngine* engine, QObject* parent)
     : QObject(parent), m_engine(engine), m_translator(new QTranslator(this))
 {
     q_check_ptr(m_engine);
@@ -71,7 +71,7 @@ QString Translations::language() const
 /**
  * @brief Set the @p language to show the application in.
  */
-void Translations::setLanguage(const QString &language)
+void Translations::setLanguage(const QString& language)
 {
     if (m_language != language) {
         m_language = language;
@@ -91,7 +91,7 @@ QStringList Translations::allLanguages() const
 {
     QStringList result;
     result << "";
-    for (const auto &entry :
+    for (const auto& entry :
          QDir(":/translations").entryList({ "opentodolist_*.qm" }, QDir::Files)) {
         auto key = entry.mid(13, entry.length() - 16);
         if (!result.contains(key)) {

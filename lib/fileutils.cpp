@@ -24,7 +24,7 @@
 
 #include "datamodel/library.h"
 
-bool FileUtils::isSubDirOrFile(const QString &dir, const QString &subDir)
+bool FileUtils::isSubDirOrFile(const QString& dir, const QString& subDir)
 {
     QString parDir = QDir::fromNativeSeparators(dir);
     QString childDir = QDir::fromNativeSeparators(subDir);
@@ -44,7 +44,7 @@ bool FileUtils::isSubDirOrFile(const QString &dir, const QString &subDir)
  *   with a placeholder. This is required on some platforms like iOS, where
  *   the default app locations change between installs/updates.
  */
-QString FileUtils::toPersistedPath(const QString &path)
+QString FileUtils::toPersistedPath(const QString& path)
 {
     auto libsLocation = Library::defaultLibrariesLocation();
     if (path.startsWith(libsLocation)) {
@@ -60,7 +60,7 @@ QString FileUtils::toPersistedPath(const QString &path)
  * This is basically the reverse operation of @sa toPersistedPath(). It takes
  * a @p path in its persisted form and returns a valid local path.
  */
-QString FileUtils::fromPersistedPath(const QString &path)
+QString FileUtils::fromPersistedPath(const QString& path)
 {
     auto result = path;
     QString placeholder = "<APPROOT>";

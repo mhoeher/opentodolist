@@ -50,12 +50,12 @@
 
 #include <QtQml>
 
-OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject *parent)
+OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject* parent)
     : QQmlExtensionPlugin(parent)
 {
 }
 
-void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
+void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
 {
     //@uri OpenTodoList
 
@@ -95,7 +95,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char *uri)
 #endif
 }
 
-QObject *OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine *engine, QJSEngine *jsEngine)
+QObject* OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine* engine, QJSEngine* jsEngine)
 {
     Q_UNUSED(engine);
     Q_UNUSED(jsEngine);

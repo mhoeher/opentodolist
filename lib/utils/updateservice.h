@@ -27,7 +27,7 @@ class UpdateService : public QObject
 {
     Q_OBJECT
 public:
-    explicit UpdateService(QObject *parent = nullptr);
+    explicit UpdateService(QObject* parent = nullptr);
 
 signals:
 
@@ -39,7 +39,7 @@ signals:
      * @p url points to a web page where the new version can be downloaded
      * from.
      */
-    void updateAvailable(const QString &version, const QUrl &url);
+    void updateAvailable(const QString& version, const QUrl& url);
 
 private slots:
 

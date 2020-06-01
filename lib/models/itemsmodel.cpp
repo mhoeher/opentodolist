@@ -30,7 +30,7 @@
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 
-ItemsModel::ItemsModel(QObject *parent)
+ItemsModel::ItemsModel(QObject* parent)
     : QAbstractListModel(parent),
       m_cache(),
       m_items(),
@@ -54,7 +54,7 @@ ItemsModel::ItemsModel(QObject *parent)
 /**
  * @brief The item cache the model works on.
  */
-Cache *ItemsModel::cache() const
+Cache* ItemsModel::cache() const
 {
     return m_cache.data();
 }
@@ -62,7 +62,7 @@ Cache *ItemsModel::cache() const
 /**
  * @brief Set the item container.
  */
-void ItemsModel::setCache(Cache *cache)
+void ItemsModel::setCache(Cache* cache)
 {
     if (cache != m_cache) {
         if (m_cache != nullptr) {
@@ -85,7 +85,7 @@ int ItemsModel::count() const
     return rowCount();
 }
 
-int ItemsModel::rowCount(const QModelIndex &parent) const
+int ItemsModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid()) {
         return m_ids.length();
@@ -94,7 +94,7 @@ int ItemsModel::rowCount(const QModelIndex &parent) const
     }
 }
 
-QVariant ItemsModel::data(const QModelIndex &index, int role) const
+QVariant ItemsModel::data(const QModelIndex& index, int role) const
 {
     int row = index.row();
     if (row < m_ids.length()) {
@@ -103,9 +103,9 @@ QVariant ItemsModel::data(const QModelIndex &index, int role) const
         switch (role) {
         case Qt::DisplayRole:
         case ItemRole:
-            return QVariant::fromValue<QObject *>(item);
+            return QVariant::fromValue<QObject*>(item);
         case DueToRole: {
-            auto complexItem = qobject_cast<ComplexItem *>(item);
+            auto complexItem = qobject_cast<ComplexItem*>(item);
             if (complexItem) {
                 return complexItem->dueTo().toString(Qt::ISODate);
             } else {
@@ -113,7 +113,7 @@ QVariant ItemsModel::data(const QModelIndex &index, int role) const
             }
         }
         case EffectiveDueToRole: {
-            auto complexItem = qobject_cast<ComplexItem *>(item);
+            auto complexItem = qobject_cast<ComplexItem*>(item);
             if (complexItem) {
                 return complexItem->effectiveDueTo().toString(Qt::ISODate);
             } else {
@@ -167,7 +167,7 @@ QUuid ItemsModel::parentItem() const
 /**
  * @brief Set the parent item to retrieve items for.
  */
-void ItemsModel::setParentItem(const QUuid &parentItem)
+void ItemsModel::setParentItem(const QUuid& parentItem)
 {
     if (m_parentItem != parentItem) {
         m_parentItem = parentItem;
@@ -187,7 +187,7 @@ QString ItemsModel::searchString() const
 /**
  * @brief Set the search string.
  */
-void ItemsModel::setSearchString(const QString &searchString)
+void ItemsModel::setSearchString(const QString& searchString)
 {
     if (m_searchString != searchString) {
         m_searchString = searchString;
@@ -207,7 +207,7 @@ QString ItemsModel::tag() const
 /**
  * @brief Set the tag used for filtering.
  */
-void ItemsModel::setTag(const QString &tag)
+void ItemsModel::setTag(const QString& tag)
 {
     if (m_tag != tag) {
         m_tag = tag;
@@ -336,7 +336,7 @@ QString ItemsModel::overdueLabel() const
 /**
  * @brief Set the label used for overdue items.
  */
-void ItemsModel::setOverdueLabel(const QString &overdueLabel)
+void ItemsModel::setOverdueLabel(const QString& overdueLabel)
 {
     if (m_overdueLabel != overdueLabel) {
         m_overdueLabel = overdueLabel;
@@ -364,7 +364,7 @@ QVariantMap ItemsModel::timeSpans() const
 /**
  * @brief Set the time spans used for grouping items by due date.
  */
-void ItemsModel::setTimeSpans(const QVariantMap &timeSpans)
+void ItemsModel::setTimeSpans(const QVariantMap& timeSpans)
 {
     if (m_timeSpans != timeSpans) {
         m_timeSpans = timeSpans;
@@ -379,7 +379,7 @@ void ItemsModel::setTimeSpans(const QVariantMap &timeSpans)
 /**
  * @brief Get the role from the @p roleName.
  */
-int ItemsModel::roleFromName(const QString &roleName) const
+int ItemsModel::roleFromName(const QString& roleName) const
 {
     return roleNames().key(roleName.toUtf8(), -1);
 }
@@ -395,7 +395,7 @@ QString ItemsModel::itemType() const
 /**
  * @brief Set the itemType filter property.
  */
-void ItemsModel::setItemType(const QString &itemType)
+void ItemsModel::setItemType(const QString& itemType)
 {
     if (m_itemType != itemType) {
         m_itemType = itemType;
@@ -420,10 +420,10 @@ bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
     return false;
 }
 
-QString ItemsModel::timeSpanLabel(Item *item, int role) const
+QString ItemsModel::timeSpanLabel(Item* item, int role) const
 {
     QString result;
-    auto complexItem = qobject_cast<ComplexItem *>(item);
+    auto complexItem = qobject_cast<ComplexItem*>(item);
     QDateTime dueTo;
     if (complexItem) {
         switch (role) {
@@ -483,7 +483,7 @@ void ItemsModel::fetch()
         auto defaultSearchResult = m_defaultSearchResult;
         auto itemType = m_itemType;
 
-        q->setItemFilter([=](ItemPtr item, GetItemsQuery *query) {
+        q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
             if (!itemType.isEmpty() && item->itemType() != itemType) {
                 return false;
             }
@@ -520,12 +520,12 @@ void ItemsModel::fetch()
     }
 }
 
-std::function<bool(ItemPtr item, GetItemsQuery *query)> ItemsModel::getFilterFn() const
+std::function<bool(ItemPtr item, GetItemsQuery* query)> ItemsModel::getFilterFn() const
 {
     auto words = m_searchString.split(QRegExp("\\s+"), QString::SkipEmptyParts);
-    std::function<bool(ItemPtr, GetItemsQuery *)> itemMatchesFilter;
+    std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
     if (!words.isEmpty()) {
-        itemMatchesFilter = [=](ItemPtr item, GetItemsQuery *query) {
+        itemMatchesFilter = [=](ItemPtr item, GetItemsQuery* query) {
             bool result = false;
             if (itemMatches(item, words)) {
                 return true;
@@ -583,7 +583,7 @@ void ItemsModel::update(QVariantList items)
 #else
     auto idsToDelete = QSet<QUuid>(m_ids.begin(), m_ids.end());
 #endif
-    QList<Item *> newItems;
+    QList<Item*> newItems;
     for (auto data : items) {
         auto item = Item::decache(data, this);
         auto id = item->uid();
@@ -631,7 +631,7 @@ void ItemsModel::update(QVariantList items)
 
 void ItemsModel::itemChanged()
 {
-    auto item = qobject_cast<Item *>(sender());
+    auto item = qobject_cast<Item*>(sender());
     if (item) {
         auto id = item->uid();
         if (m_items.contains(id)) {

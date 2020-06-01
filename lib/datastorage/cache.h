@@ -52,11 +52,11 @@ public:
     static const QByteArray VersionKey;
     static const QByteArray Version_0;
 
-    explicit Cache(QObject *parent = nullptr);
+    explicit Cache(QObject* parent = nullptr);
     virtual ~Cache();
 
     QString cacheDirectory() const;
-    void setCacheDirectory(const QString &cacheDirectory);
+    void setCacheDirectory(const QString& cacheDirectory);
 
     size_t cacheSize() const;
     void setCacheSize(size_t envSize);
@@ -64,7 +64,7 @@ public:
     bool open();
     bool isValid() const;
 
-    void run(ItemsQuery *query);
+    void run(ItemsQuery* query);
 
 signals:
 
@@ -103,7 +103,7 @@ private:
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
-    QThreadPool *m_threadPool;
+    QThreadPool* m_threadPool;
     bool m_valid;
 
     bool openDBs();

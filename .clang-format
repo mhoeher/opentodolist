@@ -83,3 +83,8 @@ ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, forever, Q_FOREVER, QBENCH
 
 # Break constructor initializers before the colon and after the commas.
 BreakConstructorInitializers: BeforeColon
+
+# Do not insert spaces in empty blocks:
+SpaceInEmptyBlock: false
+
+PointerAlignment: Left

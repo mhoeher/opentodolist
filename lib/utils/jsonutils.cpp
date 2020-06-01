@@ -46,7 +46,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.JsonUtils", QtWarningMsg)
          * changed. If you need to know if the file was actually written, pass in a
          * pointer to a boolean via the @p changed parameter.
          */
-        bool patchJsonFile(const QString &filename, const QVariantMap &data, bool *changed)
+        bool patchJsonFile(const QString& filename, const QVariantMap& data, bool* changed)
 {
     bool result = false;
     QFile file(filename);
@@ -98,7 +98,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.JsonUtils", QtWarningMsg)
 /**
  * @brief Load a variant map from a JSON file.
  */
-QVariantMap loadMap(const QString &filename, bool *ok)
+QVariantMap loadMap(const QString& filename, bool* ok)
 {
     bool success = false;
     QVariantMap result;

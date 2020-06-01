@@ -74,33 +74,33 @@ public:
 
     Q_ENUM(RecurrenceSchedule)
 
-    explicit ComplexItem(QObject *parent = nullptr);
-    explicit ComplexItem(const QString &filename, QObject *parent = nullptr);
-    explicit ComplexItem(const QDir &dir, QObject *parent = nullptr);
+    explicit ComplexItem(QObject* parent = nullptr);
+    explicit ComplexItem(const QString& filename, QObject* parent = nullptr);
+    explicit ComplexItem(const QDir& dir, QObject* parent = nullptr);
     ~ComplexItem() override;
 
     QUuid parentId() const override;
 
     QDateTime dueTo() const;
-    void setDueTo(const QDateTime &dueTo);
+    void setDueTo(const QDateTime& dueTo);
 
     QString notes();
-    void setNotes(const QString &notes);
+    void setNotes(const QString& notes);
 
     QStringList attachments() const;
-    Q_INVOKABLE QString attachmentFileName(const QString &filename);
+    Q_INVOKABLE QString attachmentFileName(const QString& filename);
 
     // Item interface
     bool deleteItem() override;
 
     RecurrencePattern recurrencePattern() const;
-    void setRecurrencePattern(const RecurrencePattern &recurrencePattern);
+    void setRecurrencePattern(const RecurrencePattern& recurrencePattern);
 
     RecurrenceSchedule recurrenceSchedule() const;
-    void setRecurrenceSchedule(const RecurrenceSchedule &recurrenceSchedule);
+    void setRecurrenceSchedule(const RecurrenceSchedule& recurrenceSchedule);
 
     QDateTime nextDueTo() const;
-    void setNextDueTo(const QDateTime &nextDueTo);
+    void setNextDueTo(const QDateTime& nextDueTo);
 
     int recurInterval() const;
     void setRecurInterval(int recurInterval);
@@ -122,9 +122,9 @@ signals:
 
 public slots:
 
-    void attachFile(const QString &filename);
-    void detachFile(const QString &filename);
-    void markCurrentOccurrenceAsDone(const QDateTime &today = QDateTime());
+    void attachFile(const QString& filename);
+    void detachFile(const QString& filename);
+    void markCurrentOccurrenceAsDone(const QDateTime& today = QDateTime());
 
 protected:
 private:
@@ -139,7 +139,7 @@ private:
     int m_recurInterval;
 
     void setupConnections();
-    void setAttachments(const QStringList &attachments);
+    void setAttachments(const QStringList& attachments);
 
 protected:
     // Item interface

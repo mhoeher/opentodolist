@@ -38,22 +38,22 @@ class Library;
 class LibrariesModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(Cache *cache READ cache WRITE setCache NOTIFY cacheChanged)
+    Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum { LibraryRole = Qt::UserRole };
 
-    explicit LibrariesModel(QObject *parent = nullptr);
+    explicit LibrariesModel(QObject* parent = nullptr);
 
-    Cache *cache() const;
-    void setCache(Cache *cache);
+    Cache* cache() const;
+    void setCache(Cache* cache);
 
     int count() const;
-    Q_INVOKABLE Library *get(int row) const;
+    Q_INVOKABLE Library* get(int row) const;
 
     // QAbstractItemModel interface
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
 signals:
@@ -77,7 +77,7 @@ public slots:
 
 private:
     QPointer<Cache> m_cache;
-    QHash<QUuid, Library *> m_libraries;
+    QHash<QUuid, Library*> m_libraries;
     QList<QUuid> m_uids;
     bool m_updating;
 

@@ -37,7 +37,7 @@ class Problem
 
     Q_PROPERTY(QUuid id READ id CONSTANT)
     Q_PROPERTY(QString type READ typeName CONSTANT)
-    Q_PROPERTY(QObject *contextObject READ getContextObject CONSTANT)
+    Q_PROPERTY(QObject* contextObject READ getContextObject CONSTANT)
 
 public:
     /**
@@ -56,14 +56,14 @@ public:
     QUuid id() const;
 
     ProblemType type() const;
-    void setType(const ProblemType &type);
+    void setType(const ProblemType& type);
 
     QString typeName() const;
 
     QSharedPointer<QObject> contextObject() const;
-    void setContextObject(const QSharedPointer<QObject> &contextObject);
+    void setContextObject(const QSharedPointer<QObject>& contextObject);
 
-    QObject *getContextObject() const;
+    QObject* getContextObject() const;
 
     QVariantMap problemTypes() const;
 

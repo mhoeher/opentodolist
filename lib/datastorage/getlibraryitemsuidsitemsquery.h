@@ -33,9 +33,9 @@ class GetLibraryItemsUIDsItemsQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
-    explicit GetLibraryItemsUIDsItemsQuery(QObject *parent = nullptr);
+    explicit GetLibraryItemsUIDsItemsQuery(QObject* parent = nullptr);
 
-    void addLibrary(const Library *library);
+    void addLibrary(const Library* library);
     void addLibrary(const QUuid uid);
 
 signals:

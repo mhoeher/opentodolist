@@ -41,7 +41,7 @@
 /**
  * @brief Constructor.
  */
-Account::Account(QObject *parent)
+Account::Account(QObject* parent)
     : QObject(parent),
       m_uid(QUuid::createUuid()),
       m_type(Invalid),
@@ -66,7 +66,7 @@ Account::Type Account::type() const
 /**
  * @brief Set the account @p type.
  */
-void Account::setType(const Type &type)
+void Account::setType(const Type& type)
 {
     if (m_type != type) {
         m_type = type;
@@ -85,7 +85,7 @@ QString Account::username() const
 /**
  * @brief Set the @p username to use to log in.
  */
-void Account::setUsername(const QString &username)
+void Account::setUsername(const QString& username)
 {
     if (m_username != username) {
         m_username = username;
@@ -104,7 +104,7 @@ QString Account::password() const
 /**
  * @brief Set the password used to log in to the password.
  */
-void Account::setPassword(const QString &password)
+void Account::setPassword(const QString& password)
 {
     if (m_password != password) {
         m_password = password;
@@ -125,7 +125,7 @@ QString Account::baseUrl() const
 /**
  * @brief Set the @p baseUrl of the server to connect to.
  */
-void Account::setBaseUrl(const QString &baseUrl)
+void Account::setBaseUrl(const QString& baseUrl)
 {
     if (m_baseUrl != baseUrl) {
         m_baseUrl = baseUrl;
@@ -160,7 +160,7 @@ void Account::setDisableCertificateChecks(bool disableCertificateChecks)
 /**
  * @brief Save the account to the @p settings.
  */
-void Account::save(QSettings *settings)
+void Account::save(QSettings* settings)
 {
     q_check_ptr(settings);
     settings->setValue("type", QVariant::fromValue(m_type).toString());
@@ -173,7 +173,7 @@ void Account::save(QSettings *settings)
 /**
  * @brief Restore the account from the @p settings.
  */
-void Account::load(QSettings *settings)
+void Account::load(QSettings* settings)
 {
     q_check_ptr(settings);
     m_type = settings->value("type", QVariant::fromValue(m_type).toString()).value<Type>();
@@ -198,7 +198,7 @@ QString Account::name() const
 /**
  * @brief Set the name of the account.
  */
-void Account::setName(const QString &name)
+void Account::setName(const QString& name)
 {
     if (m_name != name) {
         m_name = name;
@@ -236,7 +236,7 @@ QVariant Account::toWebDAVServerType() const
  *
  * @note The caller takes ownership of the create object.
  */
-Synchronizer *Account::createSynchronizer() const
+Synchronizer* Account::createSynchronizer() const
 {
     switch (m_type) {
     case NextCloud: {
@@ -280,7 +280,7 @@ QUuid Account::uid() const
 /**
  * @brief Set the globally unique ID of the account.
  */
-void Account::setUid(const QUuid &uid)
+void Account::setUid(const QUuid& uid)
 {
     if (m_uid != uid) {
         m_uid = uid;

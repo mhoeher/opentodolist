@@ -43,7 +43,7 @@ private slots:
     void cleanupTestCase() {}
 
 private:
-    QTemporaryDir *m_dir;
+    QTemporaryDir* m_dir;
 };
 
 void ItemTest::init()

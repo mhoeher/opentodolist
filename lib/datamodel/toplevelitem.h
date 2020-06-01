@@ -42,26 +42,26 @@ public:
 
     Q_ENUM(Color)
 
-    explicit TopLevelItem(const QString &filename, QObject *parent = nullptr);
-    explicit TopLevelItem(QObject *parent = nullptr);
-    explicit TopLevelItem(const QDir &dir, QObject *parent = nullptr);
+    explicit TopLevelItem(const QString& filename, QObject* parent = nullptr);
+    explicit TopLevelItem(QObject* parent = nullptr);
+    explicit TopLevelItem(const QDir& dir, QObject* parent = nullptr);
     ~TopLevelItem() override;
 
     QUuid parentId() const override;
 
     Color color() const;
-    void setColor(const Color &color);
-    void setColor(const QString &color);
+    void setColor(const Color& color);
+    void setColor(const QString& color);
 
     QStringList tags() const;
-    void setTags(const QStringList &tags);
-    Q_INVOKABLE void addTag(const QString &tag);
+    void setTags(const QStringList& tags);
+    Q_INVOKABLE void addTag(const QString& tag);
     Q_INVOKABLE void removeTagAt(int index);
-    Q_INVOKABLE void removeTag(const QString &tag);
-    Q_INVOKABLE bool hasTag(const QString &tag) const;
+    Q_INVOKABLE void removeTag(const QString& tag);
+    Q_INVOKABLE bool hasTag(const QString& tag) const;
 
     QUuid libraryId() const;
-    void setLibraryId(const QUuid &libraryId);
+    void setLibraryId(const QUuid& libraryId);
 
 signals:
 

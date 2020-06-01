@@ -36,12 +36,12 @@ class ProblemManager : public QObject
     Q_PROPERTY(QVariantList problems READ getProblems NOTIFY problemsChanged)
 
 public:
-    explicit ProblemManager(QObject *parent = nullptr);
+    explicit ProblemManager(QObject* parent = nullptr);
 
     QList<Problem> problems() const;
     QVariantList getProblems();
-    bool addProblem(const Problem &problem);
-    bool removeProblem(const Problem &problem);
+    bool addProblem(const Problem& problem);
+    bool removeProblem(const Problem& problem);
 
 signals:
 

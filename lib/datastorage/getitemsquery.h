@@ -45,12 +45,12 @@ public:
 
     public:
         ChildrenIterator();
-        ChildrenIterator(const ChildrenIterator &other) = default;
+        ChildrenIterator(const ChildrenIterator& other) = default;
         virtual ~ChildrenIterator();
-        const ItemPtr &operator*() const;
-        ChildrenIterator &operator++();
-        bool operator!=(const ChildrenIterator &other);
-        bool operator==(const ChildrenIterator &other);
+        const ItemPtr& operator*() const;
+        ChildrenIterator& operator++();
+        bool operator!=(const ChildrenIterator& other);
+        bool operator==(const ChildrenIterator& other);
 
     private:
         QSharedPointer<QLMDB::Cursor> m_childrenCursor;
@@ -58,8 +58,8 @@ public:
         QUuid m_id;
         ItemPtr m_item;
 
-        explicit ChildrenIterator(QLMDB::Cursor *childrenCursor, QLMDB::Cursor *dataCursor,
-                                  const QUuid &id);
+        explicit ChildrenIterator(QLMDB::Cursor* childrenCursor, QLMDB::Cursor* dataCursor,
+                                  const QUuid& id);
     };
 
     class ChildrenGenerator
@@ -67,32 +67,32 @@ public:
         friend class GetItemsQuery;
 
     public:
-        ChildrenGenerator(const ChildrenGenerator &other) = default;
+        ChildrenGenerator(const ChildrenGenerator& other) = default;
         ChildrenIterator begin();
         ChildrenIterator end();
 
     private:
-        GetItemsQuery *m_query;
+        GetItemsQuery* m_query;
         QUuid m_id;
 
-        explicit ChildrenGenerator(GetItemsQuery *query, const QUuid &id);
+        explicit ChildrenGenerator(GetItemsQuery* query, const QUuid& id);
     };
 
-    explicit GetItemsQuery(QObject *parent = nullptr);
+    explicit GetItemsQuery(QObject* parent = nullptr);
 
     QList<QUuid> parents() const;
-    void setParents(const QList<QUuid> &parents);
+    void setParents(const QList<QUuid>& parents);
 
     QUuid parent() const;
-    void setParent(const QUuid &parent);
+    void setParent(const QUuid& parent);
 
     bool recursive() const;
     void setRecursive(bool recursive);
 
-    ChildrenGenerator childrenOf(const QUuid &id);
+    ChildrenGenerator childrenOf(const QUuid& id);
 
-    std::function<bool(ItemPtr, GetItemsQuery *)> itemFilter() const;
-    void setItemFilter(const std::function<bool(ItemPtr, GetItemsQuery *)> &itemFilter);
+    std::function<bool(ItemPtr, GetItemsQuery*)> itemFilter() const;
+    void setItemFilter(const std::function<bool(ItemPtr, GetItemsQuery*)>& itemFilter);
 
     bool calculateProperties() const;
     void setCalculateProperties(bool calculateProperties);
@@ -116,12 +116,12 @@ protected:
 private:
     QList<QUuid> m_parents;
     bool m_recursive;
-    QLMDB::Transaction *m_transaction;
-    std::function<bool(ItemPtr, GetItemsQuery *)> m_itemFilter;
+    QLMDB::Transaction* m_transaction;
+    std::function<bool(ItemPtr, GetItemsQuery*)> m_itemFilter;
     bool m_calculateProperties;
 
-    void calculateValues(ItemCacheEntry *entry, Item *item = nullptr);
-    int percentageForTodo(const QByteArray &todoId);
+    void calculateValues(ItemCacheEntry* entry, Item* item = nullptr);
+    int percentageForTodo(const QByteArray& todoId);
 };
 
 #endif // DATASTORAGE_GETITEMSQUERY_H_

@@ -89,8 +89,8 @@ private slots:
 
 private:
     void createDavClients();
-    void echoToFile(const QString &text, const QString &filename);
-    QByteArray catFile(const QString &filename);
+    void echoToFile(const QString& text, const QString& filename);
+    QByteArray catFile(const QString& filename);
 };
 
 void WebDAVSynchronizerTest::remoteDirectory()
@@ -153,8 +153,8 @@ void WebDAVSynchronizerTest::splitpath()
 
 void WebDAVSynchronizerTest::validate()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     Q_CHECK_PTR(davClient);
     QCOMPARE(davClient->valid(), false);
     QCOMPARE(davClient->validating(), false);
@@ -175,8 +175,8 @@ void WebDAVSynchronizerTest::validate_data()
 
 void WebDAVSynchronizerTest::mkdir()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dirName = QUuid::createUuid().toString() + "-" + __func__;
     QVERIFY(davClient->createDAVClient(davClient)->mkdir(dirName));
 }
@@ -188,8 +188,8 @@ void WebDAVSynchronizerTest::mkdir_data()
 
 void WebDAVSynchronizerTest::upload()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
@@ -213,8 +213,8 @@ void WebDAVSynchronizerTest::upload_data()
 
 void WebDAVSynchronizerTest::entryList()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
@@ -251,8 +251,8 @@ void WebDAVSynchronizerTest::entryList_data()
 
 void WebDAVSynchronizerTest::download()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
@@ -283,8 +283,8 @@ void WebDAVSynchronizerTest::download_data()
 
 void WebDAVSynchronizerTest::deleteEntry()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
@@ -310,8 +310,8 @@ void WebDAVSynchronizerTest::deleteEntry_data()
 
 void WebDAVSynchronizerTest::etag()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
     QTemporaryDir dir;
     echoToFile("Hello World\n", dir.path() + "/sample.txt");
@@ -362,8 +362,8 @@ void WebDAVSynchronizerTest::etag_data()
 
 void WebDAVSynchronizerTest::syncDirectory()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
 
     QTemporaryDir dir1;
@@ -401,8 +401,8 @@ void WebDAVSynchronizerTest::syncDirectory_data()
 
 void WebDAVSynchronizerTest::synchronize()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
 
     QTemporaryDir dir1;
@@ -556,8 +556,8 @@ void WebDAVSynchronizerTest::synchronize_data()
 
 void WebDAVSynchronizerTest::findExistingEntries()
 {
-    QFETCH(QObject *, client);
-    auto davClient = static_cast<WebDAVSynchronizer *>(client);
+    QFETCH(QObject*, client);
+    auto davClient = static_cast<WebDAVSynchronizer*>(client);
     auto dav = davClient->createDAVClient(davClient);
 
     QTemporaryDir dir1;
@@ -624,7 +624,7 @@ void WebDAVSynchronizerTest::findExistingEntries_data()
 
 void WebDAVSynchronizerTest::createDavClients()
 {
-    QTest::addColumn<QObject *>("client");
+    QTest::addColumn<QObject*>("client");
 
 #ifdef OPENTODOLIST_NEXTCLOUD_TEST_URL
     {
@@ -637,7 +637,7 @@ void WebDAVSynchronizerTest::createDavClients()
         if (client->url().scheme() == "http") {
             client->setDisableCertificateCheck(true);
         }
-        QTest::newRow("NextCloud") << static_cast<QObject *>(client);
+        QTest::newRow("NextCloud") << static_cast<QObject*>(client);
     }
 #endif
 
@@ -652,12 +652,12 @@ void WebDAVSynchronizerTest::createDavClients()
         if (client->url().scheme() == "http") {
             client->setDisableCertificateCheck(true);
         }
-        QTest::newRow("ownCloud") << static_cast<QObject *>(client);
+        QTest::newRow("ownCloud") << static_cast<QObject*>(client);
     }
 #endif
 }
 
-void WebDAVSynchronizerTest::echoToFile(const QString &text, const QString &filename)
+void WebDAVSynchronizerTest::echoToFile(const QString& text, const QString& filename)
 {
     QFile file(filename);
     QVERIFY(file.open(QIODevice::WriteOnly));
@@ -665,7 +665,7 @@ void WebDAVSynchronizerTest::echoToFile(const QString &text, const QString &file
     file.close();
 }
 
-QByteArray WebDAVSynchronizerTest::catFile(const QString &filename)
+QByteArray WebDAVSynchronizerTest::catFile(const QString& filename)
 {
     QFile file(filename);
     file.open(QIODevice::ReadOnly);

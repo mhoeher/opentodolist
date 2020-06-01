@@ -19,15 +19,15 @@
 
 #include "notepage.h"
 
-NotePage::NotePage(QObject *parent) : ComplexItem(QString(), parent) {}
+NotePage::NotePage(QObject* parent) : ComplexItem(QString(), parent) {}
 
-NotePage::NotePage(const QString &filename, QObject *parent)
+NotePage::NotePage(const QString& filename, QObject* parent)
     : ComplexItem(filename, parent), m_noteUid()
 {
     connect(this, &NotePage::noteUidChanged, this, &NotePage::changed);
 }
 
-NotePage::NotePage(const QDir &dir, QObject *parent) : ComplexItem(dir, parent), m_noteUid()
+NotePage::NotePage(const QDir& dir, QObject* parent) : ComplexItem(dir, parent), m_noteUid()
 {
     connect(this, &NotePage::noteUidChanged, this, &NotePage::changed);
 }
@@ -39,7 +39,7 @@ QUuid NotePage::noteUid() const
     return m_noteUid;
 }
 
-void NotePage::setNoteUid(const QUuid &noteUid)
+void NotePage::setNoteUid(const QUuid& noteUid)
 {
     if (m_noteUid != noteUid) {
         m_noteUid = noteUid;

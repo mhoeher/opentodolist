@@ -24,7 +24,7 @@
 #include <QUrl>
 #include <QVariant>
 
-AndroidFileDialog::AndroidFileDialog(QObject *parent)
+AndroidFileDialog::AndroidFileDialog(QObject* parent)
     : QObject(parent),
       m_receiver(new ResultReceiver(this)),
       m_resultReceiver(nullptr),
@@ -47,12 +47,12 @@ bool AndroidFileDialog::open()
     }
 }
 
-QObject *AndroidFileDialog::receiver() const
+QObject* AndroidFileDialog::receiver() const
 {
     return m_resultReceiver;
 }
 
-void AndroidFileDialog::setReceiver(QObject *receiver)
+void AndroidFileDialog::setReceiver(QObject* receiver)
 {
     m_resultReceiver = receiver;
     if (m_resultReceiver != receiver) {
@@ -120,7 +120,7 @@ AndroidFileDialog::Type AndroidFileDialog::type() const
     return m_type;
 }
 
-void AndroidFileDialog::setType(const Type &type)
+void AndroidFileDialog::setType(const Type& type)
 {
     if (m_type != type) {
         m_type = type;
@@ -128,7 +128,7 @@ void AndroidFileDialog::setType(const Type &type)
     }
 }
 
-AndroidFileDialog::ResultReceiver::ResultReceiver(AndroidFileDialog *dialog)
+AndroidFileDialog::ResultReceiver::ResultReceiver(AndroidFileDialog* dialog)
     : QAndroidActivityResultReceiver(), m_dialog(dialog)
 {
 }
@@ -137,7 +137,7 @@ AndroidFileDialog::ResultReceiver::~ResultReceiver() {}
 
 void AndroidFileDialog::ResultReceiver::handleActivityResult(int receiverRequestCode,
                                                              int resultCode,
-                                                             const QAndroidJniObject &data)
+                                                             const QAndroidJniObject& data)
 {
     QString path;
     jint RESULT_OK = QAndroidJniObject::getStaticField<jint>("android/app/Activity", "RESULT_OK");

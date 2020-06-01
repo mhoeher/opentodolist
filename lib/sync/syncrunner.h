@@ -31,14 +31,14 @@ class SyncJob;
 class SyncRunner : public QRunnable
 {
 public:
-    explicit SyncRunner(SyncJob *job);
+    explicit SyncRunner(SyncJob* job);
     virtual ~SyncRunner();
 
     // QRunnable interface
     void run() override;
 
 private:
-    SyncJob *m_job;
+    SyncJob* m_job;
 };
 
 #endif // SYNC_SYNCRUNNER_H_

@@ -32,7 +32,7 @@
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.UpdateService", QtDebugMsg)
 
-        UpdateService::UpdateService(QObject *parent)
+        UpdateService::UpdateService(QObject* parent)
     : QObject(parent)
 {
 #ifdef OPENTODOLIST_WITH_UPDATE_SERVICE

@@ -22,7 +22,7 @@
 /**
  * @brief Constructor.
  */
-ProblemManager::ProblemManager(QObject *parent) : QObject(parent), m_problems()
+ProblemManager::ProblemManager(QObject* parent) : QObject(parent), m_problems()
 {
     qRegisterMetaType<Problem>();
 }
@@ -41,7 +41,7 @@ QList<Problem> ProblemManager::problems() const
 QVariantList ProblemManager::getProblems()
 {
     QVariantList result;
-    for (const auto &problem : m_problems) {
+    for (const auto& problem : m_problems) {
         result << QVariant::fromValue(problem);
     }
     return result;
@@ -50,7 +50,7 @@ QVariantList ProblemManager::getProblems()
 /**
  * @brief Add a @p problem to the list of known problems.
  */
-bool ProblemManager::addProblem(const Problem &problem)
+bool ProblemManager::addProblem(const Problem& problem)
 {
     bool result = false;
     if (problem.type() != Problem::InvalidProblem) {
@@ -64,10 +64,10 @@ bool ProblemManager::addProblem(const Problem &problem)
 /**
  * @brief Remove the problem from the list of problems.
  */
-bool ProblemManager::removeProblem(const Problem &problem)
+bool ProblemManager::removeProblem(const Problem& problem)
 {
     for (int i = 0; i < m_problems.length(); ++i) {
-        const auto &p = m_problems[i];
+        const auto& p = m_problems[i];
         if (p.id() == problem.id()) {
             m_problems.removeAt(i);
             emit problemsChanged();

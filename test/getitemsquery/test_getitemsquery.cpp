@@ -308,7 +308,7 @@ void GetItemsQueryTest::run()
     {
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
-        q->setItemFilter([=](ItemPtr item, GetItemsQuery *query) {
+        q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
             for (auto i : query->childrenOf(item->uid())) {
                 if (i->title().contains("task", Qt::CaseInsensitive)) {
                     return true;
@@ -332,7 +332,7 @@ void GetItemsQueryTest::run()
     {
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
-        q->setItemFilter([=](ItemPtr, GetItemsQuery *) { return false; });
+        q->setItemFilter([=](ItemPtr, GetItemsQuery*) { return false; });
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
         cache.run(q);

@@ -35,21 +35,21 @@ class AndroidFileDialog : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(Type type READ type WRITE setType NOTIFY typeChanged)
-    Q_PROPERTY(QObject *receiver READ receiver WRITE setReceiver NOTIFY receiverChanged)
+    Q_PROPERTY(QObject* receiver READ receiver WRITE setReceiver NOTIFY receiverChanged)
 
 public:
     enum Type { SelectFile, SelectImage };
 
     Q_ENUM(Type)
 
-    explicit AndroidFileDialog(QObject *parent = nullptr);
+    explicit AndroidFileDialog(QObject* parent = nullptr);
     virtual ~AndroidFileDialog();
 
     Type type() const;
-    void setType(const Type &type);
+    void setType(const Type& type);
 
-    QObject *receiver() const;
-    void setReceiver(QObject *receiver);
+    QObject* receiver() const;
+    void setReceiver(QObject* receiver);
 
 signals:
 
@@ -66,21 +66,21 @@ private:
     {
 
     public:
-        explicit ResultReceiver(AndroidFileDialog *dialog);
+        explicit ResultReceiver(AndroidFileDialog* dialog);
         virtual ~ResultReceiver();
         void handleActivityResult(int receiverRequestCode, int resultCode,
-                                  const QAndroidJniObject &data);
+                                  const QAndroidJniObject& data);
         QString uriToPath(QAndroidJniObject uri);
 
     private:
-        AndroidFileDialog *m_dialog;
+        AndroidFileDialog* m_dialog;
     };
 
     static const int EXISTING_FILE_NAME_REQUEST = 1;
     static const int EXISTING_IMAGE_NAME_REQUEST = 2;
 
-    ResultReceiver *m_receiver;
-    QObject *m_resultReceiver;
+    ResultReceiver* m_receiver;
+    QObject* m_resultReceiver;
     Type m_type;
 
     bool openFile();

@@ -39,38 +39,38 @@ class Account : public QObject
     Q_PROPERTY(bool disableCertificateChecks READ disableCertificateChecks WRITE
                        setDisableCertificateChecks NOTIFY disableCertificateChecksChanged)
 public:
-    explicit Account(QObject *parent = nullptr);
+    explicit Account(QObject* parent = nullptr);
 
     enum Type { Invalid = 0, WebDAV, NextCloud, OwnCloud };
 
     Q_ENUM(Type);
 
     QUuid uid() const;
-    void setUid(const QUuid &uid);
+    void setUid(const QUuid& uid);
 
     Type type() const;
-    void setType(const Type &type);
+    void setType(const Type& type);
 
     QString username() const;
-    void setUsername(const QString &username);
+    void setUsername(const QString& username);
 
     QString password() const;
-    void setPassword(const QString &password);
+    void setPassword(const QString& password);
 
     QString baseUrl() const;
-    void setBaseUrl(const QString &baseUrl);
+    void setBaseUrl(const QString& baseUrl);
 
     bool disableCertificateChecks() const;
     void setDisableCertificateChecks(bool disableCertificateChecks);
 
-    void save(QSettings *settings);
-    void load(QSettings *settings);
+    void save(QSettings* settings);
+    void load(QSettings* settings);
 
     QString name() const;
-    void setName(const QString &name);
+    void setName(const QString& name);
 
     Q_INVOKABLE QVariant toWebDAVServerType() const;
-    Q_INVOKABLE Synchronizer *createSynchronizer() const;
+    Q_INVOKABLE Synchronizer* createSynchronizer() const;
 
 signals:
 

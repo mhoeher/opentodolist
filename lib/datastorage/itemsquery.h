@@ -42,7 +42,7 @@ class ItemsQuery : public QObject
     friend class Cache;
 
 public:
-    explicit ItemsQuery(QObject *parent = nullptr);
+    explicit ItemsQuery(QObject* parent = nullptr);
     ~ItemsQuery() override;
 
 signals:
@@ -85,7 +85,7 @@ protected:
      */
     virtual void run() = 0;
 
-    virtual void markAsChanged(QLMDB::Transaction *transaction, QByteArray id);
+    virtual void markAsChanged(QLMDB::Transaction* transaction, QByteArray id);
 
 private:
     QSharedPointer<QLMDB::Context> m_context;

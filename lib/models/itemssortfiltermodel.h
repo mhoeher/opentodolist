@@ -31,11 +31,11 @@ class ItemsSortFilterModel : public QSortFilterProxyModel
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
-    explicit ItemsSortFilterModel(QObject *parent = nullptr);
+    explicit ItemsSortFilterModel(QObject* parent = nullptr);
 
     int count() const;
 
-    Q_INVOKABLE int roleFromName(const QString &roleName) const;
+    Q_INVOKABLE int roleFromName(const QString& roleName) const;
 
 signals:
 
@@ -43,7 +43,7 @@ signals:
 
     // QSortFilterProxyModel interface
 protected:
-    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
+    bool lessThan(const QModelIndex& source_left, const QModelIndex& source_right) const override;
 };
 
 #endif // MODELS_ITEMSSORTFILTERMODEL_H_

@@ -42,12 +42,12 @@ class Cache;
 struct LibraryCacheEntry
 {
     LibraryCacheEntry();
-    LibraryCacheEntry(const LibraryCacheEntry &other) = default;
-    LibraryCacheEntry &operator=(const LibraryCacheEntry &other) = default;
-    bool operator==(const LibraryCacheEntry &other) const;
+    LibraryCacheEntry(const LibraryCacheEntry& other) = default;
+    LibraryCacheEntry& operator=(const LibraryCacheEntry& other) = default;
+    bool operator==(const LibraryCacheEntry& other) const;
 
     QByteArray toByteArray() const;
-    static LibraryCacheEntry fromByteArray(const QByteArray &data, const QByteArray &id);
+    static LibraryCacheEntry fromByteArray(const QByteArray& data, const QByteArray& id);
 
     QUuid id;
     QVariant data;
@@ -80,21 +80,21 @@ class Library : public QObject
 public:
     static const QString LibraryFileName;
 
-    explicit Library(QObject *parent = nullptr);
-    explicit Library(const QString &directory, QObject *parent = nullptr);
+    explicit Library(QObject* parent = nullptr);
+    explicit Library(const QString& directory, QObject* parent = nullptr);
     virtual ~Library();
 
     bool isValid() const;
 
     LibraryCacheEntry encache() const;
-    static Library *decache(const LibraryCacheEntry &entry, QObject *parent = nullptr);
-    static Library *decache(const QVariant &entry, QObject *parent = nullptr);
+    static Library* decache(const LibraryCacheEntry& entry, QObject* parent = nullptr);
+    static Library* decache(const QVariant& entry, QObject* parent = nullptr);
 
     /**
      * @brief The name of the libary as used in the user interface.
      */
     QString name() const { return m_name; }
-    void setName(const QString &name);
+    void setName(const QString& name);
 
     /**
      * @brief Returns the directory which the library encapsulates.
@@ -108,27 +108,27 @@ public:
 
     QDir newItemLocation() const;
 
-    static QStringList years(const QString &directory);
-    static QStringList months(const QString &directory, const QString &year);
+    static QStringList years(const QString& directory);
+    static QStringList months(const QString& directory, const QString& year);
 
     bool isInDefaultLocation() const;
 
     QUuid uid() const;
     QStringList tags() const;
-    void setTags(const QStringList &tags);
+    void setTags(const QStringList& tags);
 
-    void fromJson(const QByteArray &data);
+    void fromJson(const QByteArray& data);
 
     bool hasSynchronizer() const;
 
-    Q_INVOKABLE Synchronizer *createSynchronizer(QObject *parent = nullptr) const;
+    Q_INVOKABLE Synchronizer* createSynchronizer(QObject* parent = nullptr) const;
 
-    Cache *cache() const;
-    void setCache(Cache *cache);
+    Cache* cache() const;
+    void setCache(Cache* cache);
 
     QVariant toVariant();
-    void fromVariant(const QVariant &data);
-    void applyCalculatedData(const QVariantMap &properties);
+    void fromVariant(const QVariant& data);
+    void applyCalculatedData(const QVariantMap& properties);
 
     static QString defaultLibrariesLocation();
 
@@ -156,12 +156,12 @@ signals:
      * deleted. Clients might connect to this signal to do any additional clean
      * up required before the library data is removed.
      */
-    void deletingLibrary(Library *library);
+    void deletingLibrary(Library* library);
 
     /**
      * @brief The library is deleted.
      */
-    void libraryDeleted(Library *library);
+    void libraryDeleted(Library* library);
 
     /**
      * @brief Loading the items of the library finished.
@@ -205,9 +205,9 @@ private:
     QVariantMap toMap() const;
     void fromMap(QVariantMap map);
 
-    void setUid(const QUuid &uid);
+    void setUid(const QUuid& uid);
     void onCacheChanged();
-    void onLibraryDataLoadedFromCache(const QVariant &entry);
+    void onLibraryDataLoadedFromCache(const QVariant& entry);
     void onChanged();
 };
 

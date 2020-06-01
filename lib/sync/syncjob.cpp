@@ -33,7 +33,7 @@
  * are called, as it might get deleted while the sync is running
  * in the background.
  */
-SyncJob::SyncJob(const QString &libraryDirectory, QSharedPointer<Account> account, QObject *parent)
+SyncJob::SyncJob(const QString& libraryDirectory, QSharedPointer<Account> account, QObject* parent)
     : QObject(parent), m_libraryDirectory(libraryDirectory), m_account(account)
 {
 }
@@ -63,7 +63,7 @@ void SyncJob::stop()
     emit stopRequested();
 }
 
-void SyncJob::onSyncError(const QString &error)
+void SyncJob::onSyncError(const QString& error)
 {
     emit syncError(m_libraryDirectory, error);
 }

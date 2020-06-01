@@ -26,7 +26,7 @@
 /**
  * @brief Constructor.
  */
-DirectoryWatcher::DirectoryWatcher(QObject *parent)
+DirectoryWatcher::DirectoryWatcher(QObject* parent)
     : QObject(parent), m_thread(new QThread(this)), m_worker(new DirectoryWatcherWorker())
 {
     m_thread->setObjectName("DirectoryWatcher");
@@ -52,17 +52,17 @@ DirectoryWatcher::~DirectoryWatcher()
 /**
  * @brief Set the directory to watch for changes.
  */
-void DirectoryWatcher::setDirectory(const QString &directory)
+void DirectoryWatcher::setDirectory(const QString& directory)
 {
     QMetaObject::invokeMethod(m_worker, "setDirectory", Qt::QueuedConnection,
-                              Q_ARG(const QString &, directory));
+                              Q_ARG(const QString&, directory));
 }
 
 DirectoryWatcherWorker::DirectoryWatcherWorker() : QObject(), m_watcher(nullptr), m_directory() {}
 
 DirectoryWatcherWorker::~DirectoryWatcherWorker() {}
 
-void DirectoryWatcherWorker::setDirectory(const QString &directory)
+void DirectoryWatcherWorker::setDirectory(const QString& directory)
 {
     if (m_directory != directory) {
         m_directory = directory;
@@ -70,14 +70,14 @@ void DirectoryWatcherWorker::setDirectory(const QString &directory)
         // Create watcher on-demand when we first set a directory.
         if (m_watcher == nullptr) {
             m_watcher = new QFileSystemWatcher(this);
-            connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString &dir) {
+            connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString& dir) {
                 emit directoryChanged();
                 if (!m_directory.isEmpty()) {
                     this->watchDir(dir);
                 }
             });
             connect(m_watcher, &QFileSystemWatcher::fileChanged,
-                    [=](const QString &) { emit directoryChanged(); });
+                    [=](const QString&) { emit directoryChanged(); });
         }
 
         auto items = m_watcher->files() + m_watcher->directories();
@@ -93,7 +93,7 @@ void DirectoryWatcherWorker::setDirectory(const QString &directory)
 /**
  * @brief Watch the directory recursively.
  */
-void DirectoryWatcherWorker::watchDir(const QString &directory)
+void DirectoryWatcherWorker::watchDir(const QString& directory)
 {
     if (directory != "") {
         QDir dir(directory);

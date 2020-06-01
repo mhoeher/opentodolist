@@ -29,7 +29,7 @@
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
 
-ItemsSortFilterModel::ItemsSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
+ItemsSortFilterModel::ItemsSortFilterModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
     setSortRole(ItemsModel::WeightRole);
     sort(0); // NOLINT
@@ -50,13 +50,13 @@ int ItemsSortFilterModel::count() const
 /**
  * @brief Get the role from the role name.
  */
-int ItemsSortFilterModel::roleFromName(const QString &roleName) const
+int ItemsSortFilterModel::roleFromName(const QString& roleName) const
 {
     return roleNames().key(roleName.toUtf8(), -1);
 }
 
-bool ItemsSortFilterModel::lessThan(const QModelIndex &source_left,
-                                    const QModelIndex &source_right) const
+bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left,
+                                    const QModelIndex& source_right) const
 {
     switch (sortRole()) {
 

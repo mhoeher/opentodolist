@@ -46,7 +46,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
 const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
 const QString WebDAVSynchronizer::SyncErrorFileName = ".webdav-sync-had-errors";
 
-WebDAVSynchronizer::WebDAVSynchronizer(QObject *parent)
+WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
     : Synchronizer(parent),
       m_remoteDirectory(),
       m_disableCertificateCheck(false),
@@ -125,9 +125,9 @@ void WebDAVSynchronizer::synchronize()
         debug() << tr("Starting synchronization");
         auto dav = createDAVClient(this);
         connect(this, &WebDAVSynchronizer::stopRequested, dav, &WebDAVClient::stopSync);
-        connect(dav, &WebDAVClient::debug, [=](const QString &message) { debug() << message; });
-        connect(dav, &WebDAVClient::warning, [=](const QString &message) { warning() << message; });
-        connect(dav, &WebDAVClient::error, [=](const QString &message) { error() << message; });
+        connect(dav, &WebDAVClient::debug, [=](const QString& message) { debug() << message; });
+        connect(dav, &WebDAVClient::warning, [=](const QString& message) { warning() << message; });
+        connect(dav, &WebDAVClient::error, [=](const QString& message) { error() << message; });
         connect(dav, &WebDAVClient::syncError, this, &WebDAVSynchronizer::syncError);
         setSynchronizing(true);
         m_stopRequested = false;
@@ -321,14 +321,14 @@ QVariantMap WebDAVSynchronizer::toMap() const
     return result;
 }
 
-void WebDAVSynchronizer::fromMap(const QVariantMap &map)
+void WebDAVSynchronizer::fromMap(const QVariantMap& map)
 {
     m_remoteDirectory = map.value("remoteDirectory").toString();
     m_createDirs = map.value("createDirs", false).toBool();
     Synchronizer::fromMap(map);
 }
 
-void WebDAVSynchronizer::setAccount(Account *account)
+void WebDAVSynchronizer::setAccount(Account* account)
 {
     m_username = account->username();
     m_password = account->password();
@@ -356,7 +356,7 @@ QString WebDAVSynchronizer::remoteDirectory() const
     return m_remoteDirectory;
 }
 
-void WebDAVSynchronizer::setRemoteDirectory(const QString &remoteDirectory)
+void WebDAVSynchronizer::setRemoteDirectory(const QString& remoteDirectory)
 {
     if (m_remoteDirectory != remoteDirectory) {
         m_remoteDirectory = remoteDirectory;
@@ -383,7 +383,7 @@ QString WebDAVSynchronizer::username() const
     return m_username;
 }
 
-void WebDAVSynchronizer::setUsername(const QString &username)
+void WebDAVSynchronizer::setUsername(const QString& username)
 {
     if (m_username != username) {
         m_username = username;
@@ -397,7 +397,7 @@ QString WebDAVSynchronizer::password() const
     return m_password;
 }
 
-void WebDAVSynchronizer::setPassword(const QString &password)
+void WebDAVSynchronizer::setPassword(const QString& password)
 {
     if (m_password != password) {
         m_password = password;
@@ -417,7 +417,7 @@ QUrl WebDAVSynchronizer::url() const
 /**
  * @brief Set the server URL.
  */
-void WebDAVSynchronizer::setUrl(const QUrl &url)
+void WebDAVSynchronizer::setUrl(const QUrl& url)
 {
     if (m_url != url) {
         m_url = url;
@@ -435,7 +435,7 @@ void WebDAVSynchronizer::setUrl(const QUrl &url)
  *
  * @note Ownership of the object goes to the caller.
  */
-WebDAVClient *WebDAVSynchronizer::createDAVClient(QObject *parent)
+WebDAVClient* WebDAVSynchronizer::createDAVClient(QObject* parent)
 {
     auto result = new WebDAVClient(parent);
     result->setBaseUrl(baseUrl());
@@ -455,7 +455,7 @@ WebDAVSynchronizer::WebDAVServerType WebDAVSynchronizer::serverType() const
     return m_serverType;
 }
 
-void WebDAVSynchronizer::setServerType(const WebDAVServerType &serverType)
+void WebDAVSynchronizer::setServerType(const WebDAVServerType& serverType)
 {
     if (m_serverType != serverType) {
         m_serverType = serverType;
@@ -500,7 +500,7 @@ QVariantMap WebDAVSynchronizer::toFullMap() const
     return result;
 }
 
-void WebDAVSynchronizer::fromFullMap(const QVariantMap &map)
+void WebDAVSynchronizer::fromFullMap(const QVariantMap& map)
 {
     m_url = map["url"].toUrl();
     m_username = map["username"].toString();

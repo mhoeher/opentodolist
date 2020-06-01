@@ -49,7 +49,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Library")
 {
 }
 
-bool LibraryCacheEntry::operator==(const LibraryCacheEntry &other) const
+bool LibraryCacheEntry::operator==(const LibraryCacheEntry& other) const
 {
     return id == other.id && valid == other.valid && toByteArray() == other.toByteArray();
 }
@@ -69,7 +69,7 @@ QByteArray LibraryCacheEntry::toByteArray() const
 /**
  * @brief Create an entry from a byte array.
  */
-LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray &data, const QByteArray &id)
+LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray& data, const QByteArray& id)
 {
     auto map = QJsonDocument::fromBinaryData(data).toVariant().toMap();
     LibraryCacheEntry result;
@@ -85,9 +85,9 @@ LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray &data, const
 /**
    @brief Set the name of the library.
  */
-Library::Library(QObject *parent) : Library(QString(), parent) {}
+Library::Library(QObject* parent) : Library(QString(), parent) {}
 
-Library::Library(const QString &directory, QObject *parent)
+Library::Library(const QString& directory, QObject* parent)
     : QObject(parent),
       m_uid(QUuid::createUuid()),
       m_name(),
@@ -131,9 +131,9 @@ LibraryCacheEntry Library::encache() const
  * This constructs a library from the cache @p entry. The library will
  * be owned by the @p parent object.
  */
-Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
+Library* Library::decache(const LibraryCacheEntry& entry, QObject* parent)
 {
-    Library *result = nullptr;
+    Library* result = nullptr;
     if (entry.valid) {
         auto meta = entry.metaData.toMap();
         if (meta.contains("directory")) {
@@ -157,12 +157,12 @@ Library *Library::decache(const LibraryCacheEntry &entry, QObject *parent)
  * This constructs a library from the cache @p entry. The library will
  * be owned by the @p parent object.
  */
-Library *Library::decache(const QVariant &entry, QObject *parent)
+Library* Library::decache(const QVariant& entry, QObject* parent)
 {
     return decache(entry.value<LibraryCacheEntry>(), parent);
 }
 
-void Library::setName(const QString &name)
+void Library::setName(const QString& name)
 {
     if (m_name != name) {
         m_name = name;
@@ -296,7 +296,7 @@ QDir Library::newItemLocation() const
  * This searches the @p directory for a list if directories potentially holding
  * item data of a library. Returns the list of entries (relative to the directory).
  */
-QStringList Library::years(const QString &directory)
+QStringList Library::years(const QString& directory)
 {
     QStringList result;
     QDir dir(directory);
@@ -311,7 +311,7 @@ QStringList Library::years(const QString &directory)
     return result;
 }
 
-QStringList Library::months(const QString &directory, const QString &year)
+QStringList Library::months(const QString& directory, const QString& year)
 {
     QStringList result;
     if (!directory.isEmpty()) {
@@ -367,7 +367,7 @@ QStringList Library::tags() const
     return m_tags;
 }
 
-void Library::setTags(const QStringList &tags)
+void Library::setTags(const QStringList& tags)
 {
     m_tags = tags;
     emit tagsChanged();
@@ -376,7 +376,7 @@ void Library::setTags(const QStringList &tags)
 /**
  * @brief Initialize the propertoes of the library from the JSON @p data.
  */
-void Library::fromJson(const QByteArray &data)
+void Library::fromJson(const QByteArray& data)
 {
     auto doc = QJsonDocument::fromJson(data);
     if (doc.isObject()) {
@@ -416,7 +416,7 @@ bool Library::hasSynchronizer() const
  * @note The method also returns nullptrs if the library is invalid, i.e.
  * it has no local directory associated with it.
  */
-Synchronizer *Library::createSynchronizer(QObject *parent) const
+Synchronizer* Library::createSynchronizer(QObject* parent) const
 {
     if (isValid()) {
         return Synchronizer::fromDirectory(directory(), parent);
@@ -431,7 +431,7 @@ Synchronizer *Library::createSynchronizer(QObject *parent) const
  * This is the Cache object the Library is connected to. The library
  * will automatically keep in sync with the set Cache.
  */
-Cache *Library::cache() const
+Cache* Library::cache() const
 {
     return m_cache.data();
 }
@@ -439,7 +439,7 @@ Cache *Library::cache() const
 /**
  * @brief Set the cache the library is associated with.
  */
-void Library::setCache(Cache *cache)
+void Library::setCache(Cache* cache)
 {
     if (m_cache != cache) {
         if (m_cache != nullptr) {
@@ -459,7 +459,7 @@ QVariant Library::toVariant()
     return toMap();
 }
 
-void Library::fromVariant(const QVariant &data)
+void Library::fromVariant(const QVariant& data)
 {
     fromMap(data.toMap());
 }
@@ -482,7 +482,7 @@ QString Library::defaultLibrariesLocation()
 /**
  * @brief Set the UID of the library.
  */
-void Library::setUid(const QUuid &uid)
+void Library::setUid(const QUuid& uid)
 {
     if (m_uid != uid) {
         m_uid = uid;
@@ -501,7 +501,7 @@ void Library::onCacheChanged()
     }
 }
 
-void Library::onLibraryDataLoadedFromCache(const QVariant &entry)
+void Library::onLibraryDataLoadedFromCache(const QVariant& entry)
 {
     QSharedPointer<Library> lib(Library::decache(entry));
     if (lib != nullptr) {
@@ -519,7 +519,7 @@ void Library::onChanged()
     }
 }
 
-void Library::applyCalculatedData(const QVariantMap &properties)
+void Library::applyCalculatedData(const QVariantMap& properties)
 {
     setTags(properties.value("tags", m_tags).toStringList());
 }

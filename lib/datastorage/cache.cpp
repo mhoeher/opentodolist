@@ -41,7 +41,7 @@ const QByteArray Cache::Version_0 = "0";
 class ItemsQueryRunnable : public QRunnable
 {
 public:
-    explicit ItemsQueryRunnable(ItemsQuery *query);
+    explicit ItemsQueryRunnable(ItemsQuery* query);
 
     // QRunnable interface
     void run() override;
@@ -53,7 +53,7 @@ private:
 /**
  * @brief Creates a runner which runs the @p query on the @p cache.
  */
-ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery *query) : QRunnable(), m_query(query) {}
+ItemsQueryRunnable::ItemsQueryRunnable(ItemsQuery* query) : QRunnable(), m_query(query) {}
 
 /**
  * @brief Implementation of QRunnable::run().
@@ -69,7 +69,7 @@ void ItemsQueryRunnable::run()
 /**
  * @brief Constructor.
  */
-Cache::Cache(QObject *parent)
+Cache::Cache(QObject* parent)
     : QObject(parent),
       m_cacheDirectory(),
       m_cacheSize(
@@ -104,7 +104,7 @@ QString Cache::cacheDirectory() const
 /**
  * @brief Set the directory where the on-disk cache is stored.
  */
-void Cache::setCacheDirectory(const QString &cacheDirectory)
+void Cache::setCacheDirectory(const QString& cacheDirectory)
 {
     m_cacheDirectory = cacheDirectory;
 }
@@ -188,7 +188,7 @@ bool Cache::isValid() const
  * The ownership of the query object is passed to the cache, which will destroy
  * the query once it ran.
  */
-void Cache::run(ItemsQuery *query)
+void Cache::run(ItemsQuery* query)
 {
     if (query != nullptr) {
         if (m_context == nullptr) {

@@ -32,14 +32,14 @@ class GetItemQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
-    explicit GetItemQuery(QObject *parent = nullptr);
+    explicit GetItemQuery(QObject* parent = nullptr);
 
     QUuid uid() const;
-    void setUid(const QUuid &uid);
+    void setUid(const QUuid& uid);
 
 signals:
 
-    void itemLoaded(const QVariant &data);
+    void itemLoaded(const QVariant& data);
 
 public slots:
 

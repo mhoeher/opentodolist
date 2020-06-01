@@ -32,7 +32,7 @@
 /**
  * @brief Constructor.
  */
-LibraryLoader::LibraryLoader(QObject *parent)
+LibraryLoader::LibraryLoader(QObject* parent)
     : QObject(parent), m_libraryId(), m_directory(), m_cache(nullptr), m_scanWatcher()
 {
     connect(&m_scanWatcher, &QFutureWatcher<DirectoryScanResult>::finished, this,
@@ -60,7 +60,7 @@ QString LibraryLoader::directory() const
 /**
  * @brief Set the directory to scan for items.
  */
-void LibraryLoader::setDirectory(const QString &directory)
+void LibraryLoader::setDirectory(const QString& directory)
 {
     m_directory = directory;
 }
@@ -68,7 +68,7 @@ void LibraryLoader::setDirectory(const QString &directory)
 /**
  * @brief The item cache the loader shall put items into.
  */
-Cache *LibraryLoader::cache() const
+Cache* LibraryLoader::cache() const
 {
     return m_cache;
 }
@@ -76,7 +76,7 @@ Cache *LibraryLoader::cache() const
 /**
  * @brief Set he item cache.
  */
-void LibraryLoader::setCache(Cache *cache)
+void LibraryLoader::setCache(Cache* cache)
 {
     m_cache = cache;
 }
@@ -92,7 +92,7 @@ QUuid LibraryLoader::libraryId() const
 /**
  * @brief Set the UID of the library to load items for.
  */
-void LibraryLoader::setLibraryId(const QUuid &libraryId)
+void LibraryLoader::setLibraryId(const QUuid& libraryId)
 {
     m_libraryId = libraryId;
 }
@@ -139,7 +139,7 @@ void LibraryLoader::itemUidsLoaded(QSet<QUuid> uids)
                 for (auto entry : dir.entryList({ suffix }, QDir::Files)) {
                     auto item = Item::createItemFromFile(dir.absoluteFilePath(entry));
                     if (item) {
-                        auto topLevelItem = qobject_cast<TopLevelItem *>(item);
+                        auto topLevelItem = qobject_cast<TopLevelItem*>(item);
                         if (topLevelItem != nullptr) {
                             topLevelItem->setLibraryId(libraryId);
                         }

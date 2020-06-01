@@ -32,12 +32,12 @@ class DeleteItemsQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
-    explicit DeleteItemsQuery(QObject *parent = nullptr);
+    explicit DeleteItemsQuery(QObject* parent = nullptr);
 
-    void deleteItem(const Item *item);
-    void deleteItem(const QUuid &uid);
-    void deleteLibrary(const Library *library, bool deleteLibraryDir);
-    void deleteLibrary(const QUuid &uid, bool deleteLibraryDir);
+    void deleteItem(const Item* item);
+    void deleteItem(const QUuid& uid);
+    void deleteLibrary(const Library* library, bool deleteLibraryDir);
+    void deleteLibrary(const QUuid& uid, bool deleteLibraryDir);
 
 signals:
 

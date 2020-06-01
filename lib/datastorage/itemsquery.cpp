@@ -26,7 +26,7 @@
 /**
  * @brief Constructor.
  */
-ItemsQuery::ItemsQuery(QObject *parent)
+ItemsQuery::ItemsQuery(QObject* parent)
     : QObject(parent),
       m_context(),
       m_global(),
@@ -95,7 +95,7 @@ bool ItemsQuery::hasDataChanged() const
  * This marks the item with the given @p id as changed. This will cause the
  * librariesChanged() signal to be emitted when the transaction is done.
  */
-void ItemsQuery::markAsChanged(QLMDB::Transaction *transaction, QByteArray id)
+void ItemsQuery::markAsChanged(QLMDB::Transaction* transaction, QByteArray id)
 {
     q_check_ptr(transaction);
     while (!m_changedParentUids.contains(id)) {

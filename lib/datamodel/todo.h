@@ -41,9 +41,9 @@ class Todo : public ComplexItem
     Q_PROPERTY(int progress READ progress WRITE setProgress NOTIFY progressChanged)
 
 public:
-    explicit Todo(const QString &filename, QObject *parent = nullptr);
-    explicit Todo(QObject *parent = nullptr);
-    explicit Todo(const QDir &dir, QObject *parent = nullptr);
+    explicit Todo(const QString& filename, QObject* parent = nullptr);
+    explicit Todo(QObject* parent = nullptr);
+    explicit Todo(const QDir& dir, QObject* parent = nullptr);
     ~Todo() override;
 
     QUuid parentId() const override;
@@ -52,12 +52,12 @@ public:
     void setDone(bool done);
 
     QUuid todoListUid() const;
-    void setTodoListUid(const QUuid &todoListUid);
+    void setTodoListUid(const QUuid& todoListUid);
 
     int percentageDone() const;
 
     // Item interface
-    void applyCalculatedProperties(const QVariantMap &properties) override;
+    void applyCalculatedProperties(const QVariantMap& properties) override;
 
     int progress() const;
     void setProgress(int progress);

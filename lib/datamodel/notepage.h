@@ -29,13 +29,13 @@ class NotePage : public ComplexItem
     Q_OBJECT
     Q_PROPERTY(QUuid noteUid READ noteUid WRITE setNoteUid NOTIFY noteUidChanged)
 public:
-    explicit NotePage(QObject *parent = nullptr);
-    explicit NotePage(const QString &filename, QObject *parent = nullptr);
-    explicit NotePage(const QDir &dir, QObject *parent = nullptr);
+    explicit NotePage(QObject* parent = nullptr);
+    explicit NotePage(const QString& filename, QObject* parent = nullptr);
+    explicit NotePage(const QDir& dir, QObject* parent = nullptr);
     ~NotePage() override;
 
     QUuid noteUid() const;
-    void setNoteUid(const QUuid &noteUid);
+    void setNoteUid(const QUuid& noteUid);
 
     QUuid parentId() const override;
 

@@ -43,7 +43,7 @@ class GetItemsQuery;
 class ItemsModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(Cache *cache READ cache WRITE setCache NOTIFY cacheChanged)
+    Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(QUuid parentItem READ parentItem WRITE setParentItem NOTIFY parentItemChanged)
     Q_PROPERTY(
@@ -76,26 +76,26 @@ public:
 
     Q_ENUM(Roles)
 
-    explicit ItemsModel(QObject *parent = nullptr);
+    explicit ItemsModel(QObject* parent = nullptr);
 
-    Cache *cache() const;
-    void setCache(Cache *cache);
+    Cache* cache() const;
+    void setCache(Cache* cache);
 
     int count() const;
 
     // QAbstractItemModel interface
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
     QUuid parentItem() const;
-    void setParentItem(const QUuid &parent);
+    void setParentItem(const QUuid& parent);
 
     QString searchString() const;
-    void setSearchString(const QString &searchString);
+    void setSearchString(const QString& searchString);
 
     QString tag() const;
-    void setTag(const QString &tag);
+    void setTag(const QString& tag);
 
     bool onlyDone() const;
     void setOnlyDone(bool value);
@@ -113,15 +113,15 @@ public:
     void setRecursive(bool recursive);
 
     QString overdueLabel() const;
-    void setOverdueLabel(const QString &overdueLabel);
+    void setOverdueLabel(const QString& overdueLabel);
 
     QVariantMap timeSpans() const;
-    void setTimeSpans(const QVariantMap &timeSpans);
+    void setTimeSpans(const QVariantMap& timeSpans);
 
-    Q_INVOKABLE int roleFromName(const QString &roleName) const;
+    Q_INVOKABLE int roleFromName(const QString& roleName) const;
 
     QString itemType() const;
-    void setItemType(const QString &itemType);
+    void setItemType(const QString& itemType);
 
 signals:
 
@@ -143,7 +143,7 @@ public slots:
 
 private:
     QPointer<Cache> m_cache;
-    QHash<QUuid, Item *> m_items;
+    QHash<QUuid, Item*> m_items;
     QList<QUuid> m_ids;
     QTimer m_fetchTimer;
     QUuid m_parentItem;
@@ -164,13 +164,13 @@ private:
 
     static bool itemMatches(ItemPtr item, QStringList words);
 
-    QString timeSpanLabel(Item *item, int role) const;
+    QString timeSpanLabel(Item* item, int role) const;
 
 private slots:
 
     void reset();
     void fetch();
-    std::function<bool(ItemPtr item, GetItemsQuery *query)> getFilterFn() const;
+    std::function<bool(ItemPtr item, GetItemsQuery* query)> getFilterFn() const;
     void triggerFetch();
     void update(QVariantList items);
     void itemChanged();

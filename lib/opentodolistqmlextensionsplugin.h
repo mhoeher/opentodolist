@@ -31,13 +31,13 @@ class OpenTodoListQmlExtensionsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
 public:
-    explicit OpenTodoListQmlExtensionsPlugin(QObject *parent = 0);
+    explicit OpenTodoListQmlExtensionsPlugin(QObject* parent = 0);
 
     // QQmlTypesExtensionInterface interface
-    void registerTypes(const char *uri) override;
+    void registerTypes(const char* uri) override;
 
 private:
-    static QObject *createApplication(QQmlEngine *engine, QJSEngine *jsEngine);
+    static QObject* createApplication(QQmlEngine* engine, QJSEngine* jsEngine);
 };
 
 #endif // OPENTODOLISTQMLEXTENSIONSPLUGIN_H_

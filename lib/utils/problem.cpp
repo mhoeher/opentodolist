@@ -50,7 +50,7 @@ Problem::ProblemType Problem::type() const
 /**
  * @brief Set the problem @p type.
  */
-void Problem::setType(const ProblemType &type)
+void Problem::setType(const ProblemType& type)
 {
     m_type = type;
 }
@@ -76,7 +76,7 @@ QSharedPointer<QObject> Problem::contextObject() const
 /**
  * @brief Set the @p contextObject of the problem.
  */
-void Problem::setContextObject(const QSharedPointer<QObject> &contextObject)
+void Problem::setContextObject(const QSharedPointer<QObject>& contextObject)
 {
     m_contextObject = contextObject;
 }
@@ -86,7 +86,7 @@ void Problem::setContextObject(const QSharedPointer<QObject> &contextObject)
  *
  * This is the object which the problem refers to.
  */
-QObject *Problem::getContextObject() const
+QObject* Problem::getContextObject() const
 {
     return m_contextObject.data();
 }

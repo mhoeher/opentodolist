@@ -51,7 +51,7 @@ static QSettings::Format KeyStoreSettingsFormat = QSettings::InvalidFormat;
  * to not store any stuff unencrypted (especially on desktop systems, where potentially
  * multiple users have access to the device).
  */
-bool securedWriteSettings(QIODevice &device, const QSettings::SettingsMap &map)
+bool securedWriteSettings(QIODevice& device, const QSettings::SettingsMap& map)
 {
     bool result = false;
     auto doc = QJsonDocument::fromVariant(map);
@@ -70,7 +70,7 @@ bool securedWriteSettings(QIODevice &device, const QSettings::SettingsMap &map)
  *
  * This is the reverse of the securedWriteSettings() functions.
  */
-bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map)
+bool securedReadSettings(QIODevice& device, QSettings::SettingsMap& map)
 {
     bool result = false;
     auto data = device.readAll();
@@ -94,7 +94,7 @@ bool securedReadSettings(QIODevice &device, QSettings::SettingsMap &map)
 /**
  * @brief Constructor.
  */
-KeyStore::KeyStore(QObject *parent) : QObject(parent), m_settings(nullptr)
+KeyStore::KeyStore(QObject* parent) : QObject(parent), m_settings(nullptr)
 {
     registerSettingsFormat();
     if (KeyStoreSettingsFormat != QSettings::InvalidFormat) {
@@ -126,7 +126,7 @@ KeyStore::~KeyStore() {}
  * secrets to the secret store after it previously has been stored in the
  * insecure fallback.
  */
-void KeyStore::saveCredentials(const QString &key, const QString &value,
+void KeyStore::saveCredentials(const QString& key, const QString& value,
                                bool removeCopyFromInsecureFallbackOnSuccess)
 {
     auto job = new QKeychain::WritePasswordJob(ServiceName);
@@ -137,7 +137,7 @@ void KeyStore::saveCredentials(const QString &key, const QString &value,
         job->setSettings(m_settings);
     }
     job->setAutoDelete(true);
-    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job *) {
+    connect(job, &QKeychain::WritePasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
             if (removeCopyFromInsecureFallbackOnSuccess) {
@@ -166,7 +166,7 @@ void KeyStore::saveCredentials(const QString &key, const QString &value,
     job->start();
 }
 
-void KeyStore::loadCredentials(const QString &key)
+void KeyStore::loadCredentials(const QString& key)
 {
     auto job = new QKeychain::ReadPasswordJob(ServiceName);
     job->setKey(key);
@@ -175,7 +175,7 @@ void KeyStore::loadCredentials(const QString &key)
         job->setSettings(m_settings);
     }
     job->setAutoDelete(true);
-    connect(job, &QKeychain::ReadPasswordJob::finished, [=](QKeychain::Job *) {
+    connect(job, &QKeychain::ReadPasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
         QString secret = job->textData();
         if (job->error() != QKeychain::NoError) {
@@ -203,7 +203,7 @@ void KeyStore::loadCredentials(const QString &key)
     job->start();
 }
 
-void KeyStore::deleteCredentials(const QString &key)
+void KeyStore::deleteCredentials(const QString& key)
 {
     // Remove from fallback (in case we stored twice):
     m_settings->beginGroup("Fallback");
@@ -218,7 +218,7 @@ void KeyStore::deleteCredentials(const QString &key)
         job->setSettings(m_settings);
     }
     job->setAutoDelete(true);
-    connect(job, &QKeychain::DeletePasswordJob::finished, [=](QKeychain::Job *) {
+    connect(job, &QKeychain::DeletePasswordJob::finished, [=](QKeychain::Job*) {
         bool success = true;
         if (job->error() != QKeychain::NoError) {
             qCWarning(log) << "Failed to delete credentials for" << key << ":"
@@ -240,9 +240,9 @@ void KeyStore::deleteCredentials(const QString &key)
  * testing purposes only, as outside the key store there should be no need to
  * ever use such a settings object.
  */
-QSettings *KeyStore::createSettingsFile(const QString &filename, QObject *parent)
+QSettings* KeyStore::createSettingsFile(const QString& filename, QObject* parent)
 {
-    QSettings *result = nullptr;
+    QSettings* result = nullptr;
 
     if (KeyStoreSettingsFormat == QSettings::InvalidFormat) {
         registerSettingsFormat();

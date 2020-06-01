@@ -42,7 +42,7 @@ static const QByteArray HTTP_MKCOL = "MKCOL";
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVClient", QtDebugMsg)
 
-        WebDAVClient::WebDAVClient(QObject *parent)
+        WebDAVClient::WebDAVClient(QObject* parent)
     : QObject(parent),
       m_networkAccessManager(new QNetworkAccessManager(this)),
       m_baseUrl(),
@@ -61,7 +61,7 @@ QString WebDAVClient::remoteDirectory() const
     return m_remoteDirectory;
 }
 
-void WebDAVClient::setRemoteDirectory(const QString &remoteDirectory)
+void WebDAVClient::setRemoteDirectory(const QString& remoteDirectory)
 {
     m_remoteDirectory = remoteDirectory;
 }
@@ -71,7 +71,7 @@ QString WebDAVClient::directory() const
     return m_directory;
 }
 
-void WebDAVClient::setDirectory(const QString &directory)
+void WebDAVClient::setDirectory(const QString& directory)
 {
     m_directory = directory;
 }
@@ -91,7 +91,7 @@ QString WebDAVClient::username() const
     return m_username;
 }
 
-void WebDAVClient::setUsername(const QString &username)
+void WebDAVClient::setUsername(const QString& username)
 {
     m_username = username;
 }
@@ -101,7 +101,7 @@ QString WebDAVClient::password() const
     return m_password;
 }
 
-void WebDAVClient::setPassword(const QString &password)
+void WebDAVClient::setPassword(const QString& password)
 {
     m_password = password;
 }
@@ -117,7 +117,7 @@ QUrl WebDAVClient::baseUrl() const
     return m_baseUrl;
 }
 
-void WebDAVClient::setBaseUrl(const QUrl &baseUrl)
+void WebDAVClient::setBaseUrl(const QUrl& baseUrl)
 {
     m_baseUrl = baseUrl;
 }
@@ -128,7 +128,7 @@ void WebDAVClient::setBaseUrl(const QUrl &baseUrl)
  * This retrieves the contents of the @p directory (which is relative to the
  * remoteDirectory set in the WebDAVClient itself).
  */
-WebDAVClient::EntryList WebDAVClient::entryList(const QString &directory, bool *ok)
+WebDAVClient::EntryList WebDAVClient::entryList(const QString& directory, bool* ok)
 {
     EntryList result;
     auto dir = this->remoteDirectory() + "/" + directory;
@@ -160,9 +160,9 @@ WebDAVClient::EntryList WebDAVClient::entryList(const QString &directory, bool *
  * @p targetDevice is set, the downloaded content is written to that device
  * instead.
  */
-bool WebDAVClient::download(const QString &filename, QIODevice *targetDevice)
+bool WebDAVClient::download(const QString& filename, QIODevice* targetDevice)
 {
-    QTemporaryFile *file = new QTemporaryFile();
+    QTemporaryFile* file = new QTemporaryFile();
     auto result = false;
     if (file->open()) {
         DAVRequest request;
@@ -222,7 +222,7 @@ bool WebDAVClient::download(const QString &filename, QIODevice *targetDevice)
  * retrieve wrong results (e.g. if another client uploaded the same file
  * in the meantime and hence overwrote it).
  */
-bool WebDAVClient::upload(const QString &filename, QString *etag)
+bool WebDAVClient::upload(const QString& filename, QString* etag)
 {
     auto result = false;
     auto file = new QFile(directory() + "/" + filename);
@@ -230,7 +230,7 @@ bool WebDAVClient::upload(const QString &filename, QString *etag)
     if (file->open(QIODevice::ReadOnly)) {
         DAVRequest request;
         request.url = QUrl(urlString() + mkpath(remoteDirectory() + "/" + filename));
-        request.prepareRequest = [=](QNetworkRequest &req) {
+        request.prepareRequest = [=](QNetworkRequest& req) {
             req.setHeader(QNetworkRequest::ContentLengthHeader, file->size());
             req.setHeader(QNetworkRequest::ContentTypeHeader, "application/octet-stream");
         };
@@ -274,7 +274,7 @@ bool WebDAVClient::upload(const QString &filename, QString *etag)
     return result;
 }
 
-bool WebDAVClient::mkdir(const QString &dirname, QString *etag)
+bool WebDAVClient::mkdir(const QString& dirname, QString* etag)
 {
     auto result = false;
     auto reply = sendDAVRequest(createDirectoryRequest(this->remoteDirectory() + "/" + dirname));
@@ -292,7 +292,7 @@ bool WebDAVClient::mkdir(const QString &dirname, QString *etag)
     return result;
 }
 
-bool WebDAVClient::deleteEntry(const QString &filename)
+bool WebDAVClient::deleteEntry(const QString& filename)
 {
     auto result = false;
     DAVRequest request;
@@ -357,8 +357,8 @@ bool WebDAVClient::deleteEntry(const QString &filename)
  * in the set, no changes compared to the last sync run were detected
  * and hence only local changes need to be pushed.
  */
-bool WebDAVClient::syncDirectory(const QString &directory, QRegularExpression directoryFilter,
-                                 bool pushOnly, QSet<QString> *changedDirs)
+bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression directoryFilter,
+                                 bool pushOnly, QSet<QString>* changedDirs)
 {
     m_stopRequested = false;
     QSet<QString> _changedDirs;
@@ -463,8 +463,8 @@ bool WebDAVClient::syncDirectory(const QString &directory, QRegularExpression di
 /**
  * @brief Merge a sync entry list with local file data.
  */
-void WebDAVClient::mergeLocalInfoWithSyncList(const QDir &d, const QString &dir,
-                                              SyncEntryMap &entries)
+void WebDAVClient::mergeLocalInfoWithSyncList(const QDir& d, const QString& dir,
+                                              SyncEntryMap& entries)
 {
     for (auto entry : d.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
         QFileInfo fi(d.absoluteFilePath(entry));
@@ -480,7 +480,7 @@ void WebDAVClient::mergeLocalInfoWithSyncList(const QDir &d, const QString &dir,
 /**
  * @brief Merge a sync entry list with remote file data.
  */
-bool WebDAVClient::mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QString &dir)
+bool WebDAVClient::mergeRemoteInfoWithSyncList(SyncEntryMap& entries, const QString& dir)
 {
     bool ok;
     auto remoteEntries = entryList(dir, &ok);
@@ -499,7 +499,7 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QStr
         qCWarning(log) << "Failed to get entry list for" << dir;
         emit warning(tr("Failed to get entry list for '%1'").arg(dir));
         for (auto entry : entries.keys()) {
-            auto &e = entries[entry];
+            auto& e = entries[entry];
             e.etag = e.previousEtag;
         }
     }
@@ -509,7 +509,7 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(SyncEntryMap &entries, const QStr
 /**
  * @brief Pull an entry from the server.
  */
-bool WebDAVClient::pullEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
+bool WebDAVClient::pullEntry(WebDAVClient::SyncEntry& entry, QSqlDatabase* db)
 {
     qCDebug(log) << "Pulling" << entry.path();
     emit debug(tr("Pulling '%1'").arg(entry.path()));
@@ -572,7 +572,7 @@ bool WebDAVClient::pullEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
 /**
  * @brief Remove a local file or directory.
  */
-bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
+bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry& entry, QSqlDatabase* db)
 {
     qCDebug(log) << "Removing" << entry.path() << "locally";
     emit debug(tr("Removing '%1' locally").arg(entry.path()));
@@ -613,7 +613,7 @@ bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase
 /**
  * @brief Push an entry to the server.
  */
-bool WebDAVClient::pushEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
+bool WebDAVClient::pushEntry(WebDAVClient::SyncEntry& entry, QSqlDatabase* db)
 {
     qCDebug(log) << "Pushing" << entry.path();
     emit debug(tr("Pushing '%1'").arg(entry.path()));
@@ -658,7 +658,7 @@ bool WebDAVClient::pushEntry(WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
 /**
  * @brief Remove an entry on the server.
  */
-bool WebDAVClient::removeRemoteEntry(const WebDAVClient::SyncEntry &entry, QSqlDatabase *db)
+bool WebDAVClient::removeRemoteEntry(const WebDAVClient::SyncEntry& entry, QSqlDatabase* db)
 {
     qCDebug(log) << "Removing" << entry.path() << "remotely";
     emit debug(tr("Removing remote entry '%1'").arg(entry.path()));
@@ -674,9 +674,9 @@ bool WebDAVClient::removeRemoteEntry(const WebDAVClient::SyncEntry &entry, QSqlD
     return result;
 }
 
-bool WebDAVClient::skipEntry(const WebDAVClient::SyncEntry &entry,
+bool WebDAVClient::skipEntry(const WebDAVClient::SyncEntry& entry,
                              WebDAVClient::SyncStepDirection direction,
-                             const QRegularExpression &dirFilter)
+                             const QRegularExpression& dirFilter)
 {
     switch (direction) {
     case Download:
@@ -712,7 +712,7 @@ bool WebDAVClient::skipEntry(const WebDAVClient::SyncEntry &entry,
  * The file name is relative to the remote directory set.
  * If the etag cannot be retrieved, an empty string is returned.
  */
-QString WebDAVClient::etag(const QString &filename)
+QString WebDAVClient::etag(const QString& filename)
 {
     QString result;
     auto path = m_remoteDirectory + "/" + filename;
@@ -736,7 +736,7 @@ QString WebDAVClient::etag(const QString &filename)
  * Create a path from the given @p path. The returned path will be relative
  * to the currently set local/remote path.
  */
-QString WebDAVClient::mkpath(const QString &path)
+QString WebDAVClient::mkpath(const QString& path)
 {
     auto result = QDir::cleanPath(path);
     if (result.startsWith("/")) {
@@ -751,7 +751,7 @@ QString WebDAVClient::mkpath(const QString &path)
  * This helper method splits up a path into a parent path and the trailing
  * file (or directory) name part and return it as a tuple.
  */
-std::tuple<QString, QString> WebDAVClient::splitpath(const QString &path)
+std::tuple<QString, QString> WebDAVClient::splitpath(const QString& path)
 {
     std::tuple<QString, QString> result;
     auto p = mkpath(path);
@@ -777,7 +777,7 @@ QString WebDAVClient::urlString() const
     return result;
 }
 
-WebDAVClient::DAVRequest WebDAVClient::listDirectoryRequest(const QString &directory)
+WebDAVClient::DAVRequest WebDAVClient::listDirectoryRequest(const QString& directory)
 {
     /*
      curl -i -X PROPFIND http://admin:admin@localhost:8080/remote.php/webdav/ \
@@ -809,7 +809,7 @@ WebDAVClient::DAVRequest WebDAVClient::listDirectoryRequest(const QString &direc
     return request;
 }
 
-WebDAVClient::DAVRequest WebDAVClient::etagRequest(const QString &filename)
+WebDAVClient::DAVRequest WebDAVClient::etagRequest(const QString& filename)
 {
     /*
      curl -i -X PROPFIND http://admin:admin@localhost:8080/remote.php/webdav/ \
@@ -829,7 +829,7 @@ WebDAVClient::DAVRequest WebDAVClient::etagRequest(const QString &filename)
                              "</a:propfind>";
     DAVRequest request;
     request.url = QUrl(urlString() + mkpath(filename));
-    request.prepareRequest = [=](QNetworkRequest &req) {
+    request.prepareRequest = [=](QNetworkRequest& req) {
         req.setRawHeader("Depth", "0");
         req.setHeader(QNetworkRequest::ContentLengthHeader, requestData.size());
         req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=utf-8");
@@ -839,7 +839,7 @@ WebDAVClient::DAVRequest WebDAVClient::etagRequest(const QString &filename)
     return request;
 }
 
-WebDAVClient::DAVRequest WebDAVClient::createDirectoryRequest(const QString &directory)
+WebDAVClient::DAVRequest WebDAVClient::createDirectoryRequest(const QString& directory)
 {
     /*
      curl -X MKCOL 'http://admin:admin@localhost:8080/remote.php/webdav/example'
@@ -850,8 +850,8 @@ WebDAVClient::DAVRequest WebDAVClient::createDirectoryRequest(const QString &dir
     return request;
 }
 
-WebDAVClient::EntryList WebDAVClient::parseEntryList(const QUrl &baseUrl, const QString &directory,
-                                                     const QByteArray &reply)
+WebDAVClient::EntryList WebDAVClient::parseEntryList(const QUrl& baseUrl, const QString& directory,
+                                                     const QByteArray& reply)
 {
     EntryList result;
     QDomDocument doc;
@@ -865,9 +865,9 @@ WebDAVClient::EntryList WebDAVClient::parseEntryList(const QUrl &baseUrl, const 
     return result;
 }
 
-WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(const QUrl &baseUrl,
-                                                            const QDomDocument &response,
-                                                            const QString &directory)
+WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(const QUrl& baseUrl,
+                                                            const QDomDocument& response,
+                                                            const QString& directory)
 {
     EntryList result;
     auto baseDir = QDir::cleanPath(baseUrl.path() + "/" + directory);
@@ -890,8 +890,8 @@ WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(const QUrl &baseUrl,
     return result;
 }
 
-WebDAVClient::Entry WebDAVClient::parseResponseEntry(const QDomElement &element,
-                                                     const QString &baseDir)
+WebDAVClient::Entry WebDAVClient::parseResponseEntry(const QDomElement& element,
+                                                     const QString& baseDir)
 {
     auto type = File;
     QString etag;
@@ -935,7 +935,7 @@ WebDAVClient::Entry WebDAVClient::parseResponseEntry(const QDomElement &element,
     return result;
 }
 
-void WebDAVClient::prepareReply(QNetworkReply *reply) const
+void WebDAVClient::prepareReply(QNetworkReply* reply) const
 {
     connect(reply, &QNetworkReply::sslErrors, [=](QList<QSslError> errors) {
         for (auto error : errors) {
@@ -976,11 +976,11 @@ void WebDAVClient::prepareReply(QNetworkReply *reply) const
  *
  * So we take care for redirection on our own here.
  */
-QNetworkReply *WebDAVClient::sendDAVRequest(const WebDAVClient::DAVRequest &request)
+QNetworkReply* WebDAVClient::sendDAVRequest(const WebDAVClient::DAVRequest& request)
 {
     int maxRedirects = 30;
     auto url = request.url;
-    QNetworkReply *rep = nullptr;
+    QNetworkReply* rep = nullptr;
     while (maxRedirects > 0) {
         --maxRedirects;
         QNetworkRequest req;
@@ -1045,7 +1045,7 @@ QNetworkReply *WebDAVClient::sendDAVRequest(const WebDAVClient::DAVRequest &requ
  */
 QSqlDatabase WebDAVClient::openSyncDb()
 {
-    const QString &localDir = this->directory();
+    const QString& localDir = this->directory();
     auto dbPath = QDir::cleanPath(localDir + "/.otlwebdavsync.db");
     auto db = QSqlDatabase::addDatabase("QSQLITE", dbPath);
     db.setDatabaseName(dbPath);
@@ -1095,7 +1095,7 @@ QSqlDatabase WebDAVClient::openSyncDb()
  * This inserts the entry into the SyncDB. The current modification date and
  * etag will be stored in the DB.
  */
-void WebDAVClient::insertSyncDBEntry(QSqlDatabase *db, const WebDAVClient::SyncEntry &entry)
+void WebDAVClient::insertSyncDBEntry(QSqlDatabase* db, const WebDAVClient::SyncEntry& entry)
 {
     QSqlQuery query(*db);
     query.prepare("INSERT OR REPLACE INTO files "
@@ -1118,7 +1118,7 @@ void WebDAVClient::insertSyncDBEntry(QSqlDatabase *db, const WebDAVClient::SyncE
  * will have their previousLastModDate and previousEtag entries
  * set.
  */
-WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase *db, const QString &parent)
+WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase* db, const QString& parent)
 {
     QMap<QString, SyncEntry> result;
     QSqlQuery query(*db);
@@ -1144,7 +1144,7 @@ WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase *db, con
 /**
  * @brief Remove a directory from the SyncDB.
  */
-void WebDAVClient::removeDirFromSyncDB(QSqlDatabase *db, const SyncEntry &entry)
+void WebDAVClient::removeDirFromSyncDB(QSqlDatabase* db, const SyncEntry& entry)
 {
     QSqlQuery query(*db);
     query.prepare("DELETE FROM files "
@@ -1162,7 +1162,7 @@ void WebDAVClient::removeDirFromSyncDB(QSqlDatabase *db, const SyncEntry &entry)
 /**
  * @brief Remove a single entry from the SyncDB.
  */
-void WebDAVClient::removeFileFromSyncDB(QSqlDatabase *db, const WebDAVClient::SyncEntry &entry)
+void WebDAVClient::removeFileFromSyncDB(QSqlDatabase* db, const WebDAVClient::SyncEntry& entry)
 {
     QSqlQuery query(*db);
     query.prepare("DELETE FROM files WHERE parent = ? AND entry = ?;");
@@ -1182,7 +1182,7 @@ void WebDAVClient::removeFileFromSyncDB(QSqlDatabase *db, const WebDAVClient::Sy
  * sub-directories with a maxDepth - 1. Hence, this method can be used to
  * reduce the total depth up to which the deletion is executed.
  */
-bool WebDAVClient::rmLocalDir(const QString &dir, int maxDepth)
+bool WebDAVClient::rmLocalDir(const QString& dir, int maxDepth)
 {
     if (!dir.isEmpty()) {
         QDir d(dir);

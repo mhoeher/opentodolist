@@ -34,10 +34,10 @@ class Translations : public QObject
     Q_OBJECT
     Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
 public:
-    explicit Translations(QQmlEngine *engine, QObject *parent = nullptr);
+    explicit Translations(QQmlEngine* engine, QObject* parent = nullptr);
 
     QString language() const;
-    void setLanguage(const QString &language);
+    void setLanguage(const QString& language);
 
     Q_INVOKABLE QStringList allLanguages() const;
 
@@ -48,8 +48,8 @@ signals:
 public slots:
 
 private:
-    QQmlEngine *m_engine;
-    QTranslator *m_translator;
+    QQmlEngine* m_engine;
+    QTranslator* m_translator;
     QString m_language;
 
     void load();

@@ -29,7 +29,7 @@
 /**
  * @brief Constructor.
  */
-LibrariesModel::LibrariesModel(QObject *parent)
+LibrariesModel::LibrariesModel(QObject* parent)
     : QAbstractListModel(parent), m_cache(nullptr), m_libraries(), m_uids(), m_updating(false)
 {
     connect(this, &LibrariesModel::rowsInserted, this, &LibrariesModel::countChanged);
@@ -39,7 +39,7 @@ LibrariesModel::LibrariesModel(QObject *parent)
 /**
  * @brief The cache the model operates on.
  */
-Cache *LibrariesModel::cache() const
+Cache* LibrariesModel::cache() const
 {
     return m_cache.data();
 }
@@ -47,7 +47,7 @@ Cache *LibrariesModel::cache() const
 /**
  * @brief Set the cache property.
  */
-void LibrariesModel::setCache(Cache *cache)
+void LibrariesModel::setCache(Cache* cache)
 {
     if (m_cache != cache) {
         if (m_cache) {
@@ -80,7 +80,7 @@ int LibrariesModel::count() const
 /**
  * @brief Get the library for the given @p row.
  */
-Library *LibrariesModel::get(int row) const
+Library* LibrariesModel::get(int row) const
 {
     if (row >= 0 && row < count()) {
         return m_libraries.value(m_uids.at(row));
@@ -107,7 +107,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
 #else
     auto librariesToRemove = QSet<QUuid>::fromList(m_uids);
 #endif
-    QList<Library *> newItems;
+    QList<Library*> newItems;
     for (auto entry : libraries) {
         auto lib = Library::decache(entry, this);
         auto uid = lib->uid();
@@ -149,7 +149,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
 
 void LibrariesModel::libraryChanged()
 {
-    auto lib = qobject_cast<Library *>(sender());
+    auto lib = qobject_cast<Library*>(sender());
     if (lib) {
         auto uid = lib->uid();
         auto idx = m_uids.indexOf(uid);
@@ -164,7 +164,7 @@ void LibrariesModel::libraryChanged()
     }
 }
 
-int LibrariesModel::rowCount(const QModelIndex &parent) const
+int LibrariesModel::rowCount(const QModelIndex& parent) const
 {
     if (parent.isValid()) {
         return 0;
@@ -173,7 +173,7 @@ int LibrariesModel::rowCount(const QModelIndex &parent) const
     }
 }
 
-QVariant LibrariesModel::data(const QModelIndex &index, int role) const
+QVariant LibrariesModel::data(const QModelIndex& index, int role) const
 {
     QVariant result;
     if (index.isValid()) {

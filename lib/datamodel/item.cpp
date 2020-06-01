@@ -45,7 +45,7 @@ const QString Item::FileNameSuffix = "otl";
 class ItemChangedInhibitor
 {
 public:
-    explicit ItemChangedInhibitor(Item *item)
+    explicit ItemChangedInhibitor(Item* item)
     {
         q_check_ptr(item);
         m_item = item;
@@ -56,7 +56,7 @@ public:
     ~ItemChangedInhibitor() { m_item->m_loading = m_loading; }
 
 private:
-    Item *m_item;
+    Item* m_item;
     bool m_loading;
 };
 
@@ -81,7 +81,7 @@ QByteArray ItemCacheEntry::toByteArray() const
     return QJsonDocument::fromVariant(map).toBinaryData();
 }
 
-ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray &data, const QByteArray &id)
+ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByteArray& id)
 {
     ItemCacheEntry result;
     auto map = QJsonDocument::fromBinaryData(data).toVariant().toMap();
@@ -102,14 +102,14 @@ ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray &data, const QByte
  *
  * @sa isValid()
  */
-Item::Item(QObject *parent) : Item(QString(), parent) {}
+Item::Item(QObject* parent) : Item(QString(), parent) {}
 
 /**
  * @brief Create an item.
  *
  * This constructor creates an item which stores its data in the @p filename.
  */
-Item::Item(const QString &filename, QObject *parent)
+Item::Item(const QString& filename, QObject* parent)
     : QObject(parent),
       m_cache(),
       m_filename(filename),
@@ -125,7 +125,7 @@ Item::Item(const QString &filename, QObject *parent)
 /**
  * @brief Create a new item in the @p dir.
  */
-Item::Item(const QDir &dir, QObject *parent) : Item(parent)
+Item::Item(const QDir& dir, QObject* parent) : Item(parent)
 {
     if (dir.exists()) {
         m_filename = dir.absoluteFilePath(m_uid.toString() + "." + FileNameSuffix);
@@ -302,7 +302,7 @@ QDateTime Item::createdAt() const
  * Sub-classes can override it to apply properties which have been
  * calculated automatically when the item is read from the item Cache.
  */
-void Item::applyCalculatedProperties(const QVariantMap &properties)
+void Item::applyCalculatedProperties(const QVariantMap& properties)
 {
     Q_UNUSED(properties)
 }
@@ -310,7 +310,7 @@ void Item::applyCalculatedProperties(const QVariantMap &properties)
 /**
  * @brief The Cache the item is connected to.
  */
-Cache *Item::cache() const
+Cache* Item::cache() const
 {
     return m_cache.data();
 }
@@ -318,7 +318,7 @@ Cache *Item::cache() const
 /**
  * @brief Set the cache the item is connected to.
  */
-void Item::setCache(Cache *cache)
+void Item::setCache(Cache* cache)
 {
     if (m_cache != cache) {
         if (m_cache != nullptr) {
@@ -375,7 +375,7 @@ QString Item::directory() const
  *
  * @sa toMap()
  */
-Item *Item::createItem(QVariantMap map, QObject *parent)
+Item* Item::createItem(QVariantMap map, QObject* parent)
 {
     auto result = createItem(map.value("itemType").toString(), parent);
     if (result != nullptr) {
@@ -390,7 +390,7 @@ Item *Item::createItem(QVariantMap map, QObject *parent)
  *
  * @sa toVariant()
  */
-Item *Item::createItem(QVariant variant, QObject *parent)
+Item* Item::createItem(QVariant variant, QObject* parent)
 {
     auto result =
             createItem(variant.toMap().value("data").toMap().value("itemType").toString(), parent);
@@ -406,7 +406,7 @@ Item *Item::createItem(QVariant variant, QObject *parent)
  * This creates an item from a string which holds an item type name. If the string
  * does not match one of the known item names, this function returns a null pointer.
  */
-Item *Item::createItem(const QString &itemType, QObject *parent)
+Item* Item::createItem(const QString& itemType, QObject* parent)
 {
     if (itemType == "Image") {
         return new Image(parent);
@@ -425,9 +425,9 @@ Item *Item::createItem(const QString &itemType, QObject *parent)
     }
 }
 
-Item *Item::createItemFromFile(QString filename, QObject *parent)
+Item* Item::createItemFromFile(QString filename, QObject* parent)
 {
-    Item *result = nullptr;
+    Item* result = nullptr;
     bool ok;
     auto map = JsonUtils::loadMap(filename, &ok);
     if (ok) {
@@ -453,9 +453,9 @@ ItemCacheEntry Item::encache() const
     return result;
 }
 
-Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
+Item* Item::decache(const ItemCacheEntry& entry, QObject* parent)
 {
-    Item *result = nullptr;
+    Item* result = nullptr;
     if (entry.valid) {
         result = Item::createItem(entry.data.toMap(), parent);
         if (result) {
@@ -465,7 +465,7 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
             auto path = meta["filename"].toString();
             path = FileUtils::fromPersistedPath(path);
             result->setFilename(path);
-            auto topLevelItem = qobject_cast<TopLevelItem *>(result);
+            auto topLevelItem = qobject_cast<TopLevelItem*>(result);
             if (topLevelItem != nullptr) {
                 topLevelItem->setLibraryId(entry.parentId);
             }
@@ -474,7 +474,7 @@ Item *Item::decache(const ItemCacheEntry &entry, QObject *parent)
     return result;
 }
 
-Item *Item::decache(const QVariant &entry, QObject *parent)
+Item* Item::decache(const QVariant& entry, QObject* parent)
 {
     auto cacheEntry = entry.value<ItemCacheEntry>();
     return decache(cacheEntry, parent);
@@ -483,7 +483,7 @@ Item *Item::decache(const QVariant &entry, QObject *parent)
 /**
    @brief Sets the title of the item.
  */
-void Item::setTitle(const QString &title)
+void Item::setTitle(const QString& title)
 {
     if (m_title != title) {
         m_title = title;
@@ -502,7 +502,7 @@ QString Item::itemType() const
     return metaObject()->className();
 }
 
-void Item::setUid(const QUuid &uid)
+void Item::setUid(const QUuid& uid)
 {
     // Note: This shall not trigger a save operation! Change of uid shall happen
     // only on de-serialization, hence, no need to trigger a save right now.
@@ -512,7 +512,7 @@ void Item::setUid(const QUuid &uid)
     }
 }
 
-void Item::setFilename(const QString &filename)
+void Item::setFilename(const QString& filename)
 {
     // Note: Same as for setUid(), this shall not trigger a save() operation.
     if (m_filename != filename) {
@@ -544,7 +544,7 @@ void Item::onCacheChanged()
     }
 }
 
-void Item::onItemDataLoadedFromCache(const QVariant &entry)
+void Item::onItemDataLoadedFromCache(const QVariant& entry)
 {
     ItemPtr item(Item::decache(entry));
     if (item != nullptr) {
@@ -573,7 +573,7 @@ void Item::setUpdateAt()
 /**
    @brief Write an item to a debug stream.
  */
-QDebug operator<<(QDebug debug, const Item *item)
+QDebug operator<<(QDebug debug, const Item* item)
 {
     QDebugStateSaver saver(debug);
     Q_UNUSED(saver)

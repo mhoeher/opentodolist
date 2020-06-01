@@ -22,14 +22,14 @@
 #include "datamodel/item.h"
 #include "datastorage/getitemquery.h"
 
-GetItemQuery::GetItemQuery(QObject *parent) : ItemsQuery(parent), m_uid() {}
+GetItemQuery::GetItemQuery(QObject* parent) : ItemsQuery(parent), m_uid() {}
 
 QUuid GetItemQuery::uid() const
 {
     return m_uid;
 }
 
-void GetItemQuery::setUid(const QUuid &uid)
+void GetItemQuery::setUid(const QUuid& uid)
 {
     m_uid = uid;
 }

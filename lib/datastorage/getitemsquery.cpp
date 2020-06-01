@@ -27,7 +27,7 @@
 #include "datamodel/todo.h"
 #include "datastorage/getitemsquery.h"
 
-GetItemsQuery::GetItemsQuery(QObject *parent)
+GetItemsQuery::GetItemsQuery(QObject* parent)
     : ItemsQuery(parent),
       m_parents(),
       m_recursive(false),
@@ -99,7 +99,7 @@ void GetItemsQuery::run()
     emit itemsAvailable(result);
 }
 
-void GetItemsQuery::calculateValues(ItemCacheEntry *entry, Item *item)
+void GetItemsQuery::calculateValues(ItemCacheEntry* entry, Item* item)
 {
     q_check_ptr(entry);
     if (m_calculateProperties) {
@@ -110,7 +110,7 @@ void GetItemsQuery::calculateValues(ItemCacheEntry *entry, Item *item)
             item = itemPtr.data();
         }
 
-        auto todo = qobject_cast<Todo *>(item);
+        auto todo = qobject_cast<Todo*>(item);
         if (todo != nullptr) {
             properties["percentageDone"] = percentageForTodo(entry->id.toByteArray());
         }
@@ -119,7 +119,7 @@ void GetItemsQuery::calculateValues(ItemCacheEntry *entry, Item *item)
     }
 }
 
-int GetItemsQuery::percentageForTodo(const QByteArray &todoId)
+int GetItemsQuery::percentageForTodo(const QByteArray& todoId)
 {
     auto taskIds = children()->getAll(*m_transaction, todoId);
     if (taskIds.isEmpty()) {
@@ -137,12 +137,12 @@ int GetItemsQuery::percentageForTodo(const QByteArray &todoId)
     }
 }
 
-std::function<bool(ItemPtr, GetItemsQuery *)> GetItemsQuery::itemFilter() const
+std::function<bool(ItemPtr, GetItemsQuery*)> GetItemsQuery::itemFilter() const
 {
     return m_itemFilter;
 }
 
-void GetItemsQuery::setItemFilter(const std::function<bool(ItemPtr, GetItemsQuery *)> &itemFilter)
+void GetItemsQuery::setItemFilter(const std::function<bool(ItemPtr, GetItemsQuery*)>& itemFilter)
 {
     m_itemFilter = itemFilter;
 }
@@ -166,7 +166,7 @@ void GetItemsQuery::setRecursive(bool recursive)
     m_recursive = recursive;
 }
 
-GetItemsQuery::ChildrenGenerator GetItemsQuery::childrenOf(const QUuid &id)
+GetItemsQuery::ChildrenGenerator GetItemsQuery::childrenOf(const QUuid& id)
 {
     return ChildrenGenerator(this, id);
 }
@@ -185,7 +185,7 @@ QList<QUuid> GetItemsQuery::parents() const
 /**
  * @brief Set the list of parent UUIDs to query items for.
  */
-void GetItemsQuery::setParents(const QList<QUuid> &parents)
+void GetItemsQuery::setParents(const QList<QUuid>& parents)
 {
     m_parents = parents;
 }
@@ -209,13 +209,13 @@ QUuid GetItemsQuery::parent() const
 /**
  * @brief Set the parent to query items for.
  */
-void GetItemsQuery::setParent(const QUuid &parent)
+void GetItemsQuery::setParent(const QUuid& parent)
 {
     m_parents.clear();
     m_parents << parent;
 }
 
-const ItemPtr &GetItemsQuery::ChildrenIterator::operator*() const
+const ItemPtr& GetItemsQuery::ChildrenIterator::operator*() const
 {
     return m_item;
 }
@@ -225,8 +225,8 @@ GetItemsQuery::ChildrenIterator::ChildrenIterator()
 {
 }
 
-GetItemsQuery::ChildrenIterator::ChildrenIterator(QLMDB::Cursor *childrenCursor,
-                                                  QLMDB::Cursor *dataCursor, const QUuid &id)
+GetItemsQuery::ChildrenIterator::ChildrenIterator(QLMDB::Cursor* childrenCursor,
+                                                  QLMDB::Cursor* dataCursor, const QUuid& id)
     : m_childrenCursor(childrenCursor), m_dataCursor(dataCursor), m_id(id), m_item()
 {
     ++(*this);
@@ -234,7 +234,7 @@ GetItemsQuery::ChildrenIterator::ChildrenIterator(QLMDB::Cursor *childrenCursor,
 
 GetItemsQuery::ChildrenIterator::~ChildrenIterator() {}
 
-GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator++()
+GetItemsQuery::ChildrenIterator& GetItemsQuery::ChildrenIterator::operator++()
 {
     if (m_childrenCursor != nullptr) {
         m_item.reset();
@@ -259,12 +259,12 @@ GetItemsQuery::ChildrenIterator &GetItemsQuery::ChildrenIterator::operator++()
     return *this;
 }
 
-bool GetItemsQuery::ChildrenIterator::operator!=(const GetItemsQuery::ChildrenIterator &other)
+bool GetItemsQuery::ChildrenIterator::operator!=(const GetItemsQuery::ChildrenIterator& other)
 {
     return m_item || other.m_item;
 }
 
-bool GetItemsQuery::ChildrenIterator::operator==(const GetItemsQuery::ChildrenIterator &other)
+bool GetItemsQuery::ChildrenIterator::operator==(const GetItemsQuery::ChildrenIterator& other)
 {
     return !(*this != other);
 }
@@ -281,7 +281,7 @@ GetItemsQuery::ChildrenIterator GetItemsQuery::ChildrenGenerator::end()
     return ChildrenIterator();
 }
 
-GetItemsQuery::ChildrenGenerator::ChildrenGenerator(GetItemsQuery *query, const QUuid &id)
+GetItemsQuery::ChildrenGenerator::ChildrenGenerator(GetItemsQuery* query, const QUuid& id)
     : m_query(query), m_id(id)
 {
 }

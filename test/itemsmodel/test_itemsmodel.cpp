@@ -43,8 +43,8 @@ private slots:
     void cleanupTestCase() {}
 
 private:
-    QTemporaryDir *m_tmpDir;
-    Cache *m_cache;
+    QTemporaryDir* m_tmpDir;
+    Cache* m_cache;
 };
 
 void ItemsModelTest::init()
@@ -93,10 +93,10 @@ void ItemsModelTest::testAddItems()
     model.setParentItem(lib.uid());
     QVERIFY(countChanged.wait());
     QCOMPARE(model.count(), 2);
-    auto notePtr1 = qobject_cast<Note *>(
-            model.data(model.index(0), ItemsModel::ItemRole).value<QObject *>());
-    auto notePtr2 = qobject_cast<Note *>(
-            model.data(model.index(1), ItemsModel::ItemRole).value<QObject *>());
+    auto notePtr1 =
+            qobject_cast<Note*>(model.data(model.index(0), ItemsModel::ItemRole).value<QObject*>());
+    auto notePtr2 =
+            qobject_cast<Note*>(model.data(model.index(1), ItemsModel::ItemRole).value<QObject*>());
     QVERIFY(notePtr1->title() == note1.title() || notePtr1->title() == note2.title());
     QVERIFY(notePtr2->title() == note1.title() || notePtr2->title() == note2.title());
     QVERIFY(notePtr1->title() != notePtr2->title());
@@ -148,8 +148,8 @@ void ItemsModelTest::testDeleteItems()
 
     QVERIFY(countChanged.wait());
     QCOMPARE(model.count(), 1);
-    auto notePtr = qobject_cast<Note *>(
-            model.data(model.index(0), ItemsModel::ItemRole).value<QObject *>());
+    auto notePtr =
+            qobject_cast<Note*>(model.data(model.index(0), ItemsModel::ItemRole).value<QObject*>());
     QCOMPARE(notePtr->title(), note2.title());
 
     {

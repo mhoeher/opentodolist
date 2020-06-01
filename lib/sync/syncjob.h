@@ -33,8 +33,8 @@ class SyncJob : public QObject
 {
     Q_OBJECT
 public:
-    explicit SyncJob(const QString &libraryDirectory, QSharedPointer<Account> account,
-                     QObject *parent = nullptr);
+    explicit SyncJob(const QString& libraryDirectory, QSharedPointer<Account> account,
+                     QObject* parent = nullptr);
 
     void execute();
 
@@ -43,7 +43,7 @@ signals:
     void syncFinished(QString libraryDirectory);
 
     void stopRequested();
-    void syncError(QString libraryDirectory, const QString &error);
+    void syncError(QString libraryDirectory, const QString& error);
 
 public slots:
 
@@ -55,7 +55,7 @@ private:
 
 private slots:
 
-    void onSyncError(const QString &error);
+    void onSyncError(const QString& error);
 };
 
 #endif // SYNC_SYNCJOB_H_

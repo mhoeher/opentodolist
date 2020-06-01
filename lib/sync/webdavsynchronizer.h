@@ -51,7 +51,7 @@ public:
 
     Q_ENUM(WebDAVServerType)
 
-    explicit WebDAVSynchronizer(QObject *parent = nullptr);
+    explicit WebDAVSynchronizer(QObject* parent = nullptr);
     ~WebDAVSynchronizer() override;
 
     QUrl baseUrl() const;
@@ -62,28 +62,28 @@ public:
     void stopSync() override;
     void findExistingLibraries() override;
     QVariantMap toMap() const override;
-    void fromMap(const QVariantMap &map) override;
-    void setAccount(Account *account) override;
+    void fromMap(const QVariantMap& map) override;
+    void setAccount(Account* account) override;
 
     QString remoteDirectory() const;
-    void setRemoteDirectory(const QString &remoteDirectory);
+    void setRemoteDirectory(const QString& remoteDirectory);
 
     bool disableCertificateCheck() const;
     void setDisableCertificateCheck(bool disableCertificateCheck);
 
     QString username() const;
-    void setUsername(const QString &username);
+    void setUsername(const QString& username);
 
     QString password() const;
-    void setPassword(const QString &password);
+    void setPassword(const QString& password);
 
     QUrl url() const;
-    void setUrl(const QUrl &url);
+    void setUrl(const QUrl& url);
 
-    WebDAVClient *createDAVClient(QObject *parent = nullptr);
+    WebDAVClient* createDAVClient(QObject* parent = nullptr);
 
     WebDAVServerType serverType() const;
-    void setServerType(const WebDAVServerType &serverType);
+    void setServerType(const WebDAVServerType& serverType);
 
     bool createDirs() const;
     void setCreateDirs(bool createDirs);
@@ -115,7 +115,7 @@ private:
     void touchErrorLock();
 
     QVariantMap toFullMap() const;
-    void fromFullMap(const QVariantMap &map);
+    void fromFullMap(const QVariantMap& map);
 };
 
 #endif // SYNC_WEBDAVSYNCHRONIZER_H_

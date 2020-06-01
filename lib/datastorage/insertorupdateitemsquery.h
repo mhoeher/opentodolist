@@ -72,12 +72,12 @@ public:
 
     Q_DECLARE_FLAGS(InsertFlags, InsertFlag)
 
-    explicit InsertOrUpdateItemsQuery(QObject *parent = nullptr);
+    explicit InsertOrUpdateItemsQuery(QObject* parent = nullptr);
 
 public slots:
 
-    void add(Item *item, InsertFlags flags = NoFlags);
-    void add(Library *library, InsertFlags flags = NoFlags);
+    void add(Item* item, InsertFlags flags = NoFlags);
+    void add(Library* library, InsertFlags flags = NoFlags);
 
 protected:
     // ItemsQuery interface

@@ -38,7 +38,7 @@ private slots:
     void cleanupTestCase() {}
 
 private:
-    QTemporaryDir *tempDir;
+    QTemporaryDir* tempDir;
 
     static const size_t CACHE_SIZE = 1024 * 1024;
 };

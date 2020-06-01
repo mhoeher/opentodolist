@@ -54,7 +54,7 @@ private slots:
     void cleanup();
 
 private:
-    QTemporaryDir *m_dir;
+    QTemporaryDir* m_dir;
 };
 
 void LibraryTest::init()

@@ -65,7 +65,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
          * Creates a new Application object. The instance will be a child of the given
          * @p parent.
          */
-        Application::Application(QObject *parent)
+        Application::Application(QObject* parent)
     : QObject(parent),
       m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
                                QCoreApplication::organizationName(),
@@ -86,7 +86,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
  * This is an overloaded version of the Application constructor. It causes the
  * Application object to store its settings in the given @p applicationDir.
  */
-Application::Application(const QString &applicationDir, QObject *parent)
+Application::Application(const QString& applicationDir, QObject* parent)
     : QObject(parent),
       m_settings(new QSettings(applicationDir + "/appsettings.ini", QSettings::IniFormat, this)),
       m_cache(new Cache(this)),
@@ -102,7 +102,7 @@ Application::Application(const QString &applicationDir, QObject *parent)
 /**
  * @brief Shared initialization of constructors.
  */
-void Application::initialize(const QString &path)
+void Application::initialize(const QString& path)
 {
     auto cacheDir = path;
     if (cacheDir.isEmpty()) {
@@ -156,7 +156,7 @@ void Application::initialize(const QString &path)
     loadLibraries();
 
     connect(m_keyStore, &KeyStore::credentialsLoaded,
-            [=](const QString &key, const QString &value, bool success) {
+            [=](const QString& key, const QString& value, bool success) {
                 if (success) {
                     if (!m_secrets.contains(key)) {
                         m_secrets.insert(key, value);
@@ -248,7 +248,7 @@ QList<QSharedPointer<Library>> Application::librariesFromConfig()
                 query->setIncludeCalculatedValues(false);
                 connect(query, &LibrariesItemsQuery::librariesAvailable,
                         [=](QVariantList libraries) {
-                            for (const auto &entry : libraries) {
+                            for (const auto& entry : libraries) {
                                 auto cacheEntry = entry.value<LibraryCacheEntry>();
                                 if (cacheEntry.valid) {
                                     auto lib = Library::decache(cacheEntry);
@@ -264,7 +264,7 @@ QList<QSharedPointer<Library>> Application::librariesFromConfig()
         } else {
             qCWarning(log) << "Library directory" << directory << "does not exist!";
             QDir d(Library::defaultLibrariesLocation());
-            for (const auto &entry : d.entryList()) {
+            for (const auto& entry : d.entryList()) {
                 qCWarning(log) << "    " << entry;
             }
         }
@@ -304,7 +304,7 @@ void Application::syncLibrariesWithCache(QList<QSharedPointer<Library>> librarie
  * ensures it is added to the cache and its content (if already
  * present) loaded fromm disk.
  */
-void Application::internallyAddLibrary(Library *library)
+void Application::internallyAddLibrary(Library* library)
 {
     auto q = new InsertOrUpdateItemsQuery();
     q->add(library, InsertOrUpdateItemsQuery::Save);
@@ -319,7 +319,7 @@ void Application::internallyAddLibrary(Library *library)
 /**
  * @brief Check if the given @p uid refers to a known library.
  */
-bool Application::isLibraryUid(const QUuid &uid)
+bool Application::isLibraryUid(const QUuid& uid)
 {
     return libraryById(uid) != nullptr;
 }
@@ -330,7 +330,7 @@ bool Application::isLibraryUid(const QUuid &uid)
  * Returns the library with the given uid or a nullptr if no such library
  * exists.
  */
-QSharedPointer<Library> Application::libraryById(const QUuid &uid)
+QSharedPointer<Library> Application::libraryById(const QUuid& uid)
 {
     auto libs = librariesFromConfig();
     auto result = std::find_if(libs.begin(), libs.end(),
@@ -350,7 +350,7 @@ QSharedPointer<Library> Application::libraryById(const QUuid &uid)
  */
 void Application::importAccountsFromSynchronizers()
 {
-    for (const auto &lib : librariesFromConfig()) {
+    for (const auto& lib : librariesFromConfig()) {
         QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
         if (sync) {
             if (sync->accountUid().isNull()) {
@@ -361,21 +361,21 @@ void Application::importAccountsFromSynchronizers()
     }
 }
 
-void Application::importAccountFromSynchronizer(const QString &syncUid, const QString &password)
+void Application::importAccountFromSynchronizer(const QString& syncUid, const QString& password)
 {
     // Load all accounts:
     QList<QSharedPointer<Account>> accounts;
-    for (const auto &accountId : accountUids()) {
+    for (const auto& accountId : accountUids()) {
         accounts << QSharedPointer<Account>(loadAccount(accountId.toString()));
     }
 
     // Find the synchronizer:
-    for (const auto &lib : librariesFromConfig()) {
+    for (const auto& lib : librariesFromConfig()) {
         QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
         if (sync && sync->uid().toString() == syncUid) {
             // The next should always be the case - before the introduction to accounts, we only
             // had WebDAV synchronizers:
-            auto davSync = qobject_cast<WebDAVSynchronizer *>(sync.data());
+            auto davSync = qobject_cast<WebDAVSynchronizer*>(sync.data());
             if (davSync) {
                 // Check if we (meanwhile) have an account that maps to the same URL+username:
                 auto existingAccount =
@@ -449,7 +449,7 @@ Application::~Application() {}
  *
  * This saves the @p account to the application settings.
  */
-void Application::saveAccount(Account *account)
+void Application::saveAccount(Account* account)
 {
     if (account != nullptr) {
         m_settings->beginGroup("Accounts");
@@ -464,7 +464,7 @@ void Application::saveAccount(Account *account)
 /**
  * @brief Save the secrets of the @p account.
  */
-void Application::saveAccountSecrets(Account *account)
+void Application::saveAccountSecrets(Account* account)
 {
     if (account != nullptr) {
         m_keyStore->saveCredentials(account->uid().toString(), account->password());
@@ -473,7 +473,7 @@ void Application::saveAccountSecrets(Account *account)
 
         // Check if the account we just saved credentials for was previously missing
         // credentials and hence remove the problem:
-        for (const auto &problem : m_problemManager->problems()) {
+        for (const auto& problem : m_problemManager->problems()) {
             QSharedPointer<Account> problemAccount =
                     qSharedPointerObjectCast<Account>(problem.contextObject());
             if (problemAccount && problemAccount->uid() == account->uid()) {
@@ -490,10 +490,10 @@ void Application::saveAccountSecrets(Account *account)
  * This removes the settings of the account. Additionally,
  * all libraries, belonging to that account will be removed, too.
  */
-void Application::removeAccount(Account *account)
+void Application::removeAccount(Account* account)
 {
     if (account != nullptr) {
-        for (auto &lib : librariesFromConfig()) {
+        for (auto& lib : librariesFromConfig()) {
             QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
             if (sync) {
                 if (sync->accountUid() == account->uid()) {
@@ -507,7 +507,7 @@ void Application::removeAccount(Account *account)
 
         m_settings->beginGroup("Accounts");
         m_settings->beginGroup(account->uid().toString());
-        for (const auto &key : m_settings->allKeys()) {
+        for (const auto& key : m_settings->allKeys()) {
             m_settings->remove(key);
         }
         m_keyStore->deleteCredentials(account->uid().toString());
@@ -526,9 +526,9 @@ void Application::removeAccount(Account *account)
  *
  * @note Owenership goes over to the caller.
  */
-Account *Application::loadAccount(const QUuid &uid)
+Account* Application::loadAccount(const QUuid& uid)
 {
-    Account *result = nullptr;
+    Account* result = nullptr;
     if (!uid.isNull()) {
         m_settings->beginGroup("Accounts");
         if (m_settings->childGroups().contains(uid.toString())) {
@@ -551,7 +551,7 @@ QVariantList Application::accountUids()
 {
     QVariantList result;
     m_settings->beginGroup("Accounts");
-    for (const auto &key : m_settings->childGroups()) {
+    for (const auto& key : m_settings->childGroups()) {
         auto uid = QUuid::fromString(key);
         if (!uid.isNull()) {
             result << uid;
@@ -567,9 +567,9 @@ QVariantList Application::accountUids()
  * This will create a new library, which is stored locally in the
  * default library location.
  */
-Library *Application::addLocalLibrary(const QString &name)
+Library* Application::addLocalLibrary(const QString& name)
 {
-    Library *result = nullptr;
+    Library* result = nullptr;
     auto uid = QUuid::createUuid();
     QDir dir(Library::defaultLibrariesLocation());
     if (!dir.exists() && !dir.mkpath(".")) {
@@ -601,9 +601,9 @@ Library *Application::addLocalLibrary(const QString &name)
  * is loaded as-is. Otherwise, a new library is initialized in this
  * directory.
  */
-Library *Application::addLibraryDirectory(const QString &directory)
+Library* Application::addLibraryDirectory(const QString& directory)
 {
-    Library *result = nullptr;
+    Library* result = nullptr;
     QDir dir(directory);
     if (dir.exists()) {
         if (isLibraryDir(QUrl::fromLocalFile(directory))) {
@@ -653,9 +653,9 @@ Library *Application::addLibraryDirectory(const QString &directory)
  *
  * @note The caller takes ownership of the returned object.
  */
-Library *Application::addNewLibraryToAccount(Account *account, const QString &name)
+Library* Application::addNewLibraryToAccount(Account* account, const QString& name)
 {
-    Library *result = nullptr;
+    Library* result = nullptr;
     if (account && !name.isEmpty()) {
         auto uid = QUuid::createUuid();
         QDir dir(Library::defaultLibrariesLocation());
@@ -699,10 +699,10 @@ Library *Application::addNewLibraryToAccount(Account *account, const QString &na
     return result;
 }
 
-Library *Application::addExistingLibraryToAccount(Account *account,
-                                                  const SynchronizerExistingLibrary &library)
+Library* Application::addExistingLibraryToAccount(Account* account,
+                                                  const SynchronizerExistingLibrary& library)
 {
-    Library *result = nullptr;
+    Library* result = nullptr;
     if (account && !library.uid().isNull() && !isLibraryUid(library.uid())) {
         auto uid = library.uid();
         QDir dir(Library::defaultLibrariesLocation());
@@ -753,7 +753,7 @@ Library *Application::addExistingLibraryToAccount(Account *account,
  * is located in the default libraries location, the files on
  * disk stored will also be removed.
  */
-void Application::deleteLibrary(Library *library)
+void Application::deleteLibrary(Library* library)
 {
     if (library != nullptr) {
         auto watcher = m_watchedDirectories.value(library->directory(), nullptr);
@@ -779,9 +779,9 @@ void Application::deleteLibrary(Library *library)
     }
 }
 
-Note *Application::addNote(Library *library, QVariantMap properties)
+Note* Application::addNote(Library* library, QVariantMap properties)
 {
-    Note *note = nullptr;
+    Note* note = nullptr;
     if (library != nullptr) {
         if (library->isValid()) {
             QDir dir(library->newItemLocation());
@@ -803,9 +803,9 @@ Note *Application::addNote(Library *library, QVariantMap properties)
     return note;
 }
 
-NotePage *Application::addNotePage(Library *library, Note *note, QVariantMap properties)
+NotePage* Application::addNotePage(Library* library, Note* note, QVariantMap properties)
 {
-    NotePage *page = nullptr;
+    NotePage* page = nullptr;
     if (library != nullptr && note != nullptr) {
         if (library->isValid()) {
             QDir dir(library->newItemLocation());
@@ -827,9 +827,9 @@ NotePage *Application::addNotePage(Library *library, Note *note, QVariantMap pro
     return page;
 }
 
-Image *Application::addImage(Library *library, QVariantMap properties)
+Image* Application::addImage(Library* library, QVariantMap properties)
 {
-    Image *image = nullptr;
+    Image* image = nullptr;
     if (library != nullptr) {
         if (library->isValid()) {
             QDir dir(library->newItemLocation());
@@ -851,9 +851,9 @@ Image *Application::addImage(Library *library, QVariantMap properties)
     return image;
 }
 
-TodoList *Application::addTodoList(Library *library, QVariantMap properties)
+TodoList* Application::addTodoList(Library* library, QVariantMap properties)
 {
-    TodoList *todoList = nullptr;
+    TodoList* todoList = nullptr;
     if (library != nullptr) {
         if (library->isValid()) {
             QDir dir(library->newItemLocation());
@@ -875,9 +875,9 @@ TodoList *Application::addTodoList(Library *library, QVariantMap properties)
     return todoList;
 }
 
-Todo *Application::addTodo(Library *library, TodoList *todoList, QVariantMap properties)
+Todo* Application::addTodo(Library* library, TodoList* todoList, QVariantMap properties)
 {
-    Todo *todo = nullptr;
+    Todo* todo = nullptr;
     if (library != nullptr && todoList != nullptr) {
         if (library->isValid()) {
             QDir dir(library->newItemLocation());
@@ -899,9 +899,9 @@ Todo *Application::addTodo(Library *library, TodoList *todoList, QVariantMap pro
     return todo;
 }
 
-Task *Application::addTask(Library *library, Todo *todo, QVariantMap properties)
+Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)
 {
-    Task *task = nullptr;
+    Task* task = nullptr;
     if (library != nullptr && todo != nullptr) {
         if (library->isValid()) {
             QDir dir(library->newItemLocation());
@@ -923,7 +923,7 @@ Task *Application::addTask(Library *library, Todo *todo, QVariantMap properties)
     return task;
 }
 
-void Application::deleteItem(Item *item)
+void Application::deleteItem(Item* item)
 {
     if (item != nullptr) {
         auto q = new DeleteItemsQuery();
@@ -938,7 +938,7 @@ void Application::deleteItem(Item *item)
  * This method is used to save a value to the application settings. Settings
  * can be restored (e.g. when the app restarts).
  */
-void Application::saveValue(const QString &name, const QVariant &value)
+void Application::saveValue(const QString& name, const QVariant& value)
 {
     m_settings->beginGroup("ApplicationSettings");
     m_settings->setValue(name, value);
@@ -951,7 +951,7 @@ void Application::saveValue(const QString &name, const QVariant &value)
  * This method is used to read back persistent application settings which
  * previously have been written using saveValue().
  */
-QVariant Application::loadValue(const QString &name, const QVariant &defaultValue)
+QVariant Application::loadValue(const QString& name, const QVariant& defaultValue)
 {
     m_settings->beginGroup("ApplicationSettings");
     QVariant result = m_settings->value(name, defaultValue);
@@ -977,7 +977,7 @@ QVariant Application::find3rdPartyInfos() const
     return result;
 }
 
-bool Application::saveTextToFile(const QUrl &fileUrl, const QString &text) const
+bool Application::saveTextToFile(const QUrl& fileUrl, const QString& text) const
 {
     if (fileUrl.isValid() && fileUrl.isLocalFile()) {
         auto localPath = fileUrl.toLocalFile();
@@ -997,7 +997,7 @@ bool Application::saveTextToFile(const QUrl &fileUrl, const QString &text) const
 /**
  * @brief Convert a URL to a local file name.
  */
-QString Application::urlToLocalFile(const QUrl &url) const
+QString Application::urlToLocalFile(const QUrl& url) const
 {
     return url.toLocalFile();
 }
@@ -1005,7 +1005,7 @@ QString Application::urlToLocalFile(const QUrl &url) const
 /**
  * @brief Convert a local file name to a url.
  */
-QUrl Application::localFileToUrl(const QString &localFile) const
+QUrl Application::localFileToUrl(const QString& localFile) const
 {
     return QUrl::fromLocalFile(localFile);
 }
@@ -1016,7 +1016,7 @@ QUrl Application::localFileToUrl(const QString &localFile) const
  * This method removes extra dots and dotdots from the file path
  * and returns a simplified verion of the input path.
  */
-QUrl Application::cleanPath(const QUrl &url) const
+QUrl Application::cleanPath(const QUrl& url) const
 {
     auto path = url.toLocalFile();
     path = QDir::cleanPath(path);
@@ -1029,7 +1029,7 @@ QUrl Application::cleanPath(const QUrl &url) const
  * This function gets an @p html string as input and returns the text converted
  * to plain text.
  */
-QString Application::htmlToPlainText(const QString &html) const
+QString Application::htmlToPlainText(const QString& html) const
 {
     QTextDocument doc;
     doc.setHtml(html);
@@ -1039,7 +1039,7 @@ QString Application::htmlToPlainText(const QString &html) const
 /**
  * @brief Check if a file called @p filename exists.
  */
-bool Application::fileExists(const QString &filename) const
+bool Application::fileExists(const QString& filename) const
 {
     return QFile(filename).exists();
 }
@@ -1047,7 +1047,7 @@ bool Application::fileExists(const QString &filename) const
 /**
  * @brief Check if the @p directory exists.
  */
-bool Application::directoryExists(const QString &directory) const
+bool Application::directoryExists(const QString& directory) const
 {
     return !directory.isEmpty() && QDir(directory).exists();
 }
@@ -1055,7 +1055,7 @@ bool Application::directoryExists(const QString &directory) const
 /**
  * @brief Get the basename of the @p filename.
  */
-QString Application::basename(const QString &filename) const
+QString Application::basename(const QString& filename) const
 {
     return QFileInfo(filename).baseName();
 }
@@ -1063,7 +1063,7 @@ QString Application::basename(const QString &filename) const
 /**
  * @brief Test if the @p url points to an existing library directory.
  */
-bool Application::isLibraryDir(const QUrl &url) const
+bool Application::isLibraryDir(const QUrl& url) const
 {
     bool result = false;
     if (url.isValid()) {
@@ -1082,7 +1082,7 @@ bool Application::isLibraryDir(const QUrl &url) const
  * library folder - returns the name of it. When the directory is not a library folder, this
  * returns an empty string.
  */
-QString Application::libraryNameFromDir(const QUrl &url) const
+QString Application::libraryNameFromDir(const QUrl& url) const
 {
     if (isLibraryDir(url)) {
         auto path = url.toLocalFile();
@@ -1097,7 +1097,7 @@ QString Application::libraryNameFromDir(const QUrl &url) const
 /**
  * @brief Get the SHA256 hash over the @p text.
  */
-QString Application::sha256(const QString &text) const
+QString Application::sha256(const QString& text) const
 {
     return QCryptographicHash::hash(text.toUtf8(), QCryptographicHash::Sha256).toHex();
 }
@@ -1114,7 +1114,7 @@ QUrl Application::homeLocation() const
 /**
  * @brief Returns true of the folder pointed to by @p url exists.
  */
-bool Application::folderExists(const QUrl &url) const
+bool Application::folderExists(const QUrl& url) const
 {
     return url.isValid() && QDir(url.toLocalFile()).exists();
 }
@@ -1122,7 +1122,7 @@ bool Application::folderExists(const QUrl &url) const
 /**
  * @brief Check if the @p uid refers to an existing library in the app.
  */
-bool Application::libraryExists(const QUuid &uid)
+bool Application::libraryExists(const QUuid& uid)
 {
     return isLibraryUid(uid);
 }
@@ -1130,7 +1130,7 @@ bool Application::libraryExists(const QUuid &uid)
 /**
  * @brief Start synchronizing the @p library.
  */
-void Application::syncLibrary(Library *library)
+void Application::syncLibrary(Library* library)
 {
     runSyncForLibrary(library);
 }
@@ -1138,16 +1138,16 @@ void Application::syncLibrary(Library *library)
 /**
  * @brief Copy the @p text to the clipboard.
  */
-void Application::copyToClipboard(const QString &text)
+void Application::copyToClipboard(const QString& text)
 {
-    auto app = dynamic_cast<QGuiApplication *>(qApp);
+    auto app = dynamic_cast<QGuiApplication*>(qApp);
     if (app != nullptr) {
         auto clipboard = app->clipboard();
         clipboard->setText(text);
     }
 }
 
-ProblemManager *Application::problemManager() const
+ProblemManager* Application::problemManager() const
 {
     return m_problemManager;
 }
@@ -1178,7 +1178,7 @@ QStringList Application::directoriesWithRunningSync() const
 /**
  * @brief Set the list of directories in which currently a sync is running.
  */
-void Application::setDirectoriesWithRunningSync(const QStringList &directoriesWithRunningSync)
+void Application::setDirectoriesWithRunningSync(const QStringList& directoriesWithRunningSync)
 {
     if (m_directoriesWithRunningSync != directoriesWithRunningSync) {
         m_directoriesWithRunningSync = directoriesWithRunningSync;
@@ -1186,7 +1186,7 @@ void Application::setDirectoriesWithRunningSync(const QStringList &directoriesWi
     }
 }
 
-Cache *Application::cache() const
+Cache* Application::cache() const
 {
     return m_cache;
 }
@@ -1209,7 +1209,7 @@ void Application::loadLibraries()
     }
 
     // Load secrets of all accounts:
-    for (const auto &uid : accountUids()) {
+    for (const auto& uid : accountUids()) {
         m_keyStore->loadCredentials(uid.toString());
     }
 

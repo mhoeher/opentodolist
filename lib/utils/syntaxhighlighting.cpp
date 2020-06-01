@@ -29,7 +29,7 @@
 /**
  * @brief Constructor.
  */
-SyntaxHighlighter::SyntaxHighlighter(QObject *parent)
+SyntaxHighlighter::SyntaxHighlighter(QObject* parent)
     : QObject(parent),
       m_highlighter(nullptr),
       m_repository(nullptr),
@@ -50,7 +50,7 @@ SyntaxHighlighter::~SyntaxHighlighter()
 /**
  * @brief The text document the highlighter works on.
  */
-QQuickTextDocument *SyntaxHighlighter::document() const
+QQuickTextDocument* SyntaxHighlighter::document() const
 {
     return m_document;
 }
@@ -58,7 +58,7 @@ QQuickTextDocument *SyntaxHighlighter::document() const
 /**
  * @brief Set the document to highlight.
  */
-void SyntaxHighlighter::setDocument(QQuickTextDocument *document)
+void SyntaxHighlighter::setDocument(QQuickTextDocument* document)
 {
     if (m_document != document) {
         m_document = document;
@@ -76,7 +76,7 @@ SyntaxHighlighter::Theme SyntaxHighlighter::theme() const
     return m_theme;
 }
 
-void SyntaxHighlighter::setTheme(const Theme &theme)
+void SyntaxHighlighter::setTheme(const Theme& theme)
 {
     if (m_theme != theme) {
         m_theme = theme;

@@ -59,81 +59,81 @@ class Application : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString librariesLocation READ librariesLocation CONSTANT)
-    Q_PROPERTY(Cache *cache READ cache CONSTANT)
+    Q_PROPERTY(Cache* cache READ cache CONSTANT)
     Q_PROPERTY(QStringList directoriesWithRunningSync READ directoriesWithRunningSync NOTIFY
                        directoriesWithRunningSyncChanged)
     Q_PROPERTY(QVariantMap syncErrors READ syncErrors NOTIFY syncErrorsChanged)
     Q_PROPERTY(QStringList secretsKeys READ secretsKeys NOTIFY secretsKeysChanged)
-    Q_PROPERTY(ProblemManager *problemManager READ problemManager CONSTANT)
+    Q_PROPERTY(ProblemManager* problemManager READ problemManager CONSTANT)
 
 public:
-    explicit Application(QObject *parent = nullptr);
-    explicit Application(const QString &applicationDir, QObject *parent = nullptr);
+    explicit Application(QObject* parent = nullptr);
+    explicit Application(const QString& applicationDir, QObject* parent = nullptr);
 
     virtual ~Application();
 
-    Q_INVOKABLE void saveAccount(Account *account);
-    Q_INVOKABLE void saveAccountSecrets(Account *account);
-    Q_INVOKABLE void removeAccount(Account *account);
-    Q_INVOKABLE Account *loadAccount(const QUuid &uid);
+    Q_INVOKABLE void saveAccount(Account* account);
+    Q_INVOKABLE void saveAccountSecrets(Account* account);
+    Q_INVOKABLE void removeAccount(Account* account);
+    Q_INVOKABLE Account* loadAccount(const QUuid& uid);
     Q_INVOKABLE QVariantList accountUids();
 
-    Q_INVOKABLE Library *addLocalLibrary(const QString &name);
-    Q_INVOKABLE Library *addLibraryDirectory(const QString &directory);
-    Q_INVOKABLE Library *addNewLibraryToAccount(Account *account, const QString &name);
-    Q_INVOKABLE Library *addExistingLibraryToAccount(Account *account,
-                                                     const SynchronizerExistingLibrary &library);
-    Q_INVOKABLE void deleteLibrary(Library *library);
-    Q_INVOKABLE Note *addNote(Library *library, QVariantMap properties);
-    Q_INVOKABLE NotePage *addNotePage(Library *library, Note *note, QVariantMap properties);
-    Q_INVOKABLE Image *addImage(Library *library, QVariantMap properties);
-    Q_INVOKABLE TodoList *addTodoList(Library *library, QVariantMap properties);
-    Q_INVOKABLE Todo *addTodo(Library *library, TodoList *todoList, QVariantMap properties);
-    Q_INVOKABLE Task *addTask(Library *library, Todo *todo, QVariantMap properties);
-    Q_INVOKABLE void deleteItem(Item *item);
+    Q_INVOKABLE Library* addLocalLibrary(const QString& name);
+    Q_INVOKABLE Library* addLibraryDirectory(const QString& directory);
+    Q_INVOKABLE Library* addNewLibraryToAccount(Account* account, const QString& name);
+    Q_INVOKABLE Library* addExistingLibraryToAccount(Account* account,
+                                                     const SynchronizerExistingLibrary& library);
+    Q_INVOKABLE void deleteLibrary(Library* library);
+    Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
+    Q_INVOKABLE NotePage* addNotePage(Library* library, Note* note, QVariantMap properties);
+    Q_INVOKABLE Image* addImage(Library* library, QVariantMap properties);
+    Q_INVOKABLE TodoList* addTodoList(Library* library, QVariantMap properties);
+    Q_INVOKABLE Todo* addTodo(Library* library, TodoList* todoList, QVariantMap properties);
+    Q_INVOKABLE Task* addTask(Library* library, Todo* todo, QVariantMap properties);
+    Q_INVOKABLE void deleteItem(Item* item);
 
-    Q_INVOKABLE void saveValue(const QString &name, const QVariant &value);
-    Q_INVOKABLE QVariant loadValue(const QString &name, const QVariant &defaultValue = QVariant());
+    Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
+    Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());
 
     Q_INVOKABLE QVariant find3rdPartyInfos() const;
 
-    Q_INVOKABLE bool saveTextToFile(const QUrl &fileUrl, const QString &text) const;
+    Q_INVOKABLE bool saveTextToFile(const QUrl& fileUrl, const QString& text) const;
 
-    Q_INVOKABLE QString urlToLocalFile(const QUrl &url) const;
-    Q_INVOKABLE QUrl localFileToUrl(const QString &localFile) const;
-    Q_INVOKABLE QUrl cleanPath(const QUrl &url) const;
-    Q_INVOKABLE QString htmlToPlainText(const QString &html) const;
+    Q_INVOKABLE QString urlToLocalFile(const QUrl& url) const;
+    Q_INVOKABLE QUrl localFileToUrl(const QString& localFile) const;
+    Q_INVOKABLE QUrl cleanPath(const QUrl& url) const;
+    Q_INVOKABLE QString htmlToPlainText(const QString& html) const;
 
-    Q_INVOKABLE bool fileExists(const QString &filename) const;
-    Q_INVOKABLE bool directoryExists(const QString &directory) const;
-    Q_INVOKABLE QString basename(const QString &filename) const;
-    Q_INVOKABLE bool isLibraryDir(const QUrl &url) const;
-    Q_INVOKABLE QString libraryNameFromDir(const QUrl &url) const;
+    Q_INVOKABLE bool fileExists(const QString& filename) const;
+    Q_INVOKABLE bool directoryExists(const QString& directory) const;
+    Q_INVOKABLE QString basename(const QString& filename) const;
+    Q_INVOKABLE bool isLibraryDir(const QUrl& url) const;
+    Q_INVOKABLE QString libraryNameFromDir(const QUrl& url) const;
 
-    Q_INVOKABLE QString sha256(const QString &text) const;
+    Q_INVOKABLE QString sha256(const QString& text) const;
 
     QString librariesLocation() const;
 
     Q_INVOKABLE QUrl homeLocation() const;
-    Q_INVOKABLE bool folderExists(const QUrl &url) const;
+    Q_INVOKABLE bool folderExists(const QUrl& url) const;
 
-    Q_INVOKABLE bool libraryExists(const QUuid &uid);
+    Q_INVOKABLE bool libraryExists(const QUuid& uid);
 
-    Cache *cache() const;
+    Cache* cache() const;
 
     QStringList directoriesWithRunningSync() const;
-    void setDirectoriesWithRunningSync(const QStringList &directoriesWithRunningSync);
+    void setDirectoriesWithRunningSync(const QStringList& directoriesWithRunningSync);
 
     QVariantMap syncErrors() const;
 
     QStringList secretsKeys() const;
 
-    ProblemManager *problemManager() const;
+    ProblemManager* problemManager() const;
 
 public slots:
 
-    void syncLibrary(Library *library);
-    void copyToClipboard(const QString &text);
+    void syncLibrary(Library* library);
+    void copyToClipboard(const QString& text);
 
 signals:
 
@@ -143,23 +143,23 @@ signals:
     void accountsChanged();
 
 private:
-    QSettings *m_settings;
-    Cache *m_cache;
-    KeyStore *m_keyStore;
-    ProblemManager *m_problemManager;
+    QSettings* m_settings;
+    Cache* m_cache;
+    KeyStore* m_keyStore;
+    ProblemManager* m_problemManager;
     QVariantMap m_secrets;
     QStringList m_directoriesWithRunningSync;
     QVariantMap m_syncErrors;
-    QMap<QString, DirectoryWatcher *> m_watchedDirectories;
+    QMap<QString, DirectoryWatcher*> m_watchedDirectories;
     QSet<QString> m_librariesWithChanges;
     QSharedPointer<QTemporaryDir> m_tmpCacheDir;
 
     void saveLibraries();
     void loadLibraries();
 
-    void initialize(const QString &path = QString());
+    void initialize(const QString& path = QString());
 
-    void connectItemToCache(Item *item);
+    void connectItemToCache(Item* item);
 
     QList<QSharedPointer<Library>> librariesFromConfig();
     void librariesToConfig(QList<QSharedPointer<Library>> libraries);
@@ -171,12 +171,12 @@ private:
     template<typename T>
     void watchLibraryForChanges(T library);
 
-    void internallyAddLibrary(Library *library);
-    bool isLibraryUid(const QUuid &uid);
-    QSharedPointer<Library> libraryById(const QUuid &uid);
+    void internallyAddLibrary(Library* library);
+    bool isLibraryUid(const QUuid& uid);
+    QSharedPointer<Library> libraryById(const QUuid& uid);
 
     void importAccountsFromSynchronizers();
-    void importAccountFromSynchronizer(const QString &syncUid, const QString &password);
+    void importAccountFromSynchronizer(const QString& syncUid, const QString& password);
 
 private slots:
 

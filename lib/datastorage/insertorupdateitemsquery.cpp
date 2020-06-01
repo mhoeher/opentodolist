@@ -32,7 +32,7 @@
 #include "datastorage/cache.h"
 #include "datastorage/insertorupdateitemsquery.h"
 
-InsertOrUpdateItemsQuery::InsertOrUpdateItemsQuery(QObject *parent)
+InsertOrUpdateItemsQuery::InsertOrUpdateItemsQuery(QObject* parent)
     : ItemsQuery(parent), m_itemEntries(), m_libEntries()
 {
 }
@@ -40,7 +40,7 @@ InsertOrUpdateItemsQuery::InsertOrUpdateItemsQuery(QObject *parent)
 /**
  * @brief Add the @p item to the list of items to be cached.
  */
-void InsertOrUpdateItemsQuery::add(Item *item, InsertFlags flags)
+void InsertOrUpdateItemsQuery::add(Item* item, InsertFlags flags)
 {
     if (item != nullptr) {
         auto entry = item->encache();
@@ -59,7 +59,7 @@ void InsertOrUpdateItemsQuery::add(Item *item, InsertFlags flags)
 /**
  * @brief Add the @p library to the list of libraries to be cached.
  */
-void InsertOrUpdateItemsQuery::add(Library *library, InsertFlags flags)
+void InsertOrUpdateItemsQuery::add(Library* library, InsertFlags flags)
 {
     if (library != nullptr) {
         auto entry = library->encache();

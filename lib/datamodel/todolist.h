@@ -33,9 +33,9 @@ class TodoList : public TopLevelItem
     Q_OBJECT
 
 public:
-    explicit TodoList(QObject *parent = nullptr);
-    explicit TodoList(const QString &filename, QObject *parent = nullptr);
-    explicit TodoList(const QDir &dir, QObject *parent = nullptr);
+    explicit TodoList(QObject* parent = nullptr);
+    explicit TodoList(const QString& filename, QObject* parent = nullptr);
+    explicit TodoList(const QDir& dir, QObject* parent = nullptr);
     virtual ~TodoList();
 
 signals:

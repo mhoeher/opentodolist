@@ -45,7 +45,7 @@ const int Synchronizer::MaxLogEntries;
  * @sa isNull property). The @sa setDirectory method must be used to point the synchronizer
  * to an existing local directory.
  */
-Synchronizer::Synchronizer(QObject *parent)
+Synchronizer::Synchronizer(QObject* parent)
     : QObject(parent),
       m_uuid(QUuid::createUuid()),
       m_accountUid(),
@@ -181,7 +181,7 @@ void Synchronizer::endValidation(bool valid)
 /**
  * @brief Set the list of existing libraries.
  */
-void Synchronizer::setExistingLibraries(const QVariantList &existingLibraries)
+void Synchronizer::setExistingLibraries(const QVariantList& existingLibraries)
 {
     if (existingLibraries != m_existingLibraries) {
         m_existingLibraries = existingLibraries;
@@ -208,7 +208,7 @@ QUuid Synchronizer::accountUid() const
     return m_accountUid;
 }
 
-void Synchronizer::setAccountUid(const QUuid &accountUid)
+void Synchronizer::setAccountUid(const QUuid& accountUid)
 {
     m_accountUid = accountUid;
 }
@@ -222,7 +222,7 @@ void Synchronizer::setAccountUid(const QUuid &accountUid)
  * The default implementation does nothing. Concrete sub-classes should override this method
  * to extract whatever information they need.
  */
-void Synchronizer::setAccount(Account *account)
+void Synchronizer::setAccount(Account* account)
 {
     Q_UNUSED(account);
 }
@@ -321,7 +321,7 @@ QDebug Synchronizer::error()
     return createDebugStream<Error>();
 }
 
-void Synchronizer::setLastSync(const QDateTime &lastSync)
+void Synchronizer::setLastSync(const QDateTime& lastSync)
 {
     m_lastSync = lastSync;
 }
@@ -367,7 +367,7 @@ QString Synchronizer::directory() const
 /**
  * @brief Set the local directory to sync.
  */
-void Synchronizer::setDirectory(const QString &directory)
+void Synchronizer::setDirectory(const QString& directory)
 {
     m_directory = directory;
 }
@@ -427,12 +427,12 @@ QString Synchronizer::type() const
 /**
  * @brief Get the synchronizer for the given @p directory.
  */
-Synchronizer *Synchronizer::fromDirectory(const QString &directory, QObject *parent)
+Synchronizer* Synchronizer::fromDirectory(const QString& directory, QObject* parent)
 {
-    Synchronizer *result = nullptr;
+    Synchronizer* result = nullptr;
     if (!directory.isEmpty()) {
-        static QMap<QString, std::function<Synchronizer *(QObject *)>> Synchronizers = {
-            { "WebDAVSynchronizer", [](QObject *parent) { return new WebDAVSynchronizer(parent); } }
+        static QMap<QString, std::function<Synchronizer*(QObject*)>> Synchronizers = {
+            { "WebDAVSynchronizer", [](QObject* parent) { return new WebDAVSynchronizer(parent); } }
         };
         QDir dir(directory);
         auto absFilePath = dir.absoluteFilePath(SaveFileName);
@@ -491,7 +491,7 @@ QVariantMap Synchronizer::toMap() const
  * This is the reverse operation to @sa toMap(). It takes a variant map and extracts the settings
  * stored, applying them one by one to the properties of the synchronizer.
  */
-void Synchronizer::fromMap(const QVariantMap &map)
+void Synchronizer::fromMap(const QVariantMap& map)
 {
     m_uuid = map.value("uid", m_uuid).toUuid();
     m_lastSync = map.value("lastSync", m_lastSync).toDateTime();
@@ -514,7 +514,7 @@ QString SynchronizerExistingLibrary::name() const
 /**
  * @brief Set the library name.
  */
-void SynchronizerExistingLibrary::setName(const QString &name)
+void SynchronizerExistingLibrary::setName(const QString& name)
 {
     m_name = name;
 }
@@ -530,7 +530,7 @@ QString SynchronizerExistingLibrary::path() const
 /**
  * @brief Set the path of the library.
  */
-void SynchronizerExistingLibrary::setPath(const QString &path)
+void SynchronizerExistingLibrary::setPath(const QString& path)
 {
     m_path = path;
 }
@@ -540,7 +540,7 @@ QUuid SynchronizerExistingLibrary::uid() const
     return m_uid;
 }
 
-void SynchronizerExistingLibrary::setUid(const QUuid &uid)
+void SynchronizerExistingLibrary::setUid(const QUuid& uid)
 {
     m_uid = uid;
 }

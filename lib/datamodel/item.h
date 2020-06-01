@@ -39,10 +39,10 @@ class ItemChangedInhibitor;
 struct ItemCacheEntry
 {
     ItemCacheEntry();
-    ItemCacheEntry(const ItemCacheEntry &other) = default;
+    ItemCacheEntry(const ItemCacheEntry& other) = default;
 
     QByteArray toByteArray() const;
-    static ItemCacheEntry fromByteArray(const QByteArray &data, const QByteArray &id);
+    static ItemCacheEntry fromByteArray(const QByteArray& data, const QByteArray& id);
 
     QUuid id;
     QUuid parentId;
@@ -78,9 +78,9 @@ class Item : public QObject
 public:
     static const QString FileNameSuffix;
 
-    explicit Item(QObject *parent = nullptr);
-    explicit Item(const QString &filename, QObject *parent = nullptr);
-    explicit Item(const QDir &dir, QObject *parent = nullptr);
+    explicit Item(QObject* parent = nullptr);
+    explicit Item(const QString& filename, QObject* parent = nullptr);
+    explicit Item(const QDir& dir, QObject* parent = nullptr);
     virtual ~Item();
 
     /**
@@ -99,7 +99,7 @@ public:
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant(QVariant data);
 
-    virtual void applyCalculatedProperties(const QVariantMap &properties);
+    virtual void applyCalculatedProperties(const QVariantMap& properties);
 
     /**
      * @brief Check if the item is valid.
@@ -114,7 +114,7 @@ public:
      */
     QString title() const { return m_title; }
 
-    void setTitle(const QString &title);
+    void setTitle(const QString& title);
 
     /**
      * @brief The file holding the item data.
@@ -128,7 +128,7 @@ public:
      * @brief The globally unique ID of the item.
      */
     QUuid uid() const { return m_uid; }
-    void setUid(const QUuid &uid);
+    void setUid(const QUuid& uid);
 
     QString itemType() const;
 
@@ -137,17 +137,17 @@ public:
 
     QString directory() const;
 
-    static Item *createItem(QVariantMap map, QObject *parent = nullptr);
-    static Item *createItem(QVariant variant, QObject *parent = nullptr);
-    static Item *createItem(const QString &itemType, QObject *parent = nullptr);
-    static Item *createItemFromFile(QString filename, QObject *parent = nullptr);
+    static Item* createItem(QVariantMap map, QObject* parent = nullptr);
+    static Item* createItem(QVariant variant, QObject* parent = nullptr);
+    static Item* createItem(const QString& itemType, QObject* parent = nullptr);
+    static Item* createItemFromFile(QString filename, QObject* parent = nullptr);
 
     ItemCacheEntry encache() const;
-    static Item *decache(const ItemCacheEntry &entry, QObject *parent = nullptr);
-    static Item *decache(const QVariant &entry, QObject *parent = nullptr);
+    static Item* decache(const ItemCacheEntry& entry, QObject* parent = nullptr);
+    static Item* decache(const QVariant& entry, QObject* parent = nullptr);
 
-    Cache *cache() const;
-    void setCache(Cache *cache);
+    Cache* cache() const;
+    void setCache(Cache* cache);
 
     QDateTime createdAt() const;
 
@@ -170,7 +170,7 @@ signals:
      *
      * This signal is emitted when Item::deleteItem() is used to delete the item.
      */
-    void itemDeleted(Item *item);
+    void itemDeleted(Item* item);
 
     /**
      * @brief The item has been reloaded.
@@ -207,12 +207,12 @@ private:
     double m_weight;
     bool m_loading;
 
-    void setFilename(const QString &filename);
+    void setFilename(const QString& filename);
 
     void setupChangedSignal();
 
     void onCacheChanged();
-    void onItemDataLoadedFromCache(const QVariant &entry);
+    void onItemDataLoadedFromCache(const QVariant& entry);
     void onChanged();
     void setUpdateAt();
 };
@@ -221,6 +221,6 @@ typedef QSharedPointer<Item> ItemPtr;
 
 Q_DECLARE_METATYPE(ItemPtr)
 
-QDebug operator<<(QDebug debug, const Item *item);
+QDebug operator<<(QDebug debug, const Item* item);
 
 #endif // DATAMODEL_ITEM_H_

@@ -30,7 +30,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Image", QtDebugMsg);
 /**
  * @brief Constructor.
  */
-Image::Image(const QString &filename, QObject *parent) : TopLevelItem(filename, parent), m_image()
+Image::Image(const QString& filename, QObject* parent) : TopLevelItem(filename, parent), m_image()
 {
     connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
@@ -38,12 +38,12 @@ Image::Image(const QString &filename, QObject *parent) : TopLevelItem(filename, 
 /**
  * @brief Constructor.
  */
-Image::Image(QObject *parent) : Image(QString(), parent) {}
+Image::Image(QObject* parent) : Image(QString(), parent) {}
 
 /**
  * @brief Constructor.
  */
-Image::Image(const QDir &dir, QObject *parent) : TopLevelItem(dir, parent), m_image()
+Image::Image(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent), m_image()
 {
     connect(this, &Image::imageChanged, this, &ComplexItem::changed);
 }
@@ -68,7 +68,7 @@ Image::~Image() {}
  *   triggered. This operation runs in the background. As soon as the copying finished, the
  *   item's image property is set to the new image's location.
  */
-void Image::setImage(const QString &image)
+void Image::setImage(const QString& image)
 {
     if (m_image != image) {
         if (!isValid()) {

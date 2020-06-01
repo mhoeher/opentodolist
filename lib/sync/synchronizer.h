@@ -44,13 +44,13 @@ public:
     SynchronizerExistingLibrary();
 
     QString name() const;
-    void setName(const QString &name);
+    void setName(const QString& name);
 
     QString path() const;
-    void setPath(const QString &path);
+    void setPath(const QString& path);
 
     QUuid uid() const;
-    void setUid(const QUuid &uid);
+    void setUid(const QUuid& uid);
 
 private:
     QString m_name;
@@ -95,7 +95,7 @@ public:
     static const QString LogFileName;
     static const int MaxLogEntries = 1000;
 
-    explicit Synchronizer(QObject *parent = nullptr);
+    explicit Synchronizer(QObject* parent = nullptr);
     virtual ~Synchronizer();
 
     bool validating() const;
@@ -103,7 +103,7 @@ public:
     bool synchronizing() const;
 
     QString directory() const;
-    void setDirectory(const QString &directory);
+    void setDirectory(const QString& directory);
     bool isNull() const;
 
     Q_INVOKABLE bool save() const;
@@ -111,7 +111,7 @@ public:
 
     QString type() const;
 
-    static Synchronizer *fromDirectory(const QString &dir, QObject *parent = nullptr);
+    static Synchronizer* fromDirectory(const QString& dir, QObject* parent = nullptr);
 
     /**
      * @brief Validate the connection to the backend.
@@ -152,7 +152,7 @@ public:
     Q_INVOKABLE virtual void findExistingLibraries();
 
     virtual QVariantMap toMap() const;
-    virtual void fromMap(const QVariantMap &map);
+    virtual void fromMap(const QVariantMap& map);
 
     QVariantList existingLibraries() const;
 
@@ -162,7 +162,7 @@ public:
 
     QDateTime lastSync() const;
 
-    void setLastSync(const QDateTime &lastSync);
+    void setLastSync(const QDateTime& lastSync);
 
     // For logging:
     QDebug debug();
@@ -174,9 +174,9 @@ public:
     bool saveLog();
 
     QUuid accountUid() const;
-    void setAccountUid(const QUuid &accountUid);
+    void setAccountUid(const QUuid& accountUid);
 
-    virtual void setAccount(Account *account);
+    virtual void setAccount(Account* account);
 
 signals:
 
@@ -187,7 +187,7 @@ signals:
     void existingLibrariesChanged();
     void findingLibrariesChanged();
     void secretChanged();
-    void syncError(const QString &message);
+    void syncError(const QString& message);
 
 public slots:
 
@@ -197,7 +197,7 @@ protected:
     void setSynchronizing(bool synchronizing);
     void beginValidation();
     void endValidation(bool valid);
-    void setExistingLibraries(const QVariantList &existingLibraries);
+    void setExistingLibraries(const QVariantList& existingLibraries);
     void setFindingLibraries(bool findingLibraries);
 
 private:

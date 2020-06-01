@@ -29,7 +29,7 @@ class LibrariesItemsQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
-    explicit LibrariesItemsQuery(QObject *parent = nullptr);
+    explicit LibrariesItemsQuery(QObject* parent = nullptr);
 
     bool includeCalculatedValues() const;
     void setIncludeCalculatedValues(bool includeCalculatedValues);

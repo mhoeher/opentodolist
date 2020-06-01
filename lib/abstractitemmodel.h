@@ -27,7 +27,7 @@ class AbstractListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit AbstractListModel(QObject *parent = nullptr) : QAbstractListModel(parent) {}
+    explicit AbstractListModel(QObject* parent = nullptr) : QAbstractListModel(parent) {}
     virtual ~AbstractListModel() {}
 
 signals:

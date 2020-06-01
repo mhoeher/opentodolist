@@ -26,30 +26,30 @@
 #include "datamodel/library.h"
 #include "datastorage/deleteitemsquery.h"
 
-DeleteItemsQuery::DeleteItemsQuery(QObject *parent) : ItemsQuery(parent), m_itemsToDelete() {}
+DeleteItemsQuery::DeleteItemsQuery(QObject* parent) : ItemsQuery(parent), m_itemsToDelete() {}
 
-void DeleteItemsQuery::deleteItem(const Item *item)
+void DeleteItemsQuery::deleteItem(const Item* item)
 {
     if (item != nullptr) {
         deleteItem(item->uid());
     }
 }
 
-void DeleteItemsQuery::deleteItem(const QUuid &uid)
+void DeleteItemsQuery::deleteItem(const QUuid& uid)
 {
     if (!uid.isNull()) {
         m_itemsToDelete << ItemToDelete({ uid, false, false });
     }
 }
 
-void DeleteItemsQuery::deleteLibrary(const Library *library, bool deleteLibraryDir)
+void DeleteItemsQuery::deleteLibrary(const Library* library, bool deleteLibraryDir)
 {
     if (library != nullptr) {
         deleteLibrary(library->uid(), deleteLibraryDir);
     }
 }
 
-void DeleteItemsQuery::deleteLibrary(const QUuid &uid, bool deleteLibraryDir)
+void DeleteItemsQuery::deleteLibrary(const QUuid& uid, bool deleteLibraryDir)
 {
     if (!uid.isNull()) {
         m_itemsToDelete << ItemToDelete({ uid, true, deleteLibraryDir });

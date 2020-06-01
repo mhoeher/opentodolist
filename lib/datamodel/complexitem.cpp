@@ -27,7 +27,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.ComplexItem", QtWarningMsg)
         /**
          * @brief Constructor.
          */
-        ComplexItem::ComplexItem(QObject *parent)
+        ComplexItem::ComplexItem(QObject* parent)
     : ComplexItem(QString(), parent)
 {
 }
@@ -35,7 +35,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.ComplexItem", QtWarningMsg)
 /**
  * @brief Constructor.
  */
-ComplexItem::ComplexItem(const QString &filename, QObject *parent)
+ComplexItem::ComplexItem(const QString& filename, QObject* parent)
     : Item(filename, parent),
       m_dueTo(),
       m_notes(),
@@ -51,7 +51,7 @@ ComplexItem::ComplexItem(const QString &filename, QObject *parent)
 /**
  * @brief Constructor.
  */
-ComplexItem::ComplexItem(const QDir &dir, QObject *parent)
+ComplexItem::ComplexItem(const QDir& dir, QObject* parent)
     : Item(dir, parent),
       m_dueTo(),
       m_notes(),
@@ -85,7 +85,7 @@ QDateTime ComplexItem::dueTo() const
 /**
  * @brief Set the due date and time of the item.
  */
-void ComplexItem::setDueTo(const QDateTime &dueTo)
+void ComplexItem::setDueTo(const QDateTime& dueTo)
 {
     if (m_dueTo != dueTo) {
         if (m_nextDueTo.isValid()) {
@@ -112,7 +112,7 @@ QString ComplexItem::notes()
 /**
  * @brief Set the notes (as HTML) of the item.
  */
-void ComplexItem::setNotes(const QString &notes)
+void ComplexItem::setNotes(const QString& notes)
 {
     auto copy = notes;
     // Detect old-style HTML notes and convert to plain text:
@@ -135,7 +135,7 @@ QStringList ComplexItem::attachments() const
     return m_attachments;
 }
 
-QString ComplexItem::attachmentFileName(const QString &filename)
+QString ComplexItem::attachmentFileName(const QString& filename)
 {
     QString result;
     if (isValid()) {
@@ -151,7 +151,7 @@ QString ComplexItem::attachmentFileName(const QString &filename)
  * This attaches the file (itentified by its @p filename) to the item.
  * Attaching means that the file is copied next to the item's main file.
  */
-void ComplexItem::attachFile(const QString &filename)
+void ComplexItem::attachFile(const QString& filename)
 {
     if (isValid()) {
         QFileInfo fi(filename);
@@ -177,7 +177,7 @@ void ComplexItem::attachFile(const QString &filename)
  *
  * Remove the attachment identified by the attachment @p filename.
  */
-void ComplexItem::detachFile(const QString &filename)
+void ComplexItem::detachFile(const QString& filename)
 {
     if (isValid()) {
         auto absoluteFilename = attachmentFileName(filename);
@@ -207,7 +207,7 @@ void ComplexItem::detachFile(const QString &filename)
  * Scheduling of the next occurrence is done relative to @p today. If `today` is null, the
  * current date will be used.
  */
-void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime &today)
+void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
 {
     auto _today = today;
     if (_today.isNull() || !_today.isValid()) {
@@ -374,7 +374,7 @@ QDateTime ComplexItem::nextDueTo() const
 /**
  * @brief Set the next due date of the item.
  */
-void ComplexItem::setNextDueTo(const QDateTime &nextDueTo)
+void ComplexItem::setNextDueTo(const QDateTime& nextDueTo)
 {
     if (m_nextDueTo != nextDueTo) {
         m_nextDueTo = nextDueTo;
@@ -396,7 +396,7 @@ ComplexItem::RecurrenceSchedule ComplexItem::recurrenceSchedule() const
 /**
  * @brief Set the recurrence scheduling mode of the item.
  */
-void ComplexItem::setRecurrenceSchedule(const RecurrenceSchedule &recurrenceSchedule)
+void ComplexItem::setRecurrenceSchedule(const RecurrenceSchedule& recurrenceSchedule)
 {
     if (m_recurrenceSchedule != recurrenceSchedule) {
         m_recurrenceSchedule = recurrenceSchedule;
@@ -415,7 +415,7 @@ ComplexItem::RecurrencePattern ComplexItem::recurrencePattern() const
 /**
  * @brief Set the recurrence pattern of the item.
  */
-void ComplexItem::setRecurrencePattern(const RecurrencePattern &recurrencePattern)
+void ComplexItem::setRecurrencePattern(const RecurrencePattern& recurrencePattern)
 {
     if (m_recurrencePattern != recurrencePattern) {
         m_recurrencePattern = recurrencePattern;
@@ -440,7 +440,7 @@ void ComplexItem::setupConnections()
     connect(this, &ComplexItem::recurIntervalChanged, this, &ComplexItem::isRecurringChanged);
 }
 
-void ComplexItem::setAttachments(const QStringList &attachments)
+void ComplexItem::setAttachments(const QStringList& attachments)
 {
     if (m_attachments != attachments) {
         m_attachments = attachments;

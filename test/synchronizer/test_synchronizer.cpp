@@ -55,7 +55,7 @@ void SynchronizerTest::fromDirectory()
         {
             auto sync = Synchronizer::fromDirectory(dir.path());
             Q_CHECK_PTR(sync);
-            auto s = dynamic_cast<WebDAVSynchronizer *>(sync);
+            auto s = dynamic_cast<WebDAVSynchronizer*>(sync);
             QVERIFY(s != nullptr);
             QCOMPARE(s->uid(), syncUid);
             delete sync;

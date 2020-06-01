@@ -42,7 +42,7 @@ class DirectoryWatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit DirectoryWatcher(QObject *parent = nullptr);
+    explicit DirectoryWatcher(QObject* parent = nullptr);
     virtual ~DirectoryWatcher();
 
 signals:
@@ -54,11 +54,11 @@ signals:
 
 public slots:
 
-    void setDirectory(const QString &directory);
+    void setDirectory(const QString& directory);
 
 private:
-    QThread *m_thread;
-    DirectoryWatcherWorker *m_worker;
+    QThread* m_thread;
+    DirectoryWatcherWorker* m_worker;
 };
 
 class DirectoryWatcherWorker : public QObject
@@ -67,7 +67,7 @@ class DirectoryWatcherWorker : public QObject
 
     friend class DirectoryWatcher;
 
-    QFileSystemWatcher *m_watcher;
+    QFileSystemWatcher* m_watcher;
     QString m_directory;
 
     DirectoryWatcherWorker();
@@ -79,8 +79,8 @@ signals:
 
 private slots:
 
-    void setDirectory(const QString &directory);
-    void watchDir(const QString &directory);
+    void setDirectory(const QString& directory);
+    void watchDir(const QString& directory);
 };
 
 #endif // UTILS_DIRECTORYWATCHER_H_

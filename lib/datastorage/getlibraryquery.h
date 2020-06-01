@@ -29,14 +29,14 @@ class GetLibraryQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
-    explicit GetLibraryQuery(QObject *parent = nullptr);
+    explicit GetLibraryQuery(QObject* parent = nullptr);
 
     QUuid uid() const;
-    void setUid(const QUuid &uid);
+    void setUid(const QUuid& uid);
 
 signals:
 
-    void libraryLoaded(const QVariant &data);
+    void libraryLoaded(const QVariant& data);
 
 public slots:
 

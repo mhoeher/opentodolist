@@ -34,17 +34,17 @@ class LibraryLoader : public QObject
 {
     Q_OBJECT
 public:
-    explicit LibraryLoader(QObject *parent = nullptr);
+    explicit LibraryLoader(QObject* parent = nullptr);
     virtual ~LibraryLoader();
 
     QString directory() const;
-    void setDirectory(const QString &directory);
+    void setDirectory(const QString& directory);
 
     QUuid libraryId() const;
-    void setLibraryId(const QUuid &libraryId);
+    void setLibraryId(const QUuid& libraryId);
 
-    Cache *cache() const;
-    void setCache(Cache *cache);
+    Cache* cache() const;
+    void setCache(Cache* cache);
 
 signals:
 
@@ -60,13 +60,13 @@ public slots:
 private:
     struct DirectoryScanResult
     {
-        InsertOrUpdateItemsQuery *query;
+        InsertOrUpdateItemsQuery* query;
         QSet<QUuid> itemsToDelete;
     };
 
     QUuid m_libraryId;
     QString m_directory;
-    Cache *m_cache;
+    Cache* m_cache;
     QFutureWatcher<DirectoryScanResult> m_scanWatcher;
     QSet<QUuid> m_itemsToDelete;
 
