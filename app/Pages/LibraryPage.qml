@@ -352,6 +352,11 @@ Page {
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
+    AutoScrollOverlay {
+        anchors.fill: parent
+        flickable: grid
+    }
+
     BackgroundLabel {
         visible: itemsModel.count === 0
         text: Markdown.stylesheet +

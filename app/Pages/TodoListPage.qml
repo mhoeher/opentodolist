@@ -301,6 +301,11 @@ ItemPage {
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
+    AutoScrollOverlay {
+        anchors.fill: parent
+        flickable: todosWidget
+    }
+
     Pane {
         anchors.fill: parent
         visible: todoDrawer.visible
