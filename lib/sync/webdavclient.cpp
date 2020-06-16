@@ -799,7 +799,7 @@ WebDAVClient::DAVRequest WebDAVClient::listDirectoryRequest(const QString& direc
     DAVRequest request;
     request.url = QUrl(urlString() + mkpath(directory));
     ;
-    request.prepareRequest = [=](QNetworkRequest req) {
+    request.prepareRequest = [=](QNetworkRequest& req) {
         req.setRawHeader("Depth", "1");
         req.setHeader(QNetworkRequest::ContentLengthHeader, requestData.size());
         req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=utf-8");
