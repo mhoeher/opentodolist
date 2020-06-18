@@ -17,7 +17,6 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QDir>
