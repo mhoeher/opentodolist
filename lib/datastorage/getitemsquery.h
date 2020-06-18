@@ -20,10 +20,10 @@
 #ifndef DATASTORAGE_GETITEMSQUERY_H_
 #define DATASTORAGE_GETITEMSQUERY_H_
 
+#include <QObject>
+
 #include <functional>
 #include <iterator>
-
-#include <QObject>
 
 #include "datamodel/item.h"
 #include "datastorage/itemsquery.h"

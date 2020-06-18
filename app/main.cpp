@@ -17,8 +17,6 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QDir>
@@ -34,6 +32,8 @@
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
+
+#include <iostream>
 
 #include "opentodolistqmlextensionsplugin.h"
 

@@ -17,8 +17,6 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-
 #include <QObject>
 #include <QQmlEngine>
 #include <QSet>
@@ -26,6 +24,8 @@
 #include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
+
+#include <iostream>
 
 #include "application.h"
 #include "datamodel/image.h"
