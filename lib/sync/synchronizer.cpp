@@ -19,12 +19,12 @@
 
 #include "synchronizer.h"
 
-#include <functional>
-
 #include <QDir>
 #include <QFile>
 #include <QMap>
 #include <QMetaObject>
+
+#include <functional>
 
 #include "webdavsynchronizer.h"
 #include "utils/jsonutils.h"
