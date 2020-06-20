@@ -15,16 +15,12 @@ Page {
     id: page
 
     property OTL.Library library: null
-    property Menu pageMenu: LibraryPageMenu {
-        x: page.width
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
     property bool syncRunning: {
         return library &&
                 OTL.Application.directoriesWithRunningSync.indexOf(
                     library.directory) >= 0;
     }
+    property alias pageActions: libraryActions.actions
 
     signal openPage(var component, var properties)
 
@@ -48,6 +44,13 @@ Page {
     Component {
         id: todoPage
         TodoPage { library: page.library }
+    }
+
+    LibraryPageActions {
+        id: libraryActions
+
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
     }
 
     ItemDelegate {

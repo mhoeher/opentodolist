@@ -58,12 +58,7 @@ Page {
                 OTL.Application.directoriesWithRunningSync.indexOf(
                     library.directory) >= 0;
     }
-
-    property Menu pageMenu: LibraryPageMenu {
-        x: page.width
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
+    property alias pageActions: libraryActions.actions
 
     clip: true
     title: library.name
@@ -74,6 +69,13 @@ Page {
         property string sortBy: "weight"
 
         category: "LibraryPage"
+    }
+
+    LibraryPageActions {
+        id: libraryActions
+
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
     }
 
     QtObject {
@@ -104,7 +106,7 @@ Page {
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(fontMetrics.height, 5) * 20;
+            var minWidth = Math.max(fontMetrics.averageCharacterWidth, 5) * 40;
             var result = page.width / minWidth;
             result = Math.ceil(result);
             result = Math.max(result, 1);

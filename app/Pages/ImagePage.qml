@@ -21,12 +21,7 @@ ItemPage {
     property var goBack: itemNotesEditor.editing ? function() {
         itemNotesEditor.finishEditing();
     } : undefined
-
-    property Menu pageMenu: LibraryPageMenu {
-        x: page.width
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
+    property alias pageActions: libraryActions.actions
 
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item);
@@ -51,6 +46,13 @@ ItemPage {
 
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
+
+    LibraryPageActions {
+        id: libraryActions
+
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
+    }
 
     DeleteItemDialog {
         id: confirmDeleteDialog
