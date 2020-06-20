@@ -11,9 +11,12 @@ ItemDelegate {
     property alias symbol: sym.text
     property int indent: 0
     property bool bold: false
-    property alias symbolIsClickable: symMouseArea.enabled
+    property alias symbolIsClickable: sym.enabled
 
     signal symbolClicked()
+
+    topPadding: 0
+    bottomPadding: 0
 
     width: parent.width
     contentItem: RowLayout {
@@ -23,22 +26,12 @@ ItemDelegate {
         }
 
 
-        Label {
+        ToolButton {
             id: sym
-            font {
-                family: Fonts.solidIcons
-                bold: root.bold
-            }
-            width: root.height
-            height: width
             Layout.minimumWidth: root.height / 2
             Layout.alignment: Qt.AlignHCenter
-
-            MouseArea {
-                id: symMouseArea
-                anchors.fill: parent
-                onClicked: root.symbolClicked()
-            }
+            enabled: false
+            onClicked: root.symbolClicked()
         }
 
         Label {
