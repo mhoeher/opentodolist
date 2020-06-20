@@ -7,4 +7,5 @@ Components.ItemAction {
     symbol: Fonts.Icons.faCalendarAlt
     text: qsTr("Set Due Today")
     onTriggered: item.dueTo = Utils.DateUtils.today()
+    enabled: item && item.dueTo !== undefined
 }

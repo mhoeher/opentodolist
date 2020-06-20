@@ -339,7 +339,7 @@ ItemPage {
 
         Material.elevation: visible ? 10 : 0
 
-        width: page.width > 400 ? page.width / 3 * 2 : page.width
+        width: page.width > 400 ? page.width / 5 * 4 : page.width
         height: page.height
         clip: true
         x: parent.width
