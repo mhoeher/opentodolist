@@ -15,6 +15,7 @@ Item {
     property OTL.Note libraryItem: OTL.Note {}
     property var model
     property bool allowReordering: true
+    property ItemDragTile dragTile
 
     signal clicked()
     signal released(var mouse)
@@ -87,5 +88,7 @@ Item {
         anchors.fill: parent
         model: item.model
         layout: Qt.Horizontal
+        item: libraryItem
+        dragTile: item.dragTile
     }
 }

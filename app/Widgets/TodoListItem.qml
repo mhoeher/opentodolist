@@ -16,6 +16,7 @@ Item {
     property OTL.TodoList libraryItem: OTL.TodoList {}
     property var model
     property bool allowReordering: true
+    property ItemDragTile dragTile
 
     signal clicked()
     signal released(var mouse)
@@ -38,6 +39,7 @@ Item {
             height: titleLabel.height + padding * 2
             item: item.libraryItem
             shade: midShade
+            clip: true
 
             Label {
                 id: titleLabel
@@ -120,5 +122,7 @@ Item {
         anchors.fill: parent
         model: item.model
         layout: Qt.Horizontal
+        item: libraryItem
+        dragTile: item.dragTile
     }
 }
