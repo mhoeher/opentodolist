@@ -58,12 +58,7 @@ Page {
                 OTL.Application.directoriesWithRunningSync.indexOf(
                     library.directory) >= 0;
     }
-
-    property Menu pageMenu: LibraryPageMenu {
-        x: page.width
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
+    property alias pageActions: libraryActions.actions
 
     clip: true
     title: library.name
@@ -74,6 +69,13 @@ Page {
         property string sortBy: "weight"
 
         category: "LibraryPage"
+    }
+
+    LibraryPageActions {
+        id: libraryActions
+
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
     }
 
     QtObject {

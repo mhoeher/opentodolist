@@ -18,11 +18,7 @@ ItemPage {
 
     property var library: null
     property OTL.TodoList item: OTL.TodoList {}
-    property Menu pageMenu: LibraryPageMenu {
-        x: page.width
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
+    property alias pageActions: libraryActions.actions
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -81,6 +77,12 @@ ItemPage {
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
+    LibraryPageActions {
+        id: libraryActions
+
+        library: page.library
+        onOpenPage: page.openPage(component, properties)
+    }
 
     QtObject {
         id: d

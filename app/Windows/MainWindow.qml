@@ -3,6 +3,7 @@ import QtQuick.Window 2.3
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
+import Qt.labs.qmlmodels 1.0
 
 import "../Components"
 import "../Fonts"
@@ -130,39 +131,79 @@ ApplicationWindow {
             }
 
             ToolButton {
-                id: dynamicPageActionsMenu
-                visible: d.visibleDynamicPageMenuItems.length > 0
-                symbol: Icons.faChevronDown
+                id: pageMenuToolButton
+
+                property var pageActions: {
+                    if (stackView.currentItem && stackView.currentItem.pageActions) {
+                        return stackView.currentItem.pageActions;
+                    } else {
+                        return [];
+                    }
+                }
+                property int numPageActions: pageActions.length
+
+                symbol: Icons.faEllipsisV
+                visible: d.numVisibleDynamicPageMenuItems > 0 ||
+                         numPageActions > 0
                 Layout.alignment: Qt.AlignVCenter
+                property var pageMenuEntries: {
+                    let result = [];
+                    let dynamicPageActions = d.visibleDynamicPageMenuItems;
+                    for (var i = 0; i < dynamicPageActions.length; ++i) {
+                        let item = dynamicPageActions[i];
+                        result.push({"type": "item", "item": item});
+                    }
+                    if (dynamicPageActions.length > 0 && pageActions.length > 0) {
+                        result.push({"type": "separator"})
+                    }
+                    for (i = 0; i < pageActions.length; ++i) {
+                        let item = pageActions[i];
+                        result.push({"type": "item", "item": item});
+                    }
+                    return result;
+                }
+
+                onPageMenuEntriesChanged: {
+                    pageMenuEntriesModel.clear();
+                    for (var i = 0; i < pageMenuEntries.length; ++i) {
+                        pageMenuEntriesModel.append(pageMenuEntries[i]);
+                    }
+                }
+
+                ListModel {
+                    id: pageMenuEntriesModel
+                    dynamicRoles: true
+                }
+
                 menu: Menu {
                     y: headerToolBar.height
                     modal: true
                     Repeater {
-                        model: d.visibleDynamicPageMenuItems
-                        delegate: MenuItem {
-                            action: modelData
-                            visible: action.visible
+                        model: pageMenuEntriesModel
+                        delegate: DelegateChooser {
+                            role: "type"
+
+                            DelegateChoice {
+                                roleValue: "separator"
+                                MenuSeparator {}
+                            }
+
+                            DelegateChoice {
+                                roleValue: "item"
+                                MenuItem {
+                                    action: item
+                                    visible: action.enabled
+                                    height: visible ? implicitHeight : 0
+                                }
+                            }
                         }
-                    }
-                }
-            }
-
-            ToolButton {
-                id: pageMenuToolButton
-
-                symbol: Icons.faEllipsisV
-                visible: stackView.hasPageMenu
-                Layout.alignment: Qt.AlignVCenter
-                onClicked: {
-                    if (stackView.currentItem.pageMenu.visible) {
-                        stackView.currentItem.pageMenu.close();
-                    } else {
-                        stackView.currentItem.pageMenu.open();
                     }
                 }
             }
         }
     }
+
+    FontMetrics { id: fontMetrics; font: pageTitleLabel.font }
 
     QtObject {
         id: d
@@ -184,12 +225,12 @@ ApplicationWindow {
                     problemsButton.width * (problemsButton.visible ? 1 : 0) +
                     backToolButton.width * (backToolButton.visible ? 1 : 0) +
                     busyIndicator.implicitWidth * (busyIndicator.visible ? 1 : 0) +
-                    dynamicPageActionsMenu.width +
-                    pageMenuToolButton.width * (pageMenuToolButton.visible ? 1 : 0);
+                    pageMenuToolButton.width;
             // Reserve some "minimum" space for the label:
             availableWidth -= Math.min(
-                    pageMenuToolButton.width * 4,
-                        pageTitleLabel.contentWidth);
+                        fontMetrics.averageCharacterWidth * 30,
+                        fontMetrics.boundingRect(pageTitleLabel.text).width);
+            availableWidth -= 3 * toolBarLayout.spacing;
 
             // Cap to 0:
             return Math.max(availableWidth, 0);
@@ -197,7 +238,7 @@ ApplicationWindow {
 
         property int numVisibleDynamicToolBarButtons: {
             var numButtons = widthForDynamicPageToolButtons /
-                    pageMenuToolButton.width;
+                    (pageMenuToolButton.width + toolBarLayout.spacing);
             numButtons = parseInt(numButtons);
             // Cap to maximum number of available actions:
             numButtons = Math.min(numButtons, visibleDynamicPageActions.length);
