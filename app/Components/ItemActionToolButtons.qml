@@ -8,6 +8,6 @@ Repeater {
     delegate: Components.ToolButton {
         action: modelData
         symbol: modelData.symbol
-        visible: !modelData.hideButton
+        visible: !modelData.hideButton && enabled
     }
 }
