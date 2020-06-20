@@ -227,6 +227,7 @@ ListView {
             }
             return result;
         }
+        dragTile: itemDragTile
 
         onItemPressedAndHold: showContextMenu({x: 0, y: 0})
         onItemClicked: root.todoClicked(item)
@@ -252,6 +253,10 @@ ListView {
 
     Components.ItemActionMenu {
         id: itemActionMenu
+    }
+
+    ItemDragTile {
+        id: itemDragTile
     }
 }
 

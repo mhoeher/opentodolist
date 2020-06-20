@@ -122,5 +122,7 @@
         <file>Actions/SetDueThisWeek.qml</file>
         <file>Actions/SetDueNextWeek.qml</file>
         <file>Windows/NewItemWithDueDateDialog.qml</file>
+        <file>Components/AutoScrollOverlay.qml</file>
+        <file>Widgets/ItemDragTile.qml</file>
     </qresource>
 </RCC>

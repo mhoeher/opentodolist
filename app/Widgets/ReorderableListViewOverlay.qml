@@ -11,42 +11,20 @@ Item {
 
     property var model
     property int layout: Qt.Vertical
+    property OTL.Item item
+    property ItemDragTile dragTile
 
     function startDrag() {
-        dragTile.Drag.active = true;
-        dragTile.Drag.startDrag();
+        dragTile.startDrag(item, root, model);
     }
 
     Pane {
         id: itemBackground
-        visible: dragTile.Drag.active
+        visible: dragTile && dragTile.item === item && dragTile.Drag.active
         anchors.fill: parent
         Material.background: Material.Teal
         opacity: 0.2
         z: 9
-    }
-
-    Item {
-        id: dragTile
-
-        property OTL.Item item: object
-
-        readonly property string mimeType: "opentodolist/" + root.model
-
-        opacity: 0.5
-        width: root.width
-        height: root.height
-        z: Drag.active ? 0 : 11
-        anchors.top: Drag.active ? undefined : parent.top
-        visible: dragTile.Drag.active
-        Drag.hotSpot.x: width / 2
-        Drag.hotSpot.y: height / 2
-        Drag.dragType: Drag.Automatic
-        Drag.mimeData: {
-            var result = {};
-            result[dragTile.mimeType] = "";
-            return result;
-        }
     }
 
     Pane {
@@ -76,8 +54,10 @@ Item {
             top: parent.top
             bottom: root.layout === Qt.Vertical ? parent.verticalCenter : parent.bottom
         }
-        keys: [dragTile.mimeType]
+        keys: dragTile? [dragTile.mimeType] : []
         onDropped: {
+            console.warn(drag.source);
+            console.warn(drag.source.item);
             var item = drag.source.item;
             if (item === object) {
                 return;
@@ -111,7 +91,7 @@ Item {
             bottom: parent.bottom
             top: root.layout === Qt.Vertical ? parent.verticalCenter : parent.top
         }
-        keys: [dragTile.mimeType]
+        keys: dragTile ? [dragTile.mimeType] : []
         onDropped: {
             var item = drag.source.item;
             if (item === object) {

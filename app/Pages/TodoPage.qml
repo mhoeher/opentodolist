@@ -186,5 +186,10 @@ ItemPage {
         flickable: todosWidget
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
+
+    AutoScrollOverlay {
+        anchors.fill: parent
+        flickable: todosWidget
+    }
 }
 
