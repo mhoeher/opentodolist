@@ -29,6 +29,7 @@ SwipeDelegate {
                                         ])
     property bool allowSorting: false
     property bool drawSeperator: true
+    property ItemDragTile dragTile
 
     signal itemPressedAndHold()
     signal itemClicked()
@@ -247,6 +248,8 @@ SwipeDelegate {
         id: reorderOverlay
         anchors.fill: parent
         model: swipeDelegate.model
+        dragTile: swipeDelegate.dragTile
+        item: swipeDelegate.item
     }
 
     Timer {

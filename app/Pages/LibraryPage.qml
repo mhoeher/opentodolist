@@ -106,7 +106,7 @@ Page {
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(fontMetrics.height, 5) * 30;
+            var minWidth = Math.max(fontMetrics.height, 5) * 20;
             var result = page.width / minWidth;
             result = Math.ceil(result);
             result = Math.max(result, 1);
@@ -342,6 +342,7 @@ Page {
                             break;
                         }
                     });
+                    item.dragTile = Qt.binding(function() {return dragTile; });
                 }
             }
         }
@@ -352,6 +353,11 @@ Page {
         refreshEnabled: page.library.hasSynchronizer
         flickable: grid
         onRefresh: OTL.Application.syncLibrary(page.library)
+    }
+
+    AutoScrollOverlay {
+        anchors.fill: parent
+        flickable: grid
     }
 
     BackgroundLabel {
@@ -376,6 +382,10 @@ Page {
                 break;
             }
         }
+    }
+
+    ItemDragTile {
+        id: dragTile
     }
 
     NewTopLevelItemButton {

@@ -13,6 +13,8 @@ Menu {
 
         delegate: MenuItem {
             action: modelData
+            visible: enabled
+            height: visible ? implicitHeight : 0
         }
     }
 }

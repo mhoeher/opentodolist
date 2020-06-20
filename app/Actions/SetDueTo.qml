@@ -7,4 +7,5 @@ Components.ItemAction {
     symbol: Fonts.Icons.faCalendarAlt
     text: qsTr("Select Due Date")
     onTriggered: Utils.ItemUtils.selectDueToDate(item)
+    enabled: item && item.dueTo !== undefined
 }

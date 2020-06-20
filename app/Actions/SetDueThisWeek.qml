@@ -7,4 +7,5 @@ Components.ItemAction {
     symbol: Fonts.Icons.faCalendarAlt
     text: qsTr("Set Due Next Week")
     onTriggered: item.dueTo = Utils.DateUtils.endOfNextWeek()
+    enabled: item && item.dueTo !== undefined
 }
