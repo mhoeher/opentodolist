@@ -106,7 +106,7 @@ Page {
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(fontMetrics.height, 5) * 20;
+            var minWidth = Math.max(fontMetrics.averageCharacterWidth, 5) * 40;
             var result = page.width / minWidth;
             result = Math.ceil(result);
             result = Math.max(result, 1);
