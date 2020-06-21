@@ -51,4 +51,8 @@ SettingsPageForm {
         var lang = Utils.Translations.languages.get(languageEdit.currentIndex);
         translations.language = lang.key;
     }
+
+    fontSizeEdit.value: ApplicationWindow.window.font.pixelSize
+    fontSizeEdit.live: false
+    fontSizeEdit.onValueChanged: ApplicationWindow.window.font.pixelSize = fontSizeEdit.value
 }
