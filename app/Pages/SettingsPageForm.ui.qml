@@ -12,6 +12,7 @@ Page {
 
     width: 400
     height: 600
+    property alias fontSizeEdit: fontSizeEdit
     property alias languageEdit: languageEdit
     padding: 10
     footer: DialogButtonBox {
@@ -59,6 +60,17 @@ Page {
                 id: themeEdit
                 Layout.fillWidth: true
             }
+
+            Label {
+                text: qsTr("Font Size:")
+            }
+
+            Slider {
+                id: fontSizeEdit
+                from: 6
+                to: 30
+                Layout.fillWidth: true
+            }
         }
     }
 
@@ -70,7 +82,7 @@ Page {
 
 /*##^##
 Designer {
-    D{i:2;anchors_height:113;anchors_width:175}
+    D{i:0;formeditorZoom:16}D{i:2;anchors_height:113;anchors_width:175}
 }
 ##^##*/
 
