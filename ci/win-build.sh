@@ -37,6 +37,7 @@ $QMAKE \
     CONFIG+=release \
     CONFIG+=with_update_service \
     CONFIG+=ccache \
+    CONFIG+=enable_cross_win_ccache \
     INSTALL_PREFIX=$PWD/../$DEPLOY_DIR \
     ..
 make qmake_all
