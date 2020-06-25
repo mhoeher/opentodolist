@@ -34,6 +34,7 @@ RUN \
         libxcomposite1 \
         git \
         cmake \
+        ccache \
         libssl-dev \
         ninja-build \
         libxrender1 \

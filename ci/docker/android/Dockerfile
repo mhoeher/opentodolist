@@ -54,6 +54,7 @@ RUN dpkg --add-architecture i386 && apt update && apt full-upgrade -y && apt ins
     openjdk-8-jdk-headless \
     openjdk-8-jre-headless \
     ant \
+    ccache \
     libsm6 \
     libice6 \
     libxext6 \

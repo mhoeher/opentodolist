@@ -8,12 +8,17 @@ export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
 
 cd $PROJECT_ROOT
 
+if [ -n "$CI" ]; then
+    which ccache || (apt-get update -y && apt-get install -y ccache)
+fi
+
 mkdir -p build-android
 cd build-android
 $QT_ROOT/bin/qmake \
     -spec android-clang \
     CONFIG+=release \
     CONFIG+=qlmdb_with_builtin_lmdb \
+    CONFIG+=ccache \
     ANDROID_ABIS="$ANDROID_ABIS" \
     ..
 make -j4
