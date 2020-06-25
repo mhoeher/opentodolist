@@ -14,20 +14,32 @@ Item {
     QtObject {
         id: d
 
+        property double scrollDistance: 1
+
         function scrollUp() {
             let flickable = root.flickable;
             if (flickable) {
-                flickable.contentY = flickable.contentY - fontMetrics.height;
+                flickable.contentY = flickable.contentY - parseInt(scrollDistance);
                 flickable.returnToBounds();
+                increaseScrollDistance();
             }
         }
 
         function scrollDown() {
             let flickable = root.flickable;
             if (flickable) {
-                flickable.contentY = flickable.contentY + fontMetrics.height;
+                flickable.contentY = flickable.contentY + parseInt(scrollDistance);
                 flickable.returnToBounds();
+                increaseScrollDistance();
             }
+        }
+
+        function resetScrollDistance() {
+            scrollDistance = 1;
+        }
+
+        function increaseScrollDistance() {
+            scrollDistance = Math.min(scrollDistance * 1.1, fontMetrics.height);
         }
     }
 
@@ -43,7 +55,7 @@ Item {
             right: parent.right
             top: parent.top
         }
-        height: fontMetrics.height
+        height: fontMetrics.height * 2
     }
 
     DropArea {
@@ -54,22 +66,24 @@ Item {
             right: parent.right
             bottom: parent.bottom
         }
-        height: fontMetrics.height
+        height: fontMetrics.height * 2
     }
 
     Timer {
         id: scrollUpTimer
-        interval: 10
+        interval: 50
         repeat: true
         running: scrollUpArea.containsDrag
         onTriggered: d.scrollUp()
+        onRunningChanged: d.resetScrollDistance()
     }
 
     Timer {
         id: scrollDownTimer
-        interval: 10
+        interval: 50
         repeat: true
         running: scrollDownArea.containsDrag
         onTriggered: d.scrollDown()
+        onRunningChanged: d.resetScrollDistance()
     }
 }
