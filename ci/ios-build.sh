@@ -12,6 +12,7 @@ $QMAKE \
     -config release \
     CONFIG+=iphoneos \
     CONFIG+=device \
+    CONFIG+=ccache \
     ..
 make qmake_all
 make -j4

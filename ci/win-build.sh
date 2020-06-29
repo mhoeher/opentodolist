@@ -4,7 +4,7 @@ set -e
 
 if [ -n "$CI" ]; then
     if [ ! -f /bin/find ]; then
-        dnf install -y --nogpgcheck findutils
+        dnf install -y --nogpgcheck findutils ccache
     fi
 fi
 
@@ -36,6 +36,8 @@ cd $BUILD_DIR
 $QMAKE \
     CONFIG+=release \
     CONFIG+=with_update_service \
+    CONFIG+=ccache \
+    CONFIG+=enable_cross_win_ccache \
     INSTALL_PREFIX=$PWD/../$DEPLOY_DIR \
     ..
 make qmake_all

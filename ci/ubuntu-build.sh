@@ -8,7 +8,7 @@ which ninja-build || (apt-get update && apt-get install -y ninja-build)
 
 if [ -n "$CI" ]; then
     apt-get update
-    apt-get install -y libxcomposite1
+    apt-get install -y libxcomposite1 ccache
 fi
 
 if [ -n "$CI" ]; then
@@ -40,6 +40,7 @@ $QT_ROOT/bin/qmake \
     CONFIG+=with_appimage_extras \
     CONFIG+=with_update_service \
     CONFIG+=qlmdb_with_static_libs \
+    CONFIG+=ccache \
     INSTALL_PREFIX=/usr \
     $QMAKE_EXTRA_FLAGS \
     ..

@@ -11,6 +11,7 @@ RUN \
         python2 \
         git \
         wget \
+        ccache \
         \
         qt5-qtxmlpatterns-devel \
         qt5-linguist \
