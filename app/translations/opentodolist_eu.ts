@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="eu_ES">
 <context>
     <name>AboutPage</name>
     <message>
@@ -11,12 +11,12 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="28"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="35"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aplikazio guztiak kudeatzeko.</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="42"/>
@@ -111,22 +111,22 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fitxategia erantsi</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eranskina ezabatu nahi duzu?</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ziur eranskina &lt;strong&gt;%1 &lt;/strong&gt; ezabatu nahi duzula? Ekintza hau ezin da desegin.</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">eranskinak</translation>
     </message>
 </context>
 <context>
@@ -134,22 +134,22 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kolore</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">White</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Red</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Green</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
@@ -159,7 +159,7 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Horia</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
@@ -169,7 +169,7 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">lila</translation>
     </message>
 </context>
 <context>
@@ -216,7 +216,7 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elementua ezabatu nahi duzu?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
         <source>Do you really want to delete the page &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nahi al duzu orrialdea &lt;strong&gt;%1&lt;/strong&gt; ezabatu nahi duzula? Hau ezin da desegin.</translation>
     </message>
 </context>
 <context>
@@ -254,7 +254,7 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liburutegia ezabatu nahi duzu?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
@@ -278,12 +278,12 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="59"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zerbitzariaren helbidea:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="65"/>
@@ -303,22 +303,22 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="83"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontrazeinu:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="89"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontrazeinu</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="103"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Desgaitu ziurtagirien egiaztapenak</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="111"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezin izan da zerbitzarira konektatu. Egiaztatu erabiltzaile izena, pasahitza eta zerbitzariaren helbidea eta saiatu berriro.</translation>
     </message>
 </context>
 <context>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
         <source>Select a Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hautatu Karpeta</translation>
     </message>
 </context>
 <context>
@@ -372,17 +372,17 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
         <source>Recurs every week.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Astean behin errepikatzen da.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
         <source>Recurs every month.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hilero errepikatzen da.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Egunero %1 errepikatzen da.</translation>
     </message>
 </context>
 <context>
@@ -400,17 +400,17 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="114"/>
         <source>Export to File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esportatu fitxategira ...</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="118"/>
         <source>Markdown files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Markdown fitxategiak</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fitxategi guztiak</translation>
     </message>
 </context>
 <context>
@@ -456,12 +456,12 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Red</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Green</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="160"/>
@@ -471,7 +471,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Horia</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="174"/>
@@ -481,17 +481,17 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">lila</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">White</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena aldatu</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="203"/>
@@ -501,17 +501,17 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="261"/>
         <source>Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oharra Izenburua</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="274"/>
         <source>Todo List Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todo List izenburua</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="287"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilaketa-terminoa 1, bilaketa-terminoa 2, ...</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="366"/>
@@ -554,12 +554,12 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sinkronizatu orain</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sinkronizatu erregistroa</translation>
     </message>
 </context>
 <context>
@@ -567,7 +567,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="13"/>
         <source>Synchronization Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sinkronizazioen erregistroa</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="22"/>
@@ -580,22 +580,22 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="23"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="104"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liburutegia sinkronizatzen ...</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="266"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena aldatu</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="277"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kolore</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
@@ -605,7 +605,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="295"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fitxategia erantsi</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="304"/>
@@ -688,27 +688,27 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="85"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">gaur</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="86"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bihar</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="87"/>
         <source>This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aste honetan</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="88"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datorren astean</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aukeratu ...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="102"/>
@@ -776,7 +776,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="137"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nire liburutegi berriaren izena</translation>
     </message>
 </context>
 <context>
@@ -784,37 +784,37 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="31"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ireki karpeta liburutegi gisa</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="39"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Edozein karpeta kokapen gisa erabil dezakezu liburutegi baterako. &lt;br/&gt; &lt;br/&gt; Hau oso erabilgarria da beste tresna (hodei hornitzaile baten sinkronizazio bezeroa) nahi duzunean zure datuak zerbitzari batekin sinkronizatzeko.</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="44"/>
         <source>Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">karpeta:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="49"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bidea liburutegi gisa erabiltzeko karpeta batera</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="55"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aukeratu</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="59"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="64"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nire liburutegi lokalaren izena</translation>
     </message>
 </context>
 <context>
@@ -823,27 +823,27 @@
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="16"/>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="25"/>
         <source>Create Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sortu Liburutegia</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="32"/>
         <source>Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tokiko Liburutegia</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="38"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erabili karpeta liburutegi gisa</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="44"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gehitu liburutegiak zure kontuetatik</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="79"/>
         <source>Add Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontua gehitu</translation>
     </message>
 </context>
 <context>
@@ -851,31 +851,26 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="29"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sortu Tokiko Liburutegia</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="37"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liburutegi lokal bat zure gailuan bakarrik gordetzen da. Horrek pribatutasun zehatza izateko ezin hobea egiten du! &lt;br/&gt; &lt;br/&gt; Erabili informazioa tokian-tokian bakarrik gorde eta zure datu guztiak aldizka babesteko beste mekanismoen bidez. Zure informazioa hainbat gailutan sartu behar baduzu, sortu ordez sinkronizatutako liburutegia.</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="48"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="53"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nire liburutegi lokalaren izena</translation>
     </message>
 </context>
 <context>
     <name>NewTopLevelItemButton</name>
-    <message>
-        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
-        <source>Note</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
@@ -884,6 +879,11 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
+        <source>Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -897,7 +897,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="24"/>
         <source>Account Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontuaren izena</translation>
     </message>
 </context>
 <context>
@@ -906,12 +906,12 @@
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="23"/>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="43"/>
         <source>Connection Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konexio-ezarpenak</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="49"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zerbitzariaren helbidea:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="55"/>
@@ -931,27 +931,27 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="73"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontrazeinu:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="79"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontrazeinu</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="93"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Desgaitu ziurtagirien egiaztapenak</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="97"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="111"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezin izan da zerbitzarira konektatu. Egiaztatu erabiltzaile izena, pasahitza eta zerbitzariaren helbidea eta saiatu berriro.</translation>
     </message>
 </context>
 <context>
@@ -959,12 +959,12 @@
     <message>
         <location filename="../Pages/NotePage.qml" line="124"/>
         <source>Main Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orrialde nagusia</translation>
     </message>
     <message>
         <location filename="../Pages/NotePage.qml" line="187"/>
         <source>New Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orrialde berria</translation>
     </message>
 </context>
 <context>
@@ -989,7 +989,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="21"/>
         <source>Missing secrets for account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sekretuak falta zaizkio kontuari</translation>
     </message>
 </context>
 <context>
@@ -998,7 +998,7 @@
         <location filename="../Pages/ProblemsPageForm.ui.qml" line="13"/>
         <location filename="../Pages/ProblemsPageForm.ui.qml" line="23"/>
         <source>Problems Detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arazoak hauteman dira</translation>
     </message>
 </context>
 <context>
@@ -1041,12 +1041,12 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="68"/>
         <source>Number of days:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Egun kopurua:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="82"/>
         <source>Recur relative to the date when marking as done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Noiz errepikatzen da markaketa egin bezala</translation>
     </message>
 </context>
 <context>
@@ -1054,7 +1054,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izena aldatu</translation>
     </message>
 </context>
 <context>
@@ -1093,12 +1093,12 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">gaur</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="102"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bihar</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
@@ -1108,7 +1108,7 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datorren astean</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
@@ -1126,7 +1126,7 @@
     <message>
         <location filename="../Actions/SetDueNextWeek.qml" line="8"/>
         <source>Set Due This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezarri aste honetan</translation>
     </message>
 </context>
 <context>
@@ -1134,7 +1134,7 @@
     <message>
         <location filename="../Actions/SetDueThisWeek.qml" line="8"/>
         <source>Set Due Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezarri datorren astean</translation>
     </message>
 </context>
 <context>
@@ -1142,7 +1142,7 @@
     <message>
         <location filename="../Actions/SetDueTo.qml" line="8"/>
         <source>Select Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hautatu Amaiera Data</translation>
     </message>
 </context>
 <context>
@@ -1150,7 +1150,7 @@
     <message>
         <location filename="../Actions/SetDueToday.qml" line="8"/>
         <source>Set Due Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezarri Gaur Egun</translation>
     </message>
 </context>
 <context>
@@ -1158,7 +1158,7 @@
     <message>
         <location filename="../Actions/SetDueTomorrow.qml" line="8"/>
         <source>Set Due Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezarri bihar</translation>
     </message>
 </context>
 <context>
@@ -1199,7 +1199,7 @@
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ez ikusi</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
@@ -1228,7 +1228,7 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="155"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilaketa-terminoa 1, bilaketa-terminoa 2, ...</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="167"/>
@@ -1271,7 +1271,7 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="98"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilaketa-terminoa 1, bilaketa-terminoa 2, ...</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="119"/>
@@ -1297,12 +1297,12 @@
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="161"/>
         <source>Swipe to mark undone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Irristatu desegina markatzeko</translation>
     </message>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="163"/>
         <source>Swipe to mark done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Irristatu egina markatzeko</translation>
     </message>
 </context>
 <context>
@@ -1315,7 +1315,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="24"/>
         <source>Danish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Danimarkako</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="28"/>
@@ -1325,7 +1325,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="32"/>
         <source>Greek</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Greziako</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="36"/>
@@ -1350,7 +1350,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="52"/>
         <source>Filipino</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">filipinarra</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="56"/>
@@ -1360,7 +1360,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="60"/>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hungariako</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="64"/>
@@ -1428,7 +1428,7 @@
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ez ikusi</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>

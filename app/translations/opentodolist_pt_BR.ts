@@ -139,7 +139,7 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Branco</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
@@ -344,7 +344,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
         <source>Dismiss</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Demissão</translation>
     </message>
 </context>
 <context>
@@ -357,32 +357,32 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
         <source>First due on %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Primeira finalizaçao em %1</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="72"/>
         <source>No recurrence pattern set...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nenhuma repetição configurada...</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
         <source>Recurs every day.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se repete todo dia</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
         <source>Recurs every week.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se repete toda semana</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
         <source>Recurs every month.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se repete todo mês</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se repete a cada %1 dia</translation>
     </message>
 </context>
 <context>
@@ -486,7 +486,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Branco</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
@@ -698,37 +698,37 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="87"/>
         <source>This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esta semana</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="88"/>
         <source>Next Week</source>
-        <translation type="unfinished">Próxima Semana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Selecionar...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="102"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Título:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
         <source>The title for your new item...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O título para seu novo item...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="112"/>
         <source>Create in:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Criação em:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="152"/>
         <source>Due on:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Finalizar até:</translation>
     </message>
 </context>
 <context>
@@ -872,11 +872,6 @@
 <context>
     <name>NewTopLevelItemButton</name>
     <message>
-        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
-        <source>Note</source>
-        <translation type="unfinished">Nota</translation>
-    </message>
-    <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
         <translation type="unfinished">Lista de afazeres</translation>
@@ -884,7 +879,12 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todo</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
+        <source>Note</source>
+        <translation type="unfinished">Nota</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
@@ -1006,47 +1006,47 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="28"/>
         <source>Edit Recurrence</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Editar repetição</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="41"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nunca</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="42"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diário</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Semanalmente</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mensalmente</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
         <source>Every N Days</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A cada N dias</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Recurs:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se repete:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="68"/>
         <source>Number of days:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Número de dias:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="82"/>
         <source>Recur relative to the date when marking as done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Repetir baseado na data de finalização</translation>
     </message>
 </context>
 <context>
@@ -1108,7 +1108,7 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
         <source>Next Week</source>
-        <translation type="unfinished">Próxima Semana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
@@ -1126,7 +1126,7 @@
     <message>
         <location filename="../Actions/SetDueNextWeek.qml" line="8"/>
         <source>Set Due This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar para finalizar essa semana</translation>
     </message>
 </context>
 <context>
@@ -1134,7 +1134,7 @@
     <message>
         <location filename="../Actions/SetDueThisWeek.qml" line="8"/>
         <source>Set Due Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar para finalizar próxima semana</translation>
     </message>
 </context>
 <context>
@@ -1142,7 +1142,7 @@
     <message>
         <location filename="../Actions/SetDueTo.qml" line="8"/>
         <source>Select Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Data de finalização</translation>
     </message>
 </context>
 <context>
@@ -1150,7 +1150,7 @@
     <message>
         <location filename="../Actions/SetDueToday.qml" line="8"/>
         <source>Set Due Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar para finalizar hoje</translation>
     </message>
 </context>
 <context>
@@ -1158,7 +1158,7 @@
     <message>
         <location filename="../Actions/SetDueTomorrow.qml" line="8"/>
         <source>Set Due Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar para finalizar amanhã</translation>
     </message>
 </context>
 <context>
@@ -1263,7 +1263,7 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="233"/>
         <source>Add new todo...</source>
-        <translation type="unfinished">Adicionar novo afazere...</translation>
+        <translation type="unfinished">Adicionar novo afazer...</translation>
     </message>
 </context>
 <context>
@@ -1297,12 +1297,12 @@
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="161"/>
         <source>Swipe to mark undone</source>
-        <translation type="unfinished">Passar para marcar desfeita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="163"/>
         <source>Swipe to mark done</source>
-        <translation type="unfinished">Deslizar para marcar feito</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1340,7 +1340,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="44"/>
         <source>Spanish (Latin America &amp; Caribbean)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Espanhol (América Latina e Caribe)</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
@@ -1395,17 +1395,17 @@
     <message>
         <location filename="../Utils/Translations.qml" line="88"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Russo</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="92"/>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sueco</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="96"/>
         <source>Turkmen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Turcomeno</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="100"/>

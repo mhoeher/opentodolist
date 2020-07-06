@@ -344,7 +344,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
         <source>Dismiss</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avskjedige</translation>
     </message>
 </context>
 <context>
@@ -357,32 +357,32 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
         <source>First due on %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forfall på %1.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="72"/>
         <source>No recurrence pattern set...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ingen gjentagelsesmønster satt ...</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
         <source>Recurs every day.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Går tilbake hver dag.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
         <source>Recurs every week.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Går tilbake hver uke.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
         <source>Recurs every month.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Går tilbake hver måned.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Går tilbake hver% 1 dag.</translation>
     </message>
 </context>
 <context>
@@ -698,7 +698,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="87"/>
         <source>This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Denne uka</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="88"/>
@@ -708,27 +708,27 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Å velge...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="102"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tittel:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
         <source>The title for your new item...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tittelen for den nye varen ...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="112"/>
         <source>Create in:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Opprett i:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="152"/>
         <source>Due on:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grunn på:</translation>
     </message>
 </context>
 <context>
@@ -872,11 +872,6 @@
 <context>
     <name>NewTopLevelItemButton</name>
     <message>
-        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
-        <source>Note</source>
-        <translation type="unfinished">Merk</translation>
-    </message>
-    <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
         <translation type="unfinished">Gjøremålsliste</translation>
@@ -884,7 +879,12 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todo</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
+        <source>Note</source>
+        <translation type="unfinished">Merk</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
@@ -1006,47 +1006,47 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="28"/>
         <source>Edit Recurrence</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rediger gjentakelse</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="41"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aldri</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="42"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Daglig</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ukentlig</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Månedlig</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
         <source>Every N Days</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hver N dag</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Recurs:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">gjentar:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="68"/>
         <source>Number of days:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Antall dager:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="82"/>
         <source>Recur relative to the date when marking as done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gjentas i forhold til datoen når markeringen er gjort</translation>
     </message>
 </context>
 <context>
@@ -1126,7 +1126,7 @@
     <message>
         <location filename="../Actions/SetDueNextWeek.qml" line="8"/>
         <source>Set Due This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Satt forfall denne uken</translation>
     </message>
 </context>
 <context>
@@ -1134,7 +1134,7 @@
     <message>
         <location filename="../Actions/SetDueThisWeek.qml" line="8"/>
         <source>Set Due Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sett på grunn neste uke</translation>
     </message>
 </context>
 <context>
@@ -1142,7 +1142,7 @@
     <message>
         <location filename="../Actions/SetDueTo.qml" line="8"/>
         <source>Select Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Velg forfallsdato</translation>
     </message>
 </context>
 <context>
@@ -1150,7 +1150,7 @@
     <message>
         <location filename="../Actions/SetDueToday.qml" line="8"/>
         <source>Set Due Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forfaller i dag</translation>
     </message>
 </context>
 <context>
@@ -1158,7 +1158,7 @@
     <message>
         <location filename="../Actions/SetDueTomorrow.qml" line="8"/>
         <source>Set Due Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sett på grunn i morgen</translation>
     </message>
 </context>
 <context>
@@ -1340,7 +1340,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="44"/>
         <source>Spanish (Latin America &amp; Caribbean)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spansk (Latin-Amerika og Karibia)</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
@@ -1395,17 +1395,17 @@
     <message>
         <location filename="../Utils/Translations.qml" line="88"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">russisk</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="92"/>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">svensk</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="96"/>
         <source>Turkmen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">turkmensk</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="100"/>

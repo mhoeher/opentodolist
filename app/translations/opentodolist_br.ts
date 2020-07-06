@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="br_FR">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../Pages/AboutPage.qml" line="14"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A-zivout...</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="28"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="35"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="42"/>
         <source>(c) RPdev 2013-2020, version %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(c) RPdev 2013-2020, handelv %1</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="59"/>
@@ -41,32 +41,32 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="128"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aozer:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="133"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="141"/>
         <source>License:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lañvaz:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="146"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="154"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pellgargañ:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -79,22 +79,22 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="28"/>
         <source>Account Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rizh ar gont</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="46"/>
         <source>NextCloud</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NextCloud</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="51"/>
         <source>ownCloud</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ownCloud</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="56"/>
         <source>WebDAV</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">WebDAV</translation>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
         <location filename="../Pages/AccountsPageForm.ui.qml" line="16"/>
         <location filename="../Pages/AccountsPageForm.ui.qml" line="24"/>
         <source>Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontoù</translation>
     </message>
 </context>
 <context>
@@ -111,12 +111,12 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stagañ ur restr</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel ar stagadenn?</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
@@ -126,7 +126,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stagadennoù</translation>
     </message>
 </context>
 <context>
@@ -134,42 +134,42 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liv</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gwenn</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ruz</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gwer</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Glas</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Melen</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orañjez</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lilac</translation>
     </message>
 </context>
 <context>
@@ -177,17 +177,17 @@
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reizhiad</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sklaer</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="18"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teñval</translation>
     </message>
 </context>
 <context>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="19"/>
         <source>Delete Account?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel ar gont?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="36"/>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel</translation>
     </message>
 </context>
 <context>
@@ -216,7 +216,7 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel an elfenn?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
@@ -254,7 +254,7 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel al levraoueg?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
@@ -273,17 +273,17 @@
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="23"/>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="43"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Embann ar gont</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="59"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chomlec&apos;h an dafariad:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="65"/>
@@ -293,17 +293,17 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="71"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arveriad:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="77"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv an arveriad</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="83"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ger-tremen:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="89"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
         <source>Select a Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diuzañ un teul</translation>
     </message>
 </context>
 <context>
@@ -334,12 +334,12 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="64"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; zo bet krouet.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Digeriñ</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -390,7 +390,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notennoù</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
@@ -410,7 +410,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Holl restroù</translation>
     </message>
 </context>
 <context>
@@ -423,32 +423,32 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Levraoueg nevez</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
         <source>Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontoù</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="224"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arventennoù</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="231"/>
         <source>Translate The App...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Treiñ ar meziant...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A-zivout...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="251"/>
         <source>Create Default Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouiñ ul levraoueg dre ziouer</translation>
     </message>
 </context>
 <context>
@@ -456,47 +456,47 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ruz</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gwer</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Glas</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Melen</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orañjez</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lilac</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gwenn</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adenvel</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="203"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="261"/>
@@ -526,12 +526,12 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="434"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dre zorn</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="441"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titl</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="448"/>
@@ -541,7 +541,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="455"/>
         <source>Created At</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouet d&apos;ar</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="462"/>
@@ -580,7 +580,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="23"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="104"/>
@@ -590,12 +590,12 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="266"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adenvel</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="277"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liv</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
@@ -605,12 +605,12 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="295"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stagañ ur restr</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="304"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klask</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="311"/>
@@ -625,47 +625,47 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="327"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dilemel</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="365"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arventennoù</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="366"/>
         <source>Ctrl+,</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="373"/>
         <source>New &amp;Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Library nevez</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="384"/>
         <source>New &amp;Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Note nevez</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="392"/>
         <source>New &amp;Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Todo List nevez</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="400"/>
         <source>New &amp;Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Image nevez</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="408"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Quit</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="416"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Find</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
@@ -688,32 +688,32 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="85"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hiziv</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="86"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Warc&apos;hoazh</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="87"/>
         <source>This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ar sizhun-mañ</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="88"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ar sizhun a zeu</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diuzañ...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="102"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titl:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
@@ -723,7 +723,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="112"/>
         <source>Create in:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouiñ e:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="152"/>
@@ -736,7 +736,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="44"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouiñ ul levraoueg er gont</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="53"/>
@@ -766,7 +766,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="114"/>
         <source>Create a New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouiñ ul levraoueg nevez</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="122"/>
@@ -776,7 +776,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPageForm.ui.qml" line="137"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv va levraoueg lec&apos;hel nevez</translation>
     </message>
 </context>
 <context>
@@ -794,7 +794,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="44"/>
         <source>Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teul:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="49"/>
@@ -804,17 +804,17 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="55"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diuzañ</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="59"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPageForm.ui.qml" line="64"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv va levraoueg lec&apos;hel</translation>
     </message>
 </context>
 <context>
@@ -823,12 +823,12 @@
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="16"/>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="25"/>
         <source>Create Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouiñ ul levraoueg</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="32"/>
         <source>Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Levraoueg lec&apos;hel</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="38"/>
@@ -843,7 +843,7 @@
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="79"/>
         <source>Add Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ouzhpennañ ur gont</translation>
     </message>
 </context>
 <context>
@@ -851,7 +851,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="29"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouiñ ul levraoueg lec&apos;hel</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="37"/>
@@ -861,21 +861,16 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="48"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="53"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv va levraoueg lec&apos;hel</translation>
     </message>
 </context>
 <context>
     <name>NewTopLevelItemButton</name>
-    <message>
-        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
-        <source>Note</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
@@ -884,12 +879,17 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">D&apos;ober</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
+        <source>Note</source>
+        <translation type="unfinished">Notenn</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skeudenn</translation>
     </message>
 </context>
 <context>
@@ -897,7 +897,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="24"/>
         <source>Account Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv ar gont</translation>
     </message>
 </context>
 <context>
@@ -911,7 +911,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="49"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chomlec&apos;h an dafariad:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="55"/>
@@ -921,17 +921,17 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="61"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arveriad:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="67"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv an arveriad</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="73"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ger-tremen:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="79"/>
@@ -946,7 +946,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="97"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="111"/>
@@ -959,12 +959,12 @@
     <message>
         <location filename="../Pages/NotePage.qml" line="124"/>
         <source>Main Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pajenn bennañ</translation>
     </message>
     <message>
         <location filename="../Pages/NotePage.qml" line="187"/>
         <source>New Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pajenn nevez</translation>
     </message>
 </context>
 <context>
@@ -972,7 +972,7 @@
     <message>
         <location filename="../Windows/OpenFileDialog.qml" line="18"/>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diuzañ ur restr</translation>
     </message>
 </context>
 <context>
@@ -981,7 +981,7 @@
         <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diuzañ ur skeudenn</translation>
     </message>
 </context>
 <context>
@@ -1011,27 +1011,27 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="41"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Morse</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="42"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bemdez</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bep sizhun</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bep miz</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
         <source>Every N Days</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bep N devezh</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
@@ -1041,7 +1041,7 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="68"/>
         <source>Number of days:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Niver a zevezhioù:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="82"/>
@@ -1054,7 +1054,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adenvel</translation>
     </message>
 </context>
 <context>
@@ -1062,12 +1062,12 @@
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="22"/>
         <source>Rename Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adenvel an elfenn</translation>
     </message>
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="33"/>
         <source>Enter item title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bizskrivit titl an elfenn...</translation>
     </message>
 </context>
 <context>
@@ -1075,12 +1075,12 @@
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="20"/>
         <source>Rename Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adenvel al levraoueg</translation>
     </message>
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
         <source>Enter library title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bizskrivit titl al levraoueg...</translation>
     </message>
 </context>
 <context>
@@ -1093,12 +1093,12 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hiziv</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="102"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Warc&apos;hoazh</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
@@ -1108,7 +1108,7 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ar sizhun a zeu</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
@@ -1166,17 +1166,17 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="33"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arventennoù</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="39"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Etrefas an arveriaded</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="47"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yezh:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="56"/>
@@ -1199,12 +1199,12 @@
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Leuskel a-gostez</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gwelout</translation>
     </message>
 </context>
 <context>
@@ -1233,12 +1233,12 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="167"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dre zorn</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anv</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="179"/>
@@ -1248,7 +1248,7 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Created At</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krouet d&apos;ar</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="191"/>
@@ -1281,7 +1281,7 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="122"/>
         <source>Add new task...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ouzhpennañ un drevell nevez...</translation>
     </message>
 </context>
 <context>
@@ -1310,37 +1310,37 @@
     <message>
         <location filename="../Utils/Translations.qml" line="16"/>
         <source>System Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yezh ar reizhiad</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="24"/>
         <source>Danish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Daneg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="28"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alamaneg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="32"/>
         <source>Greek</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gresianeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="36"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Saozneg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="40"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spagnoleg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="44"/>
         <source>Spanish (Latin America &amp; Caribbean)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spagnoleg (Amerika Latina ha Karaiboù)</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
@@ -1355,67 +1355,67 @@
     <message>
         <location filename="../Utils/Translations.qml" line="56"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Galleg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="60"/>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hungareg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="64"/>
         <source>Italian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Italianeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="68"/>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nederlandeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="72"/>
         <source>Norwegian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Norvegeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="76"/>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poloneg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="80"/>
         <source>Portuguese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Portugaleg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="84"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Portugaleg (Brazil)</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="88"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rusianeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="92"/>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Svedeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="96"/>
         <source>Turkmen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Turkmeneg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="100"/>
         <source>Turkish</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Turkeg</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="104"/>
         <source>Vietnamese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vietnameg</translation>
     </message>
 </context>
 <context>
@@ -1428,12 +1428,12 @@
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Leuskel a-gostez</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pellgargañ</translation>
     </message>
 </context>
 <context>
@@ -1446,12 +1446,12 @@
     <message>
         <location filename="../main.cpp" line="108"/>
         <source>QML Root Directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">QML Root Directory</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="109"/>
         <source>DIR</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DIR</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="116"/>

@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../Pages/AboutPage.qml" line="14"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于...</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="28"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="35"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">待办和任务管理程序。</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="42"/>
         <source>(c) RPdev 2013-2020, version %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(c) RPdev 2013-2020, 版本 %1</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="59"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList以&lt;a href=&apos;app-license&apos;&gt;GUN GPLv3许可协议&lt;/a&gt;或（由您选择）任何更高版本的条款发行。</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="78"/>
         <source>Report an Issue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上报问题</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="91"/>
         <source>Third Party Libraries and Resources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">第三方库和资源</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="128"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">作者：</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="133"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="141"/>
@@ -56,7 +56,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="146"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt; {1&apos;?} {2&lt;?}</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="154"/>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt; {1&apos;?} {1&lt;?}</translation>
     </message>
 </context>
 <context>
@@ -84,17 +84,17 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="46"/>
         <source>NextCloud</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NextCloud</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="51"/>
         <source>ownCloud</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ownCloud</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="56"/>
         <source>WebDAV</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">WebDAV</translation>
     </message>
 </context>
 <context>
@@ -111,22 +111,22 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加文件</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除附件？</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要删除附件&lt;strong&gt;%1&lt;/strong&gt;？该操作无法撤销。</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">附件</translation>
     </message>
 </context>
 <context>
@@ -134,42 +134,42 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">颜色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">白色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">红色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">绿色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">蓝色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">橙色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">雪青</translation>
     </message>
 </context>
 <context>
@@ -177,17 +177,17 @@
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">系统</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">亮色</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="18"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">暗色</translation>
     </message>
 </context>
 <context>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除</translation>
     </message>
 </context>
 <context>
@@ -216,32 +216,32 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除条目？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
         <source>Do you really want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要删除图片&lt;strong&gt;%1&lt;/strong&gt;？该操作无法撤销。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
         <source>Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要删除待办列表&lt;strong&gt;%1&lt;/strong&gt;？该操作无法撤销。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="40"/>
         <source>Do you really want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要删除待办&lt;strong&gt;%1&lt;/strong&gt;？该操作无法撤销。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="44"/>
         <source>Do you really want to delete the task &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要删除任务&lt;strong&gt;%1&lt;/strong&gt;？该操作无法撤销。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="48"/>
         <source>Do you really want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要删除笔记&lt;strong&gt;%1&lt;/strong&gt;？该操作无法撤销。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除库？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from  the application? &lt;em&gt;This will remove any files belonging to the library.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要从程序中删除库&lt;strong&gt;%1&lt;/strong&gt;？&lt;em&gt;该操作会删除所有属于该库的文件。&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="40"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from the application? Note that the files inside the library will not be removed, so you can restore the library later on.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你确定要从程序中删除库&lt;strong&gt;%1&lt;/strong&gt;？该操作不会删除该库所包含的文件，因此你可以稍后恢复它。 </translation>
     </message>
 </context>
 <context>
@@ -283,7 +283,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="59"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">服务器地址：</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="65"/>
@@ -303,12 +303,12 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="83"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">密码：</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="89"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">密码</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="103"/>
@@ -318,7 +318,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPageForm.ui.qml" line="111"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法连接到服务器。请检查您的用户名，密码和服务器地址后重试。</translation>
     </message>
 </context>
 <context>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
         <source>Select a Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择一个文件夹</translation>
     </message>
 </context>
 <context>
@@ -334,12 +334,12 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="64"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt;已创建。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -352,7 +352,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
         <source>Due on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止到</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
@@ -390,12 +390,12 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">笔记</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
         <source>No notes added yet - click here to add some.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">尚无笔记 - 点击此处添加</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="114"/>
@@ -418,12 +418,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="171"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">日程</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建库</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="224"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="231"/>
@@ -443,12 +443,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="251"/>
         <source>Create Default Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">创建默认库</translation>
     </message>
 </context>
 <context>
@@ -456,57 +456,57 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">红色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">绿色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">蓝色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">橙色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">雪青</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">白色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="203"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="261"/>
         <source>Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">笔记标题</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="274"/>
         <source>Todo List Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">待办列表标题</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="287"/>
@@ -516,37 +516,37 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="366"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">尚无内容！从添加一个&lt;a href=&apos;#note&apos;&gt;笔记&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;待办列表&lt;/a&gt;或&lt;a href=&apos;#image&apos;&gt;图片&lt;/a&gt;开始.</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="429"/>
         <source>Sort By</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">排序</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="434"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自定义</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="441"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标题</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="448"/>
         <source>Due To</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止到</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="455"/>
         <source>Created At</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">创建于</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="462"/>
         <source>Updated At</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">更新于</translation>
     </message>
 </context>
 <context>
@@ -554,12 +554,12 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">立即同步</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同步日志</translation>
     </message>
 </context>
 <context>
@@ -567,12 +567,12 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="13"/>
         <source>Synchronization Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同步日志</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="22"/>
         <source>Copy Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制日志</translation>
     </message>
 </context>
 <context>
@@ -580,107 +580,107 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="23"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="104"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">正在同步库…</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="266"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="277"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">颜色</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Add Tag</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加标签</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="295"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加文件</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="304"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="311"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">排序</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="319"/>
         <source>Set Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置截止日期</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="327"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="365"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="366"/>
         <source>Ctrl+,</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="373"/>
         <source>New &amp;Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建库(&amp;L)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="384"/>
         <source>New &amp;Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建笔记(&amp;N)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="392"/>
         <source>New &amp;Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建待办列表(&amp;T)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="400"/>
         <source>New &amp;Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建图片(&amp;I)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="408"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="416"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查找(&amp;F)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
         <source>Open Last &amp;Created Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开上次创建的项目(&amp;C)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="451"/>
         <source>Open &amp;Left Side Bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开左侧栏(&amp;L)</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="570"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">从&lt;a href=&apos;#newLibrary&apos;&gt;创建一个全新的库&lt;/a&gt;开始。库用于存储不同类型的项目，如笔记、待办列表或图片。</translation>
     </message>
 </context>
 <context>
@@ -688,12 +688,12 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="85"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">今天</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="86"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">明天</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="87"/>
@@ -703,7 +703,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="88"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下周</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
@@ -823,12 +823,12 @@
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="16"/>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="25"/>
         <source>Create Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">创建库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="32"/>
         <source>Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">本地库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPageForm.ui.qml" line="38"/>
@@ -872,14 +872,9 @@
 <context>
     <name>NewTopLevelItemButton</name>
     <message>
-        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
-        <source>Note</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">待办列表</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
@@ -887,9 +882,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
+        <source>Note</source>
+        <translation type="unfinished">笔记</translation>
+    </message>
+    <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">图片</translation>
     </message>
 </context>
 <context>
@@ -911,7 +911,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="49"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">服务器地址：</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="55"/>
@@ -931,12 +931,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="73"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">密码：</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="79"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">密码</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="93"/>
@@ -951,7 +951,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPageForm.ui.qml" line="111"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法连接到服务器。请检查您的用户名，密码和服务器地址后重试。</translation>
     </message>
 </context>
 <context>
@@ -972,7 +972,7 @@
     <message>
         <location filename="../Windows/OpenFileDialog.qml" line="18"/>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择一个文件</translation>
     </message>
 </context>
 <context>
@@ -981,7 +981,7 @@
         <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择图片</translation>
     </message>
 </context>
 <context>
@@ -1054,7 +1054,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
 </context>
 <context>
@@ -1062,12 +1062,12 @@
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="22"/>
         <source>Rename Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名项目</translation>
     </message>
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="33"/>
         <source>Enter item title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入项目标题…</translation>
     </message>
 </context>
 <context>
@@ -1075,12 +1075,12 @@
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="20"/>
         <source>Rename Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名库</translation>
     </message>
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
         <source>Enter library title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入库标题…</translation>
     </message>
 </context>
 <context>
@@ -1088,37 +1088,37 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="80"/>
         <source>Overdue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">逾期</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">今天</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="102"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">明天</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
         <source>Later This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">本周晚些时候</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下周</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
         <source>Coming Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">接下来</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有日程…给项目添加一个截至日期后将会显示在这里。</translation>
     </message>
 </context>
 <context>
@@ -1166,22 +1166,22 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="33"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="39"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用户界面</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="47"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">语言：</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="56"/>
         <source>Theme:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主题：</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="65"/>
@@ -1194,17 +1194,17 @@
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
         <source>There were errors when synchronizing the library. Please ensure that the library settings are up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同步库时出错。请确保该库设置是最新的。</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">忽略</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">视图</translation>
     </message>
 </context>
 <context>
@@ -1212,7 +1212,7 @@
     <message>
         <location filename="../Widgets/TagsEditor.qml" line="34"/>
         <source>Add Tag</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加标签</translation>
     </message>
 </context>
 <context>
@@ -1220,7 +1220,7 @@
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="99"/>
         <source>✔ No open todos - everything done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">✔ 无待办事项 - 所有的事项都已完成</translation>
     </message>
 </context>
 <context>
@@ -1233,37 +1233,37 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="167"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自定义</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名称</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="179"/>
         <source>Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止日期</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Created At</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">创建于</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Updated At</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">更新于</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Todos</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">待办</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="233"/>
         <source>Add new todo...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加新待办…</translation>
     </message>
 </context>
 <context>
@@ -1276,12 +1276,12 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="119"/>
         <source>Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">任务</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="122"/>
         <source>Add new task...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加新任务…</translation>
     </message>
 </context>
 <context>
@@ -1289,7 +1289,7 @@
     <message>
         <location filename="../Widgets/TodosWidget.qml" line="169"/>
         <source>Due on: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止到：%1</translation>
     </message>
 </context>
 <context>
@@ -1297,12 +1297,12 @@
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="161"/>
         <source>Swipe to mark undone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">滑动标记为未完成</translation>
     </message>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="163"/>
         <source>Swipe to mark done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">滑动标记为已完成</translation>
     </message>
 </context>
 <context>
@@ -1310,7 +1310,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="16"/>
         <source>System Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">系统语言</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="24"/>
@@ -1320,7 +1320,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="28"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">German</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="32"/>
@@ -1330,7 +1330,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="36"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">English</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="40"/>
@@ -1355,7 +1355,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="56"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">French</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="60"/>
@@ -1423,17 +1423,17 @@
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="44"/>
         <source>An update to OpenTodoList %1 is available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList %1 有更新可用。</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">忽略</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下载</translation>
     </message>
 </context>
 <context>
@@ -1441,27 +1441,27 @@
     <message>
         <location filename="../main.cpp" line="102"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">管理您的私有数据</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="108"/>
         <source>QML Root Directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">QML主目录</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="109"/>
         <source>DIR</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DIR</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="116"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开触摸屏优化项</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="128"/>
         <source>Remove shortcuts to the AppImage.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除快捷键到AppImage。</translation>
     </message>
 </context>
 </TS>
