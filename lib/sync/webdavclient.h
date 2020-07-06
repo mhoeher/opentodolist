@@ -172,7 +172,7 @@ private:
     bool deleteEntry(const QString& filename);
     bool syncDirectory(const QString& directory,
                        QRegularExpression directoryFilter = QRegularExpression(".*"),
-                       bool pushOnly = false, QSet<QString>* changedDirs = nullptr);
+                       QSet<QString>* changedDirs = nullptr);
     QString etag(const QString& filename);
 
     // Path and URL utility functions

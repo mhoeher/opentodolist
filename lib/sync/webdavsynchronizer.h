@@ -99,7 +99,6 @@ signals:
 
 private:
     static const QString SyncLockFileName;
-    static const QString SyncErrorFileName;
 
     QUrl m_url;
     QString m_remoteDirectory;

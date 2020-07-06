@@ -358,7 +358,7 @@ bool WebDAVClient::deleteEntry(const QString& filename)
  * and hence only local changes need to be pushed.
  */
 bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression directoryFilter,
-                                 bool pushOnly, QSet<QString>* changedDirs)
+                                 QSet<QString>* changedDirs)
 {
     m_stopRequested = false;
     QSet<QString> _changedDirs;
@@ -376,78 +376,49 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
 
         mergeLocalInfoWithSyncList(d, dir, entries);
 
-        bool skipSync = false;
-        if (pushOnly) {
-            // Check if there were any changes locally:
-            bool localChanges = false;
-            for (auto key : entries.keys()) {
-                auto entry = entries[key];
-                if (entry.lastModDate != entry.previousLasModDate) {
-                    localChanges = true;
-                }
-            }
-            // If there were local changes, get the current list of
-            // remote entries; this is to avoid sync issues if clients
-            // run in parallel:
-            if (localChanges) {
-                result = result && mergeRemoteInfoWithSyncList(entries, dir);
-            } else {
-                skipSync = true;
-            }
-        } else {
-            result = result && mergeRemoteInfoWithSyncList(entries, dir);
-        }
+        result = result && mergeRemoteInfoWithSyncList(entries, dir);
 
         qCDebug(log) << "Synchronizing" << QDir::cleanPath(this->directory() + "/" + directory);
         emit debug(
                 tr("Synchronizing '%1'").arg(QDir::cleanPath(this->directory() + "/" + directory)));
 
-        if (!skipSync) {
-            for (auto entry : entries) {
-                if (m_stopRequested) {
-                    break;
-                }
-                if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
-                    if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(log) << "Ignoring" << entry.path();
-                        emit debug(tr("Ignoring file %1").arg(entry.path()));
-                        continue;
-                    }
-                    if (entry.remoteType == Directory) {
-                        _changedDirs.insert(entry.entry);
-                    }
-                    result = result && pullEntry(entry, &db);
-                } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
-                    if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(log) << "Ignoring" << entry.path();
-                        emit debug(tr("Ignoring file %1").arg(entry.path()));
-                        continue;
-                    }
-                    result = result && removeLocalEntry(entry, &db);
-                } else if (!entry.lastModDate.isNull()
-                           && entry.lastModDate != entry.previousLasModDate) {
-                    if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(log) << "Ignoring" << entry.path();
-                        emit debug(tr("Ignoring file %1").arg(entry.path()));
-                        continue;
-                    }
-                    result = result && pushEntry(entry, &db);
-                } else if (entry.lastModDate.isNull() && !entry.previousLasModDate.isNull()) {
-                    if (skipEntry(entry, Upload, directoryFilter)) {
-                        qCDebug(log) << "Ignoring" << entry.path();
-                        emit debug(tr("Ignoring file %1").arg(entry.path()));
-                        continue;
-                    }
-                    result = result && removeRemoteEntry(entry, &db);
-                }
+        for (auto entry : entries) {
+            if (m_stopRequested) {
+                break;
             }
-        } else {
-            qCDebug(log) << "Skipping sync of " << directory
-                         << "as there were no local changes and we"
-                         << "have been asked to push only";
-            emit debug(tr("Skipping sync of directory '%1' as there were no "
-                          "local changes and we have been asked to push only")
-                               .arg(directory));
+            if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(log) << "Ignoring" << entry.path();
+                    emit debug(tr("Ignoring file %1").arg(entry.path()));
+                    continue;
+                }
+                if (entry.remoteType == Directory) {
+                    _changedDirs.insert(entry.entry);
+                }
+                result = result && pullEntry(entry, &db);
+            } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(log) << "Ignoring" << entry.path();
+                    emit debug(tr("Ignoring file %1").arg(entry.path()));
+                    continue;
+                }
+                result = result && removeLocalEntry(entry, &db);
+            } else if (!entry.lastModDate.isNull()
+                       && entry.lastModDate != entry.previousLasModDate) {
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(log) << "Ignoring" << entry.path();
+                    emit debug(tr("Ignoring file %1").arg(entry.path()));
+                    continue;
+                }
+                result = result && pushEntry(entry, &db);
+            } else if (entry.lastModDate.isNull() && !entry.previousLasModDate.isNull()) {
+                if (skipEntry(entry, Upload, directoryFilter)) {
+                    qCDebug(log) << "Ignoring" << entry.path();
+                    emit debug(tr("Ignoring file %1").arg(entry.path()));
+                    continue;
+                }
+                result = result && removeRemoteEntry(entry, &db);
+            }
         }
         db.close();
     }
