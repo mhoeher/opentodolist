@@ -14,6 +14,10 @@ Item {
             name: qsTr("System Language")
         }
         ListElement {
+            key: "br"
+            name: "Breton"
+        }
+        ListElement {
             key: "da"
             name: qsTr("Danish")
         }
@@ -38,7 +42,11 @@ Item {
             name: qsTr("Spanish (Latin America & Caribbean)")
         }
         ListElement {
-            key: "fil"
+            key: "eu_ES"
+            name: qsTr("Basque")
+        }
+        ListElement {
+            key: "fil_PH"
             name: qsTr("Filipino")
         }
         ListElement {
@@ -92,6 +100,14 @@ Item {
         ListElement {
             key: "vi"
             name: qsTr("Vietnamese")
+        }
+        ListElement {
+            key: "zh_CN"
+            name: "Chinese (Simplified)"
+        }
+        ListElement {
+            key: "zh_TW"
+            name: "Chinese (Traditional)"
         }
     }
 
