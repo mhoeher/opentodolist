@@ -6,6 +6,8 @@ Item {
 
     readonly property ListModel languages: languageModel
 
+    // For language codes, see also https://www.loc.gov/standards/iso639-2/php/code_list.php
+
     ListModel {
         id: languageModel
 

@@ -534,79 +534,79 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Criar biblioteca predefinida"
 
-#: ../Pages/LibraryPage.qml:144
+#: ../Pages/LibraryPage.qml:146
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Vermelho"
 
-#: ../Pages/LibraryPage.qml:151
+#: ../Pages/LibraryPage.qml:153
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Verde"
 
-#: ../Pages/LibraryPage.qml:158
+#: ../Pages/LibraryPage.qml:160
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Azul"
 
-#: ../Pages/LibraryPage.qml:165
+#: ../Pages/LibraryPage.qml:167
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Amarelo"
 
-#: ../Pages/LibraryPage.qml:172
+#: ../Pages/LibraryPage.qml:174
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Laranja"
 
-#: ../Pages/LibraryPage.qml:179
+#: ../Pages/LibraryPage.qml:181
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lilás"
 
-#: ../Pages/LibraryPage.qml:186
+#: ../Pages/LibraryPage.qml:188
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Branco"
 
-#: ../Pages/LibraryPage.qml:196
+#: ../Pages/LibraryPage.qml:198
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../Pages/LibraryPage.qml:201
+#: ../Pages/LibraryPage.qml:203
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../Pages/LibraryPage.qml:259
+#: ../Pages/LibraryPage.qml:261
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Título da nota"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:274
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Todo Título da Lista"
 
-#: ../Pages/LibraryPage.qml:285
+#: ../Pages/LibraryPage.qml:287
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Termo de pesquisa 1, termo de pesquisa 2, ..."
 
-#: ../Pages/LibraryPage.qml:358
+#: ../Pages/LibraryPage.qml:366
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid ""
@@ -616,51 +616,51 @@ msgstr ""
 "Ainda nada aqui! Comece por adicionar uma <a href='#note'>note</a>, <a "
 "href='#todolist'>todo list</a> ou <a href='#image'>image</a>."
 
-#: ../Pages/LibraryPage.qml:417
+#: ../Pages/LibraryPage.qml:429
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Ordenar por"
 
-#: ../Pages/LibraryPage.qml:422
+#: ../Pages/LibraryPage.qml:434
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manualmente"
 
-#: ../Pages/LibraryPage.qml:429
+#: ../Pages/LibraryPage.qml:441
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Título"
 
-#: ../Pages/LibraryPage.qml:436
+#: ../Pages/LibraryPage.qml:448
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Devido a"
 
-#: ../Pages/LibraryPage.qml:443
+#: ../Pages/LibraryPage.qml:455
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Criado em"
 
-#: ../Pages/LibraryPage.qml:450
+#: ../Pages/LibraryPage.qml:462
 #, fuzzy
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Atualizado em"
 
-#: ../Menues/LibraryPageMenu.qml:20
+#: ../Menues/LibraryPageActions.qml:30
 #, fuzzy
-msgctxt "LibraryPageMenu|"
+msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Sinc Agora"
 
-#: ../Menues/LibraryPageMenu.qml:29
+#: ../Menues/LibraryPageActions.qml:41
 #, fuzzy
-msgctxt "LibraryPageMenu|"
+msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Sync Log"
 
@@ -676,127 +676,127 @@ msgctxt "LogViewPage|"
 msgid "Copy Log"
 msgstr "Diário de cópias"
 
-#: ../Windows/MainWindow.qml:21
+#: ../Windows/MainWindow.qml:23
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Windows/MainWindow.qml:102
+#: ../Windows/MainWindow.qml:104
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "Biblioteca sincronizadora..."
 
-#: ../Windows/MainWindow.qml:218
+#: ../Windows/MainWindow.qml:266
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../Windows/MainWindow.qml:229
+#: ../Windows/MainWindow.qml:277
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Color"
 msgstr "Cor"
 
-#: ../Windows/MainWindow.qml:240
+#: ../Windows/MainWindow.qml:288
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Add Tag"
 msgstr "Adicionar etiqueta"
 
-#: ../Windows/MainWindow.qml:247
+#: ../Windows/MainWindow.qml:295
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Attach File"
 msgstr "Anexar arquivo"
 
-#: ../Windows/MainWindow.qml:256
+#: ../Windows/MainWindow.qml:304
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Search"
 msgstr "Pesquisa"
 
-#: ../Windows/MainWindow.qml:263
+#: ../Windows/MainWindow.qml:311
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Sort"
 msgstr "Ordenar"
 
-#: ../Windows/MainWindow.qml:271
+#: ../Windows/MainWindow.qml:319
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Set Due Date"
 msgstr "Definir data de vencimento"
 
-#: ../Windows/MainWindow.qml:279
+#: ../Windows/MainWindow.qml:327
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../Windows/MainWindow.qml:317
+#: ../Windows/MainWindow.qml:365
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Settings"
 msgstr "Configurações"
 
-#: ../Windows/MainWindow.qml:318
+#: ../Windows/MainWindow.qml:366
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Ctrl+,"
 msgstr "Ctrl+,"
 
-#: ../Windows/MainWindow.qml:325
+#: ../Windows/MainWindow.qml:373
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Library"
 msgstr "New &Library"
 
-#: ../Windows/MainWindow.qml:336
+#: ../Windows/MainWindow.qml:384
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Note"
 msgstr "New &Note"
 
-#: ../Windows/MainWindow.qml:344
+#: ../Windows/MainWindow.qml:392
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Todo List"
 msgstr "New &Todo List"
 
-#: ../Windows/MainWindow.qml:352
+#: ../Windows/MainWindow.qml:400
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "New &Image"
 msgstr "Novo &Image"
 
-#: ../Windows/MainWindow.qml:360
+#: ../Windows/MainWindow.qml:408
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "&Quit"
 msgstr "&Quit"
 
-#: ../Windows/MainWindow.qml:368
+#: ../Windows/MainWindow.qml:416
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "&Find"
 msgstr "&Find"
 
-#: ../Windows/MainWindow.qml:395
+#: ../Windows/MainWindow.qml:443
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
 msgstr "Abrir Último &Item Criado"
 
-#: ../Windows/MainWindow.qml:403
+#: ../Windows/MainWindow.qml:451
 #, fuzzy
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Aberto &Barra do Lado Esquerdo"
 
-#: ../Windows/MainWindow.qml:522
+#: ../Windows/MainWindow.qml:570
 #, fuzzy
 msgctxt "MainWindow|"
 msgid ""
@@ -1129,13 +1129,13 @@ msgid ""
 "the server address and retry."
 msgstr ""
 
-#: ../Pages/NotePage.qml:122
+#: ../Pages/NotePage.qml:124
 #, fuzzy
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Página principal"
 
-#: ../Pages/NotePage.qml:185
+#: ../Pages/NotePage.qml:187
 #, fuzzy
 msgctxt "NotePage|"
 msgid "New Page"
@@ -1240,43 +1240,43 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Digite o título da biblioteca..."
 
-#: ../Pages/ScheduleViewPage.qml:77
+#: ../Pages/ScheduleViewPage.qml:80
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Vencido"
 
-#: ../Pages/ScheduleViewPage.qml:98
+#: ../Pages/ScheduleViewPage.qml:101
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Hoje"
 
-#: ../Pages/ScheduleViewPage.qml:99
+#: ../Pages/ScheduleViewPage.qml:102
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Amanhã"
 
-#: ../Pages/ScheduleViewPage.qml:141
+#: ../Pages/ScheduleViewPage.qml:144
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Mais Tarde Esta Semana"
 
-#: ../Pages/ScheduleViewPage.qml:143
+#: ../Pages/ScheduleViewPage.qml:146
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Próxima Semana"
 
-#: ../Pages/ScheduleViewPage.qml:144
+#: ../Pages/ScheduleViewPage.qml:147
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "A seguir"
 
-#: ../Pages/ScheduleViewPage.qml:253
+#: ../Pages/ScheduleViewPage.qml:256
 #, fuzzy
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
@@ -1309,29 +1309,34 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr ""
 
-#: ../Pages/SettingsPageForm.ui.qml:32
+#: ../Pages/SettingsPageForm.ui.qml:33
 #, fuzzy
 msgctxt "SettingsPageForm.ui|"
 msgid "Settings"
 msgstr "Configurações"
 
-#: ../Pages/SettingsPageForm.ui.qml:38
+#: ../Pages/SettingsPageForm.ui.qml:39
 #, fuzzy
 msgctxt "SettingsPageForm.ui|"
 msgid "User Interface"
 msgstr "Interface do Utilizador"
 
-#: ../Pages/SettingsPageForm.ui.qml:46
+#: ../Pages/SettingsPageForm.ui.qml:47
 #, fuzzy
 msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Linguagem:"
 
-#: ../Pages/SettingsPageForm.ui.qml:55
+#: ../Pages/SettingsPageForm.ui.qml:56
 #, fuzzy
 msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Tema:"
+
+#: ../Pages/SettingsPageForm.ui.qml:65
+msgctxt "SettingsPageForm.ui|"
+msgid "Font Size:"
+msgstr ""
 
 #: ../Widgets/SyncErrorNotificationBar.qml:43
 #, fuzzy
@@ -1361,55 +1366,55 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Adicionar etiqueta"
 
-#: ../Widgets/TodoListItem.qml:97
+#: ../Widgets/TodoListItem.qml:99
 #, fuzzy
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Não abrir todos - tudo feito"
 
-#: ../Pages/TodoListPage.qml:153
+#: ../Pages/TodoListPage.qml:155
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Termo de pesquisa 1, termo de pesquisa 2, ..."
 
-#: ../Pages/TodoListPage.qml:165
+#: ../Pages/TodoListPage.qml:167
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manualmente"
 
-#: ../Pages/TodoListPage.qml:171
+#: ../Pages/TodoListPage.qml:173
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nome"
 
-#: ../Pages/TodoListPage.qml:177
+#: ../Pages/TodoListPage.qml:179
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Data de vencimento"
 
-#: ../Pages/TodoListPage.qml:183
+#: ../Pages/TodoListPage.qml:185
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Criado em"
 
-#: ../Pages/TodoListPage.qml:189
+#: ../Pages/TodoListPage.qml:191
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Atualizado em"
 
-#: ../Pages/TodoListPage.qml:211
+#: ../Pages/TodoListPage.qml:213
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:233
 #, fuzzy
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
@@ -1439,135 +1444,140 @@ msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Devo continuar: %1"
 
-#: ../Widgets/TodosWidgetDelegate.qml:160
+#: ../Widgets/TodosWidgetDelegate.qml:161
 #, fuzzy
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Desviar para marcar"
 
-#: ../Widgets/TodosWidgetDelegate.qml:162
+#: ../Widgets/TodosWidgetDelegate.qml:163
 #, fuzzy
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Deslizar para marcar feito"
 
-#: ../Utils/Translations.qml:14
+#: ../Utils/Translations.qml:16
 #, fuzzy
 msgctxt "Translations|"
 msgid "System Language"
 msgstr "Linguagem do sistema"
 
-#: ../Utils/Translations.qml:18
+#: ../Utils/Translations.qml:24
 #, fuzzy
 msgctxt "Translations|"
 msgid "Danish"
 msgstr "Dinamarquês"
 
-#: ../Utils/Translations.qml:22
+#: ../Utils/Translations.qml:28
 #, fuzzy
 msgctxt "Translations|"
 msgid "German"
 msgstr "Alemão"
 
-#: ../Utils/Translations.qml:26
+#: ../Utils/Translations.qml:32
 #, fuzzy
 msgctxt "Translations|"
 msgid "Greek"
 msgstr "Grego"
 
-#: ../Utils/Translations.qml:30
+#: ../Utils/Translations.qml:36
 #, fuzzy
 msgctxt "Translations|"
 msgid "English"
 msgstr "Inglês"
 
-#: ../Utils/Translations.qml:34
+#: ../Utils/Translations.qml:40
 #, fuzzy
 msgctxt "Translations|"
 msgid "Spanish"
 msgstr "Espanhol"
 
-#: ../Utils/Translations.qml:38
+#: ../Utils/Translations.qml:44
 msgctxt "Translations|"
 msgid "Spanish (Latin America & Caribbean)"
 msgstr ""
 
-#: ../Utils/Translations.qml:42
+#: ../Utils/Translations.qml:48
+msgctxt "Translations|"
+msgid "Basque"
+msgstr ""
+
+#: ../Utils/Translations.qml:52
 #, fuzzy
 msgctxt "Translations|"
 msgid "Filipino"
 msgstr "Filipino"
 
-#: ../Utils/Translations.qml:46
+#: ../Utils/Translations.qml:56
 #, fuzzy
 msgctxt "Translations|"
 msgid "French"
 msgstr "Francês"
 
-#: ../Utils/Translations.qml:50
+#: ../Utils/Translations.qml:60
 #, fuzzy
 msgctxt "Translations|"
 msgid "Hungarian"
 msgstr "Húngaro"
 
-#: ../Utils/Translations.qml:54
+#: ../Utils/Translations.qml:64
 #, fuzzy
 msgctxt "Translations|"
 msgid "Italian"
 msgstr "Italiano"
 
-#: ../Utils/Translations.qml:58
+#: ../Utils/Translations.qml:68
 #, fuzzy
 msgctxt "Translations|"
 msgid "Dutch"
 msgstr "Holandês"
 
-#: ../Utils/Translations.qml:62
+#: ../Utils/Translations.qml:72
 #, fuzzy
 msgctxt "Translations|"
 msgid "Norwegian"
 msgstr "Norueguês"
 
-#: ../Utils/Translations.qml:66
+#: ../Utils/Translations.qml:76
 #, fuzzy
 msgctxt "Translations|"
 msgid "Polish"
 msgstr "Polaco"
 
-#: ../Utils/Translations.qml:70
+#: ../Utils/Translations.qml:80
 #, fuzzy
 msgctxt "Translations|"
 msgid "Portuguese"
 msgstr "Português"
 
-#: ../Utils/Translations.qml:74
+#: ../Utils/Translations.qml:84
 #, fuzzy
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
 msgstr "Português (Brasil)"
 
-#: ../Utils/Translations.qml:78
+#: ../Utils/Translations.qml:88
 msgctxt "Translations|"
 msgid "Russian"
 msgstr ""
 
-#: ../Utils/Translations.qml:82
+#: ../Utils/Translations.qml:92
 msgctxt "Translations|"
 msgid "Swedish"
 msgstr ""
 
-#: ../Utils/Translations.qml:86
+#: ../Utils/Translations.qml:96
 msgctxt "Translations|"
 msgid "Turkmen"
 msgstr ""
 
-#: ../Utils/Translations.qml:90
+#: ../Utils/Translations.qml:100
 #, fuzzy
 msgctxt "Translations|"
 msgid "Turkish"
 msgstr "Turco"
 
-#: ../Utils/Translations.qml:94
+#: ../Utils/Translations.qml:104
 #, fuzzy
 msgctxt "Translations|"
 msgid "Vietnamese"

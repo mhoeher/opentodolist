@@ -454,110 +454,110 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="144"/>
+        <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
         <translation type="unfinished">Rød</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="151"/>
+        <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Green</source>
         <translation type="unfinished">Grøn</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="158"/>
+        <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Blue</source>
         <translation type="unfinished">Blå</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="165"/>
+        <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
         <translation type="unfinished">Gul</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="172"/>
+        <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Orange</source>
         <translation type="unfinished">orange</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="179"/>
+        <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Lilac</source>
         <translation type="unfinished">Lilac</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="186"/>
+        <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
         <translation type="unfinished">hvid</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="196"/>
+        <location filename="../Pages/LibraryPage.qml" line="198"/>
         <source>Rename</source>
         <translation type="unfinished">Omdøb</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
+        <location filename="../Pages/LibraryPage.qml" line="203"/>
         <source>Delete</source>
         <translation type="unfinished">Slet</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="259"/>
+        <location filename="../Pages/LibraryPage.qml" line="261"/>
         <source>Note Title</source>
         <translation type="unfinished">Bemærk titel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="272"/>
+        <location filename="../Pages/LibraryPage.qml" line="274"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Todo liste titel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="285"/>
+        <location filename="../Pages/LibraryPage.qml" line="287"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Søgeudtryk 1, søgeudtryk 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="358"/>
+        <location filename="../Pages/LibraryPage.qml" line="366"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Intet her endnu! Start med at tilføje en &lt;a href=&apos;#note&apos;&gt; note &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; todo-liste &lt;/a&gt; eller &lt;a href=&apos;#image&apos;&gt; billede &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="417"/>
+        <location filename="../Pages/LibraryPage.qml" line="429"/>
         <source>Sort By</source>
         <translation type="unfinished">Sorter efter</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="422"/>
+        <location filename="../Pages/LibraryPage.qml" line="434"/>
         <source>Manually</source>
         <translation type="unfinished">manuelt</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="429"/>
+        <location filename="../Pages/LibraryPage.qml" line="441"/>
         <source>Title</source>
         <translation type="unfinished">Titel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="436"/>
+        <location filename="../Pages/LibraryPage.qml" line="448"/>
         <source>Due To</source>
         <translation type="unfinished">På grund af</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="443"/>
+        <location filename="../Pages/LibraryPage.qml" line="455"/>
         <source>Created At</source>
         <translation type="unfinished">Oprettet kl</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="450"/>
+        <location filename="../Pages/LibraryPage.qml" line="462"/>
         <source>Updated At</source>
         <translation type="unfinished">Opdateret kl</translation>
     </message>
 </context>
 <context>
-    <name>LibraryPageMenu</name>
+    <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageMenu.qml" line="20"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
         <translation type="unfinished">Synkroniser nu</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageMenu.qml" line="29"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
         <translation type="unfinished">Synkroniseringslog</translation>
     </message>
@@ -578,107 +578,107 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="21"/>
+        <location filename="../Windows/MainWindow.qml" line="23"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="102"/>
+        <location filename="../Windows/MainWindow.qml" line="104"/>
         <source>Synchronizing library...</source>
         <translation type="unfinished">Synkroniserer bibliotek ...</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="218"/>
+        <location filename="../Windows/MainWindow.qml" line="266"/>
         <source>Rename</source>
         <translation type="unfinished">Omdøb</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="229"/>
+        <location filename="../Windows/MainWindow.qml" line="277"/>
         <source>Color</source>
         <translation type="unfinished">Farve</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="240"/>
+        <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Add Tag</source>
         <translation type="unfinished">Tilføj tag</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="247"/>
+        <location filename="../Windows/MainWindow.qml" line="295"/>
         <source>Attach File</source>
         <translation type="unfinished">Vedhæft fil</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="256"/>
+        <location filename="../Windows/MainWindow.qml" line="304"/>
         <source>Search</source>
         <translation type="unfinished">Søg</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="263"/>
+        <location filename="../Windows/MainWindow.qml" line="311"/>
         <source>Sort</source>
         <translation type="unfinished">Sortere</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="271"/>
+        <location filename="../Windows/MainWindow.qml" line="319"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Indstil forfaldsdato</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="279"/>
+        <location filename="../Windows/MainWindow.qml" line="327"/>
         <source>Delete</source>
         <translation type="unfinished">Slet</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="317"/>
+        <location filename="../Windows/MainWindow.qml" line="365"/>
         <source>Settings</source>
         <translation type="unfinished">Indstillinger</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="318"/>
+        <location filename="../Windows/MainWindow.qml" line="366"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="325"/>
+        <location filename="../Windows/MainWindow.qml" line="373"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Nyt &amp;bibliotek</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="336"/>
+        <location filename="../Windows/MainWindow.qml" line="384"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Ny &amp;note</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="344"/>
+        <location filename="../Windows/MainWindow.qml" line="392"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Ny &amp;Todo-liste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="352"/>
+        <location filename="../Windows/MainWindow.qml" line="400"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Nyt &amp;billede</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="360"/>
+        <location filename="../Windows/MainWindow.qml" line="408"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Afslut</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="368"/>
+        <location filename="../Windows/MainWindow.qml" line="416"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Find</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="395"/>
+        <location filename="../Windows/MainWindow.qml" line="443"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Åbn sidste &amp;oprettede vare</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="403"/>
+        <location filename="../Windows/MainWindow.qml" line="451"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Åbn og &amp;venstre sidestang</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="522"/>
+        <location filename="../Windows/MainWindow.qml" line="570"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Start med at &lt;a href=&apos;#newLibrary&apos;&gt; oprette et nyt bibliotek &lt;/a&gt;. Biblioteker bruges til at gemme forskellige slags ting som noter, todo lister og billeder.</translation>
     </message>
@@ -957,12 +957,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="122"/>
+        <location filename="../Pages/NotePage.qml" line="124"/>
         <source>Main Page</source>
         <translation type="unfinished">Forside</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="185"/>
+        <location filename="../Pages/NotePage.qml" line="187"/>
         <source>New Page</source>
         <translation type="unfinished">Ny side</translation>
     </message>
@@ -1086,37 +1086,37 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="77"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="80"/>
         <source>Overdue</source>
         <translation type="unfinished">Forsinket</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="98"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Today</source>
         <translation type="unfinished">I dag</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="99"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="102"/>
         <source>Tomorrow</source>
         <translation type="unfinished">I morgen</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="141"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
         <source>Later This Week</source>
         <translation type="unfinished">Senere denne uge</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
         <source>Next Week</source>
         <translation type="unfinished">Næste uge</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
         <source>Coming Next</source>
         <translation type="unfinished">Kommer næste</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="253"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Intet planlagt ...Tilføj en forfaldsdato til poster, så de kan vises her.</translation>
     </message>
@@ -1164,24 +1164,29 @@
 <context>
     <name>SettingsPageForm.ui</name>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="32"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="33"/>
         <source>Settings</source>
         <translation type="unfinished">Indstillinger</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="38"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="39"/>
         <source>User Interface</source>
         <translation type="unfinished">Brugergrænseflade</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="46"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="47"/>
         <source>Language:</source>
         <translation type="unfinished">Sprog:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPageForm.ui.qml" line="55"/>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="56"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPageForm.ui.qml" line="65"/>
+        <source>Font Size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1213,7 +1218,7 @@
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="97"/>
+        <location filename="../Widgets/TodoListItem.qml" line="99"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Ingen åbne todos - alt gjort</translation>
     </message>
@@ -1221,42 +1226,42 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="153"/>
+        <location filename="../Pages/TodoListPage.qml" line="155"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Søgeudtryk 1, søgeudtryk 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="165"/>
+        <location filename="../Pages/TodoListPage.qml" line="167"/>
         <source>Manually</source>
         <translation type="unfinished">manuelt</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="171"/>
+        <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Name</source>
         <translation type="unfinished">Navn</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="177"/>
+        <location filename="../Pages/TodoListPage.qml" line="179"/>
         <source>Due Date</source>
         <translation type="unfinished">Afleveringsdato</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="183"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Created At</source>
         <translation type="unfinished">Oprettet kl</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="189"/>
+        <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Updated At</source>
         <translation type="unfinished">Opdateret kl</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="211"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="233"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Tilføj nyt todo...</translation>
     </message>
@@ -1290,12 +1295,12 @@
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="160"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="161"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Stryg for at markere fortrydt</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="162"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="163"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Stryg for at markere udført</translation>
     </message>
@@ -1303,107 +1308,112 @@
 <context>
     <name>Translations</name>
     <message>
-        <location filename="../Utils/Translations.qml" line="14"/>
+        <location filename="../Utils/Translations.qml" line="16"/>
         <source>System Language</source>
         <translation type="unfinished">System Sprog</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="18"/>
+        <location filename="../Utils/Translations.qml" line="24"/>
         <source>Danish</source>
         <translation type="unfinished">Dansk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="22"/>
+        <location filename="../Utils/Translations.qml" line="28"/>
         <source>German</source>
         <translation type="unfinished">tysk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="26"/>
+        <location filename="../Utils/Translations.qml" line="32"/>
         <source>Greek</source>
         <translation type="unfinished">Græsk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="30"/>
+        <location filename="../Utils/Translations.qml" line="36"/>
         <source>English</source>
         <translation type="unfinished">engelsk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="34"/>
+        <location filename="../Utils/Translations.qml" line="40"/>
         <source>Spanish</source>
         <translation type="unfinished">Spansk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="38"/>
+        <location filename="../Utils/Translations.qml" line="44"/>
         <source>Spanish (Latin America &amp; Caribbean)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="42"/>
+        <location filename="../Utils/Translations.qml" line="48"/>
+        <source>Basque</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Translations.qml" line="52"/>
         <source>Filipino</source>
         <translation type="unfinished">Filipino</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="46"/>
+        <location filename="../Utils/Translations.qml" line="56"/>
         <source>French</source>
         <translation type="unfinished">fransk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="50"/>
+        <location filename="../Utils/Translations.qml" line="60"/>
         <source>Hungarian</source>
         <translation type="unfinished">Ungarsk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="54"/>
+        <location filename="../Utils/Translations.qml" line="64"/>
         <source>Italian</source>
         <translation type="unfinished">Italiensk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="58"/>
+        <location filename="../Utils/Translations.qml" line="68"/>
         <source>Dutch</source>
         <translation type="unfinished">Hollandsk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="62"/>
+        <location filename="../Utils/Translations.qml" line="72"/>
         <source>Norwegian</source>
         <translation type="unfinished">Norsk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="66"/>
+        <location filename="../Utils/Translations.qml" line="76"/>
         <source>Polish</source>
         <translation type="unfinished">Polere</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="70"/>
+        <location filename="../Utils/Translations.qml" line="80"/>
         <source>Portuguese</source>
         <translation type="unfinished">Portugisisk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="74"/>
+        <location filename="../Utils/Translations.qml" line="84"/>
         <source>Portuguese (Brazil)</source>
         <translation type="unfinished">Portugisisk (Brasilien)</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="78"/>
+        <location filename="../Utils/Translations.qml" line="88"/>
         <source>Russian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="82"/>
+        <location filename="../Utils/Translations.qml" line="92"/>
         <source>Swedish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="86"/>
+        <location filename="../Utils/Translations.qml" line="96"/>
         <source>Turkmen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="90"/>
+        <location filename="../Utils/Translations.qml" line="100"/>
         <source>Turkish</source>
         <translation type="unfinished">Tyrkisk</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="94"/>
+        <location filename="../Utils/Translations.qml" line="104"/>
         <source>Vietnamese</source>
         <translation type="unfinished">Vietnamesisk</translation>
     </message>
