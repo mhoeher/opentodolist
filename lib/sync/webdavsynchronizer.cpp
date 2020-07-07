@@ -44,7 +44,6 @@
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
 
 const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
-const QString WebDAVSynchronizer::SyncErrorFileName = ".webdav-sync-had-errors";
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
     : Synchronizer(parent),
@@ -132,26 +131,8 @@ void WebDAVSynchronizer::synchronize()
         setSynchronizing(true);
         m_stopRequested = false;
         m_hasSyncErrors = false;
-        bool fullSync = false;
         {
             QDir syncDir(directory());
-            if (syncDir.exists(SyncLockFileName)) {
-                // If the last sync did not run through, do a full sync,
-                // i.e. request etags for all directories.
-                fullSync = true;
-                qCWarning(::log) << "The last sync did not "
-                                    "complete - doing a full "
-                                    "sync";
-                warning() << tr("The last sync did not run through - "
-                                "doing a full sync");
-            }
-            if (syncDir.exists(SyncErrorFileName)) {
-                // The last sync encountered errors - do a full sync to ensure we
-                // pull all changes.
-                fullSync = true;
-                qCWarning(::log) << "The last sync did complete with errors - do a full sync";
-                warning() << tr("The last sync completed with errors - doing a full sync");
-            }
             QFile file(syncDir.absoluteFilePath(SyncLockFileName));
             if (!file.open(QIODevice::WriteOnly)) {
                 qCWarning(::log) << "Failed to create sync lock:" << file.errorString();
@@ -192,12 +173,10 @@ void WebDAVSynchronizer::synchronize()
 
         if (dirsOkay) {
             QSet<QString> changedYearDirs;
-            if (!dav->syncDirectory("/", QRegularExpression("\\d\\d\\d\\d"), false,
-                                    &changedYearDirs)) {
+            if (!dav->syncDirectory("/", QRegularExpression("\\d\\d\\d\\d"), &changedYearDirs)) {
                 warning() << tr("Failed to synchronize top level "
                                 "directory!");
                 qCWarning(::log) << "Failed to sync top level directory";
-                touchErrorLock();
             }
             // Sync the year directory:
             QDir dir(directory());
@@ -207,10 +186,8 @@ void WebDAVSynchronizer::synchronize()
                 }
                 QSet<QString> changedMonthDirs;
                 if (!dav->syncDirectory("/" + yearDir + "/", QRegularExpression("\\d\\d?"),
-                                        fullSync || !changedYearDirs.contains(yearDir),
                                         &changedMonthDirs)) {
                     warning() << tr("Failed to synchronize '%1'").arg("/" + yearDir);
-                    touchErrorLock();
                 }
                 QDir ydir(dir.absoluteFilePath(yearDir));
                 for (auto monthDir : ydir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -218,11 +195,9 @@ void WebDAVSynchronizer::synchronize()
                         break;
                     }
                     if (!dav->syncDirectory("/" + yearDir + "/" + monthDir + "/",
-                                            QRegularExpression(),
-                                            fullSync || !changedMonthDirs.contains(monthDir))) {
+                                            QRegularExpression())) {
                         warning() << tr("Failed to synchronize '%1'")
                                              .arg("/" + yearDir + "/" + monthDir);
-                        touchErrorLock();
                     }
                 }
             }
@@ -230,12 +205,6 @@ void WebDAVSynchronizer::synchronize()
         if (!m_stopRequested) {
             QDir syncDir(directory());
             syncDir.remove(SyncLockFileName);
-            if (syncDir.exists(SyncErrorFileName) && !m_hasSyncErrors) {
-                if (!syncDir.remove(SyncErrorFileName)) {
-                    qCWarning(::log) << "Failed to remove the sync error lock file";
-                    warning() << tr("Failed to remove the error lock file");
-                }
-            }
         }
         setSynchronizing(false);
         delete dav;
@@ -472,21 +441,6 @@ bool WebDAVSynchronizer::createDirs() const
 void WebDAVSynchronizer::setCreateDirs(bool createDirs)
 {
     m_createDirs = createDirs;
-}
-
-void WebDAVSynchronizer::touchErrorLock()
-{
-    m_hasSyncErrors = true;
-    QDir dir(directory());
-    if (!dir.exists(SyncErrorFileName)) {
-        QFile file(dir.absoluteFilePath(SyncErrorFileName));
-        if (!file.open(QIODevice::WriteOnly)) {
-            qCWarning(::log) << "Failed to create error lock:" << file.errorString();
-            error() << tr("Failed to create error lock:") << file.errorString();
-        } else {
-            file.close();
-        }
-    }
 }
 
 QVariantMap WebDAVSynchronizer::toFullMap() const
