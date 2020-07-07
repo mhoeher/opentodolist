@@ -40,6 +40,35 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.24.0" date="2020-07-07">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #346: Make sure we pull all changes from the server.
+            </li>
+            <li>
+                #350: Fix connections to some WebDAV servers (due to wrong Depth-header).
+            </li>
+            <li>
+                #289: Use ccache in CIs.
+            </li>
+            <li>
+                #295: Allow changing the font size used by the app.
+            </li>
+            <li>
+                #345: Ensure buttons in side bar to collapse tags of a library are large enough.
+            </li>
+            <li>
+                #349: Unify dots-menu and menu holding hidden tool bar actions.
+            </li>
+            <li>
+                #153: Auto-scroll during drag and drop.
+            </li>
+            <li>
+                #352: Remove due date controls from task related user interfaces.
+            </li>
+        </ul>
+      </release>
       <release version="3.23.0" date="2020-06-01">
         <p>This release includes the following changes:</p>
         <ul>
