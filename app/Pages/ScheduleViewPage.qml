@@ -59,7 +59,7 @@ Page {
     }
 
     Timer {
-        interval: 1000 * 60 * 60
+        interval: 1000 * 10 // Update every 10s - note due to value checking, mostly does nothing
         repeat: true
         running: true
         onTriggered: d.updateTimes()
