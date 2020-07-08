@@ -97,7 +97,7 @@ int ItemsModel::rowCount(const QModelIndex& parent) const
 QVariant ItemsModel::data(const QModelIndex& index, int role) const
 {
     int row = index.row();
-    if (row < m_ids.length()) {
+    if (row < m_ids.length() && row >= 0) {
         auto id = m_ids.at(row);
         auto item = m_items.value(id);
         switch (role) {
