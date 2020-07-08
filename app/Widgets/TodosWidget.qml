@@ -206,13 +206,16 @@ ListView {
 
     delegate: TodosWidgetDelegate {
         id: swipeDelegate
+
+        property int updateCounter: 0
+
         model: root.model
         item: object
         allowSorting: root.allowSorting
         hideDueDate: typeof(root.hideDueToLabelForSectionsFunction) === "function" ?
                          root.hideDueToLabelForSectionsFunction(ListView.section) : false
         drawSeperator: {
-            let result = true;
+            let result = updateCounter || true; // Force re-evaluation of binding
             if (index == root.model.rowCount() - 1) {
                 // Dont draw separator for last item
                 result = false;
@@ -231,6 +234,13 @@ ListView {
 
         onItemPressedAndHold: showContextMenu({x: 0, y: 0})
         onItemClicked: root.todoClicked(item)
+
+        Connections {
+            target: root.model
+            onModelReset: swipeDelegate.updateCounter++
+            onRowsInserted: swipeDelegate.updateCounter++
+            onRowsRemoved: swipeDelegate.updateCounter++
+        }
 
         function showContextMenu(mouse) {
             itemActionMenu.actions = swipeDelegate.itemActions;
