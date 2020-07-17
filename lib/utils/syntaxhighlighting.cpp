@@ -19,12 +19,12 @@
 
 #include "syntaxhighlighting.h"
 
-#include <algorithm>
-
 #include <QBuffer>
 #include <QDebug>
 #include <QFile>
 #include <QTemporaryDir>
+
+#include <algorithm>
 
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/htmlhighlighter.h"
