@@ -1,10 +1,33 @@
-Qt.include("showdownjs/showdown.js")
+.import Utils 1.0 as Utils
 
-var converter = new showdown.Converter();
+Qt.include("showdown-1.9.1/dist/showdown.js")
+
+// Register custom extension which highlights code blocks using
+// the KDE Syntax Highlighter.
+// Sample code taken from https://github.com/showdownjs/showdown/issues/577
+showdown.extension('highlight', function () {
+    return [{
+                type: "output",
+                filter: function (text, converter, options) {
+                    var left = "<pre><code\\b[^>]*>",
+                    right = "</code></pre>",
+                    flags = "g";
+                    var replacement = function (wholeMatch, match, left, right) {
+                        var lang = (left.match(/class=\"([^ \"]+)/) || [])[1];
+                        return Utils.SyntaxHighlighter.sourceToHtml(match, lang);
+                    };
+                    return showdown.helper.replaceRecursiveRegExp(text, replacement, left, right, flags);
+                }
+            }];
+});
+
+// Create global converter used to convert Markdown to HTML:
+//var converter = new showdown.Converter();
+var converter = new showdown.Converter({ extensions: ['highlight']});
 converter.setFlavor('github');
-// Note: Seens not to be supported by QML/Qt :(
 converter.setOption('strikethrough', true);
 converter.setOption('ghMentions', false);
+converter.setOption('disableForced4SpacesIndentedSublists', true);
 
 function markdownToHtml(markdown) {
     if (markdown !== "") {

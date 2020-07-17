@@ -19,9 +19,15 @@
 
 #include "syntaxhighlighting.h"
 
+#include <algorithm>
+
+#include <QBuffer>
 #include <QDebug>
+#include <QFile>
+#include <QTemporaryDir>
 
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
+#include "../3rdparty/KDE/syntax-highlighting/src/lib/htmlhighlighter.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/repository.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/syntaxhighlighter.h"
 #include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
@@ -83,6 +89,65 @@ void SyntaxHighlighter::setTheme(const Theme& theme)
         emit themeChanged();
         applyTheme();
     }
+}
+
+/**
+ * @brief Convert source code to HTML.
+ *
+ * This utility method takes some @p source code (which is written in the given @p language)
+ * and converts it to "highlighted" text in HTML format.
+ */
+QString SyntaxHighlighter::sourceToHtml(const QString& source, const QString& language) const
+{
+    QTemporaryDir tmpDir;
+    auto outputFileName = tmpDir.path() + "/" + "output.html";
+    KSyntaxHighlighting::HtmlHighlighter highlighter;
+    highlighter.setOutputFile(outputFileName);
+    switch (m_theme) {
+    case Dark:
+        highlighter.setTheme(
+                m_repository->defaultTheme(KSyntaxHighlighting::Repository::DarkTheme));
+        break;
+    default:
+        highlighter.setTheme(
+                m_repository->defaultTheme(KSyntaxHighlighting::Repository::LightTheme));
+        break;
+    }
+    auto languageLower = language.toLower();
+    auto definitions = m_repository->definitions();
+    auto def = std::find_if(definitions.begin(), definitions.end(),
+                            [&](auto d) { return d.name().toLower() == languageLower; });
+    if (def != definitions.end()) {
+        highlighter.setDefinition(*def);
+    } else {
+        highlighter.setDefinition(m_repository->definitionForFileName("test." + language));
+    }
+    {
+        auto unescapedSource = source;
+        unescapedSource.replace("&amp;", "&");
+        unescapedSource.replace("&lt;", "<");
+        unescapedSource.replace("&gt;", ">");
+        unescapedSource.replace("&quot;", "\"");
+        auto sourceData = unescapedSource.toUtf8();
+        QBuffer buffer(&sourceData);
+        if (buffer.open(QIODevice::ReadOnly)) {
+            highlighter.highlightData(&buffer);
+        }
+    }
+    QFile file(outputFileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        auto result = file.readAll();
+        file.close();
+        const QByteArray BodyStart = "<body ";
+        auto bodyStartIdx = result.indexOf(BodyStart);
+        auto bodyEndIdx = result.indexOf("</body>");
+        if (bodyStartIdx >= 0 && bodyEndIdx >= 0) {
+            bodyStartIdx = bodyStartIdx + BodyStart.length();
+            result = "<code " + result.mid(bodyStartIdx, bodyEndIdx - bodyStartIdx) + "</code>";
+        }
+        return result;
+    }
+    return "<code><pre>" + source + "</code></pre>";
 }
 
 void SyntaxHighlighter::applyTheme()

@@ -124,5 +124,7 @@
         <file>Windows/NewItemWithDueDateDialog.qml</file>
         <file>Components/AutoScrollOverlay.qml</file>
         <file>Widgets/ItemDragTile.qml</file>
+        <file>Utils/SyntaxHighlighter.qml</file>
+        <file>3rdpartyinfo/showdownjs/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

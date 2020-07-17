@@ -695,18 +695,6 @@ ApplicationWindow {
                     librariesSideBar.currentTag = "";
                 }
             }
-
-//            onCancelled: window.viewLibrary()
-//            onLibraryAvailable: {
-//                var lib = OTL.Application.addLibrary(synchronizer);
-//                if (lib !== null) {
-//                    librariesSideBar.currentLibrary = lib;
-//                    librariesSideBar.currentTag = "";
-//                } else {
-//                    console.error("Failed to create library!");
-//                    window.viewLibrary();
-//                }
-//            }
         }
     }
 
@@ -718,6 +706,5 @@ ApplicationWindow {
             window.raise();
         }
     }
-
 }
 

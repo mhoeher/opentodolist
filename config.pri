@@ -54,7 +54,7 @@ with_appimage_extras {
 
 defineTest(setupTest) {
 
-    CONFIG += c++11
+    CONFIG += c++14
     TARGET = tst_$${1}test
     CONFIG  += console testcase no_testcase_installs
     CONFIG  -= app_bundle
