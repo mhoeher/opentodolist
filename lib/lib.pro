@@ -5,7 +5,7 @@ QT       -= gui
 
 TEMPLATE = lib
 TARGET = opentodolist-core
-CONFIG += c++11 create_prl
+CONFIG += c++14 create_prl
 macos:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models

@@ -15,7 +15,7 @@ CONFIG(release, debug|release) {
     QTQUICK_COMPILER_SKIPPED_RESOURCES += res.qrc
 }
 
-CONFIG += c++11 lrelease embed_translations
+CONFIG += c++14 lrelease embed_translations
 
 SOURCES += main.cpp
 

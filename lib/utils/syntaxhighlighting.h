@@ -50,6 +50,8 @@ public:
     Theme theme() const;
     void setTheme(const Theme& theme);
 
+    Q_INVOKABLE QString sourceToHtml(const QString& source, const QString& language) const;
+
 signals:
 
     void documentChanged();
