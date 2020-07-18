@@ -36,7 +36,11 @@ $QTSDK/bin/macdeployqt \
 
 # Create a zip archive suitable for uploading to the notarization
 # service:
-ditto -ck --rsrc --sequesterRsrc "app/OpenTodoList.app" "app/OpenTodoList.zip"
+ditto \
+    -ck --rsrc \
+    --sequesterRsrc \
+    --keepParent \
+    "app/OpenTodoList.app" "app/OpenTodoList.zip"
 
 # Make sure the app has been signed:
 codesign -v app/OpenTodoList.app
@@ -91,7 +95,7 @@ xcrun altool \
 # Prepare a "beautified" folder:
 cd app
 mkdir dmg.in
-cp -r OpenTodoList.app dmg.in
+cp -R OpenTodoList.app dmg.in
 cp ../../templates/macos/DS_Store ./dmg.in/.DS_Store
 cd dmg.in
 ln -s /Applications ./Applications
