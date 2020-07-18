@@ -48,7 +48,7 @@
 
 
 
-<language name="Mustache/Handlebars (HTML)/PHP" hidden="true" version="3" kateversion="5.44"
+<language name="Mustache/Handlebars (HTML)/PHP" hidden="true" version="4" kateversion="5.44"
           section="Other" priority="1" mimetype=""
           extensions=""
           author="Nibaldo González (nibgonz@gmail.com), based on the HTML highlighter by Wilbert Berendsen (wilbert@kde.nl)"
@@ -94,8 +94,8 @@
 			<RegExpr context="#pop!MustacheRawBlockContent" attribute="Mustache Block" String="\{{4}[^/].*\}{4}" minimal="true" beginRegion="HandlebarsRawBlock" />
 			<!-- Sections -->
 			<!-- For helpers (not included because it's redundant):
-			       Start: \{\{~?#?\s*(?=(if|unless|with|link\-to|each(\-in)?)\b)
-			       End:   \{\{~?/\s*(?=(if|unless|with|link\-to|each(\-in)?)\b)  -->
+			       Start: \{\{~?#?\s*(?=(?:if|unless|with|link\-to|each(?:\-in)?)\b)
+			       End:   \{\{~?/\s*(?=(?:if|unless|with|link\-to|each(?:\-in)?)\b)  -->
 			<RegExpr context="#pop!MustacheVariableBlock" attribute="Mustache Block" String="\{\{~?\s*else(?:\s+(?:if|unless|with|link\-to|each(?:\-in)?))?\b" />
 			<RegExpr context="#pop!MustacheVariableBlock" attribute="Mustache Block" String="\{\{~?[#\^][&gt;\*]?\s*&identifier;\b" beginRegion="MustacheBlock" />
 			<RegExpr context="#pop" attribute="Mustache Block" String="\{\{~?/\s*&identifier;\s*\}\}" endRegion="MustacheBlock" />
@@ -526,7 +526,7 @@
 
 <general>
 	<comments>
-		<comment name="multiLine" start="{{!" end="}}" />
+		<comment name="multiLine" start="{{!" end="}}" region="MustacheInlineComment" />
 	</comments>
 </general>
 
