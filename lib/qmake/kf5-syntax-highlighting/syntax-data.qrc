@@ -123,10 +123,12 @@
 <file alias="ilerpg.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/ilerpg.xml</file>
 <file alias="inform.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/inform.xml</file>
 <file alias="ini.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/ini.xml</file>
+<file alias="innosetup.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/innosetup.xml</file>
 <file alias="intelhex.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/intelhex.xml</file>
 <file alias="isocpp.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/isocpp.xml</file>
 <file alias="j.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/j.xml</file>
 <file alias="jam.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/jam.xml</file>
+<file alias="java-properties.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/java-properties.xml</file>
 <file alias="java.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/java.xml</file>
 <file alias="javadoc.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/javadoc.xml</file>
 <file alias="javascript-react.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/javascript-react.xml</file>
@@ -200,6 +202,7 @@
 <file alias="opal.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/opal.xml</file>
 <file alias="opencl.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/opencl.xml</file>
 <file alias="openscad.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/openscad.xml</file>
+<file alias="overpassql.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/overpassql.xml</file>
 <file alias="pango.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/pango.xml</file>
 <file alias="pascal.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/pascal.xml</file>
 <file alias="perl.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/perl.xml</file>
@@ -261,6 +264,7 @@
 <file alias="sisu.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/sisu.xml</file>
 <file alias="smali.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/smali.xml</file>
 <file alias="sml.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/sml.xml</file>
+<file alias="solidity.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/solidity.xml</file>
 <file alias="spice.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/spice.xml</file>
 <file alias="sql-mysql.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/sql-mysql.xml</file>
 <file alias="sql-oracle.xml">../../../3rdparty/KDE/syntax-highlighting/data/syntax/sql-oracle.xml</file>
