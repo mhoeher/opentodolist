@@ -3,13 +3,11 @@
 FROM ubuntu:18.04
 #MAINTAINER Rabit <home@rabits.org> (@rabits)
 
-
-ARG QT_VERSION=5.14.2
+ARG QT_VERSION=5.15.0
 ARG QT_INSTALLER_URL="http://master.qt.io/archive/online_installers/3.2/qt-unified-linux-x64-3.2.1-2-online.run"
 ARG QT_INSTALLER_SHA256="02a3445e5b8dab761946ad6f6f3d80ccf9a3246d689bcbec69112379dd523506"
 # Use to pass URL with env exports file context with QT_CI_LOGIN & QT_CI_PASSWORD
 ARG QT_CI_ENV_URL=""
-
 
 ARG NDK_VERSION=21.0.6113669
 
@@ -20,6 +18,8 @@ ARG SDK_PLATFORM=android-${ANDROID_NATIVE_API_LEVEL}
 ARG SDK_INSTALL_DIR=/opt/android-sdk
 ARG SDK_BUILD_TOOLS=${ANDROID_NATIVE_API_LEVEL}.0.3
 ARG SDK_PACKAGES="tools platform-tools"
+ARG QT_CI_LOGIN
+ARG QT_CI_PASSWORD
 
 ENV DEBIAN_FRONTEND=noninteractive \
     QT_PATH=/opt/Qt \
@@ -89,4 +89,4 @@ RUN echo "${SDK_SHA256} -" > sum.txt && curl -fLs "${SDK_URL}" | tee /tmp/sdk-to
 # Reconfigure locale
 RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 
-ENV QT_ROOT /opt/Qt/5.14.2/android/
+ENV QT_ROOT /opt/Qt/5.15.0/android/
