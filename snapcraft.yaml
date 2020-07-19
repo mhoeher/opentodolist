@@ -2,7 +2,7 @@ name: opentodolist
 version: git
 confinement: strict
 grade: stable
-base: core18
+base: core20
 adopt-info: opentodolist # part to adopt appstream data from (first in parse list)
 apps:
     opentodolist:
