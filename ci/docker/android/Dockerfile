@@ -89,4 +89,4 @@ RUN echo "${SDK_SHA256} -" > sum.txt && curl -fLs "${SDK_URL}" | tee /tmp/sdk-to
 # Reconfigure locale
 RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 
-ENV QT_ROOT /opt/Qt/5.15.0/android/
+ENV QT_ROOT ${QT_ANDROID}

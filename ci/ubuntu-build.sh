@@ -7,11 +7,6 @@ PREFIX_PATH=$QT_ROOT
 which ninja-build || (apt-get update && apt-get install -y ninja-build)
 
 if [ -n "$CI" ]; then
-    apt-get update
-    apt-get install -y libxcomposite1 ccache
-fi
-
-if [ -n "$CI" ]; then
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
         http://nextcloud/index.php
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
