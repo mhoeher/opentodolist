@@ -6,6 +6,8 @@ include(../lib/lib.pri)
 
 QT += qml quick xml concurrent widgets
 
+CONFIG += c++14 lrelease embed_translations
+
 # Use Qt Quick Compiler for release builds:
 CONFIG(release, debug|release) {
     # Note: This option must come before the embed_translations option,
@@ -14,8 +16,6 @@ CONFIG(release, debug|release) {
     CONFIG += qtquickcompiler
     QTQUICK_COMPILER_SKIPPED_RESOURCES += res.qrc
 }
-
-CONFIG += c++14 lrelease embed_translations
 
 SOURCES += main.cpp
 
