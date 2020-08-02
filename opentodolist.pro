@@ -34,7 +34,7 @@ app.depends += lib
 include(config.pri)
 # include(installer.pri)
 
-!ios {
+!ios:!macos {
     # Check environment for optional packages:
     load(configure)
 

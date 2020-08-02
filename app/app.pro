@@ -111,6 +111,12 @@ ios {
     QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
 }
 
+# macOS specific setup
+macos {
+    QMAKE_TARGET_BUNDLE_PREFIX = net.rpdev
+    QMAKE_BUNDLE = OpenTodoList
+}
+
 OTHER_FILES += \
     ios/exportOptions.plist
 
