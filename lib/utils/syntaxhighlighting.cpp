@@ -42,6 +42,10 @@ SyntaxHighlighter::SyntaxHighlighter(QObject* parent)
       m_document(nullptr),
       m_theme(Light)
 {
+    // Initialize KDE syntax highlighting resources in case
+    // we use static linking
+    Q_INIT_RESOURCE(syntax_data);
+    Q_INIT_RESOURCE(theme_data);
     m_highlighter = new KSyntaxHighlighting::SyntaxHighlighter(this);
     m_repository = new KSyntaxHighlighting::Repository();
     m_highlighter->setDefinition(m_repository->definitionForFileName("test.md"));
