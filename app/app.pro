@@ -6,11 +6,11 @@ include(../lib/lib.pri)
 
 QT += qml quick xml concurrent widgets
 
-CONFIG += c++14 lrelease
+CONFIG += c++14
 
 # On iOS starting with Qt 5.15 we need to put this bevor the
 # qtquickcompiler option, see https://bugreports.qt.io/browse/QTBUG-85834
-ios:CONFIG += embed_translations
+ios:CONFIG += lrelease embed_translations
 
 # Use Qt Quick Compiler for release builds:
 CONFIG(release, debug|release) {
@@ -23,7 +23,7 @@ CONFIG(release, debug|release) {
 
 # Everywhere else, we still put if after to avoid the above mentioned
 # QTBUG-79672.
-!ios:CONFIG += embed_translations
+!ios:CONFIG += lrelease embed_translations
 
 SOURCES += main.cpp
 
