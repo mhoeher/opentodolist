@@ -39,6 +39,7 @@ parts:
             - libcups2
             - libdatrie1
             - libdrm2
+            - libegl1
             - libepoxy0
             - libfontconfig1
             - libfreetype6
@@ -71,6 +72,7 @@ parts:
             - libpango-1.0-0
             - libpangocairo-1.0-0
             - libpangoft2-1.0-0
+            - libpcre2-16-0
             - libpixman-1-0
             - libpng16-16
             - libpq5
@@ -86,6 +88,7 @@ parts:
             - libwayland-server0
             - libwebp6
             - libwebpdemux2
+            - libwebpmux3
             - libwind0-heimdal
             - libx11-6
             - libx11-xcb1
