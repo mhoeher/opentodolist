@@ -1116,7 +1116,7 @@
         <translation type="unfinished">接下来</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">没有日程…给项目添加一个截至日期后将会显示在这里。</translation>
     </message>

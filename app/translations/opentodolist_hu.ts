@@ -1117,7 +1117,7 @@
         <translation type="unfinished">Jövőben</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Nincs ütemezve ... Adjon meg egy határidőt az elemekhez, hogy itt megjelenjenek.</translation>
     </message>

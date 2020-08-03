@@ -1116,7 +1116,7 @@
         <translation type="unfinished">Paparating</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Walang naka-iskedyul ... Magdagdag ng isang takdang petsa sa mga item para sa kanila na lumitaw dito.</translation>
     </message>

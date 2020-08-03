@@ -56,7 +56,7 @@ parts:
             - libheimntlm0-heimdal
             - libhx509-5-heimdal
             - libice6
-            - libicu60
+            - libicu66
             - libjbig0
             - libjpeg-turbo8
             - libkrb5-26-heimdal
@@ -66,7 +66,7 @@ parts:
             - libltdl7
             - libmng2
             - libmtdev1
-            - libmysqlclient20
+            - libmysqlclient21
             - libodbc1
             - libpango-1.0-0
             - libpangocairo-1.0-0

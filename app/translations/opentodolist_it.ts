@@ -1117,7 +1117,7 @@
         <translation type="unfinished">In arrivo</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Niente di programmato... Aggiungere una data di scadenza alle voci per farle apparire qui.</translation>
     </message>

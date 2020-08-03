@@ -1116,7 +1116,7 @@
         <translation type="unfinished">Idziemy dalej</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Nic zaplanowanego... Dodaj termin do pozycji, aby się tu pojawiły.</translation>
     </message>

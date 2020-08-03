@@ -40,6 +40,32 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.25.0" date="2020-08-03">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #348: Update to Qt 5.15.
+            </li>
+            <li>
+                #355: Also use syntax highlighting on macOS and iOS.
+            </li>
+            <li>
+                #308: Notarize app on macOS.
+            </li>
+            <li>
+                #333: Fix some random failures in CI testing.
+            </li>
+            <li>
+                #181: Better text styling + code syntax highlighting when viewing text.
+            </li>
+            <li>
+                #344: Update day ranges in schedule view more regularly.
+            </li>
+            <li>
+                #347: Fix missing/extra separators between items in schedule view.
+            </li>
+        </ul>
+      </release>
       <release version="3.24.0" date="2020-07-07">
         <p>This release includes the following changes:</p>
         <ul>

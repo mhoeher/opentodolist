@@ -559,7 +559,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished">Synchroniser le journal</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1116,7 +1116,7 @@
         <translation type="unfinished">Prochainement</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Rien de prévu... Ajoutez une date d&apos;échéance aux éléments pour qu&apos;ils apparaissent ici.</translation>
     </message>
@@ -1186,7 +1186,7 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="65"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taille de police :</translation>
     </message>
 </context>
 <context>
@@ -1345,7 +1345,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
         <source>Basque</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Basque</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="52"/>

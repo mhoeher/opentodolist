@@ -556,7 +556,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished">Sync Now</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
@@ -1119,7 +1119,7 @@
         <translation type="unfinished">A continuación</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">No hay nada programado... Añade una fecha de vencimiento a los artículos para que aparezcan aquí.</translation>
     </message>
@@ -1189,7 +1189,7 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="65"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamaño de la fuente</translation>
     </message>
 </context>
 <context>
@@ -1348,7 +1348,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
         <source>Basque</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vasco </translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="52"/>

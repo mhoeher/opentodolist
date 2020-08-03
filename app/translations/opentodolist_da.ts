@@ -1116,7 +1116,7 @@
         <translation type="unfinished">Kommer næste</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Intet planlagt ...Tilføj en forfaldsdato til poster, så de kan vises her.</translation>
     </message>

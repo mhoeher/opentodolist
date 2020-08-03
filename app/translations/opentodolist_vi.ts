@@ -1117,7 +1117,7 @@
         <translation type="unfinished">Kế tiếp</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="256"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Không có gì theo lịch trình ... Thêm ngày đáo hạn vào các mục để chúng xuất hiện ở đây.</translation>
     </message>
