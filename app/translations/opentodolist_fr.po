@@ -860,14 +860,12 @@ msgstr "Mis à jour à"
 
 #. Une traduction plus littérale aurait été : "Faire glisser pour indiquer que ça n'a pas été réalisé", mais c'était foutrement long, alors j'ai pris quelques libertés...
 #: ../Widgets/TodosWidget.qml:309
-#, fuzzy
 msgctxt "TodosWidget|"
 msgid "Swipe to mark undone"
 msgstr "Faire glisser si non-réalisé"
 
 #. Une traduction plus littérale aurait été : "Faire glisser pour indiquer que ça a été réalisé", mais c'était foutrement long, alors j'ai pris quelques libertés...
 #: ../Widgets/TodosWidget.qml:310
-#, fuzzy
 msgctxt "TodosWidget|"
 msgid "Swipe to mark done"
 msgstr "Faire glisser si réalisé"
@@ -1014,13 +1012,11 @@ msgid "User Name"
 msgstr "Nom d'utilisateur"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
-#, fuzzy
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password:"
 msgstr "Mot de passe :"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
-#, fuzzy
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password"
 msgstr "Mot de passe"
@@ -1370,13 +1366,11 @@ msgstr "Supprimer"
 
 #. Je ne vois pas où ça apparaît, je ne suis pas certain de cette traduction
 #: ../Widgets/ItemDueDateEditor.qml:59
-#, fuzzy
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
 msgstr "Première échéance le %1."
 
 #: ../Widgets/ItemDueDateEditor.qml:72
-#, fuzzy
 msgctxt "ItemDueDateEditor|"
 msgid "No recurrence pattern set..."
 msgstr "Pas de répétition programmée..."
@@ -1529,14 +1523,12 @@ msgstr "Pour demain"
 
 #. Si vous avez mieux...
 #: ../Widgets/TodosWidgetDelegate.qml:161
-#, fuzzy
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Faire glisser si non-réalisé"
 
 #. Idem
 #: ../Widgets/TodosWidgetDelegate.qml:163
-#, fuzzy
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Faire glisser si réalisé"
@@ -1544,20 +1536,20 @@ msgstr "Faire glisser si réalisé"
 #: ../Menues/LibraryPageActions.qml:30
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Synchroniser maintenant"
 
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
-msgstr ""
+msgstr "Journal de synchronisation"
 
 #: ../Pages/SettingsPageForm.ui.qml:65
 msgctxt "SettingsPageForm.ui|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Taille de police :"
 
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
 msgid "Basque"
-msgstr ""
+msgstr "Basque"
 
