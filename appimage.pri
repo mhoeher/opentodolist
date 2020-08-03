@@ -3,7 +3,7 @@ LINUXDEPLOYQT = ./linuxdeployqt-continuous-x86_64.AppImage
 
 linuxdeployqt.target = $$LINUXDEPLOYQT
 linuxdeployqt.commands = \
-    wget -O $$LINUXDEPLOYQT $$LINUXDEPLOYQT_URL && \
+    curl -L -o $$LINUXDEPLOYQT $$LINUXDEPLOYQT_URL && \
     chmod +x $$LINUXDEPLOYQT
 
 appimage.target = appimage

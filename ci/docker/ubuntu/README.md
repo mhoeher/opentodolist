@@ -1,6 +1,6 @@
 The Dockerfile and script for extraction are based on the ones found here:
 
-https://github.com/rabits/dockerfiles/tree/master/5.15-android
+https://github.com/rabits/dockerfiles/tree/master/5.15-desktop
 
 To build the image, put a file `secrets.env` next to the Dockerfile with the following content
 
