@@ -1524,20 +1524,20 @@ msgstr "Pase a la marca hecha"
 #: ../Menues/LibraryPageActions.qml:30
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Sincronizar ahora"
 
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
-msgstr ""
+msgstr "Registro de sincronización"
 
 #: ../Pages/SettingsPageForm.ui.qml:65
 msgctxt "SettingsPageForm.ui|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Tamaño de la fuente"
 
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
 msgid "Basque"
-msgstr ""
+msgstr "Vasco "
 
