@@ -20,7 +20,11 @@ CenteredDialog {
     readonly property alias parentItem: parentEdit.currentValue
     readonly property alias itemType: d.itemType
     readonly property alias newItemTitle: titleEdit.displayText
-    readonly property var newItemDueOn: {
+
+    function newItemDueOn() {
+        // Note: We make this a function to force evaluation when new items are
+        // created without changing the due date combo box value. Otherwise, we "cache"
+        // the dates when the view remains open for a long time.
         switch (dueDateEdit.displayText) {
         case d.today:
             return DateUtils.today();
@@ -60,7 +64,7 @@ CenteredDialog {
     Component.onCompleted: {
         let okButton = standardButton(DialogButtonBox.Ok);
         okButton.enabled = Qt.binding(function() {
-            let result = dialog.newItemTitle !== "" && DateUtils.validDate(dialog.newItemDueOn);
+            let result = dialog.newItemTitle !== "" && DateUtils.validDate(dialog.newItemDueOn());
             if (d.itemType === "Todo") {
                 result = result && parentEdit.currentValue;
             }
