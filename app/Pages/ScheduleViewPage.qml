@@ -259,7 +259,7 @@ Page {
 
         library: page.library
         onAccepted: {
-            let args = {title: newItemTitle, dueTo: newItemDueOn};
+            let args = {title: newItemTitle, dueTo: newItemDueOn()};
             switch (itemType) {
             case "TodoList":
                 var newItem = OTL.Application.addTodoList(page.library, args);
