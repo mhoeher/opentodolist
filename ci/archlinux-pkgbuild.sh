@@ -29,4 +29,4 @@ pacman -Sy --noconfirm \
     $( . PKGBUILD && echo ${makedepends[*]} )
 (cd /home/build && sudo -u nobody makepkg)
 mkdir -p build-arch
-cp /home/build/OpenTodoList-*.pkg.tar.zst build-arch
+cp /home/build/opentodolist-*.pkg.tar.zst build-arch

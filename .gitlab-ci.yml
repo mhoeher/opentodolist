@@ -331,7 +331,7 @@ archlinux-pkgbuild:
         - ci/archlinux-pkgbuild.sh
     artifacts:
       paths:
-        - build-arch/OpenTodoList-*.pkg.tar.zst
+        - build-arch/opentodolist-*.pkg.tar.zst
       expire_in: 1 week
 
 
