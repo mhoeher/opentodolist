@@ -5,7 +5,7 @@ set -e
 PROJECT_ROOT=$(cd $(dirname $0) && cd .. && pwd)
 cd $PROJECT_ROOT
 
-# pacman -Sy --noconfirm base-devel
+pacman -Sy --noconfirm base-devel
 
 # Prepare build environment, see
 # http://allanmcrae.com/2015/01/replacing-makepkg-asroot/
@@ -15,7 +15,6 @@ if [ ! -d /home/build ]; then
     chmod g+ws /home/build
 fi
 
-rm -r /home/build/*
 cp PKGBUILD /home/build/
 chown  nobody:nobody /home/build/PKGBUILD
 sed -i \
@@ -23,6 +22,5 @@ sed -i \
     -e "s/release_build=yes/#release_build=yes/g" \
     /home/build/PKGBUILD
 (cd /home/build && sudo -u nobody makepkg)
-rm -r build-arch
-mkdir build-arch
+mkdir -p build-arch
 cp /home/build/OpenTodoList-*.pkg.tar.zst build-arch
