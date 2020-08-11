@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 OTHER_FILES += \
     README.md \
     COPYING \
+    PKGBUILD* \
     Doxyfile \
     doc/installers-howto.md \
     .gitlab-ci.yml \
