@@ -42,6 +42,7 @@ Additionally, you can find the app on the following stores:
 <a href="https://snapcraft.io/opentodolist">
 <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" height="40"></a>
 <a href='https://flathub.org/apps/details/net.rpdev.OpenTodoList'><img height='40' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+<a href='https://aur.archlinux.org/packages/opentodolist/'><img height='40' alt='Install from AUR' src='assets/AUR.png'/></a>
 
 
 
