@@ -332,6 +332,7 @@ archlinux-pkgbuild:
     artifacts:
       paths:
         - build-arch/opentodolist-*.pkg.tar.zst
+        - build-arch/.SRCINFO
       expire_in: 1 week
 
 
