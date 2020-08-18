@@ -2,10 +2,10 @@
 # https://www.tal.org/tutorials/openssl_qt_android.
 
 android {
-URL=https://www.openssl.org/source/old/1.1.1/openssl-1.1.1b.tar.gz
-ARCHIVE=openssl-1.1.1b.tar.gz
-SOURCE_DIR=openssl-1.1.1b
-SHA256SUM="5c557b023230413dfb0756f3137a13e6d726838ccd1430888ad15bfb2b43ea4b  openssl-1.1.1b.tar.gz"
+URL=https://www.openssl.org/source/old/1.1.1/openssl-1.1.1d.tar.gz
+ARCHIVE=openssl-1.1.1d.tar.gz
+SOURCE_DIR=openssl-1.1.1d
+SHA256SUM="1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2  openssl-1.1.1d.tar.gz"
 
 # Fetch OpenSSL library:
 fetch_openssl.target = $$ARCHIVE
