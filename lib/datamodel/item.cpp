@@ -84,9 +84,9 @@ QByteArray ItemCacheEntry::toByteArray() const
 ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByteArray& id)
 {
     ItemCacheEntry result;
-    auto map = QJsonDocument::fromBinaryData(data, QJsonDocument::BypassValidation)
-                       .toVariant()
-                       .toMap();
+    // Make a copy of the data - this ensures the data is properly aligned:
+    QByteArray alignedData(data.constData(), data.length());
+    auto map = QJsonDocument::fromBinaryData(alignedData).toVariant().toMap();
     if (map["type"] == Item::staticMetaObject.className()) {
         result.valid = true;
         result.id = QUuid(id);
