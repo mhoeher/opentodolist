@@ -412,7 +412,7 @@ appstore:
       - ios
 
 aur_release:
-    stage: installer
+    stage: deploy
     image: fedora
     variables:
         RELEASE_TO_AUR: 1
