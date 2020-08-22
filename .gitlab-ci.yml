@@ -323,6 +323,18 @@ flatpak:
             - .flatpak-builder/ccache/
         key: $CI_JOB_NAME
 
+# Build the app for Arch Linux using pkgbuild
+archlinux-pkgbuild:
+    stage: build
+    image: archlinux
+    script:
+        - ci/archlinux-pkgbuild.sh
+    artifacts:
+      paths:
+        - build-arch/opentodolist-*.pkg.tar.zst
+        - build-arch/.SRCINFO
+      expire_in: 1 week
+
 
 ################################################################################
 # Installer Stage
@@ -349,6 +361,17 @@ sign_apks:
         - android_armv7
         - android_arm64_v8a
         - android_aab
+
+aur_release_check:
+    stage: installer
+    image: fedora
+    script:
+        - ci/update-aur.sh
+    dependencies:
+        - archlinux-pkgbuild
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
 
 ################################################################################
 # Deploy Stage
@@ -387,3 +410,17 @@ appstore:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     dependencies:
       - ios
+
+aur_release:
+    stage: deploy
+    image: fedora
+    variables:
+        RELEASE_TO_AUR: 1
+    script:
+        - ci/update-aur.sh
+    dependencies:
+        - archlinux-pkgbuild
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+    when: manual
