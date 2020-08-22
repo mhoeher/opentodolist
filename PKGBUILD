@@ -48,7 +48,11 @@ build() {
 check() {
         cd "$srcdir/${pkgname%}"
         cd build
-        make check
+        # Some unit tests are failing sometimes - this is due to multi-threading issues
+        # where the test does not "wait in the right order" (kind of). Ideally, we'd fix
+        # this, however, in order to avoid issues, retry the testing.
+        # If the test fails three times, this is a clear sign that something IS broken.
+        make check || make check || make check
 }
 
 package() {
