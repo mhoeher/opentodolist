@@ -933,6 +933,36 @@ void Application::deleteItem(Item* item)
 }
 
 /**
+ * @brief Delete all todos from a todo list that are done.
+ */
+void Application::deleteDoneTodos(TodoList* todoList)
+{
+    if (todoList != nullptr) {
+        auto q = new DeleteItemsQuery();
+        q->deleteChildrenOfItem(todoList, [](const Item* item) {
+            auto todo = qobject_cast<const Todo*>(item);
+            return todo && todo->done();
+        });
+        m_cache->run(q);
+    }
+}
+
+/**
+ * @brief Delete all taks from a todo that are done.
+ */
+void Application::deleteDoneTasks(Todo* todo)
+{
+    if (todo != nullptr) {
+        auto q = new DeleteItemsQuery();
+        q->deleteChildrenOfItem(todo, [](const Item* item) {
+            auto task = qobject_cast<const Task*>(item);
+            return task && task->done();
+        });
+        m_cache->run(q);
+    }
+}
+
+/**
  * @brief Save a value to the application settings
  *
  * This method is used to save a value to the application settings. Settings
