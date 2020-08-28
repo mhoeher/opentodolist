@@ -334,6 +334,7 @@ archlinux-pkgbuild:
         - build-arch/opentodolist-*.pkg.tar.zst
         - build-arch/.SRCINFO
       expire_in: 1 week
+      when: always
     # Allow failure, Arch is very bleeding edge, so this should not prevent a release
     allow_failure: true
 
