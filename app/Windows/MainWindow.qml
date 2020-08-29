@@ -327,6 +327,13 @@ ApplicationWindow {
                 text: qsTr("Delete")
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 onTriggered: stackView.currentItem.deleteItem()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faFire
+                text: qsTr("Delete Completed Items")
+                visible: stackView.currentItem && typeof(stackView.currentItem["deleteCompletedItems"]) === "function"
+                onTriggered: stackView.currentItem.deleteCompletedItems()
             }
         ]
 

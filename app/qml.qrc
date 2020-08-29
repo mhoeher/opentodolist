@@ -126,5 +126,7 @@
         <file>Widgets/ItemDragTile.qml</file>
         <file>Utils/SyntaxHighlighter.qml</file>
         <file>3rdpartyinfo/showdownjs/3rdpartyinfo.json</file>
+        <file>Actions/DeleteCompletedChildren.qml</file>
+        <file>Windows/DeleteCompletedItemsDialog.qml</file>
     </qresource>
 </RCC>

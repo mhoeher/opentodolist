@@ -30,6 +30,10 @@ ItemPage {
         confirmDeleteDialog.deleteItem(item);
     }
 
+    function deleteCompletedItems() {
+        ItemUtils.deleteCompletedItems(item);
+    }
+
     function renameItem() {
         renameItemDialog.renameItem(item);
     }
