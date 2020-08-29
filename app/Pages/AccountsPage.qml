@@ -17,6 +17,10 @@ AccountsPageForm {
     onAccountSelected: {
         switch (account.type) {
         case OTL.Account.NextCloud:
+            page.openPage(Qt.resolvedUrl("./EditNextCloudAccountPage.qml"), {
+                          account: account
+                          });
+            break;
         case OTL.Account.OwnCloud:
         case OTL.Account.WebDAV:
             page.openPage(Qt.resolvedUrl("./EditWebDAVAccountPage.qml"), {

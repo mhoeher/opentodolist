@@ -65,10 +65,6 @@
         <file>Windows/DeleteItemDialog.qml</file>
         <file>Windows/DeleteLibraryDialog.qml</file>
         <file>Widgets/ReorderableListViewOverlay.qml</file>
-        <file>Pages/sync_backends/cloud.png</file>
-        <file>Pages/sync_backends/disk.png</file>
-        <file>Pages/sync_backends/nextcloud.png</file>
-        <file>Pages/sync_backends/owncloud.png</file>
         <file>Pages/ScheduleViewPage.qml</file>
         <file>Widgets/ProgressItemOverlay.qml</file>
         <file>Widgets/ItemProgressEditor.qml</file>
@@ -90,7 +86,6 @@
         <file>Pages/AccountsPageForm.ui.qml</file>
         <file>Components/qmldir</file>
         <file>Pages/AccountTypeSelectionPage.qml</file>
-        <file>Pages/AccountTypeSelectionPageForm.ui.qml</file>
         <file>Pages/NewWebDAVAccountPage.qml</file>
         <file>Pages/NewWebDAVAccountPageForm.ui.qml</file>
         <file>Utils/Accounts.qml</file>
@@ -126,5 +121,7 @@
         <file>Widgets/ItemDragTile.qml</file>
         <file>Utils/SyntaxHighlighter.qml</file>
         <file>3rdpartyinfo/showdownjs/3rdpartyinfo.json</file>
+        <file>Pages/NewNextCloudAccountPage.qml</file>
+        <file>Pages/EditNextCloudAccountPage.qml</file>
     </qresource>
 </RCC>

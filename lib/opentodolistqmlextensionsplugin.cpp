@@ -36,6 +36,7 @@
 #include "models/itemssortfiltermodel.h"
 
 #include "sync/account.h"
+#include "sync/nextcloudloginflow.h"
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
 
@@ -81,6 +82,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                              "Use specific synchronizer");
     qmlRegisterType<WebDAVSynchronizer>(uri, 1, 0, "WebDAVSynchronizer");
+    qmlRegisterType<NextCloudLoginFlow>(uri, 1, 0, "NextCloudLoginFlow");
 
     // To allow assigning model classes to the sourceModel
     // property of a proxy model in declarative assignments:

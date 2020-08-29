@@ -58,6 +58,7 @@ SOURCES += \
     models/librariesmodel.cpp \
     opentodolistqmlextensionsplugin.cpp \
     sync/account.cpp \
+    sync/nextcloudloginflow.cpp \
     sync/synchronizer.cpp \
     sync/syncjob.cpp \
     sync/syncrunner.cpp \
@@ -101,6 +102,7 @@ HEADERS += \
     models/librariesmodel.h \
     opentodolistqmlextensionsplugin.h \
     sync/account.h \
+    sync/nextcloudloginflow.h \
     sync/synchronizer.h \
     sync/syncjob.h \
     sync/syncrunner.h \
