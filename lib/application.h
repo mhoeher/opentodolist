@@ -91,6 +91,8 @@ public:
     Q_INVOKABLE Todo* addTodo(Library* library, TodoList* todoList, QVariantMap properties);
     Q_INVOKABLE Task* addTask(Library* library, Todo* todo, QVariantMap properties);
     Q_INVOKABLE void deleteItem(Item* item);
+    Q_INVOKABLE void deleteDoneTodos(TodoList* todoList);
+    Q_INVOKABLE void deleteDoneTasks(Todo* todo);
 
     Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
     Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());

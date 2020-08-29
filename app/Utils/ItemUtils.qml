@@ -37,11 +37,19 @@ Item {
         d.dateSelectionDialog.open();
     }
 
+    function deleteCompletedItems(item) {
+        if (d.deleteCompletedItemsDialog === null) {
+            d.deleteCompletedItemsDialog = deleteCompletedItemsDialogComponent.createObject(window);
+        }
+        d.deleteCompletedItemsDialog.deleteCompletedItems(item);
+    }
+
     QtObject {
         id: d
 
         property Windows.RenameItemDialog renameItemDialog: null
         property Windows.DeleteItemDialog deleteItemDialog: null
+        property Windows.DeleteCompletedItemsDialog deleteCompletedItemsDialog: null
         property Windows.DateSelectionDialog dateSelectionDialog: null
 
     }
@@ -56,6 +64,12 @@ Item {
         id: deleteItemDialogComponent
 
         Windows.DeleteItemDialog {}
+    }
+
+    Component {
+        id: deleteCompletedItemsDialogComponent
+
+        Windows.DeleteCompletedItemsDialog {}
     }
 
     Component {

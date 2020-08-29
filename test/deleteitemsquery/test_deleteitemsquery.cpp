@@ -44,6 +44,7 @@ private slots:
     void initTestCase() {}
     void init() {}
     void run();
+    void deleteChildren();
     void cleanup() {}
     void cleanupTestCase() {}
 };
@@ -325,6 +326,116 @@ void DeleteItemsQueryTest::run()
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 0);
+    }
+}
+
+void DeleteItemsQueryTest::deleteChildren()
+{
+    QTemporaryDir tmpDir;
+    Cache cache;
+    cache.setCacheDirectory(tmpDir.path());
+    cache.setCacheSize(1024 * 1024);
+    QVERIFY(cache.open());
+
+    Library lib;
+    TodoList todoList;
+    todoList.setTitle("A todo list");
+    todoList.setLibraryId(lib.uid());
+    Todo todo1;
+    todo1.setTitle("A todo 1");
+    todo1.setDone(false);
+    todo1.setTodoListUid(todoList.uid());
+    Task task1;
+    task1.setTitle("Task 1");
+    task1.setTodoUid(todo1.uid());
+    Todo todo2;
+    todo2.setTitle("A todo 2");
+    todo2.setDone(true);
+    todo2.setTodoListUid(todoList.uid());
+    Task task2;
+    task2.setTitle("Task 2");
+    task2.setTodoUid(todo2.uid());
+    Todo todo3;
+    todo3.setTitle("A todo 3");
+    todo3.setDone(false);
+    todo3.setTodoListUid(todoList.uid());
+    Todo todo4;
+    todo4.setTitle("A todo 4");
+    todo4.setDone(true);
+    todo4.setTodoListUid(todoList.uid());
+    Todo todo5;
+    todo5.setTitle("A todo 5");
+    todo5.setDone(false);
+    todo5.setTodoListUid(todoList.uid());
+    Todo todo6;
+    todo6.setTitle("A todo 6");
+    todo6.setDone(true);
+    todo6.setTodoListUid(todoList.uid());
+    Note note;
+    note.setTitle("A note");
+    note.setLibraryId(lib.uid());
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy cacheFinished(&cache, &Cache::finished);
+
+        q->add(&lib);
+        q->add(&todoList);
+        q->add(&todo1);
+        q->add(&task1);
+        q->add(&todo2);
+        q->add(&task2);
+        q->add(&todo3);
+        q->add(&todo4);
+        q->add(&todo5);
+        q->add(&todo6);
+        q->add(&note);
+        cache.run(q);
+
+        QVERIFY(cacheFinished.wait());
+        QCOMPARE(finished.count(), 1);
+    }
+
+    {
+        auto q = new DeleteItemsQuery();
+        QSignalSpy itemDeleted(q, &DeleteItemsQuery::itemDeleted);
+        QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
+        q->deleteChildrenOfItem(&todoList, [](const Item* item) {
+            auto todo = qobject_cast<const Todo*>(item);
+            return todo && todo->done();
+        });
+        cache.run(q);
+        QVERIFY(destroyed.wait());
+        QCOMPARE(itemDeleted.count(), 1);
+    }
+
+    {
+        auto q = new GetItemsQuery();
+        QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
+        QSignalSpy destroyed(q, &GetItemsQuery::destroyed);
+        cache.run(q);
+        QVERIFY(destroyed.wait());
+        QCOMPARE(itemsAvailable.count(), 1);
+        auto items = itemsAvailable.at(0).at(0).toList();
+        QCOMPARE(items.count(), 6);
+        QSet<QByteArray> got = QSet<QByteArray>({
+                items.at(0).value<ItemCacheEntry>().toByteArray(),
+                items.at(1).value<ItemCacheEntry>().toByteArray(),
+                items.at(2).value<ItemCacheEntry>().toByteArray(),
+                items.at(3).value<ItemCacheEntry>().toByteArray(),
+                items.at(4).value<ItemCacheEntry>().toByteArray(),
+                items.at(5).value<ItemCacheEntry>().toByteArray(),
+        });
+        QSet<QByteArray> expected = QSet<QByteArray>({
+                todoList.encache().toByteArray(),
+                todo1.encache().toByteArray(),
+                task1.encache().toByteArray(),
+                todo3.encache().toByteArray(),
+                todo5.encache().toByteArray(),
+                note.encache().toByteArray(),
+        });
+        QCOMPARE(got, expected);
     }
 }
 

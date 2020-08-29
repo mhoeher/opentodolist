@@ -31,6 +31,14 @@ ItemPage {
         }
     }
 
+    function deleteCompletedItems() {
+        if (todoDrawer.visible) {
+            ItemUtils.deleteCompletedItems(todoPage.item);
+        } else {
+            ItemUtils.deleteCompletedItems(item);
+        }
+    }
+
     function renameItem() {
         if (todoDrawer.visible) {
             todoPage.renameItem();

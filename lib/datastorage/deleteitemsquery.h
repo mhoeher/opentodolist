@@ -23,6 +23,8 @@
 #include <QObject>
 #include <QUuid>
 
+#include <functional>
+
 #include "datastorage/itemsquery.h"
 
 class Item;
@@ -32,12 +34,16 @@ class DeleteItemsQuery : public ItemsQuery
 {
     Q_OBJECT
 public:
+    typedef std::function<bool(const Item*)> ItemFilter;
+
     explicit DeleteItemsQuery(QObject* parent = nullptr);
 
     void deleteItem(const Item* item);
     void deleteItem(const QUuid& uid);
     void deleteLibrary(const Library* library, bool deleteLibraryDir);
     void deleteLibrary(const QUuid& uid, bool deleteLibraryDir);
+    void deleteChildrenOfItem(const Item* item, ItemFilter childFilter);
+    void deleteChildrenOfItem(const QUuid& uid, ItemFilter childFilter);
 
 signals:
 
@@ -52,15 +58,39 @@ signals:
 private:
     struct ItemToDelete
     {
-        QUuid uid;
+        QUuid uid = QUuid();
         bool isLibrary;
         bool deleteLibraryDir;
+        bool childrenOnly;
+        bool notifyDeletion;
+        ItemFilter childFilter;
+
+        ItemToDelete()
+            : uid(),
+              isLibrary(false),
+              deleteLibraryDir(false),
+              childrenOnly(false),
+              notifyDeletion(true),
+              childFilter(nullptr)
+        {
+        }
+
+        ItemToDelete(const ItemToDelete& other) = default;
+        ItemToDelete& operator=(const ItemToDelete& other) = default;
+
+        static ItemToDelete item(const QUuid& uid);
+        static ItemToDelete itemWithoutNotification(const QUuid& uid);
+        static ItemToDelete library(const QUuid& uid, bool deleteLibraryDir);
+        static ItemToDelete children(const QUuid& uid, ItemFilter filter);
     };
 
     QList<ItemToDelete> m_itemsToDelete;
 
-    // ItemsQuery interface
+    void deleteLibraryFromDisk(const ItemToDelete& itemToDelete, QLMDB::Transaction& t);
+    bool deleteChildren(const ItemToDelete& itemToDelete, QLMDB::Transaction& t);
+
 protected:
+    // ItemsQuery interface
     void run() override;
 };
 

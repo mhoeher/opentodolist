@@ -26,13 +26,23 @@ fi
 # which we in turn cannot enter during CI runs. Hence, extract dependencies
 # and install them before:
 mkdir -p build-arch
+
+# Install base development packages:
+pacman -Sy --noconfirm base-devel
+
+# Create Source Info:
+(
+    cd /home/build && \
+    sudo -u nobody makepkg --printsrcinfo > $PROJECT_ROOT/build-arch/.SRCINFO \
+)
+
+# Install dependencies
 pacman -Sy --noconfirm \
-    base-devel \
     $( . PKGBUILD && echo ${depends[*]} ) \
     $( . PKGBUILD && echo ${makedepends[*]} )
 (
     cd /home/build && \
-    sudo -u nobody makepkg && \
-    sudo -u nobody makepkg --printsrcinfo > $PROJECT_ROOT/build-arch/.SRCINFO \
+    sudo -u nobody makepkg \
 )
+
 cp /home/build/opentodolist-*.pkg.tar.zst build-arch

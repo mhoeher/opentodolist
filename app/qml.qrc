@@ -123,5 +123,7 @@
         <file>3rdpartyinfo/showdownjs/3rdpartyinfo.json</file>
         <file>Pages/NewNextCloudAccountPage.qml</file>
         <file>Pages/EditNextCloudAccountPage.qml</file>
+        <file>Actions/DeleteCompletedChildren.qml</file>
+        <file>Windows/DeleteCompletedItemsDialog.qml</file>
     </qresource>
 </RCC>
