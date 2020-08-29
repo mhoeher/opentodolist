@@ -27,6 +27,9 @@ fi
 # and install them before:
 mkdir -p build-arch
 
+# Update System:
+pacman -Suy --noconfirm
+
 # Install base development packages:
 pacman -Sy --noconfirm base-devel
 
