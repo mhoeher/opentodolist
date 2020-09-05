@@ -21,6 +21,11 @@ win32 {
 } else {
     LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/
 }
+
+android {
+    QT *= androidextras
+}
+
 android:versionAtLeast(QT_VERSION, 5.14.0) {
     # On Android starting with v5.14, the Qt installation is multi arch,
     # so we need to link explicitly against the correct QLMDB library:
@@ -138,24 +143,25 @@ android {
     SOURCES += utils/android/androidfiledialog.cpp
 }
 
-config_qtkeychain {
-    LIBS += -lqt5keychain
-    DEFINES += OTL_USE_SYSTEM_QT5KEYCHAIN
-} else {
-    include(../3rdparty/qtkeychain/qt5keychain.pri)
+!android {
+    # On Android, we use a custom way to store secrets.
+    config_qtkeychain {
+        LIBS += -lqt5keychain
+        DEFINES += OTL_USE_SYSTEM_QT5KEYCHAIN
+    } else {
+        include(../3rdparty/qtkeychain/qt5keychain.pri)
+    }
+
+    config_libsecret {
+        # If we found libsecret, load it:
+        CONFIG *= link_pkgconfig
+        PKGCONFIG += libsecret-1
+
+        # Set HAVE_LIBSECRET for qtkeychain:
+        config_libsecret:DEFINES += HAVE_LIBSECRET
+
+    }
 }
 
 include(../3rdparty/simplecrypt.pri)
-
-config_libsecret {
-    # If we found libsecret, load it:
-    CONFIG *= link_pkgconfig
-    PKGCONFIG += libsecret-1
-
-    # Set HAVE_LIBSECRET for qtkeychain:
-    config_libsecret:DEFINES += HAVE_LIBSECRET
-
-}
-
-
 include(./qmake/kf5-syntax-highlighting.pri)

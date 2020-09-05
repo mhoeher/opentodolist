@@ -47,7 +47,7 @@ Pane {
         }
         Button {
             text: qsTr("Ignore")
-            onClicked: root.library.clearSyncErrors()
+            onClicked: OTL.Application.clearSyncErrors(root.library)
         }
         Button {
             text: qsTr("View")

@@ -13,3 +13,6 @@
 [submodule "3rdparty/run-clang-format"]
 	path = 3rdparty/run-clang-format
 	url = https://gitlab.com/rpdev/run-clang-format.git
+[submodule "3rdparty/qtkeychain"]
+	path = 3rdparty/qtkeychain
+	url = https://gitlab.com/rpdev/qtkeychain.git
