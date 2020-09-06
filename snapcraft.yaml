@@ -6,7 +6,7 @@ base: core20
 adopt-info: opentodolist # part to adopt appstream data from (first in parse list)
 apps:
     opentodolist:
-        command: OpenTodoList-launcher
+        command: usr/bin/OpenTodoList-launcher
         plugs:
         - home
         - x11
