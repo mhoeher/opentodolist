@@ -70,29 +70,29 @@
     </message>
 </context>
 <context>
-    <name>AccountTypeSelectionPageForm.ui</name>
+    <name>AccountTypeSelectionPage</name>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="17"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
         <source>Select Account Type</source>
         <translation type="unfinished">Kontotyp auswählen</translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="28"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
         <translation type="unfinished">Konto-Typ</translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="46"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
         <source>NextCloud</source>
         <translation type="unfinished">NextCloud</translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="51"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="107"/>
         <source>ownCloud</source>
         <translation type="unfinished">ownCloud</translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPageForm.ui.qml" line="56"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="112"/>
         <source>WebDAV</source>
         <translation type="unfinished">WebDAV</translation>
     </message>
@@ -204,6 +204,32 @@
     </message>
 </context>
 <context>
+    <name>DeleteCompletedChildren</name>
+    <message>
+        <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
+        <source>Delete Completed Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DeleteCompletedItemsDialog</name>
+    <message>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
+        <source>Delete Completed Items?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
+        <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
+        <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DeleteItem</name>
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
@@ -265,6 +291,65 @@
         <location filename="../Windows/DeleteLibraryDialog.qml" line="40"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from the application? Note that the files inside the library will not be removed, so you can restore the library later on.</source>
         <translation type="unfinished">Soll die Bibliothek &lt;strong&gt;%1&lt;/strong&gt; wirklich gelöscht werden? Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit wieder zur Anwendung hinzugefügt werden kann.</translation>
+    </message>
+</context>
+<context>
+    <name>EditNextCloudAccountPage</name>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="66"/>
+        <source>Edit Account</source>
+        <translation type="unfinished">Account bearbeiten</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="72"/>
+        <source>Name:</source>
+        <translation type="unfinished">Name:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
+        <source>Server Address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="90"/>
+        <source>https://myserver.example.com</source>
+        <translation type="unfinished">https://meinserver.beispiel.com</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="98"/>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="105"/>
+        <source>User:</source>
+        <translation type="unfinished">Benutzer:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="112"/>
+        <source>User Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
+        <source>Password:</source>
+        <translation type="unfinished">Passwort:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="125"/>
+        <source>Password</source>
+        <translation type="unfinished">Passwort</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="139"/>
+        <source>Disable Certificate Checks</source>
+        <translation type="unfinished">Zertifikatsprüfungen deaktivieren</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="148"/>
+        <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -554,7 +639,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished">Synchronisation starten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
@@ -628,57 +713,62 @@
         <translation type="unfinished">Löschen</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="365"/>
+        <location filename="../Windows/MainWindow.qml" line="334"/>
+        <source>Delete Completed Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="372"/>
         <source>Settings</source>
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="366"/>
+        <location filename="../Windows/MainWindow.qml" line="373"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="373"/>
+        <location filename="../Windows/MainWindow.qml" line="380"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Neue &amp;Bibliothek</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="384"/>
+        <location filename="../Windows/MainWindow.qml" line="391"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Neue &amp;Notiz</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="392"/>
+        <location filename="../Windows/MainWindow.qml" line="399"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Neue &amp;Aufgabenliste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="400"/>
+        <location filename="../Windows/MainWindow.qml" line="407"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Neues B&amp;ild</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="408"/>
+        <location filename="../Windows/MainWindow.qml" line="415"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">B&amp;eenden</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="416"/>
+        <location filename="../Windows/MainWindow.qml" line="423"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Suche</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="443"/>
+        <location filename="../Windows/MainWindow.qml" line="450"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Öffne zuletzt &amp;erzeugten Eintrag</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="451"/>
+        <location filename="../Windows/MainWindow.qml" line="458"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Öffne die &amp;linke Seitenleiste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="570"/>
+        <location filename="../Windows/MainWindow.qml" line="577"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Eine &lt;a href=&apos;#newLibrary&apos;&gt;neue Bibliothek anlegen&lt;/a&gt;. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder.</translation>
     </message>
@@ -686,47 +776,47 @@
 <context>
     <name>NewItemWithDueDateDialog</name>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="85"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
         <source>Today</source>
         <translation type="unfinished">Heute</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="86"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="90"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Morgen</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="87"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="91"/>
         <source>This Week</source>
         <translation type="unfinished">Diese Woche</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="88"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
         <source>Next Week</source>
         <translation type="unfinished">Nächste Woche</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
         <source>Select...</source>
         <translation type="unfinished">Auswählen...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="102"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="106"/>
         <source>Title:</source>
         <translation type="unfinished">Titel:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="111"/>
         <source>The title for your new item...</source>
         <translation type="unfinished">Der Titel für Deinen neuen Artikel...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="112"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="116"/>
         <source>Create in:</source>
         <translation type="unfinished">Erstellt am:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="152"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="156"/>
         <source>Due on:</source>
         <translation type="unfinished">Fällig am:</translation>
     </message>
@@ -866,6 +956,105 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPageForm.ui.qml" line="53"/>
         <source>My Local Library Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NewNextCloudAccountPage</name>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="71"/>
+        <source>Connection Settings</source>
+        <translation type="unfinished">Verbindungseinstellungen</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="77"/>
+        <source>Server Address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="91"/>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="103"/>
+        <source>Trouble Signing In?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="114"/>
+        <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="121"/>
+        <source>Log in Manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="127"/>
+        <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="135"/>
+        <source>Create App Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="144"/>
+        <source>Account Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="153"/>
+        <source>Copy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="158"/>
+        <source>Copied!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="167"/>
+        <source>User:</source>
+        <translation type="unfinished">Benutzer:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="174"/>
+        <source>User Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="181"/>
+        <source>Password:</source>
+        <translation type="unfinished">Passwort:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="188"/>
+        <source>Password</source>
+        <translation type="unfinished">Passwort</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="203"/>
+        <source>Disable Certificate Checks</source>
+        <translation type="unfinished">Zertifikatsprüfungen deaktivieren</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
+        <source>Name:</source>
+        <translation type="unfinished">Name:</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
+        <source>Account Name</source>
+        <translation type="unfinished">Konto-Name</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="229"/>
+        <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1186,7 +1375,7 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="65"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schriftgröße</translation>
     </message>
 </context>
 <context>
@@ -1226,42 +1415,42 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="155"/>
+        <location filename="../Pages/TodoListPage.qml" line="163"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="167"/>
+        <location filename="../Pages/TodoListPage.qml" line="175"/>
         <source>Manually</source>
         <translation type="unfinished">Manuell</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="173"/>
+        <location filename="../Pages/TodoListPage.qml" line="181"/>
         <source>Name</source>
         <translation type="unfinished">Name</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="179"/>
+        <location filename="../Pages/TodoListPage.qml" line="187"/>
         <source>Due Date</source>
         <translation type="unfinished">Fällig Am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="185"/>
+        <location filename="../Pages/TodoListPage.qml" line="193"/>
         <source>Created At</source>
         <translation type="unfinished">Angelegt Am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="191"/>
+        <location filename="../Pages/TodoListPage.qml" line="199"/>
         <source>Updated At</source>
         <translation type="unfinished">Editiert Am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="213"/>
+        <location filename="../Pages/TodoListPage.qml" line="221"/>
         <source>Todos</source>
         <translation type="unfinished">Aufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="233"/>
+        <location filename="../Pages/TodoListPage.qml" line="241"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Neue Aufgabe hinzufügen...</translation>
     </message>
@@ -1269,17 +1458,17 @@
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="98"/>
+        <location filename="../Pages/TodoPage.qml" line="102"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Suchbegriff 1, Suchbegriff 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="119"/>
+        <location filename="../Pages/TodoPage.qml" line="123"/>
         <source>Tasks</source>
         <translation type="unfinished">Unteraufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="122"/>
+        <location filename="../Pages/TodoPage.qml" line="126"/>
         <source>Add new task...</source>
         <translation type="unfinished">Neue Unteraufgabe hinzufügen...</translation>
     </message>
