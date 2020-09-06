@@ -23,18 +23,26 @@
 #include <QIODevice>
 #include <QJsonDocument>
 #include <QSettings>
+#include <QTimer>
+#include <QPointer>
 
-#ifdef OTL_USE_SYSTEM_QT5KEYCHAIN
-#    include <qt5keychain/keychain.h>
+#ifdef Q_OS_ANDROID
+#    include <QAndroidJniExceptionCleaner>
+#    include <QAndroidJniObject>
+#    include <QtAndroid>
 #else
-#    include <qtkeychain/keychain.h>
+#    ifdef OTL_USE_SYSTEM_QT5KEYCHAIN
+#        include <qt5keychain/keychain.h>
+#    else
+#        include <qtkeychain/keychain.h>
+#    endif
 #endif
 
 #include <simplecrypt.h>
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.KeyStore", QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.KeyStore", QtDebugMsg);
 
-        const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
+const QLatin1String KeyStore::ServiceName = QLatin1String("OpenTodoList");
 
 namespace {
 
@@ -89,6 +97,27 @@ bool securedReadSettings(QIODevice& device, QSettings::SettingsMap& map)
     return result;
 }
 
+#ifdef Q_OS_ANDROID
+QByteArray fromArray(const jbyteArray array)
+{
+    QAndroidJniEnvironment env;
+    jbyte* const bytes = env->GetByteArrayElements(array, nullptr);
+    const QByteArray result(reinterpret_cast<const char*>(bytes), env->GetArrayLength(array));
+    env->ReleaseByteArrayElements(array, bytes, JNI_ABORT);
+    return result;
+}
+
+QAndroidJniObject toArray(const QByteArray& bytes)
+{
+    QAndroidJniEnvironment env;
+    const int length = bytes.length();
+    QAndroidJniObject array = QAndroidJniObject::fromLocalRef(env->NewByteArray(length));
+    env->SetByteArrayRegion(static_cast<jbyteArray>(array.object()), 0, length,
+                            reinterpret_cast<const jbyte*>(bytes.constData()));
+    return array;
+}
+#endif // Q_OS_ANDROID
+
 } // namespace
 
 /**
@@ -125,10 +154,57 @@ KeyStore::~KeyStore() {}
  * there in case the save operation succeeded. This can be used to transfer
  * secrets to the secret store after it previously has been stored in the
  * insecure fallback.
+ *
+ * @note On Android, this saves the secrets encrypted (with a key protected by Android's KeyStore)
+ * to the default config file into the section `KeyStore`.
  */
 void KeyStore::saveCredentials(const QString& key, const QString& value,
                                bool removeCopyFromInsecureFallbackOnSuccess)
 {
+#ifdef Q_OS_ANDROID
+    Q_UNUSED(removeCopyFromInsecureFallbackOnSuccess);
+
+    // On Android, QtKeychain provides no means to securely safe data out of the box on their latest
+    // master. Hence, we store ourselves, using Android's key store to create and securely store a
+    // key for encrypting the password:
+    bool success = false;
+    QSettings settings;
+    settings.beginGroup("KeyStore");
+    QAndroidJniExceptionCleaner cleaner(QAndroidJniExceptionCleaner::OutputMode::Verbose);
+    auto jContext = QtAndroid::androidContext();
+    auto jService = QAndroidJniObject::fromString(ServiceName);
+    auto jKey = QAndroidJniObject::fromString(key);
+    auto jPlainText = toArray(value.toUtf8());
+    auto ret = QAndroidJniObject::callStaticObjectMethod(
+            "net/rpdev/OpenTodoList/CryptoUtils", "encrypt",
+            "(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;[B)Lnet/rpdev/"
+            "OpenTodoList/CryptoUtils$EncryptionResult;",
+            jContext.object<jobject>(), jService.object<jstring>(), jKey.object<jstring>(),
+            jPlainText.object<jbyteArray>());
+    if (ret.isValid()) {
+        auto jSuccess = ret.getField<jboolean>("success");
+        if (jSuccess) {
+            auto jCipherText = ret.getObjectField<jbyteArray>("cipherText");
+            auto cipherText = fromArray(jCipherText.object<jbyteArray>());
+            if (!cipherText.isEmpty()) {
+                success = true;
+                // Store in <key>/data, this is compatible with what the QtKeychain version we
+                // used before is doing - so users with existing passwords shouldn't notice a
+                // difference.
+                settings.setValue(key + "/data", cipherText.toHex());
+                settings.sync();
+            }
+        }
+    }
+
+    // To be compatible with QtKeychain, emit saved signal delayed
+    QPointer<KeyStore> _this = this;
+    QTimer::singleShot(0, [=]() {
+        if (_this) {
+            emit _this.data()->credentialsSaved(key, success);
+        }
+    });
+#else
     auto job = new QKeychain::WritePasswordJob(ServiceName);
     job->setKey(key);
     job->setTextData(value);
@@ -164,10 +240,68 @@ void KeyStore::saveCredentials(const QString& key, const QString& value,
         emit credentialsSaved(key, success);
     });
     job->start();
+#endif
 }
 
+/**
+ * @brief Load previously saved credentials.
+ *
+ * This tries to load the credentials associated with the given @p key and emit the
+ * credentialsLoaded() signal once the operation finishes.
+ *
+ * @note On Android, we try to read the key both from the insecure fallback as well as the default
+ * config file for the app. This is because previously we used to rely on a non-official extension
+ * of QtKeychain to handle secret storage on Android (which was basically exactly this). Later
+ * versions do the encryption of the secrets themselves and directly store the secrets in the
+ * default config file. This was also required in order to prevent a change/bug, where after a
+ * restart of the app the data would not be correctly be read back from the insecure fallback.
+ * @param key
+ */
 void KeyStore::loadCredentials(const QString& key)
 {
+#ifdef Q_OS_ANDROID
+    // Reverse the encryption:
+    bool success = false;
+    QString value;
+
+    QSettings settings;
+    settings.beginGroup("KeyStore");
+    for (auto s : { m_settings, &settings }) {
+        if (s && s->contains(key + "/data")) {
+            QAndroidJniExceptionCleaner cleaner(QAndroidJniExceptionCleaner::OutputMode::Verbose);
+            auto jService = QAndroidJniObject::fromString(ServiceName);
+            auto jKey = QAndroidJniObject::fromString(key);
+            auto cipherText = QByteArray::fromHex(s->value(key + "/data").toByteArray());
+            auto jCipherText = toArray(cipherText);
+            auto ret = QAndroidJniObject::callStaticObjectMethod(
+                    "net/rpdev/OpenTodoList/CryptoUtils", "decrypt",
+                    "(Ljava/lang/String;Ljava/lang/String;[B)Lnet/rpdev/OpenTodoList/CryptoUtils$"
+                    "DecryptionResult;",
+                    jService.object<jstring>(), jKey.object<jstring>(),
+                    jCipherText.object<jbyteArray>());
+            if (ret.isValid()) {
+                auto jSuccess = ret.getField<jboolean>("success");
+                if (jSuccess) {
+                    auto jPlainText = ret.getObjectField<jbyteArray>("plainText");
+                    auto plainText = fromArray(jPlainText.object<jbyteArray>());
+                    if (!plainText.isEmpty()) {
+                        success = true;
+                        value = QString::fromUtf8(plainText);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // To be compatible with QtKeychain, emit saved signal delayed
+    QPointer<KeyStore> _this = this;
+    QTimer::singleShot(0, [=]() {
+        if (_this) {
+            emit _this.data()->credentialsLoaded(key, value, success);
+        }
+    });
+#else
     auto job = new QKeychain::ReadPasswordJob(ServiceName);
     job->setKey(key);
     if (m_settings != nullptr) {
@@ -201,10 +335,36 @@ void KeyStore::loadCredentials(const QString& key)
         emit credentialsLoaded(key, secret, success);
     });
     job->start();
+#endif
 }
 
 void KeyStore::deleteCredentials(const QString& key)
 {
+#ifdef Q_OS_ANDROID
+    // Remove the encryption key for the specified key:
+    bool success = false;
+
+    {
+        QAndroidJniExceptionCleaner cleaner(QAndroidJniExceptionCleaner::OutputMode::Verbose);
+        auto jService = QAndroidJniObject::fromString(ServiceName);
+        auto jKey = QAndroidJniObject::fromString(key);
+        auto ret = QAndroidJniObject::callStaticMethod<jboolean>(
+                "net/rpdev/OpenTodoList/CryptoUtils", "deleteKey",
+                "(Ljava/lang/String;Ljava/lang/String;)Z", jService.object<jstring>(),
+                jKey.object<jstring>());
+        success = ret;
+        m_settings->remove(key + "/data");
+        m_settings->sync();
+    }
+
+    // To be compatible with QtKeychain, emit saved signal delayed
+    QPointer<KeyStore> _this = this;
+    QTimer::singleShot(0, [=]() {
+        if (_this) {
+            emit _this.data()->credentialsDeleted(key, success);
+        }
+    });
+#else
     // Remove from fallback (in case we stored twice):
     m_settings->beginGroup("Fallback");
     m_settings->remove(key);
@@ -230,6 +390,7 @@ void KeyStore::deleteCredentials(const QString& key)
         emit credentialsDeleted(key, success);
     });
     job->start();
+#endif
 }
 
 /**

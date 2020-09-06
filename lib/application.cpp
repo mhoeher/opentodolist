@@ -185,6 +185,7 @@ void Application::initialize(const QString& path)
                     }
                 } else {
                     // Loading failed - create a problem:
+                    qCWarning(log) << "Failed to load credentials for key" << key;
                     QSharedPointer<Account> account(loadAccount(key));
                     if (account) {
                         Problem problem;
@@ -1174,6 +1175,14 @@ void Application::copyToClipboard(const QString& text)
     if (app != nullptr) {
         auto clipboard = app->clipboard();
         clipboard->setText(text);
+    }
+}
+
+void Application::clearSyncErrors(Library* library)
+{
+    if (library) {
+        m_syncErrors.remove(library->directory());
+        emit syncErrorsChanged();
     }
 }
 

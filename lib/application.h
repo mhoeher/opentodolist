@@ -136,6 +136,7 @@ public slots:
 
     void syncLibrary(Library* library);
     void copyToClipboard(const QString& text);
+    void clearSyncErrors(Library* library);
 
 signals:
 

@@ -78,6 +78,7 @@ QML_IMPORT_PATH = $$PWD
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ANDROID_PACKAGE = net.rpdev.opentodolist
 ANDROID_APP_NAME = OpenTodoList
+ANDROID_TARGET_SDK_VERSION = 29
 
 # Icons for various platforms
 mac:ICON = res/OpenTodoList.icns
