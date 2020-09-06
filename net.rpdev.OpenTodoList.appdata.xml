@@ -40,6 +40,32 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.26.0" date="2020-09-06">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #361: Passwords get lost between app restarts on Android.
+            </li>
+            <li>
+                #303: Use the Login Flow when adding a NextCloud account. This also
+                fixes connecting to NextCloud when an account is protected with 2FA.
+            </li>
+            <li>
+                #353: Allow deleting all done todos/tasks at once.
+            </li>
+            <li>
+                #309: OpenTodoList is now available via AUR.
+            </li>
+            <li>
+                #357: Fixes a bug which could cause the app to crash on Android (and possibly
+                other platforms as well).
+            </li>
+            <li>
+                #356: Fixed that items created from the schedule view would have a wrong due
+                date if that view was open for a longer time (longer than a day).
+            </li>
+        </ul>
+      </release>
       <release version="3.25.0" date="2020-08-03">
         <p>This release includes the following changes:</p>
         <ul>
