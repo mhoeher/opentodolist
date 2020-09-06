@@ -1523,9 +1523,10 @@ msgid "Swipe to mark done"
 msgstr "Wischen bis Markierung gemacht"
 
 #: ../Menues/LibraryPageActions.qml:30
+#, fuzzy
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Jetzt synchronisieren"
 
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
@@ -1533,9 +1534,10 @@ msgid "Sync Log"
 msgstr ""
 
 #: ../Pages/SettingsPageForm.ui.qml:65
+#, fuzzy
 msgctxt "SettingsPageForm.ui|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Schriftgröße"
 
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
