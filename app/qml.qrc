@@ -125,5 +125,6 @@
         <file>Pages/EditNextCloudAccountPage.qml</file>
         <file>Actions/DeleteCompletedChildren.qml</file>
         <file>Windows/DeleteCompletedItemsDialog.qml</file>
+        <file>Utils/SortFilterModel.qml</file>
     </qresource>
 </RCC>
