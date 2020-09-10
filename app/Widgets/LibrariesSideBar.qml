@@ -76,38 +76,46 @@ Pane {
         }
 
         property var collapsedLibraries: []
+        property var librariesWithoutSchedule: []
 
         function collapse(library) {
-            let ids = [];
-            let append = true;
-            for (let i = 0; i < d.collapsedLibraries.length; ++i) {
-                let id = d.collapsedLibraries[i];
-                if (id === library.uid.toString()) {
-                    append = false;
-                }
-                ids.push(id);
-            }
-            if (append) {
-                ids.push(library.uid.toString());
-            }
-            d.collapsedLibraries = ids;
+            collapsedLibraries = addLibraryIdToListOfUids(collapsedLibraries, library);
         }
 
         function expand(library) {
-            let ids = [];
-            for (let i = 0; i < d.collapsedLibraries.length; ++i) {
-                let id = d.collapsedLibraries[i];
-                if (id !== library.uid.toString()) {
-                    ids.push(id);
+            collapsedLibraries = removeLibraryIdFromListOfUids(collapsedLibraries, library);
+        }
+
+        function showScheduleForLibrary(library) {
+            librariesWithoutSchedule = removeLibraryIdFromListOfUids(
+                        librariesWithoutSchedule, library);
+        }
+
+        function hideScheduleForLibrary(library) {
+            librariesWithoutSchedule = addLibraryIdToListOfUids(librariesWithoutSchedule, library);
+        }
+
+        function addLibraryIdToListOfUids(list, library) {
+            let uids = removeLibraryIdFromListOfUids(list, library);
+            uids.push(library.uid.toString());
+            return uids;
+        }
+
+        function removeLibraryIdFromListOfUids(list, library) {
+            let result = [];
+            for (const uid of list) {
+                if (uid !== library.uid.toString()) {
+                    result.push(uid);
                 }
             }
-            d.collapsedLibraries = ids;
+            return result;
         }
     }
 
     Settings {
         category: "LibrariesSideBar"
         property alias collapsedLibraries: d.collapsedLibraries
+        property alias librariesWithoutSchedule: d.librariesWithoutSchedule
     }
 
     ScrollView {
@@ -138,17 +146,29 @@ Pane {
                         return false;
                     }
 
+                    readonly property bool scheduleEnabled: {
+                        for (const libId of d.librariesWithoutSchedule) {
+                            if (libId === library.uid.toString()) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
                     width: parent.width
 
                     LibrarySideBarButton {
                         text: library.name
                         bold: true
-                        symbol: librarySection.collapsed ?
+                        symbol: librarySection.collapsed || !symbolIsClickable ?
                                     Icons.faChevronRight :
                                     Icons.faChevronDown
                         highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === ""
-                        symbolIsClickable: true
+                        symbolIsClickable: library.tags.length > 0 || librarySection.scheduleEnabled
+                        rightSymbolIsClickable: true
+                        rightSymbolIsVisible: true
+                        rightSymbol: Icons.faCog
                         onClicked: {
                             currentLibrary = library;
                             currentTag = "";
@@ -164,13 +184,32 @@ Pane {
                                 d.collapse(library);
                             }
                         }
+                        onRightSymbolClicked: libraryContextMenu.open()
+
+                        Menu {
+                            id: libraryContextMenu
+
+                            modal: true
+                            MenuItem {
+                                text: librarySection.scheduleEnabled ?
+                                          qsTr("Hide Schedule") : qsTr("Show Schedule")
+                                checked: librarySection.scheduleEnabled
+                                onTriggered: {
+                                    if (librarySection.scheduleEnabled) {
+                                        d.hideScheduleForLibrary(library);
+                                    } else {
+                                        d.showScheduleForLibrary(library);
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     LibrarySideBarButton {
                         indent: 1
                         text: qsTr("Schedule")
                         symbol: Icons.faClock
-                        visible: !librarySection.collapsed
+                        visible: !librarySection.collapsed && librarySection.scheduleEnabled
                         highlighted: d.isSelectedLibrary(library) &&
                                 currentTag === "" && specialView === "schedule"
                         onClicked: {

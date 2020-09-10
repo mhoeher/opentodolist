@@ -12,8 +12,12 @@ ItemDelegate {
     property int indent: 0
     property bool bold: false
     property alias symbolIsClickable: sym.enabled
+    property alias rightSymbol: symRight.text
+    property alias rightSymbolIsClickable: symRight.enabled
+    property alias rightSymbolIsVisible: symRight.visible
 
     signal symbolClicked()
+    signal rightSymbolClicked()
 
     topPadding: 0
     bottomPadding: 0
@@ -40,6 +44,15 @@ ItemDelegate {
             elide: Text.ElideRight
             Layout.fillWidth: true
             text: root.text
+        }
+
+        ToolButton {
+            id: symRight
+            Layout.minimumWidth: root.height / 2
+            Layout.alignment: Qt.AlignHCenter
+            enabled: false
+            onClicked: root.rightSymbolClicked()
+            visible: false
         }
     }
 }
