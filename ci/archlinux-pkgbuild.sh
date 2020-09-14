@@ -45,7 +45,12 @@ pacman -Sy --noconfirm \
     $( . PKGBUILD && echo ${makedepends[*]} )
 (
     cd /home/build && \
-    sudo -u nobody makepkg \
+    sudo -u nobody makepkg && \
+    sudo -u nobody makepkg --printsrcinfo > $PROJECT_ROOT/build-arch/.SRCINFO \
 )
+
+# Note: We run printsrcinfo twice, the first one will potentially
+# yield "outdated" tag information, which is fine if we need to do
+# an "emergency" release and cannot build due to broken dependencies.
 
 cp /home/build/opentodolist-*.pkg.tar.zst build-arch
