@@ -28,7 +28,7 @@ pkgver() {
         if [ -n "$release_build" ]; then
             printf "${pkgver}"
         else
-            printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
+            printf "%s" "$(git describe --long --tags | cut -f1 -d'-')"
         fi
 }
 
