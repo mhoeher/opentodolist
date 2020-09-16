@@ -22,6 +22,7 @@
 
 #include <QObject>
 #include <QSharedPointer>
+#include <QUuid>
 
 class Library;
 class Account;

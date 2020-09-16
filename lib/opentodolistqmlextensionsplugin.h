@@ -26,6 +26,7 @@
 // Forward declaration:
 class QQmlEngine;
 class QJSEngine;
+class Application;
 
 class OpenTodoListQmlExtensionsPlugin : public QQmlExtensionPlugin
 {
@@ -36,8 +37,11 @@ public:
     // QQmlTypesExtensionInterface interface
     void registerTypes(const char* uri) override;
 
+    Application* application() const;
+    void setApplication(Application* application);
+
 private:
-    static QObject* createApplication(QQmlEngine* engine, QJSEngine* jsEngine);
+    Application* m_application;
 };
 
 #endif // OPENTODOLISTQMLEXTENSIONSPLUGIN_H_

@@ -27,7 +27,8 @@
  * This creates a new sync job for the library which
  * stores it's data in the @p libraryDirectory. The @p secret is
  * the passphrase or key required by the library's synchronizer
- * to talk to the backend server (if required).
+ * to talk to the backend server (if required). The @p uid is the uid of the library for which we
+ * run the sync.
  *
  * @note The library is only used as a handle. None of it's methods
  * are called, as it might get deleted while the sync is running

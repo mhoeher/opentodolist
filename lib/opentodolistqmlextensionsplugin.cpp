@@ -52,7 +52,7 @@
 #include <QtQml>
 
 OpenTodoListQmlExtensionsPlugin::OpenTodoListQmlExtensionsPlugin(QObject* parent)
-    : QQmlExtensionPlugin(parent)
+    : QQmlExtensionPlugin(parent), m_application(nullptr)
 {
 }
 
@@ -61,11 +61,10 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     //@uri OpenTodoList
 
     qmlRegisterType<Account>(uri, 1, 0, "Account");
-    qmlRegisterSingletonType<Application>(uri, 1, 0, "Application",
-                                          OpenTodoListQmlExtensionsPlugin::createApplication);
+    qmlRegisterSingletonInstance<Application>(uri, 1, 0, "Application", m_application);
     qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
     qmlRegisterType<Image>(uri, 1, 0, "Image");
-    qmlRegisterType<Cache>(uri, 1, 0, "Cache");
+    qmlRegisterUncreatableType<Cache>(uri, 1, 0, "Cache", "Use Application.cache");
     qmlRegisterType<Item>(uri, 1, 0, "Item");
     qmlRegisterType<Library>(uri, 1, 0, "Library");
     qmlRegisterType<Note>(uri, 1, 0, "Note");
@@ -77,7 +76,8 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterType<ItemsModel>(uri, 1, 0, "ItemsModel");
     qmlRegisterType<LibrariesModel>(uri, 1, 0, "LibrariesModel");
     qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
-    qmlRegisterType<ProblemManager>(uri, 1, 0, "ProblemManager");
+    qmlRegisterUncreatableType<ProblemManager>(uri, 1, 0, "ProblemManager",
+                                               "Use Application.problemManager");
 
     qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                              "Use specific synchronizer");
@@ -97,9 +97,12 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
 #endif
 }
 
-QObject* OpenTodoListQmlExtensionsPlugin::createApplication(QQmlEngine* engine, QJSEngine* jsEngine)
+Application* OpenTodoListQmlExtensionsPlugin::application() const
 {
-    Q_UNUSED(engine);
-    Q_UNUSED(jsEngine);
-    return new Application();
+    return m_application;
+}
+
+void OpenTodoListQmlExtensionsPlugin::setApplication(Application* application)
+{
+    m_application = application;
 }

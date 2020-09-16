@@ -23,12 +23,13 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFont>
-#include <QFontInfo>
 #include <QFontDatabase>
+#include <QFontInfo>
 #include <QIcon>
 #include <QLoggingCategory>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QRemoteObjectHost>
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
@@ -36,6 +37,9 @@
 #include <iostream>
 
 #include "opentodolistqmlextensionsplugin.h"
+#include "application.h"
+#include "datastorage/cache.h"
+#include "service/backgroundservice.h"
 
 #ifdef OTL_USE_SINGLE_APPLICATION
 #    include "singleapplication.h"
@@ -149,6 +153,12 @@ int main(int argc, char* argv[])
 
     engine.addImportPath(qmlBase);
     OpenTodoListQmlExtensionsPlugin plugin;
+    Cache cache;
+    QRemoteObjectHost srcNode(QUrl(QStringLiteral("local:opentodolist")));
+    BackgroundService backgroundService(&cache);
+    srcNode.enableRemoting(&backgroundService);
+    Application application(&cache);
+    plugin.setApplication(&application);
     plugin.registerTypes("OpenTodoList");
 
 #ifdef OTL_USE_SINGLE_APPLICATION
@@ -175,6 +185,8 @@ int main(int argc, char* argv[])
     engine.load(url);
 
     // Print diagnostic information
+    qWarning() << "This is" << QCoreApplication::applicationName() << "version"
+               << QCoreApplication::applicationVersion();
     qWarning() << "System ABI:" << QSysInfo::buildAbi();
     qWarning() << "Build CPU Architecture:" << QSysInfo::buildCpuArchitecture();
     qWarning() << "Current CPU Architecture:" << QSysInfo::currentCpuArchitecture();

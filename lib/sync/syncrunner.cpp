@@ -27,7 +27,7 @@
  * Creates a new sync runner. The runner will execute the given @p job.
  * The runner takes ownership of the job.
  */
-SyncRunner::SyncRunner(SyncJob* job) : QRunnable(), m_job(job)
+SyncRunner::SyncRunner(QSharedPointer<SyncJob> job) : QRunnable(), m_job(job)
 {
     Q_CHECK_PTR(job);
 }
@@ -35,10 +35,7 @@ SyncRunner::SyncRunner(SyncJob* job) : QRunnable(), m_job(job)
 /**
  * @brief Destructor.
  */
-SyncRunner::~SyncRunner()
-{
-    delete m_job;
-}
+SyncRunner::~SyncRunner() {}
 
 /**
  * @brief Run the sync job.

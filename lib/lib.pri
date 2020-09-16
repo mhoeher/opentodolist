@@ -1,4 +1,4 @@
-INCLUDEPATH *= $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models
+INCLUDEPATH *= $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models $$shadowed($$PWD)
 
 QT *= qml sql
 

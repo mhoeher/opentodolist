@@ -4,7 +4,7 @@ TARGET = OpenTodoList
 include(../config.pri)
 include(../lib/lib.pri)
 
-QT += qml quick xml concurrent widgets
+QT += qml quick xml concurrent widgets remoteobjects
 
 CONFIG += c++14
 

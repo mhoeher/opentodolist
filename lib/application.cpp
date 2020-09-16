@@ -29,6 +29,7 @@
 #include <QGuiApplication>
 #include <QJsonDocument>
 #include <QProcess>
+#include <QRemoteObjectNode>
 #include <QScopedPointer>
 #include <QStandardPaths>
 #include <QTextDocument>
@@ -42,41 +43,49 @@
 #include "datamodel/task.h"
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
+#include "datastorage/applicationsettings.h"
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
-#include "datastorage/librariesitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
+#include "datastorage/librariesitemsquery.h"
 #include "datastorage/libraryloader.h"
+#include "fileutils.h"
+#include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
 #include "sync/syncrunner.h"
 #include "sync/webdavsynchronizer.h"
+#include "utils/directorywatcher.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
-#include "utils/directorywatcher.h"
-#include "fileutils.h"
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg);
 
-        /**
-         * @brief Constructor.
-         *
-         * Creates a new Application object. The instance will be a child of the given
-         * @p parent.
-         */
-        Application::Application(QObject* parent)
+/**
+ * @brief Constructor.
+ *
+ * Creates a new Application object. The instance will be a child of the given
+ * @p parent.
+ */
+Application::Application(Cache* cache, QObject* parent)
     : QObject(parent),
+      m_cache(cache),
+      m_keyStore(new KeyStore(this)),
+      m_problemManager(new ProblemManager(this)),
+      m_appSettings(new ApplicationSettings(m_cache, m_keyStore, m_problemManager, this)),
       m_settings(new QSettings(QSettings::IniFormat, QSettings::UserScope,
                                QCoreApplication::organizationName(),
                                QCoreApplication::applicationName(), this)),
-      m_cache(new Cache(this)),
-      m_keyStore(new KeyStore(this)),
-      m_problemManager(new ProblemManager(this)),
-      m_secrets(),
+      m_directoriesWithRunningSync(),
       m_watchedDirectories(),
-      m_librariesWithChanges()
+      m_librariesWithChanges(),
+      m_remoteObjectNode(new QRemoteObjectNode(this)),
+      m_backgroundService(),
+      m_librariesRequestedForDeletion(),
+      m_propagateCacheEventsFromBackgroundService(false)
 {
+    Q_CHECK_PTR(cache);
     initialize();
 }
 
@@ -86,16 +95,23 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg)
  * This is an overloaded version of the Application constructor. It causes the
  * Application object to store its settings in the given @p applicationDir.
  */
-Application::Application(const QString& applicationDir, QObject* parent)
+Application::Application(Cache* cache, const QString& applicationDir, QObject* parent)
     : QObject(parent),
-      m_settings(new QSettings(applicationDir + "/appsettings.ini", QSettings::IniFormat, this)),
-      m_cache(new Cache(this)),
+      m_cache(cache),
       m_keyStore(new KeyStore(this)),
       m_problemManager(new ProblemManager(this)),
-      m_secrets(),
+      m_appSettings(
+              new ApplicationSettings(applicationDir, m_cache, m_keyStore, m_problemManager, this)),
+      m_settings(new QSettings(applicationDir + "/appsettings.ini", QSettings::IniFormat, this)),
+      m_directoriesWithRunningSync(),
       m_watchedDirectories(),
-      m_librariesWithChanges()
+      m_librariesWithChanges(),
+      m_remoteObjectNode(new QRemoteObjectNode(this)),
+      m_backgroundService(),
+      m_librariesRequestedForDeletion(),
+      m_propagateCacheEventsFromBackgroundService(false)
 {
+    Q_CHECK_PTR(cache);
     initialize(applicationDir);
 }
 
@@ -104,6 +120,9 @@ Application::Application(const QString& applicationDir, QObject* parent)
  */
 void Application::initialize(const QString& path)
 {
+    connect(m_appSettings, &ApplicationSettings::accountsChanged, this,
+            &Application::accountsChanged);
+
     auto cacheDir = path;
     if (cacheDir.isEmpty()) {
         cacheDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
@@ -153,55 +172,14 @@ void Application::initialize(const QString& path)
 
     connect(m_cache, &Cache::librariesChanged, this, &Application::onLibrariesChanged);
 
-    loadLibraries();
-
-    connect(m_keyStore, &KeyStore::credentialsLoaded,
-            [=](const QString& key, const QString& value, bool success) {
-                if (success) {
-                    if (!m_secrets.contains(key)) {
-                        m_secrets.insert(key, value);
-                        emit secretsKeysChanged();
-                        for (auto lib : librariesFromConfig()) {
-                            QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
-                            if (sync) {
-                                if (sync->accountUid().isNull() && sync->uid().toString() == key) {
-                                    // Found an old-style synchronizer. Auto-create an account from
-                                    // it:
-                                    importAccountFromSynchronizer(key, value);
-                                } else {
-                                    QSharedPointer<Account> account(
-                                            loadAccount(sync->accountUid()));
-                                    if (account && account->uid().toString() == key) {
-                                        qCDebug(log) << "Start-up sync of" << lib << lib->name();
-                                        runSyncForLibrary(lib);
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        qCWarning(log)
-                                << "Received credentials for a key" << key << "but we already have"
-                                << "credentials for that one";
-                    }
-                } else {
-                    // Loading failed - create a problem:
-                    qCWarning(log) << "Failed to load credentials for key" << key;
-                    QSharedPointer<Account> account(loadAccount(key));
-                    if (account) {
-                        Problem problem;
-                        problem.setType(Problem::AccountSecretsMissing);
-                        problem.setContextObject(account);
-                        m_problemManager->addProblem(problem);
-                    }
-                }
-            });
+    m_appSettings->initialize();
 
     auto syncTimer = new QTimer(this);
     // Check if we need to sync every 5 min
     syncTimer->setInterval(1000 * 60 * 5);
     syncTimer->setSingleShot(false);
     connect(syncTimer, &QTimer::timeout, [=]() {
-        for (auto lib : librariesFromConfig()) {
+        for (auto lib : m_appSettings->librariesFromConfig()) {
             QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
             if (sync) {
                 auto lastSync = sync->lastSync();
@@ -226,64 +204,13 @@ void Application::initialize(const QString& path)
         }
     });
     syncTimer->start();
-}
 
-QList<QSharedPointer<Library>> Application::librariesFromConfig()
-{
-    QList<QSharedPointer<Library>> result;
-    auto count = m_settings->beginReadArray("LibraryDirectories");
-    for (auto i = 0; i < count; ++i) {
-        m_settings->setArrayIndex(i);
-        auto directory = m_settings->value("directory").toString();
-        directory = FileUtils::fromPersistedPath(directory);
-        if (directory != "" && QDir(directory).exists()) {
-            auto lib = QSharedPointer<Library>(new Library(directory));
-            if (lib->load()) {
-                result << lib;
-            } else {
-                qCWarning(log) << "Failed to load library from directory" << directory;
-
-                // Try to restore JSON from cache - fix for
-                // https://gitlab.com/rpdev/opentodolist/issues/222
-                auto query = new LibrariesItemsQuery();
-                query->setIncludeCalculatedValues(false);
-                connect(query, &LibrariesItemsQuery::librariesAvailable,
-                        [=](QVariantList libraries) {
-                            for (const auto& entry : libraries) {
-                                auto cacheEntry = entry.value<LibraryCacheEntry>();
-                                if (cacheEntry.valid) {
-                                    auto lib = Library::decache(cacheEntry);
-                                    if (lib->directory() == directory) {
-                                        lib->save();
-                                        qCWarning(log) << "Restored library file in " << directory;
-                                    }
-                                }
-                            }
-                        });
-                m_cache->run(query);
-            }
-        } else {
-            qCWarning(log) << "Library directory" << directory << "does not exist!";
-            QDir d(Library::defaultLibrariesLocation());
-            for (const auto& entry : d.entryList()) {
-                qCWarning(log) << "    " << entry;
-            }
-        }
+    for (auto& library : m_appSettings->librariesFromConfig()) {
+        watchLibraryForChanges(library);
     }
-    m_settings->endArray();
-    return result;
-}
 
-void Application::librariesToConfig(QList<QSharedPointer<Library>> libraries)
-{
-    m_settings->beginWriteArray("LibraryDirectories", libraries.length());
-    for (auto i = 0; i < libraries.length(); ++i) {
-        m_settings->setArrayIndex(i);
-        auto dir = libraries[i]->directory();
-        dir = FileUtils::toPersistedPath(dir);
-        m_settings->setValue("directory", dir);
-    }
-    m_settings->endArray();
+    // Connect to background service:
+    (void)getBackgroundService();
 }
 
 void Application::syncLibrariesWithCache(QList<QSharedPointer<Library>> libraries)
@@ -312,9 +239,9 @@ void Application::internallyAddLibrary(Library* library)
     m_cache->run(q);
     syncLibrary(library);
     library->setCache(m_cache);
-    auto libs = librariesFromConfig();
+    auto libs = m_appSettings->librariesFromConfig();
     libs << QSharedPointer<Library>(Library::decache(library->encache()));
-    librariesToConfig(libs);
+    m_appSettings->librariesToConfig(libs);
 }
 
 /**
@@ -322,100 +249,39 @@ void Application::internallyAddLibrary(Library* library)
  */
 bool Application::isLibraryUid(const QUuid& uid)
 {
-    return libraryById(uid) != nullptr;
+    return m_appSettings->libraryById(uid) != nullptr;
 }
 
-/**
- * @brief Find a library by its @p uid.
- *
- * Returns the library with the given uid or a nullptr if no such library
- * exists.
- */
-QSharedPointer<Library> Application::libraryById(const QUuid& uid)
+QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
 {
-    auto libs = librariesFromConfig();
-    auto result = std::find_if(libs.begin(), libs.end(),
-                               [uid](QSharedPointer<Library> lib) { return lib->uid() == uid; });
-    if (result != libs.end()) {
-        return *result;
-    } else {
-        return nullptr;
-    }
-}
-
-/**
- * @brief Import Accounts by inspecting old-style synchronizers.
- *
- * This is a helper method which is used to automatically create Accounts from existing, old-style
- * synchronizers.
- */
-void Application::importAccountsFromSynchronizers()
-{
-    for (const auto& lib : librariesFromConfig()) {
-        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
-        if (sync) {
-            if (sync->accountUid().isNull()) {
-                // The synchronizer is not connected to an Account. Assume we need to import it.
-                m_keyStore->loadCredentials(sync->uid().toString());
-            }
+    if (!m_backgroundService) {
+        m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("local:opentodolist")));
+        m_backgroundService.reset(m_remoteObjectNode->acquire<BackgroundServiceReplica>());
+        if (!m_backgroundService->waitForSource(5000)) {
+            qCWarning(log) << "Failed to connect to background service";
+            m_backgroundService.clear();
+        } else {
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncStarted, this,
+                    &Application::onLibrarySyncStarted);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncFinished,
+                    this, &Application::onLibrarySyncFinished);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncError, this,
+                    &Application::onLibrarySyncError);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheLibrariesChanged,
+                    this, &Application::onBackgroundServiceCacheDataChanged);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheLibrariesChanged,
+                    this, &Application::onBackgroundServiceCacheLibrariesChanged);
         }
     }
+    return m_backgroundService;
 }
 
-void Application::importAccountFromSynchronizer(const QString& syncUid, const QString& password)
+void Application::onLibrarySyncStarted(const QUuid& libraryUid)
 {
-    // Load all accounts:
-    QList<QSharedPointer<Account>> accounts;
-    for (const auto& accountId : accountUids()) {
-        accounts << QSharedPointer<Account>(loadAccount(accountId.toString()));
-    }
-
-    // Find the synchronizer:
-    for (const auto& lib : librariesFromConfig()) {
-        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
-        if (sync && sync->uid().toString() == syncUid) {
-            // The next should always be the case - before the introduction to accounts, we only
-            // had WebDAV synchronizers:
-            auto davSync = qobject_cast<WebDAVSynchronizer*>(sync.data());
-            if (davSync) {
-                // Check if we (meanwhile) have an account that maps to the same URL+username:
-                auto existingAccount =
-                        std::find_if(accounts.begin(), accounts.end(),
-                                     [davSync](QSharedPointer<Account> account) {
-                                         return account->username() == davSync->username()
-                                                 && QUrl(account->baseUrl()) == davSync->url();
-                                     });
-                if (existingAccount != accounts.end()) {
-                    // Connect the synchronizer to the existing account:
-                    davSync->setAccountUid((*existingAccount)->uid());
-                    davSync->save();
-                }
-
-                // The synchronizer does not have an account ID set,
-                // assume, it is not yet ported and create one from it:
-                auto attrs =
-                        JsonUtils::loadMap(sync->directory() + "/" + Synchronizer::SaveFileName);
-                Account account;
-                account.setDisableCertificateChecks(attrs["disableCertificateCheck"].toBool());
-                auto serverType = attrs["serverType"].toString();
-                if (serverType == "NextCloud") {
-                    account.setType(Account::NextCloud);
-                } else if (serverType == "OwnCloud") {
-                    account.setType(Account::OwnCloud);
-                } else if (serverType == "Generic") {
-                    account.setType(Account::WebDAV);
-                }
-                account.setBaseUrl(attrs["url"].toString());
-                account.setUsername(attrs["username"].toString());
-                account.setName(account.username() + "@" + QUrl(account.baseUrl()).host());
-                account.setPassword(password);
-                saveAccount(&account);
-                saveAccountSecrets(&account);
-                sync->setAccountUid(account.uid());
-                sync->save();
-                return;
-            }
-        }
+    auto lib = m_appSettings->libraryById(libraryUid);
+    if (lib) {
+        m_directoriesWithRunningSync.append(lib->directory());
+        emit directoriesWithRunningSyncChanged();
     }
 }
 
@@ -452,14 +318,7 @@ Application::~Application() {}
  */
 void Application::saveAccount(Account* account)
 {
-    if (account != nullptr) {
-        m_settings->beginGroup("Accounts");
-        m_settings->beginGroup(account->uid().toString());
-        account->save(m_settings);
-        m_settings->endGroup();
-        m_settings->endGroup();
-        emit accountsChanged();
-    }
+    m_appSettings->saveAccount(account);
 }
 
 /**
@@ -468,9 +327,13 @@ void Application::saveAccount(Account* account)
 void Application::saveAccountSecrets(Account* account)
 {
     if (account != nullptr) {
-        m_keyStore->saveCredentials(account->uid().toString(), account->password());
-        m_secrets.insert(account->uid().toString(), account->password());
+        m_appSettings->saveAccountSecrets(account);
         emit accountsChanged();
+
+        auto backgroundService = getBackgroundService();
+        if (backgroundService) {
+            backgroundService->setAccountSecret(account->uid(), account->password());
+        }
 
         // Check if the account we just saved credentials for was previously missing
         // credentials and hence remove the problem:
@@ -494,7 +357,7 @@ void Application::saveAccountSecrets(Account* account)
 void Application::removeAccount(Account* account)
 {
     if (account != nullptr) {
-        for (auto& lib : librariesFromConfig()) {
+        for (auto& lib : m_appSettings->librariesFromConfig()) {
             QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
             if (sync) {
                 if (sync->accountUid() == account->uid()) {
@@ -529,20 +392,7 @@ void Application::removeAccount(Account* account)
  */
 Account* Application::loadAccount(const QUuid& uid)
 {
-    Account* result = nullptr;
-    if (!uid.isNull()) {
-        m_settings->beginGroup("Accounts");
-        if (m_settings->childGroups().contains(uid.toString())) {
-            m_settings->beginGroup(uid.toString());
-            result = new Account();
-            result->setUid(uid);
-            result->load(m_settings);
-            result->setPassword(m_secrets.value(result->uid().toString()).toString());
-            m_settings->endGroup();
-        }
-        m_settings->endGroup();
-    }
-    return result;
+    return m_appSettings->loadAccount(uid);
 }
 
 /**
@@ -550,16 +400,7 @@ Account* Application::loadAccount(const QUuid& uid)
  */
 QVariantList Application::accountUids()
 {
-    QVariantList result;
-    m_settings->beginGroup("Accounts");
-    for (const auto& key : m_settings->childGroups()) {
-        auto uid = QUuid::fromString(key);
-        if (!uid.isNull()) {
-            result << uid;
-        }
-    }
-    m_settings->endGroup();
-    return result;
+    return m_appSettings->accountUids();
 }
 
 /**
@@ -610,7 +451,7 @@ Library* Application::addLibraryDirectory(const QString& directory)
         if (isLibraryDir(QUrl::fromLocalFile(directory))) {
             result = new Library(directory);
             if (result->load()) {
-                auto existingLib = libraryById(result->uid());
+                auto existingLib = m_appSettings->libraryById(result->uid());
                 if (existingLib == nullptr) {
                     internallyAddLibrary(result);
                     watchLibraryForChanges(result);
@@ -649,8 +490,8 @@ Library* Application::addLibraryDirectory(const QString& directory)
 /**
  * @brief Add a new library to the given account.
  *
- * This methods adds a new library to the @p account. The library is given the specified @p name.
- * Returns the newly created library.
+ * This methods adds a new library to the @p account. The library is given the specified @p
+ * name. Returns the newly created library.
  *
  * @note The caller takes ownership of the returned object.
  */
@@ -757,26 +598,20 @@ Library* Application::addExistingLibraryToAccount(Account* account,
 void Application::deleteLibrary(Library* library)
 {
     if (library != nullptr) {
+        // Stop watching the library directory:
         auto watcher = m_watchedDirectories.value(library->directory(), nullptr);
-        if (m_directoriesWithRunningSync.contains(library->directory())) {
-            qCWarning(log) << "Cannot delete a library which is syncing.";
-            return;
-        }
         if (watcher != nullptr) {
             delete watcher;
             m_watchedDirectories.remove(library->directory());
         }
-        auto q = new DeleteItemsQuery();
-        q->deleteLibrary(library, library->isInDefaultLocation());
-        m_cache->run(q);
-        auto libs = librariesFromConfig();
-        for (auto lib : libs) {
-            if (lib->directory() == library->directory()) {
-                libs.removeOne(lib);
-                break;
-            }
+
+        // Inform the background service about the removal:
+        auto backgroundService = getBackgroundService();
+        if (backgroundService) {
+            backgroundService->deleteLibrary(library->uid());
         }
-        librariesToConfig(libs);
+
+        m_librariesRequestedForDeletion.insert(library->uid());
     }
 }
 
@@ -1186,6 +1021,12 @@ void Application::clearSyncErrors(Library* library)
     }
 }
 
+void Application::setPropagateCacheEventsFromBackgroundService(
+        bool propagateCacheEventsFromBackgroundService)
+{
+    m_propagateCacheEventsFromBackgroundService = propagateCacheEventsFromBackgroundService;
+}
+
 ProblemManager* Application::problemManager() const
 {
     return m_problemManager;
@@ -1197,16 +1038,6 @@ QVariantMap Application::syncErrors() const
 }
 
 /**
- * @brief A list of secrets keys.
- *
- * @sa Library::synchronizerSecret
- */
-QStringList Application::secretsKeys() const
-{
-    return m_secrets.keys();
-}
-
-/**
  * @brief The list of directories in which a sync is currently running.
  */
 QStringList Application::directoriesWithRunningSync() const
@@ -1214,46 +1045,9 @@ QStringList Application::directoriesWithRunningSync() const
     return m_directoriesWithRunningSync;
 }
 
-/**
- * @brief Set the list of directories in which currently a sync is running.
- */
-void Application::setDirectoriesWithRunningSync(const QStringList& directoriesWithRunningSync)
-{
-    if (m_directoriesWithRunningSync != directoriesWithRunningSync) {
-        m_directoriesWithRunningSync = directoriesWithRunningSync;
-        emit directoriesWithRunningSyncChanged();
-    }
-}
-
 Cache* Application::cache() const
 {
     return m_cache;
-}
-
-void Application::loadLibraries()
-{
-    qCDebug(log) << "Loading libraries...";
-    m_secrets.clear();
-    emit secretsKeysChanged();
-
-    for (auto library : librariesFromConfig()) {
-        qCDebug(log) << "Loading library" << library->name() << "from" << library->directory();
-        auto loader = new LibraryLoader();
-        loader->setDirectory(library->directory());
-        loader->setLibraryId(library->uid());
-        loader->setCache(m_cache);
-        connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-        loader->scan();
-        watchLibraryForChanges(library);
-    }
-
-    // Load secrets of all accounts:
-    for (const auto& uid : accountUids()) {
-        m_keyStore->loadCredentials(uid.toString());
-    }
-
-    // Trigger import of old-style synchronizers:
-    importAccountsFromSynchronizers();
 }
 
 /**
@@ -1264,51 +1058,61 @@ QString Application::librariesLocation() const
     return Library::defaultLibrariesLocation();
 }
 
-void Application::onLibrarySyncFinished(QString directory)
+void Application::onLibrarySyncFinished(const QUuid& libraryUid)
 {
-    Library lib(directory);
-    if (lib.isValid()) {
-        QScopedPointer<Synchronizer> sync(lib.createSynchronizer());
-        if (sync) {
-            sync->setLastSync(QDateTime::currentDateTime());
-            sync->save();
-        }
-
+    auto lib = m_appSettings->libraryById(libraryUid);
+    if (lib->isValid()) {
+        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
         // Unmark directory as having running sync:
-        auto dirs = directoriesWithRunningSync();
-        dirs.removeAll(directory);
-        setDirectoriesWithRunningSync(dirs);
+        m_directoriesWithRunningSync.removeAll(lib->directory());
+        emit directoriesWithRunningSyncChanged();
 
-        if (m_librariesWithChanges.contains(lib.directory())) {
-            m_librariesWithChanges.remove(lib.directory());
-            runSyncForLibrary(&lib);
-        }
-
-        auto libs = librariesFromConfig();
-        for (auto libFromConfig : libs) {
-            if (libFromConfig->directory() == directory) {
-                auto loader = new LibraryLoader();
-                loader->setCache(m_cache);
-                loader->setLibraryId(libFromConfig->uid());
-                loader->setDirectory(directory);
-                connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-                loader->scan();
+        // Only if we know this library is not already requested to be deleted:
+        if (!m_librariesRequestedForDeletion.contains(libraryUid)) {
+            // Save last sync date:
+            if (sync) {
+                sync->setLastSync(QDateTime::currentDateTime());
+                sync->save();
             }
+
+            // If there were changes in the meantime, run another sync right away:
+            if (m_librariesWithChanges.contains(lib->directory())) {
+                m_librariesWithChanges.remove(lib->directory());
+                runSyncForLibrary(lib);
+            }
+
+            // Load changes from disk:
+            auto loader = new LibraryLoader();
+            loader->setCache(m_cache);
+            loader->setLibraryId(lib->uid());
+            loader->setDirectory(lib->directory());
+            connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
+            loader->scan();
         }
     }
 }
 
-void Application::onLibrarySyncError(QString directory, QString error)
+void Application::onLibrarySyncError(const QUuid& libraryUid, const QString& error)
 {
-    auto errors = m_syncErrors.value(directory, QStringList()).toStringList();
-    errors.append(error);
-    m_syncErrors[directory] = errors;
-    emit syncErrorsChanged();
+    auto lib = m_appSettings->libraryById(libraryUid);
+    if (lib) {
+        auto errors = m_syncErrors.value(lib->directory(), QStringList()).toStringList();
+        errors.append(error);
+        m_syncErrors[lib->directory()] = errors;
+        emit syncErrorsChanged();
+    }
+}
+
+void Application::onLibraryDeleted(const QUuid& libraryUid)
+{
+    if (m_librariesRequestedForDeletion.contains(libraryUid)) {
+        m_librariesRequestedForDeletion.remove(libraryUid);
+    }
 }
 
 void Application::onLibrariesChanged(QVariantList librariesUids)
 {
-    auto libs = librariesFromConfig();
+    auto libs = m_appSettings->librariesFromConfig();
     for (auto id : librariesUids) {
         auto uid = id.toUuid();
         for (auto lib : libs) {
@@ -1323,31 +1127,40 @@ void Application::onLibrariesChanged(QVariantList librariesUids)
     }
 }
 
+/**
+ * @brief Propagate dataChanged() signals from cache in background service.
+ */
+void Application::onBackgroundServiceCacheDataChanged()
+{
+    if (m_propagateCacheEventsFromBackgroundService) {
+        emit m_cache->dataChanged();
+    }
+}
+
+/**
+ * @brief Propagate librariesChanged() signals from cache in background service.
+ */
+void Application::onBackgroundServiceCacheLibrariesChanged(const QVariantList& libraryUids)
+{
+    if (m_propagateCacheEventsFromBackgroundService) {
+        emit m_cache->librariesChanged(libraryUids);
+    }
+}
+
 template<typename T>
 void Application::runSyncForLibrary(T library)
 {
-    if (library != nullptr && library->isValid()) {
+    if (library != nullptr && library->isValid()
+        && !m_librariesRequestedForDeletion.contains(library->uid())) {
         if (!m_directoriesWithRunningSync.contains(library->directory())) {
-            QScopedPointer<Synchronizer> sync(library->createSynchronizer());
-            if (!sync) {
-                return;
+            auto backgroundService = getBackgroundService();
+            if (backgroundService) {
+                m_syncErrors.remove(library->directory());
+                emit syncErrorsChanged();
+                backgroundService->syncLibrary(library->uid());
+            } else {
+                qCWarning(log) << "Cannot sync library: Failed to connect to background service";
             }
-            QSharedPointer<Account> account(loadAccount(sync->accountUid()));
-            if (!account || !m_secrets.contains(account->uid().toString())) {
-                return;
-            }
-            setDirectoriesWithRunningSync(directoriesWithRunningSync() << library->directory());
-            m_syncErrors.remove(library->directory());
-            emit syncErrorsChanged();
-            auto job = new SyncJob(library->directory(), account);
-            connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, job,
-                    &SyncJob::stop);
-            connect(job, &SyncJob::syncFinished, this, &Application::onLibrarySyncFinished,
-                    Qt::QueuedConnection);
-            connect(job, &SyncJob::syncError, this, &Application::onLibrarySyncError,
-                    Qt::QueuedConnection);
-            auto runner = new SyncRunner(job);
-            QThreadPool::globalInstance()->start(runner);
         }
     }
 }

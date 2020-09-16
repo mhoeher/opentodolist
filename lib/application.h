@@ -34,9 +34,12 @@
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
 
+class QRemoteObjectNode;
 class QTemporaryDir;
 
 class Account;
+class ApplicationSettings;
+class BackgroundServiceReplica;
 class Cache;
 class DirectoryWatcher;
 class Image;
@@ -63,12 +66,11 @@ class Application : public QObject
     Q_PROPERTY(QStringList directoriesWithRunningSync READ directoriesWithRunningSync NOTIFY
                        directoriesWithRunningSyncChanged)
     Q_PROPERTY(QVariantMap syncErrors READ syncErrors NOTIFY syncErrorsChanged)
-    Q_PROPERTY(QStringList secretsKeys READ secretsKeys NOTIFY secretsKeysChanged)
     Q_PROPERTY(ProblemManager* problemManager READ problemManager CONSTANT)
 
 public:
-    explicit Application(QObject* parent = nullptr);
-    explicit Application(const QString& applicationDir, QObject* parent = nullptr);
+    explicit Application(Cache* cache, QObject* parent = nullptr);
+    explicit Application(Cache* cache, const QString& applicationDir, QObject* parent = nullptr);
 
     virtual ~Application();
 
@@ -128,9 +130,10 @@ public:
 
     QVariantMap syncErrors() const;
 
-    QStringList secretsKeys() const;
-
     ProblemManager* problemManager() const;
+
+    void
+    setPropagateCacheEventsFromBackgroundService(bool propagateCacheEventsFromBackgroundService);
 
 public slots:
 
@@ -142,30 +145,28 @@ signals:
 
     void directoriesWithRunningSyncChanged();
     void syncErrorsChanged();
-    void secretsKeysChanged();
     void accountsChanged();
 
 private:
-    QSettings* m_settings;
     Cache* m_cache;
     KeyStore* m_keyStore;
     ProblemManager* m_problemManager;
-    QVariantMap m_secrets;
+    ApplicationSettings* m_appSettings;
+    QSettings* m_settings;
     QStringList m_directoriesWithRunningSync;
     QVariantMap m_syncErrors;
     QMap<QString, DirectoryWatcher*> m_watchedDirectories;
     QSet<QString> m_librariesWithChanges;
     QSharedPointer<QTemporaryDir> m_tmpCacheDir;
-
-    void saveLibraries();
-    void loadLibraries();
+    QRemoteObjectNode* m_remoteObjectNode;
+    QSharedPointer<BackgroundServiceReplica> m_backgroundService;
+    QSet<QUuid> m_librariesRequestedForDeletion;
+    bool m_propagateCacheEventsFromBackgroundService;
 
     void initialize(const QString& path = QString());
 
     void connectItemToCache(Item* item);
 
-    QList<QSharedPointer<Library>> librariesFromConfig();
-    void librariesToConfig(QList<QSharedPointer<Library>> libraries);
     void syncLibrariesWithCache(QList<QSharedPointer<Library>> libraries);
 
     template<typename T>
@@ -176,16 +177,20 @@ private:
 
     void internallyAddLibrary(Library* library);
     bool isLibraryUid(const QUuid& uid);
-    QSharedPointer<Library> libraryById(const QUuid& uid);
 
     void importAccountsFromSynchronizers();
-    void importAccountFromSynchronizer(const QString& syncUid, const QString& password);
+
+    QSharedPointer<BackgroundServiceReplica> getBackgroundService();
 
 private slots:
 
-    void onLibrarySyncFinished(QString directory);
-    void onLibrarySyncError(QString directory, QString error);
+    void onLibrarySyncStarted(const QUuid& libraryUid);
+    void onLibrarySyncFinished(const QUuid& libraryUid);
+    void onLibrarySyncError(const QUuid& libraryUid, const QString& error);
+    void onLibraryDeleted(const QUuid& libraryUid);
     void onLibrariesChanged(QVariantList librariesUids);
+    void onBackgroundServiceCacheDataChanged();
+    void onBackgroundServiceCacheLibrariesChanged(const QVariantList& libraryUids);
 };
 
 #endif // APPLICATION_H_

@@ -267,12 +267,10 @@ Pane {
         }
         lessThan: function(left, right) {
             let weights = d.libraryWeights;
-            console.debug(JSON.stringify(weights));
             let leftLib = left.library;
             let rightLib = right.library;
             let leftWeight = d.libraryWeights[leftLib.uid.toString()];
             let rightWeight = d.libraryWeights[rightLib.uid.toString()];
-            console.debug(leftWeight, rightWeight);
             return leftWeight < rightWeight;
         }
         delegate: Column {
