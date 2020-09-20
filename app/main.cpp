@@ -30,11 +30,16 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QRemoteObjectHost>
+#include <QScopedPointer>
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
 
 #include <iostream>
+
+#ifdef Q_OS_WIN
+#    include <Windows.h>
+#endif
 
 #include "opentodolistqmlextensionsplugin.h"
 #include "application.h"
@@ -52,138 +57,75 @@
 #endif
 #include "utils/translations.h"
 
+class AppStartup : public QObject
+{
+public:
+    AppStartup();
+    ~AppStartup() override;
+
+    int exec(int& argc, char* argv[]);
+
+private:
+    QApplication* m_app;
+    Cache* m_cache;
+    QRemoteObjectHost* m_srcNode;
+    BackgroundService* m_backgroundService;
+    Application* m_application;
+
+    QCommandLineParser m_parser;
+    QQmlApplicationEngine* m_engine;
+    OpenTodoList::Translations* m_translations;
+    OpenTodoListQmlExtensionsPlugin m_qmlPlugin;
+
+    void setupGlobals();
+    void createApp(int& argc, char* argv[]);
+    void setupFonts();
+    void parseCommandLineArgs();
+    void openConsole();
+    void printDiagnostics();
+    void createCache();
+    void startBackgroundService();
+    void startGUI();
+};
+
 int main(int argc, char* argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    AppStartup appStartup;
+    return appStartup.exec(argc, argv);
+}
 
-    // qSetMessagePattern("%{file}(%{line}): %{message}");
-#ifdef OPENTODOLIST_DEBUG
-    QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
-#endif
+AppStartup::AppStartup()
+    : m_app(nullptr),
+      m_cache(nullptr),
+      m_srcNode(nullptr),
+      m_backgroundService(nullptr),
+      m_application(nullptr),
+      m_parser(),
+      m_engine(nullptr),
+      m_translations(nullptr),
+      m_qmlPlugin()
+{
+    m_qmlPlugin.registerTypes("OpenTodoList");
+}
 
-#ifdef OTL_USE_SINGLE_APPLICATION
-    SingleApplication app(argc, argv, false,
-                          SingleApplication::User | SingleApplication::ExcludeAppPath);
-#else
-    QGuiApplication app(argc, argv);
-#endif
+AppStartup::~AppStartup() {}
 
-    // Load color emoji font:
-    QFontDatabase::addApplicationFont(":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
-
-// Use Noto Color Emoji as substitution font for color emojies:
-// {
-//     const auto FontTypes = {
-//         QFontDatabase::GeneralFont,
-//         QFontDatabase::FixedFont,
-//         QFontDatabase::TitleFont,
-//         QFontDatabase::SmallestReadableFont
-//     };
-//     for (auto fontType : FontTypes) {
-//         auto font = QFontDatabase::systemFont(fontType);
-//         QFont::insertSubstitution(font.family(), "Noto Color Emoji");
-//     }
-// }
-#ifdef OPENTODOLIST_FLATPAK
-    {
-        QDir dir("/var/config/fontconfig/conf.d");
-        if (dir.mkpath(".")) {
-            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
-                        dir.absoluteFilePath("90-otl-color-emoji.conf"));
-        }
-    }
-#endif
-
+void AppStartup::setupGlobals()
+{
     QCoreApplication::setApplicationName("OpenTodoList");
     QCoreApplication::setApplicationVersion(OPENTODOLIST_VERSION);
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
     QCoreApplication::setOrganizationName("RPdev");
 
-    app.setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
-
-    QCommandLineParser parser;
-    parser.setApplicationDescription(
-            QCoreApplication::translate("main", "Manage your personal data."));
-    parser.addHelpOption();
-    parser.addVersionOption();
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
 #ifdef OPENTODOLIST_DEBUG
-    QCommandLineOption qmlRootOption = { { "Q", "qml-root" },
-                                         QCoreApplication::translate("main", "QML Root Directory"),
-                                         QCoreApplication::translate("main", "DIR") };
-    parser.addOption(qmlRootOption);
+    QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
 #endif
+}
 
-    // Enable touch screen optimizations
-    QCommandLineOption enableTouchOption = {
-        { "T", "enable-touch" },
-        QCoreApplication::translate("main", "Switch on some optimizations for touchscreens.")
-    };
-    parser.addOption(enableTouchOption);
-
-    // If APPDIR is set, assume we are running from AppImage.
-    // Provide option to remove desktop integration. Note that we
-    // don't handle this; instead it is handled by the `desktopintegration`
-    // script we use.
-    // See https://github.com/AppImage/AppImageKit/blob/master/desktopintegration.
-#ifdef OPENTODOLIST_IS_APPIMAGE
-    QCommandLineOption removeDesktopIntegrationOption = {
-        "remove-appimage-desktop-integration",
-        QCoreApplication::translate("main", "Remove shortcuts to the AppImage.")
-    };
-    parser.addOption(removeDesktopIntegrationOption);
-
-#endif
-
-    parser.process(app);
-
-    QQmlApplicationEngine engine;
-    OpenTodoList::Translations translations(&engine);
-    QString qmlBase = "qrc:/";
-
-#ifdef OPENTODOLIST_DEBUG
-    if (parser.isSet(qmlRootOption)) {
-        qmlBase = QDir(parser.value(qmlRootOption)).canonicalPath() + "/";
-        if (!QFile::exists(qmlBase + "main.qml")) {
-            qFatal("File main.qml does not exist in %s, probably not a valid OpenTodoList QML dir!",
-                   qUtf8Printable(qmlBase));
-        }
-    }
-#endif
-
-    engine.addImportPath(qmlBase);
-    OpenTodoListQmlExtensionsPlugin plugin;
-    Cache cache;
-    QRemoteObjectHost srcNode(QUrl(QStringLiteral("local:opentodolist")));
-    BackgroundService backgroundService(&cache);
-    srcNode.enableRemoting(&backgroundService);
-    Application application(&cache);
-    plugin.setApplication(&application);
-    plugin.registerTypes("OpenTodoList");
-
-#ifdef OTL_USE_SINGLE_APPLICATION
-    engine.rootContext()->setContextProperty("application", &app);
-#endif
-    engine.rootContext()->setContextProperty("applicationVersion", QVariant(OPENTODOLIST_VERSION));
-    engine.rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
-#ifdef OPENTODOLIST_DEBUG
-    engine.rootContext()->setContextProperty("isDebugBuild", true);
-#else
-    engine.rootContext()->setContextProperty("isDebugBuild", false);
-#endif
-
-    auto url = QUrl(qmlBase + "main.qml");
-
-    QObject::connect(
-            &engine, &QQmlApplicationEngine::objectCreated, &app,
-            [url](QObject* obj, const QUrl& objUrl) {
-                if (!obj && url == objUrl)
-                    QCoreApplication::exit(-1);
-            },
-            Qt::QueuedConnection);
-
-    engine.load(url);
-
+void AppStartup::printDiagnostics()
+{
     // Print diagnostic information
     qWarning() << "This is" << QCoreApplication::applicationName() << "version"
                << QCoreApplication::applicationVersion();
@@ -198,6 +140,122 @@ int main(int argc, char* argv[])
     qWarning() << "OpenSSL version Qt was built against:"
                << QSslSocket::sslLibraryBuildVersionString();
     qWarning() << "OpenSSL version loaded:" << QSslSocket::sslLibraryVersionString();
+}
 
-    return app.exec();
+void AppStartup::createApp(int& argc, char* argv[])
+{
+#ifdef OTL_USE_SINGLE_APPLICATION
+    m_app = new SingleApplication(argc, argv, false,
+                                  SingleApplication::User | SingleApplication::ExcludeAppPath);
+#else
+    m_app = new QApplication app(argc, argv);
+#endif
+    m_app->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
+}
+
+void AppStartup::setupFonts()
+{
+    // Load color emoji font:
+    QFontDatabase::addApplicationFont(":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
+
+#ifdef OPENTODOLIST_FLATPAK
+    {
+        QDir dir("/var/config/fontconfig/conf.d");
+        if (dir.mkpath(".")) {
+            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
+                        dir.absoluteFilePath("90-otl-color-emoji.conf"));
+        }
+    }
+#endif
+}
+
+void AppStartup::parseCommandLineArgs()
+{
+    m_parser.setApplicationDescription(tr("Manage your personal data."));
+    m_parser.addHelpOption();
+    m_parser.addVersionOption();
+
+    // Enable touch screen optimizations
+    QCommandLineOption enableTouchOption = { { "T", "enable-touch" },
+                                             tr("Switch on some optimizations for touchscreens.") };
+    m_parser.addOption(enableTouchOption);
+
+#ifdef Q_OS_WIN
+    m_parser.addOption(
+            { "enable-console", tr("Enable a console on Windows to gather debug output") });
+#endif
+
+    m_parser.process(*m_app);
+}
+
+void AppStartup::openConsole()
+{
+#ifdef Q_OS_WIN
+    if (m_parser.isSet("enable-console")) {
+        FreeConsole();
+        if (!AttachConsole(ATTACH_PARENT_PROCESS)) {
+            AllocConsole();
+        }
+    }
+#endif
+}
+
+void AppStartup::createCache()
+{
+    m_cache = new Cache();
+}
+
+void AppStartup::startBackgroundService()
+{
+    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:opentodolist")));
+    m_backgroundService = new BackgroundService(m_cache);
+    m_srcNode->enableRemoting(m_backgroundService);
+}
+
+void AppStartup::startGUI()
+{
+    m_engine = new QQmlApplicationEngine;
+    m_translations = new OpenTodoList::Translations(m_engine);
+    QString qmlBase = "qrc:/";
+    m_engine->addImportPath(qmlBase);
+
+    m_application = new Application(m_cache);
+    m_qmlPlugin.setApplication(m_application);
+    m_qmlPlugin.registerTypes("OpenTodoList");
+
+    m_engine->rootContext()->setContextProperty("application", m_app);
+    m_engine->rootContext()->setContextProperty("applicationVersion",
+                                                QVariant(OPENTODOLIST_VERSION));
+    m_engine->rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
+#ifdef OPENTODOLIST_DEBUG
+    m_engine->rootContext()->setContextProperty("isDebugBuild", true);
+#else
+    m_engine->rootContext()->setContextProperty("isDebugBuild", false);
+#endif
+
+    auto url = QUrl(qmlBase + "main.qml");
+
+    connect(
+            m_engine, &QQmlApplicationEngine::objectCreated, m_app,
+            [url](QObject* obj, const QUrl& objUrl) {
+                if (!obj && url == objUrl)
+                    QCoreApplication::exit(-1);
+            },
+            Qt::QueuedConnection);
+
+    m_engine->load(url);
+}
+
+int AppStartup::exec(int& argc, char* argv[])
+{
+    setupGlobals();
+    createApp(argc, argv);
+    setupFonts();
+    parseCommandLineArgs();
+    openConsole();
+    printDiagnostics();
+    createCache();
+    startBackgroundService();
+    startGUI();
+    return m_app->exec();
 }
