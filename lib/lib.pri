@@ -1,6 +1,6 @@
 INCLUDEPATH *= $$PWD $$PWD/datamodel $$PWD/datastorage $$PWD/models $$shadowed($$PWD)
 
-QT *= qml sql
+QT *= qml sql remoteobjects
 
 CONFIG *= link_prl
 

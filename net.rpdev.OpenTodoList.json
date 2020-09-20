@@ -33,17 +33,47 @@
             ]
         },
         {
+            "name": "qtremoteobjects",
+            "buildsystem": "qmake",
+            "make-install-args": [
+                "INSTALL_ROOT=/app"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/qt/qtremoteobjects.git",
+                    "disable-shallow-clone": true,
+                    "branch": "dev"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "qmake -query QT_VERSION",
+                        "git checkout v$(qmake -query QT_VERSION)"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "opentodolist",
             "buildsystem": "qmake",
             "config-opts": [
                 "CONFIG+=release",
-                "INSTALL_PREFIX=/app",
+                "INSTALL_PREFIX=/app/usr",
                 "CONFIG+=opentodolist_flatpak"
             ],
             "sources": [
                 {
                     "type": "dir",
                     "path": "."
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "touch .flatpak-build",
+                        "cp -r /app/usr/lib/mkspecs/features .",
+                        "mkdir -p /app/bin && cd /app/bin && ln -s ../usr/bin/OpenTodoList OpenTodoList"
+                    ]
                 }
             ]
         }
