@@ -38,7 +38,7 @@
 #include <iostream>
 
 #ifdef Q_OS_WIN
-#    include <Windows.h>
+#    include <windows.h>
 #endif
 
 #include "opentodolistqmlextensionsplugin.h"
@@ -148,7 +148,7 @@ void AppStartup::createApp(int& argc, char* argv[])
     m_app = new SingleApplication(argc, argv, false,
                                   SingleApplication::User | SingleApplication::ExcludeAppPath);
 #else
-    m_app = new QApplication app(argc, argv);
+    m_app = new QApplication(argc, argv);
 #endif
     m_app->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
 }
