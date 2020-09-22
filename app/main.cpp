@@ -35,6 +35,10 @@
 #include <QSslSocket>
 #include <QSysInfo>
 
+#ifdef Q_OS_ANDROID
+#    include <QtAndroidExtras>
+#endif
+
 #include <iostream>
 
 #ifdef Q_OS_WIN
@@ -66,7 +70,7 @@ public:
     int exec(int& argc, char* argv[]);
 
 private:
-    QApplication* m_app;
+    QCoreApplication* m_app;
     Cache* m_cache;
     QRemoteObjectHost* m_srcNode;
     BackgroundService* m_backgroundService;
@@ -81,6 +85,7 @@ private:
     void createApp(int& argc, char* argv[]);
     void setupFonts();
     void parseCommandLineArgs();
+    void exitIfIsSecondaryInstance();
     void openConsole();
     void printDiagnostics();
     void createCache();
@@ -144,19 +149,36 @@ void AppStartup::printDiagnostics()
 
 void AppStartup::createApp(int& argc, char* argv[])
 {
+#ifdef Q_OS_ANDROID
+    for (int i = 0; i < argc; ++i) {
+        QByteArray opt(argv[i]);
+        if (opt == "--service") {
+            qWarning() << "Is service, starting QAndroidService";
+            m_app = new QAndroidService(argc, argv);
+            return;
+        }
+    }
+#endif
 #ifdef OTL_USE_SINGLE_APPLICATION
-    m_app = new SingleApplication(argc, argv, false,
-                                  SingleApplication::User | SingleApplication::ExcludeAppPath);
+    m_app = new SingleApplication(argc, argv, true,
+                                  SingleApplication::User | SingleApplication::ExcludeAppPath
+                                          | SingleApplication::SecondaryNotification);
 #else
     m_app = new QApplication(argc, argv);
 #endif
-    m_app->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
+    auto guiApp = qobject_cast<QGuiApplication*>(m_app);
+    if (guiApp) {
+        guiApp->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
+    }
 }
 
 void AppStartup::setupFonts()
 {
-    // Load color emoji font:
-    QFontDatabase::addApplicationFont(":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
+    auto guiApp = qobject_cast<QGuiApplication*>(m_app);
+    if (guiApp) {
+        // Load color emoji font:
+        QFontDatabase::addApplicationFont(":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
+    }
 
 #ifdef OPENTODOLIST_FLATPAK
     {
@@ -171,6 +193,7 @@ void AppStartup::setupFonts()
 
 void AppStartup::parseCommandLineArgs()
 {
+    qDebug() << "Processing command line" << m_app->arguments();
     m_parser.setApplicationDescription(tr("Manage your personal data."));
     m_parser.addHelpOption();
     m_parser.addVersionOption();
@@ -180,12 +203,33 @@ void AppStartup::parseCommandLineArgs()
                                              tr("Switch on some optimizations for touchscreens.") };
     m_parser.addOption(enableTouchOption);
 
+    m_parser.addOption({ "service", tr("Only run the app background service") });
+    m_parser.addOption(
+            { "gui",
+              tr("Only run the app GUI and connect to an existing app background service") });
+
 #ifdef Q_OS_WIN
     m_parser.addOption(
             { "enable-console", tr("Enable a console on Windows to gather debug output") });
 #endif
 
     m_parser.process(*m_app);
+    qDebug() << "Finished parsing command line";
+}
+
+void AppStartup::exitIfIsSecondaryInstance()
+{
+#ifdef OTL_USE_SINGLE_APPLICATION
+    auto app = static_cast<SingleApplication*>(m_app);
+    if (app->isSecondary()) {
+        // If this is a GUI only app, allow secondary:
+        if (m_parser.isSet("gui") && !m_parser.isSet("service")) {
+            return;
+        } else {
+            ::exit(0);
+        }
+    }
+#endif
 }
 
 void AppStartup::openConsole()
@@ -207,6 +251,10 @@ void AppStartup::createCache()
 
 void AppStartup::startBackgroundService()
 {
+    if (m_parser.isSet("gui") && !m_parser.isSet("service")) {
+        // User asked to only start GUI, skip running the background service.
+        return;
+    }
     m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:opentodolist")));
     m_backgroundService = new BackgroundService(m_cache);
     m_srcNode->enableRemoting(m_backgroundService);
@@ -214,6 +262,19 @@ void AppStartup::startBackgroundService()
 
 void AppStartup::startGUI()
 {
+    if (m_parser.isSet("service") && !m_parser.isSet("gui")) {
+        // User asked to only start service, skip running the GUI:
+        return;
+    }
+#ifdef Q_OS_ANDROID
+    {
+        QAndroidJniExceptionCleaner cleaner;
+        QAndroidJniObject::callStaticMethod<void>(
+                "net/rpdev/OpenTodoList/BackgroundService", "startQtAndroidService",
+                "(Landroid/content/Context;)V", QtAndroid::androidActivity().object());
+    }
+#endif
+
     m_engine = new QQmlApplicationEngine;
     m_translations = new OpenTodoList::Translations(m_engine);
     QString qmlBase = "qrc:/";
@@ -250,12 +311,20 @@ int AppStartup::exec(int& argc, char* argv[])
 {
     setupGlobals();
     createApp(argc, argv);
-    setupFonts();
     parseCommandLineArgs();
+    exitIfIsSecondaryInstance();
+    qDebug() << "Setting up fonts";
+    setupFonts();
+    qDebug() << "Opening console";
     openConsole();
+    qDebug() << "Printing diagnostics";
     printDiagnostics();
+    qDebug() << "Creating cache";
     createCache();
+    qDebug() << "Starting background service";
     startBackgroundService();
+    qDebug() << "Starting GUI";
     startGUI();
+    qDebug() << "Starting application event loop";
     return m_app->exec();
 }
