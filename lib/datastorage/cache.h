@@ -32,6 +32,7 @@ class Database;
 
 class QThreadPool;
 class ItemsQuery;
+class QTemporaryDir;
 
 /**
  * @brief On-disk items cache.
@@ -65,6 +66,8 @@ public:
     bool isValid() const;
 
     void run(ItemsQuery* query);
+
+    bool initialize(const QString& cacheDir = QString());
 
 signals:
 
@@ -103,6 +106,7 @@ private:
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
+    QSharedPointer<QTemporaryDir> m_tmpCacheDir;
     QThreadPool* m_threadPool;
     bool m_valid;
 

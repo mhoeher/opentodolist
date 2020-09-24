@@ -147,6 +147,17 @@ signals:
     void syncErrorsChanged();
     void accountsChanged();
 
+    /**
+     * @brief The user requested the application window to be shown.
+     *
+     * This signal is emitted to indicate that the user requested the main
+     * window to be shown (again). For example, on Desktop systems, this
+     * might be the case then the app runs minimized to the background and
+     * the user clicks the tray icon - in this case, the Window shall
+     * be show and brought to the foreground.
+     */
+    void showWindowRequested();
+
 private:
     Cache* m_cache;
     KeyStore* m_keyStore;
@@ -155,15 +166,15 @@ private:
     QSettings* m_settings;
     QStringList m_directoriesWithRunningSync;
     QVariantMap m_syncErrors;
-    QMap<QString, DirectoryWatcher*> m_watchedDirectories;
     QSet<QString> m_librariesWithChanges;
     QSharedPointer<QTemporaryDir> m_tmpCacheDir;
     QRemoteObjectNode* m_remoteObjectNode;
     QSharedPointer<BackgroundServiceReplica> m_backgroundService;
     QSet<QUuid> m_librariesRequestedForDeletion;
+    QUuid m_appInstanceUid;
     bool m_propagateCacheEventsFromBackgroundService;
 
-    void initialize(const QString& path = QString());
+    void initialize();
 
     void connectItemToCache(Item* item);
 
@@ -189,8 +200,11 @@ private slots:
     void onLibrarySyncError(const QUuid& libraryUid, const QString& error);
     void onLibraryDeleted(const QUuid& libraryUid);
     void onLibrariesChanged(QVariantList librariesUids);
-    void onBackgroundServiceCacheDataChanged();
-    void onBackgroundServiceCacheLibrariesChanged(const QVariantList& libraryUids);
+    void onBackgroundServiceCacheDataChanged(const QUuid& appInstanceUid);
+    void onBackgroundServiceCacheLibrariesChanged(const QVariantList& libraryUids,
+                                                  const QUuid& appInstanceUid);
+    void onLocalCacheDataChanged();
+    void onLocalCacheLibrariesChanged(const QVariantList& libraryUids);
 };
 
 #endif // APPLICATION_H_

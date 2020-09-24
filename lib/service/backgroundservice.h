@@ -25,10 +25,12 @@
 
 #include "rep_backgroundservice_source.h"
 
+class DirectoryWatcher;
 class ApplicationSettings;
 class Cache;
 class KeyStore;
 class SyncJob;
+class Library;
 
 class BackgroundService : public BackgroundServiceSource
 {
@@ -41,6 +43,10 @@ public slots:
     void syncLibrary(const QUuid& libraryUid) override;
     void deleteLibrary(const QUuid& libraryUid) override;
     void setAccountSecret(const QUuid& accountUid, const QString& password) override;
+    void watchLibraryDirectory(const QUuid& libraryUid) override;
+    void notifyCacheDataChanged(const QUuid& appInstanceUid) override;
+    void notifyCacheLibrariesChanged(const QVariantList& libraryUids,
+                                     const QUuid& appInstanceUid) override;
 
 private:
     enum SyncInfoFlag { NoSyncInfoFlags = 0, DeleteAfterSync = 0x01 };
@@ -61,10 +67,14 @@ private:
     ApplicationSettings* m_appSettings;
     QPointer<Cache> m_cache;
     QMap<QString, SyncInfo> m_syncDirs;
+    QMap<QString, DirectoryWatcher*> m_watchedDirectories;
 
     void onSyncFinished(const QString& libraryDirectory);
     void onSyncError(const QString& libraryDirectory, const QString& error);
     void doDeleteLibrary(const QUuid& libraryUid);
+    void watchLibraryForChanges(QSharedPointer<Library> library);
+    void propagateCacheDataChanged();
+    void propagateCacheLibrariesChanged(const QVariantList& libraryUids);
 };
 
 #endif // SERVICE_BACKGROUNDSERVICE_H_

@@ -17,9 +17,12 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDir>
 #include <QLoggingCategory>
 #include <QRunnable>
 #include <QScopedPointer>
+#include <QStandardPaths>
+#include <QTemporaryDir>
 #include <QThreadPool>
 
 #include <qlmdb/context.h>
@@ -206,6 +209,59 @@ void Cache::run(ItemsQuery* query)
             m_threadPool->start(new ItemsQueryRunnable(query));
         }
     }
+}
+
+bool Cache::initialize(const QString& cacheDir)
+{
+    auto dir = cacheDir;
+    if (dir.isEmpty()) {
+        dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    }
+    dir += "/cache";
+    {
+        QDir d(dir);
+        if (!d.exists()) {
+            if (!d.mkpath(".")) {
+                qWarning() << "Failed to create cache directory";
+            }
+        }
+    }
+    setCacheDirectory(dir);
+
+    // WA for https://gitlab.com/rpdev/opentodolist/issues/214:
+    // Try to use different directories for the cache - required if
+    // the user previously ran the app with a different architecture (and
+    // hence we cannot re-open the incompatible LMDB DB).
+    {
+        int i = 0;
+        while (!open() && i < 10) {
+            auto secondaryCacheDir = dir + "-" + QString::number(i++);
+            QDir d(secondaryCacheDir);
+            if (!d.exists()) {
+                if (!d.mkpath(".")) {
+                    qWarning() << "Failed to create secondary cache directory" << secondaryCacheDir;
+                }
+            }
+            setCacheDirectory(secondaryCacheDir);
+        }
+    }
+
+    if (!isValid()) {
+        // If we still were not able to open a cache persistently,
+        // resort to using a temporary directory. This means, we would
+        // not cache between app restarts, but there should actually not
+        // be a reason why we run into this situation (unless we have file
+        // system corruptions or something like that).
+        m_tmpCacheDir.reset(new QTemporaryDir);
+        setCacheDirectory(m_tmpCacheDir->path());
+        if (!open()) {
+            qCWarning(log) << "Permanently failed to open a cache directory. "
+                              "The app should not crash, but it likely won't "
+                              "function as you might expect.";
+        }
+    }
+
+    return isValid();
 }
 
 bool Cache::openDBs()

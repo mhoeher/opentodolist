@@ -710,6 +710,17 @@ ApplicationWindow {
         onInstanceStarted: {
             console.warn("Instance started");
             window.show();
+            window.requestActivate();
+            window.raise();
+        }
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onShowWindowRequested() {
+            window.show();
+            window.requestActivate();
             window.raise();
         }
     }

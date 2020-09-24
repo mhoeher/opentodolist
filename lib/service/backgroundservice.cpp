@@ -22,6 +22,7 @@
 #include <QCoreApplication>
 #include <QLoggingCategory>
 #include <QThreadPool>
+#include <libraryloader.h>
 
 #include "datamodel/library.h"
 #include "datastorage/applicationsettings.h"
@@ -33,20 +34,60 @@
 #include "sync/syncrunner.h"
 #include "utils/keystore.h"
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg);
+#include <utils/directorywatcher.h>
+
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.BackgroundService", QtDebugMsg);
 
 BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     : BackgroundServiceSource(parent),
       m_keyStore(new KeyStore(this)),
       m_appSettings(new ApplicationSettings(cache, m_keyStore, nullptr, this)),
-      m_cache(cache)
+      m_cache(cache),
+      m_syncDirs(),
+      m_watchedDirectories()
 {
     connect(m_appSettings, &ApplicationSettings::libraryLoaded, this,
             &BackgroundService::syncLibrary);
-    connect(m_cache, &Cache::dataChanged, this, &BackgroundService::cacheDataChanged);
-    connect(m_cache, &Cache::librariesChanged, this, &BackgroundService::cacheLibrariesChanged);
+    connect(m_cache, &Cache::dataChanged, this, &BackgroundService::propagateCacheDataChanged);
+    connect(m_cache, &Cache::librariesChanged, this,
+            &BackgroundService::propagateCacheLibrariesChanged);
 
     m_appSettings->initialize();
+
+    auto syncTimer = new QTimer(this);
+    // Check if we need to sync every 5 min
+    syncTimer->setInterval(1000 * 60 * 5);
+    syncTimer->setSingleShot(false);
+    connect(syncTimer, &QTimer::timeout, [=]() {
+        for (auto lib : m_appSettings->librariesFromConfig()) {
+            QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+            if (sync) {
+                auto lastSync = sync->lastSync();
+                bool runSync = false;
+                if (!lastSync.isValid()) {
+                    runSync = true;
+                } else {
+                    auto currentDateTime = QDateTime::currentDateTime();
+                    auto diff = currentDateTime.toMSecsSinceEpoch() - lastSync.toMSecsSinceEpoch();
+                    if (diff >= (1000 * 60 * 15)) {
+                        // Sync every 15min
+                        qCDebug(log) << "Library" << lib << lib->name() << "has not been synced for"
+                                     << "more than 15min,"
+                                     << "starting sync now";
+                        runSync = true;
+                    }
+                }
+                if (runSync) {
+                    syncLibrary(lib->uid());
+                }
+            }
+        }
+    });
+    syncTimer->start();
+
+    for (auto& library : m_appSettings->librariesFromConfig()) {
+        watchLibraryForChanges(library);
+    }
 }
 
 BackgroundService::~BackgroundService() {}
@@ -83,6 +124,10 @@ void BackgroundService::deleteLibrary(const QUuid& libraryUid)
 {
     auto library = m_appSettings->libraryById(libraryUid);
     if (library) {
+        if (m_watchedDirectories.contains(library->directory())) {
+            delete m_watchedDirectories[library->directory()];
+            m_watchedDirectories.remove(library->directory());
+        }
         if (m_syncDirs.contains(library->directory())) {
             auto& entry = m_syncDirs[library->directory()];
             entry.job->stop();
@@ -96,6 +141,25 @@ void BackgroundService::deleteLibrary(const QUuid& libraryUid)
 void BackgroundService::setAccountSecret(const QUuid& accountUid, const QString& password)
 {
     m_appSettings->setAccountSecret(accountUid, password);
+}
+
+void BackgroundService::watchLibraryDirectory(const QUuid& libraryUid)
+{
+    auto lib = m_appSettings->libraryById(libraryUid);
+    if (lib) {
+        watchLibraryForChanges(lib);
+    }
+}
+
+void BackgroundService::notifyCacheDataChanged(const QUuid& appInstanceUid)
+{
+    emit cacheDataChanged(appInstanceUid);
+}
+
+void BackgroundService::notifyCacheLibrariesChanged(const QVariantList& libraryUids,
+                                                    const QUuid& appInstanceUid)
+{
+    emit cacheLibrariesChanged(libraryUids, appInstanceUid);
 }
 
 void BackgroundService::onSyncFinished(const QString& libraryDirectory)
@@ -135,4 +199,34 @@ void BackgroundService::doDeleteLibrary(const QUuid& libraryUid)
         m_appSettings->librariesToConfig(libs);
         emit libraryDeleted(libraryUid, library->directory());
     }
+}
+
+void BackgroundService::watchLibraryForChanges(QSharedPointer<Library> library)
+{
+    QScopedPointer<Synchronizer> sync(library->createSynchronizer());
+    if (sync == nullptr && library->isValid()) {
+        auto watcher = new DirectoryWatcher(this);
+        auto directory = library->directory();
+        auto uid = library->uid();
+        watcher->setDirectory(library->directory());
+        m_watchedDirectories[library->directory()] = watcher;
+        connect(watcher, &DirectoryWatcher::directoryChanged, [=]() {
+            auto loader = new LibraryLoader();
+            loader->setCache(m_cache);
+            loader->setDirectory(directory);
+            loader->setLibraryId(uid);
+            connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
+            loader->scan();
+        });
+    }
+}
+
+void BackgroundService::propagateCacheDataChanged()
+{
+    emit cacheDataChanged(QUuid());
+}
+
+void BackgroundService::propagateCacheLibrariesChanged(const QVariantList& libraryUids)
+{
+    emit cacheLibrariesChanged(libraryUids, QUuid());
 }

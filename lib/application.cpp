@@ -78,11 +78,11 @@ Application::Application(Cache* cache, QObject* parent)
                                QCoreApplication::organizationName(),
                                QCoreApplication::applicationName(), this)),
       m_directoriesWithRunningSync(),
-      m_watchedDirectories(),
       m_librariesWithChanges(),
       m_remoteObjectNode(new QRemoteObjectNode(this)),
       m_backgroundService(),
       m_librariesRequestedForDeletion(),
+      m_appInstanceUid(QUuid::createUuid()),
       m_propagateCacheEventsFromBackgroundService(false)
 {
     Q_CHECK_PTR(cache);
@@ -104,113 +104,34 @@ Application::Application(Cache* cache, const QString& applicationDir, QObject* p
               new ApplicationSettings(applicationDir, m_cache, m_keyStore, m_problemManager, this)),
       m_settings(new QSettings(applicationDir + "/appsettings.ini", QSettings::IniFormat, this)),
       m_directoriesWithRunningSync(),
-      m_watchedDirectories(),
       m_librariesWithChanges(),
       m_remoteObjectNode(new QRemoteObjectNode(this)),
       m_backgroundService(),
       m_librariesRequestedForDeletion(),
+      m_appInstanceUid(QUuid::createUuid()),
       m_propagateCacheEventsFromBackgroundService(false)
 {
     Q_CHECK_PTR(cache);
-    initialize(applicationDir);
+    initialize();
 }
 
 /**
  * @brief Shared initialization of constructors.
  */
-void Application::initialize(const QString& path)
+void Application::initialize()
 {
     connect(m_appSettings, &ApplicationSettings::accountsChanged, this,
             &Application::accountsChanged);
 
-    auto cacheDir = path;
-    if (cacheDir.isEmpty()) {
-        cacheDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    }
-    cacheDir += "/cache";
-    {
-        QDir dir(cacheDir);
-        if (!dir.exists()) {
-            if (!dir.mkpath(".")) {
-                qWarning() << "Failed to create cache directory";
-            }
-        }
-    }
-    m_cache->setCacheDirectory(cacheDir);
-    // WA for https://gitlab.com/rpdev/opentodolist/issues/214:
-    // Try to use different directories for the cache - required if
-    // the user previously ran the app with a different architecture (and
-    // hence we cannot re-open the incompatible LMDB DB).
-    {
-        int i = 0;
-        while (!m_cache->open() && i < 10) {
-            auto secondaryCacheDir = cacheDir + "-" + QString::number(i++);
-            QDir dir(secondaryCacheDir);
-            if (!dir.exists()) {
-                if (!dir.mkpath(".")) {
-                    qWarning() << "Failed to create secondary cache directory" << secondaryCacheDir;
-                }
-            }
-            m_cache->setCacheDirectory(secondaryCacheDir);
-        }
-    }
-
-    if (!m_cache->isValid()) {
-        // If we still were not able to open a cache persistently,
-        // resort to using a temporary directory. This means, we would
-        // not cache between app restarts, but there should actually not
-        // be a reason why we run into this situation (unless we have file
-        // system corruptions or something like that).
-        m_tmpCacheDir.reset(new QTemporaryDir);
-        m_cache->setCacheDirectory(m_tmpCacheDir->path());
-        if (!m_cache->open()) {
-            qCWarning(log) << "Permanently failed to open a cache directory. "
-                              "The app should not crash, but it likely won't "
-                              "function as you might expect.";
-        }
-    }
-
     connect(m_cache, &Cache::librariesChanged, this, &Application::onLibrariesChanged);
-
     m_appSettings->initialize();
-
-    auto syncTimer = new QTimer(this);
-    // Check if we need to sync every 5 min
-    syncTimer->setInterval(1000 * 60 * 5);
-    syncTimer->setSingleShot(false);
-    connect(syncTimer, &QTimer::timeout, [=]() {
-        for (auto lib : m_appSettings->librariesFromConfig()) {
-            QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
-            if (sync) {
-                auto lastSync = sync->lastSync();
-                bool runSync = false;
-                if (!lastSync.isValid()) {
-                    runSync = true;
-                } else {
-                    auto currentDateTime = QDateTime::currentDateTime();
-                    auto diff = currentDateTime.toMSecsSinceEpoch() - lastSync.toMSecsSinceEpoch();
-                    if (diff >= (1000 * 60 * 15)) {
-                        // Sync every 15min
-                        qCDebug(log) << "Library" << lib << lib->name() << "has not been synced for"
-                                     << "more than 15min,"
-                                     << "starting sync now";
-                        runSync = true;
-                    }
-                }
-                if (runSync) {
-                    runSyncForLibrary(lib);
-                }
-            }
-        }
-    });
-    syncTimer->start();
-
-    for (auto& library : m_appSettings->librariesFromConfig()) {
-        watchLibraryForChanges(library);
-    }
 
     // Connect to background service:
     (void)getBackgroundService();
+
+    // Set up propagation from local cache to the background service
+    connect(m_cache, &Cache::dataChanged, this, &Application::onLocalCacheDataChanged);
+    connect(m_cache, &Cache::librariesChanged, this, &Application::onLocalCacheLibrariesChanged);
 }
 
 void Application::syncLibrariesWithCache(QList<QSharedPointer<Library>> libraries)
@@ -267,8 +188,8 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     this, &Application::onLibrarySyncFinished);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncError, this,
                     &Application::onLibrarySyncError);
-            connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheLibrariesChanged,
-                    this, &Application::onBackgroundServiceCacheDataChanged);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheDataChanged, this,
+                    &Application::onBackgroundServiceCacheDataChanged);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheLibrariesChanged,
                     this, &Application::onBackgroundServiceCacheLibrariesChanged);
         }
@@ -288,21 +209,12 @@ void Application::onLibrarySyncStarted(const QUuid& libraryUid)
 template<typename T>
 void Application::watchLibraryForChanges(T library)
 {
-    QScopedPointer<Synchronizer> sync(library->createSynchronizer());
-    if (sync == nullptr && library->isValid()) {
-        auto watcher = new DirectoryWatcher(this);
-        auto directory = library->directory();
-        auto uid = library->uid();
-        watcher->setDirectory(library->directory());
-        m_watchedDirectories[library->directory()] = watcher;
-        connect(watcher, &DirectoryWatcher::directoryChanged, [=]() {
-            auto loader = new LibraryLoader();
-            loader->setCache(m_cache);
-            loader->setDirectory(directory);
-            loader->setLibraryId(uid);
-            connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-            loader->scan();
-        });
+    // Forward watching to background service - GUI will use cache to sync up
+    if (library) {
+        auto backgroundService = getBackgroundService();
+        if (backgroundService) {
+            backgroundService->watchLibraryDirectory(library->uid());
+        }
     }
 }
 
@@ -598,13 +510,6 @@ Library* Application::addExistingLibraryToAccount(Account* account,
 void Application::deleteLibrary(Library* library)
 {
     if (library != nullptr) {
-        // Stop watching the library directory:
-        auto watcher = m_watchedDirectories.value(library->directory(), nullptr);
-        if (watcher != nullptr) {
-            delete watcher;
-            m_watchedDirectories.remove(library->directory());
-        }
-
         // Inform the background service about the removal:
         auto backgroundService = getBackgroundService();
         if (backgroundService) {
@@ -1130,9 +1035,9 @@ void Application::onLibrariesChanged(QVariantList librariesUids)
 /**
  * @brief Propagate dataChanged() signals from cache in background service.
  */
-void Application::onBackgroundServiceCacheDataChanged()
+void Application::onBackgroundServiceCacheDataChanged(const QUuid& appInstanceUid)
 {
-    if (m_propagateCacheEventsFromBackgroundService) {
+    if (m_propagateCacheEventsFromBackgroundService && appInstanceUid != m_appInstanceUid) {
         emit m_cache->dataChanged();
     }
 }
@@ -1140,10 +1045,43 @@ void Application::onBackgroundServiceCacheDataChanged()
 /**
  * @brief Propagate librariesChanged() signals from cache in background service.
  */
-void Application::onBackgroundServiceCacheLibrariesChanged(const QVariantList& libraryUids)
+void Application::onBackgroundServiceCacheLibrariesChanged(const QVariantList& libraryUids,
+                                                           const QUuid& appInstanceUid)
+{
+    if (m_propagateCacheEventsFromBackgroundService && appInstanceUid != m_appInstanceUid) {
+        emit m_cache->librariesChanged(libraryUids);
+    }
+}
+
+/**
+ * @brief Inform the background service about changes in the cache.
+ *
+ * If propagation of sync events is on, notify the background service about the changes of data
+ * in the cache. The service will notify all clients about this, so they can update views.
+ */
+void Application::onLocalCacheDataChanged()
 {
     if (m_propagateCacheEventsFromBackgroundService) {
-        emit m_cache->librariesChanged(libraryUids);
+        auto backgroundService = getBackgroundService();
+        if (backgroundService) {
+            backgroundService->notifyCacheDataChanged(m_appInstanceUid);
+        }
+    }
+}
+
+/**
+ * @brief Inform the background service about changes in the cache.
+ *
+ * If propagation of sync events is on, notify the background service about the changes of data
+ * in the cache. The service will notify all clients about this, so they can update views.
+ */
+void Application::onLocalCacheLibrariesChanged(const QVariantList& libraryUids)
+{
+    if (m_propagateCacheEventsFromBackgroundService) {
+        auto backgroundService = getBackgroundService();
+        if (backgroundService) {
+            backgroundService->notifyCacheLibrariesChanged(libraryUids, m_appInstanceUid);
+        }
     }
 }
 

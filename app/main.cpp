@@ -27,6 +27,7 @@
 #include <QFontInfo>
 #include <QIcon>
 #include <QLoggingCategory>
+#include <QMenu>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QRemoteObjectHost>
@@ -34,6 +35,7 @@
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
+#include <QSystemTrayIcon>
 
 #ifdef Q_OS_ANDROID
 #    include <QtAndroidExtras>
@@ -75,6 +77,8 @@ private:
     QRemoteObjectHost* m_srcNode;
     BackgroundService* m_backgroundService;
     Application* m_application;
+    QSystemTrayIcon* m_trayIcon;
+    QMenu* m_trayMenu;
 
     QCommandLineParser m_parser;
     QQmlApplicationEngine* m_engine;
@@ -91,6 +95,7 @@ private:
     void createCache();
     void startBackgroundService();
     void startGUI();
+    void showTrayIcon();
 };
 
 int main(int argc, char* argv[])
@@ -105,6 +110,8 @@ AppStartup::AppStartup()
       m_srcNode(nullptr),
       m_backgroundService(nullptr),
       m_application(nullptr),
+      m_trayIcon(nullptr),
+      m_trayMenu(nullptr),
       m_parser(),
       m_engine(nullptr),
       m_translations(nullptr),
@@ -113,7 +120,13 @@ AppStartup::AppStartup()
     m_qmlPlugin.registerTypes("OpenTodoList");
 }
 
-AppStartup::~AppStartup() {}
+AppStartup::~AppStartup()
+{
+    delete m_trayMenu;
+    m_trayMenu = nullptr;
+    delete m_trayIcon;
+    m_trayIcon = nullptr;
+}
 
 void AppStartup::setupGlobals()
 {
@@ -247,6 +260,7 @@ void AppStartup::openConsole()
 void AppStartup::createCache()
 {
     m_cache = new Cache();
+    m_cache->initialize();
 }
 
 void AppStartup::startBackgroundService()
@@ -307,6 +321,36 @@ void AppStartup::startGUI()
     m_engine->load(url);
 }
 
+void AppStartup::showTrayIcon()
+{
+    m_trayIcon = new QSystemTrayIcon(this);
+    m_trayIcon->setIcon(QIcon(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png"));
+    connect(m_trayIcon, &QSystemTrayIcon::activated, [=](QSystemTrayIcon::ActivationReason reason) {
+        switch (reason) {
+        case QSystemTrayIcon::Trigger:
+            emit m_application->showWindowRequested();
+            break;
+        default:
+            break;
+        }
+    });
+
+    m_trayMenu = new QMenu();
+    auto openAction = m_trayMenu->addAction(tr("Open"));
+    connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
+    auto quitAction = m_trayMenu->addAction(tr("Quit"));
+    connect(quitAction, &QAction::triggered, m_app, &QCoreApplication::quit);
+    m_trayIcon->setContextMenu(m_trayMenu);
+    m_trayIcon->show();
+
+    if (m_trayIcon->isSystemTrayAvailable()) {
+        auto app = qobject_cast<QApplication*>(m_app);
+        if (app) {
+            app->setQuitOnLastWindowClosed(false);
+        }
+    }
+}
+
 int AppStartup::exec(int& argc, char* argv[])
 {
     setupGlobals();
@@ -325,6 +369,8 @@ int AppStartup::exec(int& argc, char* argv[])
     startBackgroundService();
     qDebug() << "Starting GUI";
     startGUI();
+    qDebug() << "Showing tray icon";
+    showTrayIcon();
     qDebug() << "Starting application event loop";
     return m_app->exec();
 }
