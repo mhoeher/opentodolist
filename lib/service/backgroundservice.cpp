@@ -170,6 +170,17 @@ void BackgroundService::onSyncFinished(const QString& libraryDirectory)
         m_syncDirs.remove(libraryDirectory);
         if (entry.flags.testFlag(DeleteAfterSync)) {
             doDeleteLibrary(entry.libraryUid);
+        } else {
+            // Load changes from disk:
+            auto lib = m_appSettings->libraryById(entry.libraryUid);
+            if (lib) {
+                auto loader = new LibraryLoader();
+                loader->setCache(m_cache);
+                loader->setLibraryId(lib->uid());
+                loader->setDirectory(lib->directory());
+                connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
+                loader->scan();
+            }
         }
     }
 }

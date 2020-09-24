@@ -178,8 +178,6 @@ private:
 
     void connectItemToCache(Item* item);
 
-    void syncLibrariesWithCache(QList<QSharedPointer<Library>> libraries);
-
     template<typename T>
     void runSyncForLibrary(T library);
 

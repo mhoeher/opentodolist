@@ -134,18 +134,6 @@ void Application::initialize()
     connect(m_cache, &Cache::librariesChanged, this, &Application::onLocalCacheLibrariesChanged);
 }
 
-void Application::syncLibrariesWithCache(QList<QSharedPointer<Library>> libraries)
-{
-    for (auto library : libraries) {
-        auto loader = new LibraryLoader(this);
-        loader->setCache(m_cache);
-        loader->setDirectory(library->directory());
-        loader->setLibraryId(library->uid());
-        connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-        loader->scan();
-    }
-}
-
 /**
  * @brief Internally add the @p library.
  *
@@ -985,14 +973,6 @@ void Application::onLibrarySyncFinished(const QUuid& libraryUid)
                 m_librariesWithChanges.remove(lib->directory());
                 runSyncForLibrary(lib);
             }
-
-            // Load changes from disk:
-            auto loader = new LibraryLoader();
-            loader->setCache(m_cache);
-            loader->setLibraryId(lib->uid());
-            loader->setDirectory(lib->directory());
-            connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-            loader->scan();
         }
     }
 }
