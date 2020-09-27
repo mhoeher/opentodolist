@@ -100,7 +100,9 @@ private:
 
 int main(int argc, char* argv[])
 {
+    qWarning() << "Entered main";
     AppStartup appStartup;
+    qWarning() << "Starting app";
     return appStartup.exec(argc, argv);
 }
 
@@ -280,21 +282,15 @@ void AppStartup::startGUI()
         // User asked to only start service, skip running the GUI:
         return;
     }
-#ifdef Q_OS_ANDROID
-    {
-        QAndroidJniExceptionCleaner cleaner;
-        QAndroidJniObject::callStaticMethod<void>(
-                "net/rpdev/OpenTodoList/BackgroundService", "startQtAndroidService",
-                "(Landroid/content/Context;)V", QtAndroid::androidActivity().object());
-    }
-#endif
-
     m_engine = new QQmlApplicationEngine;
     m_translations = new OpenTodoList::Translations(m_engine);
     QString qmlBase = "qrc:/";
     m_engine->addImportPath(qmlBase);
 
     m_application = new Application(m_cache);
+#ifdef Q_OS_ANDROID
+    m_application->setPropagateCacheEventsFromBackgroundService(true);
+#endif
     m_qmlPlugin.setApplication(m_application);
     m_qmlPlugin.registerTypes("OpenTodoList");
 
@@ -323,12 +319,21 @@ void AppStartup::startGUI()
 
 void AppStartup::showTrayIcon()
 {
+    auto* app = qobject_cast<QApplication*>(m_app);
+    if (!app) {
+        qWarning() << "Running in service process only - NOT creating tray icon";
+        return;
+    }
     m_trayIcon = new QSystemTrayIcon(this);
     m_trayIcon->setIcon(QIcon(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png"));
     connect(m_trayIcon, &QSystemTrayIcon::activated, [=](QSystemTrayIcon::ActivationReason reason) {
         switch (reason) {
         case QSystemTrayIcon::Trigger:
-            emit m_application->showWindowRequested();
+            if (m_backgroundService) {
+                emit m_backgroundService->showAppWindowRequested();
+            } else if (m_application) {
+                emit m_application->showWindowRequested();
+            }
             break;
         default:
             break;
@@ -337,25 +342,31 @@ void AppStartup::showTrayIcon()
 
     m_trayMenu = new QMenu();
     auto openAction = m_trayMenu->addAction(tr("Open"));
-    connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
+    if (m_backgroundService) {
+        connect(openAction, &QAction::triggered, m_backgroundService,
+                &BackgroundService::showAppWindowRequested);
+    } else if (m_application) {
+        connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
+    }
     auto quitAction = m_trayMenu->addAction(tr("Quit"));
     connect(quitAction, &QAction::triggered, m_app, &QCoreApplication::quit);
     m_trayIcon->setContextMenu(m_trayMenu);
     m_trayIcon->show();
 
     if (m_trayIcon->isSystemTrayAvailable()) {
-        auto app = qobject_cast<QApplication*>(m_app);
-        if (app) {
-            app->setQuitOnLastWindowClosed(false);
-        }
+        app->setQuitOnLastWindowClosed(false);
     }
 }
 
 int AppStartup::exec(int& argc, char* argv[])
 {
+    qDebug() << "Applying app-wide configs";
     setupGlobals();
+    qDebug() << "Creating Qt app";
     createApp(argc, argv);
+    qDebug() << "Parsing command line arguments";
     parseCommandLineArgs();
+    qDebug() << "Checking for primary app instance...";
     exitIfIsSecondaryInstance();
     qDebug() << "Setting up fonts";
     setupFonts();

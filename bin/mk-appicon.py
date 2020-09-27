@@ -9,7 +9,7 @@ def _mkdirs(path):
         pass  # Directory already exists
 
 
-def mk_appicon(icon, icon_transparent, output_dir, inkscape=None):
+def mk_appicon(icon, icon_transparent, icon_badge, output_dir, inkscape=None):
     from os.path import join
     from os.path import abspath
     from subprocess import check_call
@@ -82,6 +82,52 @@ def mk_appicon(icon, icon_transparent, output_dir, inkscape=None):
             "-w", str(i["size"]),
             "-h", str(i["size"]),
             icon
+        ]
+        check_call(args)
+
+    # Create Badge Icon for Android:
+    icons = [
+        {"name": "mipmap-hdpi/badge.png", "size": 72},
+        {"name": "mipmap-xxhdpi/badge.png", "size": 144},
+        {"name": "mipmap-ldpi/badge.png", "size": 36},
+        {"name": "mipmap-xxxhdpi/badge.png", "size": 192},
+        {"name": "mipmap-xhdpi/badge.png", "size": 96},
+        {"name": "mipmap-mdpi/badge.png", "size": 48},
+    ]
+    for i in icons:
+        out_file = join(output_dir, "app", "appicon", "android", i["name"])
+        out_dir = dirname(out_file)
+        _mkdirs(out_dir)
+        args = [
+            inkscape,
+            "-z",
+            "-o", out_file,
+            "-w", str(i["size"]),
+            "-h", str(i["size"]),
+            icon_transparent
+        ]
+        check_call(args)
+
+    # Create Small Badge Icon for Android (usually monochrome display):
+    icons = [
+        {"name": "mipmap-hdpi/icon.png", "size": 72},
+        {"name": "mipmap-xxhdpi/icon.png", "size": 144},
+        {"name": "mipmap-ldpi/icon.png", "size": 36},
+        {"name": "mipmap-xxxhdpi/icon.png", "size": 192},
+        {"name": "mipmap-xhdpi/icon.png", "size": 96},
+        {"name": "mipmap-mdpi/icon.png", "size": 48},
+    ]
+    for i in icons:
+        out_file = join(output_dir, "app", "appicon", "android", i["name"])
+        out_dir = dirname(out_file)
+        _mkdirs(out_dir)
+        args = [
+            inkscape,
+            "-z",
+            "-o", out_file,
+            "-w", str(i["size"]),
+            "-h", str(i["size"]),
+            icon_badge
         ]
         check_call(args)
 
@@ -162,6 +208,10 @@ if __name__ == "__main__":
         dirname(basename(__file__)),
         "assets", "OpenTodoList-Transparent.svg"
     )
+    icon_badge = join(
+        dirname(basename(__file__)),
+        "assets", "OpenTodoList-Icon.svg"
+    )
     output_dir = join(
         dirname(basename(__file__))
     )
@@ -186,10 +236,16 @@ if __name__ == "__main__":
         default=icon_transparent
     )
     parser.add_argument(
+        "--icon-badge", "-b",
+        help="Path to small/badge icon file. "
+             "Defaults to {}".format(icon_transparent),
+        default=icon_badge
+    )
+    parser.add_argument(
         "--output", "-o",
         help="Path to output directory. Defaults to {}".format(output_dir),
         default=output_dir
     )
     args = parser.parse_args()
     mk_appicon(
-        args.icon, args.icon_transparent, args.output, inkscape=args.inkscape)
+        args.icon, args.icon_transparent, args.icon_badge, args.output, inkscape=args.inkscape)

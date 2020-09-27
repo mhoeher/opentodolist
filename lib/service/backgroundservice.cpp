@@ -46,13 +46,19 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
       m_syncDirs(),
       m_watchedDirectories()
 {
+    qCDebug(log) << "Creating OpenTodoList BackgroundService object";
     connect(m_appSettings, &ApplicationSettings::libraryLoaded, this,
             &BackgroundService::syncLibrary);
     connect(m_cache, &Cache::dataChanged, this, &BackgroundService::propagateCacheDataChanged);
     connect(m_cache, &Cache::librariesChanged, this,
             &BackgroundService::propagateCacheLibrariesChanged);
 
+    qCDebug(log) << "Initializing app settings";
     m_appSettings->initialize();
+
+    // Bind the app's aboutToExit() to the service's one:
+    connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this,
+            &BackgroundService::serviceAboutToExit);
 
     auto syncTimer = new QTimer(this);
     // Check if we need to sync every 5 min
@@ -94,6 +100,7 @@ BackgroundService::~BackgroundService() {}
 
 void BackgroundService::syncLibrary(const QUuid& libraryUid)
 {
+    qCDebug(log) << "Sync of library with uid" << libraryUid << "requested";
     auto library = m_appSettings->libraryById(libraryUid);
     if (library != nullptr && library->isValid()) {
         if (!m_syncDirs.contains(library->directory())) {
@@ -117,11 +124,14 @@ void BackgroundService::syncLibrary(const QUuid& libraryUid)
             QThreadPool::globalInstance()->start(runner);
             emit librarySyncStarted(libraryUid);
         }
+    } else {
+        qCWarning(log) << "Library" << libraryUid << "not found";
     }
 }
 
 void BackgroundService::deleteLibrary(const QUuid& libraryUid)
 {
+    qCDebug(log) << "Delete of library" << libraryUid << "requested";
     auto library = m_appSettings->libraryById(libraryUid);
     if (library) {
         if (m_watchedDirectories.contains(library->directory())) {
@@ -129,22 +139,28 @@ void BackgroundService::deleteLibrary(const QUuid& libraryUid)
             m_watchedDirectories.remove(library->directory());
         }
         if (m_syncDirs.contains(library->directory())) {
+            qCDebug(log) << "Library" << libraryUid << "is currently syncing - mark for removal";
             auto& entry = m_syncDirs[library->directory()];
             entry.job->stop();
             entry.flags = entry.flags | DeleteAfterSync;
         } else {
+            qCDebug(log) << "Immediately deleting library" << libraryUid;
             doDeleteLibrary(libraryUid);
         }
+    } else {
+        qCWarning(log) << "Library" << libraryUid << "not found";
     }
 }
 
 void BackgroundService::setAccountSecret(const QUuid& accountUid, const QString& password)
 {
+    qCDebug(log) << "Received account update for" << accountUid;
     m_appSettings->setAccountSecret(accountUid, password);
 }
 
 void BackgroundService::watchLibraryDirectory(const QUuid& libraryUid)
 {
+    qCDebug(log) << "Request to watch library" << libraryUid;
     auto lib = m_appSettings->libraryById(libraryUid);
     if (lib) {
         watchLibraryForChanges(lib);
@@ -153,17 +169,20 @@ void BackgroundService::watchLibraryDirectory(const QUuid& libraryUid)
 
 void BackgroundService::notifyCacheDataChanged(const QUuid& appInstanceUid)
 {
+    qCDebug(log) << "Received cache data changed notification from" << appInstanceUid;
     emit cacheDataChanged(appInstanceUid);
 }
 
 void BackgroundService::notifyCacheLibrariesChanged(const QVariantList& libraryUids,
                                                     const QUuid& appInstanceUid)
 {
+    qCDebug(log) << "Received lib cache data changed notification from" << appInstanceUid;
     emit cacheLibrariesChanged(libraryUids, appInstanceUid);
 }
 
 void BackgroundService::onSyncFinished(const QString& libraryDirectory)
 {
+    qCDebug(log) << "Syncing directory" << libraryDirectory << "finished";
     if (m_syncDirs.contains(libraryDirectory)) {
         auto entry = m_syncDirs[libraryDirectory];
         emit librarySyncFinished(entry.libraryUid);
@@ -187,6 +206,7 @@ void BackgroundService::onSyncFinished(const QString& libraryDirectory)
 
 void BackgroundService::onSyncError(const QString& libraryDirectory, const QString& error)
 {
+    qCDebug(log) << "Error syncing" << libraryDirectory << ":" << error;
     if (m_syncDirs.contains(libraryDirectory)) {
         const auto& entry = m_syncDirs[libraryDirectory];
         emit librarySyncError(entry.libraryUid, error);
@@ -209,6 +229,8 @@ void BackgroundService::doDeleteLibrary(const QUuid& libraryUid)
         }
         m_appSettings->librariesToConfig(libs);
         emit libraryDeleted(libraryUid, library->directory());
+    } else {
+        qCWarning(log) << "Library" << libraryUid << "not found";
     }
 }
 

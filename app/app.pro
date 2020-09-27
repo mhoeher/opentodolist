@@ -122,3 +122,11 @@ OTHER_FILES += \
     ios/exportOptions.plist
 
 include(qmake/qmake.pri)
+
+
+DISTFILES += \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat

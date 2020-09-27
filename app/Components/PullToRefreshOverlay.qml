@@ -49,7 +49,7 @@ Item {
 
     Connections {
         target: root.flickable
-        onDragEnded: {
+        function onDragEnded() {
             if (root.refreshEnabled && d.doRefreshAfterDrag) {
                 root.refresh();
             }

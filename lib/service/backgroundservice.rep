@@ -16,4 +16,6 @@ class BackgroundService
     SIGNAL(libraryDeleted(const QUuid& libraryUid, const QString& libraryDirectory));
     SIGNAL(cacheDataChanged(const QUuid& appInstanceUid));
     SIGNAL(cacheLibrariesChanged(const QVariantList& libraryUids, const QUuid& appInstanceUid));
+    SIGNAL(showAppWindowRequested());
+    SIGNAL(serviceAboutToExit());
 }

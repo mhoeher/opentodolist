@@ -37,6 +37,11 @@
 #include <QTimer>
 #include <QUuid>
 
+#ifdef Q_OS_ANDROID
+#    include <QtAndroid>
+#    include <QAndroidJniExceptionCleaner>
+#endif
+
 #include "datamodel/image.h"
 #include "datamodel/note.h"
 #include "datamodel/notepage.h"
@@ -163,7 +168,16 @@ bool Application::isLibraryUid(const QUuid& uid)
 
 QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
 {
-    if (!m_backgroundService) {
+    if (!m_backgroundService || !m_backgroundService->isReplicaValid()) {
+#ifdef Q_OS_ANDROID
+        {
+            QAndroidJniExceptionCleaner cleaner;
+            QAndroidJniObject::callStaticMethod<void>(
+                    "net/rpdev/OpenTodoList/BackgroundService", "startQtAndroidService",
+                    "(Landroid/content/Context;)V", QtAndroid::androidActivity().object());
+        }
+#endif
+
         m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("local:opentodolist")));
         m_backgroundService.reset(m_remoteObjectNode->acquire<BackgroundServiceReplica>());
         if (!m_backgroundService->waitForSource(5000)) {
@@ -180,6 +194,10 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     &Application::onBackgroundServiceCacheDataChanged);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheLibrariesChanged,
                     this, &Application::onBackgroundServiceCacheLibrariesChanged);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::showAppWindowRequested,
+                    this, &Application::showWindowRequested);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::serviceAboutToExit,
+                    QCoreApplication::instance(), &QCoreApplication::quit);
         }
     }
     return m_backgroundService;
