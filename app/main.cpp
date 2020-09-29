@@ -47,9 +47,9 @@
 #    include <windows.h>
 #endif
 
-#include "opentodolistqmlextensionsplugin.h"
 #include "application.h"
 #include "datastorage/cache.h"
+#include "opentodolistqmlextensionsplugin.h"
 #include "service/backgroundservice.h"
 
 #ifdef OTL_USE_SINGLE_APPLICATION
@@ -219,9 +219,9 @@ void AppStartup::parseCommandLineArgs()
     m_parser.addOption(enableTouchOption);
 
     m_parser.addOption({ "service", tr("Only run the app background service") });
-    m_parser.addOption(
-            { "gui",
-              tr("Only run the app GUI and connect to an existing app background service") });
+    m_parser.addOption({ "gui",
+                         tr("Only run the app GUI and connect to an "
+                            "existing app background service") });
 
 #ifdef Q_OS_WIN
     m_parser.addOption(
@@ -315,6 +315,20 @@ void AppStartup::startGUI()
             Qt::QueuedConnection);
 
     m_engine->load(url);
+
+    // Handle application state changes
+    auto guiApp = qobject_cast<QGuiApplication*>(m_app);
+    if (guiApp) {
+        connect(guiApp, &QGuiApplication::applicationStateChanged, [=](Qt::ApplicationState state) {
+            switch (state) {
+            case Qt::ApplicationActive:
+                emit m_application->showWindowRequested();
+                break;
+            default:
+                break;
+            }
+        });
+    }
 }
 
 void AppStartup::showTrayIcon()

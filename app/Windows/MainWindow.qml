@@ -418,6 +418,15 @@ ApplicationWindow {
     }
 
     Action {
+        id: closeAction
+
+        text: qsTr("Close")
+        shortcut: StandardKey.Close
+        onTriggered: window.close()
+        enabled: Qt.platform.os != "android" && Qt.platform.os != "ios"
+    }
+
+    Action {
         id: findAction
 
         text: qsTr("&Find")
@@ -719,6 +728,7 @@ ApplicationWindow {
         target: OTL.Application
 
         function onShowWindowRequested() {
+            console.debug("Request to show main window")
             window.show();
             window.requestActivate();
             window.raise();

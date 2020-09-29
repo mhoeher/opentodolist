@@ -13,7 +13,7 @@ import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
 
-import net.rpdev.opentodolisttest.R;
+import net.rpdev.opentodolist.R;
 
 import org.qtproject.qt5.android.bindings.QtActivity;
 import org.qtproject.qt5.android.bindings.QtService;

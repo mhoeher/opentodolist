@@ -34,7 +34,7 @@ SwipeDelegate {
     signal itemPressedAndHold()
     signal itemClicked()
     
-    width: parent.width
+    width: parent ? parent.width : implicitWidth
     padding: 0
     topPadding: fontMetrics.height / 2
     bottomPadding: topPadding
