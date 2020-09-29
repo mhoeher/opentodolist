@@ -33,8 +33,7 @@
 #include "sync/syncjob.h"
 #include "sync/syncrunner.h"
 #include "utils/keystore.h"
-
-#include <utils/directorywatcher.h>
+#include "utils/directorywatcher.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.BackgroundService", QtDebugMsg);
 
