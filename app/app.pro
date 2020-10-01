@@ -130,3 +130,5 @@ DISTFILES += \
     android/gradle/wrapper/gradle-wrapper.properties \
     android/gradlew \
     android/gradlew.bat
+
+isEmpty(ANDROID_ABIS):ANDROID_ABIS = arm64-v8a

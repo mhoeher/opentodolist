@@ -64,11 +64,13 @@ ApplicationSettings::~ApplicationSettings() {}
 
 QSettings& ApplicationSettings::settings() const
 {
+    m_settings->sync();
     return *m_settings;
 }
 
 QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
 {
+    m_settings->sync();
     QList<QSharedPointer<Library>> result;
     auto count = m_settings->beginReadArray("LibraryDirectories");
     for (auto i = 0; i < count; ++i) {
@@ -118,6 +120,7 @@ QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
 
 void ApplicationSettings::librariesToConfig(QList<QSharedPointer<Library>> libraries)
 {
+    m_settings->sync();
     m_settings->beginWriteArray("LibraryDirectories", libraries.length());
     for (auto i = 0; i < libraries.length(); ++i) {
         m_settings->setArrayIndex(i);
@@ -136,6 +139,7 @@ void ApplicationSettings::librariesToConfig(QList<QSharedPointer<Library>> libra
  */
 void ApplicationSettings::saveAccount(Account* account)
 {
+    m_settings->sync();
     if (account != nullptr) {
         m_settings->beginGroup("Accounts");
         m_settings->beginGroup(account->uid().toString());
@@ -176,6 +180,7 @@ QSharedPointer<Library> ApplicationSettings::libraryById(const QUuid& uid)
  */
 Account* ApplicationSettings::loadAccount(const QUuid& uid)
 {
+    m_settings->sync();
     Account* result = nullptr;
     if (!uid.isNull()) {
         m_settings->beginGroup("Accounts");
@@ -347,6 +352,7 @@ void ApplicationSettings::loadLibraries()
  */
 QVariantList ApplicationSettings::accountUids()
 {
+    m_settings->sync();
     QVariantList result;
     m_settings->beginGroup("Accounts");
     for (const auto& key : m_settings->childGroups()) {
