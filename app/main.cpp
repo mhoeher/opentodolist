@@ -81,6 +81,7 @@ private:
     Application* m_application;
     QSystemTrayIcon* m_trayIcon;
     QMenu* m_trayMenu;
+    static QVector<QtMessageHandler> s_prevMessageHandler;
 
     QCommandLineParser m_parser;
     QQmlApplicationEngine* m_engine;
@@ -98,7 +99,11 @@ private:
     void startBackgroundService();
     void startGUI();
     void showTrayIcon();
+    static void debugMessageHandler(QtMsgType type, const QMessageLogContext& context,
+                                    const QString& msg);
 };
+
+QVector<QtMessageHandler> AppStartup::s_prevMessageHandler;
 
 int main(int argc, char* argv[])
 {
@@ -257,6 +262,9 @@ void AppStartup::openConsole()
         if (!AttachConsole(ATTACH_PARENT_PROCESS)) {
             AllocConsole();
         }
+        (void)freopen("CONOUT$", "w", stdout);
+        (void)freopen("CONOUT$", "w", stderr);
+        s_prevMessageHandler << qInstallMessageHandler(&AppStartup::debugMessageHandler);
     }
 #endif
 }
@@ -375,6 +383,40 @@ void AppStartup::showTrayIcon()
     }
 }
 
+void AppStartup::debugMessageHandler(QtMsgType type, const QMessageLogContext& context,
+                                     const QString& msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+    const char* category = context.category ? context.category : "";
+    const char* file = context.file ? context.file : "";
+    const char* function = context.function ? context.function : "";
+    switch (type) {
+    case QtDebugMsg:
+        fprintf(stderr, "%s: Debug: %s (%s:%u, %s)\n", category, localMsg.constData(), file,
+                context.line, function);
+        break;
+    case QtInfoMsg:
+        fprintf(stderr, "%s: Info: %s (%s:%u, %s)\n", category, localMsg.constData(), file,
+                context.line, function);
+        break;
+    case QtWarningMsg:
+        fprintf(stderr, "%s: Warning: %s (%s:%u, %s)\n", category, localMsg.constData(), file,
+                context.line, function);
+        break;
+    case QtCriticalMsg:
+        fprintf(stderr, "%s: Critical: %s (%s:%u, %s)\n", category, localMsg.constData(), file,
+                context.line, function);
+        break;
+    case QtFatalMsg:
+        fprintf(stderr, "%s: Fatal: %s (%s:%u, %s)\n", category, localMsg.constData(), file,
+                context.line, function);
+        break;
+    }
+    for (auto& handler : s_prevMessageHandler) {
+        handler(type, context, msg);
+    }
+}
+
 int AppStartup::exec(int& argc, char* argv[])
 {
     qDebug() << "Applying app-wide configs";
@@ -383,12 +425,12 @@ int AppStartup::exec(int& argc, char* argv[])
     createApp(argc, argv);
     qDebug() << "Parsing command line arguments";
     parseCommandLineArgs();
+    qDebug() << "Opening console";
+    openConsole();
     qDebug() << "Checking for primary app instance...";
     exitIfIsSecondaryInstance();
     qDebug() << "Setting up fonts";
     setupFonts();
-    qDebug() << "Opening console";
-    openConsole();
     qDebug() << "Printing diagnostics";
     printDiagnostics();
     qDebug() << "Creating cache";

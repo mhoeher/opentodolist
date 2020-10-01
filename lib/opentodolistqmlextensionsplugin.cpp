@@ -61,6 +61,8 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     //@uri OpenTodoList
 
     qmlRegisterType<Account>(uri, 1, 0, "Account");
+    qmlRegisterSingletonType<Application>(uri, 1, 0, "Application",
+                                          [=](QQmlEngine*, QJSEngine*) { return m_application; });
     qmlRegisterSingletonInstance<Application>(uri, 1, 0, "Application", m_application);
     qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
     qmlRegisterType<Image>(uri, 1, 0, "Image");
