@@ -55,4 +55,14 @@ RUN \
         make -j4 && \
         make install && \
         cd .. && \
-        rm -rf qtquickcontrols2
+        rm -rf qtquickcontrols2 \
+        && \
+        cd / && \
+        git clone https://github.com/qt/qtremoteobjects.git && \
+        cd qtremoteobjects && \
+        git checkout v$(mingw32-qmake-qt5 -query QT_VERSION) && \
+        mingw32-qmake-qt5 && \
+        make -j4 && \
+        make install && \
+        cd .. && \
+        rm -rf qtremoteobjects

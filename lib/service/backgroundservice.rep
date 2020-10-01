@@ -1,0 +1,21 @@
+#include <QUuid>
+#include <QVariantList>
+
+class BackgroundService
+{
+    SLOT(void syncLibrary(const QUuid& libraryUid));
+    SLOT(void deleteLibrary(const QUuid& libraryUid));
+    SLOT(void setAccountSecret(const QUuid& accountUid, const QString& password));
+    SLOT(void watchLibraryDirectory(const QUuid& libraryUid));
+    SLOT(void notifyCacheDataChanged(const QUuid& appInstanceUid));
+    SLOT(void notifyCacheLibrariesChanged(const QVariantList& libraryUids,
+                                          const QUuid& appInstanceUid));
+    SIGNAL(librarySyncStarted(const QUuid& libraryUid));
+    SIGNAL(librarySyncFinished(const QUuid& libraryUid));
+    SIGNAL(librarySyncError(const QUuid& libraryUid, const QString& error));
+    SIGNAL(libraryDeleted(const QUuid& libraryUid, const QString& libraryDirectory));
+    SIGNAL(cacheDataChanged(const QUuid& appInstanceUid));
+    SIGNAL(cacheLibrariesChanged(const QVariantList& libraryUids, const QUuid& appInstanceUid));
+    SIGNAL(showAppWindowRequested());
+    SIGNAL(serviceAboutToExit());
+}

@@ -146,7 +146,7 @@ void ComplexItemTest::recurrence()
     {
         // Marking an item which recurs daily as done should reschedule it to tomorrow.
         ComplexItem item;
-        auto today = QDateTime(QDate::currentDate());
+        auto today = QDate::currentDate().startOfDay();
         item.setDueTo(today);
         item.setRecurrencePattern(ComplexItem::RecurDaily);
         QCOMPARE(item.dueTo(), item.effectiveDueTo());
@@ -188,7 +188,7 @@ void ComplexItemTest::recurrence()
     {
         // Marking an item which recurs week should re-schedule to the following week
         ComplexItem item;
-        auto today = QDateTime(QDate::currentDate());
+        auto today = QDate::currentDate().startOfDay();
         item.setDueTo(today);
         item.setRecurrencePattern(ComplexItem::RecurWeekly);
         QCOMPARE(item.dueTo(), item.effectiveDueTo());
@@ -233,7 +233,7 @@ void ComplexItemTest::recurrence()
     {
         // Marking an item which recurs monthly should re-schedule to the following month
         ComplexItem item;
-        auto today = QDateTime(QDate::currentDate());
+        auto today = QDate::currentDate().startOfDay();
         item.setDueTo(today);
         item.setRecurrencePattern(ComplexItem::RecurMonthly);
         QCOMPARE(item.dueTo(), item.effectiveDueTo());
@@ -249,40 +249,40 @@ void ComplexItemTest::recurrence()
 
         // If the item is overdue, the standard scheduling should still just schedule into the next
         // month:
-        item.setDueTo(QDateTime(QDate(2020, 1, 1)));
-        today = QDateTime(QDate(2020, 2, 15));
+        item.setDueTo(QDate(2020, 1, 1).startOfDay());
+        today = QDate(2020, 2, 15).startOfDay();
         item.markCurrentOccurrenceAsDone(today);
-        expectedNextDate = QDateTime(QDate(2020, 3, 1));
+        expectedNextDate = QDate(2020, 3, 1).startOfDay();
         QCOMPARE(item.effectiveDueTo(), expectedNextDate);
         QCOMPARE(item.nextDueTo(), expectedNextDate);
-        QCOMPARE(item.dueTo(), QDateTime(QDate(2020, 1, 1)));
+        QCOMPARE(item.dueTo(), QDate(2020, 1, 1).startOfDay());
 
         // If the item is in the future, re-schedule by one month:
-        item.setDueTo(QDateTime(QDate(2020, 1, 4)));
-        today = QDateTime(QDate(2020, 1, 1));
+        item.setDueTo(QDate(2020, 1, 4).startOfDay());
+        today = QDate(2020, 1, 1).startOfDay();
         item.markCurrentOccurrenceAsDone(today);
-        expectedNextDate = QDateTime(QDate(2020, 2, 4));
+        expectedNextDate = QDate(2020, 2, 4).startOfDay();
         QCOMPARE(item.effectiveDueTo(), expectedNextDate);
         QCOMPARE(item.nextDueTo(), expectedNextDate);
-        QCOMPARE(item.dueTo(), QDateTime(QDate(2020, 1, 4)));
+        QCOMPARE(item.dueTo(), QDate(2020, 1, 4).startOfDay());
 
         // Using scheduling relative to today, the next occurrence should be one month in the future
         // from now:
-        item.setDueTo(QDateTime(QDate(2020, 1, 1)));
+        item.setDueTo(QDate(2020, 1, 1).startOfDay());
         item.setRecurrenceSchedule(ComplexItem::RelativeToCurrentDate);
-        today = QDateTime(QDate(2020, 2, 15));
+        today = QDate(2020, 2, 15).startOfDay();
         item.markCurrentOccurrenceAsDone(today);
-        expectedNextDate = QDateTime(QDate(2020, 3, 15));
+        expectedNextDate = QDate(2020, 3, 15).startOfDay();
         QCOMPARE(item.effectiveDueTo(), expectedNextDate);
         QCOMPARE(item.nextDueTo(), expectedNextDate);
-        QCOMPARE(item.dueTo(), QDateTime(QDate(2020, 1, 1)));
+        QCOMPARE(item.dueTo(), QDate(2020, 1, 1).startOfDay());
     }
 
     {
         // Marking an item which recurs every N days should be scheduled N - something days in the
         // future depending on the current date:
         ComplexItem item;
-        auto today = QDateTime(QDate(2020, 1, 1));
+        auto today = QDate(2020, 1, 1).startOfDay();
         item.setDueTo(today);
         item.setRecurrencePattern(ComplexItem::RecurEveryNDays);
         item.setRecurInterval(14);
@@ -299,32 +299,32 @@ void ComplexItemTest::recurrence()
 
         // If the item is overdue, the standard scheduling should still just schedule some few days
         // into the future:
-        item.setDueTo(QDateTime(QDate(2020, 1, 1)));
-        today = QDateTime(QDate(2020, 2, 3));
+        item.setDueTo(QDate(2020, 1, 1).startOfDay());
+        today = QDate(2020, 2, 3).startOfDay();
         item.markCurrentOccurrenceAsDone(today);
-        expectedNextDate = QDateTime(QDate(2020, 2, 12));
+        expectedNextDate = QDate(2020, 2, 12).startOfDay();
         QCOMPARE(item.effectiveDueTo(), expectedNextDate);
         QCOMPARE(item.nextDueTo(), expectedNextDate);
-        QCOMPARE(item.dueTo(), QDateTime(QDate(2020, 1, 1)));
+        QCOMPARE(item.dueTo(), QDate(2020, 1, 1).startOfDay());
 
         // Re-scheduling an item which is still in the future should add N days:
-        item.setDueTo(QDateTime(QDate(2020, 1, 4)));
-        today = QDateTime(QDate(2020, 1, 1));
+        item.setDueTo(QDate(2020, 1, 4).startOfDay());
+        today = QDate(2020, 1, 1).startOfDay();
         item.markCurrentOccurrenceAsDone(today);
-        expectedNextDate = QDateTime(QDate(2020, 1, 18));
+        expectedNextDate = QDate(2020, 1, 18).startOfDay();
         QCOMPARE(item.effectiveDueTo(), expectedNextDate);
         QCOMPARE(item.nextDueTo(), expectedNextDate);
-        QCOMPARE(item.dueTo(), QDateTime(QDate(2020, 1, 4)));
+        QCOMPARE(item.dueTo(), QDate(2020, 1, 4).startOfDay());
 
         // Using scheduling relative to today, the next occurrence should be 14 days from today:
-        item.setDueTo(QDateTime(QDate(2020, 1, 2)));
+        item.setDueTo(QDate(2020, 1, 2).startOfDay());
         item.setRecurrenceSchedule(ComplexItem::RelativeToCurrentDate);
-        today = QDateTime(QDate(2020, 2, 3));
+        today = QDate(2020, 2, 3).startOfDay();
         item.markCurrentOccurrenceAsDone(today);
-        expectedNextDate = QDateTime(QDate(2020, 2, 17));
+        expectedNextDate = QDate(2020, 2, 17).startOfDay();
         QCOMPARE(item.effectiveDueTo(), expectedNextDate);
         QCOMPARE(item.nextDueTo(), expectedNextDate);
-        QCOMPARE(item.dueTo(), QDateTime(QDate(2020, 1, 2)));
+        QCOMPARE(item.dueTo(), QDate(2020, 1, 2).startOfDay());
 
         // If the item has an invalid interval set, marking it as done should remove
         // the due date:

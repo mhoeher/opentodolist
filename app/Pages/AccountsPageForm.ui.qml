@@ -33,6 +33,7 @@ Page {
 
             Connections {
                 target: itemDelegate
+
                 onClicked: page.accountSelected(account)
             }
         }

@@ -1,6 +1,6 @@
 include(../config.pri)
 
-QT       += qml quick xml concurrent sql
+QT       += qml quick xml concurrent sql remoteobjects
 QT       -= gui
 
 TEMPLATE = lib
@@ -47,6 +47,7 @@ SOURCES += \
     datamodel/todo.cpp \
     datamodel/todolist.cpp \
     datamodel/toplevelitem.cpp \
+    datastorage/applicationsettings.cpp \
     datastorage/cache.cpp \
     datastorage/deleteitemsquery.cpp \
     datastorage/getitemquery.cpp \
@@ -62,6 +63,7 @@ SOURCES += \
     models/itemssortfiltermodel.cpp \
     models/librariesmodel.cpp \
     opentodolistqmlextensionsplugin.cpp \
+    service/backgroundservice.cpp \
     sync/account.cpp \
     sync/nextcloudloginflow.cpp \
     sync/synchronizer.cpp \
@@ -91,6 +93,7 @@ HEADERS += \
     datamodel/todo.h \
     datamodel/todolist.h \
     datamodel/toplevelitem.h \
+    datastorage/applicationsettings.h \
     datastorage/cache.h \
     datastorage/deleteitemsquery.h \
     datastorage/getitemquery.h \
@@ -106,6 +109,7 @@ HEADERS += \
     models/itemssortfiltermodel.h \
     models/librariesmodel.h \
     opentodolistqmlextensionsplugin.h \
+    service/backgroundservice.h \
     sync/account.h \
     sync/nextcloudloginflow.h \
     sync/synchronizer.h \
@@ -122,6 +126,8 @@ HEADERS += \
     utils/translations.h \
     utils/updateservice.h \
 
+REPC_REPLICA += service/backgroundservice.rep
+REPC_SOURCE += service/backgroundservice.rep
 
 # Make git version available in code
 system(git describe --tags) {

@@ -27,3 +27,5 @@ CMakeLists.txt.user*
 /fp-repo
 .flatpak-builder
 /ios-build
+app/android/.gradle/
+app/android/.idea/

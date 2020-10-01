@@ -22,6 +22,7 @@
 
 #include <QObject>
 #include <QRunnable>
+#include <QSharedPointer>
 
 class SyncJob;
 
@@ -31,14 +32,14 @@ class SyncJob;
 class SyncRunner : public QRunnable
 {
 public:
-    explicit SyncRunner(SyncJob* job);
+    explicit SyncRunner(QSharedPointer<SyncJob> job);
     virtual ~SyncRunner();
 
     // QRunnable interface
     void run() override;
 
 private:
-    SyncJob* m_job;
+    QSharedPointer<SyncJob> m_job;
 };
 
 #endif // SYNC_SYNCRUNNER_H_

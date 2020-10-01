@@ -19,8 +19,9 @@
 
 #include "complexitem.h"
 
-#include <QtConcurrent>
+#include <QGuiApplication>
 #include <QTextDocument>
+#include <QtConcurrent>
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.ComplexItem", QtWarningMsg)
 
@@ -120,9 +121,12 @@ void ComplexItem::setNotes(const QString& notes)
                         "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                         "<html><head><meta name=\"qrichtext\" content=\"1\""
                         " />")) {
-        QTextDocument doc;
-        doc.setHtml(copy);
-        copy = doc.toPlainText();
+        auto guiApp = qobject_cast<QGuiApplication*>(QCoreApplication::instance());
+        if (guiApp) {
+            QTextDocument doc;
+            doc.setHtml(copy);
+            copy = doc.toPlainText();
+        }
     }
     if (m_notes != copy) {
         m_notes = copy;
