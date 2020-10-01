@@ -194,9 +194,12 @@ bool Cache::isValid() const
 void Cache::run(ItemsQuery* query)
 {
     if (query != nullptr) {
+        qCDebug(log) << "Running" << query << "on cache";
         if (m_context == nullptr) {
+            qCWarning(log) << "Cache context is null - not running" << query;
             delete query;
         } else {
+            qCDebug(log) << "Preparing query" << query << "for run";
             query->m_context = m_context;
             query->m_global = m_global;
             query->m_items = m_items;

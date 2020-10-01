@@ -122,6 +122,7 @@ void BackgroundService::syncLibrary(const QUuid& libraryUid)
             auto runner = new SyncRunner(job);
             QThreadPool::globalInstance()->start(runner);
             emit librarySyncStarted(libraryUid);
+            qCDebug(log) << "Sync of library with uid" << libraryUid << "triggered";
         }
     } else {
         qCWarning(log) << "Library" << libraryUid << "not found";

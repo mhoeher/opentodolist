@@ -63,6 +63,8 @@
 #endif
 #include "utils/translations.h"
 
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.main", QtDebugMsg);
+
 class AppStartup : public QObject
 {
 public:
@@ -320,6 +322,7 @@ void AppStartup::startGUI()
     auto guiApp = qobject_cast<QGuiApplication*>(m_app);
     if (guiApp) {
         connect(guiApp, &QGuiApplication::applicationStateChanged, [=](Qt::ApplicationState state) {
+            qCDebug(log) << "Application state changed to" << state;
             switch (state) {
             case Qt::ApplicationActive:
                 emit m_application->showWindowRequested();

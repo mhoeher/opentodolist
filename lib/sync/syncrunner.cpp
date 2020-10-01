@@ -19,7 +19,11 @@
 
 #include "syncrunner.h"
 
+#include <QLoggingCategory>
+
 #include "syncjob.h"
+
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.SyncRunner", QtWarningMsg);
 
 /**
  * @brief Create a sync runner.
@@ -42,5 +46,6 @@ SyncRunner::~SyncRunner() {}
  */
 void SyncRunner::run()
 {
+    qCDebug(log) << "Run sync job" << m_job;
     m_job->execute();
 }

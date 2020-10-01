@@ -19,7 +19,11 @@
 
 #include "syncjob.h"
 
+#include <QLoggingCategory>
+
 #include "synchronizer.h"
+
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.SyncJob", QtWarningMsg);
 
 /**
  * @brief Create a new sync job.
@@ -44,17 +48,26 @@ SyncJob::SyncJob(const QString& libraryDirectory, QSharedPointer<Account> accoun
  */
 void SyncJob::execute()
 {
+    qCDebug(log) << "Sync job" << this << "is executed";
     if (!m_libraryDirectory.isEmpty()) {
         QScopedPointer<Synchronizer> sync(Synchronizer::fromDirectory(m_libraryDirectory));
         if (sync) {
+            qCDebug(log) << "Loading sync log";
             sync->loadLog();
+            qCDebug(log) << "Setting account data";
             sync->setAccount(m_account.data());
+            qCDebug(log) << "Setting up stop requested";
             connect(this, &SyncJob::stopRequested, sync.data(), &Synchronizer::stopSync,
                     Qt::QueuedConnection);
+            qCDebug(log) << "Setting up error reporting";
             connect(sync.data(), &Synchronizer::syncError, this, &SyncJob::onSyncError);
+            qCDebug(log) << "Start sync";
             sync->synchronize();
+            qCDebug(log) << "Saving sync log";
             sync->saveLog();
         }
+    } else {
+        qCWarning(log) << "Empty library directory given to sync job" << this;
     }
     emit syncFinished(m_libraryDirectory);
 }

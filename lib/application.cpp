@@ -33,7 +33,6 @@
 #include <QScopedPointer>
 #include <QStandardPaths>
 #include <QTextDocument>
-#include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
 
@@ -917,7 +916,7 @@ void Application::syncLibrary(Library* library)
  */
 void Application::copyToClipboard(const QString& text)
 {
-    auto app = dynamic_cast<QGuiApplication*>(qApp);
+    auto app = qobject_cast<QGuiApplication*>(qApp);
     if (app != nullptr) {
         auto clipboard = app->clipboard();
         clipboard->setText(text);
