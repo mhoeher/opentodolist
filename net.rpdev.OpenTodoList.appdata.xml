@@ -40,6 +40,27 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.27.0" date="2020-10-04">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #91: The app now runs synchronization of libraries in a dedicated background
+                service. On Android, this is done in a dedicated process, on other platforms
+                the service runs in the main process. This allows to keep the app running even
+                when the GUI is closed. In the future, this will be used to show notifcations
+                for reminders, due dates and so on.
+            </li>
+            <li>
+                #364: Fix updating meta data for AUR.
+            </li>
+            <li>
+                #319: Allow reordering libraries in the side bar.
+            </li>
+            <li>
+                #317: Allow hiding the schedule entry per library in the side bar.
+            </li>
+        </ul>
+      </release>
       <release version="3.26.0" date="2020-09-06">
         <p>This release includes the following changes:</p>
         <ul>
