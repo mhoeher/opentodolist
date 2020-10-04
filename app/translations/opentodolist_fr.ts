@@ -107,6 +107,44 @@
     </message>
 </context>
 <context>
+    <name>AppStartup</name>
+    <message>
+        <location filename="../main.cpp" line="219"/>
+        <source>Manage your personal data.</source>
+        <translation type="unfinished">Gérer vos données personnelles.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="225"/>
+        <source>Switch on some optimizations for touchscreens.</source>
+        <translation type="unfinished">Activez certaines optimisations pour les écrans tactiles.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="228"/>
+        <source>Only run the app background service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="230"/>
+        <source>Only run the app GUI and connect to an existing app background service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="235"/>
+        <source>Enable a console on Windows to gather debug output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="369"/>
+        <source>Open</source>
+        <translation type="unfinished">Ouvrir</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="376"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Attachments</name>
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
@@ -501,39 +539,64 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="171"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="366"/>
         <source>Schedule</source>
         <translation type="unfinished">Calendrier</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="176"/>
         <source>New Library</source>
         <translation type="unfinished">Nouvelle bibliothèque</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="183"/>
         <source>Accounts</source>
         <translation type="unfinished">Comptes</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="224"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="190"/>
+        <source>Edit List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="196"/>
         <source>Settings</source>
         <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="231"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="203"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Traduire l&apos;appli...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>About...</source>
         <translation type="unfinished">À propos de...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="251"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Créer la bibliothèque par défaut</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="334"/>
+        <source>Hide Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="334"/>
+        <source>Show Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
+        <source>Move Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
+        <source>Move Down</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -754,21 +817,26 @@
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="423"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="432"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Trouver</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="450"/>
+        <location filename="../Windows/MainWindow.qml" line="459"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Ouvrir le dernier élément &amp;créé</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="458"/>
+        <location filename="../Windows/MainWindow.qml" line="467"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Ouvrir la barre latérale &amp;gauche</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="577"/>
+        <location filename="../Windows/MainWindow.qml" line="586"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Commencez par &lt;a href=&apos;#newLibrary&apos;&gt;créer une nouvelle bibliothèque&lt;/a&gt;. Les bibliothèques sont utilisées pour stocker différents types d&apos;éléments comme des notes, des listes de tâches et des images.</translation>
     </message>
@@ -1623,34 +1691,6 @@
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
         <translation type="unfinished">Télécharger</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <location filename="../main.cpp" line="102"/>
-        <source>Manage your personal data.</source>
-        <translation type="unfinished">Gérer vos données personnelles.</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="108"/>
-        <source>QML Root Directory</source>
-        <translation type="unfinished">Répertoire racine QML</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="109"/>
-        <source>DIR</source>
-        <translation type="unfinished">DIR</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="116"/>
-        <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished">Activez certaines optimisations pour les écrans tactiles.</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="128"/>
-        <source>Remove shortcuts to the AppImage.</source>
-        <translation type="unfinished">Supprimez les raccourcis vers l&apos;AppImage.</translation>
     </message>
 </context>
 </TS>
