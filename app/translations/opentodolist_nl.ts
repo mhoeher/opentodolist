@@ -539,11 +539,6 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="366"/>
-        <source>Schedule</source>
-        <translation type="unfinished">Schema</translation>
-    </message>
-    <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="176"/>
         <source>New Library</source>
         <translation type="unfinished">Nieuwe verzameling</translation>
@@ -597,6 +592,11 @@
         <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="366"/>
+        <source>Schedule</source>
+        <translation type="unfinished">Schema</translation>
     </message>
 </context>
 <context>
@@ -707,7 +707,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished">Synchronisatielogboek</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -828,7 +828,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="459"/>
         <source>Open Last &amp;Created Item</source>
-        <translation type="unfinished">Laatst aan&amp;gemaakte item openen</translation>
+        <translation type="unfinished">Recentst aan&amp;gemaakte item openen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="467"/>
@@ -1443,7 +1443,7 @@
     <message>
         <location filename="../Pages/SettingsPageForm.ui.qml" line="65"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lettergrootte:</translation>
     </message>
 </context>
 <context>
@@ -1602,7 +1602,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
         <source>Basque</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Baskisch</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="52"/>

@@ -539,11 +539,6 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="366"/>
-        <source>Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="176"/>
         <source>New Library</source>
         <translation type="unfinished"></translation>
@@ -596,6 +591,11 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
         <source>Move Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="366"/>
+        <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
