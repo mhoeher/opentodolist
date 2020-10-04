@@ -18,6 +18,7 @@ apt-get install -y \
     qt515declarative \
     qt515imageformats \
     qt515quickcontrols2 \
+    qt515remoteobjects \
     qt515svg \
     qt515translations \
     qt515x11extras \
