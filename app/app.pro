@@ -131,6 +131,4 @@ DISTFILES += \
     android/gradlew \
     android/gradlew.bat
 
-isEmpty(ANDROID_ABIS):ANDROID_ABIS = arm64-v8a
-
-ANDROID_ABIS = arm64-v8a x86_64
+isEmpty(ANDROID_ABIS):ANDROID_ABIS = arm64-v8a x86_64
