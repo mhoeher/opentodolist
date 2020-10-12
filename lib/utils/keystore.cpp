@@ -308,7 +308,7 @@ void KeyStore::loadCredentials(const QString& key)
     if (!success && m_settings) {
         m_settings->beginGroup("Fallback");
         if (m_settings->contains(key)) {
-            m_settings->setValue(key, value);
+            value = m_settings->value(key).toString();
             success = true;
         }
         m_settings->endGroup();
