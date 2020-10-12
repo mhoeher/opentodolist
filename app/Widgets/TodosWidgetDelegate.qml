@@ -14,6 +14,7 @@ import "../Actions" as Actions
 SwipeDelegate {
     id: swipeDelegate
     
+    property bool showParentItemInformation: false
     property var model: null
     property bool toggleDoneOnClose: false
     property OTL.Item item: OTL.Item {}
@@ -33,6 +34,7 @@ SwipeDelegate {
 
     signal itemPressedAndHold()
     signal itemClicked()
+    signal setSwipeDelegate(var item)
     
     width: parent ? parent.width : implicitWidth
     padding: 0
@@ -87,24 +89,46 @@ SwipeDelegate {
             Item {
                 height: fontMetrics.height / 4
                 width: 1
-                visible: swipeDelegate.item.effectiveDueTo !== undefined &&
-                         DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
-                         !swipeDelegate.hideDueDate
+                visible: itemInfoGrid.height > 0
             }
-            RowLayout {
+            GridLayout {
+                id: itemInfoGrid
                 width: parent.width
-                visible: swipeDelegate.item.effectiveDueTo !== undefined &&
-                         DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
-                         !swipeDelegate.hideDueDate
                 opacity: 0.5
-                
+                columns: {
+                    if (itemDueDateIcon.width + itemDueDateText.implicitWidth < width / 2) {
+                        return 4;
+                    } else {
+                        return 2;
+                    }
+                }
+
+                onColumnsChanged: forceLayout()
+
                 Label {
                     font.family: Fonts.icons
-                    text: Icons.faCalendarAlt
+                    text: Icons.faList
+                    visible: d.parentItem
                 }
                 Label {
                     Layout.fillWidth: true
+                    text: d.parentItem ? d.parentItem.title : ""
+                    visible: d.parentItem
+                }
+                
+                Label {
+                    id: itemDueDateIcon
+                    font.family: Fonts.icons
+                    text: Icons.faCalendarAlt
+                    visible: swipeDelegate.item.effectiveDueTo !== undefined &&
+                             DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
+                             !swipeDelegate.hideDueDate
+                }
+                Label {
+                    id: itemDueDateText
+                    Layout.fillWidth: true
                     text: DateUtils.format(swipeDelegate.item.effectiveDueTo)
+                    visible: itemDueDateIcon.visible
                 }
             }
         }
@@ -169,6 +193,9 @@ SwipeDelegate {
         }
     }
     
+    onItemChanged: d.loadParentItem()
+    onShowParentItemInformationChanged: d.loadParentItem()
+
     onClicked: {
         // Delay evaluation, as it overlaps with double clicks:
         if (!delayedClickTimer.afterDoubleClick) {
@@ -192,13 +219,13 @@ SwipeDelegate {
             swipeDelegate.toggleDoneOnClose = true;
             swipeDelegate.swipe.close();
         } else {
-            d.openSwipeDelegate = swipeDelegate;
+            swipeDelegate.setSwipeDelegate(swipeDelegate);
         }
     }
     
     onPressAndHold: {
         if (swipeDelegate.allowSorting) {
-            d.openSwipeDelegate = null;
+            swipeDelegate.setSwipeDelegate(null);
             reorderOverlay.startDrag();
         } else {
             swipeDelegate.itemPressedAndHold();
@@ -222,13 +249,41 @@ SwipeDelegate {
             swipeDelegate.toggleDoneOnClose = false;
         }
     }
-    
+
+    QtObject {
+        id: d
+
+        property OTL.Item parentItem: null
+
+        function loadParentItem() {
+            if (swipeDelegate.showParentItemInformation) {
+                switch (swipeDelegate.item.itemType) {
+                case "Todo":
+                    OTL.Application.loadItem(swipeDelegate.item.todoListUid);
+                    break;
+                default:
+                    break;
+                }
+            } else {
+                parentItem = null;
+            }
+        }
+    }
+
     Connections {
-        target: d
-        onOpenSwipeDelegateChanged: if (d.openSwipeDelegate !==
-                                            swipeDelegate) {
-                                        swipeDelegate.swipe.close();
-                                    }
+        target: OTL.Application
+
+        function onItemLoaded(uid, data) {
+            switch (swipeDelegate.item.itemType) {
+            case "Todo":
+                if (uid === swipeDelegate.item.todoListUid) {
+                    d.parentItem = OTL.Application.itemFromData(data);
+                }
+                break;
+            default:
+                break;
+            }
+        }
     }
     
     ProgressItemOverlay {
@@ -260,7 +315,7 @@ SwipeDelegate {
         interval: 300
         repeat: false
         onTriggered: {
-            d.openSwipeDelegate = null;
+            swipeDelegate.setSwipeDelegate(null);
             swipeDelegate.itemClicked();
         }
     }

@@ -33,6 +33,7 @@ ListView {
     property bool allowSorting: true
     property bool allowSettingDueDate: false
     property var hideDueToLabelForSectionsFunction: null
+    property bool showParentItemInformation: false
 
     signal headerButtonClicked()
     signal headerButton2Clicked()
@@ -209,6 +210,7 @@ ListView {
 
         property int updateCounter: 0
 
+        showParentItemInformation: root.showParentItemInformation
         model: root.model
         item: object
         allowSorting: root.allowSorting
@@ -231,9 +233,19 @@ ListView {
             return result;
         }
         dragTile: itemDragTile
+        onSetSwipeDelegate: {
+            if (item !== d.openSwipeDelegate) {
+                if (d.openSwipeDelegate) {
+                    d.openSwipeDelegate.swipe.close();
+                }
+            }
+            d.openSwipeDelegate = item;
+        }
 
         onItemPressedAndHold: showContextMenu({x: 0, y: 0})
-        onItemClicked: root.todoClicked(item)
+        onItemClicked: {
+            root.todoClicked(item);
+        }
 
         Connections {
             target: root.model

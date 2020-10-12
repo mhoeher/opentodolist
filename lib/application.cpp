@@ -50,6 +50,7 @@
 #include "datastorage/applicationsettings.h"
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
+#include "datastorage/getitemquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/libraryloader.h"
@@ -706,6 +707,54 @@ void Application::deleteDoneTasks(Todo* todo)
         });
         m_cache->run(q);
     }
+}
+
+/**
+ * @brief Request loading an item from the cache.
+ *
+ * This method triggers loading the item with the given @p uid from the cache. Once the
+ * item data is available, the itemLoaded() signal is emitted.
+ *
+ * If the uid is null, this method has no effect.
+ */
+void Application::loadItem(const QUuid& uid)
+{
+    if (!uid.isNull()) {
+        auto q = new GetItemQuery();
+        q->setUid(uid);
+        QPointer<Application> _this = this;
+        connect(q, &GetItemQuery::itemLoaded, [_this, uid](const QVariant& data) {
+            if (_this) {
+                QMetaObject::invokeMethod(
+                        _this,
+                        [uid, data, _this]() {
+                            if (_this) {
+                                emit _this->itemLoaded(uid, data);
+                            }
+                        },
+                        Qt::QueuedConnection);
+            }
+        });
+        m_cache->run(q);
+    }
+}
+
+/**
+ * @brief Create and return an item from cached data.
+ *
+ * This method takes the serialized item @p data and returns an item created from the data.
+ * If the data is invalid, a null pointer is returned. If creating an item was succesfull, the
+ * resulting item is set up to automatically update from the cache in case of changes.
+ *
+ * @note Ownership is transferred to the caller.
+ */
+Item* Application::itemFromData(const QVariant& data)
+{
+    auto item = Item::decache(data);
+    if (item) {
+        item->setCache(m_cache);
+    }
+    return item;
 }
 
 /**
