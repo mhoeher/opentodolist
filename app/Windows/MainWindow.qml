@@ -441,13 +441,10 @@ ApplicationWindow {
             "Esc",
             "Back"
         ]
+        enabled: Qt.platform.os !== "android" && Qt.platform.os !== "ios"
         onActivated: {
             if (stackView.canGoBack) {
                 stackView.goBack();
-            } else {
-                if (Qt.platform.os === "android") {
-                    Qt.quit();
-                }
             }
         }
     }
