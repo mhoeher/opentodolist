@@ -109,6 +109,10 @@ SwipeDelegate {
                     font.family: Fonts.icons
                     text: Icons.faList
                     visible: d.parentItem
+                    color: {
+                        let result = Colors.itemColor(d.parentItem);
+                        return Colors.color(result);
+                    }
                 }
                 Label {
                     Layout.fillWidth: true
