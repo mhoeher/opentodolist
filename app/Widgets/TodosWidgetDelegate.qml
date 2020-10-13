@@ -103,6 +103,8 @@ SwipeDelegate {
                     Label {
                         font.family: Fonts.icons
                         text: Icons.faList
+                        width: contentWidth
+                        height: contentHeight
                         color: {
                             let result = Colors.itemColor(d.parentItem);
                             return Colors.color(result);
@@ -127,6 +129,8 @@ SwipeDelegate {
                     Label {
                         font.family: Fonts.icons
                         text: Icons.faCalendarAlt
+                        width: contentWidth
+                        height: contentHeight
 
                     }
                     Label {
