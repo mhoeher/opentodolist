@@ -91,48 +91,48 @@ SwipeDelegate {
                 width: 1
                 visible: itemInfoGrid.height > 0
             }
-            GridLayout {
+            Flow {
                 id: itemInfoGrid
                 width: parent.width
                 opacity: 0.5
-                columns: {
-                    if (itemDueDateIcon.width + itemDueDateText.implicitWidth < width / 2) {
-                        return 4;
-                    } else {
-                        return 2;
+
+                Row {
+                    visible: d.parentItem
+                    spacing: fontMetrics.height / 2
+
+                    Label {
+                        font.family: Fonts.icons
+                        text: Icons.faList
+                        color: {
+                            let result = Colors.itemColor(d.parentItem);
+                            return Colors.color(result);
+                        }
+                    }
+                    Label {
+                        text: d.parentItem ? d.parentItem.title : ""
+
+                    }
+                    Item {
+                        width: fontMetrics.height
+                        height: fontMetrics.height
                     }
                 }
 
-                onColumnsChanged: forceLayout()
-
-                Label {
-                    font.family: Fonts.icons
-                    text: Icons.faList
-                    visible: d.parentItem
-                    color: {
-                        let result = Colors.itemColor(d.parentItem);
-                        return Colors.color(result);
-                    }
-                }
-                Label {
-                    Layout.fillWidth: true
-                    text: d.parentItem ? d.parentItem.title : ""
-                    visible: d.parentItem
-                }
-                
-                Label {
-                    id: itemDueDateIcon
-                    font.family: Fonts.icons
-                    text: Icons.faCalendarAlt
+                Row {
                     visible: swipeDelegate.item.effectiveDueTo !== undefined &&
                              DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
                              !swipeDelegate.hideDueDate
-                }
-                Label {
-                    id: itemDueDateText
-                    Layout.fillWidth: true
-                    text: DateUtils.format(swipeDelegate.item.effectiveDueTo)
-                    visible: itemDueDateIcon.visible
+                    spacing: fontMetrics.height / 2
+
+                    Label {
+                        font.family: Fonts.icons
+                        text: Icons.faCalendarAlt
+
+                    }
+                    Label {
+                        Layout.fillWidth: true
+                        text: DateUtils.format(swipeDelegate.item.effectiveDueTo)
+                    }
                 }
             }
         }
