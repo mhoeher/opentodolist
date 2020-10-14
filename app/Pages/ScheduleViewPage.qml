@@ -181,6 +181,7 @@ Page {
         anchors.fill: parent
         header: null
         allowSorting: false
+        showParentItemInformation: true
         hideDueToLabelForSectionsFunction: function(section) {
             return section === d.todayLabel || section === d.tomorrowLabel;
         }
