@@ -58,6 +58,7 @@ SOURCES += \
     datastorage/itemsquery.cpp \
     datastorage/librariesitemsquery.cpp \
     datastorage/libraryloader.cpp \
+    datastorage/movetodoquery.cpp \
     fileutils.cpp \
     models/itemsmodel.cpp \
     models/itemssortfiltermodel.cpp \
@@ -104,6 +105,7 @@ HEADERS += \
     datastorage/itemsquery.h \
     datastorage/librariesitemsquery.h \
     datastorage/libraryloader.h \
+    datastorage/movetodoquery.h \
     fileutils.h \
     models/itemsmodel.h \
     models/itemssortfiltermodel.h \

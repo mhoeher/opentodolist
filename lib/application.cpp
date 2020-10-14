@@ -54,6 +54,7 @@
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/libraryloader.h"
+#include "datastorage/movetodoquery.h"
 #include "fileutils.h"
 #include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
@@ -644,6 +645,18 @@ Todo* Application::addTodo(Library* library, TodoList* todoList, QVariantMap pro
         todo->setCache(m_cache);
     }
     return todo;
+}
+
+/**
+ * @brief Move the @p todo into the specified @p todoList.
+ */
+void Application::moveTodo(Todo* todo, TodoList* todoList)
+{
+    if (todo && todoList) {
+        auto q = new MoveTodoQuery();
+        q->move(todo, todoList);
+        m_cache->run(q);
+    }
 }
 
 Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)

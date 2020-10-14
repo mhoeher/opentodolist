@@ -273,6 +273,17 @@ ApplicationWindow {
             },
 
             ToolBarAction {
+                symbol: Icons.faCopy
+                text: qsTr("Move")
+                visible: {
+                    return stackView.currentItem &&
+                            typeof(stackView.currentItem["moveItem"]) ===
+                            "function";
+                }
+                onTriggered: stackView.currentItem.moveItem()
+            },
+
+            ToolBarAction {
                 symbol: Icons.faPaintBrush
                 text: qsTr("Color")
                 menu: ColorMenu {
