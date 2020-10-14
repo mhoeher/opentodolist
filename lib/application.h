@@ -95,6 +95,8 @@ public:
     Q_INVOKABLE void deleteItem(Item* item);
     Q_INVOKABLE void deleteDoneTodos(TodoList* todoList);
     Q_INVOKABLE void deleteDoneTasks(Todo* todo);
+    Q_INVOKABLE void loadItem(const QUuid& uid);
+    Q_INVOKABLE Item* itemFromData(const QVariant& data);
 
     Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
     Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());
@@ -157,6 +159,14 @@ signals:
      * be show and brought to the foreground.
      */
     void showWindowRequested();
+
+    /**
+     * @brief The data of an item has been loaded.
+     *
+     * This signal is emitted to indicate that the @p data of the item with the given @p uid
+     * has been loaded. Use the itemFromData() method to create an item from the serialized data.
+     */
+    void itemLoaded(const QUuid& uid, const QVariant& data);
 
 private:
     Cache* m_cache;
