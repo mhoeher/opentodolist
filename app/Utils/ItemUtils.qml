@@ -44,6 +44,21 @@ Item {
         d.deleteCompletedItemsDialog.deleteCompletedItems(item);
     }
 
+    function moveTodo(todo, library) {
+        if (!library) {
+            console.warn("Called ItemUtils.moveTodo() with null library");
+            return;
+        }
+
+        if (d.moveTodoDialog === null) {
+            d.moveTodoDialog = moveTodoDialogComponent.createObject(window);
+        }
+        d.moveTodoDialog.library = library;
+        d.moveTodoDialog.todo = todo;
+        d.moveTodoDialog.clear();
+        d.moveTodoDialog.open();
+    }
+
     QtObject {
         id: d
 
@@ -51,6 +66,7 @@ Item {
         property Windows.DeleteItemDialog deleteItemDialog: null
         property Windows.DeleteCompletedItemsDialog deleteCompletedItemsDialog: null
         property Windows.DateSelectionDialog dateSelectionDialog: null
+        property Windows.SelectTodoListDialog moveTodoDialog: null
 
     }
 
@@ -80,6 +96,21 @@ Item {
 
             onAccepted: if (item !== null) {
                 item.dueTo = selectedDate;
+            }
+        }
+    }
+
+    Component {
+        id: moveTodoDialogComponent
+
+        Windows.SelectTodoListDialog {
+            property  OTL.Todo todo: null
+
+            title: qsTr("Move Todo Into...")
+            onAccepted: {
+                if (todo && selectedTodoList) {
+                    OTL.Application.moveTodo(todo, selectedTodoList);
+                }
             }
         }
     }

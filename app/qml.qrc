@@ -126,5 +126,7 @@
         <file>Actions/DeleteCompletedChildren.qml</file>
         <file>Windows/DeleteCompletedItemsDialog.qml</file>
         <file>Utils/SortFilterModel.qml</file>
+        <file>Windows/SelectTodoListDialog.qml</file>
+        <file>Actions/MoveTodo.qml</file>
     </qresource>
 </RCC>

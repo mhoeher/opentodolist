@@ -9,6 +9,8 @@ import "../Windows"
 import "../Widgets"
 import "../Utils"
 
+import "../Actions" as Actions
+
 ItemPage {
     id: page
 
@@ -36,6 +38,10 @@ ItemPage {
 
     function renameItem() {
         renameItemDialog.renameItem(item);
+    }
+
+    function moveItem() {
+        moveTodoAction.trigger();
     }
 
     function setDueDate() {
@@ -67,6 +73,12 @@ ItemPage {
                 page.parentDrawer.open();
             }
         }
+    }
+
+    Actions.MoveTodo {
+        id: moveTodoAction
+        library: page.library
+        item: page.item
     }
 
     DeleteItemDialog {
@@ -121,6 +133,7 @@ ItemPage {
             width: parent.width
             model: tasks
             title: qsTr("Tasks")
+            library: page.library
             headerItemVisible: false
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new task...")
