@@ -17,11 +17,11 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "movetodoquery.h"
-
 #include <QObject>
 #include <QSignalSpy>
 #include <QTest>
+
+#include "movetodoquery.h"
 
 #include "datamodel/library.h"
 #include "datamodel/todo.h"
@@ -95,7 +95,7 @@ void MoveTodoQueryTest::run()
         auto q = new MoveTodoQuery;
         QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
 
-        q->move(&todo, &todoList2);
+        q->moveTodo(&todo, &todoList2);
         cache.run(q);
 
         QVERIFY(finished.wait());

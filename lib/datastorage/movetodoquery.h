@@ -34,7 +34,7 @@ class MoveTodoQuery : public ItemsQuery
 public:
     explicit MoveTodoQuery(QObject* parent = nullptr);
 
-    void move(Todo* todo, TodoList* todoList);
+    void moveTodo(Todo* todo, TodoList* todoList);
 
 protected:
     // ItemsQuery interface
