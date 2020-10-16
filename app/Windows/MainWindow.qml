@@ -494,13 +494,23 @@ ApplicationWindow {
 
     onClosing: {
         if (Qt.platform.os === "android") {
+            close.accepted = false;
             if (stackView.canGoBack) {
                 stackView.goBack();
-                close.accepted = false;
                 return;
+            } else {
+                // Actually, we should be able to just keep "close.accepted" on "true" and let
+                // Qt close the app. BUT....
+                //close.accepted = true;
+                // This is not working. See https://gitlab.com/rpdev/opentodolist/-/issues/371
+                // for more information. For some reason this causes the app to hang during shut
+                // down. So we go the hard way and on the Java side ask the Activity to
+                // stop the GUI. This seems to work reliably.
+                OTL.Application.finishActivity();
             }
+        } else {
+            close.accepted = true;
         }
-        close.accepted = true;
     }
 
     LibrariesSideBar {

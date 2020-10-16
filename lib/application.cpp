@@ -952,6 +952,15 @@ bool Application::libraryExists(const QUuid& uid)
     return isLibraryUid(uid);
 }
 
+#ifdef Q_OS_ANDROID
+void Application::finishActivity()
+{
+    auto activity = QtAndroid::androidActivity();
+    QtAndroid::runOnAndroidThread(
+            [=]() { activity.callMethod<void>("finish", "()V", activity.object()); });
+}
+#endif
+
 /**
  * @brief Start synchronizing the @p library.
  */

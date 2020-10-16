@@ -125,6 +125,10 @@ public:
 
     Q_INVOKABLE bool libraryExists(const QUuid& uid);
 
+#ifdef Q_OS_ANDROID
+    Q_INVOKABLE void finishActivity();
+#endif
+
     Cache* cache() const;
 
     QStringList directoriesWithRunningSync() const;
