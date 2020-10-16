@@ -654,7 +654,7 @@ void Application::moveTodo(Todo* todo, TodoList* todoList)
 {
     if (todo && todoList) {
         auto q = new MoveTodoQuery();
-        q->move(todo, todoList);
+        q->moveTodo(todo, todoList);
         m_cache->run(q);
     }
 }
