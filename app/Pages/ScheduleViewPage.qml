@@ -185,6 +185,7 @@ Page {
         hideDueToLabelForSectionsFunction: function(section) {
             return section === d.todayLabel || section === d.tomorrowLabel;
         }
+        library: page.library
 
         onTodoClicked: {
             switch (todo.itemType) {

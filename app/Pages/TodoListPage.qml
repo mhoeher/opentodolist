@@ -82,6 +82,11 @@ ItemPage {
                                  todoDrawer.close();
                              } : null
 
+    property var moveItem: todoDrawer.visible ?
+                               function() {
+                                   todoPage.moveItem();
+                               } : null
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
@@ -218,6 +223,7 @@ ItemPage {
             id: todosWidget
             width: scrollView.contentItem.width
             model: todosModel
+            library: page.library
             title: qsTr("Todos")
             symbol: {
                 switch (settings.sortTodosBy) {

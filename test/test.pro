@@ -25,3 +25,4 @@ SUBDIRS += synchronizer
 SUBDIRS += todo
 SUBDIRS += webdavsynchronizer
 SUBDIRS += notepage
+SUBDIRS += movetodoquery

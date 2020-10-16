@@ -18,9 +18,11 @@ SwipeDelegate {
     property var model: null
     property bool toggleDoneOnClose: false
     property OTL.Item item: OTL.Item {}
+    property OTL.Library library: null
     property bool hideDueDate: false
     readonly property var itemActions: ([
                                             renameAction,
+                                            moveTodoAction,
                                             setDueTodayAction,
                                             setDueTomorrowAction,
                                             setDueNextWeekAction,
@@ -101,7 +103,7 @@ SwipeDelegate {
                     spacing: fontMetrics.height / 2
 
                     Label {
-                        font.family: Fonts.icons
+                        font.family: Fonts.solidIcons
                         text: Icons.faList
                         width: contentWidth
                         height: contentHeight
@@ -293,6 +295,14 @@ SwipeDelegate {
             }
         }
     }
+
+    Connections {
+        target: swipeDelegate.item
+        function onTodoListUidChanged() {
+            d.loadParentItem();
+        }
+        ignoreUnknownSignals: true
+    }
     
     ProgressItemOverlay {
         item: swipeDelegate.item
@@ -347,4 +357,5 @@ SwipeDelegate {
     Actions.SetDueTomorrow { id: setDueTomorrowAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueThisWeek { id: setDueThisWeekAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueNextWeek { id: setDueNextWeekAction; item: swipeDelegate.item; hideButton: true }
+    Actions.MoveTodo { id: moveTodoAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Todo" }
 }

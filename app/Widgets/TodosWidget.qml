@@ -19,6 +19,8 @@ ListView {
     property Components.ToolButton headerIcon: headerItem ? headerItem.headerIcon : null
     property Components.ToolButton headerIcon2: headerItem ? headerItem.headerIcon2 : null
 
+    property OTL.Library library: null
+
     property string symbol: Icons.faPlus
     property string symbolFont: Fonts.fontAwesomeSolid.name
     property bool headerItemVisible: true
@@ -213,6 +215,7 @@ ListView {
         showParentItemInformation: root.showParentItemInformation
         model: root.model
         item: object
+        library: root.library
         allowSorting: root.allowSorting
         hideDueDate: typeof(root.hideDueToLabelForSectionsFunction) === "function" ?
                          root.hideDueToLabelForSectionsFunction(ListView.section) : false
