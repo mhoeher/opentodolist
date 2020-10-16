@@ -101,7 +101,7 @@ SwipeDelegate {
                     spacing: fontMetrics.height / 2
 
                     Label {
-                        font.family: Fonts.icons
+                        font.family: Fonts.solidIcons
                         text: Icons.faList
                         width: contentWidth
                         height: contentHeight
