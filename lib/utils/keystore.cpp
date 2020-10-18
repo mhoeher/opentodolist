@@ -197,6 +197,17 @@ void KeyStore::saveCredentials(const QString& key, const QString& value,
         }
     }
 
+    if (!success && m_settings) {
+        // Saving failed, use (insecure) fallback. As long as the device is not
+        // rooted this should be save enough. Unfortunately, this is required to
+        // work around
+        // https://stackoverflow.com/questions/44469020/androidkeystore-keypairgenerator-crashes-on-small-number-of-devices
+        m_settings->beginGroup("Fallback");
+        m_settings->setValue(key, value);
+        m_settings->endGroup();
+        success = true;
+    }
+
     // To be compatible with QtKeychain, emit saved signal delayed
     QPointer<KeyStore> _this = this;
     QTimer::singleShot(0, [=]() {
@@ -294,6 +305,15 @@ void KeyStore::loadCredentials(const QString& key)
         }
     }
 
+    if (!success && m_settings) {
+        m_settings->beginGroup("Fallback");
+        if (m_settings->contains(key)) {
+            value = m_settings->value(key).toString();
+            success = true;
+        }
+        m_settings->endGroup();
+    }
+
     // To be compatible with QtKeychain, emit saved signal delayed
     QPointer<KeyStore> _this = this;
     QTimer::singleShot(0, [=]() {
@@ -355,6 +375,12 @@ void KeyStore::deleteCredentials(const QString& key)
         success = ret;
         m_settings->remove(key + "/data");
         m_settings->sync();
+    }
+
+    if (m_settings) {
+        m_settings->beginGroup("Fallback");
+        m_settings->remove(key);
+        m_settings->endGroup();
     }
 
     // To be compatible with QtKeychain, emit saved signal delayed

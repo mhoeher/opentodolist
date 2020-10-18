@@ -233,7 +233,7 @@ void ApplicationSettings::initialize()
                         // Loading failed - create a problem:
                         qCWarning(log) << "Failed to load credentials for key" << key;
                         QSharedPointer<Account> account(loadAccount(key));
-                        if (account) {
+                        if (account && m_problemManager) {
                             Problem problem;
                             problem.setType(Problem::AccountSecretsMissing);
                             problem.setContextObject(account);
