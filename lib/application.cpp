@@ -1042,7 +1042,7 @@ QString Application::librariesLocation() const
 void Application::onLibrarySyncFinished(const QUuid& libraryUid)
 {
     auto lib = m_appSettings->libraryById(libraryUid);
-    if (lib->isValid()) {
+    if (lib && lib->isValid()) {
         QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
         // Unmark directory as having running sync:
         m_directoriesWithRunningSync.removeAll(lib->directory());
