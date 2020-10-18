@@ -108,10 +108,6 @@ QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
             }
         } else {
             qCWarning(log) << "Library directory" << directory << "does not exist!";
-            QDir d(Library::defaultLibrariesLocation());
-            for (const auto& entry : d.entryList()) {
-                qCWarning(log) << "    " << entry;
-            }
         }
     }
     m_settings->endArray();

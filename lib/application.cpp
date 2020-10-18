@@ -467,11 +467,20 @@ Library* Application::addExistingLibraryToAccount(Account* account,
     if (account && !library.uid().isNull() && !isLibraryUid(library.uid())) {
         auto uid = library.uid();
         QDir dir(Library::defaultLibrariesLocation());
+
         if (!dir.exists() && !dir.mkpath(".")) {
             qCWarning(log) << "Failed to create libraries location in"
                            << Library::defaultLibrariesLocation();
-        } else if (dir.mkdir(uid.toString())) {
-            auto path = dir.absoluteFilePath(uid.toString());
+        } else {
+            auto dirUid = uid;
+            if (!dir.mkdir(dirUid.toString())) {
+                dirUid = QUuid::createUuid();
+                if (!dir.mkdir(dirUid.toString())) {
+                    qCWarning(log) << "Failed to create a directory for the library in" << dir;
+                    return nullptr;
+                }
+            }
+            auto path = dir.absoluteFilePath(dirUid.toString());
             result = new Library(path);
             result->setName(library.name());
             result->setUid(uid);
@@ -497,10 +506,6 @@ Library* Application::addExistingLibraryToAccount(Account* account,
 
             watchLibraryForChanges(result);
             internallyAddLibrary(result);
-        } else {
-            qCWarning(log) << "Failed to create directory for new "
-                              "library in "
-                           << Library::defaultLibrariesLocation();
         }
     }
     return result;
