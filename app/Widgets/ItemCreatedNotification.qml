@@ -23,7 +23,7 @@ Pane {
         }
     }
 
-    signal open(OTL.Item item)
+    signal open(OTL.LibraryItem item)
 
     Material.background:  Material.Green
     z: 11
@@ -80,7 +80,7 @@ Pane {
         id: d
 
         property bool shown: false
-        property OTL.Item item: null
+        property OTL.LibraryItem item: null
         property string itemName: d.item ? Markdown.markdownToPlainText(d.item.title) : ""
     }
 

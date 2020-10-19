@@ -11,7 +11,7 @@ Item {
 
     property var model
     property int layout: Qt.Vertical
-    property OTL.Item item
+    property OTL.LibraryItem item
     property ItemDragTile dragTile
 
     function startDrag() {
@@ -72,7 +72,7 @@ Item {
             } else {
                 var prevWeight = root.model.data(
                             root.model.index(index - 1, 0),
-                            OTL.ItemsModel.ItemRole).weight;
+                            OTL.LibraryItemsModel.ItemRole).weight;
                 diff = thisWeight - prevWeight;
                 if (diff === 0) {
                     diff = Math.random();
@@ -107,7 +107,7 @@ Item {
             } else {
                 var nextWeight = root.model.data(
                             root.model.index(index + 1, 0),
-                            OTL.ItemsModel.ItemRole).weight;
+                            OTL.LibraryItemsModel.ItemRole).weight;
                 diff = nextWeight - thisWeight;
                 if (diff === 0) {
                     diff = Math.random();

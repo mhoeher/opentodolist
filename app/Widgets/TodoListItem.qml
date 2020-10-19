@@ -68,8 +68,8 @@ Item {
                 spacing: 5
                 interactive: false
                 clip: true
-                model: OTL.ItemsSortFilterModel {
-                    sourceModel: OTL.ItemsModel {
+                model: OTL.LibraryItemsSortFilterModel {
+                    sourceModel: OTL.LibraryItemsModel {
                         cache: OTL.Application.cache
                         parentItem: item.libraryItem.uid
                         onlyUndone: true

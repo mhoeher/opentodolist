@@ -9,7 +9,7 @@ import "../Utils"
 Item {
     id: dragTile
     
-    property OTL.Item item: null
+    property OTL.LibraryItem item: null
     property Item listItem: null
     property var model: null
     

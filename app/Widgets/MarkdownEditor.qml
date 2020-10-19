@@ -69,7 +69,9 @@ Column {
     Connections {
         target: item
         ignoreUnknownSignals: true
-        onNotesChanged: d.loadText()
+        function onNotesChanged() {
+            d.loadText();
+        }
     }
 
     Components.TextArea {

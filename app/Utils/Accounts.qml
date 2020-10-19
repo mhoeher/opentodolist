@@ -43,6 +43,8 @@ Item {
 
     Connections {
         target: OTL.Application
-        onAccountsChanged: d.refresh()
+        function onAccountsChanged() {
+            d.refresh();
+        }
     }
 }

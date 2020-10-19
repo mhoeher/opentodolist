@@ -67,7 +67,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
     qmlRegisterType<Image>(uri, 1, 0, "Image");
     qmlRegisterUncreatableType<Cache>(uri, 1, 0, "Cache", "Use Application.cache");
-    qmlRegisterType<Item>(uri, 1, 0, "Item");
+    qmlRegisterType<Item>(uri, 1, 0, "LibraryItem");
     qmlRegisterType<Library>(uri, 1, 0, "Library");
     qmlRegisterType<Note>(uri, 1, 0, "Note");
     qmlRegisterType<NotePage>(uri, 1, 0, "NotePage");

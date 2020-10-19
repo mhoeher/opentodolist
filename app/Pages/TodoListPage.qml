@@ -280,7 +280,9 @@ ItemPage {
 
                     Connections {
                         target: d
-                        onOpenTagsEditor: tagsEditor.addTag()
+                        function onOpenTagsEditor() {
+                            tagsEditor.addTag();
+                        }
                     }
                 }
 
@@ -304,7 +306,9 @@ ItemPage {
 
                 Connections {
                     target: d
-                    onAttach: attach()
+                    function onAttach() {
+                        attach();
+                    }
                 }
             }
         }

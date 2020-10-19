@@ -668,10 +668,20 @@ ApplicationWindow {
     Connections {
         target: stackView.currentItem
         ignoreUnknownSignals: true
-        onClosePage: stackView.goBack()
-        onReturnToPage: stackView.goBack(page)
-        onOpenPage: stackView.push(component, properties)
-        onClearAndOpenPage: {
+
+        function onClosePage() {
+            stackView.goBack();
+        }
+
+        function onReturnToPage(page) {
+            stackView.goBack(page);
+        }
+
+        function onOpenPage(component, properties) {
+            stackView.push(component, properties);
+        }
+
+        function onClearAndOpenPage(component, properties) {
             stackView.clear();
             stackView.push(component, properties);
         }
@@ -734,7 +744,7 @@ ApplicationWindow {
 
     Connections {
         target: !!application ? application : null
-        onInstanceStarted: {
+        function onInstanceStarted() {
             console.warn("Instance started");
             window.show();
             window.requestActivate();

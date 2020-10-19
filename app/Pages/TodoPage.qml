@@ -186,12 +186,16 @@ ItemPage {
 
                 Connections {
                     target: d
-                    onAttach: attach()
+                    function onAttach() {
+                        attach();
+                    }
                 }
 
                 Connections {
                     target: openFileDialog
-                    onClosed: d.reopenDrawer()
+                    function onClosed() {
+                        d.reopenDrawer();
+                    }
                 }
             }
         }

@@ -9,7 +9,7 @@ import "../Components" as Components
 CenteredDialog {
     id: dialog
     
-    property OTL.Item item
+    property OTL.LibraryItem item
     
     function renameItem(item) {
         dialog.item = item;

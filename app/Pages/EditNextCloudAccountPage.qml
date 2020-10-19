@@ -212,7 +212,7 @@ Page {
 
     Connections {
         target: d.okButton
-        onClicked: {
+        function onClicked() {
             var url = serverAddressEdit.text;
             if (!/https?:\/\//i.exec(url)) {
                 url = "https://" + url;

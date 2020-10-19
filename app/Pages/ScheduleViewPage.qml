@@ -72,7 +72,7 @@ Page {
         onTriggered: d.updateTimes()
     }
 
-    OTL.ItemsModel {
+    OTL.LibraryItemsModel {
         id: items
         onlyWithDueDate: true
         onlyUndone: true
@@ -82,10 +82,10 @@ Page {
         cache: OTL.Application.cache
     }
 
-    OTL.ItemsSortFilterModel {
+    OTL.LibraryItemsSortFilterModel {
         id: sortedItems
         sourceModel: items
-        sortRole: OTL.ItemsModel.EffectiveDueToRole
+        sortRole: OTL.LibraryItemsModel.EffectiveDueToRole
     }
 
     QtObject {
