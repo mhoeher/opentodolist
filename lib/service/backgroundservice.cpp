@@ -39,6 +39,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.BackgroundService", QtDebugMsg);
 
 BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     : BackgroundServiceSource(parent),
+      m_threadPool(new QThreadPool(this)),
       m_keyStore(new KeyStore(this)),
       m_appSettings(new ApplicationSettings(cache, m_keyStore, nullptr, this)),
       m_cache(cache),
@@ -95,7 +96,11 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     }
 }
 
-BackgroundService::~BackgroundService() {}
+BackgroundService::~BackgroundService()
+{
+    m_threadPool->waitForDone();
+    delete m_threadPool;
+}
 
 void BackgroundService::syncLibrary(const QUuid& libraryUid)
 {
@@ -120,7 +125,7 @@ void BackgroundService::syncLibrary(const QUuid& libraryUid)
             connect(job.data(), &SyncJob::syncError, this, &BackgroundService::onSyncError,
                     Qt::QueuedConnection);
             auto runner = new SyncRunner(job);
-            QThreadPool::globalInstance()->start(runner);
+            m_threadPool->start(runner);
             emit librarySyncStarted(libraryUid);
             qCDebug(log) << "Sync of library with uid" << libraryUid << "triggered";
         }
