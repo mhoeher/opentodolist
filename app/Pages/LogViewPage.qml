@@ -29,6 +29,7 @@ Page {
 
         anchors.fill: parent
         ScrollBar.vertical: ScrollBar {}
+        spacing: 10
 
         delegate: RowLayout {
             width: view.width
@@ -41,13 +42,18 @@ Page {
                     };
                     return map[modelData.type] || Icons.faQuestionCircle;
                 }
+                Layout.alignment: Qt.AlignTop
             }
             Label {
                 text: modelData.time
+                Layout.maximumWidth: view.width / 4
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                Layout.alignment: Qt.AlignTop
             }
             Label {
                 Layout.fillWidth: true
                 text: modelData.message
+                Layout.alignment: Qt.AlignTop
             }
         }
     }

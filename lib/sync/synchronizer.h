@@ -93,7 +93,7 @@ public:
 
     static const QString SaveFileName;
     static const QString LogFileName;
-    static const int MaxLogEntries = 1000;
+    static const int MaxLogEntries = 5000;
 
     explicit Synchronizer(QObject* parent = nullptr);
     virtual ~Synchronizer();

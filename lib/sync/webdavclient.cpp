@@ -378,46 +378,51 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
 
         result = result && mergeRemoteInfoWithSyncList(entries, dir);
 
-        qCDebug(log) << "Synchronizing" << QDir::cleanPath(this->directory() + "/" + directory);
-        emit debug(
-                tr("Synchronizing '%1'").arg(QDir::cleanPath(this->directory() + "/" + directory)));
+        if (!result) {
+            qCWarning(log) << "Failed to get remote file list, skip syncing" << directory;
+        } else {
 
-        for (auto entry : entries) {
-            if (m_stopRequested) {
-                break;
-            }
-            if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(log) << "Ignoring" << entry.path();
-                    emit debug(tr("Ignoring file %1").arg(entry.path()));
-                    continue;
+            qCDebug(log) << "Synchronizing" << QDir::cleanPath(this->directory() + "/" + directory);
+            emit debug(tr("Synchronizing '%1'")
+                               .arg(QDir::cleanPath(this->directory() + "/" + directory)));
+
+            for (auto entry : entries) {
+                if (m_stopRequested) {
+                    break;
                 }
-                if (entry.remoteType == Directory) {
-                    _changedDirs.insert(entry.entry);
+                if (!entry.etag.isNull() && entry.etag != entry.previousEtag) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(log) << "Ignoring" << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
+                        continue;
+                    }
+                    if (entry.remoteType == Directory) {
+                        _changedDirs.insert(entry.entry);
+                    }
+                    result = result && pullEntry(entry, &db);
+                } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(log) << "Ignoring" << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
+                        continue;
+                    }
+                    result = result && removeLocalEntry(entry, &db);
+                } else if (!entry.lastModDate.isNull()
+                           && entry.lastModDate != entry.previousLasModDate) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(log) << "Ignoring" << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
+                        continue;
+                    }
+                    result = result && pushEntry(entry, &db);
+                } else if (entry.lastModDate.isNull() && !entry.previousLasModDate.isNull()) {
+                    if (skipEntry(entry, Upload, directoryFilter)) {
+                        qCDebug(log) << "Ignoring" << entry.path();
+                        emit debug(tr("Ignoring file %1").arg(entry.path()));
+                        continue;
+                    }
+                    result = result && removeRemoteEntry(entry, &db);
                 }
-                result = result && pullEntry(entry, &db);
-            } else if (entry.etag.isNull() && !entry.previousEtag.isNull()) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(log) << "Ignoring" << entry.path();
-                    emit debug(tr("Ignoring file %1").arg(entry.path()));
-                    continue;
-                }
-                result = result && removeLocalEntry(entry, &db);
-            } else if (!entry.lastModDate.isNull()
-                       && entry.lastModDate != entry.previousLasModDate) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(log) << "Ignoring" << entry.path();
-                    emit debug(tr("Ignoring file %1").arg(entry.path()));
-                    continue;
-                }
-                result = result && pushEntry(entry, &db);
-            } else if (entry.lastModDate.isNull() && !entry.previousLasModDate.isNull()) {
-                if (skipEntry(entry, Upload, directoryFilter)) {
-                    qCDebug(log) << "Ignoring" << entry.path();
-                    emit debug(tr("Ignoring file %1").arg(entry.path()));
-                    continue;
-                }
-                result = result && removeRemoteEntry(entry, &db);
             }
         }
         db.close();
@@ -469,10 +474,6 @@ bool WebDAVClient::mergeRemoteInfoWithSyncList(SyncEntryMap& entries, const QStr
     } else {
         qCWarning(log) << "Failed to get entry list for" << dir;
         emit warning(tr("Failed to get entry list for '%1'").arg(dir));
-        for (auto entry : entries.keys()) {
-            auto& e = entries[entry];
-            e.etag = e.previousEtag;
-        }
     }
     return ok;
 }
