@@ -126,11 +126,11 @@ ItemPage {
                         }
 
                         Repeater {
-                            model: OTL.LibraryItemsSortFilterModel {
+                            model: OTL.ItemsSortFilterModel {
                                 id: pagesModel
 
-                                sortRole: OTL.LibraryItemsModel.WeightRole
-                                sourceModel: OTL.LibraryItemsModel {
+                                sortRole: OTL.ItemsModel.WeightRole
+                                sourceModel: OTL.ItemsModel {
                                     cache: OTL.Application.cache
                                     parentItem: page.item.uid
                                     onCountChanged: {
@@ -138,7 +138,7 @@ ItemPage {
                                         if (lastPage !== null) {
                                             for (var i = 0; i < count; ++i) {
                                                 var idx = index(i, 0);
-                                                var modelPage = data(idx, OTL.LibraryItemsModel.ItemRole);
+                                                var modelPage = data(idx, OTL.ItemsModel.ItemRole);
                                                 if (modelPage.uid === lastPage.uid) {
                                                     pageTabBar.setCurrentIndex(i + 1);
                                                     itemNotesEditor.lastPageCreated = null;
@@ -204,7 +204,7 @@ ItemPage {
                             return pagesModel.data(
                                         pagesModel.index(
                                             pageTabBar.currentIndex - 1, 0),
-                                        OTL.LibraryItemsModel.ItemRole);
+                                        OTL.ItemsModel.ItemRole);
                         }
                     }
                     property OTL.NotePage lastPageCreated: null

@@ -39,7 +39,7 @@ CenteredDialog {
         textRole: "title"
         valueRole: "object"
         width: root.availableWidth
-        model: OTL.LibraryItemsModel {
+        model: OTL.ItemsModel {
             cache: OTL.Application.cache
             itemType: "TodoList"
         }

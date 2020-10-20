@@ -122,7 +122,7 @@ CenteredDialog {
 
             visible: d.needParent
             Layout.fillWidth: true
-            model: OTL.LibraryItemsModel {
+            model: OTL.ItemsModel {
                 cache: d.needParent ? OTL.Application.cache : null
                 parentItem: dialog.library.uid
                 itemType: "TodoList"

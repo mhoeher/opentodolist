@@ -225,7 +225,7 @@ Page {
         }
     }
 
-    OTL.LibraryItemsSortFilterModel {
+    OTL.ItemsSortFilterModel {
         id: itemsModel
 
         /**
@@ -237,17 +237,17 @@ Page {
          */
         readonly property int effectiveSortRole: {
             switch (settings.sortBy) {
-            case "dueTo": return OTL.LibraryItemsModel.EffectiveDueToRole;
-            case "title": return OTL.LibraryItemsModel.TitleRole;
-            case "createdAt": return OTL.LibraryItemsModel.CreatedAtRole;
-            case "updatedAt": return OTL.LibraryItemsModel.UpdatedAtRole;
+            case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
+            case "title": return OTL.ItemsModel.TitleRole;
+            case "createdAt": return OTL.ItemsModel.CreatedAtRole;
+            case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
 
                 // By default, order manually:
-            default: return OTL.LibraryItemsModel.WeightRole;
+            default: return OTL.ItemsModel.WeightRole;
             }
         }
 
-        sourceModel: OTL.LibraryItemsModel {
+        sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             tag: page.tag
             searchString: filterBar.text
@@ -319,7 +319,7 @@ Page {
                 onLoaded: {
                     item.allowReordering = Qt.binding(function() {
                         return itemsModel.effectiveSortRole ===
-                                OTL.LibraryItemsModel.WeightRole;
+                                OTL.ItemsModel.WeightRole;
                     });
                     item.libraryItem = Qt.binding(function() {
                         return object;
@@ -433,35 +433,35 @@ Page {
         MenuItem {
             text: qsTr("Manually")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.LibraryItemsModel.WeightRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.WeightRole
             onTriggered: settings.sortBy = "weight"
         }
 
         MenuItem {
             text: qsTr("Title")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.LibraryItemsModel.TitleRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.TitleRole
             onTriggered: settings.sortBy = "title"
         }
 
         MenuItem {
             text: qsTr("Due To")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.LibraryItemsModel.DueToRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.DueToRole
             onTriggered: settings.sortBy = "dueTo"
         }
 
         MenuItem {
             text: qsTr("Created At")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.LibraryItemsModel.CreatedAtRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.CreatedAtRole
             onTriggered: settings.sortBy = "createdAt"
         }
 
         MenuItem {
             text: qsTr("Updated At")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.LibraryItemsModel.UpdatedAtRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.UpdatedAtRole
             onTriggered: settings.sortBy = "updatedAt"
         }
     }
