@@ -17,6 +17,7 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QLoggingCategory>
 #include <QQueue>
 
 #include <qlmdb/cursor.h>
@@ -26,6 +27,8 @@
 #include "datamodel/item.h"
 #include "datamodel/todo.h"
 #include "datastorage/getitemsquery.h"
+
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.GetItemsQuery", QtWarningMsg);
 
 GetItemsQuery::GetItemsQuery(QObject* parent)
     : ItemsQuery(parent),
@@ -80,15 +83,20 @@ void GetItemsQuery::run()
                 auto it = itemsCursor.findKey(childId);
                 auto entry = ItemCacheEntry::fromByteArray(it.value(), it.key());
                 if (entry.valid) {
-                    if (m_itemFilter) {
-                        auto item = ItemPtr(Item::decache(entry));
-                        if (m_itemFilter(item, this)) {
-                            calculateValues(&entry, item.data());
+                    auto item = ItemPtr(Item::decache(entry));
+                    if (item->parentId().toByteArray() == parentId) {
+                        if (m_itemFilter) {
+                            if (m_itemFilter(item, this)) {
+                                calculateValues(&entry, item.data());
+                                result << QVariant::fromValue(entry);
+                            }
+                        } else {
+                            calculateValues(&entry);
                             result << QVariant::fromValue(entry);
                         }
                     } else {
-                        calculateValues(&entry);
-                        result << QVariant::fromValue(entry);
+                        qCWarning(log) << "Item" << item << "listed as child of" << parentId
+                                       << "but has parent" << item->parentId();
                     }
                 }
                 pit = childrenCursor.nextForCurrentKey();
