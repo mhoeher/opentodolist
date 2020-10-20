@@ -331,6 +331,30 @@ QStringList Library::months(const QString& directory, const QString& year)
     return result;
 }
 
+QStringList Library::itemFiles(const QString& directory, const QString& year, const QString& month)
+{
+    QStringList result;
+    if (!directory.isEmpty()) {
+        auto path = directory + "/" + year + "/" + month;
+        QDir dir(path);
+        QRegExp re("^\\{[0-9a-f]{8,8}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{12,12}\\}"
+                   "\\.otl$");
+        re.setCaseSensitivity(Qt::CaseInsensitive);
+        if (dir.exists()) {
+            QString suffix = "*." + Item::FileNameSuffix;
+            for (auto entry : dir.entryList({ suffix }, QDir::Files)) {
+                if (re.indexIn(entry) == 0) {
+                    result << entry;
+                } else {
+                    qCDebug(log) << "Skipping file" << entry << "in" << dir.absolutePath()
+                                 << "due to invalid file name";
+                }
+            }
+        }
+    }
+    return result;
+}
+
 /**
  * @brief Whether the library is in the default libraries location.
  *

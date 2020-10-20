@@ -110,6 +110,8 @@ public:
 
     static QStringList years(const QString& directory);
     static QStringList months(const QString& directory, const QString& year);
+    static QStringList itemFiles(const QString& directory, const QString& year,
+                                 const QString& month);
 
     bool isInDefaultLocation() const;
 
