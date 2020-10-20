@@ -25,12 +25,13 @@
 
 #include "rep_backgroundservice_source.h"
 
-class DirectoryWatcher;
 class ApplicationSettings;
 class Cache;
+class DirectoryWatcher;
 class KeyStore;
-class SyncJob;
 class Library;
+class QThreadPool;
+class SyncJob;
 
 class BackgroundService : public BackgroundServiceSource
 {
@@ -63,6 +64,7 @@ private:
         SyncInfoFlags flags;
     };
 
+    QThreadPool* m_threadPool;
     KeyStore* m_keyStore;
     ApplicationSettings* m_appSettings;
     QPointer<Cache> m_cache;

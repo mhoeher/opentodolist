@@ -135,6 +135,16 @@ AppStartup::~AppStartup()
     m_trayMenu = nullptr;
     delete m_trayIcon;
     m_trayIcon = nullptr;
+    delete m_application;
+    m_application = nullptr;
+    delete m_srcNode;
+    m_backgroundService = nullptr;
+    delete m_backgroundService;
+    m_backgroundService = nullptr;
+    delete m_cache;
+    m_cache = nullptr;
+    delete m_app;
+    m_app = nullptr;
 }
 
 void AppStartup::setupGlobals()
