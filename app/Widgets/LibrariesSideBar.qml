@@ -249,7 +249,7 @@ Pane {
 
         Connections {
             target: currentLibrary
-            onLibraryDeleted: {
+            function onLibraryDeleted() {
                 currentLibrary = null;
                 currentTag = "";
                 specialView = "";

@@ -1,28 +1,37 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.5
+import QtQuick.Controls.Material 2.0
+import QtQuick.Layouts 1.0
 
 import OpenTodoList 1.0 as OTL
+import Components 1.0 as Components
+import Utils 1.0 as Utils
 
-NewWebDAVAccountPageForm {
+Page {
     id: page
+
+    property int type: -1
+    property alias buttons: buttons
+    property alias serverAddressEdit: serverAddressEdit
+    property alias usernameEdit: usernameEdit
+    property alias accountNameEdit: accountNameEdit
+    property alias errorLabel: errorLabel
+    property alias disableCertificateChecksEdit: disableCertificateChecksEdit
+    property alias scrollView: scrollView
+    property alias busyIndicator: busyIndicator
+    property alias passwordEdit: passwordEdit
+    property Page anchorPage: null
 
     signal closePage()
     signal returnToPage(Page page)
     signal openPage(var component, var properties)
 
-    property Page anchorPage: null
+    title: qsTr("Connection Settings")
+    footer: DialogButtonBox {
+        id: buttons
 
-    buttons.onRejected: closePage()
-    scrollView.enabled: !dav.validating
-    busyIndicator.visible: dav.validating
-    errorLabel.visible: d.validated && !dav.valid
-    accountNameEdit.placeholderText: {
-        if (usernameEdit.text !== "" && serverAddressEdit.text !== "") {
-            return usernameEdit.text + "@" + serverAddressEdit.text.replace(
-                        /https?:\/\//i, "");
-        } else {
-            return qsTr("Account Name")
-        }
+        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        onRejected: closePage()
     }
 
     Component.onCompleted: {
@@ -38,7 +47,7 @@ NewWebDAVAccountPageForm {
 
     Connections {
         target: d.okButton
-        onClicked: {
+        function onClicked() {
             var url = serverAddressEdit.text;
             if (!/https?:\/\//i.exec(url)) {
                 url = "https://" + url;
@@ -100,5 +109,111 @@ NewWebDAVAccountPageForm {
         }
 
         disableCertificateChecks: dav.disableCertificateCheck
+    }
+
+    ScrollView {
+        id: scrollView
+
+        anchors.fill: parent
+        padding: 10
+        enabled: !dav.validating
+
+        GridLayout {
+            width: scrollView.availableWidth
+            columns: 2
+            columnSpacing: 10
+            rowSpacing: 10
+
+            Components.Heading {
+                text: qsTr("Connection Settings")
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+            }
+
+            Components.Label {
+                text: qsTr("Server Address:")
+            }
+
+            TextField {
+                id: serverAddressEdit
+
+                placeholderText: qsTr("https://myserver.example.com")
+                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
+                Layout.fillWidth: true
+            }
+
+            Components.Label {
+                text: qsTr("User:")
+            }
+
+            TextField {
+                id: usernameEdit
+
+                placeholderText: qsTr("User Name")
+                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+                Layout.fillWidth: true
+            }
+
+            Components.Label {
+                text: qsTr("Password:")
+            }
+
+            TextField {
+                id: passwordEdit
+
+                placeholderText: qsTr("Password")
+                Layout.fillWidth: true
+                echoMode: TextInput.Password
+                inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
+            }
+
+            Item {
+                width: 1
+                height: 1
+            }
+
+            CheckBox {
+                id: disableCertificateChecksEdit
+
+                text: qsTr("Disable Certificate Checks")
+            }
+
+            Components.Label {
+                text: qsTr("Name:")
+            }
+
+            TextField {
+                id: accountNameEdit
+
+                Layout.fillWidth: true
+                placeholderText: {
+                    if (usernameEdit.text !== "" && serverAddressEdit.text !== "") {
+                        return usernameEdit.text + "@" + serverAddressEdit.text.replace(
+                                    /https?:\/\//i, "");
+                    } else {
+                        return qsTr("Account Name")
+                    }
+                }
+            }
+
+            Components.Label {
+                id: errorLabel
+
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+                text: qsTr("Failed to connect to the server. Please "
+                           + "check your user name, password and the server address and retry.")
+                Material.foreground: Material.Red
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                visible: d.validated && !dav.valid
+            }
+        }
+    }
+
+    BusyIndicator {
+        id: busyIndicator
+
+        visible: dav.validating
+        anchors.centerIn: parent
     }
 }

@@ -252,9 +252,18 @@ ListView {
 
         Connections {
             target: root.model
-            onModelReset: swipeDelegate.updateCounter++
-            onRowsInserted: swipeDelegate.updateCounter++
-            onRowsRemoved: swipeDelegate.updateCounter++
+
+            function onModelReset() {
+                swipeDelegate.updateCounter++;
+            }
+
+            function onRowsInserted(parent, first, last) {
+                swipeDelegate.updateCounter++;
+            }
+
+            function onRowsRemoved(parent, first, last) {
+                swipeDelegate.updateCounter++;
+            }
         }
 
         function showContextMenu(mouse) {

@@ -11,7 +11,7 @@ Item {
 
     property var model
     property int layout: Qt.Vertical
-    property OTL.Item item
+    property OTL.LibraryItem item
     property ItemDragTile dragTile
 
     function startDrag() {

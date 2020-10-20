@@ -36,7 +36,7 @@ CenteredDialog {
     QtObject {
         id: d
 
-        property OTL.Item item
+        property OTL.LibraryItem item
         property OTL.Library library
 
         readonly property string deleteTodoListItems: qsTr(

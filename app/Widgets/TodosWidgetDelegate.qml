@@ -17,7 +17,7 @@ SwipeDelegate {
     property bool showParentItemInformation: false
     property var model: null
     property bool toggleDoneOnClose: false
-    property OTL.Item item: OTL.Item {}
+    property OTL.LibraryItem item: OTL.LibraryItem {}
     property OTL.Library library: null
     property bool hideDueDate: false
     readonly property var itemActions: ([
@@ -263,7 +263,7 @@ SwipeDelegate {
     QtObject {
         id: d
 
-        property OTL.Item parentItem: null
+        property OTL.LibraryItem parentItem: null
 
         function loadParentItem() {
             if (swipeDelegate.showParentItemInformation) {

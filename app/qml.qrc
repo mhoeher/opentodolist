@@ -78,30 +78,21 @@
         <file>Widgets/ItemPage.qml</file>
         <file>Widgets/ItemScrollView.qml</file>
         <file>Pages/SettingsPage.qml</file>
-        <file>Pages/SettingsPageForm.ui.qml</file>
         <file>Windows/+ios/OpenImageDialog.qml</file>
         <file>Utils/Translations.qml</file>
         <file>Components/ToolBarAction.qml</file>
         <file>Pages/AccountsPage.qml</file>
-        <file>Pages/AccountsPageForm.ui.qml</file>
         <file>Components/qmldir</file>
         <file>Pages/AccountTypeSelectionPage.qml</file>
         <file>Pages/NewWebDAVAccountPage.qml</file>
-        <file>Pages/NewWebDAVAccountPageForm.ui.qml</file>
         <file>Utils/Accounts.qml</file>
         <file>Pages/EditWebDAVAccountPage.qml</file>
-        <file>Pages/EditWebDAVAccountPageForm.ui.qml</file>
         <file>Windows/DeleteAccountDialog.qml</file>
-        <file>Pages/NewLibraryPageForm.ui.qml</file>
         <file>Pages/NewLocalLibraryPage.qml</file>
-        <file>Pages/NewLocalLibraryPageForm.ui.qml</file>
         <file>Pages/NewLibraryInFolderPage.qml</file>
-        <file>Pages/NewLibraryInFolderPageForm.ui.qml</file>
         <file>Pages/NewLibraryFromAccountPage.qml</file>
-        <file>Pages/NewLibraryFromAccountPageForm.ui.qml</file>
         <file>Components/PullToRefreshOverlay.qml</file>
         <file>Pages/ProblemsPage.qml</file>
-        <file>Pages/ProblemsPageForm.ui.qml</file>
         <file>Utils/TextUtils.js</file>
         <file>Windows/RecurrenceDialog.qml</file>
         <file>Widgets/TodosWidgetDelegate.qml</file>

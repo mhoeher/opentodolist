@@ -11,7 +11,7 @@ Item {
     id: root
 
     property int counter: 0
-    property OTL.Item item: null
+    property OTL.LibraryItem item: null
 
     width: parent.width
     height: childrenRect.height * 1.5
