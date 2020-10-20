@@ -154,8 +154,7 @@ void LibraryLoader::itemUidsLoaded(QSet<QUuid> uids)
             for (auto month : months) {
                 QDir dir(directory + "/" + year + "/" + month);
                 qCDebug(log) << "Checking directory" << dir;
-                QString suffix = "*." + Item::FileNameSuffix;
-                for (auto entry : dir.entryList({ suffix }, QDir::Files)) {
+                for (auto entry : Library::itemFiles(directory, year, month)) {
                     qCDebug(log) << "Checking file" << entry << "in" << dir;
                     auto item = Item::createItemFromFile(dir.absoluteFilePath(entry));
                     if (item) {
