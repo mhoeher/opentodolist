@@ -647,6 +647,7 @@ ApplicationWindow {
 
         clip: true
         visible: depth > 0
+        onCurrentItemChanged: pageMenuToolButton.menu.close()
     }
 
     Pane {

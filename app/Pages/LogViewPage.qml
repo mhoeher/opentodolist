@@ -14,14 +14,14 @@ Page {
 
     property alias log: view.model
 
-    property Menu pageMenu: Menu {
-        x: page.width
-        modal: true
+    property var pageActions: ([
+                                   copyLogAction
+                               ])
 
-        MenuItem {
-            text: qsTr("Copy Log")
-            onClicked: OTL.Application.copyToClipboard(JSON.stringify(page.log))
-        }
+    Action {
+        id: copyLogAction
+        text: qsTr("Copy Log")
+        onTriggered: OTL.Application.copyToClipboard(JSON.stringify(page.log))
     }
 
     ListView {

@@ -302,6 +302,10 @@ bool WebDAVClient::deleteEntry(const QString& filename)
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     if (code == HTTPStatusCode::OK || code == HTTPStatusCode::NoContent) {
         result = true;
+    } else if (code == HTTPStatusCode::Forbidden) {
+        result = true;
+        qCWarning(log) << "Deleting remote entry failed with code" << code << "- still continuing";
+        emit warning(tr("Remote delete not authorized - continue sync nevertheless"));
     } else {
         qCWarning(log) << "Deleting entry failed with code" << code;
         emit warning(tr("Deleting remote file failed with HTTP code %1").arg(code));
@@ -383,8 +387,11 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
         } else {
 
             qCDebug(log) << "Synchronizing" << QDir::cleanPath(this->directory() + "/" + directory);
-            emit debug(tr("Synchronizing '%1'")
-                               .arg(QDir::cleanPath(this->directory() + "/" + directory)));
+            // Do not include this - it takes valuable space in the sync log, which is better used
+            // to notify about actions taken to better understand what's going on.
+            //            emit debug(tr("Synchronizing '%1'")
+            //                               .arg(QDir::cleanPath(this->directory() + "/" +
+            //                               directory)));
 
             for (auto entry : entries) {
                 if (m_stopRequested) {
@@ -558,18 +565,18 @@ bool WebDAVClient::removeLocalEntry(WebDAVClient::SyncEntry& entry, QSqlDatabase
                                  .arg(entry.entry)
                                  .arg(entry.parent));
         } else {
-            removeFileFromSyncDB(db, entry);
             result = true;
         }
+        removeFileFromSyncDB(db, entry);
     } else if (entry.localType == Directory) {
         if (rmLocalDir(directory() + "/" + entry.path(), 2)) {
-            removeDirFromSyncDB(db, entry);
             result = true;
         } else {
             qCWarning(log) << "Failed to remove local"
                            << "directory" << entry.path();
             emit warning(tr("Failed to remove local directory '%1'").arg(entry.path()));
         }
+        removeDirFromSyncDB(db, entry);
     } else {
         // Should not happen
         qCWarning(log) << "Bad sync entry type of entry" << entry.entry << "in" << entry.parent
