@@ -40,6 +40,41 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.28.0" date="2020-11-01">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #372: There's now a donate link in the side bar.
+            </li>
+            <li>
+                #266: Todos can now be moved into another todo list (in the same library).
+            </li>
+            <li>
+                #378: Prevent an endless "sync loop".
+            </li>
+            <li>
+                #377: Convert to new style "Connections" in GUI code to prevent flooding the
+                app debug log with useless messages.
+            </li>
+            <li>
+                #375: Prevent a crash when closing the app while a sync is running.
+            </li>
+            <li>
+                #373: Prevent an issue where adding back a library from an account might fail.
+            </li>
+            <li>
+                #376: Prevent a crash when deleting a library which is currently being synced.
+            </li>
+            <li>
+                #371: Prevent a crash of the background service (on Android) when there are
+                problems (e.g. missing secrets for an account).
+            </li>
+            <li>
+                #363: Show the title of the todo list to which a todo belongs in the schedule
+                page.
+            </li>
+        </ul>
+      </release>
       <release version="3.27.0" date="2020-10-04">
         <p>This release includes the following changes:</p>
         <ul>
