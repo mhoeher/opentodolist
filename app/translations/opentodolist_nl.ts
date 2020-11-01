@@ -116,22 +116,22 @@
     <message>
         <location filename="../main.cpp" line="235"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished">Schakel touchscreen-optimalisaties in.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="238"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alleen achtergronddienst starten</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="240"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alleen venster tonen en verbinding maken met een reeds opgestarte achtergronddienst</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="245"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows-opdrachtprompt openen om foutopsporingsuitvoer te tonen</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="379"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../main.cpp" line="386"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afsluiten</translation>
     </message>
 </context>
 <context>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afgeronde items verwijderen</translation>
     </message>
 </context>
 <context>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afgeronde items verwijderen?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Weet je zeker dat je alle afgeronde items wilt verwijderen? Dit kan niet ongedaan worden gemaakt.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Weet je zeker dat je alle afgeronde items op de lijst &lt;strong&gt;%1&lt;/strong&gt; wilt wissen? Dit kan niet ongedaan worden gemaakt.</translation>
     </message>
 </context>
 <context>
@@ -357,12 +357,12 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="98"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inloggen</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="105"/>
         <source>User:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="112"/>
@@ -416,7 +416,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="151"/>
         <source>User:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="190"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lijst aanpassen</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="196"/>
@@ -589,22 +589,22 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="341"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schema verbergen</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="341"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schema tonen</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="351"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Omhoog verplaatsen</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="360"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Omlaag verplaatsen</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
@@ -796,7 +796,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="345"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afgeronde items verwijderen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="383"/>
@@ -836,7 +836,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="434"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sluiten</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
@@ -1069,52 +1069,52 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="91"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inloggen</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="103"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inlogproblemen?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="114"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">We hebben getracht je webbrowser te openen zodat je kunt inloggen op je NextCloud-instantie. Log in en verleen OpenTodoList toegang om door te gaan. Ervaar je problemen bij het inloggen? Dan kun je ook alleen je gebruikersnaam en wachtwoord opgeven.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="121"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Handmatig inloggen</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="127"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Idealiter gebruik je app-specifieke wachtwoorden in plaats van je gebruikerswachtwoord. Als je inloggen beveiligd hebt met authenticatie in twee stappen, dat móet je zelfs appwachtwoorden gebruiken. Je kunt deze genereren in je gebruikersinstellingen.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="135"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Appwachtwoord maken</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="144"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Accountinstellingen</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="153"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Link kopiëren</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="158"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gekopieerd!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="167"/>
         <source>User:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="174"/>
@@ -1196,7 +1196,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
         <source>User:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="152"/>

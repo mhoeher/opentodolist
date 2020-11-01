@@ -74,7 +74,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Kontotyp auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../main.cpp" line="229"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished">Persönliche Daten verwalten.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="235"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../main.cpp" line="386"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schließen</translation>
     </message>
 </context>
 <context>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erledigte Einträge löschen?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Möchtest du wirklich alle erledigten Einträge in der Liste &lt;strong&gt;%1&lt;/strong&gt; löschen? Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Möchtest du wirklich alle erledigten Aufgaben in der Liste &lt;strong&gt;%1&lt;/strong&gt; löschen? Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
 </context>
 <context>
@@ -337,7 +337,7 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="66"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Account bearbeiten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="72"/>
@@ -352,7 +352,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="90"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://meinserver.beispiel.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="98"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="139"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Zertifikatsprüfungen deaktivieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="148"/>
@@ -396,7 +396,7 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="121"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Account bearbeiten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
@@ -411,7 +411,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://meinserver.beispiel.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="151"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="186"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Zertifikatsprüfungen deaktivieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="194"/>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="190"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liste bearbeiten</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="196"/>
@@ -589,22 +589,22 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="341"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zeitplan ausblenden</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="341"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zeige Zeitplan</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="351"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nach oben</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="360"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nach unten</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
@@ -836,7 +836,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="434"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schließen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
@@ -1074,42 +1074,42 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="103"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Probleme beim Anmelden?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="114"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wir haben versucht, den Browser zu öffnen, um dich bei deiner Nextcloud-Instanz anzumelden. Bitte melde dich an und erlaube OpenTodoList den Zugriff, um fortzufahren. Probleme beim Erreichen deiner NextCloud im Browser? Du kannst Benutzername und Passwort auch manuell eingeben.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="121"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Manuell anmelden</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="127"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Idealerweise benutzt du App-spezifische Passwörter statt deines Benutzer-Passworts. Falls deine Nextcloud mit Zwei-Faktor-Authentifizierung (2FA) geschützt ist, ist ein App-spezifisches Passwort sogar verpflichtend. Du kannst ein solches Passwort in den Nextcloud-Einstellungen &gt; Sicherheit erzeugen.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="135"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erzeuge App-Passwort</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="144"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konto-Einstellungen</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="153"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Link kopieren</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="158"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiert!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="167"/>
@@ -1134,7 +1134,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="203"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Zertifikatsprüfungen deaktivieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
@@ -1144,7 +1144,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
         <source>Account Name</source>
-        <translation type="unfinished">Konto-Name</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="229"/>
@@ -1191,7 +1191,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="140"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://meinserver.beispiel.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
@@ -1216,7 +1216,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="178"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Zertifikatsprüfungen deaktivieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="182"/>
@@ -1226,7 +1226,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="194"/>
         <source>Account Name</source>
-        <translation type="unfinished">Konto-Name</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="204"/>
@@ -1630,7 +1630,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="48"/>
         <source>Basque</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Baskisch</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="52"/>
