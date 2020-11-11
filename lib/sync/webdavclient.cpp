@@ -137,9 +137,8 @@ WebDAVClient::EntryList WebDAVClient::entryList(const QString& directory, bool* 
     connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
     bool status = false;
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    if (code == HTTPStatusCode::WebDAVMultiStatus) {
-        result = parseEntryList(baseUrl(), dir, reply->readAll());
-        status = true;
+    if (reply->error() == QNetworkReply::NoError && code == HTTPStatusCode::WebDAVMultiStatus) {
+        result = parseEntryList(baseUrl(), dir, reply->readAll(), status);
     } else {
         emit warning(tr("Unexpected HTTP code received when getting "
                         "remote folder entry list: '%1'")
@@ -172,7 +171,7 @@ bool WebDAVClient::download(const QString& filename, QIODevice* targetDevice)
         auto reply = sendDAVRequest(request);
         file->setParent(reply);
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == HTTPStatusCode::OK) {
+        if (reply->error() == QNetworkReply::NoError && code == HTTPStatusCode::OK) {
             if (targetDevice != nullptr) {
                 file->seek(0);
                 while (!file->atEnd()) {
@@ -242,8 +241,9 @@ bool WebDAVClient::upload(const QString& filename, QString* etag)
         file->setParent(reply);
 
         auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (code == HTTPStatusCode::OK || code == HTTPStatusCode::Created
-            || code == HTTPStatusCode::NoContent) {
+        if (reply->error() == QNetworkReply::NoError
+            && (code == HTTPStatusCode::OK || code == HTTPStatusCode::Created
+                || code == HTTPStatusCode::NoContent)) {
             for (auto header : reply->rawHeaderPairs()) {
                 if (header.first.toLower() == "etag") {
                     currentEtag = header.second;
@@ -280,7 +280,7 @@ bool WebDAVClient::mkdir(const QString& dirname, QString* etag)
     auto reply = sendDAVRequest(createDirectoryRequest(this->remoteDirectory() + "/" + dirname));
     QString currentEtag = "no-etag-retrieved-yet";
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    result = code.toInt() == HTTPStatusCode::Created;
+    result = reply->error() == QNetworkReply::NoError && code.toInt() == HTTPStatusCode::Created;
     for (auto header : reply->rawHeaderPairs()) {
         if (header.first.toLower() == "etag") {
             currentEtag = header.second;
@@ -300,7 +300,8 @@ bool WebDAVClient::deleteEntry(const QString& filename)
     request.verb = HTTP_DELETE;
     auto reply = sendDAVRequest(request);
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    if (code == HTTPStatusCode::OK || code == HTTPStatusCode::NoContent) {
+    if (reply->error() == QNetworkReply::NoError
+        && (code == HTTPStatusCode::OK || code == HTTPStatusCode::NoContent)) {
         result = true;
     } else if (code == HTTPStatusCode::Forbidden) {
         result = true;
@@ -697,9 +698,11 @@ QString WebDAVClient::etag(const QString& filename)
     auto path = m_remoteDirectory + "/" + filename;
     auto reply = sendDAVRequest(etagRequest(path));
     auto code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    if (code.toInt() == HTTPStatusCode::WebDAVMultiStatus) {
-        auto entryList = parseEntryList(baseUrl(), path, reply->readAll());
-        if (entryList.length() == 1) {
+    if (reply->error() == QNetworkReply::NoError
+        && code.toInt() == HTTPStatusCode::WebDAVMultiStatus) {
+        bool parsingOK = false;
+        auto entryList = parseEntryList(baseUrl(), path, reply->readAll(), parsingOK);
+        if (parsingOK && entryList.length() == 1) {
             auto entry = entryList.at(0);
             if (entry.name == ".") {
                 result = entry.etag;
@@ -830,14 +833,15 @@ WebDAVClient::DAVRequest WebDAVClient::createDirectoryRequest(const QString& dir
 }
 
 WebDAVClient::EntryList WebDAVClient::parseEntryList(const QUrl& baseUrl, const QString& directory,
-                                                     const QByteArray& reply)
+                                                     const QByteArray& reply, bool& ok)
 {
     EntryList result;
     QDomDocument doc;
     QString errorMsg;
     int errorLine;
+    ok = false;
     if (doc.setContent(reply, true, &errorMsg, &errorLine)) {
-        result = parsePropFindResponse(baseUrl, doc, directory);
+        result = parsePropFindResponse(baseUrl, doc, directory, ok);
     } else {
         qCWarning(log) << "Failed to parse WebDAV response:" << errorMsg << "in line" << errorLine;
     }
@@ -846,16 +850,17 @@ WebDAVClient::EntryList WebDAVClient::parseEntryList(const QUrl& baseUrl, const 
 
 WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(const QUrl& baseUrl,
                                                             const QDomDocument& response,
-                                                            const QString& directory)
+                                                            const QString& directory, bool& ok)
 {
     EntryList result;
     auto baseDir = QDir::cleanPath(baseUrl.path() + "/" + directory);
     auto root = response.documentElement();
     auto rootTagName = root.tagName();
     if (rootTagName == "multistatus") {
+        ok = true;
         auto resp = root.firstChildElement("response");
-        while (resp.isElement()) {
-            auto entry = parseResponseEntry(resp, baseDir);
+        while (resp.isElement() && ok) {
+            auto entry = parseResponseEntry(resp, baseDir, ok);
             if (entry.type != Invalid) {
                 result << entry;
             }
@@ -865,15 +870,17 @@ WebDAVClient::EntryList WebDAVClient::parsePropFindResponse(const QUrl& baseUrl,
         qCWarning(log) << "Received invalid WebDAV response from"
                           "server starting with element"
                        << rootTagName;
+        ok = false;
     }
     return result;
 }
 
 WebDAVClient::Entry WebDAVClient::parseResponseEntry(const QDomElement& element,
-                                                     const QString& baseDir)
+                                                     const QString& baseDir, bool& ok)
 {
     auto type = File;
     QString etag;
+    ok = true;
 
     auto propstats = element.elementsByTagName("propstat");
     for (int i = 0; i < propstats.length(); ++i) {
@@ -896,6 +903,7 @@ WebDAVClient::Entry WebDAVClient::parseResponseEntry(const QDomElement& element,
             }
         } else {
             qCWarning(log) << "Properties not retrieved -" << status.text();
+            ok = false;
         }
     }
 
