@@ -184,10 +184,10 @@ private:
     DAVRequest etagRequest(const QString& filename);
     DAVRequest createDirectoryRequest(const QString& directory);
     static EntryList parseEntryList(const QUrl& baseUrl, const QString& directory,
-                                    const QByteArray& reply);
+                                    const QByteArray& reply, bool& ok);
     static EntryList parsePropFindResponse(const QUrl& baseUrl, const QDomDocument& response,
-                                           const QString& directory);
-    static Entry parseResponseEntry(const QDomElement& element, const QString& baseDir);
+                                           const QString& directory, bool& ok);
+    static Entry parseResponseEntry(const QDomElement& element, const QString& baseDir, bool& ok);
     void prepareReply(QNetworkReply* reply) const;
     QNetworkReply* sendDAVRequest(const DAVRequest& request);
 
