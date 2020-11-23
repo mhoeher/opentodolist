@@ -63,6 +63,7 @@ CenteredDialog {
     standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
     Component.onCompleted: {
         let okButton = standardButton(DialogButtonBox.Ok);
+        d.okButton = okButton;
         okButton.enabled = Qt.binding(function() {
             let result = dialog.newItemTitle !== "" && DateUtils.validDate(dialog.newItemDueOn());
             if (d.itemType === "Todo") {
@@ -85,12 +86,19 @@ CenteredDialog {
 
         property string itemType: ""
         property var customDate: null
+        property var okButton: null
         readonly property bool needParent: itemType === "Todo"
         readonly property string today: qsTr("Today")
         readonly property string tomorrow: qsTr("Tomorrow")
         readonly property string thisWeek: qsTr("This Week")
         readonly property string nextWeek: qsTr("Next Week")
         readonly property string selectDate: qsTr("Select...")
+
+        function accept() {
+            if (okButton.enabled) {
+                dialog.accept();
+            }
+        }
     }
 
     ListModel {
@@ -110,6 +118,7 @@ CenteredDialog {
             id: titleEdit
             placeholderText: qsTr("The title for your new item...")
             Layout.fillWidth: true
+            onAccepted: d.accept()
         }
 
         Label {
