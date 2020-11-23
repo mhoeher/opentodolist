@@ -76,7 +76,7 @@ Item {
                     }
                 }
                 delegate: RowLayout {
-                    width: parent.width
+                    width: openTodosList.width
                     Label {
                         font.family: Fonts.icons
                         text: Icons.faCircle

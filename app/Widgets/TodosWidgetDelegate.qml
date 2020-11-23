@@ -176,7 +176,7 @@ SwipeDelegate {
     }
     swipe.left: Pane {
         height: swipeDelegate.height
-        width: swipeDelegate.width / 2
+        width: swipeDelegate.width
         enabled: {
             let item = swipeDelegate.item;
             return item.done !== undefined || item.dueTo !== undefined;
