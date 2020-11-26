@@ -92,7 +92,7 @@ GridLayout {
 
     ToolButton {
         symbol: Icons.faSync
-        font.family: Fonts.icons
+        font.family: Fonts.solidIcons
         background: Item {}
         onClicked: recurrenceDialog.edit(root.item)
 
