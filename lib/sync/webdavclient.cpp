@@ -827,7 +827,11 @@ WebDAVClient::DAVRequest WebDAVClient::createDirectoryRequest(const QString& dir
      curl -X MKCOL 'http://admin:admin@localhost:8080/remote.php/webdav/example'
     */
     DAVRequest request;
-    request.url = QUrl(urlString() + mkpath(directory));
+    auto url = QUrl(urlString() + mkpath(directory));
+    if (!url.path().endsWith("/")) {
+        url.setPath(url.path() + "/");
+    }
+    request.url = url;
     request.verb = HTTP_MKCOL;
     return request;
 }
