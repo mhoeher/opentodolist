@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ka">
+<TS version="2.1" language="ka_GE">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../Pages/AboutPage.qml" line="14"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">შესახებ</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="28"/>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../main.cpp" line="379"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">გახსნა</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="386"/>
@@ -149,12 +149,12 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ფაილის მიმაგრება</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ფაილის წაშლა</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">დანართები</translation>
     </message>
 </context>
 <context>
@@ -172,42 +172,42 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ფერი</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">თეთრი</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">წითელი</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">მწვანე</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ლურჯი</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ყვითელი</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ნარინჯისფერი</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">იასამნისფერი</translation>
     </message>
 </context>
 <context>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">გახსნა</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -513,7 +513,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">შენიშვნები</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">შესახებ</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="230"/>
@@ -617,37 +617,37 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">წითელი</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">მწვანე</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ლურჯი</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ყვითელი</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ნარინჯისფერი</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">იასამნისფერი</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">თეთრი</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
@@ -761,7 +761,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ფერი</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="299"/>
@@ -771,7 +771,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="306"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ფაილის მიმაგრება</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="315"/>

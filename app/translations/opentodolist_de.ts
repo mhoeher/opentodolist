@@ -367,7 +367,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="112"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Benutzername</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
@@ -421,7 +421,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Benutzername</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="164"/>
@@ -978,7 +978,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
         <source>Folder:</source>
-        <translation type="unfinished">Ordners:</translation>
+        <translation type="unfinished">Ordner:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="102"/>
@@ -1119,7 +1119,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="174"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Benutzername</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="181"/>
@@ -1144,7 +1144,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
         <source>Account Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontoname</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="229"/>
@@ -1201,7 +1201,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="152"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Benutzername</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="158"/>
@@ -1226,7 +1226,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="194"/>
         <source>Account Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontoname</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="204"/>
@@ -1461,7 +1461,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="57"/>
         <source>Language:</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="81"/>
@@ -1471,7 +1471,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="112"/>
         <source>Font Size:</source>
-        <translation type="unfinished">Schriftgröße</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

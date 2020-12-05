@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<TS version="2.1" language="uk_UA">
 <context>
     <name>AboutPage</name>
     <message>
@@ -16,7 +16,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="35"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Додаток для керування діями та завданнями.</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="42"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="128"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Автор</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="133"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="141"/>
         <source>License:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ліцензія</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="146"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="154"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Завантажити</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="159"/>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Тип Акаунту</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
@@ -103,7 +103,7 @@
         <location filename="../Pages/AccountsPage.qml" line="18"/>
         <location filename="../Pages/AccountsPage.qml" line="49"/>
         <source>Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Акаунти</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../main.cpp" line="229"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Керувати своїми персональними даними</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="235"/>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../main.cpp" line="379"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відкрити</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="386"/>
@@ -154,17 +154,17 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити вкладення?</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви впевнені, що хочете видалити вкладення &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вкладення</translation>
     </message>
 </context>
 <context>
@@ -172,17 +172,17 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Колір</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Білий</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Червоний</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Жовтий</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Бузковий</translation>
     </message>
 </context>
 <context>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Система</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="../Utils/Colors.qml" line="18"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Темний</translation>
     </message>
 </context>
 <context>
@@ -233,7 +233,7 @@
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="19"/>
         <source>Delete Account?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити Акаунт?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="36"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити</translation>
     </message>
 </context>
 <context>
@@ -280,32 +280,32 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити елемент?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
         <source>Do you really want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити зображення &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
         <source>Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити список дій &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="40"/>
         <source>Do you really want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити дію &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="44"/>
         <source>Do you really want to delete the task &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити завдання &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="48"/>
         <source>Do you really want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити замітку &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
@@ -318,17 +318,17 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити бібліотеку?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from  the application? &lt;em&gt;This will remove any files belonging to the library.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити бібліотеку з додатком &lt;strong&gt;%1&lt;/strong&gt;? &lt;em&gt;Це видалить усі файли, що належать до бібліотеки.&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="40"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from the application? Note that the files inside the library will not be removed, so you can restore the library later on.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ви дійсно хочете видалити бібліотеку з додатком &lt;strong&gt;%1&lt;/strong&gt;? Зауважте, що файли всередині бібліотеки не будуть видалені, тому згодом ви можете відновити бібліотеку.</translation>
     </message>
 </context>
 <context>
@@ -337,17 +337,17 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="66"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Редагувати Акаунт</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="72"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="90"/>
@@ -362,32 +362,32 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="105"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Користувач</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="112"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="125"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="139"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="148"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
 </context>
 <context>
@@ -396,17 +396,17 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="121"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Редагувати Акаунт</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="138"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
@@ -416,32 +416,32 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="151"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Користувач</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="164"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="171"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="186"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="194"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
 </context>
 <context>
@@ -449,7 +449,7 @@
     <message>
         <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
         <source>Select a Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибрати теку</translation>
     </message>
 </context>
 <context>
@@ -457,12 +457,12 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="64"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; було створено.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відкрити</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -475,7 +475,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
         <source>Due on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Термін на </translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
@@ -513,7 +513,8 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Замітки
+</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
@@ -549,12 +550,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="176"/>
         <source>New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Нова бібліотека</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="183"/>
         <source>Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Акаунти</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="190"/>
@@ -609,7 +610,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Список</translation>
     </message>
 </context>
 <context>
@@ -617,7 +618,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Червоний</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="153"/>
@@ -632,7 +633,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Жовтий</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="174"/>
@@ -642,42 +643,42 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Бузковий</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Білий</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перейменувати</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="203"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="261"/>
         <source>Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Заголовок примітки </translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="274"/>
         <source>Todo List Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Заголовок списку справ </translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="287"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пошук терміну 1, пошук терміну 2, ...</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="366"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Тут нічого ще немає! Почніть з додавання &lt;a href=&apos;#note&apos;&gt;примітка &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;список справ&lt;/a&gt; або &lt;a href=&apos;#image&apos;&gt;зображення&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="429"/>
@@ -687,7 +688,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="434"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вручну</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="441"/>
@@ -715,12 +716,12 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Синхронізувати зараз</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Журнал синхронізації</translation>
     </message>
 </context>
 <context>
@@ -728,12 +729,12 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="13"/>
         <source>Synchronization Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Журнал синхронізації</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="23"/>
         <source>Copy Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копіювати журнал</translation>
     </message>
 </context>
 <context>
@@ -751,7 +752,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="266"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перейменувати</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="277"/>
@@ -761,12 +762,12 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Колір</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="299"/>
         <source>Add Tag</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Додати Tag</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="306"/>
@@ -776,12 +777,12 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="315"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пошук</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="322"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сортувати</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="330"/>
@@ -791,7 +792,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="338"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видалити</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="345"/>
@@ -811,27 +812,27 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="391"/>
         <source>New &amp;Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Нова &amp;бібліотека</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="402"/>
         <source>New &amp;Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Нова &amp;примітка</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="410"/>
         <source>New &amp;Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Новий &amp;список справ</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="418"/>
         <source>New &amp;Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Нове &amp;зображення</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="426"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Вийти</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="434"/>
@@ -841,22 +842,22 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Знайти</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="467"/>
         <source>Open Last &amp;Created Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відкрити останній створений &amp;елемент</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="475"/>
         <source>Open &amp;Left Side Bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відкрити &amp;ліву бічну панель </translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="604"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Почніть з &lt;a href=&apos;#newLibrary&apos;&gt;створення нової бібліотеки&lt;/a&gt;. Бібліотеки використовуються для зберігання різних видів предметів, таких як нотатки, списки справ та зображення.</translation>
     </message>
 </context>
 <context>
@@ -872,12 +873,12 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="91"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сьогодні</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Завтра</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
@@ -887,7 +888,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Наступного тижня</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
@@ -988,12 +989,12 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="108"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибрати</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
@@ -1007,7 +1008,7 @@
         <location filename="../Pages/NewLibraryPage.qml" line="23"/>
         <location filename="../Pages/NewLibraryPage.qml" line="61"/>
         <source>Create Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Створити бібліотеку</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="68"/>
@@ -1017,17 +1018,17 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="75"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Використати теку як бібліотеку</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="86"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Додати бібліотеки з ваших акаунтів</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="113"/>
         <source>Add Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Додати акаунт</translation>
     </message>
 </context>
 <context>
@@ -1045,7 +1046,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="77"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="82"/>
@@ -1064,7 +1065,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="77"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="91"/>
@@ -1114,32 +1115,32 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="167"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Користувач</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="174"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="181"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="188"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="203"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
@@ -1149,7 +1150,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="229"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
 </context>
 <context>
@@ -1157,7 +1158,7 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Список справ</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
@@ -1167,12 +1168,13 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Примітка </translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зображення
+</translation>
     </message>
 </context>
 <context>
@@ -1186,7 +1188,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="134"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="140"/>
@@ -1196,32 +1198,32 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Користувач</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="152"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="158"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="164"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пароль</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="178"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="182"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="194"/>
@@ -1231,7 +1233,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="204"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
 </context>
 <context>
@@ -1252,7 +1254,7 @@
     <message>
         <location filename="../Windows/OpenFileDialog.qml" line="18"/>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибрати файл</translation>
     </message>
 </context>
 <context>
@@ -1261,7 +1263,7 @@
         <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибрати зображення</translation>
     </message>
 </context>
 <context>
@@ -1331,7 +1333,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перейменувати</translation>
     </message>
 </context>
 <context>
@@ -1370,12 +1372,12 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сьогодні</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="102"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Завтра</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
@@ -1385,7 +1387,7 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Наступного тижня</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
@@ -1456,17 +1458,17 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="49"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Інтерфейс користовуча</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="57"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Мова</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="81"/>
         <source>Theme:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Тема</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="112"/>
@@ -1484,12 +1486,12 @@
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ігнорувати</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вигляд</translation>
     </message>
 </context>
 <context>
@@ -1497,7 +1499,7 @@
     <message>
         <location filename="../Widgets/TagsEditor.qml" line="34"/>
         <source>Add Tag</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Додати Tag</translation>
     </message>
 </context>
 <context>
@@ -1513,17 +1515,17 @@
     <message>
         <location filename="../Pages/TodoListPage.qml" line="168"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пошук терміну 1, пошук терміну 2, ...</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="180"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вручну</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="186"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="192"/>
@@ -1556,7 +1558,7 @@
     <message>
         <location filename="../Pages/TodoPage.qml" line="114"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пошук терміну 1, пошук терміну 2, ...</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="135"/>
@@ -1595,7 +1597,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="16"/>
         <source>System Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Системна мова</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="28"/>
@@ -1605,7 +1607,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="32"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Німецька</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="36"/>
@@ -1615,7 +1617,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="40"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Англійська</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="44"/>
@@ -1640,7 +1642,7 @@
     <message>
         <location filename="../Utils/Translations.qml" line="60"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Французька</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="64"/>
@@ -1723,12 +1725,12 @@
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ігнорувати</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Завантажити</translation>
     </message>
 </context>
 </TS>

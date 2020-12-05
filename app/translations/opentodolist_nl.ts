@@ -541,7 +541,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="109"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taak verplaatsen naar...</translation>
     </message>
 </context>
 <context>
@@ -574,7 +574,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Doneren</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
@@ -756,7 +756,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="277"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verplaatsen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
@@ -864,7 +864,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verplaatsen</translation>
     </message>
 </context>
 <context>
@@ -925,7 +925,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="108"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">Als je een verzameling aanmaakt op een account, dan wordt deze gesynchroniseerd. Hierdoor kun je hem eenvoudig back-uppen naar en herstellen van een server. Daarnaast kun je ze delen met anderen (als de server in kwestie dit toestaat).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="117"/>
@@ -935,7 +935,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="125"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished">Kies een bestaande verzameling op de server.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="132"/>
@@ -955,12 +955,12 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="182"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">Maak een nieuwe verzameling aan, welke gesynchroniseerd wordt met de server. Je kunt hem hierdoor ook toevoegen op andere apparaten.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="197"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished">De naam van mijn nieuwe verzameling</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -973,7 +973,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="92"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished">Je kunt elke map gebruiken als verzamelingslocatie.&lt;br/&gt;&lt;br/&gt;Dit is vooral handig als je een ander hulpprogramma gebruikt (bijv. een synchronisatieclient van een clouddienst).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
@@ -983,7 +983,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="102"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished">Pad naar de te gebruiken map</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="108"/>
@@ -998,7 +998,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">De naam van mijn lokale verzameling</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1040,7 +1040,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="66"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">Een lokale verzameling wordt alleen opgeslagen op je apparaat. Dit is nuttig als je je privacy écht goed wilt beschermen.&lt;br/&gt;&lt;br/&gt;Gebruik het op informatie alleen lokaal op te slaan, en back-up je gegevens regelmatig op een andere manier. Als je toegang wilt hebben op andere apparaten, maak dan een verzameling aan die wordt gesynchroniseerd.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="77"/>
@@ -1050,7 +1050,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="82"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">De naam van mijn lokale verzameling</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1270,7 +1270,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="18"/>
         <location filename="../Pages/ProblemsPage.qml" line="28"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Problemen opgespoord</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
@@ -1403,7 +1403,7 @@
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="19"/>
         <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kies een takenlijst</translation>
     </message>
 </context>
 <context>
@@ -1456,7 +1456,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="49"/>
         <source>User Interface</source>
-        <translation type="unfinished">Uiterlijk</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="57"/>

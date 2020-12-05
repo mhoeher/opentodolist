@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<TS version="2.1" language="ja_JP">
 <context>
     <name>AboutPage</name>
     <message>
@@ -172,37 +172,37 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">白</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">赤</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">緑</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">青</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">橙</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
@@ -617,27 +617,27 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="146"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">赤</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">緑</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">青</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄色</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">橙</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="181"/>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">白</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="198"/>
@@ -761,7 +761,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">色</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="299"/>

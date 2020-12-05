@@ -6,7 +6,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="14"/>
         <source>About...</source>
-        <translation type="unfinished">Około...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="28"/>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
-        <translation type="unfinished">Rodzaj konta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
@@ -137,12 +137,12 @@
     <message>
         <location filename="../main.cpp" line="379"/>
         <source>Open</source>
-        <translation type="unfinished">Otwarte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="386"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Opuść</translation>
     </message>
 </context>
 <context>
@@ -338,12 +338,12 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="66"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Edycja konta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="72"/>
         <source>Name:</source>
-        <translation type="unfinished">Nazwisko:</translation>
+        <translation type="unfinished">Nazwa:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
@@ -353,7 +353,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="90"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="98"/>
@@ -397,12 +397,12 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="121"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Edycja konta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Name:</source>
-        <translation type="unfinished">Nazwisko:</translation>
+        <translation type="unfinished">Nazwa:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="138"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="151"/>
@@ -463,7 +463,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished">Otwarte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -560,7 +560,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="190"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Edytuj listę</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="196"/>
@@ -575,12 +575,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Darowizna</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
         <source>About...</source>
-        <translation type="unfinished">Około...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="230"/>
@@ -757,7 +757,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="277"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przenieść</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="288"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="434"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zamknij</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
@@ -865,7 +865,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przenieść</translation>
     </message>
 </context>
 <context>
@@ -994,12 +994,12 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
         <source>Name:</source>
-        <translation type="unfinished">Nazwisko:</translation>
+        <translation type="unfinished">Nazwa:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">Moja lokalna biblioteka Nazwa</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1013,12 +1013,12 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="68"/>
         <source>Local Library</source>
-        <translation type="unfinished">Biblioteka lokalna</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="75"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished">Użyj Folderu jako Biblioteki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="86"/>
@@ -1036,7 +1036,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="58"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished">Tworzenie lokalnej biblioteki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="66"/>
@@ -1046,12 +1046,12 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="77"/>
         <source>Name:</source>
-        <translation type="unfinished">Nazwisko:</translation>
+        <translation type="unfinished">Nazwa:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="82"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">Moja lokalna biblioteka Nazwa</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1140,7 +1140,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
         <source>Name:</source>
-        <translation type="unfinished">Nazwisko:</translation>
+        <translation type="unfinished">Nazwa:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
@@ -1192,7 +1192,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="140"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
@@ -1222,7 +1222,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="182"/>
         <source>Name:</source>
-        <translation type="unfinished">Nazwisko:</translation>
+        <translation type="unfinished">Nazwa:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="194"/>
@@ -1472,7 +1472,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="112"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rozmiar czcionki:</translation>
     </message>
 </context>
 <context>

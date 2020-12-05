@@ -74,7 +74,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Choisir le type de compte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../main.cpp" line="386"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Quitter</translation>
     </message>
 </context>
 <context>
@@ -337,7 +337,7 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="66"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Modifier le compte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="72"/>
@@ -347,12 +347,12 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Adresse du serveur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="90"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.exemple.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="98"/>
@@ -396,7 +396,7 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="121"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Modifier le compte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
@@ -406,12 +406,12 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="138"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Adresse du serveur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.exemple.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="151"/>
@@ -574,7 +574,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Donner</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
@@ -599,12 +599,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="351"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vers le haut</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="360"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vers le bas</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
@@ -836,7 +836,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="434"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fermer</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="443"/>
@@ -1064,7 +1064,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="77"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Adresse du serveur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="91"/>
@@ -1144,7 +1144,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
         <source>Account Name</source>
-        <translation type="unfinished">Nom du compte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="229"/>
@@ -1186,12 +1186,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="134"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Adresse du serveur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="140"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.exemple.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
@@ -1226,7 +1226,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="194"/>
         <source>Account Name</source>
-        <translation type="unfinished">Nom du compte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="204"/>
@@ -1461,12 +1461,12 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="57"/>
         <source>Language:</source>
-        <translation type="unfinished">Langue</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="81"/>
         <source>Theme:</source>
-        <translation type="unfinished">Thème:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="112"/>
