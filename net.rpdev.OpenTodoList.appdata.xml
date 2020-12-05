@@ -40,6 +40,25 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.29.0" date="2020-12-05">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #387: Fix sync against some WebDAV servers that require directory URLs to end
+                with a slash character.
+            </li>
+            <li>
+                #386: Fix a bug where the recurrence icon would not be shown on some systems.
+            </li>
+            <li>
+                #381: Pressing "Enter" when creating a new item from the schedule view now
+                adds that item.
+            </li>
+            <li>
+                #374: Improve error handling in WebDAV calls to prevent data loss.
+            </li>
+        </ul>
+      </release>
       <release version="3.28.0" date="2020-11-01">
         <p>This release includes the following changes:</p>
         <ul>
