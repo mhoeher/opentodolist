@@ -3,1574 +3,140 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: OpenTodoList\n"
-"Language: hu\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Language: hu_HU\n"
+"X-Qt-Contexts: true\n"
 
 #: ../Pages/AboutPage.qml:14
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "About..."
 msgstr "Ról ről..."
 
 #: ../Pages/AboutPage.qml:28
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
 #: ../Pages/AboutPage.qml:35
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Teendő és feladatkezelő alkalmazás."
 
-#: ../Pages/AboutPage.qml:60
-msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "Az OpenTodoList a GNU General Public License 3. verziója (vagy az Ön választása szerint) bármely későbbi verziója alapján kerül kiadásra. Az alábbiakban megtalálja a licenc másolatát. Ezen felül számos könyvtárat és forrást használnak. A licencfeltételekről bővebb információt a <a href='3rdparty'> Harmadik fél szoftvere </a> oldalon talál."
-
-#: ../Pages/AboutThirdPartyPage.qml:11
-msgctxt "AboutThirdPartyPage|"
-msgid "Used Libraries and Resources"
-msgstr "Használt könyvtárak és források"
-
-#: ../Pages/AboutThirdPartyPage.qml:47
-msgctxt "AboutThirdPartyPage|"
-msgid "Author: <a href='%2'>%1</a>"
-msgstr "Szerző: <a href='%2'>% 1 </a>"
-
-#: ../Pages/AboutThirdPartyPage.qml:54
-msgctxt "AboutThirdPartyPage|"
-msgid "License: <a href='%1'>%2</a>"
-msgstr "Engedély: <a href='%1'>% 2 </a>"
-
-#: ../Pages/AboutThirdPartyPage.qml:61
-msgctxt "AboutThirdPartyPage|"
-msgid "Download: <a href='%1'>%1</a>"
-msgstr "Letöltés: <a href='%1'>% 1 </a>"
-
-#: ../Widgets/Attachments.qml:28
-msgctxt "Attachments|"
-msgid "Attach File"
-msgstr "Fájl csatolása"
-
-#: ../Widgets/Attachments.qml:41
-msgctxt "Attachments|"
-msgid "Delete Attachment?"
-msgstr "Törli a mellékletet?"
-
-#: ../Widgets/Attachments.qml:45
-msgctxt "Attachments|"
-msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "Biztosan törli a <strong>%1</strong> mellékletet? Ez a művelet nem visszavonható."
-
-#: ../Widgets/Attachments.qml:59
-msgctxt "Attachments|"
-msgid "Attachments"
-msgstr "Mellékletek"
-
-#: ../Menues/ColorMenu.qml:15
-msgctxt "ColorMenu|"
-msgid "Color"
-msgstr "Szín"
-
-#: ../Menues/ColorMenu.qml:19
-msgctxt "ColorMenu|"
-msgid "White"
-msgstr "Fehér"
-
-#: ../Menues/ColorMenu.qml:26
-msgctxt "ColorMenu|"
-msgid "Red"
-msgstr "Piros"
-
-#: ../Menues/ColorMenu.qml:33
-msgctxt "ColorMenu|"
-msgid "Green"
-msgstr "Zöld"
-
-#: ../Menues/ColorMenu.qml:40
-msgctxt "ColorMenu|"
-msgid "Blue"
-msgstr "Kék"
-
-#: ../Menues/ColorMenu.qml:47
-msgctxt "ColorMenu|"
-msgid "Yellow"
-msgstr "Sárga"
-
-#: ../Menues/ColorMenu.qml:54
-msgctxt "ColorMenu|"
-msgid "Orange"
-msgstr "Narancs"
-
-#: ../Menues/ColorMenu.qml:61
-msgctxt "ColorMenu|"
-msgid "Lilac"
-msgstr "Halványlila"
-
-#: ../Windows/DeleteItemDialog.qml:19
-msgctxt "DeleteItemDialog|"
-msgid "Delete Item?"
-msgstr "Törli az elemet?"
-
-#: ../Windows/DeleteItemDialog.qml:32
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Tényleg törli a <strong>%1</strong> képet? Ezt nem lehet visszacsinálni."
-
-#: ../Windows/DeleteItemDialog.qml:36
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Tényleg törli a <strong>%1</strong> teendők listáját? Ezt nem lehet visszacsinálni."
-
-#: ../Windows/DeleteItemDialog.qml:40
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Tényleg törli a <strong>%1</strong> todo-t? Ezt nem lehet visszacsinálni."
-
-#: ../Windows/DeleteItemDialog.qml:44
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Valóban törli a <strong>%1</strong> feladatot? Ezt nem lehet visszacsinálni."
-
-#: ../Windows/DeleteItemDialog.qml:48
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Valóban törli a <strong>%1</strong> megjegyzést? Ezt nem lehet visszacsinálni."
-
-#: ../Windows/DeleteLibraryDialog.qml:19
-msgctxt "DeleteLibraryDialog|"
-msgid "Delete Library?"
-msgstr "Törli a könyvtárat?"
-
-#: ../Windows/DeleteLibraryDialog.qml:33
-msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "Valóban el akarja távolítani a <strong>%1 </strong> könyvtárat az alkalmazásból? <em> Ez eltávolítja a könyvtárhoz tartozó összes fájlt. </em>"
-
-#: ../Windows/DeleteLibraryDialog.qml:40
-msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "Valóban el akarja távolítani a <strong>%1</strong> könyvtárat az alkalmazásból? Vegye figyelembe, hogy a könyvtárban lévő fájlokat nem távolítják el, így később visszaállíthatják a könyvtárat."
-
-#: ../Windows/FolderSelectionDialog.qml:17
-msgctxt "FolderSelectionDialog|"
-msgid "Select a Folder"
-msgstr "Válasszon mappát"
-
-#: ../Widgets/ItemCreatedNotification.qml:64
-msgctxt "ItemCreatedNotification|"
-msgid "<strong>%1</strong> has been created."
-msgstr "<strong>%1 </strong> létrehozva."
-
-#: ../Widgets/ItemCreatedNotification.qml:69
-msgctxt "ItemCreatedNotification|"
-msgid "Open"
-msgstr "Nyisd ki"
-
-#: ../Widgets/ItemDueDateEditor.qml:28
-msgctxt "ItemDueDateEditor|"
-msgid "Due on"
-msgstr "Esedékes"
-
-#: ../Widgets/ItemNotesEditor.qml:32
-msgctxt "ItemNotesEditor|"
-msgid "Notes"
-msgstr "Megjegyzések"
-
-#: ../Widgets/LibrariesSideBar.qml:373
-msgctxt "LibrariesSideBar|"
-msgid "Schedule"
-msgstr "Menetrend"
-
-#: ../Widgets/LibrariesSideBar.qml:176
-msgctxt "LibrariesSideBar|"
-msgid "New Library"
-msgstr "Új könyvtár"
-
-#: ../Widgets/LibrariesSideBar.qml:217
-msgctxt "LibrariesSideBar|"
-msgid "About..."
-msgstr "Ról ről..."
-
-#: ../Pages/LibraryPage.qml:146
-msgctxt "LibraryPage|"
-msgid "Red"
-msgstr "Piros"
-
-#: ../Pages/LibraryPage.qml:153
-msgctxt "LibraryPage|"
-msgid "Green"
-msgstr "Zöld"
-
-#: ../Pages/LibraryPage.qml:160
-msgctxt "LibraryPage|"
-msgid "Blue"
-msgstr "Kék"
-
-#: ../Pages/LibraryPage.qml:167
-msgctxt "LibraryPage|"
-msgid "Yellow"
-msgstr "Sárga"
-
-#: ../Pages/LibraryPage.qml:174
-msgctxt "LibraryPage|"
-msgid "Orange"
-msgstr "Narancs"
-
-#: ../Pages/LibraryPage.qml:181
-msgctxt "LibraryPage|"
-msgid "Lilac"
-msgstr "Halványlila"
-
-#: ../Pages/LibraryPage.qml:188
-msgctxt "LibraryPage|"
-msgid "White"
-msgstr "Fehér"
-
-#: ../Pages/LibraryPage.qml:198
-msgctxt "LibraryPage|"
-msgid "Rename"
-msgstr "átnevezés"
-
-#: ../Pages/LibraryPage.qml:203
-msgctxt "LibraryPage|"
-msgid "Delete"
-msgstr "Töröl"
-
-#: ../Pages/LibraryPage.qml:261
-msgctxt "LibraryPage|"
-msgid "Note Title"
-msgstr "Megjegyzés címe"
-
-#: ../Pages/LibraryPage.qml:274
-msgctxt "LibraryPage|"
-msgid "Todo List Title"
-msgstr "Todo lista címe"
-
-#: ../Pages/LibraryPage.qml:287
-msgctxt "LibraryPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr "1. keresési kifejezés, 2. keresési kifejezés,..."
-
-#: ../Pages/LibraryPage.qml:366
-msgctxt "LibraryPage|"
-msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr "Még semmi itt! Kezdje hozzá egy <a href='#note'> megjegyzés </a>, <a href='#todolist'> todo list </a> vagy <a href='#image'> kép </a>."
-
-#: ../Menues/LibraryPageMenu.qml:18
-msgctxt "LibraryPageMenu|"
-msgid "Edit Sync Settings"
-msgstr "A szinkronizálási beállítások szerkesztése"
-
-#: ../Menues/LibraryPageMenu.qml:20
-msgctxt "LibraryPageMenu|"
-msgid "Sync Now"
-msgstr "Szinkronizálás most"
-
-#: ../Menues/LibraryPageMenu.qml:29
-msgctxt "LibraryPageMenu|"
-msgid "Sync Log"
-msgstr "Szinkronizálási napló"
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "The secrets for synchronizing the library %1 are missing."
-msgstr "Hiányoznak a (z) %1 könyvtár szinkronizálásának titkai."
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "Ignore"
-msgstr "Figyelmen kívül hagyni"
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "Enter Secrets"
-msgstr "Írja be a titkokat"
-
-#: ../Pages/LogViewPage.qml:13
-msgctxt "LogViewPage|"
-msgid "Synchronization Log"
-msgstr "Szinkronizálási napló"
-
-#: ../Pages/LogViewPage.qml:23
-msgctxt "LogViewPage|"
-msgid "Copy Log"
-msgstr "Napló másolása"
-
-#: ../Windows/MainWindow.qml:23
-msgctxt "MainWindow|"
-msgid "OpenTodoList"
-msgstr "OpenTodoList"
-
-#: ../Windows/MainWindow.qml:391
-msgctxt "MainWindow|"
-msgid "New &Library"
-msgstr "Új &Könyvtár"
-
-#: ../Windows/MainWindow.qml:402
-msgctxt "MainWindow|"
-msgid "New &Note"
-msgstr "Új &Megjegyzés\n"
-""
-
-#: ../Windows/MainWindow.qml:410
-msgctxt "MainWindow|"
-msgid "New &Todo List"
-msgstr "Új &Feladatlista"
-
-#: ../Windows/MainWindow.qml:418
-msgctxt "MainWindow|"
-msgid "New &Image"
-msgstr "Új &Kép"
-
-#: ../Windows/MainWindow.qml:426
-msgctxt "MainWindow|"
-msgid "&Quit"
-msgstr "&Kilépés"
-
-#: ../Windows/MainWindow.qml:443
-msgctxt "MainWindow|"
-msgid "&Find"
-msgstr "&Megtalálja"
-
-#: ../Windows/MainWindow.qml:467
-msgctxt "MainWindow|"
-msgid "Open Last &Created Item"
-msgstr "Utolsó megnyitás &Létrehozott elem"
-
-#: ../Windows/MainWindow.qml:475
-msgctxt "MainWindow|"
-msgid "Open &Left Side Bar"
-msgstr "Nyisd ki &Bal oldali sáv"
-
-#: ../Windows/MainWindow.qml:604
-msgctxt "MainWindow|"
-msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
-msgstr "Kezdje <a href='#newLibrary'> új könyvtár létrehozásával </a>. A könyvtárakat különféle elemek tárolására használják, például jegyzeteket, teendőlistákat és képeket."
-
-#: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:61
-msgctxt "NewLibraryPage|"
-msgid "Create Library"
-msgstr "Könyvtár létrehozása"
-
-#: ../Pages/NewLibraryPage.qml:23
-msgctxt "NewLibraryPage|"
-msgid "Create"
-msgstr "Teremt"
-
-#: ../Pages/NewLibraryPage.qml:39
-msgctxt "NewLibraryPage|"
-msgid "Cancel"
-msgstr "Megszünteti"
-
-#: ../Pages/NewLibraryPage.qml:58
-msgctxt "NewLibraryPage|"
-msgid "Library Name:"
-msgstr "Könyvtár neve:"
-
-#: ../Pages/NewLibraryPage.qml:66
-msgctxt "NewLibraryPage|"
-msgid "My New Library"
-msgstr "Új könyvtárom"
-
-#: ../Pages/NewLibraryPage.qml:73
-msgctxt "NewLibraryPage|"
-msgid "Create Library in Default Location"
-msgstr "Hozzon létre könyvtárat alapértelmezett helyen"
-
-#: ../Pages/NewLibraryPage.qml:80
-msgctxt "NewLibraryPage|"
-msgid "The items you add to the library will be stored in the default location for libraries."
-msgstr "A könyvtárhoz hozzáadott elemeket a könyvtárak alapértelmezett helyén tárolják."
-
-#: ../Pages/NewLibraryPage.qml:82
-msgctxt "NewLibraryPage|"
-msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
-msgstr "Válassza ki a könyvtárat, amelybe a könyvtári elemeket el kell menteni. Kiválaszthat egy meglévő könyvtárat is. Ebben az esetben a könyvtár importálásra kerül."
-
-#: ../Pages/NewLibraryPage.qml:110
-msgctxt "NewLibraryPage|"
-msgid "Please select a library location"
-msgstr "Kérjük, válassza ki a könyvtár helyét"
-
-#: ../Widgets/NewTopLevelItemButton.qml:54
-msgctxt "NewTopLevelItemButton|"
-msgid "Note"
-msgstr "Jegyzet"
-
-#: ../Widgets/NewTopLevelItemButton.qml:43
-msgctxt "NewTopLevelItemButton|"
-msgid "Todo List"
-msgstr "Feladatlista"
-
-#: ../Widgets/NewTopLevelItemButton.qml:58
-msgctxt "NewTopLevelItemButton|"
-msgid "Image"
-msgstr "Kép"
-
-#: ../Windows/OpenFileDialog.qml:18
-msgctxt "OpenFileDialog|"
-msgid "Select a File"
-msgstr "Válasszon egy fájlt"
-
-#: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
-msgctxt "OpenImageDialog|"
-msgid "Select Image"
-msgstr "Válassza a Kép lehetőséget"
-
-#: ../Windows/RenameItemDialog.qml:22
-msgctxt "RenameItemDialog|"
-msgid "Rename Item"
-msgstr "Elem átnevezése"
-
-#: ../Windows/RenameItemDialog.qml:33
-msgctxt "RenameItemDialog|"
-msgid "Enter item title..."
-msgstr "Adja meg az elem címét..."
-
-#: ../Windows/RenameLibraryDialog.qml:20
-msgctxt "RenameLibraryDialog|"
-msgid "Rename Library"
-msgstr "Nevezze át a könyvtárat"
-
-#: ../Windows/RenameLibraryDialog.qml:37
-msgctxt "RenameLibraryDialog|"
-msgid "Enter library title..."
-msgstr "Írja be a könyvtár címét..."
-
-#: ../Pages/ScheduleViewPage.qml:101
-msgctxt "ScheduleViewPage|"
-msgid "Today"
-msgstr "Ma"
-
-#: ../Pages/ScheduleViewPage.qml:102
-msgctxt "ScheduleViewPage|"
-msgid "Tomorrow"
-msgstr "Holnap"
-
-#: ../Pages/ScheduleViewPage.qml:144
-msgctxt "ScheduleViewPage|"
-msgid "Later This Week"
-msgstr "Később ezen a héten"
-
-#: ../Pages/ScheduleViewPage.qml:146
-msgctxt "ScheduleViewPage|"
-msgid "Next Week"
-msgstr "Jövő héten"
-
-#: ../Pages/ScheduleViewPage.qml:147
-msgctxt "ScheduleViewPage|"
-msgid "Coming Next"
-msgstr "Jövőben"
-
-#: ../Pages/ScheduleViewPage.qml:174
-msgctxt "ScheduleViewPage|"
-msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr "Nincs ütemezve ... Adjon meg egy határidőt az elemekhez, hogy itt megjelenjenek."
-
-#: ../Pages/ScheduleViewPage.qml:80
-msgctxt "ScheduleViewPage|"
-msgid "Overdue"
-msgstr "Lejárt"
-
-#: ../Widgets/SyncErrorNotificationBar.qml:43
-msgctxt "SyncErrorNotificationBar|"
-msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Hiba történt a könyvtár szinkronizálásakor. Kérjük, ellenőrizze, hogy a könyvtár beállításai naprakészek-e."
-
-#: ../Widgets/SyncErrorNotificationBar.qml:49
-msgctxt "SyncErrorNotificationBar|"
-msgid "Ignore"
-msgstr "Figyelmen kívül hagyni"
-
-#: ../Widgets/SyncErrorNotificationBar.qml:53
-msgctxt "SyncErrorNotificationBar|"
-msgid "View"
-msgstr "Kilátás"
-
-#: ../Widgets/SyncIndicatorBar.qml:63
-msgctxt "SyncIndicatorBar|"
-msgid "Synchronizing library..."
-msgstr "A könyvtár szinkronizálása..."
-
-#: ../Pages/SyncLibrarySelectionPage.qml:17
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Create Library"
-msgstr "Könyvtár létrehozása"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:29
-msgctxt "SyncLibrarySelectionPage|"
-msgid "OK"
-msgstr "OK"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:46
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Cancel"
-msgstr "Megszünteti"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:79
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Create new library on server"
-msgstr "Hozzon létre új könyvtárat a kiszolgálón"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:97
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Searching for existing libraries..."
-msgstr "Meglévő könyvtárak keresése..."
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:16
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "Cancel"
-msgstr "Megszünteti"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:21
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "OK"
-msgstr "OK"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:45
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "NextCloud"
-msgstr "NextCloud"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:52
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "ownCloud"
-msgstr "ownCloud"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:59
-#: ../Pages/SynchronizerBackendSelectionPage.qml:60
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "WebDAV"
-msgstr "WebDAV"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:66
-#: ../Pages/SynchronizerBackendSelectionPage.qml:67
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "Local Library"
-msgstr "Helyi könyvtár"
-
-#: ../Widgets/TodoListItem.qml:99
-msgctxt "TodoListItem|"
-msgid "✔ No open todos - everything done"
-msgstr "✔ Nincs nyitott todos - minden kész"
-
-#: ../Pages/TodoListPage.qml:168
-msgctxt "TodoListPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr "1. keresési kifejezés, 2. keresési kifejezés, ..."
-
-#: ../Pages/TodoListPage.qml:227
-msgctxt "TodoListPage|"
-msgid "Todos"
-msgstr "Todos"
-
-#: ../Pages/TodoListPage.qml:290
-msgctxt "TodoListPage|"
-msgid "Completed Todos"
-msgstr "Komplett Todos"
-
-#: ../Pages/TodoPage.qml:114
-msgctxt "TodoPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr "1. keresési kifejezés, 2. keresési kifejezés, ..."
-
-#: ../Pages/TodoPage.qml:135
-msgctxt "TodoPage|"
-msgid "Tasks"
-msgstr "Feladatok"
-
-#: ../Widgets/UpdateNotificationBar.qml:44
-msgctxt "UpdateNotificationBar|"
-msgid "An update to OpenTodoList %1 is available."
-msgstr "Elérhető az OpenTodoList % 1 frissítése."
-
-#: ../Widgets/UpdateNotificationBar.qml:50
-msgctxt "UpdateNotificationBar|"
-msgid "Ignore"
-msgstr "Figyelmen kívül hagyni"
-
-#: ../Widgets/UpdateNotificationBar.qml:54
-msgctxt "UpdateNotificationBar|"
-msgid "Download"
-msgstr "Letöltés"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:22
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "OK"
-msgstr "OK"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:22
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Validate"
-msgstr "Érvényesít"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:40
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Cancel"
-msgstr "Megszünteti"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:86
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Server Address:"
-msgstr "Szerver címe:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:92
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "https://..."
-msgstr "https: //..."
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:98
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "User name:"
-msgstr "Felhasználónév:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:110
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Password:"
-msgstr "Jelszó:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:124
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Ignore SSL Errors"
-msgstr "Az SSL hibák figyelmen kívül hagyása"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:130
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra."
-
-#: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
-msgctxt "WebDAVSynchronizerSettingsPage|"
-msgid "User name"
-msgstr "Felhasználónév"
-
-#: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
-msgctxt "WebDAVSynchronizerSettingsPage|"
-msgid "Password"
-msgstr "Jelszó"
-
-#: ../main.cpp:102
-msgctxt "main|"
-msgid "Manage your personal data."
-msgstr "Kezelje személyes adatait."
-
-#: ../main.cpp:108
-msgctxt "main|"
-msgid "QML Root Directory"
-msgstr "QML gyökérkönyvtár"
-
-#: ../main.cpp:109
-msgctxt "main|"
-msgid "DIR"
-msgstr "DIR"
-
-#: ../main.cpp:116
-msgctxt "main|"
-msgid "Switch on some optimizations for touchscreens."
-msgstr "Kapcsolja be az érintőképernyők néhány optimalizálását."
-
-#: ../main.cpp:128
-msgctxt "main|"
-msgid "Remove shortcuts to the AppImage."
-msgstr "Távolítsa el az AppImage parancsikonjait."
-
-#: ../Widgets/ItemNotesEditor.qml:85
-msgctxt "ItemNotesEditor|"
-msgid "No notes added yet - click here to add some."
-msgstr "Még nincs jegyzet hozzáadva - kattintson ide ide, ha hozzá szeretne adni."
-
-#: ../Widgets/TagsEditor.qml:34
-msgctxt "TagsEditor|"
-msgid "Add Tag"
-msgstr "Címke hozzáadása"
-
-#: ../Pages/TodoListPage.qml:247
-msgctxt "TodoListPage|"
-msgid "Add new todo..."
-msgstr "Új teendő hozzáadása..."
-
-#: ../Pages/TodoPage.qml:139
-msgctxt "TodoPage|"
-msgid "Add new task..."
-msgstr "Új feladat hozzáadása .."
-
-#: ../Widgets/TodosWidget.qml:172
-msgctxt "TodosWidget|"
-msgid "Due on: %1"
-msgstr "Esedékes: %1"
-
-#: ../Utils/Colors.qml:16
-msgctxt "Colors|"
-msgid "System"
-msgstr "Rendszer"
-
-#: ../Utils/Colors.qml:17
-msgctxt "Colors|"
-msgid "Light"
-msgstr "Könnyű"
-
-#: ../Utils/Colors.qml:18
-msgctxt "Colors|"
-msgid "Dark"
-msgstr "Sötét"
-
-#: ../Widgets/LibrariesSideBar.qml:196
-msgctxt "LibrariesSideBar|"
-msgid "Settings"
-msgstr "Beállítások"
-
-#: ../Windows/MainWindow.qml:383
-msgctxt "MainWindow|"
-msgid "Settings"
-msgstr "Beállítások"
-
-#: ../Windows/MainWindow.qml:384
-msgctxt "MainWindow|"
-msgid "Ctrl+,"
-msgstr "Ctrl+,"
-
-#: ../Pages/SettingsPageForm.ui.qml:33
-msgctxt "SettingsPageForm.ui|"
-msgid "Settings"
-msgstr "Beállítások"
-
-#: ../Pages/SettingsPageForm.ui.qml:39
-msgctxt "SettingsPageForm.ui|"
-msgid "User Interface"
-msgstr "Felhasználói felület"
-
-#: ../Pages/SettingsPageForm.ui.qml:56
-msgctxt "SettingsPageForm.ui|"
-msgid "Theme:"
-msgstr "Téma:"
-
-#: ../Widgets/LibrariesSideBar.qml:230
-msgctxt "LibrariesSideBar|"
-msgid "Create Default Library"
-msgstr "Alapértelmezett könyvtár létrehozása"
-
-#: ../Pages/LibraryPage.qml:429
-msgctxt "LibraryPage|"
-msgid "Sort By"
-msgstr "Sorrend"
-
-#: ../Pages/LibraryPage.qml:434
-msgctxt "LibraryPage|"
-msgid "Manually"
-msgstr "Manuálisan"
-
-#: ../Pages/LibraryPage.qml:441
-msgctxt "LibraryPage|"
-msgid "Title"
-msgstr "Cím"
-
-#: ../Pages/LibraryPage.qml:448
-msgctxt "LibraryPage|"
-msgid "Due To"
-msgstr "Következtében"
-
-#: ../Pages/LibraryPage.qml:455
-msgctxt "LibraryPage|"
-msgid "Created At"
-msgstr "Létrehozva"
-
-#: ../Pages/LibraryPage.qml:462
-msgctxt "LibraryPage|"
-msgid "Updated At"
-msgstr "Frissítve"
-
-#: ../Windows/MainWindow.qml:266
-msgctxt "MainWindow|"
-msgid "Rename"
-msgstr "átnevezés"
-
-#: ../Windows/MainWindow.qml:288
-msgctxt "MainWindow|"
-msgid "Color"
-msgstr "Szín"
-
-#: ../Windows/MainWindow.qml:299
-msgctxt "MainWindow|"
-msgid "Add Tag"
-msgstr "Címke hozzáadása"
-
-#: ../Windows/MainWindow.qml:306
-msgctxt "MainWindow|"
-msgid "Attach File"
-msgstr "Fájl csatolása"
-
-#: ../Windows/MainWindow.qml:315
-msgctxt "MainWindow|"
-msgid "Search"
-msgstr "Keresés"
-
-#: ../Windows/MainWindow.qml:322
-msgctxt "MainWindow|"
-msgid "Sort"
-msgstr "Fajta"
-
-#: ../Windows/MainWindow.qml:330
-msgctxt "MainWindow|"
-msgid "Set Due Date"
-msgstr "Állítsa be az esedékesség napját"
-
-#: ../Windows/MainWindow.qml:338
-msgctxt "MainWindow|"
-msgid "Delete"
-msgstr "Töröl"
-
-#: ../Pages/SettingsPageForm.ui.qml:47
-msgctxt "SettingsPageForm.ui|"
-msgid "Language:"
-msgstr "Nyelv:"
-
-#: ../Pages/TodoListPage.qml:180
-msgctxt "TodoListPage|"
-msgid "Manually"
-msgstr "Manuálisan"
-
-#: ../Pages/TodoListPage.qml:186
-msgctxt "TodoListPage|"
-msgid "Name"
-msgstr "Név"
-
-#: ../Pages/TodoListPage.qml:192
-msgctxt "TodoListPage|"
-msgid "Due Date"
-msgstr "Esedékesség dátuma"
-
-#: ../Pages/TodoListPage.qml:198
-msgctxt "TodoListPage|"
-msgid "Created At"
-msgstr "Létrehozva"
-
-#: ../Pages/TodoListPage.qml:204
-msgctxt "TodoListPage|"
-msgid "Updated At"
-msgstr "Frissítve"
-
-#: ../Widgets/TodosWidget.qml:309
-msgctxt "TodosWidget|"
-msgid "Swipe to mark undone"
-msgstr "Húzza az visszavonás jelölésére"
-
-#: ../Widgets/TodosWidget.qml:310
-msgctxt "TodosWidget|"
-msgid "Swipe to mark done"
-msgstr "Húzza az ujját a kész jelölésére"
-
-#: ../Utils/Translations.qml:16
-msgctxt "Translations|"
-msgid "System Language"
-msgstr "Rendszernyelv"
-
-#: ../Utils/Translations.qml:28
-msgctxt "Translations|"
-msgid "German"
-msgstr "Német"
-
-#: ../Utils/Translations.qml:36
-msgctxt "Translations|"
-msgid "English"
-msgstr "Angol"
-
-#: ../Utils/Translations.qml:56
-msgctxt "Translations|"
-msgid "French"
-msgstr "Francia"
-
 #: ../Pages/AboutPage.qml:42
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdev 2013-2020, változat %1"
 
 #: ../Pages/AboutPage.qml:59
+#, fuzzy
 msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
-msgstr "Az OpenTodoList a <a href='app-license'> GNU Általános Nyilvános Licenc </a> 3. verziója vagy (az Ön választása szerint) bármely későbbi verziója alapján kerül kiadásra."
+msgid ""
+"OpenTodoList is released under the terms of the <a href='app-license'>GNU "
+"General Public License</a> version 3 or (at your choice) any later version."
+msgstr ""
+"Az OpenTodoList a <a href='app-license'> GNU Általános Nyilvános Licenc </a> "
+"3. verziója vagy (az Ön választása szerint) bármely későbbi verziója alapján "
+"kerül kiadásra."
 
 #: ../Pages/AboutPage.qml:78
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Jelentsen egy problémát"
 
 #: ../Pages/AboutPage.qml:91
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Harmadik féltől származó könyvtárak és források"
 
 #: ../Pages/AboutPage.qml:128
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Szerző:"
 
 #: ../Pages/AboutPage.qml:133
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
 #: ../Pages/AboutPage.qml:141
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Engedély:"
 
 #: ../Pages/AboutPage.qml:146
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
 #: ../Pages/AboutPage.qml:154
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Letöltés:"
 
 #: ../Pages/AboutPage.qml:159
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
 
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
-msgctxt "AccountTypeSelectionPageForm.ui|"
+#: ../Pages/AccountTypeSelectionPage.qml:22
+#, fuzzy
+msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
 msgstr "Válassza a Fiók típusát"
 
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
-msgctxt "AccountTypeSelectionPageForm.ui|"
+#: ../Pages/AccountTypeSelectionPage.qml:81
+#, fuzzy
+msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
 msgstr "Fiók Típus"
 
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
-msgctxt "AccountTypeSelectionPageForm.ui|"
+#: ../Pages/AccountTypeSelectionPage.qml:102
+#, fuzzy
+msgctxt "AccountTypeSelectionPage|"
 msgid "NextCloud"
 msgstr "NextCloud"
 
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:51
-msgctxt "AccountTypeSelectionPageForm.ui|"
+#: ../Pages/AccountTypeSelectionPage.qml:107
+#, fuzzy
+msgctxt "AccountTypeSelectionPage|"
 msgid "ownCloud"
 msgstr "ownCloud"
 
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:56
-msgctxt "AccountTypeSelectionPageForm.ui|"
+#: ../Pages/AccountTypeSelectionPage.qml:112
+#, fuzzy
+msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
-msgctxt "AccountsPageForm.ui|"
+#: ../Pages/AccountsPage.qml:18 ../Pages/AccountsPage.qml:49
+#, fuzzy
+msgctxt "AccountsPage|"
 msgid "Accounts"
 msgstr "Fiókok"
-
-#: ../Windows/DeleteAccountDialog.qml:19
-msgctxt "DeleteAccountDialog|"
-msgid "Delete Account?"
-msgstr "Fiók törlése?"
-
-#: ../Windows/DeleteAccountDialog.qml:36
-msgctxt "DeleteAccountDialog|"
-msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
-msgstr "Valóban el akarja távolítani a <strong>% 1 </strong> fiókot? Ezzel eltávolítja az eszközből az összes fiókhoz tartozó könyvtárat? <br/> <br/> <i> Megjegyzés: A fiók visszaadásával visszaállíthatja azokat a kiszolgálóról. </i>"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Edit Account"
-msgstr "Fiók szerkesztése"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Name:"
-msgstr "Név:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:59
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Server Address:"
-msgstr "Szerver címe:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:65
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "https://myserver.example.com"
-msgstr "https://myserver.example.com"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:71
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "User:"
-msgstr "Felhasználó:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:77
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "User Name"
-msgstr "Felhasználónév"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Password:"
-msgstr "Jelszó:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Password"
-msgstr "Jelszó"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Disable Certificate Checks"
-msgstr "A tanúsítvány-ellenőrzések letiltása"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra."
-
-#: ../Widgets/LibrariesSideBar.qml:183
-msgctxt "LibrariesSideBar|"
-msgid "Accounts"
-msgstr "Fiókok"
-
-#: ../Widgets/LibrariesSideBar.qml:203
-msgctxt "LibrariesSideBar|"
-msgid "Translate The App..."
-msgstr "Az alkalmazás lefordítása..."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create Library in Account"
-msgstr "Hozzon létre könyvtárat a fiókban"
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "Egy fiókban létrehozott könyvtár szinkronizálva van vele. Ez lehetővé teszi a könyvtár könnyű biztonsági mentését egy kiszolgálóra, majd későbbi onnan történő visszaállítását. Ezenkívül az ilyen könyvtárak megoszthatók más felhasználókkal (ha a szerver ezt megengedi)."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Existing Libraries"
-msgstr "Meglévő könyvtárak"
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Select an existing library on the server to add it to the app."
-msgstr "Válasszon egy meglévő könyvtárat a kiszolgálón, hogy hozzáadja azt az alkalmazáshoz."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "No libraries were found on the server."
-msgstr "Nem található könyvtár a kiszolgálón."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Searching existing libraries..."
-msgstr "Meglévő könyvtárak keresése..."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create a New Library"
-msgstr "Hozzon létre egy új könyvtárat"
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr "Hozzon létre egy új könyvtárat, amelyet szinkronizál a szerverrel. Egy ilyen könyvtár hozzáadható az alkalmazáshoz más eszközökön is, az adatok szinkronizálása céljából."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "My new library's name"
-msgstr "Az új könyvtárom neve"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Open a Folder as a Library"
-msgstr "Nyisson meg egy mappát könyvtárként"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr "Bármely mappát használhat könyvtár helyként. <br/><br/> Ez különösen akkor hasznos, ha másik eszközt (például egy felhőszolgáltató szinkronizálási kliensét) szeretne használni az adatok szinkronizálásához."
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Folder:"
-msgstr "Folder:"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Path to a folder to use as a library"
-msgstr "Út egy könyvtárhoz használni kívánt mappához"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Select"
-msgstr "Választ"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Name:"
-msgstr "Név:"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "My Local Library Name"
-msgstr "Saját helyi könyvtár neve"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Create Library"
-msgstr "Könyvtár létrehozása"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:32
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Local Library"
-msgstr "Helyi könyvtár"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:38
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Use Folder as Library"
-msgstr "Használja a Mappát könyvtárként"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:44
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Add Libraries From Your Accounts"
-msgstr "Adjon hozzá könyvtárakat a fiókjából"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:79
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Add Account"
-msgstr "Fiók hozzáadása"
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:29
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "Create a Local Library"
-msgstr "Hozzon létre egy helyi könyvtárat"
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:37
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "A helyi könyvtárat kizárólag az Ön készüléke tárolja - ez tökéletesvé teszi az adatvédelem tömörítését! <br/> <br/> Használja azt, ha csak helyi információt szeretne tárolni, és minden adatáról más mechanizmusok segítségével rendszeresen biztonsági másolatot készít. Ha több eszközön keresztül kell elérnie adatait, hozzon létre egy könyvtárat, amelyet ehelyett szinkronizál."
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:48
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "Name:"
-msgstr "Név:"
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:53
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "My Local Library Name"
-msgstr "Saját helyi könyvtár neve"
-
-#: ../Pages/NewWebDAVAccountPage.qml:194
-msgctxt "NewWebDAVAccountPage|"
-msgid "Account Name"
-msgstr "Felhasználónév"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Connection Settings"
-msgstr "Csatlakozás beállításai"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Server Address:"
-msgstr "Szerver címe:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "https://myserver.example.com"
-msgstr "https://myserver.example.com"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "User:"
-msgstr "Felhasználó:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "User Name"
-msgstr "Felhasználónév"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Password:"
-msgstr "Jelszó:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Password"
-msgstr "Jelszó"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Disable Certificate Checks"
-msgstr "A tanúsítvány-ellenőrzések letiltása"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Name:"
-msgstr "Név:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra."
-
-#: ../Windows/DeleteItemDialog.qml:52
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
-msgstr "Tényleg törli a <strong>%1</strong> oldalt? Ezt nem lehet visszacsinálni."
-
-#: ../Windows/MainWindow.qml:104
-msgctxt "MainWindow|"
-msgid "Synchronizing library..."
-msgstr "A könyvtár szinkronizálása..."
-
-#: ../Pages/NotePage.qml:124
-msgctxt "NotePage|"
-msgid "Main Page"
-msgstr "Főoldal"
-
-#: ../Pages/NotePage.qml:187
-msgctxt "NotePage|"
-msgid "New Page"
-msgstr "Új oldal"
-
-#: ../Widgets/ItemNotesEditor.qml:114
-msgctxt "ItemNotesEditor|"
-msgid "Export to File..."
-msgstr "Exportálás a fájlba ..."
-
-#: ../Widgets/ItemNotesEditor.qml:118
-msgctxt "ItemNotesEditor|"
-msgid "Markdown files"
-msgstr "Markdown fájlok"
-
-#: ../Widgets/ItemNotesEditor.qml:119
-msgctxt "ItemNotesEditor|"
-msgid "All files"
-msgstr "Minden fájl"
-
-#: ../Pages/ProblemsPage.qml:42
-msgctxt "ProblemsPage|"
-msgid "Missing secrets for account"
-msgstr "Hiányoznak a fiók hozzáférési adatai"
-
-#: ../Pages/ProblemsPageForm.ui.qml:13 ../Pages/ProblemsPageForm.ui.qml:23
-msgctxt "ProblemsPageForm.ui|"
-msgid "Problems Detected"
-msgstr "Felismert problémák"
-
-#: ../Utils/Translations.qml:24
-msgctxt "Translations|"
-msgid "Danish"
-msgstr "Dán"
-
-#: ../Utils/Translations.qml:32
-msgctxt "Translations|"
-msgid "Greek"
-msgstr "Görög"
-
-#: ../Utils/Translations.qml:52
-msgctxt "Translations|"
-msgid "Filipino"
-msgstr "Filippínó"
-
-#: ../Utils/Translations.qml:60
-msgctxt "Translations|"
-msgid "Hungarian"
-msgstr "Magyar"
-
-#: ../Utils/Translations.qml:64
-msgctxt "Translations|"
-msgid "Italian"
-msgstr "Olasz"
-
-#: ../Utils/Translations.qml:104
-msgctxt "Translations|"
-msgid "Vietnamese"
-msgstr "Vietnami"
-
-#: ../Utils/Translations.qml:40
-msgctxt "Translations|"
-msgid "Spanish"
-msgstr "Spanyol"
-
-#: ../Utils/Translations.qml:68
-msgctxt "Translations|"
-msgid "Dutch"
-msgstr "Holland"
-
-#: ../Utils/Translations.qml:72
-msgctxt "Translations|"
-msgid "Norwegian"
-msgstr "Norvég"
-
-#: ../Utils/Translations.qml:76
-msgctxt "Translations|"
-msgid "Polish"
-msgstr "Fényesít"
-
-#: ../Utils/Translations.qml:80
-msgctxt "Translations|"
-msgid "Portuguese"
-msgstr "Portugál"
-
-#: ../Utils/Translations.qml:84
-msgctxt "Translations|"
-msgid "Portuguese (Brazil)"
-msgstr "Portugál (Brazília)"
-
-#: ../Utils/Translations.qml:100
-msgctxt "Translations|"
-msgid "Turkish"
-msgstr "Török"
-
-#: ../Widgets/ItemCreatedNotification.qml:74
-msgctxt "ItemCreatedNotification|"
-msgid "Dismiss"
-msgstr "elvetése"
-
-#: ../Utils/Translations.qml:44
-msgctxt "Translations|"
-msgid "Spanish (Latin America & Caribbean)"
-msgstr "Spanyol (latin-amerikai és karibi)"
-
-#: ../Utils/Translations.qml:88
-msgctxt "Translations|"
-msgid "Russian"
-msgstr "orosz"
-
-#: ../Utils/Translations.qml:92
-msgctxt "Translations|"
-msgid "Swedish"
-msgstr "svéd"
-
-#: ../Utils/Translations.qml:96
-msgctxt "Translations|"
-msgid "Turkmen"
-msgstr "Türkmén"
-
-#: ../Actions/DeleteItem.qml:8
-msgctxt "DeleteItem|"
-msgid "Delete"
-msgstr "Töröl"
-
-#: ../Widgets/ItemDueDateEditor.qml:59
-msgctxt "ItemDueDateEditor|"
-msgid "First due on %1."
-msgstr "Először a (z) %1 en esedékes."
-
-#: ../Widgets/ItemDueDateEditor.qml:72
-msgctxt "ItemDueDateEditor|"
-msgid "No recurrence pattern set..."
-msgstr "Nincs beállítva visszatérési mintázat..."
-
-#: ../Widgets/ItemDueDateEditor.qml:74
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every day."
-msgstr "Minden nap visszatér."
-
-#: ../Widgets/ItemDueDateEditor.qml:76
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every week."
-msgstr "Minden héten megismétlődik."
-
-#: ../Widgets/ItemDueDateEditor.qml:78
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every month."
-msgstr "Minden hónapban ismétlődik."
-
-#: ../Widgets/ItemDueDateEditor.qml:80
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every %1 days."
-msgstr "Minden %1 naponként megismétlődik."
-
-#: ../Windows/NewItemWithDueDateDialog.qml:89
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Today"
-msgstr "Ma"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:90
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Tomorrow"
-msgstr "Holnap"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:91
-msgctxt "NewItemWithDueDateDialog|"
-msgid "This Week"
-msgstr "Ezen a héten"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:92
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Next Week"
-msgstr "Jövő héten"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:93
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Select..."
-msgstr "Kiválasztás ..."
-
-#: ../Windows/NewItemWithDueDateDialog.qml:106
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Title:"
-msgstr "Cím:"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:111
-msgctxt "NewItemWithDueDateDialog|"
-msgid "The title for your new item..."
-msgstr "Az új tétel címe ..."
-
-#: ../Windows/NewItemWithDueDateDialog.qml:116
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Create in:"
-msgstr "Létrehozás:"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:156
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Due on:"
-msgstr "Esedékes:"
-
-#: ../Widgets/NewTopLevelItemButton.qml:48
-msgctxt "NewTopLevelItemButton|"
-msgid "Todo"
-msgstr "Todo"
-
-#: ../Windows/RecurrenceDialog.qml:28
-msgctxt "RecurrenceDialog|"
-msgid "Edit Recurrence"
-msgstr "Ismétlés szerkesztése"
-
-#: ../Windows/RecurrenceDialog.qml:41
-msgctxt "RecurrenceDialog|"
-msgid "Never"
-msgstr "Soha"
-
-#: ../Windows/RecurrenceDialog.qml:42
-msgctxt "RecurrenceDialog|"
-msgid "Daily"
-msgstr "Napi"
-
-#: ../Windows/RecurrenceDialog.qml:43
-msgctxt "RecurrenceDialog|"
-msgid "Weekly"
-msgstr "Heti"
-
-#: ../Windows/RecurrenceDialog.qml:44
-msgctxt "RecurrenceDialog|"
-msgid "Monthly"
-msgstr "Havi"
-
-#: ../Windows/RecurrenceDialog.qml:45
-msgctxt "RecurrenceDialog|"
-msgid "Every N Days"
-msgstr "Minden N nap"
-
-#: ../Windows/RecurrenceDialog.qml:55
-msgctxt "RecurrenceDialog|"
-msgid "Recurs:"
-msgstr "visszatér"
-
-#: ../Windows/RecurrenceDialog.qml:68
-msgctxt "RecurrenceDialog|"
-msgid "Number of days:"
-msgstr "Napok száma:"
-
-#: ../Windows/RecurrenceDialog.qml:82
-msgctxt "RecurrenceDialog|"
-msgid "Recur relative to the date when marking as done"
-msgstr "Ismételje meg a dátumhoz képest, amikor megjelölés befejeződött"
-
-#: ../Actions/RenameItem.qml:8
-msgctxt "RenameItem|"
-msgid "Rename"
-msgstr "átnevezés"
-
-#: ../Actions/SetDueNextWeek.qml:8
-msgctxt "SetDueNextWeek|"
-msgid "Set Due This Week"
-msgstr "Lejárt ezen a héten"
-
-#: ../Actions/SetDueThisWeek.qml:8
-msgctxt "SetDueThisWeek|"
-msgid "Set Due Next Week"
-msgstr "A következő héten esedékes"
-
-#: ../Actions/SetDueTo.qml:8
-msgctxt "SetDueTo|"
-msgid "Select Due Date"
-msgstr "Válassza az Esedékesség dátumot"
-
-#: ../Actions/SetDueToday.qml:8
-msgctxt "SetDueToday|"
-msgid "Set Due Today"
-msgstr "Ma esedékes"
-
-#: ../Actions/SetDueTomorrow.qml:8
-msgctxt "SetDueTomorrow|"
-msgid "Set Due Tomorrow"
-msgstr "Holnap esedékes"
-
-#: ../Widgets/TodosWidgetDelegate.qml:195
-msgctxt "TodosWidgetDelegate|"
-msgid "Swipe to mark undone"
-msgstr "Húzza az visszavonás jelölésére"
-
-#: ../Widgets/TodosWidgetDelegate.qml:197
-msgctxt "TodosWidgetDelegate|"
-msgid "Swipe to mark done"
-msgstr "Húzza az ujját a kész jelölésére"
-
-#: ../Menues/LibraryPageActions.qml:30
-msgctxt "LibraryPageActions|"
-msgid "Sync Now"
-msgstr ""
-
-#: ../Menues/LibraryPageActions.qml:41
-msgctxt "LibraryPageActions|"
-msgid "Sync Log"
-msgstr ""
-
-#: ../Pages/SettingsPageForm.ui.qml:65
-msgctxt "SettingsPageForm.ui|"
-msgid "Font Size:"
-msgstr ""
-
-#: ../Utils/Translations.qml:48
-msgctxt "Translations|"
-msgid "Basque"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPage.qml:22
-msgctxt "AccountTypeSelectionPage|"
-msgid "Select Account Type"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPage.qml:81
-msgctxt "AccountTypeSelectionPage|"
-msgid "Account Type"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPage.qml:102
-msgctxt "AccountTypeSelectionPage|"
-msgid "NextCloud"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPage.qml:107
-msgctxt "AccountTypeSelectionPage|"
-msgid "ownCloud"
-msgstr ""
-
-#: ../Pages/AccountTypeSelectionPage.qml:112
-msgctxt "AccountTypeSelectionPage|"
-msgid "WebDAV"
-msgstr ""
 
 #: ../main.cpp:229
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
-msgstr ""
+msgstr "Kezelje személyes adatait."
 
 #: ../main.cpp:235
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr ""
+msgstr "Kapcsolja be az érintőképernyők néhány optimalizálását."
 
 #: ../main.cpp:238
 msgctxt "AppStartup|"
@@ -1588,14 +154,129 @@ msgid "Enable a console on Windows to gather debug output"
 msgstr ""
 
 #: ../main.cpp:379
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr ""
+msgstr "Nyisd ki"
 
 #: ../main.cpp:386
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr ""
+
+#: ../Widgets/Attachments.qml:28
+#, fuzzy
+msgctxt "Attachments|"
+msgid "Attach File"
+msgstr "Fájl csatolása"
+
+#: ../Widgets/Attachments.qml:41
+#, fuzzy
+msgctxt "Attachments|"
+msgid "Delete Attachment?"
+msgstr "Törli a mellékletet?"
+
+#: ../Widgets/Attachments.qml:45
+#, fuzzy, qt-format
+msgctxt "Attachments|"
+msgid ""
+"Are you sure you want to delete the attachment <strong>%1</strong>? This "
+"action cannot be undone."
+msgstr ""
+"Biztosan törli a <strong>%1</strong> mellékletet? Ez a művelet nem "
+"visszavonható."
+
+#: ../Widgets/Attachments.qml:59
+#, fuzzy
+msgctxt "Attachments|"
+msgid "Attachments"
+msgstr "Mellékletek"
+
+#: ../Menues/ColorMenu.qml:15
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Color"
+msgstr "Szín"
+
+#: ../Menues/ColorMenu.qml:19
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "White"
+msgstr "Fehér"
+
+#: ../Menues/ColorMenu.qml:26
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Red"
+msgstr "Piros"
+
+#: ../Menues/ColorMenu.qml:33
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Green"
+msgstr "Zöld"
+
+#: ../Menues/ColorMenu.qml:40
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Blue"
+msgstr "Kék"
+
+#: ../Menues/ColorMenu.qml:47
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Yellow"
+msgstr "Sárga"
+
+#: ../Menues/ColorMenu.qml:54
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Orange"
+msgstr "Narancs"
+
+#: ../Menues/ColorMenu.qml:61
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Lilac"
+msgstr "Halványlila"
+
+#: ../Utils/Colors.qml:16
+#, fuzzy
+msgctxt "Colors|"
+msgid "System"
+msgstr "Rendszer"
+
+#: ../Utils/Colors.qml:17
+#, fuzzy
+msgctxt "Colors|"
+msgid "Light"
+msgstr "Könnyű"
+
+#: ../Utils/Colors.qml:18
+#, fuzzy
+msgctxt "Colors|"
+msgid "Dark"
+msgstr "Sötét"
+
+#: ../Windows/DeleteAccountDialog.qml:19
+#, fuzzy
+msgctxt "DeleteAccountDialog|"
+msgid "Delete Account?"
+msgstr "Fiók törlése?"
+
+#: ../Windows/DeleteAccountDialog.qml:36
+#, fuzzy, qt-format
+msgctxt "DeleteAccountDialog|"
+msgid ""
+"Do you really want to remove the account <strong>%1</strong>? This will "
+"remove all libraries belonging to the account from your "
+"device?<br/><br/><i>Note: You can restore them from the server by adding "
+"back the account.</i>"
+msgstr ""
+"Valóban el akarja távolítani a <strong>% 1 </strong> fiókot? Ezzel "
+"eltávolítja az eszközből az összes fiókhoz tartozó könyvtárat? <br/> <br/> "
+"<i> Megjegyzés: A fiók visszaadásával visszaállíthatja azokat a "
+"kiszolgálóról. </i>"
 
 #: ../Actions/DeleteCompletedChildren.qml:8
 msgctxt "DeleteCompletedChildren|"
@@ -1608,35 +289,141 @@ msgid "Delete Completed Items?"
 msgstr ""
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
+#, qt-format
 msgctxt "DeleteCompletedItemsDialog|"
-msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
+msgid ""
+"Do you really want to delete all done todos in the todo list "
+"<strong>%1</strong>? This cannot be undone."
 msgstr ""
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
+#, qt-format
 msgctxt "DeleteCompletedItemsDialog|"
-msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
+msgid ""
+"Do you really want to delete all done tasks in the todo <strong>%1</strong>? "
+"This cannot be undone."
 msgstr ""
+
+#: ../Actions/DeleteItem.qml:8
+#, fuzzy
+msgctxt "DeleteItem|"
+msgid "Delete"
+msgstr "Töröl"
+
+#: ../Windows/DeleteItemDialog.qml:19
+#, fuzzy
+msgctxt "DeleteItemDialog|"
+msgid "Delete Item?"
+msgstr "Törli az elemet?"
+
+#: ../Windows/DeleteItemDialog.qml:32
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the image <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Tényleg törli a <strong>%1</strong> képet? Ezt nem lehet visszacsinálni."
+
+#: ../Windows/DeleteItemDialog.qml:36
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
+"be undone."
+msgstr ""
+"Tényleg törli a <strong>%1</strong> teendők listáját? Ezt nem lehet "
+"visszacsinálni."
+
+#: ../Windows/DeleteItemDialog.qml:40
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Tényleg törli a <strong>%1</strong> todo-t? Ezt nem lehet visszacsinálni."
+
+#: ../Windows/DeleteItemDialog.qml:44
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the task <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Valóban törli a <strong>%1</strong> feladatot? Ezt nem lehet visszacsinálni."
+
+#: ../Windows/DeleteItemDialog.qml:48
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the note <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Valóban törli a <strong>%1</strong> megjegyzést? Ezt nem lehet "
+"visszacsinálni."
+
+#: ../Windows/DeleteItemDialog.qml:52
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the page <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Tényleg törli a <strong>%1</strong> oldalt? Ezt nem lehet visszacsinálni."
+
+#: ../Windows/DeleteLibraryDialog.qml:19
+#, fuzzy
+msgctxt "DeleteLibraryDialog|"
+msgid "Delete Library?"
+msgstr "Törli a könyvtárat?"
+
+#: ../Windows/DeleteLibraryDialog.qml:33
+#, fuzzy, qt-format
+msgctxt "DeleteLibraryDialog|"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from  the "
+"application? <em>This will remove any files belonging to the library.</em>"
+msgstr ""
+"Valóban el akarja távolítani a <strong>%1 </strong> könyvtárat az "
+"alkalmazásból? <em> Ez eltávolítja a könyvtárhoz tartozó összes fájlt. </em>"
+
+#: ../Windows/DeleteLibraryDialog.qml:40
+#, fuzzy, qt-format
+msgctxt "DeleteLibraryDialog|"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from the "
+"application? Note that the files inside the library will not be removed, so "
+"you can restore the library later on."
+msgstr ""
+"Valóban el akarja távolítani a <strong>%1</strong> könyvtárat az "
+"alkalmazásból? Vegye figyelembe, hogy a könyvtárban lévő fájlokat nem "
+"távolítják el, így később visszaállíthatják a könyvtárat."
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
 #: ../Pages/EditNextCloudAccountPage.qml:66
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Fiók szerkesztése"
 
 #: ../Pages/EditNextCloudAccountPage.qml:72
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Név:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:83
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Szerver címe:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:90
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditNextCloudAccountPage.qml:98
 msgctxt "EditNextCloudAccountPage|"
@@ -1644,39 +431,256 @@ msgid "Login"
 msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:105
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Felhasználó:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:112
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: ../Pages/EditNextCloudAccountPage.qml:118
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Jelszó:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:125
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: ../Pages/EditNextCloudAccountPage.qml:139
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "A tanúsítvány-ellenőrzések letiltása"
 
 #: ../Pages/EditNextCloudAccountPage.qml:148
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
+"Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, "
+"jelszavát és a szerver címét, majd próbálja újra."
+
+#: ../Pages/EditWebDAVAccountPage.qml:34 ../Pages/EditWebDAVAccountPage.qml:121
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "Edit Account"
+msgstr "Fiók szerkesztése"
+
+#: ../Pages/EditWebDAVAccountPage.qml:127
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "Name:"
+msgstr "Név:"
+
+#: ../Pages/EditWebDAVAccountPage.qml:138
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "Server Address:"
+msgstr "Szerver címe:"
+
+#: ../Pages/EditWebDAVAccountPage.qml:144
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "https://myserver.example.com"
+msgstr "https://myserver.example.com"
+
+#: ../Pages/EditWebDAVAccountPage.qml:151
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "User:"
+msgstr "Felhasználó:"
+
+#: ../Pages/EditWebDAVAccountPage.qml:157
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "User Name"
+msgstr "Felhasználónév"
+
+#: ../Pages/EditWebDAVAccountPage.qml:164
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "Password:"
+msgstr "Jelszó:"
+
+#: ../Pages/EditWebDAVAccountPage.qml:171
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "Password"
+msgstr "Jelszó"
+
+#: ../Pages/EditWebDAVAccountPage.qml:186
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid "Disable Certificate Checks"
+msgstr "A tanúsítvány-ellenőrzések letiltása"
+
+#: ../Pages/EditWebDAVAccountPage.qml:194
+#, fuzzy
+msgctxt "EditWebDAVAccountPage|"
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+"Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, "
+"jelszavát és a szerver címét, majd próbálja újra."
+
+#: ../Windows/FolderSelectionDialog.qml:17
+#, fuzzy
+msgctxt "FolderSelectionDialog|"
+msgid "Select a Folder"
+msgstr "Válasszon mappát"
+
+#: ../Widgets/ItemCreatedNotification.qml:64
+#, fuzzy, qt-format
+msgctxt "ItemCreatedNotification|"
+msgid "<strong>%1</strong> has been created."
+msgstr "<strong>%1 </strong> létrehozva."
+
+#: ../Widgets/ItemCreatedNotification.qml:69
+#, fuzzy
+msgctxt "ItemCreatedNotification|"
+msgid "Open"
+msgstr "Nyisd ki"
+
+#: ../Widgets/ItemCreatedNotification.qml:74
+#, fuzzy
+msgctxt "ItemCreatedNotification|"
+msgid "Dismiss"
+msgstr "elvetése"
+
+#: ../Widgets/ItemDueDateEditor.qml:28
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Due on"
+msgstr "Esedékes"
+
+#: ../Widgets/ItemDueDateEditor.qml:59
+#, fuzzy, qt-format
+msgctxt "ItemDueDateEditor|"
+msgid "First due on %1."
+msgstr "Először a (z) %1 en esedékes."
+
+#: ../Widgets/ItemDueDateEditor.qml:72
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "No recurrence pattern set..."
+msgstr "Nincs beállítva visszatérési mintázat..."
+
+#: ../Widgets/ItemDueDateEditor.qml:74
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every day."
+msgstr "Minden nap visszatér."
+
+#: ../Widgets/ItemDueDateEditor.qml:76
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every week."
+msgstr "Minden héten megismétlődik."
+
+#: ../Widgets/ItemDueDateEditor.qml:78
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every month."
+msgstr "Minden hónapban ismétlődik."
+
+#: ../Widgets/ItemDueDateEditor.qml:80
+#, fuzzy, qt-format
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every %1 days."
+msgstr "Minden %1 naponként megismétlődik."
+
+#: ../Widgets/ItemNotesEditor.qml:32
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "Notes"
+msgstr "Megjegyzések"
+
+#: ../Widgets/ItemNotesEditor.qml:85
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "No notes added yet - click here to add some."
+msgstr ""
+"Még nincs jegyzet hozzáadva - kattintson ide ide, ha hozzá szeretne adni."
+
+#: ../Widgets/ItemNotesEditor.qml:114
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "Export to File..."
+msgstr "Exportálás a fájlba ..."
+
+#: ../Widgets/ItemNotesEditor.qml:118
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "Markdown files"
+msgstr "Markdown fájlok"
+
+#: ../Widgets/ItemNotesEditor.qml:119
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "All files"
+msgstr "Minden fájl"
+
+#: ../Utils/ItemUtils.qml:109
+msgctxt "ItemUtils|"
+msgid "Move Todo Into..."
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:176
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "New Library"
+msgstr "Új könyvtár"
+
+#: ../Widgets/LibrariesSideBar.qml:183
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Accounts"
+msgstr "Fiókok"
 
 #: ../Widgets/LibrariesSideBar.qml:190
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:196
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Settings"
+msgstr "Beállítások"
+
+#: ../Widgets/LibrariesSideBar.qml:203
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Translate The App..."
+msgstr "Az alkalmazás lefordítása..."
+
+#: ../Widgets/LibrariesSideBar.qml:210
+msgctxt "LibrariesSideBar|"
+msgid "Donate"
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:217
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "About..."
+msgstr "Ról ről..."
+
+#: ../Widgets/LibrariesSideBar.qml:230
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Create Default Library"
+msgstr "Alapértelmezett könyvtár létrehozása"
 
 #: ../Widgets/LibrariesSideBar.qml:341
 msgctxt "LibrariesSideBar|"
@@ -1698,26 +702,552 @@ msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr ""
 
+#: ../Widgets/LibrariesSideBar.qml:373
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Schedule"
+msgstr "Menetrend"
+
+#: ../Pages/LibraryPage.qml:146
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Red"
+msgstr "Piros"
+
+#: ../Pages/LibraryPage.qml:153
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Green"
+msgstr "Zöld"
+
+#: ../Pages/LibraryPage.qml:160
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Blue"
+msgstr "Kék"
+
+#: ../Pages/LibraryPage.qml:167
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Yellow"
+msgstr "Sárga"
+
+#: ../Pages/LibraryPage.qml:174
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Orange"
+msgstr "Narancs"
+
+#: ../Pages/LibraryPage.qml:181
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Lilac"
+msgstr "Halványlila"
+
+#: ../Pages/LibraryPage.qml:188
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "White"
+msgstr "Fehér"
+
+#: ../Pages/LibraryPage.qml:198
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Rename"
+msgstr "átnevezés"
+
+#: ../Pages/LibraryPage.qml:203
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Delete"
+msgstr "Töröl"
+
+#: ../Pages/LibraryPage.qml:261
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Note Title"
+msgstr "Megjegyzés címe"
+
+#: ../Pages/LibraryPage.qml:274
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Todo List Title"
+msgstr "Todo lista címe"
+
+#: ../Pages/LibraryPage.qml:287
+msgctxt "LibraryPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:366
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid ""
+"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr ""
+"Még semmi itt! Kezdje hozzá egy <a href='#note'> megjegyzés </a>, <a "
+"href='#todolist'> todo list </a> vagy <a href='#image'> kép </a>."
+
+#: ../Pages/LibraryPage.qml:429
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Sort By"
+msgstr "Sorrend"
+
+#: ../Pages/LibraryPage.qml:434
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Manually"
+msgstr "Manuálisan"
+
+#: ../Pages/LibraryPage.qml:441
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Title"
+msgstr "Cím"
+
+#: ../Pages/LibraryPage.qml:448
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Due To"
+msgstr "Következtében"
+
+#: ../Pages/LibraryPage.qml:455
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Created At"
+msgstr "Létrehozva"
+
+#: ../Pages/LibraryPage.qml:462
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Updated At"
+msgstr "Frissítve"
+
+#: ../Menues/LibraryPageActions.qml:30
+#, fuzzy
+msgctxt "LibraryPageActions|"
+msgid "Sync Now"
+msgstr "Szinkronizálás most"
+
+#: ../Menues/LibraryPageActions.qml:41
+#, fuzzy
+msgctxt "LibraryPageActions|"
+msgid "Sync Log"
+msgstr "Szinkronizálási napló"
+
+#: ../Pages/LogViewPage.qml:13
+#, fuzzy
+msgctxt "LogViewPage|"
+msgid "Synchronization Log"
+msgstr "Szinkronizálási napló"
+
+#: ../Pages/LogViewPage.qml:23
+#, fuzzy
+msgctxt "LogViewPage|"
+msgid "Copy Log"
+msgstr "Napló másolása"
+
+#: ../Windows/MainWindow.qml:23
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "OpenTodoList"
+msgstr "OpenTodoList"
+
+#: ../Windows/MainWindow.qml:104
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Synchronizing library..."
+msgstr "A könyvtár szinkronizálása..."
+
+#: ../Windows/MainWindow.qml:266
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Rename"
+msgstr "átnevezés"
+
+#: ../Windows/MainWindow.qml:277
+msgctxt "MainWindow|"
+msgid "Move"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:288
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Color"
+msgstr "Szín"
+
+#: ../Windows/MainWindow.qml:299
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Add Tag"
+msgstr "Címke hozzáadása"
+
+#: ../Windows/MainWindow.qml:306
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Attach File"
+msgstr "Fájl csatolása"
+
+#: ../Windows/MainWindow.qml:315
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Search"
+msgstr "Keresés"
+
+#: ../Windows/MainWindow.qml:322
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Sort"
+msgstr "Fajta"
+
+#: ../Windows/MainWindow.qml:330
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Set Due Date"
+msgstr "Állítsa be az esedékesség napját"
+
+#: ../Windows/MainWindow.qml:338
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Delete"
+msgstr "Töröl"
+
 #: ../Windows/MainWindow.qml:345
 msgctxt "MainWindow|"
 msgid "Delete Completed Items"
 msgstr ""
+
+#: ../Windows/MainWindow.qml:383
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Settings"
+msgstr "Beállítások"
+
+#: ../Windows/MainWindow.qml:384
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Ctrl+,"
+msgstr "Ctrl+,"
+
+#: ../Windows/MainWindow.qml:391
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Library"
+msgstr "Új &Könyvtár"
+
+#: ../Windows/MainWindow.qml:402
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Note"
+msgstr "Új &Megjegyzés\n"
+
+#: ../Windows/MainWindow.qml:410
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Todo List"
+msgstr "Új &Feladatlista"
+
+#: ../Windows/MainWindow.qml:418
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Image"
+msgstr "Új &Kép"
+
+#: ../Windows/MainWindow.qml:426
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "&Quit"
+msgstr "&Kilépés"
 
 #: ../Windows/MainWindow.qml:434
 msgctxt "MainWindow|"
 msgid "Close"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:20
-#: ../Pages/NewNextCloudAccountPage.qml:71
-msgctxt "NewNextCloudAccountPage|"
-msgid "Connection Settings"
+#: ../Windows/MainWindow.qml:443
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "&Find"
+msgstr "&Megtalálja"
+
+#: ../Windows/MainWindow.qml:467
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Open Last &Created Item"
+msgstr "Utolsó megnyitás &Létrehozott elem"
+
+#: ../Windows/MainWindow.qml:475
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Open &Left Side Bar"
+msgstr "Nyisd ki &Bal oldali sáv"
+
+#: ../Windows/MainWindow.qml:604
+#, fuzzy
+msgctxt "MainWindow|"
+msgid ""
+"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+"used to store different kinds of items like notes, todo lists and images."
+msgstr ""
+"Kezdje <a href='#newLibrary'> új könyvtár létrehozásával </a>. A "
+"könyvtárakat különféle elemek tárolására használják, például jegyzeteket, "
+"teendőlistákat és képeket."
+
+#: ../Actions/MoveTodo.qml:11
+msgctxt "MoveTodo|"
+msgid "Move"
 msgstr ""
 
+#: ../Windows/NewItemWithDueDateDialog.qml:91
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Today"
+msgstr "Ma"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:92
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Tomorrow"
+msgstr "Holnap"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:93
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "This Week"
+msgstr "Ezen a héten"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:94
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Next Week"
+msgstr "Jövő héten"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:95
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Select..."
+msgstr "Kiválasztás ..."
+
+#: ../Windows/NewItemWithDueDateDialog.qml:114
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Title:"
+msgstr "Cím:"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:119
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "The title for your new item..."
+msgstr "Az új tétel címe ..."
+
+#: ../Windows/NewItemWithDueDateDialog.qml:125
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Create in:"
+msgstr "Létrehozás:"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:165
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Due on:"
+msgstr "Esedékes:"
+
+#: ../Pages/NewLibraryFromAccountPage.qml:99
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "Create Library in Account"
+msgstr "Hozzon létre könyvtárat a fiókban"
+
+#: ../Pages/NewLibraryFromAccountPage.qml:108
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid ""
+"A library created in an account is synchronized with it. This allows to "
+"easily back up a library to a server and later on restore it from there. "
+"Additionally, such libraries can be shared with other users (if the server "
+"allows this)."
+msgstr ""
+"Egy fiókban létrehozott könyvtár szinkronizálva van vele. Ez lehetővé teszi "
+"a könyvtár könnyű biztonsági mentését egy kiszolgálóra, majd későbbi onnan "
+"történő visszaállítását. Ezenkívül az ilyen könyvtárak megoszthatók más "
+"felhasználókkal (ha a szerver ezt megengedi)."
+
+#: ../Pages/NewLibraryFromAccountPage.qml:117
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "Existing Libraries"
+msgstr "Meglévő könyvtárak"
+
+#: ../Pages/NewLibraryFromAccountPage.qml:125
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "Select an existing library on the server to add it to the app."
+msgstr ""
+"Válasszon egy meglévő könyvtárat a kiszolgálón, hogy hozzáadja azt az "
+"alkalmazáshoz."
+
+#: ../Pages/NewLibraryFromAccountPage.qml:132
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "No libraries were found on the server."
+msgstr "Nem található könyvtár a kiszolgálón."
+
+#: ../Pages/NewLibraryFromAccountPage.qml:140
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "Searching existing libraries..."
+msgstr "Meglévő könyvtárak keresése..."
+
+#: ../Pages/NewLibraryFromAccountPage.qml:174
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "Create a New Library"
+msgstr "Hozzon létre egy új könyvtárat"
+
+#: ../Pages/NewLibraryFromAccountPage.qml:182
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid ""
+"Create a new library, which will be synchronized with the server. Such a "
+"library can be added to the app on other devices as well to synchronize data."
+msgstr ""
+"Hozzon létre egy új könyvtárat, amelyet szinkronizál a szerverrel. Egy ilyen "
+"könyvtár hozzáadható az alkalmazáshoz más eszközökön is, az adatok "
+"szinkronizálása céljából."
+
+#: ../Pages/NewLibraryFromAccountPage.qml:197
+#, fuzzy
+msgctxt "NewLibraryFromAccountPage|"
+msgid "My new library's name"
+msgstr "Az új könyvtárom neve"
+
+#: ../Pages/NewLibraryInFolderPage.qml:84
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid "Open a Folder as a Library"
+msgstr "Nyisson meg egy mappát könyvtárként"
+
+#: ../Pages/NewLibraryInFolderPage.qml:92
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid ""
+"You can use any folder as a location for a library.<br/><br/>This is "
+"especially useful when you want to use another tool (like a sync client of a "
+"cloud provider) to sync your data with a server."
+msgstr ""
+"Bármely mappát használhat könyvtár helyként. <br/><br/> Ez különösen akkor "
+"hasznos, ha másik eszközt (például egy felhőszolgáltató szinkronizálási "
+"kliensét) szeretne használni az adatok szinkronizálásához."
+
+#: ../Pages/NewLibraryInFolderPage.qml:97
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid "Folder:"
+msgstr "Folder:"
+
+#: ../Pages/NewLibraryInFolderPage.qml:102
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid "Path to a folder to use as a library"
+msgstr "Út egy könyvtárhoz használni kívánt mappához"
+
+#: ../Pages/NewLibraryInFolderPage.qml:108
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid "Select"
+msgstr "Választ"
+
+#: ../Pages/NewLibraryInFolderPage.qml:113
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid "Name:"
+msgstr "Név:"
+
+#: ../Pages/NewLibraryInFolderPage.qml:118
+#, fuzzy
+msgctxt "NewLibraryInFolderPage|"
+msgid "My Local Library Name"
+msgstr "Saját helyi könyvtár neve"
+
+#: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:61
+#, fuzzy
+msgctxt "NewLibraryPage|"
+msgid "Create Library"
+msgstr "Könyvtár létrehozása"
+
+#: ../Pages/NewLibraryPage.qml:68
+#, fuzzy
+msgctxt "NewLibraryPage|"
+msgid "Local Library"
+msgstr "Helyi könyvtár"
+
+#: ../Pages/NewLibraryPage.qml:75
+#, fuzzy
+msgctxt "NewLibraryPage|"
+msgid "Use Folder as Library"
+msgstr "Használja a Mappát könyvtárként"
+
+#: ../Pages/NewLibraryPage.qml:86
+#, fuzzy
+msgctxt "NewLibraryPage|"
+msgid "Add Libraries From Your Accounts"
+msgstr "Adjon hozzá könyvtárakat a fiókjából"
+
+#: ../Pages/NewLibraryPage.qml:113
+#, fuzzy
+msgctxt "NewLibraryPage|"
+msgid "Add Account"
+msgstr "Fiók hozzáadása"
+
+#: ../Pages/NewLocalLibraryPage.qml:58
+#, fuzzy
+msgctxt "NewLocalLibraryPage|"
+msgid "Create a Local Library"
+msgstr "Hozzon létre egy helyi könyvtárat"
+
+#: ../Pages/NewLocalLibraryPage.qml:66
+#, fuzzy
+msgctxt "NewLocalLibraryPage|"
+msgid ""
+"A local library is stored solely on your device - this makes it perfect for "
+"the privacy concise!<br/><br/>Use it when you want to store information only "
+"locally and back up all your data regularly via other mechanisms. If you "
+"need to access your information across several devices, create a library "
+"which is synced instead."
+msgstr ""
+"A helyi könyvtárat kizárólag az Ön készüléke tárolja - ez tökéletesvé teszi "
+"az adatvédelem tömörítését! <br/> <br/> Használja azt, ha csak helyi "
+"információt szeretne tárolni, és minden adatáról más mechanizmusok "
+"segítségével rendszeresen biztonsági másolatot készít. Ha több eszközön "
+"keresztül kell elérnie adatait, hozzon létre egy könyvtárat, amelyet "
+"ehelyett szinkronizál."
+
+#: ../Pages/NewLocalLibraryPage.qml:77
+#, fuzzy
+msgctxt "NewLocalLibraryPage|"
+msgid "Name:"
+msgstr "Név:"
+
+#: ../Pages/NewLocalLibraryPage.qml:82
+#, fuzzy
+msgctxt "NewLocalLibraryPage|"
+msgid "My Local Library Name"
+msgstr "Saját helyi könyvtár neve"
+
+#: ../Pages/NewNextCloudAccountPage.qml:20
+#: ../Pages/NewNextCloudAccountPage.qml:71
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Connection Settings"
+msgstr "Csatlakozás beállításai"
+
 #: ../Pages/NewNextCloudAccountPage.qml:77
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Szerver címe:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:91
 msgctxt "NewNextCloudAccountPage|"
@@ -1731,7 +1261,11 @@ msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:114
 msgctxt "NewNextCloudAccountPage|"
-msgid "We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well."
+msgid ""
+"We have tried to open your browser to log you in to your NextCloud instance. "
+"Please log in and grant access to OpenTodoList in order to proceed. Trouble "
+"accessing your NextCloud in the browser? You can manually enter your "
+"username and password as well."
 msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:121
@@ -1741,7 +1275,11 @@ msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:127
 msgctxt "NewNextCloudAccountPage|"
-msgid "Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings."
+msgid ""
+"Ideally, you use app specific passwords instead of your user password. In "
+"case your login is protected with 2 Factor Authentication (2FA) you even "
+"must use app specific passwords to access your NextCloud. You can create "
+"such passwords in your user settings."
 msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:135
@@ -1765,322 +1303,640 @@ msgid "Copied!"
 msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:167
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Felhasználó:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:174
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: ../Pages/NewNextCloudAccountPage.qml:181
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Jelszó:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:188
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: ../Pages/NewNextCloudAccountPage.qml:203
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "A tanúsítvány-ellenőrzések letiltása"
 
 #: ../Pages/NewNextCloudAccountPage.qml:207
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Név:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:219
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Name"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: ../Pages/NewNextCloudAccountPage.qml:229
+#, fuzzy
 msgctxt "NewNextCloudAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
+"Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, "
+"jelszavát és a szerver címét, majd próbálja újra."
 
-#: ../Pages/AccountsPage.qml:18 ../Pages/AccountsPage.qml:49
-msgctxt "AccountsPage|"
-msgid "Accounts"
-msgstr ""
+#: ../Widgets/NewTopLevelItemButton.qml:43
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Todo List"
+msgstr "Feladatlista"
 
-#: ../Pages/EditWebDAVAccountPage.qml:34 ../Pages/EditWebDAVAccountPage.qml:121
-msgctxt "EditWebDAVAccountPage|"
-msgid "Edit Account"
-msgstr ""
+#: ../Widgets/NewTopLevelItemButton.qml:48
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Todo"
+msgstr "Todo"
 
-#: ../Pages/EditWebDAVAccountPage.qml:127
-msgctxt "EditWebDAVAccountPage|"
-msgid "Name:"
-msgstr ""
+#: ../Widgets/NewTopLevelItemButton.qml:54
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Note"
+msgstr "Jegyzet"
 
-#: ../Pages/EditWebDAVAccountPage.qml:138
-msgctxt "EditWebDAVAccountPage|"
-msgid "Server Address:"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:144
-msgctxt "EditWebDAVAccountPage|"
-msgid "https://myserver.example.com"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:151
-msgctxt "EditWebDAVAccountPage|"
-msgid "User:"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:157
-msgctxt "EditWebDAVAccountPage|"
-msgid "User Name"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:164
-msgctxt "EditWebDAVAccountPage|"
-msgid "Password:"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:171
-msgctxt "EditWebDAVAccountPage|"
-msgid "Password"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:186
-msgctxt "EditWebDAVAccountPage|"
-msgid "Disable Certificate Checks"
-msgstr ""
-
-#: ../Pages/EditWebDAVAccountPage.qml:194
-msgctxt "EditWebDAVAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
-
-#: ../Utils/ItemUtils.qml:109
-msgctxt "ItemUtils|"
-msgid "Move Todo Into..."
-msgstr ""
-
-#: ../Widgets/LibrariesSideBar.qml:210
-msgctxt "LibrariesSideBar|"
-msgid "Donate"
-msgstr ""
-
-#: ../Windows/MainWindow.qml:277
-msgctxt "MainWindow|"
-msgid "Move"
-msgstr ""
-
-#: ../Actions/MoveTodo.qml:11
-msgctxt "MoveTodo|"
-msgid "Move"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:99
-msgctxt "NewLibraryFromAccountPage|"
-msgid "Create Library in Account"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:108
-msgctxt "NewLibraryFromAccountPage|"
-msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:117
-msgctxt "NewLibraryFromAccountPage|"
-msgid "Existing Libraries"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:125
-msgctxt "NewLibraryFromAccountPage|"
-msgid "Select an existing library on the server to add it to the app."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:132
-msgctxt "NewLibraryFromAccountPage|"
-msgid "No libraries were found on the server."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:140
-msgctxt "NewLibraryFromAccountPage|"
-msgid "Searching existing libraries..."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:174
-msgctxt "NewLibraryFromAccountPage|"
-msgid "Create a New Library"
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:182
-msgctxt "NewLibraryFromAccountPage|"
-msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr ""
-
-#: ../Pages/NewLibraryFromAccountPage.qml:197
-msgctxt "NewLibraryFromAccountPage|"
-msgid "My new library's name"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:84
-msgctxt "NewLibraryInFolderPage|"
-msgid "Open a Folder as a Library"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:92
-msgctxt "NewLibraryInFolderPage|"
-msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:97
-msgctxt "NewLibraryInFolderPage|"
-msgid "Folder:"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:102
-msgctxt "NewLibraryInFolderPage|"
-msgid "Path to a folder to use as a library"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:108
-msgctxt "NewLibraryInFolderPage|"
-msgid "Select"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:113
-msgctxt "NewLibraryInFolderPage|"
-msgid "Name:"
-msgstr ""
-
-#: ../Pages/NewLibraryInFolderPage.qml:118
-msgctxt "NewLibraryInFolderPage|"
-msgid "My Local Library Name"
-msgstr ""
-
-#: ../Pages/NewLibraryPage.qml:68
-msgctxt "NewLibraryPage|"
-msgid "Local Library"
-msgstr ""
-
-#: ../Pages/NewLibraryPage.qml:75
-msgctxt "NewLibraryPage|"
-msgid "Use Folder as Library"
-msgstr ""
-
-#: ../Pages/NewLibraryPage.qml:86
-msgctxt "NewLibraryPage|"
-msgid "Add Libraries From Your Accounts"
-msgstr ""
-
-#: ../Pages/NewLibraryPage.qml:113
-msgctxt "NewLibraryPage|"
-msgid "Add Account"
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPage.qml:58
-msgctxt "NewLocalLibraryPage|"
-msgid "Create a Local Library"
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPage.qml:66
-msgctxt "NewLocalLibraryPage|"
-msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPage.qml:77
-msgctxt "NewLocalLibraryPage|"
-msgid "Name:"
-msgstr ""
-
-#: ../Pages/NewLocalLibraryPage.qml:82
-msgctxt "NewLocalLibraryPage|"
-msgid "My Local Library Name"
-msgstr ""
+#: ../Widgets/NewTopLevelItemButton.qml:58
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Image"
+msgstr "Kép"
 
 #: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:128
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Csatlakozás beállításai"
 
 #: ../Pages/NewWebDAVAccountPage.qml:134
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Szerver címe:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:140
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/NewWebDAVAccountPage.qml:146
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Felhasználó:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:152
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: ../Pages/NewWebDAVAccountPage.qml:158
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Jelszó:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:164
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: ../Pages/NewWebDAVAccountPage.qml:178
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "A tanúsítvány-ellenőrzések letiltása"
 
 #: ../Pages/NewWebDAVAccountPage.qml:182
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Név:"
+
+#: ../Pages/NewWebDAVAccountPage.qml:194
+#, fuzzy
+msgctxt "NewWebDAVAccountPage|"
+msgid "Account Name"
+msgstr "Felhasználónév"
 
 #: ../Pages/NewWebDAVAccountPage.qml:204
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
+"Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, "
+"jelszavát és a szerver címét, majd próbálja újra."
+
+#: ../Pages/NotePage.qml:124
+#, fuzzy
+msgctxt "NotePage|"
+msgid "Main Page"
+msgstr "Főoldal"
+
+#: ../Pages/NotePage.qml:187
+#, fuzzy
+msgctxt "NotePage|"
+msgid "New Page"
+msgstr "Új oldal"
+
+#: ../Windows/OpenFileDialog.qml:18
+#, fuzzy
+msgctxt "OpenFileDialog|"
+msgid "Select a File"
+msgstr "Válasszon egy fájlt"
+
+#: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
+#, fuzzy
+msgctxt "OpenImageDialog|"
+msgid "Select Image"
+msgstr "Válassza a Kép lehetőséget"
 
 #: ../Pages/ProblemsPage.qml:18 ../Pages/ProblemsPage.qml:28
+#, fuzzy
 msgctxt "ProblemsPage|"
 msgid "Problems Detected"
+msgstr "Felismert problémák"
+
+#: ../Pages/ProblemsPage.qml:42
+#, fuzzy
+msgctxt "ProblemsPage|"
+msgid "Missing secrets for account"
+msgstr "Hiányoznak a fiók hozzáférési adatai"
+
+#: ../Windows/RecurrenceDialog.qml:28
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Edit Recurrence"
+msgstr "Ismétlés szerkesztése"
+
+#: ../Windows/RecurrenceDialog.qml:41
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Never"
+msgstr "Soha"
+
+#: ../Windows/RecurrenceDialog.qml:42
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Daily"
+msgstr "Napi"
+
+#: ../Windows/RecurrenceDialog.qml:43
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Weekly"
+msgstr "Heti"
+
+#: ../Windows/RecurrenceDialog.qml:44
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Monthly"
+msgstr "Havi"
+
+#: ../Windows/RecurrenceDialog.qml:45
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Every N Days"
+msgstr "Minden N nap"
+
+#: ../Windows/RecurrenceDialog.qml:55
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Recurs:"
+msgstr "visszatér"
+
+#: ../Windows/RecurrenceDialog.qml:68
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Number of days:"
+msgstr "Napok száma:"
+
+#: ../Windows/RecurrenceDialog.qml:82
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Recur relative to the date when marking as done"
+msgstr "Ismételje meg a dátumhoz képest, amikor megjelölés befejeződött"
+
+#: ../Actions/RenameItem.qml:8
+#, fuzzy
+msgctxt "RenameItem|"
+msgid "Rename"
+msgstr "átnevezés"
+
+#: ../Windows/RenameItemDialog.qml:22
+#, fuzzy
+msgctxt "RenameItemDialog|"
+msgid "Rename Item"
+msgstr "Elem átnevezése"
+
+#: ../Windows/RenameItemDialog.qml:33
+#, fuzzy
+msgctxt "RenameItemDialog|"
+msgid "Enter item title..."
+msgstr "Adja meg az elem címét..."
+
+#: ../Windows/RenameLibraryDialog.qml:20
+#, fuzzy
+msgctxt "RenameLibraryDialog|"
+msgid "Rename Library"
+msgstr "Nevezze át a könyvtárat"
+
+#: ../Windows/RenameLibraryDialog.qml:37
+#, fuzzy
+msgctxt "RenameLibraryDialog|"
+msgid "Enter library title..."
+msgstr "Írja be a könyvtár címét..."
+
+#: ../Pages/ScheduleViewPage.qml:80
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Overdue"
+msgstr "Lejárt"
+
+#: ../Pages/ScheduleViewPage.qml:101
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Today"
+msgstr "Ma"
+
+#: ../Pages/ScheduleViewPage.qml:102
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Tomorrow"
+msgstr "Holnap"
+
+#: ../Pages/ScheduleViewPage.qml:144
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Later This Week"
+msgstr "Később ezen a héten"
+
+#: ../Pages/ScheduleViewPage.qml:146
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Next Week"
+msgstr "Jövő héten"
+
+#: ../Pages/ScheduleViewPage.qml:147
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Coming Next"
+msgstr "Jövőben"
+
+#: ../Pages/ScheduleViewPage.qml:174
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr ""
+"Nincs ütemezve ... Adjon meg egy határidőt az elemekhez, hogy itt "
+"megjelenjenek."
 
 #: ../Windows/SelectTodoListDialog.qml:19
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr ""
 
+#: ../Actions/SetDueNextWeek.qml:8
+#, fuzzy
+msgctxt "SetDueNextWeek|"
+msgid "Set Due This Week"
+msgstr "Lejárt ezen a héten"
+
+#: ../Actions/SetDueThisWeek.qml:8
+#, fuzzy
+msgctxt "SetDueThisWeek|"
+msgid "Set Due Next Week"
+msgstr "A következő héten esedékes"
+
+#: ../Actions/SetDueTo.qml:8
+#, fuzzy
+msgctxt "SetDueTo|"
+msgid "Select Due Date"
+msgstr "Válassza az Esedékesség dátumot"
+
+#: ../Actions/SetDueToday.qml:8
+#, fuzzy
+msgctxt "SetDueToday|"
+msgid "Set Due Today"
+msgstr "Ma esedékes"
+
+#: ../Actions/SetDueTomorrow.qml:8
+#, fuzzy
+msgctxt "SetDueTomorrow|"
+msgid "Set Due Tomorrow"
+msgstr "Holnap esedékes"
+
 #: ../Pages/SettingsPage.qml:43
+#, fuzzy
 msgctxt "SettingsPage|"
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 #: ../Pages/SettingsPage.qml:49
+#, fuzzy
 msgctxt "SettingsPage|"
 msgid "User Interface"
-msgstr ""
+msgstr "Felhasználói felület"
 
 #: ../Pages/SettingsPage.qml:57
+#, fuzzy
 msgctxt "SettingsPage|"
 msgid "Language:"
-msgstr ""
+msgstr "Nyelv:"
 
 #: ../Pages/SettingsPage.qml:81
+#, fuzzy
 msgctxt "SettingsPage|"
 msgid "Theme:"
-msgstr ""
+msgstr "Téma:"
 
 #: ../Pages/SettingsPage.qml:112
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr ""
 
+#: ../Widgets/SyncErrorNotificationBar.qml:43
+#, fuzzy
+msgctxt "SyncErrorNotificationBar|"
+msgid ""
+"There were errors when synchronizing the library. Please ensure that the "
+"library settings are up to date."
+msgstr ""
+"Hiba történt a könyvtár szinkronizálásakor. Kérjük, ellenőrizze, hogy a "
+"könyvtár beállításai naprakészek-e."
+
+#: ../Widgets/SyncErrorNotificationBar.qml:49
+#, fuzzy
+msgctxt "SyncErrorNotificationBar|"
+msgid "Ignore"
+msgstr "Figyelmen kívül hagyni"
+
+#: ../Widgets/SyncErrorNotificationBar.qml:53
+#, fuzzy
+msgctxt "SyncErrorNotificationBar|"
+msgid "View"
+msgstr "Kilátás"
+
+#: ../Widgets/TagsEditor.qml:34
+#, fuzzy
+msgctxt "TagsEditor|"
+msgid "Add Tag"
+msgstr "Címke hozzáadása"
+
+#: ../Widgets/TodoListItem.qml:99
+#, fuzzy
+msgctxt "TodoListItem|"
+msgid "✔ No open todos - everything done"
+msgstr "✔ Nincs nyitott todos - minden kész"
+
+#: ../Pages/TodoListPage.qml:168
+msgctxt "TodoListPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:180
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Manually"
+msgstr "Manuálisan"
+
+#: ../Pages/TodoListPage.qml:186
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Name"
+msgstr "Név"
+
+#: ../Pages/TodoListPage.qml:192
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Due Date"
+msgstr "Esedékesség dátuma"
+
+#: ../Pages/TodoListPage.qml:198
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Created At"
+msgstr "Létrehozva"
+
+#: ../Pages/TodoListPage.qml:204
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Updated At"
+msgstr "Frissítve"
+
+#: ../Pages/TodoListPage.qml:227
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Todos"
+msgstr "Todos"
+
+#: ../Pages/TodoListPage.qml:247
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Add new todo..."
+msgstr "Új teendő hozzáadása..."
+
+#: ../Pages/TodoPage.qml:114
+msgctxt "TodoPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr ""
+
+#: ../Pages/TodoPage.qml:135
+#, fuzzy
+msgctxt "TodoPage|"
+msgid "Tasks"
+msgstr "Feladatok"
+
+#: ../Pages/TodoPage.qml:139
+#, fuzzy
+msgctxt "TodoPage|"
+msgid "Add new task..."
+msgstr "Új feladat hozzáadása .."
+
+#: ../Widgets/TodosWidget.qml:172
+#, fuzzy, qt-format
+msgctxt "TodosWidget|"
+msgid "Due on: %1"
+msgstr "Esedékes: %1"
+
+#: ../Widgets/TodosWidgetDelegate.qml:195
+#, fuzzy
+msgctxt "TodosWidgetDelegate|"
+msgid "Swipe to mark undone"
+msgstr "Húzza az visszavonás jelölésére"
+
+#: ../Widgets/TodosWidgetDelegate.qml:197
+#, fuzzy
+msgctxt "TodosWidgetDelegate|"
+msgid "Swipe to mark done"
+msgstr "Húzza az ujját a kész jelölésére"
+
+#: ../Utils/Translations.qml:16
+#, fuzzy
+msgctxt "Translations|"
+msgid "System Language"
+msgstr "Rendszernyelv"
+
+#: ../Utils/Translations.qml:24
+#, fuzzy
+msgctxt "Translations|"
+msgid "Danish"
+msgstr "Dán"
+
+#: ../Utils/Translations.qml:28
+#, fuzzy
+msgctxt "Translations|"
+msgid "German"
+msgstr "Német"
+
+#: ../Utils/Translations.qml:32
+#, fuzzy
+msgctxt "Translations|"
+msgid "Greek"
+msgstr "Görög"
+
+#: ../Utils/Translations.qml:36
+#, fuzzy
+msgctxt "Translations|"
+msgid "English"
+msgstr "Angol"
+
+#: ../Utils/Translations.qml:40
+#, fuzzy
+msgctxt "Translations|"
+msgid "Spanish"
+msgstr "Spanyol"
+
+#: ../Utils/Translations.qml:44
+#, fuzzy
+msgctxt "Translations|"
+msgid "Spanish (Latin America & Caribbean)"
+msgstr "Spanyol (latin-amerikai és karibi)"
+
+#: ../Utils/Translations.qml:48
+msgctxt "Translations|"
+msgid "Basque"
+msgstr ""
+
+#: ../Utils/Translations.qml:52
+#, fuzzy
+msgctxt "Translations|"
+msgid "Filipino"
+msgstr "Filippínó"
+
+#: ../Utils/Translations.qml:56
+#, fuzzy
+msgctxt "Translations|"
+msgid "French"
+msgstr "Francia"
+
+#: ../Utils/Translations.qml:60
+#, fuzzy
+msgctxt "Translations|"
+msgid "Hungarian"
+msgstr "Magyar"
+
+#: ../Utils/Translations.qml:64
+#, fuzzy
+msgctxt "Translations|"
+msgid "Italian"
+msgstr "Olasz"
+
+#: ../Utils/Translations.qml:68
+#, fuzzy
+msgctxt "Translations|"
+msgid "Dutch"
+msgstr "Holland"
+
+#: ../Utils/Translations.qml:72
+#, fuzzy
+msgctxt "Translations|"
+msgid "Norwegian"
+msgstr "Norvég"
+
+#: ../Utils/Translations.qml:76
+#, fuzzy
+msgctxt "Translations|"
+msgid "Polish"
+msgstr "Fényesít"
+
+#: ../Utils/Translations.qml:80
+#, fuzzy
+msgctxt "Translations|"
+msgid "Portuguese"
+msgstr "Portugál"
+
+#: ../Utils/Translations.qml:84
+#, fuzzy
+msgctxt "Translations|"
+msgid "Portuguese (Brazil)"
+msgstr "Portugál (Brazília)"
+
+#: ../Utils/Translations.qml:88
+#, fuzzy
+msgctxt "Translations|"
+msgid "Russian"
+msgstr "orosz"
+
+#: ../Utils/Translations.qml:92
+#, fuzzy
+msgctxt "Translations|"
+msgid "Swedish"
+msgstr "svéd"
+
+#: ../Utils/Translations.qml:96
+#, fuzzy
+msgctxt "Translations|"
+msgid "Turkmen"
+msgstr "Türkmén"
+
+#: ../Utils/Translations.qml:100
+#, fuzzy
+msgctxt "Translations|"
+msgid "Turkish"
+msgstr "Török"
+
+#: ../Utils/Translations.qml:104
+#, fuzzy
+msgctxt "Translations|"
+msgid "Vietnamese"
+msgstr "Vietnami"
+
+#: ../Widgets/UpdateNotificationBar.qml:44
+#, fuzzy, qt-format
+msgctxt "UpdateNotificationBar|"
+msgid "An update to OpenTodoList %1 is available."
+msgstr "Elérhető az OpenTodoList % 1 frissítése."
+
+#: ../Widgets/UpdateNotificationBar.qml:50
+#, fuzzy
+msgctxt "UpdateNotificationBar|"
+msgid "Ignore"
+msgstr "Figyelmen kívül hagyni"
+
+#: ../Widgets/UpdateNotificationBar.qml:54
+#, fuzzy
+msgctxt "UpdateNotificationBar|"
+msgid "Download"
+msgstr "Letöltés"

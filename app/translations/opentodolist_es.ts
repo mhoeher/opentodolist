@@ -873,47 +873,47 @@
 <context>
     <name>NewItemWithDueDateDialog</name>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="89"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="91"/>
         <source>Today</source>
         <translation type="unfinished">Hoy</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="90"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
         <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="91"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
         <source>This Week</source>
         <translation type="unfinished">Esta semana</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
         <source>Next Week</source>
         <translation type="unfinished">La próxima semana</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
         <source>Select...</source>
         <translation type="unfinished">Seleccione...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="106"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="114"/>
         <source>Title:</source>
         <translation type="unfinished">Título:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="111"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="119"/>
         <source>The title for your new item...</source>
         <translation type="unfinished">El título de su nuevo artículo...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="116"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="125"/>
         <source>Create in:</source>
         <translation type="unfinished">Crear en:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="156"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="165"/>
         <source>Due on:</source>
         <translation type="unfinished">Ya está en marcha:</translation>
     </message>

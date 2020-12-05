@@ -24,8 +24,18 @@ msgstr "Todo we meseläni dolandyrmak programmasy."
 
 #: ../Pages/AboutPage.qml:60
 msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "OpenTodoList, GNU General Public License 3 wersiýasynyň ýa-da soňraky islendik wersiýasynyň şertlerinde goýberilýär. Ygtyýarnamanyň göçürmesini aşakda tapyp bilersiňiz. Mundan başga-da, birnäçe kitaphanalar we çeşmeler ulanylýar. Ygtyýarnama şertleri barada has giňişleýin maglumat üçin <a href='3rdparty'> 3-nji tarap programma üpjünçiligi </a> sahypasyna serediň."
+msgid ""
+"OpenTodoList is released under the terms of the GNU General Public License "
+"version 3 or (at your choice) any later version. You can find a copy of the "
+"license below. Additionally, several libraries and resources are used. For "
+"detailed information about their license terms, please refer to the <a "
+"href='3rdparty'>3rd Party Software</a> page."
+msgstr ""
+"OpenTodoList, GNU General Public License 3 wersiýasynyň ýa-da soňraky "
+"islendik wersiýasynyň şertlerinde goýberilýär. Ygtyýarnamanyň göçürmesini "
+"aşakda tapyp bilersiňiz. Mundan başga-da, birnäçe kitaphanalar we çeşmeler "
+"ulanylýar. Ygtyýarnama şertleri barada has giňişleýin maglumat üçin <a "
+"href='3rdparty'> 3-nji tarap programma üpjünçiligi </a> sahypasyna serediň."
 
 #: ../Pages/AboutThirdPartyPage.qml:11
 msgctxt "AboutThirdPartyPage|"
@@ -33,16 +43,19 @@ msgid "Used Libraries and Resources"
 msgstr "Ulanylan kitaphanalar we çeşmeler"
 
 #: ../Pages/AboutThirdPartyPage.qml:47
+#, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
 msgstr "Awtory: <a href='%2'>% 1 </a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:54
+#, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
 msgstr "Ygtyýarnama: <a href='%1'>% 2 </a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:61
+#, qt-format
 msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Ükle: <a href='%1'>% 1 </a>"
@@ -58,9 +71,14 @@ msgid "Delete Attachment?"
 msgstr "Goşundyny pozuň?"
 
 #: ../Widgets/Attachments.qml:45
+#, qt-format
 msgctxt "Attachments|"
-msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "Goşundyny <strong>%1</strong> pozmak isleýändigiňize ynanýarsyňyzmy? Bu hereketi yzyna gaýtaryp bolmaz."
+msgid ""
+"Are you sure you want to delete the attachment <strong>%1</strong>? This "
+"action cannot be undone."
+msgstr ""
+"Goşundyny <strong>%1</strong> pozmak isleýändigiňize ynanýarsyňyzmy? Bu "
+"hereketi yzyna gaýtaryp bolmaz."
 
 #: ../Widgets/Attachments.qml:59
 msgctxt "Attachments|"
@@ -113,29 +131,54 @@ msgid "Delete Item?"
 msgstr "Öçürmek?"
 
 #: ../Windows/DeleteItemDialog.qml:32
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Goşundyny <strong>%1</strong> pozmak isleýändigiňize ynanýarsyňyzmy? Bu hereketi yzyna gaýtaryp bolmaz."
+msgid ""
+"Do you really want to delete the image <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Goşundyny <strong>%1</strong> pozmak isleýändigiňize ynanýarsyňyzmy? Bu "
+"hereketi yzyna gaýtaryp bolmaz."
 
 #: ../Windows/DeleteItemDialog.qml:36
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Todo sanawyny <strong>%1</strong> pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgid ""
+"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
+"be undone."
+msgstr ""
+"Todo sanawyny <strong>%1</strong> pozmak isleýärsiňizmi? Muny yzyna gaýtaryp "
+"bolmaz."
 
 #: ../Windows/DeleteItemDialog.qml:40
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Hakykatdanam todo <strong>%1</strong> pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgid ""
+"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Hakykatdanam todo <strong>%1</strong> pozmak isleýärsiňizmi? Muny yzyna "
+"gaýtaryp bolmaz."
 
 #: ../Windows/DeleteItemDialog.qml:44
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Hakykatdanam <strong>%1</strong> meseläni pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgid ""
+"Do you really want to delete the task <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Hakykatdanam <strong>%1</strong> meseläni pozmak isleýärsiňizmi? Muny yzyna "
+"gaýtaryp bolmaz."
 
 #: ../Windows/DeleteItemDialog.qml:48
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Hakykatdanam <strong>%1</strong> belligi pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgid ""
+"Do you really want to delete the note <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Hakykatdanam <strong>%1</strong> belligi pozmak isleýärsiňizmi? Muny yzyna "
+"gaýtaryp bolmaz."
 
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
@@ -143,14 +186,26 @@ msgid "Delete Library?"
 msgstr "Kitaphanany pozuň?"
 
 #: ../Windows/DeleteLibraryDialog.qml:33
+#, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "Hitaphanany <strong>%1</strong> programmadan aýyrmak isleýärsiňizmi? <em> Bu kitaphana degişli islendik faýly aýyrar. </em>"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from  the "
+"application? <em>This will remove any files belonging to the library.</em>"
+msgstr ""
+"Hitaphanany <strong>%1</strong> programmadan aýyrmak isleýärsiňizmi? <em> Bu "
+"kitaphana degişli islendik faýly aýyrar. </em>"
 
 #: ../Windows/DeleteLibraryDialog.qml:40
+#, qt-format
 msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "Kitaphanany <strong>%1</strong> programmadan aýyrmak isleýärsiňizmi? Kitaphananyň içindäki faýllaryň aýrylmajakdygyna üns beriň, soň bolsa kitaphanany dikeldip bilersiňiz."
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from the "
+"application? Note that the files inside the library will not be removed, so "
+"you can restore the library later on."
+msgstr ""
+"Kitaphanany <strong>%1</strong> programmadan aýyrmak isleýärsiňizmi? "
+"Kitaphananyň içindäki faýllaryň aýrylmajakdygyna üns beriň, soň bolsa "
+"kitaphanany dikeldip bilersiňiz."
 
 #: ../Windows/FolderSelectionDialog.qml:17
 msgctxt "FolderSelectionDialog|"
@@ -158,6 +213,7 @@ msgid "Select a Folder"
 msgstr "Papka saýlaň"
 
 #: ../Widgets/ItemCreatedNotification.qml:64
+#, qt-format
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
 msgstr "<strong>%1</strong> döredildi."
@@ -254,8 +310,13 @@ msgstr "Search term 1, search term 2, ..."
 
 #: ../Pages/LibraryPage.qml:366
 msgctxt "LibraryPage|"
-msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr "Bu ýerde entek hiç zat ýok! <a href='#note'> bellik </a>, <a href='#todolist'> todo sanawy </a> ýa-da <a href='#image'> surat </a> goşmak bilen başlaň."
+msgid ""
+"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr ""
+"Bu ýerde entek hiç zat ýok! <a href='#note'> bellik </a>, <a "
+"href='#todolist'> todo sanawy </a> ýa-da <a href='#image'> surat </a> goşmak "
+"bilen başlaň."
 
 #: ../Menues/LibraryPageMenu.qml:18
 msgctxt "LibraryPageMenu|"
@@ -273,6 +334,7 @@ msgid "Sync Log"
 msgstr "Sinhron ýazgysy"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
+#, qt-format
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "The secrets for synchronizing the library %1 are missing."
 msgstr "Kitaphana% 1 sinhronlamagyň syrlary ýok."
@@ -344,8 +406,12 @@ msgstr "Açyň &Çep tarap"
 
 #: ../Windows/MainWindow.qml:604
 msgctxt "MainWindow|"
-msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
-msgstr "<a href='#newLibrary'> täze kitaphana döretmekden başlaň </a>. Kitaphanalar bellikler, sanawlar we suratlar ýaly dürli zatlary saklamak üçin ulanylýar."
+msgid ""
+"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+"used to store different kinds of items like notes, todo lists and images."
+msgstr ""
+"<a href='#newLibrary'> täze kitaphana döretmekden başlaň </a>. Kitaphanalar "
+"bellikler, sanawlar we suratlar ýaly dürli zatlary saklamak üçin ulanylýar."
 
 #: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:61
 msgctxt "NewLibraryPage|"
@@ -379,13 +445,21 @@ msgstr "Bellenen ýerde kitaphana dörediň"
 
 #: ../Pages/NewLibraryPage.qml:80
 msgctxt "NewLibraryPage|"
-msgid "The items you add to the library will be stored in the default location for libraries."
+msgid ""
+"The items you add to the library will be stored in the default location for "
+"libraries."
 msgstr "Kitaphana goşýan zatlaryňyz kitaphanalar üçin deslapky ýerde saklanar."
 
 #: ../Pages/NewLibraryPage.qml:82
 msgctxt "NewLibraryPage|"
-msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
-msgstr "Kitaphana elementleriniň saklanjak bukjasyny saýlaň. Şeýle hem bar bolan kitaphananyň katalogyny saýlap bilersiňiz. Bu ýagdaýda kitaphana import ediler."
+msgid ""
+"Please select a directory into which the library items shall be saved. You "
+"can also select an existing library directory. In this case, the library "
+"will be imported."
+msgstr ""
+"Kitaphana elementleriniň saklanjak bukjasyny saýlaň. Şeýle hem bar bolan "
+"kitaphananyň katalogyny saýlap bilersiňiz. Bu ýagdaýda kitaphana import "
+"ediler."
 
 #: ../Pages/NewLibraryPage.qml:110
 msgctxt "NewLibraryPage|"
@@ -465,7 +539,9 @@ msgstr "Indiki"
 #: ../Pages/ScheduleViewPage.qml:174
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr "Hiç zat meýilleşdirilmedi ... Bu ýerde peýda bolmagy üçin elementlere bellenilen senäni goşuň."
+msgstr ""
+"Hiç zat meýilleşdirilmedi ... Bu ýerde peýda bolmagy üçin elementlere "
+"bellenilen senäni goşuň."
 
 #: ../Pages/ScheduleViewPage.qml:80
 msgctxt "ScheduleViewPage|"
@@ -474,8 +550,12 @@ msgstr "Wagtyň geçmegi"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:43
 msgctxt "SyncErrorNotificationBar|"
-msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Kitaphanany sinhronlamakda ýalňyşlyklar boldy. Kitaphana sazlamalarynyň täzelenendigine göz ýetiriň."
+msgid ""
+"There were errors when synchronizing the library. Please ensure that the "
+"library settings are up to date."
+msgstr ""
+"Kitaphanany sinhronlamakda ýalňyşlyklar boldy. Kitaphana sazlamalarynyň "
+"täzelenendigine göz ýetiriň."
 
 #: ../Widgets/SyncErrorNotificationBar.qml:49
 msgctxt "SyncErrorNotificationBar|"
@@ -580,6 +660,7 @@ msgid "Tasks"
 msgstr "Wezipeler"
 
 #: ../Widgets/UpdateNotificationBar.qml:44
+#, qt-format
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
 msgstr "OpenTodoList %1 täzelenmesi bar."
@@ -636,8 +717,12 @@ msgstr "SSL säwliklerine ähmiýet bermäň"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:130
 msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy barlaň we gaýtadan synanyşyň."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+"Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy "
+"barlaň we gaýtadan synanyşyň."
 
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
 msgctxt "WebDAVSynchronizerSettingsPage|"
@@ -695,6 +780,7 @@ msgid "Add new task..."
 msgstr "Täze wezipe goşuň ..."
 
 #: ../Widgets/TodosWidget.qml:172
+#, qt-format
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Berilmeli: %1"
@@ -880,14 +966,19 @@ msgid "French"
 msgstr "Fransuz"
 
 #: ../Pages/AboutPage.qml:42
+#, qt-format
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdew 2013-2020, %1 wersiýasy"
 
 #: ../Pages/AboutPage.qml:59
 msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
-msgstr "OpenTodoList <a href='app-license'> GNU General Public License </a> 3-nji wersiýasy ýa-da soňraky wersiýasy boýunça goýberilýär."
+msgid ""
+"OpenTodoList is released under the terms of the <a href='app-license'>GNU "
+"General Public License</a> version 3 or (at your choice) any later version."
+msgstr ""
+"OpenTodoList <a href='app-license'> GNU General Public License </a> 3-nji "
+"wersiýasy ýa-da soňraky wersiýasy boýunça goýberilýär."
 
 #: ../Pages/AboutPage.qml:78
 msgctxt "AboutPage|"
@@ -905,6 +996,7 @@ msgid "Author:"
 msgstr "Awtor:"
 
 #: ../Pages/AboutPage.qml:133
+#, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
@@ -915,6 +1007,7 @@ msgid "License:"
 msgstr "Ygtyýarnama:"
 
 #: ../Pages/AboutPage.qml:146
+#, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
@@ -925,6 +1018,7 @@ msgid "Download:"
 msgstr "Göçürip al:"
 
 #: ../Pages/AboutPage.qml:159
+#, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -965,9 +1059,17 @@ msgid "Delete Account?"
 msgstr "Hasaby pozuň?"
 
 #: ../Windows/DeleteAccountDialog.qml:36
+#, qt-format
 msgctxt "DeleteAccountDialog|"
-msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
-msgstr "Hakykatdanam <strong>%1</strong> hasaby aýyrmak isleýärsiňizmi? Bu hasabyňyza degişli ähli kitaphanalary enjamyňyzdan aýyrar? <br/> <br/> <i> Bellik: Hasaby yzyna goşup serwerden dikeldip bilersiňiz. </i>"
+msgid ""
+"Do you really want to remove the account <strong>%1</strong>? This will "
+"remove all libraries belonging to the account from your "
+"device?<br/><br/><i>Note: You can restore them from the server by adding "
+"back the account.</i>"
+msgstr ""
+"Hakykatdanam <strong>%1</strong> hasaby aýyrmak isleýärsiňizmi? Bu "
+"hasabyňyza degişli ähli kitaphanalary enjamyňyzdan aýyrar? <br/> <br/> <i> "
+"Bellik: Hasaby yzyna goşup serwerden dikeldip bilersiňiz. </i>"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
@@ -1017,8 +1119,12 @@ msgstr "Şahadatnamalary barlaň"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
 msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy barlaň we gaýtadan synanyşyň."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+"Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy "
+"barlaň we gaýtadan synanyşyň."
 
 #: ../Widgets/LibrariesSideBar.qml:183
 msgctxt "LibrariesSideBar|"
@@ -1037,8 +1143,16 @@ msgstr "Hasapda kitaphana dörediň"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
 msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "Hasapda döredilen kitaphana onuň bilen sinhronlaşdyrylýar. Bu kitaphanany serwere aňsatlyk bilen ätiýaçlamaga we soňra şol ýerden dikeltmäge mümkinçilik berýär. Mundan başga-da, şeýle kitaphanalary beýleki ulanyjylar bilen paýlaşyp bolýar (serwer muňa rugsat berse)."
+msgid ""
+"A library created in an account is synchronized with it. This allows to "
+"easily back up a library to a server and later on restore it from there. "
+"Additionally, such libraries can be shared with other users (if the server "
+"allows this)."
+msgstr ""
+"Hasapda döredilen kitaphana onuň bilen sinhronlaşdyrylýar. Bu kitaphanany "
+"serwere aňsatlyk bilen ätiýaçlamaga we soňra şol ýerden dikeltmäge "
+"mümkinçilik berýär. Mundan başga-da, şeýle kitaphanalary beýleki ulanyjylar "
+"bilen paýlaşyp bolýar (serwer muňa rugsat berse)."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1067,8 +1181,13 @@ msgstr "Täze kitaphana dörediň"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
 msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr "Serwer bilen sinhronlanjak täze kitaphana dörediň. Şeýle kitaphanany beýleki enjamlardaky programma goşmak bilen maglumatlary sinhronlamak üçin hem goşup bolýar."
+msgid ""
+"Create a new library, which will be synchronized with the server. Such a "
+"library can be added to the app on other devices as well to synchronize data."
+msgstr ""
+"Serwer bilen sinhronlanjak täze kitaphana dörediň. Şeýle kitaphanany beýleki "
+"enjamlardaky programma goşmak bilen maglumatlary sinhronlamak üçin hem goşup "
+"bolýar."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1082,8 +1201,14 @@ msgstr "Kitaphana hökmünde bukjany açyň"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
 msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr "Islendik bukjany kitaphananyň ýerleşýän ýeri hökmünde ulanyp bilersiňiz. <br/> <br/> Maglumatlaryňyzy serwer bilen sinhronlamak üçin başga bir gural (bulut üpjünçisiniň sinhron müşderisi ýaly) ulanmak isleseňiz has peýdalydyr."
+msgid ""
+"You can use any folder as a location for a library.<br/><br/>This is "
+"especially useful when you want to use another tool (like a sync client of a "
+"cloud provider) to sync your data with a server."
+msgstr ""
+"Islendik bukjany kitaphananyň ýerleşýän ýeri hökmünde ulanyp bilersiňiz. "
+"<br/> <br/> Maglumatlaryňyzy serwer bilen sinhronlamak üçin başga bir gural "
+"(bulut üpjünçisiniň sinhron müşderisi ýaly) ulanmak isleseňiz has peýdalydyr."
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
 msgctxt "NewLibraryInFolderPageForm.ui|"
@@ -1142,8 +1267,18 @@ msgstr "Libraryerli kitaphana dörediň"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:37
 msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "Libraryerli kitaphana diňe enjamyňyzda saklanýar - bu gizlinlik gysga bolmagy üçin ajaýyp edýär! <br/> <br/> Maglumatlary diňe ýerli derejede saklamak we ähli maglumatlaryňyzy beýleki mehanizmler arkaly yzygiderli ätiýaçlandyrmak isleseňiz ulanyň. Maglumatlaryňyza birnäçe enjamda girmek zerur bolsa, ýerine sinhronlanan kitaphanany dörediň."
+msgid ""
+"A local library is stored solely on your device - this makes it perfect for "
+"the privacy concise!<br/><br/>Use it when you want to store information only "
+"locally and back up all your data regularly via other mechanisms. If you "
+"need to access your information across several devices, create a library "
+"which is synced instead."
+msgstr ""
+"Libraryerli kitaphana diňe enjamyňyzda saklanýar - bu gizlinlik gysga "
+"bolmagy üçin ajaýyp edýär! <br/> <br/> Maglumatlary diňe ýerli derejede "
+"saklamak we ähli maglumatlaryňyzy beýleki mehanizmler arkaly yzygiderli "
+"ätiýaçlandyrmak isleseňiz ulanyň. Maglumatlaryňyza birnäçe enjamda girmek "
+"zerur bolsa, ýerine sinhronlanan kitaphanany dörediň."
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:48
 msgctxt "NewLocalLibraryPageForm.ui|"
@@ -1208,13 +1343,22 @@ msgstr "Ady:"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
 msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy barlaň we gaýtadan synanyşyň."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+"Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy "
+"barlaň we gaýtadan synanyşyň."
 
 #: ../Windows/DeleteItemDialog.qml:52
+#, qt-format
 msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
-msgstr "Sahypany hakykatdanam pozmak isleýärsiňizmi? <strong>%1</strong>? Muny yzyna gaýtaryp bolmaz."
+msgid ""
+"Do you really want to delete the page <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Sahypany hakykatdanam pozmak isleýärsiňizmi? <strong>%1</strong>? Muny yzyna "
+"gaýtaryp bolmaz."
 
 #: ../Windows/MainWindow.qml:104
 msgctxt "MainWindow|"
@@ -1352,6 +1496,7 @@ msgid "Delete"
 msgstr "Öçür"
 
 #: ../Widgets/ItemDueDateEditor.qml:59
+#, qt-format
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
 msgstr "Ilki bilen %1 tölemeli."
@@ -1377,6 +1522,7 @@ msgid "Recurs every month."
 msgstr "Her aý gaýtalanýar."
 
 #: ../Widgets/ItemDueDateEditor.qml:80
+#, qt-format
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr "Her %1 günden gaýtalanýar."
@@ -1607,13 +1753,19 @@ msgid "Delete Completed Items?"
 msgstr ""
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
+#, qt-format
 msgctxt "DeleteCompletedItemsDialog|"
-msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
+msgid ""
+"Do you really want to delete all done todos in the todo list "
+"<strong>%1</strong>? This cannot be undone."
 msgstr ""
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
+#, qt-format
 msgctxt "DeleteCompletedItemsDialog|"
-msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
+msgid ""
+"Do you really want to delete all done tasks in the todo <strong>%1</strong>? "
+"This cannot be undone."
 msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
@@ -1669,7 +1821,9 @@ msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:148
 msgctxt "EditNextCloudAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
 
 #: ../Widgets/LibrariesSideBar.qml:190
@@ -1730,7 +1884,11 @@ msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:114
 msgctxt "NewNextCloudAccountPage|"
-msgid "We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well."
+msgid ""
+"We have tried to open your browser to log you in to your NextCloud instance. "
+"Please log in and grant access to OpenTodoList in order to proceed. Trouble "
+"accessing your NextCloud in the browser? You can manually enter your "
+"username and password as well."
 msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:121
@@ -1740,7 +1898,11 @@ msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:127
 msgctxt "NewNextCloudAccountPage|"
-msgid "Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings."
+msgid ""
+"Ideally, you use app specific passwords instead of your user password. In "
+"case your login is protected with 2 Factor Authentication (2FA) you even "
+"must use app specific passwords to access your NextCloud. You can create "
+"such passwords in your user settings."
 msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:135
@@ -1800,7 +1962,9 @@ msgstr ""
 
 #: ../Pages/NewNextCloudAccountPage.qml:229
 msgctxt "NewNextCloudAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
 
 #: ../Pages/AccountsPage.qml:18 ../Pages/AccountsPage.qml:49
@@ -1855,7 +2019,9 @@ msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:194
 msgctxt "EditWebDAVAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
 
 #: ../Utils/ItemUtils.qml:109
@@ -1885,7 +2051,11 @@ msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:108
 msgctxt "NewLibraryFromAccountPage|"
-msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
+msgid ""
+"A library created in an account is synchronized with it. This allows to "
+"easily back up a library to a server and later on restore it from there. "
+"Additionally, such libraries can be shared with other users (if the server "
+"allows this)."
 msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:117
@@ -1915,7 +2085,9 @@ msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:182
 msgctxt "NewLibraryFromAccountPage|"
-msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
+msgid ""
+"Create a new library, which will be synchronized with the server. Such a "
+"library can be added to the app on other devices as well to synchronize data."
 msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:197
@@ -1930,7 +2102,10 @@ msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:92
 msgctxt "NewLibraryInFolderPage|"
-msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
+msgid ""
+"You can use any folder as a location for a library.<br/><br/>This is "
+"especially useful when you want to use another tool (like a sync client of a "
+"cloud provider) to sync your data with a server."
 msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:97
@@ -1985,7 +2160,12 @@ msgstr ""
 
 #: ../Pages/NewLocalLibraryPage.qml:66
 msgctxt "NewLocalLibraryPage|"
-msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
+msgid ""
+"A local library is stored solely on your device - this makes it perfect for "
+"the privacy concise!<br/><br/>Use it when you want to store information only "
+"locally and back up all your data regularly via other mechanisms. If you "
+"need to access your information across several devices, create a library "
+"which is synced instead."
 msgstr ""
 
 #: ../Pages/NewLocalLibraryPage.qml:77
@@ -2045,7 +2225,9 @@ msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:204
 msgctxt "NewWebDAVAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
 msgstr ""
 
 #: ../Pages/ProblemsPage.qml:18 ../Pages/ProblemsPage.qml:28
@@ -2082,4 +2264,3 @@ msgstr ""
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr ""
-
