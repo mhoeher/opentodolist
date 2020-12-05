@@ -1598,107 +1598,117 @@
         <translation type="unfinished">Wika ng System</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="24"/>
+        <location filename="../Utils/Translations.qml" line="28"/>
         <source>Danish</source>
         <translation type="unfinished">Danish</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="28"/>
+        <location filename="../Utils/Translations.qml" line="32"/>
         <source>German</source>
         <translation type="unfinished">Aleman</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="32"/>
+        <location filename="../Utils/Translations.qml" line="36"/>
         <source>Greek</source>
         <translation type="unfinished">Greek</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="36"/>
+        <location filename="../Utils/Translations.qml" line="40"/>
         <source>English</source>
         <translation type="unfinished">Ingles</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="40"/>
+        <location filename="../Utils/Translations.qml" line="44"/>
         <source>Spanish</source>
         <translation type="unfinished">Espanyol</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="44"/>
+        <location filename="../Utils/Translations.qml" line="48"/>
         <source>Spanish (Latin America &amp; Caribbean)</source>
         <translation type="unfinished">Espanyol (Latin America &amp; Caribbean)</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="48"/>
+        <location filename="../Utils/Translations.qml" line="52"/>
         <source>Basque</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="52"/>
+        <location filename="../Utils/Translations.qml" line="56"/>
         <source>Filipino</source>
         <translation type="unfinished">Pilipino</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="56"/>
+        <location filename="../Utils/Translations.qml" line="60"/>
         <source>French</source>
         <translation type="unfinished">Pranses</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="60"/>
+        <location filename="../Utils/Translations.qml" line="64"/>
         <source>Hungarian</source>
         <translation type="unfinished">Hungarian</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="64"/>
+        <location filename="../Utils/Translations.qml" line="68"/>
         <source>Italian</source>
         <translation type="unfinished">Italyano</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="68"/>
+        <location filename="../Utils/Translations.qml" line="72"/>
+        <source>Japanese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Translations.qml" line="80"/>
         <source>Dutch</source>
         <translation type="unfinished">Dutch</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="72"/>
+        <location filename="../Utils/Translations.qml" line="84"/>
         <source>Norwegian</source>
         <translation type="unfinished">Norwegian</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="76"/>
+        <location filename="../Utils/Translations.qml" line="88"/>
         <source>Polish</source>
         <translation type="unfinished">Polish</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="80"/>
+        <location filename="../Utils/Translations.qml" line="92"/>
         <source>Portuguese</source>
         <translation type="unfinished">Portuges</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="84"/>
+        <location filename="../Utils/Translations.qml" line="96"/>
         <source>Portuguese (Brazil)</source>
         <translation type="unfinished">Portuges (Brazil)</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="88"/>
+        <location filename="../Utils/Translations.qml" line="100"/>
         <source>Russian</source>
         <translation type="unfinished">Ruso</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="92"/>
+        <location filename="../Utils/Translations.qml" line="104"/>
         <source>Swedish</source>
         <translation type="unfinished">Suweko</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="96"/>
+        <location filename="../Utils/Translations.qml" line="108"/>
         <source>Turkmen</source>
         <translation type="unfinished">Mga Turkmen</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="100"/>
+        <location filename="../Utils/Translations.qml" line="112"/>
         <source>Turkish</source>
         <translation type="unfinished">Turko</translation>
     </message>
     <message>
-        <location filename="../Utils/Translations.qml" line="104"/>
+        <location filename="../Utils/Translations.qml" line="116"/>
+        <source>Ukrainian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/Translations.qml" line="120"/>
         <source>Vietnamese</source>
         <translation type="unfinished">Vietnamese</translation>
     </message>

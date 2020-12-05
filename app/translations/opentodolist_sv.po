@@ -1796,126 +1796,136 @@ msgctxt "Translations|"
 msgid "System Language"
 msgstr "Systemspråk"
 
-#: ../Utils/Translations.qml:24
+#: ../Utils/Translations.qml:28
 #, fuzzy
 msgctxt "Translations|"
 msgid "Danish"
 msgstr "danska"
 
-#: ../Utils/Translations.qml:28
+#: ../Utils/Translations.qml:32
 #, fuzzy
 msgctxt "Translations|"
 msgid "German"
 msgstr "tysk"
 
-#: ../Utils/Translations.qml:32
+#: ../Utils/Translations.qml:36
 #, fuzzy
 msgctxt "Translations|"
 msgid "Greek"
 msgstr "grekisk"
 
-#: ../Utils/Translations.qml:36
+#: ../Utils/Translations.qml:40
 #, fuzzy
 msgctxt "Translations|"
 msgid "English"
 msgstr "engelsk"
 
-#: ../Utils/Translations.qml:40
+#: ../Utils/Translations.qml:44
 #, fuzzy
 msgctxt "Translations|"
 msgid "Spanish"
 msgstr "spanska"
 
-#: ../Utils/Translations.qml:44
+#: ../Utils/Translations.qml:48
 #, fuzzy
 msgctxt "Translations|"
 msgid "Spanish (Latin America & Caribbean)"
 msgstr "Spanska (Latinamerika och Karibien)"
 
-#: ../Utils/Translations.qml:48
+#: ../Utils/Translations.qml:52
 msgctxt "Translations|"
 msgid "Basque"
 msgstr ""
 
-#: ../Utils/Translations.qml:52
+#: ../Utils/Translations.qml:56
 #, fuzzy
 msgctxt "Translations|"
 msgid "Filipino"
 msgstr "Filippinare"
 
-#: ../Utils/Translations.qml:56
+#: ../Utils/Translations.qml:60
 #, fuzzy
 msgctxt "Translations|"
 msgid "French"
 msgstr "franska"
 
-#: ../Utils/Translations.qml:60
+#: ../Utils/Translations.qml:64
 #, fuzzy
 msgctxt "Translations|"
 msgid "Hungarian"
 msgstr "ungerska"
 
-#: ../Utils/Translations.qml:64
+#: ../Utils/Translations.qml:68
 #, fuzzy
 msgctxt "Translations|"
 msgid "Italian"
 msgstr "italiensk"
 
-#: ../Utils/Translations.qml:68
+#: ../Utils/Translations.qml:72
+msgctxt "Translations|"
+msgid "Japanese"
+msgstr ""
+
+#: ../Utils/Translations.qml:80
 #, fuzzy
 msgctxt "Translations|"
 msgid "Dutch"
 msgstr "Dutch"
 
-#: ../Utils/Translations.qml:72
+#: ../Utils/Translations.qml:84
 #, fuzzy
 msgctxt "Translations|"
 msgid "Norwegian"
 msgstr "Norwegian"
 
-#: ../Utils/Translations.qml:76
+#: ../Utils/Translations.qml:88
 #, fuzzy
 msgctxt "Translations|"
 msgid "Polish"
 msgstr "putsa"
 
-#: ../Utils/Translations.qml:80
+#: ../Utils/Translations.qml:92
 #, fuzzy
 msgctxt "Translations|"
 msgid "Portuguese"
 msgstr "Portugisiska"
 
-#: ../Utils/Translations.qml:84
+#: ../Utils/Translations.qml:96
 #, fuzzy
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
 msgstr "Portugisiska (Brasilien)"
 
-#: ../Utils/Translations.qml:88
+#: ../Utils/Translations.qml:100
 #, fuzzy
 msgctxt "Translations|"
 msgid "Russian"
 msgstr "ryska"
 
-#: ../Utils/Translations.qml:92
+#: ../Utils/Translations.qml:104
 #, fuzzy
 msgctxt "Translations|"
 msgid "Swedish"
 msgstr "svenska"
 
-#: ../Utils/Translations.qml:96
+#: ../Utils/Translations.qml:108
 #, fuzzy
 msgctxt "Translations|"
 msgid "Turkmen"
 msgstr "Turkmen"
 
-#: ../Utils/Translations.qml:100
+#: ../Utils/Translations.qml:112
 #, fuzzy
 msgctxt "Translations|"
 msgid "Turkish"
 msgstr "Turkish"
 
-#: ../Utils/Translations.qml:104
+#: ../Utils/Translations.qml:116
+msgctxt "Translations|"
+msgid "Ukrainian"
+msgstr ""
+
+#: ../Utils/Translations.qml:120
 #, fuzzy
 msgctxt "Translations|"
 msgid "Vietnamese"

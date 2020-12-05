@@ -16,6 +16,10 @@ Item {
             name: qsTr("System Language")
         }
         ListElement {
+            key: "af"
+            name: "Afrikaans"
+        }
+        ListElement {
             key: "br"
             name: "Breton"
         }
@@ -64,6 +68,14 @@ Item {
             name: qsTr("Italian")
         }
         ListElement {
+            key: "ja"
+            name: qsTr("Japanese")
+        }
+        ListElement {
+            key: "ka"
+            name: "Georgian"
+        }
+        ListElement {
             key: "nl"
             name: qsTr("Dutch")
         }
@@ -98,6 +110,10 @@ Item {
         ListElement {
             key: "tr"
             name: qsTr("Turkish")
+        }
+        ListElement {
+            key: "uk"
+            name: qsTr("Ukrainian")
         }
         ListElement {
             key: "vi"
