@@ -758,7 +758,9 @@ ApplicationWindow {
 
         function onShowWindowRequested() {
             console.debug("Request to show main window")
-            window.show();
+            if (!window.visible) {
+                window.show();
+            }
             window.requestActivate();
             window.raise();
         }
