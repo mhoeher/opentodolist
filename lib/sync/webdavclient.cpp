@@ -381,7 +381,9 @@ bool WebDAVClient::syncDirectory(const QString& directory, QRegularExpression di
 
         mergeLocalInfoWithSyncList(d, dir, entries);
 
-        result = result && mergeRemoteInfoWithSyncList(entries, dir);
+        if (!mergeRemoteInfoWithSyncList(entries, dir)) {
+            result = false;
+        }
 
         if (!result) {
             qCWarning(log) << "Failed to get remote file list, skip syncing" << directory;
@@ -1045,12 +1047,12 @@ QSqlDatabase WebDAVClient::openSyncDb()
         return db;
     }
     QSqlQuery query(db);
-    query.prepare("CREATE TABLE IF NOT EXISTS "
-                  "version (key string PRIMARY KEY, value);");
+    (void)query.prepare("CREATE TABLE IF NOT EXISTS "
+                        "version (key string PRIMARY KEY, value);");
     if (!query.exec()) {
         qCWarning(log) << "Failed to create version table:" << query.lastError().text();
     }
-    query.prepare("SELECT value FROM version WHERE key == 'version';");
+    (void)query.prepare("SELECT value FROM version WHERE key == 'version';");
     int version = 0;
     if (query.exec()) {
         if (query.first()) {
@@ -1061,18 +1063,18 @@ QSqlDatabase WebDAVClient::openSyncDb()
         qCWarning(log) << "Failed to get version of sync DB:" << query.lastError().text();
     }
     if (version == 0) {
-        query.prepare("CREATE TABLE files ("
-                      "`parent` string, "
-                      "`entry` string NOT NULL, "
-                      "`modificationDate` date not null, "
-                      "`etag` string not null, "
-                      "PRIMARY KEY(`parent`, `entry`)"
-                      ");");
+        (void)query.prepare("CREATE TABLE files ("
+                            "`parent` string, "
+                            "`entry` string NOT NULL, "
+                            "`modificationDate` date not null, "
+                            "`etag` string not null, "
+                            "PRIMARY KEY(`parent`, `entry`)"
+                            ");");
         if (!query.exec()) {
             qCWarning(log) << "Failed to create files table:" << query.lastError().text();
         }
-        query.prepare("INSERT OR REPLACE INTO version(key, value) "
-                      "VALUES ('version', 1);");
+        (void)query.prepare("INSERT OR REPLACE INTO version(key, value) "
+                            "VALUES ('version', 1);");
         if (!query.exec()) {
             qCWarning(log) << "Failed to insert version into DB:" << query.lastError().text();
         }
@@ -1089,9 +1091,9 @@ QSqlDatabase WebDAVClient::openSyncDb()
 void WebDAVClient::insertSyncDBEntry(QSqlDatabase* db, const WebDAVClient::SyncEntry& entry)
 {
     QSqlQuery query(*db);
-    query.prepare("INSERT OR REPLACE INTO files "
-                  "(parent, entry, modificationDate, etag) "
-                  "VALUES (?, ?, ?, ?);");
+    (void)query.prepare("INSERT OR REPLACE INTO files "
+                        "(parent, entry, modificationDate, etag) "
+                        "VALUES (?, ?, ?, ?);");
     query.addBindValue(entry.parent);
     query.addBindValue(entry.entry);
     query.addBindValue(entry.lastModDate);
@@ -1113,8 +1115,8 @@ WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase* db, con
 {
     QMap<QString, SyncEntry> result;
     QSqlQuery query(*db);
-    query.prepare("SELECT parent, entry, modificationDate, etag "
-                  "FROM files WHERE parent = ?;");
+    (void)query.prepare("SELECT parent, entry, modificationDate, etag "
+                        "FROM files WHERE parent = ?;");
     query.addBindValue(parent);
     if (query.exec()) {
         while (query.next()) {
@@ -1138,8 +1140,8 @@ WebDAVClient::SyncEntryMap WebDAVClient::findSyncDBEntries(QSqlDatabase* db, con
 void WebDAVClient::removeDirFromSyncDB(QSqlDatabase* db, const SyncEntry& entry)
 {
     QSqlQuery query(*db);
-    query.prepare("DELETE FROM files "
-                  "WHERE parent LIKE '%' || ? OR (parent = ? AND entry = ?);");
+    (void)query.prepare("DELETE FROM files "
+                        "WHERE parent LIKE '%' || ? OR (parent = ? AND entry = ?);");
     query.addBindValue(entry.path());
     query.addBindValue(entry.parent);
     query.addBindValue(entry.entry);
@@ -1156,7 +1158,7 @@ void WebDAVClient::removeDirFromSyncDB(QSqlDatabase* db, const SyncEntry& entry)
 void WebDAVClient::removeFileFromSyncDB(QSqlDatabase* db, const WebDAVClient::SyncEntry& entry)
 {
     QSqlQuery query(*db);
-    query.prepare("DELETE FROM files WHERE parent = ? AND entry = ?;");
+    (void)query.prepare("DELETE FROM files WHERE parent = ? AND entry = ?;");
     query.addBindValue(entry.parent);
     query.addBindValue(entry.entry);
     if (!query.exec()) {
