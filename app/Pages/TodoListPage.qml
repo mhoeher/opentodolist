@@ -222,7 +222,7 @@ ItemPage {
         TodosWidget {
             id: todosWidget
             width: scrollView.contentItem.width
-            model: todosModel
+            itemsModel: todosModel
             library: page.library
             title: qsTr("Todos")
             symbol: {

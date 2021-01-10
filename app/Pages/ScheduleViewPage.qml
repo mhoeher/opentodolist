@@ -206,7 +206,7 @@ Page {
                 break;
             }
         }
-        model: sortedItems
+        itemsModel: sortedItems
         section {
             property: "effectiveDueToSpan"
             delegate: Heading {

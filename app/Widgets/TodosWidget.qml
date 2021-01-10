@@ -37,10 +37,31 @@ ListView {
     property var hideDueToLabelForSectionsFunction: null
     property bool showParentItemInformation: false
 
+    property var itemsModel: null
+
     signal headerButtonClicked()
     signal headerButton2Clicked()
     signal todoClicked(var todo)
     signal createNewItem(string title, var args)
+
+    /*
+     * WA for https://gitlab.com/rpdev/opentodolist/-/issues/391
+     * Background: When the list view is empty, changing the header size will somehow
+     * reset the overall scroll. To prevent this, we use a dedicated property to hold the real
+     * model. Only if it contains at least one item, we will use it. Otherwise, we inject a
+     * placeholder model (and delegate) which ensures the view is never really
+     * empty.
+     *
+     * This WA could be removed as soon as https://bugreports.qt.io/browse/QTBUG-89957
+     * is fixed.
+     */
+    model: {
+        if (itemsModel.count === 0) {
+            return 1;
+        } else {
+            return itemsModel
+        }
+    }
 
     header: Pane {
         property alias headerIcon: headerIcon
@@ -207,76 +228,88 @@ ListView {
         }
     }
 
-    delegate: TodosWidgetDelegate {
-        id: swipeDelegate
+    delegate: model === 1 ? placeholderDelegate : itemDelegate
 
-        property int updateCounter: 0
+    Component {
+        id: placeholderDelegate
 
-        showParentItemInformation: root.showParentItemInformation
-        model: root.model
-        item: object
-        library: root.library
-        allowSorting: root.allowSorting
-        hideDueDate: typeof(root.hideDueToLabelForSectionsFunction) === "function" ?
-                         root.hideDueToLabelForSectionsFunction(ListView.section) : false
-        drawSeperator: {
-            let result = updateCounter || true; // Force re-evaluation of binding
-            if (index == root.model.rowCount() - 1) {
-                // Dont draw separator for last item
-                result = false;
-            } else if (root.section.property !== "") {
-                // Check if this is the last item in the current section.
-                // Don't draw a separator for it in this case
-                let nextItemSection = root.model.data(root.model.index(index + 1, 0),
-                                               root.model.roleFromName(root.section.property));
-                if (ListView.section !== nextItemSection) {
-                    result = false;
+        Item { width: 1; height: 1 }
+    }
+
+    Component {
+        id: itemDelegate
+
+        TodosWidgetDelegate {
+                id: swipeDelegate
+
+                property int updateCounter: 0
+
+                showParentItemInformation: root.showParentItemInformation
+                model: root.model
+                item: object
+                library: root.library
+                allowSorting: root.allowSorting
+                hideDueDate: typeof(root.hideDueToLabelForSectionsFunction) === "function" ?
+                                 root.hideDueToLabelForSectionsFunction(ListView.section) : false
+                drawSeperator: {
+                    let result = updateCounter || true; // Force re-evaluation of binding
+                    if (index == root.model.rowCount() - 1) {
+                        // Dont draw separator for last item
+                        result = false;
+                    } else if (root.section.property !== "") {
+                        // Check if this is the last item in the current section.
+                        // Don't draw a separator for it in this case
+                        let nextItemSection = root.model.data(root.model.index(index + 1, 0),
+                                                       root.model.roleFromName(root.section.property));
+                        if (ListView.section !== nextItemSection) {
+                            result = false;
+                        }
+                    }
+                    return result;
+                }
+                dragTile: itemDragTile
+                onSetSwipeDelegate: {
+                    if (item !== d.openSwipeDelegate) {
+                        if (d.openSwipeDelegate) {
+                            d.openSwipeDelegate.swipe.close();
+                        }
+                    }
+                    d.openSwipeDelegate = item;
+                }
+
+                onItemPressedAndHold: showContextMenu({x: 0, y: 0})
+                onItemClicked: {
+                    root.todoClicked(item);
+                }
+
+                Connections {
+                    target: root.model
+
+                    function onModelReset() {
+                        swipeDelegate.updateCounter++;
+                    }
+
+                    function onRowsInserted(parent, first, last) {
+                        swipeDelegate.updateCounter++;
+                    }
+
+                    function onRowsRemoved(parent, first, last) {
+                        swipeDelegate.updateCounter++;
+                    }
+                }
+
+                function showContextMenu(mouse) {
+                    itemActionMenu.actions = swipeDelegate.itemActions;
+                    itemActionMenu.parent = swipeDelegate;
+                    itemActionMenu.popup(mouse.x, mouse.y);
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton
+                    onClicked: showContextMenu(mouse)
                 }
             }
-            return result;
-        }
-        dragTile: itemDragTile
-        onSetSwipeDelegate: {
-            if (item !== d.openSwipeDelegate) {
-                if (d.openSwipeDelegate) {
-                    d.openSwipeDelegate.swipe.close();
-                }
-            }
-            d.openSwipeDelegate = item;
-        }
-
-        onItemPressedAndHold: showContextMenu({x: 0, y: 0})
-        onItemClicked: {
-            root.todoClicked(item);
-        }
-
-        Connections {
-            target: root.model
-
-            function onModelReset() {
-                swipeDelegate.updateCounter++;
-            }
-
-            function onRowsInserted(parent, first, last) {
-                swipeDelegate.updateCounter++;
-            }
-
-            function onRowsRemoved(parent, first, last) {
-                swipeDelegate.updateCounter++;
-            }
-        }
-
-        function showContextMenu(mouse) {
-            itemActionMenu.actions = swipeDelegate.itemActions;
-            itemActionMenu.parent = swipeDelegate;
-            itemActionMenu.popup(mouse.x, mouse.y);
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.RightButton
-            onClicked: showContextMenu(mouse)
-        }
     }
 
     QtObject {
