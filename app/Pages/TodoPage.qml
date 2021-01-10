@@ -130,8 +130,8 @@ ItemPage {
         TodosWidget {
             id: todosWidget
 
-            width: parent.width
-            model: tasks
+            width: scrollView.contentItem.width
+            itemsModel: tasks
             title: qsTr("Tasks")
             library: page.library
             headerItemVisible: false
@@ -149,6 +149,7 @@ ItemPage {
             headerComponent: Column {
                 id: column
                 width: parent.width
+                spacing: 20
 
                 ItemPageHeader {
                     item: page.item
@@ -164,6 +165,7 @@ ItemPage {
                     item: page.item
                     width: parent.width
                 }
+
 
                 ItemNotesEditor {
                     id: itemNotesEditor
