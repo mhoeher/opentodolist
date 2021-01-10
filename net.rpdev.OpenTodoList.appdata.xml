@@ -40,6 +40,19 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.30.0" date="2021-01-10">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #389: Fix main window from going back to normal mode from maximized mode when it
+                regains focus.
+            </li>
+            <li>
+                #391: Prevent todo list and todo pages to jump to beginning of page when
+                entering longer texts and no todos or tasks are present in the page.
+            </li>
+        </ul>
+      </release>
       <release version="3.29.0" date="2020-12-05">
         <p>This release includes the following changes:</p>
         <ul>
