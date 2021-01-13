@@ -38,6 +38,8 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Synchronizer", QtWarningMsg)
 const QString Synchronizer::LogFileName = ".opentodolist.sync.log";
 const int Synchronizer::MaxLogEntries;
 
+const QString Synchronizer::HTTPUserAgent = "OpenTodoList";
+
 /**
  * @brief Constructor.
  *

@@ -35,6 +35,7 @@ Page {
         property var okButton: null
         property bool validated: false
         property bool manualLogin: false
+        property OTL.NextCloudLoginFlow loginFlow: null
 
         function baseUrl(fromUrl) {
             var url = fromUrl;
@@ -91,10 +92,11 @@ Page {
                 text: qsTr("Login")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {
-                    loginFlow.startLoginFlow(d.baseUrl(serverAddressEdit.text));
+                    d.loginFlow = OTL.Application.createNextCloudLoginFlow(disableCertificateChecksEdit.checked);
+                    d.loginFlow.startLoginFlow(d.baseUrl(serverAddressEdit.text));
                     loginInfoBox.visible = true;
                 }
-                enabled: serverAddressEdit.text !== ""
+                enabled: serverAddressEdit.text !== "" && (d.loginFlow === null || !d.loginFlow.flowRunning)
             }
 
             GroupBox {
@@ -279,16 +281,19 @@ Page {
         disableCertificateChecks: dav.disableCertificateCheck
     }
 
-    OTL.NextCloudLoginFlow {
-        id: loginFlow
+    Connections {
+        target: d.loginFlow
 
-        onReceivedLoginUrl: Qt.openUrlExternally(loginUrl)
-        onReceivedLogin: {
+        function onReceivedLogin(username, password, server) {
             usernameEdit.text = username;
             passwordEdit.text = password;
             serverAddressEdit.text = server;
             loginInfoBox.visible = false;
             d.validated = false;
+        }
+
+        function onReceivedLoginUrl(loginUrl) {
+            Qt.openUrlExternally(loginUrl);
         }
     }
 

@@ -47,6 +47,7 @@ Page {
 
         property bool validated: false
         property var okButton: null
+        property OTL.NextCloudLoginFlow loginFlow: null
     }
 
     ScrollView {
@@ -97,8 +98,11 @@ Page {
             Button {
                 text: qsTr("Login")
                 Layout.alignment: Qt.AlignRight
-                onClicked: loginFlow.startLoginFlow(serverAddressEdit.text)
-                enabled: serverAddressEdit.text !== ""
+                onClicked: {
+                    d.loginFlow = OTL.Application.createNextCloudLoginFlow(disableCertificateChecksEdit.checked);
+                    d.loginFlow.startLoginFlow(serverAddressEdit.text);
+                }
+                enabled: serverAddressEdit.text !== "" && (d.loginFlow === null || !d.loginFlow.flowRunning)
             }
 
             Components.Label {
@@ -199,15 +203,18 @@ Page {
         }
     }
 
-    OTL.NextCloudLoginFlow {
-        id: loginFlow
+    Connections {
+        target: d.loginFlow
 
-        onReceivedLogin: {
+        function onReceivedLogin(username, password, server) {
             usernameEdit.text = username;
             passwordEdit.text = password;
             serverAddressEdit.text = server;
         }
-        onReceivedLoginUrl: Qt.openUrlExternally(loginUrl)
+
+        function onReceivedLoginUrl(loginUrl) {
+            Qt.openUrlExternally(loginUrl);
+        }
     }
 
     Connections {

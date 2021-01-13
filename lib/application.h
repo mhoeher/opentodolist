@@ -50,6 +50,10 @@ class Task;
 class Todo;
 class TodoList;
 
+namespace SynqClient {
+class NextCloudLoginFlow;
+}
+
 /**
  * @brief The main class of the application
  *
@@ -125,6 +129,9 @@ public:
     Q_INVOKABLE bool folderExists(const QUrl& url) const;
 
     Q_INVOKABLE bool libraryExists(const QUuid& uid);
+
+    Q_INVOKABLE SynqClient::NextCloudLoginFlow*
+    createNextCloudLoginFlow(bool ignoreSslErrors) const;
 
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE void finishActivity();

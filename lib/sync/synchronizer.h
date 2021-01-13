@@ -84,6 +84,8 @@ public:
 
     Q_ENUM(LogType)
 
+    static const QString HTTPUserAgent;
+
     struct LogEntry
     {
         QDateTime time;

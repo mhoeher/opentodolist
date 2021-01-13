@@ -66,7 +66,6 @@ SOURCES += \
     opentodolistqmlextensionsplugin.cpp \
     service/backgroundservice.cpp \
     sync/account.cpp \
-    sync/nextcloudloginflow.cpp \
     sync/synchronizer.cpp \
     sync/syncjob.cpp \
     sync/syncrunner.cpp \
@@ -113,7 +112,6 @@ HEADERS += \
     opentodolistqmlextensionsplugin.h \
     service/backgroundservice.h \
     sync/account.h \
-    sync/nextcloudloginflow.h \
     sync/synchronizer.h \
     sync/syncjob.h \
     sync/syncrunner.h \
@@ -173,3 +171,4 @@ android {
 
 include(../3rdparty/simplecrypt.pri)
 include(./qmake/kf5-syntax-highlighting.pri)
+include(../3rdparty/synqclient/libsynqclient/libsynqclient.pri)

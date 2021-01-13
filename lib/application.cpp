@@ -19,6 +19,8 @@
 
 #include "application.h"
 
+#include "NextCloudLoginFlow"
+
 #include <QClipboard>
 #include <QCoreApplication>
 #include <QDateTime>
@@ -28,6 +30,8 @@
 #include <QFileInfo>
 #include <QGuiApplication>
 #include <QJsonDocument>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QProcess>
 #include <QRemoteObjectNode>
 #include <QScopedPointer>
@@ -968,6 +972,29 @@ bool Application::folderExists(const QUrl& url) const
 bool Application::libraryExists(const QUuid& uid)
 {
     return isLibraryUid(uid);
+}
+
+/**
+ * @brief Create a new flow to log in to NextCloud.
+ *
+ * This returns a new object which can be used to log in to a NextCloud instance via the
+ * NextCloud Login flow.
+ *
+ * If ignoreSslErrors is true, the resulting object will ignore any issues regarding SSL.
+ *
+ * The caller takes ownership of the created object.
+ */
+SynqClient::NextCloudLoginFlow* Application::createNextCloudLoginFlow(bool ignoreSslErrors) const
+{
+    auto result = new SynqClient::NextCloudLoginFlow();
+    auto nam = new QNetworkAccessManager(result);
+    result->setNetworkAccessManager(nam);
+    result->setUserAgent(Synchronizer::HTTPUserAgent);
+    if (ignoreSslErrors) {
+        connect(nam, &QNetworkAccessManager::sslErrors, result,
+                [=](QNetworkReply*, const QList<QSslError>&) {});
+    }
+    return result;
 }
 
 #ifdef Q_OS_ANDROID
