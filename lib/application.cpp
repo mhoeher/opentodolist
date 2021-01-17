@@ -992,7 +992,9 @@ SynqClient::NextCloudLoginFlow* Application::createNextCloudLoginFlow(bool ignor
     result->setUserAgent(Synchronizer::HTTPUserAgent);
     if (ignoreSslErrors) {
         connect(nam, &QNetworkAccessManager::sslErrors, result,
-                [=](QNetworkReply*, const QList<QSslError>&) {});
+                [=](QNetworkReply* reply, const QList<QSslError>& errors) {
+                    reply->ignoreSslErrors(errors);
+                });
     }
     return result;
 }

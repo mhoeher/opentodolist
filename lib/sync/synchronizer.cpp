@@ -298,7 +298,7 @@ QList<Synchronizer::LogEntry> Synchronizer::log() const
  */
 QDebug Synchronizer::debug()
 {
-    return createDebugStream<Debug>();
+    return writeLog(Debug);
 }
 
 /**
@@ -309,7 +309,7 @@ QDebug Synchronizer::debug()
  */
 QDebug Synchronizer::warning()
 {
-    return createDebugStream<Warning>();
+    return writeLog(Warning);
 }
 
 /**
@@ -320,7 +320,23 @@ QDebug Synchronizer::warning()
  */
 QDebug Synchronizer::error()
 {
-    return createDebugStream<Error>();
+    return writeLog(Error);
+}
+
+/**
+ * @brief Get a debug stream for writing to the log.
+ * @param type The type of log entry message to write.
+ */
+QDebug Synchronizer::writeLog(Synchronizer::LogType type)
+{
+    while (m_log.length() >= MaxLogEntries) {
+        m_log.removeFirst();
+    }
+    LogEntry entry;
+    entry.time = QDateTime::currentDateTime();
+    entry.type = type;
+    m_log.append(entry);
+    return QDebug(&m_log.last().message);
 }
 
 void Synchronizer::setLastSync(const QDateTime& lastSync)
@@ -545,17 +561,4 @@ QUuid SynchronizerExistingLibrary::uid() const
 void SynchronizerExistingLibrary::setUid(const QUuid& uid)
 {
     m_uid = uid;
-}
-
-template<Synchronizer::LogType Type>
-QDebug Synchronizer::createDebugStream()
-{
-    while (m_log.length() >= MaxLogEntries) {
-        m_log.removeFirst();
-    }
-    LogEntry entry;
-    entry.time = QDateTime::currentDateTime();
-    entry.type = Type;
-    m_log.append(entry);
-    return QDebug(&m_log.last().message);
 }

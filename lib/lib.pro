@@ -69,7 +69,6 @@ SOURCES += \
     sync/synchronizer.cpp \
     sync/syncjob.cpp \
     sync/syncrunner.cpp \
-    sync/webdavclient.cpp \
     sync/webdavsynchronizer.cpp \
     utils/directorywatcher.cpp \
     utils/jsonutils.cpp \
@@ -115,7 +114,6 @@ HEADERS += \
     sync/synchronizer.h \
     sync/syncjob.h \
     sync/syncrunner.h \
-    sync/webdavclient.h \
     sync/webdavsynchronizer.h \
     utils/directorywatcher.h \
     utils/jsonutils.h \

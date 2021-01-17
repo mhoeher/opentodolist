@@ -27,7 +27,7 @@
 
 #include "sync/synchronizer.h"
 
-class WebDAVClient;
+class QNetworkAccessManager;
 
 class WebDAVSynchronizer : public Synchronizer
 {
@@ -54,8 +54,6 @@ public:
     explicit WebDAVSynchronizer(QObject* parent = nullptr);
     ~WebDAVSynchronizer() override;
 
-    QUrl baseUrl() const;
-
     // Synchronizer interface
     void validate() override;
     void synchronize() override;
@@ -79,8 +77,6 @@ public:
 
     QUrl url() const;
     void setUrl(const QUrl& url);
-
-    WebDAVClient* createDAVClient(QObject* parent = nullptr);
 
     WebDAVServerType serverType() const;
     void setServerType(const WebDAVServerType& serverType);
@@ -109,12 +105,15 @@ private:
     bool m_stopRequested;
     bool m_hasSyncErrors;
     WebDAVServerType m_serverType;
-    QFutureWatcher<QVariantList> m_findExistingEntriesWatcher;
+    QNetworkAccessManager* m_nam;
 
     void touchErrorLock();
 
     QVariantMap toFullMap() const;
     void fromFullMap(const QVariantMap& map);
+
+    QNetworkAccessManager* nam();
+    QUrl createUrl() const;
 };
 
 #endif // SYNC_WEBDAVSYNCHRONIZER_H_
