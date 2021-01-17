@@ -237,16 +237,19 @@ void WebDAVSynchronizer::findExistingLibraries()
                         auto downloadJob = factory->downloadFile(compositeJob);
                         downloadJob->setRemoteFilename(listFilesJob->path() + "/" + entry.name()
                                                        + "/" + Library::LibraryFileName);
-                        connect(downloadJob, &SynqClient::DownloadFileJob::finished, [=]() {
+                        connect(downloadJob, &SynqClient::DownloadFileJob::finished, this, [=]() {
                             if (downloadJob->error() == SynqClient::JobError::NoError) {
                                 auto doc = QJsonDocument::fromJson(downloadJob->data());
                                 if (doc.isObject()) {
                                     auto map = doc.toVariant().toMap();
                                     SynchronizerExistingLibrary library;
                                     library.setName(map.value("name").toString());
-                                    QFileInfo fi(QDir::cleanPath(downloadJob->remoteFilename()));
+                                    QDir base("/" + m_remoteDirectory);
+                                    QFileInfo fi(QDir::cleanPath(
+                                            base.relativeFilePath(downloadJob->remoteFilename())));
                                     library.setPath(fi.path());
                                     library.setUid(map.value("uid").toUuid());
+                                    qWarning() << library.path();
                                     existingLibraries->append(QVariant::fromValue(library));
                                 }
                             }
