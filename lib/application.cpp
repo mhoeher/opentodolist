@@ -19,8 +19,6 @@
 
 #include "application.h"
 
-#include "NextCloudLoginFlow"
-
 #include <QClipboard>
 #include <QCoreApplication>
 #include <QDateTime>
@@ -44,6 +42,8 @@
 #    include <QtAndroid>
 #    include <QAndroidJniExceptionCleaner>
 #endif
+
+#include "NextCloudLoginFlow"
 
 #include "datamodel/image.h"
 #include "datamodel/note.h"

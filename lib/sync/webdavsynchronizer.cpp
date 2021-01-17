@@ -28,7 +28,6 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSharedPointer>
-#include <QSharedPointer>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
@@ -226,7 +225,7 @@ void WebDAVSynchronizer::findExistingLibraries()
     QStringList dirsToCheck { "/", "/OpenTodoList" };
     for (const auto& dir : qAsConst(dirsToCheck)) {
         auto listFilesJob = factory->listFiles(compositeJob);
-        listFilesJob->setPath(dir);
+        listFilesJob->setPath(m_remoteDirectory + dir);
         compositeJob->addJob(listFilesJob);
         connect(listFilesJob, &SynqClient::ListFilesJob::finished, this, [=]() {
             if (listFilesJob->error() == SynqClient::JobError::NoError) {
