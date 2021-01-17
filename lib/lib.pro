@@ -10,16 +10,16 @@ macos:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models
 
-# Include QLMDB library:
-INCLUDEPATH += ../3rdparty/qlmdb
+# Include QLMDB and SynqClient libraries:
+INCLUDEPATH += ../3rdparty/qlmdb ../3rdparty/synqclient/libsynqclient/inc
 win32 {
     CONFIG(release, debug|release) {
-        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release -L$$OUT_PWD/../3rdparty/synqclient/libsynqclient/release
     } else {
-        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug -L$$OUT_PWD/../3rdparty/synqclient/libsynqclient/debug
     }
 } else {
-    LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/
+    LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/ -L$$OUT_PWD/../3rdparty/synqclient/libsynqclient/
 }
 
 android {
@@ -28,12 +28,12 @@ android {
 
 android:versionAtLeast(QT_VERSION, 5.14.0) {
     # On Android starting with v5.14, the Qt installation is multi arch,
-    # so we need to link explicitly against the correct QLMDB library:
-    LIBS *= -lqlmdb_$$QT_ARCH
+    # so we need to link explicitly against the correct QLMDB/SynqClient library:
+    LIBS *= -lqlmdb_$$QT_ARCH -lsynqclient_$$QT_ARCH
 } else {
-    LIBS *= -lqlmdb
+    LIBS *= -lqlmdb -lsynqclient
 }
-QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/
+QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/ ../3rdparty/synqclient/libsynqclient/
 
 SOURCES += \
     application.cpp \
@@ -169,4 +169,3 @@ android {
 
 include(../3rdparty/simplecrypt.pri)
 include(./qmake/kf5-syntax-highlighting.pri)
-include(../3rdparty/synqclient/libsynqclient/libsynqclient.pri)

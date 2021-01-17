@@ -21,6 +21,7 @@ $QTSDK/bin/qmake \
     -config release \
     CONFIG+=with_update_service \
     CONFIG+=qlmdb_with_static_libs \
+    CONFIG+=synqclient_with_static_libs \
     CONFIG+=ccache \
     ..
 make -j4

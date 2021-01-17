@@ -245,9 +245,9 @@ void WebDAVSynchronizer::findExistingLibraries()
                                     SynchronizerExistingLibrary library;
                                     library.setName(map.value("name").toString());
                                     QDir base("/" + m_remoteDirectory);
-                                    QFileInfo fi(QDir::cleanPath(
-                                            base.relativeFilePath(downloadJob->remoteFilename())));
-                                    library.setPath(fi.path());
+                                    QFileInfo fi(QDir::cleanPath(base.relativeFilePath(
+                                            "/" + downloadJob->remoteFilename())));
+                                    library.setPath("/" + fi.path());
                                     library.setUid(map.value("uid").toUuid());
                                     qWarning() << library.path();
                                     existingLibraries->append(QVariant::fromValue(library));
