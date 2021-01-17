@@ -10,16 +10,16 @@ macos:CONFIG += static
 
 INCLUDEPATH += datamodel datastorage models
 
-# Include QLMDB library:
-INCLUDEPATH += ../3rdparty/qlmdb
+# Include QLMDB and SynqClient libraries:
+INCLUDEPATH += ../3rdparty/qlmdb ../3rdparty/synqclient/libsynqclient/inc
 win32 {
     CONFIG(release, debug|release) {
-        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/release -L$$OUT_PWD/../3rdparty/synqclient/libsynqclient/release
     } else {
-        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug
+        LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/debug -L$$OUT_PWD/../3rdparty/synqclient/libsynqclient/debug
     }
 } else {
-    LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/
+    LIBS *= -L$$OUT_PWD/../3rdparty/qlmdb/qlmdb/ -L$$OUT_PWD/../3rdparty/synqclient/libsynqclient/
 }
 
 android {
@@ -28,12 +28,12 @@ android {
 
 android:versionAtLeast(QT_VERSION, 5.14.0) {
     # On Android starting with v5.14, the Qt installation is multi arch,
-    # so we need to link explicitly against the correct QLMDB library:
-    LIBS *= -lqlmdb_$$QT_ARCH
+    # so we need to link explicitly against the correct QLMDB/SynqClient library:
+    LIBS *= -lqlmdb_$$QT_ARCH -lsynqclient_$$QT_ARCH
 } else {
-    LIBS *= -lqlmdb
+    LIBS *= -lqlmdb -lsynqclient
 }
-QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/
+QMAKE_RPATHDIR *= ../3rdparty/qlmdb/qlmdb/ ../3rdparty/synqclient/libsynqclient/
 
 SOURCES += \
     application.cpp \
@@ -66,11 +66,9 @@ SOURCES += \
     opentodolistqmlextensionsplugin.cpp \
     service/backgroundservice.cpp \
     sync/account.cpp \
-    sync/nextcloudloginflow.cpp \
     sync/synchronizer.cpp \
     sync/syncjob.cpp \
     sync/syncrunner.cpp \
-    sync/webdavclient.cpp \
     sync/webdavsynchronizer.cpp \
     utils/directorywatcher.cpp \
     utils/jsonutils.cpp \
@@ -113,11 +111,9 @@ HEADERS += \
     opentodolistqmlextensionsplugin.h \
     service/backgroundservice.h \
     sync/account.h \
-    sync/nextcloudloginflow.h \
     sync/synchronizer.h \
     sync/syncjob.h \
     sync/syncrunner.h \
-    sync/webdavclient.h \
     sync/webdavsynchronizer.h \
     utils/directorywatcher.h \
     utils/jsonutils.h \

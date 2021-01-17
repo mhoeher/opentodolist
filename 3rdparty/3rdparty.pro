@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += qlmdb
+SUBDIRS += qlmdb synqclient

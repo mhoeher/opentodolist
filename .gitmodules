@@ -16,3 +16,6 @@
 [submodule "3rdparty/qtkeychain"]
 	path = 3rdparty/qtkeychain
 	url = https://gitlab.com/rpdev/qtkeychain.git
+[submodule "3rdparty/synqclient"]
+	path = 3rdparty/synqclient
+	url = https://gitlab.com/rpdev/synqclient.git

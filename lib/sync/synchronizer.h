@@ -80,9 +80,21 @@ class Synchronizer : public QObject
             QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
     Q_PROPERTY(QString type READ type CONSTANT)
 public:
-    enum LogType { Debug, Warning, Error };
+    enum LogType {
+        Debug,
+        Warning,
+        Error,
+        LocalMkDir,
+        RemoteMkDir,
+        LocalDelete,
+        RemoteDelete,
+        Download,
+        Upload
+    };
 
     Q_ENUM(LogType)
+
+    static const QString HTTPUserAgent;
 
     struct LogEntry
     {
@@ -168,6 +180,7 @@ public:
     QDebug debug();
     QDebug warning();
     QDebug error();
+    QDebug writeLog(LogType type);
 
     QList<LogEntry> log() const;
     bool loadLog();
@@ -212,9 +225,6 @@ private:
     QVariantList m_existingLibraries;
     QDateTime m_lastSync;
     QList<LogEntry> m_log;
-
-    template<LogType Type>
-    inline QDebug createDebugStream();
 };
 
 Q_DECLARE_METATYPE(SynchronizerExistingLibrary)

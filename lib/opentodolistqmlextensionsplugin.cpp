@@ -36,7 +36,6 @@
 #include "models/itemssortfiltermodel.h"
 
 #include "sync/account.h"
-#include "sync/nextcloudloginflow.h"
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
 
@@ -44,6 +43,8 @@
 #include "utils/syntaxhighlighting.h"
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
+
+#include "NextCloudLoginFlow"
 
 #ifdef Q_OS_ANDROID
 #    include "utils/android/androidfiledialog.h"
@@ -84,7 +85,9 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                              "Use specific synchronizer");
     qmlRegisterType<WebDAVSynchronizer>(uri, 1, 0, "WebDAVSynchronizer");
-    qmlRegisterType<NextCloudLoginFlow>(uri, 1, 0, "NextCloudLoginFlow");
+    qmlRegisterUncreatableType<SynqClient::NextCloudLoginFlow>(
+            uri, 1, 0, "NextCloudLoginFlow",
+            "Use OTL.Application.createNextCloudLoginFlow() instead");
 
     // To allow assigning model classes to the sourceModel
     // property of a proxy model in declarative assignments:

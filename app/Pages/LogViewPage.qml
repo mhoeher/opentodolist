@@ -38,11 +38,20 @@ Page {
                     var map = {
                         "Debug": Icons.faInfo,
                         "Warning": Icons.faExclamation,
-                        "Error": Icons.faTimesCircle
+                        "Error": Icons.faTimesCircle,
+                        "Download": Icons.faDownload,
+                        "Upload": Icons.faUpload,
+                        "LocalMkDir": Icons.faFolder,
+                        "RemoteMkDir": Icons.faFolderOpen,
+                        "LocalDelete": Icons.faTrash,
+                        "RemoteDelete": Icons.faTrashAlt
                     };
                     return map[modelData.type] || Icons.faQuestionCircle;
                 }
                 Layout.alignment: Qt.AlignTop
+                ToolTip.text: modelData.type
+                ToolTip.visible: hovered
+                ToolTip.delay: 500
             }
             Label {
                 text: modelData.time

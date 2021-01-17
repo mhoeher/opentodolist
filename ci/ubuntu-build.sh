@@ -35,6 +35,7 @@ $QT_ROOT/bin/qmake \
     CONFIG+=with_appimage_extras \
     CONFIG+=with_update_service \
     CONFIG+=qlmdb_with_static_libs \
+    CONFIG+=synqclient_with_static_libs \
     CONFIG+=ccache \
     INSTALL_PREFIX=/usr \
     $QMAKE_EXTRA_FLAGS \
