@@ -222,6 +222,8 @@ ItemPage {
         TodosWidget {
             id: todosWidget
             width: scrollView.contentItem.width
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
             itemsModel: todosModel
             library: page.library
             title: qsTr("Todos")
@@ -265,7 +267,7 @@ ItemPage {
                 id: column
 
                 width: parent.width
-                spacing: 20
+                spacing: AppSettings.smallSpace
 
                 ItemPageHeader {
                     counter: todosModel.count

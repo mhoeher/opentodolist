@@ -119,5 +119,7 @@
         <file>Utils/SortFilterModel.qml</file>
         <file>Windows/SelectTodoListDialog.qml</file>
         <file>Actions/MoveTodo.qml</file>
+        <file>Components/Empty.qml</file>
+        <file>Utils/AppSettings.qml</file>
     </qresource>
 </RCC>

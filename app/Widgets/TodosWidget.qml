@@ -233,7 +233,7 @@ ListView {
     Component {
         id: placeholderDelegate
 
-        Item { width: 1; height: 1 }
+        Components.Empty {}
     }
 
     Component {

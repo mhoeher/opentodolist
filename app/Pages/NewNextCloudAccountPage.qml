@@ -59,7 +59,7 @@ Page {
         id: scrollView
 
         anchors.fill: parent
-        padding: 10
+        padding: Utils.AppSettings.mediumSpace
         enabled: !dav.validating
 
         GridLayout {
@@ -67,6 +67,8 @@ Page {
             columns: 2
             columnSpacing: 10
             rowSpacing: 10
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
 
             Components.Heading {
                 text: qsTr("Connection Settings")
@@ -86,7 +88,7 @@ Page {
                 Layout.fillWidth: true
             }
 
-            Item { width: 1; height: 1 }
+            Components.Empty {}
 
             Button {
                 text: qsTr("Login")
@@ -109,7 +111,7 @@ Page {
 
                 Column {
                     width: parent.width
-                    spacing: 10
+                    spacing: Utils.AppSettings.mediumSpace
 
                     Components.Label {
                         width: parent.width

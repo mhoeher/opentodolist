@@ -26,6 +26,8 @@ Item {
         wrapMode: "WrapAtWordBoundaryOrAnywhere"
         font.bold: false
         textFormat: Text.RichText
+        bottomPadding: 0
+        topPadding: 0
     }
 }
 

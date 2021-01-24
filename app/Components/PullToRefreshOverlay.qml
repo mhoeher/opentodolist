@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 
 import "." as Components
 import "../Fonts" as Fonts
+import "../Utils" as Utils
 
 Item {
     id: root
@@ -18,10 +19,6 @@ Item {
     implicitWidth: 200
     implicitHeight: 200
 
-
-    FontMetrics {
-        id: fontMetrics
-    }
 
     Binding {
         target: pullIndicator
@@ -60,7 +57,7 @@ Item {
         id: pullIndicator
 
         y: -height
-        width: fontMetrics.font.pixelSize * 3
+        width: Utils.AppSettings.effectiveFontMetrics.height * 3
         height: width
         anchors.horizontalCenter: parent.horizontalCenter
         contentItem: Label {

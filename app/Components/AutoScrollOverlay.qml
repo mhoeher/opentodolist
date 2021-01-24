@@ -1,5 +1,8 @@
 import QtQuick 2.5
 
+import "../Utils" as Utils
+
+
 /**
   * @brief Provides automatic scrolling during drag&drop operations
   *
@@ -39,12 +42,8 @@ Item {
         }
 
         function increaseScrollDistance() {
-            scrollDistance = Math.min(scrollDistance * 1.1, fontMetrics.height);
+            scrollDistance = Math.min(scrollDistance * 1.1, Utils.AppSettings.effectiveFontMetrics.height);
         }
-    }
-
-    FontMetrics {
-        id: fontMetrics
     }
 
     DropArea {
@@ -55,7 +54,7 @@ Item {
             right: parent.right
             top: parent.top
         }
-        height: fontMetrics.height * 2
+        height: Utils.AppSettings.effectiveFontMetrics.height * 2
     }
 
     DropArea {
@@ -66,7 +65,7 @@ Item {
             right: parent.right
             bottom: parent.bottom
         }
-        height: fontMetrics.height * 2
+        height: Utils.AppSettings.effectiveFontMetrics.height * 2
     }
 
     Timer {

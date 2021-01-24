@@ -166,8 +166,10 @@ Pane {
         anchors.fill: parent
 
         ListView {
-            width: scrollView.width
+            width: scrollView.availableWidth
             model: sortFilterModel
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
 
             footer: Column {
                 width: parent.width

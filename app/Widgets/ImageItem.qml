@@ -13,7 +13,7 @@ Item {
     id: item
 
     property OTL.Library library: null
-    property OTL.Image libraryItem: OTL.Image {}
+    property OTL.ImageItem libraryItem: OTL.ImageItem {}
     property var model
     property bool allowReordering: true
     property ItemDragTile dragTile
@@ -23,7 +23,7 @@ Item {
 
     ItemPane {
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.margins: AppSettings.smallSpace
         Material.elevation: 6
         item: item.libraryItem
 

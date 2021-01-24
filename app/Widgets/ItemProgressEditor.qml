@@ -8,7 +8,6 @@ import "../Components"
 import "../Fonts"
 import "../Utils"
 import "../Windows"
-import "../Components"
 
 RowLayout {
     id: root

@@ -6,6 +6,7 @@ import OpenTodoList 1.0 as OTL
 
 import "../Components"
 import "../Fonts"
+import "../Utils" as Utils
 
 Page {
     id: page
@@ -29,7 +30,7 @@ Page {
 
         anchors.fill: parent
         ScrollBar.vertical: ScrollBar {}
-        spacing: 10
+        spacing: Utils.AppSettings.mediumSpace
 
         delegate: RowLayout {
             width: view.width

@@ -27,7 +27,7 @@ Column {
 
         Column {
 
-            spacing: 10
+            spacing: AppSettings.mediumSpace
 
             Heading {
                 level: 2
@@ -72,7 +72,7 @@ Column {
 
     Flow {
         width: parent.width
-        spacing: 5
+        spacing: AppSettings.smallSpace
 
         Repeater {
             model: editor.item.tags

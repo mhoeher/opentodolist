@@ -1,4 +1,5 @@
 import QtQuick 2.10
+import QtQuick.Controls 2.5
 
 import "../Components" as Components
 import "../Fonts"
@@ -12,7 +13,7 @@ Components.RoundButton {
     anchors {
         right: parent.right
         bottom: parent.bottom
-        margins: 10
+        margins: AppSettings.mediumSpace
     }
     symbol: Icons.faPlus
     backgroundColor: Colors.positiveColor

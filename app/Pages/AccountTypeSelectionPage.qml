@@ -80,7 +80,7 @@ Page {
         header: Components.Heading {
             text: qsTr("Account Type")
             width: parent.width
-            padding: 10
+            padding: Utils.AppSettings.mediumSpace
         }
         model: accountsModel
         delegate: ItemDelegate {

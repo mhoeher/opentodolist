@@ -5,6 +5,7 @@ import QtQuick.Controls 2.12
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Utils" as Utils
 
 Page {
     id: page
@@ -18,31 +19,31 @@ Page {
 
         anchors.fill: parent
 
-        padding: 10
+        padding: Utils.AppSettings.mediumSpace
 
         Column {
             width: page.width - 2 * scrollView.padding
-            spacing: 10
+            spacing: Utils.AppSettings.mediumSpace
 
             Label {
                 text: qsTr("OpenTodoList")
                 font.bold: true
                 width: parent.width
-                padding: 5
+                padding: Utils.AppSettings.smallSpace
             }
 
             Label {
                 text: qsTr("A todo and task managing application.")
                 font.italic: true
                 width: parent.width
-                padding: 5
+                padding: Utils.AppSettings.smallSpace
             }
 
             Label {
                 text: qsTr("(c) RPdev 2013-2020, version %1").arg(
                           applicationVersion)
                 width: parent.width
-                padding: 5
+                padding: Utils.AppSettings.smallSpace
             }
 
             Label {
@@ -50,7 +51,7 @@ Page {
                           "https://opentodolist.rpdev.net/")
                 width: parent.width
                 onLinkActivated: Qt.openUrlExternally(link)
-                padding: 5
+                padding: Utils.AppSettings.smallSpace
             }
 
             Label {
@@ -70,7 +71,7 @@ Page {
                         break;
                     }
                 }
-                padding: 5
+                padding: Utils.AppSettings.smallSpace
             }
 
             Button {

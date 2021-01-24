@@ -22,7 +22,7 @@ Item {
 
     ItemPane {
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.margins: AppSettings.smallSpace
         Material.elevation: 6
         item: item.libraryItem
         padding: 0

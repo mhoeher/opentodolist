@@ -131,6 +131,8 @@ ItemPage {
             id: todosWidget
 
             width: scrollView.contentItem.width
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
             itemsModel: tasks
             title: qsTr("Tasks")
             library: page.library
@@ -149,7 +151,7 @@ ItemPage {
             headerComponent: Column {
                 id: column
                 width: parent.width
-                spacing: 20
+                spacing: AppSettings.smallSpace
 
                 ItemPageHeader {
                     item: page.item
