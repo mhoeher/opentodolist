@@ -59,7 +59,7 @@ Page {
 
             Components.Heading {
                 text: qsTr("Create Library")
-                padding: 10
+                padding: Utils.AppSettings.mediumSpace
                 width: parent.width
             }
 
@@ -84,7 +84,7 @@ Page {
             Components.Heading {
                 level: 2
                 text: qsTr("Add Libraries From Your Accounts")
-                padding: 10
+                padding: Utils.AppSettings.mediumSpace
             }
 
             Repeater {

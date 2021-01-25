@@ -47,7 +47,7 @@ Page {
 
         header: Components.Heading {
             text: qsTr("Accounts")
-            padding: 10
+            padding: Utils.AppSettings.mediumSpace
         }
         delegate: ItemDelegate {
             id: itemDelegate
@@ -69,7 +69,7 @@ Page {
         id: roundButton
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: 10
+        anchors.margins: Utils.AppSettings.mediumSpace
         symbol: Fonts.Icons.faPlus
         backgroundColor: Utils.Colors.positiveColor
         onClicked: {

@@ -40,7 +40,7 @@ SwipeDelegate {
     
     width: parent ? parent.width : implicitWidth
     padding: 0
-    topPadding: fontMetrics.height / 2
+    topPadding: AppSettings.effectiveFontMetrics.height / (AppSettings.useCompactTodoLists ? 8 : 2)
     bottomPadding: topPadding
     hoverEnabled: true
     contentItem: RowLayout {
@@ -89,7 +89,7 @@ SwipeDelegate {
                 width: parent.width
             }
             Item {
-                height: fontMetrics.height / 4
+                height: AppSettings.effectiveFontMetrics.height / 4
                 width: 1
                 visible: itemInfoGrid.height > 0
             }
@@ -100,7 +100,7 @@ SwipeDelegate {
 
                 Row {
                     visible: d.parentItem
-                    spacing: fontMetrics.height / 2
+                    spacing: AppSettings.effectiveFontMetrics.height / 2
 
                     Label {
                         font.family: Fonts.solidIcons
@@ -117,8 +117,8 @@ SwipeDelegate {
 
                     }
                     Item {
-                        width: fontMetrics.height
-                        height: fontMetrics.height
+                        width: AppSettings.effectiveFontMetrics.height
+                        height: AppSettings.effectiveFontMetrics.height
                     }
                 }
 
@@ -126,7 +126,7 @@ SwipeDelegate {
                     visible: swipeDelegate.item.effectiveDueTo !== undefined &&
                              DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
                              !swipeDelegate.hideDueDate
-                    spacing: fontMetrics.height / 2
+                    spacing: AppSettings.effectiveFontMetrics.height / 2
 
                     Label {
                         font.family: Fonts.icons
@@ -347,8 +347,6 @@ SwipeDelegate {
         color: Material.color(Material.Grey)
         opacity: 0.1
     }
-
-    FontMetrics { id: fontMetrics }
 
     Actions.RenameItem { id: renameAction; item: swipeDelegate.item }
     Actions.SetDueTo { id: setDueToAction; item: swipeDelegate.item }

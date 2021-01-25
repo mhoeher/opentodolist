@@ -23,7 +23,7 @@ Item {
 
     ItemPane {
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.margins: AppSettings.smallSpace
         Material.elevation: 6
         item: item.libraryItem
         padding: 0
@@ -65,7 +65,7 @@ Item {
 
                 width: parent.width
                 height: parent.height
-                spacing: 5
+                spacing: AppSettings.smallSpace
                 interactive: false
                 clip: true
                 model: OTL.ItemsSortFilterModel {

@@ -7,6 +7,8 @@ import OpenTodoList 1.0 as OTL
 
 import Components 1.0 as Components
 
+import "../Utils" as Utils
+
 Page {
     id: page
 
@@ -26,7 +28,7 @@ Page {
             height: page.height
             header: Components.Heading {
                 text: qsTr("Problems Detected")
-                padding: 10
+                padding: Utils.AppSettings.mediumSpace
                 width: parent.width
             }
             model: OTL.Application.problemManager.problems

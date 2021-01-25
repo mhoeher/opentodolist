@@ -5,6 +5,8 @@ import QtQuick.Layouts 1.0
 import Components 1.0 as Components
 import OpenTodoList 1.0 as OTL
 
+import "../Utils" as Utils
+
 Page {
     id: page
 
@@ -87,13 +89,15 @@ Page {
 
     ScrollView {
         anchors.fill: parent
-        padding: 10
+        padding: Utils.AppSettings.mediumSpace
 
         GridLayout {
             id: grid
 
             width: page.width - 2 * 10
             columns: 2
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
 
             Components.Heading {
                 text: qsTr(

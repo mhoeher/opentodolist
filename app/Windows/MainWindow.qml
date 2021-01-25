@@ -1,4 +1,4 @@
-import QtQuick 2.9
+import QtQuick 2.10
 import QtQuick.Window 2.3
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.12
@@ -19,6 +19,9 @@ ApplicationWindow {
     id: window
 
     property ItemCreatedNotification itemCreatedNotification: null
+    property int defaultFontSize: 12
+
+
 
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
@@ -202,12 +205,6 @@ ApplicationWindow {
                 }
             }
         }
-    }
-
-    Settings {
-        property alias fontPixelSize: window.font.pixelSize
-
-        category: "ApplicationWindow"
     }
 
     FontMetrics { id: fontMetrics; font: pageTitleLabel.font }
@@ -442,7 +439,7 @@ ApplicationWindow {
 
         text: qsTr("&Find")
         shortcut: StandardKey.Find
-        onTriggered: searchToolButtonAction.clicked(null)
+        onTriggered: searchToolButtonAction.trigger()
     }
 
     Shortcut {
@@ -493,6 +490,11 @@ ApplicationWindow {
             window.visibility = Window.Maximized;
         }
         d.completed = true;
+
+        defaultFontSize = font.pointSize;
+        font.pointSize = Qt.binding(function() {
+            return AppSettings.useCustomFontSize ? AppSettings.customFontSize : defaultFontSize;
+        });
     }
 
     Component.onDestruction: {
@@ -765,5 +767,7 @@ ApplicationWindow {
             window.raise();
         }
     }
+
+
 }
 

@@ -19,7 +19,7 @@ RoundButton {
     anchors {
         right: parent.right
         bottom: parent.bottom
-        margins: 10
+        margins: AppSettings.mediumSpace
     }
     symbol: Icons.faPlus
     backgroundColor: Colors.positiveColor

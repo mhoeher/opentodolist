@@ -13,7 +13,7 @@ ItemPage {
     id: page
 
     property var library: null
-    property OTL.Image item: OTL.Image {}
+    property OTL.ImageItem item: OTL.ImageItem {}
 
     signal closePage()
     signal openPage(var component, var properties)
@@ -73,7 +73,7 @@ ItemPage {
 
         anchors.fill: parent
         item: page.item
-        padding: 10
+        padding: AppSettings.mediumSpace
 
         Flickable {
             id: flickable
@@ -85,7 +85,7 @@ ItemPage {
             Column {
                 id: column
                 width: flickable.width
-                spacing: 20
+                spacing: AppSettings.largeSpace
 
                 ItemPageHeader {
                     item: page.item

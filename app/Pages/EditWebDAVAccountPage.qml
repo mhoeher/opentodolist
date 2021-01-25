@@ -108,7 +108,7 @@ Page {
         id: scrollView
 
         anchors.fill: parent
-        padding: 10
+        padding: Utils.AppSettings.mediumSpace
         enabled: !dav.validating
 
         GridLayout {
@@ -116,6 +116,8 @@ Page {
             columns: 2
             columnSpacing: 10
             rowSpacing: 10
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
 
             Components.Heading {
                 text: qsTr("Edit Account")

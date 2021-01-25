@@ -6,6 +6,7 @@ import OpenTodoList 1.0
 
 import "../Components"
 import "../Fonts"
+import "../Utils" as Utils
 
 Page {
     id: page
@@ -20,7 +21,7 @@ Page {
 
         delegate: RowLayout {
             width: view.width
-            spacing: 2
+            spacing: Utils.AppSettings.smallSpace
             ToolButton {
                 symbol: Icons.faWarning
             }

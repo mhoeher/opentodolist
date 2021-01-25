@@ -79,7 +79,7 @@ ItemPage {
 
         anchors.fill: parent
         item: page.item
-        padding: 10
+        padding: AppSettings.mediumSpace
 
         Flickable {
             id: flickable
@@ -91,7 +91,7 @@ ItemPage {
                 id: column
 
                 width: scrollView.contentItem.width
-                spacing: 20
+                spacing: AppSettings.largeSpace
 
                 ItemPageHeader {
                     item: page.item
@@ -207,7 +207,7 @@ ItemPage {
                                         OTL.ItemsModel.ItemRole);
                         }
                     }
-                    property OTL.NotePage lastPageCreated: null
+                    property OTL.NotePageItem lastPageCreated: null
 
                     width: parent.width
                     extraButton.visible: pageTabBar.currentIndex > 0

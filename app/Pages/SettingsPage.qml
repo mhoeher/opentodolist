@@ -18,7 +18,7 @@ Page {
     property alias languageEdit: languageEdit
     property StackView stack: null
 
-    padding: 10
+    padding: 0
     footer: DialogButtonBox {
         id: buttons
 
@@ -34,9 +34,12 @@ Page {
     ScrollView {
         id: scrollView
         anchors.fill: parent
+        padding: Utils.AppSettings.mediumSpace
 
         GridLayout {
-            width: scrollView.width
+            implicitWidth: childrenRect.width
+            implicitHeight: childrenRect.height
+            width: scrollView.availableWidth
             columns: 2
 
             Heading {
@@ -115,11 +118,94 @@ Page {
             Slider {
                 id: fontSizeEdit
                 from: 6
-                to: 30
+                to: 20
                 Layout.fillWidth: true
-                value: ApplicationWindow.window.font.pixelSize
+                value: Utils.AppSettings.customFontSize
                 live: false
-                onValueChanged: ApplicationWindow.window.font.pixelSize = fontSizeEdit.value
+                enabled: Utils.AppSettings.useCustomFontSize
+                onValueChanged: Utils.AppSettings.customFontSize = fontSizeEdit.value
+            }
+
+            Empty {}
+
+            CheckBox {
+                text: qsTr("Use custom font size")
+                checked: Utils.AppSettings.useCustomFontSize
+                onCheckedChanged: Utils.AppSettings.useCustomFontSize = checked
+                Layout.fillWidth: true
+            }
+
+            Empty {}
+
+            CheckBox {
+                text: qsTr("Use Compact Style")
+                checked: Utils.AppSettings.useDenseVariant
+                onCheckedChanged: Utils.AppSettings.useDenseVariant = checked
+                Layout.fillWidth: true
+            }
+
+            Empty {}
+
+            Label {
+                text: qsTr("Reduce space between components and reduce the font size.\n\n" +
+                           "<em>Requires a restart of the app.</em>")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                Layout.fillWidth: true
+            }
+
+            Empty {}
+
+            CheckBox {
+                text: qsTr("Use compact todo lists")
+                checked: Utils.AppSettings.useCompactTodoLists
+                onCheckedChanged: Utils.AppSettings.useCompactTodoLists = checked
+                Layout.fillWidth: true
+            }
+
+            Empty {}
+
+            Label {
+                Layout.fillWidth: true
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: qsTr("Reduce the padding in todo and task listings to fit more items on " +
+                           "the screen.")
+            }
+
+            Empty {}
+
+            CheckBox {
+                text: qsTr("Override Scaling Factor")
+                checked: Utils.AppSettings.overrideUiScaling
+                onCheckedChanged: Utils.AppSettings.overrideUiScaling = checked
+                Layout.fillWidth: true
+            }
+
+            Label {
+                text: qsTr("Scale Factor:")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+
+            SpinBox {
+                from: 50
+                to: 300
+                value: Utils.AppSettings.uiScaling
+                stepSize: 50
+                editable: false
+                textFromValue: function(value, locale) { return Number(value).toLocaleString(locale, 'f', 0) + "%"; }
+                onValueChanged: Utils.AppSettings.uiScaling = value
+                Layout.fillWidth: true
+                enabled: Utils.AppSettings.overrideUiScaling
+            }
+
+            Empty {}
+
+            Label {
+                text: qsTr("Use this to manually scale the user interface. By default, the app " +
+                           "should adapt automatically according to your device configuration. " +
+                           "If this does not work properly, you can set a custom scaling factor " +
+                           "here.\n\n" +
+                           "This requires a restart of the app.")
+                Layout.fillWidth: true
             }
         }
     }

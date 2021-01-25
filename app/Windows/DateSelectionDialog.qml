@@ -83,7 +83,7 @@ CenteredDialog {
     GridLayout {
         columns: 2
 
-        Item { width: 1; height: 1 }
+        Empty {}
 
         DayOfWeekRow {
             id: dayOfWeekRow
@@ -97,10 +97,6 @@ CenteredDialog {
             year: grid.year
             locale: grid.locale
             Layout.fillHeight: true
-        }
-
-        FontMetrics {
-            id: fontMetrics
         }
 
         MonthGrid {

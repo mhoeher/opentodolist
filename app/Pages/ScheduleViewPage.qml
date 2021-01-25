@@ -213,7 +213,7 @@ Page {
                 font.bold: true
                 text: section
                 width: parent.width
-                padding: 10
+                padding: AppSettings.mediumSpace
             }
         }
     }

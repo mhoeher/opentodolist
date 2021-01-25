@@ -106,7 +106,7 @@ Page {
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(fontMetrics.averageCharacterWidth, 5) * 40;
+            var minWidth = Math.max(AppSettings.effectiveFontMetrics.averageCharacterWidth, 5) * 40;
             var result = page.width / minWidth;
             result = Math.ceil(result);
             result = Math.max(result, 1);
@@ -121,11 +121,6 @@ Page {
         }
 
     }
-
-    FontMetrics {
-        id: fontMetrics
-    }
-
 
     RenameLibraryDialog { id: renameLibraryDialog }
     DeleteLibraryDialog { id: deleteLibraryDialog }

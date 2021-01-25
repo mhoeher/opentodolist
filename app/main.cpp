@@ -154,7 +154,25 @@ void AppStartup::setupGlobals()
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
     QCoreApplication::setOrganizationName("RPdev");
 
+    // Apply user settings:
+    {
+        QSettings settings;
+        settings.beginGroup("ApplicationWindow");
+        if (settings.value("useDenseVariant", false).toBool()) {
+            qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Dense");
+        } else {
+            qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Normal");
+        }
+
+        if (settings.value("overrideUiScaling", false).toBool()) {
+            auto scale = settings.value("uiScaling", 100).toInt() / 100.0;
+            qputenv("QT_SCALE_FACTOR", QByteArray::number(scale));
+        }
+    }
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
+            Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #ifdef OPENTODOLIST_DEBUG
     QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
