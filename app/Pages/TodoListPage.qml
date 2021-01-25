@@ -87,6 +87,11 @@ ItemPage {
                                    todoPage.moveItem();
                                } : null
 
+    property var setProgress: todoDrawer.visible ?
+                               function() {
+                                   todoPage.setProgress();
+                               } : null
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 

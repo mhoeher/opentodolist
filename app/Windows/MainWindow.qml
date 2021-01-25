@@ -342,6 +342,13 @@ ApplicationWindow {
                 text: qsTr("Delete Completed Items")
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteCompletedItems"]) === "function"
                 onTriggered: stackView.currentItem.deleteCompletedItems()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faPercent
+                text: qsTr("Set Progress")
+                visible: stackView.currentItem && typeof(stackView.currentItem["setProgress"]) === "function"
+                onTriggered: stackView.currentItem.setProgress()
             }
         ]
 

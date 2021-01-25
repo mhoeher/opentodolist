@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.12
+import Qt.labs.settings 1.0
 
 import OpenTodoList 1.0 as OTL
 
@@ -44,6 +45,10 @@ ItemPage {
         moveTodoAction.trigger();
     }
 
+    function setProgress() {
+        setManualProgressAction.trigger();
+    }
+
     function setDueDate() {
         dueDateSelectionDialog.selectedDate = item.dueTo;
         dueDateSelectionDialog.open();
@@ -81,6 +86,11 @@ ItemPage {
         item: page.item
     }
 
+    Actions.SetManualProgressAction {
+        id: setManualProgressAction
+        item: page.item
+    }
+
     DeleteItemDialog {
         id: confirmDeleteDialog
         onAccepted: {
@@ -106,6 +116,7 @@ ItemPage {
             cache: OTL.Application.cache
             parentItem: page.item.uid
             searchString: filterBar.text
+            onlyUndone: !settings.showUndone
         }
     }
 
@@ -136,9 +147,11 @@ ItemPage {
             itemsModel: tasks
             title: qsTr("Tasks")
             library: page.library
-            headerItemVisible: false
+            headerItemVisible: true
+            symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new task...")
+            onHeaderButtonClicked: settings.showUndone = !settings.showUndone
             onCreateNewItem: {
                 var properties = {
                     "title": title
@@ -160,6 +173,7 @@ ItemPage {
                 ItemProgressEditor {
                     item: page.item
                     width: parent.width
+                    visible: page.item.progress >= 0
                 }
 
                 ItemDueDateEditor {
@@ -215,6 +229,13 @@ ItemPage {
     AutoScrollOverlay {
         anchors.fill: parent
         flickable: todosWidget
+    }
+
+    Settings {
+        id: settings
+        category: "TodoPage"
+
+        property bool showUndone: false
     }
 }
 

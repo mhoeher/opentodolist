@@ -189,7 +189,7 @@ Page {
                 from: 50
                 to: 300
                 value: Utils.AppSettings.uiScaling
-                stepSize: 50
+                stepSize: 25
                 editable: false
                 textFromValue: function(value, locale) { return Number(value).toLocaleString(locale, 'f', 0) + "%"; }
                 onValueChanged: Utils.AppSettings.uiScaling = value

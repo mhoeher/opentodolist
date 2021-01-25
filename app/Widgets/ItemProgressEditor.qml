@@ -28,7 +28,7 @@ RowLayout {
 
     Slider {
         id: slider
-        from: -1
+        from: 0
         to: 100
         value: root.item.progress
         stepSize: 1
