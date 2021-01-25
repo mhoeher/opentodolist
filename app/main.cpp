@@ -169,6 +169,7 @@ void AppStartup::setupGlobals()
             qputenv("QT_SCALE_FACTOR", QByteArray::number(scale));
         }
     }
+    qunsetenv("QT_AUTO_SCREEN_SCALE_FACTOR");
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
@@ -219,6 +220,11 @@ void AppStartup::createApp(int& argc, char* argv[])
     auto guiApp = qobject_cast<QGuiApplication*>(m_app);
     if (guiApp) {
         guiApp->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
+
+        qWarning() << "Screens:";
+        for (auto screen : guiApp->screens()) {
+            qWarning() << screen->name() << screen->devicePixelRatio();
+        }
     }
 }
 
