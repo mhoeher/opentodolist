@@ -204,7 +204,7 @@ Page {
                            "should adapt automatically according to your device configuration. " +
                            "If this does not work properly, you can set a custom scaling factor " +
                            "here.\n\n" +
-                           "This required a restart of the app.")
+                           "This requires a restart of the app.")
                 Layout.fillWidth: true
             }
         }
