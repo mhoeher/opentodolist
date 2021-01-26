@@ -19,6 +19,7 @@
 
 #include "movetodoquery.h"
 
+#include <qlmdb/cursor.h>
 #include <qlmdb/database.h>
 #include <qlmdb/transaction.h>
 
@@ -45,7 +46,13 @@ void MoveTodoQuery::run()
             auto todo = qSharedPointerCast<Todo>(item);
             if (todo) {
                 // "Unlink" from previous parent:
-                children()->remove(t, todo->todoListUid().toByteArray());
+                QLMDB::Cursor childrenCursor(t, *children());
+                auto result = childrenCursor.find(todo->todoListUid().toByteArray(),
+                                                  todo->uid().toByteArray());
+                if (result.isValid()) {
+                    childrenCursor.remove();
+                }
+
                 // Set new parent:
                 todo->setTodoListUid(m_targetUid);
                 // Save to DB:
