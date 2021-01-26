@@ -19,13 +19,14 @@
 
 #include "item.h"
 
+#include <QCborMap>
+#include <QCborValue>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
-#include <QJsonDocument>
-#include <QtGlobal>
 #include <QVariant>
 #include <QVariantMap>
+#include <QtGlobal>
 
 #include "datamodel/image.h"
 #include "datamodel/note.h"
@@ -78,7 +79,9 @@ QByteArray ItemCacheEntry::toByteArray() const
     map["meta"] = metaData;
     map["type"] = Item::staticMetaObject.className();
     map["parent"] = parentId;
-    return QJsonDocument::fromVariant(map).toBinaryData();
+
+    QCborValue cbor(QCborMap::fromVariantMap(map));
+    return cbor.toCbor();
 }
 
 ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByteArray& id)
@@ -86,13 +89,17 @@ ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByte
     ItemCacheEntry result;
     // Make a copy of the data - this ensures the data is properly aligned:
     QByteArray alignedData(data.constData(), data.length());
-    auto map = QJsonDocument::fromBinaryData(alignedData).toVariant().toMap();
-    if (map["type"] == Item::staticMetaObject.className()) {
-        result.valid = true;
-        result.id = QUuid(id);
-        result.data = map["data"];
-        result.metaData = map["meta"];
-        result.parentId = map["parent"].toUuid();
+    QCborParserError error;
+    auto cbor = QCborValue::fromCbor(alignedData, &error);
+    if (error.error == QCborError::NoError) {
+        auto map = cbor.toMap().toVariantMap();
+        if (map["type"] == Item::staticMetaObject.className()) {
+            result.valid = true;
+            result.id = QUuid(id);
+            result.data = map["data"];
+            result.metaData = map["meta"];
+            result.parentId = map["parent"].toUuid();
+        }
     }
     return result;
 }

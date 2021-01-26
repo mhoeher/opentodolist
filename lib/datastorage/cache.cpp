@@ -28,6 +28,7 @@
 #include <qlmdb/context.h>
 #include <qlmdb/database.h>
 #include <qlmdb/errors.h>
+#include <qlmdb/transaction.h>
 
 #include "cache.h"
 #include "itemsquery.h"
@@ -37,6 +38,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Cache", QtWarningMsg)
         const QByteArray Cache::RootId = "---root-item---";
 const QByteArray Cache::VersionKey = "OpenTodoList.Cache.Version";
 const QByteArray Cache::Version_0 = "0";
+const QByteArray Cache::Version_1 = "1";
 
 /**
  * @brief Runs an ItemQuery.
@@ -165,7 +167,7 @@ bool Cache::open()
     } while (m_context == nullptr);
 
     if (m_context != nullptr) {
-        if (openDBs() && initVersion0()) {
+        if (openDBs() && initVersion0() && initVersion1()) {
             m_valid = true;
         } else {
             qCWarning(log) << "Failed to initialize cache.";
@@ -296,6 +298,19 @@ bool Cache::initVersion0()
         qCDebug(log) << "Cache is uninitialized - initializing to Version 0 "
                         "now";
         m_global->put(VersionKey, Version_0);
+    }
+    return true;
+}
+
+bool Cache::initVersion1()
+{
+    auto version = m_global->get(VersionKey);
+    if (version == Version_0) {
+        qCDebug(log) << "Cache is at version 0 - need to drop data and update to version 1";
+        QLMDB::Transaction t(*m_context);
+        m_children->clear(t);
+        m_items->clear(t);
+        m_global->put(t, VersionKey, Version_1);
     }
     return true;
 }

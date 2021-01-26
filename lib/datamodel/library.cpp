@@ -17,6 +17,9 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QCborMap>
+#include <QCborParserError>
+#include <QCborValue>
 #include <QDebug>
 #include <QDir>
 #include <QQmlEngine>
@@ -63,7 +66,8 @@ QByteArray LibraryCacheEntry::toByteArray() const
     map["data"] = data;
     map["meta"] = metaData;
     map["type"] = Library::staticMetaObject.className();
-    return QJsonDocument::fromVariant(map).toBinaryData();
+    QCborValue cbor(QCborMap::fromVariantMap(map));
+    return cbor.toCbor();
 }
 
 /**
@@ -73,13 +77,17 @@ LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray& data, const
 {
     // Make a copy of the data - this ensures the data is properly aligned:
     QByteArray alignedData(data.constData(), data.length());
-    auto map = QJsonDocument::fromBinaryData(alignedData).toVariant().toMap();
+    QCborParserError error;
+    auto cbor = QCborValue::fromCbor(alignedData, &error);
     LibraryCacheEntry result;
-    if (map["type"].toString() == Library::staticMetaObject.className()) {
-        result.id = QUuid(id);
-        result.data = map["data"];
-        result.metaData = map["meta"];
-        result.valid = true;
+    if (error.error == QCborError::NoError) {
+        auto map = cbor.toMap().toVariantMap();
+        if (map["type"].toString() == Library::staticMetaObject.className()) {
+            result.id = QUuid(id);
+            result.data = map["data"];
+            result.metaData = map["meta"];
+            result.valid = true;
+        }
     }
     return result;
 }
