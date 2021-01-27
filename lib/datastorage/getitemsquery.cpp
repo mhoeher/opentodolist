@@ -129,19 +129,27 @@ void GetItemsQuery::calculateValues(ItemCacheEntry* entry, Item* item)
 
 int GetItemsQuery::percentageForTodo(const QByteArray& todoId)
 {
-    auto taskIds = children()->getAll(*m_transaction, todoId);
+    const auto taskIds = children()->getAll(*m_transaction, todoId);
     if (taskIds.isEmpty()) {
         return 0;
     } else {
         int done = 0;
-        for (auto taskId : taskIds) {
+        int total = 0;
+        for (const auto& taskId : taskIds) {
             auto data = items()->get(*m_transaction, taskId);
             ItemPtr task(Item::decache(ItemCacheEntry::fromByteArray(data, taskId)));
-            if (task && task->property("done").toBool()) {
-                ++done;
+            if (task) {
+                ++total;
+                if (task->property("done").toBool()) {
+                    ++done;
+                }
             }
         }
-        return done * 100 / taskIds.length();
+        if (total > 0) {
+            return done * 100 / total;
+        } else {
+            return 0;
+        }
     }
 }
 
