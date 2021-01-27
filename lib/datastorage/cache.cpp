@@ -33,9 +33,9 @@
 #include "cache.h"
 #include "itemsquery.h"
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.Cache", QtWarningMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.Cache", QtWarningMsg);
 
-        const QByteArray Cache::RootId = "---root-item---";
+const QByteArray Cache::RootId = "---root-item---";
 const QByteArray Cache::VersionKey = "OpenTodoList.Cache.Version";
 const QByteArray Cache::Version_0 = "0";
 const QByteArray Cache::Version_1 = "1";

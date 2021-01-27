@@ -24,6 +24,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <QJsonDocument>
 #include <QVariant>
 #include <QVariantMap>
 #include <QtGlobal>
@@ -74,14 +75,16 @@ ItemCacheEntry::ItemCacheEntry()
  */
 QByteArray ItemCacheEntry::toByteArray() const
 {
-    QVariantMap map;
-    map["data"] = data;
-    map["meta"] = metaData;
-    map["type"] = Item::staticMetaObject.className();
-    map["parent"] = parentId;
+    auto map = toMap();
 
     QCborValue cbor(QCborMap::fromVariantMap(map));
     return cbor.toCbor();
+}
+
+QByteArray ItemCacheEntry::toJson() const
+{
+    auto map = toMap();
+    return QJsonDocument::fromVariant(map).toJson();
 }
 
 ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByteArray& id)
@@ -102,6 +105,16 @@ ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByte
         }
     }
     return result;
+}
+
+QVariantMap ItemCacheEntry::toMap() const
+{
+    QVariantMap map;
+    map["data"] = data;
+    map["meta"] = metaData;
+    map["type"] = Item::staticMetaObject.className();
+    map["parent"] = parentId;
+    return map;
 }
 
 /**

@@ -42,6 +42,7 @@ struct ItemCacheEntry
     ItemCacheEntry(const ItemCacheEntry& other) = default;
 
     QByteArray toByteArray() const;
+    QByteArray toJson() const;
     static ItemCacheEntry fromByteArray(const QByteArray& data, const QByteArray& id);
 
     QUuid id;
@@ -50,6 +51,9 @@ struct ItemCacheEntry
     QVariant metaData;
     QVariant calculatedData;
     bool valid;
+
+private:
+    QVariantMap toMap() const;
 };
 
 Q_DECLARE_METATYPE(ItemCacheEntry)
