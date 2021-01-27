@@ -52,6 +52,7 @@ public:
     static const QByteArray RootId;
     static const QByteArray VersionKey;
     static const QByteArray Version_0;
+    static const QByteArray Version_1;
 
     explicit Cache(QObject* parent = nullptr);
     virtual ~Cache();
@@ -112,6 +113,7 @@ private:
 
     bool openDBs();
     bool initVersion0();
+    bool initVersion1();
 };
 
 #endif // DATASTORAGE_CACHE_H_

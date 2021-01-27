@@ -112,18 +112,18 @@ void DeleteItemsQueryTest::run()
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 5);
         QSet<QByteArray> got = QSet<QByteArray>({
-                items.at(0).value<ItemCacheEntry>().toByteArray(),
-                items.at(1).value<ItemCacheEntry>().toByteArray(),
-                items.at(2).value<ItemCacheEntry>().toByteArray(),
-                items.at(3).value<ItemCacheEntry>().toByteArray(),
-                items.at(4).value<ItemCacheEntry>().toByteArray(),
+                items.at(0).value<ItemCacheEntry>().toJson(),
+                items.at(1).value<ItemCacheEntry>().toJson(),
+                items.at(2).value<ItemCacheEntry>().toJson(),
+                items.at(3).value<ItemCacheEntry>().toJson(),
+                items.at(4).value<ItemCacheEntry>().toJson(),
         });
         QSet<QByteArray> expected = QSet<QByteArray>({
-                todoList.encache().toByteArray(),
-                todo.encache().toByteArray(),
-                task.encache().toByteArray(),
-                note.encache().toByteArray(),
-                image.encache().toByteArray(),
+                todoList.encache().toJson(),
+                todo.encache().toJson(),
+                task.encache().toJson(),
+                note.encache().toJson(),
+                image.encache().toJson(),
         });
         QCOMPARE(got, expected);
     }
@@ -165,16 +165,16 @@ void DeleteItemsQueryTest::run()
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 4);
         QSet<QByteArray> got = QSet<QByteArray>({
-                items.at(0).value<ItemCacheEntry>().toByteArray(),
-                items.at(1).value<ItemCacheEntry>().toByteArray(),
-                items.at(2).value<ItemCacheEntry>().toByteArray(),
-                items.at(3).value<ItemCacheEntry>().toByteArray(),
+                items.at(0).value<ItemCacheEntry>().toJson(),
+                items.at(1).value<ItemCacheEntry>().toJson(),
+                items.at(2).value<ItemCacheEntry>().toJson(),
+                items.at(3).value<ItemCacheEntry>().toJson(),
         });
         QSet<QByteArray> expected = QSet<QByteArray>({
-                todoList.encache().toByteArray(),
-                todo.encache().toByteArray(),
-                note.encache().toByteArray(),
-                image.encache().toByteArray(),
+                todoList.encache().toJson(),
+                todo.encache().toJson(),
+                note.encache().toJson(),
+                image.encache().toJson(),
         });
         QCOMPARE(got, expected);
     }
@@ -221,14 +221,14 @@ void DeleteItemsQueryTest::run()
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 3);
         QSet<QByteArray> got = QSet<QByteArray>({
-                items.at(0).value<ItemCacheEntry>().toByteArray(),
-                items.at(1).value<ItemCacheEntry>().toByteArray(),
-                items.at(2).value<ItemCacheEntry>().toByteArray(),
+                items.at(0).value<ItemCacheEntry>().toJson(),
+                items.at(1).value<ItemCacheEntry>().toJson(),
+                items.at(2).value<ItemCacheEntry>().toJson(),
         });
         QSet<QByteArray> expected = QSet<QByteArray>({
-                todoList.encache().toByteArray(),
-                note.encache().toByteArray(),
-                image.encache().toByteArray(),
+                todoList.encache().toJson(),
+                note.encache().toJson(),
+                image.encache().toJson(),
         });
         QCOMPARE(got, expected);
     }
@@ -275,12 +275,12 @@ void DeleteItemsQueryTest::run()
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 2);
         QSet<QByteArray> got = QSet<QByteArray>({
-                items.at(0).value<ItemCacheEntry>().toByteArray(),
-                items.at(1).value<ItemCacheEntry>().toByteArray(),
+                items.at(0).value<ItemCacheEntry>().toJson(),
+                items.at(1).value<ItemCacheEntry>().toJson(),
         });
         QSet<QByteArray> expected = QSet<QByteArray>({
-                note.encache().toByteArray(),
-                image.encache().toByteArray(),
+                note.encache().toJson(),
+                image.encache().toJson(),
         });
         QCOMPARE(got, expected);
     }
@@ -420,20 +420,20 @@ void DeleteItemsQueryTest::deleteChildren()
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 6);
         QSet<QByteArray> got = QSet<QByteArray>({
-                items.at(0).value<ItemCacheEntry>().toByteArray(),
-                items.at(1).value<ItemCacheEntry>().toByteArray(),
-                items.at(2).value<ItemCacheEntry>().toByteArray(),
-                items.at(3).value<ItemCacheEntry>().toByteArray(),
-                items.at(4).value<ItemCacheEntry>().toByteArray(),
-                items.at(5).value<ItemCacheEntry>().toByteArray(),
+                items.at(0).value<ItemCacheEntry>().toJson(),
+                items.at(1).value<ItemCacheEntry>().toJson(),
+                items.at(2).value<ItemCacheEntry>().toJson(),
+                items.at(3).value<ItemCacheEntry>().toJson(),
+                items.at(4).value<ItemCacheEntry>().toJson(),
+                items.at(5).value<ItemCacheEntry>().toJson(),
         });
         QSet<QByteArray> expected = QSet<QByteArray>({
-                todoList.encache().toByteArray(),
-                todo1.encache().toByteArray(),
-                task1.encache().toByteArray(),
-                todo3.encache().toByteArray(),
-                todo5.encache().toByteArray(),
-                note.encache().toByteArray(),
+                todoList.encache().toJson(),
+                todo1.encache().toJson(),
+                task1.encache().toJson(),
+                todo3.encache().toJson(),
+                todo5.encache().toJson(),
+                note.encache().toJson(),
         });
         QCOMPARE(got, expected);
     }
