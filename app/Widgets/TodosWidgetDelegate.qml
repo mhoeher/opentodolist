@@ -87,6 +87,14 @@ SwipeDelegate {
                 text: Markdown.markdownToHtml(swipeDelegate.item.title)
                 textFormat: Text.RichText
                 width: parent.width
+                font.strikeout: {
+                    if (item && item.done !== undefined) {
+                        if (item.done) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
             }
             Item {
                 height: AppSettings.effectiveFontMetrics.height / 4
@@ -114,7 +122,6 @@ SwipeDelegate {
                     }
                     Label {
                         text: d.parentItem ? d.parentItem.title : ""
-
                     }
                     Item {
                         width: AppSettings.effectiveFontMetrics.height
@@ -174,6 +181,7 @@ SwipeDelegate {
             model: swipeDelegate.itemActions
         }
     }
+
     swipe.left: Pane {
         height: swipeDelegate.height
         width: swipeDelegate.width
