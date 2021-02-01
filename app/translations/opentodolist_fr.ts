@@ -246,7 +246,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer les éléments terminés</translation>
     </message>
 </context>
 <context>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer les éléments terminé ?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voulez-vous vraiment effacer les todos de la liste &lt;strong&gt;%1&lt;/strong&gt;? Ceci ne pourra pas être annulé.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voulez-vous vraiment effacer les tâches de la liste &lt;strong&gt;%1&lt;/strong&gt;? Ceci ne pourra pas être annulé. </translation>
     </message>
 </context>
 <context>
@@ -342,7 +342,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
         <source>Name:</source>
-        <translation type="unfinished">Nom :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="86"/>
@@ -357,17 +357,17 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Identifiant</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User:</source>
-        <translation type="unfinished">Utilisateur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
         <source>User Name</source>
-        <translation type="unfinished">Nom d&apos;utilisateur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
@@ -382,12 +382,12 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="145"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Désactiver la vérification des certificats</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="154"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Échec de la connexion au serveur. Veuillez vérifier votre nom d&apos;utilisateur, votre mot de passe et l&apos;adresse du serveur, puis réessayez.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -401,7 +401,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="129"/>
         <source>Name:</source>
-        <translation type="unfinished">Nom :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="140"/>
@@ -416,12 +416,12 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="153"/>
         <source>User:</source>
-        <translation type="unfinished">Utilisateur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="159"/>
         <source>User Name</source>
-        <translation type="unfinished">Nom d&apos;utilisateur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="166"/>
@@ -436,12 +436,12 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="188"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Désactiver la vérification des certificats</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="196"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Échec de la connexion au serveur. Veuillez vérifier votre nom d&apos;utilisateur, votre mot de passe et l&apos;adresse du serveur, puis réessayez.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -541,7 +541,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="109"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Déplacer ToDo dans ...</translation>
     </message>
 </context>
 <context>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Editer la liste</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
@@ -756,7 +756,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="274"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Déplacer</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="285"/>
@@ -796,7 +796,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="342"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer les éléments terminés</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="349"/>
@@ -869,7 +869,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Déplacer</translation>
     </message>
 </context>
 <context>
@@ -925,7 +925,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="103"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">Créer une bibliothèque dans le compte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="112"/>
@@ -940,17 +940,17 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="129"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished">Choisir une bibliothèque existante sur le serveur pour l&apos;ajouter à l&apos;application.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="136"/>
         <source>No libraries were found on the server.</source>
-        <translation type="unfinished">Aucune bibliothèque n&apos;a été trouvée sur le serveur.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="144"/>
         <source>Searching existing libraries...</source>
-        <translation type="unfinished">Recherche des bibliothèques existantes...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="178"/>
@@ -965,7 +965,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="201"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished">Nom de ma nouvelle bibliothèque</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -973,7 +973,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="87"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished">Ouvrir un dossier en tant que bibliothèque</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="95"/>
@@ -983,22 +983,22 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
         <source>Folder:</source>
-        <translation type="unfinished">Dossier :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished">Chemin d&apos;accès à un dossier à utiliser comme bibliothèque</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
         <source>Select</source>
-        <translation type="unfinished">Choisir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
         <source>Name:</source>
-        <translation type="unfinished">Nom :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
@@ -1027,7 +1027,7 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="86"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">Ajouter des bibliothèques à partir de vos comptes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="113"/>
@@ -1050,7 +1050,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
         <source>Name:</source>
-        <translation type="unfinished">Nom :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
@@ -1074,22 +1074,22 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Identifiant</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Problème pour s&apos;identifier ?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nous avons tenté d&apos;ouvrir une page de connexion Nextcloud dans votre navigateur. Svp, connectez vous et autorisez OpenTodoList à accéder à votre compte pour pouvoir continuer. En cas de problème pour accéder à Nextcloud dans le navigateur, vous pouvez entrer manuellement votre identifiant et mot de passe.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Connexion manuelle</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
@@ -1104,27 +1104,27 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paramètres du compte</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="157"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier le lien</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copié !</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="171"/>
         <source>User:</source>
-        <translation type="unfinished">Utilisateur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="178"/>
         <source>User Name</source>
-        <translation type="unfinished">Nom d&apos;utilisateur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="185"/>
@@ -1139,12 +1139,12 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Désactiver la vérification des certificats</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="211"/>
         <source>Name:</source>
-        <translation type="unfinished">Nom :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="223"/>
@@ -1154,7 +1154,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="233"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Échec de la connexion au serveur. Veuillez vérifier votre nom d&apos;utilisateur, votre mot de passe et l&apos;adresse du serveur, puis réessayez.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1201,12 +1201,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
         <source>User:</source>
-        <translation type="unfinished">Utilisateur :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
-        <translation type="unfinished">Nom d&apos;utilisateur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
@@ -1221,12 +1221,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="180"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Désactiver la vérification des certificats</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="184"/>
         <source>Name:</source>
-        <translation type="unfinished">Nom :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="196"/>
@@ -1236,7 +1236,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="206"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Échec de la connexion au serveur. Veuillez vérifier votre nom d&apos;utilisateur, votre mot de passe et l&apos;adresse du serveur, puis réessayez.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1275,7 +1275,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="20"/>
         <location filename="../Pages/ProblemsPage.qml" line="30"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Problèmes détectés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="44"/>
@@ -1408,7 +1408,7 @@
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="19"/>
         <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionnez la Todo Liste</translation>
     </message>
 </context>
 <context>
@@ -1484,7 +1484,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
         <source>Font Size:</source>
-        <translation type="unfinished">Taille de police :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="132"/>
@@ -1712,7 +1712,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="72"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Japonais</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="80"/>
@@ -1762,7 +1762,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="116"/>
         <source>Ukrainian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ukrainien</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="120"/>

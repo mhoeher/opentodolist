@@ -329,6 +329,9 @@ archlinux-pkgbuild:
     image: archlinux
     script:
         - ci/archlinux-pkgbuild.sh
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - build-arch/opentodolist-*.pkg.tar.zst

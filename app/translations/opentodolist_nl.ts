@@ -1712,7 +1712,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="72"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Japans</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="80"/>
@@ -1762,7 +1762,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="116"/>
         <source>Ukrainian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oekraïens</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="120"/>

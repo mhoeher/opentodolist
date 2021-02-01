@@ -121,27 +121,27 @@
     <message>
         <location filename="../main.cpp" line="262"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yalnızca uygulama arka plan hizmetini çalıştırın</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="264"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yalnızca uygulama GUI&apos;sini çalıştırın ve mevcut bir uygulama arka plan hizmetine bağlanın</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="269"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows&apos;ta hata ayıklama çıktısını toplamak için bir konsolu etkinleştirin</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="403"/>
         <source>Open</source>
-        <translation type="unfinished">Açık</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="410"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Çıkış</translation>
     </message>
 </context>
 <context>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlanmış Öğeleri Sil</translation>
     </message>
 </context>
 <context>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlanan Öğeler Silinsin mi?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;strong&gt;% 1 &lt;/strong&gt; yapılacaklar listesindeki tüm tamamlanmış yapılacakları gerçekten silmek istiyor musunuz? Bu geri alınamaz.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yapılacak &lt;strong&gt;% 1 &lt;/strong&gt; işleminde yapılan tüm görevleri gerçekten silmek istiyor musunuz? Bu geri alınamaz.</translation>
     </message>
 </context>
 <context>
@@ -337,7 +337,7 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Hesabı düzenlemek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
@@ -347,7 +347,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="86"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Sunucu adresi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="93"/>
@@ -357,7 +357,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oturum aç</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
@@ -367,27 +367,27 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
         <source>User Name</source>
-        <translation type="unfinished">Kullanıcı adı</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
         <source>Password:</source>
-        <translation type="unfinished">Parola:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="131"/>
         <source>Password</source>
-        <translation type="unfinished">Parola</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="145"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Sertifika Denetimlerini Devre Dışı Bırak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="154"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -396,7 +396,7 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="123"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Hesabı düzenlemek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="129"/>
@@ -406,7 +406,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="140"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Sunucu adresi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="146"/>
@@ -421,27 +421,27 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="159"/>
         <source>User Name</source>
-        <translation type="unfinished">Kullanıcı adı</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="166"/>
         <source>Password:</source>
-        <translation type="unfinished">Parola:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="173"/>
         <source>Password</source>
-        <translation type="unfinished">Parola</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="188"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Sertifika Denetimlerini Devre Dışı Bırak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="196"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished">Açık</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -541,7 +541,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="109"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yapılacak İşi Şuraya Taşı ...</translation>
     </message>
 </context>
 <context>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Listeyi düzenle</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
@@ -574,7 +574,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bağış Yap</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
@@ -589,22 +589,22 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Programı Gizle</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Programı Göster</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yukarı Taşı</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aşağı inmek</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="375"/>
@@ -715,12 +715,12 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished">Şimdi Senkronize Et</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished">Senkronizasyon Günlüğü</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -756,7 +756,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="274"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hareket</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="285"/>
@@ -796,7 +796,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="342"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlanmış Öğeleri Sil</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="349"/>
@@ -841,7 +841,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="438"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kapat</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="447"/>
@@ -869,7 +869,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hareket</translation>
     </message>
 </context>
 <context>
@@ -925,22 +925,22 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="103"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">Hesapta Kütüphane Oluştur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="112"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">Bir hesapta oluşturulan kitaplık onunla senkronize edilir. Bu, bir kütüphaneyi bir sunucuya kolayca yedeklemenizi ve daha sonra oradan geri yüklemenizi sağlar. Ayrıca, bu tür kitaplıklar diğer kullanıcılarla paylaşılabilir (sunucu buna izin veriyorsa).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
         <source>Existing Libraries</source>
-        <translation type="unfinished">Mevcut Kütüphaneler</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="129"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished">Uygulamaya eklemek için sunucuda var olan bir kitaplığı seçin.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="136"/>
@@ -950,17 +950,17 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="144"/>
         <source>Searching existing libraries...</source>
-        <translation type="unfinished">Mevcut kütüphaneler aranıyor ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="178"/>
         <source>Create a New Library</source>
-        <translation type="unfinished">Yeni Kitaplık Oluşturma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="186"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">Sunucuyla senkronize edilecek yeni bir kütüphane oluşturun. Böyle bir kütüphane, verileri senkronize etmek için uygulamaya diğer cihazlarda da eklenebilir.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="201"/>
@@ -973,12 +973,12 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="87"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished">Klasörü Kütüphane Olarak Açma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="95"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished">Herhangi bir klasörü bir kütüphane için konum olarak kullanabilirsiniz. &lt;br/&gt; &lt;br/&gt; Bu özellikle verilerinizi bir sunucu ile senkronize etmek için başka bir araç (bir bulut sağlayıcısının senkronizasyon istemcisi gibi) kullanmak istediğinizde kullanışlıdır.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
@@ -988,12 +988,12 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished">Kütüphane olarak kullanılacak klasörün yolu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
         <source>Select</source>
-        <translation type="unfinished">seçmek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
@@ -1003,7 +1003,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">Yerel Kütüphane Adım</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1017,22 +1017,22 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="68"/>
         <source>Local Library</source>
-        <translation type="unfinished">Yerel kütüphane</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="75"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished">Klasörü Kütüphane Olarak Kullan</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="86"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">Hesaplarınızdan Kitaplık Ekleme</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="113"/>
         <source>Add Account</source>
-        <translation type="unfinished">Hesap eklemek</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1040,12 +1040,12 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="61"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished">Yerel Kütüphane Oluşturma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="69"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">Yerel bir kütüphane yalnızca cihazınızda saklanır - bu, gizlilik özlü için mükemmel olmasını sağlar! &lt;br/&gt; &lt;br/&gt; Yalnızca yerel olarak bilgi depolamak ve tüm verilerinizi diğer mekanizmalar aracılığıyla düzenli olarak yedeklemek istediğinizde kullanın. Bilgilerinize birkaç cihazdan erişmeniz gerekiyorsa, bunun yerine senkronize edilmiş bir kütüphane oluşturun.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
@@ -1055,7 +1055,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">Yerel Kütüphane Adım</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1069,52 +1069,52 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="80"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Sunucu adresi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oturum aç</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Giriş yapmakta sorun mu yaşıyorsunuz?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NextCloud örneğinizde oturum açmanız için tarayıcınızı açmaya çalıştık. Devam etmek için lütfen oturum açın ve OpenTodoList&apos;e erişim izni verin. NextCloud&apos;unuza tarayıcıdan erişmede sorun mu yaşıyorsunuz? Kullanıcı adınızı ve şifrenizi manuel olarak da girebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elle Giriş Yap</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İdeal olarak, kullanıcı şifreniz yerine uygulamaya özel şifreler kullanırsınız. Giriş bilgilerinizin 2 Faktörlü Kimlik Doğrulama (2FA) ile korunması durumunda, NextCloud&apos;unuza erişmek için uygulamaya özel şifreler bile kullanmanız gerekir. Kullanıcı ayarlarınızda bu tür şifreler oluşturabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uygulama Şifresi Oluştur</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hesap Ayarları</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="157"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bağlantı Kopyala</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopyalandı!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="171"/>
@@ -1124,22 +1124,22 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="178"/>
         <source>User Name</source>
-        <translation type="unfinished">Kullanıcı adı</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="185"/>
         <source>Password:</source>
-        <translation type="unfinished">Parola:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="192"/>
         <source>Password</source>
-        <translation type="unfinished">Parola</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Sertifika Denetimlerini Devre Dışı Bırak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="211"/>
@@ -1149,12 +1149,12 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="223"/>
         <source>Account Name</source>
-        <translation type="unfinished">Hesap adı</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="233"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1191,7 +1191,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Sunucu adresi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
@@ -1206,22 +1206,22 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
-        <translation type="unfinished">Kullanıcı adı</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
         <source>Password:</source>
-        <translation type="unfinished">Parola:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
         <source>Password</source>
-        <translation type="unfinished">Parola</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="180"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Sertifika Denetimlerini Devre Dışı Bırak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="184"/>
@@ -1231,12 +1231,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="196"/>
         <source>Account Name</source>
-        <translation type="unfinished">Hesap adı</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="206"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1275,7 +1275,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="20"/>
         <location filename="../Pages/ProblemsPage.qml" line="30"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Tespit Edilen Sorunlar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="44"/>
@@ -1408,7 +1408,7 @@
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="19"/>
         <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yapılacaklar Listesi Seçin</translation>
     </message>
 </context>
 <context>
@@ -1469,17 +1469,17 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="52"/>
         <source>User Interface</source>
-        <translation type="unfinished">Kullanıcı arayüzü</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="60"/>
         <source>Language:</source>
-        <translation type="unfinished">Dil:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="84"/>
         <source>Theme:</source>
-        <translation type="unfinished">Tema:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
@@ -1687,7 +1687,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="52"/>
         <source>Basque</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bask dili</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="56"/>
@@ -1712,7 +1712,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="72"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Japonca</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="80"/>
@@ -1762,7 +1762,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="116"/>
         <source>Ukrainian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ukraynaca</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="120"/>
