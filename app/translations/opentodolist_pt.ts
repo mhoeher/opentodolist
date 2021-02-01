@@ -4,67 +4,67 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="14"/>
+        <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
         <translation type="unfinished">Sobre...</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="28"/>
+        <location filename="../Pages/AboutPage.qml" line="29"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="35"/>
+        <location filename="../Pages/AboutPage.qml" line="36"/>
         <source>A todo and task managing application.</source>
         <translation type="unfinished">Um aplicativo de gerenciamento de todo e tarefa.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="42"/>
+        <location filename="../Pages/AboutPage.qml" line="43"/>
         <source>(c) RPdev 2013-2020, version %1</source>
         <translation type="unfinished">(c) RPdev 2013-2020, versão %1</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="59"/>
+        <location filename="../Pages/AboutPage.qml" line="60"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
         <translation type="unfinished">OpenTodoList é lançado sob os termos da &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; versão 3 ou (à sua escolha) qualquer versão posterior.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="78"/>
+        <location filename="../Pages/AboutPage.qml" line="79"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Relatar um problema</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="91"/>
+        <location filename="../Pages/AboutPage.qml" line="92"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Bibliotecas e Recursos de Terceiros</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="128"/>
+        <location filename="../Pages/AboutPage.qml" line="129"/>
         <source>Author:</source>
         <translation type="unfinished">Autor:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="133"/>
+        <location filename="../Pages/AboutPage.qml" line="134"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="141"/>
+        <location filename="../Pages/AboutPage.qml" line="142"/>
         <source>License:</source>
         <translation type="unfinished">Licença:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="146"/>
+        <location filename="../Pages/AboutPage.qml" line="147"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="154"/>
+        <location filename="../Pages/AboutPage.qml" line="155"/>
         <source>Download:</source>
         <translation type="unfinished">Descarregar:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="159"/>
+        <location filename="../Pages/AboutPage.qml" line="160"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -109,37 +109,37 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../main.cpp" line="229"/>
+        <location filename="../main.cpp" line="253"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Gerencie seus dados pessoais.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="235"/>
+        <location filename="../main.cpp" line="259"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Ligue algumas otimizações para telas sensíveis ao toque.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="238"/>
+        <location filename="../main.cpp" line="262"/>
         <source>Only run the app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="240"/>
+        <location filename="../main.cpp" line="264"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="245"/>
+        <location filename="../main.cpp" line="269"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="379"/>
+        <location filename="../main.cpp" line="403"/>
         <source>Open</source>
         <translation type="unfinished">Aberto</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="386"/>
+        <location filename="../main.cpp" line="410"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,57 +335,57 @@
     <name>EditNextCloudAccountPage</name>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="66"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
         <source>Edit Account</source>
         <translation type="unfinished">Editar Conta</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="72"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="86"/>
         <source>Server Address:</source>
         <translation type="unfinished">Endereço do servidor:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="90"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="93"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="98"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="105"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User:</source>
         <translation type="unfinished">Usuário:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="112"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
         <source>User Name</source>
         <translation type="unfinished">Nome de Usuário</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
         <source>Password:</source>
         <translation type="unfinished">Senha:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="125"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="131"/>
         <source>Password</source>
         <translation type="unfinished">Senha</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="139"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="145"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Desactivar Verificações de Certificado</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="148"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="154"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -394,52 +394,52 @@
     <name>EditWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="121"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="123"/>
         <source>Edit Account</source>
         <translation type="unfinished">Editar Conta</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="129"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="138"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="140"/>
         <source>Server Address:</source>
         <translation type="unfinished">Endereço do servidor:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="146"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="151"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="153"/>
         <source>User:</source>
         <translation type="unfinished">Usuário:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="159"/>
         <source>User Name</source>
         <translation type="unfinished">Nome de Usuário</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="164"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="166"/>
         <source>Password:</source>
         <translation type="unfinished">Senha:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="171"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="173"/>
         <source>Password</source>
         <translation type="unfinished">Senha</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="186"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="188"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Desactivar Verificações de Certificado</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="194"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="196"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -547,67 +547,67 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="176"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="178"/>
         <source>New Library</source>
         <translation type="unfinished">Nova Biblioteca</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="183"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="185"/>
         <source>Accounts</source>
         <translation type="unfinished">Contas</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="190"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
         <source>Edit List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="196"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="203"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="205"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Traduzir a aplicação...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="210"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="217"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
         <source>About...</source>
         <translation type="unfinished">Sobre...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="230"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Criar biblioteca predefinida</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="341"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="341"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="351"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="360"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="375"/>
         <source>Schedule</source>
         <translation type="unfinished">Horário</translation>
     </message>
@@ -615,97 +615,97 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="146"/>
+        <location filename="../Pages/LibraryPage.qml" line="141"/>
         <source>Red</source>
         <translation type="unfinished">Vermelho</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="153"/>
+        <location filename="../Pages/LibraryPage.qml" line="148"/>
         <source>Green</source>
         <translation type="unfinished">Verde</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="160"/>
+        <location filename="../Pages/LibraryPage.qml" line="155"/>
         <source>Blue</source>
         <translation type="unfinished">Azul</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="167"/>
+        <location filename="../Pages/LibraryPage.qml" line="162"/>
         <source>Yellow</source>
         <translation type="unfinished">Amarelo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="174"/>
+        <location filename="../Pages/LibraryPage.qml" line="169"/>
         <source>Orange</source>
         <translation type="unfinished">Laranja</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="181"/>
+        <location filename="../Pages/LibraryPage.qml" line="176"/>
         <source>Lilac</source>
         <translation type="unfinished">Lilás</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="188"/>
+        <location filename="../Pages/LibraryPage.qml" line="183"/>
         <source>White</source>
         <translation type="unfinished">Branco</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="198"/>
+        <location filename="../Pages/LibraryPage.qml" line="193"/>
         <source>Rename</source>
         <translation type="unfinished">Renomear</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="203"/>
+        <location filename="../Pages/LibraryPage.qml" line="198"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="261"/>
+        <location filename="../Pages/LibraryPage.qml" line="256"/>
         <source>Note Title</source>
         <translation type="unfinished">Título da nota</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="274"/>
+        <location filename="../Pages/LibraryPage.qml" line="269"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Todo Título da Lista</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="287"/>
+        <location filename="../Pages/LibraryPage.qml" line="282"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Termo de pesquisa 1, termo de pesquisa 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="366"/>
+        <location filename="../Pages/LibraryPage.qml" line="361"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Ainda nada aqui! Comece por adicionar uma &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; ou &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="429"/>
+        <location filename="../Pages/LibraryPage.qml" line="424"/>
         <source>Sort By</source>
         <translation type="unfinished">Ordenar por</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="434"/>
+        <location filename="../Pages/LibraryPage.qml" line="429"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="441"/>
+        <location filename="../Pages/LibraryPage.qml" line="436"/>
         <source>Title</source>
         <translation type="unfinished">Título</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="448"/>
+        <location filename="../Pages/LibraryPage.qml" line="443"/>
         <source>Due To</source>
         <translation type="unfinished">Devido a</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="455"/>
+        <location filename="../Pages/LibraryPage.qml" line="450"/>
         <source>Created At</source>
         <translation type="unfinished">Criado em</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="462"/>
+        <location filename="../Pages/LibraryPage.qml" line="457"/>
         <source>Updated At</source>
         <translation type="unfinished">Atualizado em</translation>
     </message>
@@ -726,12 +726,12 @@
 <context>
     <name>LogViewPage</name>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="13"/>
+        <location filename="../Pages/LogViewPage.qml" line="14"/>
         <source>Synchronization Log</source>
         <translation type="unfinished">Log de Sincronização</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="23"/>
+        <location filename="../Pages/LogViewPage.qml" line="24"/>
         <source>Copy Log</source>
         <translation type="unfinished">Diário de cópias</translation>
     </message>
@@ -739,122 +739,127 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="23"/>
+        <location filename="../Windows/MainWindow.qml" line="26"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="104"/>
+        <location filename="../Windows/MainWindow.qml" line="107"/>
         <source>Synchronizing library...</source>
         <translation type="unfinished">Biblioteca sincronizadora...</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="266"/>
+        <location filename="../Windows/MainWindow.qml" line="263"/>
         <source>Rename</source>
         <translation type="unfinished">Renomear</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="277"/>
+        <location filename="../Windows/MainWindow.qml" line="274"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="288"/>
+        <location filename="../Windows/MainWindow.qml" line="285"/>
         <source>Color</source>
         <translation type="unfinished">Cor</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="299"/>
+        <location filename="../Windows/MainWindow.qml" line="296"/>
         <source>Add Tag</source>
         <translation type="unfinished">Adicionar etiqueta</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="306"/>
+        <location filename="../Windows/MainWindow.qml" line="303"/>
         <source>Attach File</source>
         <translation type="unfinished">Anexar arquivo</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="315"/>
+        <location filename="../Windows/MainWindow.qml" line="312"/>
         <source>Search</source>
         <translation type="unfinished">Pesquisa</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="322"/>
+        <location filename="../Windows/MainWindow.qml" line="319"/>
         <source>Sort</source>
         <translation type="unfinished">Ordenar</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="330"/>
+        <location filename="../Windows/MainWindow.qml" line="327"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Definir data de vencimento</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="338"/>
+        <location filename="../Windows/MainWindow.qml" line="335"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="345"/>
+        <location filename="../Windows/MainWindow.qml" line="342"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="383"/>
+        <location filename="../Windows/MainWindow.qml" line="349"/>
+        <source>Set Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="387"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="384"/>
+        <location filename="../Windows/MainWindow.qml" line="388"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="391"/>
+        <location filename="../Windows/MainWindow.qml" line="395"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">New &amp;Library</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="402"/>
+        <location filename="../Windows/MainWindow.qml" line="406"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">New &amp;Note</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="410"/>
+        <location filename="../Windows/MainWindow.qml" line="414"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">New &amp;Todo List</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="418"/>
+        <location filename="../Windows/MainWindow.qml" line="422"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Novo &amp;Image</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="426"/>
+        <location filename="../Windows/MainWindow.qml" line="430"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Quit</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="434"/>
+        <location filename="../Windows/MainWindow.qml" line="438"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="443"/>
+        <location filename="../Windows/MainWindow.qml" line="447"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Find</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="467"/>
+        <location filename="../Windows/MainWindow.qml" line="471"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Abrir Último &amp;Item Criado</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="475"/>
+        <location filename="../Windows/MainWindow.qml" line="479"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Aberto &amp;Barra do Lado Esquerdo</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="604"/>
+        <location filename="../Windows/MainWindow.qml" line="596"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Comece por &lt;a href=&apos;#newLibrary&apos;&gt;criando uma nova biblioteca&lt;/a&gt;. As bibliotecas são usadas para armazenar diferentes tipos de itens como notas, todas as listas e imagens.</translation>
     </message>
@@ -918,47 +923,47 @@
 <context>
     <name>NewLibraryFromAccountPage</name>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="99"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="103"/>
         <source>Create Library in Account</source>
         <translation type="unfinished">Criar biblioteca em conta</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="108"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="112"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
         <translation type="unfinished">Uma biblioteca criada em uma conta é sincronizada com ela. Isto permite fazer facilmente o backup de uma biblioteca para um servidor e mais tarde restaurá-la a partir daí. Além disso, tais bibliotecas podem ser compartilhadas com outros usuários (se o servidor permitir isso).</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="117"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
         <source>Existing Libraries</source>
         <translation type="unfinished">Bibliotecas Existentes</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="125"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="129"/>
         <source>Select an existing library on the server to add it to the app.</source>
         <translation type="unfinished">Selecione uma biblioteca existente no servidor para adicioná-la ao aplicativo.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="132"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="136"/>
         <source>No libraries were found on the server.</source>
         <translation type="unfinished">Não foram encontradas bibliotecas no servidor.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="140"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="144"/>
         <source>Searching existing libraries...</source>
         <translation type="unfinished">A pesquisar bibliotecas existentes...</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="174"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="178"/>
         <source>Create a New Library</source>
         <translation type="unfinished">Criar uma Nova Biblioteca</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="182"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="186"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
         <translation type="unfinished">Crie uma nova biblioteca, que será sincronizada com o servidor. Tal biblioteca pode ser adicionada ao aplicativo em outros dispositivos também para sincronizar dados.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="197"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="201"/>
         <source>My new library&apos;s name</source>
         <translation type="unfinished">O nome da minha nova biblioteca</translation>
     </message>
@@ -966,37 +971,37 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="84"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="87"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished">Abra uma pasta como uma biblioteca</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="92"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="95"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished">Você pode usar qualquer pasta como um local para uma biblioteca.&lt;br/&gt;&lt;br/&gt; Isso é especialmente útil quando você quer usar outra ferramenta (como um cliente de sincronização de um provedor de nuvem) para sincronizar seus dados com um servidor.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
         <source>Folder:</source>
         <translation type="unfinished">Pasta:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="102"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>Path to a folder to use as a library</source>
         <translation type="unfinished">Caminho para uma pasta para usar como biblioteca</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="108"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
         <source>Select</source>
         <translation type="unfinished">Selecione</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
         <source>My Local Library Name</source>
         <translation type="unfinished">Nome da minha biblioteca local</translation>
     </message>
@@ -1033,22 +1038,22 @@
 <context>
     <name>NewLocalLibraryPage</name>
     <message>
-        <location filename="../Pages/NewLocalLibraryPage.qml" line="58"/>
+        <location filename="../Pages/NewLocalLibraryPage.qml" line="61"/>
         <source>Create a Local Library</source>
         <translation type="unfinished">Criar uma Biblioteca Local</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLocalLibraryPage.qml" line="66"/>
+        <location filename="../Pages/NewLocalLibraryPage.qml" line="69"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
         <translation type="unfinished">Uma biblioteca local é armazenada apenas no seu dispositivo - isto torna-a perfeita para a privacidade concisa!&lt;br/&gt;&gt;br/&gt;Utilize-a quando quiser armazenar informações apenas localmente e fazer cópias de segurança de todos os seus dados regularmente através de outros mecanismos. Se você precisar acessar suas informações através de vários dispositivos, crie uma biblioteca que seja sincronizada em seu lugar.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLocalLibraryPage.qml" line="77"/>
+        <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLocalLibraryPage.qml" line="82"/>
+        <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
         <source>My Local Library Name</source>
         <translation type="unfinished">Nome da minha biblioteca local</translation>
     </message>
@@ -1057,97 +1062,97 @@
     <name>NewNextCloudAccountPage</name>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="71"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="74"/>
         <source>Connection Settings</source>
         <translation type="unfinished">Configurações de conexão</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="77"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="80"/>
         <source>Server Address:</source>
         <translation type="unfinished">Endereço do servidor:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="91"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="103"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
         <source>Trouble Signing In?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="114"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="121"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
         <source>Log in Manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="127"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="135"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
         <source>Create App Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="144"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
         <source>Account Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="153"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="157"/>
         <source>Copy Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="158"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copied!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="167"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="171"/>
         <source>User:</source>
         <translation type="unfinished">Usuário:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="174"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="178"/>
         <source>User Name</source>
         <translation type="unfinished">Nome de Usuário</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="181"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="185"/>
         <source>Password:</source>
         <translation type="unfinished">Senha:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="188"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="192"/>
         <source>Password</source>
         <translation type="unfinished">Senha</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="203"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Desactivar Verificações de Certificado</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="211"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="219"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="223"/>
         <source>Account Name</source>
         <translation type="unfinished">Nome da conta</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="229"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="233"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1179,57 +1184,57 @@
     <name>NewWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="128"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="130"/>
         <source>Connection Settings</source>
         <translation type="unfinished">Configurações de conexão</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="134"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
         <source>Server Address:</source>
         <translation type="unfinished">Endereço do servidor:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="140"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
         <source>User:</source>
         <translation type="unfinished">Usuário:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="152"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
         <translation type="unfinished">Nome de Usuário</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="158"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
         <source>Password:</source>
         <translation type="unfinished">Senha:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="164"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
         <source>Password</source>
         <translation type="unfinished">Senha</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="178"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="180"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Desactivar Verificações de Certificado</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="182"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="184"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="194"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="196"/>
         <source>Account Name</source>
         <translation type="unfinished">Nome da conta</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="204"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="206"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1267,13 +1272,13 @@
 <context>
     <name>ProblemsPage</name>
     <message>
-        <location filename="../Pages/ProblemsPage.qml" line="18"/>
-        <location filename="../Pages/ProblemsPage.qml" line="28"/>
+        <location filename="../Pages/ProblemsPage.qml" line="20"/>
+        <location filename="../Pages/ProblemsPage.qml" line="30"/>
         <source>Problems Detected</source>
         <translation type="unfinished">Problemas detectados</translation>
     </message>
     <message>
-        <location filename="../Pages/ProblemsPage.qml" line="42"/>
+        <location filename="../Pages/ProblemsPage.qml" line="44"/>
         <source>Missing secrets for account</source>
         <translation type="unfinished">Dados de acesso em falta para a conta</translation>
     </message>
@@ -1447,30 +1452,82 @@
     </message>
 </context>
 <context>
+    <name>SetManualProgressAction</name>
+    <message>
+        <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
+        <source>Set Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="43"/>
+        <location filename="../Pages/SettingsPage.qml" line="46"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="49"/>
+        <location filename="../Pages/SettingsPage.qml" line="52"/>
         <source>User Interface</source>
         <translation type="unfinished">Interface do Utilizador</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="57"/>
+        <location filename="../Pages/SettingsPage.qml" line="60"/>
         <source>Language:</source>
         <translation type="unfinished">Linguagem:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="81"/>
+        <location filename="../Pages/SettingsPage.qml" line="84"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="112"/>
+        <location filename="../Pages/SettingsPage.qml" line="115"/>
         <source>Font Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="132"/>
+        <source>Use custom font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="141"/>
+        <source>Use Compact Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="150"/>
+        <source>Reduce space between components and reduce the font size.
+
+&lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="159"/>
+        <source>Use compact todo lists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="170"/>
+        <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="177"/>
+        <source>Override Scaling Factor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="184"/>
+        <source>Scale Factor:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="203"/>
+        <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
+
+This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1511,42 +1568,42 @@
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="168"/>
+        <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Termo de pesquisa 1, termo de pesquisa 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="180"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="186"/>
+        <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Name</source>
         <translation type="unfinished">Nome</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="192"/>
+        <location filename="../Pages/TodoListPage.qml" line="197"/>
         <source>Due Date</source>
         <translation type="unfinished">Data de vencimento</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="198"/>
+        <location filename="../Pages/TodoListPage.qml" line="203"/>
         <source>Created At</source>
         <translation type="unfinished">Criado em</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="204"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Updated At</source>
         <translation type="unfinished">Atualizado em</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="227"/>
+        <location filename="../Pages/TodoListPage.qml" line="234"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="247"/>
+        <location filename="../Pages/TodoListPage.qml" line="254"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Adicionar novo todo...</translation>
     </message>
@@ -1554,17 +1611,17 @@
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="114"/>
+        <location filename="../Pages/TodoPage.qml" line="125"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Termo de pesquisa 1, termo de pesquisa 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="135"/>
+        <location filename="../Pages/TodoPage.qml" line="148"/>
         <source>Tasks</source>
         <translation type="unfinished">Tarefas</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="139"/>
+        <location filename="../Pages/TodoPage.qml" line="153"/>
         <source>Add new task...</source>
         <translation type="unfinished">Adicionar nova tarefa...</translation>
     </message>
@@ -1572,7 +1629,7 @@
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="172"/>
+        <location filename="../Widgets/TodosWidget.qml" line="193"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Devo continuar: %1</translation>
     </message>
@@ -1580,12 +1637,12 @@
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="195"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="203"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Desviar para marcar</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="197"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="205"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Deslizar para marcar feito</translation>
     </message>
