@@ -40,6 +40,32 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.31.0" date="2021-02-01">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #394: Render completed todos and tasks differently.
+            </li>
+            <li>
+                #397: Migrate to CBOR instead of BSON for the item cache.
+            </li>
+            <li>
+                #395: Fix progress indicator of todos when tasks have been deleted from it before.
+            </li>
+            <li>
+                #380: Todos disappear temporarily after moving a todo to another list.
+            </li>
+            <li>
+                #393: Add option to hide completed tasks.
+            </li>
+            <li>
+                #396: Add option to use dense Material theme and further UI tweaks.
+            </li>
+            <li>
+                #198: Factor out WebDAV functionality.
+            </li>
+        </ul>
+      </release>
       <release version="3.30.0" date="2021-01-10">
         <p>This release includes the following changes:</p>
         <ul>
