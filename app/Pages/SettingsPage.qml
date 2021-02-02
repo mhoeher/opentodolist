@@ -207,6 +207,21 @@ Page {
                            "This requires a restart of the app.")
                 Layout.fillWidth: true
             }
+
+            Label {
+                text: qsTr("Library Item Size:")
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+
+            SpinBox {
+                from: 5
+                to: 500
+                value: Utils.AppSettings.libraryItemWidthScaleFactor
+                stepSize: 5
+                editable: false
+                onValueChanged: Utils.AppSettings.libraryItemWidthScaleFactor = value
+                Layout.fillWidth: true
+            }
         }
     }
 

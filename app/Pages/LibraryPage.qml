@@ -106,7 +106,7 @@ Page {
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(AppSettings.effectiveFontMetrics.averageCharacterWidth, 5) * 40;
+            var minWidth = Math.max(AppSettings.effectiveFontMetrics.averageCharacterWidth, 5) * AppSettings.libraryItemWidthScaleFactor;
             var result = page.width / minWidth;
             result = Math.ceil(result);
             result = Math.max(result, 1);

@@ -11,6 +11,7 @@ Item {
     readonly property int defaultFontSize: fontMetrics.font.pointSize
     property bool useCompactTodoLists: false
     readonly property int effectiveFontSize: useCustomFontSize ? customFontSize : defaultFontSize
+    property int libraryItemWidthScaleFactor: 40
 
     property bool useDenseVariant: false
 
@@ -30,6 +31,7 @@ Item {
         property alias useCompactTodoLists: settings.useCompactTodoLists
         property alias uiScaling: settings.uiScaling
         property alias overrideUiScaling: settings.overrideUiScaling
+        property alias libraryItemWidthScaleFactor: settings.libraryItemWidthScaleFactor
 
         category: "ApplicationWindow"
     }
