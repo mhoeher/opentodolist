@@ -40,6 +40,14 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.31.1" date="2021-02-02">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #404: The sync deletes - under some circumstances - files.
+            </li>
+        </ul>
+      </release>
       <release version="3.31.0" date="2021-02-01">
         <p>This release includes the following changes:</p>
         <ul>
