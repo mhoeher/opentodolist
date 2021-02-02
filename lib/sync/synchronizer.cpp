@@ -336,7 +336,7 @@ QDebug Synchronizer::writeLog(Synchronizer::LogType type)
     entry.time = QDateTime::currentDateTime();
     entry.type = type;
     m_log.append(entry);
-    return QDebug(&m_log.last().message);
+    return QDebug(&m_log.last().message).noquote();
 }
 
 void Synchronizer::setLastSync(const QDateTime& lastSync)

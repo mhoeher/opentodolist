@@ -152,9 +152,10 @@ void WebDAVSynchronizer::synchronize()
         SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
         sync.setSyncStateDatabase(&db);
 
-        QRegularExpression pathRe(R"(\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[^\.]+)?)?)?)");
+        QRegularExpression pathRe(R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[^\.]+)?)?)?$)");
         sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
-            return pathRe.match(path).isValid();
+            auto result = pathRe.match(path).hasMatch();
+            return result;
         });
 
         QEventLoop loop;
