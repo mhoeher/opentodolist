@@ -433,6 +433,7 @@ QNetworkAccessManager* WebDAVSynchronizer::nam()
 {
     if (m_nam == nullptr) {
         m_nam = new QNetworkAccessManager(this);
+        m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
         connect(m_nam, &QNetworkAccessManager::sslErrors, this,
                 [=](QNetworkReply* reply, const QList<QSslError>& errors) {
                     if (!m_disableCertificateCheck) {
