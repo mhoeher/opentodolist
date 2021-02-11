@@ -122,5 +122,10 @@
         <file>Components/Empty.qml</file>
         <file>Utils/AppSettings.qml</file>
         <file>Actions/SetManualProgressAction.qml</file>
+        <file>Fonts/Roboto/LICENSE.txt</file>
+        <file>Fonts/Roboto/Roboto-Bold.ttf</file>
+        <file>Fonts/Roboto/Roboto-Italic.ttf</file>
+        <file>Fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>3rdpartyinfo/roboto/3rdpartyinfo.json</file>
     </qresource>
 </RCC>

@@ -234,6 +234,11 @@ void AppStartup::setupFonts()
     if (guiApp) {
         // Load color emoji font:
         QFontDatabase::addApplicationFont(":/Fonts/NotoColorEmoji-unhinted/NotoColorEmoji.ttf");
+
+        // Load Roboto font:
+        QFontDatabase::addApplicationFont(":/Fonts/Roboto/Roboto-Bold.ttf");
+        QFontDatabase::addApplicationFont(":/Fonts/Roboto/Roboto-Italic.ttf");
+        QFontDatabase::addApplicationFont(":/Fonts/Roboto/Roboto-Regular.ttf");
     }
 
 #ifdef OPENTODOLIST_FLATPAK
