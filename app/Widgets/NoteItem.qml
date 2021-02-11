@@ -39,14 +39,22 @@ Item {
             item: item.libraryItem
             shade: midShade
             clip: true
+            hoverEnabled: true
 
             Label {
                 id: titleLabel
-                text: Markdown.markdownToHtml(item.libraryItem.title)
-                textFormat: Text.RichText
+                text: Markdown.markdownToPlainText(item.libraryItem.title)
+                textFormat: Text.PlainText
                 wrapMode: Text.NoWrap
+                minimumPointSize: 6
                 elide: Text.ElideRight
                 width: parent.width
+                fontSizeMode: Text.HorizontalFit
+
+                ToolTip.text: text
+                ToolTip.visible: truncated && title.hovered
+                ToolTip.delay: 200
+                ToolTip.timeout: 30000
             }
         }
 
