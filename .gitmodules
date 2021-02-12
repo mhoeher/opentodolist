@@ -19,3 +19,6 @@
 [submodule "3rdparty/synqclient"]
 	path = 3rdparty/synqclient
 	url = https://gitlab.com/rpdev/synqclient.git
+[submodule "3rdparty/android-openssl"]
+	path = 3rdparty/android-openssl
+	url = https://gitlab.com/rpdev/android-openssl.git
