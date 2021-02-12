@@ -1,1 +1,1 @@
-include(android-openssl.pri)
+include(../../3rdparty/android-openssl/openssl.pri)
