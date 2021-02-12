@@ -35,7 +35,7 @@ $QT_ROOT/bin/qmake \
     CONFIG+=ccache \
     ANDROID_ABIS="$ANDROID_ABIS" \
     ..
-make -j4
+make -j4 2>&1 > /dev/null
 
 OTL_VERSION="$(git describe --tags)"
 
