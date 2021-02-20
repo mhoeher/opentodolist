@@ -29,7 +29,6 @@
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/movetodoquery.h"
-#include "datastorage/movetodoquery.h"
 
 class MoveTodoQueryTest : public QObject
 {
