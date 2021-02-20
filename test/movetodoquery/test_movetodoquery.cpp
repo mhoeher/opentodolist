@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -21,8 +21,6 @@
 #include <QSignalSpy>
 #include <QTest>
 
-#include "movetodoquery.h"
-
 #include "datamodel/library.h"
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
@@ -30,6 +28,7 @@
 #include "datastorage/getitemquery.h"
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
+#include "datastorage/movetodoquery.h"
 #include "datastorage/movetodoquery.h"
 
 class MoveTodoQueryTest : public QObject

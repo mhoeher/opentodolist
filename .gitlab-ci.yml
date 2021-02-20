@@ -155,6 +155,35 @@ appimage:
     expire_in: 1 week
 
 
+# Job template to build on Fedora
+.fedora:
+  stage: build
+  image: fedora
+  services:
+    - name: $NEXTCLOUD_IMAGE
+      alias: nextcloud
+    - name: $OWNCLOUD_IMAGE
+      alias: owncloud
+  script:
+    ./ci/fedora-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+  variables:
+    BUILD_SYSTEM: qmake
+
+# Build on Fedora using qmake
+fedora-qmake:
+  extends: .fedora
+  variables:
+    BUILD_SYSTEM: qmake
+
+# Build on Fedora using cmake
+fedora-cmake:
+  extends: .fedora
+  variables:
+    BUILD_SYSTEM: cmake
+
 # Windows 32bit build
 win32:
   stage: build

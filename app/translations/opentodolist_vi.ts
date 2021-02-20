@@ -109,37 +109,37 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../main.cpp" line="253"/>
+        <location filename="../main.cpp" line="258"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Quản lý dữ liệu cá nhân của bạn.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="259"/>
+        <location filename="../main.cpp" line="264"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Bật một số tối ưu hóa cho màn hình cảm ứng.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="262"/>
+        <location filename="../main.cpp" line="267"/>
         <source>Only run the app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="264"/>
+        <location filename="../main.cpp" line="269"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="269"/>
+        <location filename="../main.cpp" line="274"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="403"/>
+        <location filename="../main.cpp" line="408"/>
         <source>Open</source>
         <translation type="unfinished">Mở</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="410"/>
+        <location filename="../main.cpp" line="415"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1264,8 +1264,8 @@
 <context>
     <name>OpenImageDialog</name>
     <message>
-        <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
+        <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
         <translation type="unfinished">Chọn ảnh</translation>
     </message>
@@ -1531,6 +1531,11 @@
 This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="212"/>
+        <source>Library Item Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SyncErrorNotificationBar</name>
@@ -1561,7 +1566,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="99"/>
+        <location filename="../Widgets/TodoListItem.qml" line="107"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Không mở todos - mọi thứ đã xong</translation>
     </message>
@@ -1787,6 +1792,14 @@ This requires a restart of the app.</source>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
         <translation type="unfinished">Tải xuống</translation>
+    </message>
+</context>
+<context>
+    <name>WebDAVSynchronizer</name>
+    <message>
+        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="174"/>
+        <source>Failed to create sync lock:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

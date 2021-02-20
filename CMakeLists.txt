@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.5.1)
 
+# Generate build commands JSON file:
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Auto-detect Android build from within Qt Creator:
 include(./3rdparty/qt-cmake-android/cmake/autodetect-android-build.cmake)
 
@@ -40,15 +43,18 @@ if(MSVC)
   endif()
 elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
   # Update if necessary
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
 
-# Configure the build in qlmdb library:
-if(ANDROID)
-    set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
-endif()
+# Set options of included 3rd party libraries:
+set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
 set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
+set(QLMDB_WITHOUT_TESTS ON CACHE BOOL "Do not build QLMDB unit tests")
+set(SYNQCLIENT_WITHOUT_TESTS ON CACHE BOOL "Disable tests in SynqClient")
+
+# Build using static libraries:
+set(BUILD_SHARED_LIBS OFF)
 
 # Install data files:
 set(APPLICATION_NAME OpenTodoList)
