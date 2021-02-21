@@ -12,18 +12,18 @@ if [ -n "$CI" ]; then
         qt5-{qtbase,qtdeclarative,qtremoteobjects,qtquickcontrols2}-devel \
         qt5-linguist
 
-    # curl -d install="true" -d adminlogin=admin -d adminpass=admin \
-    #     http://nextcloud/index.php
-    # curl -d install="true" -d adminlogin=admin -d adminpass=admin \
-    #         http://owncloud/index.php
-    # QMAKE_EXTRA_FLAGS="
-    #     NEXTCLOUD_URL=http://admin:admin@nextcloud/
-    #     OWNCLOUD_URL=http://admin:admin@owncloud/
-    # "
-    # CMAKE_EXTRA_FLAGS="
-    #     -DOPENTODOLIST_NEXTCLOUD_TEST_URL=http://admin:admin@nextcloud/
-    #     -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
-    # "
+    curl -d install="true" -d adminlogin=admin -d adminpass=admin \
+        http://nextcloud/index.php
+    curl -d install="true" -d adminlogin=admin -d adminpass=admin \
+            http://owncloud/index.php
+    QMAKE_EXTRA_FLAGS="
+        NEXTCLOUD_URL=http://admin:admin@nextcloud/
+        OWNCLOUD_URL=http://admin:admin@owncloud/
+    "
+    CMAKE_EXTRA_FLAGS="
+        -DOPENTODOLIST_NEXTCLOUD_TEST_URL=http://admin:admin@nextcloud/
+        -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
+    "
 fi
 
 export QT_QPA_PLATFORM=minimal

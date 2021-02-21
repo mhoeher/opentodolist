@@ -1,17 +1,18 @@
 find_package(Qt5 COMPONENTS REQUIRED Core)
 get_target_property(QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
 
-set(LINUXDEPLOYQT_URL
-    https://github.com/probonopd/linuxdeployqt/releases/download/5/linuxdeployqt-5-x86_64.AppImage
+set(
+    LINUXDEPLOYQT_URL
+    https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 )
 set(LINUXDEPLOYQT
-    ./linuxdeployqt-5-x86_64.AppImage
+    ./linuxdeployqt-x86_64.AppImage
 )
 
 add_custom_target(
     appimage
     COMMAND
-        wget -O ${LINUXDEPLOYQT} ${LINUXDEPLOYQT_URL}
+        curl -L -o ${LINUXDEPLOYQT} ${LINUXDEPLOYQT_URL}
     COMMAND
         chmod +x ${LINUXDEPLOYQT}
     COMMAND

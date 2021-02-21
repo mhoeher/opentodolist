@@ -52,6 +52,7 @@ set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
 set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
 set(QLMDB_WITHOUT_TESTS ON CACHE BOOL "Do not build QLMDB unit tests")
 set(SYNQCLIENT_WITHOUT_TESTS ON CACHE BOOL "Disable tests in SynqClient")
+set(QTKEYCHAIN_STATIC ON CACHE BOOL "Build static QtKeychain library")
 
 # Build using static libraries:
 set(BUILD_SHARED_LIBS OFF)
@@ -66,7 +67,7 @@ configure_file(
 )
 include(GNUInstallDirs)
 install(
-    DIRECTORY templates/icons/hicolor
+    DIRECTORY app/icons/hicolor
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/
 )
 install(
