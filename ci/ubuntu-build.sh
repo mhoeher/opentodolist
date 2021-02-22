@@ -57,6 +57,8 @@ rm -rf AppImageBuild/usr/{include,lib,mkspecs}
 ln -s "./usr/share/applications/net.rpdev.OpenTodoList.desktop" AppImageBuild/default.desktop
 ln -s "./usr/share/icons/hicolor/256x256/apps/net.rpdev.OpenTodoList.png" AppImageBuild/
 
+export VERSION=$(git describe --tags)
+
 LINUXDEPLOYQT="./linuxdeployqt-x86_64.AppImage"
 if [ ! -f "$LINUXDEPLOYQT" ]; then
     curl -L -o "$LINUXDEPLOYQT" \

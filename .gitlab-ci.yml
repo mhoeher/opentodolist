@@ -151,8 +151,7 @@ appimage:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - build-ubuntu/OpenTodoList-x86_64.AppImage
-      - build-ubuntu/**
+      - build-ubuntu/OpenTodoList-*-x86_64.AppImage*
     expire_in: 1 week
 
 
