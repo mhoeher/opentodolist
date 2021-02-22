@@ -152,6 +152,7 @@ appimage:
   artifacts:
     paths:
       - build-ubuntu/OpenTodoList-x86_64.AppImage
+      - build-ubuntu/**
     expire_in: 1 week
 
 
