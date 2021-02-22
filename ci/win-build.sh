@@ -8,6 +8,8 @@ if [ -n "$CI" ]; then
     fi
 fi
 
+VERSION=$(git describe --tags)
+
 if [ "$TARGET" == win64 ]; then
     BUILD_DIR=build-win64
     DEPLOY_DIR=deploy-win64
@@ -15,6 +17,8 @@ if [ "$TARGET" == win64 ]; then
     CMAKE=mingw64-cmake
     QMAKE=mingw64-qmake-qt5
     INSTALLER_FILE=win64-installer.nsis
+    INSTALLER_OUTPUT_FILE=OpenTodoList-Windows-64bit.exe
+    INSTALLER_OUTPUT_TARGET_FILE=OpenTodoList-${VERSION}-Windows-64bit.exe
     EXTRA_LIBS="\
         /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-1_1-x64.dll \
         /usr/$MXE_DIR/sys-root/mingw/bin/libssl-1_1-x64.dll"
@@ -25,6 +29,8 @@ else
     CMAKE=mingw32-cmake
     QMAKE=mingw32-qmake-qt5
     INSTALLER_FILE=win32-installer.nsis
+    INSTALLER_OUTPUT_FILE=OpenTodoList-Windows-32bit.exe
+    INSTALLER_OUTPUT_TARGET_FILE=OpenTodoList-${VERSION}-Windows-32bit.exe
     EXTRA_LIBS="\
         /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-1_1.dll \
         /usr/$MXE_DIR/sys-root/mingw/bin/libssl-1_1.dll"
@@ -33,16 +39,20 @@ fi
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
-$QMAKE \
-    CONFIG+=release \
-    CONFIG+=with_update_service \
-    CONFIG+=ccache \
-    CONFIG+=enable_cross_win_ccache \
-    INSTALL_PREFIX=$PWD/../$DEPLOY_DIR \
+$CMAKE \
+    -GNinja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
+    -DUSE_CREDENTIAL_STORE=ON \
+    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+    -DCMAKE_INSTALL_PREFIX=/usr \
     ..
-make qmake_all
-make -j4
-make install
+cmake --build . --target OpenTodoList
+rm -rf $PWD/_
+DESTDIR=$PWD/_ cmake --build . --target install
+mkdir -p "$PWD/../$DEPLOY_DIR"
+cp -r _/usr/bin _/usr/share "$PWD/../$DEPLOY_DIR"
 
 # Remove some extra files we don't need to deploy
 rm -f \
@@ -80,3 +90,5 @@ find $DEPLOY_DIR/bin/ \
 cp templates/nsis/$INSTALLER_FILE $DEPLOY_DIR/
 cd $DEPLOY_DIR
 makensis $INSTALLER_FILE
+
+mv $INSTALLER_OUTPUT_FILE $INSTALLER_OUTPUT_TARGET_FILE

@@ -32,3 +32,4 @@ app/android/.idea/
 /.vscode/
 /fedora-build-cmake
 /fedora-build-qmake
+/xwindeployqt

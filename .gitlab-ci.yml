@@ -195,7 +195,7 @@ win32:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - deploy-win32/OpenTodoList-Windows-32bit.exe
+      - deploy-win32/OpenTodoList-*-Windows-32bit.exe
     expire_in: 1 week
 
 
@@ -210,7 +210,7 @@ win64:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - deploy-win64/OpenTodoList-Windows-64bit.exe
+      - deploy-win64/OpenTodoList-*-Windows-64bit.exe
     expire_in: 1 week
 
 
@@ -419,9 +419,9 @@ github:
     script:
         - yum install -y --nogpgcheck python3 python3-requests
         - mkdir uploads
-        - cp build-ubuntu/OpenTodoList-x86_64.AppImage uploads
-        - cp deploy-win32/OpenTodoList-Windows-32bit.exe uploads
-        - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
+        - cp build-ubuntu/OpenTodoList-*-x86_64.AppImage uploads
+        - cp deploy-win32/OpenTodoList-*-Windows-32bit.exe uploads
+        - cp deploy-win64/OpenTodoList-*-Windows-64bit.exe uploads
         - cp build-android/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
