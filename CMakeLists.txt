@@ -3,9 +3,6 @@ cmake_minimum_required(VERSION 3.5.1)
 # Generate build commands JSON file:
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Auto-detect Android build from within Qt Creator:
-#include(./3rdparty/qt-cmake-android/cmake/autodetect-android-build.cmake)
-
 project(OpenTodoList)
 
 

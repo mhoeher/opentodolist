@@ -48,19 +48,3 @@ to control the build and tweak the configuration of the app:
 | `OPENTODOLIST_WITH_APPIMAGE_EXTRAS` | ON, OFF | Enable extra functionality when building the app as AppImage. |
 | `OPENTODOLIST_NEXTCLOUD_TEST_URL` | URL including username and password | The URL of a NextCloud instance. If given, unit tests will be run against this NextCloud instance. |
 | `OPENTODOLIST_OWNCLOUD_TEST_URL` | URL including username and password | The URL of an ownCloud instance. If given, unit tests will be run against this ownCloud instance. |
-
-
-## Building for Android
-
-Building for Android is supported via
-[qt-cmake-android](https://gitlab.com/rpdev/qt-cmake-android). Basically,
-you just need to make sure you expose the paths to the Android NDK and SDK
-properly and provide the path to your Qt installation.
-
-
-## Known Issues
-
-* Building for Android requires at least Qt 5.12.3 as well as the Android
-  NDK r19c or up. There is no support for older versions, even though it
-  should be possible to build the app using lower versions. In particular,
-  there is no dedicated support for using GCC for Android targets.
