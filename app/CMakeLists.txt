@@ -15,14 +15,6 @@ set(APP_RESOURCES
     ./res.qrc
 )
 
-# Find required Qt libraries
-find_package(Qt5Qml REQUIRED)
-find_package(Qt5Quick REQUIRED)
-find_package(Qt5Xml REQUIRED)
-find_package(Qt5Concurrent REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
-
 if(WIN32)
     set(APP_FLAGS WIN32)
 endif()
@@ -34,25 +26,26 @@ if(APPLE)
     set_source_files_properties(res/OpenTodoList.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 endif()
 
-if(ANDROID)
-    add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
-    set(EXTRA_LIBS $<TARGET_FILE:qt5keychain>)
-
-    set(
-        ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
-        CACHE INTERNAL "Extra files for Android deployment"
-    )
-    set(
-        ANDROID_EXTRA_LIBS
-        ${ANDROID_EXTRA_LIBS} ${EXTRA_LIBS}
-    )
-    list(REMOVE_DUPLICATES ANDROID_EXTRA_LIBS)
-    set(ANDROID_EXTRA_LIBS ${ANDROID_EXTRA_LIBS}
-        CACHE INTERNAL "Extra libraries to include in APK" FORCE
-    )
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
 else()
-    add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+    if(ANDROID)
+        add_library(OpenTodoList SHARED ${APP_SOURCES} ${APP_RESOURCES})
+
+        set(
+            ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+            CACHE INTERNAL "Extra files for Android deployment"
+        )
+    else()
+        add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+    endif()
 endif()
+
+target_compile_definitions(
+    OpenTodoList
+    PRIVATE 
+        $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>
+)
 
 configure_file(Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 set_target_properties(OpenTodoList PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
@@ -77,11 +70,11 @@ target_link_libraries(
     opentodolist-common
 
     # Qt libraries:
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::Xml
-    Qt5::Concurrent
-    Qt5::Widgets
+    Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::Widgets
 )
 
 if(OPENTODOLIST_FLATPAK)

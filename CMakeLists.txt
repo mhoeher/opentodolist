@@ -4,9 +4,11 @@ cmake_minimum_required(VERSION 3.5.1)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Auto-detect Android build from within Qt Creator:
-include(./3rdparty/qt-cmake-android/cmake/autodetect-android-build.cmake)
+#include(./3rdparty/qt-cmake-android/cmake/autodetect-android-build.cmake)
 
-project(opentodolist)
+project(OpenTodoList)
+
+
 
 # Include modules:
 include(cmake/options.cmake)
@@ -45,6 +47,13 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
   # Update if necessary
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
+
+set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets)
+if(ANDROID)
+set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras)
+endif()
+find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 
 
 # Set options of included 3rd party libraries:
@@ -88,7 +97,6 @@ add_subdirectory(3rdparty)
 add_subdirectory(lib)
 add_subdirectory(app)
 add_subdirectory(test)
-
 
 # Show other, project-related files:
 file(GLOB_RECURSE OTHER_FILES

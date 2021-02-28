@@ -108,15 +108,6 @@ set(LIB_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
 )
 
-
-# Find required Qt libraries
-find_package(Qt5Qml REQUIRED)
-find_package(Qt5Quick REQUIRED)
-find_package(Qt5Xml REQUIRED)
-find_package(Qt5Concurrent REQUIRED)
-find_package(Qt5Sql REQUIRED)
-find_package(Qt5RemoteObjects REQUIRED)
-
 # Find KDE Syntax Highlighting engine
 # find_package(KF5SyntaxHighlighting)
 # if(KF5SyntaxHighlighting_FOUND)
@@ -165,22 +156,53 @@ target_link_libraries(opentodolist-common
 
     PUBLIC
 
-    # Qt libraries:
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::Xml
-    Qt5::Concurrent
-    Qt5::Sql
-    Qt5::RemoteObjects
+        # Qt libraries:
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Xml
+        Qt${QT_VERSION_MAJOR}::Concurrent
+        Qt${QT_VERSION_MAJOR}::Sql
+        Qt${QT_VERSION_MAJOR}::RemoteObjects
 
-    # Third party libraries:
-    qt5keychain
-    qlmdb
-    synqclient
+        # Third party libraries:
+        qlmdb
+        synqclient
 
-    # Optional libraries
-    ${LIB_LIBRARIES}
+        # Optional libraries
+        ${LIB_LIBRARIES}
 )
+
+if(ANDROID)
+    target_link_libraries(
+        opentodolist-common
+
+        PUBLIC
+            Qt${QT_VERSION_MAJOR}::AndroidExtras
+    )
+
+    if (ANDROID_ABI STREQUAL "arm64-v8a")
+        # TODO: If possible, upgrade and remove this
+        # At least with Qt 5.15, we get linking errors on ARM64 using cmake. Hence, explicitly
+        # link against the missing libraries:
+        target_link_libraries(
+            opentodolist-common
+
+            PUBLIC
+                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libGLESv2.so
+                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/liblog.so
+                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libz.so
+                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so
+        )
+    endif()
+else()
+    target_link_libraries(
+        opentodolist-common
+
+        PUBLIC
+            qt${QT_VERSION_MAJOR}keychain
+    )
+endif()
+
 
 
 install(
