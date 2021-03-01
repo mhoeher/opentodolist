@@ -43,7 +43,7 @@ endif()
 
 target_compile_definitions(
     OpenTodoList
-    PRIVATE 
+    PRIVATE
         $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>
 )
 
@@ -90,11 +90,15 @@ file(GLOB_RECURSE TS_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../lib/*.h
 )
 file(GLOB TS_FILES translations/*.ts)
-qt5_create_translation(
-    MESSAGES
-    ${TS_SOURCE_FILES}
-    ${TS_FILES}
-)
+if (NOT ${PROJECT_NAME}-MultiAbiBuild)
+    # Only run this once per multi-abi build on Android. Otherwise, we might
+    # get conflicting writes to the *.ts files from parallel sub-builds.
+    qt5_create_translation(
+        MESSAGES
+        ${TS_SOURCE_FILES}
+        ${TS_FILES}
+    )
+endif()
 qt5_add_translation(QM_FILES ${TS_FILES})
 target_sources(OpenTodoList PRIVATE
     ${QM_FILES}
