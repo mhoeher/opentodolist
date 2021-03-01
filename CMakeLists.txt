@@ -10,7 +10,6 @@ project(OpenTodoList)
 # Include modules:
 include(cmake/options.cmake)
 include(cmake/version.cmake)
-include(cmake/BuildLinuxAppImage.cmake)
 include(cmake/Flatpak.cmake)
 
 # Find includes in corresponding build directories

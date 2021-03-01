@@ -49,6 +49,7 @@ cmake \
     $CMAKE_ABI_ARGS \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+    -DANDROID_TARGET_SDK_VERSION=29 \
     ..
 cmake --build .
 
