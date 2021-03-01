@@ -32,6 +32,13 @@ endif()
 # Set C++ standard to use:
 set(CMAKE_CXX_STANDARD 14)
 
+# Add additional files for Android:
+set(
+    ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/app/android
+    CACHE INTERNAL "Extra files for Android deployment"
+)
+
+
 # Enable warnings:
 if(MSVC)
   # Force to always compile with W4
