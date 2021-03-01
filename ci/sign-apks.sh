@@ -9,15 +9,18 @@ set -e
 
 pushd build-android
 for android_file in *.apk *.aab; do
-    jarsigner \
-        -sigalg SHA1withRSA \
-        -digestalg SHA1 \
-        -keystore "$OPENTODOLIST_KEYSTORE" \
-        -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
-        $android_file "$OPENTODOLIST_KEYSTORE_ALIAS"
-    $ANDROID_SDK_ROOT/build-tools/*/zipalign \
-        -v 4 \
-        $android_file \
-        $(basename $(basename $android_file .aab) .apk)-aligned.apk
+    if [ -f "$android_file" ]; then
+        filename_extension="${android_file##*.}"
+        jarsigner \
+            -sigalg SHA1withRSA \
+            -digestalg SHA1 \
+            -keystore "$OPENTODOLIST_KEYSTORE" \
+            -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
+            $android_file "$OPENTODOLIST_KEYSTORE_ALIAS"
+        $ANDROID_SDK_ROOT/build-tools/*/zipalign \
+            -v 4 \
+            $android_file \
+            $(basename $android_file .$filename_extension)-aligned.$filename_extension
+    fi
 done
 popd
