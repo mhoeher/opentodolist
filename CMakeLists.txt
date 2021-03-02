@@ -37,6 +37,13 @@ set(
     CACHE INTERNAL "Extra files for Android deployment"
 )
 
+if(ANDROID_TARGET_SDK_VERSION)
+    set(
+        ANDROID_TARGET_SDK_VERSION ${ANDROID_TARGET_SDK_VERSION}
+        CACHE INTERNAL "Android Target SDK version to build against."
+    )
+endif()
+
 
 # Enable warnings:
 if(MSVC)

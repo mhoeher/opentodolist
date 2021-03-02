@@ -54,7 +54,7 @@ cmake \
     ..
 cmake --build .
 
-# Set correct target SDK version:
+# Fix up target SDK version in deployment config:
 python \
     ../bin/set-android-deployment-target-sdk.py \
     android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION

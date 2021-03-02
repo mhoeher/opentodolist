@@ -14,7 +14,7 @@ def _main():
         "deployment_settings", help="Path to the deployment settings JSON file."
     )
     parser.add_argument(
-        "target_sdk", type=int, help="Target SDK version to build against."
+        "target_sdk", type=str, help="Target SDK version to build against."
     )
     args = parser.parse_args()
     _patch_deployment_cfg(args.deployment_settings, args.target_sdk)
