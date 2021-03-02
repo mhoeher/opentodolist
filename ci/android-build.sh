@@ -5,6 +5,7 @@ set -e
 export PATH=$QT_ROOT/bin:$PATH
 export PROJECT_ROOT=$(cd $(dirname $0) && cd .. && pwd)
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
+ANDROID_TARGET_SDK_VERSION=29
 
 if [ -z "$ANDROID_ABIS" ]; then
     ANDROID_ABIS="armeabi-v7a arm64-v8a x86 x86_64"
@@ -49,9 +50,14 @@ cmake \
     $CMAKE_ABI_ARGS \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DANDROID_TARGET_SDK_VERSION=29 \
+    -DANDROID_TARGET_SDK_VERSION=$ANDROID_TARGET_SDK_VERSION \
     ..
 cmake --build .
+
+# Set correct target SDK version:
+python \
+    ../bin/set-android-deployment-target-sdk.py \
+    android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION
 
 # Prepare builds for architecture specific APK builds:
 python \
