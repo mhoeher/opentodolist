@@ -56,11 +56,13 @@
         },
         {
             "name": "opentodolist",
-            "buildsystem": "qmake",
+            "buildsystem": "cmake-ninja",
             "config-opts": [
-                "CONFIG+=release",
-                "INSTALL_PREFIX=/app/usr",
-                "CONFIG+=opentodolist_flatpak"
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_INSTALL_LIBDIR=/app/lib",
+                "-DLIB_INSTALL_DIR=/app/lib",
+                "-DOPENTODOLIST_FLATPAK=ON",
+                "-DQt5RemoteObjects_DIR=/app/usr/lib/all-linux-gnu/cmake/Qt5RemoteObjects"
             ],
             "sources": [
                 {
@@ -70,9 +72,9 @@
                 {
                     "type": "shell",
                     "commands": [
-                        "touch .flatpak-build",
-                        "cp -r /app/usr/lib/mkspecs/features .",
-                        "mkdir -p /app/bin && cd /app/bin && ln -s ../usr/bin/OpenTodoList OpenTodoList"
+                        "ln -s /app/usr/lib/*-linux-gnu /app/usr/lib/all-linux-gnu",
+                        "ln -s /app/share /app/usr/share",
+                        "ln -s /app/usr/lib/all-linux-gnu/libQt5RemoteObjects.so.5 /app/lib"
                     ]
                 }
             ]
