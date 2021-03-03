@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://opentodolist.rpdev.net/"
 license=('GPL')
 groups=()
-depends=('qt5-base' 'qt5-tools' 'qt5-quickcontrols2' 'qt5-remoteobjects' 'syntax-highlighting' 'libsecret' 'ttf-roboto' 'noto-fonts')
+depends=('cmake' 'ninja' 'qt5-base' 'qt5-tools' 'qt5-quickcontrols2' 'qt5-remoteobjects' 'syntax-highlighting' 'libsecret' 'ttf-roboto' 'noto-fonts')
 makedepends=('git')
 provides=("${pkgname%}")
 conflicts=("${pkgname%}")
@@ -41,8 +41,12 @@ build() {
         cd "$srcdir/${pkgname%}"
         mkdir -p build
         cd build
-        qmake CONFIG+=release INSTALL_PREFIX=/usr ..
-        make
+        cmake \
+                -GNinja \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_INSTALL_PREFIX=/usr \
+                ..
+        cmake --build .
 }
 
 check() {
@@ -52,11 +56,13 @@ check() {
         # where the test does not "wait in the right order" (kind of). Ideally, we'd fix
         # this, however, in order to avoid issues, retry the testing.
         # If the test fails three times, this is a clear sign that something IS broken.
-        make check || make check || make check
+        cmake --build . --target test || \
+                cmake --build . --target test || \
+                cmake --build . --target test
 }
 
 package() {
         cd "$srcdir/${pkgname%}"
         cd build
-        make INSTALL_ROOT="$pkgdir/" install
+        DESTDIR="$pkgdir/" cmake --build . --target install
 }

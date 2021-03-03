@@ -8,7 +8,7 @@ build:
 	./run-build.sh ${IMAGE}
 
 publish:
-	buildah push docker://${IMAGE}
+	podman push docker://${IMAGE}
 
 login:
 	podman login registry.gitlab.com

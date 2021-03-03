@@ -10,7 +10,6 @@ project(OpenTodoList)
 # Include modules:
 include(cmake/options.cmake)
 include(cmake/version.cmake)
-include(cmake/BuildLinuxAppImage.cmake)
 include(cmake/Flatpak.cmake)
 
 # Find includes in corresponding build directories
@@ -31,6 +30,20 @@ endif()
 
 # Set C++ standard to use:
 set(CMAKE_CXX_STANDARD 14)
+
+# Add additional files for Android:
+set(
+    ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/app/android
+    CACHE INTERNAL "Extra files for Android deployment"
+)
+
+if(ANDROID_TARGET_SDK_VERSION)
+    set(
+        ANDROID_TARGET_SDK_VERSION ${ANDROID_TARGET_SDK_VERSION}
+        CACHE INTERNAL "Android Target SDK version to build against."
+    )
+endif()
+
 
 # Enable warnings:
 if(MSVC)
