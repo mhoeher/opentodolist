@@ -52,7 +52,6 @@ set_target_properties(
     PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER net.rpdev.OpenTodoList
         MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
-        MACOSX_BUNDLE_LONG_VERSION_STRING 
 )
 
 if(NOT ANDROID)
