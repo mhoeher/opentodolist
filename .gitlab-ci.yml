@@ -135,6 +135,22 @@ cpplint:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
 
 
+# Create source archives of the app
+export-sources:
+  stage: build
+  image: fedora
+  script:
+    - ci/export-sources.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+  artifacts:
+    paths:
+      - OpenTodoList-Source-*.zip
+      - OpenTodoList-Source-*.tar.gz
+    expire_in: 1 week
+
+
 # Ubuntu build including AppImage
 appimage:
   stage: build
@@ -395,6 +411,8 @@ github:
         - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
         - cp build-android/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
+        - cp OpenTodoList-Source-*.zip uploads
+        - cp OpenTodoList-Source-*.tar.gz uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     except:
       variables:
