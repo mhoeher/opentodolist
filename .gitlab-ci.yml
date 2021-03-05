@@ -229,8 +229,8 @@ macos:
       - build-macos/app/OpenTodoList.dmg
     expire_in: 1 week
   variables:
-    QT_VERSION: 5.15.2
-    OSX_DEPLOYMENT_TARGET: 10.13 # Should be set to match Qt's minimum
+    QT_VERSION: "5.15.2"
+    OSX_DEPLOYMENT_TARGET: "10.13" # Should be set to match Qt's minimum
 
 
 # iOS build:
