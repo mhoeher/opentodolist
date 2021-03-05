@@ -47,6 +47,10 @@ target_compile_definitions(
         $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>
 )
 
+# Ideally, this would come from the Qt installation (as is the case for qmake).
+# 10.13 is the bare minimum for Qt 5.15.2.
+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+
 configure_file(Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 set_target_properties(OpenTodoList PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 
