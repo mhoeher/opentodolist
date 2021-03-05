@@ -228,6 +228,8 @@ macos:
     paths:
       - build-macos/app/OpenTodoList.dmg
     expire_in: 1 week
+  variables:
+    QT_VERSION: 5.15.2
 
 
 # iOS build:
