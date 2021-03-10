@@ -8,26 +8,19 @@ set -e
 # this SO post: https://stackoverflow.com/a/38074885/6367098
 
 pushd build-android
-for arch in armeabi-v7a arm64-v8a x86_64 x86; do
-    jarsigner \
-        -sigalg SHA1withRSA \
-        -digestalg SHA1 \
-        -keystore "$OPENTODOLIST_KEYSTORE" \
-        -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
-        OpenTodoList-Android-${arch}.apk "$OPENTODOLIST_KEYSTORE_ALIAS"
-    $ANDROID_SDK_ROOT/build-tools/*/zipalign \
-        -v 4 \
-        OpenTodoList-Android-${arch}.apk \
-        OpenTodoList-Android-${arch}-aligned.apk
+for android_file in *.apk *.aab; do
+    if [ -f "$android_file" ]; then
+        filename_extension="${android_file##*.}"
+        jarsigner \
+            -sigalg SHA1withRSA \
+            -digestalg SHA1 \
+            -keystore "$OPENTODOLIST_KEYSTORE" \
+            -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
+            $android_file "$OPENTODOLIST_KEYSTORE_ALIAS"
+        $ANDROID_SDK_ROOT/build-tools/*/zipalign \
+            -v 4 \
+            $android_file \
+            $(basename $android_file .$filename_extension)-aligned.$filename_extension
+    fi
 done
-jarsigner \
-    -sigalg SHA1withRSA \
-    -digestalg SHA1 \
-    -keystore "$OPENTODOLIST_KEYSTORE" \
-    -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
-    OpenTodoList.aab "$OPENTODOLIST_KEYSTORE_ALIAS"
-$ANDROID_SDK_ROOT/build-tools/*/zipalign \
-    -v 4 \
-    OpenTodoList.aab \
-    OpenTodoList-aligned.aab
 popd

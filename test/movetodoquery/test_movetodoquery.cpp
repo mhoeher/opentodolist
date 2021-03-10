@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -20,8 +20,6 @@
 #include <QObject>
 #include <QSignalSpy>
 #include <QTest>
-
-#include "movetodoquery.h"
 
 #include "datamodel/library.h"
 #include "datamodel/todo.h"

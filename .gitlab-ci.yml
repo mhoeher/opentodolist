@@ -167,9 +167,38 @@ appimage:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - build-ubuntu/OpenTodoList-x86_64.AppImage
+      - build-ubuntu/OpenTodoList-*-x86_64.AppImage*
     expire_in: 1 week
 
+
+# Job template to build on Fedora
+.fedora:
+  stage: build
+  image: fedora
+  services:
+    - name: $NEXTCLOUD_IMAGE
+      alias: nextcloud
+    - name: $OWNCLOUD_IMAGE
+      alias: owncloud
+  script:
+    ./ci/fedora-build.sh
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+  variables:
+    BUILD_SYSTEM: qmake
+
+# Build on Fedora using qmake
+fedora-qmake:
+  extends: .fedora
+  variables:
+    BUILD_SYSTEM: qmake
+
+# Build on Fedora using cmake
+fedora-cmake:
+  extends: .fedora
+  variables:
+    BUILD_SYSTEM: cmake
 
 # Windows 32bit build
 win32:
@@ -182,7 +211,7 @@ win32:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - deploy-win32/OpenTodoList-Windows-32bit.exe
+      - deploy-win32/OpenTodoList-*-Windows-32bit.exe
     expire_in: 1 week
 
 
@@ -197,7 +226,7 @@ win64:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - deploy-win64/OpenTodoList-Windows-64bit.exe
+      - deploy-win64/OpenTodoList-*-Windows-64bit.exe
     expire_in: 1 week
 
 
@@ -215,6 +244,9 @@ macos:
     paths:
       - build-macos/app/OpenTodoList.dmg
     expire_in: 1 week
+  variables:
+    QT_VERSION: "5.15.2"
+    OSX_DEPLOYMENT_TARGET: "10.13" # Should be set to match Qt's minimum
 
 
 # iOS build:
@@ -233,8 +265,8 @@ ios:
     expire_in: 1 week
 
 
-# Android build ARMv7
-android_armv7:
+# Android AAB + APKs
+android:
   stage: build
   image: $ANDROID_IMAGE
   script:
@@ -244,81 +276,10 @@ android_armv7:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - build-android/OpenTodoList-Android-armeabi-v7a.apk
+      - build-android/OpenTodoList-*.aab
+      - build-android/OpenTodoList-*.apk
     expire_in: 1 week
   variables:
-    ANDROID_ABIS: armeabi-v7a
-    ANDROID_NDK_PLATFORM: android-21
-
-
-# Android build ARM64
-android_arm64_v8a:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-arm64-v8a.apk
-    expire_in: 1 week
-  variables:
-    ANDROID_ABIS: arm64-v8a
-    ANDROID_NDK_PLATFORM: android-21
-
-
-# Android build x86
-android_x86:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-x86.apk
-    expire_in: 1 week
-  variables:
-    ANDROID_ABIS: x86
-    ANDROID_NDK_PLATFORM: android-21
-
-
-# Android build x86_64
-android_x64:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-x86_64.apk
-    expire_in: 1 week
-  variables:
-    ANDROID_ABIS: x86_64
-    ANDROID_NDK_PLATFORM: android-21
-
-# Android AAB
-android_aab:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList.aab
-    expire_in: 1 week
-  variables:
-    ANDROID_ABIS: "armeabi-v7a arm64-v8a x86 x86_64"
     ANDROID_NDK_PLATFORM: android-21
 
 # Build the app as Flatpak
@@ -378,11 +339,7 @@ sign_apks:
         - build-android/*-aligned.aab
       expire_in: 1 week
     dependencies:
-        - android_x86
-        - android_x64
-        - android_armv7
-        - android_arm64_v8a
-        - android_aab
+        - android
 
 aur_release_check:
     stage: installer
@@ -406,9 +363,9 @@ github:
     script:
         - yum install -y --nogpgcheck python3 python3-requests
         - mkdir uploads
-        - cp build-ubuntu/OpenTodoList-x86_64.AppImage uploads
-        - cp deploy-win32/OpenTodoList-Windows-32bit.exe uploads
-        - cp deploy-win64/OpenTodoList-Windows-64bit.exe uploads
+        - cp build-ubuntu/OpenTodoList-*-x86_64.AppImage uploads
+        - cp deploy-win32/OpenTodoList-*-Windows-32bit.exe uploads
+        - cp deploy-win64/OpenTodoList-*-Windows-64bit.exe uploads
         - cp build-android/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - cp OpenTodoList-Source-*.zip uploads

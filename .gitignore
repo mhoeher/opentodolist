@@ -29,3 +29,7 @@ CMakeLists.txt.user*
 /ios-build
 app/android/.gradle/
 app/android/.idea/
+/.vscode/
+/fedora-build-cmake
+/fedora-build-qmake
+/xwindeployqt

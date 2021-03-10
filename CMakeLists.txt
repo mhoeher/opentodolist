@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.5.1)
 
-# Auto-detect Android build from within Qt Creator:
-include(./3rdparty/qt-cmake-android/cmake/autodetect-android-build.cmake)
+# Generate build commands JSON file:
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(opentodolist)
+project(OpenTodoList)
+
+
 
 # Include modules:
 include(cmake/options.cmake)
 include(cmake/version.cmake)
-include(cmake/BuildLinuxAppImage.cmake)
 include(cmake/Flatpak.cmake)
 
 # Find includes in corresponding build directories
@@ -30,6 +31,20 @@ endif()
 # Set C++ standard to use:
 set(CMAKE_CXX_STANDARD 14)
 
+# Add additional files for Android:
+set(
+    ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/app/android
+    CACHE INTERNAL "Extra files for Android deployment"
+)
+
+if(ANDROID_TARGET_SDK_VERSION)
+    set(
+        ANDROID_TARGET_SDK_VERSION ${ANDROID_TARGET_SDK_VERSION}
+        CACHE INTERNAL "Android Target SDK version to build against."
+    )
+endif()
+
+
 # Enable warnings:
 if(MSVC)
   # Force to always compile with W4
@@ -40,15 +55,26 @@ if(MSVC)
   endif()
 elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
   # Update if necessary
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
-
-# Configure the build in qlmdb library:
+set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets)
 if(ANDROID)
-    set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
+set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras)
 endif()
+find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+
+
+# Set options of included 3rd party libraries:
+set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
 set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
+set(QLMDB_WITHOUT_TESTS ON CACHE BOOL "Do not build QLMDB unit tests")
+set(SYNQCLIENT_WITHOUT_TESTS ON CACHE BOOL "Disable tests in SynqClient")
+set(QTKEYCHAIN_STATIC ON CACHE BOOL "Build static QtKeychain library")
+
+# Build using static libraries:
+set(BUILD_SHARED_LIBS OFF)
 
 # Install data files:
 set(APPLICATION_NAME OpenTodoList)
@@ -60,7 +86,7 @@ configure_file(
 )
 include(GNUInstallDirs)
 install(
-    DIRECTORY templates/icons/hicolor
+    DIRECTORY app/icons/hicolor
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/
 )
 install(
@@ -81,7 +107,6 @@ add_subdirectory(3rdparty)
 add_subdirectory(lib)
 add_subdirectory(app)
 add_subdirectory(test)
-
 
 # Show other, project-related files:
 file(GLOB_RECURSE OTHER_FILES

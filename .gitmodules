@@ -7,9 +7,6 @@
 [submodule "3rdparty/KDE/syntax-highlighting"]
 	path = 3rdparty/KDE/syntax-highlighting
 	url = https://github.com/KDE/syntax-highlighting.git
-[submodule "3rdparty/qt-cmake-android"]
-	path = 3rdparty/qt-cmake-android
-	url = https://gitlab.com/rpdev/qt-cmake-android.git
 [submodule "3rdparty/run-clang-format"]
 	path = 3rdparty/run-clang-format
 	url = https://gitlab.com/rpdev/run-clang-format.git

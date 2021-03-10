@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -22,18 +22,18 @@
 #include <QCoreApplication>
 #include <QLoggingCategory>
 #include <QThreadPool>
-#include <libraryloader.h>
 
 #include "datamodel/library.h"
 #include "datastorage/applicationsettings.h"
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
+#include "datastorage/libraryloader.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
 #include "sync/syncrunner.h"
-#include "utils/keystore.h"
 #include "utils/directorywatcher.h"
+#include "utils/keystore.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.BackgroundService", QtDebugMsg);
 

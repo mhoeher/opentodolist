@@ -6,30 +6,42 @@ BUILD_DIR=$PWD/build-macos
 
 rm -rf $BUILD_DIR
 
-if [ ! -d "$QT_DIR" ]; then
-    echo "The variable QT_DIR is not set"
+if [ ! -d "$QT_INSTALLATION_DIR" ]; then
+    echo "The variable QT_INSTALLATION_DIR is not set"
     exit 1
 fi
 
-QTSDK=$QT_DIR
+if [ -z "$QT_VERSION" ]; then
+  echo "The variable QT_VERSION is not set"
+  exit 1
+fi
+
+if [ -z "$OSX_DEPLOYMENT_TARGET" ]; then
+    OSX_DEPLOYMENT_TARGET=10.13
+fi
+
+QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/clang_64
 
 #rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
-$QTSDK/bin/qmake \
-    -config release \
-    CONFIG+=with_update_service \
-    CONFIG+=qlmdb_with_static_libs \
-    CONFIG+=synqclient_with_static_libs \
-    CONFIG+=ccache \
+cmake \
+    -GNinja \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=$OSX_DEPLOYMENT_TARGET \
+    -DCMAKE_PREFIX_PATH=$QT_DIR \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
+    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+    $CMAKE_EXTRA_FLAGS \
     ..
-make -j4
-make check
+cmake --build .
+cmake --build . --target test
 
 # Include Qt Runtime in App Bundle. Also sign the bundle
 # and prepare it for notarization:
-$QTSDK/bin/macdeployqt \
+$QT_DIR/bin/macdeployqt \
     app/OpenTodoList.app/ \
     -qmldir=../app \
     -appstore-compliant \

@@ -5,7 +5,7 @@ FROM ubuntu:xenial
 
 #MAINTAINER Rabit <home@rabits.org> (@rabits)
 
-ARG QT_VERSION=5.15.0
+ARG QT_VERSION=5.15.2
 ARG QT_INSTALLER_URL="http://master.qt.io/archive/online_installers/3.2/qt-unified-linux-x64-3.2.1-2-online.run"
 ARG QT_INSTALLER_SHA256="02a3445e5b8dab761946ad6f6f3d80ccf9a3246d689bcbec69112379dd523506"
 # Use to pass URL with env exports file context with QT_CI_LOGIN & QT_CI_PASSWORD
