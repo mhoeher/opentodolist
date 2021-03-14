@@ -1,6 +1,6 @@
-# Instruct CMake to run moc and rrc automatically when needed.
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+# Add the library
+add_library(opentodolist-common)
+
 
 if(ANDROID)
     set(LIB_HEADERS_ANDROID
@@ -108,26 +108,29 @@ set(LIB_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
 )
 
-# Find KDE Syntax Highlighting engine
-# find_package(KF5SyntaxHighlighting)
-# if(KF5SyntaxHighlighting_FOUND)
-#     set(LIB_LIBRARIES ${LIB_LIBRARIES} KF5::SyntaxHighlighting)
-#     set(LIB_DEFINES ${LIB_DEFINES} HAVE_KF5_SYNTAX_HIGHLIGHTING)
-# endif()
-include(qmake/kf5-syntax-highlighting.cmake)
-set(LIB_HEADERS ${LIB_HEADERS} ${KF5_SYNTAXHIGHLIGHTING_HEADERS})
-set(
-    LIB_SOURCES ${LIB_SOURCES} 
-    ${KF5_SYNTAXHIGHLIGHTING_SOURCES} ${KF5_SYNTAXHIGHLIGHTING_RESOURCES}
-)
+if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+    target_link_libraries(opentodolist-common PRIVATE KF5::SyntaxHighlighting)
+    target_compile_definitions(opentodolist-common PRIVATE OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+else()
+    include(qmake/kf5-syntax-highlighting.cmake)
+    set(LIB_HEADERS ${LIB_HEADERS} ${KF5_SYNTAXHIGHLIGHTING_HEADERS})
+    set(
+        LIB_SOURCES ${LIB_SOURCES} 
+        ${KF5_SYNTAXHIGHLIGHTING_SOURCES} ${KF5_SYNTAXHIGHLIGHTING_RESOURCES}
+    )
+endif()
+
+
+
 
 qt5_generate_repc(LIB_SOURCES service/backgroundservice.rep SOURCE)
 qt5_generate_repc(LIB_SOURCES service/backgroundservice.rep REPLICA)
 
-# Add the library
-add_library(opentodolist-common
-    ${LIB_HEADERS}
-    ${LIB_SOURCES}
+target_sources(
+    opentodolist-common
+    PRIVATE
+        ${LIB_HEADERS}
+        ${LIB_SOURCES}
 )
 
 # Set include paths
@@ -150,6 +153,9 @@ target_compile_definitions(
         ${LIB_DEFINES}
         ${KF5_SYNTAXHIGHLIGHTING_DEFINES}
 )
+if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
+    target_compile_definitions(opentodolist-common PRIVATE OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
+endif()
 
 # Link against Qt libraries
 target_link_libraries(opentodolist-common
@@ -165,8 +171,8 @@ target_link_libraries(opentodolist-common
         Qt${QT_VERSION_MAJOR}::RemoteObjects
 
         # Third party libraries:
-        qlmdb
-        synqclient
+        QLMDB::qlmdb-qt${QT_VERSION_MAJOR}
+        SynqClient::synqclient-qt${QT_VERSION_MAJOR}
 
         # Optional libraries
         ${LIB_LIBRARIES}

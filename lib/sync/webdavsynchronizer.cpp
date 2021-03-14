@@ -36,13 +36,13 @@
 #include <QTimer>
 #include <QtConcurrent>
 
-#include "CompositeJob"
-#include "DirectorySynchronizer"
-#include "DownloadFileJob"
-#include "ListFilesJob"
-#include "SQLSyncStateDatabase"
-#include "WebDAVGetFileInfoJob"
-#include "WebDAVJobFactory"
+#include "SynqClient/CompositeJob"
+#include "SynqClient/DirectorySynchronizer"
+#include "SynqClient/DownloadFileJob"
+#include "SynqClient/ListFilesJob"
+#include "SynqClient/SQLSyncStateDatabase"
+#include "SynqClient/WebDAVGetFileInfoJob"
+#include "SynqClient/WebDAVJobFactory"
 
 #include "account.h"
 #include "datamodel/library.h"

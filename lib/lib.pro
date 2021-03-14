@@ -151,7 +151,7 @@ android {
     # On Android, we use a custom way to store secrets.
     config_qtkeychain {
         LIBS += -lqt5keychain
-        DEFINES += OTL_USE_SYSTEM_QT5KEYCHAIN
+        DEFINES += OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN
     } else {
         include(../3rdparty/qtkeychain/qt5keychain.pri)
     }

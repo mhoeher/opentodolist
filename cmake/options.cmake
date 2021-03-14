@@ -6,9 +6,37 @@ set(OPENTODOLIST_OWNCLOUD_TEST_URL ""
 
 
 # Control of build specific features:
-option(OPENTODOLIST_WITH_UPDATE_SERVICE OFF
+option(OPENTODOLIST_WITH_UPDATE_SERVICE
     "Enable built in update checks."
+    OFF
 )
-option(OPENTODOLIST_WITH_APPIMAGE_EXTRAS OFF
+option(OPENTODOLIST_WITH_APPIMAGE_EXTRAS
     "Enable features specific to the AppImage build."
+    OFF
+)
+
+option(OPENTODOLIST_USE_SYSTEM_LIBRARIES
+    "The default mode used for deciding whether to build against system libraries."
+    OFF
+)
+
+option(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN
+    "Build against the system QtKeychain library."
+    ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
+)
+option(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
+    "Build against the system KDE Syntax Highlighting library."
+    ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
+)
+option(OPENTODOLIST_USE_SYSTEM_QLMDB
+    "Build against the system QLMDB library."
+     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
+)
+option(OPENTODOLIST_USE_SYSTEM_SINGLEAPPLICATION
+    "Build against the system SingleApplication library."
+     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
+)
+option(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT
+    "Build against the system SynqClient library."
+     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
 )

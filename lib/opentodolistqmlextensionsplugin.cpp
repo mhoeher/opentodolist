@@ -44,7 +44,7 @@
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
 
-#include "NextCloudLoginFlow"
+#include "SynqClient/NextCloudLoginFlow"
 
 #ifdef Q_OS_ANDROID
 #    include "utils/android/androidfiledialog.h"

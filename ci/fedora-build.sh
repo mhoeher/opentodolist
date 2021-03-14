@@ -46,6 +46,29 @@ if [ "$BUILD_SYSTEM" == "qmake" ]; then
 else
     mkdir -p fedora-build-cmake
     cd fedora-build-cmake
+
+    if [ -n "$SYSTEM_LIBS" ]; then
+        if [ -n "$CI" ]; then
+            dnf install -y \
+              qtkeychain-qt5-devel \
+              kf5-syntax-highlighting-devel
+        fi
+
+        for project in qlmdb synqclient; do
+            mkdir -p ${project}-build
+            cd ${project}-build
+            cmake \
+                -GNinja \
+                -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                -DCMAKE_INSTALL_PREFIX=$PWD/../_ \
+                ../../3rdparty/${project}
+            cmake --build .
+            cmake --install .
+            cd ..
+        done
+        CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DCMAKE_PREFIX_PATH=$PWD/_"
+    fi
+
     cmake \
         -GNinja \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo \

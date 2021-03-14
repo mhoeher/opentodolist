@@ -5,6 +5,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(OpenTodoList)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
 
 # Include modules:
@@ -64,6 +67,24 @@ set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras)
 endif()
 find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+
+if(NOT ANDROID)
+    if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
+        find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
+    endif()
+endif()
+
+if(OPENTODOLIST_USE_SYSTEM_QLMDB)
+    find_package(QLMDB-qt${QT_VERSION_MAJOR} REQUIRED)
+endif()
+
+if(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
+    find_package(SynqClient-qt${QT_VERSION_MAJOR} REQUIRED)
+endif()
+
+if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+    find_package(KF5SyntaxHighlighting)
+endif()
 
 
 # Set options of included 3rd party libraries:
