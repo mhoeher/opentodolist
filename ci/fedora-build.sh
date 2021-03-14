@@ -66,7 +66,7 @@ else
             cmake --install .
             cd ..
         done
-        CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DCMAKE_PREFIX_PATH=$PWD/_"
+        CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DOPENTODOLIST_USE_SYSTEM_LIBRARIES=ON -DCMAKE_PREFIX_PATH=$PWD/_"
     fi
 
     cmake \
