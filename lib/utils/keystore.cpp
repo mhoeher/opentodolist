@@ -31,7 +31,7 @@
 #    include <QAndroidJniObject>
 #    include <QtAndroid>
 #else
-#    ifdef OTL_USE_SYSTEM_QT5KEYCHAIN
+#    ifdef OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN
 #        include <qt5keychain/keychain.h>
 #    else
 #        include <qtkeychain/keychain.h>

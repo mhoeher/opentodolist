@@ -200,6 +200,13 @@ fedora-cmake:
   variables:
     BUILD_SYSTEM: cmake
 
+# Build on Fedora using cmake and libraries from repositories
+fedora-cmake-system-libs:
+  extends: .fedora
+  variables:
+    BUILD_SYSTEM: cmake
+    SYSTEM_LIBS: "1"
+
 # Windows 32bit build
 win32:
   stage: build

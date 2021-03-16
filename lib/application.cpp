@@ -43,7 +43,7 @@
 #    include <QAndroidJniExceptionCleaner>
 #endif
 
-#include "NextCloudLoginFlow"
+#include "SynqClient/NextCloudLoginFlow"
 
 #include "datamodel/image.h"
 #include "datamodel/note.h"
