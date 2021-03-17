@@ -4,6 +4,7 @@ variables:
     UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
     ANDROID_IMAGE: registry.gitlab.com/rpdev/opentodolist:android
     FLATPAK_IMAGE: registry.gitlab.com/rpdev/opentodolist:flatpak
+    SNAPCRAFT_IMAGE: registry.gitlab.com/rpdev/docker/snapcraft:latest
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
     CTEST_OUTPUT_ON_FAILURE: 1
@@ -307,6 +308,20 @@ flatpak:
             - .flatpak-builder/ccache/
         key: $CI_JOB_NAME
 
+# Build the app as Snap
+snap:
+    stage: build
+    image: $SNAPCRAFT_IMAGE
+    script:
+        - snapcraft snap
+    except:
+      variables:
+          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+    artifacts:
+      paths:
+        - opentodolist*.snap
+      expire_in: 1 week
+
 # Build the app for Arch Linux using pkgbuild
 archlinux-pkgbuild:
     stage: build
@@ -377,6 +392,7 @@ github:
         - cp build-macos/app/OpenTodoList.dmg uploads
         - cp OpenTodoList-Source-*.zip uploads
         - cp OpenTodoList-Source-*.tar.gz uploads
+        - cp *.snap uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     except:
       variables:
