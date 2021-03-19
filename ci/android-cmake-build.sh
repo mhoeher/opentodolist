@@ -57,17 +57,21 @@ cmake --build .
 # Fix up target SDK version in deployment config:
 python \
     ../bin/set-android-deployment-target-sdk.py \
-    android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION
+    android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION \
+    --android-package-source-directory $PWD/android-package-source
+
+# Copy over package source:
+cp -r ../app/android ./android-package-source
 
 OTL_VERSION="$(git describe --tags)"
 
 python ../bin/set-android-version-name \
-    ../app/android/AndroidManifest.xml "$OTL_VERSION"
+    android-package-source/AndroidManifest.xml "$OTL_VERSION"
 
 if [ -n "$BUILD_AAB" ]; then
     # Building Android AAB:
     python ../bin/increase-android-version-code \
-        ../app/android/AndroidManifest.xml 0
+        android-package-source/AndroidManifest.xml 0
 
     androiddeployqt \
         --output $PWD/android-build \
@@ -105,13 +109,13 @@ if [ -n "$BUILD_APK" ]; then
             ;;
     esac
     python ../bin/increase-android-version-code \
-        ../app/android/AndroidManifest.xml $VERSION_OFFSET
+        android-package-source/AndroidManifest.xml $VERSION_OFFSET
     androiddeployqt \
         --output $PWD/android-build \
         --gradle \
         --release \
         --deployment bundled \
         --input android_deployment_settings.json
-    cp android-build/build/outputs/apk/release/android-build-$ANDROID_ABIS-release-unsigned.apk \
+    cp android-build/build/outputs/apk/release/android-build-release-unsigned.apk \
         OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.apk
 fi
