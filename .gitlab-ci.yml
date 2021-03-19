@@ -272,111 +272,57 @@ ios:
     expire_in: 1 week
 
 
-# Android AAB + APKs
-android-cmake:
+# Template for Android builds
+.android-build:
   stage: build
   image: $ANDROID_IMAGE
   script:
     - ci/android-cmake-build.sh
-    - mv build-android build-android-cmake
   except:
     variables:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - build-android-cmake/OpenTodoList-*.aab
-      - build-android-cmake/OpenTodoList-*.apk
+      - build-android/OpenTodoList*.apk
+      - build-android/OpenTodoList*.aab
     expire_in: 1 week
   variables:
     ANDROID_NDK_PLATFORM: android-21
 
 # Android build ARMv7
 android_armv7:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-armeabi-v7a.apk
-    expire_in: 1 week
+  extends: .android-build
   variables:
     ANDROID_ABIS: armeabi-v7a
-    ANDROID_NDK_PLATFORM: android-21
-
+    BUILD_APK: 1
 
 # Android build ARM64
 android_arm64_v8a:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-arm64-v8a.apk
-    expire_in: 1 week
+  extends: .android-build
   variables:
     ANDROID_ABIS: arm64-v8a
-    ANDROID_NDK_PLATFORM: android-21
-
+    BUILD_APK: 1
 
 # Android build x86
 android_x86:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-x86.apk
-    expire_in: 1 week
+  extends: .android-build
   variables:
     ANDROID_ABIS: x86
-    ANDROID_NDK_PLATFORM: android-21
-
+    BUILD_APK: 1
 
 # Android build x86_64
 android_x64:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList-Android-x86_64.apk
-    expire_in: 1 week
+  extends: .android-build
   variables:
     ANDROID_ABIS: x86_64
-    ANDROID_NDK_PLATFORM: android-21
+    BUILD_APK: 1
 
 # Android AAB
 android_aab:
-  stage: build
-  image: $ANDROID_IMAGE
-  script:
-    - ci/android-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-  artifacts:
-    paths:
-      - build-android/OpenTodoList.aab
-    expire_in: 1 week
+  extends: .android-build
   variables:
     ANDROID_ABIS: "armeabi-v7a arm64-v8a x86 x86_64"
-    ANDROID_NDK_PLATFORM: android-21
+    BUILD_AAB: 1
 
 # Build the app as Flatpak
 flatpak:
@@ -419,7 +365,7 @@ archlinux-pkgbuild:
 # Installer Stage
 ################################################################################
 
-sign_apks:
+.sign_apks:
     stage: installer
     tags:
         - OpenTodoListPrivate
@@ -434,20 +380,38 @@ sign_apks:
         - build-android/*-aligned.apk
         - build-android/*-aligned.aab
       expire_in: 1 week
-    dependencies:
-        # - android
-        - android_aab
-        - android_arm64_v8a
-        - android_armv7
-        - android_x64
-        - android_x86
+
+sign::android_aab:
+  extends: .sign_apks
+  needs:
+    - android_aab
+
+sign::android_arm64_v8a:
+  extends: .sign_apks
+  needs:
+    - android_arm64_v8a
+
+sign::android_armv7:
+  extends: .sign_apks
+  needs:
+    - android_armv7
+
+sign::android_x64:
+  extends: .sign_apks
+  needs:
+    - android_x64
+
+sign::android_x86:
+  extends: .sign_apks
+  needs:
+    - android_x86
 
 aur_release_check:
     stage: installer
     image: fedora
     script:
         - ci/update-aur.sh
-    dependencies:
+    needs:
         - archlinux-pkgbuild
     except:
       variables:
@@ -490,7 +454,7 @@ appstore:
     except:
       variables:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-    dependencies:
+    needs:
       - ios
 
 aur_release:
@@ -500,8 +464,8 @@ aur_release:
         RELEASE_TO_AUR: 1
     script:
         - ci/update-aur.sh
-    dependencies:
-        - archlinux-pkgbuild
+    needs:
+        - aur_release_check
     except:
       variables:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i

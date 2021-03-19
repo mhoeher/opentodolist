@@ -34,6 +34,9 @@ fi
 mkdir -p build-android
 cd build-android
 unset CMAKE_ABI_ARGS
+if [ -n "$BUILD_APK" ]; then
+    CMAKE_ABI_ARGS="$CMAKE_ABI_ARGS -DANDROID_ABI=$ANDROID_ABIS"
+fi
 for abi in $ANDROID_ABIS; do
     CMAKE_ABI_ARGS="$CMAKE_ABI_ARGS -DANDROID_BUILD_ABI_$abi=ON"
 done
@@ -57,62 +60,65 @@ cmake --build .
 # Fix up target SDK version in deployment config:
 python \
     ../bin/set-android-deployment-target-sdk.py \
-    android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION
+    android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION \
+    --android-package-source-directory $PWD/android-package-source
 
-# Prepare builds for architecture specific APK builds:
-python \
-    ../bin/prepare-apk-deployment-settings.py \
-    android_deployment_settings.json
-for abi in $ANDROID_ABIS; do
-    mkdir -p android-build-$abi/libs
-    cp -r android-build/libs/$abi android-build-$abi/libs
-done
+# Copy over package source:
+cp -r ../app/android ./android-package-source
 
 OTL_VERSION="$(git describe --tags)"
 
-# Building Android AAB:
-python ../bin/increase-android-version-code \
-    ../app/android/AndroidManifest.xml 0
 python ../bin/set-android-version-name \
-    ../app/android/AndroidManifest.xml "$OTL_VERSION"
-androiddeployqt \
-    --output $PWD/android-build \
-    --aab \
-    --gradle \
-    --release \
-    --deployment bundled \
-    --input android_deployment_settings.json
-cp android-build/build/outputs/bundle/release/android-build-release.aab \
-    OpenTodoList-${OTL_VERSION}.aab
+    android-package-source/AndroidManifest.xml "$OTL_VERSION"
 
-# Build APKs for each supported platform
-for abi in $ANDROID_ABIS; do
-    case "$abi" in
+if [ -n "$BUILD_AAB" ]; then
+    # Building Android AAB:
+    python ../bin/increase-android-version-code \
+        android-package-source/AndroidManifest.xml 0
+
+    androiddeployqt \
+        --output $PWD/android-build \
+        --aab \
+        --gradle \
+        --release \
+        --deployment bundled \
+        --input android_deployment_settings.json
+    cp android-build/build/outputs/bundle/release/android-build-release.aab \
+        OpenTodoList-${OTL_VERSION}.aab
+fi
+
+if [ -n "$BUILD_APK" ]; then
+    # Build APKs for each supported platform
+    case "$ANDROID_ABIS" in
         armeabi-v7a)
             VERSION_OFFSET=1
+            break
             ;;
         arm64-v8a)
             VERSION_OFFSET=2
+            break
             ;;
         x86_64)
             VERSION_OFFSET=4;
+            break
             ;;
         x86)
             VERSION_OFFSET=3;
+            break
             ;;
         *)
-            echo "Unhandled Android architecture: $abi"
+            echo "Unhandled Android architecture: $ANDROID_ABIS"
             exit 1
             ;;
     esac
     python ../bin/increase-android-version-code \
-        ../app/android/AndroidManifest.xml $VERSION_OFFSET
+        android-package-source/AndroidManifest.xml $VERSION_OFFSET
     androiddeployqt \
-        --output $PWD/android-build-$abi \
+        --output $PWD/android-build \
         --gradle \
         --release \
         --deployment bundled \
-        --input android_deployment_settings_${abi}.json
-    cp android-build-$abi/build/outputs/apk/release/android-build-$abi-release-unsigned.apk \
-        OpenTodoList-${abi}-${OTL_VERSION}.apk
-done
+        --input android_deployment_settings.json
+    cp android-build/build/outputs/apk/release/android-build-release-unsigned.apk \
+        OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.apk
+fi

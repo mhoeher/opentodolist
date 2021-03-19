@@ -25,7 +25,8 @@ CONFIG(release, debug|release) {
 # QTBUG-79672.
 !ios:CONFIG += lrelease embed_translations
 
-SOURCES += main.cpp
+SOURCES += main.cpp appstartup.cpp
+HEADERS += appstartup.h
 
 RESOURCES += \
     qml.qrc \

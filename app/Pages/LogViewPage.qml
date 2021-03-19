@@ -16,13 +16,27 @@ Page {
     property alias log: view.model
 
     property var pageActions: ([
-                                   copyLogAction
+                                   copyLogAction,
+                                   jumpToPageStart,
+                                   jumpToPageEnd
                                ])
 
     Action {
         id: copyLogAction
         text: qsTr("Copy Log")
         onTriggered: OTL.Application.copyToClipboard(JSON.stringify(page.log))
+    }
+
+    Action {
+        id: jumpToPageStart
+        text: qsTr("Scroll to Top")
+        onTriggered: view.positionViewAtBeginning()
+    }
+
+    Action {
+        id: jumpToPageEnd
+        text: qsTr("Scroll to Bottom")
+        onTriggered: view.positionViewAtEnd()
     }
 
     ListView {
