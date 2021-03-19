@@ -109,37 +109,37 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../main.cpp" line="258"/>
+        <location filename="../appstartup.cpp" line="168"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="264"/>
+        <location filename="../appstartup.cpp" line="174"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="267"/>
+        <location filename="../appstartup.cpp" line="177"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Esegui solamente in background</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="269"/>
+        <location filename="../appstartup.cpp" line="179"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Esegui solo l&apos;interfaccia e collega a servizio in background esistente</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="274"/>
+        <location filename="../appstartup.cpp" line="184"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Abilita console di debug su Windows</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="408"/>
+        <location filename="../appstartup.cpp" line="318"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="415"/>
+        <location filename="../appstartup.cpp" line="325"/>
         <source>Quit</source>
         <translation type="unfinished">Esci</translation>
     </message>
@@ -731,9 +731,19 @@
         <translation type="unfinished">Registro di sincronizzazione</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="24"/>
+        <location filename="../Pages/LogViewPage.qml" line="26"/>
         <source>Copy Log</source>
         <translation type="unfinished">Copiare il registro</translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="32"/>
+        <source>Scroll to Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="38"/>
+        <source>Scroll to Bottom</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1797,7 +1807,7 @@ This requires a restart of the app.</source>
 <context>
     <name>WebDAVSynchronizer</name>
     <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="174"/>
+        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="175"/>
         <source>Failed to create sync lock:</source>
         <translation type="unfinished"></translation>
     </message>

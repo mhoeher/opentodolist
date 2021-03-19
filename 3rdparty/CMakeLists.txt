@@ -12,7 +12,3 @@ endif()
 if(NOT OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
     add_subdirectory(synqclient)
 endif()
-
-if(ANDROID)
-    add_subdirectory(android-openssl)
-endif()

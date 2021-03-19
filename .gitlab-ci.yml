@@ -273,22 +273,57 @@ ios:
     expire_in: 1 week
 
 
-# Android AAB + APKs
-android:
+# Template for Android builds
+.android-build:
   stage: build
   image: $ANDROID_IMAGE
   script:
-    - ci/android-build.sh
+    - ci/android-cmake-build.sh
   except:
     variables:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
-      - build-android/OpenTodoList-*.aab
-      - build-android/OpenTodoList-*.apk
+      - build-android/OpenTodoList*.apk
+      - build-android/OpenTodoList*.aab
     expire_in: 1 week
   variables:
     ANDROID_NDK_PLATFORM: android-21
+
+# Android build ARMv7
+android_armv7:
+  extends: .android-build
+  variables:
+    ANDROID_ABIS: armeabi-v7a
+    BUILD_APK: 1
+
+# Android build ARM64
+android_arm64_v8a:
+  extends: .android-build
+  variables:
+    ANDROID_ABIS: arm64-v8a
+    BUILD_APK: 1
+
+# Android build x86
+android_x86:
+  extends: .android-build
+  variables:
+    ANDROID_ABIS: x86
+    BUILD_APK: 1
+
+# Android build x86_64
+android_x64:
+  extends: .android-build
+  variables:
+    ANDROID_ABIS: x86_64
+    BUILD_APK: 1
+
+# Android AAB
+android_aab:
+  extends: .android-build
+  variables:
+    ANDROID_ABIS: "armeabi-v7a arm64-v8a x86 x86_64"
+    BUILD_AAB: 1
 
 # Build the app as Flatpak
 flatpak:
@@ -345,7 +380,7 @@ archlinux-pkgbuild:
 # Installer Stage
 ################################################################################
 
-sign_apks:
+.sign_apks:
     stage: installer
     tags:
         - OpenTodoListPrivate
@@ -360,15 +395,38 @@ sign_apks:
         - build-android/*-aligned.apk
         - build-android/*-aligned.aab
       expire_in: 1 week
-    dependencies:
-        - android
+
+sign::android_aab:
+  extends: .sign_apks
+  needs:
+    - android_aab
+
+sign::android_arm64_v8a:
+  extends: .sign_apks
+  needs:
+    - android_arm64_v8a
+
+sign::android_armv7:
+  extends: .sign_apks
+  needs:
+    - android_armv7
+
+sign::android_x64:
+  extends: .sign_apks
+  needs:
+    - android_x64
+
+sign::android_x86:
+  extends: .sign_apks
+  needs:
+    - android_x86
 
 aur_release_check:
     stage: installer
     image: fedora
     script:
         - ci/update-aur.sh
-    dependencies:
+    needs:
         - archlinux-pkgbuild
     except:
       variables:
@@ -412,7 +470,7 @@ appstore:
     except:
       variables:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-    dependencies:
+    needs:
       - ios
 
 aur_release:
@@ -422,8 +480,8 @@ aur_release:
         RELEASE_TO_AUR: 1
     script:
         - ci/update-aur.sh
-    dependencies:
-        - archlinux-pkgbuild
+    needs:
+        - aur_release_check
     except:
       variables:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i

@@ -47,6 +47,10 @@ if(ANDROID_TARGET_SDK_VERSION)
     )
 endif()
 
+if (ANDROID)
+    include(3rdparty/android-openssl/CMakeLists.txt)
+endif()
+
 
 # Enable warnings:
 if(MSVC)
