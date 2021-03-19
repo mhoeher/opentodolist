@@ -155,7 +155,7 @@ void AppStartup::setupFonts()
     {
         QDir dir("/var/config/fontconfig/conf.d");
         if (dir.mkpath(".")) {
-            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf",
+            QFile::copy("/app/etc/fonts/conf.d/90-otl-color-emoji.conf", // NOLINT
                         dir.absoluteFilePath("90-otl-color-emoji.conf"));
         }
     }
