@@ -34,6 +34,9 @@ fi
 mkdir -p build-android
 cd build-android
 unset CMAKE_ABI_ARGS
+if [ -n "$BUILD_APK" ]; then
+    CMAKE_ABI_ARGS="$CMAKE_ABI_ARGS -DANDROID_ABI=$ANDROID_ABIS"
+fi
 for abi in $ANDROID_ABIS; do
     CMAKE_ABI_ARGS="$CMAKE_ABI_ARGS -DANDROID_BUILD_ABI_$abi=ON"
 done
