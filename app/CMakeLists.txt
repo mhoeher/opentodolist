@@ -4,6 +4,8 @@ set(CMAKE_AUTORCC ON)
 
 set(APP_SOURCES
     main.cpp
+    appstartup.cpp
+    appstartup.h
 )
 
 if(WIN32)
