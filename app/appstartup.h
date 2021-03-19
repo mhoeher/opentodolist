@@ -17,8 +17,8 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OPENTODOLIST_APPSTARTUP_H_
-#define OPENTODOLIST_APPSTARTUP_H_
+#ifndef APPSTARTUP_H_
+#define APPSTARTUP_H_
 
 #include <QCommandLineParser>
 #include <QDebug>
@@ -106,4 +106,4 @@ private:
                                     const QString& msg);
 };
 
-#endif // OPENTODOLIST_APPSTARTUP_H_
+#endif // APPSTARTUP_H_
