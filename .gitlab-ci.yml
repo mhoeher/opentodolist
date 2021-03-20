@@ -19,6 +19,9 @@ stages:
   - test
   - installer
   - deploy
+  - beta
+  - candidate
+  - stable
 
 
 cache:
@@ -344,7 +347,7 @@ flatpak:
         key: $CI_JOB_NAME
 
 # Build the app as Snap
-snap:
+snap::build:
     stage: build
     image: $SNAPCRAFT_IMAGE
     script:
@@ -486,3 +489,51 @@ aur_release:
       variables:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     when: manual
+
+
+################################################################################
+# Upload to snapcraft.io
+################################################################################
+
+# Template to upload snaps:
+.snap::upload:
+  stage: deploy
+  image: $SNAPCRAFT_IMAGE
+  script:
+      - snapcraft login --with "$SNAPCRAFT_LOGIN"
+      - snapcraft upload opentodolist*.snap --release $SNAPCRAFT_CHANNEL
+  except:
+    variables:
+        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+  needs:
+    - snap::build
+
+# Upload to edge channel
+snap::edge:
+  extends: .snap::upload
+  variables:
+    SNAPCRAFT_CHANNEL: edge
+
+# Upload to beta channel
+snap::beta:
+  stage: beta
+  extends: .snap::upload
+  variables:
+    SNAPCRAFT_CHANNEL: beta
+  when: manual
+
+# Upload to candidate channel
+snap::candidate:
+  stage: candidate
+  extends: .snap::upload
+  variables:
+    SNAPCRAFT_CHANNEL: candidate
+  when: manual
+
+# Upload to release channel
+snap::release:
+  stage: stable
+  extends: .snap::upload
+  variables:
+    SNAPCRAFT_CHANNEL: release
+  when: manual
