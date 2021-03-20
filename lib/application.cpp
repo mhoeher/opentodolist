@@ -999,6 +999,18 @@ SynqClient::NextCloudLoginFlow* Application::createNextCloudLoginFlow(bool ignor
     return result;
 }
 
+/**
+ * @brief Trigger a sync for all libraries.
+ */
+void Application::syncAllLibraries()
+{
+    for (const auto& library : m_appSettings->librariesFromConfig()) {
+        if (library->hasSynchronizer()) {
+            runSyncForLibrary(library);
+        }
+    }
+}
+
 #ifdef Q_OS_ANDROID
 void Application::finishActivity()
 {

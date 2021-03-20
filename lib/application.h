@@ -133,6 +133,8 @@ public:
     Q_INVOKABLE SynqClient::NextCloudLoginFlow*
     createNextCloudLoginFlow(bool ignoreSslErrors) const;
 
+    Q_INVOKABLE void syncAllLibraries();
+
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE void finishActivity();
 #endif
