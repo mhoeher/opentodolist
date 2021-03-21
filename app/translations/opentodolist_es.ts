@@ -751,7 +751,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="28"/>
+        <location filename="../Windows/MainWindow.qml" line="24"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>

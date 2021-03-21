@@ -30,13 +30,13 @@ cd build-snapcraft
 
 cmake \
     -GNinja \
-    -DCMAKE_PREFIX_PATH=/opt/qt5* \
-    -DQt5DBus_DIR=/opt/qt5*/lib/cmake \
+    -DCMAKE_PREFIX_PATH=/opt/qt515 \
+    -DQt5DBus_DIR=/opt/qt515/lib/cmake/Qt5DBus/ \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_RPATH=\$ORIGIN/../../$(echo /opt/qt5*/lib/) \
+    -DCMAKE_INSTALL_RPATH=\$ORIGIN/../../$(echo /opt/qt515/lib/) \
     ..
 cmake --build .
 DESTDIR=$SNAPCRAFT_PART_INSTALL cmake --build . --target install
