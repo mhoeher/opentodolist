@@ -71,6 +71,21 @@ OTL_VERSION="$(git describe --tags)"
 python ../bin/set-android-version-name \
     android-package-source/AndroidManifest.xml "$OTL_VERSION"
 
+# Fix: Remove some intermediate build files as we run out of disk space in CIs:
+if [ -n "$CI" ]; then
+    echo "Cleaning up build files to get free disk space..."
+    echo "Disk space before cleanup:"
+    df -h 
+    rm -rf \
+        3rdparty \
+        app \
+        lib \
+        MultiAbi \
+        test
+    echo "Disk space after cleanup:"
+    df -h
+fi
+
 if [ -n "$BUILD_AAB" ]; then
     # Building Android AAB:
     python ../bin/increase-android-version-code \
