@@ -11,7 +11,6 @@ apt-get install -y \
     build-essential \
     libgl1-mesa-dev \
     git \
-    qtbase5-dev \
     ccache \
     ninja-build 
 add-apt-repository -y ppa:beineri/opt-qt-5.15.0-focal
