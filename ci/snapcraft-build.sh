@@ -31,6 +31,7 @@ cd build-snapcraft
 cmake \
     -GNinja \
     -DCMAKE_PREFIX_PATH=/opt/qt5* \
+    -DQt5DBus_DIR=/opt/qt5*/lib/cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
