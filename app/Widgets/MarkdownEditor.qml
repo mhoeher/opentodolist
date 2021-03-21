@@ -80,15 +80,6 @@ Column {
         anchors {
             left: parent.left
             right: parent.right
-            leftMargin: {
-                switch (Qt.platform.os) {
-                case "android":
-                    return 50;
-                default:
-                    return 20;
-                }
-            }
-            rightMargin: textArea.anchors.leftMargin
         }
 
 

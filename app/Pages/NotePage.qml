@@ -80,6 +80,8 @@ ItemPage {
         anchors.fill: parent
         item: page.item
         padding: AppSettings.mediumSpace
+        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
         Flickable {
             id: flickable

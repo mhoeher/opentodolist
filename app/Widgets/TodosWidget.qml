@@ -147,7 +147,7 @@ ListView {
                 Components.TextField {
                     id: newItemTitelEdit
                     Layout.fillWidth: true
-                    selectByMouse: true
+                    selectByMouse: AppSettings.selectTextByMouse
                     Layout.row: 0
                     Layout.column: 1
                     onAccepted: newItemButton.clicked()

@@ -223,6 +223,8 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
+        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
         TodosWidget {
             id: todosWidget
