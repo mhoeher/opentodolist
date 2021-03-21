@@ -281,7 +281,9 @@ ios:
   stage: build
   image: $ANDROID_IMAGE
   script:
+    - df -h
     - ci/android-cmake-build.sh
+    - df -h
   except:
     variables:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i

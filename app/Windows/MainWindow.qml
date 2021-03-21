@@ -21,12 +21,14 @@ ApplicationWindow {
     property ItemCreatedNotification itemCreatedNotification: null
     property int defaultFontSize: 12
 
-
-
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
     width: 640
     height: 480
+
+    // Sync all libraries whenever we show the main window. This ensures that users get an up
+    // to date view when e.g. restoring from the system tray or opening the GUI on Android.
+    onVisibleChanged: if (visible) { OTL.Application.syncAllLibraries(); }
 
     function viewLibrary(lib, tag, special) {
         lib = lib || librariesSideBar.currentLibrary;

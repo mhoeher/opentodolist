@@ -749,127 +749,127 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="26"/>
+        <location filename="../Windows/MainWindow.qml" line="28"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="107"/>
+        <location filename="../Windows/MainWindow.qml" line="109"/>
         <source>Synchronizing library...</source>
         <translation type="unfinished">Synkroniserer bibliotek ...</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="263"/>
+        <location filename="../Windows/MainWindow.qml" line="265"/>
         <source>Rename</source>
         <translation type="unfinished">Omdøb</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="274"/>
+        <location filename="../Windows/MainWindow.qml" line="276"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="285"/>
+        <location filename="../Windows/MainWindow.qml" line="287"/>
         <source>Color</source>
         <translation type="unfinished">Farve</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="296"/>
+        <location filename="../Windows/MainWindow.qml" line="298"/>
         <source>Add Tag</source>
         <translation type="unfinished">Tilføj tag</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="303"/>
+        <location filename="../Windows/MainWindow.qml" line="305"/>
         <source>Attach File</source>
         <translation type="unfinished">Vedhæft fil</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="312"/>
+        <location filename="../Windows/MainWindow.qml" line="314"/>
         <source>Search</source>
         <translation type="unfinished">Søg</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="319"/>
+        <location filename="../Windows/MainWindow.qml" line="321"/>
         <source>Sort</source>
         <translation type="unfinished">Sortere</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="327"/>
+        <location filename="../Windows/MainWindow.qml" line="329"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Indstil forfaldsdato</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="335"/>
+        <location filename="../Windows/MainWindow.qml" line="337"/>
         <source>Delete</source>
         <translation type="unfinished">Slet</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="342"/>
+        <location filename="../Windows/MainWindow.qml" line="344"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="349"/>
+        <location filename="../Windows/MainWindow.qml" line="351"/>
         <source>Set Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="387"/>
+        <location filename="../Windows/MainWindow.qml" line="389"/>
         <source>Settings</source>
         <translation type="unfinished">Indstillinger</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="388"/>
+        <location filename="../Windows/MainWindow.qml" line="390"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="395"/>
+        <location filename="../Windows/MainWindow.qml" line="397"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Nyt &amp;bibliotek</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="406"/>
+        <location filename="../Windows/MainWindow.qml" line="408"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Ny &amp;note</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="414"/>
+        <location filename="../Windows/MainWindow.qml" line="416"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Ny &amp;Todo-liste</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="422"/>
+        <location filename="../Windows/MainWindow.qml" line="424"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Nyt &amp;billede</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="430"/>
+        <location filename="../Windows/MainWindow.qml" line="432"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Afslut</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="438"/>
+        <location filename="../Windows/MainWindow.qml" line="440"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="447"/>
+        <location filename="../Windows/MainWindow.qml" line="449"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Find</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="471"/>
+        <location filename="../Windows/MainWindow.qml" line="473"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Åbn sidste &amp;oprettede vare</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="479"/>
+        <location filename="../Windows/MainWindow.qml" line="481"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Åbn og &amp;venstre sidestang</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="596"/>
+        <location filename="../Windows/MainWindow.qml" line="598"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Start med at &lt;a href=&apos;#newLibrary&apos;&gt; oprette et nyt bibliotek &lt;/a&gt;. Biblioteker bruges til at gemme forskellige slags ting som noter, todo lister og billeder.</translation>
     </message>
