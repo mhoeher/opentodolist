@@ -77,12 +77,7 @@ Column {
     Components.TextArea {
         id: textArea
 
-        anchors {
-            left: parent.left
-            right: parent.right
-        }
-
-
+        width: parent.width
         font.family: "Courier New, Courier, Fixed"
 
         onTextChanged: saveTimer.start()

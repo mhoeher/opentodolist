@@ -85,14 +85,15 @@ ItemPage {
 
         Flickable {
             id: flickable
-            width: scrollView.contentItem.width
-            contentWidth: width
+            width: scrollView.availableWidth
+            height: scrollView.availableHeight
+            contentWidth: column.width
             contentHeight: column.height
 
             Column {
                 id: column
 
-                width: scrollView.contentItem.width
+                width: scrollView.availableWidth
                 spacing: AppSettings.largeSpace
 
                 ItemPageHeader {
