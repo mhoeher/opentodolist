@@ -82,8 +82,6 @@ void AppStartup::setupGlobals()
     qunsetenv("QT_AUTO_SCREEN_SCALE_FACTOR");
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
-            Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #ifdef OPENTODOLIST_DEBUG
     QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
