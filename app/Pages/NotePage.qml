@@ -80,17 +80,20 @@ ItemPage {
         anchors.fill: parent
         item: page.item
         padding: AppSettings.mediumSpace
+        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
         Flickable {
             id: flickable
-            width: scrollView.contentItem.width
-            contentWidth: width
+            width: scrollView.availableWidth
+            height: scrollView.availableHeight
+            contentWidth: column.width
             contentHeight: column.height
 
             Column {
                 id: column
 
-                width: scrollView.contentItem.width
+                width: scrollView.availableWidth
                 spacing: AppSettings.largeSpace
 
                 ItemPageHeader {

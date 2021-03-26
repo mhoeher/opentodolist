@@ -378,7 +378,7 @@ ApplicationWindow {
             var result = [];
             for (var i = 0; i < numVisibleDynamicPageMenuItems; ++i) {
                 var action = visibleDynamicPageActions[
-                        numVisibleDynamicToolBarButtons + i];
+                            numVisibleDynamicToolBarButtons + i];
                 result.push(action);
             }
             return result;

@@ -223,12 +223,15 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
+        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
         TodosWidget {
             id: todosWidget
-            width: scrollView.contentItem.width
-            implicitWidth: childrenRect.width
-            implicitHeight: childrenRect.height
+            width: scrollView.availableWidth
+            height: scrollView.availableHeight
+            contentWidth: scrollView.availableWidth
+            contentHeight: childrenRect.height
             itemsModel: todosModel
             library: page.library
             title: qsTr("Todos")

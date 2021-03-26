@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.12
 
 import "../Components" as Components
 import "../Fonts"
+import "../Utils" as Utils
 
 Pane {
     id: root
@@ -48,7 +49,7 @@ Pane {
             id: edit
             Layout.fillWidth: true
             onAccepted: __createIfValidInput()
-            selectByMouse: true
+            selectByMouse: Utils.AppSettings.selectTextByMouse
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 

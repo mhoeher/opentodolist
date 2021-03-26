@@ -93,7 +93,7 @@ Column {
         id: loader
 
         width: parent.width
-        visible: !!item
+        visible: !!loader.item
     }
 
     Component {

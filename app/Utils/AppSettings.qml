@@ -22,6 +22,16 @@ Item {
     readonly property int mediumSpace: smallSpace * 2
     readonly property int largeSpace: mediumSpace * 2
 
+    readonly property bool selectTextByMouse: {
+        switch (Qt.platform.os) {
+        case "android":
+        case "ios":
+            return false;
+        default:
+            return true;
+        }
+    }
+
     readonly property FontMetrics effectiveFontMetrics: effFontMetrics
 
     Settings {

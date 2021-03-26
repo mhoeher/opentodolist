@@ -11,8 +11,7 @@ Dialog {
                                                 50,
                                                 parent.width - 20)
 
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
+    anchors.centerIn: parent
     parent: ApplicationWindow.contentItem
     modal: true
 }
