@@ -43,6 +43,8 @@ public:
     bool addProblem(const Problem& problem);
     bool removeProblem(const Problem& problem);
 
+    void removeProblemsFor(const QUuid& uid, Problem::ProblemType type = Problem::InvalidProblem);
+
 signals:
 
     /**

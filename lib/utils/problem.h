@@ -38,6 +38,7 @@ class Problem
     Q_PROPERTY(QUuid id READ id CONSTANT)
     Q_PROPERTY(QString type READ typeName CONSTANT)
     Q_PROPERTY(QObject* contextObject READ getContextObject CONSTANT)
+    Q_PROPERTY(QString message READ message CONSTANT)
 
 public:
     /**
@@ -45,7 +46,8 @@ public:
      */
     enum ProblemType {
         InvalidProblem, //!< Indicates that the problem instance is not valid.
-        AccountSecretsMissing //!< Secrets for an account are missing.
+        AccountSecretsMissing, //!< Secrets for an account are missing.
+        SyncFailed //!< Synchronization of a library failed.
     };
 
     Q_ENUM(ProblemType)
@@ -67,10 +69,14 @@ public:
 
     QVariantMap problemTypes() const;
 
+    QString message() const;
+    void setMessage(const QString& message);
+
 private:
     QUuid m_id;
     ProblemType m_type;
     QSharedPointer<QObject> m_contextObject;
+    QString m_message;
 };
 
 Q_DECLARE_METATYPE(Problem)
