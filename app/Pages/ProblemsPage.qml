@@ -44,6 +44,11 @@ Page {
                         let msg = qsTr("Missing secrets for account");
                         msg += " <strong>" + account.name + "</strong>";
                         return msg;
+                    case "SyncFailed":
+                        let library = modelData.contextObject;
+                        msg = qsTr("Synchronization failed for library")
+                        msg += " <strong>" + library.name + "</strong>: " + modelData.message;
+                        return msg;
                     default:
                         console.warn("Unknown problem type", modelData.type);
                         return "Unknown Problem";
@@ -72,6 +77,12 @@ Page {
                                           });
                             break;
                         }
+                        break;
+
+                    case "SyncFailed":
+                        page.openPage(Qt.resolvedUrl("./LibraryPage.qml"), {
+                                          library: modelData.contextObject
+                                      });
                         break;
 
                     default:

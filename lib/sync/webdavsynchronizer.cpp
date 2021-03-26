@@ -183,6 +183,7 @@ void WebDAVSynchronizer::synchronize()
 
         if (sync.error() != SynqClient::SynchronizerError::NoError) {
             m_hasSyncErrors = true;
+            emit syncError(sync.errorString());
         }
 
         if (!m_stopRequested) {

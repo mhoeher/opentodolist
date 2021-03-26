@@ -76,3 +76,24 @@ bool ProblemManager::removeProblem(const Problem& problem)
     }
     return false;
 }
+
+/**
+ * @brief Remove all problems associated with a given object.
+ *
+ * This removes all problems where the context object has the given @p uid. If @p type is not
+ * ProblemType::InvalidProblem, then only problems of the given type are removed.
+ */
+void ProblemManager::removeProblemsFor(const QUuid& uid, Problem::ProblemType type)
+{
+    auto problems = m_problems;
+    for (const auto& problem : problems) {
+        auto ctxObject = problem.contextObject();
+        if (ctxObject) {
+            if (ctxObject->property("uid").toUuid() == uid) {
+                if (type == Problem::InvalidProblem || problem.type() == type) {
+                    removeProblem(problem);
+                }
+            }
+        }
+    }
+}

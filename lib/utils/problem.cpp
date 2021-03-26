@@ -90,3 +90,19 @@ QObject* Problem::getContextObject() const
 {
     return m_contextObject.data();
 }
+
+/**
+ * @brief An optional message, holding further information about the problem.
+ */
+QString Problem::message() const
+{
+    return m_message;
+}
+
+/**
+ * @brief Set an optional message, holding further information about the problem.
+ */
+void Problem::setMessage(const QString& message)
+{
+    m_message = message;
+}

@@ -109,37 +109,37 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="168"/>
+        <location filename="../appstartup.cpp" line="166"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Kezelje személyes adatait.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="174"/>
+        <location filename="../appstartup.cpp" line="172"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Kapcsolja be az érintőképernyők néhány optimalizálását.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="177"/>
+        <location filename="../appstartup.cpp" line="175"/>
         <source>Only run the app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="179"/>
+        <location filename="../appstartup.cpp" line="177"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="184"/>
+        <location filename="../appstartup.cpp" line="182"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="318"/>
+        <location filename="../appstartup.cpp" line="316"/>
         <source>Open</source>
         <translation type="unfinished">Nyisd ki</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="325"/>
+        <location filename="../appstartup.cpp" line="323"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -749,7 +749,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="28"/>
+        <location filename="../Windows/MainWindow.qml" line="24"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
@@ -1253,12 +1253,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="124"/>
+        <location filename="../Pages/NotePage.qml" line="127"/>
         <source>Main Page</source>
         <translation type="unfinished">Főoldal</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="187"/>
+        <location filename="../Pages/NotePage.qml" line="190"/>
         <source>New Page</source>
         <translation type="unfinished">Új oldal</translation>
     </message>
@@ -1292,6 +1292,11 @@
         <location filename="../Pages/ProblemsPage.qml" line="44"/>
         <source>Missing secrets for account</source>
         <translation type="unfinished">Hiányoznak a fiók hozzáférési adatai</translation>
+    </message>
+    <message>
+        <location filename="../Pages/ProblemsPage.qml" line="49"/>
+        <source>Synchronization failed for library</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1614,12 +1619,12 @@ This requires a restart of the app.</source>
         <translation type="unfinished">Frissítve</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="234"/>
+        <location filename="../Pages/TodoListPage.qml" line="237"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="254"/>
+        <location filename="../Pages/TodoListPage.qml" line="257"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Új teendő hozzáadása...</translation>
     </message>
@@ -1632,12 +1637,12 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="148"/>
+        <location filename="../Pages/TodoPage.qml" line="150"/>
         <source>Tasks</source>
         <translation type="unfinished">Feladatok</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="153"/>
+        <location filename="../Pages/TodoPage.qml" line="155"/>
         <source>Add new task...</source>
         <translation type="unfinished">Új feladat hozzáadása ..</translation>
     </message>

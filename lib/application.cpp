@@ -1045,6 +1045,7 @@ void Application::clearSyncErrors(Library* library)
     if (library) {
         m_syncErrors.remove(library->directory());
         emit syncErrorsChanged();
+        m_problemManager->removeProblemsFor(library->uid(), Problem::SyncFailed);
     }
 }
 
@@ -1119,6 +1120,13 @@ void Application::onLibrarySyncError(const QUuid& libraryUid, const QString& err
         errors.append(error);
         m_syncErrors[lib->directory()] = errors;
         emit syncErrorsChanged();
+
+        m_problemManager->removeProblemsFor(libraryUid, Problem::SyncFailed);
+        Problem problem;
+        problem.setContextObject(lib);
+        problem.setMessage(error);
+        problem.setType(Problem::SyncFailed);
+        m_problemManager->addProblem(problem);
     }
 }
 
@@ -1209,6 +1217,7 @@ void Application::runSyncForLibrary(T library)
             if (backgroundService) {
                 m_syncErrors.remove(library->directory());
                 emit syncErrorsChanged();
+                m_problemManager->removeProblemsFor(library->uid(), Problem::SyncFailed);
                 backgroundService->syncLibrary(library->uid());
             } else {
                 qCWarning(log) << "Cannot sync library: Failed to connect to background service";

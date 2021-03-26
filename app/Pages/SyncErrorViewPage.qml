@@ -23,7 +23,8 @@ Page {
             width: view.width
             spacing: Utils.AppSettings.smallSpace
             ToolButton {
-                symbol: Icons.faWarning
+                symbol: Icons.faExclamationTriangle
+                font: Fonts.fontAwesomeSolid
             }
             Label {
                 Layout.fillWidth: true
