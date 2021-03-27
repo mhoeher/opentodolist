@@ -45,6 +45,7 @@ signals:
 
     void stopRequested();
     void syncError(QString libraryDirectory, const QString& error);
+    void progress(QString libraryDirectory, int value);
 
 public slots:
 

@@ -88,6 +88,8 @@ Application::Application(Cache* cache, QObject* parent)
                                QCoreApplication::organizationName(),
                                QCoreApplication::applicationName(), this)),
       m_directoriesWithRunningSync(),
+      m_syncErrors(),
+      m_syncProgress(),
       m_librariesWithChanges(),
       m_remoteObjectNode(new QRemoteObjectNode(this)),
       m_backgroundService(),
@@ -114,6 +116,8 @@ Application::Application(Cache* cache, const QString& applicationDir, QObject* p
               new ApplicationSettings(applicationDir, m_cache, m_keyStore, m_problemManager, this)),
       m_settings(new QSettings(applicationDir + "/appsettings.ini", QSettings::IniFormat, this)),
       m_directoriesWithRunningSync(),
+      m_syncErrors(),
+      m_syncProgress(),
       m_librariesWithChanges(),
       m_remoteObjectNode(new QRemoteObjectNode(this)),
       m_backgroundService(),
@@ -195,6 +199,8 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     this, &Application::onLibrarySyncFinished);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncError, this,
                     &Application::onLibrarySyncError);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncProgress,
+                    this, &Application::onLibrarySyncProgress);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheDataChanged, this,
                     &Application::onBackgroundServiceCacheDataChanged);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheLibrariesChanged,
@@ -1065,6 +1071,11 @@ QVariantMap Application::syncErrors() const
     return m_syncErrors;
 }
 
+QVariantMap Application::syncProgress() const
+{
+    return m_syncProgress;
+}
+
 /**
  * @brief The list of directories in which a sync is currently running.
  */
@@ -1127,6 +1138,19 @@ void Application::onLibrarySyncError(const QUuid& libraryUid, const QString& err
         problem.setMessage(error);
         problem.setType(Problem::SyncFailed);
         m_problemManager->addProblem(problem);
+    }
+}
+
+void Application::onLibrarySyncProgress(const QUuid& libraryUid, int value)
+{
+    auto lib = m_appSettings->libraryById(libraryUid);
+    if (lib) {
+        if (!m_directoriesWithRunningSync.contains(lib->directory())) {
+            m_directoriesWithRunningSync.append(lib->directory());
+            emit directoriesWithRunningSyncChanged();
+        }
+        m_syncProgress[lib->directory()] = value;
+        emit syncProgressChanged();
     }
 }
 

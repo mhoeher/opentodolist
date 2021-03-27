@@ -61,6 +61,8 @@ void SyncJob::execute()
                     Qt::QueuedConnection);
             qCDebug(log) << "Setting up error reporting";
             connect(sync.data(), &Synchronizer::syncError, this, &SyncJob::onSyncError);
+            connect(sync.data(), &Synchronizer::progress, this,
+                    [=](int value) { emit progress(m_libraryDirectory, value); });
             qCDebug(log) << "Start sync";
             sync->synchronize();
             qCDebug(log) << "Saving sync log";

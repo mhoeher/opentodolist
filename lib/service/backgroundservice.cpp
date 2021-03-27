@@ -124,6 +124,8 @@ void BackgroundService::syncLibrary(const QUuid& libraryUid)
                     Qt::QueuedConnection);
             connect(job.data(), &SyncJob::syncError, this, &BackgroundService::onSyncError,
                     Qt::QueuedConnection);
+            connect(job.data(), &SyncJob::progress, this, &BackgroundService::onSyncProgress,
+                    Qt::QueuedConnection);
             auto runner = new SyncRunner(job);
             m_threadPool->start(runner);
             emit librarySyncStarted(libraryUid);
@@ -215,6 +217,14 @@ void BackgroundService::onSyncError(const QString& libraryDirectory, const QStri
     if (m_syncDirs.contains(libraryDirectory)) {
         const auto& entry = m_syncDirs[libraryDirectory];
         emit librarySyncError(entry.libraryUid, error);
+    }
+}
+
+void BackgroundService::onSyncProgress(const QString& libraryDirectory, int value)
+{
+    if (m_syncDirs.contains(libraryDirectory)) {
+        const auto& entry = m_syncDirs[libraryDirectory];
+        emit librarySyncProgress(entry.libraryUid, value);
     }
 }
 

@@ -141,6 +141,8 @@ void WebDAVSynchronizer::synchronize()
                         break;
                     }
                 });
+        connect(&sync, &SynqClient::DirectorySynchronizer::progress, this,
+                &WebDAVSynchronizer::progress);
 
         SynqClient::WebDAVJobFactory factory;
         factory.setNetworkAccessManager(nam());
