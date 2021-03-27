@@ -58,6 +58,17 @@ Page {
                 OTL.Application.directoriesWithRunningSync.indexOf(
                     library.directory) >= 0;
     }
+    property int syncProgress: {
+        let result = -1;
+        if (library) {
+            result = OTL.Application.syncProgress[library.directory];
+            if (result === undefined) {
+                result = -1;
+            }
+        }
+        return result;
+    }
+
     property alias pageActions: libraryActions.actions
 
     clip: true

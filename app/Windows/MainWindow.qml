@@ -107,6 +107,12 @@ ApplicationWindow {
                 ToolTip.delay: 1000
                 ToolTip.timeout: 5000
                 ToolTip.text: qsTr("Synchronizing library...")
+
+                Label {
+                    anchors.centerIn: parent
+                    text: "" + stackView.syncProgress + "%"
+                    visible: stackView.syncProgress >= 0
+                }
             }
 
             Label {
@@ -611,6 +617,15 @@ ApplicationWindow {
         property bool hasSync: !!currentItem &&
                                (typeof(currentItem.syncRunning) === "boolean")
         property bool syncRunning: !!currentItem && !!currentItem.syncRunning
+        property int syncProgress: {
+            if (currentItem) {
+                if (currentItem.syncProgress !== undefined) {
+                    return currentItem.syncProgress;
+                }
+            }
+            return -1;
+        }
+
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
         property bool canGoBack: currentItem !== null &&
                                  (depth > 1 ||

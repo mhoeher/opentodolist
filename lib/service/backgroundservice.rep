@@ -13,6 +13,7 @@ class BackgroundService
     SIGNAL(librarySyncStarted(const QUuid& libraryUid));
     SIGNAL(librarySyncFinished(const QUuid& libraryUid));
     SIGNAL(librarySyncError(const QUuid& libraryUid, const QString& error));
+    SIGNAL(librarySyncProgress(const QUuid& libraryUid, int value));
     SIGNAL(libraryDeleted(const QUuid& libraryUid, const QString& libraryDirectory));
     SIGNAL(cacheDataChanged(const QUuid& appInstanceUid));
     SIGNAL(cacheLibrariesChanged(const QVariantList& libraryUids, const QUuid& appInstanceUid));

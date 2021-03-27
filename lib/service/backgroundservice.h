@@ -73,6 +73,7 @@ private:
 
     void onSyncFinished(const QString& libraryDirectory);
     void onSyncError(const QString& libraryDirectory, const QString& error);
+    void onSyncProgress(const QString& libraryDirectory, int value);
     void doDeleteLibrary(const QUuid& libraryUid);
     void watchLibraryForChanges(QSharedPointer<Library> library);
     void propagateCacheDataChanged();

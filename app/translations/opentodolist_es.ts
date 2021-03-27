@@ -617,97 +617,97 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="141"/>
+        <location filename="../Pages/LibraryPage.qml" line="152"/>
         <source>Red</source>
         <translation type="unfinished">Rojo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="148"/>
+        <location filename="../Pages/LibraryPage.qml" line="159"/>
         <source>Green</source>
         <translation type="unfinished">Verde</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="155"/>
+        <location filename="../Pages/LibraryPage.qml" line="166"/>
         <source>Blue</source>
         <translation type="unfinished">Azul</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="162"/>
+        <location filename="../Pages/LibraryPage.qml" line="173"/>
         <source>Yellow</source>
         <translation type="unfinished">Amarillo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="169"/>
+        <location filename="../Pages/LibraryPage.qml" line="180"/>
         <source>Orange</source>
         <translation type="unfinished">Naranja</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="176"/>
+        <location filename="../Pages/LibraryPage.qml" line="187"/>
         <source>Lilac</source>
         <translation type="unfinished">Lila</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="183"/>
+        <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>White</source>
         <translation type="unfinished">Blanco</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="193"/>
+        <location filename="../Pages/LibraryPage.qml" line="204"/>
         <source>Rename</source>
         <translation type="unfinished">Renombrar</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="198"/>
+        <location filename="../Pages/LibraryPage.qml" line="209"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="256"/>
+        <location filename="../Pages/LibraryPage.qml" line="267"/>
         <source>Note Title</source>
         <translation type="unfinished">Título de la nota</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="269"/>
+        <location filename="../Pages/LibraryPage.qml" line="280"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Título de la lista de todo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="282"/>
+        <location filename="../Pages/LibraryPage.qml" line="293"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Término de búsqueda 1, término de búsqueda 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="361"/>
+        <location filename="../Pages/LibraryPage.qml" line="372"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Aún no hay nada aquí! Comienza añadiendo una lista de &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo&lt;/a&gt; o &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="424"/>
+        <location filename="../Pages/LibraryPage.qml" line="435"/>
         <source>Sort By</source>
         <translation type="unfinished">Ordenar por</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="429"/>
+        <location filename="../Pages/LibraryPage.qml" line="440"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="436"/>
+        <location filename="../Pages/LibraryPage.qml" line="447"/>
         <source>Title</source>
         <translation type="unfinished">Título</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="443"/>
+        <location filename="../Pages/LibraryPage.qml" line="454"/>
         <source>Due To</source>
         <translation type="unfinished">Debido a</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="450"/>
+        <location filename="../Pages/LibraryPage.qml" line="461"/>
         <source>Created At</source>
         <translation type="unfinished">Creado en</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="457"/>
+        <location filename="../Pages/LibraryPage.qml" line="468"/>
         <source>Updated At</source>
         <translation type="unfinished">Actualizado en</translation>
     </message>
@@ -761,118 +761,118 @@
         <translation type="unfinished">Sincronizar la biblioteca...</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="265"/>
+        <location filename="../Windows/MainWindow.qml" line="271"/>
         <source>Rename</source>
         <translation type="unfinished">Renombrar</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="276"/>
+        <location filename="../Windows/MainWindow.qml" line="282"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="287"/>
+        <location filename="../Windows/MainWindow.qml" line="293"/>
         <source>Color</source>
         <translation type="unfinished">Color</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="298"/>
+        <location filename="../Windows/MainWindow.qml" line="304"/>
         <source>Add Tag</source>
         <translation type="unfinished">Añade la etiqueta</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="305"/>
+        <location filename="../Windows/MainWindow.qml" line="311"/>
         <source>Attach File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="314"/>
+        <location filename="../Windows/MainWindow.qml" line="320"/>
         <source>Search</source>
         <translation type="unfinished">Busca</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="321"/>
+        <location filename="../Windows/MainWindow.qml" line="327"/>
         <source>Sort</source>
         <translation type="unfinished">Ordenar</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="329"/>
+        <location filename="../Windows/MainWindow.qml" line="335"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Fijar la fecha de vencimiento</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="337"/>
+        <location filename="../Windows/MainWindow.qml" line="343"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="344"/>
+        <location filename="../Windows/MainWindow.qml" line="350"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="351"/>
+        <location filename="../Windows/MainWindow.qml" line="357"/>
         <source>Set Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="389"/>
+        <location filename="../Windows/MainWindow.qml" line="395"/>
         <source>Settings</source>
         <translation type="unfinished">Ajustes</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="390"/>
+        <location filename="../Windows/MainWindow.qml" line="396"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="397"/>
+        <location filename="../Windows/MainWindow.qml" line="403"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Nueva &amp;Biblioteca</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="408"/>
+        <location filename="../Windows/MainWindow.qml" line="414"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Nueva &amp;Nota</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="416"/>
+        <location filename="../Windows/MainWindow.qml" line="422"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Nueva lista de &amp;Todo</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="424"/>
+        <location filename="../Windows/MainWindow.qml" line="430"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Nueva &amp;Imagen</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="432"/>
+        <location filename="../Windows/MainWindow.qml" line="438"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Dejarlo</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="440"/>
+        <location filename="../Windows/MainWindow.qml" line="446"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="449"/>
+        <location filename="../Windows/MainWindow.qml" line="455"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Encontrar</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="473"/>
+        <location filename="../Windows/MainWindow.qml" line="479"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Abrir el último &amp;artículo creado</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="481"/>
+        <location filename="../Windows/MainWindow.qml" line="487"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Abierta &amp; Barra lateral izquierda
 </translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="598"/>
+        <location filename="../Windows/MainWindow.qml" line="604"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Empieza por &lt;a href=&apos;#newLibrary&apos;&gt;creando una nueva biblioteca&lt;/a&gt;. Las bibliotecas se usan para almacenar diferentes tipos de artículos como notas, listas de todo e imágenes.</translation>
     </message>
@@ -1386,37 +1386,37 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="80"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="90"/>
         <source>Overdue</source>
         <translation type="unfinished">Atrasado</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="111"/>
         <source>Today</source>
         <translation type="unfinished">Hoy</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="102"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="112"/>
         <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="144"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="154"/>
         <source>Later This Week</source>
         <translation type="unfinished">A finales de esta semana</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="146"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="156"/>
         <source>Next Week</source>
         <translation type="unfinished">La próxima semana</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="147"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="157"/>
         <source>Coming Next</source>
         <translation type="unfinished">A continuación</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="174"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="184"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">No hay nada programado... Añade una fecha de vencimiento a los artículos para que aparezcan aquí.</translation>
     </message>
@@ -1814,7 +1814,7 @@ This requires a restart of the app.</source>
 <context>
     <name>WebDAVSynchronizer</name>
     <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="175"/>
+        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="177"/>
         <source>Failed to create sync lock:</source>
         <translation type="unfinished"></translation>
     </message>

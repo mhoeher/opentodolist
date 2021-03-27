@@ -70,6 +70,7 @@ class Application : public QObject
     Q_PROPERTY(QStringList directoriesWithRunningSync READ directoriesWithRunningSync NOTIFY
                        directoriesWithRunningSyncChanged)
     Q_PROPERTY(QVariantMap syncErrors READ syncErrors NOTIFY syncErrorsChanged)
+    Q_PROPERTY(QVariantMap syncProgress READ syncProgress NOTIFY syncProgressChanged)
     Q_PROPERTY(ProblemManager* problemManager READ problemManager CONSTANT)
 
 public:
@@ -145,6 +146,7 @@ public:
     void setDirectoriesWithRunningSync(const QStringList& directoriesWithRunningSync);
 
     QVariantMap syncErrors() const;
+    QVariantMap syncProgress() const;
 
     ProblemManager* problemManager() const;
 
@@ -161,6 +163,7 @@ signals:
 
     void directoriesWithRunningSyncChanged();
     void syncErrorsChanged();
+    void syncProgressChanged();
     void accountsChanged();
 
     /**
@@ -190,6 +193,7 @@ private:
     QSettings* m_settings;
     QStringList m_directoriesWithRunningSync;
     QVariantMap m_syncErrors;
+    QVariantMap m_syncProgress;
     QSet<QString> m_librariesWithChanges;
     QSharedPointer<QTemporaryDir> m_tmpCacheDir;
     QRemoteObjectNode* m_remoteObjectNode;
@@ -220,6 +224,7 @@ private slots:
     void onLibrarySyncStarted(const QUuid& libraryUid);
     void onLibrarySyncFinished(const QUuid& libraryUid);
     void onLibrarySyncError(const QUuid& libraryUid, const QString& error);
+    void onLibrarySyncProgress(const QUuid& libraryUid, int value);
     void onLibraryDeleted(const QUuid& libraryUid);
     void onLibrariesChanged(QVariantList librariesUids);
     void onBackgroundServiceCacheDataChanged(const QUuid& appInstanceUid);

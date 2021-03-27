@@ -201,6 +201,7 @@ signals:
     void findingLibrariesChanged();
     void secretChanged();
     void syncError(const QString& message);
+    void progress(int value);
 
 public slots:
 
