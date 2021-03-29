@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -98,6 +98,7 @@ public:
     Q_INVOKABLE Todo* addTodo(Library* library, TodoList* todoList, QVariantMap properties);
     Q_INVOKABLE void moveTodo(Todo* todo, TodoList* todoList);
     Q_INVOKABLE Task* addTask(Library* library, Todo* todo, QVariantMap properties);
+    Q_INVOKABLE void promoteTask(Task* task, TodoList* targetTodoList);
     Q_INVOKABLE void deleteItem(Item* item);
     Q_INVOKABLE void deleteDoneTodos(TodoList* todoList);
     Q_INVOKABLE void deleteDoneTasks(Todo* todo);

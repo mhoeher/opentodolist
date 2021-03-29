@@ -59,6 +59,22 @@ Item {
         d.moveTodoDialog.open();
     }
 
+    function promoteTask(task, todoList, library) {
+        if (!library) {
+            console.warn("Called ItemUtils.promoteTask() with null library");
+            return;
+        }
+
+        if (d.promoteTaskDialog === null) {
+            d.promoteTaskDialog = promoteTaskDialogComponent.createObject(window);
+        }
+        d.promoteTaskDialog.library = library;
+        d.promoteTaskDialog.task = task;
+        d.promoteTaskDialog.todoList = todoList;
+        d.promoteTaskDialog.clear();
+        d.promoteTaskDialog.open();
+    }
+
     QtObject {
         id: d
 
@@ -67,6 +83,7 @@ Item {
         property Windows.DeleteCompletedItemsDialog deleteCompletedItemsDialog: null
         property Windows.DateSelectionDialog dateSelectionDialog: null
         property Windows.SelectTodoListDialog moveTodoDialog: null
+        property Windows.SelectTodoListDialog promoteTaskDialog: null
 
     }
 
@@ -110,6 +127,22 @@ Item {
             onAccepted: {
                 if (todo && selectedTodoList) {
                     OTL.Application.moveTodo(todo, selectedTodoList);
+                }
+            }
+        }
+    }
+
+    Component {
+        id: promoteTaskDialogComponent
+
+        Windows.SelectTodoListDialog {
+            property  OTL.Task task: null
+            property  OTL.Task todoList: null
+
+            title: qsTr("Convert Task to Todo and Move Into...")
+            onAccepted: {
+                if (task && selectedTodoList) {
+                    OTL.Application.promoteTask(task, selectedTodoList);
                 }
             }
         }

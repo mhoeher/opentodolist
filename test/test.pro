@@ -26,3 +26,4 @@ SUBDIRS += todo
 SUBDIRS += webdavsynchronizer
 SUBDIRS += notepage
 SUBDIRS += movetodoquery
+SUBDIRS += promotetaskquery

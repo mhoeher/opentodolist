@@ -35,6 +35,7 @@ set(LIB_HEADERS
     datastorage/librariesitemsquery.h
     datastorage/libraryloader.h
     datastorage/movetodoquery.h
+    datastorage/promotetaskquery.h
     fileutils.h
     models/itemsmodel.h
     models/itemssortfiltermodel.h
@@ -82,6 +83,7 @@ set(LIB_SOURCES
     datastorage/librariesitemsquery.cpp
     datastorage/libraryloader.cpp
     datastorage/movetodoquery.cpp
+    datastorage/promotetaskquery.cpp
     fileutils.cpp
     models/itemsmodel.cpp
     models/itemssortfiltermodel.cpp
