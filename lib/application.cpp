@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -59,6 +59,7 @@
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/libraryloader.h"
 #include "datastorage/movetodoquery.h"
+#include "datastorage/promotetaskquery.h"
 #include "fileutils.h"
 #include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
@@ -696,6 +697,20 @@ Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)
         task->setCache(m_cache);
     }
     return task;
+}
+
+/**
+ * @brief Promote a task to a todo.
+ *
+ * This converts the given @p task to a todo, moving it to the @p targetTodoList.
+ */
+void Application::promoteTask(Task* task, TodoList* targetTodoList)
+{
+    if (task && targetTodoList) {
+        auto q = new PromoteTaskQuery();
+        q->promoteTask(task, targetTodoList);
+        m_cache->run(q);
+    }
 }
 
 void Application::deleteItem(Item* item)

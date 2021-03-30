@@ -149,6 +149,7 @@ ItemPage {
             itemsModel: tasks
             title: qsTr("Tasks")
             library: page.library
+            parentItem: page.todoList
             headerItemVisible: true
             symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
             allowCreatingNewItems: true

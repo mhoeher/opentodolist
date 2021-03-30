@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -86,6 +86,8 @@ protected:
     virtual void run() = 0;
 
     virtual void markAsChanged(QLMDB::Transaction* transaction, QByteArray id);
+
+    double weightForNextItem(const QByteArray& parentId, QLMDB::Transaction& transaction);
 
 private:
     QSharedPointer<QLMDB::Context> m_context;

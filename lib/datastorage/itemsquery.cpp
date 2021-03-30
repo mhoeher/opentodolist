@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -17,7 +17,10 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <qlmdb/cursor.h>
 #include <qlmdb/database.h>
+
+#include <QRandomGenerator>
 
 #include "datamodel/item.h"
 #include "datamodel/library.h"
@@ -118,6 +121,41 @@ void ItemsQuery::markAsChanged(QLMDB::Transaction* transaction, QByteArray id)
             break;
         }
     }
+}
+
+/**
+ * @brief Find a suitable weight for an item to add to the item with the @p parentId.
+ *
+ * This basically returns the maximum weight of all items below the item with the @p parentId
+ * plus some offset, or zero, in case the parent item has no children.
+ */
+double ItemsQuery::weightForNextItem(const QByteArray& parentId, QLMDB::Transaction& transaction)
+{
+    // Find the max weight in the target todo list and set it as the todo's one
+    bool hasSiblings = false;
+    double weight = 0.0;
+    QLMDB::Cursor childrenCursor(transaction, *children());
+    auto result = childrenCursor.findKey(parentId);
+    while (result.isValid()) {
+        auto childData = children()->get(transaction, result.value());
+        if (!childData.isNull()) {
+            QSharedPointer<Item> childItem(
+                    Item::decache(ItemCacheEntry::fromByteArray(childData, result.value())));
+            if (childItem) {
+                if (!hasSiblings) {
+                    weight = childItem->weight();
+                } else {
+                    weight = qMax(weight, childItem->weight());
+                }
+                hasSiblings = true;
+            }
+        }
+        result = childrenCursor.nextForCurrentKey();
+    }
+    if (hasSiblings) {
+        weight += 1.0 + QRandomGenerator::securelySeeded().generateDouble();
+    }
+    return weight;
 }
 
 /**
