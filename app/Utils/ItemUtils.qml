@@ -70,7 +70,8 @@ Item {
         }
         d.promoteTaskDialog.library = library;
         d.promoteTaskDialog.task = task;
-        d.promoteTaskDialog.todoList = todoList;
+        d.promoteTaskDialog.initialTodoList = todoList;
+        d.promoteTaskDialog.selectInitialTodoList = true;
         d.promoteTaskDialog.clear();
         d.promoteTaskDialog.open();
     }
@@ -137,7 +138,6 @@ Item {
 
         Windows.SelectTodoListDialog {
             property  OTL.Task task: null
-            property  OTL.Task todoList: null
 
             title: qsTr("Convert Task to Todo and Move Into...")
             onAccepted: {

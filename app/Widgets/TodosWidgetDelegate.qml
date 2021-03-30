@@ -18,6 +18,7 @@ SwipeDelegate {
     property var model: null
     property bool toggleDoneOnClose: false
     property OTL.LibraryItem item: OTL.LibraryItem {}
+    property OTL.LibraryItem parentItem: OTL.LibraryItem {}
     property OTL.Library library: null
     property bool hideDueDate: false
     readonly property var itemActions: ([
@@ -365,5 +366,5 @@ SwipeDelegate {
     Actions.SetDueThisWeek { id: setDueThisWeekAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueNextWeek { id: setDueNextWeekAction; item: swipeDelegate.item; hideButton: true }
     Actions.MoveTodo { id: moveTodoAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Todo" }
-    Actions.PromoteTask { id: promoteTaskAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Task" }
+    Actions.PromoteTask { id: promoteTaskAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Task"; todoList: swipeDelegate.parentItem }
 }
