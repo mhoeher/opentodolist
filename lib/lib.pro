@@ -79,7 +79,7 @@ SOURCES += \
     utils/syntaxhighlighting.cpp \
     utils/translations.cpp \
     utils/updateservice.cpp \
-    utils/htmlhighlighter.cpp \
+    utils/htmlsyntaxhighlighter.cpp \
 
 HEADERS += \
     abstractitemmodel.h \
@@ -126,7 +126,7 @@ HEADERS += \
     utils/syntaxhighlighting.h \
     utils/translations.h \
     utils/updateservice.h \
-    utils/htmlhighlighter.h \
+    utils/htmlsyntaxhighlighter.h \
 
 REPC_REPLICA += service/backgroundservice.rep
 REPC_SOURCE += service/backgroundservice.rep

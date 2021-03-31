@@ -22,8 +22,8 @@
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef UTILS_HTMLHIGHLIGHTER_H_
-#define UTILS_HTMLHIGHLIGHTER_H_
+#ifndef UTILS_HTMLSYNTAXHIGHLIGHTER_H_
+#define UTILS_HTMLSYNTAXHIGHLIGHTER_H_
 
 #ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
 #    include <KSyntaxHighlighting/abstracthighlighter.h>
@@ -34,7 +34,6 @@
 #include <QString>
 
 #include <memory>
-
 
 class QIODevice;
 
@@ -55,4 +54,4 @@ private:
     std::unique_ptr<HtmlHighlighterPrivate> d;
 };
 
-#endif // UTILS_HTMLHIGHLIGHTER_H_
+#endif // UTILS_HTMLSYNTAXHIGHLIGHTER_H_

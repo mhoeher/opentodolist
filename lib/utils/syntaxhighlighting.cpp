@@ -26,7 +26,7 @@
 
 #include <algorithm>
 
-#include "htmlhighlighter.h"
+#include "htmlsyntaxhighlighter.h"
 
 #ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
 #    include <KSyntaxHighlighting/definition.h>

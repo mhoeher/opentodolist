@@ -55,7 +55,7 @@ set(LIB_HEADERS
     utils/syntaxhighlighting.h
     utils/translations.h
     utils/updateservice.h
-    utils/htmlhighlighter.h
+    utils/htmlsyntaxhighlighter.h
 
     ${LIB_HEADERS_ANDROID}
 )
@@ -104,7 +104,7 @@ set(LIB_SOURCES
     utils/syntaxhighlighting.cpp
     utils/translations.cpp
     utils/updateservice.cpp
-    utils/htmlhighlighter.cpp
+    utils/htmlsyntaxhighlighter.cpp
 
     ${LIB_SOURCES_ANDROID}
 
