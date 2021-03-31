@@ -509,6 +509,7 @@ aur_release:
         - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   needs:
     - snap::build
+  allow_failure: true
 
 # Upload to edge channel
 snap::edge:

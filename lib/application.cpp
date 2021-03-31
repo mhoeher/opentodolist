@@ -200,6 +200,8 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     this, &Application::onLibrarySyncFinished);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncError, this,
                     &Application::onLibrarySyncError);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::libraryDeleted, this,
+                    &Application::onLibraryDeleted);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::librarySyncProgress,
                     this, &Application::onLibrarySyncProgress);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::cacheDataChanged, this,

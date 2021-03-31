@@ -541,8 +541,13 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="109"/>
+        <location filename="../Utils/ItemUtils.qml" line="127"/>
         <source>Move Todo Into...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="142"/>
+        <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1302,6 +1307,14 @@
     </message>
 </context>
 <context>
+    <name>PromoteTask</name>
+    <message>
+        <location filename="../Actions/PromoteTask.qml" line="12"/>
+        <source>Promote</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RecurrenceDialog</name>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="28"/>
@@ -1424,7 +1437,7 @@
 <context>
     <name>SelectTodoListDialog</name>
     <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="19"/>
+        <location filename="../Windows/SelectTodoListDialog.qml" line="23"/>
         <source>Select Todo List</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1644,7 +1657,7 @@ This requires a restart of the app.</source>
         <translation type="unfinished">Tareas</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="155"/>
+        <location filename="../Pages/TodoPage.qml" line="156"/>
         <source>Add new task...</source>
         <translation type="unfinished">Añade una nueva tarea...</translation>
     </message>
@@ -1652,7 +1665,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="193"/>
+        <location filename="../Widgets/TodosWidget.qml" line="194"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Ya está en marcha: %1</translation>
     </message>
@@ -1660,12 +1673,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="203"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="205"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Pase para marcar deshecho</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="205"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="207"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Pase a la marca hecha</translation>
     </message>
