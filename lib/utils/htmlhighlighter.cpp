@@ -25,6 +25,11 @@
 
 #include "htmlhighlighter.h"
 
+#include <QBuffer>
+#include <QIODevice>
+#include <QTextStream>
+#include <QVarLengthArray>
+
 #ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
 #    include <KSyntaxHighlighting/definition.h>
 #    include <KSyntaxHighlighting/format.h>
@@ -36,13 +41,6 @@
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/state.h"
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
 #endif
-
-#include <QBuffer>
-#include <QIODevice>
-#include <QTextStream>
-#include <QVarLengthArray>
-
-using namespace KSyntaxHighlighting;
 
 class HtmlHighlighterPrivate
 {
@@ -64,10 +62,11 @@ HtmlHighlighter::~HtmlHighlighter() {}
 
 QString HtmlHighlighter::highlightData(QIODevice* dev, const QString& title)
 {
-    State state;
+    KSyntaxHighlighting::State state;
     *d->out << "<div ";
-    if (theme().textColor(Theme::Normal))
-        *d->out << " style=\"color:" << QColor(theme().textColor(Theme::Normal)).name() << "\"";
+    if (theme().textColor(KSyntaxHighlighting::Theme::Normal))
+        *d->out << " style=\"color:"
+                << QColor(theme().textColor(KSyntaxHighlighting::Theme::Normal)).name() << "\"";
     *d->out << "><pre>\n";
 
     QTextStream in(dev);
@@ -85,7 +84,7 @@ QString HtmlHighlighter::highlightData(QIODevice* dev, const QString& title)
     return d->buffer->buffer();
 }
 
-void HtmlHighlighter::applyFormat(int offset, int length, const Format& format)
+void HtmlHighlighter::applyFormat(int offset, int length, const KSyntaxHighlighting::Format& format)
 {
     if (length == 0)
         return;
