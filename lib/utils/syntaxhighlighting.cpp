@@ -26,11 +26,19 @@
 
 #include <algorithm>
 
-#include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
-#include "../3rdparty/KDE/syntax-highlighting/src/lib/htmlhighlighter.h"
-#include "../3rdparty/KDE/syntax-highlighting/src/lib/repository.h"
-#include "../3rdparty/KDE/syntax-highlighting/src/lib/syntaxhighlighter.h"
-#include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
+#include "htmlhighlighter.h"
+
+#ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
+#    include <KSyntaxHighlighting/definition.h>
+#    include <KSyntaxHighlighting/repository.h>
+#    include <KSyntaxHighlighting/syntaxhighlighter.h>
+#    include <KSyntaxHighlighting/theme.h>
+#else
+#    include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
+#    include "../3rdparty/KDE/syntax-highlighting/src/lib/repository.h"
+#    include "../3rdparty/KDE/syntax-highlighting/src/lib/syntaxhighlighter.h"
+#    include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
+#endif
 
 /**
  * @brief Constructor.
@@ -105,10 +113,7 @@ void SyntaxHighlighter::setTheme(const Theme& theme)
  */
 QString SyntaxHighlighter::sourceToHtml(const QString& source, const QString& language) const
 {
-    QTemporaryDir tmpDir;
-    auto outputFileName = tmpDir.path() + "/" + "output.html";
-    KSyntaxHighlighting::HtmlHighlighter highlighter;
-    highlighter.setOutputFile(outputFileName);
+    HtmlHighlighter highlighter;
     switch (m_theme) {
     case Dark:
         highlighter.setTheme(
@@ -128,6 +133,7 @@ QString SyntaxHighlighter::sourceToHtml(const QString& source, const QString& la
     } else {
         highlighter.setDefinition(m_repository->definitionForFileName("test." + language));
     }
+    QString result;
     {
         auto unescapedSource = source;
         unescapedSource.replace("&amp;", "&");
@@ -137,20 +143,10 @@ QString SyntaxHighlighter::sourceToHtml(const QString& source, const QString& la
         auto sourceData = unescapedSource.toUtf8();
         QBuffer buffer(&sourceData);
         if (buffer.open(QIODevice::ReadOnly)) {
-            highlighter.highlightData(&buffer);
+            result = highlighter.highlightData(&buffer);
         }
     }
-    QFile file(outputFileName);
-    if (file.open(QIODevice::ReadOnly)) {
-        auto result = file.readAll();
-        file.close();
-        const QByteArray BodyStart = "<body ";
-        auto bodyStartIdx = result.indexOf(BodyStart);
-        auto bodyEndIdx = result.indexOf("</body>");
-        if (bodyStartIdx >= 0 && bodyEndIdx >= 0) {
-            bodyStartIdx = bodyStartIdx + BodyStart.length();
-            result = "<code " + result.mid(bodyStartIdx, bodyEndIdx - bodyStartIdx) + "</code>";
-        }
+    if (!result.isEmpty()) {
         return result;
     }
     return "<code><pre>" + source + "</code></pre>";

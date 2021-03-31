@@ -69,6 +69,22 @@ else
         CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DOPENTODOLIST_USE_SYSTEM_LIBRARIES=ON -DCMAKE_PREFIX_PATH=$PWD/_"
     fi
 
+    # If we build against system libs, move included libraries away, so we
+    # cannot accidentally include them.
+    if [ -n "$CI" ]; then
+        if [ -n "$SYSTEM_LIBS" ]; then
+            pushd ../3rdparty
+            for dir in *; do
+                if [ -d "$dir" ]; then
+                    if [ "$dir" != "simplecrypt" -a "$dir" != "SingleApplication" ]; then
+                        mv "$dir" "${dir}~"
+                    fi
+                fi
+            done
+            popd
+        fi
+    fi
+
     cmake \
         -GNinja \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo \
