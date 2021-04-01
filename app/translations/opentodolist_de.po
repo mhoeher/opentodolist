@@ -10,7 +10,7 @@ msgstr ""
 #: ../Pages/AboutPage.qml:15
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr "Über die Anwendung..."
+msgstr "Über OpenTodoList …"
 
 #: ../Pages/AboutPage.qml:29
 msgctxt "AboutPage|"
@@ -187,10 +187,11 @@ msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Neue Bibliothek"
 
+#. Drei Punkte durch echte Ellipse ("Auslassungspunkte") ersetzt, Leerzeichen zwischen Ellipse und Text wie in deutschen Lokalisierungen üblich.
 #: ../Widgets/LibrariesSideBar.qml:219
 msgctxt "LibrariesSideBar|"
 msgid "About..."
-msgstr "Über die Anwendung..."
+msgstr "Über OpenTodoList …"
 
 #: ../Pages/LibraryPage.qml:141
 msgctxt "LibraryPage|"
@@ -767,17 +768,17 @@ msgstr "Titel"
 #: ../Pages/LibraryPage.qml:443
 msgctxt "LibraryPage|"
 msgid "Due To"
-msgstr "Fällig Am"
+msgstr "Fällig am"
 
 #: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Created At"
-msgstr "Angelegt Am"
+msgstr "Angelegt am"
 
 #: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Updated At"
-msgstr "Editiert Am"
+msgstr "Aktualisiert am"
 
 #: ../Windows/MainWindow.qml:263
 #, fuzzy
@@ -816,7 +817,7 @@ msgstr "Sortieren"
 #: ../Windows/MainWindow.qml:327
 msgctxt "MainWindow|"
 msgid "Set Due Date"
-msgstr "Fällig Am"
+msgstr "Fälligkeitsdatum setzen"
 
 #: ../Windows/MainWindow.qml:335
 #, fuzzy
@@ -842,17 +843,17 @@ msgstr "Name"
 #: ../Pages/TodoListPage.qml:197
 msgctxt "TodoListPage|"
 msgid "Due Date"
-msgstr "Fällig Am"
+msgstr "Fällig am"
 
 #: ../Pages/TodoListPage.qml:203
 msgctxt "TodoListPage|"
 msgid "Created At"
-msgstr "Angelegt Am"
+msgstr "Angelegt am"
 
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Updated At"
-msgstr "Editiert Am"
+msgstr "Aktualisiert am"
 
 #: ../Widgets/TodosWidget.qml:309
 msgctxt "TodosWidget|"
@@ -1030,10 +1031,11 @@ msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Konten"
 
+#. Übersetzung durch Infinitiv statt Imperativ, Leerzeichen zwischen Text und Ellipse ("Auslassungspunkte") wie in deutschen Lokalisierungen üblich.
 #: ../Widgets/LibrariesSideBar.qml:205
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
-msgstr "Übersetze die App..."
+msgstr "Die App übersetzen ..."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1531,7 +1533,7 @@ msgstr "Jetzt synchronisieren"
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
-msgstr ""
+msgstr "Synchronisierungsprotokoll"
 
 #: ../Pages/SettingsPageForm.ui.qml:65
 #, fuzzy
@@ -1577,22 +1579,22 @@ msgstr "Verwalte deine persönlichen Daten."
 #: ../main.cpp:259
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr ""
+msgstr "Optimierungen für Touchscreens anschalten"
 
 #: ../main.cpp:262
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
-msgstr ""
+msgstr "Nur den Hintergrundservice der Anwendung starten"
 
 #: ../main.cpp:264
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
-msgstr ""
+msgstr "Nur Anwendungs-GUI starten und mit einem existierenden Hintergrunddienst verbinden"
 
 #: ../main.cpp:269
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
-msgstr ""
+msgstr "Unter Windows eine Konsole zum Sammeln von Debug-Ausgaben aktivieren"
 
 #: ../main.cpp:403
 msgctxt "AppStartup|"
@@ -1869,22 +1871,22 @@ msgstr "Verbindung zum Server fehlgeschlagen. Bitte überprüfe Deinen Benutzern
 #: ../Utils/ItemUtils.qml:109
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
-msgstr ""
+msgstr "Verschiebe Todo zu..."
 
 #: ../Widgets/LibrariesSideBar.qml:212
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
-msgstr ""
+msgstr "Spenden"
 
 #: ../Windows/MainWindow.qml:274
 msgctxt "MainWindow|"
 msgid "Move"
-msgstr ""
+msgstr "Bewegen"
 
 #: ../Actions/MoveTodo.qml:11
 msgctxt "MoveTodo|"
 msgid "Move"
-msgstr ""
+msgstr "Verschieben"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:103
 msgctxt "NewLibraryFromAccountPage|"
@@ -1934,77 +1936,77 @@ msgstr "Der Name meiner neuen Bibliothek"
 #: ../Pages/NewLibraryInFolderPage.qml:87
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
-msgstr ""
+msgstr "Öffne einen Ordner als Bibliothek"
 
 #: ../Pages/NewLibraryInFolderPage.qml:95
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr ""
+msgstr "Du kannst einen beliebigen Ordner als Speicher für eine Bibliothek nutzen.<br/><br/>Das ist besonders nützlich, wenn du eine andere Anwendung (wie den Sync-Client eines Cloud-Anbieters) nutzen willst, um deine Daten mit dem Server zu synchronisieren."
 
 #: ../Pages/NewLibraryInFolderPage.qml:100
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
-msgstr ""
+msgstr "Ordner:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
-msgstr ""
+msgstr "Pfad zu einem Ordner, der als Bibliothek genutzt werden soll"
 
 #: ../Pages/NewLibraryInFolderPage.qml:111
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
-msgstr ""
+msgstr "Auswählen"
 
 #: ../Pages/NewLibraryInFolderPage.qml:116
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Name:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:121
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
-msgstr ""
+msgstr "Name meiner lokalen Bibliothek"
 
 #: ../Pages/NewLibraryPage.qml:68
 msgctxt "NewLibraryPage|"
 msgid "Local Library"
-msgstr ""
+msgstr "Lokale Bibliothek"
 
 #: ../Pages/NewLibraryPage.qml:75
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
-msgstr ""
+msgstr "Ordner als Bibliothek nutzen"
 
 #: ../Pages/NewLibraryPage.qml:86
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
-msgstr ""
+msgstr "Bibliotheken von deinen Konten hinzufügen"
 
 #: ../Pages/NewLibraryPage.qml:113
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
-msgstr ""
+msgstr "Konto hinzufügen"
 
 #: ../Pages/NewLocalLibraryPage.qml:61
 msgctxt "NewLocalLibraryPage|"
 msgid "Create a Local Library"
-msgstr ""
+msgstr "Lokale Bibliothek erstellen"
 
 #: ../Pages/NewLocalLibraryPage.qml:69
 msgctxt "NewLocalLibraryPage|"
 msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr ""
+msgstr "Eine lokale Bibliothek wird nur auf deinem Gerät gespeichert - sie eignet sich perfekt für die Wahrung deiner Privatsphäre!<br/><br/>Nutze sie, wenn du deine Informationen nur lokal speichern und deine Daten regelmäßig über andere Mechanismen sichern willst. Wenn du dagegen über mehrere Geräte hinweg Zugang zu deinen Informationen möchtest, erstelle stattdessen eine synchronisierte Bibliothek."
 
 #: ../Pages/NewLocalLibraryPage.qml:80
 msgctxt "NewLocalLibraryPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Name:"
 
 #: ../Pages/NewLocalLibraryPage.qml:85
 msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
-msgstr ""
+msgstr "Name meiner lokalen Bibliothek"
 
 #: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:130
 msgctxt "NewWebDAVAccountPage|"
@@ -2059,12 +2061,12 @@ msgstr "Verbindung zum Server fehlgeschlagen. Bitte überprüfe Deinen Benutzern
 #: ../Pages/ProblemsPage.qml:20 ../Pages/ProblemsPage.qml:30
 msgctxt "ProblemsPage|"
 msgid "Problems Detected"
-msgstr ""
+msgstr "Erkannte Probleme"
 
 #: ../Windows/SelectTodoListDialog.qml:19
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
-msgstr ""
+msgstr "Wähle Todo-Liste"
 
 #: ../Pages/SettingsPage.qml:46
 msgctxt "SettingsPage|"
@@ -2094,64 +2096,68 @@ msgstr "Schriftgröße:"
 #: ../Utils/Translations.qml:72
 msgctxt "Translations|"
 msgid "Japanese"
-msgstr ""
+msgstr "Japanisch"
 
 #: ../Utils/Translations.qml:116
 msgctxt "Translations|"
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainisch"
 
 #: ../Windows/MainWindow.qml:349
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Fortschritt setzen"
 
 #: ../Actions/SetManualProgressAction.qml:8
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Fortschritt setzen"
 
 #: ../Pages/SettingsPage.qml:132
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Eigene Schriftgröße nutzen"
 
 #: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
+msgstr "Kompakten Stil nutzen"
 
 #: ../Pages/SettingsPage.qml:150
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
-msgstr ""
+msgstr "Abstände zwischen den Komponenten verringern und Schriftgröße reduzieren\n"
+"\n"
+"<em>Benötigt Neustart der Anwendung.</em>"
 
 #: ../Pages/SettingsPage.qml:159
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
-msgstr ""
+msgstr "Kompakte Todo-Listen nutzen"
 
 #: ../Pages/SettingsPage.qml:170
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
-msgstr ""
+msgstr "Vertikale Abstände in Todo- und Aufgabenlisten reduzieren, um Platz für mehr Elemente auf dem Bildschirm zu schaffen."
 
 #: ../Pages/SettingsPage.qml:177
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
-msgstr ""
+msgstr "Skalierungsfaktor überschreiben"
 
 #: ../Pages/SettingsPage.qml:184
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
-msgstr ""
+msgstr "Skalierungsfaktor:"
 
 #: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
+msgstr "Nutze dies, um die Benutzeroberfläche manuell zu skalieren. Standardmäßig sollte sich die Anwendung entsprechend der Geräteeinstellungen automatisch anpassen. Wenn das nicht funktioniert, kannst du hier einen eigenen Skalierungsfaktor einstellen.\n"
+"\n"
+"Dies erfordert einen Neustart der Anwendung."
 
