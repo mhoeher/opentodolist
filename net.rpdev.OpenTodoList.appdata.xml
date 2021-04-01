@@ -40,6 +40,55 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.33.0" date="2021-04-01">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #424: Start a sync when adding back a library which just has been deleted.
+            </li>
+            <li>
+                #429: Tasks now can be promoted to todos.
+            </li>
+            <li>
+                #430: Report progress during sync.
+            </li>
+            <li>
+                #425: Fix an issue where the app could potentially hang when quitting it.
+            </li>
+            <li>
+                #187: Sync errors are reported much better now and more prominent (i.e. also when
+                the library where sync failed is not currently selected).
+            </li>
+            <li>
+                #410: Fix scrolling in the notes page.
+            </li>
+            <li>
+                #409: Fix missing copy and paste functionality on iOS.
+            </li>
+            <li>
+                #417: Use cmake when building the app for Snapcraft.
+            </li>
+            <li>
+                #428: Trigger a sync when the app is shown (e.g. when opening the activity on
+                Android, but the background service was already running).
+            </li>
+            <li>
+                #427: Fix the cmake build for Android.
+            </li>
+            <li>
+                #426: Fix HTTPS connections on Android.
+            </li>
+            <li>
+                #413: Fix downloading images from synced libraries.
+            </li>
+            <li>
+                #422: Allow building the app against system versions of required libraries.
+            </li>
+            <li>
+                #423: Fix installing the app from AUR when qt-keychain is installed.
+            </li>
+        </ul>
+      </release>
       <release version="3.31.1" date="2021-02-02">
         <p>This release includes the following changes:</p>
         <ul>
