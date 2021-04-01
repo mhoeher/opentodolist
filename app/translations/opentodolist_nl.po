@@ -2097,54 +2097,58 @@ msgstr "Oekraïens"
 #: ../Windows/MainWindow.qml:349
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Voortgang instellen"
 
 #: ../Actions/SetManualProgressAction.qml:8
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Voortgang instellen"
 
 #: ../Pages/SettingsPage.qml:132
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Aangepaste lettergrootte instellen"
 
 #: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
+msgstr "Compacte vormgeving gebruiken"
 
 #: ../Pages/SettingsPage.qml:150
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
-msgstr ""
+msgstr "Verklein de ruimte tussen onderdelen, en de lettergrootte.\n"
+"\n"
+"<em>Herstart OpenTodoList om de wijziging toe te passen.</em>"
 
 #: ../Pages/SettingsPage.qml:159
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
-msgstr ""
+msgstr "Compacte takenlijsten gebruiken"
 
 #: ../Pages/SettingsPage.qml:170
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
-msgstr ""
+msgstr "Verklein de ruimte tussen taken en lijstitems zodat er meer items op het scherm passen."
 
 #: ../Pages/SettingsPage.qml:177
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
-msgstr ""
+msgstr "Beeldgrootte afdwingen"
 
 #: ../Pages/SettingsPage.qml:184
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
-msgstr ""
+msgstr "Beeldgrootte:"
 
 #: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
+msgstr "Gebruik deze instelling om de grootte van de vormgeving te bepalen. Standaard past OpenTodoList zich aan aan de schermgrootte van het apparaat. Echter, als dat niet werkt, dan kan een andere grootte worden opgegeven.\n"
+"\n"
+"Herstart OpenTodoList om de wijziging toe te passen."
 
