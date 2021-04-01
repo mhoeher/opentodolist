@@ -20,7 +20,7 @@ msgstr "OpenTodoList"
 #: ../Pages/AboutPage.qml:36
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
-msgstr "Приложение для управления задачами и задачами."
+msgstr "Приложение для управления задачами и заданиями."
 
 #: ../Pages/AboutPage.qml:60
 msgctxt "AboutPage|"
@@ -35,17 +35,17 @@ msgstr "Использованные библиотеки и ресурсы"
 #: ../Pages/AboutThirdPartyPage.qml:47
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
-msgstr "Автор: <a href='%2'>% 1 </a>"
+msgstr "Автор: <a href='%2'>%1</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:54
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
-msgstr "Лицензия: <a href='%1'>% 2 </a>"
+msgstr "Лицензия: <a href='%1'>%2</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:61
 msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
-msgstr "Загрузить: <a href='%1'>% 1 </a>"
+msgstr "Загрузить: <a href='%1'>%1</a>"
 
 #: ../Widgets/Attachments.qml:28
 msgctxt "Attachments|"
@@ -60,7 +60,7 @@ msgstr "Удалить вложение?"
 #: ../Widgets/Attachments.qml:45
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "Вы уверены, что хотите удалить вложение <strong>% 1 </ strong>? Это действие не может быть отменено."
+msgstr "Вы уверены, что хотите удалить вложение <strong>%1</ strong>? Это действие не может быть отменено."
 
 #: ../Widgets/Attachments.qml:59
 msgctxt "Attachments|"
@@ -70,32 +70,32 @@ msgstr "Вложения"
 #: ../Menues/ColorMenu.qml:15
 msgctxt "ColorMenu|"
 msgid "Color"
-msgstr "цвет"
+msgstr "Цвет"
 
 #: ../Menues/ColorMenu.qml:19
 msgctxt "ColorMenu|"
 msgid "White"
-msgstr "белый"
+msgstr "Белый"
 
 #: ../Menues/ColorMenu.qml:26
 msgctxt "ColorMenu|"
 msgid "Red"
-msgstr "красный"
+msgstr "Красный"
 
 #: ../Menues/ColorMenu.qml:33
 msgctxt "ColorMenu|"
 msgid "Green"
-msgstr "зееёный"
+msgstr "Зелёный"
 
 #: ../Menues/ColorMenu.qml:40
 msgctxt "ColorMenu|"
 msgid "Blue"
-msgstr " голубоо"
+msgstr "Голубой"
 
 #: ../Menues/ColorMenu.qml:47
 msgctxt "ColorMenu|"
 msgid "Yellow"
-msgstr " жылтый"
+msgstr "Желтый"
 
 #: ../Menues/ColorMenu.qml:54
 msgctxt "ColorMenu|"
@@ -115,27 +115,27 @@ msgstr "Удалить?"
 #: ../Windows/DeleteItemDialog.qml:32
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить изображение <strong>% 1 </ strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить изображение <strong>%1</strong>? Это не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:36
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить список задач <strong>% 1 </ strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить список задач <strong>%1</strong>? Это не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:40
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить задачу <strong>% 1 </ strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить задачу <strong>%1</strong>? Это не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:44
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить задачу <strong>% 1 </ strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить задачу <strong>%1</strong>? Это не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:48
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить заметку <strong>% 1 </ strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить заметку <strong>%1</strong>? Это не может быть отменено."
 
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
@@ -145,12 +145,12 @@ msgstr "Удалить библиотеку?"
 #: ../Windows/DeleteLibraryDialog.qml:33
 msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "Вы действительно хотите удалить библиотеку <strong>% 1 </ strong> из приложения? <em> Это удалит все файлы, принадлежащие библиотеке. </ em>"
+msgstr "Вы действительно хотите удалить библиотеку <strong>%1</strong> из приложения? <em> Это удалит все файлы, принадлежащие библиотеке. </ em>"
 
 #: ../Windows/DeleteLibraryDialog.qml:40
 msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "Вы действительно хотите удалить библиотеку <strong>% 1 </ strong> из приложения? Обратите внимание, что файлы внутри библиотеки не будут удалены, поэтому вы можете восстановить библиотеку позже."
+msgstr "Вы действительно хотите удалить библиотеку <strong>%1</strong> из приложения? Обратите внимание, что файлы внутри библиотеки не будут удалены, поэтому вы можете восстановить библиотеку позже."
 
 #: ../Windows/FolderSelectionDialog.qml:17
 msgctxt "FolderSelectionDialog|"
@@ -160,12 +160,12 @@ msgstr "Выберите папку"
 #: ../Widgets/ItemCreatedNotification.qml:64
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
-msgstr "<strong>% 1 </ strong> создано."
+msgstr "<strong>%1</strong> создано."
 
 #: ../Widgets/ItemCreatedNotification.qml:69
 msgctxt "ItemCreatedNotification|"
 msgid "Open"
-msgstr "открыто"
+msgstr "Открыть"
 
 #: ../Widgets/ItemDueDateEditor.qml:28
 msgctxt "ItemDueDateEditor|"
@@ -175,12 +175,12 @@ msgstr "Выполнить к"
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
-msgstr "Ноты"
+msgstr "Заметки"
 
 #: ../Widgets/LibrariesSideBar.qml:375
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
-msgstr "График"
+msgstr "Расписание"
 
 #: ../Widgets/LibrariesSideBar.qml:178
 msgctxt "LibrariesSideBar|"
@@ -190,32 +190,32 @@ msgstr "Новая библиотека"
 #: ../Widgets/LibrariesSideBar.qml:219
 msgctxt "LibrariesSideBar|"
 msgid "About..."
-msgstr "Около..."
+msgstr "О программе..."
 
 #: ../Pages/LibraryPage.qml:141
 msgctxt "LibraryPage|"
 msgid "Red"
-msgstr "красный"
+msgstr "Красный"
 
 #: ../Pages/LibraryPage.qml:148
 msgctxt "LibraryPage|"
 msgid "Green"
-msgstr "зеленый"
+msgstr "Зеленый"
 
 #: ../Pages/LibraryPage.qml:155
 msgctxt "LibraryPage|"
 msgid "Blue"
-msgstr "синий"
+msgstr "Синий"
 
 #: ../Pages/LibraryPage.qml:162
 msgctxt "LibraryPage|"
 msgid "Yellow"
-msgstr "желтый"
+msgstr "Желтый"
 
 #: ../Pages/LibraryPage.qml:169
 msgctxt "LibraryPage|"
 msgid "Orange"
-msgstr "оранжевый"
+msgstr "Оранжевый"
 
 #: ../Pages/LibraryPage.qml:176
 msgctxt "LibraryPage|"
@@ -225,12 +225,12 @@ msgstr "Сирень"
 #: ../Pages/LibraryPage.qml:183
 msgctxt "LibraryPage|"
 msgid "White"
-msgstr "белый"
+msgstr "Белый"
 
 #: ../Pages/LibraryPage.qml:193
 msgctxt "LibraryPage|"
 msgid "Rename"
-msgstr "переименовать"
+msgstr "Переименовать"
 
 #: ../Pages/LibraryPage.qml:198
 msgctxt "LibraryPage|"
@@ -240,7 +240,7 @@ msgstr "Удалить"
 #: ../Pages/LibraryPage.qml:256
 msgctxt "LibraryPage|"
 msgid "Note Title"
-msgstr "Название заметки"
+msgstr "Заголовок заметки"
 
 #: ../Pages/LibraryPage.qml:269
 msgctxt "LibraryPage|"
@@ -265,22 +265,22 @@ msgstr "Изменить настройки синхронизации"
 #: ../Menues/LibraryPageMenu.qml:20
 msgctxt "LibraryPageMenu|"
 msgid "Sync Now"
-msgstr "Синхронизировать сейчас"
+msgstr "Синхронизировать"
 
 #: ../Menues/LibraryPageMenu.qml:29
 msgctxt "LibraryPageMenu|"
 msgid "Sync Log"
-msgstr "Синхронизировать журнала"
+msgstr "Журнал Синхронизации"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "The secrets for synchronizing the library %1 are missing."
-msgstr "Секреты синхронизации библиотеки% 1 отсутствуют."
+msgstr "Секреты синхронизации библиотеки %1 отсутствуют."
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Ignore"
-msgstr "игнорировать"
+msgstr "Игнорировать"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
 msgctxt "LibrarySecretsMissingNotificationBar|"
@@ -305,27 +305,27 @@ msgstr "OpenTodoList"
 #: ../Windows/MainWindow.qml:395
 msgctxt "MainWindow|"
 msgid "New &Library"
-msgstr "Новое & Библиотека"
+msgstr "Новая &Библиотека"
 
 #: ../Windows/MainWindow.qml:406
 msgctxt "MainWindow|"
 msgid "New &Note"
-msgstr "Новое и примечание"
+msgstr "Новая &Заметка"
 
 #: ../Windows/MainWindow.qml:414
 msgctxt "MainWindow|"
 msgid "New &Todo List"
-msgstr "Новый и список Todo"
+msgstr "Новый список &Todo"
 
 #: ../Windows/MainWindow.qml:422
 msgctxt "MainWindow|"
 msgid "New &Image"
-msgstr "Новое изображение"
+msgstr "Новое &Изображение"
 
 #: ../Windows/MainWindow.qml:430
 msgctxt "MainWindow|"
 msgid "&Quit"
-msgstr "&Уволиться"
+msgstr "&Выход"
 
 #: ../Windows/MainWindow.qml:447
 msgctxt "MainWindow|"
@@ -335,12 +335,12 @@ msgstr "&Найти"
 #: ../Windows/MainWindow.qml:471
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
-msgstr "Открыть последний и созданный элемент"
+msgstr "Открыть последний созданый элемент"
 
 #: ../Windows/MainWindow.qml:479
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
-msgstr "Открытая и левая боковая панель"
+msgstr "Открыть левую боковую панель"
 
 #: ../Windows/MainWindow.qml:596
 msgctxt "MainWindow|"
@@ -350,12 +350,12 @@ msgstr "Начните с <a href='#newLibrary'> создания новой б�
 #: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:61
 msgctxt "NewLibraryPage|"
 msgid "Create Library"
-msgstr "Создать библиотеку"
+msgstr "Создать Библиотеку"
 
 #: ../Pages/NewLibraryPage.qml:23
 msgctxt "NewLibraryPage|"
 msgid "Create"
-msgstr "Создайте"
+msgstr "Создать"
 
 #: ../Pages/NewLibraryPage.qml:39
 msgctxt "NewLibraryPage|"
@@ -405,7 +405,7 @@ msgstr "Список дел"
 #: ../Widgets/NewTopLevelItemButton.qml:58
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
-msgstr "Образ"
+msgstr "Изображение"
 
 #: ../Windows/OpenFileDialog.qml:18
 msgctxt "OpenFileDialog|"
@@ -420,7 +420,7 @@ msgstr "Выберите изображение"
 #: ../Windows/RenameItemDialog.qml:22
 msgctxt "RenameItemDialog|"
 msgid "Rename Item"
-msgstr "Переименовать предмет"
+msgstr "Переименовать элемент"
 
 #: ../Windows/RenameItemDialog.qml:33
 msgctxt "RenameItemDialog|"
@@ -470,7 +470,7 @@ msgstr "Ничего не запланировано ... Добавьте сро
 #: ../Pages/ScheduleViewPage.qml:80
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
-msgstr "просроченный"
+msgstr "Просрочено"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:43
 msgctxt "SyncErrorNotificationBar|"
@@ -480,7 +480,7 @@ msgstr "Были ошибки при синхронизации библиоте
 #: ../Widgets/SyncErrorNotificationBar.qml:49
 msgctxt "SyncErrorNotificationBar|"
 msgid "Ignore"
-msgstr "игнорировать"
+msgstr "Игнорировать"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:53
 msgctxt "SyncErrorNotificationBar|"
@@ -500,7 +500,7 @@ msgstr "Создать библиотеку"
 #: ../Pages/SyncLibrarySelectionPage.qml:29
 msgctxt "SyncLibrarySelectionPage|"
 msgid "OK"
-msgstr "хорошо"
+msgstr "Хорошо"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:46
 msgctxt "SyncLibrarySelectionPage|"
@@ -525,7 +525,7 @@ msgstr "Отмена"
 #: ../Pages/SynchronizerBackendSelectionPage.qml:21
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "OK"
-msgstr "хорошо"
+msgstr "Хорошо"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:45
 msgctxt "SynchronizerBackendSelectionPage|"
@@ -552,7 +552,7 @@ msgstr "Местная библиотека"
 #: ../Widgets/TodoListItem.qml:99
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
-msgstr "Open Нет открытых задач - все сделано"
+msgstr "Нет открытых задач - все сделано"
 
 #: ../Pages/TodoListPage.qml:173
 msgctxt "TodoListPage|"
@@ -567,7 +567,7 @@ msgstr "Todos"
 #: ../Pages/TodoListPage.qml:290
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
-msgstr "Завершено Todos"
+msgstr "Завершенные Todos"
 
 #: ../Pages/TodoPage.qml:125
 msgctxt "TodoPage|"
@@ -587,7 +587,7 @@ msgstr "Доступно обновление для OpenTodoList% 1."
 #: ../Widgets/UpdateNotificationBar.qml:50
 msgctxt "UpdateNotificationBar|"
 msgid "Ignore"
-msgstr "игнорировать"
+msgstr "Игнорировать"
 
 #: ../Widgets/UpdateNotificationBar.qml:54
 msgctxt "UpdateNotificationBar|"
@@ -597,12 +597,12 @@ msgstr "Скачать"
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "OK"
-msgstr "хорошо"
+msgstr "Хорошо"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Validate"
-msgstr "Validate"
+msgstr "Проверить"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:40
 msgctxt "WebDAVConnectionSettingsPage|"
@@ -647,7 +647,7 @@ msgstr "Имя пользователя"
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "Password"
-msgstr "пароль"
+msgstr "Пароль"
 
 #: ../main.cpp:102
 msgctxt "main|"
@@ -667,7 +667,7 @@ msgstr "DIR"
 #: ../main.cpp:116
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr "Включите некоторые оптимизации для сенсорных экранов."
+msgstr "Включает некоторые оптимизации для сенсорных экранов."
 
 #: ../main.cpp:128
 msgctxt "main|"
@@ -677,7 +677,7 @@ msgstr "Удалите ярлыки для AppImage."
 #: ../Widgets/ItemNotesEditor.qml:85
 msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
-msgstr "Еще нет добавленных заметок - нажмите здесь, чтобы добавить некоторые."
+msgstr "Еще нет добавленных заметок - нажмите здесь, чтобы добавить."
 
 #: ../Widgets/TagsEditor.qml:34
 msgctxt "TagsEditor|"
@@ -697,42 +697,42 @@ msgstr "Добавить новое задание ..."
 #: ../Widgets/TodosWidget.qml:193
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
-msgstr "В связи с:% 1"
+msgstr "До: %1"
 
 #: ../Utils/Colors.qml:16
 msgctxt "Colors|"
 msgid "System"
-msgstr "система"
+msgstr "Система"
 
 #: ../Utils/Colors.qml:17
 msgctxt "Colors|"
 msgid "Light"
-msgstr "Свет"
+msgstr "Светлый"
 
 #: ../Utils/Colors.qml:18
 msgctxt "Colors|"
 msgid "Dark"
-msgstr "Тьма"
+msgstr "Темный"
 
 #: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
-msgstr "настройки"
+msgstr "Настройки"
 
 #: ../Windows/MainWindow.qml:387
 msgctxt "MainWindow|"
 msgid "Settings"
-msgstr "настройки"
+msgstr "Настройки"
 
 #: ../Windows/MainWindow.qml:388
 msgctxt "MainWindow|"
 msgid "Ctrl+,"
-msgstr "Ctrl +,"
+msgstr "Ctrl+,"
 
 #: ../Pages/SettingsPageForm.ui.qml:33
 msgctxt "SettingsPageForm.ui|"
 msgid "Settings"
-msgstr "настройки"
+msgstr "Настройки"
 
 #: ../Pages/SettingsPageForm.ui.qml:39
 msgctxt "SettingsPageForm.ui|"
@@ -742,7 +742,7 @@ msgstr "Пользовательский интерфейс"
 #: ../Pages/SettingsPageForm.ui.qml:56
 msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
-msgstr "тема:"
+msgstr "Тема:"
 
 #: ../Widgets/LibrariesSideBar.qml:232
 msgctxt "LibrariesSideBar|"
@@ -762,22 +762,22 @@ msgstr "Вручную"
 #: ../Pages/LibraryPage.qml:436
 msgctxt "LibraryPage|"
 msgid "Title"
-msgstr "заглавие"
+msgstr "Заголовок"
 
 #: ../Pages/LibraryPage.qml:443
 msgctxt "LibraryPage|"
 msgid "Due To"
-msgstr "Из-за"
+msgstr "До"
 
 #: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Created At"
-msgstr "Создано на"
+msgstr "Создано"
 
 #: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Updated At"
-msgstr "Обновлен в"
+msgstr "Обновлено"
 
 #: ../Windows/MainWindow.qml:263
 msgctxt "MainWindow|"
@@ -787,7 +787,7 @@ msgstr "Rename"
 #: ../Windows/MainWindow.qml:285
 msgctxt "MainWindow|"
 msgid "Color"
-msgstr "цвет"
+msgstr "Цвет"
 
 #: ../Windows/MainWindow.qml:296
 msgctxt "MainWindow|"
@@ -832,7 +832,7 @@ msgstr "Вручную"
 #: ../Pages/TodoListPage.qml:191
 msgctxt "TodoListPage|"
 msgid "Name"
-msgstr "название"
+msgstr "Название"
 
 #: ../Pages/TodoListPage.qml:197
 msgctxt "TodoListPage|"
@@ -842,22 +842,22 @@ msgstr "Срок"
 #: ../Pages/TodoListPage.qml:203
 msgctxt "TodoListPage|"
 msgid "Created At"
-msgstr "Создано на"
+msgstr "Создано"
 
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Updated At"
-msgstr "Обновлен в"
+msgstr "Обновлен"
 
 #: ../Widgets/TodosWidget.qml:309
 msgctxt "TodosWidget|"
 msgid "Swipe to mark undone"
-msgstr "Проведите, чтобы отметить отмененное"
+msgstr "Проведите, чтобы отметить несделаным"
 
 #: ../Widgets/TodosWidget.qml:310
 msgctxt "TodosWidget|"
 msgid "Swipe to mark done"
-msgstr "Проведите, чтобы отметить готово"
+msgstr "Проведите, чтобы отметить готовым"
 
 #: ../Utils/Translations.qml:16
 msgctxt "Translations|"
@@ -872,17 +872,17 @@ msgstr "Немецкий"
 #: ../Utils/Translations.qml:40
 msgctxt "Translations|"
 msgid "English"
-msgstr "английский"
+msgstr "Английский"
 
 #: ../Utils/Translations.qml:60
 msgctxt "Translations|"
 msgid "French"
-msgstr "французский язык"
+msgstr "Французский"
 
 #: ../Pages/AboutPage.qml:43
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
-msgstr "(c) RPdev 2013-2020, версия% 1"
+msgstr "(c) RPdev 2013-2020, версия %1"
 
 #: ../Pages/AboutPage.qml:60
 msgctxt "AboutPage|"
@@ -907,7 +907,7 @@ msgstr "Автор:"
 #: ../Pages/AboutPage.qml:134
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
-msgstr "<a href='%2'>% 1 </a>"
+msgstr "<a href='%2'>%1</a>"
 
 #: ../Pages/AboutPage.qml:142
 msgctxt "AboutPage|"
@@ -917,7 +917,7 @@ msgstr "Лицензия:"
 #: ../Pages/AboutPage.qml:147
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
-msgstr "<a href='%1'>% 2 </a>"
+msgstr "<a href='%1'>%2</a>"
 
 #: ../Pages/AboutPage.qml:155
 msgctxt "AboutPage|"
@@ -927,7 +927,7 @@ msgstr "Скачать:"
 #: ../Pages/AboutPage.qml:160
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
-msgstr "<a href='%1'>% 1 </a>"
+msgstr "<a href='%1'>%1</a>"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
 msgctxt "AccountTypeSelectionPageForm.ui|"
@@ -937,7 +937,7 @@ msgstr "Выберите тип учетной записи"
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "Account Type"
-msgstr "тип аккаунта"
+msgstr "Тип учетной записи"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
 msgctxt "AccountTypeSelectionPageForm.ui|"
@@ -957,23 +957,23 @@ msgstr "WebDAV"
 #: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
 msgctxt "AccountsPageForm.ui|"
 msgid "Accounts"
-msgstr "Счета"
+msgstr "Учетные записи"
 
 #: ../Windows/DeleteAccountDialog.qml:19
 msgctxt "DeleteAccountDialog|"
 msgid "Delete Account?"
-msgstr "Удалить аккаунт?"
+msgstr "Удалить учетную запись?"
 
 #: ../Windows/DeleteAccountDialog.qml:36
 msgctxt "DeleteAccountDialog|"
 msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
-msgstr "Вы действительно хотите удалить аккаунт <strong>% 1 </ strong>? Это удалит все библиотеки, принадлежащие учетной записи, с вашего устройства? <br/> <br/> <i> Примечание. Вы можете восстановить их с сервера, добавив обратно учетную запись. </ I>"
+msgstr "Вы действительно хотите удалить учетную запись <strong>%1</strong>? Это удалит все библиотеки, принадлежащие учетной записи, с вашего устройства?<br/><br/><i>Примечание: Вы можете восстановить их с сервера, добавив обратно учетную запись. </I>"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Edit Account"
-msgstr "Редактировать аккаунт"
+msgstr "Редактировать учетную запись"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
 msgctxt "EditWebDAVAccountPageForm.ui|"
@@ -1008,7 +1008,7 @@ msgstr "Пароль:"
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr "пароль"
+msgstr "Пароль"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
 msgctxt "EditWebDAVAccountPageForm.ui|"
@@ -1023,7 +1023,7 @@ msgstr "Не удалось подключиться к серверу. Пожа
 #: ../Widgets/LibrariesSideBar.qml:185
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
-msgstr "Счета"
+msgstr "Учетные записи"
 
 #: ../Widgets/LibrariesSideBar.qml:205
 msgctxt "LibrariesSideBar|"
@@ -1133,7 +1133,7 @@ msgstr "Добавить библиотеки из ваших учетных з�
 #: ../Pages/NewLibraryPageForm.ui.qml:79
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Account"
-msgstr "Добавить аккаунт"
+msgstr "Добавить учетную запись"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:29
 msgctxt "NewLocalLibraryPageForm.ui|"
@@ -1194,7 +1194,7 @@ msgstr "Пароль:"
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr "пароль"
+msgstr "Пароль"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
 msgctxt "NewWebDAVAccountPageForm.ui|"
@@ -1239,7 +1239,7 @@ msgstr "Экспорт в файл ..."
 #: ../Widgets/ItemNotesEditor.qml:118
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
-msgstr "Уценка файлов"
+msgstr "Файлы Markdown"
 
 #: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
@@ -1259,12 +1259,12 @@ msgstr "Обнаружены проблемы"
 #: ../Utils/Translations.qml:28
 msgctxt "Translations|"
 msgid "Danish"
-msgstr "датский"
+msgstr "Датский"
 
 #: ../Utils/Translations.qml:36
 msgctxt "Translations|"
 msgid "Greek"
-msgstr "греческий"
+msgstr "Греческий"
 
 #: ../Utils/Translations.qml:56
 msgctxt "Translations|"
@@ -1274,27 +1274,27 @@ msgstr "Филиппинский"
 #: ../Utils/Translations.qml:64
 msgctxt "Translations|"
 msgid "Hungarian"
-msgstr "венгерский язык"
+msgstr "Венгерский"
 
 #: ../Utils/Translations.qml:68
 msgctxt "Translations|"
 msgid "Italian"
-msgstr "итальянский"
+msgstr "Итальянский"
 
 #: ../Utils/Translations.qml:120
 msgctxt "Translations|"
 msgid "Vietnamese"
-msgstr "вьетнамский"
+msgstr "Вьетнамский"
 
 #: ../Utils/Translations.qml:44
 msgctxt "Translations|"
 msgid "Spanish"
-msgstr "испанский"
+msgstr "Испанский"
 
 #: ../Utils/Translations.qml:80
 msgctxt "Translations|"
 msgid "Dutch"
-msgstr "нидерландский язык"
+msgstr "Нидерландский"
 
 #: ../Utils/Translations.qml:84
 msgctxt "Translations|"
@@ -1304,12 +1304,12 @@ msgstr "Норвежский"
 #: ../Utils/Translations.qml:88
 msgctxt "Translations|"
 msgid "Polish"
-msgstr "полировать"
+msgstr "Польский"
 
 #: ../Utils/Translations.qml:92
 msgctxt "Translations|"
 msgid "Portuguese"
-msgstr "португальский"
+msgstr "Португальский"
 
 #: ../Utils/Translations.qml:96
 msgctxt "Translations|"
@@ -1319,12 +1319,12 @@ msgstr "Португальский (Бразилия)"
 #: ../Utils/Translations.qml:112
 msgctxt "Translations|"
 msgid "Turkish"
-msgstr "турецкий"
+msgstr "Турецкий"
 
 #: ../Widgets/ItemCreatedNotification.qml:74
 msgctxt "ItemCreatedNotification|"
 msgid "Dismiss"
-msgstr "отклонять"
+msgstr "Отклонить"
 
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
@@ -1334,17 +1334,17 @@ msgstr "Испанский (Латинская Америка и Карибск�
 #: ../Utils/Translations.qml:100
 msgctxt "Translations|"
 msgid "Russian"
-msgstr "русский"
+msgstr "Русский"
 
 #: ../Utils/Translations.qml:104
 msgctxt "Translations|"
 msgid "Swedish"
-msgstr "шведский"
+msgstr "Шведский"
 
 #: ../Utils/Translations.qml:108
 msgctxt "Translations|"
 msgid "Turkmen"
-msgstr "туркменский"
+msgstr "Туркменский"
 
 #: ../Actions/DeleteItem.qml:8
 msgctxt "DeleteItem|"
@@ -1354,7 +1354,7 @@ msgstr "Удалить"
 #: ../Widgets/ItemDueDateEditor.qml:59
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
-msgstr "Первый взнос на% 1."
+msgstr "Первая отсечка на %1."
 
 #: ../Widgets/ItemDueDateEditor.qml:72
 msgctxt "ItemDueDateEditor|"
@@ -1379,7 +1379,7 @@ msgstr "Повторяется каждый месяц."
 #: ../Widgets/ItemDueDateEditor.qml:80
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
-msgstr "Повторяется каждые% 1 дней."
+msgstr "Повторяется каждые %1 дней."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:91
 msgctxt "NewItemWithDueDateDialog|"
@@ -1409,7 +1409,7 @@ msgstr "Выбрать..."
 #: ../Windows/NewItemWithDueDateDialog.qml:114
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
-msgstr "Заглавие:"
+msgstr "Заголовок:"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:119
 msgctxt "NewItemWithDueDateDialog|"
@@ -1449,12 +1449,12 @@ msgstr "Ежедневно"
 #: ../Windows/RecurrenceDialog.qml:43
 msgctxt "RecurrenceDialog|"
 msgid "Weekly"
-msgstr "еженедельно"
+msgstr "Еженедельно"
 
 #: ../Windows/RecurrenceDialog.qml:44
 msgctxt "RecurrenceDialog|"
 msgid "Monthly"
-msgstr "ежемесячно"
+msgstr "Ежемесячно"
 
 #: ../Windows/RecurrenceDialog.qml:45
 msgctxt "RecurrenceDialog|"
@@ -1464,7 +1464,7 @@ msgstr "Каждые N дней"
 #: ../Windows/RecurrenceDialog.qml:55
 msgctxt "RecurrenceDialog|"
 msgid "Recurs:"
-msgstr "рецидивирует:"
+msgstr "Повторять:"
 
 #: ../Windows/RecurrenceDialog.qml:68
 msgctxt "RecurrenceDialog|"
@@ -1494,7 +1494,7 @@ msgstr "Задать срок на следующей неделе"
 #: ../Actions/SetDueTo.qml:8
 msgctxt "SetDueTo|"
 msgid "Select Due Date"
-msgstr "Выберите срок оплаты"
+msgstr "Выберите срок выполнения"
 
 #: ../Actions/SetDueToday.qml:8
 msgctxt "SetDueToday|"
@@ -1509,7 +1509,7 @@ msgstr "Назначить завтра"
 #: ../Widgets/TodosWidgetDelegate.qml:203
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
-msgstr "Проведите, чтобы отметить отмененное"
+msgstr "Проведите, чтобы пометить невыполненным"
 
 #: ../Widgets/TodosWidgetDelegate.qml:205
 msgctxt "TodosWidgetDelegate|"
@@ -1534,7 +1534,7 @@ msgstr "Размер шрифта:"
 #: ../Utils/Translations.qml:52
 msgctxt "Translations|"
 msgid "Basque"
-msgstr "баскский"
+msgstr "Баскский"
 
 #: ../Pages/AccountTypeSelectionPage.qml:22
 msgctxt "AccountTypeSelectionPage|"
@@ -1589,12 +1589,12 @@ msgstr ""
 #: ../main.cpp:403
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr ""
+msgstr "Открыть"
 
 #: ../main.cpp:410
 msgctxt "AppStartup|"
 msgid "Quit"
-msgstr ""
+msgstr "Выход"
 
 #: ../Actions/DeleteCompletedChildren.qml:8
 msgctxt "DeleteCompletedChildren|"
