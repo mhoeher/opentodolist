@@ -1697,12 +1697,12 @@ msgstr "Editer la liste"
 #: ../Widgets/LibrariesSideBar.qml:343
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
-msgstr ""
+msgstr "Cacher le calendrier"
 
 #: ../Widgets/LibrariesSideBar.qml:343
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
-msgstr ""
+msgstr "Voir le calendrier"
 
 #: ../Widgets/LibrariesSideBar.qml:353
 msgctxt "LibrariesSideBar|"
