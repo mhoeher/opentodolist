@@ -487,6 +487,7 @@ aur_release:
         - ci/update-aur.sh
     needs:
         - aur_release_check
+        - archlinux-pkgbuild
     except:
       variables:
           - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
