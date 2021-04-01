@@ -816,7 +816,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="357"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voortgang instellen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="395"/>
@@ -1484,7 +1484,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voortgang instellen</translation>
     </message>
 </context>
 <context>
@@ -1517,46 +1517,50 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="132"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aangepaste lettergrootte instellen</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="141"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Compacte vormgeving gebruiken</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="150"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verklein de ruimte tussen onderdelen, en de lettergrootte.
+
+&lt;em&gt;Herstart OpenTodoList om de wijziging toe te passen.&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="159"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Compacte takenlijsten gebruiken</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="170"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verklein de ruimte tussen taken en lijstitems zodat er meer items op het scherm passen.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="177"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beeldgrootte afdwingen</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="184"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beeldgrootte:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gebruik deze instelling om de grootte van de vormgeving te bepalen. Standaard past OpenTodoList zich aan aan de schermgrootte van het apparaat. Echter, als dat niet werkt, dan kan een andere grootte worden opgegeven.
+
+Herstart OpenTodoList om de wijziging toe te passen.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="212"/>

@@ -74,7 +74,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Selecione o Tipo de Conta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../appstartup.cpp" line="166"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished">Gerencie seus dados pessoais.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="172"/>
@@ -136,12 +136,12 @@
     <message>
         <location filename="../appstartup.cpp" line="316"/>
         <source>Open</source>
-        <translation type="unfinished">Aberto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="323"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sair</translation>
     </message>
 </context>
 <context>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deletar itens completos?</translation>
     </message>
 </context>
 <context>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deletar itens completos?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tem certeza que quer deletar todos os TODOS da lista TODO &lt;strong&gt;%1&lt;/strong&gt;? Não pode ser desfeito.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tem certeza que quer deletar todas as tarefas feitas no TODO &lt;strong&gt;%1&lt;/strong&gt;? Não pode ser desfeito.</translation>
     </message>
 </context>
 <context>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
         <source>Open</source>
-        <translation type="unfinished">Aberto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
@@ -720,7 +720,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished">Sincronizar Agora</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
@@ -811,7 +811,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="350"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deletar itens completos?</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="357"/>
@@ -1512,7 +1512,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamanho da Fonte:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="132"/>

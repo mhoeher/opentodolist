@@ -3,1646 +3,448 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: OpenTodoList\n"
-"Language: tr\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Language: tr_TR\n"
+"X-Qt-Contexts: true\n"
 
 #: ../Pages/AboutPage.qml:15
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "About..."
 msgstr "Hakkında..."
 
 #: ../Pages/AboutPage.qml:29
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
 #: ../Pages/AboutPage.qml:36
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Yapılacaklar ve görev yönetimi uygulaması."
 
-#: ../Pages/AboutPage.qml:60
-msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "OpenTodoList, GNU Genel Kamu Lisansı sürüm 3 veya (kendi seçiminize bağlı olarak) daha sonraki herhangi bir sürüm kapsamında yayınlanmaktadır. Lisansın bir kopyasını aşağıda bulabilirsiniz. Ayrıca, birkaç kütüphane ve kaynak kullanılmaktadır. Lisans koşulları hakkında ayrıntılı bilgi için lütfen <a href='3rdparty'> 3. Taraf Yazılımlar </a> sayfasına bakın."
-
-#: ../Pages/AboutThirdPartyPage.qml:11
-msgctxt "AboutThirdPartyPage|"
-msgid "Used Libraries and Resources"
-msgstr "Kullanılan Kütüphaneler ve Kaynaklar"
-
-#: ../Pages/AboutThirdPartyPage.qml:47
-msgctxt "AboutThirdPartyPage|"
-msgid "Author: <a href='%2'>%1</a>"
-msgstr "Yazar: <a href='%2'>%1</a>"
-
-#: ../Pages/AboutThirdPartyPage.qml:54
-msgctxt "AboutThirdPartyPage|"
-msgid "License: <a href='%1'>%2</a>"
-msgstr "Lisans: <a href='%1'>% 2</a>"
-
-#: ../Pages/AboutThirdPartyPage.qml:61
-msgctxt "AboutThirdPartyPage|"
-msgid "Download: <a href='%1'>%1</a>"
-msgstr "İndir: <a href='%1'>%1</a>"
-
-#: ../Widgets/Attachments.qml:28
-msgctxt "Attachments|"
-msgid "Attach File"
-msgstr "Dosya eki"
-
-#: ../Widgets/Attachments.qml:41
-msgctxt "Attachments|"
-msgid "Delete Attachment?"
-msgstr "Ek Silinsin mi?"
-
-#: ../Widgets/Attachments.qml:45
-msgctxt "Attachments|"
-msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "<strong>%1</strong> ekini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
-
-#: ../Widgets/Attachments.qml:59
-msgctxt "Attachments|"
-msgid "Attachments"
-msgstr "Ekler"
-
-#: ../Menues/ColorMenu.qml:15
-msgctxt "ColorMenu|"
-msgid "Color"
-msgstr "Renk"
-
-#: ../Menues/ColorMenu.qml:19
-msgctxt "ColorMenu|"
-msgid "White"
-msgstr "Beyaz"
-
-#: ../Menues/ColorMenu.qml:26
-msgctxt "ColorMenu|"
-msgid "Red"
-msgstr "Kırmızı"
-
-#: ../Menues/ColorMenu.qml:33
-msgctxt "ColorMenu|"
-msgid "Green"
-msgstr "Yeşil"
-
-#: ../Menues/ColorMenu.qml:40
-msgctxt "ColorMenu|"
-msgid "Blue"
-msgstr "Mavi"
-
-#: ../Menues/ColorMenu.qml:47
-msgctxt "ColorMenu|"
-msgid "Yellow"
-msgstr "Sarı"
-
-#: ../Menues/ColorMenu.qml:54
-msgctxt "ColorMenu|"
-msgid "Orange"
-msgstr "Portakal"
-
-#: ../Menues/ColorMenu.qml:61
-msgctxt "ColorMenu|"
-msgid "Lilac"
-msgstr "leylak"
-
-#: ../Windows/DeleteItemDialog.qml:19
-msgctxt "DeleteItemDialog|"
-msgid "Delete Item?"
-msgstr "Öğeyi silmek?"
-
-#: ../Windows/DeleteItemDialog.qml:32
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> resmini gerçekten silmek istiyor musunuz? Bu geri alınamaz."
-
-#: ../Windows/DeleteItemDialog.qml:36
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> yapılacaklar listesini gerçekten silmek istiyor musunuz? Bu geri alınamaz."
-
-#: ../Windows/DeleteItemDialog.qml:40
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Gerçekten <strong>%1</strong> yapılacak olanı silmek istiyor musunuz? Bu geri alınamaz."
-
-#: ../Windows/DeleteItemDialog.qml:44
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> görevini gerçekten silmek istiyor musunuz? Bu geri alınamaz."
-
-#: ../Windows/DeleteItemDialog.qml:48
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> notunu gerçekten silmek istiyor musunuz? Bu geri alınamaz."
-
-#: ../Windows/DeleteLibraryDialog.qml:19
-msgctxt "DeleteLibraryDialog|"
-msgid "Delete Library?"
-msgstr "Kitaplık silinsin mi?"
-
-#: ../Windows/DeleteLibraryDialog.qml:33
-msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "<strong>%1</strong> kitaplığını gerçekten uygulamadan kaldırmak istiyor musunuz? <em> Bu, kütüphaneye ait tüm dosyaları silecektir. </em>"
-
-#: ../Windows/DeleteLibraryDialog.qml:40
-msgctxt "DeleteLibraryDialog|"
-msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "<strong>%1</strong> kitaplığını gerçekten uygulamadan kaldırmak istiyor musunuz? Kitaplığın içindeki dosyaların kaldırılmayacağını unutmayın, böylece kitaplığı daha sonra geri yükleyebilirsiniz."
-
-#: ../Windows/FolderSelectionDialog.qml:17
-msgctxt "FolderSelectionDialog|"
-msgid "Select a Folder"
-msgstr "Klasör Seçin"
-
-#: ../Widgets/ItemCreatedNotification.qml:64
-msgctxt "ItemCreatedNotification|"
-msgid "<strong>%1</strong> has been created."
-msgstr "<strong>%1</strong> oluşturuldu."
-
-#: ../Widgets/ItemCreatedNotification.qml:69
-msgctxt "ItemCreatedNotification|"
-msgid "Open"
-msgstr "Açık"
-
-#: ../Widgets/ItemDueDateEditor.qml:28
-msgctxt "ItemDueDateEditor|"
-msgid "Due on"
-msgstr "Son tarih:"
-
-#: ../Widgets/ItemNotesEditor.qml:32
-msgctxt "ItemNotesEditor|"
-msgid "Notes"
-msgstr "notlar"
-
-#: ../Widgets/LibrariesSideBar.qml:375
-msgctxt "LibrariesSideBar|"
-msgid "Schedule"
-msgstr "Schedule"
-
-#: ../Widgets/LibrariesSideBar.qml:178
-msgctxt "LibrariesSideBar|"
-msgid "New Library"
-msgstr "Yeni Kütüphane"
-
-#: ../Widgets/LibrariesSideBar.qml:219
-msgctxt "LibrariesSideBar|"
-msgid "About..."
-msgstr "Hakkında..."
-
-#: ../Pages/LibraryPage.qml:141
-msgctxt "LibraryPage|"
-msgid "Red"
-msgstr "Kırmızı"
-
-#: ../Pages/LibraryPage.qml:148
-msgctxt "LibraryPage|"
-msgid "Green"
-msgstr "Yeşil"
-
-#: ../Pages/LibraryPage.qml:155
-msgctxt "LibraryPage|"
-msgid "Blue"
-msgstr "Mavi"
-
-#: ../Pages/LibraryPage.qml:162
-msgctxt "LibraryPage|"
-msgid "Yellow"
-msgstr "Sarı"
-
-#: ../Pages/LibraryPage.qml:169
-msgctxt "LibraryPage|"
-msgid "Orange"
-msgstr "Portakal"
-
-#: ../Pages/LibraryPage.qml:176
-msgctxt "LibraryPage|"
-msgid "Lilac"
-msgstr "leylak"
-
-#: ../Pages/LibraryPage.qml:183
-msgctxt "LibraryPage|"
-msgid "White"
-msgstr "Beyaz"
-
-#: ../Pages/LibraryPage.qml:193
-msgctxt "LibraryPage|"
-msgid "Rename"
-msgstr "Adını değiştirmek"
-
-#: ../Pages/LibraryPage.qml:198
-msgctxt "LibraryPage|"
-msgid "Delete"
-msgstr "Sil"
-
-#: ../Pages/LibraryPage.qml:256
-msgctxt "LibraryPage|"
-msgid "Note Title"
-msgstr "Not Başlığı"
-
-#: ../Pages/LibraryPage.qml:269
-msgctxt "LibraryPage|"
-msgid "Todo List Title"
-msgstr "Yapılacaklar Listesi Başlığı"
-
-#: ../Pages/LibraryPage.qml:282
-msgctxt "LibraryPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr "Arama terimi 1, arama terimi 2, ..."
-
-#: ../Pages/LibraryPage.qml:361
-msgctxt "LibraryPage|"
-msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr "Burada henüz bir şey yok! Bir <a href='#note'> not </a>, <a href='#todolist'> yapılacaklar listesi </a> veya <a href='#image'> resim </a> ekleyerek başlayın."
-
-#: ../Menues/LibraryPageMenu.qml:18
-msgctxt "LibraryPageMenu|"
-msgid "Edit Sync Settings"
-msgstr "Senkronizasyon Ayarlarını Düzenle"
-
-#: ../Menues/LibraryPageMenu.qml:20
-msgctxt "LibraryPageMenu|"
-msgid "Sync Now"
-msgstr "Şimdi Senkronize Et"
-
-#: ../Menues/LibraryPageMenu.qml:29
-msgctxt "LibraryPageMenu|"
-msgid "Sync Log"
-msgstr "Senkronizasyon Günlüğü"
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "The secrets for synchronizing the library %1 are missing."
-msgstr "%1 kitaplığını senkronize etmenin sırları eksik."
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "Ignore"
-msgstr "Aldırmamak"
-
-#: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
-msgctxt "LibrarySecretsMissingNotificationBar|"
-msgid "Enter Secrets"
-msgstr "Sır Girin"
-
-#: ../Pages/LogViewPage.qml:14
-msgctxt "LogViewPage|"
-msgid "Synchronization Log"
-msgstr "Senkronizasyon Giriş"
-
-#: ../Pages/LogViewPage.qml:24
-msgctxt "LogViewPage|"
-msgid "Copy Log"
-msgstr "Günlüğü Kopyala"
-
-#: ../Windows/MainWindow.qml:26
-msgctxt "MainWindow|"
-msgid "OpenTodoList"
-msgstr "OpenTodoList"
-
-#: ../Windows/MainWindow.qml:395
-msgctxt "MainWindow|"
-msgid "New &Library"
-msgstr "Yeni &Kütüphane"
-
-#: ../Windows/MainWindow.qml:406
-msgctxt "MainWindow|"
-msgid "New &Note"
-msgstr "Yeni &Not"
-
-#: ../Windows/MainWindow.qml:414
-msgctxt "MainWindow|"
-msgid "New &Todo List"
-msgstr "Yeni &Yapılacaklar listesi"
-
-#: ../Windows/MainWindow.qml:422
-msgctxt "MainWindow|"
-msgid "New &Image"
-msgstr "Yeni &görüntü"
-
-#: ../Windows/MainWindow.qml:430
-msgctxt "MainWindow|"
-msgid "&Quit"
-msgstr "&Çık"
-
-#: ../Windows/MainWindow.qml:447
-msgctxt "MainWindow|"
-msgid "&Find"
-msgstr "&Bul"
-
-#: ../Windows/MainWindow.qml:471
-msgctxt "MainWindow|"
-msgid "Open Last &Created Item"
-msgstr "Son &Oluşturulan Öğeyi Aç"
-
-#: ../Windows/MainWindow.qml:479
-msgctxt "MainWindow|"
-msgid "Open &Left Side Bar"
-msgstr "Aç &Sol Kenar Çubuğu"
-
-#: ../Windows/MainWindow.qml:596
-msgctxt "MainWindow|"
-msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
-msgstr "<a href='#newLibrary'> yeni bir kütüphane oluşturarak </a> başlayın. Kütüphaneler, notlar, yapılacaklar listeleri ve resimler gibi farklı türde öğeleri depolamak için kullanılır."
-
-#: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:61
-msgctxt "NewLibraryPage|"
-msgid "Create Library"
-msgstr "Kütüphane Oluştur"
-
-#: ../Pages/NewLibraryPage.qml:23
-msgctxt "NewLibraryPage|"
-msgid "Create"
-msgstr "Oluşturmak"
-
-#: ../Pages/NewLibraryPage.qml:39
-msgctxt "NewLibraryPage|"
-msgid "Cancel"
-msgstr "İptal etmek"
-
-#: ../Pages/NewLibraryPage.qml:58
-msgctxt "NewLibraryPage|"
-msgid "Library Name:"
-msgstr "Kütüphane Adı:"
-
-#: ../Pages/NewLibraryPage.qml:66
-msgctxt "NewLibraryPage|"
-msgid "My New Library"
-msgstr "Yeni Kütüphanem"
-
-#: ../Pages/NewLibraryPage.qml:73
-msgctxt "NewLibraryPage|"
-msgid "Create Library in Default Location"
-msgstr "Varsayılan Konumda Kitaplık Oluşturma"
-
-#: ../Pages/NewLibraryPage.qml:80
-msgctxt "NewLibraryPage|"
-msgid "The items you add to the library will be stored in the default location for libraries."
-msgstr "Kitaplığa eklediğiniz öğeler, kitaplıklar için varsayılan konumda saklanır."
-
-#: ../Pages/NewLibraryPage.qml:82
-msgctxt "NewLibraryPage|"
-msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
-msgstr "Lütfen kütüphane öğelerinin kaydedileceği bir dizin seçin. Mevcut bir kütüphane dizinini de seçebilirsiniz. Bu durumda kütüphane içe aktarılacaktır."
-
-#: ../Pages/NewLibraryPage.qml:110
-msgctxt "NewLibraryPage|"
-msgid "Please select a library location"
-msgstr "Lütfen bir kütüphane yeri seçin"
-
-#: ../Widgets/NewTopLevelItemButton.qml:54
-msgctxt "NewTopLevelItemButton|"
-msgid "Note"
-msgstr "Not"
-
-#: ../Widgets/NewTopLevelItemButton.qml:43
-msgctxt "NewTopLevelItemButton|"
-msgid "Todo List"
-msgstr "Tüm Liste"
-
-#: ../Widgets/NewTopLevelItemButton.qml:58
-msgctxt "NewTopLevelItemButton|"
-msgid "Image"
-msgstr "görüntü"
-
-#: ../Windows/OpenFileDialog.qml:18
-msgctxt "OpenFileDialog|"
-msgid "Select a File"
-msgstr "Bir dosya seçin"
-
-#: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
-msgctxt "OpenImageDialog|"
-msgid "Select Image"
-msgstr "Fotoğraf seç"
-
-#: ../Windows/RenameItemDialog.qml:22
-msgctxt "RenameItemDialog|"
-msgid "Rename Item"
-msgstr "Öğeyi Yeniden Adlandır"
-
-#: ../Windows/RenameItemDialog.qml:33
-msgctxt "RenameItemDialog|"
-msgid "Enter item title..."
-msgstr "Öğe başlığını girin ..."
-
-#: ../Windows/RenameLibraryDialog.qml:20
-msgctxt "RenameLibraryDialog|"
-msgid "Rename Library"
-msgstr "Kütüphaneyi Yeniden Adlandır"
-
-#: ../Windows/RenameLibraryDialog.qml:37
-msgctxt "RenameLibraryDialog|"
-msgid "Enter library title..."
-msgstr "Kütüphane başlığını girin ..."
-
-#: ../Pages/ScheduleViewPage.qml:101
-msgctxt "ScheduleViewPage|"
-msgid "Today"
-msgstr "Bugün"
-
-#: ../Pages/ScheduleViewPage.qml:102
-msgctxt "ScheduleViewPage|"
-msgid "Tomorrow"
-msgstr "Yarın"
-
-#: ../Pages/ScheduleViewPage.qml:144
-msgctxt "ScheduleViewPage|"
-msgid "Later This Week"
-msgstr "Bu hafta daha sonra"
-
-#: ../Pages/ScheduleViewPage.qml:146
-msgctxt "ScheduleViewPage|"
-msgid "Next Week"
-msgstr "Gelecek hafta"
-
-#: ../Pages/ScheduleViewPage.qml:147
-msgctxt "ScheduleViewPage|"
-msgid "Coming Next"
-msgstr "Sıradaki"
-
-#: ../Pages/ScheduleViewPage.qml:174
-msgctxt "ScheduleViewPage|"
-msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr "Planlanmış bir şey yok ... Öğelerin burada görünmeleri için bir son tarih ekleyin."
-
-#: ../Pages/ScheduleViewPage.qml:80
-msgctxt "ScheduleViewPage|"
-msgid "Overdue"
-msgstr "vadesi geçmiş"
-
-#: ../Widgets/SyncErrorNotificationBar.qml:43
-msgctxt "SyncErrorNotificationBar|"
-msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Kitaplık senkronize edilirken hatalar oluştu. Lütfen kütüphane ayarlarının güncel olduğundan emin olun."
-
-#: ../Widgets/SyncErrorNotificationBar.qml:49
-msgctxt "SyncErrorNotificationBar|"
-msgid "Ignore"
-msgstr "Aldırmamak"
-
-#: ../Widgets/SyncErrorNotificationBar.qml:53
-msgctxt "SyncErrorNotificationBar|"
-msgid "View"
-msgstr "Görünüm"
-
-#: ../Widgets/SyncIndicatorBar.qml:63
-msgctxt "SyncIndicatorBar|"
-msgid "Synchronizing library..."
-msgstr "Kütüphane senkronize ediliyor ..."
-
-#: ../Pages/SyncLibrarySelectionPage.qml:17
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Create Library"
-msgstr "Kütüphane Oluştur"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:29
-msgctxt "SyncLibrarySelectionPage|"
-msgid "OK"
-msgstr "OK"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:46
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Cancel"
-msgstr "İptal etmek"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:79
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Create new library on server"
-msgstr "Sunucuda yeni kütüphane oluştur"
-
-#: ../Pages/SyncLibrarySelectionPage.qml:97
-msgctxt "SyncLibrarySelectionPage|"
-msgid "Searching for existing libraries..."
-msgstr "Mevcut kütüphaneler aranıyor ..."
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:16
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "Cancel"
-msgstr "İptal etmek"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:21
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "OK"
-msgstr "OK"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:45
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "NextCloud"
-msgstr "NextCloud"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:52
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "ownCloud"
-msgstr "ownCloud"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:59
-#: ../Pages/SynchronizerBackendSelectionPage.qml:60
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "WebDAV"
-msgstr "WebDAV"
-
-#: ../Pages/SynchronizerBackendSelectionPage.qml:66
-#: ../Pages/SynchronizerBackendSelectionPage.qml:67
-msgctxt "SynchronizerBackendSelectionPage|"
-msgid "Local Library"
-msgstr "Yerel kütüphane"
-
-#: ../Widgets/TodoListItem.qml:99
-msgctxt "TodoListItem|"
-msgid "✔ No open todos - everything done"
-msgstr "✔ Hiçbir açık todos - her şey bitmiş"
-
-#: ../Pages/TodoListPage.qml:173
-msgctxt "TodoListPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr "Arama terimi 1, arama terimi 2, ..."
-
-#: ../Pages/TodoListPage.qml:234
-msgctxt "TodoListPage|"
-msgid "Todos"
-msgstr "Todos"
-
-#: ../Pages/TodoListPage.qml:290
-msgctxt "TodoListPage|"
-msgid "Completed Todos"
-msgstr "Tamamlanan Yapılacaklar"
-
-#: ../Pages/TodoPage.qml:125
-msgctxt "TodoPage|"
-msgid "Search term 1, search term 2, ..."
-msgstr "Arama terimi 1, arama terimi 2, ..."
-
-#: ../Pages/TodoPage.qml:148
-msgctxt "TodoPage|"
-msgid "Tasks"
-msgstr "Görevler"
-
-#: ../Widgets/UpdateNotificationBar.qml:44
-msgctxt "UpdateNotificationBar|"
-msgid "An update to OpenTodoList %1 is available."
-msgstr "OpenTodoList %1 için bir güncelleme var."
-
-#: ../Widgets/UpdateNotificationBar.qml:50
-msgctxt "UpdateNotificationBar|"
-msgid "Ignore"
-msgstr "Aldırmamak"
-
-#: ../Widgets/UpdateNotificationBar.qml:54
-msgctxt "UpdateNotificationBar|"
-msgid "Download"
-msgstr "İndir"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:22
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "OK"
-msgstr "OK"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:22
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Validate"
-msgstr "Doğrulama"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:40
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Cancel"
-msgstr "İptal etmek"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:86
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Server Address:"
-msgstr "Sunucu adresi:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:92
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "https://..."
-msgstr "https://..."
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:98
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "User name:"
-msgstr "Kullanıcı adı:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:110
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Password:"
-msgstr "Parola:"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:124
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Ignore SSL Errors"
-msgstr "SSL Hatalarını Yoksay"
-
-#: ../Pages/WebDAVConnectionSettingsPage.qml:130
-msgctxt "WebDAVConnectionSettingsPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin."
-
-#: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
-msgctxt "WebDAVSynchronizerSettingsPage|"
-msgid "User name"
-msgstr "Kullanıcı adı"
-
-#: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
-msgctxt "WebDAVSynchronizerSettingsPage|"
-msgid "Password"
-msgstr "Parola"
-
-#: ../main.cpp:102
-msgctxt "main|"
-msgid "Manage your personal data."
-msgstr "Kişisel verilerinizi yönetin."
-
-#: ../main.cpp:108
-msgctxt "main|"
-msgid "QML Root Directory"
-msgstr "QML Kök Dizini"
-
-#: ../main.cpp:109
-msgctxt "main|"
-msgid "DIR"
-msgstr "DIR"
-
-#: ../main.cpp:116
-msgctxt "main|"
-msgid "Switch on some optimizations for touchscreens."
-msgstr "Dokunmatik ekranlar için bazı optimizasyonları açın."
-
-#: ../main.cpp:128
-msgctxt "main|"
-msgid "Remove shortcuts to the AppImage."
-msgstr "AppImage kısayollarını kaldırın."
-
-#: ../Widgets/ItemNotesEditor.qml:85
-msgctxt "ItemNotesEditor|"
-msgid "No notes added yet - click here to add some."
-msgstr "Henüz not eklenmedi - biraz eklemek için burayı tıklayın."
-
-#: ../Widgets/TagsEditor.qml:34
-msgctxt "TagsEditor|"
-msgid "Add Tag"
-msgstr "Etiket Ekle"
-
-#: ../Pages/TodoListPage.qml:254
-msgctxt "TodoListPage|"
-msgid "Add new todo..."
-msgstr "Yeni yapılacaklar ekle ..."
-
-#: ../Pages/TodoPage.qml:153
-msgctxt "TodoPage|"
-msgid "Add new task..."
-msgstr "Yeni görev ekle ..."
-
-#: ../Widgets/TodosWidget.qml:193
-msgctxt "TodosWidget|"
-msgid "Due on: %1"
-msgstr "Teslim tarihi: %1"
-
-#: ../Utils/Colors.qml:16
-msgctxt "Colors|"
-msgid "System"
-msgstr "sistem"
-
-#: ../Utils/Colors.qml:17
-msgctxt "Colors|"
-msgid "Light"
-msgstr "ışık"
-
-#: ../Utils/Colors.qml:18
-msgctxt "Colors|"
-msgid "Dark"
-msgstr "karanlık"
-
-#: ../Widgets/LibrariesSideBar.qml:198
-msgctxt "LibrariesSideBar|"
-msgid "Settings"
-msgstr "Ayarlar"
-
-#: ../Windows/MainWindow.qml:387
-msgctxt "MainWindow|"
-msgid "Settings"
-msgstr "Ayarlar"
-
-#: ../Windows/MainWindow.qml:388
-msgctxt "MainWindow|"
-msgid "Ctrl+,"
-msgstr "Ctrl+,"
-
-#: ../Pages/SettingsPageForm.ui.qml:33
-msgctxt "SettingsPageForm.ui|"
-msgid "Settings"
-msgstr "Ayarlar"
-
-#: ../Pages/SettingsPageForm.ui.qml:39
-msgctxt "SettingsPageForm.ui|"
-msgid "User Interface"
-msgstr "Kullanıcı arayüzü"
-
-#: ../Pages/SettingsPageForm.ui.qml:56
-msgctxt "SettingsPageForm.ui|"
-msgid "Theme:"
-msgstr "Tema:"
-
-#: ../Widgets/LibrariesSideBar.qml:232
-msgctxt "LibrariesSideBar|"
-msgid "Create Default Library"
-msgstr "Varsayılan Kitaplık Oluştur"
-
-#: ../Pages/LibraryPage.qml:424
-msgctxt "LibraryPage|"
-msgid "Sort By"
-msgstr "Göre sırala"
-
-#: ../Pages/LibraryPage.qml:429
-msgctxt "LibraryPage|"
-msgid "Manually"
-msgstr "el ile"
-
-#: ../Pages/LibraryPage.qml:436
-msgctxt "LibraryPage|"
-msgid "Title"
-msgstr "Başlık"
-
-#: ../Pages/LibraryPage.qml:443
-msgctxt "LibraryPage|"
-msgid "Due To"
-msgstr "Nedeniyle"
-
-#: ../Pages/LibraryPage.qml:450
-msgctxt "LibraryPage|"
-msgid "Created At"
-msgstr "Oluşturma Tarihi"
-
-#: ../Pages/LibraryPage.qml:457
-msgctxt "LibraryPage|"
-msgid "Updated At"
-msgstr "Güncelleme Tarihi:"
-
-#: ../Windows/MainWindow.qml:263
-msgctxt "MainWindow|"
-msgid "Rename"
-msgstr "Adını değiştirmek"
-
-#: ../Windows/MainWindow.qml:285
-msgctxt "MainWindow|"
-msgid "Color"
-msgstr "Renk"
-
-#: ../Windows/MainWindow.qml:296
-msgctxt "MainWindow|"
-msgid "Add Tag"
-msgstr "Etiket Ekle"
-
-#: ../Windows/MainWindow.qml:303
-msgctxt "MainWindow|"
-msgid "Attach File"
-msgstr "Dosya eki"
-
-#: ../Windows/MainWindow.qml:312
-msgctxt "MainWindow|"
-msgid "Search"
-msgstr "Arama"
-
-#: ../Windows/MainWindow.qml:319
-msgctxt "MainWindow|"
-msgid "Sort"
-msgstr "Çeşit"
-
-#: ../Windows/MainWindow.qml:327
-msgctxt "MainWindow|"
-msgid "Set Due Date"
-msgstr "Bitiş Tarihi Belirle"
-
-#: ../Windows/MainWindow.qml:335
-msgctxt "MainWindow|"
-msgid "Delete"
-msgstr "Sil"
-
-#: ../Pages/SettingsPageForm.ui.qml:47
-msgctxt "SettingsPageForm.ui|"
-msgid "Language:"
-msgstr "Dil:"
-
-#: ../Pages/TodoListPage.qml:185
-msgctxt "TodoListPage|"
-msgid "Manually"
-msgstr "el ile"
-
-#: ../Pages/TodoListPage.qml:191
-msgctxt "TodoListPage|"
-msgid "Name"
-msgstr "ad"
-
-#: ../Pages/TodoListPage.qml:197
-msgctxt "TodoListPage|"
-msgid "Due Date"
-msgstr "Bitiş tarihi"
-
-#: ../Pages/TodoListPage.qml:203
-msgctxt "TodoListPage|"
-msgid "Created At"
-msgstr "Oluşturma Tarihi"
-
-#: ../Pages/TodoListPage.qml:209
-msgctxt "TodoListPage|"
-msgid "Updated At"
-msgstr "Güncelleme Tarihi:"
-
-#: ../Widgets/TodosWidget.qml:309
-msgctxt "TodosWidget|"
-msgid "Swipe to mark undone"
-msgstr "Geri alınan işareti işaretlemek için kaydırın"
-
-#: ../Widgets/TodosWidget.qml:310
-msgctxt "TodosWidget|"
-msgid "Swipe to mark done"
-msgstr "Tamam olarak işaretlemek için kaydırın"
-
-#: ../Utils/Translations.qml:16
-msgctxt "Translations|"
-msgid "System Language"
-msgstr "Sistem Dili"
-
-#: ../Utils/Translations.qml:32
-msgctxt "Translations|"
-msgid "German"
-msgstr "Almanca"
-
-#: ../Utils/Translations.qml:40
-msgctxt "Translations|"
-msgid "English"
-msgstr "ingilizce"
-
-#: ../Utils/Translations.qml:60
-msgctxt "Translations|"
-msgid "French"
-msgstr "Fransızca"
-
 #: ../Pages/AboutPage.qml:43
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdev 2013-2020, sürüm% 1"
 
 #: ../Pages/AboutPage.qml:60
+#, fuzzy
 msgctxt "AboutPage|"
-msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
-msgstr "OpenTodoList, <a href='app-license'> GNU Genel Kamu Lisansı </a> sürüm 3 veya (sizin seçiminize göre) daha sonraki herhangi bir sürümün şartları uyarınca yayınlanır."
+msgid ""
+"OpenTodoList is released under the terms of the <a href='app-license'>GNU "
+"General Public License</a> version 3 or (at your choice) any later version."
+msgstr ""
+"OpenTodoList, <a href='app-license'> GNU Genel Kamu Lisansı </a> sürüm 3 "
+"veya (sizin seçiminize göre) daha sonraki herhangi bir sürümün şartları "
+"uyarınca yayınlanır."
 
 #: ../Pages/AboutPage.qml:79
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Sorun Bildirin"
 
 #: ../Pages/AboutPage.qml:92
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Üçüncü Şahıs Kütüphaneleri ve Kaynakları"
 
 #: ../Pages/AboutPage.qml:129
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Yazar:"
 
 #: ../Pages/AboutPage.qml:134
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
 #: ../Pages/AboutPage.qml:142
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Lisans:"
 
 #: ../Pages/AboutPage.qml:147
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
 #: ../Pages/AboutPage.qml:155
+#, fuzzy
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "İndir:"
 
 #: ../Pages/AboutPage.qml:160
+#, fuzzy, qt-format
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
 
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "Select Account Type"
-msgstr "Hesap Türünü Seçin"
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "Account Type"
-msgstr "hesap tipi"
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "NextCloud"
-msgstr "NextCloud"
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:51
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "ownCloud"
-msgstr "ownCloud"
-
-#: ../Pages/AccountTypeSelectionPageForm.ui.qml:56
-msgctxt "AccountTypeSelectionPageForm.ui|"
-msgid "WebDAV"
-msgstr "WebDAV"
-
-#: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
-msgctxt "AccountsPageForm.ui|"
-msgid "Accounts"
-msgstr "Hesaplar"
-
-#: ../Windows/DeleteAccountDialog.qml:19
-msgctxt "DeleteAccountDialog|"
-msgid "Delete Account?"
-msgstr "Hesabı sil?"
-
-#: ../Windows/DeleteAccountDialog.qml:36
-msgctxt "DeleteAccountDialog|"
-msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
-msgstr "<strong>% 1 </strong> hesabını gerçekten kaldırmak istiyor musunuz? Bu, hesaba ait tüm kitaplıkları cihazınızdan kaldıracak mı? <br/> <br/> <i> Not: Hesabı geri ekleyerek sunucudan geri yükleyebilirsiniz. </i>"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Edit Account"
-msgstr "Hesabı düzenlemek"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Name:"
-msgstr "Ad:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:59
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Server Address:"
-msgstr "Sunucu adresi:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:65
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "https://myserver.example.com"
-msgstr "https://myserver.example.com"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:71
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "User:"
-msgstr "Kullanıcı:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:77
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "User Name"
-msgstr "Kullanıcı adı"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Password:"
-msgstr "Parola:"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Password"
-msgstr "Parola"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Disable Certificate Checks"
-msgstr "Sertifika Denetimlerini Devre Dışı Bırak"
-
-#: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
-msgctxt "EditWebDAVAccountPageForm.ui|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin."
-
-#: ../Widgets/LibrariesSideBar.qml:185
-msgctxt "LibrariesSideBar|"
-msgid "Accounts"
-msgstr "Hesaplar"
-
-#: ../Widgets/LibrariesSideBar.qml:205
-msgctxt "LibrariesSideBar|"
-msgid "Translate The App..."
-msgstr "Uygulamayı Çevir ..."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create Library in Account"
-msgstr "Hesapta Kütüphane Oluştur"
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "Bir hesapta oluşturulan kitaplık onunla senkronize edilir. Bu, bir kütüphaneyi bir sunucuya kolayca yedeklemenizi ve daha sonra oradan geri yüklemenizi sağlar. Ayrıca, bu tür kitaplıklar diğer kullanıcılarla paylaşılabilir (sunucu buna izin veriyorsa)."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Existing Libraries"
-msgstr "Mevcut Kütüphaneler"
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Select an existing library on the server to add it to the app."
-msgstr "Uygulamaya eklemek için sunucuda var olan bir kitaplığı seçin."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "No libraries were found on the server."
-msgstr "Sunucuda kitaplık bulunamadı."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Searching existing libraries..."
-msgstr "Mevcut kütüphaneler aranıyor ..."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create a New Library"
-msgstr "Yeni Kitaplık Oluşturma"
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr "Sunucuyla senkronize edilecek yeni bir kütüphane oluşturun. Böyle bir kütüphane, verileri senkronize etmek için uygulamaya diğer cihazlarda da eklenebilir."
-
-#: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
-msgctxt "NewLibraryFromAccountPageForm.ui|"
-msgid "My new library's name"
-msgstr "Yeni kütüphanemin adı"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Open a Folder as a Library"
-msgstr "Klasörü Kütüphane Olarak Açma"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr "Herhangi bir klasörü bir kütüphane için konum olarak kullanabilirsiniz. <br/> <br/> Bu özellikle verilerinizi bir sunucu ile senkronize etmek için başka bir araç (bir bulut sağlayıcısının senkronizasyon istemcisi gibi) kullanmak istediğinizde kullanışlıdır."
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Folder:"
-msgstr "Klasör:"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Path to a folder to use as a library"
-msgstr "Kütüphane olarak kullanılacak klasörün yolu"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Select"
-msgstr "seçmek"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "Name:"
-msgstr "Ad:"
-
-#: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
-msgctxt "NewLibraryInFolderPageForm.ui|"
-msgid "My Local Library Name"
-msgstr "Yerel Kütüphane Adım"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Create Library"
-msgstr "Kütüphane Oluştur"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:32
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Local Library"
-msgstr "Yerel kütüphane"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:38
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Use Folder as Library"
-msgstr "Klasörü Kütüphane Olarak Kullan"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:44
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Add Libraries From Your Accounts"
-msgstr "Hesaplarınızdan Kitaplık Ekleme"
-
-#: ../Pages/NewLibraryPageForm.ui.qml:79
-msgctxt "NewLibraryPageForm.ui|"
-msgid "Add Account"
-msgstr "Hesap eklemek"
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:29
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "Create a Local Library"
-msgstr "Yerel Kütüphane Oluşturma"
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:37
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "Yerel bir kütüphane yalnızca cihazınızda saklanır - bu, gizlilik özlü için mükemmel olmasını sağlar! <br/> <br/> Yalnızca yerel olarak bilgi depolamak ve tüm verilerinizi diğer mekanizmalar aracılığıyla düzenli olarak yedeklemek istediğinizde kullanın. Bilgilerinize birkaç cihazdan erişmeniz gerekiyorsa, bunun yerine senkronize edilmiş bir kütüphane oluşturun."
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:48
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "Name:"
-msgstr "Ad:"
-
-#: ../Pages/NewLocalLibraryPageForm.ui.qml:53
-msgctxt "NewLocalLibraryPageForm.ui|"
-msgid "My Local Library Name"
-msgstr "Yerel Kütüphane Adım"
-
-#: ../Pages/NewWebDAVAccountPage.qml:196
-msgctxt "NewWebDAVAccountPage|"
-msgid "Account Name"
-msgstr "Hesap adı"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Connection Settings"
-msgstr "Bağlantı Ayarları"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Server Address:"
-msgstr "Sunucu adresi:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "https://myserver.example.com"
-msgstr "https://myserver.example.com"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "User:"
-msgstr "Kullanıcı:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "User Name"
-msgstr "Kullanıcı adı"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Password:"
-msgstr "Parola:"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Password"
-msgstr "Parola"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Disable Certificate Checks"
-msgstr "Sertifika Denetimlerini Devre Dışı Bırak"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Name:"
-msgstr "ad"
-
-#: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
-msgctxt "NewWebDAVAccountPageForm.ui|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol edin ve tekrar deneyin."
-
-#: ../Windows/DeleteItemDialog.qml:52
-msgctxt "DeleteItemDialog|"
-msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>% 1 </strong> sayfasını gerçekten silmek istiyor musunuz? Bu geri alınamaz."
-
-#: ../Windows/MainWindow.qml:107
-msgctxt "MainWindow|"
-msgid "Synchronizing library..."
-msgstr "Kütüphane senkronize ediliyor ..."
-
-#: ../Pages/NotePage.qml:124
-msgctxt "NotePage|"
-msgid "Main Page"
-msgstr "Ana Sayfa"
-
-#: ../Pages/NotePage.qml:187
-msgctxt "NotePage|"
-msgid "New Page"
-msgstr "Yeni sayfa"
-
-#: ../Widgets/ItemNotesEditor.qml:114
-msgctxt "ItemNotesEditor|"
-msgid "Export to File..."
-msgstr "Dosyaya Aktar ..."
-
-#: ../Widgets/ItemNotesEditor.qml:118
-msgctxt "ItemNotesEditor|"
-msgid "Markdown files"
-msgstr "Markdown dosyaları"
-
-#: ../Widgets/ItemNotesEditor.qml:119
-msgctxt "ItemNotesEditor|"
-msgid "All files"
-msgstr "Tüm dosyalar"
-
-#: ../Pages/ProblemsPage.qml:44
-msgctxt "ProblemsPage|"
-msgid "Missing secrets for account"
-msgstr "Hesap için eksik erişim verileri"
-
-#: ../Pages/ProblemsPageForm.ui.qml:13 ../Pages/ProblemsPageForm.ui.qml:23
-msgctxt "ProblemsPageForm.ui|"
-msgid "Problems Detected"
-msgstr "Tespit Edilen Sorunlar"
-
-#: ../Utils/Translations.qml:28
-msgctxt "Translations|"
-msgid "Danish"
-msgstr "Danimarkalı"
-
-#: ../Utils/Translations.qml:36
-msgctxt "Translations|"
-msgid "Greek"
-msgstr "Yunan"
-
-#: ../Utils/Translations.qml:56
-msgctxt "Translations|"
-msgid "Filipino"
-msgstr "Filipinli"
-
-#: ../Utils/Translations.qml:64
-msgctxt "Translations|"
-msgid "Hungarian"
-msgstr "Macarca"
-
-#: ../Utils/Translations.qml:68
-msgctxt "Translations|"
-msgid "Italian"
-msgstr "İtalyan"
-
-#: ../Utils/Translations.qml:120
-msgctxt "Translations|"
-msgid "Vietnamese"
-msgstr "Vietnam"
-
-#: ../Utils/Translations.qml:44
-msgctxt "Translations|"
-msgid "Spanish"
-msgstr "İspanyol"
-
-#: ../Utils/Translations.qml:80
-msgctxt "Translations|"
-msgid "Dutch"
-msgstr "Flemenkçe"
-
-#: ../Utils/Translations.qml:84
-msgctxt "Translations|"
-msgid "Norwegian"
-msgstr "Norveççe"
-
-#: ../Utils/Translations.qml:88
-msgctxt "Translations|"
-msgid "Polish"
-msgstr "Lehçe"
-
-#: ../Utils/Translations.qml:92
-msgctxt "Translations|"
-msgid "Portuguese"
-msgstr "Portekizce"
-
-#: ../Utils/Translations.qml:96
-msgctxt "Translations|"
-msgid "Portuguese (Brazil)"
-msgstr "Portekiz (Brezilyası)"
-
-#: ../Utils/Translations.qml:112
-msgctxt "Translations|"
-msgid "Turkish"
-msgstr "Türk"
-
-#: ../Widgets/ItemCreatedNotification.qml:74
-msgctxt "ItemCreatedNotification|"
-msgid "Dismiss"
-msgstr "Reddet"
-
-#: ../Utils/Translations.qml:48
-msgctxt "Translations|"
-msgid "Spanish (Latin America & Caribbean)"
-msgstr "İspanyolca (Latin Amerika ve Karayipler)"
-
-#: ../Utils/Translations.qml:100
-msgctxt "Translations|"
-msgid "Russian"
-msgstr "Rusça"
-
-#: ../Utils/Translations.qml:104
-msgctxt "Translations|"
-msgid "Swedish"
-msgstr "İsveççe"
-
-#: ../Utils/Translations.qml:108
-msgctxt "Translations|"
-msgid "Turkmen"
-msgstr "Türkmen"
-
-#: ../Actions/DeleteItem.qml:8
-msgctxt "DeleteItem|"
-msgid "Delete"
-msgstr "Sil"
-
-#: ../Widgets/ItemDueDateEditor.qml:59
-msgctxt "ItemDueDateEditor|"
-msgid "First due on %1."
-msgstr "İlk önce %1."
-
-#: ../Widgets/ItemDueDateEditor.qml:72
-msgctxt "ItemDueDateEditor|"
-msgid "No recurrence pattern set..."
-msgstr "Yineleme düzeni ayarlanmadı..."
-
-#: ../Widgets/ItemDueDateEditor.qml:74
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every day."
-msgstr "Her gün tekrarlar."
-
-#: ../Widgets/ItemDueDateEditor.qml:76
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every week."
-msgstr "Her hafta tekrarlar."
-
-#: ../Widgets/ItemDueDateEditor.qml:78
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every month."
-msgstr "Her ay tekrarlar."
-
-#: ../Widgets/ItemDueDateEditor.qml:80
-msgctxt "ItemDueDateEditor|"
-msgid "Recurs every %1 days."
-msgstr "Her %1 günde bir tekrarlar."
-
-#: ../Windows/NewItemWithDueDateDialog.qml:91
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Today"
-msgstr "Bugün"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:92
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Tomorrow"
-msgstr "Yarın"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:93
-msgctxt "NewItemWithDueDateDialog|"
-msgid "This Week"
-msgstr "Bu hafta"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:94
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Next Week"
-msgstr "Gelecek hafta"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:95
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Select..."
-msgstr "Seç ..."
-
-#: ../Windows/NewItemWithDueDateDialog.qml:114
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Title:"
-msgstr "Başlık:"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:119
-msgctxt "NewItemWithDueDateDialog|"
-msgid "The title for your new item..."
-msgstr "Yeni öğenizin başlığı ..."
-
-#: ../Windows/NewItemWithDueDateDialog.qml:125
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Create in:"
-msgstr "Şurada oluştur:"
-
-#: ../Windows/NewItemWithDueDateDialog.qml:165
-msgctxt "NewItemWithDueDateDialog|"
-msgid "Due on:"
-msgstr "Son tarih:"
-
-#: ../Widgets/NewTopLevelItemButton.qml:48
-msgctxt "NewTopLevelItemButton|"
-msgid "Todo"
-msgstr "Todo"
-
-#: ../Windows/RecurrenceDialog.qml:28
-msgctxt "RecurrenceDialog|"
-msgid "Edit Recurrence"
-msgstr "Yinelemeyi Düzenle"
-
-#: ../Windows/RecurrenceDialog.qml:41
-msgctxt "RecurrenceDialog|"
-msgid "Never"
-msgstr "Asla"
-
-#: ../Windows/RecurrenceDialog.qml:42
-msgctxt "RecurrenceDialog|"
-msgid "Daily"
-msgstr "Günlük"
-
-#: ../Windows/RecurrenceDialog.qml:43
-msgctxt "RecurrenceDialog|"
-msgid "Weekly"
-msgstr "Haftalık"
-
-#: ../Windows/RecurrenceDialog.qml:44
-msgctxt "RecurrenceDialog|"
-msgid "Monthly"
-msgstr "Aylık"
-
-#: ../Windows/RecurrenceDialog.qml:45
-msgctxt "RecurrenceDialog|"
-msgid "Every N Days"
-msgstr "Her N günde bir"
-
-#: ../Windows/RecurrenceDialog.qml:55
-msgctxt "RecurrenceDialog|"
-msgid "Recurs:"
-msgstr "tekrarlanır:"
-
-#: ../Windows/RecurrenceDialog.qml:68
-msgctxt "RecurrenceDialog|"
-msgid "Number of days:"
-msgstr "Gün sayısı:"
-
-#: ../Windows/RecurrenceDialog.qml:82
-msgctxt "RecurrenceDialog|"
-msgid "Recur relative to the date when marking as done"
-msgstr "Tamam olarak işaretlendiğinde tarihe göre yineleme"
-
-#: ../Actions/RenameItem.qml:8
-msgctxt "RenameItem|"
-msgid "Rename"
-msgstr "Adını değiştirmek"
-
-#: ../Actions/SetDueNextWeek.qml:8
-msgctxt "SetDueNextWeek|"
-msgid "Set Due This Week"
-msgstr "Bu Hafta Vadesi Ayarla"
-
-#: ../Actions/SetDueThisWeek.qml:8
-msgctxt "SetDueThisWeek|"
-msgid "Set Due Next Week"
-msgstr "Gelecek Hafta Teslim Edilecek"
-
-#: ../Actions/SetDueTo.qml:8
-msgctxt "SetDueTo|"
-msgid "Select Due Date"
-msgstr "Bitiş Tarihini Seçin"
-
-#: ../Actions/SetDueToday.qml:8
-msgctxt "SetDueToday|"
-msgid "Set Due Today"
-msgstr "Teslim Tarihi Bugün"
-
-#: ../Actions/SetDueTomorrow.qml:8
-msgctxt "SetDueTomorrow|"
-msgid "Set Due Tomorrow"
-msgstr "Teslim Tarihi Yarın"
-
-#: ../Widgets/TodosWidgetDelegate.qml:203
-msgctxt "TodosWidgetDelegate|"
-msgid "Swipe to mark undone"
-msgstr "Geri alınan işareti işaretlemek için kaydırın"
-
-#: ../Widgets/TodosWidgetDelegate.qml:205
-msgctxt "TodosWidgetDelegate|"
-msgid "Swipe to mark done"
-msgstr "Tamam olarak işaretlemek için kaydırın"
-
-#: ../Menues/LibraryPageActions.qml:30
-msgctxt "LibraryPageActions|"
-msgid "Sync Now"
-msgstr "Şimdi Eşitle"
-
-#: ../Menues/LibraryPageActions.qml:41
-msgctxt "LibraryPageActions|"
-msgid "Sync Log"
-msgstr "Eşitleme Günlüğü"
-
-#: ../Pages/SettingsPageForm.ui.qml:65
-msgctxt "SettingsPageForm.ui|"
-msgid "Font Size:"
-msgstr "Yazı Boyutu:"
-
-#: ../Utils/Translations.qml:52
-msgctxt "Translations|"
-msgid "Basque"
-msgstr "Bask dili"
-
 #: ../Pages/AccountTypeSelectionPage.qml:22
+#, fuzzy
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
 msgstr "Hesap Türünü Seçin"
 
 #: ../Pages/AccountTypeSelectionPage.qml:81
+#, fuzzy
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
 msgstr "hesap tipi"
 
 #: ../Pages/AccountTypeSelectionPage.qml:102
+#, fuzzy
 msgctxt "AccountTypeSelectionPage|"
 msgid "NextCloud"
 msgstr "NextCloud"
 
 #: ../Pages/AccountTypeSelectionPage.qml:107
+#, fuzzy
 msgctxt "AccountTypeSelectionPage|"
 msgid "ownCloud"
 msgstr "ownCloud"
 
 #: ../Pages/AccountTypeSelectionPage.qml:112
+#, fuzzy
 msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../main.cpp:253
+#: ../Pages/AccountsPage.qml:18 ../Pages/AccountsPage.qml:49
+#, fuzzy
+msgctxt "AccountsPage|"
+msgid "Accounts"
+msgstr "Hesaplar"
+
+#: ../appstartup.cpp:166
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Kişisel verilerinizi yönetin."
 
-#: ../main.cpp:259
+#: ../appstartup.cpp:172
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Dokunmatik ekranlar için bazı optimizasyonları açın."
 
-#: ../main.cpp:262
+#: ../appstartup.cpp:175
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Yalnızca uygulama arka plan hizmetini çalıştırın"
 
-#: ../main.cpp:264
+#: ../appstartup.cpp:177
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
-msgstr "Yalnızca uygulama GUI'sini çalıştırın ve mevcut bir uygulama arka plan hizmetine bağlanın"
+msgstr ""
+"Yalnızca uygulama GUI'sini çalıştırın ve mevcut bir uygulama arka plan "
+"hizmetine bağlanın"
 
-#: ../main.cpp:269
+#: ../appstartup.cpp:182
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
-msgstr "Windows'ta hata ayıklama çıktısını toplamak için bir konsolu etkinleştirin"
+msgstr ""
+"Windows'ta hata ayıklama çıktısını toplamak için bir konsolu etkinleştirin"
 
-#: ../main.cpp:403
+#: ../appstartup.cpp:316
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr "Aç"
+msgstr ""
 
-#: ../main.cpp:410
+#: ../appstartup.cpp:323
+#, fuzzy
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Çıkış"
 
+#: ../Widgets/Attachments.qml:28
+#, fuzzy
+msgctxt "Attachments|"
+msgid "Attach File"
+msgstr "Dosya eki"
+
+#: ../Widgets/Attachments.qml:41
+#, fuzzy
+msgctxt "Attachments|"
+msgid "Delete Attachment?"
+msgstr "Ek Silinsin mi?"
+
+#: ../Widgets/Attachments.qml:45
+#, fuzzy, qt-format
+msgctxt "Attachments|"
+msgid ""
+"Are you sure you want to delete the attachment <strong>%1</strong>? This "
+"action cannot be undone."
+msgstr ""
+"<strong>%1</strong> ekini silmek istediğinizden emin misiniz? Bu işlem geri "
+"alınamaz."
+
+#: ../Widgets/Attachments.qml:59
+#, fuzzy
+msgctxt "Attachments|"
+msgid "Attachments"
+msgstr "Ekler"
+
+#: ../Menues/ColorMenu.qml:15
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Color"
+msgstr "Renk"
+
+#: ../Menues/ColorMenu.qml:19
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "White"
+msgstr "Beyaz"
+
+#: ../Menues/ColorMenu.qml:26
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Red"
+msgstr "Kırmızı"
+
+#: ../Menues/ColorMenu.qml:33
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Green"
+msgstr "Yeşil"
+
+#: ../Menues/ColorMenu.qml:40
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Blue"
+msgstr "Mavi"
+
+#: ../Menues/ColorMenu.qml:47
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Yellow"
+msgstr "Sarı"
+
+#: ../Menues/ColorMenu.qml:54
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Orange"
+msgstr "Portakal"
+
+#: ../Menues/ColorMenu.qml:61
+#, fuzzy
+msgctxt "ColorMenu|"
+msgid "Lilac"
+msgstr "leylak"
+
+#: ../Utils/Colors.qml:16
+#, fuzzy
+msgctxt "Colors|"
+msgid "System"
+msgstr "sistem"
+
+#: ../Utils/Colors.qml:17
+#, fuzzy
+msgctxt "Colors|"
+msgid "Light"
+msgstr "ışık"
+
+#: ../Utils/Colors.qml:18
+#, fuzzy
+msgctxt "Colors|"
+msgid "Dark"
+msgstr "karanlık"
+
+#: ../Windows/DeleteAccountDialog.qml:19
+#, fuzzy
+msgctxt "DeleteAccountDialog|"
+msgid "Delete Account?"
+msgstr "Hesabı sil?"
+
+#: ../Windows/DeleteAccountDialog.qml:36
+#, fuzzy, qt-format
+msgctxt "DeleteAccountDialog|"
+msgid ""
+"Do you really want to remove the account <strong>%1</strong>? This will "
+"remove all libraries belonging to the account from your "
+"device?<br/><br/><i>Note: You can restore them from the server by adding "
+"back the account.</i>"
+msgstr ""
+"<strong>% 1 </strong> hesabını gerçekten kaldırmak istiyor musunuz? Bu, "
+"hesaba ait tüm kitaplıkları cihazınızdan kaldıracak mı? <br/> <br/> <i> Not: "
+"Hesabı geri ekleyerek sunucudan geri yükleyebilirsiniz. </i>"
+
 #: ../Actions/DeleteCompletedChildren.qml:8
+#, fuzzy
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Tamamlanmış Öğeleri Sil"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:19
+#, fuzzy
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
 msgstr "Tamamlanan Öğeler Silinsin mi?"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
+#, fuzzy, qt-format
 msgctxt "DeleteCompletedItemsDialog|"
-msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>% 1 </strong> yapılacaklar listesindeki tüm tamamlanmış yapılacakları gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgid ""
+"Do you really want to delete all done todos in the todo list "
+"<strong>%1</strong>? This cannot be undone."
+msgstr ""
+"<strong>% 1 </strong> yapılacaklar listesindeki tüm tamamlanmış "
+"yapılacakları gerçekten silmek istiyor musunuz? Bu geri alınamaz."
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
+#, fuzzy, qt-format
 msgctxt "DeleteCompletedItemsDialog|"
-msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Yapılacak <strong>% 1 </strong> işleminde yapılan tüm görevleri gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgid ""
+"Do you really want to delete all done tasks in the todo <strong>%1</strong>? "
+"This cannot be undone."
+msgstr ""
+"Yapılacak <strong>% 1 </strong> işleminde yapılan tüm görevleri gerçekten "
+"silmek istiyor musunuz? Bu geri alınamaz."
+
+#: ../Actions/DeleteItem.qml:8
+#, fuzzy
+msgctxt "DeleteItem|"
+msgid "Delete"
+msgstr "Sil"
+
+#: ../Windows/DeleteItemDialog.qml:19
+#, fuzzy
+msgctxt "DeleteItemDialog|"
+msgid "Delete Item?"
+msgstr "Öğeyi silmek?"
+
+#: ../Windows/DeleteItemDialog.qml:32
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the image <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"<strong>%1</strong> resmini gerçekten silmek istiyor musunuz? Bu geri "
+"alınamaz."
+
+#: ../Windows/DeleteItemDialog.qml:36
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the todo list <strong>%1</strong>? This cannot "
+"be undone."
+msgstr ""
+"<strong>%1</strong> yapılacaklar listesini gerçekten silmek istiyor musunuz? "
+"Bu geri alınamaz."
+
+#: ../Windows/DeleteItemDialog.qml:40
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the todo <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"Gerçekten <strong>%1</strong> yapılacak olanı silmek istiyor musunuz? Bu "
+"geri alınamaz."
+
+#: ../Windows/DeleteItemDialog.qml:44
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the task <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"<strong>%1</strong> görevini gerçekten silmek istiyor musunuz? Bu geri "
+"alınamaz."
+
+#: ../Windows/DeleteItemDialog.qml:48
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the note <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"<strong>%1</strong> notunu gerçekten silmek istiyor musunuz? Bu geri "
+"alınamaz."
+
+#: ../Windows/DeleteItemDialog.qml:52
+#, fuzzy, qt-format
+msgctxt "DeleteItemDialog|"
+msgid ""
+"Do you really want to delete the page <strong>%1</strong>? This cannot be "
+"undone."
+msgstr ""
+"<strong>% 1 </strong> sayfasını gerçekten silmek istiyor musunuz? Bu geri "
+"alınamaz."
+
+#: ../Windows/DeleteLibraryDialog.qml:19
+#, fuzzy
+msgctxt "DeleteLibraryDialog|"
+msgid "Delete Library?"
+msgstr "Kitaplık silinsin mi?"
+
+#: ../Windows/DeleteLibraryDialog.qml:33
+#, fuzzy, qt-format
+msgctxt "DeleteLibraryDialog|"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from  the "
+"application? <em>This will remove any files belonging to the library.</em>"
+msgstr ""
+"<strong>%1</strong> kitaplığını gerçekten uygulamadan kaldırmak istiyor "
+"musunuz? <em> Bu, kütüphaneye ait tüm dosyaları silecektir. </em>"
+
+#: ../Windows/DeleteLibraryDialog.qml:40
+#, fuzzy, qt-format
+msgctxt "DeleteLibraryDialog|"
+msgid ""
+"Do you really want to remove the library <strong>%1</strong> from the "
+"application? Note that the files inside the library will not be removed, so "
+"you can restore the library later on."
+msgstr ""
+"<strong>%1</strong> kitaplığını gerçekten uygulamadan kaldırmak istiyor "
+"musunuz? Kitaplığın içindeki dosyaların kaldırılmayacağını unutmayın, "
+"böylece kitaplığı daha sonra geri yükleyebilirsiniz."
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
 #: ../Pages/EditNextCloudAccountPage.qml:69
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
-msgstr "Hesabi Düzenle"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:75
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
-msgstr "İsim:"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:86
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr "Sunucu Adresi:"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:93
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://myserver.example.com"
 
 #: ../Pages/EditNextCloudAccountPage.qml:101
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "Login"
 msgstr "Oturum aç"
 
 #: ../Pages/EditNextCloudAccountPage.qml:111
+#, fuzzy
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
 msgstr "Kullanıcı:"
@@ -1650,185 +452,53 @@ msgstr "Kullanıcı:"
 #: ../Pages/EditNextCloudAccountPage.qml:118
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
-msgstr "Kullanıcı adı"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:124
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
-msgstr "Parola:"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:131
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
-msgstr "Parola"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:145
 msgctxt "EditNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr "Sertifika Kontrollerini Devre Dışı Bırak"
+msgstr ""
 
 #: ../Pages/EditNextCloudAccountPage.qml:154
 msgctxt "EditNextCloudAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresini kontrol edin ve tekrar deneyin."
-
-#: ../Widgets/LibrariesSideBar.qml:192
-msgctxt "LibrariesSideBar|"
-msgid "Edit List"
-msgstr "Listeyi düzenle"
-
-#: ../Widgets/LibrariesSideBar.qml:343
-msgctxt "LibrariesSideBar|"
-msgid "Hide Schedule"
-msgstr "Programı Gizle"
-
-#: ../Widgets/LibrariesSideBar.qml:343
-msgctxt "LibrariesSideBar|"
-msgid "Show Schedule"
-msgstr "Programı Göster"
-
-#: ../Widgets/LibrariesSideBar.qml:353
-msgctxt "LibrariesSideBar|"
-msgid "Move Up"
-msgstr "Yukarı Taşı"
-
-#: ../Widgets/LibrariesSideBar.qml:362
-msgctxt "LibrariesSideBar|"
-msgid "Move Down"
-msgstr "Aşağı inmek"
-
-#: ../Windows/MainWindow.qml:342
-msgctxt "MainWindow|"
-msgid "Delete Completed Items"
-msgstr "Tamamlanmış Öğeleri Sil"
-
-#: ../Windows/MainWindow.qml:438
-msgctxt "MainWindow|"
-msgid "Close"
-msgstr "Kapat"
-
-#: ../Pages/NewNextCloudAccountPage.qml:20
-#: ../Pages/NewNextCloudAccountPage.qml:74
-msgctxt "NewNextCloudAccountPage|"
-msgid "Connection Settings"
-msgstr "Bağlantı Ayarları"
-
-#: ../Pages/NewNextCloudAccountPage.qml:80
-msgctxt "NewNextCloudAccountPage|"
-msgid "Server Address:"
-msgstr "Sunucu Adresi:"
-
-#: ../Pages/NewNextCloudAccountPage.qml:94
-msgctxt "NewNextCloudAccountPage|"
-msgid "Login"
-msgstr "Oturum aç"
-
-#: ../Pages/NewNextCloudAccountPage.qml:107
-msgctxt "NewNextCloudAccountPage|"
-msgid "Trouble Signing In?"
-msgstr "Giriş yapmakta sorun mu yaşıyorsunuz?"
-
-#: ../Pages/NewNextCloudAccountPage.qml:118
-msgctxt "NewNextCloudAccountPage|"
-msgid "We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well."
-msgstr "NextCloud örneğinizde oturum açmanız için tarayıcınızı açmaya çalıştık. Devam etmek için lütfen oturum açın ve OpenTodoList'e erişim izni verin. NextCloud'unuza tarayıcıdan erişmede sorun mu yaşıyorsunuz? Kullanıcı adınızı ve şifrenizi manuel olarak da girebilirsiniz."
-
-#: ../Pages/NewNextCloudAccountPage.qml:125
-msgctxt "NewNextCloudAccountPage|"
-msgid "Log in Manually"
-msgstr "Elle Giriş Yap"
-
-#: ../Pages/NewNextCloudAccountPage.qml:131
-msgctxt "NewNextCloudAccountPage|"
-msgid "Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings."
-msgstr "İdeal olarak, kullanıcı şifreniz yerine uygulamaya özel şifreler kullanırsınız. Giriş bilgilerinizin 2 Faktörlü Kimlik Doğrulama (2FA) ile korunması durumunda, NextCloud'unuza erişmek için uygulamaya özel şifreler bile kullanmanız gerekir. Kullanıcı ayarlarınızda bu tür şifreler oluşturabilirsiniz."
-
-#: ../Pages/NewNextCloudAccountPage.qml:139
-msgctxt "NewNextCloudAccountPage|"
-msgid "Create App Password"
-msgstr "Uygulama Şifresi Oluştur"
-
-#: ../Pages/NewNextCloudAccountPage.qml:148
-msgctxt "NewNextCloudAccountPage|"
-msgid "Account Settings"
-msgstr "Hesap Ayarları"
-
-#: ../Pages/NewNextCloudAccountPage.qml:157
-msgctxt "NewNextCloudAccountPage|"
-msgid "Copy Link"
-msgstr "Bağlantı Kopyala"
-
-#: ../Pages/NewNextCloudAccountPage.qml:162
-msgctxt "NewNextCloudAccountPage|"
-msgid "Copied!"
-msgstr "Kopyalandı!"
-
-#: ../Pages/NewNextCloudAccountPage.qml:171
-msgctxt "NewNextCloudAccountPage|"
-msgid "User:"
-msgstr "Kullanıcı:"
-
-#: ../Pages/NewNextCloudAccountPage.qml:178
-msgctxt "NewNextCloudAccountPage|"
-msgid "User Name"
-msgstr "Kullanıcı adı"
-
-#: ../Pages/NewNextCloudAccountPage.qml:185
-msgctxt "NewNextCloudAccountPage|"
-msgid "Password:"
-msgstr "Parola:"
-
-#: ../Pages/NewNextCloudAccountPage.qml:192
-msgctxt "NewNextCloudAccountPage|"
-msgid "Password"
-msgstr "Parola"
-
-#: ../Pages/NewNextCloudAccountPage.qml:207
-msgctxt "NewNextCloudAccountPage|"
-msgid "Disable Certificate Checks"
-msgstr "Sertifika Kontrollerini Devre Dışı Bırak"
-
-#: ../Pages/NewNextCloudAccountPage.qml:211
-msgctxt "NewNextCloudAccountPage|"
-msgid "Name:"
-msgstr "Adı:"
-
-#: ../Pages/NewNextCloudAccountPage.qml:223
-msgctxt "NewNextCloudAccountPage|"
-msgid "Account Name"
-msgstr "Hesap Adı"
-
-#: ../Pages/NewNextCloudAccountPage.qml:233
-msgctxt "NewNextCloudAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresini kontrol edin ve tekrar deneyin."
-
-#: ../Pages/AccountsPage.qml:18 ../Pages/AccountsPage.qml:49
-msgctxt "AccountsPage|"
-msgid "Accounts"
-msgstr "Hesaplar"
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:34 ../Pages/EditWebDAVAccountPage.qml:123
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
-msgstr "Hesabı Düzenle"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:129
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
-msgstr "İsim:"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:140
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr "Sunucu Adresi:"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:146
+#, fuzzy
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://myserver.example.com"
 
 #: ../Pages/EditWebDAVAccountPage.qml:153
+#, fuzzy
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
 msgstr "Kullanıcı:"
@@ -1836,69 +506,605 @@ msgstr "Kullanıcı:"
 #: ../Pages/EditWebDAVAccountPage.qml:159
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
-msgstr "Kullanıcı Adı:"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:166
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
-msgstr "Şifre:"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:173
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
-msgstr "Şifre"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:188
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr "Sertifika Kontrollerini Devre Dışı Bırak"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPage.qml:196
 msgctxt "EditWebDAVAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresini kontrol edin ve tekrar deneyin."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
 
-#: ../Utils/ItemUtils.qml:109
+#: ../Windows/FolderSelectionDialog.qml:17
+#, fuzzy
+msgctxt "FolderSelectionDialog|"
+msgid "Select a Folder"
+msgstr "Klasör Seçin"
+
+#: ../Widgets/ItemCreatedNotification.qml:64
+#, fuzzy, qt-format
+msgctxt "ItemCreatedNotification|"
+msgid "<strong>%1</strong> has been created."
+msgstr "<strong>%1</strong> oluşturuldu."
+
+#: ../Widgets/ItemCreatedNotification.qml:69
+msgctxt "ItemCreatedNotification|"
+msgid "Open"
+msgstr ""
+
+#: ../Widgets/ItemCreatedNotification.qml:74
+#, fuzzy
+msgctxt "ItemCreatedNotification|"
+msgid "Dismiss"
+msgstr "Reddet"
+
+#: ../Widgets/ItemDueDateEditor.qml:28
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Due on"
+msgstr "Son tarih:"
+
+#: ../Widgets/ItemDueDateEditor.qml:59
+#, fuzzy, qt-format
+msgctxt "ItemDueDateEditor|"
+msgid "First due on %1."
+msgstr "İlk önce %1."
+
+#: ../Widgets/ItemDueDateEditor.qml:72
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "No recurrence pattern set..."
+msgstr "Yineleme düzeni ayarlanmadı..."
+
+#: ../Widgets/ItemDueDateEditor.qml:74
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every day."
+msgstr "Her gün tekrarlar."
+
+#: ../Widgets/ItemDueDateEditor.qml:76
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every week."
+msgstr "Her hafta tekrarlar."
+
+#: ../Widgets/ItemDueDateEditor.qml:78
+#, fuzzy
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every month."
+msgstr "Her ay tekrarlar."
+
+#: ../Widgets/ItemDueDateEditor.qml:80
+#, fuzzy, qt-format
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs every %1 days."
+msgstr "Her %1 günde bir tekrarlar."
+
+#: ../Widgets/ItemNotesEditor.qml:32
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "Notes"
+msgstr "notlar"
+
+#: ../Widgets/ItemNotesEditor.qml:85
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "No notes added yet - click here to add some."
+msgstr "Henüz not eklenmedi - biraz eklemek için burayı tıklayın."
+
+#: ../Widgets/ItemNotesEditor.qml:114
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "Export to File..."
+msgstr "Dosyaya Aktar ..."
+
+#: ../Widgets/ItemNotesEditor.qml:118
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "Markdown files"
+msgstr "Markdown dosyaları"
+
+#: ../Widgets/ItemNotesEditor.qml:119
+#, fuzzy
+msgctxt "ItemNotesEditor|"
+msgid "All files"
+msgstr "Tüm dosyalar"
+
+#: ../Utils/ItemUtils.qml:127
+#, fuzzy
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Yapılacak İşi Şuraya Taşı ..."
 
+#: ../Utils/ItemUtils.qml:142
+msgctxt "ItemUtils|"
+msgid "Convert Task to Todo and Move Into..."
+msgstr ""
+
+#: ../Widgets/LibrariesSideBar.qml:178
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "New Library"
+msgstr "Yeni Kütüphane"
+
+#: ../Widgets/LibrariesSideBar.qml:185
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Accounts"
+msgstr "Hesaplar"
+
+#: ../Widgets/LibrariesSideBar.qml:192
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Edit List"
+msgstr "Listeyi düzenle"
+
+#: ../Widgets/LibrariesSideBar.qml:198
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../Widgets/LibrariesSideBar.qml:205
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Translate The App..."
+msgstr "Uygulamayı Çevir ..."
+
 #: ../Widgets/LibrariesSideBar.qml:212
+#, fuzzy
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Bağış Yap"
 
-#: ../Windows/MainWindow.qml:274
+#: ../Widgets/LibrariesSideBar.qml:219
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "About..."
+msgstr "Hakkında..."
+
+#: ../Widgets/LibrariesSideBar.qml:232
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Create Default Library"
+msgstr "Varsayılan Kitaplık Oluştur"
+
+#: ../Widgets/LibrariesSideBar.qml:343
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Hide Schedule"
+msgstr "Programı Gizle"
+
+#: ../Widgets/LibrariesSideBar.qml:343
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Show Schedule"
+msgstr "Programı Göster"
+
+#: ../Widgets/LibrariesSideBar.qml:353
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Move Up"
+msgstr "Yukarı Taşı"
+
+#: ../Widgets/LibrariesSideBar.qml:362
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Move Down"
+msgstr "Aşağı inmek"
+
+#: ../Widgets/LibrariesSideBar.qml:375
+#, fuzzy
+msgctxt "LibrariesSideBar|"
+msgid "Schedule"
+msgstr "Schedule"
+
+#: ../Pages/LibraryPage.qml:152
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Red"
+msgstr "Kırmızı"
+
+#: ../Pages/LibraryPage.qml:159
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Green"
+msgstr "Yeşil"
+
+#: ../Pages/LibraryPage.qml:166
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Blue"
+msgstr "Mavi"
+
+#: ../Pages/LibraryPage.qml:173
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Yellow"
+msgstr "Sarı"
+
+#: ../Pages/LibraryPage.qml:180
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Orange"
+msgstr "Portakal"
+
+#: ../Pages/LibraryPage.qml:187
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Lilac"
+msgstr "leylak"
+
+#: ../Pages/LibraryPage.qml:194
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "White"
+msgstr "Beyaz"
+
+#: ../Pages/LibraryPage.qml:204
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Rename"
+msgstr "Adını değiştirmek"
+
+#: ../Pages/LibraryPage.qml:209
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Delete"
+msgstr "Sil"
+
+#: ../Pages/LibraryPage.qml:267
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Note Title"
+msgstr "Not Başlığı"
+
+#: ../Pages/LibraryPage.qml:280
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Todo List Title"
+msgstr "Yapılacaklar Listesi Başlığı"
+
+#: ../Pages/LibraryPage.qml:293
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr "Arama terimi 1, arama terimi 2, ..."
+
+#: ../Pages/LibraryPage.qml:372
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid ""
+"Nothing here yet! Start by adding a <a href='#note'>note</a>, <a "
+"href='#todolist'>todo list</a> or <a href='#image'>image</a>."
+msgstr ""
+"Burada henüz bir şey yok! Bir <a href='#note'> not </a>, <a "
+"href='#todolist'> yapılacaklar listesi </a> veya <a href='#image'> resim "
+"</a> ekleyerek başlayın."
+
+#: ../Pages/LibraryPage.qml:435
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Sort By"
+msgstr "Göre sırala"
+
+#: ../Pages/LibraryPage.qml:440
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Manually"
+msgstr "el ile"
+
+#: ../Pages/LibraryPage.qml:447
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Title"
+msgstr "Başlık"
+
+#: ../Pages/LibraryPage.qml:454
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Due To"
+msgstr "Nedeniyle"
+
+#: ../Pages/LibraryPage.qml:461
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Created At"
+msgstr "Oluşturma Tarihi"
+
+#: ../Pages/LibraryPage.qml:468
+#, fuzzy
+msgctxt "LibraryPage|"
+msgid "Updated At"
+msgstr "Güncelleme Tarihi:"
+
+#: ../Menues/LibraryPageActions.qml:30
+msgctxt "LibraryPageActions|"
+msgid "Sync Now"
+msgstr ""
+
+#: ../Menues/LibraryPageActions.qml:41
+msgctxt "LibraryPageActions|"
+msgid "Sync Log"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:14
+#, fuzzy
+msgctxt "LogViewPage|"
+msgid "Synchronization Log"
+msgstr "Senkronizasyon Giriş"
+
+#: ../Pages/LogViewPage.qml:26
+#, fuzzy
+msgctxt "LogViewPage|"
+msgid "Copy Log"
+msgstr "Günlüğü Kopyala"
+
+#: ../Pages/LogViewPage.qml:32
+msgctxt "LogViewPage|"
+msgid "Scroll to Top"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:38
+msgctxt "LogViewPage|"
+msgid "Scroll to Bottom"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:24
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "OpenTodoList"
+msgstr "OpenTodoList"
+
+#: ../Windows/MainWindow.qml:109
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Synchronizing library..."
+msgstr "Kütüphane senkronize ediliyor ..."
+
+#: ../Windows/MainWindow.qml:271
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Rename"
+msgstr "Adını değiştirmek"
+
+#: ../Windows/MainWindow.qml:282
+#, fuzzy
 msgctxt "MainWindow|"
 msgid "Move"
 msgstr "Hareket"
 
+#: ../Windows/MainWindow.qml:293
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Color"
+msgstr "Renk"
+
+#: ../Windows/MainWindow.qml:304
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Add Tag"
+msgstr "Etiket Ekle"
+
+#: ../Windows/MainWindow.qml:311
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Attach File"
+msgstr "Dosya eki"
+
+#: ../Windows/MainWindow.qml:320
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Search"
+msgstr "Arama"
+
+#: ../Windows/MainWindow.qml:327
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Sort"
+msgstr "Çeşit"
+
+#: ../Windows/MainWindow.qml:335
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Set Due Date"
+msgstr "Bitiş Tarihi Belirle"
+
+#: ../Windows/MainWindow.qml:343
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Delete"
+msgstr "Sil"
+
+#: ../Windows/MainWindow.qml:350
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Delete Completed Items"
+msgstr "Tamamlanmış Öğeleri Sil"
+
+#: ../Windows/MainWindow.qml:357
+msgctxt "MainWindow|"
+msgid "Set Progress"
+msgstr ""
+
+#: ../Windows/MainWindow.qml:395
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../Windows/MainWindow.qml:396
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Ctrl+,"
+msgstr "Ctrl+,"
+
+#: ../Windows/MainWindow.qml:403
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Library"
+msgstr "Yeni &Kütüphane"
+
+#: ../Windows/MainWindow.qml:414
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Note"
+msgstr "Yeni &Not"
+
+#: ../Windows/MainWindow.qml:422
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Todo List"
+msgstr "Yeni &Yapılacaklar listesi"
+
+#: ../Windows/MainWindow.qml:430
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "New &Image"
+msgstr "Yeni &görüntü"
+
+#: ../Windows/MainWindow.qml:438
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "&Quit"
+msgstr "&Çık"
+
+#: ../Windows/MainWindow.qml:446
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Close"
+msgstr "Kapat"
+
+#: ../Windows/MainWindow.qml:455
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "&Find"
+msgstr "&Bul"
+
+#: ../Windows/MainWindow.qml:479
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Open Last &Created Item"
+msgstr "Son &Oluşturulan Öğeyi Aç"
+
+#: ../Windows/MainWindow.qml:487
+#, fuzzy
+msgctxt "MainWindow|"
+msgid "Open &Left Side Bar"
+msgstr "Aç &Sol Kenar Çubuğu"
+
+#: ../Windows/MainWindow.qml:604
+#, fuzzy
+msgctxt "MainWindow|"
+msgid ""
+"Start by <a href='#newLibrary'>creating a new library</a>. Libraries are "
+"used to store different kinds of items like notes, todo lists and images."
+msgstr ""
+"<a href='#newLibrary'> yeni bir kütüphane oluşturarak </a> başlayın. "
+"Kütüphaneler, notlar, yapılacaklar listeleri ve resimler gibi farklı türde "
+"öğeleri depolamak için kullanılır."
+
 #: ../Actions/MoveTodo.qml:11
+#, fuzzy
 msgctxt "MoveTodo|"
 msgid "Move"
 msgstr "Hareket"
 
+#: ../Windows/NewItemWithDueDateDialog.qml:91
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Today"
+msgstr "Bugün"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:92
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Tomorrow"
+msgstr "Yarın"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:93
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "This Week"
+msgstr "Bu hafta"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:94
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Next Week"
+msgstr "Gelecek hafta"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:95
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Select..."
+msgstr "Seç ..."
+
+#: ../Windows/NewItemWithDueDateDialog.qml:114
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Title:"
+msgstr "Başlık:"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:119
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "The title for your new item..."
+msgstr "Yeni öğenizin başlığı ..."
+
+#: ../Windows/NewItemWithDueDateDialog.qml:125
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Create in:"
+msgstr "Şurada oluştur:"
+
+#: ../Windows/NewItemWithDueDateDialog.qml:165
+#, fuzzy
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Due on:"
+msgstr "Son tarih:"
+
 #: ../Pages/NewLibraryFromAccountPage.qml:103
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
-msgstr "Hesapta bir kütüphane oluştur"
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:112
 msgctxt "NewLibraryFromAccountPage|"
-msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "Bir hesapta oluşturulan bir kitaplık onunla senkronize edilir. Bu, bir kitaplığı bir sunucuya kolayca yedeklemeye ve daha sonra oradan geri yüklemeye izin verir. Ek olarak, bu tür kitaplıklar diğer kullanıcılarla paylaşılabilir (sunucu buna izin veriyorsa)."
+msgid ""
+"A library created in an account is synchronized with it. This allows to "
+"easily back up a library to a server and later on restore it from there. "
+"Additionally, such libraries can be shared with other users (if the server "
+"allows this)."
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:121
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Existing Libraries"
-msgstr "Varolan Kütüphaneler"
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:129
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Select an existing library on the server to add it to the app."
-msgstr "Uygulamaya eklemek için sunucudaki mevcut bir kitaplığı seçin."
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:136
+#, fuzzy
 msgctxt "NewLibraryFromAccountPage|"
 msgid "No libraries were found on the server."
 msgstr "Sunucuda kitaplık bulunamadı."
@@ -1906,19 +1112,22 @@ msgstr "Sunucuda kitaplık bulunamadı."
 #: ../Pages/NewLibraryFromAccountPage.qml:144
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Searching existing libraries..."
-msgstr "Mevcut kitaplıklar aranıyor ..."
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:178
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a New Library"
-msgstr "Yeni bir kütüphane oluştur"
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:186
 msgctxt "NewLibraryFromAccountPage|"
-msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr "Sunucuyla senkronize edilecek yeni bir kitaplık oluşturun. Böyle bir kitaplık, verileri senkronize etmek için diğer cihazlarda uygulamaya eklenebilir."
+msgid ""
+"Create a new library, which will be synchronized with the server. Such a "
+"library can be added to the app on other devices as well to synchronize data."
+msgstr ""
 
 #: ../Pages/NewLibraryFromAccountPage.qml:201
+#, fuzzy
 msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
 msgstr "Yeni kütüphanemin adı"
@@ -1926,14 +1135,18 @@ msgstr "Yeni kütüphanemin adı"
 #: ../Pages/NewLibraryInFolderPage.qml:87
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
-msgstr "Bir Klasörü Kitaplık Olarak Açın"
+msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:95
 msgctxt "NewLibraryInFolderPage|"
-msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr "Herhangi bir klasörü bir kitaplık konumu olarak kullanabilirsiniz. <br/> <br/> Bu, özellikle verilerinizi bir sunucuyla senkronize etmek için başka bir araç (bir bulut sağlayıcısının senkronizasyon istemcisi gibi) kullanmak istediğinizde yararlıdır."
+msgid ""
+"You can use any folder as a location for a library.<br/><br/>This is "
+"especially useful when you want to use another tool (like a sync client of a "
+"cloud provider) to sync your data with a server."
+msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:100
+#, fuzzy
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
 msgstr "Klasör:"
@@ -1941,64 +1154,226 @@ msgstr "Klasör:"
 #: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
-msgstr "Kitaplık olarak kullanılacak bir klasörün yolu"
+msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:111
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
-msgstr "Seçiniz"
+msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:116
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
-msgstr "İsim:"
+msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:121
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
-msgstr "Yerel Kitaplığımın Adı"
+msgstr ""
+
+#: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:61
+#, fuzzy
+msgctxt "NewLibraryPage|"
+msgid "Create Library"
+msgstr "Kütüphane Oluştur"
 
 #: ../Pages/NewLibraryPage.qml:68
 msgctxt "NewLibraryPage|"
 msgid "Local Library"
-msgstr "Yerel Kütüphane"
+msgstr ""
 
 #: ../Pages/NewLibraryPage.qml:75
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
-msgstr "Klasörü Kitaplık Olarak Kullan"
+msgstr ""
 
 #: ../Pages/NewLibraryPage.qml:86
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
-msgstr "Hesaplarınızdan Kitaplıklar Ekleyin"
+msgstr ""
 
 #: ../Pages/NewLibraryPage.qml:113
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
-msgstr "Hesap Ekle"
+msgstr ""
 
 #: ../Pages/NewLocalLibraryPage.qml:61
 msgctxt "NewLocalLibraryPage|"
 msgid "Create a Local Library"
-msgstr "Yerel Kitaplık Oluşturun"
+msgstr ""
 
 #: ../Pages/NewLocalLibraryPage.qml:69
 msgctxt "NewLocalLibraryPage|"
-msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "Yerel bir kitaplık yalnızca cihazınızda saklanır - bu, gizlilik açısından mükemmel olmasını sağlar! <br/> <br/> Bilgileri yalnızca yerel olarak depolamak ve tüm verilerinizi diğer mekanizmalar aracılığıyla düzenli olarak yedeklemek istediğinizde kullanın. Bilgilerinize birkaç cihazdan erişmeniz gerekiyorsa bunun yerine senkronize olan bir kitaplık oluşturun."
+msgid ""
+"A local library is stored solely on your device - this makes it perfect for "
+"the privacy concise!<br/><br/>Use it when you want to store information only "
+"locally and back up all your data regularly via other mechanisms. If you "
+"need to access your information across several devices, create a library "
+"which is synced instead."
+msgstr ""
 
 #: ../Pages/NewLocalLibraryPage.qml:80
 msgctxt "NewLocalLibraryPage|"
 msgid "Name:"
-msgstr "Ad:"
+msgstr ""
 
 #: ../Pages/NewLocalLibraryPage.qml:85
 msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
-msgstr "Yerel Kitaplığımın Adı"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:20
+#: ../Pages/NewNextCloudAccountPage.qml:74
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Connection Settings"
+msgstr "Bağlantı Ayarları"
+
+#: ../Pages/NewNextCloudAccountPage.qml:80
+msgctxt "NewNextCloudAccountPage|"
+msgid "Server Address:"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:94
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Login"
+msgstr "Oturum aç"
+
+#: ../Pages/NewNextCloudAccountPage.qml:107
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Trouble Signing In?"
+msgstr "Giriş yapmakta sorun mu yaşıyorsunuz?"
+
+#: ../Pages/NewNextCloudAccountPage.qml:118
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid ""
+"We have tried to open your browser to log you in to your NextCloud instance. "
+"Please log in and grant access to OpenTodoList in order to proceed. Trouble "
+"accessing your NextCloud in the browser? You can manually enter your "
+"username and password as well."
+msgstr ""
+"NextCloud örneğinizde oturum açmanız için tarayıcınızı açmaya çalıştık. "
+"Devam etmek için lütfen oturum açın ve OpenTodoList'e erişim izni verin. "
+"NextCloud'unuza tarayıcıdan erişmede sorun mu yaşıyorsunuz? Kullanıcı "
+"adınızı ve şifrenizi manuel olarak da girebilirsiniz."
+
+#: ../Pages/NewNextCloudAccountPage.qml:125
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Log in Manually"
+msgstr "Elle Giriş Yap"
+
+#: ../Pages/NewNextCloudAccountPage.qml:131
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid ""
+"Ideally, you use app specific passwords instead of your user password. In "
+"case your login is protected with 2 Factor Authentication (2FA) you even "
+"must use app specific passwords to access your NextCloud. You can create "
+"such passwords in your user settings."
+msgstr ""
+"İdeal olarak, kullanıcı şifreniz yerine uygulamaya özel şifreler "
+"kullanırsınız. Giriş bilgilerinizin 2 Faktörlü Kimlik Doğrulama (2FA) ile "
+"korunması durumunda, NextCloud'unuza erişmek için uygulamaya özel şifreler "
+"bile kullanmanız gerekir. Kullanıcı ayarlarınızda bu tür şifreler "
+"oluşturabilirsiniz."
+
+#: ../Pages/NewNextCloudAccountPage.qml:139
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Create App Password"
+msgstr "Uygulama Şifresi Oluştur"
+
+#: ../Pages/NewNextCloudAccountPage.qml:148
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Account Settings"
+msgstr "Hesap Ayarları"
+
+#: ../Pages/NewNextCloudAccountPage.qml:157
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Copy Link"
+msgstr "Bağlantı Kopyala"
+
+#: ../Pages/NewNextCloudAccountPage.qml:162
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "Copied!"
+msgstr "Kopyalandı!"
+
+#: ../Pages/NewNextCloudAccountPage.qml:171
+#, fuzzy
+msgctxt "NewNextCloudAccountPage|"
+msgid "User:"
+msgstr "Kullanıcı:"
+
+#: ../Pages/NewNextCloudAccountPage.qml:178
+msgctxt "NewNextCloudAccountPage|"
+msgid "User Name"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:185
+msgctxt "NewNextCloudAccountPage|"
+msgid "Password:"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:192
+msgctxt "NewNextCloudAccountPage|"
+msgid "Password"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:207
+msgctxt "NewNextCloudAccountPage|"
+msgid "Disable Certificate Checks"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:211
+msgctxt "NewNextCloudAccountPage|"
+msgid "Name:"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:223
+msgctxt "NewNextCloudAccountPage|"
+msgid "Account Name"
+msgstr ""
+
+#: ../Pages/NewNextCloudAccountPage.qml:233
+msgctxt "NewNextCloudAccountPage|"
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+
+#: ../Widgets/NewTopLevelItemButton.qml:43
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Todo List"
+msgstr "Tüm Liste"
+
+#: ../Widgets/NewTopLevelItemButton.qml:48
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Todo"
+msgstr "Todo"
+
+#: ../Widgets/NewTopLevelItemButton.qml:54
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Note"
+msgstr "Not"
+
+#: ../Widgets/NewTopLevelItemButton.qml:58
+#, fuzzy
+msgctxt "NewTopLevelItemButton|"
+msgid "Image"
+msgstr "görüntü"
 
 #: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:130
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
 msgstr "Bağlantı Ayarları"
@@ -2006,14 +1381,16 @@ msgstr "Bağlantı Ayarları"
 #: ../Pages/NewWebDAVAccountPage.qml:136
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr "Sunucu Adresi:"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:142
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://myserver.example.com"
 
 #: ../Pages/NewWebDAVAccountPage.qml:148
+#, fuzzy
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
 msgstr "Kullanıcı:"
@@ -2021,44 +1398,256 @@ msgstr "Kullanıcı:"
 #: ../Pages/NewWebDAVAccountPage.qml:154
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
-msgstr "Kullanıcı Adı"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:160
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
-msgstr "Şifre:"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:166
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
-msgstr "Şifre"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:180
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr "Sertifika Kontrollerini Devre Dışı Bırak"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:184
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
-msgstr "İsim:"
+msgstr ""
+
+#: ../Pages/NewWebDAVAccountPage.qml:196
+msgctxt "NewWebDAVAccountPage|"
+msgid "Account Name"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPage.qml:206
 msgctxt "NewWebDAVAccountPage|"
-msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Sunucuya bağlantı başarısız. Lütfen kullanıcı adınızı, şifrenizi ve sunucu adresinizi kontrol ederek tekrar deneyiniz."
+msgid ""
+"Failed to connect to the server. Please check your user name, password and "
+"the server address and retry."
+msgstr ""
+
+#: ../Pages/NotePage.qml:127
+#, fuzzy
+msgctxt "NotePage|"
+msgid "Main Page"
+msgstr "Ana Sayfa"
+
+#: ../Pages/NotePage.qml:190
+#, fuzzy
+msgctxt "NotePage|"
+msgid "New Page"
+msgstr "Yeni sayfa"
+
+#: ../Windows/OpenFileDialog.qml:18
+#, fuzzy
+msgctxt "OpenFileDialog|"
+msgid "Select a File"
+msgstr "Bir dosya seçin"
+
+#: ../Windows/OpenImageDialog.qml:19 ../Windows/+ios/OpenImageDialog.qml:19
+#, fuzzy
+msgctxt "OpenImageDialog|"
+msgid "Select Image"
+msgstr "Fotoğraf seç"
 
 #: ../Pages/ProblemsPage.qml:20 ../Pages/ProblemsPage.qml:30
 msgctxt "ProblemsPage|"
 msgid "Problems Detected"
-msgstr "Algılanan Sorunlar"
+msgstr ""
 
-#: ../Windows/SelectTodoListDialog.qml:19
+#: ../Pages/ProblemsPage.qml:44
+#, fuzzy
+msgctxt "ProblemsPage|"
+msgid "Missing secrets for account"
+msgstr "Hesap için eksik erişim verileri"
+
+#: ../Pages/ProblemsPage.qml:49
+msgctxt "ProblemsPage|"
+msgid "Synchronization failed for library"
+msgstr ""
+
+#: ../Actions/PromoteTask.qml:12
+msgctxt "PromoteTask|"
+msgid "Promote"
+msgstr ""
+
+#: ../Windows/RecurrenceDialog.qml:28
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Edit Recurrence"
+msgstr "Yinelemeyi Düzenle"
+
+#: ../Windows/RecurrenceDialog.qml:41
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Never"
+msgstr "Asla"
+
+#: ../Windows/RecurrenceDialog.qml:42
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Daily"
+msgstr "Günlük"
+
+#: ../Windows/RecurrenceDialog.qml:43
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Weekly"
+msgstr "Haftalık"
+
+#: ../Windows/RecurrenceDialog.qml:44
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Monthly"
+msgstr "Aylık"
+
+#: ../Windows/RecurrenceDialog.qml:45
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Every N Days"
+msgstr "Her N günde bir"
+
+#: ../Windows/RecurrenceDialog.qml:55
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Recurs:"
+msgstr "tekrarlanır:"
+
+#: ../Windows/RecurrenceDialog.qml:68
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Number of days:"
+msgstr "Gün sayısı:"
+
+#: ../Windows/RecurrenceDialog.qml:82
+#, fuzzy
+msgctxt "RecurrenceDialog|"
+msgid "Recur relative to the date when marking as done"
+msgstr "Tamam olarak işaretlendiğinde tarihe göre yineleme"
+
+#: ../Actions/RenameItem.qml:8
+#, fuzzy
+msgctxt "RenameItem|"
+msgid "Rename"
+msgstr "Adını değiştirmek"
+
+#: ../Windows/RenameItemDialog.qml:22
+#, fuzzy
+msgctxt "RenameItemDialog|"
+msgid "Rename Item"
+msgstr "Öğeyi Yeniden Adlandır"
+
+#: ../Windows/RenameItemDialog.qml:33
+#, fuzzy
+msgctxt "RenameItemDialog|"
+msgid "Enter item title..."
+msgstr "Öğe başlığını girin ..."
+
+#: ../Windows/RenameLibraryDialog.qml:20
+#, fuzzy
+msgctxt "RenameLibraryDialog|"
+msgid "Rename Library"
+msgstr "Kütüphaneyi Yeniden Adlandır"
+
+#: ../Windows/RenameLibraryDialog.qml:37
+#, fuzzy
+msgctxt "RenameLibraryDialog|"
+msgid "Enter library title..."
+msgstr "Kütüphane başlığını girin ..."
+
+#: ../Pages/ScheduleViewPage.qml:90
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Overdue"
+msgstr "vadesi geçmiş"
+
+#: ../Pages/ScheduleViewPage.qml:111
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Today"
+msgstr "Bugün"
+
+#: ../Pages/ScheduleViewPage.qml:112
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Tomorrow"
+msgstr "Yarın"
+
+#: ../Pages/ScheduleViewPage.qml:154
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Later This Week"
+msgstr "Bu hafta daha sonra"
+
+#: ../Pages/ScheduleViewPage.qml:156
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Next Week"
+msgstr "Gelecek hafta"
+
+#: ../Pages/ScheduleViewPage.qml:157
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Coming Next"
+msgstr "Sıradaki"
+
+#: ../Pages/ScheduleViewPage.qml:184
+#, fuzzy
+msgctxt "ScheduleViewPage|"
+msgid "Nothing scheduled... Add a due date to items for them to appear here."
+msgstr ""
+"Planlanmış bir şey yok ... Öğelerin burada görünmeleri için bir son tarih "
+"ekleyin."
+
+#: ../Windows/SelectTodoListDialog.qml:23
+#, fuzzy
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Yapılacaklar Listesi Seçin"
 
+#: ../Actions/SetDueNextWeek.qml:8
+#, fuzzy
+msgctxt "SetDueNextWeek|"
+msgid "Set Due This Week"
+msgstr "Bu Hafta Vadesi Ayarla"
+
+#: ../Actions/SetDueThisWeek.qml:8
+#, fuzzy
+msgctxt "SetDueThisWeek|"
+msgid "Set Due Next Week"
+msgstr "Gelecek Hafta Teslim Edilecek"
+
+#: ../Actions/SetDueTo.qml:8
+#, fuzzy
+msgctxt "SetDueTo|"
+msgid "Select Due Date"
+msgstr "Bitiş Tarihini Seçin"
+
+#: ../Actions/SetDueToday.qml:8
+#, fuzzy
+msgctxt "SetDueToday|"
+msgid "Set Due Today"
+msgstr "Teslim Tarihi Bugün"
+
+#: ../Actions/SetDueTomorrow.qml:8
+#, fuzzy
+msgctxt "SetDueTomorrow|"
+msgid "Set Due Tomorrow"
+msgstr "Teslim Tarihi Yarın"
+
+#: ../Actions/SetManualProgressAction.qml:8
+msgctxt "SetManualProgressAction|"
+msgid "Set Progress"
+msgstr ""
+
 #: ../Pages/SettingsPage.qml:46
+#, fuzzy
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr "Ayarlar"
@@ -2066,41 +1655,21 @@ msgstr "Ayarlar"
 #: ../Pages/SettingsPage.qml:52
 msgctxt "SettingsPage|"
 msgid "User Interface"
-msgstr "Kullanıcı Arayüzü"
+msgstr ""
 
 #: ../Pages/SettingsPage.qml:60
 msgctxt "SettingsPage|"
 msgid "Language:"
-msgstr "Dil"
+msgstr ""
 
 #: ../Pages/SettingsPage.qml:84
 msgctxt "SettingsPage|"
 msgid "Theme:"
-msgstr "Tema"
+msgstr ""
 
 #: ../Pages/SettingsPage.qml:115
 msgctxt "SettingsPage|"
 msgid "Font Size:"
-msgstr "Yazı Tipi Boyutu"
-
-#: ../Utils/Translations.qml:72
-msgctxt "Translations|"
-msgid "Japanese"
-msgstr "Japonca"
-
-#: ../Utils/Translations.qml:116
-msgctxt "Translations|"
-msgid "Ukrainian"
-msgstr "Ukraynaca"
-
-#: ../Windows/MainWindow.qml:349
-msgctxt "MainWindow|"
-msgid "Set Progress"
-msgstr ""
-
-#: ../Actions/SetManualProgressAction.qml:8
-msgctxt "SetManualProgressAction|"
-msgid "Set Progress"
 msgstr ""
 
 #: ../Pages/SettingsPage.qml:132
@@ -2115,7 +1684,8 @@ msgstr ""
 
 #: ../Pages/SettingsPage.qml:150
 msgctxt "SettingsPage|"
-msgid "Reduce space between components and reduce the font size.\n"
+msgid ""
+"Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
 msgstr ""
@@ -2127,7 +1697,8 @@ msgstr ""
 
 #: ../Pages/SettingsPage.qml:170
 msgctxt "SettingsPage|"
-msgid "Reduce the padding in todo and task listings to fit more items on the screen."
+msgid ""
+"Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr ""
 
 #: ../Pages/SettingsPage.qml:177
@@ -2142,8 +1713,300 @@ msgstr ""
 
 #: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
-msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
+msgid ""
+"Use this to manually scale the user interface. By default, the app should "
+"adapt automatically according to your device configuration. If this does not "
+"work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
 msgstr ""
 
+#: ../Pages/SettingsPage.qml:212
+msgctxt "SettingsPage|"
+msgid "Library Item Size:"
+msgstr ""
+
+#: ../Widgets/SyncErrorNotificationBar.qml:43
+#, fuzzy
+msgctxt "SyncErrorNotificationBar|"
+msgid ""
+"There were errors when synchronizing the library. Please ensure that the "
+"library settings are up to date."
+msgstr ""
+"Kitaplık senkronize edilirken hatalar oluştu. Lütfen kütüphane ayarlarının "
+"güncel olduğundan emin olun."
+
+#: ../Widgets/SyncErrorNotificationBar.qml:49
+#, fuzzy
+msgctxt "SyncErrorNotificationBar|"
+msgid "Ignore"
+msgstr "Aldırmamak"
+
+#: ../Widgets/SyncErrorNotificationBar.qml:53
+#, fuzzy
+msgctxt "SyncErrorNotificationBar|"
+msgid "View"
+msgstr "Görünüm"
+
+#: ../Widgets/TagsEditor.qml:34
+#, fuzzy
+msgctxt "TagsEditor|"
+msgid "Add Tag"
+msgstr "Etiket Ekle"
+
+#: ../Widgets/TodoListItem.qml:107
+#, fuzzy
+msgctxt "TodoListItem|"
+msgid "✔ No open todos - everything done"
+msgstr "✔ Hiçbir açık todos - her şey bitmiş"
+
+#: ../Pages/TodoListPage.qml:173
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr "Arama terimi 1, arama terimi 2, ..."
+
+#: ../Pages/TodoListPage.qml:185
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Manually"
+msgstr "el ile"
+
+#: ../Pages/TodoListPage.qml:191
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Name"
+msgstr "ad"
+
+#: ../Pages/TodoListPage.qml:197
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Due Date"
+msgstr "Bitiş tarihi"
+
+#: ../Pages/TodoListPage.qml:203
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Created At"
+msgstr "Oluşturma Tarihi"
+
+#: ../Pages/TodoListPage.qml:209
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Updated At"
+msgstr "Güncelleme Tarihi:"
+
+#: ../Pages/TodoListPage.qml:237
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Todos"
+msgstr "Todos"
+
+#: ../Pages/TodoListPage.qml:257
+#, fuzzy
+msgctxt "TodoListPage|"
+msgid "Add new todo..."
+msgstr "Yeni yapılacaklar ekle ..."
+
+#: ../Pages/TodoPage.qml:125
+#, fuzzy
+msgctxt "TodoPage|"
+msgid "Search term 1, search term 2, ..."
+msgstr "Arama terimi 1, arama terimi 2, ..."
+
+#: ../Pages/TodoPage.qml:150
+#, fuzzy
+msgctxt "TodoPage|"
+msgid "Tasks"
+msgstr "Görevler"
+
+#: ../Pages/TodoPage.qml:156
+#, fuzzy
+msgctxt "TodoPage|"
+msgid "Add new task..."
+msgstr "Yeni görev ekle ..."
+
+#: ../Widgets/TodosWidget.qml:194
+#, fuzzy, qt-format
+msgctxt "TodosWidget|"
+msgid "Due on: %1"
+msgstr "Teslim tarihi: %1"
+
+#: ../Widgets/TodosWidgetDelegate.qml:205
+#, fuzzy
+msgctxt "TodosWidgetDelegate|"
+msgid "Swipe to mark undone"
+msgstr "Geri alınan işareti işaretlemek için kaydırın"
+
+#: ../Widgets/TodosWidgetDelegate.qml:207
+#, fuzzy
+msgctxt "TodosWidgetDelegate|"
+msgid "Swipe to mark done"
+msgstr "Tamam olarak işaretlemek için kaydırın"
+
+#: ../Utils/Translations.qml:16
+#, fuzzy
+msgctxt "Translations|"
+msgid "System Language"
+msgstr "Sistem Dili"
+
+#: ../Utils/Translations.qml:28
+#, fuzzy
+msgctxt "Translations|"
+msgid "Danish"
+msgstr "Danimarkalı"
+
+#: ../Utils/Translations.qml:32
+#, fuzzy
+msgctxt "Translations|"
+msgid "German"
+msgstr "Almanca"
+
+#: ../Utils/Translations.qml:36
+#, fuzzy
+msgctxt "Translations|"
+msgid "Greek"
+msgstr "Yunan"
+
+#: ../Utils/Translations.qml:40
+#, fuzzy
+msgctxt "Translations|"
+msgid "English"
+msgstr "ingilizce"
+
+#: ../Utils/Translations.qml:44
+#, fuzzy
+msgctxt "Translations|"
+msgid "Spanish"
+msgstr "İspanyol"
+
+#: ../Utils/Translations.qml:48
+#, fuzzy
+msgctxt "Translations|"
+msgid "Spanish (Latin America & Caribbean)"
+msgstr "İspanyolca (Latin Amerika ve Karayipler)"
+
+#: ../Utils/Translations.qml:52
+#, fuzzy
+msgctxt "Translations|"
+msgid "Basque"
+msgstr "Bask dili"
+
+#: ../Utils/Translations.qml:56
+#, fuzzy
+msgctxt "Translations|"
+msgid "Filipino"
+msgstr "Filipinli"
+
+#: ../Utils/Translations.qml:60
+#, fuzzy
+msgctxt "Translations|"
+msgid "French"
+msgstr "Fransızca"
+
+#: ../Utils/Translations.qml:64
+#, fuzzy
+msgctxt "Translations|"
+msgid "Hungarian"
+msgstr "Macarca"
+
+#: ../Utils/Translations.qml:68
+#, fuzzy
+msgctxt "Translations|"
+msgid "Italian"
+msgstr "İtalyan"
+
+#: ../Utils/Translations.qml:72
+#, fuzzy
+msgctxt "Translations|"
+msgid "Japanese"
+msgstr "Japonca"
+
+#: ../Utils/Translations.qml:80
+#, fuzzy
+msgctxt "Translations|"
+msgid "Dutch"
+msgstr "Flemenkçe"
+
+#: ../Utils/Translations.qml:84
+#, fuzzy
+msgctxt "Translations|"
+msgid "Norwegian"
+msgstr "Norveççe"
+
+#: ../Utils/Translations.qml:88
+#, fuzzy
+msgctxt "Translations|"
+msgid "Polish"
+msgstr "Lehçe"
+
+#: ../Utils/Translations.qml:92
+#, fuzzy
+msgctxt "Translations|"
+msgid "Portuguese"
+msgstr "Portekizce"
+
+#: ../Utils/Translations.qml:96
+#, fuzzy
+msgctxt "Translations|"
+msgid "Portuguese (Brazil)"
+msgstr "Portekiz (Brezilyası)"
+
+#: ../Utils/Translations.qml:100
+#, fuzzy
+msgctxt "Translations|"
+msgid "Russian"
+msgstr "Rusça"
+
+#: ../Utils/Translations.qml:104
+#, fuzzy
+msgctxt "Translations|"
+msgid "Swedish"
+msgstr "İsveççe"
+
+#: ../Utils/Translations.qml:108
+#, fuzzy
+msgctxt "Translations|"
+msgid "Turkmen"
+msgstr "Türkmen"
+
+#: ../Utils/Translations.qml:112
+#, fuzzy
+msgctxt "Translations|"
+msgid "Turkish"
+msgstr "Türk"
+
+#: ../Utils/Translations.qml:116
+#, fuzzy
+msgctxt "Translations|"
+msgid "Ukrainian"
+msgstr "Ukraynaca"
+
+#: ../Utils/Translations.qml:120
+#, fuzzy
+msgctxt "Translations|"
+msgid "Vietnamese"
+msgstr "Vietnam"
+
+#: ../Widgets/UpdateNotificationBar.qml:44
+#, fuzzy, qt-format
+msgctxt "UpdateNotificationBar|"
+msgid "An update to OpenTodoList %1 is available."
+msgstr "OpenTodoList %1 için bir güncelleme var."
+
+#: ../Widgets/UpdateNotificationBar.qml:50
+#, fuzzy
+msgctxt "UpdateNotificationBar|"
+msgid "Ignore"
+msgstr "Aldırmamak"
+
+#: ../Widgets/UpdateNotificationBar.qml:54
+#, fuzzy
+msgctxt "UpdateNotificationBar|"
+msgid "Download"
+msgstr "İndir"
+
+#: ../../lib/sync/webdavsynchronizer.cpp:177
+msgctxt "WebDAVSynchronizer|"
+msgid "Failed to create sync lock:"
+msgstr ""

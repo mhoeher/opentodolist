@@ -6,7 +6,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
-        <translation type="unfinished">Über die Anwendung...</translation>
+        <translation type="unfinished">Über OpenTodoList …</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="29"/>
@@ -116,22 +116,22 @@
     <message>
         <location filename="../appstartup.cpp" line="172"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished">Optimierungen für berührungsempfindliche Bildschirme aktivieren.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="175"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nur den Hintergrundservice der Anwendung starten</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="177"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nur Anwendungs-GUI starten und mit einem existierenden Hintergrunddienst verbinden</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="182"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Unter Windows eine Konsole zum Sammeln von Debug-Ausgaben aktivieren</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="316"/>
@@ -541,7 +541,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="127"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verschiebe Todo zu...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="142"/>
@@ -574,17 +574,17 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="205"/>
         <source>Translate The App...</source>
-        <translation type="unfinished">Übersetze die App...</translation>
+        <translation type="unfinished">Die App übersetzen ...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spenden</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
         <source>About...</source>
-        <translation type="unfinished">Über die Anwendung...</translation>
+        <translation type="unfinished">Über OpenTodoList …</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
@@ -702,17 +702,17 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="454"/>
         <source>Due To</source>
-        <translation type="unfinished">Fällig Am</translation>
+        <translation type="unfinished">Fällig am</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="461"/>
         <source>Created At</source>
-        <translation type="unfinished">Angelegt Am</translation>
+        <translation type="unfinished">Angelegt am</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="468"/>
         <source>Updated At</source>
-        <translation type="unfinished">Editiert Am</translation>
+        <translation type="unfinished">Aktualisiert am</translation>
     </message>
 </context>
 <context>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished">Synchronisationsablauf</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -801,7 +801,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="335"/>
         <source>Set Due Date</source>
-        <translation type="unfinished">Fällig Am</translation>
+        <translation type="unfinished">Fälligkeitsdatum setzen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="343"/>
@@ -816,7 +816,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="357"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fortschritt setzen</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="395"/>
@@ -988,12 +988,12 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="87"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished">Öffnen eines Ordners als Bibliothek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="95"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished">Du kannst jeden beliebigen Ordner als Speicherort für eine Bibliothek verwenden.&lt;br/&gt;&lt;br/&gt; Dies ist besonders nützlich, wenn Du ein anderes Tool (wie z.B. einen Sync-Client eines Cloud-Providers) verwenden möchtest, um Deine Daten mit einem Server zu synchronisieren.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
@@ -1003,7 +1003,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished">Pfad zu einem Ordner zur Verwendung als Bibliothek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
@@ -1037,12 +1037,12 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="75"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished">Ordner als Bibliothek verwenden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="86"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">Bibliotheken von Ihren Konten aus hinzufügen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="113"/>
@@ -1055,12 +1055,12 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="61"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished">Erstelle eine lokale Bibliothek</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="69"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">Eine lokale Bibliothek wird ausschließlich auf Deinem Gerät gespeichert - das macht es perfekt für den Datenschutz prägnant!&lt;br/&gt;&lt;br/&gt;Benutze es, wenn Du Informationen nur lokal speichern und alle Deine Daten regelmäßig über andere Mechanismen sichern willst. Wenn Du auf Deine Informationen über mehrere Geräte hinweg zugreifen musst, erstelle eine Bibliothek, die stattdessen synchronisiert wird.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
@@ -1290,7 +1290,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="20"/>
         <location filename="../Pages/ProblemsPage.qml" line="30"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Entdeckte Probleme</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="44"/>
@@ -1436,7 +1436,7 @@
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="23"/>
         <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wähle Todo-Liste</translation>
     </message>
 </context>
 <context>
@@ -1484,7 +1484,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fortschritt setzen</translation>
     </message>
 </context>
 <context>
@@ -1517,46 +1517,50 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="132"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eigene Schriftgröße nutzen</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="141"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kompakten Stil nutzen</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="150"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abstände zwischen den Komponenten verringern und Schriftgröße reduzieren
+
+&lt;em&gt;Benötigt Neustart der Anwendung.&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="159"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kompakte Todo-Listen nutzen</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="170"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vertikale Abstände in Todo- und Aufgabenlisten reduzieren, um Platz für mehr Elemente auf dem Bildschirm zu schaffen.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="177"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skalierungsfaktor überschreiben</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="184"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skalierungsfaktor:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nutze dies, um die Benutzeroberfläche manuell zu skalieren. Standardmäßig sollte sich die Anwendung entsprechend der Geräteeinstellungen automatisch anpassen. Wenn das nicht funktioniert, kannst du hier einen eigenen Skalierungsfaktor einstellen.
+
+Dies erfordert einen Neustart der Anwendung.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="212"/>
@@ -1618,17 +1622,17 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="197"/>
         <source>Due Date</source>
-        <translation type="unfinished">Fällig Am</translation>
+        <translation type="unfinished">Fällig am</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="203"/>
         <source>Created At</source>
-        <translation type="unfinished">Angelegt Am</translation>
+        <translation type="unfinished">Angelegt am</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Updated At</source>
-        <translation type="unfinished">Editiert Am</translation>
+        <translation type="unfinished">Aktualisiert am</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="237"/>
@@ -1745,7 +1749,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="72"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Japanisch</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="80"/>
@@ -1795,7 +1799,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Utils/Translations.qml" line="116"/>
         <source>Ukrainian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ukrainisch</translation>
     </message>
     <message>
         <location filename="../Utils/Translations.qml" line="120"/>

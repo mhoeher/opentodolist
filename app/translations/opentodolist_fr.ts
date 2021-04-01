@@ -594,12 +594,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cacher le calendrier</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voir le calendrier</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
