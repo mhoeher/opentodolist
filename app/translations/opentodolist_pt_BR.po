@@ -1519,7 +1519,7 @@ msgstr "Deslize para \"Feito\""
 #: ../Menues/LibraryPageActions.qml:30
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Sincronizar"
 
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
@@ -1529,7 +1529,7 @@ msgstr ""
 #: ../Pages/SettingsPageForm.ui.qml:65
 msgctxt "SettingsPageForm.ui|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Tamanho da Fonte:"
 
 #: ../Utils/Translations.qml:52
 msgctxt "Translations|"
@@ -1539,12 +1539,12 @@ msgstr ""
 #: ../Pages/AccountTypeSelectionPage.qml:22
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
-msgstr ""
+msgstr "Selecionar o Tipo da Conta"
 
 #: ../Pages/AccountTypeSelectionPage.qml:81
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
-msgstr ""
+msgstr "Tipo de Conta"
 
 #: ../Pages/AccountTypeSelectionPage.qml:102
 msgctxt "AccountTypeSelectionPage|"
@@ -1564,7 +1564,7 @@ msgstr ""
 #: ../main.cpp:253
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
-msgstr ""
+msgstr "Gerenciar seus dados pessoais."
 
 #: ../main.cpp:259
 msgctxt "AppStartup|"
@@ -1589,32 +1589,32 @@ msgstr ""
 #: ../main.cpp:403
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: ../main.cpp:410
 msgctxt "AppStartup|"
 msgid "Quit"
-msgstr ""
+msgstr "Sair"
 
 #: ../Actions/DeleteCompletedChildren.qml:8
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Deletar itens completos?"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:19
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
-msgstr ""
+msgstr "Deletar itens completos?"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
-msgstr ""
+msgstr "Tem certeza que quer deletar todos os TODOS da lista TODO <strong>%1</strong>? Não pode ser desfeito."
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
-msgstr ""
+msgstr "Tem certeza que quer deletar todas as tarefas feitas no TODO <strong>%1</strong>? Não pode ser desfeito."
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
 #: ../Pages/EditNextCloudAccountPage.qml:69
