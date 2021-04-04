@@ -104,6 +104,9 @@ public:
     Q_INVOKABLE void deleteDoneTasks(Todo* todo);
     Q_INVOKABLE void loadItem(const QUuid& uid);
     Q_INVOKABLE Item* itemFromData(const QVariant& data);
+    Q_INVOKABLE Item* cloneItem(Item* item);
+    Q_INVOKABLE QString saveItem(Item* item);
+    Q_INVOKABLE void restoreItem(const QString& data);
 
     Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
     Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());

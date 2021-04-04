@@ -267,6 +267,13 @@ ApplicationWindow {
 
         dynamicPageActions: [
             ToolBarAction {
+                symbol: Icons.faUndo
+                text: qsTr("Undo")
+                visible: undoAction.enabled
+                onTriggered: undoAction.trigger()
+            },
+
+            ToolBarAction {
                 symbol: Icons.faPencilAlt
                 text: qsTr("Rename")
                 visible: {
@@ -455,6 +462,24 @@ ApplicationWindow {
         text: qsTr("&Find")
         shortcut: StandardKey.Find
         onTriggered: searchToolButtonAction.trigger()
+    }
+
+    Action {
+        id: undoAction
+
+        text: qsTr("Undo")
+        shortcut: StandardKey.Undo
+        enabled: {
+            let currentItem = stackView.currentItem;
+            if (currentItem && typeof(currentItem.undo) === "function") {
+                return true;
+            }
+            return false;
+        }
+        onTriggered: {
+            let currentItem = stackView.currentItem;
+            currentItem.undo();
+        }
     }
 
     Shortcut {
@@ -705,7 +730,7 @@ ApplicationWindow {
             onItemClicked: {
                 stackView.push(Qt.resolvedUrl("../Pages/" +
                                               item.itemType + "Page.qml"),
-                               { item: item, library: library, stack: stackView });
+                               { item: OTL.Application.cloneItem(item), library: library, stack: stackView });
             }
         }
     }

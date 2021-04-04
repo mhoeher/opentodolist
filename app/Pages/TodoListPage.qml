@@ -55,6 +55,23 @@ ItemPage {
         }
     }
 
+    property var undo: {
+        if (todoDrawer.visible) {
+            return todoPage.undo;
+        } else if (d.savedTodoStates.length > 0) {
+            return function() {
+                if (d.savedTodoStates.length > 0) {
+                    let list = d.savedTodoStates.slice();
+                    let todoData = list.pop();
+                    OTL.Application.restoreItem(todoData);
+                    d.savedTodoStates = list;
+                }
+            };
+        } else {
+            return null;
+        }
+    }
+
     property var addTag: todoDrawer.visible ? undefined :
                                               function() {
                                                   d.openTagsEditor();
@@ -116,11 +133,13 @@ ItemPage {
             }
         }
 
+        property var savedTodoStates: []
+
         signal attach()
         signal openTagsEditor()
 
         function openTodo(todo) {
-            todoPage.item = todo;
+            todoPage.item = OTL.Application.cloneItem(todo);
             todoDrawer.open();
         }
 
@@ -270,6 +289,11 @@ ItemPage {
                 var todo = OTL.Application.addTodo(
                             page.library, page.item, properties);
                 itemCreatedNotification.show(todo);
+            }
+            onItemSaved: {
+                let list = d.savedTodoStates.slice();
+                list.push(itemData);
+                d.savedTodoStates = list;
             }
             headerComponent: Column {
                 id: column
