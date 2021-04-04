@@ -63,6 +63,18 @@ ItemPage {
         d.attach();
     }
 
+    property var undo: {
+        if (d.savedTaskStates.length > 0) {
+            return function() {
+                let list = d.savedTaskStates.slice();
+                OTL.Application.restoreItem(list.pop());
+                d.savedTaskStates = list;
+            };
+        } else {
+            return null;
+        }
+    }
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: todoList
 
@@ -70,6 +82,8 @@ ItemPage {
         id: d
 
         property bool editingNotes: false
+
+        property var savedTaskStates: []
 
         signal attach()
 
@@ -164,6 +178,12 @@ ItemPage {
                             page.item,
                             properties);
             }
+            onItemSaved: {
+                let list = d.savedTaskStates.slice();
+                list.push(itemData);
+                d.savedTaskStates = list;
+            }
+
             headerComponent: Column {
                 id: column
                 width: parent.width

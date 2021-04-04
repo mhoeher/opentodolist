@@ -39,6 +39,9 @@ SwipeDelegate {
     signal itemPressedAndHold()
     signal itemClicked()
     signal setSwipeDelegate(var item)
+
+    // The item has been saved (for later undo)
+    signal itemSaved(var itemData)
     
     width: parent ? parent.width : implicitWidth
     padding: 0
@@ -67,6 +70,7 @@ SwipeDelegate {
                 }
             }
             onClicked: {
+                let data = OTL.Application.saveItem(swipeDelegate.item);
                 switch (swipeDelegate.item.itemType) {
                 case "Task":
                 case "Todo":
@@ -78,8 +82,9 @@ SwipeDelegate {
                     swipeDelegate.item.markCurrentOccurrenceAsDone();
                     break;
                 default:
-                    break;
+                    return;
                 }
+                swipeDelegate.itemSaved(data);
             }
         }
         Column {
@@ -155,6 +160,28 @@ SwipeDelegate {
             visible: !toggleSwipeOpened.visible
             width: toggleSwipeOpened.width
             height: toggleSwipeOpened.height
+        }
+
+        Components.ToolButton {
+            id: moveButton
+            visible: {
+                if (swipeDelegate.allowSorting) {
+                    switch (Qt.platform.os) {
+                    case "ios":
+                    case "android":
+                        return true;
+                    default:
+                        return swipeDelegate.hovered;
+                    }
+                } else {
+                    return false;
+                }
+            }
+            symbol: Icons.faSort
+            onPressed: {
+                swipeDelegate.setSwipeDelegate(null);
+                reorderOverlay.startDrag();
+            }
         }
         
         Components.ToolButton {
@@ -243,21 +270,16 @@ SwipeDelegate {
         }
     }
     
-    onPressAndHold: {
-        if (swipeDelegate.allowSorting) {
-            swipeDelegate.setSwipeDelegate(null);
-            reorderOverlay.startDrag();
-        } else {
-            swipeDelegate.itemPressedAndHold();
-        }
-    }
+    onPressAndHold: swipeDelegate.itemPressedAndHold()
     swipe.onClosed: {
         if (swipeDelegate.toggleDoneOnClose) {
             let item = swipeDelegate.item;
             switch (item.itemType) {
             case "Todo":
             case "Task":
+                let data = OTL.Application.saveItem(item);
                 item.done = !item.done;
+                swipeDelegate.itemSaved(data);
                 break;
             default:
                 if (typeof(item.markCurrentOccurrenceAsDone) === "function") {

@@ -803,6 +803,56 @@ Item* Application::itemFromData(const QVariant& data)
 }
 
 /**
+ * @brief Clone an item.
+ *
+ * This creates a clone of the given @p item. In addition, the resulting item will be setup to track
+ * changes in the item cache, so whenever ther are any updates (e.g. due to sync) the item gets
+ * updated as well.
+ */
+Item* Application::cloneItem(Item* item)
+{
+    Item* result = nullptr;
+    if (item != nullptr) {
+        result = Item::decache(item->encache());
+        result->setCache(m_cache);
+    }
+    return result;
+}
+
+/**
+ * @brief Create a snapshot of the item and store it for later.
+ *
+ * This saves the current state of the @p item and returns a snapshot of it. This data can be used
+ * to e.g. restore the item state.
+ */
+QString Application::saveItem(Item* item)
+{
+    QByteArray result;
+    if (item != nullptr) {
+        result = item->encache().serialize().toHex();
+    }
+    return result;
+}
+
+/**
+ * @brief Restore a previously saved item.
+ *
+ * This restores the state of an item from the @p data, which previously must have been created via
+ * a call to saveItem().
+ */
+void Application::restoreItem(const QString& data)
+{
+    QSharedPointer<Item> item(
+            Item::decache(ItemCacheEntry::deserialize(QByteArray::fromHex(data.toUtf8()))));
+    qCWarning(log) << "Restore item" << data << item;
+    if (item != nullptr) {
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(item.data(), InsertOrUpdateItemsQuery::Save);
+        m_cache->run(q);
+    }
+}
+
+/**
  * @brief Save a value to the application settings
  *
  * This method is used to save a value to the application settings. Settings

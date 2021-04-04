@@ -44,6 +44,8 @@ struct ItemCacheEntry
     QByteArray toByteArray() const;
     QByteArray toJson() const;
     static ItemCacheEntry fromByteArray(const QByteArray& data, const QByteArray& id);
+    QByteArray serialize() const;
+    static ItemCacheEntry deserialize(const QByteArray& data);
 
     QUuid id;
     QUuid parentId;
