@@ -211,6 +211,7 @@ Pane {
                 LibrarySideBarButton {
                     text: qsTr("Donate")
                     symbol: Icons.faHandshake
+                    visible: Qt.platform.os != "ios"
                     onClicked: Qt.openUrlExternally(
                                    "https://opentodolist.rpdev.net/donate/")
                 }
