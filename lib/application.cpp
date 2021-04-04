@@ -210,6 +210,8 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     this, &Application::onBackgroundServiceCacheLibrariesChanged);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::showAppWindowRequested,
                     this, &Application::showWindowRequested);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::hideAppWindowRequested,
+                    this, &Application::hideWindowRequested);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::serviceAboutToExit,
                     QCoreApplication::instance(), &QCoreApplication::quit);
         }

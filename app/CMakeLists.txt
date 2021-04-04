@@ -72,19 +72,38 @@ endif()
 target_link_libraries(
     OpenTodoList
 
-    # Internal:
-    opentodolist-common
+    PRIVATE
 
-    # Qt libraries:
-    Qt${QT_VERSION_MAJOR}::Qml
-    Qt${QT_VERSION_MAJOR}::Quick
-    Qt${QT_VERSION_MAJOR}::Xml
-    Qt${QT_VERSION_MAJOR}::Concurrent
-    Qt${QT_VERSION_MAJOR}::Widgets
+        # Internal:
+        opentodolist-common
+
+        # Qt libraries:
+        Qt${QT_VERSION_MAJOR}::Qml
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Xml
+        Qt${QT_VERSION_MAJOR}::Concurrent
+        Qt${QT_VERSION_MAJOR}::Widgets
 )
 
 if(OPENTODOLIST_FLATPAK)
     target_compile_definitions(OpenTodoList PRIVATE OPENTODOLIST_FLATPAK)
+endif()
+
+if(OPENTODOLIST_WITH_KNOTIFICATIONS)
+    target_link_libraries(
+        OpenTodoList 
+        
+        PRIVATE
+        
+            KF5::Notifications
+    )
+    target_compile_definitions(
+        OpenTodoList
+
+        PRIVATE
+
+            OPENTODOLIST_WITH_KNOTIFICATIONS
+    )
 endif()
 
 file(GLOB_RECURSE TS_SOURCE_FILES
