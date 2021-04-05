@@ -92,7 +92,7 @@ private:
 #else
     QSystemTrayIcon* m_trayIcon;
 #endif
-    QMenu* m_trayMenu;
+    QPointer<QMenu> m_trayMenu;
     static QVector<QtMessageHandler> s_prevMessageHandler;
 
     QCommandLineParser m_parser;
