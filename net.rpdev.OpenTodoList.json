@@ -8,10 +8,11 @@
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
-        "--filesystem=host",
+        "--filesystem=home",
         "--socket=pulseaudio",
         "--share=network",
         "--device=dri",
+        "--device=shm",
         "--talk-name=org.freedesktop.secrets",
         "--talk-name=org.kde.StatusNotifierWatcher"
     ],
