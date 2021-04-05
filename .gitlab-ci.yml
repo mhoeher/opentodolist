@@ -11,10 +11,7 @@ variables:
     GIT_SUBMODULE_STRATEGY: recursive
     CCACHE_DIR: $CI_PROJECT_DIR/ccache
 
-
-
 stages:
-  - images
   - build
   - test
   - installer
@@ -23,82 +20,22 @@ stages:
   - candidate
   - stable
 
-
 cache:
     paths:
         - $CCACHE_DIR
     key: $CI_JOB_NAME
 
+# Run pipelines for branches and tags (https://docs.gitlab.com/ee/ci/yaml/#workflowrules-templates):
+include:
+  - template: 'Workflows/Branch-Pipelines.gitlab-ci.yml'
 
-################################################################################
-# Images Stage
-################################################################################
-
-# Build the Linux (Ubuntu) Image
-image::appimage:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/ubuntu
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $UBUNTU_IMAGE .
-    - docker push $UBUNTU_IMAGE
-  when: manual
-
-
-# Build the Win32 Image
-image::win32:
-  stage: images
-  image: fedora
-  script:
-    - dnf install -y --nogpgcheck podman buildah
-    - cd ci/docker/win32
-    - podman login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - buildah bud -t $WIN32_IMAGE .
-    - buildah push $WIN32_IMAGE docker://$WIN32_IMAGE
-  when: manual
-
-
-# Build the Win64 Image
-image::win64:
-  stage: images
-  image: fedora
-  script:
-    - dnf install -y --nogpgcheck podman buildah
-    - cd ci/docker/win64
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - buildah bud -t $WIN64_IMAGE .
-    - buildah push $WIN64_IMAGE docker://$WIN64_IMAGE
-  when: manual
-
-
-# Build the Android Image
-image::android_base:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/android
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $ANDROID_IMAGE .
-    - docker push $ANDROID_IMAGE
-  when: manual
-
-# Build the Flatpak Image
-image::flatpak:
-  stage: images
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - cd ci/docker/flatpak
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $FLATPAK_IMAGE .
-    - docker push $FLATPAK_IMAGE
-  when: manual
+# Do not run pipelines for pushes from POEditor:
+workflow:
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
+      when: never
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH
 
 
 ################################################################################
@@ -112,21 +49,13 @@ cppcheck:
   image: fedora
   script:
     - ci/cppcheck.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-
 
 # Run clang-format code formatter check:
 clang-format:
   stage: build
-  image: fedora:32 # Force to F32 for now - required to get clang-format passing
+  image: fedora # Force to F32 for now - required to get clang-format passing
   script:
     - ci/clang-format.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-
 
 # Run cpplint static code checker:
 cpplint:
@@ -134,10 +63,6 @@ cpplint:
   image: fedora
   script:
     - ci/cpplint.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-
 
 # Create source archives of the app
 export-sources:
@@ -145,9 +70,6 @@ export-sources:
   image: fedora
   script:
     - ci/export-sources.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - OpenTodoList-Source-*.zip
@@ -166,9 +88,6 @@ appimage:
       alias: owncloud
   script:
     - ci/ubuntu-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-ubuntu/OpenTodoList-*-x86_64.AppImage*
@@ -186,9 +105,6 @@ appimage:
       alias: owncloud
   script:
     ./ci/fedora-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   variables:
     BUILD_SYSTEM: qmake
 
@@ -217,9 +133,6 @@ win32:
   image: $WIN32_IMAGE
   script:
     - ./ci/win32-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - deploy-win32/OpenTodoList-*-Windows-32bit.exe
@@ -232,9 +145,6 @@ win64:
   image: $WIN64_IMAGE
   script:
     - ./ci/win64-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - deploy-win64/OpenTodoList-*-Windows-64bit.exe
@@ -248,9 +158,6 @@ macos:
     - macos
   script:
     - ci/macos-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-macos/app/OpenTodoList.dmg
@@ -267,9 +174,6 @@ ios:
     - macos
   script:
     - ci/ios-build.sh
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-ios/app/build/OpenTodoList.ipa
@@ -284,9 +188,6 @@ ios:
     - df -h
     - ci/android-cmake-build.sh
     - df -h
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   artifacts:
     paths:
       - build-android/OpenTodoList*.apk
@@ -336,9 +237,6 @@ flatpak:
     image: $FLATPAK_IMAGE
     script:
         - ci/flatpak-build.sh
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - fp-repo
@@ -354,9 +252,6 @@ snap::build:
     image: $SNAPCRAFT_IMAGE
     script:
         - snapcraft snap
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - opentodolist*.snap
@@ -368,9 +263,6 @@ archlinux-pkgbuild:
     image: archlinux
     script:
         - ci/archlinux-pkgbuild.sh
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - build-arch/opentodolist-*.pkg.tar.zst
@@ -392,9 +284,6 @@ archlinux-pkgbuild:
     image: $ANDROID_IMAGE
     script:
         - ci/sign-apks.sh
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     artifacts:
       paths:
         - build-android/*-aligned.apk
@@ -433,9 +322,6 @@ aur_release_check:
         - ci/update-aur.sh
     needs:
         - archlinux-pkgbuild
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
 
 ################################################################################
 # Deploy Stage
@@ -457,12 +343,9 @@ github:
         - cp OpenTodoList-Source-*.tar.gz uploads
         - cp *.snap uploads
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
-    when: manual
-    only:
-        - tags
+    rules:
+      - if: $CI_COMMIT_TAG
+        when: manual
 
 
 appstore:
@@ -472,9 +355,6 @@ appstore:
     when: manual
     script:
         - xcrun altool --upload-app --type ios --file build-ios/app/build/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     needs:
       - ios
 
@@ -488,9 +368,6 @@ aur_release:
     needs:
         - aur_release_check
         - archlinux-pkgbuild
-    except:
-      variables:
-          - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
     when: manual
 
 
@@ -505,9 +382,6 @@ aur_release:
   script:
       - snapcraft login --with "$SNAPCRAFT_LOGIN"
       - snapcraft upload opentodolist*.snap --release $SNAPCRAFT_CHANNEL
-  except:
-    variables:
-        - $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
   needs:
     - snap::build
   allow_failure: true
