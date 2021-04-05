@@ -14,6 +14,10 @@ option(OPENTODOLIST_WITH_APPIMAGE_EXTRAS
     "Enable features specific to the AppImage build."
     OFF
 )
+option(OPENTODOLIST_WITH_KNOTIFICATIONS
+    "Use KNotifications instead of Qt's built-in system tray implementation"
+    OFF
+)
 
 option(OPENTODOLIST_USE_SYSTEM_LIBRARIES
     "The default mode used for deciding whether to build against system libraries."

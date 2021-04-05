@@ -1,7 +1,7 @@
 {
     "id": "net.rpdev.OpenTodoList",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.14",
+    "runtime-version": "5.15",
     "sdk": "org.kde.Sdk",
     "command": "OpenTodoList",
     "finish-args": [
@@ -12,7 +12,8 @@
         "--socket=pulseaudio",
         "--share=network",
         "--device=dri",
-        "--talk-name=org.freedesktop.secrets"
+        "--talk-name=org.freedesktop.secrets",
+        "--talk-name=org.kde.StatusNotifierWatcher"
     ],
 
     "modules": [
@@ -62,6 +63,7 @@
                 "-DCMAKE_INSTALL_LIBDIR=/app/lib",
                 "-DLIB_INSTALL_DIR=/app/lib",
                 "-DOPENTODOLIST_FLATPAK=ON",
+                "-DOPENTODOLIST_WITH_KNOTIFICATIONS=ON",
                 "-DQt5RemoteObjects_DIR=/app/usr/lib/all-linux-gnu/cmake/Qt5RemoteObjects"
             ],
             "sources": [

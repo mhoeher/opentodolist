@@ -90,6 +90,9 @@ if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
     find_package(KF5SyntaxHighlighting)
 endif()
 
+if(OPENTODOLIST_WITH_KNOTIFICATIONS)
+    find_package(KF5Notifications REQUIRED)
+endif()
 
 # Set options of included 3rd party libraries:
 set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")

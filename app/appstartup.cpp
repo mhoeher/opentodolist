@@ -29,7 +29,11 @@ AppStartup::AppStartup()
       m_srcNode(nullptr),
       m_backgroundService(nullptr),
       m_application(nullptr),
+#ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
+      m_statusNotifierItem(nullptr),
+#else
       m_trayIcon(nullptr),
+#endif
       m_trayMenu(nullptr),
       m_parser(),
       m_engine(nullptr),
@@ -41,10 +45,15 @@ AppStartup::AppStartup()
 
 AppStartup::~AppStartup()
 {
-    delete m_trayMenu;
-    m_trayMenu = nullptr;
+#ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
+    delete m_statusNotifierItem;
+    m_statusNotifierItem = nullptr;
+#else
     delete m_trayIcon;
     m_trayIcon = nullptr;
+#endif
+    delete m_trayMenu;
+    m_trayMenu = nullptr;
     delete m_application;
     m_application = nullptr;
     delete m_srcNode;
@@ -296,8 +305,41 @@ void AppStartup::showTrayIcon()
         qWarning() << "Running in service process only - NOT creating tray icon";
         return;
     }
+
+    m_trayMenu = new QMenu();
+    auto openAction = m_trayMenu->addAction(tr("Open"));
+    if (m_backgroundService) {
+        connect(openAction, &QAction::triggered, m_backgroundService,
+                &BackgroundService::showAppWindowRequested);
+    } else if (m_application) {
+        connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
+    }
+
+#ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
+    m_statusNotifierItem = new KStatusNotifierItem(app);
+    m_statusNotifierItem->setStatus(KStatusNotifierItem::Active);
+    m_statusNotifierItem->setIconByName("net.rpdev.OpenTodoList");
+    m_statusNotifierItem->setContextMenu(m_trayMenu);
+    connect(m_statusNotifierItem, &KStatusNotifierItem::activateRequested, this,
+            [=](bool active, QPoint) {
+                if (active) {
+                    if (m_backgroundService) {
+                        emit m_backgroundService->showAppWindowRequested();
+                    } else {
+                        emit m_application->showWindowRequested();
+                    }
+                } else {
+                    if (m_backgroundService) {
+                        emit m_backgroundService->hideAppWindowRequested();
+                    } else {
+                        emit m_application->hideWindowRequested();
+                    }
+                }
+            });
+#else
     m_trayIcon = new QSystemTrayIcon(this);
     m_trayIcon->setIcon(QIcon(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png"));
+    m_trayIcon->setContextMenu(m_trayMenu);
     connect(m_trayIcon, &QSystemTrayIcon::activated, [=](QSystemTrayIcon::ActivationReason reason) {
         switch (reason) {
         case QSystemTrayIcon::Trigger:
@@ -311,23 +353,15 @@ void AppStartup::showTrayIcon()
             break;
         }
     });
-
-    m_trayMenu = new QMenu();
-    auto openAction = m_trayMenu->addAction(tr("Open"));
-    if (m_backgroundService) {
-        connect(openAction, &QAction::triggered, m_backgroundService,
-                &BackgroundService::showAppWindowRequested);
-    } else if (m_application) {
-        connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
-    }
-    auto quitAction = m_trayMenu->addAction(tr("Quit"));
-    connect(quitAction, &QAction::triggered, m_app, &QCoreApplication::quit);
-    m_trayIcon->setContextMenu(m_trayMenu);
     m_trayIcon->show();
 
     if (m_trayIcon->isSystemTrayAvailable()) {
         app->setQuitOnLastWindowClosed(false);
     }
+
+    auto quitAction = m_trayMenu->addAction(tr("Quit"));
+    connect(quitAction, &QAction::triggered, m_app, &QCoreApplication::quit);
+#endif
 }
 
 void AppStartup::debugMessageHandler(QtMsgType type, const QMessageLogContext& context,

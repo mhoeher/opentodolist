@@ -182,6 +182,11 @@ signals:
     void showWindowRequested();
 
     /**
+     * @brief The user requested to hide the application window.
+     */
+    void hideWindowRequested();
+
+    /**
      * @brief The data of an item has been loaded.
      *
      * This signal is emitted to indicate that the @p data of the item with the given @p uid

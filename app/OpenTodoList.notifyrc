@@ -1,0 +1,5 @@
+[Global]
+IconName=net.rpdev.OpenTodoList
+Name=OpenTodoList
+Comment=A todo list manager and note taking application
+DesktopEntry=net.rpdev.OpenTodoList

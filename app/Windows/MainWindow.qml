@@ -798,6 +798,11 @@ ApplicationWindow {
             window.requestActivate();
             window.raise();
         }
+
+        function onHideWindowRequested() {
+            console.debug("Request to hide main window");
+            window.hide();
+        }
     }
 
     Settings {
