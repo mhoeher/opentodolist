@@ -380,7 +380,8 @@ aur_release:
   stage: deploy
   image: $SNAPCRAFT_IMAGE
   script:
-      - snapcraft login --with "$SNAPCRAFT_LOGIN"
+      - echo "$SNAPCRAFT_LOGIN_DATA" > ./login.txt
+      - snapcraft login "--with=./login.txt"
       - snapcraft upload opentodolist*.snap --release $SNAPCRAFT_CHANNEL
   needs:
     - snap::build
