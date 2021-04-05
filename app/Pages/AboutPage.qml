@@ -67,7 +67,7 @@ Page {
                     case "app-license":
                         Qt.openUrlExternally(
                                     "https://gitlab.com/rpdev/opentodolist/" +
-                                    "raw/master/COPYING");
+                                    "raw/stable/COPYING");
                         break;
                     }
                 }
