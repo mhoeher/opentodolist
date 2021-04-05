@@ -22,12 +22,12 @@
 int main(int argc, char* argv[])
 {
     qWarning() << "Entered main";
-    #ifdef OPENTODOLIST_FLATPAK
+#ifdef OPENTODOLIST_FLATPAK
     {
         auto xdgRuntimeDir = qgetenv("XDG_RUNTIME_DIR");
         qputenv("TMPDIR", xdgRuntimeDir + "/app/net.rpdev.OpenTodoList");
     }
-    #endif
+#endif
     AppStartup appStartup;
     qWarning() << "Starting app";
     return appStartup.exec(argc, argv);
