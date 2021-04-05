@@ -36,10 +36,6 @@ option(OPENTODOLIST_USE_SYSTEM_QLMDB
     "Build against the system QLMDB library."
      ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
 )
-option(OPENTODOLIST_USE_SYSTEM_SINGLEAPPLICATION
-    "Build against the system SingleApplication library."
-     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
-)
 option(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT
     "Build against the system SynqClient library."
      ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}

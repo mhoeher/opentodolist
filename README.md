@@ -86,12 +86,13 @@ systems and devices. Practically, the app is regularly tested and build on
 the following platforms:
 
 * Linux.
-* Windows (32 and 64 bit, using [MXE](http://mxe.cc/) and Visual Studio).
+* Windows.
 * macOS.
 * Android (ARM and x86).
+* iOS.
 
 If a system is not listed above, this does not mean that the app does not work
-on that platform, but just that we've not tries yet (usually because we do not
+on that platform, but just that we've not tried yet (usually because we do not
 have the resources to do so). As OpenTodoList is open source, you can easily
 give it a try and check if you can get it to work your your platform of
 choice.
@@ -99,28 +100,5 @@ choice.
 
 ## Build Requirements and Instructions
 
-First, get the sources of the app, for example by cloning it from GitLab:
-
-```bash
-git clone --recurse-submodules https://gitlab.com/rpdev/opentodolist.git
-```
-
-**Important:** Make sure you clone recursively. The app requires some
-libraries that are included in source form. If you do not clone
-recursively, the build will likely fail. If you already cloned the repository,
-you can run
-
-```bash
-git submodule update --init
-```
-
-to clone the submodules. You also might want to run this command regularly
-after pulling new changes.
-
-The application is mainly build using `qmake`. There still is some support
-for `cmake`, but it is currently not maintained.
-
-* Continue with [Build Instructions using `qmake`](./doc/building-with-qmake.md)
-* Continue with [Build Instructions using `cmake`](./doc/building-with-cmake.md)
-
-
+Please refer to the [Build Instructions](./doc/build-instructions.md) to learn
+how to build the app.
