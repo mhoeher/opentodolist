@@ -19,5 +19,7 @@ class BackgroundService
     SIGNAL(cacheLibrariesChanged(const QVariantList& libraryUids, const QUuid& appInstanceUid));
     SIGNAL(showAppWindowRequested());
     SIGNAL(hideAppWindowRequested());
+    SIGNAL(systemTrayIconClicked());
+    SIGNAL(showQuickNotesEditorRequested());
     SIGNAL(serviceAboutToExit());
 }

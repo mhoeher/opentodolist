@@ -128,5 +128,6 @@
         <file>Fonts/Roboto/Roboto-Regular.ttf</file>
         <file>3rdpartyinfo/roboto/3rdpartyinfo.json</file>
         <file>Actions/PromoteTask.qml</file>
+        <file>Windows/QuickNoteWindow.qml</file>
     </qresource>
 </RCC>

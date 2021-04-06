@@ -212,6 +212,11 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     this, &Application::showWindowRequested);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::hideAppWindowRequested,
                     this, &Application::hideWindowRequested);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::systemTrayIconClicked,
+                    this, &Application::systemTrayIconClicked);
+            connect(m_backgroundService.data(),
+                    &BackgroundServiceReplica::showQuickNotesEditorRequested, this,
+                    &Application::showQuickNotesEditorRequested);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::serviceAboutToExit,
                     QCoreApplication::instance(), &QCoreApplication::quit);
         }
