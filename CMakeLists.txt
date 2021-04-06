@@ -134,7 +134,9 @@ set(BUILD_TRANSLATIONS NO CACHE BOOL "")
 add_subdirectory(3rdparty)
 add_subdirectory(lib)
 add_subdirectory(app)
-add_subdirectory(test)
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+    add_subdirectory(test)
+endif()
 
 # Show other, project-related files:
 file(GLOB_RECURSE OTHER_FILES

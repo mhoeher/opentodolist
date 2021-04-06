@@ -12,7 +12,9 @@ apt-get install -y \
     libgl1-mesa-dev \
     git \
     ccache \
-    ninja-build 
+    ninja-build \
+    pkg-config \
+    libsecret-1-dev
 add-apt-repository -y ppa:beineri/opt-qt-5.15.0-focal
 apt -y update
 apt-get install -y \

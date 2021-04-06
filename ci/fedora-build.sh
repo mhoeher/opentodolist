@@ -10,7 +10,8 @@ if [ -n "$CI" ]; then
     dnf install -y \
         make cmake ninja-build gcc g++ curl ccache \
         qt5-{qtbase,qtdeclarative,qtremoteobjects,qtquickcontrols2}-devel \
-        qt5-linguist
+        qt5-linguist \
+        libsecret-devel
 
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
         http://nextcloud/index.php

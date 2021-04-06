@@ -19,3 +19,12 @@
 [submodule "3rdparty/android-openssl"]
 	path = 3rdparty/android-openssl
 	url = https://gitlab.com/rpdev/android-openssl.git
+[submodule "3rdparty/IosCMakeToolchain"]
+	path = 3rdparty/IosCMakeToolchain
+	url = https://gitlab.com/rpdev/IosCMakeToolchain.git
+[submodule "3rdparty/QtIosCMake"]
+	path = 3rdparty/QtIosCMake
+	url = https://gitlab.com/rpdev/QtIosCMake.git
+[submodule "3rdparty/QtStaticCMake"]
+	path = 3rdparty/QtStaticCMake
+	url = https://gitlab.com/rpdev/QtStaticCMake.git
