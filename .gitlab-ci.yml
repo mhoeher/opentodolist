@@ -173,10 +173,10 @@ ios:
   tags:
     - macos
   script:
-    - ci/ios-build.sh
+    - ci/ios-cmake-build.sh
   artifacts:
     paths:
-      - build-ios/app/build/OpenTodoList.ipa
+      - build-ios-cmake/app/OpenTodoListIpa/OpenTodoList.ipa
     expire_in: 1 week
 
 
@@ -354,7 +354,7 @@ appstore:
         - macos
     when: manual
     script:
-        - xcrun altool --upload-app --type ios --file build-ios/app/build/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
+        - xcrun altool --upload-app --type ios --file build-ios-cmake/app/OpenTodoListIpa/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
     needs:
       - ios
 
