@@ -98,7 +98,7 @@ set_target_properties(
         MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
 )
 
-if(NOT ANDROID)
+if(NOT ANDROID AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
     target_compile_definitions(OpenTodoList PRIVATE
         OTL_USE_SINGLE_APPLICATION
         QAPPLICATION_CLASS=QApplication)
