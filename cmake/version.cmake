@@ -17,6 +17,7 @@ else()
             OUTPUT_STRIP_TRAILING_WHITESPACE
         )
         add_definitions(-DOPENTODOLIST_VERSION="${OPENTODOLIST_GIT_VERSION_STRING}")
+        set(OPENTODOLIST_VERSION "${OPENTODOLIST_GIT_VERSION_STRING}")
     else()
         add_definitions(-DOPENTODOLIST_VERSION="${OPENTODOLIST_VERSION}-unknown")
     endif()
