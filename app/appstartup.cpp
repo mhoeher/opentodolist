@@ -289,7 +289,7 @@ void AppStartup::startGUI()
             qCDebug(log) << "Application state changed to" << state;
             switch (state) {
             case Qt::ApplicationActive:
-                emit m_application->showWindowRequested();
+                emit m_application->applicationActivated();
                 break;
             default:
                 break;
@@ -314,6 +314,14 @@ void AppStartup::showTrayIcon()
     } else if (m_application) {
         connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
     }
+    auto quickNotesAction = m_trayMenu->addAction(tr("Quick Note"));
+    if (m_backgroundService) {
+        connect(quickNotesAction, &QAction::triggered, m_backgroundService,
+                &BackgroundService::showQuickNotesEditorRequested);
+    } else if (m_application) {
+        connect(quickNotesAction, &QAction::triggered, m_application,
+                &Application::showQuickNotesEditorRequested);
+    }
 
 #ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
     m_statusNotifierItem = new KStatusNotifierItem(app);
@@ -324,9 +332,9 @@ void AppStartup::showTrayIcon()
             [=](bool active, QPoint) {
                 if (active) {
                     if (m_backgroundService) {
-                        emit m_backgroundService->showAppWindowRequested();
+                        emit m_backgroundService->systemTrayIconClicked();
                     } else {
-                        emit m_application->showWindowRequested();
+                        emit m_application->systemTrayIconClicked();
                     }
                 } else {
                     if (m_backgroundService) {
@@ -344,9 +352,9 @@ void AppStartup::showTrayIcon()
         switch (reason) {
         case QSystemTrayIcon::Trigger:
             if (m_backgroundService) {
-                emit m_backgroundService->showAppWindowRequested();
+                emit m_backgroundService->systemTrayIconClicked();
             } else if (m_application) {
-                emit m_application->showWindowRequested();
+                emit m_application->systemTrayIconClicked();
             }
             break;
         default:

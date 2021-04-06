@@ -185,6 +185,8 @@ QVariant LibrariesModel::data(const QModelIndex& index, int role) const
             case LibraryRole:
                 result = QVariant::fromValue(lib);
                 break;
+            case NameRole:
+                return lib->name();
             }
         }
     }
@@ -195,5 +197,6 @@ QHash<int, QByteArray> LibrariesModel::roleNames() const
 {
     auto result = QAbstractListModel::roleNames();
     result.insert(LibraryRole, "library");
+    result.insert(NameRole, "name");
     return result;
 }

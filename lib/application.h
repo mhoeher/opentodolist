@@ -187,6 +187,21 @@ signals:
     void hideWindowRequested();
 
     /**
+     * @brief The user clicked the system tray icon.
+     */
+    void systemTrayIconClicked();
+
+    /**
+     * @brief The user requested to show the quick notes editor.
+     */
+    void showQuickNotesEditorRequested();
+
+    /**
+     * @brief The application entered the Qt::ApplicationActive state.
+     */
+    void applicationActivated();
+
+    /**
      * @brief The data of an item has been loaded.
      *
      * This signal is emitted to indicate that the @p data of the item with the given @p uid

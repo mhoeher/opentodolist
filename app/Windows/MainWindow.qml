@@ -265,6 +265,36 @@ ApplicationWindow {
         property var visibleDynamicToolBarButtons
         property var visibleDynamicPageMenuItems
 
+        property QuickNoteWindow quickNoteWindow: null
+
+        function createQuickNoteEditor() {
+            if (!AppSettings.supportsQuickEditor) {
+                return;
+            }
+
+            let componentUrl = Qt.resolvedUrl("./QuickNoteWindow.qml");
+            let component = Qt.createComponent(componentUrl);
+            quickNoteWindow = component.createObject();
+        }
+
+        function showMainWindow() {
+            if (!window.visible) {
+                window.show();
+            }
+            window.requestActivate();
+            window.raise();
+        }
+
+        function hideMainWindow() {
+            window.hide();
+        }
+
+        function showQuickNotesEditor() {
+            quickNoteWindow.show();
+            quickNoteWindow.requestActivate();
+            quickNoteWindow.raise();
+        }
+
         dynamicPageActions: [
             ToolBarAction {
                 symbol: Icons.faUndo
@@ -526,6 +556,8 @@ ApplicationWindow {
         font.pointSize = Qt.binding(function() {
             return AppSettings.useCustomFontSize ? AppSettings.customFontSize : defaultFontSize;
         });
+
+        d.createQuickNoteEditor();
     }
 
     onClosing: {
@@ -791,17 +823,44 @@ ApplicationWindow {
         target: OTL.Application
 
         function onShowWindowRequested() {
-            console.debug("Request to show main window")
-            if (!window.visible) {
-                window.show();
-            }
-            window.requestActivate();
-            window.raise();
+            d.showMainWindow();
         }
 
         function onHideWindowRequested() {
-            console.debug("Request to hide main window");
-            window.hide();
+            d.hideMainWindow();
+        }
+
+        function onShowQuickNotesEditorRequested() {
+            d.showQuickNotesEditor();
+        }
+
+        function onSystemTrayIconClicked() {
+            if (AppSettings.showQuickNotesEditorOnSystemTrayClick) {
+                d.showQuickNotesEditor();
+            } else {
+                d.showMainWindow();
+            }
+        }
+
+        function onApplicationActivated() {
+            switch (Qt.platform.os) {
+            case "android":
+            case "ios":
+                d.showMainWindow();
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
+    Connections {
+        target: d.quickNoteWindow
+
+        function onOpenMainWindow() {
+            window.show();
+            window.requestActivate();
+            window.raise();
         }
     }
 

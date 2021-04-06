@@ -109,37 +109,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="166"/>
+        <location filename="../appstartup.cpp" line="175"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Quản lý dữ liệu cá nhân của bạn.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="172"/>
+        <location filename="../appstartup.cpp" line="181"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Bật một số tối ưu hóa cho màn hình cảm ứng.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="175"/>
+        <location filename="../appstartup.cpp" line="184"/>
         <source>Only run the app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="177"/>
+        <location filename="../appstartup.cpp" line="186"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="182"/>
+        <location filename="../appstartup.cpp" line="191"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="316"/>
+        <location filename="../appstartup.cpp" line="310"/>
         <source>Open</source>
         <translation type="unfinished">Mở</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="323"/>
+        <location filename="../appstartup.cpp" line="317"/>
+        <source>Quick Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../appstartup.cpp" line="370"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -583,37 +588,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
         <source>About...</source>
         <translation type="unfinished">Trong khoảng...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="233"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Tạo thư viện mặc định</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="343"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="363"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="375"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="376"/>
         <source>Schedule</source>
         <translation type="unfinished">Lịch trình</translation>
     </message>
@@ -765,117 +770,123 @@
         <translation type="unfinished">Đồng bộ hóa thư viện ...</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="271"/>
+        <location filename="../Windows/MainWindow.qml" line="301"/>
+        <location filename="../Windows/MainWindow.qml" line="500"/>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="308"/>
         <source>Rename</source>
         <translation type="unfinished">Đổi tên</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="282"/>
+        <location filename="../Windows/MainWindow.qml" line="319"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="293"/>
+        <location filename="../Windows/MainWindow.qml" line="330"/>
         <source>Color</source>
         <translation type="unfinished">Màu sắc</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="304"/>
+        <location filename="../Windows/MainWindow.qml" line="341"/>
         <source>Add Tag</source>
         <translation type="unfinished">Thêm thẻ</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="311"/>
+        <location filename="../Windows/MainWindow.qml" line="348"/>
         <source>Attach File</source>
         <translation type="unfinished">Đính kèm tập tin</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="320"/>
+        <location filename="../Windows/MainWindow.qml" line="357"/>
         <source>Search</source>
         <translation type="unfinished">Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="327"/>
+        <location filename="../Windows/MainWindow.qml" line="364"/>
         <source>Sort</source>
         <translation type="unfinished">Sắp xếp</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="335"/>
+        <location filename="../Windows/MainWindow.qml" line="372"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Đặt ngày đến hạn</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="343"/>
+        <location filename="../Windows/MainWindow.qml" line="380"/>
         <source>Delete</source>
         <translation type="unfinished">Xóa bỏ</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="350"/>
+        <location filename="../Windows/MainWindow.qml" line="387"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="357"/>
+        <location filename="../Windows/MainWindow.qml" line="394"/>
         <source>Set Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="395"/>
+        <location filename="../Windows/MainWindow.qml" line="432"/>
         <source>Settings</source>
         <translation type="unfinished">Cài đặt</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="396"/>
+        <location filename="../Windows/MainWindow.qml" line="433"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="403"/>
+        <location filename="../Windows/MainWindow.qml" line="440"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Mới &amp;Thư viện</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="414"/>
+        <location filename="../Windows/MainWindow.qml" line="451"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Mới &amp;Ghi chú</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="422"/>
+        <location filename="../Windows/MainWindow.qml" line="459"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Danh sách mới &amp;Todo</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="430"/>
+        <location filename="../Windows/MainWindow.qml" line="467"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Mới &amp;Hình ảnh</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="438"/>
+        <location filename="../Windows/MainWindow.qml" line="475"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Thoát</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="446"/>
+        <location filename="../Windows/MainWindow.qml" line="483"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="455"/>
+        <location filename="../Windows/MainWindow.qml" line="492"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Tìm thấy</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="479"/>
+        <location filename="../Windows/MainWindow.qml" line="534"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Mở mục cuối cùng &amp;đã tạo</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="487"/>
+        <location filename="../Windows/MainWindow.qml" line="542"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Thanh mở &amp;bên trái</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="604"/>
+        <location filename="../Windows/MainWindow.qml" line="661"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Bắt đầu bằng cách &lt;a href=&apos;#newL Library&apos;&gt; tạo thư viện mới &lt;/a&gt;. Thư viện được sử dụng để lưu trữ các loại mặt hàng khác nhau như ghi chú, danh sách việc cần làm và hình ảnh.</translation>
     </message>
@@ -1313,6 +1324,64 @@
     </message>
 </context>
 <context>
+    <name>QuickNoteWindow</name>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="18"/>
+        <source>Quick Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="37"/>
+        <source>Quick Notes Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="49"/>
+        <source>Open the main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="61"/>
+        <source>Quick Note Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="124"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="132"/>
+        <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="149"/>
+        <source>Save as Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="160"/>
+        <source>Save as Todo List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="162"/>
+        <source>Quick Todo List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="152"/>
+        <source>Quick Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/QuickNoteWindow.qml" line="74"/>
+        <source>Type your notes here...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RecurrenceDialog</name>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="28"/>
@@ -1397,37 +1466,37 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="90"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Overdue</source>
         <translation type="unfinished">Quá hạn</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="111"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="123"/>
         <source>Today</source>
         <translation type="unfinished">Hôm nay</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="112"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="124"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Ngày mai</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="154"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="166"/>
         <source>Later This Week</source>
         <translation type="unfinished">Cuối tuần này</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="156"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="168"/>
         <source>Next Week</source>
         <translation type="unfinished">Tuần tới</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="157"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="169"/>
         <source>Coming Next</source>
         <translation type="unfinished">Kế tiếp</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="184"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="196"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Không có gì theo lịch trình ... Thêm ngày đáo hạn vào các mục để chúng xuất hiện ở đây.</translation>
     </message>
@@ -1512,55 +1581,65 @@
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
+        <source>System Tray:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="121"/>
+        <source>Open Quick Notes Editor on Click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="127"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="132"/>
+        <location filename="../Pages/SettingsPage.qml" line="144"/>
         <source>Use custom font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="141"/>
+        <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Use Compact Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="150"/>
+        <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="159"/>
+        <location filename="../Pages/SettingsPage.qml" line="171"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="170"/>
+        <location filename="../Pages/SettingsPage.qml" line="182"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="177"/>
+        <location filename="../Pages/SettingsPage.qml" line="189"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="184"/>
+        <location filename="../Pages/SettingsPage.qml" line="196"/>
         <source>Scale Factor:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="203"/>
+        <location filename="../Pages/SettingsPage.qml" line="215"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="212"/>
+        <location filename="../Pages/SettingsPage.qml" line="224"/>
         <source>Library Item Size:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1602,42 +1681,42 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="173"/>
+        <location filename="../Pages/TodoListPage.qml" line="192"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="185"/>
+        <location filename="../Pages/TodoListPage.qml" line="204"/>
         <source>Manually</source>
         <translation type="unfinished">Thủ công</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="191"/>
+        <location filename="../Pages/TodoListPage.qml" line="210"/>
         <source>Name</source>
         <translation type="unfinished">Tên</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="197"/>
+        <location filename="../Pages/TodoListPage.qml" line="216"/>
         <source>Due Date</source>
         <translation type="unfinished">Ngày đáo hạn</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="203"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Created At</source>
         <translation type="unfinished">Tạo tại</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="209"/>
+        <location filename="../Pages/TodoListPage.qml" line="228"/>
         <source>Updated At</source>
         <translation type="unfinished">Cập nhật tại</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="237"/>
+        <location filename="../Pages/TodoListPage.qml" line="256"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="257"/>
+        <location filename="../Pages/TodoListPage.qml" line="276"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Thêm công việc mới ...</translation>
     </message>
@@ -1645,17 +1724,17 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="125"/>
+        <location filename="../Pages/TodoPage.qml" line="139"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="150"/>
+        <location filename="../Pages/TodoPage.qml" line="164"/>
         <source>Tasks</source>
         <translation type="unfinished">Nhiệm vụ</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="156"/>
+        <location filename="../Pages/TodoPage.qml" line="170"/>
         <source>Add new task...</source>
         <translation type="unfinished">Thêm nhiệm vụ mới ...</translation>
     </message>
@@ -1663,7 +1742,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="194"/>
+        <location filename="../Widgets/TodosWidget.qml" line="195"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Do vào:%1</translation>
     </message>
@@ -1671,12 +1750,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="205"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="232"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Vuốt để đánh dấu hoàn tác</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="207"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="234"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Vuốt để đánh dấu xong</translation>
     </message>
