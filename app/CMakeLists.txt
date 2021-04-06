@@ -52,6 +52,7 @@ else()
             BUNDLE_IDENTIFIER "net.rpdev.OpenTodoList"
             VERSION "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
             ORIENTATION_PORTRAIT
+            ORIENTATION_PORTRAIT_UPDOWN
             ORIENTATION_PORTRAIT_UPSIDEDOWN
             ORIENTATION_LANDSCAPE_LEFT
             ORIENTATION_LANDSCAPE_RIGHT
@@ -61,6 +62,7 @@ else()
             IPA
             UPLOAD_SYMBOL
             ASSET_DIR ios/Images.xcassets
+            LAUNCHSCREEN_STORYBOARD "ios/LaunchScreen.storyboard"
         )
         target_sources(OpenTodoList PRIVATE  ${APP_SOURCES} ${APP_RESOURCES})
         qt_generate_plugin_import(
