@@ -99,7 +99,8 @@ On Linux, thanks to the availability of package managers, getting the required l
 
 #### Fedora Linux
 
-On Fedora, run the following to install all the pre-requisites required to build the app:
+On Fedora, run the following to install all the pre-requisites required to build the app (this assumes you build against
+system versions of all possible libraries):
 
 ```bash
 dnf install -y \
@@ -114,6 +115,12 @@ dnf install -y \
     kf5-knotifications-devel
 ```
 
+On top, if you want to build against the libraries included in the source distribution, run the following:
+
+```bash
+dnf install -y \
+    libsecret-devel
+```
 
 ## Building The App
 

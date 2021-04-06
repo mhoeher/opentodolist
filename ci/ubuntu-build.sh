@@ -4,9 +4,14 @@ set -e
 
 PREFIX_PATH=$QT_ROOT
 
-which ninja-build || (apt-get update && apt-get install -y ninja-build)
-
 if [ -n "$CI" ]; then
+    apt-get update -y
+    apt-get install -y \
+        libsecret-1-dev \
+        ninja-build \
+        cmake \
+        libssl-dev
+
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
         http://nextcloud/index.php
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
@@ -20,11 +25,6 @@ if [ -n "$CI" ]; then
         -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
     "
 fi
-
-which cmake || (apt-get update && apt-get install -y cmake)
-
-[ -f /usr/lib/x86_64-linux-gnu/libssl.so ] || \
-    (apt-get update && apt-get install -y libssl-dev)
 
 desktop-file-validate templates/appimage/default.desktop
 
