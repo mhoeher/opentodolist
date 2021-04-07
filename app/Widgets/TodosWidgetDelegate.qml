@@ -186,7 +186,15 @@ SwipeDelegate {
         
         Components.ToolButton {
             id: toggleSwipeOpened
-            visible: swipeDelegate.hovered
+            visible: {
+                switch (Qt.platform.os) {
+                case "ios":
+                case "android":
+                    return false;
+                default:
+                    return swipeDelegate.hovered;
+                }
+            }
             symbol: swipeDelegate.swipe.position === 0 ?
                         Icons.faChevronLeft :
                         Icons.faChevronRight

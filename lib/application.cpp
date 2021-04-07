@@ -182,6 +182,19 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
 #ifdef Q_OS_ANDROID
         {
             QAndroidJniExceptionCleaner cleaner;
+            QAndroidJniObject s = QAndroidJniObject::fromString(tr("Background Sync"));
+            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                                      "setBackgroundNotificationTitle",
+                                                      "(Ljava/lang/String;)V", s.object());
+            s = QAndroidJniObject::fromString(
+                    tr("App continues to sync your data in the background"));
+            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                                      "setBackgroundNotificationText",
+                                                      "(Ljava/lang/String;)V", s.object());
+            s = QAndroidJniObject::fromString(tr("Quit"));
+            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                                      "setBackgroundNotificationQuit",
+                                                      "(Ljava/lang/String;)V", s.object());
             QAndroidJniObject::callStaticMethod<void>(
                     "net/rpdev/OpenTodoList/BackgroundService", "startQtAndroidService",
                     "(Landroid/content/Context;)V", QtAndroid::androidActivity().object());

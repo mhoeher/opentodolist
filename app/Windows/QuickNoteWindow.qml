@@ -2,6 +2,7 @@ import QtQuick 2.10
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.5 as QQC2
+import QtQuick.Controls.Material 2.0 as M
 import Qt.labs.settings 1.0
 
 import "../Components" as Components
@@ -18,6 +19,14 @@ Window {
     title: qsTr("Quick Notes")
     width: 400
     height: 600
+
+    M.Material.theme: {
+        switch (Utils.Colors.theme) {
+        case Utils.Colors.lightTheme: return M.Material.Light;
+        case Utils.Colors.darkTheme: return M.Material.Dark;
+        case Utils.Colors.systemTheme: return M.Material.System;
+        }
+    }
 
     onVisibleChanged: if (visible) {
                           noteText.forceActiveFocus();
