@@ -150,6 +150,24 @@
     </message>
 </context>
 <context>
+    <name>Application</name>
+    <message>
+        <location filename="../../lib/application.cpp" line="185"/>
+        <source>Background Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/application.cpp" line="190"/>
+        <source>App continues to sync your data in the background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/application.cpp" line="194"/>
+        <source>Quit</source>
+        <translation type="unfinished">Schließen</translation>
+    </message>
+</context>
+<context>
     <name>Attachments</name>
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
@@ -1325,57 +1343,57 @@
 <context>
     <name>QuickNoteWindow</name>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="18"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="19"/>
         <source>Quick Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="37"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="46"/>
         <source>Quick Notes Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="49"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="58"/>
         <source>Open the main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="61"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
         <source>Quick Note Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="124"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="132"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="141"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="149"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="158"/>
         <source>Save as Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="160"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="169"/>
         <source>Save as Todo List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="162"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
         <source>Quick Todo List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="152"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="161"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="74"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="83"/>
         <source>Type your notes here...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1753,12 +1771,12 @@ Dies erfordert einen Neustart der Anwendung.</translation>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="232"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="240"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="234"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="242"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished"></translation>
     </message>

@@ -40,8 +40,7 @@ Page {
             }
 
             Label {
-                text: qsTr("(c) RPdev 2013-2020, version %1").arg(
-                          applicationVersion)
+                text: "(c) RPdev 2013-2021 - v%1".arg(applicationVersion)
                 width: parent.width
                 padding: Utils.AppSettings.smallSpace
             }

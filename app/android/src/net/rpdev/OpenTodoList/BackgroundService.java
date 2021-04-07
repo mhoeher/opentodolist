@@ -25,6 +25,11 @@ public class BackgroundService extends QtService
     private static NotificationCompat.Builder m_notificationBuilder;
     private static String CHANNEL_ID = "OpenTodoList";
 
+    // Translatable strings
+    private static String BACKGROUND_NOTIFICATION_TITLE = "";
+    private static String BACKGROUND_NOTIFICATION_TEXT = "";
+    private static String BACKGROUND_NOTIFICATION_QUIT = "";
+
     // Quit the service + application
     public static String ACTION_QUIT = "OpenTodoList.Quit";
 
@@ -105,4 +110,17 @@ public class BackgroundService extends QtService
         m_notificationManager.notify(notificationId, notification);
         return notification;
     }
+
+    public static void setBackgroundNotificationTitle(String title) {
+        BACKGROUND_NOTIFICATION_TITLE = title;
+    }
+
+    public static void setBackgroundNotificationText(String text) {
+        BACKGROUND_NOTIFICATION_TEXT = text;
+    }
+
+    public static void setBackgroundNotificationQuit(String quit) {
+        BACKGROUND_NOTIFICATION_QUIT = quit;
+    }
+
 }
