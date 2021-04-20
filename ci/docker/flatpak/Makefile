@@ -5,7 +5,7 @@ help:
 	@echo "  publish - Upload the image to GitLab."
 
 build:
-	podman build --pull -t ${IMAGE} .
+	podman build --pull --no-cache -t ${IMAGE} .
 
 publish:
 	podman push docker://${IMAGE}

@@ -35,28 +35,6 @@
             ]
         },
         {
-            "name": "qtremoteobjects",
-            "buildsystem": "qmake",
-            "make-install-args": [
-                "INSTALL_ROOT=/app"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/qt/qtremoteobjects.git",
-                    "disable-shallow-clone": true,
-                    "branch": "dev"
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                        "qmake -query QT_VERSION",
-                        "git checkout v$(qmake -query QT_VERSION)"
-                    ]
-                }
-            ]
-        },
-        {
             "name": "opentodolist",
             "buildsystem": "cmake-ninja",
             "config-opts": [
@@ -75,9 +53,8 @@
                 {
                     "type": "shell",
                     "commands": [
-                        "ln -s /app/usr/lib/*-linux-gnu /app/usr/lib/all-linux-gnu",
-                        "ln -s /app/share /app/usr/share",
-                        "ln -s /app/usr/lib/all-linux-gnu/libQt5RemoteObjects.so.5 /app/lib"
+                        "mkdir -p /app/usr/",
+                        "ln -s /app/share /app/usr/share"
                     ]
                 }
             ]
