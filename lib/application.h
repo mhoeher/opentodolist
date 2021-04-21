@@ -140,6 +140,8 @@ public:
 
     Q_INVOKABLE void syncAllLibraries();
 
+    Q_INVOKABLE bool openUrl(const QUrl& url);
+
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE void finishActivity();
 #endif
