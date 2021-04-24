@@ -108,6 +108,8 @@ void WebDAVSynchronizer::synchronize()
         SynqClient::DirectorySynchronizer sync;
         sync.setRemoteDirectoryPath(m_remoteDirectory);
         sync.setLocalDirectoryPath(directory());
+        sync.setMaxJobs(1); // WA: See if this mitigates the issue. If so, we need to make this
+                            // configurable.
         sync.setSyncConflictStrategy(SynqClient::SyncConflictStrategy::RemoteWins);
         connect(&sync, &SynqClient::DirectorySynchronizer::logMessageAvailable, this,
                 [=](SynqClient::SynchronizerLogEntryType type, const QString& message) {
