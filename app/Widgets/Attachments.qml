@@ -71,9 +71,9 @@ Item {
             delegate: MouseArea {
                 width: parent.width
                 height: childrenRect.height
-                onClicked: Qt.openUrlExternally(
-                               OTL.Application.localFileToUrl(
-                                   item.item.attachmentFileName(modelData)))
+                onClicked: OTL.Application.openUrl(OTL.Application.localFileToUrl(
+                                                       item.item.attachmentFileName(modelData)))
+
                 RowLayout {
                     width: parent.width
 

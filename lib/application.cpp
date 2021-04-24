@@ -23,6 +23,7 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
@@ -1102,6 +1103,31 @@ void Application::syncAllLibraries()
             runSyncForLibrary(library);
         }
     }
+}
+
+/**
+ * @brief Drop in replacement for QDesktopServices::openUrl()
+ *
+ * This is a workaround for https://bugreports.qt.io/browse/QTBUG-83939. See also
+ * https://forum.snapcraft.io/t/xdg-open-or-gvfs-open-qdesktopservices-openurl-file-somelocation-file-txt-wont-open-the-file/16824.
+ * We basically try to detect if we run inside a snap and - if so - open file URLs using xdg-open
+ * directly.
+ *
+ * @param url
+ */
+bool Application::openUrl(const QUrl& url)
+{
+#ifdef Q_OS_LINUX
+    // Is this a file URL?
+    if (url.isLocalFile()) {
+        // Check if we run inside a snap:
+        if (!qgetenv("SNAP").isNull()) {
+            // Run "xdg-open" to open the file:
+            QProcess::startDetached("xdg-open", { url.toString() });
+        }
+    }
+#endif
+    return QDesktopServices::openUrl(url);
 }
 
 #ifdef Q_OS_ANDROID
