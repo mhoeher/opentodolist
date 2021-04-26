@@ -104,97 +104,108 @@ void WebDAVSynchronizer::validate()
 
 void WebDAVSynchronizer::synchronize()
 {
-    if (!directory().isEmpty() && !synchronizing()) {
-        SynqClient::DirectorySynchronizer sync;
-        sync.setRemoteDirectoryPath(m_remoteDirectory);
-        sync.setLocalDirectoryPath(directory());
-        sync.setMaxJobs(1); // WA: See if this mitigates the issue. If so, we need to make this
-                            // configurable.
-        sync.setSyncConflictStrategy(SynqClient::SyncConflictStrategy::RemoteWins);
-        connect(&sync, &SynqClient::DirectorySynchronizer::logMessageAvailable, this,
-                [=](SynqClient::SynchronizerLogEntryType type, const QString& message) {
-                    switch (type) {
-                    case SynqClient::SynchronizerLogEntryType::Information:
-                        writeLog(Synchronizer::Debug) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Warning:
-                        writeLog(Synchronizer::Warning) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Error:
-                        writeLog(Synchronizer::Error) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::LocalMkDir:
-                        writeLog(Synchronizer::LocalMkDir) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::RemoteMkDir:
-                        writeLog(Synchronizer::RemoteMkDir) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::LocalDelete:
-                        writeLog(Synchronizer::LocalDelete) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::RemoteDelete:
-                        writeLog(Synchronizer::RemoteDelete) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Upload:
-                        writeLog(Synchronizer::Upload) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Download:
-                        writeLog(Synchronizer::Download) << message;
-                        break;
-                    }
-                });
-        connect(&sync, &SynqClient::DirectorySynchronizer::progress, this,
-                &WebDAVSynchronizer::progress);
-
-        SynqClient::WebDAVJobFactory factory;
-        factory.setNetworkAccessManager(nam());
-        factory.setServerType(toSynqClientServerType(m_serverType));
-        factory.setUrl(createUrl());
-        factory.setUserAgent(Synchronizer::HTTPUserAgent);
-        sync.setJobFactory(&factory);
-
-        SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
-        sync.setSyncStateDatabase(&db);
-
-        QRegularExpression pathRe(
-                R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[a-zA-Z\.]+)?)?)?$)");
-        sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
-            auto result = pathRe.match(path).hasMatch();
-            return result;
-        });
-
-        QEventLoop loop;
-        connect(&sync, &SynqClient::DirectorySynchronizer::finished, &loop, &QEventLoop::quit);
-        connect(this, &WebDAVSynchronizer::stopRequested, &sync,
-                &SynqClient::DirectorySynchronizer::stop);
-
-        setSynchronizing(true);
-        m_stopRequested = false;
-        m_hasSyncErrors = false;
-        {
-            QDir syncDir(directory());
-            QFile file(syncDir.absoluteFilePath(SyncLockFileName));
-            if (!file.open(QIODevice::WriteOnly)) {
-                qCWarning(::log) << "Failed to create sync lock:" << file.errorString();
-                error() << tr("Failed to create sync lock:") << file.errorString();
-            } else {
-                file.close();
+    bool retryWithOneJobOnly = false;
+    bool finished = false;
+    while (!finished) {
+        finished = true;
+        if (!directory().isEmpty() && !synchronizing()) {
+            SynqClient::DirectorySynchronizer sync;
+            sync.setRemoteDirectoryPath(m_remoteDirectory);
+            sync.setLocalDirectoryPath(directory());
+            if (retryWithOneJobOnly) {
+                // WA for https://github.com/mhoeher/opentodolist/issues/46
+                sync.setMaxJobs(1);
             }
-        }
+            sync.setSyncConflictStrategy(SynqClient::SyncConflictStrategy::RemoteWins);
+            connect(&sync, &SynqClient::DirectorySynchronizer::logMessageAvailable, this,
+                    [=](SynqClient::SynchronizerLogEntryType type, const QString& message) {
+                        switch (type) {
+                        case SynqClient::SynchronizerLogEntryType::Information:
+                            writeLog(Synchronizer::Debug) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::Warning:
+                            writeLog(Synchronizer::Warning) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::Error:
+                            writeLog(Synchronizer::Error) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::LocalMkDir:
+                            writeLog(Synchronizer::LocalMkDir) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::RemoteMkDir:
+                            writeLog(Synchronizer::RemoteMkDir) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::LocalDelete:
+                            writeLog(Synchronizer::LocalDelete) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::RemoteDelete:
+                            writeLog(Synchronizer::RemoteDelete) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::Upload:
+                            writeLog(Synchronizer::Upload) << message;
+                            break;
+                        case SynqClient::SynchronizerLogEntryType::Download:
+                            writeLog(Synchronizer::Download) << message;
+                            break;
+                        }
+                    });
+            connect(&sync, &SynqClient::DirectorySynchronizer::progress, this,
+                    &WebDAVSynchronizer::progress);
 
-        sync.start();
-        loop.exec();
+            SynqClient::WebDAVJobFactory factory;
+            factory.setNetworkAccessManager(nam());
+            factory.setServerType(toSynqClientServerType(m_serverType));
+            factory.setUrl(createUrl());
+            factory.setUserAgent(Synchronizer::HTTPUserAgent);
+            sync.setJobFactory(&factory);
 
-        if (sync.error() != SynqClient::SynchronizerError::NoError) {
-            m_hasSyncErrors = true;
-            emit syncError(sync.errorString());
-        }
+            SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
+            sync.setSyncStateDatabase(&db);
 
-        if (!m_stopRequested) {
-            QDir syncDir(directory());
-            syncDir.remove(SyncLockFileName);
+            QRegularExpression pathRe(
+                    R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[a-zA-Z\.]+)?)?)?$)");
+            sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
+                auto result = pathRe.match(path).hasMatch();
+                return result;
+            });
+
+            QEventLoop loop;
+            connect(&sync, &SynqClient::DirectorySynchronizer::finished, &loop, &QEventLoop::quit);
+            connect(this, &WebDAVSynchronizer::stopRequested, &sync,
+                    &SynqClient::DirectorySynchronizer::stop);
+
+            setSynchronizing(true);
+            m_stopRequested = false;
+            m_hasSyncErrors = false;
+            {
+                QDir syncDir(directory());
+                QFile file(syncDir.absoluteFilePath(SyncLockFileName));
+                if (!file.open(QIODevice::WriteOnly)) {
+                    qCWarning(::log) << "Failed to create sync lock:" << file.errorString();
+                    error() << tr("Failed to create sync lock:") << file.errorString();
+                } else {
+                    file.close();
+                }
+            }
+
+            sync.start();
+            loop.exec();
+
+            if (sync.error() != SynqClient::SynchronizerError::NoError) {
+                m_hasSyncErrors = true;
+                emit syncError(sync.errorString());
+                if (sync.retryWithFewerJobs() && !retryWithOneJobOnly) {
+                    retryWithOneJobOnly = true;
+                    finished = false;
+                }
+            }
+
+            if (!m_stopRequested) {
+                QDir syncDir(directory());
+                syncDir.remove(SyncLockFileName);
+            }
+            setSynchronizing(false);
         }
-        setSynchronizing(false);
     }
 }
 
