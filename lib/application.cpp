@@ -1123,7 +1123,7 @@ bool Application::openUrl(const QUrl& url)
         // Check if we run inside a snap:
         if (!qgetenv("SNAP").isNull()) {
             // Run "xdg-open" to open the file:
-            QProcess::startDetached("xdg-open", { url.toString() });
+            return QProcess::startDetached("xdg-open", { url.toString() });
         }
     }
 #endif
