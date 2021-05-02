@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 # Minimal docker container to build project
 # Image: rabits/qt:5.15-desktop
@@ -30,8 +30,10 @@ RUN apt update && apt full-upgrade -y && apt install -y --no-install-recommends 
     ca-certificates \
     ccache \
     cmake \
+    cmake \
     curl \
     desktop-file-utils \
+    file \
     git \
     libdbus-1-3 \
     libfontconfig1 \
@@ -41,24 +43,26 @@ RUN apt update && apt full-upgrade -y && apt install -y --no-install-recommends 
     libice6 \
     libodbc1 \
     libpq5 \
+    libsecret-1-dev \
     libsm6 \
+    libssl-dev \
     libssl-dev \
     libwayland-dev \
     libwayland-egl1-mesa \
     libwayland-server0 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-render-util0 \
+    libxcb-xinerama0 \
     libxcomposite1 \
     libxext6 \
     libxkbcommon-dev \
     libxkbcommon-x11-0 \
     libxkbcommon-x11-0 \
     libxrender1 \
-    libxcb-icccm4 \
-    libxcb-image0 \
-    libxcb-keysyms1 \
-    libxcb-render-util0 \
-    libxcb-xinerama0 \
-    file \
     locales \
+    ninja-build \
     ninja-build \
     openssh-client \
     pkg-config \
