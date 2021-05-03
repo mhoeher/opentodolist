@@ -71,9 +71,9 @@ Long story short, here is the list of libraries that are needed to build the app
 The following components are strictly required to build the app and hence we include them in source form in the `3rdparty` folder. However, if you already have a built version of these, you can build against these pre-build versions:
 
 - KDE's [`syntax-highlighting`](https://api.kde.org/frameworks/syntax-highlighting/html/index.html) framework >= 5.70.0.
-- [QLMDB](https://gitlab.com/rpdev/qlmdb) >= 1.2.0.
+- [QLMDB](https://gitlab.com/rpdev/qlmdb) >= 1.2.1.
 - [qt-keychain](https://github.com/frankosterfeld/qtkeychain/) >= 0.10.0.
-- [SynqClient](https://gitlab.com/rpdev/synqclient) >= 1.4.0.
+- [SynqClient](https://gitlab.com/rpdev/synqclient) >= 1.6.0.
 
 
 ### Optional And Alternative Dependencies
