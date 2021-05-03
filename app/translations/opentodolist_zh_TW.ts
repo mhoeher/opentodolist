@@ -19,52 +19,52 @@
         <translation type="unfinished">待办和任务管理程序。</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="43"/>
-        <source>(c) RPdev 2013-2020, version %1</source>
-        <translation type="unfinished">(c) RPdev 2013-2020, 版本 %1</translation>
-    </message>
-    <message>
-        <location filename="../Pages/AboutPage.qml" line="60"/>
+        <location filename="../Pages/AboutPage.qml" line="65"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
         <translation type="unfinished">OpenTodoList以&lt;a href=&apos;app-license&apos;&gt;GUN GPLv3许可协议&lt;/a&gt;或（由您选择）任何更高版本的条款发行。</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="79"/>
+        <location filename="../Pages/AboutPage.qml" line="84"/>
         <source>Report an Issue</source>
         <translation type="unfinished">上报问题</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="92"/>
+        <source>Copy System Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/AboutPage.qml" line="113"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">第三方库和资源</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="129"/>
+        <location filename="../Pages/AboutPage.qml" line="150"/>
         <source>Author:</source>
         <translation type="unfinished">作者：</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="134"/>
+        <location filename="../Pages/AboutPage.qml" line="155"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="142"/>
+        <location filename="../Pages/AboutPage.qml" line="163"/>
         <source>License:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="147"/>
+        <location filename="../Pages/AboutPage.qml" line="168"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt; {1&apos;?} {2&lt;?}</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="155"/>
+        <location filename="../Pages/AboutPage.qml" line="176"/>
         <source>Download:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="160"/>
+        <location filename="../Pages/AboutPage.qml" line="181"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt; {1&apos;?} {1&lt;?}</translation>
     </message>
@@ -134,35 +134,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="310"/>
+        <location filename="../appstartup.cpp" line="324"/>
         <source>Open</source>
         <translation type="unfinished">打开</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="317"/>
+        <location filename="../appstartup.cpp" line="331"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Application</name>
-    <message>
-        <location filename="../../lib/application.cpp" line="185"/>
-        <source>Background Sync</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/application.cpp" line="190"/>
-        <source>App continues to sync your data in the background</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/application.cpp" line="194"/>
+        <location filename="../appstartup.cpp" line="384"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1307,8 +1289,8 @@
 <context>
     <name>OpenImageDialog</name>
     <message>
-        <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
+        <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
         <translation type="unfinished">选择图片</translation>
     </message>
@@ -1337,6 +1319,15 @@
     <message>
         <location filename="../Actions/PromoteTask.qml" line="12"/>
         <source>Promote</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../appstartup.cpp" line="270"/>
+        <location filename="../appstartup.cpp" line="277"/>
+        <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1916,14 +1907,6 @@ This requires a restart of the app.</source>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
         <translation type="unfinished">下载</translation>
-    </message>
-</context>
-<context>
-    <name>WebDAVSynchronizer</name>
-    <message>
-        <location filename="../../lib/sync/webdavsynchronizer.cpp" line="177"/>
-        <source>Failed to create sync lock:</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
