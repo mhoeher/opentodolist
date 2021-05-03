@@ -265,7 +265,44 @@ ApplicationWindow {
         property var visibleDynamicToolBarButtons
         property var visibleDynamicPageMenuItems
 
+        property QuickNoteWindow quickNoteWindow: null
+
+        function createQuickNoteEditor() {
+            if (!AppSettings.supportsQuickEditor) {
+                return;
+            }
+
+            let componentUrl = Qt.resolvedUrl("./QuickNoteWindow.qml");
+            let component = Qt.createComponent(componentUrl);
+            quickNoteWindow = component.createObject();
+        }
+
+        function showMainWindow() {
+            if (!window.visible) {
+                window.show();
+            }
+            window.requestActivate();
+            window.raise();
+        }
+
+        function hideMainWindow() {
+            window.hide();
+        }
+
+        function showQuickNotesEditor() {
+            quickNoteWindow.show();
+            quickNoteWindow.requestActivate();
+            quickNoteWindow.raise();
+        }
+
         dynamicPageActions: [
+            ToolBarAction {
+                symbol: Icons.faUndo
+                text: qsTr("Undo")
+                visible: undoAction.enabled
+                onTriggered: undoAction.trigger()
+            },
+
             ToolBarAction {
                 symbol: Icons.faPencilAlt
                 text: qsTr("Rename")
@@ -457,6 +494,24 @@ ApplicationWindow {
         onTriggered: searchToolButtonAction.trigger()
     }
 
+    Action {
+        id: undoAction
+
+        text: qsTr("Undo")
+        shortcut: StandardKey.Undo
+        enabled: {
+            let currentItem = stackView.currentItem;
+            if (currentItem && typeof(currentItem.undo) === "function") {
+                return true;
+            }
+            return false;
+        }
+        onTriggered: {
+            let currentItem = stackView.currentItem;
+            currentItem.undo();
+        }
+    }
+
     Shortcut {
         id: goBackShortcut
         sequences: [
@@ -501,6 +556,8 @@ ApplicationWindow {
         font.pointSize = Qt.binding(function() {
             return AppSettings.useCustomFontSize ? AppSettings.customFontSize : defaultFontSize;
         });
+
+        d.createQuickNoteEditor();
     }
 
     onClosing: {
@@ -705,7 +762,7 @@ ApplicationWindow {
             onItemClicked: {
                 stackView.push(Qt.resolvedUrl("../Pages/" +
                                               item.itemType + "Page.qml"),
-                               { item: item, library: library, stack: stackView });
+                               { item: OTL.Application.cloneItem(item), library: library, stack: stackView });
             }
         }
     }
@@ -766,10 +823,42 @@ ApplicationWindow {
         target: OTL.Application
 
         function onShowWindowRequested() {
-            console.debug("Request to show main window")
-            if (!window.visible) {
-                window.show();
+            d.showMainWindow();
+        }
+
+        function onHideWindowRequested() {
+            d.hideMainWindow();
+        }
+
+        function onShowQuickNotesEditorRequested() {
+            d.showQuickNotesEditor();
+        }
+
+        function onSystemTrayIconClicked() {
+            if (AppSettings.showQuickNotesEditorOnSystemTrayClick) {
+                d.showQuickNotesEditor();
+            } else {
+                d.showMainWindow();
             }
+        }
+
+        function onApplicationActivated() {
+            switch (Qt.platform.os) {
+            case "android":
+            case "ios":
+                d.showMainWindow();
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
+    Connections {
+        target: d.quickNoteWindow
+
+        function onOpenMainWindow() {
+            window.show();
             window.requestActivate();
             window.raise();
         }

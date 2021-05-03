@@ -40,8 +40,13 @@ Page {
             }
 
             Label {
-                text: qsTr("(c) RPdev 2013-2020, version %1").arg(
-                          applicationVersion)
+                text: "(c) RPdev 2013-2021 - v%1".arg(applicationVersion)
+                width: parent.width
+                padding: Utils.AppSettings.smallSpace
+            }
+
+            Label {
+                text: "Git version %1 (%2)".arg(gitVersion).arg(gitRevision)
                 width: parent.width
                 padding: Utils.AppSettings.smallSpace
             }
@@ -67,7 +72,7 @@ Page {
                     case "app-license":
                         Qt.openUrlExternally(
                                     "https://gitlab.com/rpdev/opentodolist/" +
-                                    "raw/master/COPYING");
+                                    "raw/stable/COPYING");
                         break;
                     }
                 }
@@ -80,6 +85,22 @@ Page {
                 onClicked: Qt.openUrlExternally(
                                "https://gitlab.com/rpdev/opentodolist/" +
                                "issues/new")
+            }
+
+            Button {
+                anchors.right: parent.right
+                text: qsTr("Copy System Information")
+                onClicked: {
+                    let info = {
+                        "version": applicationVersion,
+                        "git": {
+                            "revision": gitRevision,
+                            "version": gitVersion
+                        },
+                        "os": Qt.platform.os
+                    };
+                    OTL.Application.copyToClipboard(JSON.stringify(info, null, "    "));
+                }
             }
 
             Item {

@@ -114,7 +114,7 @@ ItemPage {
 
                     MouseArea {
                         anchors.fill: image
-                        onClicked: Qt.openUrlExternally(item.imageUrl)
+                        onClicked: OTL.Application.openUrl(item.imageUrl)
                     }
                 }
 

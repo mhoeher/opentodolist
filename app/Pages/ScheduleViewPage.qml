@@ -31,6 +31,17 @@ Page {
         return result;
     }
     property alias pageActions: libraryActions.actions
+    property var undo: {
+        if (d.savedItemStates.length > 0) {
+            return function() {
+                let list = d.savedItemStates.slice();
+                OTL.Application.restoreItem(list.pop());
+                d.savedItemStates = list;
+            }
+        } else {
+            return null;
+        }
+    }
 
     signal openPage(var component, var properties)
 
@@ -103,6 +114,7 @@ Page {
 
         property int hasScheduledItems: items.count > 0
         property var locale: Qt.locale()
+        property var savedItemStates: []
 
         function d2s(date) {
             return date.toLocaleDateString(locale, "yyyy-MM-dd");
@@ -198,23 +210,29 @@ Page {
         library: page.library
 
         onTodoClicked: {
-            switch (todo.itemType) {
+            let clone = OTL.Application.cloneItem(todo);
+            switch (clone.itemType) {
             case "Note":
-                page.openPage(notePage, { item: todo });
+                page.openPage(notePage, { item: clone });
                 break;
             case "TodoList":
-                page.openPage(todoListPage, { item: todo });
+                page.openPage(todoListPage, { item: clone });
                 break;
             case "Todo":
-                page.openPage(todoPage, { item: todo });
+                page.openPage(todoPage, { item: clone });
                 break;
             case "Image":
-                page.openPage(imagePage, { item: todo });
+                page.openPage(imagePage, { item: clone });
                 break;
             default:
-                console.warn("Unhandled item type: " + todo.itemType);
+                console.warn("Unhandled item type: " + clone.itemType);
                 break;
             }
+        }
+        onItemSaved: {
+            let list = d.savedItemStates.slice();
+            list.push(itemData);
+            d.savedItemStates = list;
         }
         itemsModel: sortedItems
         section {

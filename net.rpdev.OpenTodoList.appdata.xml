@@ -40,6 +40,53 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.34.0" date="2021-05-03">
+        <p>This release includes the following changes:</p>
+        <ul>
+          <li>
+            #442: Ensure the AppImage version starts on Wayland based desktops.
+          </li>
+          <li>
+            #440: Fix opening files attached to items in the Snap version.
+          </li>
+          <li>
+            #437: Fix connectivity issues with Apache mod_dav based WebDAV.
+          </li>
+          <li>
+            #432: Fix automatic upload to Snapcraft from CIs.
+          </li>
+          <li>
+            #418: Build iOS version of the app using cmake.
+          </li>
+          <li>
+            #368: Translatable strings in the Android notification.
+          </li>
+          <li>
+            #441: Workaround for faulty NextCloud servers when uploading several larger files in parallel.
+          </li>
+          <li>
+            #431: Remove donate link from iOS version of the app.
+          </li>
+          <li>
+            #420: Migrate to new development/stable branches.
+          </li>
+          <li>
+            #419: Clean up CI definitions.
+          </li>
+          <li>
+            #416: Update build instructions.
+          </li>
+          <li>
+            #370: Use KNotifier for some releases of the app.
+          </li>
+          <li>
+            #327: Implement an undo feature (via Ctrl+Z/Cmd+Z) to undo checking/unchecking of todos and tasks.
+          </li>
+          <li>
+            #318: Implement a quick notes editor to quickly capture Markdown notes.
+          </li>
+        </ul>
+      </release>
       <release version="3.33.0" date="2021-04-01">
         <p>This release includes the following changes:</p>
         <ul>

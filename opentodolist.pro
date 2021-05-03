@@ -5,7 +5,6 @@ OTHER_FILES += \
     COPYING \
     PKGBUILD* \
     Doxyfile \
-    doc/installers-howto.md \
     .gitlab-ci.yml \
     .qmake.conf \
     bin/* \

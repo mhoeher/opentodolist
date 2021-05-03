@@ -23,6 +23,7 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QDir>
 #include <QDirIterator>
 #include <QFileInfo>
@@ -182,6 +183,19 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
 #ifdef Q_OS_ANDROID
         {
             QAndroidJniExceptionCleaner cleaner;
+            QAndroidJniObject s = QAndroidJniObject::fromString(tr("Background Sync"));
+            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                                      "setBackgroundNotificationTitle",
+                                                      "(Ljava/lang/String;)V", s.object());
+            s = QAndroidJniObject::fromString(
+                    tr("App continues to sync your data in the background"));
+            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                                      "setBackgroundNotificationText",
+                                                      "(Ljava/lang/String;)V", s.object());
+            s = QAndroidJniObject::fromString(tr("Quit"));
+            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                                      "setBackgroundNotificationQuit",
+                                                      "(Ljava/lang/String;)V", s.object());
             QAndroidJniObject::callStaticMethod<void>(
                     "net/rpdev/OpenTodoList/BackgroundService", "startQtAndroidService",
                     "(Landroid/content/Context;)V", QtAndroid::androidActivity().object());
@@ -210,6 +224,13 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     this, &Application::onBackgroundServiceCacheLibrariesChanged);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::showAppWindowRequested,
                     this, &Application::showWindowRequested);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::hideAppWindowRequested,
+                    this, &Application::hideWindowRequested);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::systemTrayIconClicked,
+                    this, &Application::systemTrayIconClicked);
+            connect(m_backgroundService.data(),
+                    &BackgroundServiceReplica::showQuickNotesEditorRequested, this,
+                    &Application::showQuickNotesEditorRequested);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::serviceAboutToExit,
                     QCoreApplication::instance(), &QCoreApplication::quit);
         }
@@ -803,6 +824,56 @@ Item* Application::itemFromData(const QVariant& data)
 }
 
 /**
+ * @brief Clone an item.
+ *
+ * This creates a clone of the given @p item. In addition, the resulting item will be setup to track
+ * changes in the item cache, so whenever ther are any updates (e.g. due to sync) the item gets
+ * updated as well.
+ */
+Item* Application::cloneItem(Item* item)
+{
+    Item* result = nullptr;
+    if (item != nullptr) {
+        result = Item::decache(item->encache());
+        result->setCache(m_cache);
+    }
+    return result;
+}
+
+/**
+ * @brief Create a snapshot of the item and store it for later.
+ *
+ * This saves the current state of the @p item and returns a snapshot of it. This data can be used
+ * to e.g. restore the item state.
+ */
+QString Application::saveItem(Item* item)
+{
+    QByteArray result;
+    if (item != nullptr) {
+        result = item->encache().serialize().toHex();
+    }
+    return result;
+}
+
+/**
+ * @brief Restore a previously saved item.
+ *
+ * This restores the state of an item from the @p data, which previously must have been created via
+ * a call to saveItem().
+ */
+void Application::restoreItem(const QString& data)
+{
+    QSharedPointer<Item> item(
+            Item::decache(ItemCacheEntry::deserialize(QByteArray::fromHex(data.toUtf8()))));
+    qCWarning(log) << "Restore item" << data << item;
+    if (item != nullptr) {
+        auto q = new InsertOrUpdateItemsQuery();
+        q->add(item.data(), InsertOrUpdateItemsQuery::Save);
+        m_cache->run(q);
+    }
+}
+
+/**
  * @brief Save a value to the application settings
  *
  * This method is used to save a value to the application settings. Settings
@@ -1032,6 +1103,31 @@ void Application::syncAllLibraries()
             runSyncForLibrary(library);
         }
     }
+}
+
+/**
+ * @brief Drop in replacement for QDesktopServices::openUrl()
+ *
+ * This is a workaround for https://bugreports.qt.io/browse/QTBUG-83939. See also
+ * https://forum.snapcraft.io/t/xdg-open-or-gvfs-open-qdesktopservices-openurl-file-somelocation-file-txt-wont-open-the-file/16824.
+ * We basically try to detect if we run inside a snap and - if so - open file URLs using xdg-open
+ * directly.
+ *
+ * @param url
+ */
+bool Application::openUrl(const QUrl& url)
+{
+#ifdef Q_OS_LINUX
+    // Is this a file URL?
+    if (url.isLocalFile()) {
+        // Check if we run inside a snap:
+        if (!qgetenv("SNAP").isNull()) {
+            // Run "xdg-open" to open the file:
+            return QProcess::startDetached("xdg-open", { url.toString() });
+        }
+    }
+#endif
+    return QDesktopServices::openUrl(url);
 }
 
 #ifdef Q_OS_ANDROID

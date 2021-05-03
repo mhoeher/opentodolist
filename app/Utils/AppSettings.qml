@@ -22,6 +22,22 @@ Item {
     readonly property int mediumSpace: smallSpace * 2
     readonly property int largeSpace: mediumSpace * 2
 
+    readonly property int tooltipDelay: 500
+    readonly property int tooltipTimeout: 10000
+
+    property bool showQuickNotesEditorOnSystemTrayClick: false
+
+    readonly property bool supportsQuickEditor: {
+        switch (Qt.platform.os) {
+            case "android":
+            case "ios":
+                // Not supported on these platforms - sorry
+                return false;
+            default:
+                return true;
+        }
+    }
+
     readonly property bool selectTextByMouse: {
         switch (Qt.platform.os) {
         case "android":
@@ -42,6 +58,7 @@ Item {
         property alias uiScaling: settings.uiScaling
         property alias overrideUiScaling: settings.overrideUiScaling
         property alias libraryItemWidthScaleFactor: settings.libraryItemWidthScaleFactor
+        property alias showQuickNotesEditorOnSystemTrayClick: settings.showQuickNotesEditorOnSystemTrayClick
 
         category: "ApplicationWindow"
     }

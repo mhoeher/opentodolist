@@ -112,6 +112,18 @@ Page {
             }
 
             Label {
+                text: qsTr("System Tray:")
+                visible: Utils.AppSettings.supportsQuickEditor
+            }
+
+            CheckBox {
+                checked: Utils.AppSettings.showQuickNotesEditorOnSystemTrayClick
+                text: qsTr("Open Quick Notes Editor on Click")
+                onCheckedChanged: Utils.AppSettings.showQuickNotesEditorOnSystemTrayClick = checked
+                visible: Utils.AppSettings.supportsQuickEditor
+            }
+
+            Label {
                 text: qsTr("Font Size:")
             }
 

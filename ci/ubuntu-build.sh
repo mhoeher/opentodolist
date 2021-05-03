@@ -4,8 +4,6 @@ set -e
 
 PREFIX_PATH=$QT_ROOT
 
-which ninja-build || (apt-get update && apt-get install -y ninja-build)
-
 if [ -n "$CI" ]; then
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
         http://nextcloud/index.php
@@ -20,11 +18,6 @@ if [ -n "$CI" ]; then
         -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
     "
 fi
-
-which cmake || (apt-get update && apt-get install -y cmake)
-
-[ -f /usr/lib/x86_64-linux-gnu/libssl.so ] || \
-    (apt-get update && apt-get install -y libssl-dev)
 
 desktop-file-validate templates/appimage/default.desktop
 
@@ -67,7 +60,14 @@ if [ ! -f "$LINUXDEPLOYQT" ]; then
 fi
 
 "$LINUXDEPLOYQT" --appimage-extract
+
+# TODO: Check why the AppImage crashes when running on e.g. KDE Wayland on Fedora
+#./squashfs-root/AppRun AppImageBuild/usr/bin/OpenTodoList \
+#    -qmldir=../app -qmake=$QT_ROOT/bin/qmake \
+#    -appimage \
+#    -extra-plugins=platforms/libqwayland-generic.so,platforminputcontexts,wayland-graphics-integration-client,wayland-shell-integration,wayland-decoration-client
+
 ./squashfs-root/AppRun AppImageBuild/usr/bin/OpenTodoList \
     -qmldir=../app -qmake=$QT_ROOT/bin/qmake \
     -appimage \
-    -extra-plugins=platforms/libqwayland-generic.so,platforminputcontexts,wayland-graphics-integration-client
+    -extra-plugins=platforminputcontexts

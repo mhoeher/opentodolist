@@ -38,7 +38,12 @@
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
-#include <QSystemTrayIcon>
+
+#ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
+#    include <KStatusNotifierItem>
+#else
+#    include <QSystemTrayIcon>
+#endif
 
 #ifdef Q_OS_ANDROID
 #    include <QtAndroidExtras>
@@ -82,8 +87,12 @@ private:
     QRemoteObjectHost* m_srcNode;
     BackgroundService* m_backgroundService;
     Application* m_application;
+#ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
+    KStatusNotifierItem* m_statusNotifierItem;
+#else
     QSystemTrayIcon* m_trayIcon;
-    QMenu* m_trayMenu;
+#endif
+    QPointer<QMenu> m_trayMenu;
     static QVector<QtMessageHandler> s_prevMessageHandler;
 
     QCommandLineParser m_parser;

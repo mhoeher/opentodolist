@@ -14,6 +14,10 @@ option(OPENTODOLIST_WITH_APPIMAGE_EXTRAS
     "Enable features specific to the AppImage build."
     OFF
 )
+option(OPENTODOLIST_WITH_KNOTIFICATIONS
+    "Use KNotifications instead of Qt's built-in system tray implementation"
+    OFF
+)
 
 option(OPENTODOLIST_USE_SYSTEM_LIBRARIES
     "The default mode used for deciding whether to build against system libraries."
@@ -30,10 +34,6 @@ option(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
 )
 option(OPENTODOLIST_USE_SYSTEM_QLMDB
     "Build against the system QLMDB library."
-     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
-)
-option(OPENTODOLIST_USE_SYSTEM_SINGLEAPPLICATION
-    "Build against the system SingleApplication library."
      ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
 )
 option(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT

@@ -8,7 +8,7 @@ cd ..
 
 if [ -n "$CI" ]; then
     if [ ! -f /usr/bin/clang-format ]; then
-        dnf install -y --nogpgcheck clang
+        dnf install -y --nogpgcheck clang-tools-extra
     fi
     if [ ! -f /usr/bin/python ]; then
         dnf install -y --nogpgcheck python

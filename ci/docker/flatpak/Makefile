@@ -5,10 +5,10 @@ help:
 	@echo "  publish - Upload the image to GitLab."
 
 build:
-	buildah bud --pull -t ${IMAGE} .
+	podman build --pull --no-cache -t ${IMAGE} .
 
 publish:
-	buildah push docker://${IMAGE}
+	podman push docker://${IMAGE}
 
 login:
 	podman login registry.gitlab.com

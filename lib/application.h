@@ -104,6 +104,9 @@ public:
     Q_INVOKABLE void deleteDoneTasks(Todo* todo);
     Q_INVOKABLE void loadItem(const QUuid& uid);
     Q_INVOKABLE Item* itemFromData(const QVariant& data);
+    Q_INVOKABLE Item* cloneItem(Item* item);
+    Q_INVOKABLE QString saveItem(Item* item);
+    Q_INVOKABLE void restoreItem(const QString& data);
 
     Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
     Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());
@@ -136,6 +139,8 @@ public:
     createNextCloudLoginFlow(bool ignoreSslErrors) const;
 
     Q_INVOKABLE void syncAllLibraries();
+
+    Q_INVOKABLE bool openUrl(const QUrl& url);
 
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE void finishActivity();
@@ -177,6 +182,26 @@ signals:
      * be show and brought to the foreground.
      */
     void showWindowRequested();
+
+    /**
+     * @brief The user requested to hide the application window.
+     */
+    void hideWindowRequested();
+
+    /**
+     * @brief The user clicked the system tray icon.
+     */
+    void systemTrayIconClicked();
+
+    /**
+     * @brief The user requested to show the quick notes editor.
+     */
+    void showQuickNotesEditorRequested();
+
+    /**
+     * @brief The application entered the Qt::ApplicationActive state.
+     */
+    void applicationActivated();
 
     /**
      * @brief The data of an item has been loaded.
