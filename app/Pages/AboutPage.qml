@@ -46,6 +46,12 @@ Page {
             }
 
             Label {
+                text: "Git version %1 (%2)".arg(gitVersion).arg(gitRevision)
+                width: parent.width
+                padding: Utils.AppSettings.smallSpace
+            }
+
+            Label {
                 text: "<a href='%1'>%1</a>".arg(
                           "https://opentodolist.rpdev.net/")
                 width: parent.width
@@ -79,6 +85,22 @@ Page {
                 onClicked: Qt.openUrlExternally(
                                "https://gitlab.com/rpdev/opentodolist/" +
                                "issues/new")
+            }
+
+            Button {
+                anchors.right: parent.right
+                text: qsTr("Copy System Information")
+                onClicked: {
+                    let info = {
+                        "version": applicationVersion,
+                        "git": {
+                            "revision": gitRevision,
+                            "version": gitVersion
+                        },
+                        "os": Qt.platform.os
+                    };
+                    OTL.Application.copyToClipboard(JSON.stringify(info, null, "    "));
+                }
             }
 
             Item {

@@ -263,6 +263,20 @@ void AppStartup::startGUI()
     m_engine->rootContext()->setContextProperty("application", m_app);
     m_engine->rootContext()->setContextProperty("applicationVersion",
                                                 QVariant(OPENTODOLIST_VERSION));
+    m_engine->rootContext()->setContextProperty("gitRevision",
+#ifdef OPENTODOLIST_GIT_REVISION
+                                                QVariant(OPENTODOLIST_GIT_REVISION)
+#else
+                                                QObject::tr("unknown")
+#endif
+    );
+    m_engine->rootContext()->setContextProperty("gitVersion",
+#ifdef OPENTODOLIST_GIT_VERSION
+                                                QVariant(OPENTODOLIST_GIT_VERSION)
+#else
+                                                QObject::tr("unknown")
+#endif
+    );
     m_engine->rootContext()->setContextProperty("qmlBaseDirectory", qmlBase);
 #ifdef OPENTODOLIST_DEBUG
     m_engine->rootContext()->setContextProperty("isDebugBuild", true);
