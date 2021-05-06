@@ -71,7 +71,7 @@ else()
             OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}
             VERBOSE
         )
-            
+
         qt_generate_qml_plugin_import(
             OpenTodoList
             QML_SRC ${CMAKE_CURRENT_SOURCE_DIR}
@@ -133,10 +133,10 @@ endif()
 
 if(OPENTODOLIST_WITH_KNOTIFICATIONS)
     target_link_libraries(
-        OpenTodoList 
-        
+        OpenTodoList
+
         PRIVATE
-        
+
             KF5::Notifications
     )
     target_compile_definitions(
@@ -157,14 +157,16 @@ file(GLOB_RECURSE TS_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../lib/*.h
 )
 file(GLOB TS_FILES translations/*.ts)
-if (NOT ${PROJECT_NAME}-MultiAbiBuild)
-    # Only run this once per multi-abi build on Android. Otherwise, we might
-    # get conflicting writes to the *.ts files from parallel sub-builds.
-    qt5_create_translation(
-        MESSAGES
-        ${TS_SOURCE_FILES}
-        ${TS_FILES}
-    )
+if(OPENTODOLIST_UPDATE_TRANSLATIONS)
+    if (NOT ${PROJECT_NAME}-MultiAbiBuild)
+        # Only run this once per multi-abi build on Android. Otherwise, we might
+        # get conflicting writes to the *.ts files from parallel sub-builds.
+        qt5_create_translation(
+            MESSAGES
+            ${TS_SOURCE_FILES}
+            ${TS_FILES}
+        )
+    endif()
 endif()
 qt5_add_translation(QM_FILES ${TS_FILES})
 target_sources(OpenTodoList PRIVATE
