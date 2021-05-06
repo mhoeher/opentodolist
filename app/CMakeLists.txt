@@ -200,13 +200,6 @@ add_custom_command(
             ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
 )
 
-add_custom_target(opentodolist-translations
-    DEPENDS
-        ${QM_FILES}
-        translations-copy.qrc
-)
-
-
 # Helper targets to convert between *.ts and *.po files (for
 # external editing)
 get_target_property(LCONVERT_EXECUTABLE Qt5::lconvert IMPORTED_LOCATION)
