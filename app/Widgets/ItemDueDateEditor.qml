@@ -76,6 +76,8 @@ GridLayout {
                 return qsTr("Recurs every week.")
             case OTL.ComplexItem.RecurMonthly:
                 return qsTr("Recurs every month.")
+            case OTL.ComplexItem.RecurYearly:
+                return qsTr("Recurs every year.")
             case OTL.ComplexItem.RecurEveryNDays:
                 return qsTr("Recurs every %1 days.").arg(root.item.recurInterval);
             default:

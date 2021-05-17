@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -59,6 +59,7 @@ public:
         RecurDaily, //!< The item recurs daily.
         RecurWeekly, //!< The item recurs weekly.
         RecurMonthly, //!< The item recurs monthly.
+        RecurYearly, //!< The item recurs monthly.
         RecurEveryNDays //!< The item recurs every N days.
     };
 
