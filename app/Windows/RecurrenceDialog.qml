@@ -42,6 +42,7 @@ CenteredDialog {
         patternModel.append({"name": qsTr("Daily"), type: OTL.ComplexItem.RecurDaily});
         patternModel.append({"name": qsTr("Weekly"), type: OTL.ComplexItem.RecurWeekly});
         patternModel.append({"name": qsTr("Monthly"), type: OTL.ComplexItem.RecurMonthly});
+        patternModel.append({"name": qsTr("Yearly"), type: OTL.ComplexItem.RecurYearly});
         patternModel.append({"name": qsTr("Every N Days"), type: OTL.ComplexItem.RecurEveryNDays});
         recurrencePatternEdit.currentIndex = recurrencePattern;
     }

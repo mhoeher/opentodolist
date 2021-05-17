@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -272,6 +272,28 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
                 auto nextDueTo = _today.addMonths(1);
                 while (nextDueTo <= effectiveDueTo()) {
                     nextDueTo = nextDueTo.addMonths(1);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            }
+            break;
+        }
+
+        case RecurYearly: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueTo = m_dueTo;
+                while (nextDueTo <= _today || nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addYears(1);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueTo = _today.addYears(1);
+                while (nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addYears(1);
                 }
                 setNextDueTo(nextDueTo);
                 break;
