@@ -323,6 +323,51 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
             }
             break;
         }
+
+        case RecurEveryNWeeks: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueTo = m_dueTo;
+                while (nextDueTo <= _today || nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addDays(m_recurInterval * 7);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueTo = _today.addDays(m_recurInterval * 7);
+                while (nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addDays(m_recurInterval * 7);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            }
+            break;
+        }
+
+        case RecurEveryNMonths: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueTo = m_dueTo;
+                auto eDT = effectiveDueTo();
+                while (nextDueTo <= _today || nextDueTo <= eDT) {
+                    nextDueTo = nextDueTo.addMonths(m_recurInterval);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueTo = _today.addMonths(m_recurInterval);
+                while (nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addMonths(m_recurInterval);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            }
+            break;
+        }
         }
     } else {
         // Simply mark the item as done:
@@ -336,6 +381,8 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
  * This is the interval between recurrences of the item.
  *
  * @sa RecurrencePattern::RecurEveryNDays
+ * @sa RecurrencePattern::RecurEveryNWeeks
+ * @sa RecurrencePattern::RecurEveryNMonths
  */
 int ComplexItem::recurInterval() const
 {
@@ -377,13 +424,16 @@ QDateTime ComplexItem::effectiveDueTo() const
  *
  * - It has a valid due to date set.
  * - It has a recurrence pattern other than RecurrencePattern::NoRecurrence set.
- * - If the recurrence pattern RecurrencePattern::RecurEveryNDays is set, the
+ * - If the recurrence pattern RecurrencePattern::RecurEveryNDays,
+ *   RecurrencePattern::RecurEveryNWeeks or RecurrencePattern::RecurEveryNMonths is set, the
  *   recurInterval must be greater than 1.
  */
 bool ComplexItem::isRecurring() const
 {
     return m_dueTo.isValid() && m_recurrencePattern != NoRecurrence
-            && (m_recurrencePattern != RecurEveryNDays || m_recurInterval > 0);
+            && ((m_recurrencePattern != RecurEveryNDays && m_recurrencePattern != RecurEveryNWeeks
+                 && m_recurrencePattern != RecurEveryNMonths)
+                || m_recurInterval > 0);
 }
 
 /**

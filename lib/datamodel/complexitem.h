@@ -60,7 +60,9 @@ public:
         RecurWeekly, //!< The item recurs weekly.
         RecurMonthly, //!< The item recurs monthly.
         RecurYearly, //!< The item recurs monthly.
-        RecurEveryNDays //!< The item recurs every N days.
+        RecurEveryNDays, //!< The item recurs every N days.
+        RecurEveryNWeeks, //!< The item recurs every N weeks.
+        RecurEveryNMonths, //!< The item recurs every N months.
     };
 
     Q_ENUM(RecurrencePattern)
