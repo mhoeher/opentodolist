@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -28,11 +28,15 @@
 namespace QLMDB {
 class Context;
 class Database;
+class Transaction;
 }
 
 class QThreadPool;
 class ItemsQuery;
 class QTemporaryDir;
+
+class Item;
+class Library;
 
 /**
  * @brief On-disk items cache.
@@ -69,6 +73,11 @@ public:
     void run(ItemsQuery* query);
 
     bool initialize(const QString& cacheDir = QString());
+
+    bool setItemTimestamp(const Item* item, QLMDB::Transaction* transaction);
+    bool setItemTimestamp(const Item* item);
+    bool setLibraryTimestamp(const Library* library, QLMDB::Transaction* transaction);
+    bool setLibraryTimestamp(const Library* library);
 
 signals:
 
@@ -107,6 +116,7 @@ private:
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
+    QSharedPointer<QLMDB::Database> m_fileTimestamps;
     QSharedPointer<QTemporaryDir> m_tmpCacheDir;
     QThreadPool* m_threadPool;
     bool m_valid;

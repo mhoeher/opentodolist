@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -32,6 +32,8 @@
 
 #include "cache.h"
 #include "itemsquery.h"
+#include "datamodel/item.h"
+#include "datamodel/library.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Cache", QtWarningMsg);
 
@@ -168,7 +170,14 @@ bool Cache::open()
 
     if (m_context != nullptr) {
         if (openDBs() && initVersion0() && initVersion1()) {
-            m_valid = true;
+            // Clear the file timestamps cache - simply to avoid any issues across app
+            // restarts.
+            if (m_fileTimestamps->clear()) {
+                m_valid = true;
+            } else {
+                qCWarning(log) << "Failed to clear file timestamp cache:"
+                               << m_fileTimestamps->lastErrorString();
+            }
         } else {
             qCWarning(log) << "Failed to initialize cache.";
             m_context.clear();
@@ -269,16 +278,103 @@ bool Cache::initialize(const QString& cacheDir)
     return isValid();
 }
 
+/**
+ * @brief Save the timestamp for an item's file.
+ *
+ * This saves the timestamp of the data file the @p item is written to, using the @p transaction to
+ * protect access to the cache.
+ *
+ * This returns true if file timestamp has been added to the cache, i.e. if it either has not
+ * been written to the cache before or the file on disk changed and hence the item needs an update.
+ *
+ * This mechanism is used to detect if an item needs to be updated in the cache, i.e. before
+ * actually writing to the cache, the item file's timestamp is written. Only if the update occurred,
+ * we know that the item is more recent than what we currently have in the cache and hence we need
+ * to update.
+ */
+bool Cache::setItemTimestamp(const Item* item, QLMDB::Transaction* transaction)
+{
+    Q_CHECK_PTR(transaction);
+    if (item && item->isValid()) {
+        QFileInfo fi(item->filename());
+        if (fi.exists()) {
+            auto lastModified = fi.lastModified().toString(Qt::ISODateWithMs).toUtf8();
+            auto key = fi.absoluteFilePath().toUtf8();
+            auto previousTimestamp = m_fileTimestamps->get(*transaction, key);
+            if (previousTimestamp.isNull() || lastModified != previousTimestamp) {
+                m_fileTimestamps->put(*transaction, key, lastModified);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+/**
+ * @brief Save the timestamp for an item's file.
+ *
+ * This is an overloaded version of the setItemTimestamp() method, which does not take an
+ * transaction object. Use this if you do not work with a transaction already - this method
+ * will create one on the fly for you.
+ */
+bool Cache::setItemTimestamp(const Item* item)
+{
+    QLMDB::Transaction t(*m_context);
+    return setItemTimestamp(item, &t);
+}
+
+/**
+ * @brief Save the timestamp for a library's file.
+ *
+ * This is a method similar to setItemTimestamp() but for the @p library. The method will access the
+ * cache using the specified @p transaction.
+ */
+bool Cache::setLibraryTimestamp(const Library* library, QLMDB::Transaction* transaction)
+{
+    Q_CHECK_PTR(transaction);
+    if (library && library->isValid()) {
+        QFileInfo fi(library->directory() + "/" + Library::LibraryFileName);
+        if (fi.exists()) {
+            auto lastModified = fi.lastModified().toString(Qt::ISODateWithMs).toUtf8();
+            auto key = fi.absoluteFilePath().toUtf8();
+            auto previousTimestamp = m_fileTimestamps->get(*transaction, key);
+            if (previousTimestamp.isNull() || lastModified != previousTimestamp) {
+                m_fileTimestamps->put(*transaction, key, lastModified);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+/**
+ * @brief Save the timestamp for a library's file.
+ *
+ * This is an overloaded version which creates a transaction internally.
+ */
+bool Cache::setLibraryTimestamp(const Library* library)
+{
+    QLMDB::Transaction t(*m_context);
+    return setLibraryTimestamp(library, &t);
+}
+
 bool Cache::openDBs()
 {
     m_global = QSharedPointer<QLMDB::Database>(new QLMDB::Database(*m_context));
     m_items = QSharedPointer<QLMDB::Database>(new QLMDB::Database(*m_context, "items"));
     m_children = QSharedPointer<QLMDB::Database>(new QLMDB::Database(
             *m_context, "children", QLMDB::Database::Create | QLMDB::Database::MultiValues));
+    m_fileTimestamps =
+            QSharedPointer<QLMDB::Database>(new QLMDB::Database(*m_context, "fileTimestamps"));
     if (m_global->isValid()) {
         if (m_items->isValid()) {
             if (m_children->isValid()) {
-                m_valid = true;
+                if (m_fileTimestamps->isValid()) {
+                    m_valid = true;
+                } else {
+                    qCWarning(log) << "Failed to open file timestamps cache:"
+                                   << m_fileTimestamps->lastErrorString();
+                }
             } else {
                 qCWarning(log) << "Failed to open children cache:" << m_children->lastErrorString();
             }

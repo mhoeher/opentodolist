@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -133,8 +133,9 @@ void LibraryLoader::itemUidsLoaded(QSet<QUuid> uids)
 
     auto directory = m_directory;
     auto libraryId = m_libraryId;
+    auto cache = m_cache;
 
-    auto future = QtConcurrent::run([directory, libraryId, uids]() {
+    auto future = QtConcurrent::run([cache, directory, libraryId, uids]() {
         qCDebug(log) << "Loading items from" << directory;
         DirectoryScanResult result;
         auto q = new InsertOrUpdateItemsQuery();
@@ -142,19 +143,22 @@ void LibraryLoader::itemUidsLoaded(QSet<QUuid> uids)
         Library lib(directory);
         if (lib.load()) {
             qCDebug(log) << "Library meta data successfully loaded from" << directory;
-            q->add(&lib);
+            if (cache->setLibraryTimestamp(&lib)) {
+                q->add(&lib);
+            }
         } else {
             qCWarning(log) << "Failed to load library meta data from" << directory;
         }
         result.query = q;
         result.itemsToDelete = uids;
         auto years = Library::years(directory);
-        for (auto year : years) {
+        for (const auto& year : qAsConst(years)) {
             auto months = Library::months(directory, year);
-            for (auto month : months) {
+            for (const auto& month : qAsConst(months)) {
                 QDir dir(directory + "/" + year + "/" + month);
                 qCDebug(log) << "Checking directory" << dir;
-                for (auto entry : Library::itemFiles(directory, year, month)) {
+                const auto itemFiles = Library::itemFiles(directory, year, month);
+                for (const auto& entry : itemFiles) {
                     qCDebug(log) << "Checking file" << entry << "in" << dir;
                     auto item = Item::createItemFromFile(dir.absoluteFilePath(entry));
                     if (item) {
@@ -163,7 +167,9 @@ void LibraryLoader::itemUidsLoaded(QSet<QUuid> uids)
                         if (topLevelItem != nullptr) {
                             topLevelItem->setLibraryId(libraryId);
                         }
-                        q->add(item);
+                        if (cache->setItemTimestamp(item)) {
+                            q->add(item);
+                        }
                         result.itemsToDelete.remove(item->uid());
                         delete item;
                     } else {
