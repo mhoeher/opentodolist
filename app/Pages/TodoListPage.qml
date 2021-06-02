@@ -250,7 +250,7 @@ ItemPage {
             width: scrollView.availableWidth
             height: scrollView.availableHeight
             contentWidth: scrollView.availableWidth
-            contentHeight: childrenRect.height
+            contentHeight: contentItem.childrenRect.height
             itemsModel: todosModel
             library: page.library
             title: qsTr("Todos")
