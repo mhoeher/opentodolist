@@ -23,6 +23,8 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
+#include <QVariant>
+#include <QVariantList>
 
 class QTranslator;
 class QQmlEngine;
