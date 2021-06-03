@@ -63,21 +63,22 @@ Page {
             ComboBox {
                 id: languageEdit
                 Layout.fillWidth: true
-                model: Utils.Translations.languages
+                model: translations.availableLanguages()
                 textRole: "name"
+                valueRole: "code"
                 currentIndex: {
-                    var model = Utils.Translations.languages;
-                    for (var i = 0; i < model.count; ++i) {
-                        var lang = model.get(i);
-                        if (lang.key === translations.language) {
+                    var model = translations.availableLanguages();
+                    for (var i = 0; i < model.length; ++i) {
+                        var lang = model[i];
+                        if (lang.code === translations.language) {
                             return i;
                         }
                     }
+                    // The first entry is always the system language - hence, if we didn't match
+                    // anything else, choose that:
+                    return 0;
                 }
-                onCurrentIndexChanged: {
-                    var lang = Utils.Translations.languages.get(languageEdit.currentIndex);
-                    translations.language = lang.key;
-                }
+                onCurrentValueChanged: translations.language = currentValue
             }
 
             Label {

@@ -33,3 +33,5 @@ app/android/.idea/
 /fedora-build-cmake
 /fedora-build-qmake
 /xwindeployqt
+.vscode
+__pycache__

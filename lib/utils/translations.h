@@ -23,6 +23,8 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
+#include <QVariant>
+#include <QVariantList>
 
 class QTranslator;
 class QQmlEngine;
@@ -39,7 +41,7 @@ public:
     QString language() const;
     void setLanguage(const QString& language);
 
-    Q_INVOKABLE QStringList allLanguages() const;
+    Q_INVOKABLE QVariantList availableLanguages() const;
 
 signals:
 
