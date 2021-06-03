@@ -39,7 +39,7 @@ public:
     QString language() const;
     void setLanguage(const QString& language);
 
-    Q_INVOKABLE QStringList allLanguages() const;
+    Q_INVOKABLE QVariantList availableLanguages() const;
 
 signals:
 
