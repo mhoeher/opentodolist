@@ -5,6 +5,8 @@
 import json
 from fire import Fire
 from pathlib import Path
+from datetime import datetime
+from os import environ
 from poeditor import POEditorAPI
 
 
@@ -51,6 +53,13 @@ class POEditor:
                 code,
                 local_file=str(output_path / f"OpenTodoList-{code_file}.po"),
             )
+        with open(output_path / "update-info.json", "w") as file:
+            update_info = {
+                "updated_at": str(datetime.utcnow()),
+                "ci_commit_sha": environ.get("CI_COMMIT_SHA", None),
+                "ci_job_url": environ.get("CI_JOB_URL", None),
+            }
+            json.dump(update_info, file, indent=4)
 
 
 if __name__ == "__main__":

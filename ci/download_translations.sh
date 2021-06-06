@@ -18,7 +18,7 @@ fi
 export QT_QPA_PLATFORM=minimal
 
 pip install poeditor fire
-./bin/poeditor-client.py upload $POEDITOR_TOKEN
+./bin/poeditor-client.py download $POEDITOR_TOKEN app/translations
 
 ./bin/po-to-ts.sh /usr/lib64/qt5/bin/lconvert
 ./bin/update-translations.sh /usr/lib64/qt5/bin/lupdate
