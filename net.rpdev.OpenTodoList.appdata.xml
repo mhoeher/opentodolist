@@ -40,6 +40,23 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.35.0" date="2021-06-06">
+        <p>This release includes the following changes:</p>
+        <ul>
+          <li>
+            #448: There is a fix which should prevent changes to items that happened in quick succession (e.g. ticking off several todos inside a list within a short time frame) to be "reverted" by the sync.
+          </li>
+          <li>
+            #447: Allow items to recur every N weeks or months.
+          </li>
+          <li>
+            #446: Allow items to recur yearly.
+          </li>
+          <li>
+            #444: Fix sync against some WebDAV servers which do not behave correctly (in particular, which do not report etags on folders).
+          </li>
+        </ul>
+      </release>
       <release version="3.34.0" date="2021-05-03">
         <p>This release includes the following changes:</p>
         <ul>
