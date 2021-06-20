@@ -68,11 +68,33 @@ Item {
             }
             item: item.libraryItem
 
+            Label {
+                id: dueToLabel
+                text: {
+                    let dueTo = item.libraryItem.effectiveDueTo;
+                    if (DateUtils.validDate(dueTo)) {
+                        return qsTr("Due on %1").arg(DateUtils.format(dueTo));
+                    }
+                    return "";
+                }
+                visible: text !== ""
+                width: parent.width
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                opacity: 0.5
+            }
+
             ListView {
                 id: openTodosList
 
+                y: {
+                    if (dueToLabel.visible) {
+                    dueToLabel.height + AppSettings.smallSpace;
+                    } else {
+                        return 0;
+                    }
+                }
                 width: parent.width
-                height: parent.height
+                height: parent.height - y
                 spacing: AppSettings.smallSpace
                 interactive: false
                 clip: true

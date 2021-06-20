@@ -473,7 +473,6 @@ void ItemsModel::fetch()
             q->setParent(m_parentItem);
         }
         q->setRecursive(m_recursive);
-        q->setCalculateProperties(true);
 
         auto tag = m_tag;
         auto onlyDone = m_onlyDone;

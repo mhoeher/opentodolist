@@ -111,6 +111,9 @@ public:
     QDateTime effectiveDueTo() const;
     bool isRecurring() const;
 
+    QDateTime earliestChildDueTo() const;
+    void setEarliestChildDueTo(const QDateTime& earliestChildDueTo);
+
 signals:
 
     void dueToChanged();
@@ -122,6 +125,7 @@ signals:
     void recurIntervalChanged();
     void effectiveDueToChanged();
     void isRecurringChanged();
+    void earliestChildDueToChanged();
 
 public slots:
 
@@ -134,6 +138,7 @@ private:
     QDateTime m_dueTo;
     QString m_notes;
     QStringList m_attachments;
+    QDateTime m_earliestChildDueTo;
 
     // Recurrence handling:
     RecurrencePattern m_recurrencePattern;

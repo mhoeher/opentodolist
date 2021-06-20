@@ -27,6 +27,7 @@
 
 class Cache;
 class ItemsQueryRunnable;
+class ItemCacheEntry;
 
 // Forward declarations:
 namespace QLMDB {
@@ -88,6 +89,11 @@ protected:
     virtual void markAsChanged(QLMDB::Transaction* transaction, QByteArray id);
 
     double weightForNextItem(const QByteArray& parentId, QLMDB::Transaction& transaction);
+
+    void calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry* entry,
+                         Item* item = nullptr);
+    int percentageForTodo(QLMDB::Transaction& transaction, const QByteArray& todoId);
+    QDateTime earliestChildDueDate(QLMDB::Transaction& transaction, const QByteArray& parentId);
 
 private:
     QSharedPointer<QLMDB::Context> m_context;

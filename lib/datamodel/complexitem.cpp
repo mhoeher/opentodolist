@@ -41,6 +41,7 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent)
       m_dueTo(),
       m_notes(),
       m_attachments(),
+      m_earliestChildDueTo(),
       m_recurrencePattern(NoRecurrence),
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
@@ -57,6 +58,7 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent)
       m_dueTo(),
       m_notes(),
       m_attachments(),
+      m_earliestChildDueTo(),
       m_recurrencePattern(NoRecurrence),
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
@@ -376,6 +378,27 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
 }
 
 /**
+ * @brief The earliest due to date of the direct children of the item.
+ *
+ * This property holds the earliest due to date among the direct child items of that item.
+ */
+QDateTime ComplexItem::earliestChildDueTo() const
+{
+    return m_earliestChildDueTo;
+}
+
+/**
+ * @brief Set the earliest due to date among the direct children of the item.
+ */
+void ComplexItem::setEarliestChildDueTo(const QDateTime& earliestChildDueTo)
+{
+    if (m_earliestChildDueTo != earliestChildDueTo) {
+        m_earliestChildDueTo = earliestChildDueTo;
+        emit earliestChildDueToChanged();
+    }
+}
+
+/**
  * @brief The recurrence interval.
  *
  * This is the interval between recurrences of the item.
@@ -407,13 +430,18 @@ void ComplexItem::setRecurInterval(int recurInterval)
  * no recurrence pattern set, this is equal to the dueTo property. If an item has a recurrence
  * pattern set and a past instance of the item has already been marked as done, this equals the
  * nextDueTo property.
+ *
+ * In addition, if an item has no own due date but children which might in turn have a due date, the
+ * earliestChildDueTo() is returned.
  */
 QDateTime ComplexItem::effectiveDueTo() const
 {
     if (m_nextDueTo.isValid() && m_dueTo.isValid() && m_nextDueTo > m_dueTo) {
         return m_nextDueTo;
-    } else {
+    } else if (m_dueTo.isValid()) {
         return m_dueTo;
+    } else {
+        return m_earliestChildDueTo;
     }
 }
 

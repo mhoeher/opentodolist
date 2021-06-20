@@ -453,7 +453,7 @@ Page {
         MenuItem {
             text: qsTr("Due To")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.DueToRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.EffectiveDueToRole
             onTriggered: settings.sortBy = "dueTo"
         }
 
