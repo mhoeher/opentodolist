@@ -26,8 +26,9 @@
 #include <QVariant>
 
 class Cache;
-class ItemsQueryRunnable;
+class Item;
 class ItemCacheEntry;
+class ItemsQueryRunnable;
 
 // Forward declarations:
 namespace QLMDB {
