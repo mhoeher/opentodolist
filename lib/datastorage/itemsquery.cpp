@@ -24,6 +24,7 @@
 
 #include "datamodel/item.h"
 #include "datamodel/library.h"
+#include "datamodel/todo.h"
 #include "datastorage/itemsquery.h"
 
 /**
@@ -156,6 +157,96 @@ double ItemsQuery::weightForNextItem(const QByteArray& parentId, QLMDB::Transact
         weight += 1.0 + QRandomGenerator::securelySeeded().generateDouble();
     }
     return weight;
+}
+
+void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry* entry, Item* item)
+{
+    q_check_ptr(entry);
+    QVariantMap properties;
+
+    ItemPtr itemPtr;
+
+    if (!item) {
+        itemPtr.reset(Item::decache(*entry));
+        item = itemPtr.data();
+    }
+
+    if (item) {
+        auto todoList = qobject_cast<TodoList*>(item);
+        if (todoList) {
+            properties["earliestChildDueDate"] =
+                    earliestChildDueDate(transaction, entry->id.toByteArray());
+        }
+        auto todo = qobject_cast<Todo*>(item);
+        if (todo != nullptr) {
+            properties["percentageDone"] = percentageForTodo(transaction, entry->id.toByteArray());
+        }
+    }
+
+    entry->calculatedData = properties;
+}
+
+int ItemsQuery::percentageForTodo(QLMDB::Transaction& transaction, const QByteArray& todoId)
+{
+    const auto taskIds = children()->getAll(transaction, todoId);
+    if (taskIds.isEmpty()) {
+        return 0;
+    } else {
+        int done = 0;
+        int total = 0;
+        for (const auto& taskId : taskIds) {
+            auto data = items()->get(transaction, taskId);
+            ItemPtr task(Item::decache(ItemCacheEntry::fromByteArray(data, taskId)));
+            if (task) {
+                ++total;
+                if (task->property("done").toBool()) {
+                    ++done;
+                }
+            }
+        }
+        if (total > 0) {
+            return done * 100 / total;
+        } else {
+            return 0;
+        }
+    }
+}
+
+/**
+ * @brief Calculate the earliest due date among the direct children of an item.
+ *
+ * This function tries to look up the earliest due date among all children of the item identified by
+ * the  @p parentId. If the item has no children or none of them has a due date, an invalid date
+ * time object is returned.
+ */
+QDateTime ItemsQuery::earliestChildDueDate(QLMDB::Transaction& transaction,
+                                           const QByteArray& parentId)
+{
+    QDateTime result;
+    const auto childIds = children()->getAll(transaction, parentId);
+
+    for (const auto& childId : childIds) {
+        auto data = items()->get(transaction, childId);
+        ItemPtr item(Item::decache(ItemCacheEntry::fromByteArray(data, childId)));
+        if (item) {
+            auto complexItem = qSharedPointerCast<ComplexItem>(item);
+            if (complexItem) {
+                auto val = complexItem->property("done");
+                if (val.isValid() && val.type() == QVariant::Bool && val.toBool()) {
+                    // Ignore items which have a "done" state which is set to true
+                    continue;
+                }
+                auto dueTo = complexItem->effectiveDueTo();
+                if (dueTo.isValid()) {
+                    if (!result.isValid() || dueTo < result) {
+                        result = dueTo;
+                    }
+                }
+            }
+        }
+    }
+
+    return result;
 }
 
 /**

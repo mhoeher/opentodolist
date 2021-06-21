@@ -38,6 +38,8 @@ public:
     explicit TodoList(const QDir& dir, QObject* parent = nullptr);
     virtual ~TodoList();
 
+    // Item interface
+    void applyCalculatedProperties(const QVariantMap& properties) override;
 signals:
 
 public slots:

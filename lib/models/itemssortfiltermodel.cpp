@@ -69,9 +69,10 @@ bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left,
     // For the DueTo role, apply a little trick: Sort by the due to role
     // data (converted to a string), but append an 'X'. This causes
     // Any items with a valid due date to appear first in listings.
-    case ItemsModel::DueToRole: {
-        auto left_dt = source_left.data(ItemsModel::DueToRole).toString();
-        auto right_dt = source_right.data(ItemsModel::DueToRole).toString();
+    case ItemsModel::DueToRole:
+    case ItemsModel::EffectiveDueToRole: {
+        auto left_dt = source_left.data(sortRole()).toString();
+        auto right_dt = source_right.data(sortRole()).toString();
         return left_dt + "x" < right_dt + "x";
     }
 
