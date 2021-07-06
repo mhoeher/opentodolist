@@ -76,6 +76,17 @@ void Task::setTodoUid(const QUuid& todoUid)
     }
 }
 
+Item* Task::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                   const QUuid& targetItemUid)
+{
+    auto result = Item::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto task = qobject_cast<Task*>(result);
+    if (task) {
+        task->m_todoUid = targetItemUid;
+    }
+    return result;
+}
+
 QVariantMap Task::toMap() const
 {
     auto result = Item::toMap();

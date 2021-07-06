@@ -39,6 +39,9 @@ public:
 
     QUuid parentId() const override;
 
+    Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                 const QUuid& targetItemUid) override;
+
 signals:
 
     void noteUidChanged();

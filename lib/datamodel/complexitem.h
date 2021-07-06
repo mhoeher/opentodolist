@@ -95,6 +95,8 @@ public:
 
     // Item interface
     bool deleteItem() override;
+    Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                 const QUuid& targetItemUid = QUuid()) override;
 
     RecurrencePattern recurrencePattern() const;
     void setRecurrencePattern(const RecurrencePattern& recurrencePattern);

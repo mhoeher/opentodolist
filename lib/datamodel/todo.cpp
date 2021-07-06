@@ -133,6 +133,17 @@ void Todo::applyCalculatedProperties(const QVariantMap& properties)
     }
 }
 
+Item* Todo::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                   const QUuid& targetItemUid)
+{
+    auto result = ComplexItem::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto todo = qobject_cast<Todo*>(result);
+    if (todo) {
+        todo->m_todoListUid = targetItemUid;
+    }
+    return result;
+}
+
 QVariantMap Todo::toMap() const
 {
     auto result = ComplexItem::toMap();

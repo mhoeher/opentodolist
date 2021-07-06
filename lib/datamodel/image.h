@@ -47,6 +47,9 @@ public:
 
     bool validImage() const;
 
+    Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                 const QUuid& targetItemUid) override;
+
 signals:
 
     /**

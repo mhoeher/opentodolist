@@ -607,3 +607,18 @@ bool ComplexItem::deleteItem()
     }
     return Item::deleteItem();
 }
+
+Item* ComplexItem::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                          const QUuid& targetItemUid)
+{
+    auto result = Item::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto complexItem = qobject_cast<ComplexItem*>(result);
+    if (complexItem) {
+        complexItem->m_attachments.clear();
+        const auto& attachments = m_attachments;
+        for (const auto& attachment : attachments) {
+            complexItem->attachFile(attachmentFileName(attachment));
+        }
+    }
+    return result;
+}

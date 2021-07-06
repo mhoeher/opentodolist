@@ -58,6 +58,8 @@ public:
 
     // Item interface
     void applyCalculatedProperties(const QVariantMap& properties) override;
+    Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                 const QUuid& targetItemUid) override;
 
     int progress() const;
     void setProgress(int progress);

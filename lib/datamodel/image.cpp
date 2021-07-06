@@ -179,6 +179,25 @@ bool Image::validImage() const
     return isValid() && QFile(directory() + "/" + m_image).exists();
 }
 
+Item* Image::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                    const QUuid& targetItemUid)
+{
+    auto result = TopLevelItem::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto image = qobject_cast<Image*>(result);
+    if (image) {
+        QFileInfo fi(m_image);
+        image->m_image.clear();
+        if (fi.exists()) {
+            auto targetImageFileName = targetDirectory.absoluteFilePath(
+                    QUuid::createUuid().toString() + ".res." + fi.completeSuffix());
+            if (QFile::copy(fi.absoluteFilePath(), targetImageFileName)) {
+                image->m_image = targetImageFileName;
+            }
+        }
+    }
+    return result;
+}
+
 QVariantMap Image::toMap() const
 {
     auto result = TopLevelItem::toMap();

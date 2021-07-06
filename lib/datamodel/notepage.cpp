@@ -52,6 +52,17 @@ QUuid NotePage::parentId() const
     return m_noteUid;
 }
 
+Item* NotePage::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                       const QUuid& targetItemUid)
+{
+    auto result = ComplexItem::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto notePage = qobject_cast<NotePage*>(result);
+    if (notePage) {
+        notePage->m_noteUid = targetItemUid;
+    }
+    return result;
+}
+
 QVariantMap NotePage::toMap() const
 {
     auto result = ComplexItem::toMap();

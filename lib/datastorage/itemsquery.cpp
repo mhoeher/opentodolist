@@ -228,7 +228,7 @@ QDateTime ItemsQuery::earliestChildDueDate(QLMDB::Transaction& transaction,
     for (const auto& childId : childIds) {
         auto data = items()->get(transaction, childId);
         ItemPtr item(Item::decache(ItemCacheEntry::fromByteArray(data, childId)));
-        if (item) {
+        if (item && item->parentId() == parentId) {
             auto complexItem = qSharedPointerCast<ComplexItem>(item);
             if (complexItem) {
                 auto val = complexItem->property("done");
@@ -247,6 +247,18 @@ QDateTime ItemsQuery::earliestChildDueDate(QLMDB::Transaction& transaction,
     }
 
     return result;
+}
+
+/**
+ * @brief Load an item from the cache, using the specified transaction.
+ */
+QSharedPointer<Item> ItemsQuery::itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid)
+{
+    auto data = items()->get(t, itemUid.toByteArray());
+    if (!data.isNull()) {
+        return ItemPtr(Item::decache(ItemCacheEntry::fromByteArray(data, itemUid.toByteArray())));
+    }
+    return nullptr;
 }
 
 /**
