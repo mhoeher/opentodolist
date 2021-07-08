@@ -7,6 +7,7 @@
 #include <QSet>
 
 #include <qlmdb/context.h>
+#include <qlmdb/cursor.h>
 #include <qlmdb/database.h>
 #include <qlmdb/transaction.h>
 
@@ -56,6 +57,7 @@ void CopyItemQuery::copyItem(Item* item, Library* targetLibrary, Item* parentIte
 void CopyItemQuery::run()
 {
     QLMDB::Transaction t(*context());
+    QLMDB::Cursor childrenCursor(t, *children());
     if (!m_targetPath.mkpath(".")) {
         qCWarning(log) << "Failed to create" << m_targetPath << "for copying item";
         return;
@@ -92,6 +94,22 @@ void CopyItemQuery::run()
         if (!dstItem) {
             qCWarning(log) << "Failed to copy" << srcItemUid << m_targetPath;
             continue;
+        }
+        qCDebug(log) << "Copied item" << srcItemUid << "to" << dstItem->uid();
+        if (!dstItem->save()) {
+            qCWarning(log) << "Failed to save copy" << dstItem->uid() << "of item" << srcItemUid;
+            continue;
+        }
+        {
+            auto value = dstItem->encache().toByteArray();
+            auto key = dstItem->uid().toByteArray();
+            items()->put(t, key, value);
+            childrenCursor.put(dstItem->parentId().toByteArray(), key,
+                               QLMDB::Cursor::NoDuplicateData);
+        }
+        if (srcItemUid == m_sourceItemUid) {
+            // This is the "root" item we copied - mark it as changed so e.g. views will update.
+            markAsChanged(&t, dstItem->uid().toByteArray());
         }
         // Find all children of the current item and also copy them:
         const auto childItemUids = children()->getAll(t, srcItemUid.toByteArray());

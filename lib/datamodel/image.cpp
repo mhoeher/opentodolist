@@ -185,12 +185,13 @@ Item* Image::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
     auto result = TopLevelItem::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
     auto image = qobject_cast<Image*>(result);
     if (image) {
-        QFileInfo fi(m_image);
+        QFileInfo fi(imageUrl().toLocalFile());
         image->m_image.clear();
         if (fi.exists()) {
-            auto targetImageFileName = targetDirectory.absoluteFilePath(
-                    QUuid::createUuid().toString() + ".res." + fi.completeSuffix());
-            if (QFile::copy(fi.absoluteFilePath(), targetImageFileName)) {
+            auto targetImageFileName =
+                    QUuid::createUuid().toString() + ".res." + fi.completeSuffix();
+            auto targetImageFilePath = targetDirectory.absoluteFilePath(targetImageFileName);
+            if (QFile::copy(fi.absoluteFilePath(), targetImageFilePath)) {
                 image->m_image = targetImageFileName;
             }
         }

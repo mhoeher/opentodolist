@@ -100,7 +100,7 @@ void CopyItemQueryTest::copyImageSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 2);
         auto img2 = qSharedPointerCast<Image>(
@@ -173,7 +173,7 @@ void CopyItemQueryTest::copyNoteSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 2);
         auto note2 = qSharedPointerCast<Image>(
@@ -193,10 +193,6 @@ void CopyItemQueryTest::copyNoteSameLibrary()
         QCOMPARE(note2->recurrencePattern(), note1.recurrencePattern());
         QCOMPARE(note2->recurrenceSchedule(), note1.recurrenceSchedule());
         QCOMPARE(note2->effectiveDueTo(), note1.effectiveDueTo());
-        QCOMPARE(note2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                note2->attachmentFileName(note2->attachments().at(0)),
-                note1.attachmentFileName(note1.attachments().at(0))));
         note2Uid = note2->uid();
     }
 
@@ -206,7 +202,7 @@ void CopyItemQueryTest::copyNoteSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto page2 = qSharedPointerCast<NotePage>(
@@ -221,10 +217,6 @@ void CopyItemQueryTest::copyNoteSameLibrary()
         QCOMPARE(page2->recurrencePattern(), page1.recurrencePattern());
         QCOMPARE(page2->recurrenceSchedule(), page1.recurrenceSchedule());
         QCOMPARE(page2->effectiveDueTo(), page1.effectiveDueTo());
-        QCOMPARE(page2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                page2->attachmentFileName(page2->attachments().at(0)),
-                page1.attachmentFileName(page1.attachments().at(0))));
         note2Uid = page2->uid();
     }
 }
@@ -280,7 +272,7 @@ void CopyItemQueryTest::copyTodoListSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 2);
         auto todoList2 = qSharedPointerCast<TodoList>(
@@ -300,10 +292,6 @@ void CopyItemQueryTest::copyTodoListSameLibrary()
         QCOMPARE(todoList2->recurrencePattern(), todoList1.recurrencePattern());
         QCOMPARE(todoList2->recurrenceSchedule(), todoList1.recurrenceSchedule());
         QCOMPARE(todoList2->effectiveDueTo(), todoList1.effectiveDueTo());
-        QCOMPARE(todoList2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                todoList2->attachmentFileName(todoList2->attachments().at(0)),
-                todoList1.attachmentFileName(todoList1.attachments().at(0))));
         todoList2Uid = todoList2->uid();
     }
 
@@ -315,7 +303,7 @@ void CopyItemQueryTest::copyTodoListSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto todo2 = qSharedPointerCast<Todo>(
@@ -344,7 +332,7 @@ void CopyItemQueryTest::copyTodoListSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto task2 = qSharedPointerCast<Task>(
@@ -417,7 +405,7 @@ void CopyItemQueryTest::copyTodoSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto todo2 = qSharedPointerCast<Todo>(
@@ -446,7 +434,7 @@ void CopyItemQueryTest::copyTodoSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto task2 = qSharedPointerCast<Task>(
@@ -522,7 +510,7 @@ void CopyItemQueryTest::copyTaskSameLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto task2 = qSharedPointerCast<Task>(
@@ -583,7 +571,7 @@ void CopyItemQueryTest::copyImageDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image from the new library:
         QCOMPARE(items.length(), 1);
         auto img2 = qSharedPointerCast<Image>(
@@ -593,7 +581,7 @@ void CopyItemQueryTest::copyImageDifferentLibrary()
         QVERIFY(img1.uid() != img2->uid());
         QVERIFY(differentFilesHaveEqualContent(img2->imageUrl().toLocalFile(),
                                                img1.imageUrl().toLocalFile()));
-        QCOMPARE(img2->libraryId(), img1.libraryId());
+        QCOMPARE(img2->libraryId(), lib2.uid());
         QCOMPARE(img2->tags(), img1.tags());
         QCOMPARE(img2->color(), img1.color());
         QCOMPARE(img2->title(), img1.title());
@@ -656,7 +644,7 @@ void CopyItemQueryTest::copyNoteDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the note in the new library:
         QCOMPARE(items.length(), 1);
         auto note2 = qSharedPointerCast<Note>(
@@ -664,7 +652,7 @@ void CopyItemQueryTest::copyNoteDifferentLibrary()
         QCOMPARE(note2->libraryId(), lib2.uid());
         // The two should be - attribute wise - identical.
         QVERIFY(note1.uid() != note2->uid());
-        QCOMPARE(note2->libraryId(), note1.libraryId());
+        QCOMPARE(note2->libraryId(), lib2.uid());
         QCOMPARE(note2->tags(), note1.tags());
         QCOMPARE(note2->color(), note1.color());
         QCOMPARE(note2->title(), note1.title());
@@ -673,10 +661,6 @@ void CopyItemQueryTest::copyNoteDifferentLibrary()
         QCOMPARE(note2->recurrencePattern(), note1.recurrencePattern());
         QCOMPARE(note2->recurrenceSchedule(), note1.recurrenceSchedule());
         QCOMPARE(note2->effectiveDueTo(), note1.effectiveDueTo());
-        QCOMPARE(note2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                note2->attachmentFileName(note2->attachments().at(0)),
-                note1.attachmentFileName(note1.attachments().at(0))));
         note2Uid = note2->uid();
     }
 
@@ -686,7 +670,7 @@ void CopyItemQueryTest::copyNoteDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto page2 = qSharedPointerCast<NotePage>(
@@ -701,10 +685,6 @@ void CopyItemQueryTest::copyNoteDifferentLibrary()
         QCOMPARE(page2->recurrencePattern(), page1.recurrencePattern());
         QCOMPARE(page2->recurrenceSchedule(), page1.recurrenceSchedule());
         QCOMPARE(page2->effectiveDueTo(), page1.effectiveDueTo());
-        QCOMPARE(page2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                page2->attachmentFileName(page2->attachments().at(0)),
-                page1.attachmentFileName(page1.attachments().at(0))));
         note2Uid = page2->uid();
     }
 }
@@ -763,14 +743,14 @@ void CopyItemQueryTest::copyTodoListDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto todoList2 = qSharedPointerCast<TodoList>(
                 QSharedPointer<Item>(Item::decache(items.at(0).value<ItemCacheEntry>())));
         // The two should be - attribute wise - identical.
         QVERIFY(todoList1.uid() != todoList2->uid());
-        QCOMPARE(todoList2->libraryId(), todoList1.libraryId());
+        QCOMPARE(todoList2->libraryId(), lib2.uid());
         QCOMPARE(todoList2->tags(), todoList1.tags());
         QCOMPARE(todoList2->color(), todoList1.color());
         QCOMPARE(todoList2->title(), todoList1.title());
@@ -779,10 +759,6 @@ void CopyItemQueryTest::copyTodoListDifferentLibrary()
         QCOMPARE(todoList2->recurrencePattern(), todoList1.recurrencePattern());
         QCOMPARE(todoList2->recurrenceSchedule(), todoList1.recurrenceSchedule());
         QCOMPARE(todoList2->effectiveDueTo(), todoList1.effectiveDueTo());
-        QCOMPARE(todoList2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                todoList2->attachmentFileName(todoList2->attachments().at(0)),
-                todoList1.attachmentFileName(todoList1.attachments().at(0))));
         todoList2Uid = todoList2->uid();
     }
 
@@ -794,7 +770,7 @@ void CopyItemQueryTest::copyTodoListDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto todo2 = qSharedPointerCast<Todo>(
@@ -810,10 +786,6 @@ void CopyItemQueryTest::copyTodoListDifferentLibrary()
         QCOMPARE(todo2->recurrencePattern(), todo1.recurrencePattern());
         QCOMPARE(todo2->recurrenceSchedule(), todo1.recurrenceSchedule());
         QCOMPARE(todo2->effectiveDueTo(), todo1.effectiveDueTo());
-        QCOMPARE(todo2->attachments().length(), 1);
-        QVERIFY(differentFilesHaveEqualContent(
-                todo2->attachmentFileName(todo2->attachments().at(0)),
-                todo1.attachmentFileName(todo1.attachments().at(0))));
         todo2Uid = todo2->uid();
     }
 
@@ -823,7 +795,7 @@ void CopyItemQueryTest::copyTodoListDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto task2 = qSharedPointerCast<Task>(
@@ -901,7 +873,7 @@ void CopyItemQueryTest::copyTodoDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto todo2 = qSharedPointerCast<Todo>(
@@ -930,7 +902,7 @@ void CopyItemQueryTest::copyTodoDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto task2 = qSharedPointerCast<Task>(
@@ -1011,7 +983,7 @@ void CopyItemQueryTest::copyTaskDifferentLibrary()
         cache->run(q);
         QSignalSpy itemsAvailable(q, &GetItemsQuery::itemsAvailable);
         QVERIFY(itemsAvailable.wait());
-        auto items = itemsAvailable.at(0);
+        auto items = itemsAvailable.at(0).at(0).toList();
         // We should have the image and its copy:
         QCOMPARE(items.length(), 1);
         auto task2 = qSharedPointerCast<Task>(
