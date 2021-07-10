@@ -191,7 +191,7 @@ Item* Image::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
             auto targetImageFileName =
                     QUuid::createUuid().toString() + ".res." + fi.completeSuffix();
             auto targetImageFilePath = targetDirectory.absoluteFilePath(targetImageFileName);
-            if (QFile::copy(fi.absoluteFilePath(), targetImageFilePath)) {
+            if (QFile::copy(fi.absoluteFilePath(), targetImageFilePath)) { // NOLINT
                 image->m_image = targetImageFileName;
             }
         }
