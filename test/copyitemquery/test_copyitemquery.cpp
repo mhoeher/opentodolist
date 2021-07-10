@@ -116,7 +116,7 @@ void CopyItemQueryTest::copyImageSameLibrary()
         QCOMPARE(img2->libraryId(), img1.libraryId());
         QCOMPARE(img2->tags(), img1.tags());
         QCOMPARE(img2->color(), img1.color());
-        QCOMPARE(img2->title(), img1.title());
+        QCOMPARE(img2->title(), "Copy of " + img1.title());
         QCOMPARE(img2->dueTo(), img1.dueTo());
         QCOMPARE(img2->recurInterval(), img1.recurInterval());
         QCOMPARE(img2->recurrencePattern(), img1.recurrencePattern());
@@ -187,7 +187,7 @@ void CopyItemQueryTest::copyNoteSameLibrary()
         QCOMPARE(note2->libraryId(), note1.libraryId());
         QCOMPARE(note2->tags(), note1.tags());
         QCOMPARE(note2->color(), note1.color());
-        QCOMPARE(note2->title(), note1.title());
+        QCOMPARE(note2->title(), "Copy of " + note1.title());
         QCOMPARE(note2->dueTo(), note1.dueTo());
         QCOMPARE(note2->recurInterval(), note1.recurInterval());
         QCOMPARE(note2->recurrencePattern(), note1.recurrencePattern());
@@ -286,7 +286,7 @@ void CopyItemQueryTest::copyTodoListSameLibrary()
         QCOMPARE(todoList2->libraryId(), todoList1.libraryId());
         QCOMPARE(todoList2->tags(), todoList1.tags());
         QCOMPARE(todoList2->color(), todoList1.color());
-        QCOMPARE(todoList2->title(), todoList1.title());
+        QCOMPARE(todoList2->title(), "Copy of " + todoList1.title());
         QCOMPARE(todoList2->dueTo(), todoList1.dueTo());
         QCOMPARE(todoList2->recurInterval(), todoList1.recurInterval());
         QCOMPARE(todoList2->recurrencePattern(), todoList1.recurrencePattern());

@@ -76,6 +76,29 @@ Item {
         d.promoteTaskDialog.open();
     }
 
+    function copyTopLevelItem(topLevelItem) {
+        if (!topLevelItem) {
+            console.warn("Called ItemUtils.copyTopLevelItem with a null item");
+            return;
+        }
+        if (d.selectLibraryDialog === null) {
+            d.selectLibraryDialog = selectLibraryDialogComponent.createObject(window);
+        }
+        d.selectLibraryDialog.item = topLevelItem;
+        d.selectLibraryDialog.open();
+    }
+
+    function copyTodo(todo) {
+        if (!todo) {
+            console.warn("Called ItemUtils.copyTodo with a null item");
+            return;        }
+        if (d.selectTodoListAndLibraryDialog === null) {
+            d.selectTodoListAndLibraryDialog = selectTodoListAndLibraryDialogComponent.createObject(window);
+        }
+        d.selectTodoListAndLibraryDialog.todo = todo;
+        d.selectTodoListAndLibraryDialog.open();
+    }
+
     QtObject {
         id: d
 
@@ -85,6 +108,8 @@ Item {
         property Windows.DateSelectionDialog dateSelectionDialog: null
         property Windows.SelectTodoListDialog moveTodoDialog: null
         property Windows.SelectTodoListDialog promoteTaskDialog: null
+        property Windows.SelectLibraryDialog selectLibraryDialog: null
+        property Windows.SelectTopLevelItemDialog selectTodoListAndLibraryDialog: null
 
     }
 
@@ -143,6 +168,39 @@ Item {
             onAccepted: {
                 if (task && selectedTodoList) {
                     OTL.Application.promoteTask(task, selectedTodoList);
+                }
+            }
+        }
+    }
+
+    Component {
+        id: selectLibraryDialogComponent
+
+
+        Windows.SelectLibraryDialog {
+
+            property OTL.TopLevelItem item: null
+
+            onAccepted: {
+                if (item && library) {
+                    OTL.Application.copyItem(item, library);
+                }
+            }
+        }
+    }
+
+    Component {
+        id: selectTodoListAndLibraryDialogComponent
+
+
+        Windows.SelectTopLevelItemDialog {
+
+            property OTL.Todo todo: null
+
+            itemType: "TodoList"
+            onAccepted: {
+                if (item && library && todo) {
+                    OTL.Application.copyItem(todo, library, item);
                 }
             }
         }

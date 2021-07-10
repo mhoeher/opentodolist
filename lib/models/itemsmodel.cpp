@@ -386,6 +386,8 @@ int ItemsModel::roleFromName(const QString& roleName) const
 
 /**
  * @brief Include only items with the given type.
+ *
+ * Multiple types can be separated via a comma (',').
  */
 QString ItemsModel::itemType() const
 {
@@ -480,10 +482,10 @@ void ItemsModel::fetch()
         auto onlyWithDueDate = m_onlyWithDueDate;
         auto itemMatchesFilter = getFilterFn();
         auto defaultSearchResult = m_defaultSearchResult;
-        auto itemType = m_itemType;
+        auto itemType = m_itemType.split(",", Qt::SkipEmptyParts);
 
         q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
-            if (!itemType.isEmpty() && item->itemType() != itemType) {
+            if (!itemType.isEmpty() && !itemType.contains(item->itemType())) {
                 return false;
             }
             auto result = true;

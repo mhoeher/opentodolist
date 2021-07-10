@@ -95,6 +95,11 @@ void CopyItemQuery::run()
             qCWarning(log) << "Failed to copy" << srcItemUid << m_targetPath;
             continue;
         }
+        if (dstItem->parentId() == srcItem->parentId()) {
+            // If the copy is in the same container (library, parent todo list, ...) prepend a
+            // "Copy of" so user's can distinguish the copy from the original.
+            dstItem->setTitle(tr("Copy of") + " " + dstItem->title());
+        }
         qCDebug(log) << "Copied item" << srcItemUid << "to" << dstItem->uid();
         if (!dstItem->save()) {
             qCWarning(log) << "Failed to save copy" << dstItem->uid() << "of item" << srcItemUid;

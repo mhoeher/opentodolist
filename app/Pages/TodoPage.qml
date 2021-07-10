@@ -45,6 +45,10 @@ ItemPage {
         moveTodoAction.trigger();
     }
 
+    function copyItem() {
+        copyTodoAction.trigger();
+    }
+
     function setProgress() {
         setManualProgressAction.trigger();
     }
@@ -260,5 +264,7 @@ ItemPage {
 
         property bool showUndone: false
     }
+
+    Actions.CopyTodo { id: copyTodoAction; item: page.item }
 }
 

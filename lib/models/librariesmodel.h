@@ -41,7 +41,8 @@ class LibrariesModel : public QAbstractListModel
     Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
-    enum { LibraryRole = Qt::UserRole, NameRole };
+    enum Roles { LibraryRole = Qt::UserRole, NameRole };
+    Q_ENUM(Roles);
 
     explicit LibrariesModel(QObject* parent = nullptr);
 
