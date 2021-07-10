@@ -125,12 +125,6 @@ appimage:
   variables:
     BUILD_SYSTEM: qmake
 
-# Build on Fedora using qmake
-fedora-qmake:
-  extends: .fedora
-  variables:
-    BUILD_SYSTEM: qmake
-
 # Build on Fedora using cmake
 fedora-cmake:
   extends: .fedora
