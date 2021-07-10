@@ -315,7 +315,7 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faCopy
+                symbol: Icons.faCut
                 text: qsTr("Move")
                 visible: {
                     return stackView.currentItem &&
@@ -323,6 +323,17 @@ ApplicationWindow {
                             "function";
                 }
                 onTriggered: stackView.currentItem.moveItem()
+            },
+
+            ToolBarAction {
+                symbol: Icons.faCopy
+                text: qsTr("Copy")
+                visible: {
+                    return stackView.currentItem &&
+                            typeof(stackView.currentItem["copyItem"]) ===
+                            "function";
+                }
+                onTriggered: stackView.currentItem.copyItem()
             },
 
             ToolBarAction {

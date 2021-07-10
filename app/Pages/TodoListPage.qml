@@ -12,6 +12,7 @@ import "../Windows"
 import "../Widgets"
 import "../Utils"
 import "../Menues"
+import "../Actions" as Actions
 
 ItemPage {
     id: page
@@ -44,6 +45,14 @@ ItemPage {
             todoPage.renameItem();
         } else {
             renameItemDialog.renameItem(item);
+        }
+    }
+
+    function copyItem() {
+        if (todoDrawer.visible) {
+            todoPage.copyItem();
+        } else {
+            copyTopLevelItemAction.trigger();
         }
     }
 
@@ -450,5 +459,7 @@ ItemPage {
             }
         }
     }
+
+    Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }
 }
 

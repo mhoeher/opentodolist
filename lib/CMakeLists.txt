@@ -25,6 +25,7 @@ set(LIB_HEADERS
     datamodel/toplevelitem.h
     datastorage/applicationsettings.h
     datastorage/cache.h
+    datastorage/copyitemquery.h
     datastorage/deleteitemsquery.h
     datastorage/getitemquery.h
     datastorage/getitemsquery.h
@@ -48,6 +49,7 @@ set(LIB_HEADERS
     sync/syncrunner.h
     sync/webdavsynchronizer.h
     utils/directorywatcher.h
+    utils/htmlsyntaxhighlighter.h
     utils/jsonutils.h
     utils/keystore.h
     utils/problem.h
@@ -55,7 +57,6 @@ set(LIB_HEADERS
     utils/syntaxhighlighting.h
     utils/translations.h
     utils/updateservice.h
-    utils/htmlsyntaxhighlighter.h
 
     ${LIB_HEADERS_ANDROID}
 )
@@ -74,6 +75,7 @@ set(LIB_SOURCES
     datamodel/toplevelitem.cpp
     datastorage/applicationsettings.cpp
     datastorage/cache.cpp
+    datastorage/copyitemquery.cpp
     datastorage/deleteitemsquery.cpp
     datastorage/getitemquery.cpp
     datastorage/getitemsquery.cpp
@@ -97,6 +99,7 @@ set(LIB_SOURCES
     sync/syncrunner.cpp
     sync/webdavsynchronizer.cpp
     utils/directorywatcher.cpp
+    utils/htmlsyntaxhighlighter.cpp
     utils/jsonutils.cpp
     utils/keystore.cpp
     utils/problem.cpp
@@ -104,7 +107,6 @@ set(LIB_SOURCES
     utils/syntaxhighlighting.cpp
     utils/translations.cpp
     utils/updateservice.cpp
-    utils/htmlsyntaxhighlighter.cpp
 
     ${LIB_SOURCES_ANDROID}
 

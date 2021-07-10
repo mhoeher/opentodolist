@@ -129,5 +129,9 @@
         <file>3rdpartyinfo/roboto/3rdpartyinfo.json</file>
         <file>Actions/PromoteTask.qml</file>
         <file>Windows/QuickNoteWindow.qml</file>
+        <file>Windows/SelectLibraryDialog.qml</file>
+        <file>Actions/CopyTopLevelItem.qml</file>
+        <file>Windows/SelectTopLevelItemDialog.qml</file>
+        <file>Actions/CopyTodo.qml</file>
     </qresource>
 </RCC>

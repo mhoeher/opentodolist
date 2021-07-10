@@ -56,6 +56,7 @@
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
 #include "datastorage/getitemquery.h"
+#include "datastorage/copyitemquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/libraryloader.h"
@@ -698,6 +699,21 @@ void Application::moveTodo(Todo* todo, TodoList* todoList)
     }
 }
 
+/**
+ * @brief Create a copy of an item.
+ *
+ * This (recursively) copies the @p item to the @p targetLibrary. If the item is not a TopLevelItem,
+ * it will be made a child of the @p targetParentItem.
+ */
+void Application::copyItem(Item* item, Library* targetLibrary, Item* targetParentItem)
+{
+    if (item && targetLibrary) {
+        auto q = new CopyItemQuery();
+        q->copyItem(item, targetLibrary, targetParentItem);
+        m_cache->run(q);
+    }
+}
+
 Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)
 {
     Task* task = nullptr;
@@ -709,7 +725,7 @@ Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)
         } else {
             task = new Task();
         }
-        for (auto property : properties.keys()) {
+        for (const auto& property : properties.keys()) {
             auto value = properties.value(property);
             task->setProperty(property.toUtf8(), value);
         }

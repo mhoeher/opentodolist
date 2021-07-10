@@ -284,6 +284,36 @@ void Item::fromVariant(QVariant data)
 }
 
 /**
+ * @brief Create a copy of the item.
+ *
+ * This creates a copy of this item in the @p targetDirectory. The item will belong to the library
+ * with the @p targetLibraryUid. If the item is not a TopLevelItem, it will be a child of the item
+ * identified by the @p targetItemUid.
+ *
+ * On success, the instance of the created item is returned. On failure, a nullptr is returned.
+ */
+Item* Item::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                   const QUuid& targetItemUid)
+{
+    Q_UNUSED(targetLibraryUuid);
+    Q_UNUSED(targetItemUid);
+
+    // 1. Create a 1:1 copy.
+    auto result = Item::decache(encache());
+
+    // 2. Adjust some key attributes.
+    if (result) {
+        result->m_uid = QUuid::createUuid();
+        result->m_filename = targetDirectory.absoluteFilePath(result->m_uid.toString() + "."
+                                                              + Item::FileNameSuffix);
+        result->m_createdAt = QDateTime::currentDateTimeUtc();
+        result->m_updatedAt = result->m_createdAt;
+    }
+
+    return result;
+}
+
+/**
  * @brief Saves the properties of the item to a QVariantMap.
  */
 QVariantMap Item::toMap() const

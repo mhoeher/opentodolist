@@ -10,6 +10,7 @@ import "../Widgets"
 import "../Utils"
 import "../Fonts"
 import "../Menues"
+import "../Actions" as Actions
 
 ItemPage {
     id: page
@@ -31,6 +32,10 @@ ItemPage {
 
     function renameItem() {
         renameItemDialog.renameItem(item);
+    }
+
+    function copyItem() {
+        copyTopLevelItemAction.trigger();
     }
 
     function addTag() {
@@ -247,5 +252,7 @@ ItemPage {
         flickable: flickable
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
+
+    Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }
 }
 

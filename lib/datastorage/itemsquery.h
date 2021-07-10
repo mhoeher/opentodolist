@@ -96,6 +96,8 @@ protected:
     int percentageForTodo(QLMDB::Transaction& transaction, const QByteArray& todoId);
     QDateTime earliestChildDueDate(QLMDB::Transaction& transaction, const QByteArray& parentId);
 
+    QSharedPointer<Item> itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid);
+
 private:
     QSharedPointer<QLMDB::Context> m_context;
     QSharedPointer<QLMDB::Database> m_global;

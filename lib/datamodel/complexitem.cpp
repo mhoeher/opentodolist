@@ -163,6 +163,13 @@ void ComplexItem::attachFile(const QString& filename)
         QFileInfo fi(filename);
         if (fi.exists() && fi.isFile() && fi.isReadable()) {
             QDir dir(directory());
+            if (!dir.exists()) {
+                if (!dir.mkpath(".")) {
+                    qCWarning(log)
+                            << "Failed to create item directory" << dir << "for attaching file";
+                    return;
+                }
+            }
             QString targetFileName = fi.fileName();
             int i = 0;
             while (dir.exists(targetFileName)) {
@@ -174,6 +181,9 @@ void ComplexItem::attachFile(const QString& filename)
             m_attachments.append(targetFileName);
             std::stable_sort(m_attachments.begin(), m_attachments.end());
             emit attachmentsChanged();
+        } else {
+            qCWarning(log) << "Cannot attach file" << filename << "to" << uid()
+                           << ": File does not exist or cannot be read.";
         }
     }
 }
@@ -594,7 +604,7 @@ void ComplexItem::markItemAsDone()
 bool ComplexItem::deleteItem()
 {
     if (isValid()) {
-        for (auto attachment : m_attachments) {
+        for (const auto& attachment : qAsConst(m_attachments)) {
             auto path = attachmentFileName(attachment);
             QFile file(path);
             if (file.exists()) {
@@ -606,4 +616,23 @@ bool ComplexItem::deleteItem()
         }
     }
     return Item::deleteItem();
+}
+
+Item* ComplexItem::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                          const QUuid& targetItemUid)
+{
+    auto result = Item::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto complexItem = qobject_cast<ComplexItem*>(result);
+    if (complexItem) {
+        complexItem->m_attachments.clear();
+        const auto& attachments = m_attachments;
+        for (const auto& attachment : attachments) {
+            const auto fn = attachmentFileName(attachment);
+            qCWarning(log) << "Attaching" << fn << "to copy of" << uid();
+            complexItem->attachFile(attachmentFileName(attachment));
+        }
+        qCWarning(log) << "Attachments of" << complexItem->uid() << ":"
+                       << complexItem->attachments();
+    }
+    return result;
 }

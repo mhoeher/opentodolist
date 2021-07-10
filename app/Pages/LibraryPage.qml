@@ -206,6 +206,11 @@ Page {
         }
 
         MenuItem {
+            text: qsTr("Copy")
+            onTriggered: ItemUtils.copyTopLevelItem(itemContextMenu.item)
+        }
+
+        MenuItem {
             text: qsTr("Delete")
             onTriggered: deleteItemDialog.deleteItem(itemContextMenu.item)
         }
