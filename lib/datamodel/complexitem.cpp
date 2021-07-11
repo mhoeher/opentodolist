@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -41,6 +41,7 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent)
       m_dueTo(),
       m_notes(),
       m_attachments(),
+      m_earliestChildDueTo(),
       m_recurrencePattern(NoRecurrence),
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
@@ -57,6 +58,7 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent)
       m_dueTo(),
       m_notes(),
       m_attachments(),
+      m_earliestChildDueTo(),
       m_recurrencePattern(NoRecurrence),
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
@@ -161,6 +163,13 @@ void ComplexItem::attachFile(const QString& filename)
         QFileInfo fi(filename);
         if (fi.exists() && fi.isFile() && fi.isReadable()) {
             QDir dir(directory());
+            if (!dir.exists()) {
+                if (!dir.mkpath(".")) {
+                    qCWarning(log)
+                            << "Failed to create item directory" << dir << "for attaching file";
+                    return;
+                }
+            }
             QString targetFileName = fi.fileName();
             int i = 0;
             while (dir.exists(targetFileName)) {
@@ -172,6 +181,9 @@ void ComplexItem::attachFile(const QString& filename)
             m_attachments.append(targetFileName);
             std::stable_sort(m_attachments.begin(), m_attachments.end());
             emit attachmentsChanged();
+        } else {
+            qCWarning(log) << "Cannot attach file" << filename << "to" << uid()
+                           << ": File does not exist or cannot be read.";
         }
     }
 }
@@ -280,6 +292,28 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
             break;
         }
 
+        case RecurYearly: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueTo = m_dueTo;
+                while (nextDueTo <= _today || nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addYears(1);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueTo = _today.addYears(1);
+                while (nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addYears(1);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            }
+            break;
+        }
+
         case RecurEveryNDays: {
             switch (m_recurrenceSchedule) {
             case RelativeToOriginalDueDate: {
@@ -301,10 +335,76 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
             }
             break;
         }
+
+        case RecurEveryNWeeks: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueTo = m_dueTo;
+                while (nextDueTo <= _today || nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addDays(m_recurInterval * 7);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueTo = _today.addDays(m_recurInterval * 7);
+                while (nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addDays(m_recurInterval * 7);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            }
+            break;
+        }
+
+        case RecurEveryNMonths: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueTo = m_dueTo;
+                auto eDT = effectiveDueTo();
+                while (nextDueTo <= _today || nextDueTo <= eDT) {
+                    nextDueTo = nextDueTo.addMonths(m_recurInterval);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueTo = _today.addMonths(m_recurInterval);
+                while (nextDueTo <= effectiveDueTo()) {
+                    nextDueTo = nextDueTo.addMonths(m_recurInterval);
+                }
+                setNextDueTo(nextDueTo);
+                break;
+            }
+            }
+            break;
+        }
         }
     } else {
         // Simply mark the item as done:
         markItemAsDone();
+    }
+}
+
+/**
+ * @brief The earliest due to date of the direct children of the item.
+ *
+ * This property holds the earliest due to date among the direct child items of that item.
+ */
+QDateTime ComplexItem::earliestChildDueTo() const
+{
+    return m_earliestChildDueTo;
+}
+
+/**
+ * @brief Set the earliest due to date among the direct children of the item.
+ */
+void ComplexItem::setEarliestChildDueTo(const QDateTime& earliestChildDueTo)
+{
+    if (m_earliestChildDueTo != earliestChildDueTo) {
+        m_earliestChildDueTo = earliestChildDueTo;
+        emit earliestChildDueToChanged();
     }
 }
 
@@ -314,6 +414,8 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
  * This is the interval between recurrences of the item.
  *
  * @sa RecurrencePattern::RecurEveryNDays
+ * @sa RecurrencePattern::RecurEveryNWeeks
+ * @sa RecurrencePattern::RecurEveryNMonths
  */
 int ComplexItem::recurInterval() const
 {
@@ -338,13 +440,18 @@ void ComplexItem::setRecurInterval(int recurInterval)
  * no recurrence pattern set, this is equal to the dueTo property. If an item has a recurrence
  * pattern set and a past instance of the item has already been marked as done, this equals the
  * nextDueTo property.
+ *
+ * In addition, if an item has no own due date but children which might in turn have a due date, the
+ * earliestChildDueTo() is returned.
  */
 QDateTime ComplexItem::effectiveDueTo() const
 {
     if (m_nextDueTo.isValid() && m_dueTo.isValid() && m_nextDueTo > m_dueTo) {
         return m_nextDueTo;
-    } else {
+    } else if (m_dueTo.isValid()) {
         return m_dueTo;
+    } else {
+        return m_earliestChildDueTo;
     }
 }
 
@@ -355,13 +462,16 @@ QDateTime ComplexItem::effectiveDueTo() const
  *
  * - It has a valid due to date set.
  * - It has a recurrence pattern other than RecurrencePattern::NoRecurrence set.
- * - If the recurrence pattern RecurrencePattern::RecurEveryNDays is set, the
+ * - If the recurrence pattern RecurrencePattern::RecurEveryNDays,
+ *   RecurrencePattern::RecurEveryNWeeks or RecurrencePattern::RecurEveryNMonths is set, the
  *   recurInterval must be greater than 1.
  */
 bool ComplexItem::isRecurring() const
 {
     return m_dueTo.isValid() && m_recurrencePattern != NoRecurrence
-            && (m_recurrencePattern != RecurEveryNDays || m_recurInterval > 0);
+            && ((m_recurrencePattern != RecurEveryNDays && m_recurrencePattern != RecurEveryNWeeks
+                 && m_recurrencePattern != RecurEveryNMonths)
+                || m_recurInterval > 0);
 }
 
 /**
@@ -494,7 +604,7 @@ void ComplexItem::markItemAsDone()
 bool ComplexItem::deleteItem()
 {
     if (isValid()) {
-        for (auto attachment : m_attachments) {
+        for (const auto& attachment : qAsConst(m_attachments)) {
             auto path = attachmentFileName(attachment);
             QFile file(path);
             if (file.exists()) {
@@ -506,4 +616,23 @@ bool ComplexItem::deleteItem()
         }
     }
     return Item::deleteItem();
+}
+
+Item* ComplexItem::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                          const QUuid& targetItemUid)
+{
+    auto result = Item::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto complexItem = qobject_cast<ComplexItem*>(result);
+    if (complexItem) {
+        complexItem->m_attachments.clear();
+        const auto& attachments = m_attachments;
+        for (const auto& attachment : attachments) {
+            const auto fn = attachmentFileName(attachment);
+            qCWarning(log) << "Attaching" << fn << "to copy of" << uid();
+            complexItem->attachFile(attachmentFileName(attachment));
+        }
+        qCWarning(log) << "Attachments of" << complexItem->uid() << ":"
+                       << complexItem->attachments();
+    }
+    return result;
 }

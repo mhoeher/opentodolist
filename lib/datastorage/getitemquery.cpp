@@ -18,6 +18,7 @@
  */
 
 #include <qlmdb/database.h>
+#include <qlmdb/transaction.h>
 
 #include "datamodel/item.h"
 #include "datastorage/getitemquery.h"
@@ -36,11 +37,13 @@ void GetItemQuery::setUid(const QUuid& uid)
 
 void GetItemQuery::run()
 {
+    QLMDB::Transaction t(*context());
     auto uid = m_uid.toByteArray();
-    auto data = items()->get(uid);
+    auto data = items()->get(t, uid);
     if (!data.isNull()) {
         auto entry = ItemCacheEntry::fromByteArray(data, uid);
         if (entry.valid) {
+            calculateValues(t, &entry);
             emit itemLoaded(QVariant::fromValue(entry));
         }
     }

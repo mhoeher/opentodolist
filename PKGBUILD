@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://opentodolist.rpdev.net/"
 license=('GPL')
 groups=()
-depends=('cmake' 'ninja' 'qt5-base' 'qt5-tools' 'qt5-quickcontrols2' 'qt5-remoteobjects' 'syntax-highlighting' 'libsecret' 'ttf-roboto' 'noto-fonts')
+depends=('cmake' 'ninja' 'qt5-base' 'qt5-tools' 'qt5-quickcontrols2' 'qt5-remoteobjects' 'syntax-highlighting' 'libsecret' 'ttf-roboto' 'noto-fonts' 'qtkeychain-qt5')
 makedepends=('git')
 provides=("${pkgname%}")
 conflicts=("${pkgname%}")
@@ -47,6 +47,8 @@ build() {
                 -DCMAKE_INSTALL_PREFIX=/usr \
                 -DQTKEYCHAIN_STATIC=ON \
                 -DQLMDB_WITH_STATIC_LIBS=ON \
+                -DOPENTODOLIST_USE_SYSTEM_QTKEYCHAIN=ON \
+                -DOPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING=ON \
                 ..
         cmake --build .
 }

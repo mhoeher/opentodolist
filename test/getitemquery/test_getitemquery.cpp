@@ -43,6 +43,7 @@ private slots:
     void initTestCase() {}
     void init() {}
     void run();
+    void todolist_earliestChildDueDate();
     void cleanup() {}
     void cleanupTestCase() {}
 };
@@ -147,6 +148,145 @@ void GetItemQueryTest::run()
         QVERIFY(item != nullptr);
         QCOMPARE(item->uid(), image.uid());
         QCOMPARE(item->title(), image.title());
+    }
+}
+
+void GetItemQueryTest::todolist_earliestChildDueDate()
+{
+    QTemporaryDir tmpDir;
+    Cache cache;
+    cache.setCacheDirectory(tmpDir.path());
+    cache.setCacheSize(1024 * 1024);
+    QVERIFY(cache.open());
+
+    Library lib;
+    TodoList todoList;
+    todoList.setTitle("A todo list");
+    todoList.setLibraryId(lib.uid());
+    Todo todo1;
+    todo1.setTitle("A todo");
+    todo1.setTodoListUid(todoList.uid());
+    Todo todo2;
+    todo2.setTitle("Another todo");
+    todo2.setTodoListUid(todoList.uid());
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
+
+        q->add(&lib);
+        q->add(&todoList);
+        q->add(&todo1);
+        q->add(&todo2);
+        cache.run(q);
+
+        QVERIFY(destroyed.wait());
+        QCOMPARE(finished.count(), 1);
+    }
+
+    {
+        auto q = new GetItemQuery();
+        q->setUid(todoList.uid());
+        QSignalSpy itemLoaded(q, &GetItemQuery::itemLoaded);
+        cache.run(q);
+        QVERIFY(itemLoaded.wait());
+        ItemPtr item(Item::decache(itemLoaded.value(0).value(0)));
+        QVERIFY(item != nullptr);
+        QCOMPARE(item->uid(), todoList.uid());
+        QCOMPARE(item->title(), todoList.title());
+        TodoListPtr todoListItem = qSharedPointerCast<TodoList>(item);
+        QVERIFY(todoListItem->dueTo().isNull());
+    }
+
+    todo2.setDueTo(QDateTime::currentDateTime());
+    todo1.setDueTo(todo2.dueTo().addDays(1));
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
+
+        q->add(&todo1);
+        q->add(&todo2);
+        cache.run(q);
+
+        QVERIFY(destroyed.wait());
+        QCOMPARE(finished.count(), 1);
+    }
+
+    {
+        auto q = new GetItemQuery();
+        q->setUid(todoList.uid());
+        QSignalSpy itemLoaded(q, &GetItemQuery::itemLoaded);
+        cache.run(q);
+        QVERIFY(itemLoaded.wait());
+        ItemPtr item(Item::decache(itemLoaded.value(0).value(0)));
+        QVERIFY(item != nullptr);
+        QCOMPARE(item->uid(), todoList.uid());
+        QCOMPARE(item->title(), todoList.title());
+        TodoListPtr todoListItem = qSharedPointerCast<TodoList>(item);
+        QCOMPARE(todoListItem->earliestChildDueTo(), todo2.dueTo());
+        QCOMPARE(todoListItem->effectiveDueTo(), todo2.dueTo());
+    }
+
+    todo2.setDone(true);
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
+
+        q->add(&todo2);
+        cache.run(q);
+
+        QVERIFY(destroyed.wait());
+        QCOMPARE(finished.count(), 1);
+    }
+
+    {
+        auto q = new GetItemQuery();
+        q->setUid(todoList.uid());
+        QSignalSpy itemLoaded(q, &GetItemQuery::itemLoaded);
+        cache.run(q);
+        QVERIFY(itemLoaded.wait());
+        ItemPtr item(Item::decache(itemLoaded.value(0).value(0)));
+        QVERIFY(item != nullptr);
+        QCOMPARE(item->uid(), todoList.uid());
+        QCOMPARE(item->title(), todoList.title());
+        TodoListPtr todoListItem = qSharedPointerCast<TodoList>(item);
+        QCOMPARE(todoListItem->earliestChildDueTo(), todo1.dueTo());
+        QCOMPARE(todoListItem->effectiveDueTo(), todo1.dueTo());
+    }
+
+    todoList.setDueTo(todo1.dueTo().addDays(1));
+    auto expectedDueTo = todoList.dueTo();
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        QSignalSpy destroyed(q, &InsertOrUpdateItemsQuery::destroyed);
+
+        q->add(&todoList);
+        cache.run(q);
+
+        QVERIFY(destroyed.wait());
+        QCOMPARE(finished.count(), 1);
+    }
+
+    {
+        auto q = new GetItemQuery();
+        q->setUid(todoList.uid());
+        QSignalSpy itemLoaded(q, &GetItemQuery::itemLoaded);
+        cache.run(q);
+        QVERIFY(itemLoaded.wait());
+        ItemPtr item(Item::decache(itemLoaded.value(0).value(0)));
+        QVERIFY(item != nullptr);
+        QCOMPARE(item->uid(), todoList.uid());
+        QCOMPARE(item->title(), todoList.title());
+        TodoListPtr todoListItem = qSharedPointerCast<TodoList>(item);
+        QCOMPARE(todoListItem->earliestChildDueTo(), todo1.dueTo());
+        QCOMPARE(todoListItem->effectiveDueTo(), expectedDueTo);
     }
 }
 

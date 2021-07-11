@@ -97,6 +97,7 @@ public:
     Q_INVOKABLE TodoList* addTodoList(Library* library, QVariantMap properties);
     Q_INVOKABLE Todo* addTodo(Library* library, TodoList* todoList, QVariantMap properties);
     Q_INVOKABLE void moveTodo(Todo* todo, TodoList* todoList);
+    Q_INVOKABLE void copyItem(Item* item, Library* targetLibrary, Item* targetParentItem = nullptr);
     Q_INVOKABLE Task* addTask(Library* library, Todo* todo, QVariantMap properties);
     Q_INVOKABLE void promoteTask(Task* task, TodoList* targetTodoList);
     Q_INVOKABLE void deleteItem(Item* item);

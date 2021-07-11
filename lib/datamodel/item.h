@@ -105,6 +105,9 @@ public:
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant(QVariant data);
 
+    virtual Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                         const QUuid& targetItemUid = QUuid());
+
     virtual void applyCalculatedProperties(const QVariantMap& properties);
 
     /**

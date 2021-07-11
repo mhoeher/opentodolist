@@ -206,6 +206,11 @@ Page {
         }
 
         MenuItem {
+            text: qsTr("Copy")
+            onTriggered: ItemUtils.copyTopLevelItem(itemContextMenu.item)
+        }
+
+        MenuItem {
             text: qsTr("Delete")
             onTriggered: deleteItemDialog.deleteItem(itemContextMenu.item)
         }
@@ -453,7 +458,7 @@ Page {
         MenuItem {
             text: qsTr("Due To")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.DueToRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.EffectiveDueToRole
             onTriggered: settings.sortBy = "dueTo"
         }
 

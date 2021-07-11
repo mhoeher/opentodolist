@@ -23,6 +23,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFile>
+#include <QJsonDocument>
 #include <QLocale>
 #include <QLoggingCategory>
 #include <QQmlEngine>
@@ -51,7 +52,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.Translator", QtDebugMsg);
  * a suitable translations file.
  */
 Translations::Translations(QQmlEngine* engine, QObject* parent)
-    : QObject(parent), m_engine(engine), m_translator(new QTranslator(this))
+    : QObject(parent), m_engine(engine), m_translator(new QTranslator(this)), m_language()
 {
     q_check_ptr(m_engine);
     QCoreApplication::installTranslator(m_translator);
@@ -82,21 +83,17 @@ void Translations::setLanguage(const QString& language)
 }
 
 /**
- * @brief Get a list of all available languages.
- *
- * This function returns a list of all available languages that can be set as
- * current language.
+ * @brief Returns the content of the file "languages.json".
  */
-QStringList Translations::allLanguages() const
+QVariantList Translations::availableLanguages() const
 {
-    QStringList result;
-    result << "";
-    for (const auto& entry :
-         QDir(":/translations").entryList({ "opentodolist_*.qm" }, QDir::Files)) {
-        auto key = entry.mid(13, entry.length() - 16);
-        if (!result.contains(key)) {
-            result << key;
-        }
+    QVariantList result;
+    result << QVariantMap { { "code", "" }, { "name", tr("System Language") } };
+
+    QFile languageFile(":/translations/languages.json");
+    if (languageFile.open(QIODevice::ReadOnly)) {
+        auto list = QJsonDocument::fromJson(languageFile.readAll()).toVariant().toList();
+        result.append(list);
     }
     return result;
 }
@@ -121,7 +118,9 @@ void Translations::save()
 void Translations::apply()
 {
     if (!m_language.isEmpty()) {
-        QString filename = ":/translations/opentodolist_" + m_language + ".qm";
+        auto language = m_language;
+        language.replace("-", "_");
+        QString filename = ":/translations/OpenTodoList-" + language + ".qm";
         if (QFile::exists(filename)) {
             m_translator->load(filename);
             qCDebug(log) << "Loaded translations from file" << filename;
@@ -132,11 +131,54 @@ void Translations::apply()
         }
     }
 
+    // Try to find a suitable language file, based on the system locale.
     auto systemLocale = QLocale::system();
-    if (m_translator->load(systemLocale, "opentodolist", "_", ":/translations/")) {
-        qCDebug(log) << "Successfully loaded translation"
-                     << "for UI languages" << systemLocale.uiLanguages();
-        m_engine->retranslate();
+    const auto uiLanguages = systemLocale.uiLanguages();
+    QString langFile;
+
+    // Pass 1: Is there a file matching exactly the user locale?
+    for (auto uiLang : uiLanguages) {
+        auto path = ":/translations/OpenTodoList-" + uiLang.replace("-", "_") + ".qm";
+        if (QFile::exists(path)) {
+            langFile = path;
+            break;
+        }
+    }
+
+    // Pass 2: Is there a file with the language part only:
+    if (langFile.isEmpty()) {
+        for (auto uiLang : uiLanguages) {
+            auto lang = uiLang.split("_")[0];
+            auto path = ":/translations/OpenTodoList-" + lang + ".qm";
+            if (QFile::exists(path)) {
+                langFile = path;
+                break;
+            }
+        }
+    }
+
+    // Pass 3: Last resort: Use any translation which is at least related:
+    if (langFile.isEmpty()) {
+        for (auto uiLang : uiLanguages) {
+            auto lang = uiLang.split("_")[0];
+            QDir translationsDir(":/translations");
+            auto entries =
+                    translationsDir.entryList({ "OpenTodoList-" + lang + "_*.qm" }, QDir::Files);
+            if (!entries.isEmpty()) {
+                langFile = ":/translations/" + entries[0];
+            }
+            break;
+        }
+    }
+
+    if (!langFile.isEmpty()) {
+        if (m_translator->load(langFile)) {
+            qCDebug(log) << "Successfully loaded translation"
+                         << "for UI languages" << systemLocale.uiLanguages();
+            m_engine->retranslate();
+        } else {
+            qCDebug(log) << "Failed to load translation file" << langFile;
+        }
     } else {
         qCDebug(log) << "No translations found for UI languages" << systemLocale.uiLanguages();
     }

@@ -170,6 +170,19 @@ void TopLevelItem::setLibraryId(const QUuid& libraryId)
     }
 }
 
+Item* TopLevelItem::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                           const QUuid& targetItemUid)
+{
+    auto result = ComplexItem::copyTo(targetDirectory, targetLibraryUuid, targetItemUid);
+    auto topLevelItem = qobject_cast<TopLevelItem*>(result);
+
+    if (topLevelItem) {
+        topLevelItem->m_libraryId = targetLibraryUuid;
+    }
+
+    return result;
+}
+
 QVariantMap TopLevelItem::toMap() const
 {
     auto result = ComplexItem::toMap();

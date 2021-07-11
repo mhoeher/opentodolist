@@ -44,3 +44,9 @@ TodoList::TodoList(const QDir& dir, QObject* parent) : TopLevelItem(dir, parent)
  * @brief Destructor.
  */
 TodoList::~TodoList() {}
+
+void TodoList::applyCalculatedProperties(const QVariantMap& properties)
+{
+    ComplexItem::applyCalculatedProperties(properties);
+    setEarliestChildDueTo(properties.value("earliestChildDueDate", QDateTime()).toDateTime());
+}

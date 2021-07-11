@@ -14,5 +14,6 @@
         <file>icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png</file>
         <file>Utils/showdown-1.9.1/dist/showdown.js</file>
         <file>OpenTodoList.notifyrc</file>
+        <file>translations/languages.json</file>
     </qresource>
 </RCC>

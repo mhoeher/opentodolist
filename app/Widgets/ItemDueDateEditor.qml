@@ -76,8 +76,14 @@ GridLayout {
                 return qsTr("Recurs every week.")
             case OTL.ComplexItem.RecurMonthly:
                 return qsTr("Recurs every month.")
+            case OTL.ComplexItem.RecurYearly:
+                return qsTr("Recurs every year.")
             case OTL.ComplexItem.RecurEveryNDays:
                 return qsTr("Recurs every %1 days.").arg(root.item.recurInterval);
+            case OTL.ComplexItem.RecurEveryNWeeks:
+                return qsTr("Recurs every %1 weeks.").arg(root.item.recurInterval);
+            case OTL.ComplexItem.RecurEveryNMonths:
+                return qsTr("Recurs every %1 months.").arg(root.item.recurInterval);
             default:
                 console.warn(
                             "Warning: Unhandled recurrence pattern",

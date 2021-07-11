@@ -165,6 +165,7 @@ There are several options available that you can pass to `cmake` when configurin
 | `OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of KDE's KSyntaxHighlighting library instead of building it from source. |
 | `OPENTODOLIST_USE_SYSTEM_QLMDB` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of the QLMDB library instead of building it from source. |
 | `OPENTODOLIST_USE_SYSTEM_SYNQCLIENT` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of the SynqClient library instead of building it from source. |
+| `OPENTODOLIST_UPDATE_TRANSLATIONS` | `OFF` | Update the translation files (`*.ts`) from the source files while building. |
 
 **Note:** There are additional options available, which allow fine tuning for specific targets. Please refer to the various build scripts in the top-level `ci` folder to learn more. However, usually, there is no reason to use them.
 

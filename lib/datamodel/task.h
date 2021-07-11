@@ -52,6 +52,9 @@ public:
     QUuid todoUid() const;
     void setTodoUid(const QUuid& todoUid);
 
+    Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                 const QUuid& targetItemUid) override;
+
 signals:
 
     void doneChanged();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -103,7 +103,7 @@ void InsertOrUpdateItemsQuery::run()
             auto parentId = item.parentId;
             double weight = 0.0;
             auto childIds = children()->getAll(t, parentId.toByteArray());
-            for (auto childId : childIds) {
+            for (const auto& childId : childIds) {
                 auto data = items()->get(t, childId);
                 if (!data.isNull()) {
                     auto siblingItem = Item::decache(ItemCacheEntry::fromByteArray(data, childId));

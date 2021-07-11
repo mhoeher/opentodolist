@@ -12,6 +12,7 @@ variables:
     CCACHE_DIR: $CI_PROJECT_DIR/ccache
 
 stages:
+  - prepare
   - build
   - test
   - installer
@@ -34,9 +35,25 @@ workflow:
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /Update [^ ]+ \(POEditor.com\)/i
       when: never
+    - if: $CI_COMMIT_MESSAGE =~ /Downloaded Translations from POEditor/i
+      when: never
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_BRANCH
 
+################################################################################
+# Prepare Stage
+################################################################################
+
+download_translations:
+  stage: prepare
+  image: fedora
+  script:
+    ./ci/download_translations.sh
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'development'
+      allow_failure: true
+      when: manual
+    - if: $OPENTODOLIST_DOWNLOAD_TRANSLATIONS == '1'
 
 ################################################################################
 # Build Stage
@@ -105,12 +122,6 @@ appimage:
       alias: owncloud
   script:
     ./ci/fedora-build.sh
-  variables:
-    BUILD_SYSTEM: qmake
-
-# Build on Fedora using qmake
-fedora-qmake:
-  extends: .fedora
   variables:
     BUILD_SYSTEM: qmake
 
@@ -370,6 +381,14 @@ aur_release:
         - archlinux-pkgbuild
     when: manual
 
+upload_translations:
+  stage: deploy
+  image: fedora
+  script:
+    ./ci/upload_translations.sh
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'development'
+      allow_failure: true
 
 ################################################################################
 # Upload to snapcraft.io
@@ -392,27 +411,3 @@ snap::edge:
   extends: .snap::upload
   variables:
     SNAPCRAFT_CHANNEL: edge
-
-# Upload to beta channel
-snap::beta:
-  stage: beta
-  extends: .snap::upload
-  variables:
-    SNAPCRAFT_CHANNEL: beta
-  when: manual
-
-# Upload to candidate channel
-snap::candidate:
-  stage: candidate
-  extends: .snap::upload
-  variables:
-    SNAPCRAFT_CHANNEL: candidate
-  when: manual
-
-# Upload to release channel
-snap::release:
-  stage: stable
-  extends: .snap::upload
-  variables:
-    SNAPCRAFT_CHANNEL: release
-  when: manual

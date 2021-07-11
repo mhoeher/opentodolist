@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -59,7 +59,10 @@ public:
         RecurDaily, //!< The item recurs daily.
         RecurWeekly, //!< The item recurs weekly.
         RecurMonthly, //!< The item recurs monthly.
-        RecurEveryNDays //!< The item recurs every N days.
+        RecurYearly, //!< The item recurs monthly.
+        RecurEveryNDays, //!< The item recurs every N days.
+        RecurEveryNWeeks, //!< The item recurs every N weeks.
+        RecurEveryNMonths, //!< The item recurs every N months.
     };
 
     Q_ENUM(RecurrencePattern)
@@ -92,6 +95,8 @@ public:
 
     // Item interface
     bool deleteItem() override;
+    Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
+                 const QUuid& targetItemUid = QUuid()) override;
 
     RecurrencePattern recurrencePattern() const;
     void setRecurrencePattern(const RecurrencePattern& recurrencePattern);
@@ -108,6 +113,9 @@ public:
     QDateTime effectiveDueTo() const;
     bool isRecurring() const;
 
+    QDateTime earliestChildDueTo() const;
+    void setEarliestChildDueTo(const QDateTime& earliestChildDueTo);
+
 signals:
 
     void dueToChanged();
@@ -119,6 +127,7 @@ signals:
     void recurIntervalChanged();
     void effectiveDueToChanged();
     void isRecurringChanged();
+    void earliestChildDueToChanged();
 
 public slots:
 
@@ -131,6 +140,7 @@ private:
     QDateTime m_dueTo;
     QString m_notes;
     QStringList m_attachments;
+    QDateTime m_earliestChildDueTo;
 
     // Recurrence handling:
     RecurrencePattern m_recurrencePattern;

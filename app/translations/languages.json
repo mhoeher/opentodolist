@@ -1,0 +1,226 @@
+[
+    {
+        "name": "Afrikaans",
+        "code": "af",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
+        "name": "Basque",
+        "code": "eu",
+        "translations": 89,
+        "percentage": 19.18,
+        "updated": "2020-06-28T20:23:00+0000"
+    },
+    {
+        "name": "Breton",
+        "code": "br",
+        "translations": 186,
+        "percentage": 40.09,
+        "updated": "2020-06-11T11:47:53+0000"
+    },
+    {
+        "name": "Catalan",
+        "code": "ca",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
+        "name": "Chinese",
+        "code": "zh-CN",
+        "translations": 180,
+        "percentage": 38.79,
+        "updated": "2020-07-01T05:34:34+0000"
+    },
+    {
+        "name": "Chinese (simplified)",
+        "code": "zh-Hans",
+        "translations": 305,
+        "percentage": 65.73,
+        "updated": "2020-08-23T15:49:42+0000"
+    },
+    {
+        "name": "Danish",
+        "code": "da",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T18:00:05+0000"
+    },
+    {
+        "name": "Dutch",
+        "code": "nl",
+        "translations": 464,
+        "percentage": 100,
+        "updated": "2021-07-11T10:17:30+0000"
+    },
+    {
+        "name": "English",
+        "code": "en",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
+        "name": "Filipino",
+        "code": "fil",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T18:56:25+0000"
+    },
+    {
+        "name": "French",
+        "code": "fr",
+        "translations": 456,
+        "percentage": 98.28,
+        "updated": "2021-06-14T15:41:26+0000"
+    },
+    {
+        "name": "Georgian",
+        "code": "ka",
+        "translations": 14,
+        "percentage": 3.02,
+        "updated": "2020-08-16T16:25:12+0000"
+    },
+    {
+        "name": "German",
+        "code": "de",
+        "translations": 456,
+        "percentage": 98.28,
+        "updated": "2021-06-03T09:21:19+0000"
+    },
+    {
+        "name": "Greek",
+        "code": "el",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
+        "name": "Hungarian",
+        "code": "hu",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T19:14:41+0000"
+    },
+    {
+        "name": "Italian",
+        "code": "it",
+        "translations": 416,
+        "percentage": 89.66,
+        "updated": "2021-01-11T18:34:05+0000"
+    },
+    {
+        "name": "Japanese",
+        "code": "ja",
+        "translations": 7,
+        "percentage": 1.51,
+        "updated": "2020-09-29T10:04:12+0000"
+    },
+    {
+        "name": "Korean",
+        "code": "ko",
+        "translations": 60,
+        "percentage": 12.93,
+        "updated": "2021-05-10T05:04:59+0000"
+    },
+    {
+        "name": "Norwegian",
+        "code": "no",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T18:32:43+0000"
+    },
+    {
+        "name": "Polish",
+        "code": "pl",
+        "translations": 426,
+        "percentage": 91.81,
+        "updated": "2021-05-04T10:08:31+0000"
+    },
+    {
+        "name": "Portuguese",
+        "code": "pt",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T18:46:42+0000"
+    },
+    {
+        "name": "Portuguese (BR)",
+        "code": "pt-br",
+        "translations": 312,
+        "percentage": 67.24,
+        "updated": "2021-03-26T13:36:31+0000"
+    },
+    {
+        "name": "Russian",
+        "code": "ru",
+        "translations": 307,
+        "percentage": 66.16,
+        "updated": "2021-03-20T01:29:37+0000"
+    },
+    {
+        "name": "Slovak",
+        "code": "sk",
+        "translations": 3,
+        "percentage": 0.65,
+        "updated": "2021-04-21T09:23:22+0000"
+    },
+    {
+        "name": "Slovenian",
+        "code": "sl",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
+        "name": "Spanish",
+        "code": "es",
+        "translations": 305,
+        "percentage": 65.73,
+        "updated": "2020-07-14T20:56:33+0000"
+    },
+    {
+        "name": "Spanish (LA & C)",
+        "code": "es-419",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
+        "name": "Swedish",
+        "code": "sv",
+        "translations": 458,
+        "percentage": 98.71,
+        "updated": "2021-06-25T07:30:40+0000"
+    },
+    {
+        "name": "Turkish",
+        "code": "tr",
+        "translations": 416,
+        "percentage": 89.66,
+        "updated": "2021-02-01T12:52:08+0000"
+    },
+    {
+        "name": "Turkmen",
+        "code": "tk",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T19:55:58+0000"
+    },
+    {
+        "name": "Ukrainian",
+        "code": "uk",
+        "translations": 140,
+        "percentage": 30.17,
+        "updated": "2020-08-24T20:58:59+0000"
+    },
+    {
+        "name": "Vietnamese",
+        "code": "vi",
+        "translations": 301,
+        "percentage": 64.87,
+        "updated": "2020-06-28T19:42:15+0000"
+    }
+]
