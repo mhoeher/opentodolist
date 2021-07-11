@@ -40,6 +40,17 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.36.0" date="2021-07-11">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #436: Todo lists inherit the due date of their todos.
+            </li>
+            <li>
+                #434: Copying of items.
+            </li>
+        </ul>
+      </release>
       <release version="3.35.0" date="2021-06-06">
         <p>This release includes the following changes:</p>
         <ul>
