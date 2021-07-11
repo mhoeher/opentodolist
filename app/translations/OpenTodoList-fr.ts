@@ -6,7 +6,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
-        <translation type="unfinished">À propos de...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="29"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="92"/>
         <source>Copy System Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier les Informations Système</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="113"/>
@@ -116,22 +116,22 @@
     <message>
         <location filename="../appstartup.cpp" line="181"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished">Activez certaines optimisations pour les écrans tactiles.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="184"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exécuter uniquement le service d&apos;arrière-plan de l&apos;application</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="186"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exécutez uniquement l&apos;interface graphique de l&apos;application et connectez-vous à un service d&apos;arrière-plan existant</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="191"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activez une console sous Windows pour recueillir les données de débogage</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="324"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../appstartup.cpp" line="331"/>
         <source>Quick Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Note Rapide</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="384"/>
@@ -231,6 +231,22 @@
         <location filename="../Utils/Colors.qml" line="18"/>
         <source>Dark</source>
         <translation type="unfinished">Sombre</translation>
+    </message>
+</context>
+<context>
+    <name>CopyTodo</name>
+    <message>
+        <location filename="../Actions/CopyTodo.qml" line="11"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CopyTopLevelItem</name>
+    <message>
+        <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -510,7 +526,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
         <source>Recurs every year.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se répète chaque année.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
@@ -520,12 +536,12 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
         <source>Recurs every %1 weeks.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se répète chaque %1 semaines.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="86"/>
         <source>Recurs every %1 months.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se répète chaque %1 mois.</translation>
     </message>
 </context>
 <context>
@@ -559,14 +575,14 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="127"/>
+        <location filename="../Utils/ItemUtils.qml" line="152"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Déplacer ToDo dans ...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="142"/>
+        <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Convertir une tâche en Todo et la déplacer dans...</translation>
     </message>
 </context>
 <context>
@@ -604,7 +620,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
         <source>About...</source>
-        <translation type="unfinished">À propos de...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="233"/>
@@ -681,56 +697,61 @@
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="209"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="214"/>
         <source>Delete</source>
         <translation type="unfinished">Supprimer</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="267"/>
+        <location filename="../Pages/LibraryPage.qml" line="272"/>
         <source>Note Title</source>
         <translation type="unfinished">Titre de la note</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="280"/>
+        <location filename="../Pages/LibraryPage.qml" line="285"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Titre de la todo list</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="293"/>
+        <location filename="../Pages/LibraryPage.qml" line="298"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="372"/>
+        <location filename="../Pages/LibraryPage.qml" line="377"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Rien pour l&apos;instant ! Commencez par ajouter une &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; ou &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="435"/>
+        <location filename="../Pages/LibraryPage.qml" line="440"/>
         <source>Sort By</source>
         <translation type="unfinished">Trier par</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="440"/>
+        <location filename="../Pages/LibraryPage.qml" line="445"/>
         <source>Manually</source>
         <translation type="unfinished">Manuellement</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="447"/>
+        <location filename="../Pages/LibraryPage.qml" line="452"/>
         <source>Title</source>
         <translation type="unfinished">Titre</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="454"/>
+        <location filename="../Pages/LibraryPage.qml" line="459"/>
         <source>Due To</source>
         <translation type="unfinished">Échéance</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="461"/>
+        <location filename="../Pages/LibraryPage.qml" line="466"/>
         <source>Created At</source>
         <translation type="unfinished">Créé à</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="468"/>
+        <location filename="../Pages/LibraryPage.qml" line="473"/>
         <source>Updated At</source>
         <translation type="unfinished">Mis à jour à</translation>
     </message>
@@ -763,12 +784,12 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="32"/>
         <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Défiler vers le haut</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="38"/>
         <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Défiler vers le bas</translation>
     </message>
 </context>
 <context>
@@ -785,9 +806,9 @@
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="301"/>
-        <location filename="../Windows/MainWindow.qml" line="500"/>
+        <location filename="../Windows/MainWindow.qml" line="511"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="308"/>
@@ -801,106 +822,111 @@
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="330"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/MainWindow.qml" line="341"/>
         <source>Color</source>
         <translation type="unfinished">Couleur</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="341"/>
+        <location filename="../Windows/MainWindow.qml" line="352"/>
         <source>Add Tag</source>
         <translation type="unfinished">Ajouter un tag</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="348"/>
+        <location filename="../Windows/MainWindow.qml" line="359"/>
         <source>Attach File</source>
         <translation type="unfinished">Joindre fichier</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="357"/>
+        <location filename="../Windows/MainWindow.qml" line="368"/>
         <source>Search</source>
         <translation type="unfinished">Recherche</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="364"/>
+        <location filename="../Windows/MainWindow.qml" line="375"/>
         <source>Sort</source>
         <translation type="unfinished">Trier</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="372"/>
+        <location filename="../Windows/MainWindow.qml" line="383"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Date d&apos;échéance</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="380"/>
+        <location filename="../Windows/MainWindow.qml" line="391"/>
         <source>Delete</source>
         <translation type="unfinished">Supprimer</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="387"/>
+        <location filename="../Windows/MainWindow.qml" line="398"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished">Effacer les éléments terminés</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="394"/>
+        <location filename="../Windows/MainWindow.qml" line="405"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Définir l&apos;avancement</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="432"/>
+        <location filename="../Windows/MainWindow.qml" line="443"/>
         <source>Settings</source>
         <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="433"/>
+        <location filename="../Windows/MainWindow.qml" line="444"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="440"/>
+        <location filename="../Windows/MainWindow.qml" line="451"/>
         <source>New &amp;Library</source>
         <translation type="unfinished">Nouvelle &amp;Bibliothèque</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="451"/>
+        <location filename="../Windows/MainWindow.qml" line="462"/>
         <source>New &amp;Note</source>
         <translation type="unfinished">Nouvelle &amp;Note</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="459"/>
+        <location filename="../Windows/MainWindow.qml" line="470"/>
         <source>New &amp;Todo List</source>
         <translation type="unfinished">Nouvelle &amp;Todo List</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="467"/>
+        <location filename="../Windows/MainWindow.qml" line="478"/>
         <source>New &amp;Image</source>
         <translation type="unfinished">Nouvelle &amp;Image</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="475"/>
+        <location filename="../Windows/MainWindow.qml" line="486"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="483"/>
+        <location filename="../Windows/MainWindow.qml" line="494"/>
         <source>Close</source>
         <translation type="unfinished">Fermer</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="492"/>
+        <location filename="../Windows/MainWindow.qml" line="503"/>
         <source>&amp;Find</source>
         <translation type="unfinished">&amp;Trouver</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="534"/>
+        <location filename="../Windows/MainWindow.qml" line="545"/>
         <source>Open Last &amp;Created Item</source>
         <translation type="unfinished">Ouvrir le dernier élément &amp;créé</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="542"/>
+        <location filename="../Windows/MainWindow.qml" line="553"/>
         <source>Open &amp;Left Side Bar</source>
         <translation type="unfinished">Ouvrir la barre latérale &amp;gauche</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="661"/>
+        <location filename="../Windows/MainWindow.qml" line="672"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Commencez par &lt;a href=&apos;#newLibrary&apos;&gt;créer une nouvelle bibliothèque&lt;/a&gt;. Les bibliothèques sont utilisées pour stocker différents types d&apos;éléments comme des notes, des listes de tâches et des images.</translation>
     </message>
@@ -971,7 +997,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="112"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">Une bibliothèque créée dans un compte est synchronisée avec celui-ci. Cela permet de sauvegarder facilement une bibliothèque sur un serveur et de la restaurer ultérieurement à partir de celui-ci. De plus, ces bibliothèques peuvent être partagées avec d&apos;autres utilisateurs (si le serveur le permet).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
@@ -1001,7 +1027,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="186"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">Créer une nouvelle bibliothèque, qui sera synchronisée avec le serveur. Une telle bibliothèque peut être ajoutée à l&apos;application sur d&apos;autres appareils pour synchroniser les données.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="201"/>
@@ -1019,7 +1045,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="95"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished">Vous pouvez utiliser n&apos;importe quel dossier comme emplacement pour une bibliothèque.&lt;br/&gt;&lt;br/&gt;C&apos;est particulièrement utile lorsque vous voulez utiliser un autre outil (comme un client de synchronisation d&apos;un fournisseur de cloud computing) pour synchroniser vos données avec un serveur.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
@@ -1086,7 +1112,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="69"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">Une bibliothèque locale est stockée uniquement sur votre appareil - ce qui la rend parfaite pour la confidentialité ! &lt;br/&gt;&lt;br/&gt;Utilisez-la lorsque vous souhaitez stocker des informations uniquement localement et sauvegarder régulièrement toutes vos données via d&apos;autres mécanismes. Si vous devez accéder à vos informations sur plusieurs appareils, créez plutôt une bibliothèque qui est synchronisée.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
@@ -1135,12 +1161,12 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Idéalement, vous utilisez des mots de passe spécifiques aux applications au lieu de votre mot de passe utilisateur. Si votre connexion est protégée par l&apos;authentification à 2 facteurs (2FA), vous devez même utiliser des mots de passe spécifiques à l&apos;application pour accéder à votre NextCloud. Vous pouvez créer de tels mots de passe dans vos paramètres d&apos;utilisateur. </translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Créer un mot de passe d&apos;application</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
@@ -1281,14 +1307,22 @@
     </message>
 </context>
 <context>
+    <name>NoteItem</name>
+    <message>
+        <location filename="../Widgets/NoteItem.qml" line="75"/>
+        <source>Due on %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="127"/>
+        <location filename="../Pages/NotePage.qml" line="132"/>
         <source>Main Page</source>
         <translation type="unfinished">Page principale</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="190"/>
+        <location filename="../Pages/NotePage.qml" line="195"/>
         <source>New Page</source>
         <translation type="unfinished">Nouvelle page</translation>
     </message>
@@ -1326,7 +1360,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="49"/>
         <source>Synchronization failed for library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La synchronisation a échoué pour la bibliothèque</translation>
     </message>
 </context>
 <context>
@@ -1334,7 +1368,7 @@
     <message>
         <location filename="../Actions/PromoteTask.qml" line="12"/>
         <source>Promote</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Promouvoir</translation>
     </message>
 </context>
 <context>
@@ -1343,7 +1377,7 @@
         <location filename="../appstartup.cpp" line="270"/>
         <location filename="../appstartup.cpp" line="277"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
 </context>
 <context>
@@ -1351,57 +1385,57 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="19"/>
         <source>Quick Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notes Rapides</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="46"/>
         <source>Quick Notes Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Éditeur de Notes Rapides</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="58"/>
         <source>Open the main window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ouvrir la fenêtre principale</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
         <source>Quick Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titre de la Note Rapide</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="83"/>
         <source>Type your notes here...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Saisissez vos notes ici...</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sauvegarder</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="141"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sauvegarder les notes saisies dans la bibliothèque sélectionnée. Maintenez le bouton enfoncé pour obtenir d&apos;autres options d&apos;enregistrement.</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="158"/>
         <source>Save as Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sauvegarder comme Note</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="161"/>
         <source>Quick Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Note Rapide</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="169"/>
         <source>Save as Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sauvegarder comme Liste des Tâches</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
         <source>Quick Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liste des Tâches Rapide</translation>
     </message>
 </context>
 <context>
@@ -1434,7 +1468,7 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
         <source>Yearly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuellement</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
@@ -1444,12 +1478,12 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
         <source>Every N Weeks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toutes les N Semaines</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
         <source>Every N Months</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tous les N Mois</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="74"/>
@@ -1540,11 +1574,27 @@
     </message>
 </context>
 <context>
+    <name>SelectLibraryDialog</name>
+    <message>
+        <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
+        <source>Select Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SelectTodoListDialog</name>
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="23"/>
         <source>Select Todo List</source>
         <translation type="unfinished">Sélectionnez la Todo Liste</translation>
+    </message>
+</context>
+<context>
+    <name>SelectTopLevelItemDialog</name>
+    <message>
+        <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
+        <source>Select Item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1592,7 +1642,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Définir l&apos;avancement</translation>
     </message>
 </context>
 <context>
@@ -1620,12 +1670,12 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="116"/>
         <source>System Tray:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Barre des Tâches:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="122"/>
         <source>Open Quick Notes Editor on Click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ouvrir l’Éditeur de Notes Rapides au Clic</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="128"/>
@@ -1635,51 +1685,55 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="145"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utiliser une taille de police personnalisée</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="154"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utiliser un style compact</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="163"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Réduire l&apos;espace entre les composants et réduire la taille de la police.
+
+&lt;em&gt;Nécessite un redémarrage de l&apos;application.&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="172"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utiliser des listes des tâches compactes</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="183"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Réduire l&apos;écart de remplissage dans les listes de tâches et d&apos;actions pour faire tenir plus d&apos;éléments à l&apos;écran.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="190"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Remplacer le facteur d&apos;échelle</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Facteur d&apos;échelle:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="216"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utilisez cette option pour adapter manuellement l&apos;interface utilisateur. Par défaut, l&apos;application devrait s&apos;adapter automatiquement à la configuration de votre appareil. Si cela ne fonctionne pas correctement, vous pouvez définir un facteur d&apos;échelle personnalisé ici.
+
+Cela nécessite un redémarrage de l&apos;application.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="225"/>
         <source>Library Item Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taille des Objets de la Bibliothèque:</translation>
     </message>
 </context>
 <context>
@@ -1711,7 +1765,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="107"/>
+        <location filename="../Widgets/TodoListItem.qml" line="76"/>
+        <source>Due on %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/TodoListItem.qml" line="129"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Pas de Todo en cours - tout est fait</translation>
     </message>
@@ -1719,42 +1778,42 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="192"/>
+        <location filename="../Pages/TodoListPage.qml" line="201"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="204"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Manually</source>
         <translation type="unfinished">Manuellement</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="210"/>
+        <location filename="../Pages/TodoListPage.qml" line="219"/>
         <source>Name</source>
         <translation type="unfinished">Nom</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="216"/>
+        <location filename="../Pages/TodoListPage.qml" line="225"/>
         <source>Due Date</source>
         <translation type="unfinished">Date d&apos;échéance</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="222"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Created At</source>
         <translation type="unfinished">Créé à</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="228"/>
+        <location filename="../Pages/TodoListPage.qml" line="237"/>
         <source>Updated At</source>
         <translation type="unfinished">Mis à jour à</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="256"/>
+        <location filename="../Pages/TodoListPage.qml" line="265"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="276"/>
+        <location filename="../Pages/TodoListPage.qml" line="285"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Ajouter un nouveau todo...</translation>
     </message>
@@ -1762,17 +1821,17 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="139"/>
+        <location filename="../Pages/TodoPage.qml" line="143"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="164"/>
+        <location filename="../Pages/TodoPage.qml" line="168"/>
         <source>Tasks</source>
         <translation type="unfinished">Tâches</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="170"/>
+        <location filename="../Pages/TodoPage.qml" line="174"/>
         <source>Add new task...</source>
         <translation type="unfinished">Ajouter une nouvelle tâche...</translation>
     </message>
@@ -1788,12 +1847,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="240"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="242"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Faire glisser si non-réalisé</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="242"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="244"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Faire glisser si réalisé</translation>
     </message>
