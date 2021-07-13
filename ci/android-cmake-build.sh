@@ -5,7 +5,7 @@ set -e
 export PATH=$QT_ROOT/bin:$PATH
 export PROJECT_ROOT=$(cd $(dirname $0) && cd .. && pwd)
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
-ANDROID_TARGET_SDK_VERSION=29
+ANDROID_TARGET_SDK_VERSION=30
 
 if [ -z "$ANDROID_ABIS" ]; then
     ANDROID_ABIS="armeabi-v7a arm64-v8a x86 x86_64"
@@ -75,7 +75,7 @@ python ../bin/set-android-version-name \
 if [ -n "$CI" ]; then
     echo "Cleaning up build files to get free disk space..."
     echo "Disk space before cleanup:"
-    df -h 
+    df -h
     rm -rf \
         3rdparty \
         app \
