@@ -1,11 +1,10 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.5
 
-import "../Components" as Components
-import "../Fonts"
-import "../Utils"
+import "../Controls" as C
+import "../Fonts" as Fonts
+import "../Utils" as Utils
 
-Components.RoundButton {
+C.RoundButton {
     id: newItemButton
 
     signal newItem()
@@ -13,9 +12,9 @@ Components.RoundButton {
     anchors {
         right: parent.right
         bottom: parent.bottom
-        margins: AppSettings.mediumSpace
+        margins: Utils.AppSettings.mediumSpace
     }
-    symbol: Icons.faPlus
-    backgroundColor: Colors.positiveColor
+    symbol: Fonts.Icons.mdiAdd
+    backgroundColor: Utils.Colors.positiveColor
     onClicked: newItemButton.newItem()
 }

@@ -28,3 +28,6 @@
 [submodule "3rdparty/QtStaticCMake"]
 	path = 3rdparty/QtStaticCMake
 	url = https://gitlab.com/rpdev/QtStaticCMake.git
+[submodule "app/Fonts/material-design-icons"]
+	path = app/Fonts/material-design-icons
+	url = git@gitlab.com:rpdev/material-design-icons.git

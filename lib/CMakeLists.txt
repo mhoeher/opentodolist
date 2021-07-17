@@ -1,118 +1,109 @@
 # Add the library
 add_library(opentodolist-common)
 
-
-if(ANDROID)
-    set(LIB_HEADERS_ANDROID
-        ./utils/android/androidfiledialog.h)
-    set(LIB_SOURCES_ANDROID
-        ./utils/android/androidfiledialog.cpp)
-endif()
-
-
-set(LIB_HEADERS
+set(PROJECT_SOURCES
     abstractitemmodel.h
-    application.h
-    datamodel/complexitem.h
-    datamodel/image.h
-    datamodel/item.h
-    datamodel/library.h
-    datamodel/note.h
-    datamodel/notepage.h
-    datamodel/task.h
-    datamodel/todo.h
-    datamodel/todolist.h
-    datamodel/toplevelitem.h
-    datastorage/applicationsettings.h
-    datastorage/cache.h
-    datastorage/copyitemquery.h
-    datastorage/deleteitemsquery.h
-    datastorage/getitemquery.h
-    datastorage/getitemsquery.h
-    datastorage/getlibraryitemsuidsitemsquery.h
-    datastorage/getlibraryquery.h
-    datastorage/insertorupdateitemsquery.h
-    datastorage/itemsquery.h
-    datastorage/librariesitemsquery.h
-    datastorage/libraryloader.h
-    datastorage/movetodoquery.h
-    datastorage/promotetaskquery.h
-    fileutils.h
-    models/itemsmodel.h
-    models/itemssortfiltermodel.h
-    models/librariesmodel.h
-    opentodolistqmlextensionsplugin.h
-    service/backgroundservice.h
-    sync/account.h
-    sync/synchronizer.h
-    sync/syncjob.h
-    sync/syncrunner.h
-    sync/webdavsynchronizer.h
-    utils/directorywatcher.h
-    utils/htmlsyntaxhighlighter.h
-    utils/jsonutils.h
-    utils/keystore.h
-    utils/problem.h
-    utils/problemmanager.h
-    utils/syntaxhighlighting.h
-    utils/translations.h
-    utils/updateservice.h
-
-    ${LIB_HEADERS_ANDROID}
-)
-
-set(LIB_SOURCES
     application.cpp
+    application.h
     datamodel/complexitem.cpp
+    datamodel/complexitem.h
     datamodel/image.cpp
+    datamodel/image.h
     datamodel/item.cpp
+    datamodel/item.h
     datamodel/library.cpp
+    datamodel/library.h
     datamodel/note.cpp
+    datamodel/note.h
     datamodel/notepage.cpp
+    datamodel/notepage.h
     datamodel/task.cpp
+    datamodel/task.h
     datamodel/todo.cpp
+    datamodel/todo.h
     datamodel/todolist.cpp
+    datamodel/todolist.h
     datamodel/toplevelitem.cpp
+    datamodel/toplevelitem.h
     datastorage/applicationsettings.cpp
+    datastorage/applicationsettings.h
     datastorage/cache.cpp
+    datastorage/cache.h
     datastorage/copyitemquery.cpp
+    datastorage/copyitemquery.h
     datastorage/deleteitemsquery.cpp
+    datastorage/deleteitemsquery.h
     datastorage/getitemquery.cpp
+    datastorage/getitemquery.h
     datastorage/getitemsquery.cpp
+    datastorage/getitemsquery.h
     datastorage/getlibraryitemsuidsitemsquery.cpp
+    datastorage/getlibraryitemsuidsitemsquery.h
     datastorage/getlibraryquery.cpp
+    datastorage/getlibraryquery.h
     datastorage/insertorupdateitemsquery.cpp
+    datastorage/insertorupdateitemsquery.h
     datastorage/itemsquery.cpp
+    datastorage/itemsquery.h
     datastorage/librariesitemsquery.cpp
+    datastorage/librariesitemsquery.h
     datastorage/libraryloader.cpp
+    datastorage/libraryloader.h
     datastorage/movetodoquery.cpp
+    datastorage/movetodoquery.h
     datastorage/promotetaskquery.cpp
+    datastorage/promotetaskquery.h
     fileutils.cpp
+    fileutils.h
     models/itemsmodel.cpp
+    models/itemsmodel.h
     models/itemssortfiltermodel.cpp
+    models/itemssortfiltermodel.h
     models/librariesmodel.cpp
+    models/librariesmodel.h
     opentodolistqmlextensionsplugin.cpp
+    opentodolistqmlextensionsplugin.h
     service/backgroundservice.cpp
+    service/backgroundservice.h
     sync/account.cpp
+    sync/account.h
     sync/synchronizer.cpp
+    sync/synchronizer.h
     sync/syncjob.cpp
+    sync/syncjob.h
     sync/syncrunner.cpp
+    sync/syncrunner.h
     sync/webdavsynchronizer.cpp
+    sync/webdavsynchronizer.h
     utils/directorywatcher.cpp
+    utils/directorywatcher.h
     utils/htmlsyntaxhighlighter.cpp
+    utils/htmlsyntaxhighlighter.h
     utils/jsonutils.cpp
+    utils/jsonutils.h
     utils/keystore.cpp
+    utils/keystore.h
     utils/problem.cpp
+    utils/problem.h
     utils/problemmanager.cpp
+    utils/problemmanager.h
     utils/syntaxhighlighting.cpp
+    utils/syntaxhighlighting.h
     utils/translations.cpp
+    utils/translations.h
     utils/updateservice.cpp
-
-    ${LIB_SOURCES_ANDROID}
+    utils/updateservice.h
 
     # Include SimpleCrypt source:
     ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
 )
+
+if(ANDROID)
+    set(PROJECT_SOURCES
+        utils/android/androidfiledialog.h
+        utils/android/androidfiledialog.cpp
+    )
+endif()
 
 if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
     target_link_libraries(opentodolist-common PRIVATE KF5::SyntaxHighlighting)
@@ -121,7 +112,7 @@ else()
     include(qmake/kf5-syntax-highlighting.cmake)
     set(LIB_HEADERS ${LIB_HEADERS} ${KF5_SYNTAXHIGHLIGHTING_HEADERS})
     set(
-        LIB_SOURCES ${LIB_SOURCES} 
+        PROJECT_SOURCES ${PROJECT_SOURCES}
         ${KF5_SYNTAXHIGHLIGHTING_SOURCES} ${KF5_SYNTAXHIGHLIGHTING_RESOURCES}
     )
 endif()
@@ -129,14 +120,13 @@ endif()
 
 
 
-qt5_generate_repc(LIB_SOURCES service/backgroundservice.rep SOURCE)
-qt5_generate_repc(LIB_SOURCES service/backgroundservice.rep REPLICA)
+qt5_generate_repc(PROJECT_SOURCES service/backgroundservice.rep SOURCE)
+qt5_generate_repc(PROJECT_SOURCES service/backgroundservice.rep REPLICA)
 
 target_sources(
     opentodolist-common
     PRIVATE
-        ${LIB_HEADERS}
-        ${LIB_SOURCES}
+        ${PROJECT_SOURCES}
 )
 
 # Set include paths

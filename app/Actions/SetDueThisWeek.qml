@@ -4,7 +4,7 @@ import "../Fonts" as Fonts
 import "../Utils" as Utils
 
 Components.ItemAction {
-    symbol: Fonts.Icons.faCalendarAlt
+    symbol: Fonts.Icons.mdiCalendarViewWeek
     text: qsTr("Set Due Next Week")
     onTriggered: item.dueTo = Utils.DateUtils.endOfNextWeek()
     enabled: item && item.dueTo !== undefined

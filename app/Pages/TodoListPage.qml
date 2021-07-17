@@ -1,12 +1,12 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.0
 import Qt.labs.settings 1.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Windows"
 import "../Widgets"
@@ -199,41 +199,41 @@ ItemPage {
     TextInputBar {
         id: filterBar
         placeholderText: qsTr("Search term 1, search term 2, ...")
-        symbol: Icons.faTimes
+        symbol: Icons.mdiClose
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }
 
-    Menu {
+    C.Menu {
         id: sortTodosByMenu
         parent: todosWidget.headerIcon
         modal: true
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Manually")
             checked: settings.sortTodosBy === "weight"
             checkable: true
             onTriggered: settings.sortTodosBy = "weight"
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Name")
             checked: settings.sortTodosBy === "title"
             checkable: true
             onTriggered: settings.sortTodosBy = "title"
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Due Date")
             checked: settings.sortTodosBy === "dueTo"
             checkable: true
             onTriggered: settings.sortTodosBy = "dueTo"
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Created At")
             checked: settings.sortTodosBy === "createdAt"
             checkable: true
             onTriggered: settings.sortTodosBy = "createdAt";
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Updated At")
             checked: settings.sortTodosBy === "updatedAt"
             checkable: true
@@ -251,8 +251,8 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
-        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
-        ScrollBar.vertical.interactive: true
+        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
             id: todosWidget
@@ -266,20 +266,20 @@ ItemPage {
             symbol: {
                 switch (settings.sortTodosBy) {
                 case "title":
-                    return Icons.faSortAlphaDown;
+                    return Icons.mdiSortByAlpha;
                 case "dueTo":
-                    return Icons.faSortNumericDown;
+                    return Icons.mdiEvent;
                 case "createdAt":
-                    return Icons.faSortNumericDown;
+                    // fall through
                 case "updatedAt":
-                    return Icons.faSortNumericDown;
+                    // fall through
                 case "weight":
                     // fall through
                 default:
-                    return Icons.faSort;
+                    return Icons.mdiFilterList;
                 }
             }
-            symbol2: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
+            symbol2: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
             headerItem2Visible: true
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new todo...")
@@ -369,7 +369,7 @@ ItemPage {
         flickable: todosWidget
     }
 
-    Pane {
+    C.Pane {
         anchors.fill: parent
         visible: todoDrawer.visible
         opacity: 0.6 * todoDrawer.position
@@ -382,7 +382,7 @@ ItemPage {
         }
     }
 
-    Pane {
+    C.Pane {
         id: todoDrawer
 
         function open() {

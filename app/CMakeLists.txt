@@ -2,14 +2,14 @@
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(APP_SOURCES
+set(PROJECT_SOURCES
     main.cpp
     appstartup.cpp
     appstartup.h
 )
 
 if(WIN32)
-    set(APP_SOURCES ${APP_SOURCES} OpenTodoList.rc)
+    set(PROJECT_SOURCES ${PROJECT_SOURCES} OpenTodoList.rc)
 endif()
 
 set(APP_RESOURCES
@@ -23,16 +23,16 @@ endif()
 
 if(APPLE)
     set(APP_FLAGS MACOSX_BUNDLE)
-    set(APP_SOURCES ${APP_SOURCES} res/OpenTodoList.icns)
+    set(PROJECT_SOURCES ${PROJECT_SOURCES} res/OpenTodoList.icns)
     set(MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns)
     set_source_files_properties(res/OpenTodoList.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+    qt_add_executable(OpenTodoList ${APP_FLAGS} ${PROJECT_SOURCES} ${APP_RESOURCES})
 else()
     if(ANDROID)
-        add_library(OpenTodoList SHARED ${APP_SOURCES} ${APP_RESOURCES})
+        add_library(OpenTodoList SHARED ${PROJECT_SOURCES} ${APP_RESOURCES})
 
         set(
             ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
@@ -64,7 +64,7 @@ else()
             ASSET_DIR ios/Images.xcassets
             LAUNCHSCREEN_STORYBOARD "ios/LaunchScreen.storyboard"
         )
-        target_sources(OpenTodoList PRIVATE  ${APP_SOURCES} ${APP_RESOURCES})
+        target_sources(OpenTodoList PRIVATE  ${PROJECT_SOURCES} ${APP_RESOURCES})
         qt_generate_plugin_import(
             OpenTodoList
             OUTPUT "OpenTodoList_plugin_import.cpp"
@@ -81,7 +81,7 @@ else()
         )
 
     else()
-        add_executable(OpenTodoList ${APP_FLAGS} ${APP_SOURCES} ${APP_RESOURCES})
+        add_executable(OpenTodoList ${APP_FLAGS} ${PROJECT_SOURCES} ${APP_RESOURCES})
     endif()
 endif()
 

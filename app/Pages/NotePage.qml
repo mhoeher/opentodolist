@@ -1,5 +1,4 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.0
 
 import OpenTodoList 1.0 as OTL
@@ -11,6 +10,7 @@ import "../Utils"
 import "../Fonts"
 import "../Menues"
 import "../Actions" as Actions
+import "../Controls" as C
 
 ItemPage {
     id: page
@@ -85,8 +85,8 @@ ItemPage {
         anchors.fill: parent
         item: page.item
         padding: AppSettings.mediumSpace
-        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
-        ScrollBar.vertical.interactive: true
+        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.interactive: true
 
         Flickable {
             id: flickable
@@ -121,12 +121,12 @@ ItemPage {
                 RowLayout {
                     width: parent.width
 
-                    TabBar {
+                    C.TabBar {
                         id: pageTabBar
                         Layout.fillWidth: true
                         clip: true
 
-                        TabButton {
+                        C.TabButton {
                             id: mainPageTabButton
 
                             text: qsTr("Main Page")
@@ -157,39 +157,39 @@ ItemPage {
                                     }
                                 }
                             }
-                            delegate: TabButton {
+                            delegate: C.TabButton {
                                 text: title
                                 width: implicitWidth
                             }
                         }
                     }
-                    ToolButton {
-                        symbol: Icons.faChevronDown
+                    C.ToolButton {
+                        symbol: Icons.mdiKeyboardArrowDown
                         visible: pageTabBar.contentWidth > pageTabBar.width
 
                         onClicked: pageMenu.popup()
 
-                        Menu {
+                        C.Menu {
                             id: pageMenu
 
                             modal: true
 
-                            MenuItem {
+                            C.MenuItem {
                                 text: mainPageTabButton.text
                                 onClicked: pageTabBar.setCurrentIndex(0)
                             }
 
                             Repeater {
                                 model: pagesModel
-                                delegate: MenuItem {
+                                delegate: C.MenuItem {
                                     text: title
                                     onTriggered: pageTabBar.setCurrentIndex(index + 1)
                                 }
                             }
                         }
                     }
-                    ToolButton {
-                        symbol: Icons.faPlus
+                    C.ToolButton {
+                        symbol: Icons.mdiNoteAdd
                         onClicked: {
                             var args = {
                                 "title": qsTr("New Page")

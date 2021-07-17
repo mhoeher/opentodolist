@@ -1,12 +1,12 @@
 import QtQuick 2.10
 import QtQuick.Window 2.3
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import Qt.labs.qmlmodels 1.0
 import Qt.labs.settings 1.0
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Widgets"
 import "../Menues"
@@ -15,7 +15,7 @@ import "../Utils"
 
 import OpenTodoList 1.0 as OTL
 
-ApplicationWindow {
+C.ApplicationWindow {
     id: window
 
     property ItemCreatedNotification itemCreatedNotification: null
@@ -56,7 +56,7 @@ ApplicationWindow {
     property Item settingsPage: null
     property Item accountsPage: null
 
-    header: ToolBar {
+    header: C.ToolBar {
         id: headerToolBar
         leftPadding: 10
         rightPadding: 10
@@ -67,35 +67,43 @@ ApplicationWindow {
             width: parent.width
             height: parent.height
 
-            ToolButton {
+            C.ToolButton {
                 id: sidebarControl
-                symbol: Icons.faBars
+                symbol: Icons.mdiMenu
                 Layout.alignment: Qt.AlignVCenter
                 visible: librariesSideBar.compact && stackView.depth <= 1
                 checked: dynamicLeftDrawer.visible
                 onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
             }
 
-            ToolButton {
+            C.ToolButton {
                 id: backToolButton
 
-                symbol: Icons.faArrowLeft
+                symbol: {
+                    switch (Qt.platform.os) {
+                    case "ios":
+                    case "macos":
+                        return Icons.mdiArrowBackIosNew;
+                    default:
+                        return Icons.mdiArrowBack;
+                    }
+                }
                 visible: stackView.canGoBack
                 onClicked: stackView.goBack()
                 Layout.alignment: Qt.AlignVCenter
             }
 
-            ToolButton {
+            C.ToolButton {
                 id: problemsButton
 
-                symbol: Icons.faExclamationTriangle
+                symbol: Icons.mdiReportProblem
                 visible: OTL.Application.problemManager.problems.length > 0
                 onClicked: stackView.replace(problemsPage)
                 Material.foreground: Colors.negativeColor
                 Layout.alignment: Qt.AlignVCenter
             }
 
-            BusyIndicator {
+            C.BusyIndicator {
                 id: busyIndicator
 
                 visible: stackView.syncRunning
@@ -103,19 +111,18 @@ ApplicationWindow {
                 implicitWidth: implicitHeight
                 hoverEnabled: true
 
-                ToolTip.visible: busyIndicator.hovered
-                ToolTip.delay: 1000
-                ToolTip.timeout: 5000
-                ToolTip.text: qsTr("Synchronizing library...")
+                C.ToolTip {
+                    text: qsTr("Synchronizing library...")
+                }
 
-                Label {
+                C.Label {
                     anchors.centerIn: parent
                     text: "" + stackView.syncProgress + "%"
                     visible: stackView.syncProgress >= 0
                 }
             }
 
-            Label {
+            C.Label {
                 id: pageTitleLabel
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
@@ -133,7 +140,7 @@ ApplicationWindow {
             Repeater {
                 model: d.visibleDynamicToolBarButtons
 
-                delegate: ToolButton {
+                delegate: C.ToolButton {
                     action: modelData
                     menu: action.menu
                     symbol: action.symbol
@@ -142,7 +149,7 @@ ApplicationWindow {
                 }
             }
 
-            ToolButton {
+            C.ToolButton {
                 id: pageMenuToolButton
 
                 property var pageActions: {
@@ -154,7 +161,7 @@ ApplicationWindow {
                 }
                 property int numPageActions: pageActions.length
 
-                symbol: Icons.faEllipsisV
+                symbol: Icons.mdiMoreVert
                 visible: d.numVisibleDynamicPageMenuItems > 0 ||
                          numPageActions > 0
                 Layout.alignment: Qt.AlignVCenter
@@ -187,7 +194,7 @@ ApplicationWindow {
                     dynamicRoles: true
                 }
 
-                menu: Menu {
+                menu: C.Menu {
                     y: headerToolBar.height
                     modal: true
                     Repeater {
@@ -197,12 +204,12 @@ ApplicationWindow {
 
                             DelegateChoice {
                                 roleValue: "separator"
-                                MenuSeparator {}
+                                C.MenuSeparator {}
                             }
 
                             DelegateChoice {
                                 roleValue: "item"
-                                MenuItem {
+                                C.MenuItem {
                                     action: item
                                     visible: action.enabled
                                     height: visible ? implicitHeight : 0
@@ -297,14 +304,14 @@ ApplicationWindow {
 
         dynamicPageActions: [
             ToolBarAction {
-                symbol: Icons.faUndo
+                symbol: Icons.mdiUndo
                 text: qsTr("Undo")
                 visible: undoAction.enabled
                 onTriggered: undoAction.trigger()
             },
 
             ToolBarAction {
-                symbol: Icons.faPencilAlt
+                symbol: Icons.mdiEdit
                 text: qsTr("Rename")
                 visible: {
                     return stackView.currentItem &&
@@ -315,7 +322,7 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faCut
+                symbol: Icons.mdiContentCut
                 text: qsTr("Move")
                 visible: {
                     return stackView.currentItem &&
@@ -326,7 +333,7 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faCopy
+                symbol: Icons.mdiContentCopy
                 text: qsTr("Copy")
                 visible: {
                     return stackView.currentItem &&
@@ -337,7 +344,7 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faPaintBrush
+                symbol: Icons.mdiPalette
                 text: qsTr("Color")
                 menu: ColorMenu {
                     anchors.centerIn: parent
@@ -348,14 +355,14 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faTag
+                symbol: Icons.mdiLabel
                 text: qsTr("Add Tag")
                 visible: stackView.currentItem && (typeof(stackView.currentItem["addTag"]) === "function")
                 onTriggered: stackView.currentItem.addTag()
             },
 
             ToolBarAction {
-                symbol: Icons.faPaperclip
+                symbol: Icons.mdiAttachment
                 text: qsTr("Attach File")
                 visible: stackView.currentItem && (typeof(stackView.currentItem["attach"]) === "function")
                 onTriggered: stackView.currentItem.attach()
@@ -364,14 +371,14 @@ ApplicationWindow {
             ToolBarAction {
                 id: searchToolButtonAction
 
-                symbol: Icons.faSearch
+                symbol: Icons.mdiSearch
                 text: qsTr("Search")
                 visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
                 onTriggered: stackView.currentItem.find()
             },
 
             ToolBarAction {
-                symbol: Icons.faSort
+                symbol: Icons.mdiSort
                 text: qsTr("Sort")
                 visible: stackView.currentItem &&
                          typeof(stackView.currentItem.sort) === "function"
@@ -379,7 +386,7 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faCalendarCheck
+                symbol: Icons.mdiCalendarToday
                 text: qsTr("Set Due Date")
                 visible: stackView.currentItem &&
                          typeof(stackView.currentItem.setDueDate) === "function"
@@ -387,21 +394,21 @@ ApplicationWindow {
             },
 
             ToolBarAction {
-                symbol: Icons.faTrashAlt
+                symbol: Icons.mdiDelete
                 text: qsTr("Delete")
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
                 onTriggered: stackView.currentItem.deleteItem()
             },
 
             ToolBarAction {
-                symbol: Icons.faFire
+                symbol: Icons.mdiRemoveDone
                 text: qsTr("Delete Completed Items")
                 visible: stackView.currentItem && typeof(stackView.currentItem["deleteCompletedItems"]) === "function"
                 onTriggered: stackView.currentItem.deleteCompletedItems()
             },
 
             ToolBarAction {
-                symbol: Icons.faPercent
+                symbol: Icons.mdiPublishedWithChanges
                 text: qsTr("Set Progress")
                 visible: stackView.currentItem && typeof(stackView.currentItem["setProgress"]) === "function"
                 onTriggered: stackView.currentItem.setProgress()
@@ -439,13 +446,13 @@ ApplicationWindow {
         }
     }
 
-    Action {
+    C.Action {
         text: qsTr("Settings")
         shortcut: qsTr("Ctrl+,")
         onTriggered: librariesSideBar.showSettings()
     }
 
-    Action {
+    C.Action {
         id: newLibraryAction
 
         text: qsTr("New &Library")
@@ -456,7 +463,7 @@ ApplicationWindow {
         }
     }
 
-    Action {
+    C.Action {
         id: newNoteAction
 
         text: qsTr("New &Note")
@@ -464,7 +471,7 @@ ApplicationWindow {
         enabled: stackView.currentItem && typeof(stackView.currentItem.newNote) === "function"
     }
 
-    Action {
+    C.Action {
         id: newTodoListAction
 
         text: qsTr("New &Todo List")
@@ -472,7 +479,7 @@ ApplicationWindow {
         enabled: stackView.currentItem && typeof(stackView.currentItem.newTodoList) === "function"
     }
 
-    Action {
+    C.Action {
         id: newImageAction
 
         text: qsTr("New &Image")
@@ -480,7 +487,7 @@ ApplicationWindow {
         enabled: stackView.currentItem && typeof(stackView.currentItem.newImage) === "function"
     }
 
-    Action {
+    C.Action {
         id: quitAction
 
         text: qsTr("&Quit")
@@ -488,7 +495,7 @@ ApplicationWindow {
         onTriggered: Qt.quit()
     }
 
-    Action {
+    C.Action {
         id: closeAction
 
         text: qsTr("Close")
@@ -497,7 +504,7 @@ ApplicationWindow {
         enabled: Qt.platform.os != "android" && Qt.platform.os != "ios"
     }
 
-    Action {
+    C.Action {
         id: findAction
 
         text: qsTr("&Find")
@@ -505,7 +512,7 @@ ApplicationWindow {
         onTriggered: searchToolButtonAction.trigger()
     }
 
-    Action {
+    C.Action {
         id: undoAction
 
         text: qsTr("Undo")
@@ -538,7 +545,7 @@ ApplicationWindow {
         }
     }
 
-    Action {
+    C.Action {
         id: openLastCreatedItemAction
 
         shortcut: StandardKey.Open
@@ -547,7 +554,7 @@ ApplicationWindow {
         onTriggered: window.itemCreatedNotification.trigger()
     }
 
-    Action {
+    C.Action {
         id: openLeftSideBarAction
 
         text: qsTr("Open &Left Side Bar")
@@ -663,7 +670,7 @@ ApplicationWindow {
         }
     }
 
-    Pane {
+    C.Pane {
         anchors.fill: stackView
         visible: librariesSideBar.numberOfLibraries === 0
 
@@ -679,7 +686,7 @@ ApplicationWindow {
         }
     }
 
-    StackView {
+    C.StackView {
         id: stackView
 
         property bool hasSync: !!currentItem &&
@@ -727,7 +734,7 @@ ApplicationWindow {
         onCurrentItemChanged: pageMenuToolButton.menu.close()
     }
 
-    Pane {
+    C.Pane {
         id: staticLeftSideBar
         width: librariesSideBar.compact ? 0 : Math.min(300, window.width / 3)
         height: parent.height
@@ -735,7 +742,7 @@ ApplicationWindow {
         visible: width > 0
     }
 
-    Drawer {
+    C.Drawer {
         id: dynamicLeftDrawer
         edge: Qt.LeftEdge
         width: Math.max(300, window.width / 3)

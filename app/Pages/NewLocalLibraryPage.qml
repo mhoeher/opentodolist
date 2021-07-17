@@ -1,12 +1,13 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.0
 
-import Components 1.0 as Components
-import OpenTodoList 1.0 as OTL
+import "../Components" as Components
+import "../Controls" as C
 import "../Utils" as Utils
 
-Page {
+import OpenTodoList 1.0 as OTL
+
+C.Page {
     id: page
 
     property alias buttons: buttonBox
@@ -15,9 +16,9 @@ Page {
     signal closePage()
     signal libraryCreated(OTL.Library library)
 
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttonBox
-        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
         onRejected: closePage()
         onAccepted: {
             if (nameEdit.displayText !== "") {
@@ -30,7 +31,7 @@ Page {
     }
 
     Component.onCompleted: {
-        d.okButton = buttons.standardButton(DialogButtonBox.Ok);
+        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
     }
 
     QtObject {
@@ -45,7 +46,7 @@ Page {
         value: nameEdit.displayText !== ""
     }
 
-    ScrollView {
+    C.ScrollView {
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
 
@@ -63,7 +64,7 @@ Page {
                 Layout.columnSpan: 2
             }
 
-            Label {
+            C.Label {
                 Layout.maximumWidth: grid.width
                 Layout.columnSpan: 2
                 text: qsTr("A local library is stored solely on your device - "
@@ -73,14 +74,13 @@ Page {
                            + "via other mechanisms. If you need to access your "
                            + "information across several devices, create a "
                            + "library which is synced instead.")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Name:")
             }
 
-            TextField {
+            C.TextField {
                 id: nameEdit
                 placeholderText: qsTr("My Local Library Name")
                 Layout.fillWidth: true

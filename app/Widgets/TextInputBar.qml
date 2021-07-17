@@ -1,16 +1,16 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import "../Components" as Components
+import "../Controls" as C
 import "../Fonts"
 import "../Utils" as Utils
 
-Pane {
+C.Pane {
     id: root
     
-    property Components.TextField edit: edit
+    property C.TextField edit: edit
     property alias placeholderText: edit.placeholderText
     property bool showWhenNonEmpty: false
     property alias symbol: button.symbol
@@ -45,18 +45,17 @@ Pane {
         }
         height: childrenRect.height
 
-        Components.TextField {
+        C.TextField {
             id: edit
             Layout.fillWidth: true
             onAccepted: __createIfValidInput()
-            selectByMouse: Utils.AppSettings.selectTextByMouse
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
-        Components.ToolButton {
+        C.ToolButton {
             id: button
 
-            symbol: Icons.faPlus
+            symbol: Icons.mdiAdd
             enabled: (edit.text !== "") || root.closeOnButtonClick
             onClicked: {
                 if (root.closeOnButtonClick) {

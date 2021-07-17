@@ -1,15 +1,15 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.0
 import QtQuick.Layouts 1.0
 
 import OpenTodoList 1.0 as OTL
 
-import Components 1.0 as Components
-import Utils 1.0 as Utils
+import "../Components" as Components
+import "../Utils" as Utils
 import "../Windows" 1.0 as Windows
+import "../Controls" as C
 
-Page {
+C.Page {
     id: page
 
     property string type: ""
@@ -31,15 +31,15 @@ Page {
     }
 
     title: qsTr("Edit Account")
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttons
 
-        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
         onRejected: closePage()
     }
 
     Component.onCompleted: {
-        d.okButton = buttons.standardButton(DialogButtonBox.Ok);
+        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
     }
 
     QtObject {
@@ -50,7 +50,7 @@ Page {
         property OTL.NextCloudLoginFlow loginFlow: null
     }
 
-    ScrollView {
+    C.ScrollView {
         id: scrollView
 
         anchors.fill: parent
@@ -71,22 +71,22 @@ Page {
                 Layout.fillWidth: true
             }
 
-            Components.Label {
+            C.Label {
                 text: qsTr("Name:")
             }
 
-            TextField {
+            C.TextField {
                 id: accountNameEdit
 
                 text: page.account.name
                 Layout.fillWidth: true
             }
 
-            Components.Label {
+            C.Label {
                 text: qsTr("Server Address:")
             }
 
-            TextField {
+            C.TextField {
                 id: serverAddressEdit
 
                 text: page.account.baseUrl
@@ -97,7 +97,7 @@ Page {
 
             Components.Empty {}
 
-            Button {
+            C.Button {
                 text: qsTr("Login")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {
@@ -107,11 +107,11 @@ Page {
                 enabled: serverAddressEdit.text !== "" && (d.loginFlow === null || !d.loginFlow.flowRunning)
             }
 
-            Components.Label {
+            C.Label {
                 text: qsTr("User:")
             }
 
-            TextField {
+            C.TextField {
                 id: usernameEdit
 
                 text: page.account.username
@@ -120,11 +120,11 @@ Page {
                 Layout.fillWidth: true
             }
 
-            Components.Label {
+            C.Label {
                 text: qsTr("Password:")
             }
 
-            TextField {
+            C.TextField {
                 id: passwordEdit
 
                 text: page.account.password
@@ -134,19 +134,16 @@ Page {
                 inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
             }
 
-            Item {
-                width: 1
-                height: 1
-            }
+            Components.Empty {}
 
-            CheckBox {
+            C.CheckBox {
                 id: disableCertificateChecksEdit
 
                 text: qsTr("Disable Certificate Checks")
                 checked: page.account.disableCertificateChecks
             }
 
-            Components.Label {
+            C.Label {
                 id: errorLabel
 
                 Layout.columnSpan: 2
@@ -154,13 +151,12 @@ Page {
                 text: qsTr("Failed to connect to the server. Please "
                            + "check your user name, password and the server address and retry.")
                 Material.foreground: Material.Red
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 visible: d.validated && !dav.valid
             }
         }
     }
 
-    BusyIndicator {
+    C.BusyIndicator {
         id: busyIndicator
 
         anchors.centerIn: parent

@@ -15,5 +15,6 @@
         <file>Utils/showdown-1.9.1/dist/showdown.js</file>
         <file>OpenTodoList.notifyrc</file>
         <file>translations/languages.json</file>
+        <file>Fonts/material-design-icons/font/MaterialIconsOutlined-Regular.otf</file>
     </qresource>
 </RCC>

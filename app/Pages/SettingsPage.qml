@@ -1,13 +1,12 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.12
-import "../Components"
 import QtQuick.Layouts 1.3
 
-
+import "../Components"
+import "../Controls" as C
 import "../Utils" as Utils
 
 
-Page {
+C.Page {
     id: page
 
     property alias themeEdit: themeEdit
@@ -16,13 +15,13 @@ Page {
 
     property alias fontSizeEdit: fontSizeEdit
     property alias languageEdit: languageEdit
-    property StackView stack: null
+    property C.StackView stack: null
 
     padding: 0
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttons
 
-        standardButtons: DialogButtonBox.Close
+        standardButtons: C.DialogButtonBox.Close
     }
     width: stack.width
     height: stack.height
@@ -31,7 +30,7 @@ Page {
         stack.pop();
     }
 
-    ScrollView {
+    C.ScrollView {
         id: scrollView
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
@@ -55,12 +54,12 @@ Page {
                 Layout.columnSpan: 2
             }
 
-            Label {
+            C.Label {
                 id: label
                 text: qsTr("Language:")
             }
 
-            ComboBox {
+            C.ComboBox {
                 id: languageEdit
                 Layout.fillWidth: true
                 model: translations.availableLanguages()
@@ -81,11 +80,11 @@ Page {
                 onCurrentValueChanged: translations.language = currentValue
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Theme:")
             }
 
-            ComboBox {
+            C.ComboBox {
                 id: themeEdit
                 Layout.fillWidth: true
                 currentIndex: {
@@ -112,23 +111,23 @@ Page {
                 }
             }
 
-            Label {
+            C.Label {
                 text: qsTr("System Tray:")
                 visible: Utils.AppSettings.supportsQuickEditor
             }
 
-            CheckBox {
+            C.CheckBox {
                 checked: Utils.AppSettings.showQuickNotesEditorOnSystemTrayClick
                 text: qsTr("Open Quick Notes Editor on Click")
                 onCheckedChanged: Utils.AppSettings.showQuickNotesEditorOnSystemTrayClick = checked
                 visible: Utils.AppSettings.supportsQuickEditor
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Font Size:")
             }
 
-            Slider {
+            C.Slider {
                 id: fontSizeEdit
                 from: 6
                 to: 20
@@ -141,7 +140,7 @@ Page {
 
             Empty {}
 
-            CheckBox {
+            C.CheckBox {
                 text: qsTr("Use custom font size")
                 checked: Utils.AppSettings.useCustomFontSize
                 onCheckedChanged: Utils.AppSettings.useCustomFontSize = checked
@@ -150,7 +149,7 @@ Page {
 
             Empty {}
 
-            CheckBox {
+            C.CheckBox {
                 text: qsTr("Use Compact Style")
                 checked: Utils.AppSettings.useDenseVariant
                 onCheckedChanged: Utils.AppSettings.useDenseVariant = checked
@@ -159,16 +158,15 @@ Page {
 
             Empty {}
 
-            Label {
+            C.Label {
                 text: qsTr("Reduce space between components and reduce the font size.\n\n" +
                            "<em>Requires a restart of the app.</em>")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 Layout.fillWidth: true
             }
 
             Empty {}
 
-            CheckBox {
+            C.CheckBox {
                 text: qsTr("Use compact todo lists")
                 checked: Utils.AppSettings.useCompactTodoLists
                 onCheckedChanged: Utils.AppSettings.useCompactTodoLists = checked
@@ -177,28 +175,26 @@ Page {
 
             Empty {}
 
-            Label {
+            C.Label {
                 Layout.fillWidth: true
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: qsTr("Reduce the padding in todo and task listings to fit more items on " +
                            "the screen.")
             }
 
             Empty {}
 
-            CheckBox {
+            C.CheckBox {
                 text: qsTr("Override Scaling Factor")
                 checked: Utils.AppSettings.overrideUiScaling
                 onCheckedChanged: Utils.AppSettings.overrideUiScaling = checked
                 Layout.fillWidth: true
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Scale Factor:")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            SpinBox {
+            C.SpinBox {
                 from: 50
                 to: 300
                 value: Utils.AppSettings.uiScaling
@@ -212,7 +208,7 @@ Page {
 
             Empty {}
 
-            Label {
+            C.Label {
                 text: qsTr("Use this to manually scale the user interface. By default, the app " +
                            "should adapt automatically according to your device configuration. " +
                            "If this does not work properly, you can set a custom scaling factor " +
@@ -221,12 +217,11 @@ Page {
                 Layout.fillWidth: true
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Library Item Size:")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            SpinBox {
+            C.SpinBox {
                 from: 5
                 to: 500
                 value: Utils.AppSettings.libraryItemWidthScaleFactor

@@ -1,11 +1,11 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.1
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
 import "../Windows"
+import "../Controls" as C
 
 Item {
     id: root
@@ -24,7 +24,7 @@ Item {
 
     signal openPage(var component, var properties)
     
-    Action {
+    C.Action {
         id: syncNowAction
 
         text: qsTr("Sync Now")
@@ -35,7 +35,7 @@ Item {
         }
     }
     
-    Action {
+    C.Action {
         id: syncLogAction
 
         text: qsTr("Sync Log")

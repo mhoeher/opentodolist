@@ -1,10 +1,9 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
-import QtQuick.Controls.Material 2.12
+import QtQuick.Controls 2.3 as QQC2
 
-import "../Utils"
+import "../Utils" as Utils
 
-Label {
+QQC2.Label {
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
     function linkHandler(link) {
@@ -13,7 +12,7 @@ Label {
 
     onLinkActivated: linkHandler(link)
     textFormat: Text.StyledText
-    linkColor: Colors.linkColor
+    linkColor: Utils.Colors.linkColor
 
     MouseArea {
         anchors.fill: parent

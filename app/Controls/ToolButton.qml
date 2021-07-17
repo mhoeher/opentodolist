@@ -1,20 +1,21 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.3 as QQC2
 import QtQuick.Controls.Material 2.12
 
-import "../Fonts"
+import "." as C
+import "../Fonts" as Fonts
 
-ToolButton {
+QQC2.ToolButton {
     id: button
 
     property alias symbol: button.text
-    property Menu menu: null
+    property C.Menu menu: null
     property var backgroundColor: undefined
     property var foregroundColor: undefined
 
-    font.family: Fonts.solidIcons
+    font.family: Fonts.Fonts.icons
     onClicked: {
-        if (menu !== null) {
+        if (menu) {
             if (menu.visible) {
                 menu.close();
             } else {
