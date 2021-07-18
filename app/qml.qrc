@@ -7,7 +7,6 @@
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
         <file>qtquickcontrols2.conf</file>
         <file>Windows/MainWindow.qml</file>
-        <file>3rdpartyinfo/fontawesome/3rdpartyinfo.json</file>
         <file>Fonts/Icons.qml</file>
         <file>Fonts/Fonts.qml</file>
         <file>Fonts/qmldir</file>
@@ -155,5 +154,6 @@
         <file>Controls/ToolBar.qml</file>
         <file>Controls/StackView.qml</file>
         <file>Controls/Drawer.qml</file>
+        <file>3rdpartyinfo/material-design-icons/3rdpartyinfo.json</file>
     </qresource>
 </RCC>
