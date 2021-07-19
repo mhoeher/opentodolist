@@ -100,6 +100,7 @@ set(PROJECT_SOURCES
 
 if(ANDROID)
     set(PROJECT_SOURCES
+        ${PROJECT_SOURCES}
         utils/android/androidfiledialog.h
         utils/android/androidfiledialog.cpp
     )
@@ -144,8 +145,8 @@ target_include_directories(
 
 # Add compile definitions
 target_compile_definitions(
-    opentodolist-common 
-    PRIVATE 
+    opentodolist-common
+    PRIVATE
         ${LIB_DEFINES}
         ${KF5_SYNTAXHIGHLIGHTING_DEFINES}
 )
