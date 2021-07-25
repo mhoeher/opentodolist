@@ -78,7 +78,7 @@ C.ApplicationWindow {
                 return [];
             }
         }
-        dynamicPageActions: d.dynamicPageActions
+        dynamicPageActions: applicationToolBarActions.dynamicPageActions
 
         Binding {
             target: applicationToolBar
@@ -91,9 +91,6 @@ C.ApplicationWindow {
         id: d
 
         property bool completed: false
-
-        // The list of all available page actions
-        property list<ToolBarAction> dynamicPageActions
 
         property QuickNoteWindow quickNoteWindow: null
 
@@ -125,237 +122,45 @@ C.ApplicationWindow {
             quickNoteWindow.raise();
         }
 
-        dynamicPageActions: [
-            ToolBarAction {
-                symbol: Icons.mdiUndo
-                text: qsTr("Undo")
-                visible: undoAction.enabled
-                onTriggered: undoAction.trigger()
-            },
+    }
 
-            ToolBarAction {
-                symbol: Icons.mdiEdit
-                text: qsTr("Rename")
-                visible: {
-                    return stackView.currentItem &&
-                            typeof(stackView.currentItem["renameItem"]) ===
-                            "function";
-                }
-                onTriggered: stackView.currentItem.renameItem()
-            },
+    ApplicationShortcuts {
+        id: applicationShortcuts
 
-            ToolBarAction {
-                symbol: Icons.mdiContentCut
-                text: qsTr("Move")
-                visible: {
-                    return stackView.currentItem &&
-                            typeof(stackView.currentItem["moveItem"]) ===
-                            "function";
-                }
-                onTriggered: stackView.currentItem.moveItem()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiContentCopy
-                text: qsTr("Copy")
-                visible: {
-                    return stackView.currentItem &&
-                            typeof(stackView.currentItem["copyItem"]) ===
-                            "function";
-                }
-                onTriggered: stackView.currentItem.copyItem()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiPalette
-                text: qsTr("Color")
-                menu: ColorMenu {
-                    anchors.centerIn: parent
-                    item: stackView.hasColor ? stackView.currentItem.item : null
-                    parent: window.contentItem
-                }
-                visible: menu.item !== null
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiLabel
-                text: qsTr("Add Tag")
-                visible: stackView.currentItem && (typeof(stackView.currentItem["addTag"]) === "function")
-                onTriggered: stackView.currentItem.addTag()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiAttachment
-                text: qsTr("Attach File")
-                visible: stackView.currentItem && (typeof(stackView.currentItem["attach"]) === "function")
-                onTriggered: stackView.currentItem.attach()
-            },
-
-            ToolBarAction {
-                id: searchToolButtonAction
-
-                symbol: Icons.mdiSearch
-                text: qsTr("Search")
-                visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
-                onTriggered: stackView.currentItem.find()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiSort
-                text: qsTr("Sort")
-                visible: stackView.currentItem &&
-                         typeof(stackView.currentItem.sort) === "function"
-                onTriggered: stackView.currentItem.sort()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiCalendarToday
-                text: qsTr("Set Due Date")
-                visible: stackView.currentItem &&
-                         typeof(stackView.currentItem.setDueDate) === "function"
-                onTriggered: stackView.currentItem.setDueDate()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiDelete
-                text: qsTr("Delete")
-                visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
-                onTriggered: stackView.currentItem.deleteItem()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiRemoveDone
-                text: qsTr("Delete Completed Items")
-                visible: stackView.currentItem && typeof(stackView.currentItem["deleteCompletedItems"]) === "function"
-                onTriggered: stackView.currentItem.deleteCompletedItems()
-            },
-
-            ToolBarAction {
-                symbol: Icons.mdiPublishedWithChanges
-                text: qsTr("Set Progress")
-                visible: stackView.currentItem && typeof(stackView.currentItem["setProgress"]) === "function"
-                onTriggered: stackView.currentItem.setProgress()
+        settingsShortcut.onActivated: librariesSideBar.showSettings()
+        quitShortcut.onActivated: Qt.quit()
+        closeShortcut.onActivated: window.close()
+        closeShortcut.enabled: Qt.platform.os != "android" && Qt.platform.os != "ios"
+        findShortcut.enabled: {
+            let currentItem = stackView.currentItem;
+            if (currentItem && typeof(currentItem.find) === "function") {
+                return true;
             }
-        ]
-
-
-    }
-
-    C.Action {
-        text: qsTr("Settings")
-        shortcut: qsTr("Ctrl+,")
-        onTriggered: librariesSideBar.showSettings()
-    }
-
-    C.Action {
-        id: newLibraryAction
-
-        text: qsTr("New &Library")
-        shortcut: StandardKey.New
-        onTriggered: {
-            stackView.clear();
-            stackView.push(newLibraryPage);
+            return false;
         }
-    }
-
-    C.Action {
-        id: newNoteAction
-
-        text: qsTr("New &Note")
-        onTriggered: stackView.currentItem.newNote()
-        enabled: stackView.currentItem && typeof(stackView.currentItem.newNote) === "function"
-    }
-
-    C.Action {
-        id: newTodoListAction
-
-        text: qsTr("New &Todo List")
-        onTriggered: stackView.currentItem.newTodoList()
-        enabled: stackView.currentItem && typeof(stackView.currentItem.newTodoList) === "function"
-    }
-
-    C.Action {
-        id: newImageAction
-
-        text: qsTr("New &Image")
-        onTriggered: stackView.currentItem.newImage()
-        enabled: stackView.currentItem && typeof(stackView.currentItem.newImage) === "function"
-    }
-
-    C.Action {
-        id: quitAction
-
-        text: qsTr("&Quit")
-        shortcut: StandardKey.Quit
-        onTriggered: Qt.quit()
-    }
-
-    C.Action {
-        id: closeAction
-
-        text: qsTr("Close")
-        shortcut: StandardKey.Close
-        onTriggered: window.close()
-        enabled: Qt.platform.os != "android" && Qt.platform.os != "ios"
-    }
-
-    C.Action {
-        id: findAction
-
-        text: qsTr("&Find")
-        shortcut: StandardKey.Find
-        onTriggered: searchToolButtonAction.trigger()
-    }
-
-    C.Action {
-        id: undoAction
-
-        text: qsTr("Undo")
-        shortcut: StandardKey.Undo
-        enabled: {
+        undoShortcut.enabled: {
             let currentItem = stackView.currentItem;
             if (currentItem && typeof(currentItem.undo) === "function") {
                 return true;
             }
             return false;
         }
-        onTriggered: {
+        undoShortcut.onActivated: {
             let currentItem = stackView.currentItem;
             currentItem.undo();
         }
-    }
-
-    Shortcut {
-        id: goBackShortcut
-        sequences: [
-            StandardKey.Back,
-            "Esc",
-            "Back"
-        ]
-        enabled: Qt.platform.os !== "android" && Qt.platform.os !== "ios"
-        onActivated: {
+        goBackShortcut.onActivated: {
             if (stackView.canGoBack) {
                 stackView.goBack();
             }
         }
+        openShortcut.enabled: !!window.itemCreatedNotification
+        openShortcut.onActivated: window.itemCreatedNotification.trigger()
     }
 
-    C.Action {
-        id: openLastCreatedItemAction
-
-        shortcut: StandardKey.Open
-        text: qsTr("Open Last &Created Item")
-        enabled: !!window.itemCreatedNotification
-        onTriggered: window.itemCreatedNotification.trigger()
-    }
-
-    C.Action {
-        id: openLeftSideBarAction
-
-        text: qsTr("Open &Left Side Bar")
-        onTriggered: if (librariesSideBar.compact) {
-                         dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible;
-                     }
+    ApplicationToolBarActions {
+        id: applicationToolBarActions
+        shortcuts: applicationShortcuts
     }
 
     Component.onCompleted: {
@@ -401,7 +206,7 @@ C.ApplicationWindow {
             window.viewLibrary(currentLibrary, currentTag, specialView);
         }
 
-        helpVisible: helpPage !== null
+        helpVisible: helpPage != null
         anchors.fill: parent
         compact: window.width < 600
         onCurrentLibraryChanged: changeLibraryTimer.restart()

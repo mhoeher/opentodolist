@@ -25,49 +25,31 @@ ItemPage {
     signal openPage(var component, var properties)
 
     function deleteItem() {
-        if (todoDrawer.visible) {
-            todoPage.deleteItem();
-        } else {
-            confirmDeleteDialog.deleteItem(item);
-        }
+        confirmDeleteDialog.deleteItem(item);
     }
 
     function deleteCompletedItems() {
-        if (todoDrawer.visible) {
-            ItemUtils.deleteCompletedItems(todoPage.item);
-        } else {
-            ItemUtils.deleteCompletedItems(item);
-        }
+        ItemUtils.deleteCompletedItems(item);
     }
 
     function renameItem() {
-        if (todoDrawer.visible) {
-            todoPage.renameItem();
-        } else {
-            renameItemDialog.renameItem(item);
-        }
+        renameItemDialog.renameItem(item);
     }
 
     function copyItem() {
-        if (todoDrawer.visible) {
-            todoPage.copyItem();
-        } else {
-            copyTopLevelItemAction.trigger();
-        }
+        copyTopLevelItemAction.trigger();
     }
 
     function find() {
-        if (todoDrawer.visible) {
-            todoPage.find();
-        } else {
-            filterBar.edit.forceActiveFocus();
-        }
+        filterBar.edit.forceActiveFocus();
     }
 
+    property var goBack: itemNotesEditor.editingNotes ? function() {
+        itemNotesEditor.finishEditing();
+    } : undefined
+
     property var undo: {
-        if (todoDrawer.visible) {
-            return todoPage.undo;
-        } else if (d.savedTodoStates.length > 0) {
+        if (d.savedTodoStates.length > 0) {
             return function() {
                 if (d.savedTodoStates.length > 0) {
                     let list = d.savedTodoStates.slice();
@@ -81,42 +63,18 @@ ItemPage {
         }
     }
 
-    property var addTag: todoDrawer.visible ? undefined :
-                                              function() {
-                                                  d.openTagsEditor();
-                                              }
+    function addTag() {
+        d.openTagsEditor();
+    }
 
     function attach() {
-        if (todoDrawer.visible) {
-            todoPage.attach();
-        } else {
-            d.attach();
-        }
+        d.attach();
     }
 
     function setDueDate() {
-        if (todoDrawer.visible) {
-            todoPage.setDueDate();
-        } else {
-            dueDateSelectionDialog.selectedDate = item.dueTo;
-            dueDateSelectionDialog.open();
-        }
+        dueDateSelectionDialog.selectedDate = item.dueTo;
+        dueDateSelectionDialog.open();
     }
-
-    property var goBack: todoDrawer.visible ?
-                             function() {
-                                 todoDrawer.close();
-                             } : null
-
-    property var moveItem: todoDrawer.visible ?
-                               function() {
-                                   todoPage.moveItem();
-                               } : null
-
-    property var setProgress: todoDrawer.visible ?
-                               function() {
-                                   todoPage.setProgress();
-                               } : null
 
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
@@ -148,13 +106,12 @@ ItemPage {
         signal openTagsEditor()
 
         function openTodo(todo) {
-            todoPage.item = OTL.Application.cloneItem(todo);
-            todoDrawer.open();
+            page.openPage(todoPage, {
+                              item: OTL.Application.cloneItem(todo)
+                          });
         }
 
     }
-
-    Component.onDestruction: todoDrawer.close()
 
     Settings {
         id: settings
@@ -369,95 +326,9 @@ ItemPage {
         flickable: todosWidget
     }
 
-    C.Pane {
-        anchors.fill: parent
-        visible: todoDrawer.visible
-        opacity: 0.6 * todoDrawer.position
-        Material.background: Colors.materialOverlayDimColor
-
-        MouseArea {
-            anchors.fill: parent
-            enabled: todoDrawer.visible
-            onClicked: todoDrawer.close()
-        }
-    }
-
-    C.Pane {
-        id: todoDrawer
-
-        function open() {
-            state = "open";
-            forceActiveFocus();
-        }
-
-        function close() {
-            state = "closed";
-            if (todoPage.editingNotes) {
-                todoPage.finishEditingNotes();
-            }
-        }
-
-        readonly property double position: {
-            var openX = page.width - todoDrawer.width;
-            var closedX = page.width;
-            return 1 - (openX - x) / (openX - closedX);
-        }
-
-        state: "closed"
-
-        Material.elevation: visible ? 10 : 0
-
-        width: page.width > 400 ? page.width / 5 * 4 : page.width
-        height: page.height
-        clip: true
-        x: parent.width
-        visible: false
-        padding: 0
-
-        TodoPage {
-            id: todoPage
-
-            width: todoDrawer.width
-            height: todoDrawer.height
-            anchors.fill: parent
-            todoList: page.item
-            library: page.library
-            parentDrawer: todoDrawer
-
-            function backAction() {
-                if (editingNotes) {
-                    finishEditingNotes();
-                } else {
-                    todoDrawer.close();
-                }
-            }
-        }
-
-        states: State {
-            name: "open"
-
-            PropertyChanges {
-                target: todoDrawer
-                visible: true
-                x: page.width - todoDrawer.width
-            }
-        }
-
-        transitions: Transition {
-            from: "closed"
-            to: "open"
-            reversible: true
-
-            SequentialAnimation {
-                PropertyAnimation {
-                    properties: "visible"
-                }
-                NumberAnimation {
-                    properties: "x"
-                    duration: 100
-                }
-            }
-        }
+    Component {
+        id: todoPage
+        TodoPage { library: page.library; todoList: page.item }
     }
 
     Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }

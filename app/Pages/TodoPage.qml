@@ -66,6 +66,10 @@ ItemPage {
         d.attach();
     }
 
+    property var goBack: editingNotes ? function() {
+        itemNotesEditor.finishEditing();
+    } : undefined
+
     property var undo: {
         if (d.savedTaskStates.length > 0) {
             return function() {

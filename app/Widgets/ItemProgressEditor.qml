@@ -33,7 +33,7 @@ RowLayout {
         value: root.item.progress
         stepSize: 1
         live: false
-        onValueChanged: root.item.progress = value
+        onValueChanged: if (d.isProgressSet) { root.item.progress = value; }
         Layout.fillWidth: true
     }
 

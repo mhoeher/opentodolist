@@ -16,5 +16,9 @@
         <file>OpenTodoList.notifyrc</file>
         <file>translations/languages.json</file>
         <file>Fonts/material-design-icons/font/MaterialIconsOutlined-Regular.otf</file>
+        <file>Fonts/Roboto/LICENSE.txt</file>
+        <file>Fonts/Roboto/Roboto-Bold.ttf</file>
+        <file>Fonts/Roboto/Roboto-Italic.ttf</file>
+        <file>Fonts/Roboto/Roboto-Regular.ttf</file>
     </qresource>
 </RCC>

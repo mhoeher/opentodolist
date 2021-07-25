@@ -109,10 +109,6 @@
         <file>Components/Empty.qml</file>
         <file>Utils/AppSettings.qml</file>
         <file>Actions/SetManualProgressAction.qml</file>
-        <file>Fonts/Roboto/LICENSE.txt</file>
-        <file>Fonts/Roboto/Roboto-Bold.ttf</file>
-        <file>Fonts/Roboto/Roboto-Italic.ttf</file>
-        <file>Fonts/Roboto/Roboto-Regular.ttf</file>
         <file>3rdpartyinfo/roboto/3rdpartyinfo.json</file>
         <file>Actions/PromoteTask.qml</file>
         <file>Windows/QuickNoteWindow.qml</file>
@@ -156,5 +152,7 @@
         <file>Controls/Drawer.qml</file>
         <file>3rdpartyinfo/material-design-icons/3rdpartyinfo.json</file>
         <file>Components/ApplicationToolBar.qml</file>
+        <file>Components/ApplicationToolBarActions.qml</file>
+        <file>Components/ApplicationShortcuts.qml</file>
     </qresource>
 </RCC>

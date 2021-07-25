@@ -14,7 +14,6 @@ C.ToolBar {
     id: headerToolBar
 
     property string title: ""
-    property var visibleDynamicToolBarButtons: {[]}
     property var pageActions: {[]}
 
     property alias sidebarControl: sidebarControl
@@ -170,14 +169,19 @@ C.ToolBar {
         }
 
         Repeater {
-            model: visibleDynamicToolBarButtons
+            model: d.visibleDynamicToolBarButtons
 
             delegate: C.ToolButton {
+                hoverEnabled: true
                 action: modelData
                 menu: action.menu
                 symbol: action.symbol
                 visible: action.visible
                 Layout.alignment: Qt.AlignVCenter
+                C.ToolTip.text: action.text
+                C.ToolTip.visible: hovered && action.text !== ""
+                C.ToolTip.delay: Utils.AppSettings.tooltipDelay
+                C.ToolTip.timeout: Utils.AppSettings.tooltipTimeout
             }
         }
 
