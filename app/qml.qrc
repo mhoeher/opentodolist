@@ -155,5 +155,6 @@
         <file>Controls/StackView.qml</file>
         <file>Controls/Drawer.qml</file>
         <file>3rdpartyinfo/material-design-icons/3rdpartyinfo.json</file>
+        <file>Components/ApplicationToolBar.qml</file>
     </qresource>
 </RCC>
