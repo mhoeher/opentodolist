@@ -105,14 +105,12 @@ CenteredDialog {
             delegate: C.ToolButton {
                 property var localDate: new Date(year, month, day)
                 property bool isToday: d.dateEquals(localDate, new Date()) // Highlight today
+
+                Component.onCompleted: console.debug(year, " ", month, " ", day)
+
                 opacity: model.month === grid.month ? 1.0 : 0.5
-                checked: {
-                    if (dialog) {
-                        return d.dateEquals(localDate, dialog.selectedDate);
-                    } else {
-                        return false;
-                    }
-                }
+                checked: d.dateEquals(localDate, dialog.selectedDate)
+                text: day
                 background: C.Pane {
                     Material.background: {
                         if (checked) {
@@ -131,6 +129,7 @@ CenteredDialog {
                     text: model.day
                     font.pixelSize: grid.font.pixelSize
                     font.bold: d.dateEquals(localDate, new Date()) // Make today bold
+                    font.family: AppSettings.defaultFontFamily
                     wrapMode: "NoWrap"
                 }
 
