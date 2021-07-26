@@ -63,8 +63,8 @@ C.ApplicationWindow {
         sidebarControl.checked: dynamicLeftDrawer.visible
         sidebarControl.onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
 
-        backToolButton.visible: OTL.Application.problemManager.problems.length > 0
-        backToolButton.onClicked: stackView.replace(problemsPage)
+        backToolButton.visible: stackView.depth > 1
+        backToolButton.onClicked: stackView.goBack()
 
         problemsButton.visible: OTL.Application.problemManager.problems.length > 0
         problemsButton.onClicked: stackView.replace(problemsPage)
