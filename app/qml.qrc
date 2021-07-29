@@ -154,5 +154,6 @@
         <file>Components/ApplicationToolBar.qml</file>
         <file>Components/ApplicationToolBarActions.qml</file>
         <file>Components/ApplicationShortcuts.qml</file>
+        <file>Controls/PasswordField.qml</file>
     </qresource>
 </RCC>

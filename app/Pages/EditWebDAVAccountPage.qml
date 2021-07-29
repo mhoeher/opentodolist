@@ -167,14 +167,12 @@ C.Page {
                 text: qsTr("Password:")
             }
 
-            C.TextField {
+            C.PasswordField {
                 id: passwordEdit
 
                 text: account.password
                 placeholderText: qsTr("Password")
                 Layout.fillWidth: true
-                echoMode: TextInput.Password
-                inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
             }
 
             Components.Empty {}

@@ -186,13 +186,11 @@ C.Page {
                 visible: d.manualLogin
             }
 
-            C.TextField {
+            C.PasswordField {
                 id: passwordEdit
 
                 placeholderText: qsTr("Password")
                 Layout.fillWidth: true
-                echoMode: TextInput.Password
-                inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                 visible: d.manualLogin
             }
 
