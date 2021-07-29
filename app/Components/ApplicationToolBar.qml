@@ -179,7 +179,7 @@ C.ToolBar {
                 visible: action.visible
                 Layout.alignment: Qt.AlignVCenter
                 C.ToolTip.text: action.text
-                C.ToolTip.visible: hovered && action.text !== ""
+                C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered && action.text !== ""
                 C.ToolTip.delay: Utils.AppSettings.tooltipDelay
                 C.ToolTip.timeout: Utils.AppSettings.tooltipTimeout
             }

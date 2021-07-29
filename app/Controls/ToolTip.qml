@@ -7,8 +7,10 @@ QQC2.ToolTip {
     delay: Utils.AppSettings.tooltipDelay
     timeout: Utils.AppSettings.tooltipTimeout
     visible: {
-        if (parent && parent.hovered !== undefined) {
-            return parent.hovered;
+        if (Utils.AppSettings.desktopMode) {
+            if (parent && parent.hovered !== undefined) {
+                return parent.hovered;
+            }
         }
         return false;
     }

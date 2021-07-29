@@ -150,6 +150,15 @@ C.Page {
             Empty {}
 
             C.CheckBox {
+                text: qsTr("Desktop Mode")
+                checked: Utils.AppSettings.desktopMode
+                onCheckedChanged: Utils.AppSettings.desktopMode = checked
+                Layout.fillWidth: true
+            }
+
+            Empty {}
+
+            C.CheckBox {
                 text: qsTr("Use Compact Style")
                 checked: Utils.AppSettings.useDenseVariant
                 onCheckedChanged: Utils.AppSettings.useDenseVariant = checked

@@ -139,7 +139,7 @@ Window {
                 C.ToolTip.delay: Utils.AppSettings.tooltipDelay
                 C.ToolTip.text: qsTr("Save the entered notes to the selected library. " +
                                      "Press and hold the button to get more options for saving.")
-                C.ToolTip.visible: hovered
+                C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered
 
                 C.Menu {
                     id: contextMenu

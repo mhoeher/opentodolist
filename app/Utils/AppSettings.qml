@@ -14,6 +14,16 @@ Item {
     readonly property int effectiveFontSize: useCustomFontSize ? customFontSize : defaultFontSize
     property int libraryItemWidthScaleFactor: 40
 
+    property bool desktopMode: {
+        switch (Qt.platform.os) {
+            case "ios":
+            case "android":
+            return false;
+            default:
+            return true;
+        }
+    }
+
     property bool useDenseVariant: false
 
     property int uiScaling: 100
@@ -62,6 +72,7 @@ Item {
         property alias overrideUiScaling: settings.overrideUiScaling
         property alias libraryItemWidthScaleFactor: settings.libraryItemWidthScaleFactor
         property alias showQuickNotesEditorOnSystemTrayClick: settings.showQuickNotesEditorOnSystemTrayClick
+        property alias desktopMode: settings.desktopMode
 
         category: "ApplicationWindow"
     }
