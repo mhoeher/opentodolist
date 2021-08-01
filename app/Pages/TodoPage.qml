@@ -1,15 +1,14 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.12
 import Qt.labs.settings 1.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Windows"
 import "../Widgets"
 import "../Utils"
-
 import "../Actions" as Actions
 
 ItemPage {
@@ -66,6 +65,10 @@ ItemPage {
     function attach() {
         d.attach();
     }
+
+    property var goBack: editingNotes ? function() {
+        itemNotesEditor.finishEditing();
+    } : undefined
 
     property var undo: {
         if (d.savedTaskStates.length > 0) {
@@ -141,7 +144,7 @@ ItemPage {
     TextInputBar {
         id: filterBar
         placeholderText: qsTr("Search term 1, search term 2, ...")
-        symbol: Icons.faTimes
+        symbol: Icons.mdiClose
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }
@@ -155,8 +158,8 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.todoList
-        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
-        ScrollBar.vertical.interactive: true
+        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
             id: todosWidget
@@ -169,7 +172,7 @@ ItemPage {
             library: page.library
             parentItem: page.todoList
             headerItemVisible: true
-            symbol: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
+            symbol: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new task...")
             onHeaderButtonClicked: settings.showUndone = !settings.showUndone

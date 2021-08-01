@@ -1,10 +1,10 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import Qt.labs.calendar 1.0
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 
@@ -13,7 +13,7 @@ CenteredDialog {
 
     property date selectedDate
 
-    standardButtons: Dialog.Ok | Dialog.Cancel | Dialog.Reset
+    standardButtons: C.Dialog.Ok | C.Dialog.Cancel | C.Dialog.Reset
     onReset: dialog.selectedDate = new Date("")
     onSelectedDateChanged: {
         if (selectedDate.getTime() === selectedDate.getTime()) {
@@ -22,16 +22,16 @@ CenteredDialog {
             grid.month = selectedDate.getMonth();
         }
     }
-    header: ToolBar {
+    header: C.ToolBar {
         RowLayout {
             anchors.horizontalCenter: parent.horizontalCenter
-            ToolButton {
-                symbol: Icons.faAngleDoubleLeft
+            C.ToolButton {
+                symbol: Icons.mdiFirstPage
                 onClicked: grid.year -= 1
             }
 
-            ToolButton {
-                symbol: Icons.faAngleLeft
+            C.ToolButton {
+                symbol: Icons.mdiKeyboardArrowLeft
                 onClicked: {
                     var month = grid.month;
                     if (month === 0) {
@@ -43,14 +43,14 @@ CenteredDialog {
                 }
             }
 
-            Label {
+            C.Label {
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
                 text: grid.locale.monthName(grid.month) + " " + grid.year
             }
 
-            ToolButton {
-                symbol: Icons.faAngleRight
+            C.ToolButton {
+                symbol: Icons.mdiKeyboardArrowRight
                 onClicked: {
                     var month = grid.month;
                     if (month === 11) {
@@ -62,8 +62,8 @@ CenteredDialog {
                 }
             }
 
-            ToolButton {
-                symbol: Icons.faAngleDoubleRight
+            C.ToolButton {
+                symbol: Icons.mdiLastPage
                 onClicked: grid.year += 1
             }
         }
@@ -102,18 +102,16 @@ CenteredDialog {
         MonthGrid {
             id: grid
 
-            delegate: ToolButton {
+            delegate: C.ToolButton {
                 property var localDate: new Date(year, month, day)
                 property bool isToday: d.dateEquals(localDate, new Date()) // Highlight today
+
+                Component.onCompleted: console.debug(year, " ", month, " ", day)
+
                 opacity: model.month === grid.month ? 1.0 : 0.5
-                checked: {
-                    if (dialog) {
-                        return d.dateEquals(localDate, dialog.selectedDate);
-                    } else {
-                        return false;
-                    }
-                }
-                background: Pane {
+                checked: d.dateEquals(localDate, dialog.selectedDate)
+                text: day
+                background: C.Pane {
                     Material.background: {
                         if (checked) {
                             return Material.Green;
@@ -127,10 +125,11 @@ CenteredDialog {
                     visible: checked || isToday
                     enabled: false
                 }
-                contentItem: Label {
+                contentItem: C.Label {
                     text: model.day
                     font.pixelSize: grid.font.pixelSize
                     font.bold: d.dateEquals(localDate, new Date()) // Make today bold
+                    font.family: AppSettings.defaultFontFamily
                     wrapMode: "NoWrap"
                 }
 

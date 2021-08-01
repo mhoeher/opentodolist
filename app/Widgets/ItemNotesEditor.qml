@@ -1,5 +1,4 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.3
 import Qt.labs.platform 1.0
@@ -7,6 +6,7 @@ import Qt.labs.platform 1.0
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Pages"
 import "../Utils"
@@ -33,26 +33,26 @@ Column {
             Layout.fillWidth: true
         }
 
-        ToolButton {
+        C.ToolButton {
             id: extraButton2
             visible: false
-            symbol: Icons.faTrash
+            symbol: Icons.mdiDelete
         }
 
-        ToolButton {
+        C.ToolButton {
             id: extraButton
             visible: false
-            symbol: Icons.faPencilAlt
+            symbol: Icons.mdiEdit
         }
 
-        ToolButton {
-            symbol: Icons.faShareAlt
+        C.ToolButton {
+            symbol: Icons.mdiSave
             visible: Qt.platform.os !== "ios" && Qt.platform.os !== "android"
             onClicked: saveNotesDialog.open()
         }
 
-        ToolButton {
-            symbol: Icons.faICursor
+        C.ToolButton {
+            symbol: Icons.mdiEditNote
             onClicked: mouseArea.clicked(undefined)
         }
     }
@@ -70,7 +70,7 @@ Column {
             implicitHeight: height
             onClicked: loader.sourceComponent = notesEditor
 
-            Label {
+            C.Label {
                 width: parent.width
                 textFormat: Text.RichText
                 text: if (root.item) {
@@ -80,7 +80,7 @@ Column {
                           }
             }
 
-            Label {
+            C.Label {
                 width: parent.width
                 text: qsTr("No notes added yet - click here to add some.")
                 Material.foreground: Material.Grey

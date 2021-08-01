@@ -1,11 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Utils"
 
 Item {
@@ -41,7 +41,7 @@ Item {
             clip: true
             hoverEnabled: true
 
-            Label {
+            C.Label {
                 id: titleLabel
                 text: Markdown.markdownToPlainText(item.libraryItem.title)
                 textFormat: Text.PlainText
@@ -51,10 +51,10 @@ Item {
                 width: parent.width
                 fontSizeMode: Text.HorizontalFit
 
-                ToolTip.text: text
-                ToolTip.visible: truncated && title.hovered
-                ToolTip.delay: 200
-                ToolTip.timeout: 30000
+                C.ToolTip {
+                    text: text
+                    visible: titleLabel.truncated && title.hovered
+                }
             }
         }
 
@@ -67,7 +67,7 @@ Item {
             }
             item: item.libraryItem
 
-            Label {
+            C.Label {
                 id: dueToLabel
                 text: {
                     let dueTo = item.libraryItem.effectiveDueTo;
@@ -82,7 +82,7 @@ Item {
                 opacity: 0.5
             }
 
-            Label {
+            C.Label {
                 anchors.fill: parent
                 anchors.topMargin: {
                     if (dueToLabel.visible) {
@@ -93,6 +93,7 @@ Item {
                 }
                 text: Markdown.markdownToHtml(item.libraryItem.notes)
                 textFormat: Text.RichText
+                wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 clip: true
             }

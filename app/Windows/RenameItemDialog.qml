@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components" as Components
+import "../Controls" as C
 
 
 CenteredDialog {
@@ -18,7 +18,7 @@ CenteredDialog {
         edit.forceActiveFocus();
     }
     
-    standardButtons: Dialog.Ok | Dialog.Cancel
+    standardButtons: C.Dialog.Ok | C.Dialog.Cancel
     title: qsTr("Rename Item")
     width: idealDialogWidth
     
@@ -28,7 +28,7 @@ CenteredDialog {
         }
     }
     
-    Components.TextField {
+    C.TextField {
         id: edit
         placeholderText: qsTr("Enter item title...")
         onAccepted: dialog.accept()

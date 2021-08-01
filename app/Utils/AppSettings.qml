@@ -2,6 +2,7 @@ pragma Singleton
 
 import QtQuick 2.10
 import Qt.labs.settings 1.0
+import "../Controls" as C
 
 Item {
     id: settings
@@ -12,6 +13,16 @@ Item {
     property bool useCompactTodoLists: false
     readonly property int effectiveFontSize: useCustomFontSize ? customFontSize : defaultFontSize
     property int libraryItemWidthScaleFactor: 40
+
+    property bool desktopMode: {
+        switch (Qt.platform.os) {
+            case "ios":
+            case "android":
+            return false;
+            default:
+            return true;
+        }
+    }
 
     property bool useDenseVariant: false
 
@@ -24,6 +35,8 @@ Item {
 
     readonly property int tooltipDelay: 500
     readonly property int tooltipTimeout: 10000
+
+    property alias defaultFontFamily: hiddenLabel.font.family
 
     property bool showQuickNotesEditorOnSystemTrayClick: false
 
@@ -59,6 +72,7 @@ Item {
         property alias overrideUiScaling: settings.overrideUiScaling
         property alias libraryItemWidthScaleFactor: settings.libraryItemWidthScaleFactor
         property alias showQuickNotesEditorOnSystemTrayClick: settings.showQuickNotesEditorOnSystemTrayClick
+        property alias desktopMode: settings.desktopMode
 
         category: "ApplicationWindow"
     }
@@ -71,5 +85,10 @@ Item {
         id: effFontMetrics
 
         font.pointSize: settings.effectiveFontSize
+    }
+
+    C.Label {
+        id: hiddenLabel
+        visible: false
     }
 }

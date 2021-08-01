@@ -1,12 +1,12 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.0
 import Qt.labs.settings 1.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Windows"
 import "../Widgets"
@@ -25,49 +25,31 @@ ItemPage {
     signal openPage(var component, var properties)
 
     function deleteItem() {
-        if (todoDrawer.visible) {
-            todoPage.deleteItem();
-        } else {
-            confirmDeleteDialog.deleteItem(item);
-        }
+        confirmDeleteDialog.deleteItem(item);
     }
 
     function deleteCompletedItems() {
-        if (todoDrawer.visible) {
-            ItemUtils.deleteCompletedItems(todoPage.item);
-        } else {
-            ItemUtils.deleteCompletedItems(item);
-        }
+        ItemUtils.deleteCompletedItems(item);
     }
 
     function renameItem() {
-        if (todoDrawer.visible) {
-            todoPage.renameItem();
-        } else {
-            renameItemDialog.renameItem(item);
-        }
+        renameItemDialog.renameItem(item);
     }
 
     function copyItem() {
-        if (todoDrawer.visible) {
-            todoPage.copyItem();
-        } else {
-            copyTopLevelItemAction.trigger();
-        }
+        copyTopLevelItemAction.trigger();
     }
 
     function find() {
-        if (todoDrawer.visible) {
-            todoPage.find();
-        } else {
-            filterBar.edit.forceActiveFocus();
-        }
+        filterBar.edit.forceActiveFocus();
     }
 
+    property var goBack: itemNotesEditor.editingNotes ? function() {
+        itemNotesEditor.finishEditing();
+    } : undefined
+
     property var undo: {
-        if (todoDrawer.visible) {
-            return todoPage.undo;
-        } else if (d.savedTodoStates.length > 0) {
+        if (d.savedTodoStates.length > 0) {
             return function() {
                 if (d.savedTodoStates.length > 0) {
                     let list = d.savedTodoStates.slice();
@@ -81,42 +63,18 @@ ItemPage {
         }
     }
 
-    property var addTag: todoDrawer.visible ? undefined :
-                                              function() {
-                                                  d.openTagsEditor();
-                                              }
+    function addTag() {
+        d.openTagsEditor();
+    }
 
     function attach() {
-        if (todoDrawer.visible) {
-            todoPage.attach();
-        } else {
-            d.attach();
-        }
+        d.attach();
     }
 
     function setDueDate() {
-        if (todoDrawer.visible) {
-            todoPage.setDueDate();
-        } else {
-            dueDateSelectionDialog.selectedDate = item.dueTo;
-            dueDateSelectionDialog.open();
-        }
+        dueDateSelectionDialog.selectedDate = item.dueTo;
+        dueDateSelectionDialog.open();
     }
-
-    property var goBack: todoDrawer.visible ?
-                             function() {
-                                 todoDrawer.close();
-                             } : null
-
-    property var moveItem: todoDrawer.visible ?
-                               function() {
-                                   todoPage.moveItem();
-                               } : null
-
-    property var setProgress: todoDrawer.visible ?
-                               function() {
-                                   todoPage.setProgress();
-                               } : null
 
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
@@ -148,13 +106,12 @@ ItemPage {
         signal openTagsEditor()
 
         function openTodo(todo) {
-            todoPage.item = OTL.Application.cloneItem(todo);
-            todoDrawer.open();
+            page.openPage(todoPage, {
+                              item: OTL.Application.cloneItem(todo)
+                          });
         }
 
     }
-
-    Component.onDestruction: todoDrawer.close()
 
     Settings {
         id: settings
@@ -199,41 +156,41 @@ ItemPage {
     TextInputBar {
         id: filterBar
         placeholderText: qsTr("Search term 1, search term 2, ...")
-        symbol: Icons.faTimes
+        symbol: Icons.mdiClose
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }
 
-    Menu {
+    C.Menu {
         id: sortTodosByMenu
         parent: todosWidget.headerIcon
         modal: true
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Manually")
             checked: settings.sortTodosBy === "weight"
             checkable: true
             onTriggered: settings.sortTodosBy = "weight"
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Name")
             checked: settings.sortTodosBy === "title"
             checkable: true
             onTriggered: settings.sortTodosBy = "title"
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Due Date")
             checked: settings.sortTodosBy === "dueTo"
             checkable: true
             onTriggered: settings.sortTodosBy = "dueTo"
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Created At")
             checked: settings.sortTodosBy === "createdAt"
             checkable: true
             onTriggered: settings.sortTodosBy = "createdAt";
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Updated At")
             checked: settings.sortTodosBy === "updatedAt"
             checkable: true
@@ -251,8 +208,8 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
-        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
-        ScrollBar.vertical.interactive: true
+        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
             id: todosWidget
@@ -266,20 +223,20 @@ ItemPage {
             symbol: {
                 switch (settings.sortTodosBy) {
                 case "title":
-                    return Icons.faSortAlphaDown;
+                    return Icons.mdiSortByAlpha;
                 case "dueTo":
-                    return Icons.faSortNumericDown;
+                    return Icons.mdiEvent;
                 case "createdAt":
-                    return Icons.faSortNumericDown;
+                    // fall through
                 case "updatedAt":
-                    return Icons.faSortNumericDown;
+                    // fall through
                 case "weight":
                     // fall through
                 default:
-                    return Icons.faSort;
+                    return Icons.mdiFilterList;
                 }
             }
-            symbol2: settings.showUndone ? Icons.faEye : Icons.faEyeSlash
+            symbol2: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
             headerItem2Visible: true
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new todo...")
@@ -369,95 +326,9 @@ ItemPage {
         flickable: todosWidget
     }
 
-    Pane {
-        anchors.fill: parent
-        visible: todoDrawer.visible
-        opacity: 0.6 * todoDrawer.position
-        Material.background: Colors.materialOverlayDimColor
-
-        MouseArea {
-            anchors.fill: parent
-            enabled: todoDrawer.visible
-            onClicked: todoDrawer.close()
-        }
-    }
-
-    Pane {
-        id: todoDrawer
-
-        function open() {
-            state = "open";
-            forceActiveFocus();
-        }
-
-        function close() {
-            state = "closed";
-            if (todoPage.editingNotes) {
-                todoPage.finishEditingNotes();
-            }
-        }
-
-        readonly property double position: {
-            var openX = page.width - todoDrawer.width;
-            var closedX = page.width;
-            return 1 - (openX - x) / (openX - closedX);
-        }
-
-        state: "closed"
-
-        Material.elevation: visible ? 10 : 0
-
-        width: page.width > 400 ? page.width / 5 * 4 : page.width
-        height: page.height
-        clip: true
-        x: parent.width
-        visible: false
-        padding: 0
-
-        TodoPage {
-            id: todoPage
-
-            width: todoDrawer.width
-            height: todoDrawer.height
-            anchors.fill: parent
-            todoList: page.item
-            library: page.library
-            parentDrawer: todoDrawer
-
-            function backAction() {
-                if (editingNotes) {
-                    finishEditingNotes();
-                } else {
-                    todoDrawer.close();
-                }
-            }
-        }
-
-        states: State {
-            name: "open"
-
-            PropertyChanges {
-                target: todoDrawer
-                visible: true
-                x: page.width - todoDrawer.width
-            }
-        }
-
-        transitions: Transition {
-            from: "closed"
-            to: "open"
-            reversible: true
-
-            SequentialAnimation {
-                PropertyAnimation {
-                    properties: "visible"
-                }
-                NumberAnimation {
-                    properties: "x"
-                    duration: 100
-                }
-            }
-        }
+    Component {
+        id: todoPage
+        TodoPage { library: page.library; todoList: page.item }
     }
 
     Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }

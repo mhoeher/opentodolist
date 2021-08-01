@@ -7,20 +7,11 @@
         <file>3rdpartyinfo/simplecrypt/3rdpartyinfo.json</file>
         <file>qtquickcontrols2.conf</file>
         <file>Windows/MainWindow.qml</file>
-        <file>Components/ApplicationWindow.qml</file>
-        <file>Components/ToolButton.qml</file>
-        <file>3rdpartyinfo/fontawesome/3rdpartyinfo.json</file>
         <file>Fonts/Icons.qml</file>
-        <file>Fonts/fontawesome-free-5.0.9/fa-brands-400.ttf</file>
-        <file>Fonts/fontawesome-free-5.0.9/fa-regular-400.ttf</file>
-        <file>Fonts/fontawesome-free-5.0.9/fa-solid-900.ttf</file>
-        <file>Fonts/fontawesome-free-5.0.9/LICENSE.txt</file>
-        <file>Fonts/fontawesome-free-5.0.9/README.md</file>
         <file>Fonts/Fonts.qml</file>
         <file>Fonts/qmldir</file>
         <file>Widgets/BackgroundLabel.qml</file>
         <file>Widgets/BackgroundSymbol.qml</file>
-        <file>Components/Label.qml</file>
         <file>Widgets/ItemCreatedNotification.qml</file>
         <file>Utils/Markdown.qml</file>
         <file>Utils/qmldir</file>
@@ -46,16 +37,13 @@
         <file>Windows/RenameItemDialog.qml</file>
         <file>Windows/RenameLibraryDialog.qml</file>
         <file>Windows/+android/OpenImageDialog.qml</file>
-        <file>Components/TextField.qml</file>
         <file>Widgets/NewTopLevelItemButton.qml</file>
         <file>Widgets/SyncErrorNotificationBar.qml</file>
         <file>Widgets/TextInputBar.qml</file>
-        <file>Components/RoundButton.qml</file>
         <file>Widgets/ImageItem.qml</file>
         <file>Widgets/NoteItem.qml</file>
         <file>Widgets/TodoListItem.qml</file>
         <file>Utils/Colors.qml</file>
-        <file>Components/TextArea.qml</file>
         <file>Widgets/TagsEditor.qml</file>
         <file>Widgets/Attachments.qml</file>
         <file>Widgets/ItemDueDateEditor.qml</file>
@@ -79,7 +67,6 @@
         <file>Widgets/ItemScrollView.qml</file>
         <file>Pages/SettingsPage.qml</file>
         <file>Windows/+ios/OpenImageDialog.qml</file>
-        <file>Utils/Translations.qml</file>
         <file>Components/ToolBarAction.qml</file>
         <file>Pages/AccountsPage.qml</file>
         <file>Components/qmldir</file>
@@ -122,10 +109,6 @@
         <file>Components/Empty.qml</file>
         <file>Utils/AppSettings.qml</file>
         <file>Actions/SetManualProgressAction.qml</file>
-        <file>Fonts/Roboto/LICENSE.txt</file>
-        <file>Fonts/Roboto/Roboto-Bold.ttf</file>
-        <file>Fonts/Roboto/Roboto-Italic.ttf</file>
-        <file>Fonts/Roboto/Roboto-Regular.ttf</file>
         <file>3rdpartyinfo/roboto/3rdpartyinfo.json</file>
         <file>Actions/PromoteTask.qml</file>
         <file>Windows/QuickNoteWindow.qml</file>
@@ -133,5 +116,44 @@
         <file>Actions/CopyTopLevelItem.qml</file>
         <file>Windows/SelectTopLevelItemDialog.qml</file>
         <file>Actions/CopyTodo.qml</file>
+        <file>Controls/ApplicationWindow.qml</file>
+        <file>Controls/Label.qml</file>
+        <file>Controls/Action.qml</file>
+        <file>Controls/Menu.qml</file>
+        <file>Controls/MenuItem.qml</file>
+        <file>Controls/RoundButton.qml</file>
+        <file>Controls/TextArea.qml</file>
+        <file>Controls/TextField.qml</file>
+        <file>Controls/ToolButton.qml</file>
+        <file>Controls/Page.qml</file>
+        <file>Controls/ScrollView.qml</file>
+        <file>Controls/Button.qml</file>
+        <file>Controls/ItemDelegate.qml</file>
+        <file>Controls/DialogButtonBox.qml</file>
+        <file>Controls/CheckBox.qml</file>
+        <file>Controls/BusyIndicator.qml</file>
+        <file>Controls/Frame.qml</file>
+        <file>Controls/ButtonGroup.qml</file>
+        <file>Controls/MenuSeparator.qml</file>
+        <file>Controls/ScrollBar.qml</file>
+        <file>Controls/ToolTip.qml</file>
+        <file>Controls/RadioButton.qml</file>
+        <file>Controls/GroupBox.qml</file>
+        <file>Controls/TabBar.qml</file>
+        <file>Controls/TabButton.qml</file>
+        <file>Controls/ComboBox.qml</file>
+        <file>Controls/Slider.qml</file>
+        <file>Controls/SpinBox.qml</file>
+        <file>Controls/Pane.qml</file>
+        <file>Controls/SwipeDelegate.qml</file>
+        <file>Controls/Dialog.qml</file>
+        <file>Controls/ToolBar.qml</file>
+        <file>Controls/StackView.qml</file>
+        <file>Controls/Drawer.qml</file>
+        <file>3rdpartyinfo/material-design-icons/3rdpartyinfo.json</file>
+        <file>Components/ApplicationToolBar.qml</file>
+        <file>Components/ApplicationToolBarActions.qml</file>
+        <file>Components/ApplicationShortcuts.qml</file>
+        <file>Controls/PasswordField.qml</file>
     </qresource>
 </RCC>

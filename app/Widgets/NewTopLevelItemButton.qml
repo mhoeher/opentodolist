@@ -1,11 +1,11 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 
-RoundButton {
+C.RoundButton {
     id: newItemButton
 
     property bool createTodos: false
@@ -21,7 +21,7 @@ RoundButton {
         bottom: parent.bottom
         margins: AppSettings.mediumSpace
     }
-    symbol: Icons.faPlus
+    symbol: Icons.mdiAdd
     backgroundColor: Colors.positiveColor
     onClicked: {
         newItemMenu.parent = parent;
@@ -32,29 +32,29 @@ RoundButton {
         }
     }
 
-    Menu {
+    C.Menu {
         id: newItemMenu
 
         y: newItemButton.y - height
         x: newItemButton.x - width / 2
         modal: true
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Todo List")
             onTriggered: newItemButton.newTodoList()
         }
-        MenuItem {
+        C.MenuItem {
             id: newTodoMenuItem
             text: qsTr("Todo")
             onTriggered: newItemButton.newTodo()
             visible: newItemButton.createTodos
             height: visible ? implicitHeight : 0
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Note")
             onTriggered: newItemButton.newNote()
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Image")
             onTriggered: newItemButton.newImage()
             visible: newItemButton.createImages

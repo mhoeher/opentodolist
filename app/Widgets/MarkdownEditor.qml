@@ -1,10 +1,10 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components" as Components
+import "../Controls" as C
 import "../Utils"
 import "../Fonts"
 
@@ -74,7 +74,7 @@ Column {
         }
     }
 
-    Components.TextArea {
+    C.TextArea {
         id: textArea
 
         width: parent.width
@@ -93,13 +93,13 @@ Column {
         onTriggered: d.saveText()
     }
 
-    Components.RoundButton {
+    C.RoundButton {
         onClicked: editor.doneEditing()
         anchors.right: parent.right
         anchors.rightMargin: 10
         backgroundColor: Colors.positiveColor
-        symbol: Icons.faCheck
-        font.family: Fonts.solidIcons
+        symbol: Icons.mdiSaveAlt
+        font.family: Fonts.icons
     }
 
     OTL.SyntaxHighlighter {

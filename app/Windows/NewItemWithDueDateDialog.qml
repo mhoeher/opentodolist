@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.5
+import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
 
 import Qt.labs.settings 1.0
@@ -7,6 +7,7 @@ import Qt.labs.settings 1.0
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 import "."
@@ -60,9 +61,9 @@ CenteredDialog {
         category: "NewItemWithDueDateDialog/" + d.itemType
     }
 
-    standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+    standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
     Component.onCompleted: {
-        let okButton = standardButton(DialogButtonBox.Ok);
+        let okButton = standardButton(C.DialogButtonBox.Ok);
         d.okButton = okButton;
         okButton.enabled = Qt.binding(function() {
             let result = dialog.newItemTitle !== "" && DateUtils.validDate(dialog.newItemDueOn());
@@ -110,23 +111,23 @@ CenteredDialog {
         columns: 2
         width: dialog.availableWidth
 
-        Label {
+        C.Label {
             text: qsTr("Title:")
         }
 
-        TextField {
+        C.TextField {
             id: titleEdit
             placeholderText: qsTr("The title for your new item...")
             Layout.fillWidth: true
             onAccepted: d.accept()
         }
 
-        Label {
+        C.Label {
             text: qsTr("Create in:")
             visible: d.needParent
         }
 
-        ComboBox {
+        C.ComboBox {
             id: parentEdit
 
             visible: d.needParent
@@ -152,7 +153,7 @@ CenteredDialog {
 
             textRole: "title"
             valueRole: "object"
-            delegate: ItemDelegate {
+            delegate: C.ItemDelegate {
                 width: parent.width
                 text: title
                 onClicked: {
@@ -161,11 +162,11 @@ CenteredDialog {
             }
         }
 
-        Label {
+        C.Label {
             text: qsTr("Due on:")
         }
 
-        ComboBox {
+        C.ComboBox {
             id: dueDateEdit
 
             model: [
@@ -182,7 +183,7 @@ CenteredDialog {
                     return currentText;
                 }
             }
-            delegate: ItemDelegate {
+            delegate: C.ItemDelegate {
                 text: modelData
                 width: parent.width
                 onClicked: {

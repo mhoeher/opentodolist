@@ -1,14 +1,14 @@
 import QtQuick 2.9
-import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 
 import OpenTodoList 1.0
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils" as Utils
 
-Page {
+C.Page {
     id: page
 
     property alias errors: view.model
@@ -17,18 +17,17 @@ Page {
         id: view
 
         anchors.fill: parent
-        ScrollBar.vertical: ScrollBar {}
+        C.ScrollBar.vertical: C.ScrollBar {}
 
         delegate: RowLayout {
             width: view.width
             spacing: Utils.AppSettings.smallSpace
-            ToolButton {
-                symbol: Icons.faExclamationTriangle
-                font: Fonts.fontAwesomeSolid
+            C.ToolButton {
+                symbol: Icons.mdiReportProblem
+                font: Fonts.icons
             }
-            Label {
+            C.Label {
                 Layout.fillWidth: true
-                wrapMode: Text.WordWrap
                 text: modelData
             }
         }

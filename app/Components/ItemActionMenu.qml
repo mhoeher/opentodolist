@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.5
 
+import "../Controls" as C
 import "." as Components
 
-Menu {
+C.Menu {
     property alias actions: repeater.model
 
     modal: true
@@ -11,7 +11,7 @@ Menu {
     Repeater {
         id: repeater
 
-        delegate: MenuItem {
+        delegate: C.MenuItem {
             action: modelData
             visible: enabled
             height: visible ? implicitHeight : 0

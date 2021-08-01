@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Utils"
 
 
@@ -15,7 +15,7 @@ CenteredDialog {
         dialog.open();
     }
 
-    standardButtons: Dialog.Ok | Dialog.Cancel
+    standardButtons: D.Dialog.Ok | C.Dialog.Cancel
     title: qsTr("Delete Completed Items?")
     width: idealDialogWidth
 
@@ -53,7 +53,7 @@ CenteredDialog {
                                                       )
     }
 
-    Label {
+    C.Label {
         width: dialog.availableWidth
         text: {
             if (d.item) {

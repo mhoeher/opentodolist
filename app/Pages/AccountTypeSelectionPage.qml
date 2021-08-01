@@ -1,18 +1,18 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.5
 
 import OpenTodoList 1.0 as OTL
 
-import Components 1.0 as Components
-import Fonts 1.0 as Fonts
-import Utils 1.0 as Utils
+import "../Components" as Components
+import "../Fonts" as Fonts
+import "../Utils" as Utils
+import "../Controls" as C
 
-Page {
+C.Page {
     id: page
 
     property string selectedAccountType: ""
     property alias buttonBox: buttons
-    property Page anchorPage: null
+    property C.Page anchorPage: null
 
     signal accepted
     signal canceled
@@ -28,9 +28,9 @@ Page {
         });
     }
 
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttons
-        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
         onRejected: closePage()
         onAccepted: d.openNextPage()
     }
@@ -83,7 +83,7 @@ Page {
             padding: Utils.AppSettings.mediumSpace
         }
         model: accountsModel
-        delegate: ItemDelegate {
+        delegate: C.ItemDelegate {
             width: parent.width
             text: name
             down: page.selectedAccountType === type

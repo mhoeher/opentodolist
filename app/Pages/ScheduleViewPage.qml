@@ -1,17 +1,17 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Menues"
 import "../Fonts"
 import "../Utils"
 import "../Widgets"
 import "../Windows"
 
-Page {
+C.Page {
     id: page
 
     property OTL.Library library: null
@@ -74,7 +74,7 @@ Page {
         onOpenPage: page.openPage(component, properties)
     }
 
-    ItemDelegate {
+    C.ItemDelegate {
         id: sampleItemDelegate
         visible: false
     }

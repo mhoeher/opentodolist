@@ -1,9 +1,9 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
 
 import "../Components"
+import "../Controls" as C
 
-Dialog {
+C.Dialog {
     id: dialog
 
     readonly property int idealDialogWidth: Math.min(
@@ -12,6 +12,6 @@ Dialog {
                                                 parent.width - 20)
 
     anchors.centerIn: parent
-    parent: ApplicationWindow.contentItem
+    parent: C.ApplicationWindow.contentItem
     modal: true
 }

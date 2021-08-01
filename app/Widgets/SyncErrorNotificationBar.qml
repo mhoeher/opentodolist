@@ -1,13 +1,13 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 
-Pane {
+C.Pane {
     id: root
 
     readonly property var syncErrors: {
@@ -39,17 +39,17 @@ Pane {
             right: parent.right
         }
 
-        Label {
+        C.Label {
             text: qsTr("There were errors when synchronizing the library. " +
                        "Please ensure that the library settings are up to date.")
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
         }
-        Button {
+        C.Button {
             text: qsTr("Ignore")
             onClicked: OTL.Application.clearSyncErrors(root.library)
         }
-        Button {
+        C.Button {
             text: qsTr("View")
             onClicked: root.showErrors()
         }

@@ -1,10 +1,10 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 
 CenteredDialog {
     id: root
@@ -23,11 +23,11 @@ CenteredDialog {
     modal: true
     width: idealDialogWidth
 
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttons
 
-        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
-        Component.onCompleted: d.okButton = buttons.standardButton(DialogButtonBox.Ok)
+        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
+        Component.onCompleted: d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
     }
 
 
@@ -40,7 +40,7 @@ CenteredDialog {
     ColumnLayout {
         width: root.availableWidth
 
-        ComboBox {
+        C.ComboBox {
             id: libraryComboBox
 
             editable: false
@@ -53,7 +53,7 @@ CenteredDialog {
             }
         }
 
-        ComboBox {
+        C.ComboBox {
             id: topLevelItemComboBox
 
             editable: false

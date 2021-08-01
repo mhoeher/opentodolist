@@ -1,10 +1,11 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
+import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components" as Components
+import "../Controls" as C
 
 
 CenteredDialog {
@@ -25,7 +26,7 @@ CenteredDialog {
         open();
     }
 
-    standardButtons: Dialog.Ok | Dialog.Cancel
+    standardButtons: C.Dialog.Ok | C.Dialog.Cancel
     title: qsTr("Edit Recurrence")
     width: idealDialogWidth
 
@@ -70,11 +71,11 @@ CenteredDialog {
         width: dialog.availableWidth
         columns: 2
 
-        Label {
+        C.Label {
             text: qsTr("Recurs:")
         }
 
-        ComboBox {
+        C.ComboBox {
             id: recurrencePatternEdit
             model: ListModel { id: patternModel }
             textRole: "name"
@@ -83,14 +84,14 @@ CenteredDialog {
             onCurrentValueChanged: dialog.recurrencePattern = currentValue
         }
 
-        Label {
+        C.Label {
             text: qsTr("Number of days:")
             visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays ||
                      dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNWeeks ||
                      dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNMonths
         }
 
-        SpinBox {
+        C.SpinBox {
             from: 1
             to: Math.pow(2, 31) - 1
             value: dialog.recurInterval
@@ -101,7 +102,7 @@ CenteredDialog {
             onValueChanged: dialog.recurInterval = value
         }
 
-        CheckBox {
+        C.CheckBox {
             text: qsTr("Recur relative to the date when marking as done")
             checked: dialog.recurrenceSchedule === OTL.ComplexItem.RelativeToCurrentDate
             Layout.fillWidth: true

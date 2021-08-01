@@ -4,7 +4,7 @@ import "../Fonts" as Fonts
 import "../Utils" as Utils
 
 Components.ItemAction {
-    symbol: Fonts.Icons.faFire
+    symbol: Fonts.Icons.mdiRemoveDone
     text: qsTr("Delete Completed Items")
     onTriggered: Utils.ItemUtils.deleteCompletedItems(item)
 }

@@ -1,11 +1,11 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 
 import "../Fonts"
 import "../Components"
+import "../Controls" as C
 
-ItemDelegate {
+C.ItemDelegate {
     id: root
 
     property alias symbol: sym.text
@@ -30,7 +30,7 @@ ItemDelegate {
         }
 
 
-        ToolButton {
+        C.ToolButton {
             id: sym
             Layout.minimumWidth: root.height / 2
             Layout.alignment: Qt.AlignHCenter
@@ -38,15 +38,16 @@ ItemDelegate {
             onClicked: root.symbolClicked()
         }
 
-        Label {
+        C.Label {
             id: label
 
             elide: Text.ElideRight
             Layout.fillWidth: true
             text: root.text
+            wrapMode: Text.NoWrap
         }
 
-        ToolButton {
+        C.ToolButton {
             id: symRight
             Layout.minimumWidth: root.height / 2
             Layout.alignment: Qt.AlignHCenter

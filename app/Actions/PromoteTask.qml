@@ -8,7 +8,7 @@ Components.ItemAction {
     property OTL.Library library: null
     property OTL.TodoList todoList: null
 
-    symbol: Fonts.Icons.faArrowUp
+    symbol: Fonts.Icons.mdiUpgrade
     text: qsTr("Promote")
     onTriggered: Utils.ItemUtils.promoteTask(item, todoList, library)
 }

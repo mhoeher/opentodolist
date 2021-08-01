@@ -4,7 +4,7 @@ import "../Fonts" as Fonts
 import "../Utils" as Utils
 
 Components.ItemAction {
-    symbol: Fonts.Icons.faCalendarAlt
+    symbol: Fonts.Icons.mdiCalendarToday
     text: qsTr("Set Due Today")
     onTriggered: item.dueTo = Utils.DateUtils.today()
     enabled: item && item.dueTo !== undefined

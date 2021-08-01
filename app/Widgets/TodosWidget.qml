@@ -1,11 +1,11 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components" as Components
+import "../Controls" as C
 import "../Utils"
 import "../Fonts"
 import "../Windows"
@@ -16,18 +16,18 @@ ListView {
     property Component headerComponent: null
     property Component footerComponent: null
 
-    property Components.ToolButton headerIcon: headerItem ? headerItem.headerIcon : null
-    property Components.ToolButton headerIcon2: headerItem ? headerItem.headerIcon2 : null
+    property C.ToolButton headerIcon: headerItem ? headerItem.headerIcon : null
+    property C.ToolButton headerIcon2: headerItem ? headerItem.headerIcon2 : null
 
     property OTL.Library library: null
     property OTL.LibraryItem parentItem: null
 
-    property string symbol: Icons.faPlus
-    property string symbolFont: Fonts.fontAwesomeSolid.name
+    property string symbol: Icons.mdiAdd
+    property string symbolFont: Fonts.icons
     property bool headerItemVisible: true
 
     property string symbol2
-    property string symbolFont2: Fonts.fontAwesomeSolid.name
+    property string symbolFont2: Fonts.icons
     property bool headerItem2Visible: false
 
     property string title
@@ -65,7 +65,7 @@ ListView {
         }
     }
 
-    header: Pane {
+    header: C.Pane {
         property alias headerIcon: headerIcon
         property alias headerIcon2: headerIcon2
 
@@ -100,7 +100,7 @@ ListView {
                     height: headerIcon2.height
                 }
 
-                Components.ToolButton {
+                C.ToolButton {
                     id: headerIcon2
 
                     symbol: root.symbol2
@@ -115,7 +115,7 @@ ListView {
                     height: headerIcon.height
                 }
 
-                Components.ToolButton {
+                C.ToolButton {
                     id: headerIcon
 
                     symbol: root.symbol
@@ -146,18 +146,17 @@ ListView {
                     Layout.column: 0
                 }
 
-                Components.TextField {
+                C.TextField {
                     id: newItemTitelEdit
                     Layout.fillWidth: true
-                    selectByMouse: AppSettings.selectTextByMouse
                     Layout.row: 0
                     Layout.column: 1
                     onAccepted: newItemButton.clicked()
                     placeholderText: root.newItemPlaceholderText
                 }
 
-                Components.ToolButton {
-                    symbol: Icons.faCalendarAlt
+                C.ToolButton {
+                    symbol: Icons.mdiCalendarToday
                     visible: root.allowSettingDueDate
                     Layout.row: 0
                     Layout.column: 2
@@ -167,9 +166,9 @@ ListView {
                     }
                 }
 
-                Components.ToolButton {
+                C.ToolButton {
                     id: newItemButton
-                    symbol: Icons.faPlus
+                    symbol: Icons.mdiAdd
                     enabled: newItemTitelEdit.displayText !== ""
                     Layout.column: 3
                     Layout.row: 0
@@ -189,7 +188,7 @@ ListView {
                 }
             }
 
-            Label {
+            C.Label {
                 text: {
                     if (DateUtils.validDate(newItemRow.dueDate)) {
                         return qsTr("Due on: %1").arg(
@@ -205,8 +204,8 @@ ListView {
                 Layout.fillWidth: true
             }
 
-            Components.ToolButton {
-                symbol: Icons.faTimes
+            C.ToolButton {
+                symbol: Icons.mdiClose
                 onClicked: newItemRow.dueDate = new Date("")
                 visible: DateUtils.validDate(newItemRow.dueDate)
                 Layout.row: 1
@@ -215,7 +214,7 @@ ListView {
         }
     }
 
-    footer: Pane {
+    footer: C.Pane {
         width: parent.width
         height: footerColumn.contentHeight
 
@@ -319,7 +318,7 @@ ListView {
     QtObject {
         id: d
 
-        property SwipeDelegate openSwipeDelegate: null
+        property C.SwipeDelegate openSwipeDelegate: null
     }
 
     Components.ItemActionMenu {

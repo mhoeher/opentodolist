@@ -1,11 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Utils"
 import "../Fonts"
 
@@ -42,7 +42,7 @@ Item {
             clip: true
             hoverEnabled: true
 
-            Label {
+            C.Label {
                 id: titleLabel
                 text: Markdown.markdownToPlainText(item.libraryItem.title)
                 textFormat: Text.PlainText
@@ -52,10 +52,10 @@ Item {
                 width: title.availableWidth
                 fontSizeMode: Text.HorizontalFit
 
-                ToolTip.text: text
-                ToolTip.visible: truncated && title.hovered
-                ToolTip.delay: 200
-                ToolTip.timeout: 30000
+                C.ToolTip {
+                    text: text
+                    visible: titleLabel.truncated && title.hovered
+                }
             }
         }
 
@@ -68,7 +68,7 @@ Item {
             }
             item: item.libraryItem
 
-            Label {
+            C.Label {
                 id: dueToLabel
                 text: {
                     let dueTo = item.libraryItem.effectiveDueTo;
@@ -79,7 +79,6 @@ Item {
                 }
                 visible: text !== ""
                 width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 opacity: 0.5
             }
 
@@ -107,11 +106,11 @@ Item {
                 }
                 delegate: RowLayout {
                     width: openTodosList.width
-                    Label {
+                    C.Label {
                         font.family: Fonts.icons
-                        text: Icons.faCircle
+                        text: Icons.mdiCircle
                     }
-                    Label {
+                    C.Label {
                         text: Markdown.markdownToHtml(object.title)
                         textFormat: Text.RichText
                         elide: Text.ElideRight
@@ -121,7 +120,7 @@ Item {
                 }
             }
 
-            Label {
+            C.Label {
                 width: parent.width
                 height: parent.height
                 verticalAlignment: Text.AlignVCenter

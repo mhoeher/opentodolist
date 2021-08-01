@@ -1,10 +1,10 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Utils"
+import "../Controls" as C
 
 Item {
     id: root
@@ -18,7 +18,7 @@ Item {
         dragTile.startDrag(item, root, model);
     }
 
-    Pane {
+    C.Pane {
         id: itemBackground
         visible: dragTile && dragTile.item === item && dragTile.Drag.active
         anchors.fill: parent
@@ -27,7 +27,7 @@ Item {
         z: 9
     }
 
-    Pane {
+    C.Pane {
         width: root.layout === Qt.Vertical ? parent.width : 3
         height: root.layout === Qt.Vertical ? 3 : parent.height
         Material.background: Material.Teal

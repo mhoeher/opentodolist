@@ -1,14 +1,14 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.12
 import Qt.labs.settings 1.0
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 
 import OpenTodoList 1.0 as OTL
 
-Pane {
+C.Pane {
     id: sidebar
 
     property OTL.Library currentLibrary: null
@@ -76,7 +76,7 @@ Pane {
                     lib.uid === sidebar.currentLibrary.uid;
         }
 
-        property var editingListEntries: false
+        property bool editingListEntries: false
         property var collapsedLibraries: []
         property var librariesWithoutSchedule: []
         property var libraryOrder: []
@@ -160,7 +160,7 @@ Pane {
         property alias libraryOrder: d.libraryOrder
     }
 
-    ScrollView {
+    C.ScrollView {
         id: scrollView
 
         anchors.fill: parent
@@ -176,41 +176,41 @@ Pane {
 
                 LibrarySideBarButton {
                     text: qsTr("New Library")
-                    symbol: Icons.faPlus
+                    symbol: Icons.mdiAdd
                     onClicked: sidebar.newLibrary()
                 }
 
 
                 LibrarySideBarButton {
                     text: qsTr("Accounts")
-                    symbol: Icons.faUser
+                    symbol: Icons.mdiAccountCircle
                     highlighted: accountsVisible
                     onClicked: sidebar.showAccounts()
                 }
 
                 LibrarySideBarButton {
                     text: qsTr("Edit List")
-                    symbol: Icons.faEye
+                    symbol: d.editingListEntries ? Icons.mdiVisibility : Icons.mdiVisibilityOff
                     onClicked: d.editingListEntries = !d.editingListEntries
                 }
 
                 LibrarySideBarButton {
                     text: qsTr("Settings")
-                    symbol: Icons.faWrench
+                    symbol: Icons.mdiSettings
                     highlighted: settingsVisible
                     onClicked: sidebar.showSettings()
                 }
 
                 LibrarySideBarButton {
                     text: qsTr("Translate The App...")
-                    symbol: Icons.faLanguage
+                    symbol: Icons.mdiTranslate
                     onClicked: Qt.openUrlExternally(
                                    "https://poeditor.com/join/project/ztvOymGNxn")
                 }
 
                 LibrarySideBarButton {
                     text: qsTr("Donate")
-                    symbol: Icons.faHandshake
+                    symbol: Icons.mdiSavings
                     visible: Qt.platform.os != "ios"
                     onClicked: Qt.openUrlExternally(
                                    "https://opentodolist.rpdev.net/donate/")
@@ -218,7 +218,7 @@ Pane {
 
                 LibrarySideBarButton {
                     text: qsTr("About...")
-                    symbol: Icons.faInfo
+                    symbol: Icons.mdiInfo
                     highlighted: helpVisible
                     onClicked: {
                         helpVisible = true;
@@ -310,14 +310,14 @@ Pane {
                 text: library.name
                 bold: true
                 symbol: librarySection.collapsed || !symbolIsClickable ?
-                            Icons.faChevronRight :
-                            Icons.faChevronDown
+                            Icons.mdiKeyboardArrowRight :
+                            Icons.mdiKeyboardArrowDown
                 highlighted: d.isSelectedLibrary(library) &&
                              currentTag === "" && specialView === ""
                 symbolIsClickable: library.tags.length > 0 || librarySection.scheduleEnabled
                 rightSymbolIsClickable: true
                 rightSymbolIsVisible: d.editingListEntries
-                rightSymbol: Icons.faCog
+                rightSymbol: Icons.mdiEdit
                 onClicked: {
                     currentLibrary = library;
                     currentTag = "";
@@ -335,11 +335,11 @@ Pane {
                 }
                 onRightSymbolClicked: libraryContextMenu.open()
 
-                Menu {
+                C.Menu {
                     id: libraryContextMenu
 
                     modal: true
-                    MenuItem {
+                    C.MenuItem {
                         text: librarySection.scheduleEnabled ?
                                   qsTr("Hide Schedule") : qsTr("Show Schedule")
                         onTriggered: {
@@ -350,7 +350,7 @@ Pane {
                             }
                         }
                     }
-                    MenuItem {
+                    C.MenuItem {
                         text: qsTr("Move Up")
                         onTriggered: {
                             let currentIndex = d.getLibraryCurrentIndex(library);
@@ -359,7 +359,7 @@ Pane {
                             }
                         }
                     }
-                    MenuItem {
+                    C.MenuItem {
                         text: qsTr("Move Down")
                         onTriggered: {
                             let currentIndex = d.getLibraryCurrentIndex(library);
@@ -374,7 +374,7 @@ Pane {
             LibrarySideBarButton {
                 indent: 1
                 text: qsTr("Schedule")
-                symbol: Icons.faClock
+                symbol: Icons.mdiSchedule
                 visible: !librarySection.collapsed && librarySection.scheduleEnabled
                 highlighted: d.isSelectedLibrary(library) &&
                              currentTag === "" && specialView === "schedule"
@@ -394,7 +394,7 @@ Pane {
                     indent: 1
                     visible: !librarySection.collapsed
                     text: modelData
-                    symbol: Icons.faTag
+                    symbol: Icons.mdiLabel
                     highlighted: d.isSelectedLibrary(library) &&
                                  currentTag === modelData &&
                                  specialView === ""
