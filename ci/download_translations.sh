@@ -12,7 +12,8 @@ if [ -n "$CI" ]; then
         qt5-linguist \
         python3 \
         python3-pip \
-        openssh-clients
+        openssh-clients \
+        git
 fi
 
 export QT_QPA_PLATFORM=minimal
