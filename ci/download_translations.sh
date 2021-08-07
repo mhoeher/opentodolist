@@ -27,6 +27,7 @@ pip install poeditor fire
 if [ -n "$CI" ]; then
     eval $(ssh-agent -s)
     ssh-add - <<< "${OPENTODOLIST_DEPLOY_KEY}"
+    mkdir -p ~/.ssh
     ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
     git config --global user.name "Martin Hoeher"
     git config --global user.email "martin@rpdev.net"
