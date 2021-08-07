@@ -19,52 +19,52 @@
         <translation type="unfinished">Yapılacaklar ve görev yönetimi uygulaması.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="65"/>
+        <location filename="../Pages/AboutPage.qml" line="64"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
         <translation type="unfinished">OpenTodoList, &lt;a href=&apos;app-license&apos;&gt; GNU Genel Kamu Lisansı &lt;/a&gt; sürüm 3 veya (sizin seçiminize göre) daha sonraki herhangi bir sürümün şartları uyarınca yayınlanır.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="84"/>
+        <location filename="../Pages/AboutPage.qml" line="83"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Sorun Bildirin</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="92"/>
+        <location filename="../Pages/AboutPage.qml" line="91"/>
         <source>Copy System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="113"/>
+        <location filename="../Pages/AboutPage.qml" line="112"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Üçüncü Şahıs Kütüphaneleri ve Kaynakları</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="150"/>
+        <location filename="../Pages/AboutPage.qml" line="149"/>
         <source>Author:</source>
         <translation type="unfinished">Yazar:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="155"/>
+        <location filename="../Pages/AboutPage.qml" line="154"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="163"/>
+        <location filename="../Pages/AboutPage.qml" line="161"/>
         <source>License:</source>
         <translation type="unfinished">Lisans:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="168"/>
+        <location filename="../Pages/AboutPage.qml" line="166"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="176"/>
+        <location filename="../Pages/AboutPage.qml" line="172"/>
         <source>Download:</source>
         <translation type="unfinished">İndir:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="181"/>
+        <location filename="../Pages/AboutPage.qml" line="176"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -100,8 +100,8 @@
 <context>
     <name>AccountsPage</name>
     <message>
-        <location filename="../Pages/AccountsPage.qml" line="18"/>
-        <location filename="../Pages/AccountsPage.qml" line="49"/>
+        <location filename="../Pages/AccountsPage.qml" line="19"/>
+        <location filename="../Pages/AccountsPage.qml" line="50"/>
         <source>Accounts</source>
         <translation type="unfinished">Hesaplar</translation>
     </message>
@@ -147,6 +147,90 @@
         <location filename="../appstartup.cpp" line="384"/>
         <source>Quit</source>
         <translation type="unfinished">Çıkış</translation>
+    </message>
+</context>
+<context>
+    <name>ApplicationShortcuts</name>
+    <message>
+        <location filename="../Components/ApplicationShortcuts.qml" line="15"/>
+        <source>Ctrl+,</source>
+        <translation type="unfinished">Ctrl+,</translation>
+    </message>
+</context>
+<context>
+    <name>ApplicationToolBar</name>
+    <message>
+        <location filename="../Components/ApplicationToolBar.qml" line="151"/>
+        <source>Synchronizing library...</source>
+        <translation type="unfinished">Kütüphane senkronize ediliyor ...</translation>
+    </message>
+</context>
+<context>
+    <name>ApplicationToolBarActions</name>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
+        <source>Rename</source>
+        <translation type="unfinished">Adını değiştirmek</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
+        <source>Move</source>
+        <translation type="unfinished">Hareket</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
+        <source>Color</source>
+        <translation type="unfinished">Renk</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="67"/>
+        <source>Add Tag</source>
+        <translation type="unfinished">Etiket Ekle</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
+        <source>Attach File</source>
+        <translation type="unfinished">Dosya eki</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
+        <source>Search</source>
+        <translation type="unfinished">Arama</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
+        <source>Sort</source>
+        <translation type="unfinished">Çeşit</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
+        <source>Set Due Date</source>
+        <translation type="unfinished">Bitiş Tarihi Belirle</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="106"/>
+        <source>Delete</source>
+        <translation type="unfinished">Sil</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
+        <source>Delete Completed Items</source>
+        <translation type="unfinished">Tamamlanmış Öğeleri Sil</translation>
+    </message>
+    <message>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
+        <source>Set Progress</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -218,17 +302,17 @@
 <context>
     <name>Colors</name>
     <message>
-        <location filename="../Utils/Colors.qml" line="16"/>
+        <location filename="../Utils/Colors.qml" line="15"/>
         <source>System</source>
         <translation type="unfinished">sistem</translation>
     </message>
     <message>
-        <location filename="../Utils/Colors.qml" line="17"/>
+        <location filename="../Utils/Colors.qml" line="16"/>
         <source>Light</source>
         <translation type="unfinished">ışık</translation>
     </message>
     <message>
-        <location filename="../Utils/Colors.qml" line="18"/>
+        <location filename="../Utils/Colors.qml" line="17"/>
         <source>Dark</source>
         <translation type="unfinished">karanlık</translation>
     </message>
@@ -401,12 +485,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="145"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="140"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="154"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="149"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -414,53 +498,53 @@
 <context>
     <name>EditWebDAVAccountPage</name>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="34"/>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="123"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
         <source>Edit Account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="129"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="130"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="140"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
         <source>Server Address:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="146"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="147"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="153"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
         <source>User:</source>
         <translation type="unfinished">Kullanıcı:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="159"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="160"/>
         <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="166"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="167"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="173"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="174"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="188"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="184"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="196"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="192"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -476,17 +560,17 @@
 <context>
     <name>ItemCreatedNotification</name>
     <message>
-        <location filename="../Widgets/ItemCreatedNotification.qml" line="64"/>
+        <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
         <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; oluşturuldu.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemCreatedNotification.qml" line="69"/>
+        <location filename="../Widgets/ItemCreatedNotification.qml" line="72"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemCreatedNotification.qml" line="74"/>
+        <location filename="../Widgets/ItemCreatedNotification.qml" line="77"/>
         <source>Dismiss</source>
         <translation type="unfinished">Reddet</translation>
     </message>
@@ -504,42 +588,42 @@
         <translation type="unfinished">İlk önce %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="72"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">Yineleme düzeni ayarlanmadı...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="73"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Her gün tekrarlar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="75"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Her hafta tekrarlar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="77"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Her ay tekrarlar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="79"/>
         <source>Recurs every year.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Her %1 günde bir tekrarlar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="86"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="85"/>
         <source>Recurs every %1 months.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -575,12 +659,12 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="152"/>
+        <location filename="../Utils/ItemUtils.qml" line="151"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Yapılacak İşi Şuraya Taşı ...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="167"/>
+        <location filename="../Utils/ItemUtils.qml" line="166"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -800,133 +884,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="109"/>
-        <source>Synchronizing library...</source>
-        <translation type="unfinished">Kütüphane senkronize ediliyor ...</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="301"/>
-        <location filename="../Windows/MainWindow.qml" line="511"/>
-        <source>Undo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="308"/>
-        <source>Rename</source>
-        <translation type="unfinished">Adını değiştirmek</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="319"/>
-        <source>Move</source>
-        <translation type="unfinished">Hareket</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="330"/>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="341"/>
-        <source>Color</source>
-        <translation type="unfinished">Renk</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="352"/>
-        <source>Add Tag</source>
-        <translation type="unfinished">Etiket Ekle</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="359"/>
-        <source>Attach File</source>
-        <translation type="unfinished">Dosya eki</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="368"/>
-        <source>Search</source>
-        <translation type="unfinished">Arama</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="375"/>
-        <source>Sort</source>
-        <translation type="unfinished">Çeşit</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="383"/>
-        <source>Set Due Date</source>
-        <translation type="unfinished">Bitiş Tarihi Belirle</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="391"/>
-        <source>Delete</source>
-        <translation type="unfinished">Sil</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="398"/>
-        <source>Delete Completed Items</source>
-        <translation type="unfinished">Tamamlanmış Öğeleri Sil</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="405"/>
-        <source>Set Progress</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="443"/>
-        <source>Settings</source>
-        <translation type="unfinished">Ayarlar</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="444"/>
-        <source>Ctrl+,</source>
-        <translation type="unfinished">Ctrl+,</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="451"/>
-        <source>New &amp;Library</source>
-        <translation type="unfinished">Yeni &amp;Kütüphane</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="462"/>
-        <source>New &amp;Note</source>
-        <translation type="unfinished">Yeni &amp;Not</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="470"/>
-        <source>New &amp;Todo List</source>
-        <translation type="unfinished">Yeni &amp;Yapılacaklar listesi</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="478"/>
-        <source>New &amp;Image</source>
-        <translation type="unfinished">Yeni &amp;görüntü</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="486"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished">&amp;Çık</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="494"/>
-        <source>Close</source>
-        <translation type="unfinished">Kapat</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="503"/>
-        <source>&amp;Find</source>
-        <translation type="unfinished">&amp;Bul</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="545"/>
-        <source>Open Last &amp;Created Item</source>
-        <translation type="unfinished">Son &amp;Oluşturulan Öğeyi Aç</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="553"/>
-        <source>Open &amp;Left Side Bar</source>
-        <translation type="unfinished">Aç &amp;Sol Kenar Çubuğu</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="672"/>
+        <location filename="../Windows/MainWindow.qml" line="279"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">&lt;a href=&apos;#newLibrary&apos;&gt; yeni bir kütüphane oluşturarak &lt;/a&gt; başlayın. Kütüphaneler, notlar, yapılacaklar listeleri ve resimler gibi farklı türde öğeleri depolamak için kullanılır.</translation>
     </message>
@@ -942,47 +900,47 @@
 <context>
     <name>NewItemWithDueDateDialog</name>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="91"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
         <source>Today</source>
         <translation type="unfinished">Bugün</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Yarın</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
         <source>This Week</source>
         <translation type="unfinished">Bu hafta</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
         <source>Next Week</source>
         <translation type="unfinished">Gelecek hafta</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="96"/>
         <source>Select...</source>
         <translation type="unfinished">Seç ...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="114"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="115"/>
         <source>Title:</source>
         <translation type="unfinished">Başlık:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="119"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
         <source>The title for your new item...</source>
         <translation type="unfinished">Yeni öğenizin başlığı ...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="125"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
         <source>Create in:</source>
         <translation type="unfinished">Şurada oluştur:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="165"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="166"/>
         <source>Due on:</source>
         <translation type="unfinished">Son tarih:</translation>
     </message>
@@ -990,12 +948,12 @@
 <context>
     <name>NewLibraryFromAccountPage</name>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="103"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="104"/>
         <source>Create Library in Account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="112"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1010,27 +968,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="136"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="135"/>
         <source>No libraries were found on the server.</source>
         <translation type="unfinished">Sunucuda kitaplık bulunamadı.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="144"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="143"/>
         <source>Searching existing libraries...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="178"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="177"/>
         <source>Create a New Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="186"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="185"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="201"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="199"/>
         <source>My new library&apos;s name</source>
         <translation type="unfinished">Yeni kütüphanemin adı</translation>
     </message>
@@ -1038,12 +996,12 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="87"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="95"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1076,28 +1034,28 @@
 <context>
     <name>NewLibraryPage</name>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="23"/>
-        <location filename="../Pages/NewLibraryPage.qml" line="61"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="24"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="62"/>
         <source>Create Library</source>
         <translation type="unfinished">Kütüphane Oluştur</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="68"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="69"/>
         <source>Local Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="75"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="76"/>
         <source>Use Folder as Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="86"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="87"/>
         <source>Add Libraries From Your Accounts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="113"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="114"/>
         <source>Add Account</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1105,12 +1063,12 @@
 <context>
     <name>NewLocalLibraryPage</name>
     <message>
-        <location filename="../Pages/NewLocalLibraryPage.qml" line="61"/>
+        <location filename="../Pages/NewLocalLibraryPage.qml" line="62"/>
         <source>Create a Local Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLocalLibraryPage.qml" line="69"/>
+        <location filename="../Pages/NewLocalLibraryPage.qml" line="70"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1204,22 +1162,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="207"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="202"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="211"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="206"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="223"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="218"/>
         <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="233"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="228"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1286,22 +1244,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="180"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="175"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="184"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="179"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="196"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="191"/>
         <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="206"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="201"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1347,18 +1305,18 @@
 <context>
     <name>ProblemsPage</name>
     <message>
-        <location filename="../Pages/ProblemsPage.qml" line="20"/>
-        <location filename="../Pages/ProblemsPage.qml" line="30"/>
+        <location filename="../Pages/ProblemsPage.qml" line="18"/>
+        <location filename="../Pages/ProblemsPage.qml" line="28"/>
         <source>Problems Detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ProblemsPage.qml" line="44"/>
+        <location filename="../Pages/ProblemsPage.qml" line="42"/>
         <source>Missing secrets for account</source>
         <translation type="unfinished">Hesap için eksik erişim verileri</translation>
     </message>
     <message>
-        <location filename="../Pages/ProblemsPage.qml" line="49"/>
+        <location filename="../Pages/ProblemsPage.qml" line="47"/>
         <source>Synchronization failed for library</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1393,7 +1351,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="58"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="57"/>
         <source>Open the main window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1413,7 +1371,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="141"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="140"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1441,62 +1399,62 @@
 <context>
     <name>RecurrenceDialog</name>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="29"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="30"/>
         <source>Edit Recurrence</source>
         <translation type="unfinished">Yinelemeyi Düzenle</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="42"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
         <source>Never</source>
         <translation type="unfinished">Asla</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
         <source>Daily</source>
         <translation type="unfinished">Günlük</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
         <source>Weekly</source>
         <translation type="unfinished">Haftalık</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
         <source>Monthly</source>
         <translation type="unfinished">Aylık</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Yearly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
         <source>Every N Days</source>
         <translation type="unfinished">Her N günde bir</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
         <source>Every N Weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
         <source>Every N Months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="74"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
         <source>Recurs:</source>
         <translation type="unfinished">tekrarlanır:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="87"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
         <source>Number of days:</source>
         <translation type="unfinished">Gün sayısı:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="105"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Tamam olarak işaretlendiğinde tarihe göre yineleme</translation>
     </message>
@@ -1648,86 +1606,91 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="46"/>
+        <location filename="../Pages/SettingsPage.qml" line="45"/>
         <source>Settings</source>
         <translation type="unfinished">Ayarlar</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="52"/>
+        <location filename="../Pages/SettingsPage.qml" line="51"/>
         <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="60"/>
+        <location filename="../Pages/SettingsPage.qml" line="59"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="85"/>
+        <location filename="../Pages/SettingsPage.qml" line="84"/>
         <source>Theme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="116"/>
+        <location filename="../Pages/SettingsPage.qml" line="115"/>
         <source>System Tray:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="122"/>
+        <location filename="../Pages/SettingsPage.qml" line="121"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="128"/>
+        <location filename="../Pages/SettingsPage.qml" line="127"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="145"/>
+        <location filename="../Pages/SettingsPage.qml" line="144"/>
         <source>Use custom font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="154"/>
+        <location filename="../Pages/SettingsPage.qml" line="153"/>
+        <source>Desktop Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Use Compact Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="163"/>
+        <location filename="../Pages/SettingsPage.qml" line="171"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="172"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="183"/>
+        <location filename="../Pages/SettingsPage.qml" line="189"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="190"/>
+        <location filename="../Pages/SettingsPage.qml" line="196"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="197"/>
+        <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Scale Factor:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="216"/>
+        <location filename="../Pages/SettingsPage.qml" line="221"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="225"/>
+        <location filename="../Pages/SettingsPage.qml" line="230"/>
         <source>Library Item Size:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1766,7 +1729,7 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="129"/>
+        <location filename="../Widgets/TodoListItem.qml" line="128"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Hiçbir açık todos - her şey bitmiş</translation>
     </message>
@@ -1774,42 +1737,42 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="201"/>
+        <location filename="../Pages/TodoListPage.qml" line="158"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Arama terimi 1, arama terimi 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="213"/>
+        <location filename="../Pages/TodoListPage.qml" line="170"/>
         <source>Manually</source>
         <translation type="unfinished">el ile</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="219"/>
+        <location filename="../Pages/TodoListPage.qml" line="176"/>
         <source>Name</source>
         <translation type="unfinished">ad</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="225"/>
+        <location filename="../Pages/TodoListPage.qml" line="182"/>
         <source>Due Date</source>
         <translation type="unfinished">Bitiş tarihi</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="188"/>
         <source>Created At</source>
         <translation type="unfinished">Oluşturma Tarihi</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="237"/>
+        <location filename="../Pages/TodoListPage.qml" line="194"/>
         <source>Updated At</source>
         <translation type="unfinished">Güncelleme Tarihi:</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="265"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="285"/>
+        <location filename="../Pages/TodoListPage.qml" line="242"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Yeni yapılacaklar ekle ...</translation>
     </message>
@@ -1817,17 +1780,17 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="143"/>
+        <location filename="../Pages/TodoPage.qml" line="146"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Arama terimi 1, arama terimi 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="168"/>
+        <location filename="../Pages/TodoPage.qml" line="171"/>
         <source>Tasks</source>
         <translation type="unfinished">Görevler</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="174"/>
+        <location filename="../Pages/TodoPage.qml" line="177"/>
         <source>Add new task...</source>
         <translation type="unfinished">Yeni görev ekle ...</translation>
     </message>
@@ -1835,7 +1798,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="195"/>
+        <location filename="../Widgets/TodosWidget.qml" line="194"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Teslim tarihi: %1</translation>
     </message>
@@ -1851,129 +1814,6 @@ This requires a restart of the app.</source>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="244"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Tamam olarak işaretlemek için kaydırın</translation>
-    </message>
-</context>
-<context>
-    <name>Translations</name>
-    <message>
-        <location filename="../Utils/Translations.qml" line="16"/>
-        <source>System Language</source>
-        <translation type="unfinished">Sistem Dili</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="28"/>
-        <source>Danish</source>
-        <translation type="unfinished">Danimarkalı</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="32"/>
-        <source>German</source>
-        <translation type="unfinished">Almanca</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="36"/>
-        <source>Greek</source>
-        <translation type="unfinished">Yunan</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="40"/>
-        <source>English</source>
-        <translation type="unfinished">ingilizce</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="44"/>
-        <source>Spanish</source>
-        <translation type="unfinished">İspanyol</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="48"/>
-        <source>Spanish (Latin America &amp; Caribbean)</source>
-        <translation type="unfinished">İspanyolca (Latin Amerika ve Karayipler)</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="52"/>
-        <source>Basque</source>
-        <translation type="unfinished">Bask dili</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="56"/>
-        <source>Filipino</source>
-        <translation type="unfinished">Filipinli</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="60"/>
-        <source>French</source>
-        <translation type="unfinished">Fransızca</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="64"/>
-        <source>Hungarian</source>
-        <translation type="unfinished">Macarca</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="68"/>
-        <source>Italian</source>
-        <translation type="unfinished">İtalyan</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="72"/>
-        <source>Japanese</source>
-        <translation type="unfinished">Japonca</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="80"/>
-        <source>Dutch</source>
-        <translation type="unfinished">Flemenkçe</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="84"/>
-        <source>Norwegian</source>
-        <translation type="unfinished">Norveççe</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="88"/>
-        <source>Polish</source>
-        <translation type="unfinished">Lehçe</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="92"/>
-        <source>Portuguese</source>
-        <translation type="unfinished">Portekizce</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="96"/>
-        <source>Portuguese (Brazil)</source>
-        <translation type="unfinished">Portekiz (Brezilyası)</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="100"/>
-        <source>Russian</source>
-        <translation type="unfinished">Rusça</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="104"/>
-        <source>Swedish</source>
-        <translation type="unfinished">İsveççe</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="108"/>
-        <source>Turkmen</source>
-        <translation type="unfinished">Türkmen</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="112"/>
-        <source>Turkish</source>
-        <translation type="unfinished">Türk</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="116"/>
-        <source>Ukrainian</source>
-        <translation type="unfinished">Ukraynaca</translation>
-    </message>
-    <message>
-        <location filename="../Utils/Translations.qml" line="120"/>
-        <source>Vietnamese</source>
-        <translation type="unfinished">Vietnam</translation>
     </message>
 </context>
 <context>
