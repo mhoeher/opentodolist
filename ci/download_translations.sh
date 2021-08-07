@@ -31,5 +31,5 @@ if [ -n "$CI" ]; then
     git config --global user.email "martin@rpdev.net"
     git add app/translations
     git commit -m "Downloaded Translations from POEditor"
-    git push "git@gitlab.com:rpdev/opentodolist.git"
+    git push "git@gitlab.com:rpdev/opentodolist.git" HEAD:development
 fi
