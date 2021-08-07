@@ -25,7 +25,7 @@ pip install poeditor fire
 
 if [ -n "$CI" ]; then
     eval $(ssh-agent -s)
-    chmod 0660 "$OPENTODOLIST_DEPLOY_KEY"
+    chmod 0600 "$OPENTODOLIST_DEPLOY_KEY"
     ssh-add "$OPENTODOLIST_DEPLOY_KEY"
     git config --global user.name "Martin Hoeher"
     git config --global user.email "martin@rpdev.net"
