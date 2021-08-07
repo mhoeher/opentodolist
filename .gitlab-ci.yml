@@ -50,10 +50,11 @@ download_translations:
   script:
     ./ci/download_translations.sh
   rules:
+    - if: $OPENTODOLIST_DOWNLOAD_TRANSLATIONS == '1'
     - if: $CI_COMMIT_BRANCH == 'development'
       allow_failure: true
       when: manual
-    - if: $OPENTODOLIST_DOWNLOAD_TRANSLATIONS == '1'
+
 
 ################################################################################
 # Build Stage
