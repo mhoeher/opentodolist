@@ -1,5 +1,4 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 
 import OpenTodoList 1.0 as OTL
@@ -7,8 +6,9 @@ import OpenTodoList 1.0 as OTL
 import "../Components"
 import "../Fonts"
 import "../Utils" as Utils
+import "../Controls" as C
 
-Page {
+C.Page {
     id: page
 
     title: qsTr("Synchronization Log")
@@ -21,19 +21,19 @@ Page {
                                    jumpToPageEnd
                                ])
 
-    Action {
+    C.Action {
         id: copyLogAction
         text: qsTr("Copy Log")
         onTriggered: OTL.Application.copyToClipboard(JSON.stringify(page.log))
     }
 
-    Action {
+    C.Action {
         id: jumpToPageStart
         text: qsTr("Scroll to Top")
         onTriggered: view.positionViewAtBeginning()
     }
 
-    Action {
+    C.Action {
         id: jumpToPageEnd
         text: qsTr("Scroll to Bottom")
         onTriggered: view.positionViewAtEnd()
@@ -43,38 +43,38 @@ Page {
         id: view
 
         anchors.fill: parent
-        ScrollBar.vertical: ScrollBar {}
+        C.ScrollBar.vertical: C.ScrollBar {}
         spacing: Utils.AppSettings.mediumSpace
 
         delegate: RowLayout {
             width: view.width
-            ToolButton {
+            C.ToolButton {
                 symbol: {
                     var map = {
-                        "Debug": Icons.faInfo,
-                        "Warning": Icons.faExclamation,
-                        "Error": Icons.faTimesCircle,
-                        "Download": Icons.faDownload,
-                        "Upload": Icons.faUpload,
-                        "LocalMkDir": Icons.faFolder,
-                        "RemoteMkDir": Icons.faFolderOpen,
-                        "LocalDelete": Icons.faTrash,
-                        "RemoteDelete": Icons.faTrashAlt
+                        "Debug": Icons.mdiInbox,
+                        "Warning": Icons.mdiFeedback,
+                        "Error": Icons.mdiError,
+                        "Download": Icons.mdiDownload,
+                        "Upload": Icons.mdiUpload,
+                        "LocalMkDir": Icons.mdiFolder,
+                        "RemoteMkDir": Icons.mdiDriveFolderUpload,
+                        "LocalDelete": Icons.mdiDelete,
+                        "RemoteDelete": Icons.mdiDeleteSweep
                     };
-                    return map[modelData.type] || Icons.faQuestionCircle;
+                    return map[modelData.type] || Icons.mdiHelpOutline;
                 }
                 Layout.alignment: Qt.AlignTop
-                ToolTip.text: modelData.type
-                ToolTip.visible: hovered
-                ToolTip.delay: 500
+
+                C.ToolTip {
+                    text: modelData.type
+                }
             }
-            Label {
+            C.Label {
                 text: modelData.time
                 Layout.maximumWidth: view.width / 4
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 Layout.alignment: Qt.AlignTop
             }
-            Label {
+            C.Label {
                 Layout.fillWidth: true
                 text: modelData.message
                 Layout.alignment: Qt.AlignTop

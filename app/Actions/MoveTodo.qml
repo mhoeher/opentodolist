@@ -7,7 +7,7 @@ import "../Utils" as Utils
 Components.ItemAction {
     property OTL.Library library: null
 
-    symbol: Fonts.Icons.faCopy
+    symbol: Fonts.Icons.mdiContentCut
     text: qsTr("Move")
     onTriggered: Utils.ItemUtils.moveTodo(item, library)
 }

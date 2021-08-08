@@ -12,7 +12,8 @@ if [ -n "$CI" ]; then
         qt5-linguist \
         python3 \
         python3-pip \
-        openssh-clients
+        openssh-clients \
+        git
 fi
 
 export QT_QPA_PLATFORM=minimal
@@ -25,11 +26,12 @@ pip install poeditor fire
 
 if [ -n "$CI" ]; then
     eval $(ssh-agent -s)
-    chmod 0660 "$OPENTODOLIST_DEPLOY_KEY"
-    ssh-add "$OPENTODOLIST_DEPLOY_KEY"
+    ssh-add - <<< "${OPENTODOLIST_DEPLOY_KEY}"
+    mkdir -p ~/.ssh
+    ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
     git config --global user.name "Martin Hoeher"
     git config --global user.email "martin@rpdev.net"
     git add app/translations
     git commit -m "Downloaded Translations from POEditor"
-    git push "git@gitlab.com:rpdev/opentodolist.git"
+    git push "git@gitlab.com:rpdev/opentodolist.git" HEAD:development
 fi

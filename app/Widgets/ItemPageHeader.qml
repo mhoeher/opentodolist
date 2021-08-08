@@ -1,6 +1,4 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
-import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 import OpenTodoList 1.0 as OTL
 import "../Components"
@@ -23,7 +21,7 @@ Item {
                   root.counter > 0 ? " (%1)".arg(root.counter) :
                                      "")
         width: parent.width
-        wrapMode: "WrapAtWordBoundaryOrAnywhere"
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         font.bold: false
         textFormat: Text.RichText
         bottomPadding: 0

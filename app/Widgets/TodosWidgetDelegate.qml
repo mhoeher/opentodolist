@@ -1,17 +1,17 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.0
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components" as Components
+import "../Controls" as C
 import "../Utils"
 import "../Fonts"
 import "../Windows"
 import "../Actions" as Actions
 
-SwipeDelegate {
+C.SwipeDelegate {
     id: swipeDelegate
     
     property bool showParentItemInformation: false
@@ -52,22 +52,22 @@ SwipeDelegate {
     contentItem: RowLayout {
         width: parent.width
         
-        Components.ToolButton {
+        C.ToolButton {
             font.family: Fonts.icons
             symbol: {
                 switch (swipeDelegate.item.itemType) {
                 case "Todo":
                 case "Task":
-                    return swipeDelegate.item.done ? Icons.faCheckCircle:
-                                         Icons.faCircle;
+                    return swipeDelegate.item.done ? Icons.mdiTaskAlt:
+                                         Icons.mdiCircle;
                 case "TodoList":
-                    return Icons.faListAlt;
+                    return Icons.mdiChecklist;
                 case "Note":
-                    return Icons.faStickyNote;
+                    return Icons.mdiDescription;
                 case "Image":
-                    return Icons.faImage;
+                    return Icons.mdiImage;
                 default:
-                    return Icons.faQuestionCircle
+                    return Icons.mdiHelpOutline
                 }
             }
             onClicked: {
@@ -91,7 +91,7 @@ SwipeDelegate {
         Column {
             Layout.fillWidth: true
             
-            Components.Label {
+            C.Label {
                 text: Markdown.markdownToHtml(swipeDelegate.item.title)
                 textFormat: Text.RichText
                 width: parent.width
@@ -118,9 +118,9 @@ SwipeDelegate {
                     visible: d.parentItem
                     spacing: AppSettings.effectiveFontMetrics.height / 2
 
-                    Label {
-                        font.family: Fonts.solidIcons
-                        text: Icons.faList
+                    C.Label {
+                        font.family: Fonts.icons
+                        text: Icons.mdiChecklist
                         width: contentWidth
                         height: contentHeight
                         color: {
@@ -128,7 +128,7 @@ SwipeDelegate {
                             return Colors.color(result);
                         }
                     }
-                    Label {
+                    C.Label {
                         text: d.parentItem ? d.parentItem.title : ""
                     }
                     Item {
@@ -143,14 +143,14 @@ SwipeDelegate {
                              !swipeDelegate.hideDueDate
                     spacing: AppSettings.effectiveFontMetrics.height / 2
 
-                    Label {
+                    C.Label {
                         font.family: Fonts.icons
-                        text: Icons.faCalendarAlt
+                        text: Icons.mdiEvent
                         width: contentWidth
                         height: contentHeight
 
                     }
-                    Label {
+                    C.Label {
                         Layout.fillWidth: true
                         text: DateUtils.format(swipeDelegate.item.effectiveDueTo)
                     }
@@ -163,7 +163,7 @@ SwipeDelegate {
             height: toggleSwipeOpened.height
         }
 
-        Components.ToolButton {
+        C.ToolButton {
             id: moveButton
             visible: {
                 if (swipeDelegate.allowSorting) {
@@ -178,15 +178,15 @@ SwipeDelegate {
                     return false;
                 }
             }
-            symbol: Icons.faSort
-            font.family: Fonts.fontAwesomeSolid
+            symbol: Icons.mdiDragHandle
+            font.family: Fonts.icons
             onPressed: {
                 swipeDelegate.setSwipeDelegate(null);
                 reorderOverlay.startDrag();
             }
         }
         
-        Components.ToolButton {
+        C.ToolButton {
             id: toggleSwipeOpened
             visible: {
                 switch (Qt.platform.os) {
@@ -198,8 +198,8 @@ SwipeDelegate {
                 }
             }
             symbol: swipeDelegate.swipe.position === 0 ?
-                        Icons.faChevronLeft :
-                        Icons.faChevronRight
+                        Icons.mdiKeyboardArrowLeft :
+                        Icons.mdiKeyboardArrowRight
             onClicked: {
                 if (swipeDelegate.swipe.position === 0) {
                     swipeDelegate.swipe.open(
@@ -221,7 +221,7 @@ SwipeDelegate {
         }
     }
 
-    swipe.left: Pane {
+    swipe.left: C.Pane {
         height: swipeDelegate.height
         width: swipeDelegate.width
         enabled: {
@@ -231,7 +231,7 @@ SwipeDelegate {
 
         Material.background: Colors.positiveColor
         
-        Components.Label {
+        C.Label {
             text: {
                 let item = swipeDelegate.item;
                 let done = item.done;
@@ -244,7 +244,6 @@ SwipeDelegate {
                     return qsTr("Swipe to mark done");
                 }
             }
-            wrapMode: "WrapAtWordBoundaryOrAnywhere"
             width: parent.width / 2
             anchors.fill: parent
         }

@@ -1,7 +1,6 @@
 pragma Singleton
 
 import QtQuick 2.0
-import QtQuick.Controls 2.5
 import QtQuick.Window 2.0
 
 import OpenTodoList 1.0 as OTL

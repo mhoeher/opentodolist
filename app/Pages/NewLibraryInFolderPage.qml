@@ -1,15 +1,16 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.0
 import Qt.labs.platform 1.1
 
-import Components 1.0 as Components
-import OpenTodoList 1.0 as OTL
-
+import "../Components" as Components
+import "../Controls" as C
 import "../Windows"
 import "../Utils" as Utils
 
-Page {
+import OpenTodoList 1.0 as OTL
+
+
+C.Page {
     id: page
 
     property alias buttons: buttonBox
@@ -20,12 +21,12 @@ Page {
     signal closePage()
     signal libraryCreated(OTL.Library library)
 
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttonBox
-        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
         onRejected: page.closePage()
     }
-    Component.onCompleted: d.okButton = buttons.standardButton(DialogButtonBox.Ok)
+    Component.onCompleted: d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
 
     QtObject {
         id: d
@@ -71,7 +72,7 @@ Page {
         folder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
     }
 
-    ScrollView {
+    C.ScrollView {
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
 
@@ -89,34 +90,33 @@ Page {
                 Layout.columnSpan: 3
             }
 
-            Label {
+            C.Label {
                 Layout.maximumWidth: grid.width
                 Layout.columnSpan: 3
                 text: qsTr("You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Folder:")
             }
 
-            TextField {
+            C.TextField {
                 id: folderPathEdit
                 placeholderText: qsTr("Path to a folder to use as a library")
                 Layout.fillWidth: true
             }
 
-            Button {
+            C.Button {
                 id: openFolderButton
                 text: qsTr("Select")
                 onClicked: selectFolder.open()
             }
 
-            Label {
+            C.Label {
                 text: qsTr("Name:")
             }
 
-            TextField {
+            C.TextField {
                 id: nameEdit
                 placeholderText: qsTr("My Local Library Name")
                 Layout.fillWidth: true

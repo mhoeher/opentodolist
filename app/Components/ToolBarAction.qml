@@ -1,8 +1,9 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.5
 
-Action {
+import "../Controls" as C
+
+C.Action {
     property string symbol: ""
-    property Menu menu: null
+    property C.Menu menu: null
     property bool visible: true
 }

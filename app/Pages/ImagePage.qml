@@ -1,5 +1,4 @@
 import QtQuick 2.5
-import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
@@ -9,6 +8,7 @@ import "../Widgets"
 import "../Utils"
 import "../Menues"
 import "../Actions" as Actions
+import "../Controls" as C
 
 ItemPage {
     id: page
@@ -79,8 +79,8 @@ ItemPage {
         anchors.fill: parent
         item: page.item
         padding: AppSettings.mediumSpace
-        ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
-        ScrollBar.vertical.interactive: true
+        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        C.ScrollBar.vertical.interactive: true
 
         Flickable {
             id: flickable
@@ -105,7 +105,7 @@ ItemPage {
                     width: parent.width
                 }
 
-                Frame {
+                C.Frame {
                     width: parent.width
                     height: image.height + padding * 2
 

@@ -1,10 +1,10 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
-import "../Components"
+import "../Components" as Components
+import "../Controls" as C
 
 import OpenTodoList 1.0 as OTL
 
-Menu {
+C.Menu {
     id: menu
 
     property OTL.TopLevelItem item: null
@@ -15,49 +15,49 @@ Menu {
     title: qsTr("Color")
     modal: true
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("White")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.White
         onTriggered: __effectiveItem.color = OTL.TopLevelItem.White
     }
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("Red")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.Red
         onTriggered: __effectiveItem.color = OTL.TopLevelItem.Red
     }
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("Green")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.Green
         onTriggered: __effectiveItem.color = OTL.TopLevelItem.Green
     }
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("Blue")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.Blue
         onTriggered: __effectiveItem.color = OTL.TopLevelItem.Blue
     }
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("Yellow")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.Yellow
         onTriggered: __effectiveItem.color = OTL.TopLevelItem.Yellow
     }
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("Orange")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.Orange
         onTriggered: __effectiveItem.color = OTL.TopLevelItem.Orange
     }
 
-    MenuItem {
+    C.MenuItem {
         text: qsTr("Lilac")
         checkable: true
         checked: __effectiveItem.color === OTL.TopLevelItem.Lilac

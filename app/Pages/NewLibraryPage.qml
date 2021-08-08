@@ -1,15 +1,16 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 
-import Components 1.0 as Components
-import OpenTodoList 1.0 as OTL
-
+import "../Components" as Components
+import "../Controls" as C
 import "../Windows"
 import "../Fonts"
-import Utils 1.0 as Utils
+import "../Utils" as Utils
 
-Page {
+import OpenTodoList 1.0 as OTL
+
+
+C.Page {
     id: page
     property alias addLocalLibraryDelegate: addLocalLibraryDelegate
     property alias addFolderAsLibraryDelegate: addFolderAsLibraryDelegate
@@ -51,7 +52,7 @@ Page {
         id: accountsModel
     }
 
-    ScrollView {
+    C.ScrollView {
         anchors.fill: parent
 
         Column {
@@ -63,14 +64,14 @@ Page {
                 width: parent.width
             }
 
-            ItemDelegate {
+            C.ItemDelegate {
                 id: addLocalLibraryDelegate
                 text: qsTr("Local Library")
                 width: parent.width
                 onClicked: page.openPage(newLocalLibraryPage, {})
             }
 
-            ItemDelegate {
+            C.ItemDelegate {
                 id: addFolderAsLibraryDelegate
                 text: qsTr("Use Folder as Library")
                 width: parent.width
@@ -91,7 +92,7 @@ Page {
                 id: accountsList
 
                 model: accountsModel.accounts
-                delegate: ItemDelegate {
+                delegate: C.ItemDelegate {
                     id: accountDelegate
 
                     text: name
@@ -106,7 +107,7 @@ Page {
                 }
             }
 
-            Button {
+            C.Button {
                 id: addAccountButton
                 anchors.right: parent.right
                 anchors.rightMargin: 10

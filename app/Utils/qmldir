@@ -7,4 +7,3 @@ singleton DateUtils 1.0 DateUtils.qml
 singleton ItemUtils 1.0 ItemUtils.qml
 singleton Markdown 1.0 Markdown.qml
 singleton SyntaxHighlighter 1.0 SyntaxHighlighter.qml
-singleton Translations 1.0 Translations.qml

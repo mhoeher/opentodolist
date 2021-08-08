@@ -1,13 +1,14 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.0
 
-import Components 1.0 as Components
+import "../Components" as Components
+import "../Utils" as Utils
+import "../Controls" as C
+
 import OpenTodoList 1.0 as OTL
 
-import "../Utils" as Utils
 
-Page {
+C.Page {
     id: page
 
     property alias buttons: buttonBox
@@ -26,9 +27,9 @@ Page {
     signal closePage()
     signal libraryCreated(OTL.Library library)
 
-    footer: DialogButtonBox {
+    footer: C.DialogButtonBox {
         id: buttonBox
-        standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
         onRejected: page.closePage()
         onAccepted: {
             if (createNewLibraryButton.checked) {
@@ -49,7 +50,7 @@ Page {
 
         property OTL.Synchronizer sync: page.account.createSynchronizer()
 
-        property var okButton: buttons.standardButton(DialogButtonBox.Ok)
+        property var okButton: buttons.standardButton(C.DialogButtonBox.Ok)
 
         Component.onCompleted: sync.findExistingLibraries()
     }
@@ -81,13 +82,13 @@ Page {
         }
     }
 
-    ButtonGroup {
+    C.ButtonGroup {
         id: buttonGroup
 
         exclusive: true
     }
 
-    ScrollView {
+    C.ScrollView {
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
 
@@ -106,7 +107,7 @@ Page {
                 Layout.columnSpan: 2
             }
 
-            Label {
+            C.Label {
                 Layout.maximumWidth: grid.width
                 Layout.columnSpan: 2
                 text: qsTr(
@@ -114,7 +115,6 @@ Page {
                           + "This allows to easily back up a library to a server and later on "
                           + "restore it from there. Additionally, such libraries can be shared "
                           + "with other users (if the server allows this).")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
             Components.Heading {
@@ -123,14 +123,13 @@ Page {
                 Layout.columnSpan: 2
             }
 
-            Label {
+            C.Label {
                 Layout.maximumWidth: grid.width
                 Layout.columnSpan: 2
                 text: qsTr("Select an existing library on the server to add it to the app.")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            Label {
+            C.Label {
                 id: noLibrariesFoundLabel
 
                 text: qsTr("No libraries were found on the server.")
@@ -138,7 +137,7 @@ Page {
                 visible: false
             }
 
-            Label {
+            C.Label {
                 id: searchingForLibrariesLabel
 
                 text: qsTr("Searching existing libraries...")
@@ -146,7 +145,7 @@ Page {
                 visible: d.sync.findingLibraries
             }
 
-            BusyIndicator {
+            C.BusyIndicator {
                 id: busyIndicator
                 Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignHCenter
@@ -160,14 +159,14 @@ Page {
                 Repeater {
                     id: accountsView
 
-                    delegate: RadioButton {
+                    delegate: C.RadioButton {
                         id: itemDelegate
 
                         property var existingAccount: modelData
 
                         text: modelData.name
                         width: parent.width
-                        ButtonGroup.group: buttonGroup
+                        C.ButtonGroup.group: buttonGroup
                     }
                     onModelChanged: console.warn(accountsView.model)
                     model: []
@@ -180,23 +179,22 @@ Page {
                 Layout.columnSpan: 2
             }
 
-            Label {
+            C.Label {
                 Layout.maximumWidth: grid.width
                 Layout.columnSpan: 2
                 text: qsTr(
                           "Create a new library, which will be synchronized with the server. "
                           + "Such a library can be added to the app on other devices as well to "
                           + "synchronize data.")
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            RadioButton {
+            C.RadioButton {
                 id: createNewLibraryButton
 
-                ButtonGroup.group: buttonGroup
+                C.ButtonGroup.group: buttonGroup
             }
 
-            TextField {
+            C.TextField {
                 id: newLibraryNameEdit
                 placeholderText: qsTr("My new library's name")
                 Layout.fillWidth: true

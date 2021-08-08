@@ -1,9 +1,9 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.5
 
 import "." as Components
 import "../Fonts" as Fonts
 import "../Utils" as Utils
+import "../Controls" as C
 
 Item {
     id: root
@@ -53,20 +53,20 @@ Item {
         }
     }
 
-    RoundButton {
+    C.RoundButton {
         id: pullIndicator
 
         y: -height
         width: Utils.AppSettings.effectiveFontMetrics.height * 3
         height: width
         anchors.horizontalCenter: parent.horizontalCenter
-        contentItem: Label {
+        contentItem: C.Label {
             anchors.centerIn: parent
             width: parent.width * 0.8
             height: parent.height * 0.8
-            font.family: Fonts.Fonts.fontAwesomeSolid.name
+            font.family: Fonts.Fonts.icons
             font.pixelSize: height
-            text: Fonts.Icons.faSpinner
+            text: Fonts.Icons.mdiSync
             opacity: (pullIndicator.y + pullIndicator.height) / (1.5 * pullIndicator.height)
             onOpacityChanged: if (root.flickable.dragging) {
                                   d.doRefreshAfterDrag = opacity >= 0.95;

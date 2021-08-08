@@ -4,7 +4,7 @@ import "../Fonts" as Fonts
 import "../Utils" as Utils
 
 Components.ItemAction {
-    symbol: Fonts.Icons.faPercent
+    symbol: Fonts.Icons.mdiTrackChanges
     text: qsTr("Set Progress")
     onTriggered: item.progress = 0
     enabled: item && item.progress < 0

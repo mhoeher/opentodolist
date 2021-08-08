@@ -1,8 +1,8 @@
 import QtQuick 2.10
 
-import "../Components"
+import "../Controls" as C
 
-Label {
+C.Label {
     id: label
 
     function linkHandler(link) {}

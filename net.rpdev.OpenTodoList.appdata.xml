@@ -40,6 +40,17 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.37.0" date="2021-08-08">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>
+                #455: User interface code cleanup and improvements.
+            </li>
+            <li>
+                #458: Target Android 11.
+            </li>
+        </ul>
+      </release>
       <release version="3.36.0" date="2021-07-11">
         <p>This release includes the following changes:</p>
         <ul>

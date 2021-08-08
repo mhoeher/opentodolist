@@ -1,19 +1,21 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
+
 import "../Components"
+import "../Controls" as C
 import "../Utils"
+import "../Windows" as Windows
 
 import OpenTodoList 1.0 as OTL
 
-Pane {
+C.Pane {
     id: root
 
     function show(item) {
         d.item = item;
         d.shown = true;
-        ApplicationWindow.window.itemCreatedNotification = root;
+        C.ApplicationWindow.window.itemCreatedNotification = root;
         timer.start();
     }
 
@@ -60,17 +62,18 @@ Pane {
             right: parent.right
         }
 
-        Label {
+        C.Label {
             text: qsTr("<strong>%1</strong> has been created.").arg(d.itemName)
             Layout.fillWidth: true
             elide: Text.ElideRight
+            wrapMode: Text.NoWrap
         }
-        Button {
+        C.Button {
             text: qsTr("Open")
             onClicked: root.open(d.item)
         }
 
-        Button {
+        C.Button {
             text: qsTr("Dismiss")
             onClicked: d.shown = false
         }

@@ -1,6 +1,5 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import Qt.labs.settings 1.0
 
 import OpenTodoList 1.0 as OTL
@@ -11,9 +10,10 @@ import "../Widgets"
 import "../Windows"
 import "../Fonts"
 import "../Utils"
+import "../Controls" as C
 
 
-Page {
+C.Page {
     id: page
 
     property OTL.Library library: null
@@ -138,7 +138,7 @@ Page {
     DeleteItemDialog { id: deleteItemDialog }
     RenameItemDialog { id: renameItemDialog }
 
-    Menu {
+    C.Menu {
         id: itemContextMenu
 
         property OTL.TopLevelItem item: null
@@ -146,71 +146,71 @@ Page {
 
         modal: true
 
-        ButtonGroup { id: colorButtons }
+        C.ButtonGroup { id: colorButtons }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Red")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.Red
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.Red
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Green")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.Green
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.Green
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Blue")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.Blue
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.Blue
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Yellow")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.Yellow
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.Yellow
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Orange")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.Orange
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.Orange
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Lilac")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.Lilac
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.Lilac
         }
-        MenuItem {
+        C.MenuItem {
             text: qsTr("White")
             checkable: true
-            ButtonGroup.group: colorButtons
+            C.ButtonGroup.group: colorButtons
             checked: itemContextMenu.color === OTL.TopLevelItem.White
             onTriggered: itemContextMenu.item.color = OTL.TopLevelItem.White
         }
 
-        MenuSeparator {}
+        C.MenuSeparator {}
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Rename")
             onTriggered: renameItemDialog.renameItem(itemContextMenu.item)
         }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Copy")
             onTriggered: ItemUtils.copyTopLevelItem(itemContextMenu.item)
         }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Delete")
             onTriggered: deleteItemDialog.deleteItem(itemContextMenu.item)
         }
@@ -296,12 +296,12 @@ Page {
     TextInputBar {
         id: filterBar
         placeholderText: qsTr("Search term 1, search term 2, ...")
-        symbol: Icons.faTimes
+        symbol: Icons.mdiClose
         showWhenNonEmpty: true
         closeOnButtonClick: true
     }
 
-    ScrollView {
+    C.ScrollView {
         id: scrollView
         anchors {
             left: parent.left
@@ -434,42 +434,42 @@ Page {
         onOpen: itemClicked(item)
     }
 
-    Menu {
+    C.Menu {
         id: sortByMenu
 
         title: qsTr("Sort By")
         anchors.centerIn: parent
         modal: true
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Manually")
             checkable: true
             checked: itemsModel.effectiveSortRole === OTL.ItemsModel.WeightRole
             onTriggered: settings.sortBy = "weight"
         }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Title")
             checkable: true
             checked: itemsModel.effectiveSortRole === OTL.ItemsModel.TitleRole
             onTriggered: settings.sortBy = "title"
         }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Due To")
             checkable: true
             checked: itemsModel.effectiveSortRole === OTL.ItemsModel.EffectiveDueToRole
             onTriggered: settings.sortBy = "dueTo"
         }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Created At")
             checkable: true
             checked: itemsModel.effectiveSortRole === OTL.ItemsModel.CreatedAtRole
             onTriggered: settings.sortBy = "createdAt"
         }
 
-        MenuItem {
+        C.MenuItem {
             text: qsTr("Updated At")
             checkable: true
             checked: itemsModel.effectiveSortRole === OTL.ItemsModel.UpdatedAtRole

@@ -1,10 +1,10 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.5
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 import "../Windows"
@@ -30,15 +30,15 @@ GridLayout {
         Layout.fillWidth: true
     }
 
-    ToolButton {
-        symbol: d.validDate ? Icons.faCalendarMinus : ""
+    C.ToolButton {
+        symbol: d.validDate ? Icons.mdiEventBusy : ""
         font.family: Fonts.icons
         background: Item {}
         onClicked: root.item.dueTo = new Date("");
     }
 
-    ToolButton {
-        symbol: d.validDate ? Icons.faCalendarAlt : Icons.faCalendar
+    C.ToolButton {
+        symbol: d.validDate ? Icons.mdiEvent : Icons.mdiCalendarToday
         font.family: Fonts.icons
         background: Item {}
         onClicked: {
@@ -52,7 +52,7 @@ GridLayout {
         }
     }
 
-    Label {
+    C.Label {
         text: {
             let result = "";
             if (root.item.isRecurring) {
@@ -62,10 +62,9 @@ GridLayout {
         }
         Layout.columnSpan: 3
         Layout.fillWidth: true
-        wrapMode: "WrapAtWordBoundaryOrAnywhere"
     }
 
-    Label {
+    C.Label {
         text: {
             switch (root.item.recurrencePattern) {
             case OTL.ComplexItem.NoRecurrence:
@@ -93,12 +92,11 @@ GridLayout {
         }
         Layout.columnSpan: 2
         Layout.fillWidth: true
-        wrapMode: "WrapAtWordBoundaryOrAnywhere"
     }
 
-    ToolButton {
-        symbol: Icons.faSync
-        font.family: Fonts.solidIcons
+    C.ToolButton {
+        symbol: Icons.mdiRepeat
+        font.family: Fonts.icons
         background: Item {}
         onClicked: recurrenceDialog.edit(root.item)
 

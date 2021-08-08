@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Utils"
 
 
@@ -15,7 +15,7 @@ CenteredDialog {
         dialog.open();
     }
 
-    standardButtons: Dialog.Ok | Dialog.Cancel
+    standardButtons: C.Dialog.Ok | C.Dialog.Cancel
     title: qsTr("Delete Account?")
     width: idealDialogWidth
 
@@ -31,7 +31,7 @@ CenteredDialog {
         property string accountName: account ? account.name : ""
     }
 
-    Label {
+    C.Label {
         width: dialog.availableWidth
         text: qsTr("Do you really want to remove the account " +
                    "<strong>%1</strong>? This will remove all " +

@@ -1,13 +1,13 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import "../Components"
+import "../Controls" as C
 
 import OpenTodoList 1.0 as OTL
 
-Pane {
+C.Pane {
     id: updateNotificationBar
 
     property bool shown: false
@@ -40,17 +40,17 @@ Pane {
             right: parent.right
         }
 
-        Label {
+        C.Label {
             text: qsTr("An update to OpenTodoList %1 is available.").arg(
                       updateNotificationBar.version)
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
         }
-        Button {
+        C.Button {
             text: qsTr("Ignore")
             onClicked: updateNotificationBar.shown = false
         }
-        Button {
+        C.Button {
             text: qsTr("Download")
             onClicked: {
                 Qt.openUrlExternally(updateNotificationBar.downloadUrl);

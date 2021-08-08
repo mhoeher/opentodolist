@@ -1,15 +1,13 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
-
 
 import OpenTodoList 1.0 as OTL
 
-import Components 1.0 as Components
-
+import "../Components" as Components
+import "../Controls" as C
 import "../Utils" as Utils
 
-Page {
+C.Page {
     id: page
 
     signal accountSelected(var account)
@@ -19,7 +17,7 @@ Page {
 
     title: qsTr("Problems Detected")
 
-    ScrollView {
+    C.ScrollView {
         anchors.fill: parent
 
         ListView {
@@ -32,7 +30,7 @@ Page {
                 width: parent.width
             }
             model: OTL.Application.problemManager.problems
-            delegate: ItemDelegate {
+            delegate: C.ItemDelegate {
                 id: control
 
                 width: parent.width
@@ -54,11 +52,10 @@ Page {
                         return "Unknown Problem";
                     }
                 }
-                contentItem: Label {
+                contentItem: C.Label {
                     rightPadding: control.spacing
                     text: control.text
                     font: control.font
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     verticalAlignment: Text.AlignVCenter
                 }
                 onClicked: {

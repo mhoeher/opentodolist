@@ -4,7 +4,7 @@ import "../Fonts" as Fonts
 import "../Utils" as Utils
 
 Components.ItemAction {
-    symbol: Fonts.Icons.faTrashAlt
+    symbol: Fonts.Icons.mdiDelete
     text: qsTr("Delete")
     onTriggered: Utils.ItemUtils.deleteItem(item)
 }

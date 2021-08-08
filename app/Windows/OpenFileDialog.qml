@@ -1,12 +1,12 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.12
 import Qt.labs.folderlistmodel 2.2
 
 import OpenTodoList 1.0 as OTL
 
 import "../Fonts"
 import "../Components"
+import "../Controls" as C
 
 
 CenteredDialog {
@@ -16,16 +16,16 @@ CenteredDialog {
     property alias nameFilters: files.nameFilters
 
     title: qsTr("Select a File")
-    standardButtons: fileUrl != "" ? (Dialog.Ok | Dialog.Cancel) : Dialog.Cancel
+    standardButtons: fileUrl != "" ? (C.Dialog.Ok | C.Dialog.Cancel) : C.Dialog.Cancel
 
     header: RowLayout {
         width: parent.width
-        ToolButton {
-            symbol: Icons.faArrowUp
+        C.ToolButton {
+            symbol: Icons.mdiKeyboardArrowUp
             onClicked: files.folder = OTL.Application.cleanPath(
                            files.folder + "/..")
         }
-        Label {
+        C.Label {
             text: OTL.Application.urlToLocalFile(dialog.fileUrl)
             Layout.fillWidth: true
         }
@@ -56,7 +56,7 @@ CenteredDialog {
                 }
             }
         }
-        delegate: ItemDelegate {
+        delegate: C.ItemDelegate {
             width: parent.width
             onClicked: {
                 if (fileIsDir) {
@@ -70,12 +70,12 @@ CenteredDialog {
             contentItem: RowLayout {
                 width: parent.width
 
-                Label {
-                    font.family: Fonts.solidIcons
-                    text: fileIsDir ? Icons.faFolderOpen :
-                                      Icons.faFile
+                C.Label {
+                    font.family: Fonts.icons
+                    text: fileIsDir ? Icons.mdiFolderOpen :
+                                      Icons.mdiTextSnippet
                 }
-                Label {
+                C.Label {
                     Layout.fillWidth: true
                     text: fileName
                 }

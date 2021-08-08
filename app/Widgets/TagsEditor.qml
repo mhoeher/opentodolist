@@ -1,11 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 import "../Windows"
@@ -34,7 +34,7 @@ Column {
                 text: qsTr("Add Tag")
             }
 
-            ComboBox {
+            C.ComboBox {
                 id: comboBox
 
                 model: {
@@ -60,7 +60,7 @@ Column {
             }
         }
 
-        standardButtons: Dialog.Ok | Dialog.Cancel
+        standardButtons: C.Dialog.Ok | C.Dialog.Cancel
         onAccepted: {
             if (comboBox.editText !== "") {
                 editor.item.addTag(comboBox.editText);
@@ -76,7 +76,7 @@ Column {
 
         Repeater {
             model: editor.item.tags
-            delegate: Frame {
+            delegate: C.Frame {
                 leftPadding: 10
                 rightPadding: 0
                 topPadding: 0
@@ -94,12 +94,12 @@ Column {
                 Material.foreground: "white"
 
                 RowLayout {
-                    Label {
+                    C.Label {
                         text: modelData
                         Layout.alignment: Qt.AlignVCenter
                     }
-                    ToolButton {
-                        symbol: Icons.faTimes
+                    C.ToolButton {
+                        symbol: Icons.mdiClose
                         onClicked: editor.item.removeTag(modelData)
                         Layout.alignment: Qt.AlignVCenter
                         background: Item {}
