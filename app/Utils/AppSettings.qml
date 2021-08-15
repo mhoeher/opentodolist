@@ -2,7 +2,6 @@ pragma Singleton
 
 import QtQuick 2.10
 import Qt.labs.settings 1.0
-import "../Controls" as C
 
 Item {
     id: settings
@@ -36,7 +35,7 @@ Item {
     readonly property int tooltipDelay: 500
     readonly property int tooltipTimeout: 10000
 
-    property alias defaultFontFamily: hiddenLabel.font.family
+    property string defaultFontFamily: "Roboto,Noto,Sans"
 
     property bool showQuickNotesEditorOnSystemTrayClick: false
 
@@ -85,10 +84,5 @@ Item {
         id: effFontMetrics
 
         font.pointSize: settings.effectiveFontSize
-    }
-
-    C.Label {
-        id: hiddenLabel
-        visible: false
     }
 }
