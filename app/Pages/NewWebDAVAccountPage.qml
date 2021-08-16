@@ -23,7 +23,7 @@ C.Page {
     property C.Page anchorPage: null
 
     signal closePage()
-    signal returnToPage(Page page)
+    signal returnToPage(C.Page page)
     signal openPage(var component, var properties)
 
     title: qsTr("Connection Settings")
