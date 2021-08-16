@@ -203,7 +203,7 @@ C.SwipeDelegate {
             onClicked: {
                 if (swipeDelegate.swipe.position === 0) {
                     swipeDelegate.swipe.open(
-                                SwipeDelegate.Right);
+                                C.SwipeDelegate.Right);
                 } else {
                     swipeDelegate.swipe.close();
                 }
