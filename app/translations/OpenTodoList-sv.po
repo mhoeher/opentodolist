@@ -2314,110 +2314,110 @@ msgstr "Förfaller %1"
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: ../Pages/LibraryPage.qml:209
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Välj bibliotek"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
+msgstr "Välj objekt"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Ctrl+,"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Synkroniserar bibliotek..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
+msgstr "Ångra"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Byt namn"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Flytta"
 
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Färg"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Lägg till tagg"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Bifoga fil"
 
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Sortera"
 
 #: ../Components/ApplicationToolBarActions.qml:98
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Ange förfallodatum"
 
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Ta bort"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Ta bort slutförda objekt"
 
 #: ../Components/ApplicationToolBarActions.qml:120
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Ange förlopp"
 
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
+msgstr "Skrivbordsläge"
 

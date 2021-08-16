@@ -177,9 +177,9 @@
     {
         "name": "Spanish",
         "code": "es",
-        "translations": 305,
-        "percentage": 63.54,
-        "updated": "2020-07-14T20:56:33+0000"
+        "translations": 389,
+        "percentage": 81.04,
+        "updated": "2021-08-16T18:12:33+0000"
     },
     {
         "name": "Spanish (LA & C)",
@@ -191,9 +191,9 @@
     {
         "name": "Swedish",
         "code": "sv",
-        "translations": 458,
-        "percentage": 95.42,
-        "updated": "2021-06-25T07:30:40+0000"
+        "translations": 480,
+        "percentage": 100,
+        "updated": "2021-08-11T06:18:39+0000"
     },
     {
         "name": "Turkish",
