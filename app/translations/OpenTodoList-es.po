@@ -337,7 +337,7 @@ msgstr "&Encontrar"
 #: ../Windows/MainWindow.qml:545
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
-msgstr "Abrir el último &artículo creado"
+msgstr "Abrir el último & crear articulo"
 
 #: ../Windows/MainWindow.qml:553
 msgctxt "MainWindow|"
@@ -1544,12 +1544,12 @@ msgstr "Vasco "
 #: ../Pages/AccountTypeSelectionPage.qml:22
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
-msgstr ""
+msgstr "Seleccione el tipo de cuenta"
 
 #: ../Pages/AccountTypeSelectionPage.qml:81
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
-msgstr ""
+msgstr "Tipo de cuenta"
 
 #: ../Pages/AccountTypeSelectionPage.qml:102
 msgctxt "AccountTypeSelectionPage|"
@@ -1594,7 +1594,7 @@ msgstr ""
 #: ../appstartup.cpp:324
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr ""
+msgstr "Abierta"
 
 #: ../appstartup.cpp:384
 msgctxt "AppStartup|"
@@ -1604,12 +1604,12 @@ msgstr ""
 #: ../Actions/DeleteCompletedChildren.qml:8
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Eliminar elementos completados"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:19
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
-msgstr ""
+msgstr "Eliminar elementos "
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
 msgctxt "DeleteCompletedItemsDialog|"
@@ -1625,47 +1625,47 @@ msgstr ""
 #: ../Pages/EditNextCloudAccountPage.qml:69
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Editar cuenta"
 
 #: ../Pages/EditNextCloudAccountPage.qml:75
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:86
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Dirección del servidor"
 
 #: ../Pages/EditNextCloudAccountPage.qml:93
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://miservidor.ejemplo.com"
 
 #: ../Pages/EditNextCloudAccountPage.qml:101
 msgctxt "EditNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
+msgstr "Registro"
 
 #: ../Pages/EditNextCloudAccountPage.qml:111
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Usuario:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:118
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Nombre de usuario:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:124
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Contraseña:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:131
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: ../Pages/EditNextCloudAccountPage.qml:140
 msgctxt "EditNextCloudAccountPage|"
@@ -1680,53 +1680,53 @@ msgstr ""
 #: ../Widgets/LibrariesSideBar.qml:192
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
-msgstr ""
+msgstr "Editar lista"
 
 #: ../Widgets/LibrariesSideBar.qml:344
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
-msgstr ""
+msgstr "Ocultar calendario"
 
 #: ../Widgets/LibrariesSideBar.qml:344
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
-msgstr ""
+msgstr "Mostrar calendario"
 
 #: ../Widgets/LibrariesSideBar.qml:354
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
-msgstr ""
+msgstr "Mover arriba"
 
 #: ../Widgets/LibrariesSideBar.qml:363
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
-msgstr ""
+msgstr "Move abajo"
 
 #: ../Windows/MainWindow.qml:398
 msgctxt "MainWindow|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Eliminar elementos completados"
 
 #: ../Windows/MainWindow.qml:494
 msgctxt "MainWindow|"
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: ../Pages/NewNextCloudAccountPage.qml:20
 #: ../Pages/NewNextCloudAccountPage.qml:74
 msgctxt "NewNextCloudAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Ajustes de conexión"
 
 #: ../Pages/NewNextCloudAccountPage.qml:80
 msgctxt "NewNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Nombre del serividor:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:94
 msgctxt "NewNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
+msgstr "Registro"
 
 #: ../Pages/NewNextCloudAccountPage.qml:107
 msgctxt "NewNextCloudAccountPage|"
@@ -1751,42 +1751,42 @@ msgstr ""
 #: ../Pages/NewNextCloudAccountPage.qml:139
 msgctxt "NewNextCloudAccountPage|"
 msgid "Create App Password"
-msgstr ""
+msgstr "Crear contraseña de la app"
 
 #: ../Pages/NewNextCloudAccountPage.qml:148
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Settings"
-msgstr ""
+msgstr "Ajustes de la cuenta"
 
 #: ../Pages/NewNextCloudAccountPage.qml:157
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Copiar link"
 
 #: ../Pages/NewNextCloudAccountPage.qml:162
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Copiado!"
 
 #: ../Pages/NewNextCloudAccountPage.qml:171
 msgctxt "NewNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Usuario:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:178
 msgctxt "NewNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: ../Pages/NewNextCloudAccountPage.qml:185
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Contraseña:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:192
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: ../Pages/NewNextCloudAccountPage.qml:202
 msgctxt "NewNextCloudAccountPage|"
@@ -1796,12 +1796,12 @@ msgstr ""
 #: ../Pages/NewNextCloudAccountPage.qml:206
 msgctxt "NewNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:218
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Name"
-msgstr ""
+msgstr "Nombre de la cuenta"
 
 #: ../Pages/NewNextCloudAccountPage.qml:228
 msgctxt "NewNextCloudAccountPage|"
@@ -1811,17 +1811,17 @@ msgstr ""
 #: ../Pages/AccountsPage.qml:19 ../Pages/AccountsPage.qml:50
 msgctxt "AccountsPage|"
 msgid "Accounts"
-msgstr ""
+msgstr "Cuentas"
 
 #: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:124
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Editar cuenta"
 
 #: ../Pages/EditWebDAVAccountPage.qml:130
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:141
 msgctxt "EditWebDAVAccountPage|"
@@ -1836,22 +1836,22 @@ msgstr ""
 #: ../Pages/EditWebDAVAccountPage.qml:154
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Usuario:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:160
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: ../Pages/EditWebDAVAccountPage.qml:167
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Contraseña:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:174
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: ../Pages/EditWebDAVAccountPage.qml:184
 msgctxt "EditWebDAVAccountPage|"
@@ -1871,22 +1871,22 @@ msgstr ""
 #: ../Widgets/LibrariesSideBar.qml:212
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
-msgstr ""
+msgstr "Donar"
 
 #: ../Windows/MainWindow.qml:319
 msgctxt "MainWindow|"
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 #: ../Actions/MoveTodo.qml:11
 msgctxt "MoveTodo|"
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:104
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
-msgstr ""
+msgstr "Crear libreria en la cuenta"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
@@ -1911,12 +1911,12 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPage.qml:143
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Searching existing libraries..."
-msgstr ""
+msgstr "Buscando librerias existentes..."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:177
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a New Library"
-msgstr ""
+msgstr "Crear una libreria nueva"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:185
 msgctxt "NewLibraryFromAccountPage|"
@@ -1931,7 +1931,7 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:88
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
-msgstr ""
+msgstr "Abrir carpeta como libreria"
 
 #: ../Pages/NewLibraryInFolderPage.qml:96
 msgctxt "NewLibraryInFolderPage|"
@@ -1941,7 +1941,7 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:100
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
-msgstr ""
+msgstr "Carpeta:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
@@ -1971,22 +1971,22 @@ msgstr ""
 #: ../Pages/NewLibraryPage.qml:76
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
-msgstr ""
+msgstr "Usar carpeta como libreria"
 
 #: ../Pages/NewLibraryPage.qml:87
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
-msgstr ""
+msgstr "Agregar librerias desde tus cuentas"
 
 #: ../Pages/NewLibraryPage.qml:114
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
-msgstr ""
+msgstr "Agregar cuenta"
 
 #: ../Pages/NewLocalLibraryPage.qml:62
 msgctxt "NewLocalLibraryPage|"
 msgid "Create a Local Library"
-msgstr ""
+msgstr "Crear una libreria local"
 
 #: ../Pages/NewLocalLibraryPage.qml:70
 msgctxt "NewLocalLibraryPage|"
@@ -1996,7 +1996,7 @@ msgstr ""
 #: ../Pages/NewLocalLibraryPage.qml:80
 msgctxt "NewLocalLibraryPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: ../Pages/NewLocalLibraryPage.qml:85
 msgctxt "NewLocalLibraryPage|"
@@ -2021,22 +2021,22 @@ msgstr ""
 #: ../Pages/NewWebDAVAccountPage.qml:148
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Usuario:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:154
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: ../Pages/NewWebDAVAccountPage.qml:160
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Contraseña:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:166
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: ../Pages/NewWebDAVAccountPage.qml:175
 msgctxt "NewWebDAVAccountPage|"
@@ -2046,7 +2046,7 @@ msgstr ""
 #: ../Pages/NewWebDAVAccountPage.qml:179
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:201
 msgctxt "NewWebDAVAccountPage|"
@@ -2056,7 +2056,7 @@ msgstr ""
 #: ../Pages/ProblemsPage.qml:18 ../Pages/ProblemsPage.qml:28
 msgctxt "ProblemsPage|"
 msgid "Problems Detected"
-msgstr ""
+msgstr "Problemas detectados"
 
 #: ../Windows/SelectTodoListDialog.qml:23
 msgctxt "SelectTodoListDialog|"
@@ -2066,37 +2066,37 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:45
 msgctxt "SettingsPage|"
 msgid "Settings"
-msgstr ""
+msgstr "Configuraciones"
 
 #: ../Pages/SettingsPage.qml:51
 msgctxt "SettingsPage|"
 msgid "User Interface"
-msgstr ""
+msgstr "Interfaz de usuario"
 
 #: ../Pages/SettingsPage.qml:59
 msgctxt "SettingsPage|"
 msgid "Language:"
-msgstr ""
+msgstr "Lenguaje:"
 
 #: ../Pages/SettingsPage.qml:84
 msgctxt "SettingsPage|"
 msgid "Theme:"
-msgstr ""
+msgstr "Tema:"
 
 #: ../Pages/SettingsPage.qml:127
 msgctxt "SettingsPage|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Tamaño de fuente:"
 
 #: ../Utils/Translations.qml:72
 msgctxt "Translations|"
 msgid "Japanese"
-msgstr ""
+msgstr "Japones"
 
 #: ../Utils/Translations.qml:116
 msgctxt "Translations|"
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraniano"
 
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
@@ -2111,7 +2111,7 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:144
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Usar tamaño de fuente personalizado"
 
 #: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
@@ -2220,7 +2220,7 @@ msgstr ""
 #: ../appstartup.cpp:270 ../appstartup.cpp:277
 msgctxt "QObject|"
 msgid "unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: ../Windows/QuickNoteWindow.qml:19
 msgctxt "QuickNoteWindow|"
@@ -2245,7 +2245,7 @@ msgstr ""
 #: ../Windows/QuickNoteWindow.qml:133
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: ../Windows/QuickNoteWindow.qml:140
 msgctxt "QuickNoteWindow|"
@@ -2255,7 +2255,7 @@ msgstr ""
 #: ../Windows/QuickNoteWindow.qml:158
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
-msgstr ""
+msgstr "Guardar como nota"
 
 #: ../Windows/QuickNoteWindow.qml:169
 msgctxt "QuickNoteWindow|"
@@ -2315,27 +2315,27 @@ msgstr ""
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ../Pages/LibraryPage.qml:209
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Seleccionar libreria"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
@@ -2350,7 +2350,7 @@ msgstr ""
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Sincronizando libreria..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
@@ -2360,27 +2360,27 @@ msgstr ""
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Renombrar"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Agregar etiqueta"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
@@ -2390,7 +2390,7 @@ msgstr ""
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
@@ -2405,7 +2405,7 @@ msgstr ""
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
