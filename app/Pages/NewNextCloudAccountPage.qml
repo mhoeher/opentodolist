@@ -12,7 +12,7 @@ C.Page {
     id: page
 
     signal closePage()
-    signal returnToPage(Page page)
+    signal returnToPage(C.Page page)
     signal openPage(var component, var properties)
 
     property C.Page anchorPage: null
