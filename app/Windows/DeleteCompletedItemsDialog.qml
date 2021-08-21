@@ -15,7 +15,7 @@ CenteredDialog {
         dialog.open();
     }
 
-    standardButtons: D.Dialog.Ok | C.Dialog.Cancel
+    standardButtons: C.Dialog.Ok | C.Dialog.Cancel
     title: qsTr("Delete Completed Items?")
     width: idealDialogWidth
 
