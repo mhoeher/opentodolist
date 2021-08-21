@@ -40,6 +40,15 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.37.2" date="2021-08-21">
+        <p>This release includes the following changes:</p>
+        <ul>
+          <li>#445: Improve Windows (un)installer.</li>
+          <li>#469: Add build option to allow selecting the Qt version to build against manually.</li>
+          <li>#451: Ensure long lines in code blocks in notes break at the end of the line.</li>
+          <li>#473: Fix the confirmation dialog to delete all completed items in a list.</li>
+        </ul>
+      </release>
       <release version="3.37.1" date="2021-08-16">
         <p>This release includes the following changes:</p>
         <ul>
