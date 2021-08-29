@@ -29,6 +29,11 @@
 
 class QNetworkAccessManager;
 
+namespace SynqClient {
+// Forward declarations
+class WebDAVJobFactory;
+}
+
 class WebDAVSynchronizer : public Synchronizer
 {
     Q_OBJECT
@@ -41,6 +46,7 @@ class WebDAVSynchronizer : public Synchronizer
     Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
     Q_PROPERTY(WebDAVSynchronizer::WebDAVServerType serverType READ serverType WRITE setServerType
                        NOTIFY serverTypeChanged)
+    Q_PROPERTY(int workarounds READ workarounds WRITE setWorkarounds NOTIFY workaroundsChanged)
 
 #ifdef WEBDAV_SYNCHRONIZER_TEST
     friend class WebDAVSynchronizerTest;
@@ -84,6 +90,9 @@ public:
     bool createDirs() const;
     void setCreateDirs(bool createDirs);
 
+    int workarounds() const;
+    void setWorkarounds(int newWorkarounds);
+
 signals:
     void remoteDirectoryChanged();
     void disableCertificateCheckChanged();
@@ -93,12 +102,15 @@ signals:
     void serverTypeChanged();
     void stopRequested();
 
+    void workaroundsChanged();
+
 private:
     static const QString SyncLockFileName;
 
     QUrl m_url;
     QString m_remoteDirectory;
     bool m_disableCertificateCheck;
+    int m_workarounds;
     QString m_username;
     QString m_password;
     bool m_createDirs;
@@ -114,6 +126,7 @@ private:
 
     QNetworkAccessManager* nam();
     QUrl createUrl() const;
+    void setupFactory(SynqClient::WebDAVJobFactory& factory);
 };
 
 #endif // SYNC_WEBDAVSYNCHRONIZER_H_

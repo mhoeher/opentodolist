@@ -100,6 +100,12 @@ C.Page {
         baseUrl: dav.url
         username: dav.username
         password: dav.password
+        backendSpecificData: {
+            return {
+                workarounds: dav.workarounds
+            }
+        }
+
         name: {
             if (accountNameEdit.text !== "") {
                 return accountNameEdit.text;
