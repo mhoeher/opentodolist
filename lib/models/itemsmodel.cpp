@@ -37,6 +37,7 @@ ItemsModel::ItemsModel(QObject* parent)
       m_ids(),
       m_fetchTimer(),
       m_parentItem(),
+      m_itemsToExclude(),
       m_searchString(),
       m_tag(),
       m_onlyDone(false),
@@ -406,9 +407,26 @@ void ItemsModel::setItemType(const QString& itemType)
     }
 }
 
+/**
+ * @brief A list of UUIDs of items to exclude.
+ */
+const QList<QUuid>& ItemsModel::itemsToExclude() const
+{
+    return m_itemsToExclude;
+}
+
+void ItemsModel::setItemsToExclude(const QList<QUuid>& newItemsToExclude)
+{
+    if (m_itemsToExclude == newItemsToExclude)
+        return;
+    m_itemsToExclude = newItemsToExclude;
+    triggerFetch();
+    emit itemsToExcludeChanged();
+}
+
 bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
 {
-    for (auto word : words) {
+    for (const auto& word : words) {
         if (item->title().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
             return true;
         }
@@ -483,9 +501,13 @@ void ItemsModel::fetch()
         auto itemMatchesFilter = getFilterFn();
         auto defaultSearchResult = m_defaultSearchResult;
         auto itemType = m_itemType.split(",", Qt::SkipEmptyParts);
+        QSet<QUuid> itemUidsToExclude(m_itemsToExclude.constBegin(), m_itemsToExclude.constEnd());
 
         q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
             if (!itemType.isEmpty() && !itemType.contains(item->itemType())) {
+                return false;
+            }
+            if (itemUidsToExclude.contains(item->uid())) {
                 return false;
             }
             auto result = true;

@@ -7,6 +7,7 @@ import OpenTodoList 1.0 as OTL
 import "../Components"
 import "../Controls" as C
 import "../Fonts"
+import "."
 
 
 CenteredDialog {
