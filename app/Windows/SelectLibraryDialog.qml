@@ -60,7 +60,7 @@ CenteredDialog {
         textRole: "name"
         valueRole: "library"
         width: root.availableWidth
-        model: OTL.LibrariesModel{
+        model: OTL.LibrariesModel {
             id: model
             cache: OTL.Application.cache
             onCountChanged: d.findInitial()

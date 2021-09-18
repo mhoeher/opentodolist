@@ -54,6 +54,7 @@ Item {
         }
         d.moveTodoDialog.library = library;
         d.moveTodoDialog.todo = todo;
+        d.moveTodoDialog.excludeTodoLists = [todo.todoListUid];
         d.moveTodoDialog.clear();
         d.moveTodoDialog.open();
     }
@@ -180,6 +181,7 @@ Item {
 
             property OTL.TopLevelItem item: null
 
+            title: qsTr("Copy Item Into...")
             onAccepted: {
                 if (item && library) {
                     OTL.Application.copyItem(item, library);
@@ -197,6 +199,7 @@ Item {
             property OTL.Todo todo: null
 
             itemType: "TodoList"
+            title: qsTr("Copy Todo Into...")
             onAccepted: {
                 if (item && library && todo) {
                     OTL.Application.copyItem(todo, library, item);
