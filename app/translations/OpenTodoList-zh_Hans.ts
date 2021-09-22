@@ -185,7 +185,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../Actions/CopyTodo.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制</translation>
     </message>
 </context>
 <context>
@@ -330,7 +330,7 @@
     <message>
         <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制</translation>
     </message>
 </context>
 <context>
@@ -552,7 +552,7 @@
 <context>
     <name>FolderSelectionDialog</name>
     <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
+        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
         <source>Select a Folder</source>
         <translation type="unfinished">选择一个文件夹</translation>
     </message>
@@ -659,13 +659,23 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="151"/>
+        <location filename="../Utils/ItemUtils.qml" line="152"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="166"/>
+        <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <source>Copy Item Into...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <source>Copy Todo Into...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -782,7 +792,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="209"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="214"/>
@@ -1536,13 +1546,13 @@
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择图书馆</translation>
     </message>
 </context>
 <context>
     <name>SelectTodoListDialog</name>
     <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="23"/>
+        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
         <source>Select Todo List</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1552,7 +1562,7 @@
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择项目</translation>
     </message>
 </context>
 <context>

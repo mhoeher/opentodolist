@@ -552,7 +552,7 @@
 <context>
     <name>FolderSelectionDialog</name>
     <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
+        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
         <source>Select a Folder</source>
         <translation type="unfinished">Kies een map</translation>
     </message>
@@ -659,14 +659,24 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="151"/>
+        <location filename="../Utils/ItemUtils.qml" line="152"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Taak verplaatsen naar…</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="166"/>
+        <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished">Taak op takenlijst zetten en verplaatsen naar…</translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <source>Copy Item Into...</source>
+        <translation type="unfinished">Item kopiëren naar…</translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <source>Copy Todo Into...</source>
+        <translation type="unfinished">Taak kopiëren naar…</translation>
     </message>
 </context>
 <context>
@@ -1542,7 +1552,7 @@
 <context>
     <name>SelectTodoListDialog</name>
     <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="23"/>
+        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
         <source>Select Todo List</source>
         <translation type="unfinished">Kies een takenlijst</translation>
     </message>

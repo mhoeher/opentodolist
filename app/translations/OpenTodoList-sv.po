@@ -152,7 +152,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Vill du verkligen ta bort biblioteket <strong>%1</strong> från programmet? Observera att filerna i biblioteket inte kommer att tas bort, så att du kan återställa biblioteket senare."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Välj en mapp"
@@ -1858,7 +1858,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Kunde inte ansluta till servern. Kontrollera ditt användarnamn, lösenord och serveradress och försök igen."
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Flytta denna att-göra till ..."
@@ -2053,7 +2053,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr "Problem identifierade"
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Välj att-göra-lista"
@@ -2151,7 +2151,7 @@ msgstr "Använd detta för att manuellt skala användargränssnittet. Som standa
 "\n"
 "Detta kräver att programmet startas om."
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Konvertera uppgift till Att-göra och flytta till..."
@@ -2420,4 +2420,14 @@ msgstr "Ange förlopp"
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Skrivbordsläge"
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
+msgstr ""
 

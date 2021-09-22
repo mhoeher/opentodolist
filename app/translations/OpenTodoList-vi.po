@@ -152,7 +152,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Bạn có thực sự muốn xóa thư viện <strong>%1</ strong> khỏi ứng dụng không? Lưu ý rằng các tệp bên trong thư viện sẽ không bị xóa, vì vậy bạn có thể khôi phục thư viện sau này."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Chọn một thư mục"
@@ -1859,7 +1859,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
@@ -2054,7 +2054,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr ""
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr ""
@@ -2148,7 +2148,7 @@ msgid "Use this to manually scale the user interface. By default, the app should
 "This requires a restart of the app."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr ""
@@ -2416,5 +2416,15 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
 msgstr ""
 

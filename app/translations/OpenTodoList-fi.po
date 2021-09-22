@@ -5,17 +5,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: OpenTodoList\n"
-"Language: br\n"
+"Language: fi\n"
 
 #: ../Pages/AboutPage.qml:15
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr "A-zivout..."
+msgstr "Tietoja..."
 
 #: ../Pages/AboutPage.qml:29
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
-msgstr "OpenTodoList"
+msgstr ""
 
 #: ../Pages/AboutPage.qml:36
 msgctxt "AboutPage|"
@@ -30,32 +30,32 @@ msgstr ""
 #: ../Pages/AboutThirdPartyPage.qml:11
 msgctxt "AboutThirdPartyPage|"
 msgid "Used Libraries and Resources"
-msgstr ""
+msgstr "Käytetyt kirjastot ja resurssit"
 
 #: ../Pages/AboutThirdPartyPage.qml:47
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
-msgstr "Aozer: <a href='%2'>%1</a>"
+msgstr "Tekijä: <a href='%2'>%1</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:54
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
-msgstr "Lañvaz: <a href='%1'>%2</a>"
+msgstr "Lisenssi: <a href='%1'>%2</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:61
 msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
-msgstr "Pellgargañ: <a href='%1'>%1</a>"
+msgstr "Lataa: <a href='%1'>%1</a>"
 
 #: ../Widgets/Attachments.qml:28
 msgctxt "Attachments|"
 msgid "Attach File"
-msgstr "Stagañ ur restr"
+msgstr "Liitä tiedosto"
 
 #: ../Widgets/Attachments.qml:41
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
-msgstr "Dilemel ar stagadenn?"
+msgstr "Poistetaanko liite?"
 
 #: ../Widgets/Attachments.qml:45
 msgctxt "Attachments|"
@@ -65,52 +65,52 @@ msgstr ""
 #: ../Widgets/Attachments.qml:59
 msgctxt "Attachments|"
 msgid "Attachments"
-msgstr "Stagadennoù"
+msgstr "Liitteet"
 
 #: ../Menues/ColorMenu.qml:15
 msgctxt "ColorMenu|"
 msgid "Color"
-msgstr "Liv"
+msgstr "Väri"
 
 #: ../Menues/ColorMenu.qml:19
 msgctxt "ColorMenu|"
 msgid "White"
-msgstr "Gwenn"
+msgstr "Valkoinen"
 
 #: ../Menues/ColorMenu.qml:26
 msgctxt "ColorMenu|"
 msgid "Red"
-msgstr "Ruz"
+msgstr "Punainen"
 
 #: ../Menues/ColorMenu.qml:33
 msgctxt "ColorMenu|"
 msgid "Green"
-msgstr "Gwer"
+msgstr "Vihreä"
 
 #: ../Menues/ColorMenu.qml:40
 msgctxt "ColorMenu|"
 msgid "Blue"
-msgstr "Glas"
+msgstr "Sininen"
 
 #: ../Menues/ColorMenu.qml:47
 msgctxt "ColorMenu|"
 msgid "Yellow"
-msgstr "Melen"
+msgstr "Keltainen"
 
 #: ../Menues/ColorMenu.qml:54
 msgctxt "ColorMenu|"
 msgid "Orange"
-msgstr "Orañjez"
+msgstr "Oranssi"
 
 #: ../Menues/ColorMenu.qml:61
 msgctxt "ColorMenu|"
 msgid "Lilac"
-msgstr "Lilac"
+msgstr "Liila"
 
 #: ../Windows/DeleteItemDialog.qml:19
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
-msgstr "Dilemel an elfenn?"
+msgstr "Poistetaanko tietue?"
 
 #: ../Windows/DeleteItemDialog.qml:32
 msgctxt "DeleteItemDialog|"
@@ -140,7 +140,7 @@ msgstr ""
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
-msgstr "Dilemel al levraoueg?"
+msgstr "Poistetaanko kirjasto?"
 
 #: ../Windows/DeleteLibraryDialog.qml:33
 msgctxt "DeleteLibraryDialog|"
@@ -155,17 +155,17 @@ msgstr ""
 #: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
-msgstr "Diuzañ un teul"
+msgstr "Valitse kansi"
 
 #: ../Widgets/ItemCreatedNotification.qml:66
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
-msgstr "<strong>%1</strong> zo bet krouet."
+msgstr "<strong>%1</strong> on luotu."
 
 #: ../Widgets/ItemCreatedNotification.qml:72
 msgctxt "ItemCreatedNotification|"
 msgid "Open"
-msgstr "Digeriñ"
+msgstr "Avaa"
 
 #: ../Widgets/ItemDueDateEditor.qml:28
 msgctxt "ItemDueDateEditor|"
@@ -175,67 +175,67 @@ msgstr ""
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
-msgstr "Notennoù"
+msgstr "Huomiot"
 
 #: ../Widgets/LibrariesSideBar.qml:376
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
-msgstr ""
+msgstr "Aikataulu"
 
 #: ../Widgets/LibrariesSideBar.qml:178
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
-msgstr "Levraoueg nevez"
+msgstr "Uusi kirjasto"
 
 #: ../Widgets/LibrariesSideBar.qml:220
 msgctxt "LibrariesSideBar|"
 msgid "About..."
-msgstr "A-zivout..."
+msgstr "Tietoja..."
 
 #: ../Pages/LibraryPage.qml:152
 msgctxt "LibraryPage|"
 msgid "Red"
-msgstr "Ruz"
+msgstr "Punainen"
 
 #: ../Pages/LibraryPage.qml:159
 msgctxt "LibraryPage|"
 msgid "Green"
-msgstr "Gwer"
+msgstr "Vihreä"
 
 #: ../Pages/LibraryPage.qml:166
 msgctxt "LibraryPage|"
 msgid "Blue"
-msgstr "Glas"
+msgstr "Sininen"
 
 #: ../Pages/LibraryPage.qml:173
 msgctxt "LibraryPage|"
 msgid "Yellow"
-msgstr "Melen"
+msgstr "Keltainen"
 
 #: ../Pages/LibraryPage.qml:180
 msgctxt "LibraryPage|"
 msgid "Orange"
-msgstr "Orañjez"
+msgstr "Oranssi"
 
 #: ../Pages/LibraryPage.qml:187
 msgctxt "LibraryPage|"
 msgid "Lilac"
-msgstr "Lilac"
+msgstr "Liila"
 
 #: ../Pages/LibraryPage.qml:194
 msgctxt "LibraryPage|"
 msgid "White"
-msgstr "Gwenn"
+msgstr "Valkoinen"
 
 #: ../Pages/LibraryPage.qml:204
 msgctxt "LibraryPage|"
 msgid "Rename"
-msgstr "Adenvel"
+msgstr "Nimeä uudelleen"
 
 #: ../Pages/LibraryPage.qml:214
 msgctxt "LibraryPage|"
 msgid "Delete"
-msgstr "Dilemel"
+msgstr "Poista"
 
 #: ../Pages/LibraryPage.qml:272
 msgctxt "LibraryPage|"
@@ -260,17 +260,17 @@ msgstr ""
 #: ../Menues/LibraryPageMenu.qml:18
 msgctxt "LibraryPageMenu|"
 msgid "Edit Sync Settings"
-msgstr ""
+msgstr "Synkronoinnin asetukset"
 
 #: ../Menues/LibraryPageMenu.qml:20
 msgctxt "LibraryPageMenu|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Synkronoi nyt"
 
 #: ../Menues/LibraryPageMenu.qml:29
 msgctxt "LibraryPageMenu|"
 msgid "Sync Log"
-msgstr ""
+msgstr "Synkronointiloki"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
 msgctxt "LibrarySecretsMissingNotificationBar|"
@@ -280,7 +280,7 @@ msgstr ""
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Ignore"
-msgstr "Leuskel a-gostez"
+msgstr ""
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
 msgctxt "LibrarySecretsMissingNotificationBar|"
@@ -295,7 +295,7 @@ msgstr ""
 #: ../Pages/LogViewPage.qml:26
 msgctxt "LogViewPage|"
 msgid "Copy Log"
-msgstr ""
+msgstr "Kopioi loki"
 
 #: ../Windows/MainWindow.qml:24
 msgctxt "MainWindow|"
@@ -305,42 +305,42 @@ msgstr ""
 #: ../Windows/MainWindow.qml:451
 msgctxt "MainWindow|"
 msgid "New &Library"
-msgstr "&Library nevez"
+msgstr "Uusi &kirjasto"
 
 #: ../Windows/MainWindow.qml:462
 msgctxt "MainWindow|"
 msgid "New &Note"
-msgstr "&Note nevez"
+msgstr ""
 
 #: ../Windows/MainWindow.qml:470
 msgctxt "MainWindow|"
 msgid "New &Todo List"
-msgstr "&Todo List nevez"
+msgstr ""
 
 #: ../Windows/MainWindow.qml:478
 msgctxt "MainWindow|"
 msgid "New &Image"
-msgstr "&Image nevez"
+msgstr "Uusi &kuva"
 
 #: ../Windows/MainWindow.qml:486
 msgctxt "MainWindow|"
 msgid "&Quit"
-msgstr "&Quit"
+msgstr "&Lopeta"
 
 #: ../Windows/MainWindow.qml:503
 msgctxt "MainWindow|"
 msgid "&Find"
-msgstr "&Find"
+msgstr "&Etsi"
 
 #: ../Windows/MainWindow.qml:545
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
-msgstr ""
+msgstr "Avaa viimeksi &luotu tietue"
 
 #: ../Windows/MainWindow.qml:553
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
-msgstr ""
+msgstr "Avaa &vasen sivupalkki"
 
 #: ../Windows/MainWindow.qml:279
 msgctxt "MainWindow|"
@@ -350,32 +350,32 @@ msgstr ""
 #: ../Pages/NewLibraryPage.qml:24 ../Pages/NewLibraryPage.qml:62
 msgctxt "NewLibraryPage|"
 msgid "Create Library"
-msgstr "Krouiñ ul levraoueg"
+msgstr "Luo kirjasto"
 
 #: ../Pages/NewLibraryPage.qml:23
 msgctxt "NewLibraryPage|"
 msgid "Create"
-msgstr "Krouiñ"
+msgstr "Luo"
 
 #: ../Pages/NewLibraryPage.qml:39
 msgctxt "NewLibraryPage|"
 msgid "Cancel"
-msgstr "Nullañ"
+msgstr "Peruuta"
 
 #: ../Pages/NewLibraryPage.qml:58
 msgctxt "NewLibraryPage|"
 msgid "Library Name:"
-msgstr "Anv al levraoueg:"
+msgstr "Kirjaston nimi:"
 
 #: ../Pages/NewLibraryPage.qml:66
 msgctxt "NewLibraryPage|"
 msgid "My New Library"
-msgstr "Va levraoueg nevez"
+msgstr "Uusi oma kirjasto"
 
 #: ../Pages/NewLibraryPage.qml:73
 msgctxt "NewLibraryPage|"
 msgid "Create Library in Default Location"
-msgstr "Krouiñ ul levraoueg el lec'h dre ziouer"
+msgstr "Luo kirjasto oletussijaintiin"
 
 #: ../Pages/NewLibraryPage.qml:80
 msgctxt "NewLibraryPage|"
@@ -390,12 +390,12 @@ msgstr ""
 #: ../Pages/NewLibraryPage.qml:110
 msgctxt "NewLibraryPage|"
 msgid "Please select a library location"
-msgstr ""
+msgstr "Valitse kirjaston sijainti"
 
 #: ../Widgets/NewTopLevelItemButton.qml:54
 msgctxt "NewTopLevelItemButton|"
 msgid "Note"
-msgstr "Notenn"
+msgstr ""
 
 #: ../Widgets/NewTopLevelItemButton.qml:43
 msgctxt "NewTopLevelItemButton|"
@@ -405,67 +405,67 @@ msgstr ""
 #: ../Widgets/NewTopLevelItemButton.qml:58
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
-msgstr "Skeudenn"
+msgstr "Kuva"
 
 #: ../Windows/OpenFileDialog.qml:18
 msgctxt "OpenFileDialog|"
 msgid "Select a File"
-msgstr "Diuzañ ur restr"
+msgstr "Valitse tiedosto"
 
 #: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
 msgctxt "OpenImageDialog|"
 msgid "Select Image"
-msgstr "Diuzañ ur skeudenn"
+msgstr "Valitse kuva"
 
 #: ../Windows/RenameItemDialog.qml:22
 msgctxt "RenameItemDialog|"
 msgid "Rename Item"
-msgstr "Adenvel an elfenn"
+msgstr "Nimeä tietue uudelleen"
 
 #: ../Windows/RenameItemDialog.qml:33
 msgctxt "RenameItemDialog|"
 msgid "Enter item title..."
-msgstr "Bizskrivit titl an elfenn..."
+msgstr "Kirjoita tietueen otsikko..."
 
 #: ../Windows/RenameLibraryDialog.qml:20
 msgctxt "RenameLibraryDialog|"
 msgid "Rename Library"
-msgstr "Adenvel al levraoueg"
+msgstr "Nimeä kirjasto uudelleen"
 
 #: ../Windows/RenameLibraryDialog.qml:37
 msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
-msgstr "Bizskrivit titl al levraoueg..."
+msgstr "Kirjoita kirjaston otsikko..."
 
 #: ../Pages/ScheduleViewPage.qml:123
 msgctxt "ScheduleViewPage|"
 msgid "Today"
-msgstr "Hiziv"
+msgstr "Tänään"
 
 #: ../Pages/ScheduleViewPage.qml:124
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
-msgstr "Warc'hoazh"
+msgstr "Huomenna"
 
 #: ../Pages/ScheduleViewPage.qml:166
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
-msgstr ""
+msgstr "Myöhemmin tällä viikolla"
 
 #: ../Pages/ScheduleViewPage.qml:168
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
-msgstr "Ar sizhun a zeu"
+msgstr "Ensi viikolla"
 
 #: ../Pages/ScheduleViewPage.qml:169
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
-msgstr ""
+msgstr "Tulossa seuraavaksi"
 
 #: ../Pages/ScheduleViewPage.qml:196
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr ""
+msgstr "Mitään ei ole aikataulutettu... Aseta määräpäivä tietueille, jotta ne ilmestyvät tänne näkyviin."
 
 #: ../Pages/ScheduleViewPage.qml:101
 msgctxt "ScheduleViewPage|"
@@ -480,52 +480,52 @@ msgstr ""
 #: ../Widgets/SyncErrorNotificationBar.qml:49
 msgctxt "SyncErrorNotificationBar|"
 msgid "Ignore"
-msgstr "Leuskel a-gostez"
+msgstr "Ohita"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:53
 msgctxt "SyncErrorNotificationBar|"
 msgid "View"
-msgstr "Gwelout"
+msgstr "Näytä"
 
 #: ../Widgets/SyncIndicatorBar.qml:63
 msgctxt "SyncIndicatorBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Synkronoidaan kirjasto..."
 
 #: ../Pages/SyncLibrarySelectionPage.qml:17
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create Library"
-msgstr "Krouiñ ul levraoueg"
+msgstr "Luo kirjasto"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:29
 msgctxt "SyncLibrarySelectionPage|"
 msgid "OK"
-msgstr "Mat eo"
+msgstr "OK"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:46
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Cancel"
-msgstr "Nullañ"
+msgstr "Peruuta"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:79
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create new library on server"
-msgstr "Krouiñ ul levraoueg nevez war ar servijer"
+msgstr "Luo uusi kirjasto palvelimelle"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:97
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Searching for existing libraries..."
-msgstr ""
+msgstr "Etsitään olemassa olevia kirjastoja... "
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:16
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Cancel"
-msgstr "Nullañ"
+msgstr "Peruuta"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:21
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "OK"
-msgstr "Mat eo"
+msgstr "OK"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:45
 msgctxt "SynchronizerBackendSelectionPage|"
@@ -547,7 +547,7 @@ msgstr "WebDAV"
 #: ../Pages/SynchronizerBackendSelectionPage.qml:67
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
-msgstr "Levraoueg lec'hel"
+msgstr "Paikallinen kirjasto"
 
 #: ../Widgets/TodoListItem.qml:128
 msgctxt "TodoListItem|"
@@ -577,42 +577,42 @@ msgstr ""
 #: ../Pages/TodoPage.qml:171
 msgctxt "TodoPage|"
 msgid "Tasks"
-msgstr ""
+msgstr "Tehtävät"
 
 #: ../Widgets/UpdateNotificationBar.qml:44
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
-msgstr ""
+msgstr "Päivitys OpenTodoListin versioon %1 on saatavilla."
 
 #: ../Widgets/UpdateNotificationBar.qml:50
 msgctxt "UpdateNotificationBar|"
 msgid "Ignore"
-msgstr "Leuskel a-gostez"
+msgstr "Ohita"
 
 #: ../Widgets/UpdateNotificationBar.qml:54
 msgctxt "UpdateNotificationBar|"
 msgid "Download"
-msgstr "Pellgargañ"
+msgstr "Lataa"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "OK"
-msgstr "Mat eo"
+msgstr "OK"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Validate"
-msgstr "Gwiriekaat"
+msgstr "Validoi"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:40
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Cancel"
-msgstr "Nullañ"
+msgstr "Peruuta"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:86
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Server Address:"
-msgstr "Chomlec'h an dafariad:"
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:92
 msgctxt "WebDAVConnectionSettingsPage|"
@@ -622,17 +622,17 @@ msgstr "https://..."
 #: ../Pages/WebDAVConnectionSettingsPage.qml:98
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "User name:"
-msgstr "Anv an arveriad:"
+msgstr "Käyttäjätunnus:"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:110
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Password:"
-msgstr "Ger-tremen:"
+msgstr "Salasana:"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:124
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Ignore SSL Errors"
-msgstr "Leuskel a-gostez fazioù SSL"
+msgstr "Ohita SSL-virheet"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:130
 msgctxt "WebDAVConnectionSettingsPage|"
@@ -642,27 +642,27 @@ msgstr ""
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "User name"
-msgstr "Anv an arveriad"
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "Password"
-msgstr "Ger-tremen"
+msgstr "Salasana"
 
 #: ../main.cpp:102
 msgctxt "main|"
 msgid "Manage your personal data."
-msgstr ""
+msgstr "Hallinnoi henkilökohtaisia tietojasi"
 
 #: ../main.cpp:108
 msgctxt "main|"
 msgid "QML Root Directory"
-msgstr "QML Root Directory"
+msgstr ""
 
 #: ../main.cpp:109
 msgctxt "main|"
 msgid "DIR"
-msgstr "DIR"
+msgstr ""
 
 #: ../main.cpp:116
 msgctxt "main|"
@@ -682,7 +682,7 @@ msgstr ""
 #: ../Widgets/TagsEditor.qml:34
 msgctxt "TagsEditor|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Lisää tunniste"
 
 #: ../Pages/TodoListPage.qml:242
 msgctxt "TodoListPage|"
@@ -692,7 +692,7 @@ msgstr ""
 #: ../Pages/TodoPage.qml:177
 msgctxt "TodoPage|"
 msgid "Add new task..."
-msgstr "Ouzhpennañ un drevell nevez..."
+msgstr "Lisää uusi tehtävä..."
 
 #: ../Widgets/TodosWidget.qml:194
 msgctxt "TodosWidget|"
@@ -702,27 +702,27 @@ msgstr ""
 #: ../Utils/Colors.qml:15
 msgctxt "Colors|"
 msgid "System"
-msgstr "Reizhiad"
+msgstr "Järjestelmä"
 
 #: ../Utils/Colors.qml:16
 msgctxt "Colors|"
 msgid "Light"
-msgstr "Sklaer"
+msgstr "Vaalea"
 
 #: ../Utils/Colors.qml:17
 msgctxt "Colors|"
 msgid "Dark"
-msgstr "Teñval"
+msgstr "Tumma"
 
 #: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
-msgstr "Arventennoù"
+msgstr "Asetukset"
 
 #: ../Windows/MainWindow.qml:443
 msgctxt "MainWindow|"
 msgid "Settings"
-msgstr "Arventennoù"
+msgstr "Asetukset"
 
 #: ../Windows/MainWindow.qml:444
 msgctxt "MainWindow|"
@@ -732,22 +732,22 @@ msgstr "Ctrl+,"
 #: ../Pages/SettingsPageForm.ui.qml:33
 msgctxt "SettingsPageForm.ui|"
 msgid "Settings"
-msgstr "Arventennoù"
+msgstr "Asetukset"
 
 #: ../Pages/SettingsPageForm.ui.qml:39
 msgctxt "SettingsPageForm.ui|"
 msgid "User Interface"
-msgstr "Etrefas an arveriaded"
+msgstr "Käyttöliittymä"
 
 #: ../Pages/SettingsPageForm.ui.qml:56
 msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
-msgstr ""
+msgstr "Teema:"
 
 #: ../Widgets/LibrariesSideBar.qml:233
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
-msgstr "Krouiñ ul levraoueg dre ziouer"
+msgstr "Luo oletuskirjasto:"
 
 #: ../Pages/LibraryPage.qml:440
 msgctxt "LibraryPage|"
@@ -757,12 +757,12 @@ msgstr ""
 #: ../Pages/LibraryPage.qml:445
 msgctxt "LibraryPage|"
 msgid "Manually"
-msgstr "Dre zorn"
+msgstr ""
 
 #: ../Pages/LibraryPage.qml:452
 msgctxt "LibraryPage|"
 msgid "Title"
-msgstr "Titl"
+msgstr ""
 
 #: ../Pages/LibraryPage.qml:459
 msgctxt "LibraryPage|"
@@ -772,7 +772,7 @@ msgstr ""
 #: ../Pages/LibraryPage.qml:466
 msgctxt "LibraryPage|"
 msgid "Created At"
-msgstr "Krouet d'ar"
+msgstr ""
 
 #: ../Pages/LibraryPage.qml:473
 msgctxt "LibraryPage|"
@@ -782,57 +782,57 @@ msgstr ""
 #: ../Windows/MainWindow.qml:308
 msgctxt "MainWindow|"
 msgid "Rename"
-msgstr "Adenvel"
+msgstr "Nimeä uudelleen"
 
 #: ../Windows/MainWindow.qml:341
 msgctxt "MainWindow|"
 msgid "Color"
-msgstr "Liv"
+msgstr "Väri"
 
 #: ../Windows/MainWindow.qml:352
 msgctxt "MainWindow|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Lisää tunniste"
 
 #: ../Windows/MainWindow.qml:359
 msgctxt "MainWindow|"
 msgid "Attach File"
-msgstr "Stagañ ur restr"
+msgstr "Liitä tiedosto"
 
 #: ../Windows/MainWindow.qml:368
 msgctxt "MainWindow|"
 msgid "Search"
-msgstr "Klask"
+msgstr "Etsi"
 
 #: ../Windows/MainWindow.qml:375
 msgctxt "MainWindow|"
 msgid "Sort"
-msgstr ""
+msgstr "Järjestä"
 
 #: ../Windows/MainWindow.qml:383
 msgctxt "MainWindow|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Aseta määräpäivä"
 
 #: ../Windows/MainWindow.qml:391
 msgctxt "MainWindow|"
 msgid "Delete"
-msgstr "Dilemel"
+msgstr "Poista"
 
 #: ../Pages/SettingsPageForm.ui.qml:47
 msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
-msgstr "Yezh:"
+msgstr "Kieli:"
 
 #: ../Pages/TodoListPage.qml:170
 msgctxt "TodoListPage|"
 msgid "Manually"
-msgstr "Dre zorn"
+msgstr "Manuaalisesti"
 
 #: ../Pages/TodoListPage.qml:176
 msgctxt "TodoListPage|"
 msgid "Name"
-msgstr "Anv"
+msgstr "Nimi"
 
 #: ../Pages/TodoListPage.qml:182
 msgctxt "TodoListPage|"
@@ -842,7 +842,7 @@ msgstr ""
 #: ../Pages/TodoListPage.qml:188
 msgctxt "TodoListPage|"
 msgid "Created At"
-msgstr "Krouet d'ar"
+msgstr ""
 
 #: ../Pages/TodoListPage.qml:194
 msgctxt "TodoListPage|"
@@ -862,27 +862,27 @@ msgstr ""
 #: ../Utils/Translations.qml:16
 msgctxt "Translations|"
 msgid "System Language"
-msgstr "Yezh ar reizhiad"
+msgstr "Järjestelmän kieli"
 
 #: ../Utils/Translations.qml:32
 msgctxt "Translations|"
 msgid "German"
-msgstr "Alamaneg"
+msgstr ""
 
 #: ../Utils/Translations.qml:40
 msgctxt "Translations|"
 msgid "English"
-msgstr "Saozneg"
+msgstr ""
 
 #: ../Utils/Translations.qml:60
 msgctxt "Translations|"
 msgid "French"
-msgstr "Galleg"
+msgstr ""
 
 #: ../Pages/AboutPage.qml:43
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
-msgstr "(c) RPdev 2013-2020, handelv %1"
+msgstr "(c) RPdev 2013-2020, versio %1"
 
 #: ../Pages/AboutPage.qml:64
 msgctxt "AboutPage|"
@@ -892,17 +892,17 @@ msgstr ""
 #: ../Pages/AboutPage.qml:83
 msgctxt "AboutPage|"
 msgid "Report an Issue"
-msgstr ""
+msgstr "Ilmoita ongelmasta"
 
 #: ../Pages/AboutPage.qml:112
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
-msgstr ""
+msgstr "Kolmansien osapuolten kirjastot ja resurssit"
 
 #: ../Pages/AboutPage.qml:149
 msgctxt "AboutPage|"
 msgid "Author:"
-msgstr "Aozer:"
+msgstr "Tekijä:"
 
 #: ../Pages/AboutPage.qml:154
 msgctxt "AboutPage|"
@@ -912,7 +912,7 @@ msgstr "<a href='%2'>%1</a>"
 #: ../Pages/AboutPage.qml:161
 msgctxt "AboutPage|"
 msgid "License:"
-msgstr "Lañvaz:"
+msgstr "Lisenssi:"
 
 #: ../Pages/AboutPage.qml:166
 msgctxt "AboutPage|"
@@ -922,7 +922,7 @@ msgstr "<a href='%1'>%2</a>"
 #: ../Pages/AboutPage.qml:172
 msgctxt "AboutPage|"
 msgid "Download:"
-msgstr "Pellgargañ:"
+msgstr "Lataa:"
 
 #: ../Pages/AboutPage.qml:176
 msgctxt "AboutPage|"
@@ -932,12 +932,12 @@ msgstr "<a href='%1'>%1</a>"
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "Select Account Type"
-msgstr ""
+msgstr "Valitse tilin tyyppi"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "Account Type"
-msgstr "Rizh ar gont"
+msgstr "Tilin tyyppi"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
 msgctxt "AccountTypeSelectionPageForm.ui|"
@@ -957,12 +957,12 @@ msgstr "WebDAV"
 #: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
 msgctxt "AccountsPageForm.ui|"
 msgid "Accounts"
-msgstr "Kontoù"
+msgstr "Tilit"
 
 #: ../Windows/DeleteAccountDialog.qml:19
 msgctxt "DeleteAccountDialog|"
 msgid "Delete Account?"
-msgstr "Dilemel ar gont?"
+msgstr "Poistetaanko tili?"
 
 #: ../Windows/DeleteAccountDialog.qml:36
 msgctxt "DeleteAccountDialog|"
@@ -973,47 +973,47 @@ msgstr ""
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Edit Account"
-msgstr "Embann ar gont"
+msgstr "Muokkaa tiliä"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Name:"
-msgstr "Anv:"
+msgstr "Nimi:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:59
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Server Address:"
-msgstr "Chomlec'h an dafariad:"
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:65
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:71
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "User:"
-msgstr "Arveriad:"
+msgstr "Käyttäjä:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:77
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "User Name"
-msgstr "Anv an arveriad"
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password:"
-msgstr "Ger-tremen:"
+msgstr "Salasana:"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr "Ger-tremen:"
+msgstr "Salasana"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Poista varmennetarkistukset käytöstä"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
 msgctxt "EditWebDAVAccountPageForm.ui|"
@@ -1023,17 +1023,17 @@ msgstr ""
 #: ../Widgets/LibrariesSideBar.qml:185
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
-msgstr "Kontoù"
+msgstr "Tilit"
 
 #: ../Widgets/LibrariesSideBar.qml:205
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
-msgstr "Treiñ ar meziant..."
+msgstr "Käännä sovellus..."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create Library in Account"
-msgstr "Krouiñ ul levraoueg er gont"
+msgstr "Luo kirjasto tilille"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1043,27 +1043,27 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Existing Libraries"
-msgstr ""
+msgstr "Olemassa olevat kirjastot"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Select an existing library on the server to add it to the app."
-msgstr ""
+msgstr "Valitse olemassa oleva kirjasto palvelimelta lisätäksesi sen sovellukseen."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "No libraries were found on the server."
-msgstr ""
+msgstr "Palvelimelta ei löytynyt kirjastoja."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Searching existing libraries..."
-msgstr ""
+msgstr "Etsitään olemassa olevia kirjastoja..."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create a New Library"
-msgstr "Krouiñ ul levraoueg nevez"
+msgstr "Luo uusi kirjasto"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1073,12 +1073,12 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "My new library's name"
-msgstr "Anv va levraoueg lec'hel nevez"
+msgstr "Uuden kirjaston nimi"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Open a Folder as a Library"
-msgstr ""
+msgstr "Avaa kansio kirjastona"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
 msgctxt "NewLibraryInFolderPageForm.ui|"
@@ -1088,57 +1088,57 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Folder:"
-msgstr "Teul:"
+msgstr "Kansio:"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Path to a folder to use as a library"
-msgstr ""
+msgstr "Polku kansioon, jota tullaan käyttämään kirjastona"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Select"
-msgstr "Diuzañ"
+msgstr "Valitse"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Name:"
-msgstr "Anv:"
+msgstr "Nimi:"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Anv va levraoueg lec'hel"
+msgstr "Paikallisen kirjaston nimi"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Create Library"
-msgstr "Krouiñ ul levraoueg"
+msgstr "Luo kirjasto"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:32
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Local Library"
-msgstr "Levraoueg lec'hel"
+msgstr "Paikallinen kirjasto"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:38
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Use Folder as Library"
-msgstr ""
+msgstr "Käytä kansiota kirjastona"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:44
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Libraries From Your Accounts"
-msgstr ""
+msgstr "Lisää kirjastot tileiltäsi"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:79
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Account"
-msgstr "Ouzhpennañ ur gont"
+msgstr "Lisää tili"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:29
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "Create a Local Library"
-msgstr "Krouiñ ul levraoueg lec'hel"
+msgstr "Luo paikallinen kirjasto"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:37
 msgctxt "NewLocalLibraryPageForm.ui|"
@@ -1148,63 +1148,63 @@ msgstr ""
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:48
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "Name:"
-msgstr "Anv:"
+msgstr "Nimi:"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:53
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Anv va levraoueg lec'hel"
+msgstr "Paikallisen kirjaston nimi"
 
 #: ../Pages/NewWebDAVAccountPage.qml:191
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
-msgstr "Anv ar gont"
+msgstr "Tilin nimi"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Yhteyden asetukset"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Server Address:"
-msgstr "Chomlec'h an dafariad:"
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "User:"
-msgstr "Arveriad:"
+msgstr "Käyttäjä:"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "User Name"
-msgstr "Anv an arveriad"
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Password:"
-msgstr "Ger-tremen:"
+msgstr "Salasana:"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr "Ger-tremen"
+msgstr "Salasana"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Poista varmennetarkistukset käytöstä"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Name:"
-msgstr "Anv:"
+msgstr "Nimi:"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
 msgctxt "NewWebDAVAccountPageForm.ui|"
@@ -1219,32 +1219,32 @@ msgstr ""
 #: ../Windows/MainWindow.qml:109
 msgctxt "MainWindow|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Synkronoidaan kirjasto..."
 
 #: ../Pages/NotePage.qml:132
 msgctxt "NotePage|"
 msgid "Main Page"
-msgstr "Pajenn bennañ"
+msgstr "Pääsivu"
 
 #: ../Pages/NotePage.qml:195
 msgctxt "NotePage|"
 msgid "New Page"
-msgstr "Pajenn nevez"
+msgstr "Uusi sivu"
 
 #: ../Widgets/ItemNotesEditor.qml:114
 msgctxt "ItemNotesEditor|"
 msgid "Export to File..."
-msgstr ""
+msgstr "Vie tiedostoon..."
 
 #: ../Widgets/ItemNotesEditor.qml:118
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
-msgstr ""
+msgstr "Markdown-tiedostot"
 
 #: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
 msgid "All files"
-msgstr "Holl restroù"
+msgstr "Kaikki tiedostot"
 
 #: ../Pages/ProblemsPage.qml:42
 msgctxt "ProblemsPage|"
@@ -1254,17 +1254,17 @@ msgstr ""
 #: ../Pages/ProblemsPageForm.ui.qml:13 ../Pages/ProblemsPageForm.ui.qml:23
 msgctxt "ProblemsPageForm.ui|"
 msgid "Problems Detected"
-msgstr ""
+msgstr "Ongelmia havaittu"
 
 #: ../Utils/Translations.qml:28
 msgctxt "Translations|"
 msgid "Danish"
-msgstr "Daneg"
+msgstr ""
 
 #: ../Utils/Translations.qml:36
 msgctxt "Translations|"
 msgid "Greek"
-msgstr "Gresianeg"
+msgstr ""
 
 #: ../Utils/Translations.qml:56
 msgctxt "Translations|"
@@ -1274,52 +1274,52 @@ msgstr ""
 #: ../Utils/Translations.qml:64
 msgctxt "Translations|"
 msgid "Hungarian"
-msgstr "Hungareg"
+msgstr ""
 
 #: ../Utils/Translations.qml:68
 msgctxt "Translations|"
 msgid "Italian"
-msgstr "Italianeg"
+msgstr ""
 
 #: ../Utils/Translations.qml:120
 msgctxt "Translations|"
 msgid "Vietnamese"
-msgstr "Vietnameg"
+msgstr ""
 
 #: ../Utils/Translations.qml:44
 msgctxt "Translations|"
 msgid "Spanish"
-msgstr "Spagnoleg"
+msgstr ""
 
 #: ../Utils/Translations.qml:80
 msgctxt "Translations|"
 msgid "Dutch"
-msgstr "Nederlandeg"
+msgstr ""
 
 #: ../Utils/Translations.qml:84
 msgctxt "Translations|"
 msgid "Norwegian"
-msgstr "Norvegeg"
+msgstr ""
 
 #: ../Utils/Translations.qml:88
 msgctxt "Translations|"
 msgid "Polish"
-msgstr "Poloneg"
+msgstr ""
 
 #: ../Utils/Translations.qml:92
 msgctxt "Translations|"
 msgid "Portuguese"
-msgstr "Portugaleg"
+msgstr ""
 
 #: ../Utils/Translations.qml:96
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
-msgstr "Portugaleg (Brazil)"
+msgstr ""
 
 #: ../Utils/Translations.qml:112
 msgctxt "Translations|"
 msgid "Turkish"
-msgstr "Turkeg"
+msgstr ""
 
 #: ../Widgets/ItemCreatedNotification.qml:77
 msgctxt "ItemCreatedNotification|"
@@ -1329,27 +1329,27 @@ msgstr ""
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
 msgid "Spanish (Latin America & Caribbean)"
-msgstr "Spagnoleg (Amerika Latina ha Karaiboù)"
+msgstr ""
 
 #: ../Utils/Translations.qml:100
 msgctxt "Translations|"
 msgid "Russian"
-msgstr "Rusianeg"
+msgstr ""
 
 #: ../Utils/Translations.qml:104
 msgctxt "Translations|"
 msgid "Swedish"
-msgstr "Svedeg"
+msgstr ""
 
 #: ../Utils/Translations.qml:108
 msgctxt "Translations|"
 msgid "Turkmen"
-msgstr "Turkmeneg"
+msgstr ""
 
 #: ../Actions/DeleteItem.qml:8
 msgctxt "DeleteItem|"
 msgid "Delete"
-msgstr "Dilemel"
+msgstr "Poista"
 
 #: ../Widgets/ItemDueDateEditor.qml:59
 msgctxt "ItemDueDateEditor|"
@@ -1359,67 +1359,67 @@ msgstr ""
 #: ../Widgets/ItemDueDateEditor.qml:71
 msgctxt "ItemDueDateEditor|"
 msgid "No recurrence pattern set..."
-msgstr ""
+msgstr "Toistumiskaavaa ei ole asetettu..."
 
 #: ../Widgets/ItemDueDateEditor.qml:73
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every day."
-msgstr ""
+msgstr "Toistuu päivittäin."
 
 #: ../Widgets/ItemDueDateEditor.qml:75
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every week."
-msgstr ""
+msgstr "Toistuu viikottain."
 
 #: ../Widgets/ItemDueDateEditor.qml:77
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every month."
-msgstr ""
+msgstr "Toistuu kuukausittain."
 
 #: ../Widgets/ItemDueDateEditor.qml:81
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
-msgstr ""
+msgstr "Toistuu %1 päivän välein."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:92
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Today"
-msgstr "Hiziv"
+msgstr "Tänään"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:93
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Tomorrow"
-msgstr "Warc'hoazh"
+msgstr "Huomenna"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:94
 msgctxt "NewItemWithDueDateDialog|"
 msgid "This Week"
-msgstr "Ar sizhun-mañ"
+msgstr "Tämä viikko"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:95
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Next Week"
-msgstr "Ar sizhun a zeu"
+msgstr "Ensi viikko"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:96
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
-msgstr "Diuzañ..."
+msgstr "Valitse..."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:115
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
-msgstr "Titl:"
+msgstr "Otsikko:"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:120
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
-msgstr ""
+msgstr "Otsikko uudelle tietueelle..."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:126
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Create in:"
-msgstr "Krouiñ e:"
+msgstr ""
 
 #: ../Windows/NewItemWithDueDateDialog.qml:166
 msgctxt "NewItemWithDueDateDialog|"
@@ -1429,47 +1429,47 @@ msgstr ""
 #: ../Widgets/NewTopLevelItemButton.qml:48
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo"
-msgstr "D'ober"
+msgstr ""
 
 #: ../Windows/RecurrenceDialog.qml:30
 msgctxt "RecurrenceDialog|"
 msgid "Edit Recurrence"
-msgstr ""
+msgstr "Muokkaa toistoa"
 
 #: ../Windows/RecurrenceDialog.qml:43
 msgctxt "RecurrenceDialog|"
 msgid "Never"
-msgstr "Morse"
+msgstr "Ei koskaan"
 
 #: ../Windows/RecurrenceDialog.qml:44
 msgctxt "RecurrenceDialog|"
 msgid "Daily"
-msgstr "Bemdez"
+msgstr "Päivittäin"
 
 #: ../Windows/RecurrenceDialog.qml:45
 msgctxt "RecurrenceDialog|"
 msgid "Weekly"
-msgstr "Bep sizhun"
+msgstr "Viikottain"
 
 #: ../Windows/RecurrenceDialog.qml:46
 msgctxt "RecurrenceDialog|"
 msgid "Monthly"
-msgstr "Bep miz"
+msgstr "Kuukausittain"
 
 #: ../Windows/RecurrenceDialog.qml:48
 msgctxt "RecurrenceDialog|"
 msgid "Every N Days"
-msgstr "Bep N devezh"
+msgstr "N päivän välein"
 
 #: ../Windows/RecurrenceDialog.qml:75
 msgctxt "RecurrenceDialog|"
 msgid "Recurs:"
-msgstr ""
+msgstr "Toistuu:"
 
 #: ../Windows/RecurrenceDialog.qml:88
 msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
-msgstr "Niver a zevezhioù:"
+msgstr "Päivien määrä:"
 
 #: ../Windows/RecurrenceDialog.qml:106
 msgctxt "RecurrenceDialog|"
@@ -1479,7 +1479,7 @@ msgstr ""
 #: ../Actions/RenameItem.qml:8
 msgctxt "RenameItem|"
 msgid "Rename"
-msgstr "Adenvel"
+msgstr "Nimeä uudelleen"
 
 #: ../Actions/SetDueNextWeek.qml:8
 msgctxt "SetDueNextWeek|"
@@ -1519,7 +1519,7 @@ msgstr ""
 #: ../Menues/LibraryPageActions.qml:30
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Synkronoi nyt"
 
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
@@ -1529,7 +1529,7 @@ msgstr ""
 #: ../Pages/SettingsPageForm.ui.qml:65
 msgctxt "SettingsPageForm.ui|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Fontin koko:"
 
 #: ../Utils/Translations.qml:52
 msgctxt "Translations|"
@@ -1539,32 +1539,32 @@ msgstr ""
 #: ../Pages/AccountTypeSelectionPage.qml:22
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
-msgstr ""
+msgstr "Valitse tilin tyyppi"
 
 #: ../Pages/AccountTypeSelectionPage.qml:81
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
-msgstr ""
+msgstr "Tilin tyyppi"
 
 #: ../Pages/AccountTypeSelectionPage.qml:102
 msgctxt "AccountTypeSelectionPage|"
 msgid "NextCloud"
-msgstr ""
+msgstr "NextCloud"
 
 #: ../Pages/AccountTypeSelectionPage.qml:107
 msgctxt "AccountTypeSelectionPage|"
 msgid "ownCloud"
-msgstr ""
+msgstr "ownCloud"
 
 #: ../Pages/AccountTypeSelectionPage.qml:112
 msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 #: ../appstartup.cpp:175
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
-msgstr ""
+msgstr "Hallinnoi henkilökohtaisia tietojasi."
 
 #: ../appstartup.cpp:181
 msgctxt "AppStartup|"
@@ -1589,22 +1589,22 @@ msgstr ""
 #: ../appstartup.cpp:324
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr ""
+msgstr "Avaa"
 
 #: ../appstartup.cpp:384
 msgctxt "AppStartup|"
 msgid "Quit"
-msgstr ""
+msgstr "Lopeta"
 
 #: ../Actions/DeleteCompletedChildren.qml:8
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Poista valmistuneet tietueet"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:19
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
-msgstr ""
+msgstr "Poistetaanko valmistuneet tietueet?"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
 msgctxt "DeleteCompletedItemsDialog|"
@@ -1620,52 +1620,52 @@ msgstr ""
 #: ../Pages/EditNextCloudAccountPage.qml:69
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Muokkaa tiliä"
 
 #: ../Pages/EditNextCloudAccountPage.qml:75
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nimi:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:86
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:93
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditNextCloudAccountPage.qml:101
 msgctxt "EditNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
+msgstr "Kirjaudu sisään"
 
 #: ../Pages/EditNextCloudAccountPage.qml:111
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Käyttäjä:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:118
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/EditNextCloudAccountPage.qml:124
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Salasana:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:131
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 #: ../Pages/EditNextCloudAccountPage.qml:140
 msgctxt "EditNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Poista varmennetarkistukset käytöstä"
 
 #: ../Pages/EditNextCloudAccountPage.qml:149
 msgctxt "EditNextCloudAccountPage|"
@@ -1675,58 +1675,58 @@ msgstr ""
 #: ../Widgets/LibrariesSideBar.qml:192
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
-msgstr ""
+msgstr "Muokkaa listaa"
 
 #: ../Widgets/LibrariesSideBar.qml:344
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
-msgstr ""
+msgstr "Piilota aikataulu"
 
 #: ../Widgets/LibrariesSideBar.qml:344
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
-msgstr ""
+msgstr "Näytä aikataulu"
 
 #: ../Widgets/LibrariesSideBar.qml:354
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
-msgstr ""
+msgstr "Siirrä ylös"
 
 #: ../Widgets/LibrariesSideBar.qml:363
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
-msgstr ""
+msgstr "Siirrä alas"
 
 #: ../Windows/MainWindow.qml:398
 msgctxt "MainWindow|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Poista valmistuneet tietueet"
 
 #: ../Windows/MainWindow.qml:494
 msgctxt "MainWindow|"
 msgid "Close"
-msgstr ""
+msgstr "Sulje"
 
 #: ../Pages/NewNextCloudAccountPage.qml:20
 #: ../Pages/NewNextCloudAccountPage.qml:74
 msgctxt "NewNextCloudAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Yhteyden asetukset"
 
 #: ../Pages/NewNextCloudAccountPage.qml:80
 msgctxt "NewNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:94
 msgctxt "NewNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
+msgstr "Kirjaudu sisään"
 
 #: ../Pages/NewNextCloudAccountPage.qml:107
 msgctxt "NewNextCloudAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Ongelmia sisäänkirjautumisessa?"
 
 #: ../Pages/NewNextCloudAccountPage.qml:118
 msgctxt "NewNextCloudAccountPage|"
@@ -1736,7 +1736,7 @@ msgstr ""
 #: ../Pages/NewNextCloudAccountPage.qml:125
 msgctxt "NewNextCloudAccountPage|"
 msgid "Log in Manually"
-msgstr ""
+msgstr "Kirjaudu manuaalisesti"
 
 #: ../Pages/NewNextCloudAccountPage.qml:131
 msgctxt "NewNextCloudAccountPage|"
@@ -1746,57 +1746,57 @@ msgstr ""
 #: ../Pages/NewNextCloudAccountPage.qml:139
 msgctxt "NewNextCloudAccountPage|"
 msgid "Create App Password"
-msgstr ""
+msgstr "Luo sovelluksen salasana"
 
 #: ../Pages/NewNextCloudAccountPage.qml:148
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Settings"
-msgstr ""
+msgstr "Tilin asetukset"
 
 #: ../Pages/NewNextCloudAccountPage.qml:157
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Kopioi linkki"
 
 #: ../Pages/NewNextCloudAccountPage.qml:162
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Kopioitu!"
 
 #: ../Pages/NewNextCloudAccountPage.qml:171
 msgctxt "NewNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Käyttäjä:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:178
 msgctxt "NewNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/NewNextCloudAccountPage.qml:185
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Salasana:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:192
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 #: ../Pages/NewNextCloudAccountPage.qml:202
 msgctxt "NewNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Poista varmennetarkistukset käytöstä"
 
 #: ../Pages/NewNextCloudAccountPage.qml:206
 msgctxt "NewNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nimi:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:218
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Name"
-msgstr ""
+msgstr "Tilin nimi"
 
 #: ../Pages/NewNextCloudAccountPage.qml:228
 msgctxt "NewNextCloudAccountPage|"
@@ -1806,52 +1806,52 @@ msgstr ""
 #: ../Pages/AccountsPage.qml:19 ../Pages/AccountsPage.qml:50
 msgctxt "AccountsPage|"
 msgid "Accounts"
-msgstr ""
+msgstr "Tilit"
 
 #: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:124
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Muokkaa tiliä"
 
 #: ../Pages/EditWebDAVAccountPage.qml:130
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nimi:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:141
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:147
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditWebDAVAccountPage.qml:154
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Käyttäjä:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:160
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/EditWebDAVAccountPage.qml:167
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Salasana:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:174
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 #: ../Pages/EditWebDAVAccountPage.qml:184
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Poista varmennetarkistukset käytöstä"
 
 #: ../Pages/EditWebDAVAccountPage.qml:192
 msgctxt "EditWebDAVAccountPage|"
@@ -1866,22 +1866,22 @@ msgstr ""
 #: ../Widgets/LibrariesSideBar.qml:212
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
-msgstr ""
+msgstr "Lahjoita"
 
 #: ../Windows/MainWindow.qml:319
 msgctxt "MainWindow|"
 msgid "Move"
-msgstr ""
+msgstr "Siirrä"
 
 #: ../Actions/MoveTodo.qml:11
 msgctxt "MoveTodo|"
 msgid "Move"
-msgstr ""
+msgstr "Siirrä"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:104
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
-msgstr ""
+msgstr "Luo kirjasto tilille"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
@@ -1891,7 +1891,7 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPage.qml:121
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Existing Libraries"
-msgstr ""
+msgstr "Olemassa olevat kirjastot"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:129
 msgctxt "NewLibraryFromAccountPage|"
@@ -1901,17 +1901,17 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPage.qml:135
 msgctxt "NewLibraryFromAccountPage|"
 msgid "No libraries were found on the server."
-msgstr ""
+msgstr "Palvelimelta ei löytynyt kirjastoja."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:143
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Searching existing libraries..."
-msgstr ""
+msgstr "Etsitään olemassa olevia kirjastoja..."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:177
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a New Library"
-msgstr ""
+msgstr "Luo uusi kirjasto"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:185
 msgctxt "NewLibraryFromAccountPage|"
@@ -1921,12 +1921,12 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPage.qml:199
 msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
-msgstr ""
+msgstr "Uuden kirjaston nimi"
 
 #: ../Pages/NewLibraryInFolderPage.qml:88
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
-msgstr ""
+msgstr "Avaa kansio kirjastona"
 
 #: ../Pages/NewLibraryInFolderPage.qml:96
 msgctxt "NewLibraryInFolderPage|"
@@ -1936,7 +1936,7 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:100
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
-msgstr ""
+msgstr "Kansio:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
@@ -1946,42 +1946,42 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:111
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
-msgstr ""
+msgstr "Valitse"
 
 #: ../Pages/NewLibraryInFolderPage.qml:116
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nimi:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:121
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
-msgstr ""
+msgstr "Paikallisen kirjaston nimi"
 
 #: ../Pages/NewLibraryPage.qml:69
 msgctxt "NewLibraryPage|"
 msgid "Local Library"
-msgstr ""
+msgstr "Paikallinen kirjasto"
 
 #: ../Pages/NewLibraryPage.qml:76
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
-msgstr ""
+msgstr "Käytä kansiota kirjastona"
 
 #: ../Pages/NewLibraryPage.qml:87
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
-msgstr ""
+msgstr "Lisää kirjastot tileiltäsi"
 
 #: ../Pages/NewLibraryPage.qml:114
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
-msgstr ""
+msgstr "Lisää tili"
 
 #: ../Pages/NewLocalLibraryPage.qml:62
 msgctxt "NewLocalLibraryPage|"
 msgid "Create a Local Library"
-msgstr ""
+msgstr "Luo paikallinen kirjasto"
 
 #: ../Pages/NewLocalLibraryPage.qml:70
 msgctxt "NewLocalLibraryPage|"
@@ -1991,57 +1991,57 @@ msgstr ""
 #: ../Pages/NewLocalLibraryPage.qml:80
 msgctxt "NewLocalLibraryPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nimi:"
 
 #: ../Pages/NewLocalLibraryPage.qml:85
 msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
-msgstr ""
+msgstr "Paikallisen kirjaston nimi"
 
 #: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:130
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Yhteyden asetukset"
 
 #: ../Pages/NewWebDAVAccountPage.qml:136
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Palvelimen osoite:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:142
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/NewWebDAVAccountPage.qml:148
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Käyttäjä:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:154
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Käyttäjätunnus"
 
 #: ../Pages/NewWebDAVAccountPage.qml:160
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Salasana:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:166
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 #: ../Pages/NewWebDAVAccountPage.qml:175
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Poista varmennetarkistukset käytöstä"
 
 #: ../Pages/NewWebDAVAccountPage.qml:179
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nimi:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:201
 msgctxt "NewWebDAVAccountPage|"
@@ -2051,7 +2051,7 @@ msgstr ""
 #: ../Pages/ProblemsPage.qml:18 ../Pages/ProblemsPage.qml:28
 msgctxt "ProblemsPage|"
 msgid "Problems Detected"
-msgstr ""
+msgstr "Ongelmia havaittu"
 
 #: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
@@ -2061,27 +2061,27 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:45
 msgctxt "SettingsPage|"
 msgid "Settings"
-msgstr ""
+msgstr "Asetukset"
 
 #: ../Pages/SettingsPage.qml:51
 msgctxt "SettingsPage|"
 msgid "User Interface"
-msgstr ""
+msgstr "Käyttöliittymä"
 
 #: ../Pages/SettingsPage.qml:59
 msgctxt "SettingsPage|"
 msgid "Language:"
-msgstr ""
+msgstr "Kieli:"
 
 #: ../Pages/SettingsPage.qml:84
 msgctxt "SettingsPage|"
 msgid "Theme:"
-msgstr ""
+msgstr "Teema:"
 
 #: ../Pages/SettingsPage.qml:127
 msgctxt "SettingsPage|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Fontin koko:"
 
 #: ../Utils/Translations.qml:72
 msgctxt "Translations|"
@@ -2096,22 +2096,22 @@ msgstr ""
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Aseta edistyminen"
 
 #: ../Actions/SetManualProgressAction.qml:8
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Aseta edistyminen"
 
 #: ../Pages/SettingsPage.qml:144
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Käytä mukautettua fontin kokoa"
 
 #: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
+msgstr "Käytä kompaktia tyyliä"
 
 #: ../Pages/SettingsPage.qml:171
 msgctxt "SettingsPage|"
@@ -2133,12 +2133,12 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:196
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
-msgstr ""
+msgstr "Ohita skaalauskerroin"
 
 #: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
-msgstr ""
+msgstr "Skaalauskerroin:"
 
 #: ../Pages/SettingsPage.qml:221
 msgctxt "SettingsPage|"
@@ -2155,12 +2155,12 @@ msgstr ""
 #: ../Pages/LogViewPage.qml:32
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
-msgstr ""
+msgstr "Vieritä ylös"
 
 #: ../Pages/LogViewPage.qml:38
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
-msgstr ""
+msgstr "Vieritä alas"
 
 #: ../Pages/ProblemsPage.qml:47
 msgctxt "ProblemsPage|"
@@ -2185,7 +2185,7 @@ msgstr ""
 #: ../Pages/AboutPage.qml:91
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
+msgstr "Kopioi järjestelmän tiedot"
 
 #: ../appstartup.cpp:331
 msgctxt "AppStartup|"
@@ -2195,12 +2195,12 @@ msgstr ""
 #: ../Widgets/ItemDueDateEditor.qml:79
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
-msgstr ""
+msgstr "Toistuu vuosittain."
 
 #: ../Widgets/ItemDueDateEditor.qml:83
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
-msgstr ""
+msgstr "Toistuu %1 viikon välein."
 
 #: ../Widgets/ItemDueDateEditor.qml:85
 msgctxt "ItemDueDateEditor|"
@@ -2210,12 +2210,12 @@ msgstr ""
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
-msgstr ""
+msgstr "Kumoa"
 
 #: ../appstartup.cpp:270 ../appstartup.cpp:277
 msgctxt "QObject|"
 msgid "unknown"
-msgstr ""
+msgstr "tuntematon"
 
 #: ../Windows/QuickNoteWindow.qml:19
 msgctxt "QuickNoteWindow|"
@@ -2230,7 +2230,7 @@ msgstr ""
 #: ../Windows/QuickNoteWindow.qml:57
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
-msgstr ""
+msgstr "Avaa pääikkuna"
 
 #: ../Windows/QuickNoteWindow.qml:70
 msgctxt "QuickNoteWindow|"
@@ -2240,7 +2240,7 @@ msgstr ""
 #: ../Windows/QuickNoteWindow.qml:133
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: ../Windows/QuickNoteWindow.qml:140
 msgctxt "QuickNoteWindow|"
@@ -2310,112 +2310,112 @@ msgstr ""
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopioi"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopioi"
 
 #: ../Pages/LibraryPage.qml:209
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopioi"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopioi"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Valitse kirjasto"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
+msgstr "Valitse tietue"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Ctrl+,"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Synkronoidaan kirjasto..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
+msgstr "Kumoa"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Nimeä uudelleen"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Siirrä"
 
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopioi"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Väri"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Lisää tunniste"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Liitä tiedosto"
 
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Etsi"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Järjestä"
 
 #: ../Components/ApplicationToolBarActions.qml:98
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Aseta määräpäivä"
 
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Poista"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Poista valmistuneet tietueet"
 
 #: ../Components/ApplicationToolBarActions.qml:120
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Aseta eteneminen"
 
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
+msgstr "Työpöytätila"
 
 #: ../Utils/ItemUtils.qml:184
 msgctxt "ItemUtils|"

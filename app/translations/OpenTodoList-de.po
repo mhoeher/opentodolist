@@ -152,7 +152,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Soll die Bibliothek <strong>%1</strong> wirklich gelöscht werden? Dateien, die zur Bibliothek gehören, werden nicht gelöscht, so dass sie jederzeit wieder zur Anwendung hinzugefügt werden kann."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Verzeichnis auswählen"
@@ -251,7 +251,7 @@ msgstr "Titel der Aufgabenliste"
 #: ../Pages/LibraryPage.qml:298
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
-msgstr "Suchbegriff 1, Suchbegriff 2, ..."
+msgstr "Suchbegriff 1, Suchbegriff 2, …"
 
 #: ../Pages/LibraryPage.qml:377
 msgctxt "LibraryPage|"
@@ -1868,7 +1868,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Verbindung zum Server fehlgeschlagen. Bitte überprüfe Deinen Benutzernamen, Dein Passwort, die Serveradresse und versuche es erneut."
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Verschiebe Todo zu..."
@@ -2063,7 +2063,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr "Erkannte Probleme"
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Wähle Todo-Liste"
@@ -2161,7 +2161,7 @@ msgstr "Nutze dies, um die Benutzeroberfläche manuell zu skalieren. Standardmä
 "\n"
 "Dies erfordert einen Neustart der Anwendung."
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Unteraufgabe in Aufgabe konvertieren und verschieben nach …"
@@ -2314,120 +2314,130 @@ msgstr "Öffne Kurznotiz-Editor bei Klick"
 #: ../Widgets/NoteItem.qml:75
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Fällig am %1"
 
 #: ../Widgets/TodoListItem.qml:76
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Fällig am %1"
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: ../Pages/LibraryPage.qml:209
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Bibliothek wählen"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
+msgstr "Eintrag auswählen"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Strg+,"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Bibliothek wird synchronisiert..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
+msgstr "Rückgängig"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Umbenennen"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Verschieben"
 
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Farbe"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Tag hinzufügen"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Datei anhängen"
 
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Sortieren"
 
 #: ../Components/ApplicationToolBarActions.qml:98
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Fälligkeitsdatum setzen"
 
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Abgeschlossene Einträge löschen"
 
 #: ../Components/ApplicationToolBarActions.qml:120
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Fortschritt dokumentieren"
 
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
+msgstr "Desktopmodus"
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
 msgstr ""
 

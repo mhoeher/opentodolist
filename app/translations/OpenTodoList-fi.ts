@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk">
+<TS version="2.1" language="fi">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
-        <translation type="unfinished">O stránke</translation>
+        <translation type="unfinished">Tietoja...</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="29"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished">Otvor ToDo zoznam</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="36"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished">Spravovať úlohy</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="64"/>
@@ -26,47 +26,47 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="83"/>
         <source>Report an Issue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ilmoita ongelmasta</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="91"/>
         <source>Copy System Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi järjestelmän tiedot</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="112"/>
         <source>Third Party Libraries and Resources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kolmansien osapuolten kirjastot ja resurssit</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="149"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tekijä:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="154"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="161"/>
         <source>License:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lisenssi:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="166"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="172"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lataa:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="176"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -74,27 +74,27 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
         <source>Select Account Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse tilin tyyppi</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilin tyyppi</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
         <source>NextCloud</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NextCloud</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="107"/>
         <source>ownCloud</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ownCloud</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="112"/>
         <source>WebDAV</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">WebDAV</translation>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
         <location filename="../Pages/AccountsPage.qml" line="19"/>
         <location filename="../Pages/AccountsPage.qml" line="50"/>
         <source>Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilit</translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../appstartup.cpp" line="324"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avaa</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="331"/>
@@ -146,7 +146,7 @@
     <message>
         <location filename="../appstartup.cpp" line="384"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lopeta</translation>
     </message>
 </context>
 <context>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../Components/ApplicationShortcuts.qml" line="15"/>
         <source>Ctrl+,</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+,</translation>
     </message>
 </context>
 <context>
@@ -162,7 +162,7 @@
     <message>
         <location filename="../Components/ApplicationToolBar.qml" line="151"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Synkronoidaan kirjasto...</translation>
     </message>
 </context>
 <context>
@@ -170,62 +170,62 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kumoa</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimeä uudelleen</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Siirrä</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Väri</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="67"/>
         <source>Add Tag</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lisää tunniste</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liitä tiedosto</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Etsi</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Järjestä</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
         <source>Set Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aseta määräpäivä</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="106"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista valmistuneet tietueet</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
@@ -238,12 +238,12 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liitä tiedosto</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poistetaanko liite?</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="45"/>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="59"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liitteet</translation>
     </message>
 </context>
 <context>
@@ -261,42 +261,42 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Väri</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valkoinen</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Punainen</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vihreä</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sininen</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Keltainen</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oranssi</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liila</translation>
     </message>
 </context>
 <context>
@@ -304,17 +304,17 @@
     <message>
         <location filename="../Utils/Colors.qml" line="15"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Järjestelmä</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vaalea</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tumma</translation>
     </message>
 </context>
 <context>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../Actions/CopyTodo.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi</translation>
     </message>
 </context>
 <context>
@@ -330,7 +330,7 @@
     <message>
         <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi</translation>
     </message>
 </context>
 <context>
@@ -338,7 +338,7 @@
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="19"/>
         <source>Delete Account?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poistetaanko tili?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="36"/>
@@ -351,7 +351,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista valmistuneet tietueet</translation>
     </message>
 </context>
 <context>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poistetaanko valmistuneet tietueet?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista</translation>
     </message>
 </context>
 <context>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poistetaanko tietue?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
@@ -423,7 +423,7 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poistetaanko kirjasto?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
@@ -442,52 +442,52 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Muokkaa tiliä</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="86"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Palvelimen osoite:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="93"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kirjaudu sisään</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjä:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="131"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="140"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="149"/>
@@ -501,47 +501,47 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Muokkaa tiliä</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="130"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Palvelimen osoite:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="147"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjä:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="160"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="167"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="174"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="184"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="192"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
         <source>Select a Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse kansi</translation>
     </message>
 </context>
 <context>
@@ -562,12 +562,12 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; on luotu.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="72"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avaa</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="77"/>
@@ -590,37 +590,37 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>No recurrence pattern set...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistumiskaavaa ei ole asetettu...</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="73"/>
         <source>Recurs every day.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu päivittäin.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="75"/>
         <source>Recurs every week.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu viikottain.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="77"/>
         <source>Recurs every month.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu kuukausittain.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="79"/>
         <source>Recurs every year.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu vuosittain.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu %1 päivän välein.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
         <source>Recurs every %1 weeks.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu %1 viikon välein.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="85"/>
@@ -633,7 +633,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huomiot</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
@@ -643,17 +643,17 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="114"/>
         <source>Export to File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vie tiedostoon...</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="118"/>
         <source>Markdown files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Markdown-tiedostot</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kaikki tiedostot</translation>
     </message>
 </context>
 <context>
@@ -684,67 +684,67 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="178"/>
         <source>New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uusi kirjasto</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="185"/>
         <source>Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilit</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Muokkaa listaa</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Asetukset</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="205"/>
         <source>Translate The App...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käännä sovellus...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lahjoita</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
         <source>About...</source>
-        <translation type="unfinished">O stránke</translation>
+        <translation type="unfinished">Tietoja...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="233"/>
         <source>Create Default Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luo oletuskirjasto:</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Piilota aikataulu</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Näytä aikataulu</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Siirrä ylös</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="363"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Siirrä alas</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="376"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aikataulu</translation>
     </message>
 </context>
 <context>
@@ -752,52 +752,52 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="152"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Punainen</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="159"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vihreä</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="166"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sininen</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="173"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Keltainen</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="180"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oranssi</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="187"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liila</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valkoinen</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="204"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimeä uudelleen</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="209"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="214"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="272"/>
@@ -827,7 +827,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="445"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Manuaalisesti</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="452"/>
@@ -855,12 +855,12 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Synkronoi nyt</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Synkronointiloki</translation>
     </message>
 </context>
 <context>
@@ -873,17 +873,17 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="26"/>
         <source>Copy Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi loki</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="32"/>
         <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vieritä ylös</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="38"/>
         <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vieritä alas</translation>
     </message>
 </context>
 <context>
@@ -891,7 +891,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="24"/>
         <source>OpenTodoList</source>
-        <translation type="unfinished">Otvor ToDo zoznam</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Windows/MainWindow.qml" line="279"/>
@@ -904,7 +904,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Siirrä</translation>
     </message>
 </context>
 <context>
@@ -912,17 +912,17 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tänään</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huomenna</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
         <source>This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tämä viikko</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
@@ -932,17 +932,17 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="96"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="115"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Otsikko:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
         <source>The title for your new item...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Otsikko uudelle tietueelle...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
@@ -960,7 +960,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="104"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luo kirjasto tilille</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
@@ -970,27 +970,27 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
         <source>Existing Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Olemassa olevat kirjastot</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="129"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse olemassa oleva kirjasto palvelimelta lisätäksesi sen sovellukseen.</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="135"/>
         <source>No libraries were found on the server.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Palvelimelta ei löytynyt kirjastoja.</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="143"/>
         <source>Searching existing libraries...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Etsitään olemassa olevia kirjastoja...</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="177"/>
         <source>Create a New Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luo uusi kirjasto</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="185"/>
@@ -1000,7 +1000,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="199"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uuden kirjaston nimi</translation>
     </message>
 </context>
 <context>
@@ -1008,7 +1008,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avaa kansio kirjastona</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
@@ -1018,27 +1018,27 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
         <source>Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kansio:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Polku kansioon, jota tullaan käyttämään kirjastona</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paikallisen kirjaston nimi</translation>
     </message>
 </context>
 <context>
@@ -1047,27 +1047,27 @@
         <location filename="../Pages/NewLibraryPage.qml" line="24"/>
         <location filename="../Pages/NewLibraryPage.qml" line="62"/>
         <source>Create Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luo kirjasto</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="69"/>
         <source>Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paikallinen kirjasto</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="76"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käytä kansiota kirjastona</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="87"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lisää kirjastot tileiltäsi</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="114"/>
         <source>Add Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lisää tili</translation>
     </message>
 </context>
 <context>
@@ -1075,7 +1075,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="62"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luo paikallinen kirjasto</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="70"/>
@@ -1085,12 +1085,12 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paikallisen kirjaston nimi</translation>
     </message>
 </context>
 <context>
@@ -1099,22 +1099,22 @@
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="74"/>
         <source>Connection Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yhteyden asetukset</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="80"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Palvelimen osoite:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kirjaudu sisään</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ongelmia sisäänkirjautumisessa?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
@@ -1124,7 +1124,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kirjaudu manuaalisesti</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
@@ -1134,57 +1134,57 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luo sovelluksen salasana</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilin asetukset</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="157"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioi linkki</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopioitu!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="171"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjä:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="178"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="185"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="192"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="202"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="206"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="218"/>
         <source>Account Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilin nimi</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="228"/>
@@ -1212,7 +1212,7 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kuva</translation>
     </message>
 </context>
 <context>
@@ -1221,52 +1221,52 @@
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="130"/>
         <source>Connection Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yhteyden asetukset</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
         <source>Server Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Palvelimen osoite:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
         <source>User:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjä:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salasana</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="175"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="179"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="191"/>
         <source>Account Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilin nimi</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="201"/>
@@ -1287,12 +1287,12 @@
     <message>
         <location filename="../Pages/NotePage.qml" line="132"/>
         <source>Main Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pääsivu</translation>
     </message>
     <message>
         <location filename="../Pages/NotePage.qml" line="195"/>
         <source>New Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uusi sivu</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="../Windows/OpenFileDialog.qml" line="18"/>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse tiedosto</translation>
     </message>
 </context>
 <context>
@@ -1309,7 +1309,7 @@
         <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
         <location filename="../Windows/OpenImageDialog.qml" line="19"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse kuva</translation>
     </message>
 </context>
 <context>
@@ -1318,7 +1318,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="18"/>
         <location filename="../Pages/ProblemsPage.qml" line="28"/>
         <source>Problems Detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ongelmia havaittu</translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
@@ -1345,7 +1345,7 @@
         <location filename="../appstartup.cpp" line="270"/>
         <location filename="../appstartup.cpp" line="277"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">tuntematon</translation>
     </message>
 </context>
 <context>
@@ -1363,7 +1363,7 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="57"/>
         <source>Open the main window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avaa pääikkuna</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
@@ -1378,7 +1378,7 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tallenna</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="140"/>
@@ -1411,27 +1411,27 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="30"/>
         <source>Edit Recurrence</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Muokkaa toistoa</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ei koskaan</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Päivittäin</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Viikottain</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kuukausittain</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
@@ -1441,7 +1441,7 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
         <source>Every N Days</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">N päivän välein</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
@@ -1456,12 +1456,12 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
         <source>Recurs:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toistuu:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
         <source>Number of days:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Päivien määrä:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
@@ -1474,7 +1474,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimeä uudelleen</translation>
     </message>
 </context>
 <context>
@@ -1482,12 +1482,12 @@
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="22"/>
         <source>Rename Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimeä tietue uudelleen</translation>
     </message>
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="33"/>
         <source>Enter item title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kirjoita tietueen otsikko...</translation>
     </message>
 </context>
 <context>
@@ -1495,12 +1495,12 @@
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="20"/>
         <source>Rename Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimeä kirjasto uudelleen</translation>
     </message>
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
         <source>Enter library title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kirjoita kirjaston otsikko...</translation>
     </message>
 </context>
 <context>
@@ -1513,17 +1513,17 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="123"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tänään</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="124"/>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huomenna</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="166"/>
         <source>Later This Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Myöhemmin tällä viikolla</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="168"/>
@@ -1533,12 +1533,12 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="169"/>
         <source>Coming Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tulossa seuraavaksi</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="196"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mitään ei ole aikataulutettu... Aseta määräpäivä tietueille, jotta ne ilmestyvät tänne näkyviin.</translation>
     </message>
 </context>
 <context>
@@ -1546,7 +1546,7 @@
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse kirjasto</translation>
     </message>
 </context>
 <context>
@@ -1562,7 +1562,7 @@
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valitse tietue</translation>
     </message>
 </context>
 <context>
@@ -1618,22 +1618,22 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="45"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Asetukset</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="51"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käyttöliittymä</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="59"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kieli:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="84"/>
         <source>Theme:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teema:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
@@ -1648,22 +1648,22 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="127"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fontin koko:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="144"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käytä mukautettua fontin kokoa</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Työpöytätila</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Käytä kompaktia tyyliä</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="171"/>
@@ -1685,12 +1685,12 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="196"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ohita skaalauskerroin</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skaalauskerroin:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="221"/>
@@ -1715,12 +1715,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ohita</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Näytä</translation>
     </message>
 </context>
 <context>
@@ -1728,7 +1728,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TagsEditor.qml" line="34"/>
         <source>Add Tag</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lisää tunniste</translation>
     </message>
 </context>
 <context>
@@ -1754,12 +1754,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="170"/>
         <source>Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Manuaalisesti</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="176"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nimi</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="182"/>
@@ -1797,12 +1797,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoPage.qml" line="171"/>
         <source>Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tehtävät</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="177"/>
         <source>Add new task...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lisää uusi tehtävä...</translation>
     </message>
 </context>
 <context>
@@ -1831,17 +1831,17 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="44"/>
         <source>An update to OpenTodoList %1 is available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Päivitys OpenTodoListin versioon %1 on saatavilla.</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ohita</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lataa</translation>
     </message>
 </context>
 </TS>

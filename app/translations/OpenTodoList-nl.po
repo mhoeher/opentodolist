@@ -152,7 +152,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Weet u zeker dat u de verzameling <strong>%1</strong> wilt verwijderen? Alle bijbehorende bestanden worden niet verwijderd zodat u de verzameling later kunt herstellen."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Kies een map"
@@ -1858,7 +1858,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Taak verplaatsen naar…"
@@ -2054,7 +2054,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr "Problemen vastgesteld"
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Kies een takenlijst"
@@ -2152,7 +2152,7 @@ msgstr "Gebruik deze instelling om de grootte van de vormgeving te bepalen. Stan
 "\n"
 "Herstart OpenTodoList om de wijziging toe te passen."
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Taak op takenlijst zetten en verplaatsen naar…"
@@ -2421,4 +2421,14 @@ msgstr "Voortgang instellen"
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Bureaubladmodus"
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr "Item kopiëren naar…"
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
+msgstr "Taak kopiëren naar…"
 
