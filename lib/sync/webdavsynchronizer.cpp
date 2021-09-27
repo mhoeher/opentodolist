@@ -71,6 +71,7 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
     : Synchronizer(parent),
       m_remoteDirectory(),
       m_disableCertificateCheck(false),
+      m_workarounds(0),
       m_username(),
       m_password(),
       m_createDirs(false),
@@ -86,20 +87,26 @@ WebDAVSynchronizer::~WebDAVSynchronizer() {}
 void WebDAVSynchronizer::validate()
 {
     beginValidation();
-    auto job = new SynqClient::WebDAVGetFileInfoJob(this);
-    job->setUrl(createUrl());
-    job->setUserAgent(Synchronizer::HTTPUserAgent);
-    job->setNetworkAccessManager(nam());
-    job->setServerType(toSynqClientServerType(m_serverType));
-    job->start();
-    connect(job, &SynqClient::WebDAVGetFileInfoJob::finished, this, [=]() {
-        job->deleteLater();
-        if (job->error() == SynqClient::JobError::NoError) {
-            endValidation(true);
-        } else {
-            endValidation(false);
+    auto factory = new SynqClient::WebDAVJobFactory(this);
+    setupFactory(*factory);
+    factory->setWorkarounds(SynqClient::WebDAVWorkaround::NoWorkarounds); // clear workarounds!
+    connect(factory, &SynqClient::WebDAVJobFactory::serverTestFinished, this, [=](bool success) {
+        factory->deleteLater();
+        if (success) {
+            m_workarounds = factory->workarounds();
         }
+        endValidation(success);
     });
+    factory->testServer();
+}
+
+void WebDAVSynchronizer::setupFactory(SynqClient::WebDAVJobFactory& factory)
+{
+    factory.setNetworkAccessManager(nam());
+    factory.setServerType(toSynqClientServerType(m_serverType));
+    factory.setUrl(createUrl());
+    factory.setUserAgent(Synchronizer::HTTPUserAgent);
+    factory.setWorkarounds(static_cast<SynqClient::WebDAVWorkarounds>(m_workarounds));
 }
 
 void WebDAVSynchronizer::synchronize()
@@ -153,10 +160,7 @@ void WebDAVSynchronizer::synchronize()
                     &WebDAVSynchronizer::progress);
 
             SynqClient::WebDAVJobFactory factory;
-            factory.setNetworkAccessManager(nam());
-            factory.setServerType(toSynqClientServerType(m_serverType));
-            factory.setUrl(createUrl());
-            factory.setUserAgent(Synchronizer::HTTPUserAgent);
+            setupFactory(factory);
             sync.setJobFactory(&factory);
 
             SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
@@ -306,6 +310,7 @@ void WebDAVSynchronizer::setAccount(Account* account)
     m_username = account->username();
     m_password = account->password();
     m_disableCertificateCheck = account->disableCertificateChecks();
+    m_workarounds = account->backendSpecificData().value("workarounds", 0).toInt();
     m_url = account->baseUrl();
     switch (account->type()) {
     case Account::NextCloud:
@@ -424,6 +429,19 @@ bool WebDAVSynchronizer::createDirs() const
 void WebDAVSynchronizer::setCreateDirs(bool createDirs)
 {
     m_createDirs = createDirs;
+}
+
+int WebDAVSynchronizer::workarounds() const
+{
+    return m_workarounds;
+}
+
+void WebDAVSynchronizer::setWorkarounds(int newWorkarounds)
+{
+    if (m_workarounds == newWorkarounds)
+        return;
+    m_workarounds = newWorkarounds;
+    emit workaroundsChanged();
 }
 
 QVariantMap WebDAVSynchronizer::toFullMap() const

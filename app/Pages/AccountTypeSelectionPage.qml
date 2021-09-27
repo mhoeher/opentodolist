@@ -22,7 +22,7 @@ C.Page {
     title: qsTr("Select Account Type")
 
     Component.onCompleted: {
-        var button = buttonBox.standardButton(DialogButtonBox.Ok);
+        var button = buttonBox.standardButton(C.DialogButtonBox.Ok);
         button.enabled = Qt.binding(function() {
             return selectedAccountType !== "";
         });
