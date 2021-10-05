@@ -10,6 +10,7 @@ variables:
     CTEST_OUTPUT_ON_FAILURE: 1
     GIT_SUBMODULE_STRATEGY: recursive
     CCACHE_DIR: $CI_PROJECT_DIR/ccache
+    ANDROID_MIN_SDK_INT: 21
 
 stages:
   - prepare
@@ -206,7 +207,7 @@ ios:
       - build-android/OpenTodoList*.aab
     expire_in: 1 week
   variables:
-    ANDROID_NDK_PLATFORM: android-21
+    ANDROID_NDK_PLATFORM: android-$ANDROID_MIN_SDK_INT
 
 # Android build ARMv7
 android_armv7:

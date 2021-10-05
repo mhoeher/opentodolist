@@ -19,8 +19,6 @@ if [ -n "$CI" ]; then
     "
 fi
 
-desktop-file-validate templates/appimage/default.desktop
-
 source $PREFIX_PATH/bin/qt511-env.sh || true
 export QT_QPA_PLATFORM=minimal
 
@@ -49,6 +47,8 @@ rm -rf AppImageBuild/usr/{include,lib,mkspecs}
 # Add symlinks to app root, so they are found by linuxdeployqt:
 ln -s "./usr/share/applications/net.rpdev.OpenTodoList.desktop" AppImageBuild/default.desktop
 ln -s "./usr/share/icons/hicolor/256x256/apps/net.rpdev.OpenTodoList.png" AppImageBuild/
+
+desktop-file-validate AppImageBuild/default.desktop
 
 export VERSION=$(git describe --tags)
 

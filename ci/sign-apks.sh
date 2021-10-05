@@ -2,25 +2,25 @@
 
 set -e
 
-# Note: Starting from some recent (2020-04-21) Android SDK release,
-# we have to run zipalign twice: The first round will fail, when we
-# rerun on the intermediate file, it succeeds. See also
-# this SO post: https://stackoverflow.com/a/38074885/6367098
-
 pushd build-android
 for android_file in *.apk *.aab; do
     if [ -f "$android_file" ]; then
         filename_extension="${android_file##*.}"
-        jarsigner \
-            -sigalg SHA1withRSA \
-            -digestalg SHA1 \
-            -keystore "$OPENTODOLIST_KEYSTORE" \
-            -storepass "$OPENTODOLIST_KEYSTORE_SECRET" \
-            $android_file "$OPENTODOLIST_KEYSTORE_ALIAS"
+        android_file_out=$(basename $android_file .$filename_extension)-aligned-.$filename_extension
+
+        # Align the APK:
         $ANDROID_SDK_ROOT/build-tools/*/zipalign \
             -v 4 \
             $android_file \
-            $(basename $android_file .$filename_extension)-aligned.$filename_extension
+            $android_file_out
+
+        # Sign the aligned APK:
+        APKSIGNER_ARGS="--ks $OPENTODOLIST_KEYSTORE --ks-pass env:OPENTODOLIST_KEYSTORE_SECRET --ks-key-alias $OPENTODOLIST_KEYSTORE_ALIAS"
+        if [ -n "$ANDROID_MIN_SDK_INT" ]; then
+            APKSIGNER_ARGS="$APKSIGNER_ARGS --min-sdk-version $ANDROID_MIN_SDK_INT"
+        fi
+        /opt/android-sdk/build-tools/*/apksigner sign \
+            $APKSIGNER_ARGS $android_file_out
     fi
 done
 popd
