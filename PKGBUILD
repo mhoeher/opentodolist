@@ -49,6 +49,9 @@ build() {
                 -DQLMDB_WITH_STATIC_LIBS=ON \
                 -DOPENTODOLIST_USE_SYSTEM_QTKEYCHAIN=ON \
                 -DOPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING=ON \
+                -DOPENTODOLIST_QT_VERSIONS=Qt5 \
+                -DQLMDB_QT_VERSIONS=Qt5 \
+                -DSYNQCLIENT_QT_VERSIONS=Qt5 \
                 ..
         cmake --build .
 }

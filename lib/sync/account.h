@@ -38,6 +38,8 @@ class Account : public QObject
     Q_PROPERTY(QString baseUrl READ baseUrl WRITE setBaseUrl NOTIFY baseUrlChanged)
     Q_PROPERTY(bool disableCertificateChecks READ disableCertificateChecks WRITE
                        setDisableCertificateChecks NOTIFY disableCertificateChecksChanged)
+    Q_PROPERTY(QVariantMap backendSpecificData READ backendSpecificData WRITE setBackendSpecificData
+                       NOTIFY backendSpecificDataChanged)
 public:
     explicit Account(QObject* parent = nullptr);
 
@@ -72,6 +74,9 @@ public:
     Q_INVOKABLE QVariant toWebDAVServerType() const;
     Q_INVOKABLE Synchronizer* createSynchronizer() const;
 
+    const QVariantMap& backendSpecificData() const;
+    void setBackendSpecificData(const QVariantMap& newBackendSpecificData);
+
 signals:
 
     void uidChanged();
@@ -82,6 +87,8 @@ signals:
     void baseUrlChanged();
     void disableCertificateChecksChanged();
 
+    void backendSpecificDataChanged();
+
 private:
     QUuid m_uid;
     Type m_type;
@@ -90,6 +97,7 @@ private:
     QString m_password;
     QString m_baseUrl;
     bool m_disableCertificateChecks;
+    QVariantMap m_backendSpecificData;
 };
 
 #endif // SYNC_ACCOUNT_H_

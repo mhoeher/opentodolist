@@ -48,7 +48,8 @@ Account::Account(QObject* parent)
       m_username(),
       m_password(),
       m_baseUrl(),
-      m_disableCertificateChecks(false)
+      m_disableCertificateChecks(false),
+      m_backendSpecificData()
 {
 }
 
@@ -168,6 +169,7 @@ void Account::save(QSettings* settings)
     settings->setValue("name", m_name);
     settings->setValue("baseUrl", m_baseUrl);
     settings->setValue("disableCertificateChecks", m_disableCertificateChecks);
+    settings->setValue("backendSpecificData", m_backendSpecificData);
 }
 
 /**
@@ -182,6 +184,7 @@ void Account::load(QSettings* settings)
     m_baseUrl = settings->value("baseUrl", m_baseUrl).toString();
     m_disableCertificateChecks =
             settings->value("disableCertificateChecks", m_disableCertificateChecks).toBool();
+    m_backendSpecificData = settings->value("backendSpecificData", m_backendSpecificData).toMap();
 }
 
 /**
@@ -267,6 +270,22 @@ Synchronizer* Account::createSynchronizer() const
         return nullptr;
     }
     return nullptr;
+}
+
+/**
+ * @brief Data specific to the used backend.
+ */
+const QVariantMap& Account::backendSpecificData() const
+{
+    return m_backendSpecificData;
+}
+
+void Account::setBackendSpecificData(const QVariantMap& newBackendSpecificData)
+{
+    if (m_backendSpecificData == newBackendSpecificData)
+        return;
+    m_backendSpecificData = newBackendSpecificData;
+    emit backendSpecificDataChanged();
 }
 
 /**
