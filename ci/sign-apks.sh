@@ -6,7 +6,7 @@ pushd build-android
 for android_file in *.apk *.aab; do
     if [ -f "$android_file" ]; then
         filename_extension="${android_file##*.}"
-        android_file_out=$(basename $android_file .$filename_extension)-aligned-.$filename_extension
+        android_file_out=$(basename $android_file .$filename_extension)-aligned.$filename_extension
 
         # Align the APK:
         $ANDROID_SDK_ROOT/build-tools/*/zipalign \
