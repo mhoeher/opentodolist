@@ -39,6 +39,14 @@ cmake \
 cmake --build .
 cmake --build . --target test
 
+# For each localized file, create an empty "lproj" folder in the
+# app bundle - this causes macOS to localize the system menu
+# (see https://bugs.kde.org/show_bug.cgi?id=432685#c3):
+for ts_file in ../app/translations/*.ts; do
+    lang="$(basename $ts_file | tr - .  | cut -f 2 -d .)"
+    mkdir -p app/OpenTodoList.app/Contents/Resources/${lang}.lproj
+done
+
 # Include Qt Runtime in App Bundle. Also sign the bundle
 # and prepare it for notarization:
 $QT_DIR/bin/macdeployqt \
