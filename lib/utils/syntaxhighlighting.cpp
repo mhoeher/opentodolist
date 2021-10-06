@@ -149,7 +149,7 @@ QString SyntaxHighlighter::sourceToHtml(const QString& source, const QString& la
     if (!result.isEmpty()) {
         return result;
     }
-    return "<code><pre>" + source + "</code></pre>";
+    return "<code>" + source + "</code>";
 }
 
 void SyntaxHighlighter::applyTheme()

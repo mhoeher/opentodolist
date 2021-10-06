@@ -55,6 +55,9 @@ Section "Desktop Icons"
 SectionEnd
 
 Section "Uninstall"
+  # Try to stop the app if it is running.
+  ExecWait "taskkill /IM OpenTodoList.exe /F"
+
   Delete /rebootok "$SMPROGRAMS\OpenTodoList\OpenTodoList.lnk"
   Delete /rebootok "$SMPROGRAMS\OpenTodoList\Uninstall OpenTodoList.lnk"
   RMDir "$SMPROGRAMS\OpenTodoList"

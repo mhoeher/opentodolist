@@ -73,11 +73,12 @@ Column {
             C.Label {
                 width: parent.width
                 textFormat: Text.RichText
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: if (root.item) {
-                              return Markdown.markdownToHtml(root.item.notes)
-                          } else {
-                              return ""
-                          }
+                          return Markdown.markdownToHtml(root.item.notes);
+                      } else {
+                          return ""
+                      }
             }
 
             C.Label {

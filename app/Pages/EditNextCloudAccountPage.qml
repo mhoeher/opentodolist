@@ -191,6 +191,9 @@ C.Page {
                 page.account.baseUrl = dav.url;
                 page.account.name = accountNameEdit.text;
                 page.account.disableCertificateChecks = dav.disableCertificateCheck;
+                let backendSpecificData = page.account.backendSpecificData;
+                backendSpecificData.workarounds = dav.workarounds;
+                page.account.backendSpecificData = backendSpecificData;
 
                 OTL.Application.saveAccount(page.account);
                 OTL.Application.saveAccountSecrets(page.account);

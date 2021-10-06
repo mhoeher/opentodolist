@@ -49,7 +49,7 @@ Column {
     }
 
     Component.onCompleted: {
-        if (item !== null) {
+        if (item) {
             d.loadText();
 
             // Remember the initial item's text.

@@ -25,6 +25,11 @@ Item {
 
         code {
             color: %2;
+            white-space: pre-wrap;
+        }
+
+        pre {
+            white-space: pre-wrap;
         }
 
         del {
