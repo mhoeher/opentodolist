@@ -499,52 +499,52 @@
     <name>EditWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Edit Account</source>
         <translation type="unfinished">Chỉnh sửa tài khoản</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="130"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="133"/>
         <source>Name:</source>
         <translation type="unfinished">Tên:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
         <source>Server Address:</source>
         <translation type="unfinished">Địa chỉ máy chủ:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="147"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="150"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
         <source>User:</source>
         <translation type="unfinished">Người sử dụng:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="160"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="163"/>
         <source>User Name</source>
         <translation type="unfinished">Tên tài khoản</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="167"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="170"/>
         <source>Password:</source>
         <translation type="unfinished">Mật khẩu:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="174"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="177"/>
         <source>Password</source>
         <translation type="unfinished">Mật khẩu</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="184"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="187"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Vô hiệu hóa kiểm tra chứng chỉ</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="192"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="195"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">Không thể kết nối với máy chủ. Vui lòng kiểm tra tên người dùng, mật khẩu và địa chỉ máy chủ và thử lại.</translation>
     </message>
@@ -637,22 +637,22 @@
         <translation type="unfinished">Ghi chú</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
         <source>No notes added yet - click here to add some.</source>
         <translation type="unfinished">Không có ghi chú nào được thêm vào - bấm vào đây để thêm một số.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="114"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
         <source>Export to File...</source>
         <translation type="unfinished">Xuất thành tập tin ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="118"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>Markdown files</source>
         <translation type="unfinished">Markdown các tập tin</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
         <source>All files</source>
         <translation type="unfinished">Tất cả các tập tin</translation>
     </message>
@@ -1220,57 +1220,57 @@
     <name>NewWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="130"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
         <source>Connection Settings</source>
         <translation type="unfinished">Cài đặt kết nối</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
         <source>Server Address:</source>
         <translation type="unfinished">Địa chỉ máy chủ:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://myserver.example.com</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User:</source>
         <translation type="unfinished">Người sử dụng:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
         <source>User Name</source>
         <translation type="unfinished">Tên tài khoản</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
         <source>Password:</source>
         <translation type="unfinished">Mật khẩu:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="172"/>
         <source>Password</source>
         <translation type="unfinished">Mật khẩu</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="175"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="181"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Vô hiệu hóa kiểm tra chứng chỉ</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="179"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="185"/>
         <source>Name:</source>
         <translation type="unfinished">Tên:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="191"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="197"/>
         <source>Account Name</source>
         <translation type="unfinished">Tên tài khoản</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="201"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="207"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">Không thể kết nối với máy chủ. Vui lòng kiểm tra tên người dùng, mật khẩu và địa chỉ máy chủ và thử lại.</translation>
     </message>

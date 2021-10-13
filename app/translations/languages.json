@@ -23,9 +23,9 @@
     {
         "name": "Catalan",
         "code": "ca",
-        "translations": 0,
-        "percentage": 0,
-        "updated": ""
+        "translations": 482,
+        "percentage": 100,
+        "updated": "2021-09-26T16:15:30+0000"
     },
     {
         "name": "Chinese",
@@ -186,7 +186,7 @@
         "code": "es",
         "translations": 389,
         "percentage": 80.71,
-        "updated": "2021-08-16T18:12:33+0000"
+        "updated": "2021-10-09T05:23:39+0000"
     },
     {
         "name": "Spanish (LA & C)",
@@ -198,9 +198,9 @@
     {
         "name": "Swedish",
         "code": "sv",
-        "translations": 480,
-        "percentage": 99.59,
-        "updated": "2021-08-11T06:18:39+0000"
+        "translations": 482,
+        "percentage": 100,
+        "updated": "2021-10-01T16:48:55+0000"
     },
     {
         "name": "Turkish",
