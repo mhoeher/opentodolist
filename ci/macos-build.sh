@@ -45,15 +45,18 @@ cmake --build . --target test
 for ts_file in ../app/translations/*.ts; do
     lang="$(basename $ts_file | tr - .  | cut -f 2 -d .)"
     mkdir -p app/OpenTodoList.app/Contents/Resources/${lang}.lproj
+    echo '"Empty Translation" = "Empty Translation";' > app/OpenTodoList.app/Contents/Resources/${lang}.lproj/Empty.strings
 done
 
 # Include Qt Runtime in App Bundle. Also sign the bundle
 # and prepare it for notarization:
+pushd app
 $QT_DIR/bin/macdeployqt \
-    app/OpenTodoList.app/ \
-    -qmldir=../app \
+    OpenTodoList.app/ \
+    -qmldir=../../app \
     -appstore-compliant \
     -sign-for-notarization="Developer ID Application: Martin Hoeher (786Z636JV9)"
+popd
 
 # Create a zip archive suitable for uploading to the notarization
 # service:

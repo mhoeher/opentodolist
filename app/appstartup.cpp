@@ -35,6 +35,9 @@ AppStartup::AppStartup()
       m_trayIcon(nullptr),
 #endif
       m_trayMenu(nullptr),
+#ifdef Q_OS_MACOS
+      m_menuBar(nullptr),
+#endif
       m_parser(),
       m_engine(nullptr),
       m_translations(nullptr),
@@ -62,6 +65,9 @@ AppStartup::~AppStartup()
     m_backgroundService = nullptr;
     delete m_cache;
     m_cache = nullptr;
+#ifdef Q_OS_MACOS
+    delete m_menuBar;
+#endif
     delete m_app;
     m_app = nullptr;
 }
@@ -143,6 +149,10 @@ void AppStartup::createApp(int& argc, char* argv[])
             qWarning() << screen->name() << screen->devicePixelRatio();
         }
     }
+
+#ifdef Q_OS_MACOS
+    m_menuBar = new QMenuBar();
+#endif
 }
 
 void AppStartup::setupFonts()
