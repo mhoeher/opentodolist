@@ -298,7 +298,7 @@ void AppStartup::startGUI()
 
     connect(
             m_engine, &QQmlApplicationEngine::objectCreated, m_app,
-            [url](QObject* obj, const QUrl& objUrl) {
+            [url](const QObject* obj, const QUrl& objUrl) {
                 if (!obj && url == objUrl)
                     QCoreApplication::exit(-1);
             },
