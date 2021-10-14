@@ -48,6 +48,11 @@ for ts_file in ../app/translations/*.ts; do
     echo '"Empty Translation" = "Empty Translation";' > app/OpenTodoList.app/Contents/Resources/${lang}.lproj/Empty.strings
 done
 
+# Include Qt translations:
+mkdir -p app/OpenTodoList.app/Contents/translations
+cp $QT_DIR/translations/qt*.qm app/OpenTodoList.app/Contents/translations/
+
+
 # Include Qt Runtime in App Bundle. Also sign the bundle
 # and prepare it for notarization:
 pushd app
