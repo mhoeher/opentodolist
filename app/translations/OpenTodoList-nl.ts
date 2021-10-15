@@ -109,42 +109,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="175"/>
+        <location filename="../appstartup.cpp" line="185"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Beheer uw persoonlijke gegevens.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="181"/>
+        <location filename="../appstartup.cpp" line="191"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Schakel touchscreen-optimalisaties in.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="184"/>
+        <location filename="../appstartup.cpp" line="194"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Alleen achtergronddienst starten</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="186"/>
+        <location filename="../appstartup.cpp" line="196"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Alleen venster tonen en verbinding maken met een reeds opgestarte achtergronddienst</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="191"/>
+        <location filename="../appstartup.cpp" line="201"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Windows-opdrachtprompt openen om foutopsporingsuitvoer te tonen</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="324"/>
+        <location filename="../appstartup.cpp" line="334"/>
         <source>Open</source>
         <translation type="unfinished">Openen</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="331"/>
+        <location filename="../appstartup.cpp" line="341"/>
         <source>Quick Note</source>
         <translation type="unfinished">Snelle notitie</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="384"/>
+        <location filename="../appstartup.cpp" line="394"/>
         <source>Quit</source>
         <translation type="unfinished">Afsluiten</translation>
     </message>
@@ -1342,8 +1342,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="270"/>
-        <location filename="../appstartup.cpp" line="277"/>
+        <location filename="../appstartup.cpp" line="280"/>
+        <location filename="../appstartup.cpp" line="287"/>
         <source>unknown</source>
         <translation type="unfinished">Onbekend</translation>
     </message>
