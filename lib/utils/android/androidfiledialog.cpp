@@ -45,6 +45,7 @@ bool AndroidFileDialog::open()
     case SelectImage:
         return openImage();
     }
+    return false;
 }
 
 QObject* AndroidFileDialog::receiver() const
@@ -54,7 +55,6 @@ QObject* AndroidFileDialog::receiver() const
 
 void AndroidFileDialog::setReceiver(QObject* receiver)
 {
-    m_resultReceiver = receiver;
     if (m_resultReceiver != receiver) {
         m_resultReceiver = receiver;
         emit receiverChanged();

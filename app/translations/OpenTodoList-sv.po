@@ -152,7 +152,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Vill du verkligen ta bort biblioteket <strong>%1</strong> från programmet? Observera att filerna i biblioteket inte kommer att tas bort, så att du kan återställa biblioteket senare."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Välj en mapp"
@@ -674,7 +674,7 @@ msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
 msgstr "Ta bort genvägar till AppImage-filen."
 
-#: ../Widgets/ItemNotesEditor.qml:85
+#: ../Widgets/ItemNotesEditor.qml:86
 msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
 msgstr "Inga anteckningar tillagda än. - Klicka här för att lägga till någon."
@@ -1155,7 +1155,7 @@ msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
 msgstr "Mitt lokala biblioteksnamn"
 
-#: ../Pages/NewWebDAVAccountPage.qml:191
+#: ../Pages/NewWebDAVAccountPage.qml:197
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
 msgstr "Kontonamn"
@@ -1231,17 +1231,17 @@ msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Ny sida"
 
-#: ../Widgets/ItemNotesEditor.qml:114
+#: ../Widgets/ItemNotesEditor.qml:115
 msgctxt "ItemNotesEditor|"
 msgid "Export to File..."
 msgstr "Exportera till fil ..."
 
-#: ../Widgets/ItemNotesEditor.qml:118
+#: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
 msgstr "Markdown-filer"
 
-#: ../Widgets/ItemNotesEditor.qml:119
+#: ../Widgets/ItemNotesEditor.qml:120
 msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr "Alla filer"
@@ -1808,57 +1808,57 @@ msgctxt "AccountsPage|"
 msgid "Accounts"
 msgstr "Konton"
 
-#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:124
+#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:127
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
 msgstr "Redigera konto"
 
-#: ../Pages/EditWebDAVAccountPage.qml:130
+#: ../Pages/EditWebDAVAccountPage.qml:133
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
 msgstr "Namn:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:141
+#: ../Pages/EditWebDAVAccountPage.qml:144
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr "Serveradress:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:147
+#: ../Pages/EditWebDAVAccountPage.qml:150
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://minserver.exempel.se"
 
-#: ../Pages/EditWebDAVAccountPage.qml:154
+#: ../Pages/EditWebDAVAccountPage.qml:157
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
 msgstr "Användare:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:160
+#: ../Pages/EditWebDAVAccountPage.qml:163
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
 msgstr "Användarnamn"
 
-#: ../Pages/EditWebDAVAccountPage.qml:167
+#: ../Pages/EditWebDAVAccountPage.qml:170
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
 msgstr "Lösenord:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:174
+#: ../Pages/EditWebDAVAccountPage.qml:177
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
 msgstr "Lösenord"
 
-#: ../Pages/EditWebDAVAccountPage.qml:184
+#: ../Pages/EditWebDAVAccountPage.qml:187
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr "Inaktivera certifikatkontroller"
 
-#: ../Pages/EditWebDAVAccountPage.qml:192
+#: ../Pages/EditWebDAVAccountPage.qml:195
 msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Kunde inte ansluta till servern. Kontrollera ditt användarnamn, lösenord och serveradress och försök igen."
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Flytta denna att-göra till ..."
@@ -1998,52 +1998,52 @@ msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
 msgstr "Mitt lokala biblioteksnamn"
 
-#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:130
+#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:136
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
 msgstr "Anslutningsinställningar"
 
-#: ../Pages/NewWebDAVAccountPage.qml:136
+#: ../Pages/NewWebDAVAccountPage.qml:142
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr "Serveradress:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:142
+#: ../Pages/NewWebDAVAccountPage.qml:148
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://minserver.exempel.se"
 
-#: ../Pages/NewWebDAVAccountPage.qml:148
+#: ../Pages/NewWebDAVAccountPage.qml:154
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
 msgstr "Användare:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:154
+#: ../Pages/NewWebDAVAccountPage.qml:160
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
 msgstr "Användarnamn"
 
-#: ../Pages/NewWebDAVAccountPage.qml:160
+#: ../Pages/NewWebDAVAccountPage.qml:166
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
 msgstr "Lösenord:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:166
+#: ../Pages/NewWebDAVAccountPage.qml:172
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
 msgstr "Lösenord"
 
-#: ../Pages/NewWebDAVAccountPage.qml:175
+#: ../Pages/NewWebDAVAccountPage.qml:181
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr "Inaktivera certifikatkontroller"
 
-#: ../Pages/NewWebDAVAccountPage.qml:179
+#: ../Pages/NewWebDAVAccountPage.qml:185
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
 msgstr "Namn:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:201
+#: ../Pages/NewWebDAVAccountPage.qml:207
 msgctxt "NewWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Kunde inte ansluta till servern. Kontrollera ditt användarnamn, lösenord och serveradress och försök igen."
@@ -2053,7 +2053,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr "Problem identifierade"
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Välj att-göra-lista"
@@ -2151,7 +2151,7 @@ msgstr "Använd detta för att manuellt skala användargränssnittet. Som standa
 "\n"
 "Detta kräver att programmet startas om."
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Konvertera uppgift till Att-göra och flytta till..."
@@ -2420,4 +2420,14 @@ msgstr "Ange förlopp"
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Skrivbordsläge"
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr "Kopiera objekt till..."
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
+msgstr "Kopiera att-göra till..."
 

@@ -153,7 +153,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Realmente quieres eliminar la biblioteca <strong>%1</strong> de la aplicación? Tenga en cuenta que los archivos dentro de la biblioteca no serán eliminados, por lo que puede restaurar la biblioteca más tarde."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Seleccione una carpeta"
@@ -317,7 +317,7 @@ msgstr "Nueva &Nota"
 #: ../Windows/MainWindow.qml:470
 msgctxt "MainWindow|"
 msgid "New &Todo List"
-msgstr "Nueva lista de &Todo"
+msgstr "Nueva &Lista de Pendientes"
 
 #: ../Windows/MainWindow.qml:478
 msgctxt "MainWindow|"
@@ -327,7 +327,7 @@ msgstr "Nueva &Imagen"
 #: ../Windows/MainWindow.qml:486
 msgctxt "MainWindow|"
 msgid "&Quit"
-msgstr "&Dejarlo"
+msgstr "&Salir"
 
 #: ../Windows/MainWindow.qml:503
 msgctxt "MainWindow|"
@@ -337,7 +337,7 @@ msgstr "&Encontrar"
 #: ../Windows/MainWindow.qml:545
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
-msgstr "Abrir el último & crear articulo"
+msgstr "Abrir el último ítem &Creado"
 
 #: ../Windows/MainWindow.qml:553
 msgctxt "MainWindow|"
@@ -403,7 +403,7 @@ msgstr "Nota"
 #: ../Widgets/NewTopLevelItemButton.qml:43
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo List"
-msgstr "Lista de todo..."
+msgstr "Pendientes"
 
 #: ../Widgets/NewTopLevelItemButton.qml:58
 msgctxt "NewTopLevelItemButton|"
@@ -488,17 +488,17 @@ msgstr "Ignore"
 #: ../Widgets/SyncErrorNotificationBar.qml:53
 msgctxt "SyncErrorNotificationBar|"
 msgid "View"
-msgstr "Vea"
+msgstr "Vista"
 
 #: ../Widgets/SyncIndicatorBar.qml:63
 msgctxt "SyncIndicatorBar|"
 msgid "Synchronizing library..."
-msgstr "Sincronizar la biblioteca..."
+msgstr "Sincronizando biblioteca..."
 
 #: ../Pages/SyncLibrarySelectionPage.qml:17
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create Library"
-msgstr "Crear la biblioteca"
+msgstr "Crear biblioteca"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:29
 msgctxt "SyncLibrarySelectionPage|"
@@ -533,12 +533,12 @@ msgstr "OK"
 #: ../Pages/SynchronizerBackendSelectionPage.qml:45
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "NextCloud"
-msgstr "NextCloud"
+msgstr "Siguiente Nube"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:52
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "ownCloud"
-msgstr "ownCloud"
+msgstr "Nube Propia"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:59
 #: ../Pages/SynchronizerBackendSelectionPage.qml:60
@@ -555,7 +555,7 @@ msgstr "Biblioteca local"
 #: ../Widgets/TodoListItem.qml:128
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
-msgstr "✔ No open todos - todo hecho"
+msgstr "✔ No abrir pendientes"
 
 #: ../Pages/TodoListPage.qml:158
 msgctxt "TodoListPage|"
@@ -565,12 +565,12 @@ msgstr "Término de búsqueda 1, término de búsqueda 2, ..."
 #: ../Pages/TodoListPage.qml:222
 msgctxt "TodoListPage|"
 msgid "Todos"
-msgstr "Todos"
+msgstr "Pendientes"
 
 #: ../Pages/TodoListPage.qml:290
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
-msgstr "Completado Todos"
+msgstr "Pendientes Completos"
 
 #: ../Pages/TodoPage.qml:146
 msgctxt "TodoPage|"
@@ -585,7 +585,7 @@ msgstr "Tareas"
 #: ../Widgets/UpdateNotificationBar.qml:44
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
-msgstr "Una actualización de OpenTodoList %1 está disponible."
+msgstr "Una actualización de Pendientes %1 está disponible."
 
 #: ../Widgets/UpdateNotificationBar.qml:50
 msgctxt "UpdateNotificationBar|"
@@ -595,7 +595,7 @@ msgstr "Ignore"
 #: ../Widgets/UpdateNotificationBar.qml:54
 msgctxt "UpdateNotificationBar|"
 msgid "Download"
-msgstr "Descargue"
+msgstr "Descarga"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
@@ -665,7 +665,7 @@ msgstr "Directorio Raíz de QML"
 #: ../main.cpp:109
 msgctxt "main|"
 msgid "DIR"
-msgstr "DIR"
+msgstr "Directorio"
 
 #: ../main.cpp:116
 msgctxt "main|"
@@ -678,7 +678,7 @@ msgid "Remove shortcuts to the AppImage."
 msgstr "Eliminar los accesos directos a la AppImage.\n"
 ""
 
-#: ../Widgets/ItemNotesEditor.qml:85
+#: ../Widgets/ItemNotesEditor.qml:86
 msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
 msgstr "No se han añadido notas todavía - haga clic aquí para añadir algunas.\n"
@@ -687,12 +687,12 @@ msgstr "No se han añadido notas todavía - haga clic aquí para añadir algunas
 #: ../Widgets/TagsEditor.qml:34
 msgctxt "TagsEditor|"
 msgid "Add Tag"
-msgstr "Añade la etiqueta"
+msgstr "Añadir etiqueta"
 
 #: ../Pages/TodoListPage.qml:242
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
-msgstr "Añade un nuevo todo..."
+msgstr "Añadir nueva Lista de Pendientes..."
 
 #: ../Pages/TodoPage.qml:177
 msgctxt "TodoPage|"
@@ -712,12 +712,12 @@ msgstr "Sistema"
 #: ../Utils/Colors.qml:16
 msgctxt "Colors|"
 msgid "Light"
-msgstr "Luz"
+msgstr "Claro"
 
 #: ../Utils/Colors.qml:17
 msgctxt "Colors|"
 msgid "Dark"
-msgstr "Dark"
+msgstr "Oscuro"
 
 #: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
@@ -797,17 +797,17 @@ msgstr "Color"
 #: ../Windows/MainWindow.qml:352
 msgctxt "MainWindow|"
 msgid "Add Tag"
-msgstr "Añade la etiqueta"
+msgstr "Añadir etiqueta"
 
 #: ../Windows/MainWindow.qml:359
 msgctxt "MainWindow|"
 msgid "Attach File"
-msgstr "Adjunte el archivo"
+msgstr "Adjuntar archivo"
 
 #: ../Windows/MainWindow.qml:368
 msgctxt "MainWindow|"
 msgid "Search"
-msgstr "Busca"
+msgstr "Buscar"
 
 #: ../Windows/MainWindow.qml:375
 msgctxt "MainWindow|"
@@ -927,7 +927,7 @@ msgstr "<a href='%1'>%2</a>"
 #: ../Pages/AboutPage.qml:172
 msgctxt "AboutPage|"
 msgid "Download:"
-msgstr "Descargue:"
+msgstr "Descarga:"
 
 #: ../Pages/AboutPage.qml:176
 msgctxt "AboutPage|"
@@ -1160,7 +1160,7 @@ msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
 msgstr "El nombre de mi biblioteca local"
 
-#: ../Pages/NewWebDAVAccountPage.qml:191
+#: ../Pages/NewWebDAVAccountPage.qml:197
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
 msgstr "Nombre de la cuenta"
@@ -1236,17 +1236,17 @@ msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Nueva página"
 
-#: ../Widgets/ItemNotesEditor.qml:114
+#: ../Widgets/ItemNotesEditor.qml:115
 msgctxt "ItemNotesEditor|"
 msgid "Export to File..."
 msgstr "Exportar a Archivo..."
 
-#: ../Widgets/ItemNotesEditor.qml:118
+#: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
 msgstr "Markdown archivos"
 
-#: ../Widgets/ItemNotesEditor.qml:119
+#: ../Widgets/ItemNotesEditor.qml:120
 msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr "Todos los archivos"
@@ -1384,7 +1384,7 @@ msgstr "Se repite cada mes."
 #: ../Widgets/ItemDueDateEditor.qml:81
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
-msgstr "Se repite cada 1 día."
+msgstr "Se repite cada %1 días."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:92
 msgctxt "NewItemWithDueDateDialog|"
@@ -1813,57 +1813,57 @@ msgctxt "AccountsPage|"
 msgid "Accounts"
 msgstr "Cuentas"
 
-#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:124
+#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:127
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
 msgstr "Editar cuenta"
 
-#: ../Pages/EditWebDAVAccountPage.qml:130
+#: ../Pages/EditWebDAVAccountPage.qml:133
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
 msgstr "Nombre:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:141
+#: ../Pages/EditWebDAVAccountPage.qml:144
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:147
+#: ../Pages/EditWebDAVAccountPage.qml:150
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:154
+#: ../Pages/EditWebDAVAccountPage.qml:157
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
 msgstr "Usuario:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:160
+#: ../Pages/EditWebDAVAccountPage.qml:163
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
 msgstr "Nombre de usuario"
 
-#: ../Pages/EditWebDAVAccountPage.qml:167
+#: ../Pages/EditWebDAVAccountPage.qml:170
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: ../Pages/EditWebDAVAccountPage.qml:174
+#: ../Pages/EditWebDAVAccountPage.qml:177
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
 msgstr "Contraseña"
 
-#: ../Pages/EditWebDAVAccountPage.qml:184
+#: ../Pages/EditWebDAVAccountPage.qml:187
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:192
+#: ../Pages/EditWebDAVAccountPage.qml:195
 msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
@@ -2003,52 +2003,52 @@ msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:130
+#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:136
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:136
+#: ../Pages/NewWebDAVAccountPage.qml:142
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:142
+#: ../Pages/NewWebDAVAccountPage.qml:148
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:148
+#: ../Pages/NewWebDAVAccountPage.qml:154
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
 msgstr "Usuario:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:154
+#: ../Pages/NewWebDAVAccountPage.qml:160
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
 msgstr "Nombre de usuario"
 
-#: ../Pages/NewWebDAVAccountPage.qml:160
+#: ../Pages/NewWebDAVAccountPage.qml:166
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:166
+#: ../Pages/NewWebDAVAccountPage.qml:172
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
 msgstr "Contraseña"
 
-#: ../Pages/NewWebDAVAccountPage.qml:175
+#: ../Pages/NewWebDAVAccountPage.qml:181
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:179
+#: ../Pages/NewWebDAVAccountPage.qml:185
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
 msgstr "Nombre:"
 
-#: ../Pages/NewWebDAVAccountPage.qml:201
+#: ../Pages/NewWebDAVAccountPage.qml:207
 msgctxt "NewWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
@@ -2058,7 +2058,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr "Problemas detectados"
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr ""
@@ -2152,7 +2152,7 @@ msgid "Use this to manually scale the user interface. By default, the app should
 "This requires a restart of the app."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr ""
@@ -2420,5 +2420,15 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
 msgstr ""
 

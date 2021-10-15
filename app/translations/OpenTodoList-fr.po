@@ -154,7 +154,7 @@ msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Souhaitez-vous vraiment supprimer la bibliothèque <strong>%1</strong> de l'application ? Notez que les fichiers à l'intérieur de la bibliothèque ne seront pas supprimés, vous pourrez donc restaurer la bibliothèque ultérieurement."
 
-#: ../Windows/FolderSelectionDialog.qml:17
+#: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Choisir un dossier"
@@ -680,7 +680,7 @@ msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
 msgstr "Supprimez les raccourcis vers l'AppImage."
 
-#: ../Widgets/ItemNotesEditor.qml:85
+#: ../Widgets/ItemNotesEditor.qml:86
 msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
 msgstr "Aucune note n'a encore été ajoutée - cliquez ici pour en ajouter."
@@ -1166,7 +1166,7 @@ msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
 msgstr "Nom de ma bibliothèque locale"
 
-#: ../Pages/NewWebDAVAccountPage.qml:191
+#: ../Pages/NewWebDAVAccountPage.qml:197
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
 msgstr "Nom du compte"
@@ -1242,17 +1242,17 @@ msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Nouvelle page"
 
-#: ../Widgets/ItemNotesEditor.qml:114
+#: ../Widgets/ItemNotesEditor.qml:115
 msgctxt "ItemNotesEditor|"
 msgid "Export to File..."
 msgstr "Exporter vers le fichier..."
 
-#: ../Widgets/ItemNotesEditor.qml:118
+#: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
 msgstr "Fichiers Markdown"
 
-#: ../Widgets/ItemNotesEditor.qml:119
+#: ../Widgets/ItemNotesEditor.qml:120
 msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr "Tous les fichiers"
@@ -1825,57 +1825,57 @@ msgctxt "AccountsPage|"
 msgid "Accounts"
 msgstr "Comptes"
 
-#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:124
+#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:127
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
 msgstr "Modifier le compte"
 
-#: ../Pages/EditWebDAVAccountPage.qml:130
+#: ../Pages/EditWebDAVAccountPage.qml:133
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
 msgstr "Nom :"
 
-#: ../Pages/EditWebDAVAccountPage.qml:141
+#: ../Pages/EditWebDAVAccountPage.qml:144
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr "Adresse du serveur : "
 
-#: ../Pages/EditWebDAVAccountPage.qml:147
+#: ../Pages/EditWebDAVAccountPage.qml:150
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://serveur.exemple.com"
 
-#: ../Pages/EditWebDAVAccountPage.qml:154
+#: ../Pages/EditWebDAVAccountPage.qml:157
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
 msgstr "Utilisateur :"
 
-#: ../Pages/EditWebDAVAccountPage.qml:160
+#: ../Pages/EditWebDAVAccountPage.qml:163
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
 msgstr "Nom d'utilisateur"
 
-#: ../Pages/EditWebDAVAccountPage.qml:167
+#: ../Pages/EditWebDAVAccountPage.qml:170
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
 msgstr "Mot de passe : "
 
-#: ../Pages/EditWebDAVAccountPage.qml:174
+#: ../Pages/EditWebDAVAccountPage.qml:177
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: ../Pages/EditWebDAVAccountPage.qml:184
+#: ../Pages/EditWebDAVAccountPage.qml:187
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr "Annuler le contrôle de certificat"
 
-#: ../Pages/EditWebDAVAccountPage.qml:192
+#: ../Pages/EditWebDAVAccountPage.qml:195
 msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexion au serveur a échoué. Veuillez vérifier votre nom d'utilisateur, votre mot de passe ainsi que l'adresse du serveur et réessayer."
 
-#: ../Utils/ItemUtils.qml:151
+#: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Déplacer ToDo dans ..."
@@ -2016,52 +2016,52 @@ msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
 msgstr "Nom de ma bibliothèque locale"
 
-#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:130
+#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:136
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
 msgstr "Paramètres de connexion"
 
-#: ../Pages/NewWebDAVAccountPage.qml:136
+#: ../Pages/NewWebDAVAccountPage.qml:142
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr "Adresse du serveur : "
 
-#: ../Pages/NewWebDAVAccountPage.qml:142
+#: ../Pages/NewWebDAVAccountPage.qml:148
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://serveur.exemple.com"
 
-#: ../Pages/NewWebDAVAccountPage.qml:148
+#: ../Pages/NewWebDAVAccountPage.qml:154
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
 msgstr "Utilisateur : "
 
-#: ../Pages/NewWebDAVAccountPage.qml:154
+#: ../Pages/NewWebDAVAccountPage.qml:160
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
 msgstr "Nom d'utilisateur"
 
-#: ../Pages/NewWebDAVAccountPage.qml:160
+#: ../Pages/NewWebDAVAccountPage.qml:166
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
 msgstr "Mot de passe :"
 
-#: ../Pages/NewWebDAVAccountPage.qml:166
+#: ../Pages/NewWebDAVAccountPage.qml:172
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: ../Pages/NewWebDAVAccountPage.qml:175
+#: ../Pages/NewWebDAVAccountPage.qml:181
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr "Annuler le contrôle de certificat"
 
-#: ../Pages/NewWebDAVAccountPage.qml:179
+#: ../Pages/NewWebDAVAccountPage.qml:185
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
 msgstr "Nom :"
 
-#: ../Pages/NewWebDAVAccountPage.qml:201
+#: ../Pages/NewWebDAVAccountPage.qml:207
 msgctxt "NewWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexion au serveur a échoué. Veuillez vérifier votre nom d'utilisateur, votre mot de passe ainsi que l'adresse du serveur et réessayer."
@@ -2071,7 +2071,7 @@ msgctxt "ProblemsPage|"
 msgid "Problems Detected"
 msgstr "Problème détecté"
 
-#: ../Windows/SelectTodoListDialog.qml:23
+#: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Sélectionnez la Todo Liste"
@@ -2169,7 +2169,7 @@ msgstr "Utilisez cette option pour adapter manuellement l'interface utilisateur.
 "\n"
 "Cela nécessite un redémarrage de l'application."
 
-#: ../Utils/ItemUtils.qml:166
+#: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Convertir une tâche en Todo et la déplacer dans..."
@@ -2437,5 +2437,15 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:184
+msgctxt "ItemUtils|"
+msgid "Copy Item Into..."
+msgstr ""
+
+#: ../Utils/ItemUtils.qml:202
+msgctxt "ItemUtils|"
+msgid "Copy Todo Into..."
 msgstr ""
 

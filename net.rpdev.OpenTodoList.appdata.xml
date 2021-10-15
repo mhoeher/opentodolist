@@ -40,6 +40,16 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.38.0" date="2021-10-15">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#470: Sorting of target items list when copying/moving items.</li>
+            <li>#478: Sign Android binaries using newer signing schemes.</li>
+            <li>#479: The application menu on macOS is not localized.</li>
+            <li>#465: The app would sometimes now pick up the system language.</li>
+            <li>#471: Improve synchronization against non-standards compliant WebDAV servers.</li>
+        </ul>
+      </release>
       <release version="3.37.2" date="2021-08-21">
         <p>This release includes the following changes:</p>
         <ul>

@@ -123,6 +123,9 @@ public:
     QString itemType() const;
     void setItemType(const QString& itemType);
 
+    const QList<QUuid>& itemsToExclude() const;
+    void setItemsToExclude(const QList<QUuid>& newItemsToExclude);
+
 signals:
 
     void cacheChanged();
@@ -139,6 +142,8 @@ signals:
     void timeSpansChanged();
     void itemTypeChanged();
 
+    void itemsToExcludeChanged();
+
 public slots:
 
 private:
@@ -147,6 +152,7 @@ private:
     QList<QUuid> m_ids;
     QTimer m_fetchTimer;
     QUuid m_parentItem;
+    QList<QUuid> m_itemsToExclude;
 
     QString m_searchString;
     QString m_tag;
@@ -165,6 +171,9 @@ private:
     static bool itemMatches(ItemPtr item, QStringList words);
 
     QString timeSpanLabel(Item* item, int role) const;
+
+    Q_PROPERTY(QList<QUuid> itemsToExclude READ itemsToExclude WRITE setItemsToExclude NOTIFY
+                       itemsToExcludeChanged)
 
 private slots:
 

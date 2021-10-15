@@ -61,7 +61,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="172"/>
         <source>Download:</source>
-        <translation type="unfinished">Descargue:</translation>
+        <translation type="unfinished">Descarga:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="176"/>
@@ -84,12 +84,12 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
         <source>NextCloud</source>
-        <translation type="unfinished">NextCloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="107"/>
         <source>ownCloud</source>
-        <translation type="unfinished">ownCloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="112"/>
@@ -109,42 +109,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="175"/>
+        <location filename="../appstartup.cpp" line="185"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Gestione sus datos personales.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="181"/>
+        <location filename="../appstartup.cpp" line="191"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Enciende algunas optimizaciones para las pantallas táctiles.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="184"/>
+        <location filename="../appstartup.cpp" line="194"/>
         <source>Only run the app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="186"/>
+        <location filename="../appstartup.cpp" line="196"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="191"/>
+        <location filename="../appstartup.cpp" line="201"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="324"/>
+        <location filename="../appstartup.cpp" line="334"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="331"/>
+        <location filename="../appstartup.cpp" line="341"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="384"/>
+        <location filename="../appstartup.cpp" line="394"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -205,7 +205,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Buscar</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
@@ -309,12 +309,12 @@
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>Light</source>
-        <translation type="unfinished">Luz</translation>
+        <translation type="unfinished">Claro</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
         <source>Dark</source>
-        <translation type="unfinished">Dark</translation>
+        <translation type="unfinished">Oscuro</translation>
     </message>
 </context>
 <context>
@@ -499,52 +499,52 @@
     <name>EditWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Edit Account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="130"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="133"/>
         <source>Name:</source>
         <translation type="unfinished">Nombre:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
         <source>Server Address:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="147"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="150"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://miservidor.ejemplo.com</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
         <source>User:</source>
         <translation type="unfinished">Usuario:</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="160"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="163"/>
         <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="167"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="170"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="174"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="177"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="184"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="187"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Comprobación del certificado de invalidez</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="192"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="195"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">Falló la conexión con el servidor. Por favor, compruebe su nombre de usuario, contraseña y la dirección del servidor y vuelva a intentarlo.</translation>
     </message>
@@ -552,7 +552,7 @@
 <context>
     <name>FolderSelectionDialog</name>
     <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="17"/>
+        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
         <source>Select a Folder</source>
         <translation type="unfinished">Seleccione una carpeta</translation>
     </message>
@@ -616,7 +616,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished">Se repite cada 1 día.</translation>
+        <translation type="unfinished">Se repite cada %1 días.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
@@ -637,23 +637,23 @@
         <translation type="unfinished">Notas</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="85"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
         <source>No notes added yet - click here to add some.</source>
         <translation type="unfinished">No se han añadido notas todavía - haga clic aquí para añadir algunas.
 </translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="114"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
         <source>Export to File...</source>
         <translation type="unfinished">Exportar a Archivo...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="118"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>Markdown files</source>
         <translation type="unfinished">Markdown archivos</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
+        <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
         <source>All files</source>
         <translation type="unfinished">Todos los archivos</translation>
     </message>
@@ -661,13 +661,23 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="151"/>
+        <location filename="../Utils/ItemUtils.qml" line="152"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="166"/>
+        <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <source>Copy Item Into...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <source>Copy Todo Into...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1039,7 +1049,7 @@
         <location filename="../Pages/NewLibraryPage.qml" line="24"/>
         <location filename="../Pages/NewLibraryPage.qml" line="62"/>
         <source>Create Library</source>
-        <translation type="unfinished">Crear la biblioteca</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="69"/>
@@ -1189,7 +1199,7 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished">Lista de todo...</translation>
+        <translation type="unfinished">Pendientes</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
@@ -1211,57 +1221,57 @@
     <name>NewWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="130"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
         <source>Connection Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
         <source>Server Address:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished">https://miservidor.ejemplo.com</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User:</source>
         <translation type="unfinished">Usuario:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
         <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="172"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="175"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="181"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Comprobación del certificado de invalidez</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="179"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="185"/>
         <source>Name:</source>
         <translation type="unfinished">Nombre:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="191"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="197"/>
         <source>Account Name</source>
         <translation type="unfinished">Nombre de la cuenta</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="201"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="207"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">Falló la conexión con el servidor. Por favor, compruebe su nombre de usuario, contraseña y la dirección del servidor y vuelva a intentarlo.</translation>
     </message>
@@ -1334,8 +1344,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="270"/>
-        <location filename="../appstartup.cpp" line="277"/>
+        <location filename="../appstartup.cpp" line="280"/>
+        <location filename="../appstartup.cpp" line="287"/>
         <source>unknown</source>
         <translation type="unfinished">Desconocido</translation>
     </message>
@@ -1544,7 +1554,7 @@
 <context>
     <name>SelectTodoListDialog</name>
     <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="23"/>
+        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
         <source>Select Todo List</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1712,7 +1722,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished">Vea</translation>
+        <translation type="unfinished">Vista</translation>
     </message>
 </context>
 <context>
@@ -1733,7 +1743,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="128"/>
         <source>✔ No open todos - everything done</source>
-        <translation type="unfinished">✔ No open todos - todo hecho</translation>
+        <translation type="unfinished">✔ No abrir pendientes</translation>
     </message>
 </context>
 <context>
@@ -1771,12 +1781,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Todos</source>
-        <translation type="unfinished">Todos</translation>
+        <translation type="unfinished">Pendientes</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="242"/>
         <source>Add new todo...</source>
-        <translation type="unfinished">Añade un nuevo todo...</translation>
+        <translation type="unfinished">Añadir nueva Lista de Pendientes...</translation>
     </message>
 </context>
 <context>
@@ -1823,7 +1833,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="44"/>
         <source>An update to OpenTodoList %1 is available.</source>
-        <translation type="unfinished">Una actualización de OpenTodoList %1 está disponible.</translation>
+        <translation type="unfinished">Una actualización de Pendientes %1 está disponible.</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
@@ -1833,7 +1843,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished">Descargue</translation>
+        <translation type="unfinished">Descarga</translation>
     </message>
 </context>
 </TS>

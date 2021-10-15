@@ -148,7 +148,7 @@ void Translations::apply()
     // Pass 2: Is there a file with the language part only:
     if (langFile.isEmpty()) {
         for (auto uiLang : uiLanguages) {
-            auto lang = uiLang.split("_")[0];
+            auto lang = uiLang.split("-")[0];
             auto path = ":/translations/OpenTodoList-" + lang + ".qm";
             if (QFile::exists(path)) {
                 langFile = path;
@@ -160,7 +160,7 @@ void Translations::apply()
     // Pass 3: Last resort: Use any translation which is at least related:
     if (langFile.isEmpty()) {
         for (auto uiLang : uiLanguages) {
-            auto lang = uiLang.split("_")[0];
+            auto lang = uiLang.split("-")[0];
             QDir translationsDir(":/translations");
             auto entries =
                     translationsDir.entryList({ "OpenTodoList-" + lang + "_*.qm" }, QDir::Files);

@@ -5,6 +5,7 @@ import OpenTodoList 1.0 as OTL
 
 import "../Components"
 import "../Controls" as C
+import "."
 
 CenteredDialog {
     id: root
@@ -13,6 +14,7 @@ CenteredDialog {
     readonly property alias selectedTodoList: comboBox.currentValue
     property OTL.TodoList initialTodoList: null
     property alias selectInitialTodoList: d.selectInitial
+    property var excludeTodoLists: []
 
     function clear() {
         comboBox.currentIndex = -1;
@@ -61,11 +63,15 @@ CenteredDialog {
         textRole: "title"
         valueRole: "object"
         width: root.availableWidth
-        model: OTL.ItemsModel {
+        model: OTL.ItemsSortFilterModel {
             id: model
-            cache: OTL.Application.cache
-            itemType: "TodoList"
-            onCountChanged: d.findInitial()
+            sortRole: OTL.ItemsModel.TitleRole
+            sourceModel: OTL.ItemsModel {
+                cache: OTL.Application.cache
+                itemType: "TodoList"
+                itemsToExclude: root.excludeTodoLists
+                onCountChanged: d.findInitial()
+            }
         }
     }
 
