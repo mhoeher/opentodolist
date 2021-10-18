@@ -283,7 +283,7 @@ void ItemsQuery::finish()
     }
     if (!m_changedLibrariesUids.isEmpty()) {
         QVariantList librariesUids;
-        for (auto id : m_changedLibrariesUids) {
+        for (auto& id : qAsConst(m_changedLibrariesUids)) {
             librariesUids << QUuid(id);
         }
         emit librariesChanged(librariesUids);
