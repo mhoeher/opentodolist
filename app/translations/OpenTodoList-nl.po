@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:175
+#: ../appstartup.cpp:185
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Beheer uw persoonlijke gegevens."
 
-#: ../appstartup.cpp:181
+#: ../appstartup.cpp:191
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Schakel touchscreen-optimalisaties in."
 
-#: ../appstartup.cpp:184
+#: ../appstartup.cpp:194
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Alleen achtergronddienst starten"
 
-#: ../appstartup.cpp:186
+#: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Alleen venster tonen en verbinding maken met een reeds opgestarte achtergronddienst"
 
-#: ../appstartup.cpp:191
+#: ../appstartup.cpp:201
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Windows-opdrachtprompt openen om foutopsporingsuitvoer te tonen"
 
-#: ../appstartup.cpp:324
+#: ../appstartup.cpp:334
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Openen"
 
-#: ../appstartup.cpp:384
+#: ../appstartup.cpp:394
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Afsluiten"
@@ -2192,7 +2192,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Systeeminformatie kopiëren"
 
-#: ../appstartup.cpp:331
+#: ../appstartup.cpp:341
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Snelle notitie"
@@ -2217,7 +2217,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: ../appstartup.cpp:270 ../appstartup.cpp:277
+#: ../appstartup.cpp:280 ../appstartup.cpp:287
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "Onbekend"

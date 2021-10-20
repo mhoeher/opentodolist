@@ -1563,37 +1563,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:175
+#: ../appstartup.cpp:185
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Zarządzaj swoimi danymi osobowymi."
 
-#: ../appstartup.cpp:181
+#: ../appstartup.cpp:191
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Włącz niektóre optymalizacje dla ekranów dotykowych."
 
-#: ../appstartup.cpp:184
+#: ../appstartup.cpp:194
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Uruchamiaj tylko usługę aplikacji w tle"
 
-#: ../appstartup.cpp:186
+#: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Uruchamiaj tylko interfejs GUI aplikacji i łącz się z istniejącą usługą aplikacji w tle"
 
-#: ../appstartup.cpp:191
+#: ../appstartup.cpp:201
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Włącz konsolę w systemie Windows, aby zebrać dane wyjściowe debugowania"
 
-#: ../appstartup.cpp:324
+#: ../appstartup.cpp:334
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../appstartup.cpp:384
+#: ../appstartup.cpp:394
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Opuść"
@@ -2193,7 +2193,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr ""
 
-#: ../appstartup.cpp:331
+#: ../appstartup.cpp:341
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
@@ -2218,7 +2218,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr ""
 
-#: ../appstartup.cpp:270 ../appstartup.cpp:277
+#: ../appstartup.cpp:280 ../appstartup.cpp:287
 msgctxt "QObject|"
 msgid "unknown"
 msgstr ""
