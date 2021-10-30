@@ -104,6 +104,17 @@ Item {
         }
     }
 
+    function textColor(base, shade) {
+        let backgroundColor = color(base, shade);
+        if (backgroundColor.hslLightness > 0.5) {
+            // The background is rather light... use a dark color for text:
+            return Qt.rgba(0, 0, 0, 1);
+        } else {
+            // The background is dark, use a light color for text:
+            return Qt.rgba(1, 1, 1, 1);
+        }
+    }
+
     function itemColor(item) {
         if (!item || item.color === undefined) {
             return "#00000000";

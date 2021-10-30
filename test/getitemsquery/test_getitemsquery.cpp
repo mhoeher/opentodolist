@@ -44,14 +44,13 @@ private slots:
     void initTestCase() {}
     void init() {}
     void run();
+    void todoCalculatedProperties();
     void cleanup() {}
     void cleanupTestCase() {}
 };
 
 void GetItemsQueryTest::run()
 {
-    //    QTest::ignoreMessage(QtDebugMsg,
-    //                         QRegularExpression(".*Cache is uninitialized.*"));
     QTemporaryDir tmpDir;
     Cache cache;
     cache.setCacheDirectory(tmpDir.path());
@@ -332,6 +331,92 @@ void GetItemsQueryTest::run()
         QCOMPARE(itemsAvailable.count(), 1);
         auto items = itemsAvailable.at(0).at(0).toList();
         QCOMPARE(items.count(), 0);
+    }
+}
+
+void GetItemsQueryTest::todoCalculatedProperties()
+{
+    QTemporaryDir tmpDir;
+    Cache cache;
+    cache.setCacheDirectory(tmpDir.path());
+    cache.setCacheSize(1024 * 1024);
+    QVERIFY(cache.open());
+
+    Library lib;
+    TodoList todoList;
+    Todo todo;
+    Task task1, task2;
+    todoList.setLibraryId(lib.uid());
+    todo.setTodoListUid(todoList.uid());
+    task1.setTodoUid(todo.uid());
+    task2.setTodoUid(todo.uid());
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        q->add(&lib);
+        q->add(&todoList);
+        q->add(&todo);
+        q->add(&task1);
+        q->add(&task2);
+        cache.run(q);
+        QVERIFY(finished.wait());
+    }
+
+    {
+        auto q = new GetItemsQuery;
+        QSignalSpy readItems(q, &GetItemsQuery::itemsAvailable);
+        q->setParent(todoList.uid());
+        cache.run(q);
+        QVERIFY(readItems.wait());
+        auto todo = Item::decache(readItems.at(0).at(0).toList().at(0), this);
+        QCOMPARE(todo->property("percentageDone").toInt(), 0);
+        QCOMPARE(todo->property("numSubtasks").toInt(), 2);
+        QCOMPARE(todo->property("numDoneSubtasks").toInt(), 0);
+    }
+
+    task1.setDone(true);
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        q->add(&task1);
+        cache.run(q);
+        QVERIFY(finished.wait());
+    }
+
+    {
+        auto q = new GetItemsQuery;
+        QSignalSpy readItems(q, &GetItemsQuery::itemsAvailable);
+        q->setParent(todoList.uid());
+        cache.run(q);
+        QVERIFY(readItems.wait());
+        auto todo = Item::decache(readItems.at(0).at(0).toList().at(0), this);
+        QCOMPARE(todo->property("percentageDone").toInt(), 50);
+        QCOMPARE(todo->property("numSubtasks").toInt(), 2);
+        QCOMPARE(todo->property("numDoneSubtasks").toInt(), 1);
+    }
+
+    task2.setDone(true);
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        q->add(&task2);
+        cache.run(q);
+        QVERIFY(finished.wait());
+    }
+
+    {
+        auto q = new GetItemsQuery;
+        QSignalSpy readItems(q, &GetItemsQuery::itemsAvailable);
+        q->setParent(todoList.uid());
+        cache.run(q);
+        QVERIFY(readItems.wait());
+        auto todo = Item::decache(readItems.at(0).at(0).toList().at(0), this);
+        QCOMPARE(todo->property("percentageDone").toInt(), 100);
+        QCOMPARE(todo->property("numSubtasks").toInt(), 2);
+        QCOMPARE(todo->property("numDoneSubtasks").toInt(), 2);
     }
 }
 

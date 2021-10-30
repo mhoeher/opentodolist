@@ -39,6 +39,9 @@ class Todo : public ComplexItem
     Q_PROPERTY(QUuid todoListUid READ todoListUid WRITE setTodoListUid NOTIFY todoListUidChanged)
     Q_PROPERTY(int percentageDone READ percentageDone NOTIFY percentageDoneChanged)
     Q_PROPERTY(int progress READ progress WRITE setProgress NOTIFY progressChanged)
+    Q_PROPERTY(int numSubtasks READ numSubtasks WRITE setNumSubtasks NOTIFY numSubtasksChanged)
+    Q_PROPERTY(int numDoneSubtasks READ numDoneSubtasks WRITE setNumDoneSubtasks NOTIFY
+                       numDoneSubtasksChanged)
 
 public:
     explicit Todo(const QString& filename, QObject* parent = nullptr);
@@ -64,12 +67,18 @@ public:
     int progress() const;
     void setProgress(int progress);
 
+    int numSubtasks() const;
+
+    int numDoneSubtasks() const;
+
 signals:
 
     void doneChanged();
     void todoListUidChanged();
     void percentageDoneChanged();
     void progressChanged();
+    void numSubtasksChanged();
+    void numDoneSubtasksChanged();
 
 public slots:
 
@@ -80,10 +89,15 @@ protected:
 private:
     QUuid m_todoListUid;
     int m_percentageDone;
+    int m_numSubtasks;
+    int m_numDoneSubtasks;
     int m_progress;
     bool m_done;
 
+    void setNumSubtasks(int newNumSubtasks);
+    void setNumDoneSubtasks(int newNumDoneSubtasks);
     // ComplexItem interface
+
 protected:
     void markItemAsDone() override;
 };
