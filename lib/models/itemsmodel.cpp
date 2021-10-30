@@ -545,7 +545,7 @@ void ItemsModel::fetch()
 
 std::function<bool(ItemPtr item, GetItemsQuery* query)> ItemsModel::getFilterFn() const
 {
-    auto words = m_searchString.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+    auto words = m_searchString.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
     std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
     if (!words.isEmpty()) {
         itemMatchesFilter = [=](ItemPtr item, GetItemsQuery* query) {
@@ -555,7 +555,7 @@ std::function<bool(ItemPtr item, GetItemsQuery* query)> ItemsModel::getFilterFn(
             } else {
                 auto todoList = item.dynamicCast<TodoList>();
                 if (todoList) {
-                    for (auto todo : query->childrenOf(todoList->uid())) {
+                    for (auto& todo : query->childrenOf(todoList->uid())) {
                         if (itemMatches(todo, words)) {
                             result = true;
                             break;
@@ -607,7 +607,7 @@ void ItemsModel::update(QVariantList items)
     auto idsToDelete = QSet<QUuid>(m_ids.begin(), m_ids.end());
 #endif
     QList<Item*> newItems;
-    for (auto data : items) {
+    for (const auto& data : qAsConst(items)) {
         auto item = Item::decache(data, this);
         auto id = item->uid();
         if (m_items.contains(id)) {
@@ -624,7 +624,7 @@ void ItemsModel::update(QVariantList items)
     }
 
     if (!idsToDelete.isEmpty()) {
-        for (auto id : idsToDelete) {
+        for (const auto& id : qAsConst(idsToDelete)) {
             auto index = m_ids.indexOf(id);
             beginRemoveRows(QModelIndex(), index, index);
             auto item = m_items.take(id);
@@ -636,7 +636,7 @@ void ItemsModel::update(QVariantList items)
 
     if (!newItems.isEmpty()) {
         beginInsertRows(QModelIndex(), m_ids.length(), m_ids.length() + newItems.length() - 1);
-        for (auto item : newItems) {
+        for (const auto& item : qAsConst(newItems)) {
             connect(item, &Item::changed, this, &ItemsModel::itemChanged);
             m_ids.append(item->uid());
             m_items.insert(item->uid(), item);
