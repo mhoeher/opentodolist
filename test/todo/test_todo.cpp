@@ -67,6 +67,8 @@ void TodoTest::testPersistence()
     QVERIFY(!todo.done());
     QCOMPARE(todo.progress(), -1);
     QCOMPARE(todo.percentageDone(), 0);
+    QCOMPARE(todo.numSubtasks(), 0);
+    QCOMPARE(todo.numDoneSubtasks(), 0);
 
     QUuid uid = QUuid::createUuid();
 

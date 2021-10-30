@@ -31,6 +31,8 @@ Todo::Todo(const QString& filename, QObject* parent)
     : ComplexItem(filename, parent),
       m_todoListUid(),
       m_percentageDone(0),
+      m_numSubtasks(0),
+      m_numDoneSubtasks(0),
       m_progress(-1),
       m_done(false)
 {
@@ -131,6 +133,8 @@ void Todo::applyCalculatedProperties(const QVariantMap& properties)
         m_percentageDone = percentage;
         emit percentageDoneChanged();
     }
+    setNumSubtasks(properties.value("numSubtasks", 0).toInt());
+    setNumDoneSubtasks(properties.value("numDoneSubtasks", 0).toInt());
 }
 
 Item* Todo::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
@@ -159,6 +163,32 @@ void Todo::fromMap(QVariantMap map)
     setTodoListUid(map.value("todoListUid", m_todoListUid).toUuid());
     setDone(map.value("done", m_done).toBool());
     setProgress(map.value("progress", -1).toInt());
+}
+
+int Todo::numDoneSubtasks() const
+{
+    return m_numDoneSubtasks;
+}
+
+void Todo::setNumDoneSubtasks(int newNumDoneSubtasks)
+{
+    if (m_numDoneSubtasks == newNumDoneSubtasks)
+        return;
+    m_numDoneSubtasks = newNumDoneSubtasks;
+    emit numDoneSubtasksChanged();
+}
+
+int Todo::numSubtasks() const
+{
+    return m_numSubtasks;
+}
+
+void Todo::setNumSubtasks(int newNumSubtasks)
+{
+    if (m_numSubtasks == newNumSubtasks)
+        return;
+    m_numSubtasks = newNumSubtasks;
+    emit numSubtasksChanged();
 }
 
 /**

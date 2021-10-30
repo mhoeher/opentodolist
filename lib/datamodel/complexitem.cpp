@@ -228,7 +228,7 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
     auto _today = today;
     if (_today.isNull() || !_today.isValid()) {
         auto currentDate = QDate::currentDate();
-        _today = QDateTime(currentDate);
+        _today = currentDate.startOfDay();
     }
 
     if (isRecurring()) {
@@ -405,6 +405,7 @@ void ComplexItem::setEarliestChildDueTo(const QDateTime& earliestChildDueTo)
     if (m_earliestChildDueTo != earliestChildDueTo) {
         m_earliestChildDueTo = earliestChildDueTo;
         emit earliestChildDueToChanged();
+        emit effectiveDueToChanged();
     }
 }
 
