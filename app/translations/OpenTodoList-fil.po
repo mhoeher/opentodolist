@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Itakda ang Dapat Na Bukas"
 
-#: ../Widgets/TodosWidgetDelegate.qml:242
+#: ../Widgets/TodosWidgetDelegate.qml:266
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Mag-swipe upang markahan ang pagbawi"
 
-#: ../Widgets/TodosWidgetDelegate.qml:244
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Mag-swipe upang markahan ang tapos na"

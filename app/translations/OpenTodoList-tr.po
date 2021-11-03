@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Teslim Tarihi Yarın"
 
-#: ../Widgets/TodosWidgetDelegate.qml:242
+#: ../Widgets/TodosWidgetDelegate.qml:266
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Geri alınan işareti işaretlemek için kaydırın"
 
-#: ../Widgets/TodosWidgetDelegate.qml:244
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Tamam olarak işaretlemek için kaydırın"

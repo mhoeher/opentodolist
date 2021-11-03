@@ -1818,12 +1818,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="242"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="266"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Pase para marcar deshecho</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="244"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Pase a la marca hecha</translation>
     </message>

@@ -1820,12 +1820,12 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="242"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="266"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Faire glisser si non-réalisé</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="244"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Faire glisser si réalisé</translation>
     </message>

@@ -37,9 +37,9 @@
     {
         "name": "Chinese (simplified)",
         "code": "zh-Hans",
-        "translations": 309,
-        "percentage": 64.11,
-        "updated": "2021-09-03T04:49:39+0000"
+        "translations": 482,
+        "percentage": 100,
+        "updated": "2021-10-23T04:58:56+0000"
     },
     {
         "name": "Danish",
@@ -103,6 +103,13 @@
         "translations": 0,
         "percentage": 0,
         "updated": ""
+    },
+    {
+        "name": "Hebrew",
+        "code": "he",
+        "translations": 42,
+        "percentage": 8.71,
+        "updated": "2021-10-27T22:02:31+0000"
     },
     {
         "name": "Hungarian",

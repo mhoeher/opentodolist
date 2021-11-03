@@ -1507,12 +1507,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Đặt ngày mai"
 
-#: ../Widgets/TodosWidgetDelegate.qml:242
+#: ../Widgets/TodosWidgetDelegate.qml:266
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Vuốt để đánh dấu hoàn tác"
 
-#: ../Widgets/TodosWidgetDelegate.qml:244
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Vuốt để đánh dấu xong"

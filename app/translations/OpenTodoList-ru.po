@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Назначить завтра"
 
-#: ../Widgets/TodosWidgetDelegate.qml:242
+#: ../Widgets/TodosWidgetDelegate.qml:266
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Проведите, чтобы пометить невыполненным"
 
-#: ../Widgets/TodosWidgetDelegate.qml:244
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Проведите, чтобы отметить готово"

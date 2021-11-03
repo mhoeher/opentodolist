@@ -6,7 +6,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于...</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="29"/>
@@ -16,12 +16,12 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="36"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished">添加</translation>
+        <translation type="unfinished">一个待办事项和任务管理应用。</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="64"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
-        <translation type="unfinished">OpenTodoList是根据&lt;a href=&apos;app-license&apos;&gt; GNU通用公共许可证&lt;/a&gt;第3版或（根据您的选择）任何更高版本的条款发行的。</translation>
+        <translation type="unfinished">OpenTodoList 是根据&lt;a href=&apos;app-license&apos;&gt; GNU通用公共许可证&lt;/a&gt;第3版或（根据您的选择）任何更高版本的条款发行的。</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="83"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="91"/>
         <source>Copy System Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制系统信息</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="112"/>
@@ -41,17 +41,17 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="149"/>
         <source>Author:</source>
-        <translation type="unfinished">作者：</translation>
+        <translation type="unfinished">作者:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="154"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;％1 &lt;/a&gt;</translation>
+        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="161"/>
         <source>License:</source>
-        <translation type="unfinished">许可：</translation>
+        <translation type="unfinished">许可:</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="166"/>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
-        <translation type="unfinished">帐户类型</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
@@ -121,17 +121,17 @@
     <message>
         <location filename="../appstartup.cpp" line="194"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">仅运行应用后台服务</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="196"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">仅运行应用图形界面并连接至现有应用的后台服务</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="201"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在 Windows 上启用一个终端来获取调试输出</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="334"/>
@@ -141,12 +141,12 @@
     <message>
         <location filename="../appstartup.cpp" line="341"/>
         <source>Quick Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷笔记</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="394"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出</translation>
     </message>
 </context>
 <context>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../Components/ApplicationShortcuts.qml" line="15"/>
         <source>Ctrl+,</source>
-        <translation type="unfinished">Ctrl +，</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -162,7 +162,7 @@
     <message>
         <location filename="../Components/ApplicationToolBar.qml" line="151"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished">正在同步库...</translation>
+        <translation type="unfinished">正在同步资料库...</translation>
     </message>
 </context>
 <context>
@@ -170,17 +170,17 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">撤销</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">移动</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Attach File</source>
-        <translation type="unfinished">附加档案</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
         <source>Sort</source>
-        <translation type="unfinished">分类</translation>
+        <translation type="unfinished">排序</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
@@ -225,12 +225,12 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除已完成的项目</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设定进度</translation>
     </message>
 </context>
 <context>
@@ -238,7 +238,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished">附加档案</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
@@ -266,37 +266,37 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">白</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">红</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">绿</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">蓝</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">橙</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">紫</translation>
     </message>
 </context>
 <context>
@@ -343,7 +343,7 @@
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="36"/>
         <source>Do you really want to remove the account &lt;strong&gt;%1&lt;/strong&gt;? This will remove all libraries belonging to the account from your device?&lt;br/&gt;&lt;br/&gt;&lt;i&gt;Note: You can restore them from the server by adding back the account.&lt;/i&gt;</source>
-        <translation type="unfinished">您是否真的要删除帐户&lt;strong&gt;％1 &lt;/ strong&gt;？这样会从您的设备中删除属于该帐户的所有库吗？</translation>
+        <translation type="unfinished">您是否真的要删除帐户&lt;strong&gt;%1&lt;/strong&gt;？这样会从您的设备中删除属于该帐户的所有资料库吗？&lt;br/&gt;&lt;br/&gt;&lt;i&gt;注意: 您可以在服务器端通过添加回账户的方式恢复它们。&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
@@ -351,7 +351,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除已完成的项目</translation>
     </message>
 </context>
 <context>
@@ -359,17 +359,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除已完成的项目？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">您是否真的要删除待办事项列表&lt;strong&gt;%1&lt;/strong&gt;中所有的已完成项目？这不能被撤消。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">您是否真的要删除待办事项列表&lt;strong&gt;%1&lt;/strong&gt;中所有的已完成项目？这不能被撤消。</translation>
     </message>
 </context>
 <context>
@@ -390,27 +390,27 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
         <source>Do you really want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">您是否真的要删除图像&lt;strong&gt;％1 &lt;/ strong&gt;？这不能被撤消。</translation>
+        <translation type="unfinished">您是否真的要删除图像&lt;strong&gt;%1&lt;/strong&gt;？这不能被撤消。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
         <source>Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">您是否真的要删除待办事项列表&lt;strong&gt;％1 &lt;/ strong&gt;？这不能被撤消。</translation>
+        <translation type="unfinished">您是否真的要删除待办事项列表&lt;strong&gt;%1&lt;/strong&gt;？这不能被撤消。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="40"/>
         <source>Do you really want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">您是否真的要删除待办事项&lt;strong&gt;％1 &lt;/ strong&gt;？这不能被撤消。</translation>
+        <translation type="unfinished">您是否真的要删除待办事项&lt;strong&gt;%1&lt;/strong&gt;？这不能被撤消。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="44"/>
         <source>Do you really want to delete the task &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">您是否真的要删除任务&lt;strong&gt;％1 &lt;/ strong&gt;？这不能被撤消。</translation>
+        <translation type="unfinished">您是否真的要删除任务&lt;strong&gt;%1&lt;/strong&gt;？这不能被撤消。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="48"/>
         <source>Do you really want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">您是否真的要删除注释&lt;strong&gt;％1 &lt;/ strong&gt;？这不能被撤消。</translation>
+        <translation type="unfinished">您是否真的要删除笔记 &lt;strong&gt;%1&lt;/strong&gt;？这不能被撤消。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
@@ -428,12 +428,12 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from  the application? &lt;em&gt;This will remove any files belonging to the library.&lt;/em&gt;</source>
-        <translation type="unfinished">您是否真的要从应用程序中删除库&lt;strong&gt;％1 &lt;/ strong&gt;？ &lt;em&gt;这将删除该库中的所有文件。&lt;/ em&gt;</translation>
+        <translation type="unfinished">您是否真的要从应用程序中删除资料库&lt;strong&gt;%1&lt;/strong&gt;？ &lt;em&gt;这将删除该资料库中的所有文件。&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="40"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from the application? Note that the files inside the library will not be removed, so you can restore the library later on.</source>
-        <translation type="unfinished">您是否真的要从应用程序中删除库&lt;strong&gt;％1 &lt;/ strong&gt;？请注意，库中的文件不会被删除，因此您以后可以还原该库。</translation>
+        <translation type="unfinished">您是否真的要从应用程序中删除资料库&lt;strong&gt;%1&lt;/strong&gt;？请注意，库中的文件不会被删除，因此您以后可以还原该库。</translation>
     </message>
 </context>
 <context>
@@ -442,17 +442,17 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
         <source>Edit Account</source>
-        <translation type="unfinished">编辑帐户</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation type="unfinished">名称:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="86"/>
         <source>Server Address:</source>
-        <translation type="unfinished">服务器地址：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="93"/>
@@ -462,12 +462,12 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">登录</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User:</source>
-        <translation type="unfinished">用户：</translation>
+        <translation type="unfinished">用户:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
@@ -477,7 +477,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
         <source>Password:</source>
-        <translation type="unfinished">密码：</translation>
+        <translation type="unfinished">密码:</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="131"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="149"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">未能连接到服务器。请检查您的用户名，密码和服务器地址，然后重试。</translation>
+        <translation type="unfinished">未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。</translation>
     </message>
 </context>
 <context>
@@ -501,17 +501,17 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Edit Account</source>
-        <translation type="unfinished">编辑帐户</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="133"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation type="unfinished">名称:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
         <source>Server Address:</source>
-        <translation type="unfinished">服务器地址：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="150"/>
@@ -521,7 +521,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
         <source>User:</source>
-        <translation type="unfinished">用户：</translation>
+        <translation type="unfinished">用户:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="163"/>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="170"/>
         <source>Password:</source>
-        <translation type="unfinished">密码：</translation>
+        <translation type="unfinished">密码:</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="177"/>
@@ -546,7 +546,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="195"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">未能连接到服务器。请检查您的用户名，密码和服务器地址，然后重试。</translation>
+        <translation type="unfinished">未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。</translation>
     </message>
 </context>
 <context>
@@ -562,7 +562,7 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished">&lt;strong&gt;％1 &lt;/ strong&gt;已创建。</translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt;已创建。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="72"/>
@@ -580,12 +580,12 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
         <source>Due on</source>
-        <translation type="unfinished">由于上</translation>
+        <translation type="unfinished">到期于</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
         <source>First due on %1.</source>
-        <translation type="unfinished">首先应于％1。</translation>
+        <translation type="unfinished">首先到期于 %1。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
@@ -610,22 +610,22 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="79"/>
         <source>Recurs every year.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每年重复。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished">每％1天重复一次。</translation>
+        <translation type="unfinished">每 %1 天重复一次。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
         <source>Recurs every %1 weeks.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每 %1 周重复。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="85"/>
         <source>Recurs every %1 months.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每 %1 月重复。</translation>
     </message>
 </context>
 <context>
@@ -638,7 +638,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
         <source>No notes added yet - click here to add some.</source>
-        <translation type="unfinished">尚未添加任何注释-单击此处添加一些注释。</translation>
+        <translation type="unfinished">尚未添加任何笔记 - 单击此处添加一些笔记。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
@@ -648,7 +648,7 @@
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
         <source>Markdown files</source>
-        <translation type="unfinished">Markdown文件</translation>
+        <translation type="unfinished">Markdown 文件</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
@@ -661,22 +661,22 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="152"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">移动待办事项至...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">转换任务为待办事项并移动至...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="184"/>
         <source>Copy Item Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制项目至...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="202"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制待办事项至...</translation>
     </message>
 </context>
 <context>
@@ -684,7 +684,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="178"/>
         <source>New Library</source>
-        <translation type="unfinished">新图书馆</translation>
+        <translation type="unfinished">新资料库</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="185"/>
@@ -694,12 +694,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
         <source>Edit List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编辑列表</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="205"/>
@@ -709,37 +709,37 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">捐助</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于...</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="233"/>
         <source>Create Default Library</source>
-        <translation type="unfinished">创建默认库</translation>
+        <translation type="unfinished">创建默认资料库</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">隐藏时间表</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示时间表</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">向上移动</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="363"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">向下移动</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="376"/>
@@ -752,42 +752,42 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="152"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">红</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="159"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">绿</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="166"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">蓝</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="173"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="180"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">橙</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="187"/>
         <source>Lilac</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">紫</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">白</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="204"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="209"/>
@@ -822,12 +822,12 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="440"/>
         <source>Sort By</source>
-        <translation type="unfinished">以...排序</translation>
+        <translation type="unfinished">排序方式</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="445"/>
         <source>Manually</source>
-        <translation type="unfinished">手动地</translation>
+        <translation type="unfinished">手动</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="452"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="459"/>
         <source>Due To</source>
-        <translation type="unfinished">由于</translation>
+        <translation type="unfinished">到期于</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="466"/>
@@ -860,7 +860,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished">同步记录</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -868,7 +868,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="14"/>
         <source>Synchronization Log</source>
-        <translation type="unfinished">同步记录</translation>
+        <translation type="unfinished">同步日志</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="26"/>
@@ -878,12 +878,12 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="32"/>
         <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">滚动到顶端</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="38"/>
         <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">滚动到底端</translation>
     </message>
 </context>
 <context>
@@ -896,7 +896,7 @@
     <message>
         <location filename="../Windows/MainWindow.qml" line="279"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
-        <translation type="unfinished">首先&lt;a href=&apos;#newLibrary&apos;&gt;创建一个新库&lt;/a&gt;。库用于存储各种项目，例如便笺，待办事项列表和图像。</translation>
+        <translation type="unfinished">首先&lt;a href=&apos;#newLibrary&apos;&gt;创建一个新资料库&lt;/a&gt;。资料库用于存储各种项目，例如笔记、待办事项列表和图像。</translation>
     </message>
 </context>
 <context>
@@ -904,7 +904,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">移动</translation>
     </message>
 </context>
 <context>
@@ -922,7 +922,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
         <source>This Week</source>
-        <translation type="unfinished">本星期</translation>
+        <translation type="unfinished">本周</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
@@ -937,7 +937,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="115"/>
         <source>Title:</source>
-        <translation type="unfinished">标题：</translation>
+        <translation type="unfinished">标题:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
@@ -947,12 +947,12 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
         <source>Create in:</source>
-        <translation type="unfinished">创建于：</translation>
+        <translation type="unfinished">创建于:</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="166"/>
         <source>Due on:</source>
-        <translation type="unfinished">由于上：</translation>
+        <translation type="unfinished">到期于:</translation>
     </message>
 </context>
 <context>
@@ -960,47 +960,47 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="104"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">在帐户中创建库</translation>
+        <translation type="unfinished">在帐户中创建资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">在帐户中创建的库将与其同步。这样可以轻松地将库备份到服务器，然后再从那里还原它。此外，此类库可以与其他用户共享（如果服务器允许的话）。</translation>
+        <translation type="unfinished">在帐户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
         <source>Existing Libraries</source>
-        <translation type="unfinished">已有库</translation>
+        <translation type="unfinished">现有资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="129"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished">选择服务器上的现有库以将其添加到应用程序。</translation>
+        <translation type="unfinished">选择服务器上的现有资料库以将其添加到应用程序。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="135"/>
         <source>No libraries were found on the server.</source>
-        <translation type="unfinished">在服务器上找不到库。</translation>
+        <translation type="unfinished">在服务器上找不到资料库。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="143"/>
         <source>Searching existing libraries...</source>
-        <translation type="unfinished">搜索现有库...</translation>
+        <translation type="unfinished">搜索现有资料库...</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="177"/>
         <source>Create a New Library</source>
-        <translation type="unfinished">创建一个新库</translation>
+        <translation type="unfinished">创建一个新资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="185"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">创建一个新的库，它将与服务器同步。这样的库也可以添加到其他设备上的应用程序中，以同步数据。</translation>
+        <translation type="unfinished">创建一个新的资料库，它将与服务器同步。这样的资料库也可以添加到其他设备上的应用程序中以同步数据。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="199"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished">我新图书馆的名字</translation>
+        <translation type="unfinished">我的新资料库名字</translation>
     </message>
 </context>
 <context>
@@ -1008,22 +1008,22 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished">打开一个文件夹作为库</translation>
+        <translation type="unfinished">按照资料库打开一个文件夹</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished">您可以使用任何文件夹作为库的位置。&lt;br/&gt; &lt;br/&gt;当您想使用其他工具（例如云提供商的同步客户端）将数据与服务器同步时，此功能特别有用。</translation>
+        <translation type="unfinished">您可以使用任何文件夹作为资料库的位置。&lt;br/&gt; &lt;br/&gt;当您想使用其他工具（例如云提供商的同步客户端）将数据与服务器同步时，此功能特别有用。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
         <source>Folder:</source>
-        <translation type="unfinished">文件夹：</translation>
+        <translation type="unfinished">文件夹:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished">用作库的文件夹的路径</translation>
+        <translation type="unfinished">用作资料库的文件夹的路径</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
@@ -1033,7 +1033,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation type="unfinished">名称:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
@@ -1047,27 +1047,27 @@
         <location filename="../Pages/NewLibraryPage.qml" line="24"/>
         <location filename="../Pages/NewLibraryPage.qml" line="62"/>
         <source>Create Library</source>
-        <translation type="unfinished">建立图书馆</translation>
+        <translation type="unfinished">创建资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="69"/>
         <source>Local Library</source>
-        <translation type="unfinished">当地图书馆</translation>
+        <translation type="unfinished">本地资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="76"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished">将文件夹用作库</translation>
+        <translation type="unfinished">将文件夹用作资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="87"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">从您的帐户添加库</translation>
+        <translation type="unfinished">从您的帐户添加资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="114"/>
         <source>Add Account</source>
-        <translation type="unfinished">新增帐户</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1075,17 +1075,17 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="62"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished">创建本地库</translation>
+        <translation type="unfinished">创建本地资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="70"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">本地库仅存储在您的设备上-这非常适合简洁的隐私！&lt;br/&gt; &lt;br/&gt;当您只想在本地存储信息并通过其他机制定期备份所有数据时，可以使用它。如果需要跨多个设备访问信息，请创建一个同步的库。</translation>
+        <translation type="unfinished">本地资料库仅存储在您的设备上-这非常适合隐私方面的考量！&lt;br/&gt; &lt;br/&gt;当您只想在本地存储信息并通过其他机制定期备份所有数据时，可以使用它。如果需要跨多个设备访问信息，请创建一个同步的资料库。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation type="unfinished">名称:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
@@ -1104,57 +1104,57 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="80"/>
         <source>Server Address:</source>
-        <translation type="unfinished">服务器地址：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">登录</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">注册遇到困难？</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">我们已尝试打开您的浏览器来登录您的 NextCloud 实例。请登录并授予 OpenTodoList 访问权限来继续。在浏览器中访问您的 NextCloud 遇到困难？您也可以手动输入您的用户名和密码。</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">手动登录</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">理想情况下，您可以使用特定的应用程序密码而不是您的用户密码。在您使用二次因素认证(2FA)保护您的登录的情况下，您甚至必须使用应用程序特定密码来访问您的 NextCloud。 您可以在您的用户设定中创建这类密码。</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">创建应用程序密码</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">账户设定</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="157"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制连接</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已复制!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="171"/>
         <source>User:</source>
-        <translation type="unfinished">用户：</translation>
+        <translation type="unfinished">用户:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="178"/>
@@ -1164,7 +1164,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="185"/>
         <source>Password:</source>
-        <translation type="unfinished">密码：</translation>
+        <translation type="unfinished">密码:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="192"/>
@@ -1179,17 +1179,17 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="206"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation type="unfinished">名称:</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="218"/>
         <source>Account Name</source>
-        <translation type="unfinished">用户名</translation>
+        <translation type="unfinished">账户名</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="228"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">未能连接到服务器。请检查您的用户名，密码和服务器地址，然后重试。</translation>
+        <translation type="unfinished">未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。</translation>
     </message>
 </context>
 <context>
@@ -1202,12 +1202,12 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
-        <translation type="unfinished">去做</translation>
+        <translation type="unfinished">待办事项</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
         <source>Note</source>
-        <translation type="unfinished">注意</translation>
+        <translation type="unfinished">笔记</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
@@ -1226,7 +1226,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
         <source>Server Address:</source>
-        <translation type="unfinished">服务器地址：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
@@ -1236,7 +1236,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
         <source>User:</source>
-        <translation type="unfinished">用户：</translation>
+        <translation type="unfinished">用户:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
@@ -1246,7 +1246,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
         <source>Password:</source>
-        <translation type="unfinished">密码：</translation>
+        <translation type="unfinished">密码:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="172"/>
@@ -1261,17 +1261,17 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="185"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation type="unfinished">名称:</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="197"/>
         <source>Account Name</source>
-        <translation type="unfinished">用户名</translation>
+        <translation type="unfinished">账户名</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="207"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">未能连接到服务器。请检查您的用户名，密码和服务器地址，然后重试。</translation>
+        <translation type="unfinished">未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。</translation>
     </message>
 </context>
 <context>
@@ -1279,7 +1279,7 @@
     <message>
         <location filename="../Widgets/NoteItem.qml" line="75"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">到期于 %1</translation>
     </message>
 </context>
 <context>
@@ -1323,12 +1323,12 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
         <source>Missing secrets for account</source>
-        <translation type="unfinished">帐户缺少机密</translation>
+        <translation type="unfinished">帐户缺少密钥</translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="47"/>
         <source>Synchronization failed for library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同步失败项目至资料库</translation>
     </message>
 </context>
 <context>
@@ -1336,7 +1336,7 @@
     <message>
         <location filename="../Actions/PromoteTask.qml" line="12"/>
         <source>Promote</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">推荐</translation>
     </message>
 </context>
 <context>
@@ -1345,7 +1345,7 @@
         <location filename="../appstartup.cpp" line="280"/>
         <location filename="../appstartup.cpp" line="287"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">未知</translation>
     </message>
 </context>
 <context>
@@ -1353,57 +1353,57 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="19"/>
         <source>Quick Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷笔记</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="46"/>
         <source>Quick Notes Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷笔记编辑器</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="57"/>
         <source>Open the main window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开主窗口</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
         <source>Quick Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷笔记标题</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="83"/>
         <source>Type your notes here...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在这里输入您的笔记...</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="140"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存输入的笔记至选定的资料库。点按并保持来获得更多的保存方式。</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="158"/>
         <source>Save as Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按照笔记保存</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="161"/>
         <source>Quick Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷笔记</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="169"/>
         <source>Save as Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">以待办事项清单保存</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
         <source>Quick Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷待办事项清单</translation>
     </message>
 </context>
 <context>
@@ -1421,7 +1421,7 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
         <source>Daily</source>
-        <translation type="unfinished">日常</translation>
+        <translation type="unfinished">每日</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
@@ -1431,37 +1431,37 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
         <source>Monthly</source>
-        <translation type="unfinished">每月一次</translation>
+        <translation type="unfinished">每月</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Yearly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每年</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
         <source>Every N Days</source>
-        <translation type="unfinished">每N天</translation>
+        <translation type="unfinished">每 N 天</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
         <source>Every N Weeks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每 N 周</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
         <source>Every N Months</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每 N 月</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
         <source>Recurs:</source>
-        <translation type="unfinished">重复出现：</translation>
+        <translation type="unfinished">重复出现:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
         <source>Number of days:</source>
-        <translation type="unfinished">天数：</translation>
+        <translation type="unfinished">天数:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
@@ -1474,7 +1474,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
 </context>
 <context>
@@ -1495,12 +1495,12 @@
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="20"/>
         <source>Rename Library</source>
-        <translation type="unfinished">重命名库</translation>
+        <translation type="unfinished">重命名资料库</translation>
     </message>
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
         <source>Enter library title...</source>
-        <translation type="unfinished">输入图书馆标题...</translation>
+        <translation type="unfinished">输入资料库标题...</translation>
     </message>
 </context>
 <context>
@@ -1554,7 +1554,7 @@
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
         <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择待办事详清单</translation>
     </message>
 </context>
 <context>
@@ -1602,7 +1602,7 @@
     <message>
         <location filename="../Actions/SetDueTomorrow.qml" line="8"/>
         <source>Set Due Tomorrow</source>
-        <translation type="unfinished">设置到期日</translation>
+        <translation type="unfinished">定于明日到期</translation>
     </message>
 </context>
 <context>
@@ -1610,7 +1610,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设定进度</translation>
     </message>
 </context>
 <context>
@@ -1618,7 +1618,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="45"/>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="51"/>
@@ -1628,81 +1628,85 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="59"/>
         <source>Language:</source>
-        <translation type="unfinished">语言：</translation>
+        <translation type="unfinished">语言:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="84"/>
         <source>Theme:</source>
-        <translation type="unfinished">主题：</translation>
+        <translation type="unfinished">主题:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
         <source>System Tray:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">系统托盘:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="121"/>
         <source>Open Quick Notes Editor on Click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">点击以打开快捷笔记编辑器</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="127"/>
         <source>Font Size:</source>
-        <translation type="unfinished">字体大小：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="144"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用自定义字体尺寸</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">桌面模式</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用紧凑风格</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="171"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">缩小组件之间的间距并缩小字体尺寸。
+
+&lt;em&gt;需要重新启动应用。&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用紧凑的待办事项清单</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="189"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">缩小待办事项和任务列表的边距使得屏幕上可以显示更多项目。</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="196"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">覆盖缩放级别</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">缩放级别:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="221"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用此来手动缩放用户界面。默认情况下，应用程序应该可以根据您的设备配置自动适应。如果这并未如预期般有效，您可以在这里设定一个自定义的缩放级别。
+
+这需要重新启动应用。</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="230"/>
         <source>Library Item Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">资料库项目尺寸:</translation>
     </message>
 </context>
 <context>
@@ -1710,12 +1714,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
         <source>There were errors when synchronizing the library. Please ensure that the library settings are up to date.</source>
-        <translation type="unfinished">同步库时出错。请确保库设置是最新的。</translation>
+        <translation type="unfinished">同步资料库时出错。请确保资料库设置是最新的。</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished">忽视</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
@@ -1736,7 +1740,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="76"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">到期于 %1</translation>
     </message>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="128"/>
@@ -1754,7 +1758,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="170"/>
         <source>Manually</source>
-        <translation type="unfinished">手动地</translation>
+        <translation type="unfinished">手动</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="176"/>
@@ -1764,7 +1768,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="182"/>
         <source>Due Date</source>
-        <translation type="unfinished">截止日期</translation>
+        <translation type="unfinished">到期日期</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="188"/>
@@ -1779,7 +1783,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Todos</source>
-        <translation type="unfinished">待办</translation>
+        <translation type="unfinished">待办事项</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="242"/>
@@ -1810,18 +1814,18 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodosWidget.qml" line="194"/>
         <source>Due on: %1</source>
-        <translation type="unfinished">到期日期：％1</translation>
+        <translation type="unfinished">到期于: %1</translation>
     </message>
 </context>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="242"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="266"/>
         <source>Swipe to mark undone</source>
-        <translation type="unfinished">滑动以标记为撤消</translation>
+        <translation type="unfinished">滑动以标记为未完成</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="244"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">滑动以标记为完成</translation>
     </message>
@@ -1831,12 +1835,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="44"/>
         <source>An update to OpenTodoList %1 is available.</source>
-        <translation type="unfinished">提供了对OpenTodoList％1的更新。</translation>
+        <translation type="unfinished">一个 OpenTodoList ％1的新版本可供使用。</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished">忽视</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
