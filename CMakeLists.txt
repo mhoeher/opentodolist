@@ -70,7 +70,7 @@ if(NOT OPENTODOLIST_QT_VERSIONS)
     set(OPENTODOLIST_QT_VERSIONS Qt6 Qt5)
 endif()
 
-set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets)
+set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets Network NetworkAuth)
 if(ANDROID)
 set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras)
 endif()

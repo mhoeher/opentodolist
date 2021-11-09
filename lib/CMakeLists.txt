@@ -67,6 +67,8 @@ set(PROJECT_SOURCES
     service/backgroundservice.h
     sync/account.cpp
     sync/account.h
+    sync/dropboxsynchronizer.cpp
+    sync/dropboxsynchronizer.h
     sync/synchronizer.cpp
     sync/synchronizer.h
     sync/syncjob.cpp
