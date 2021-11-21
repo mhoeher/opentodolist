@@ -281,7 +281,8 @@ C.ApplicationWindow {
                        "different kinds of items like notes, todo lists " +
                        "and images.")
             onLinkActivated: if (link === "#newLibrary") {
-                                 newLibraryAction.trigger();
+                                 stackView.clear();
+                                 stackView.push(newLibraryPage);
                              }
         }
     }

@@ -981,6 +981,26 @@ QUrl Application::cleanPath(const QUrl& url) const
 }
 
 /**
+ * @brief Check if the contents of the path pointed to by @p url can be listed.
+ */
+bool Application::canListPath(const QUrl& url) const
+{
+    auto path = url.toLocalFile();
+    QFileInfo fi(path);
+    return fi.isReadable();
+}
+
+QUrl Application::getParentDirectory(const QUrl& url) const
+{
+    auto path = url.toLocalFile();
+    QDir dir(path);
+    if (!dir.isRoot()) {
+        dir.cdUp();
+    }
+    return QUrl::fromLocalFile(dir.absolutePath());
+}
+
+/**
  * @brief Converts HTML into plain text.
  *
  * This function gets an @p html string as input and returns the text converted
@@ -992,6 +1012,21 @@ QString Application::htmlToPlainText(const QString& html) const
     doc.setHtml(html);
     return doc.toPlainText();
 }
+
+#ifdef Q_OS_ANDROID
+/**
+ * @brief Get the absolute path to the app specific external files directory.
+ */
+QString Application::getExternalFilesDir() const
+{
+    auto context = QtAndroid::androidContext();
+    QAndroidJniObject type = QAndroidJniObject::fromString(QString("Libraries"));
+    auto file = context.callObjectMethod(
+            "getExternalFilesDir", "(Ljava/lang/String;)Ljava/io/File;", type.object<jstring>());
+    qWarning() << "Got path to external files dir" << file.toString();
+    return file.toString();
+}
+#endif
 
 /**
  * @brief Check if a file called @p filename exists.

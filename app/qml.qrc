@@ -155,5 +155,6 @@
         <file>Components/ApplicationToolBarActions.qml</file>
         <file>Components/ApplicationShortcuts.qml</file>
         <file>Controls/PasswordField.qml</file>
+        <file>Windows/+android/FolderSelectionDialog.qml</file>
     </qresource>
 </RCC>
