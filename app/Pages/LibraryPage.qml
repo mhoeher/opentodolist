@@ -1,6 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
 import Qt.labs.settings 1.0
+import QtQuick.Dialogs 1.2 as Dialogs
 
 import OpenTodoList 1.0 as OTL
 
@@ -216,8 +217,12 @@ C.Page {
         }
     }
 
-    OpenImageDialog {
+    Dialogs.FileDialog {
         id: openImageDialog
+
+        folder: shortcuts.pictures
+        title: qsTr("Select Image")
+        nameFilters: ["Image Files (*.png *.bmp *.jpg *.jpeg *.gif)"]
 
         onAccepted: {
             var filename = OTL.Application.urlToLocalFile(fileUrl);
@@ -227,7 +232,7 @@ C.Page {
             }
             var properties = {
                 "title": OTL.Application.basename(filename),
-                "image": filename,
+                "imageUrl": fileUrl,
                 "tags": tags
             };
 

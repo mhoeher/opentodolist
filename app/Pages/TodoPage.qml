@@ -238,13 +238,6 @@ ItemPage {
                         attach();
                     }
                 }
-
-                Connections {
-                    target: openFileDialog
-                    function onClosed() {
-                        d.reopenDrawer();
-                    }
-                }
             }
         }
     }

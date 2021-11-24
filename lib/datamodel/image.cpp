@@ -22,6 +22,7 @@
 #include <QFuture>
 #include <QFutureWatcher>
 #include <QLoggingCategory>
+#include <QMimeDatabase>
 #include <QSaveFile>
 #include <QtConcurrent>
 
@@ -77,7 +78,7 @@ void Image::setImage(const QString& image)
             emit imageChanged();
         } else {
             QFileInfo fi(image);
-            if (fi.isRelative()) {
+            if (fi.isRelative() && !image.startsWith("content://")) {
                 m_image = image;
                 emit imageChanged();
             } else {
@@ -123,6 +124,17 @@ void Image::setImage(const QString& image)
                         // question mark character:
                         completeSuffix = completeSuffix.split("?").first();
                     }
+                    if (completeSuffix.isEmpty()) {
+                        // On some platforms (e.g. Android) we get URLs. These
+                        // can be consumed by Qt, but we won't get any useful information
+                        // from the URL itself. Hence, try to derive the information from
+                        // the file directly:
+                        QMimeDatabase mdb;
+                        auto mimetype = mdb.mimeTypeForFile(image);
+                        if (mimetype.isValid()) {
+                            completeSuffix = "." + mimetype.preferredSuffix();
+                        }
+                    }
                     targetFileName += completeSuffix;
                     auto targetFilePath = directory() + "/" + targetFileName;
 
@@ -153,6 +165,17 @@ void Image::setImage(const QString& image)
                 }
             }
         }
+    }
+}
+
+void Image::setImageUrl(const QUrl& imageUrl)
+{
+    if (imageUrl.scheme() == "content") {
+        // On Android, pass-thru the content:// URL as is, see
+        // https://www.volkerkrause.eu/2019/02/16/qt-open-files-on-android.html
+        setImage(imageUrl.toString());
+    } else {
+        setImage(imageUrl.toLocalFile());
     }
 }
 
