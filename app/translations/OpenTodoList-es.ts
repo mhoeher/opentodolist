@@ -550,14 +550,6 @@
     </message>
 </context>
 <context>
-    <name>FolderSelectionDialog</name>
-    <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
-        <source>Select a Folder</source>
-        <translation type="unfinished">Seleccione una carpeta</translation>
-    </message>
-</context>
-<context>
     <name>ItemCreatedNotification</name>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
@@ -1008,37 +1000,42 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
+        <source>Select a Folder</source>
+        <translation type="unfinished">Seleccione una carpeta</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished">Puede utilizar cualquier carpeta como ubicación para una biblioteca.&lt;br/&gt;&lt;br/&gt;Esto es especialmente útil cuando quiere utilizar otra herramienta (como un cliente de sincronización de un proveedor de nubes) para sincronizar sus datos con un servidor.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>Folder:</source>
         <translation type="unfinished">Carpeta:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="114"/>
         <source>Path to a folder to use as a library</source>
         <translation type="unfinished">Ruta a una carpeta para usarla como biblioteca</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="120"/>
         <source>Select</source>
         <translation type="unfinished">Seleccione</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="125"/>
         <source>Name:</source>
         <translation type="unfinished">Nombre:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="130"/>
         <source>My Local Library Name</source>
         <translation type="unfinished">El nombre de mi biblioteca local</translation>
     </message>

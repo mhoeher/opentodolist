@@ -1941,37 +1941,37 @@ msgid "My new library's name"
 msgstr "Le nom de ma bibliothèque\n"
 ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:88
+#: ../Pages/NewLibraryInFolderPage.qml:97
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
 msgstr "Ouvrir un dossier comme bibliothèque"
 
-#: ../Pages/NewLibraryInFolderPage.qml:96
+#: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
 msgstr "Vous pouvez utiliser n'importe quel dossier comme emplacement pour une bibliothèque.<br/><br/>Ceci est particulièrement utile lorsque vous souhaitez utiliser un autre outil (comme un client de synchronisation d'un fournisseur de cloud) pour synchroniser vos données avec un serveur. "
 
-#: ../Pages/NewLibraryInFolderPage.qml:100
+#: ../Pages/NewLibraryInFolderPage.qml:109
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
 msgstr "Dossier : "
 
-#: ../Pages/NewLibraryInFolderPage.qml:105
+#: ../Pages/NewLibraryInFolderPage.qml:114
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
 msgstr "Chemin vers le dossier à utiliser comme bibliothèque"
 
-#: ../Pages/NewLibraryInFolderPage.qml:111
+#: ../Pages/NewLibraryInFolderPage.qml:120
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
 msgstr "Sélectionner"
 
-#: ../Pages/NewLibraryInFolderPage.qml:116
+#: ../Pages/NewLibraryInFolderPage.qml:125
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
 msgstr "Nom : "
 
-#: ../Pages/NewLibraryInFolderPage.qml:121
+#: ../Pages/NewLibraryInFolderPage.qml:130
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
 msgstr "Nom de ma bibliothèque locale"
@@ -2322,130 +2322,135 @@ msgstr "Ouvrir l’Éditeur de Notes Rapides au Clic"
 #: ../Widgets/NoteItem.qml:75
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Exigible le %1"
 
 #: ../Widgets/TodoListItem.qml:76
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Exigible le %1"
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: ../Pages/LibraryPage.qml:209
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Choisir Bibliothèque"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
+msgstr "Sélectionner un article"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Ctrl+,"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Synchronisation de la bibliothèque..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
+msgstr "annuler"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Renommer"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Se déplacer"
 
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Couleur"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Ajouter une étiquette"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Pièce jointe"
 
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Chercher"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Sorte"
 
 #: ../Components/ApplicationToolBarActions.qml:98
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Définir la date d'échéance"
 
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Effacer"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Supprimer les éléments terminés"
 
 #: ../Components/ApplicationToolBarActions.qml:120
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Définir la progression"
 
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
+msgstr "Mode bureau"
 
 #: ../Utils/ItemUtils.qml:184
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
-msgstr ""
+msgstr "Copier l'élément dans..."
 
 #: ../Utils/ItemUtils.qml:202
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
+msgstr "Copier la tâche dans..."
+
+#: ../Pages/NewLibraryInFolderPage.qml:71
+msgctxt "NewLibraryInFolderPage|"
+msgid "Select a Folder"
 msgstr ""
 

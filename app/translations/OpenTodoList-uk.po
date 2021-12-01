@@ -1928,37 +1928,37 @@ msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:88
+#: ../Pages/NewLibraryInFolderPage.qml:97
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:96
+#: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:100
+#: ../Pages/NewLibraryInFolderPage.qml:109
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:105
+#: ../Pages/NewLibraryInFolderPage.qml:114
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:111
+#: ../Pages/NewLibraryInFolderPage.qml:120
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:116
+#: ../Pages/NewLibraryInFolderPage.qml:125
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:121
+#: ../Pages/NewLibraryInFolderPage.qml:130
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
 msgstr ""
@@ -2430,5 +2430,10 @@ msgstr ""
 #: ../Utils/ItemUtils.qml:202
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPage.qml:71
+msgctxt "NewLibraryInFolderPage|"
+msgid "Select a Folder"
 msgstr ""
 

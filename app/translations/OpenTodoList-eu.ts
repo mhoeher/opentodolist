@@ -550,14 +550,6 @@
     </message>
 </context>
 <context>
-    <name>FolderSelectionDialog</name>
-    <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
-        <source>Select a Folder</source>
-        <translation type="unfinished">Hautatu Karpeta</translation>
-    </message>
-</context>
-<context>
     <name>ItemCreatedNotification</name>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
@@ -1006,37 +998,42 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
+        <source>Select a Folder</source>
+        <translation type="unfinished">Hautatu Karpeta</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished">Ireki karpeta liburutegi gisa</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished">Edozein karpeta kokapen gisa erabil dezakezu liburutegi baterako. &lt;br/&gt; &lt;br/&gt; Hau oso erabilgarria da beste tresna (hodei hornitzaile baten sinkronizazio bezeroa) nahi duzunean zure datuak zerbitzari batekin sinkronizatzeko.</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>Folder:</source>
         <translation type="unfinished">karpeta:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="114"/>
         <source>Path to a folder to use as a library</source>
         <translation type="unfinished">Bidea liburutegi gisa erabiltzeko karpeta batera</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="120"/>
         <source>Select</source>
         <translation type="unfinished">Aukeratu</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="125"/>
         <source>Name:</source>
         <translation type="unfinished">Izena:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="130"/>
         <source>My Local Library Name</source>
         <translation type="unfinished">Nire liburutegi lokalaren izena</translation>
     </message>

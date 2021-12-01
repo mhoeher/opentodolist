@@ -550,14 +550,6 @@
     </message>
 </context>
 <context>
-    <name>FolderSelectionDialog</name>
-    <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
-        <source>Select a Folder</source>
-        <translation type="unfinished">选择一个文件夹</translation>
-    </message>
-</context>
-<context>
     <name>ItemCreatedNotification</name>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
@@ -1006,37 +998,42 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
+        <source>Select a Folder</source>
+        <translation type="unfinished">选择一个文件夹</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished">按照资料库打开一个文件夹</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished">您可以使用任何文件夹作为资料库的位置。&lt;br/&gt; &lt;br/&gt;当您想使用其他工具（例如云提供商的同步客户端）将数据与服务器同步时，此功能特别有用。</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>Folder:</source>
         <translation type="unfinished">文件夹:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="114"/>
         <source>Path to a folder to use as a library</source>
         <translation type="unfinished">用作资料库的文件夹的路径</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="120"/>
         <source>Select</source>
         <translation type="unfinished">选择</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="125"/>
         <source>Name:</source>
         <translation type="unfinished">名称:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="130"/>
         <source>My Local Library Name</source>
         <translation type="unfinished"></translation>
     </message>

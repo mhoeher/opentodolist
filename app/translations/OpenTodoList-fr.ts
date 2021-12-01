@@ -170,7 +170,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
         <source>Undo</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
@@ -180,12 +180,12 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
         <source>Move</source>
-        <translation type="unfinished">Déplacer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
@@ -195,42 +195,42 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="67"/>
         <source>Add Tag</source>
-        <translation type="unfinished">Ajouter un tag</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Attach File</source>
-        <translation type="unfinished">Joindre fichier</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
         <source>Search</source>
-        <translation type="unfinished">Recherche</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
         <source>Sort</source>
-        <translation type="unfinished">Trier</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
         <source>Set Due Date</source>
-        <translation type="unfinished">Date d&apos;échéance</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="106"/>
         <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished">Effacer les éléments terminés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
         <source>Set Progress</source>
-        <translation type="unfinished">Définir l&apos;avancement</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -238,7 +238,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished">Joindre fichier</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="41"/>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../Actions/CopyTodo.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier</translation>
     </message>
 </context>
 <context>
@@ -330,7 +330,7 @@
     <message>
         <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier</translation>
     </message>
 </context>
 <context>
@@ -351,7 +351,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished">Effacer les éléments terminés</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -550,14 +550,6 @@
     </message>
 </context>
 <context>
-    <name>FolderSelectionDialog</name>
-    <message>
-        <location filename="../Windows/FolderSelectionDialog.qml" line="18"/>
-        <source>Select a Folder</source>
-        <translation type="unfinished">Choisir un dossier</translation>
-    </message>
-</context>
-<context>
     <name>ItemCreatedNotification</name>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
@@ -671,12 +663,12 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="184"/>
         <source>Copy Item Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier l&apos;élément dans...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="202"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier la tâche dans...</translation>
     </message>
 </context>
 <context>
@@ -792,12 +784,12 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="209"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copier</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="214"/>
         <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="272"/>
@@ -904,7 +896,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished">Déplacer</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1006,37 +998,42 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="88"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
+        <source>Select a Folder</source>
+        <translation type="unfinished">Choisir un dossier</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="96"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="100"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>Folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="114"/>
         <source>Path to a folder to use as a library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="111"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="120"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="116"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="125"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="121"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="130"/>
         <source>My Local Library Name</source>
         <translation type="unfinished">Nom de ma bibliothèque locale</translation>
     </message>
@@ -1279,7 +1276,7 @@
     <message>
         <location filename="../Widgets/NoteItem.qml" line="75"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exigible le %1</translation>
     </message>
 </context>
 <context>
@@ -1546,7 +1543,7 @@
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Choisir Bibliothèque</translation>
     </message>
 </context>
 <context>
@@ -1562,7 +1559,7 @@
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionner un article</translation>
     </message>
 </context>
 <context>
@@ -1610,7 +1607,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished">Définir l&apos;avancement</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1658,7 +1655,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mode bureau</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="162"/>
@@ -1732,7 +1729,7 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
     <message>
         <location filename="../Widgets/TagsEditor.qml" line="34"/>
         <source>Add Tag</source>
-        <translation type="unfinished">Ajouter un tag</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1740,7 +1737,7 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="76"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exigible le %1</translation>
     </message>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="128"/>
