@@ -132,6 +132,7 @@ signals:
 public slots:
 
     void attachFile(const QString& filename);
+    void attachFile(const QUrl& url);
     void detachFile(const QString& filename);
     void markCurrentOccurrenceAsDone(const QDateTime& today = QDateTime());
 
