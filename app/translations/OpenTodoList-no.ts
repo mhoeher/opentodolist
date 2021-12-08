@@ -241,17 +241,17 @@
         <translation type="unfinished">Legg ved fil</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="41"/>
+        <location filename="../Widgets/Attachments.qml" line="40"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">Vil du slette vedlegg?</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="45"/>
+        <location filename="../Widgets/Attachments.qml" line="44"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">Er du sikker på at du vil slette vedlegget &lt;strong&gt;% 1 &lt;/strong&gt;? Denne handlingen kan ikke angre.</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="59"/>
+        <location filename="../Widgets/Attachments.qml" line="58"/>
         <source>Attachments</source>
         <translation type="unfinished">Vedlegg</translation>
     </message>
@@ -742,102 +742,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="152"/>
+        <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Red</source>
         <translation type="unfinished">Rød</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="159"/>
+        <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Green</source>
         <translation type="unfinished">Grønn</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="166"/>
+        <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Blue</source>
         <translation type="unfinished">Blå</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="173"/>
+        <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Yellow</source>
         <translation type="unfinished">Gul</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="180"/>
+        <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Orange</source>
         <translation type="unfinished">Oransje</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="187"/>
+        <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>Lilac</source>
         <translation type="unfinished">Lilac</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="194"/>
+        <location filename="../Pages/LibraryPage.qml" line="195"/>
         <source>White</source>
         <translation type="unfinished">Hvit</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="204"/>
+        <location filename="../Pages/LibraryPage.qml" line="205"/>
         <source>Rename</source>
         <translation type="unfinished">Gi nytt navn</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="209"/>
+        <location filename="../Pages/LibraryPage.qml" line="210"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="214"/>
+        <location filename="../Pages/LibraryPage.qml" line="215"/>
         <source>Delete</source>
         <translation type="unfinished">Slett</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="272"/>
+        <location filename="../Pages/LibraryPage.qml" line="224"/>
+        <source>Select Image</source>
+        <translation type="unfinished">Velg Bilde</translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="277"/>
         <source>Note Title</source>
         <translation type="unfinished">Merknad Tittel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="285"/>
+        <location filename="../Pages/LibraryPage.qml" line="290"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Todo List Tittel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="298"/>
+        <location filename="../Pages/LibraryPage.qml" line="303"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Søkeord 1, søkeord 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="377"/>
+        <location filename="../Pages/LibraryPage.qml" line="382"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Ingenting her ennå! Begynn med å legge til en &lt;a href=&apos;#note&apos;&gt; note &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; todo-listen &lt;/a&gt; eller &lt;a href=&apos;#image&apos;&gt; bilde &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="440"/>
+        <location filename="../Pages/LibraryPage.qml" line="445"/>
         <source>Sort By</source>
         <translation type="unfinished">Sorter etter</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="445"/>
+        <location filename="../Pages/LibraryPage.qml" line="450"/>
         <source>Manually</source>
         <translation type="unfinished">manuelt</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="452"/>
+        <location filename="../Pages/LibraryPage.qml" line="457"/>
         <source>Title</source>
         <translation type="unfinished">Tittel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="459"/>
+        <location filename="../Pages/LibraryPage.qml" line="464"/>
         <source>Due To</source>
         <translation type="unfinished">På grunn av</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="466"/>
+        <location filename="../Pages/LibraryPage.qml" line="471"/>
         <source>Created At</source>
         <translation type="unfinished">Opprettet kl</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="473"/>
+        <location filename="../Pages/LibraryPage.qml" line="478"/>
         <source>Updated At</source>
         <translation type="unfinished">Oppdatert kl</translation>
     </message>
@@ -1290,23 +1295,6 @@
         <location filename="../Pages/NotePage.qml" line="195"/>
         <source>New Page</source>
         <translation type="unfinished">Ny side</translation>
-    </message>
-</context>
-<context>
-    <name>OpenFileDialog</name>
-    <message>
-        <location filename="../Windows/OpenFileDialog.qml" line="18"/>
-        <source>Select a File</source>
-        <translation type="unfinished">Velg en fil</translation>
-    </message>
-</context>
-<context>
-    <name>OpenImageDialog</name>
-    <message>
-        <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
-        <location filename="../Windows/OpenImageDialog.qml" line="19"/>
-        <source>Select Image</source>
-        <translation type="unfinished">Velg Bilde</translation>
     </message>
 </context>
 <context>

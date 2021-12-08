@@ -2435,5 +2435,5 @@ msgstr "Taak kopiëren naar…"
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
+msgstr "Kies een map"
 

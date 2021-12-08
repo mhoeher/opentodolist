@@ -241,17 +241,17 @@
         <translation type="unfinished">Bestand bijvoegen</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="41"/>
+        <location filename="../Widgets/Attachments.qml" line="40"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">Bijlage verwijderen?</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="45"/>
+        <location filename="../Widgets/Attachments.qml" line="44"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">Weet u zeker dat u de bijlage &lt;strong&gt;%1&lt;/strong&gt; wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="59"/>
+        <location filename="../Widgets/Attachments.qml" line="58"/>
         <source>Attachments</source>
         <translation type="unfinished">Bijlagen</translation>
     </message>
@@ -742,102 +742,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="152"/>
+        <location filename="../Pages/LibraryPage.qml" line="153"/>
         <source>Red</source>
         <translation type="unfinished">Rood</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="159"/>
+        <location filename="../Pages/LibraryPage.qml" line="160"/>
         <source>Green</source>
         <translation type="unfinished">Groen</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="166"/>
+        <location filename="../Pages/LibraryPage.qml" line="167"/>
         <source>Blue</source>
         <translation type="unfinished">Blauw</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="173"/>
+        <location filename="../Pages/LibraryPage.qml" line="174"/>
         <source>Yellow</source>
         <translation type="unfinished">Geel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="180"/>
+        <location filename="../Pages/LibraryPage.qml" line="181"/>
         <source>Orange</source>
         <translation type="unfinished">Oranje</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="187"/>
+        <location filename="../Pages/LibraryPage.qml" line="188"/>
         <source>Lilac</source>
         <translation type="unfinished">Lila</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="194"/>
+        <location filename="../Pages/LibraryPage.qml" line="195"/>
         <source>White</source>
         <translation type="unfinished">Wit</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="204"/>
+        <location filename="../Pages/LibraryPage.qml" line="205"/>
         <source>Rename</source>
         <translation type="unfinished">Naam wijzigen</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="209"/>
+        <location filename="../Pages/LibraryPage.qml" line="210"/>
         <source>Copy</source>
         <translation type="unfinished">Kopiëren</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="214"/>
+        <location filename="../Pages/LibraryPage.qml" line="215"/>
         <source>Delete</source>
         <translation type="unfinished">Verwijderen</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="272"/>
+        <location filename="../Pages/LibraryPage.qml" line="224"/>
+        <source>Select Image</source>
+        <translation type="unfinished">Kies een afbeelding</translation>
+    </message>
+    <message>
+        <location filename="../Pages/LibraryPage.qml" line="277"/>
         <source>Note Title</source>
         <translation type="unfinished">Naam van notitie</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="285"/>
+        <location filename="../Pages/LibraryPage.qml" line="290"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Naam van takenlijst</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="298"/>
+        <location filename="../Pages/LibraryPage.qml" line="303"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="377"/>
+        <location filename="../Pages/LibraryPage.qml" line="382"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Deze verzameling is nog leeg! Voeg een &lt;a href=&apos;#note&apos;&gt;notitie&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;takenlijst&lt;/a&gt; of &lt;a href=&apos;#image&apos;&gt;afbeelding&lt;/a&gt; toe.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="440"/>
+        <location filename="../Pages/LibraryPage.qml" line="445"/>
         <source>Sort By</source>
         <translation type="unfinished">Sorteren op</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="445"/>
+        <location filename="../Pages/LibraryPage.qml" line="450"/>
         <source>Manually</source>
         <translation type="unfinished">Handmatig</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="452"/>
+        <location filename="../Pages/LibraryPage.qml" line="457"/>
         <source>Title</source>
         <translation type="unfinished">Naam</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="459"/>
+        <location filename="../Pages/LibraryPage.qml" line="464"/>
         <source>Due To</source>
         <translation type="unfinished">Vervaldatum</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="466"/>
+        <location filename="../Pages/LibraryPage.qml" line="471"/>
         <source>Created At</source>
         <translation type="unfinished">Aanmaakdatum</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="473"/>
+        <location filename="../Pages/LibraryPage.qml" line="478"/>
         <source>Updated At</source>
         <translation type="unfinished">Bijwerkdatum</translation>
     </message>
@@ -1290,23 +1295,6 @@
         <location filename="../Pages/NotePage.qml" line="195"/>
         <source>New Page</source>
         <translation type="unfinished">Nieuwe pagina</translation>
-    </message>
-</context>
-<context>
-    <name>OpenFileDialog</name>
-    <message>
-        <location filename="../Windows/OpenFileDialog.qml" line="18"/>
-        <source>Select a File</source>
-        <translation type="unfinished">Kies een bestand</translation>
-    </message>
-</context>
-<context>
-    <name>OpenImageDialog</name>
-    <message>
-        <location filename="../Windows/+ios/OpenImageDialog.qml" line="19"/>
-        <location filename="../Windows/OpenImageDialog.qml" line="19"/>
-        <source>Select Image</source>
-        <translation type="unfinished">Kies een afbeelding</translation>
     </message>
 </context>
 <context>
