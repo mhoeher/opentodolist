@@ -118,6 +118,7 @@ ItemPage {
         category: "TodoListPage"
 
         property bool showUndone: false
+        property bool groupDone: false
         property string sortTodosBy: "weight"
     }
 
@@ -145,6 +146,7 @@ ItemPage {
     OTL.ItemsSortFilterModel {
         id: todosModel
         sortRole: d.sortTodosRole
+        groupDone: settings.groupDone
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             parentItem: page.item.uid
@@ -198,6 +200,24 @@ ItemPage {
         }
     }
 
+    C.Menu {
+        id: todosVisibilityMenu
+        parent: todosWidget.headerIcon2
+        modal: true
+
+        C.MenuItem {
+            text: qsTr("Show Completed")
+            checked: settings.showUndone
+            onClicked: settings.showUndone = !settings.showUndone
+        }
+
+        C.MenuItem {
+            text: qsTr("Group Done")
+            checked: settings.groupDone
+            onClicked: settings.groupDone = !settings.groupDone
+        }
+    }
+
     ItemScrollView {
         id: scrollView
 
@@ -243,7 +263,7 @@ ItemPage {
             allowSorting: settings.sortTodosBy === "weight"
             allowSettingDueDate: true
             onHeaderButtonClicked: sortTodosByMenu.open()
-            onHeaderButton2Clicked: settings.showUndone = !settings.showUndone
+            onHeaderButton2Clicked: todosVisibilityMenu.open()
             onTodoClicked: d.openTodo(todo)
             onCreateNewItem: {
                 var properties = {

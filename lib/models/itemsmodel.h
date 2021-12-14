@@ -71,7 +71,8 @@ public:
         UpdatedAtRole,
         EffectiveDueToRole,
         EffectiveDueToSpanRole,
-        UidRole
+        UidRole,
+        DoneRole
     };
 
     Q_ENUM(Roles)
