@@ -212,8 +212,10 @@ ItemPage {
         }
 
         C.MenuItem {
-            text: qsTr("Group Done")
+            text: qsTr("Show At The End")
             checked: settings.groupDone
+            visible: settings.showUndone
+            height: visible ? implicitHeight : 0
             onClicked: settings.groupDone = !settings.groupDone
         }
     }
