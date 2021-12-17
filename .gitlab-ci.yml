@@ -269,6 +269,7 @@ snap::build:
       paths:
         - opentodolist*.snap
       expire_in: 1 week
+    allow_failure: true # The Snap docker is currently broken - allow this to fail!
 
 # Build the app for Arch Linux using pkgbuild
 archlinux-pkgbuild:
@@ -354,7 +355,7 @@ github:
         - cp build-macos/app/OpenTodoList.dmg uploads
         - cp OpenTodoList-Source-*.zip uploads
         - cp OpenTodoList-Source-*.tar.gz uploads
-        - cp *.snap uploads
+        - cp *.snap uploads || /bin/true # Snap docker image is currently broken - allow this to fail
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     rules:
       - if: $CI_COMMIT_TAG

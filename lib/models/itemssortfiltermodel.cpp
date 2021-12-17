@@ -29,7 +29,8 @@
 #include "datamodel/todo.h"
 #include "datamodel/todolist.h"
 
-ItemsSortFilterModel::ItemsSortFilterModel(QObject* parent) : QSortFilterProxyModel(parent)
+ItemsSortFilterModel::ItemsSortFilterModel(QObject* parent)
+    : QSortFilterProxyModel(parent), m_groupDone(false)
 {
     setSortRole(ItemsModel::WeightRole);
     sort(0); // NOLINT
@@ -58,6 +59,20 @@ int ItemsSortFilterModel::roleFromName(const QString& roleName) const
 bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left,
                                     const QModelIndex& source_right) const
 {
+    if (m_groupDone) {
+        auto leftDone = source_left.data(ItemsModel::DoneRole).toBool();
+        auto rightDone = source_right.data(ItemsModel::DoneRole).toBool();
+        if (!leftDone && rightDone) {
+            // Left is undone, right is done - it is clearly "less than".
+            return true;
+        }
+        if (leftDone && !rightDone) {
+            // Left is done, right undone - it is clearly "not less than".
+            return false;
+        }
+        // In any other case, we check out the next sort criteria.
+    }
+
     switch (sortRole()) {
 
     // For the following roles, sort in reverse order (usually, to get a
@@ -80,4 +95,21 @@ bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left,
     default:
         return QSortFilterProxyModel::lessThan(source_left, source_right);
     }
+}
+
+/**
+ * @brief Group items that are done together.
+ */
+bool ItemsSortFilterModel::groupDone() const
+{
+    return m_groupDone;
+}
+
+void ItemsSortFilterModel::setGroupDone(bool newGroupDone)
+{
+    if (m_groupDone == newGroupDone)
+        return;
+    m_groupDone = newGroupDone;
+    emit groupDoneChanged();
+    invalidate();
 }
