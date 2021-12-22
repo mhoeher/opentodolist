@@ -1733,42 +1733,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="158"/>
+        <location filename="../Pages/TodoListPage.qml" line="160"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="170"/>
+        <location filename="../Pages/TodoListPage.qml" line="172"/>
         <source>Manually</source>
         <translation type="unfinished">Thủ công</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="176"/>
+        <location filename="../Pages/TodoListPage.qml" line="178"/>
         <source>Name</source>
         <translation type="unfinished">Tên</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="182"/>
+        <location filename="../Pages/TodoListPage.qml" line="184"/>
         <source>Due Date</source>
         <translation type="unfinished">Ngày đáo hạn</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="188"/>
+        <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Created At</source>
         <translation type="unfinished">Tạo tại</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="194"/>
+        <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Updated At</source>
         <translation type="unfinished">Cập nhật tại</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="222"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
+        <source>Show Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="215"/>
+        <source>Show At The End</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="242"/>
+        <location filename="../Pages/TodoListPage.qml" line="264"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Thêm công việc mới ...</translation>
     </message>
@@ -1776,19 +1786,29 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="146"/>
+        <location filename="../Pages/TodoPage.qml" line="147"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="171"/>
+        <location filename="../Pages/TodoPage.qml" line="172"/>
         <source>Tasks</source>
         <translation type="unfinished">Nhiệm vụ</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="177"/>
+        <location filename="../Pages/TodoPage.qml" line="178"/>
         <source>Add new task...</source>
         <translation type="unfinished">Thêm nhiệm vụ mới ...</translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoPage.qml" line="272"/>
+        <source>Show Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoPage.qml" line="278"/>
+        <source>Show At The End</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -52,17 +52,17 @@ msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Прикріпити файл"
 
-#: ../Widgets/Attachments.qml:41
+#: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Видалити вкладення?"
 
-#: ../Widgets/Attachments.qml:45
+#: ../Widgets/Attachments.qml:44
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Ви впевнені, що хочете видалити вкладення <strong>%1</strong>? Це вже не можна буде скасувати."
 
-#: ../Widgets/Attachments.qml:59
+#: ../Widgets/Attachments.qml:58
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Вкладення"
@@ -193,69 +193,69 @@ msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Про"
 
-#: ../Pages/LibraryPage.qml:152
+#: ../Pages/LibraryPage.qml:153
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Червоний"
 
-#: ../Pages/LibraryPage.qml:159
+#: ../Pages/LibraryPage.qml:160
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Зелений\n"
 ""
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:167
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Блакитний\n"
 ""
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:174
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Жовтий"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:181
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Помаранчевий"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:188
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Бузковий"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:195
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Білий"
 
-#: ../Pages/LibraryPage.qml:204
+#: ../Pages/LibraryPage.qml:205
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: ../Pages/LibraryPage.qml:214
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Видалити"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:277
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Заголовок примітки "
 
-#: ../Pages/LibraryPage.qml:285
+#: ../Pages/LibraryPage.qml:290
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Заголовок списку справ "
 
-#: ../Pages/LibraryPage.qml:298
+#: ../Pages/LibraryPage.qml:303
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Пошук терміну 1, пошук терміну 2, ..."
 
-#: ../Pages/LibraryPage.qml:377
+#: ../Pages/LibraryPage.qml:382
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Тут нічого ще немає! Почніть з додавання <a href='#note'>примітка </a>, <a href='#todolist'>список справ</a> або <a href='#image'>зображення</a>."
@@ -559,12 +559,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:158
+#: ../Pages/TodoListPage.qml:160
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:222
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr ""
@@ -574,12 +574,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:146
+#: ../Pages/TodoPage.qml:147
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoPage.qml:171
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr ""
@@ -689,12 +689,12 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Додати Tag"
 
-#: ../Pages/TodoListPage.qml:242
+#: ../Pages/TodoListPage.qml:264
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr ""
 
-#: ../Pages/TodoPage.qml:177
+#: ../Pages/TodoPage.qml:178
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr ""
@@ -754,32 +754,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:440
+#: ../Pages/LibraryPage.qml:445
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Вручну"
 
-#: ../Pages/LibraryPage.qml:452
+#: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:459
+#: ../Pages/LibraryPage.qml:464
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:466
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:473
+#: ../Pages/LibraryPage.qml:478
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr ""
@@ -829,27 +829,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Мова"
 
-#: ../Pages/TodoListPage.qml:170
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:176
+#: ../Pages/TodoListPage.qml:178
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Ім'я"
 
-#: ../Pages/TodoListPage.qml:182
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:188
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr ""
@@ -2322,7 +2322,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:209
+#: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr ""
@@ -2435,5 +2435,30 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:224
+msgctxt "LibraryPage|"
+msgid "Select Image"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:209
+msgctxt "TodoListPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:215
+msgctxt "TodoListPage|"
+msgid "Show At The End"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:272
+msgctxt "TodoPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:278
+msgctxt "TodoPage|"
+msgid "Show At The End"
 msgstr ""
 

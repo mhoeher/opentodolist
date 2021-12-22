@@ -53,17 +53,17 @@ msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Joindre fichier"
 
-#: ../Widgets/Attachments.qml:41
+#: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Supprimer pièce jointe ?"
 
-#: ../Widgets/Attachments.qml:45
+#: ../Widgets/Attachments.qml:44
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Êtes-vous sûr de vouloir supprimer la pièce jointe <strong>%1</strong> ? Cette action ne peut pas être annulée."
 
-#: ../Widgets/Attachments.qml:59
+#: ../Widgets/Attachments.qml:58
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Fichiers joints"
@@ -196,68 +196,68 @@ msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "À propos de..."
 
-#: ../Pages/LibraryPage.qml:152
+#: ../Pages/LibraryPage.qml:153
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Rouge"
 
-#: ../Pages/LibraryPage.qml:159
+#: ../Pages/LibraryPage.qml:160
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Vert"
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:167
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Bleu"
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:174
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Jaune"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:181
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Orange"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:188
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lilas"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:195
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Blanc"
 
-#: ../Pages/LibraryPage.qml:204
+#: ../Pages/LibraryPage.qml:205
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../Pages/LibraryPage.qml:214
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:277
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Titre de la note"
 
 #. "Liste des tâches" était très bien, mais "todo list" est utilisé partout ailleurs, j'ai donc mis ça aussi pour la cohérence de l'application
-#: ../Pages/LibraryPage.qml:285
+#: ../Pages/LibraryPage.qml:290
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Titre de la todo list"
 
-#: ../Pages/LibraryPage.qml:298
+#: ../Pages/LibraryPage.qml:303
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
 
-#: ../Pages/LibraryPage.qml:377
+#: ../Pages/LibraryPage.qml:382
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Rien pour l'instant ! Commencez par ajouter une <a href='#note'>note</a>, <a href='#todolist'>todo list</a> ou <a href='#image'>image</a>."
@@ -560,12 +560,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Pas de Todo en cours - tout est fait"
 
-#: ../Pages/TodoListPage.qml:158
+#: ../Pages/TodoListPage.qml:160
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
 
-#: ../Pages/TodoListPage.qml:222
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -575,12 +575,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Todos achevés"
 
-#: ../Pages/TodoPage.qml:146
+#: ../Pages/TodoPage.qml:147
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
 
-#: ../Pages/TodoPage.qml:171
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tâches"
@@ -690,12 +690,12 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Ajouter un tag"
 
-#: ../Pages/TodoListPage.qml:242
+#: ../Pages/TodoListPage.qml:264
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Ajouter un nouveau todo..."
 
-#: ../Pages/TodoPage.qml:177
+#: ../Pages/TodoPage.qml:178
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Ajouter une nouvelle tâche..."
@@ -756,32 +756,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Créer la bibliothèque par défaut"
 
-#: ../Pages/LibraryPage.qml:440
+#: ../Pages/LibraryPage.qml:445
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Trier par"
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../Pages/LibraryPage.qml:452
+#: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Titre"
 
-#: ../Pages/LibraryPage.qml:459
+#: ../Pages/LibraryPage.qml:464
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Échéance"
 
-#: ../Pages/LibraryPage.qml:466
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Créé à"
 
-#: ../Pages/LibraryPage.qml:473
+#: ../Pages/LibraryPage.qml:478
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Mis à jour à"
@@ -833,27 +833,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Langue"
 
-#: ../Pages/TodoListPage.qml:170
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../Pages/TodoListPage.qml:176
+#: ../Pages/TodoListPage.qml:178
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nom"
 
-#: ../Pages/TodoListPage.qml:182
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Date d'échéance"
 
-#: ../Pages/TodoListPage.qml:188
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Créé à"
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Mis à jour à"
@@ -2339,7 +2339,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Copier"
 
-#: ../Pages/LibraryPage.qml:209
+#: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr "Copier"
@@ -2452,5 +2452,30 @@ msgstr "Copier la tâche dans..."
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:224
+msgctxt "LibraryPage|"
+msgid "Select Image"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:209
+msgctxt "TodoListPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:215
+msgctxt "TodoListPage|"
+msgid "Show At The End"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:272
+msgctxt "TodoPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:278
+msgctxt "TodoPage|"
+msgid "Show At The End"
 msgstr ""
 

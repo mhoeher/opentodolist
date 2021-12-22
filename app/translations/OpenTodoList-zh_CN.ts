@@ -1732,42 +1732,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="158"/>
+        <location filename="../Pages/TodoListPage.qml" line="160"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="170"/>
+        <location filename="../Pages/TodoListPage.qml" line="172"/>
         <source>Manually</source>
         <translation type="unfinished">自定义</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="176"/>
+        <location filename="../Pages/TodoListPage.qml" line="178"/>
         <source>Name</source>
         <translation type="unfinished">名称</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="182"/>
+        <location filename="../Pages/TodoListPage.qml" line="184"/>
         <source>Due Date</source>
         <translation type="unfinished">截止日期</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="188"/>
+        <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Created At</source>
         <translation type="unfinished">创建于</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="194"/>
+        <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Updated At</source>
         <translation type="unfinished">更新于</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="222"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
+        <source>Show Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="215"/>
+        <source>Show At The End</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Todos</source>
         <translation type="unfinished">待办</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="242"/>
+        <location filename="../Pages/TodoListPage.qml" line="264"/>
         <source>Add new todo...</source>
         <translation type="unfinished">添加新待办…</translation>
     </message>
@@ -1775,19 +1785,29 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="146"/>
+        <location filename="../Pages/TodoPage.qml" line="147"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="171"/>
+        <location filename="../Pages/TodoPage.qml" line="172"/>
         <source>Tasks</source>
         <translation type="unfinished">任务</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="177"/>
+        <location filename="../Pages/TodoPage.qml" line="178"/>
         <source>Add new task...</source>
         <translation type="unfinished">添加新任务…</translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoPage.qml" line="272"/>
+        <source>Show Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/TodoPage.qml" line="278"/>
+        <source>Show At The End</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

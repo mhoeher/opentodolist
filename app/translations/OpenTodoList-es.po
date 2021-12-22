@@ -53,17 +53,17 @@ msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Adjuntar Archivo"
 
-#: ../Widgets/Attachments.qml:41
+#: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Borrar el archivo adjunto?"
 
-#: ../Widgets/Attachments.qml:45
+#: ../Widgets/Attachments.qml:44
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Estás seguro de que quieres borrar el adjunto <strong>%1</strong>? Esta acción no puede deshacerse."
 
-#: ../Widgets/Attachments.qml:59
+#: ../Widgets/Attachments.qml:58
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Anexos"
@@ -194,67 +194,67 @@ msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Acerca de..."
 
-#: ../Pages/LibraryPage.qml:152
+#: ../Pages/LibraryPage.qml:153
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Rojo"
 
-#: ../Pages/LibraryPage.qml:159
+#: ../Pages/LibraryPage.qml:160
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Verde"
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:167
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Azul"
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:174
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Amarillo"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:181
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Naranja"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:188
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lila"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:195
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Blanco"
 
-#: ../Pages/LibraryPage.qml:204
+#: ../Pages/LibraryPage.qml:205
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Renombrar"
 
-#: ../Pages/LibraryPage.qml:214
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:277
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Título de la nota"
 
-#: ../Pages/LibraryPage.qml:285
+#: ../Pages/LibraryPage.qml:290
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Título de la lista de todo"
 
-#: ../Pages/LibraryPage.qml:298
+#: ../Pages/LibraryPage.qml:303
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Término de búsqueda 1, término de búsqueda 2, ..."
 
-#: ../Pages/LibraryPage.qml:377
+#: ../Pages/LibraryPage.qml:382
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Aún no hay nada aquí! Comienza añadiendo una lista de <a href='#note'>note</a>, <a href='#todolist'>todo</a> o <a href='#image'>image</a>."
@@ -557,12 +557,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ No abrir pendientes"
 
-#: ../Pages/TodoListPage.qml:158
+#: ../Pages/TodoListPage.qml:160
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Término de búsqueda 1, término de búsqueda 2, ..."
 
-#: ../Pages/TodoListPage.qml:222
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Pendientes"
@@ -572,12 +572,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Pendientes Completos"
 
-#: ../Pages/TodoPage.qml:146
+#: ../Pages/TodoPage.qml:147
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Término de búsqueda 1, término de búsqueda 2, ..."
 
-#: ../Pages/TodoPage.qml:171
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tareas"
@@ -689,12 +689,12 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Añadir etiqueta"
 
-#: ../Pages/TodoListPage.qml:242
+#: ../Pages/TodoListPage.qml:264
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Añadir nueva Lista de Pendientes..."
 
-#: ../Pages/TodoPage.qml:177
+#: ../Pages/TodoPage.qml:178
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Añade una nueva tarea..."
@@ -754,32 +754,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Crear una biblioteca predeterminada"
 
-#: ../Pages/LibraryPage.qml:440
+#: ../Pages/LibraryPage.qml:445
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Ordenar por"
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manualmente"
 
-#: ../Pages/LibraryPage.qml:452
+#: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Título"
 
-#: ../Pages/LibraryPage.qml:459
+#: ../Pages/LibraryPage.qml:464
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Debido a"
 
-#: ../Pages/LibraryPage.qml:466
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Creado en"
 
-#: ../Pages/LibraryPage.qml:473
+#: ../Pages/LibraryPage.qml:478
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Actualizado en"
@@ -829,27 +829,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Lenguaje:"
 
-#: ../Pages/TodoListPage.qml:170
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manualmente"
 
-#: ../Pages/TodoListPage.qml:176
+#: ../Pages/TodoListPage.qml:178
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nombre"
 
-#: ../Pages/TodoListPage.qml:182
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Fecha de vencimiento"
 
-#: ../Pages/TodoListPage.qml:188
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Creado en"
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Actualizado en"
@@ -2322,7 +2322,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../Pages/LibraryPage.qml:209
+#: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr "Copiar"
@@ -2435,5 +2435,30 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:224
+msgctxt "LibraryPage|"
+msgid "Select Image"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:209
+msgctxt "TodoListPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:215
+msgctxt "TodoListPage|"
+msgid "Show At The End"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:272
+msgctxt "TodoPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:278
+msgctxt "TodoPage|"
+msgid "Show At The End"
 msgstr ""
 
