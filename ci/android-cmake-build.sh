@@ -113,4 +113,4 @@ androiddeployqt \
     --deployment bundled \
     --input android_deployment_settings.json
 cp android-build/build/outputs/bundle/release/android-build-release.aab \
-    OpenTodoList-${OTL_VERSION}.aab
+    OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.aab
