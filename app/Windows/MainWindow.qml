@@ -31,9 +31,6 @@ C.ApplicationWindow {
     onVisibleChanged: if (visible) { OTL.Application.syncAllLibraries(); }
 
     function viewLibrary(lib, tag, special) {
-        lib = lib || librariesSideBar.currentLibrary;
-        tag = tag || librariesSideBar.currentTag;
-        special = special || librariesSideBar.specialView;
         stackView.clear();
         if (lib) {
             switch (special) {
@@ -202,16 +199,10 @@ C.ApplicationWindow {
     LibrariesSideBar {
         id: librariesSideBar
 
-        function viewSelectedLibrary() {
-            window.viewLibrary(currentLibrary, currentTag, specialView);
-        }
-
         helpVisible: helpPage != null
         anchors.fill: parent
         compact: window.width < 600
-        onCurrentLibraryChanged: changeLibraryTimer.restart()
-        onCurrentTagChanged: changeLibraryTimer.restart()
-        onSpecialViewChanged: changeLibraryTimer.restart()
+        onShowLibrary: window.viewLibrary(library, tag, specialView)
         onNewLibrary: {
             stackView.clear();
             stackView.push(newLibraryPage);
@@ -261,13 +252,6 @@ C.ApplicationWindow {
 
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
-
-        Timer {
-            id: changeLibraryTimer
-            interval: 100
-            repeat: false
-            onTriggered: librariesSideBar.viewSelectedLibrary()
-        }
     }
 
     C.Pane {
