@@ -152,6 +152,12 @@ C.ApplicationWindow {
         goBackShortcut.onActivated: {
             if (stackView.canGoBack) {
                 stackView.goBack();
+            } else {
+                // We are at the top of the stack. If the window is in fullscreen mode, go to
+                // "default" mode (which should usually be "windowed" on most systems).
+                if (window.visibility === Window.FullScreen) {
+                    window.visibility = Window.AutomaticVisibility;
+                }
             }
         }
         openShortcut.enabled: !!window.itemCreatedNotification
