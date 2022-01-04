@@ -15,12 +15,13 @@ apt-get install -y \
     ninja-build \
     pkg-config \
     libsecret-1-dev
-add-apt-repository -y ppa:beineri/opt-qt-5.15.0-focal
+add-apt-repository -y ppa:beineri/opt-qt-5.15.2-focal
 apt -y update
 apt-get install -y \
     qt515base \
     qt515declarative \
     qt515imageformats \
+    qt515quickcontrols \
     qt515quickcontrols2 \
     qt515remoteobjects \
     qt515svg \
