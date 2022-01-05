@@ -106,6 +106,7 @@ parts:
             - libxcb-util1
             - libxcb-xfixes0
             - libxcb-xinerama0
+            - libxcb-xinput0
             - libxcb-xkb1
             - libxcb1
             - libxcomposite1
