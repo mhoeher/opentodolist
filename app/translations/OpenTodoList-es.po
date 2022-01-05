@@ -179,17 +179,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notas"
 
-#: ../Widgets/LibrariesSideBar.qml:376
+#: ../Widgets/LibrariesSideBar.qml:384
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Programación"
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:184
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nueva Biblioteca"
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Acerca de..."
@@ -345,7 +345,7 @@ msgid "Open &Left Side Bar"
 msgstr "Abierta & Barra lateral izquierda\n"
 ""
 
-#: ../Windows/MainWindow.qml:279
+#: ../Windows/MainWindow.qml:269
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Empieza por <a href='#newLibrary'>creando una nueva biblioteca</a>. Las bibliotecas se usan para almacenar diferentes tipos de artículos como notas, listas de todo e imágenes."
@@ -719,7 +719,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Oscuro"
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:204
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Ajustes"
@@ -749,7 +749,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Widgets/LibrariesSideBar.qml:233
+#: ../Widgets/LibrariesSideBar.qml:239
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Crear una biblioteca predeterminada"
@@ -1025,12 +1025,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Falló la conexión con el servidor. Por favor, compruebe su nombre de usuario, contraseña y la dirección del servidor y vuelva a intentarlo."
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:191
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Cuentas"
 
-#: ../Widgets/LibrariesSideBar.qml:205
+#: ../Widgets/LibrariesSideBar.qml:211
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Traducir la aplicación..."
@@ -1677,27 +1677,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:192
+#: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Editar lista"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Ocultar calendario"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Mostrar calendario"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:362
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Mover arriba"
 
-#: ../Widgets/LibrariesSideBar.qml:363
+#: ../Widgets/LibrariesSideBar.qml:371
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Move abajo"
@@ -1868,7 +1868,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:212
+#: ../Widgets/LibrariesSideBar.qml:218
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Donar"

@@ -674,67 +674,67 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="178"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="184"/>
         <source>New Library</source>
         <translation type="unfinished">新资料库</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="185"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="191"/>
         <source>Accounts</source>
         <translation type="unfinished">账户</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
         <source>Edit List</source>
         <translation type="unfinished">编辑列表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="204"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="205"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="211"/>
         <source>Translate The App...</source>
         <translation type="unfinished">帮助我们翻译这个应用...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="218"/>
         <source>Donate</source>
         <translation type="unfinished">捐助</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>About...</source>
         <translation type="unfinished">关于...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="233"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="239"/>
         <source>Create Default Library</source>
         <translation type="unfinished">创建默认资料库</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="352"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">隐藏时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="352"/>
         <source>Show Schedule</source>
         <translation type="unfinished">显示时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
         <source>Move Up</source>
         <translation type="unfinished">向上移动</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="363"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="371"/>
         <source>Move Down</source>
         <translation type="unfinished">向下移动</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="376"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="384"/>
         <source>Schedule</source>
         <translation type="unfinished">时间表</translation>
     </message>
@@ -891,7 +891,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="279"/>
+        <location filename="../Windows/MainWindow.qml" line="269"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">首先&lt;a href=&apos;#newLibrary&apos;&gt;创建一个新资料库&lt;/a&gt;。资料库用于存储各种项目，例如笔记、待办事项列表和图像。</translation>
     </message>

@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notities"
 
-#: ../Widgets/LibrariesSideBar.qml:376
+#: ../Widgets/LibrariesSideBar.qml:384
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Schema"
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:184
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nieuwe verzameling"
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Over…"
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "&Linkerzijbalk openen"
 
-#: ../Windows/MainWindow.qml:279
+#: ../Windows/MainWindow.qml:269
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "<a href='#newLibrary'>Maak een verzameling aan</a>. Verzamelingen worden gebruikt om items in op te slaan, zoals notities, takenlijsten en afbeeldingen."
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Donker"
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:204
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Instellingen"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Thema:"
 
-#: ../Widgets/LibrariesSideBar.qml:233
+#: ../Widgets/LibrariesSideBar.qml:239
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Standaardverzameling aanmaken"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:191
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Accounts"
 
-#: ../Widgets/LibrariesSideBar.qml:205
+#: ../Widgets/LibrariesSideBar.qml:211
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Vertaal deze app…"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Widgets/LibrariesSideBar.qml:192
+#: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Lijst aanpassen"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Planning verbergen"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Planning tonen"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:362
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Omhoog verplaatsen"
 
-#: ../Widgets/LibrariesSideBar.qml:363
+#: ../Widgets/LibrariesSideBar.qml:371
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Omlaag verplaatsen"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Taak verplaatsen naar…"
 
-#: ../Widgets/LibrariesSideBar.qml:212
+#: ../Widgets/LibrariesSideBar.qml:218
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Doneren"

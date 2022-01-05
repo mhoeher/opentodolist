@@ -674,67 +674,67 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="178"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="184"/>
         <source>New Library</source>
         <translation type="unfinished">Új könyvtár</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="185"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="191"/>
         <source>Accounts</source>
         <translation type="unfinished">Fiókok</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="192"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
         <source>Edit List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="204"/>
         <source>Settings</source>
         <translation type="unfinished">Beállítások</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="205"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="211"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Az alkalmazás lefordítása...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="212"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="218"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>About...</source>
         <translation type="unfinished">Ról ről...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="233"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="239"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Alapértelmezett könyvtár létrehozása</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="352"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="344"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="352"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="363"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="371"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="376"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="384"/>
         <source>Schedule</source>
         <translation type="unfinished">Menetrend</translation>
     </message>
@@ -891,7 +891,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="279"/>
+        <location filename="../Windows/MainWindow.qml" line="269"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Kezdje &lt;a href=&apos;#newLibrary&apos;&gt; új könyvtár létrehozásával &lt;/a&gt;. A könyvtárakat különféle elemek tárolására használják, például jegyzeteket, teendőlistákat és képeket.</translation>
     </message>
