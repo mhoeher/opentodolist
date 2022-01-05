@@ -133,6 +133,7 @@ ItemPage {
 
     OTL.ItemsSortFilterModel {
         id: tasks
+        groupDone: settings.groupDone
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             parentItem: page.item.uid
@@ -175,7 +176,7 @@ ItemPage {
             symbol: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new task...")
-            onHeaderButtonClicked: settings.showUndone = !settings.showUndone
+            onHeaderButtonClicked: tasksVisibilityMenu.open()
             onCreateNewItem: {
                 var properties = {
                     "title": title
@@ -238,13 +239,6 @@ ItemPage {
                         attach();
                     }
                 }
-
-                Connections {
-                    target: openFileDialog
-                    function onClosed() {
-                        d.reopenDrawer();
-                    }
-                }
             }
         }
     }
@@ -266,6 +260,27 @@ ItemPage {
         category: "TodoPage"
 
         property bool showUndone: false
+        property bool groupDone: false
+    }
+
+    C.Menu {
+        id: tasksVisibilityMenu
+        parent: todosWidget.headerIcon
+        modal: true
+
+        C.MenuItem {
+            text: qsTr("Show Completed")
+            checked: settings.showUndone
+            onClicked: settings.showUndone = !settings.showUndone
+        }
+
+        C.MenuItem {
+            text: qsTr("Show At The End")
+            checked: settings.groupDone
+            visible: settings.showUndone
+            height: visible ? implicitHeight : 0
+            onClicked: settings.groupDone = !settings.groupDone
+        }
     }
 
     Actions.CopyTodo { id: copyTodoAction; item: page.item }

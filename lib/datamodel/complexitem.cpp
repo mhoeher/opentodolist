@@ -20,6 +20,7 @@
 #include "complexitem.h"
 
 #include <QGuiApplication>
+#include <QMimeDatabase>
 #include <QTextDocument>
 #include <QtConcurrent>
 
@@ -172,10 +173,19 @@ void ComplexItem::attachFile(const QString& filename)
             }
             QString targetFileName = fi.fileName();
             int i = 0;
+            auto completeSuffix = fi.completeSuffix();
+            if (completeSuffix.isEmpty()) {
+                // Could happen, e.g. on Android, due to content:// URLs. Try to guess from mimetype
+                QMimeDatabase mdb;
+                auto mimetype = mdb.mimeTypeForFile(filename);
+                if (mimetype.isValid()) {
+                    completeSuffix = mimetype.preferredSuffix();
+                    targetFileName = fi.baseName() + "." + completeSuffix;
+                }
+            }
             while (dir.exists(targetFileName)) {
                 ++i;
-                targetFileName =
-                        fi.baseName() + "-" + QString::number(i) + "." + fi.completeSuffix();
+                targetFileName = fi.baseName() + "-" + QString::number(i) + "." + completeSuffix;
             }
             QFile::copy(filename, dir.absoluteFilePath(targetFileName)); // NOLINT
             m_attachments.append(targetFileName);
@@ -185,6 +195,17 @@ void ComplexItem::attachFile(const QString& filename)
             qCWarning(log) << "Cannot attach file" << filename << "to" << uid()
                            << ": File does not exist or cannot be read.";
         }
+    }
+}
+
+void ComplexItem::attachFile(const QUrl& url)
+{
+    if (url.scheme() == "content") {
+        // On Android, pass-thru the content:// URL as is, see
+        // https://www.volkerkrause.eu/2019/02/16/qt-open-files-on-android.html
+        attachFile(url.toString());
+    } else {
+        attachFile(url.toLocalFile());
     }
 }
 
@@ -201,9 +222,7 @@ void ComplexItem::detachFile(const QString& filename)
         if (fi.exists() && fi.isWritable()) {
             auto directory = this->directory();
             QDir dir(directory);
-            if (!dir.remove(filename)) {
-                qCWarning(log) << "Failed to remove" << filename << "from" << dir.path();
-            }
+            if (!dir.remove(filename)) {}
             m_attachments.removeAll(filename);
             emit attachmentsChanged();
         }

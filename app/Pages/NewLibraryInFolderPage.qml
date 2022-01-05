@@ -67,9 +67,18 @@ C.Page {
 
     FolderSelectionDialog {
         id: selectFolder
+
+        title: qsTr("Select a Folder")
         onAccepted: folderPathEdit.text = OTL.Application.urlToLocalFile(
-                        selectFolder.folder)
-        folder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+                        selectFolder.fileUrl)
+        folder: {
+            switch (Qt.platform.os) {
+            case "android":
+                return "file://" + OTL.Application.getExternalFilesDir();
+            default:
+                return StandardPaths.writableLocation(StandardPaths.HomeLocation)
+            }
+        }
     }
 
     C.ScrollView {
@@ -79,9 +88,9 @@ C.Page {
         GridLayout {
             id: grid
 
-            width: page.width - 2 * 10
+            width: page.width - 2 * Utils.AppSettings.mediumSpace
             columns: 3
-            implicitWidth: childrenRect.width
+            implicitWidth: width
             implicitHeight: childrenRect.height
 
             Components.Heading {

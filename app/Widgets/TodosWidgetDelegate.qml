@@ -157,11 +157,35 @@ C.SwipeDelegate {
                 }
             }
         }
+
+        C.Label {
+            visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.numSubtasks > 0
+            leftPadding: AppSettings.mediumSpace
+            rightPadding: leftPadding
+            background: Item {
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.leftMargin: AppSettings.smallSpace
+                    anchors.rightMargin: AppSettings.smallSpace
+                    radius: height / 2
+                    color: Colors.color(Colors.positiveColor)
+                }
+            }
+            text: {
+                if (visible) {
+                    let todo = swipeDelegate.item;
+                    return "%1/%2".arg(todo.numDoneSubtasks).arg(todo.numSubtasks)
+                }
+            }
+            color: Colors.textColor(Colors.positiveColor)
+            font.bold: true
+        }
         Item {
             visible: !toggleSwipeOpened.visible
             width: toggleSwipeOpened.width
             height: toggleSwipeOpened.height
         }
+
 
         C.ToolButton {
             id: moveButton

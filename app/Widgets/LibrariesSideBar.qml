@@ -32,6 +32,11 @@ C.Pane {
     signal settingsPageRequested()
     signal accountsPageRequested()
     signal close()
+    signal showLibrary(OTL.Library library, string tag, string specialView)
+
+    function doShowLibrary() {
+        showLibrary(currentLibrary, currentTag, specialView);
+    }
 
     function reopenLastLibrary() {
         if (lastLibrary != "" && !previousLibraryOpened) {
@@ -41,6 +46,7 @@ C.Pane {
                     currentLibrary = lib;
                     currentTag = lastTag;
                     specialView = lastSpecialView;
+                    doShowLibrary();
                 }
             }
         }
@@ -263,6 +269,7 @@ C.Pane {
                 currentLibrary = null;
                 currentTag = "";
                 specialView = "";
+                doShowLibrary();
             }
         }
     }
@@ -325,6 +332,7 @@ C.Pane {
                     helpVisible = false;
                     settingsVisible = false;
                     sidebar.close();
+                    doShowLibrary();
                 }
                 onSymbolClicked: {
                     if (librarySection.collapsed) {
@@ -385,6 +393,7 @@ C.Pane {
                     helpVisible = false;
                     settingsVisible = false;
                     sidebar.close();
+                    doShowLibrary();
                 }
             }
 
@@ -405,6 +414,7 @@ C.Pane {
                         helpVisible = false;
                         settingsVisible = false;
                         sidebar.close();
+                        doShowLibrary();
                     }
                 }
             }

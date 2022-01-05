@@ -130,6 +130,8 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
             return item->title();
         case UidRole:
             return item->uid();
+        case DoneRole:
+            return item->property("done");
         case CreatedAtRole:
             return item->createdAt();
         case UpdatedAtRole:
@@ -154,6 +156,7 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     result.insert(EffectiveDueToRole, "effectiveDueTo");
     result.insert(EffectiveDueToSpanRole, "effectiveDueToSpan");
     result.insert(UidRole, "uid");
+    result.insert(DoneRole, "done");
     return result;
 }
 

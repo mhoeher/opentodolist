@@ -179,19 +179,23 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
         }
         auto todo = qobject_cast<Todo*>(item);
         if (todo != nullptr) {
-            properties["percentageDone"] = percentageForTodo(transaction, entry->id.toByteArray());
+            auto percentageDone = percentageForTodo(transaction, entry->id.toByteArray());
+            properties["percentageDone"] = percentageDone.percentageDone;
+            properties["numSubtasks"] = percentageDone.numSubtasks;
+            properties["numDoneSubtasks"] = percentageDone.numDoneSubtasks;
         }
     }
 
     entry->calculatedData = properties;
 }
 
-int ItemsQuery::percentageForTodo(QLMDB::Transaction& transaction, const QByteArray& todoId)
+ItemsQuery::PercentageForTodo ItemsQuery::percentageForTodo(QLMDB::Transaction& transaction,
+                                                            const QByteArray& todoId)
 {
+    PercentageForTodo result { 0, 0, 0 };
+
     const auto taskIds = children()->getAll(transaction, todoId);
-    if (taskIds.isEmpty()) {
-        return 0;
-    } else {
+    if (!taskIds.isEmpty()) {
         int done = 0;
         int total = 0;
         for (const auto& taskId : taskIds) {
@@ -204,12 +208,13 @@ int ItemsQuery::percentageForTodo(QLMDB::Transaction& transaction, const QByteAr
                 }
             }
         }
+        result.numSubtasks = total;
+        result.numDoneSubtasks = done;
         if (total > 0) {
-            return done * 100 / total;
-        } else {
-            return 0;
+            result.percentageDone = done * 100 / total;
         }
     }
+    return result;
 }
 
 /**

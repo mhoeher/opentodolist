@@ -29,7 +29,7 @@ class Image : public TopLevelItem
 {
     Q_OBJECT
     Q_PROPERTY(QString image READ image WRITE setImage NOTIFY imageChanged)
-    Q_PROPERTY(QUrl imageUrl READ imageUrl NOTIFY imageChanged)
+    Q_PROPERTY(QUrl imageUrl READ imageUrl WRITE setImageUrl NOTIFY imageChanged)
     Q_PROPERTY(bool validImage READ validImage NOTIFY imageChanged)
 public:
     explicit Image(const QString& filename, QObject* parent = nullptr);
@@ -44,6 +44,7 @@ public:
     void setImage(const QString& image);
 
     QUrl imageUrl() const;
+    void setImageUrl(const QUrl& imageUrl);
 
     bool validImage() const;
 
