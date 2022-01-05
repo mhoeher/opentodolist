@@ -168,6 +168,7 @@ Item::Item(const QString& filename, QObject* parent)
       m_createdAt(QDateTime::currentDateTimeUtc()),
       m_updatedAt(m_createdAt),
       m_uid(QUuid::createUuid()),
+      m_weight(0.0),
       m_loading(false)
 {
     setupChangedSignal();
