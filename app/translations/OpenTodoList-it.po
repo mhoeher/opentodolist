@@ -30,7 +30,7 @@ msgstr "OpenTodoList è rilasciato secondo i termini della GNU General Public Li
 #: ../Pages/AboutThirdPartyPage.qml:11
 msgctxt "AboutThirdPartyPage|"
 msgid "Used Libraries and Resources"
-msgstr "Biblioteche e risorse usate"
+msgstr "Librerie e risorse usate"
 
 #: ../Pages/AboutThirdPartyPage.qml:47
 msgctxt "AboutThirdPartyPage|"
@@ -120,7 +120,7 @@ msgstr "Vuoi davvero eliminare l'immagine <strong>%1</strong>? Questo non può e
 #: ../Windows/DeleteItemDialog.qml:36
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
+msgstr "Vuoi davvero eliminare la todo list <strong>%1</strong>? Questo non può essere annullato."
 
 #: ../Windows/DeleteItemDialog.qml:40
 msgctxt "DeleteItemDialog|"
@@ -265,7 +265,7 @@ msgstr "Modifica impostazioni di sincronizzazione"
 #: ../Menues/LibraryPageMenu.qml:20
 msgctxt "LibraryPageMenu|"
 msgid "Sync Now"
-msgstr "Sync Now"
+msgstr "Sincronizza ora"
 
 #: ../Menues/LibraryPageMenu.qml:29
 msgctxt "LibraryPageMenu|"
@@ -632,7 +632,7 @@ msgstr "Password:"
 #: ../Pages/WebDAVConnectionSettingsPage.qml:124
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Ignore SSL Errors"
-msgstr "Ignore SSL Errors"
+msgstr "Ignora errori SSL"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:130
 msgctxt "WebDAVConnectionSettingsPage|"
@@ -667,7 +667,7 @@ msgstr "DIR"
 #: ../main.cpp:116
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr "Accendere alcune ottimizzazioni per i touchscreen."
+msgstr "Attivare alcune ottimizzazioni per i touchscreen."
 
 #: ../main.cpp:128
 msgctxt "main|"
@@ -697,7 +697,7 @@ msgstr "Aggiungi un nuovo compito..."
 #: ../Widgets/TodosWidget.qml:194
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
-msgstr "A tempo debito: %1"
+msgstr "In scadenza il: %1"
 
 #: ../Utils/Colors.qml:15
 msgctxt "Colors|"
@@ -707,7 +707,7 @@ msgstr "Sistema"
 #: ../Utils/Colors.qml:16
 msgctxt "Colors|"
 msgid "Light"
-msgstr "Luce"
+msgstr "Chiaro"
 
 #: ../Utils/Colors.qml:17
 msgctxt "Colors|"
@@ -737,7 +737,7 @@ msgstr "Impostazioni"
 #: ../Pages/SettingsPageForm.ui.qml:39
 msgctxt "SettingsPageForm.ui|"
 msgid "User Interface"
-msgstr "interfaccia utente"
+msgstr "Interfaccia utente"
 
 #: ../Pages/SettingsPageForm.ui.qml:56
 msgctxt "SettingsPageForm.ui|"
@@ -842,22 +842,22 @@ msgstr "Scadenza"
 #: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Created At"
-msgstr "Creato a"
+msgstr "Creato il"
 
 #: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Updated At"
-msgstr "Aggiornato a"
+msgstr "Aggiornato il"
 
 #: ../Widgets/TodosWidget.qml:309
 msgctxt "TodosWidget|"
 msgid "Swipe to mark undone"
-msgstr "Scorri il dito per segnare disfatti"
+msgstr "Swipe per contrassegnare Non completato"
 
 #: ../Widgets/TodosWidget.qml:310
 msgctxt "TodosWidget|"
 msgid "Swipe to mark done"
-msgstr "Strisciare per segnare fatto"
+msgstr "Swipe per contrassegnare Completato"
 
 #: ../Utils/Translations.qml:16
 msgctxt "Translations|"
@@ -897,7 +897,7 @@ msgstr "Segnala un problema"
 #: ../Pages/AboutPage.qml:112
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
-msgstr "Biblioteche e risorse di terzi"
+msgstr "Librerie e risorse di terzi"
 
 #: ../Pages/AboutPage.qml:149
 msgctxt "AboutPage|"
@@ -1019,7 +1019,7 @@ msgstr "Disattivare i controlli dei certificati"
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Non è riuscita a connettersi al server. Si prega di controllare il nome utente, la password e l'indirizzo del server e di riprovare."
+msgstr "Collegamento al server non riuscito. Si prega di controllare il nome utente, la password e l'indirizzo del server e di riprovare."
 
 #: ../Widgets/LibrariesSideBar.qml:191
 msgctxt "LibrariesSideBar|"
@@ -1044,7 +1044,7 @@ msgstr "Una raccolta creata in un account è sincronizzata con esso. Questo perm
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Existing Libraries"
-msgstr "Biblioteche esistenti"
+msgstr "Librerie esistenti"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1054,12 +1054,12 @@ msgstr "Selezionare una raccolta esistente sul server per aggiungerla all'app."
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "No libraries were found on the server."
-msgstr "Non sono state trovate biblioteche sul server."
+msgstr "Non sono state trovate raccolte sul server."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Searching existing libraries..."
-msgstr "Ricerca nelle biblioteche esistenti..."
+msgstr "Ricerca nelle raccolte esistenti..."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1144,7 +1144,7 @@ msgstr "Creare una raccolta locale"
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:37
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "Una raccolta locale è memorizzata esclusivamente sul vostro dispositivo - questo lo rende perfetto per la privacy concisa! <br/><br/>Utilizzatelo quando volete memorizzare le informazioni solo localmente ed eseguire regolarmente il backup di tutti i vostri dati tramite altri meccanismi. Se avete bisogno di accedere alle vostre informazioni attraverso diversi dispositivi, create una biblioteca che sia invece sincronizzata."
+msgstr "Una raccolta locale è memorizzata esclusivamente sul vostro dispositivo - questo lo rende perfetto per la privacy! <br/><br/>Utilizzatelo quando volete memorizzare le informazioni solo localmente ed eseguite regolarmente il backup di tutti i vostri dati tramite altri meccanismi. Se avete bisogno di accedere alle vostre informazioni attraverso diversi dispositivi, create una biblioteca che sia invece sincronizzata."
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:48
 msgctxt "NewLocalLibraryPageForm.ui|"
@@ -1210,7 +1210,7 @@ msgstr "Nome:"
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Non è riuscita a connettersi al server. Si prega di controllare il nome utente, la password e l'indirizzo del server e di riprovare."
+msgstr "Collegamento al server non riuscito. Si prega di controllare il nome utente, la password e l'indirizzo del server e di riprovare."
 
 #: ../Windows/DeleteItemDialog.qml:52
 msgctxt "DeleteItemDialog|"
@@ -1415,7 +1415,7 @@ msgstr "Titolo:"
 #: ../Windows/NewItemWithDueDateDialog.qml:120
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
-msgstr "Il titolo per il tuo nuovo articolo..."
+msgstr "Il titolo per il tuo nuovo elemento..."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:126
 msgctxt "NewItemWithDueDateDialog|"
@@ -1475,7 +1475,7 @@ msgstr "Numero di giorni:"
 #: ../Windows/RecurrenceDialog.qml:106
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
-msgstr "Recidiva relativa alla data di marcatura come fatto"
+msgstr "Ricorre relativamente alla data di completamento"
 
 #: ../Actions/RenameItem.qml:8
 msgctxt "RenameItem|"
@@ -1485,12 +1485,12 @@ msgstr "Rinominare"
 #: ../Actions/SetDueNextWeek.qml:8
 msgctxt "SetDueNextWeek|"
 msgid "Set Due This Week"
-msgstr "Scadenza della settimana"
+msgstr "Setta scadenza questa settimana"
 
 #: ../Actions/SetDueThisWeek.qml:8
 msgctxt "SetDueThisWeek|"
 msgid "Set Due Next Week"
-msgstr "Scadenza della prossima settimana"
+msgstr "Setta scadenza prossima settimana"
 
 #: ../Actions/SetDueTo.qml:8
 msgctxt "SetDueTo|"
@@ -1500,7 +1500,7 @@ msgstr "Selezionare la data di scadenza"
 #: ../Actions/SetDueToday.qml:8
 msgctxt "SetDueToday|"
 msgid "Set Due Today"
-msgstr "Scadenza del set oggi"
+msgstr "Setta scadenza oggi"
 
 #: ../Actions/SetDueTomorrow.qml:8
 msgctxt "SetDueTomorrow|"
@@ -1510,12 +1510,12 @@ msgstr "Scadenza prevista per domani"
 #: ../Widgets/TodosWidgetDelegate.qml:266
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
-msgstr "Scorri il dito per segnare disfatti"
+msgstr "Swipe per contrassegnare non completato"
 
 #: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
-msgstr "Strisciare per segnare fatto"
+msgstr "Swipe per contrassegnare completato"
 
 #: ../Menues/LibraryPageActions.qml:30
 msgctxt "LibraryPageActions|"
@@ -1610,12 +1610,12 @@ msgstr "Cancellare gli elementi completati?"
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Vuoi realmente cancellare tutti i TODO nella lista <strong>%1</strong>? Questa azione non può essere annullata."
+msgstr "Vuoi realmente cancellare tutti i TODO completati nella lista <strong>%1</strong>? Questa azione non può essere annullata."
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Vuoi realmente cancellare tutti i TASK nella lista <strong>%1</strong>? Questa azione non può essere annullata."
+msgstr "Vuoi realmente cancellare tutti i TASK completati nella lista <strong>%1</strong>? Questa azione non può essere annullata."
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
 #: ../Pages/EditNextCloudAccountPage.qml:69
@@ -1888,7 +1888,7 @@ msgstr "Crea raccolta nell'account"
 #: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "Una raccolta creata nell'account è sincronizzata al suo interno. Questo consente di eseguire un semplice backup e riprisino da server. Inoltre, queste librerie possono essere condivise fra utenti (se il server lo consente)."
+msgstr "Una raccolta creata nell'account è sincronizzata al suo interno. Questo consente di eseguire un semplice backup e ripristino da server. Inoltre, queste librerie possono essere condivise fra utenti (se il server lo consente)."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:121
 msgctxt "NewLibraryFromAccountPage|"
@@ -2098,364 +2098,366 @@ msgstr "Ucraino"
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Seleziona progresso"
 
 #: ../Actions/SetManualProgressAction.qml:8
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Seleziona progresso"
 
 #: ../Pages/SettingsPage.qml:144
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Usa dimensione font personalizzata"
 
 #: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
+msgstr "Usa stile compatto"
 
 #: ../Pages/SettingsPage.qml:171
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
-msgstr ""
+msgstr "Riduci lo spazio tra i componenti e riduci la dimensione del testo"
 
 #: ../Pages/SettingsPage.qml:179
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
-msgstr ""
+msgstr "Usa liste todo compatte"
 
 #: ../Pages/SettingsPage.qml:189
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
-msgstr ""
+msgstr "Riduci le distanze nelle liste todo e task per aumentare la densità di informazioni sullo schermo."
 
 #: ../Pages/SettingsPage.qml:196
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
-msgstr ""
+msgstr "Bypassa il fattore di scala"
 
 #: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
-msgstr ""
+msgstr "Fattore di scala:"
 
 #: ../Pages/SettingsPage.qml:221
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
+msgstr "Usa per scalare manualmente l'interfaccia utente. Di default, la app dovrebbe adattarsi automaticamente secondo la configurazione del tuo dispositivo. Se non funziona correttamente, qui puoi settare un fattore di scala personalizzato.\n"
+"\n"
+"Richiesto riavvio della app."
 
 #: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
-msgstr ""
+msgstr "Converti la Attività in Todo e muovi in..."
 
 #: ../Pages/LogViewPage.qml:32
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
-msgstr ""
+msgstr "Vai in cima"
 
 #: ../Pages/LogViewPage.qml:38
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
-msgstr ""
+msgstr "Vai in fondo"
 
 #: ../Pages/ProblemsPage.qml:47
 msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
-msgstr ""
+msgstr "Sincronizzazione fallita per la raccolta"
 
 #: ../Actions/PromoteTask.qml:12
 msgctxt "PromoteTask|"
 msgid "Promote"
-msgstr ""
+msgstr "Promuovi al livello superiore"
 
 #: ../Pages/SettingsPage.qml:230
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
-msgstr ""
+msgstr ".Dimensione elemento Raccolta:"
 
 #: ../../lib/sync/webdavsynchronizer.cpp:177
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
-msgstr ""
+msgstr "Creazione sync lock fallita:"
 
 #: ../Pages/AboutPage.qml:91
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
+msgstr "Copia informazioni di sistema"
 
 #: ../appstartup.cpp:341
 msgctxt "AppStartup|"
 msgid "Quick Note"
-msgstr ""
+msgstr "Nota rapida"
 
 #: ../Widgets/ItemDueDateEditor.qml:79
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
-msgstr ""
+msgstr "Ricorre ogni anno."
 
 #: ../Widgets/ItemDueDateEditor.qml:83
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
-msgstr ""
+msgstr "Ricorre ogni %1 settimane."
 
 #: ../Widgets/ItemDueDateEditor.qml:85
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
-msgstr ""
+msgstr "Ricorre ogni %1 mesi."
 
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
-msgstr ""
+msgstr "Annulla"
 
 #: ../appstartup.cpp:280 ../appstartup.cpp:287
 msgctxt "QObject|"
 msgid "unknown"
-msgstr ""
+msgstr "sconosciuto"
 
 #: ../Windows/QuickNoteWindow.qml:19
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
-msgstr ""
+msgstr "Note Rapide"
 
 #: ../Windows/QuickNoteWindow.qml:46
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
-msgstr ""
+msgstr "Editor Note Rapide"
 
 #: ../Windows/QuickNoteWindow.qml:57
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
-msgstr ""
+msgstr "Apri finestra principale"
 
 #: ../Windows/QuickNoteWindow.qml:70
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
-msgstr ""
+msgstr "Titolo Nota Rapida"
 
 #: ../Windows/QuickNoteWindow.qml:133
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #: ../Windows/QuickNoteWindow.qml:140
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
-msgstr ""
+msgstr "Salva le note inserite nella raccolta selezionata. Tieni premuto il pulsante per altre opzioni di salvataggio."
 
 #: ../Windows/QuickNoteWindow.qml:158
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
-msgstr ""
+msgstr "Salva come Nota"
 
 #: ../Windows/QuickNoteWindow.qml:169
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
-msgstr ""
+msgstr "Salva come Lista Todo"
 
 #: ../Windows/QuickNoteWindow.qml:171
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
-msgstr ""
+msgstr "Lista Todo Rapida"
 
 #: ../Windows/QuickNoteWindow.qml:161
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
-msgstr ""
+msgstr "Nota Rapida"
 
 #: ../Windows/QuickNoteWindow.qml:83
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
-msgstr ""
+msgstr "Scrivi le tue note qui..."
 
 #: ../Windows/RecurrenceDialog.qml:47
 msgctxt "RecurrenceDialog|"
 msgid "Yearly"
-msgstr ""
+msgstr "Annualmente"
 
 #: ../Windows/RecurrenceDialog.qml:49
 msgctxt "RecurrenceDialog|"
 msgid "Every N Weeks"
-msgstr ""
+msgstr "Ogni N Settimane"
 
 #: ../Windows/RecurrenceDialog.qml:50
 msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
-msgstr ""
+msgstr "Ogni N Mesi"
 
 #: ../Pages/SettingsPage.qml:115
 msgctxt "SettingsPage|"
 msgid "System Tray:"
-msgstr ""
+msgstr "Area di notifica:"
 
 #: ../Pages/SettingsPage.qml:121
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
-msgstr ""
+msgstr "Clicca per aprire Editor Note rapide"
 
 #: ../Widgets/NoteItem.qml:75
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Scadenza il %1"
 
 #: ../Widgets/TodoListItem.qml:76
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Scadenza il %1"
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Seleziona Raccolta"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
+msgstr "Seleziona Elemento"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Ctrl+"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Raccolta in corso di sincronizzazione..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
+msgstr "Annulla"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Rinomina"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Muovi"
 
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Colore"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Aggiungi Tag"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Allega File"
 
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Cerca"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Ordina"
 
 #: ../Components/ApplicationToolBarActions.qml:98
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Setta data di scadenza"
 
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Elimina Elementi Completati"
 
 #: ../Components/ApplicationToolBarActions.qml:120
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Setta avanzamento"
 
 #: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
+msgstr "Modalità Desktop"
 
 #: ../Utils/ItemUtils.qml:184
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
-msgstr ""
+msgstr "Copia Elemento in..."
 
 #: ../Utils/ItemUtils.qml:202
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
-msgstr ""
+msgstr "Copia Todo in..."
 
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
+msgstr "Seleziona una Cartella"
 
 #: ../Pages/LibraryPage.qml:224
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
+msgstr "Seleziona una Immagine"
 
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Mostra Completati"
 
 #: ../Pages/TodoListPage.qml:215
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Mostra alla fine"
 
 #: ../Pages/TodoPage.qml:272
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Mostra Completati"
 
 #: ../Pages/TodoPage.qml:278
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Mostra alla fine"
 

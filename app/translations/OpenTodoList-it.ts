@@ -31,12 +31,12 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="91"/>
         <source>Copy System Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia informazioni di sistema</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="112"/>
         <source>Third Party Libraries and Resources</source>
-        <translation type="unfinished">Biblioteche e risorse di terzi</translation>
+        <translation type="unfinished">Librerie e risorse di terzi</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="149"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../Components/ApplicationShortcuts.qml" line="15"/>
         <source>Ctrl+,</source>
-        <translation type="unfinished">Ctrl+,</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -162,7 +162,7 @@
     <message>
         <location filename="../Components/ApplicationToolBar.qml" line="151"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished">Sincronizzazione raccolta...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -170,22 +170,22 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annulla</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
         <source>Rename</source>
-        <translation type="unfinished">Rinominare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
         <source>Move</source>
-        <translation type="unfinished">Sposta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
@@ -200,12 +200,12 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Attach File</source>
-        <translation type="unfinished">Allega file</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
         <source>Search</source>
-        <translation type="unfinished">Ricerca</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
@@ -215,12 +215,12 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
         <source>Set Due Date</source>
-        <translation type="unfinished">Impostare la data di scadenza</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="106"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancellare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
@@ -238,7 +238,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished">Allega file</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="40"/>
@@ -309,7 +309,7 @@
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>Light</source>
-        <translation type="unfinished">Luce</translation>
+        <translation type="unfinished">Chiaro</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../Actions/CopyTodo.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia</translation>
     </message>
 </context>
 <context>
@@ -330,7 +330,7 @@
     <message>
         <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia</translation>
     </message>
 </context>
 <context>
@@ -364,12 +364,12 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Vuoi realmente cancellare tutti i TODO nella lista &lt;strong&gt;%1&lt;/strong&gt;? Questa azione non può essere annullata.</translation>
+        <translation type="unfinished">Vuoi realmente cancellare tutti i TODO completati nella lista &lt;strong&gt;%1&lt;/strong&gt;? Questa azione non può essere annullata.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Vuoi realmente cancellare tutti i TASK nella lista &lt;strong&gt;%1&lt;/strong&gt;? Questa azione non può essere annullata.</translation>
+        <translation type="unfinished">Vuoi realmente cancellare tutti i TASK completati nella lista &lt;strong&gt;%1&lt;/strong&gt;? Questa azione non può essere annullata.</translation>
     </message>
 </context>
 <context>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancellare</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -395,7 +395,7 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
         <source>Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</translation>
+        <translation type="unfinished">Vuoi davvero eliminare la todo list &lt;strong&gt;%1&lt;/strong&gt;? Questo non può essere annullato.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="40"/>
@@ -602,7 +602,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="79"/>
         <source>Recurs every year.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ricorre ogni anno.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
@@ -612,12 +612,12 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
         <source>Recurs every %1 weeks.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ricorre ogni %1 settimane.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="85"/>
         <source>Recurs every %1 months.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ricorre ogni %1 mesi.</translation>
     </message>
 </context>
 <context>
@@ -658,17 +658,17 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Converti la Attività in Todo e muovi in...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="184"/>
         <source>Copy Item Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia Elemento in...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="202"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia Todo in...</translation>
     </message>
 </context>
 <context>
@@ -779,22 +779,22 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="205"/>
         <source>Rename</source>
-        <translation type="unfinished">Rinominare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="210"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copia</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="215"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancellare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="224"/>
         <source>Select Image</source>
-        <translation type="unfinished">Selezionare l&apos;immagine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="277"/>
@@ -839,12 +839,12 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="471"/>
         <source>Created At</source>
-        <translation type="unfinished">Creato a</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="478"/>
         <source>Updated At</source>
-        <translation type="unfinished">Aggiornato a</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -852,7 +852,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="30"/>
         <source>Sync Now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sincronizza ora</translation>
     </message>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
@@ -875,12 +875,12 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="32"/>
         <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vai in cima</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="38"/>
         <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vai in fondo</translation>
     </message>
 </context>
 <context>
@@ -901,7 +901,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished">Sposta</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -939,7 +939,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
         <source>The title for your new item...</source>
-        <translation type="unfinished">Il titolo per il tuo nuovo articolo...</translation>
+        <translation type="unfinished">Il titolo per il tuo nuovo elemento...</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
@@ -1005,7 +1005,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
         <source>Select a Folder</source>
-        <translation type="unfinished">Seleziona una cartella</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
@@ -1282,7 +1282,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Widgets/NoteItem.qml" line="75"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Scadenza il %1</translation>
     </message>
 </context>
 <context>
@@ -1314,7 +1314,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="47"/>
         <source>Synchronization failed for library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sincronizzazione fallita per la raccolta</translation>
     </message>
 </context>
 <context>
@@ -1322,7 +1322,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Actions/PromoteTask.qml" line="12"/>
         <source>Promote</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Promuovi al livello superiore</translation>
     </message>
 </context>
 <context>
@@ -1331,7 +1331,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
         <location filename="../appstartup.cpp" line="280"/>
         <location filename="../appstartup.cpp" line="287"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">sconosciuto</translation>
     </message>
 </context>
 <context>
@@ -1339,42 +1339,42 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="19"/>
         <source>Quick Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Note Rapide</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="46"/>
         <source>Quick Notes Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Editor Note Rapide</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="57"/>
         <source>Open the main window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apri finestra principale</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
         <source>Quick Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titolo Nota Rapida</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="83"/>
         <source>Type your notes here...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Scrivi le tue note qui...</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salva</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="140"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salva le note inserite nella raccolta selezionata. Tieni premuto il pulsante per altre opzioni di salvataggio.</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="158"/>
         <source>Save as Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salva come Nota</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="161"/>
@@ -1384,12 +1384,12 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="169"/>
         <source>Save as Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salva come Lista Todo</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
         <source>Quick Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lista Todo Rapida</translation>
     </message>
 </context>
 <context>
@@ -1422,7 +1422,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Yearly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annualmente</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
@@ -1432,12 +1432,12 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
         <source>Every N Weeks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ogni N Settimane</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
         <source>Every N Months</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ogni N Mesi</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
@@ -1452,7 +1452,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
         <source>Recur relative to the date when marking as done</source>
-        <translation type="unfinished">Recidiva relativa alla data di marcatura come fatto</translation>
+        <translation type="unfinished">Ricorre relativamente alla data di completamento</translation>
     </message>
 </context>
 <context>
@@ -1460,7 +1460,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished">Rinominare</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1532,7 +1532,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleziona Raccolta</translation>
     </message>
 </context>
 <context>
@@ -1548,7 +1548,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleziona Elemento</translation>
     </message>
 </context>
 <context>
@@ -1556,7 +1556,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Actions/SetDueNextWeek.qml" line="8"/>
         <source>Set Due This Week</source>
-        <translation type="unfinished">Scadenza della settimana</translation>
+        <translation type="unfinished">Setta scadenza questa settimana</translation>
     </message>
 </context>
 <context>
@@ -1564,7 +1564,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Actions/SetDueThisWeek.qml" line="8"/>
         <source>Set Due Next Week</source>
-        <translation type="unfinished">Scadenza della prossima settimana</translation>
+        <translation type="unfinished">Setta scadenza prossima settimana</translation>
     </message>
 </context>
 <context>
@@ -1580,7 +1580,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Actions/SetDueToday.qml" line="8"/>
         <source>Set Due Today</source>
-        <translation type="unfinished">Scadenza del set oggi</translation>
+        <translation type="unfinished">Setta scadenza oggi</translation>
     </message>
 </context>
 <context>
@@ -1609,7 +1609,7 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Pages/SettingsPage.qml" line="51"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Interfaccia utente</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="59"/>
@@ -1624,12 +1624,12 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Pages/SettingsPage.qml" line="115"/>
         <source>System Tray:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Area di notifica:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="121"/>
         <source>Open Quick Notes Editor on Click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Clicca per aprire Editor Note rapide</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="127"/>
@@ -1639,56 +1639,58 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
     <message>
         <location filename="../Pages/SettingsPage.qml" line="144"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usa dimensione font personalizzata</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Modalità Desktop</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usa stile compatto</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="171"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Riduci lo spazio tra i componenti e riduci la dimensione del testo</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usa liste todo compatte</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="189"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Riduci le distanze nelle liste todo e task per aumentare la densità di informazioni sullo schermo.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="196"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bypassa il fattore di scala</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fattore di scala:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="221"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usa per scalare manualmente l&apos;interfaccia utente. Di default, la app dovrebbe adattarsi automaticamente secondo la configurazione del tuo dispositivo. Se non funziona correttamente, qui puoi settare un fattore di scala personalizzato.
+
+Richiesto riavvio della app.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="230"/>
         <source>Library Item Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">.Dimensione elemento Raccolta:</translation>
     </message>
 </context>
 <context>
@@ -1722,7 +1724,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="76"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Scadenza il %1</translation>
     </message>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="128"/>
@@ -1755,22 +1757,22 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Created At</source>
-        <translation type="unfinished">Creato a</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Updated At</source>
-        <translation type="unfinished">Aggiornato a</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Show Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostra Completati</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="215"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostra alla fine</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="244"/>
@@ -1803,12 +1805,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoPage.qml" line="272"/>
         <source>Show Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostra Completati</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="278"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostra alla fine</translation>
     </message>
 </context>
 <context>
@@ -1816,7 +1818,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodosWidget.qml" line="194"/>
         <source>Due on: %1</source>
-        <translation type="unfinished">A tempo debito: %1</translation>
+        <translation type="unfinished">In scadenza il: %1</translation>
     </message>
 </context>
 <context>
@@ -1824,12 +1826,12 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="266"/>
         <source>Swipe to mark undone</source>
-        <translation type="unfinished">Scorri il dito per segnare disfatti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
         <source>Swipe to mark done</source>
-        <translation type="unfinished">Strisciare per segnare fatto</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

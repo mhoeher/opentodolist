@@ -50,7 +50,7 @@ msgstr "下载: <a href='%1'>%1</a>"
 #: ../Widgets/Attachments.qml:28
 msgctxt "Attachments|"
 msgid "Attach File"
-msgstr "附件文件"
+msgstr "附加文件"
 
 #: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
@@ -582,7 +582,7 @@ msgstr "任务"
 #: ../Widgets/UpdateNotificationBar.qml:44
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
-msgstr "一个 OpenTodoList ％1的新版本可供使用。"
+msgstr "一个 OpenTodoList %1的新版本可供使用。"
 
 #: ../Widgets/UpdateNotificationBar.qml:50
 msgctxt "UpdateNotificationBar|"
@@ -917,7 +917,7 @@ msgstr "许可:"
 #: ../Pages/AboutPage.qml:166
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
-msgstr "<a href='%1'>％2 </a>"
+msgstr "<a href='%1'>%2</a> "
 
 #: ../Pages/AboutPage.qml:172
 msgctxt "AboutPage|"
@@ -927,7 +927,7 @@ msgstr "下载："
 #: ../Pages/AboutPage.qml:176
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
-msgstr "<a href='%1'>％1 </a>"
+msgstr "<a href='%1'>%1 </a>"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
 msgctxt "AccountTypeSelectionPageForm.ui|"
@@ -937,7 +937,7 @@ msgstr "选择账户类型"
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "Account Type"
-msgstr "帐户类型"
+msgstr "账户类型"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
 msgctxt "AccountTypeSelectionPageForm.ui|"
@@ -962,18 +962,18 @@ msgstr "账户"
 #: ../Windows/DeleteAccountDialog.qml:19
 msgctxt "DeleteAccountDialog|"
 msgid "Delete Account?"
-msgstr "删除帐户？"
+msgstr "删除账户？"
 
 #: ../Windows/DeleteAccountDialog.qml:36
 msgctxt "DeleteAccountDialog|"
 msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
-msgstr "您是否真的要删除帐户<strong>%1</strong>？这样会从您的设备中删除属于该帐户的所有资料库吗？<br/><br/><i>注意: 您可以在服务器端通过添加回账户的方式恢复它们。</i>"
+msgstr "您是否真的要删除账户<strong>%1</strong>？这样会从您的设备中删除属于该账户的所有资料库吗？<br/><br/><i>注意: 您可以在服务器端通过添加回账户的方式恢复它们。</i>"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Edit Account"
-msgstr "编辑帐户"
+msgstr "编辑账户"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
 msgctxt "EditWebDAVAccountPageForm.ui|"
@@ -1033,12 +1033,12 @@ msgstr "帮助我们翻译这个应用..."
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create Library in Account"
-msgstr "在帐户中创建资料库"
+msgstr "在账户中创建资料库"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "在帐户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。"
+msgstr "在账户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1128,12 +1128,12 @@ msgstr "将文件夹用作资料库"
 #: ../Pages/NewLibraryPageForm.ui.qml:44
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Libraries From Your Accounts"
-msgstr "从您的帐户添加资料库"
+msgstr "从您的账户添加资料库"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:79
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Account"
-msgstr "添加帐户"
+msgstr "添加账户"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:29
 msgctxt "NewLocalLibraryPageForm.ui|"
@@ -1249,7 +1249,7 @@ msgstr "所有的文件"
 #: ../Pages/ProblemsPage.qml:42
 msgctxt "ProblemsPage|"
 msgid "Missing secrets for account"
-msgstr "帐户缺少密钥"
+msgstr "账户缺少密钥"
 
 #: ../Pages/ProblemsPageForm.ui.qml:13 ../Pages/ProblemsPageForm.ui.qml:23
 msgctxt "ProblemsPageForm.ui|"
@@ -1524,7 +1524,7 @@ msgstr "立即同步"
 #: ../Menues/LibraryPageActions.qml:41
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
-msgstr "同步记录"
+msgstr "同步日志"
 
 #: ../Pages/SettingsPageForm.ui.qml:65
 msgctxt "SettingsPageForm.ui|"
@@ -1881,12 +1881,12 @@ msgstr "移动"
 #: ../Pages/NewLibraryFromAccountPage.qml:104
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
-msgstr "在帐户中创建资料库"
+msgstr "在账户中创建资料库"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "在帐户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。"
+msgstr "在账户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:121
 msgctxt "NewLibraryFromAccountPage|"
@@ -2061,7 +2061,7 @@ msgstr "选择待办事详清单"
 #: ../Pages/SettingsPage.qml:45
 msgctxt "SettingsPage|"
 msgid "Settings"
-msgstr "设定"
+msgstr "设置"
 
 #: ../Pages/SettingsPage.qml:51
 msgctxt "SettingsPage|"
@@ -2434,30 +2434,30 @@ msgstr "复制待办事项至..."
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
+msgstr "选择一个文件夹"
 
 #: ../Pages/LibraryPage.qml:224
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
+msgstr "选择图片"
 
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "选择已完成"
 
 #: ../Pages/TodoListPage.qml:215
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "显示在末尾"
 
 #: ../Pages/TodoPage.qml:272
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "显示已完成"
 
 #: ../Pages/TodoPage.qml:278
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "显示在末尾"
 

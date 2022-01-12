@@ -56,7 +56,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="166"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;％2 &lt;/a&gt;</translation>
+        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt; </translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="172"/>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="176"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;％1 &lt;/a&gt;</translation>
+        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1 &lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">账户类型</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">附加文件</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
@@ -238,7 +238,7 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="28"/>
         <source>Attach File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">附加文件</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="40"/>
@@ -338,12 +338,12 @@
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="19"/>
         <source>Delete Account?</source>
-        <translation type="unfinished">删除帐户？</translation>
+        <translation type="unfinished">删除账户？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="36"/>
         <source>Do you really want to remove the account &lt;strong&gt;%1&lt;/strong&gt;? This will remove all libraries belonging to the account from your device?&lt;br/&gt;&lt;br/&gt;&lt;i&gt;Note: You can restore them from the server by adding back the account.&lt;/i&gt;</source>
-        <translation type="unfinished">您是否真的要删除帐户&lt;strong&gt;%1&lt;/strong&gt;？这样会从您的设备中删除属于该帐户的所有资料库吗？&lt;br/&gt;&lt;br/&gt;&lt;i&gt;注意: 您可以在服务器端通过添加回账户的方式恢复它们。&lt;/i&gt;</translation>
+        <translation type="unfinished">您是否真的要删除账户&lt;strong&gt;%1&lt;/strong&gt;？这样会从您的设备中删除属于该账户的所有资料库吗？&lt;br/&gt;&lt;br/&gt;&lt;i&gt;注意: 您可以在服务器端通过添加回账户的方式恢复它们。&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
@@ -442,7 +442,7 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编辑账户</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
@@ -501,7 +501,7 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Edit Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编辑账户</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="133"/>
@@ -691,7 +691,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="204"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="211"/>
@@ -857,7 +857,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="41"/>
         <source>Sync Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同步日志</translation>
     </message>
 </context>
 <context>
@@ -957,12 +957,12 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="104"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">在帐户中创建资料库</translation>
+        <translation type="unfinished">在账户中创建资料库</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">在帐户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。</translation>
+        <translation type="unfinished">在账户中创建的资料库将与其同步。这样可以轻松地将资料库备份到服务器，然后再从那里还原它。此外，此资料库可以与其他用户共享（如果服务器允许的话）。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
@@ -1064,12 +1064,12 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="87"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">从您的帐户添加资料库</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="114"/>
         <source>Add Account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加账户</translation>
     </message>
 </context>
 <context>
@@ -1308,7 +1308,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
         <source>Missing secrets for account</source>
-        <translation type="unfinished">帐户缺少密钥</translation>
+        <translation type="unfinished">账户缺少密钥</translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="47"/>
@@ -1603,7 +1603,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="45"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="51"/>
@@ -1773,7 +1773,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="215"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示在末尾</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="244"/>
@@ -1811,7 +1811,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoPage.qml" line="278"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示在末尾</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +1840,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="44"/>
         <source>An update to OpenTodoList %1 is available.</source>
-        <translation type="unfinished">一个 OpenTodoList ％1的新版本可供使用。</translation>
+        <translation type="unfinished">一个 OpenTodoList %1的新版本可供使用。</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
