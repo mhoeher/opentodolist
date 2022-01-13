@@ -45,6 +45,9 @@
                 "-DOPENTODOLIST_WITH_KNOTIFICATIONS=ON",
                 "-DQt5RemoteObjects_DIR=/app/usr/lib/all-linux-gnu/cmake/Qt5RemoteObjects"
             ],
+            "cleanup": [
+                "*.a"
+            ],
             "sources": [
                 {
                     "type": "dir",
