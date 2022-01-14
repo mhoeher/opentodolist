@@ -413,6 +413,7 @@ C.ApplicationWindow {
                 if (library) {
                     librariesSideBar.currentLibrary = library;
                     librariesSideBar.currentTag = "";
+                    viewLibrary(library)
                 }
             }
         }
