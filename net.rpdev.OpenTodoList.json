@@ -13,7 +13,7 @@
         "--share=network",
         "--device=dri",
         "--device=shm",
-        "--talk-name=org.freedesktop.secrets",
+        "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.kde.StatusNotifierWatcher"
     ],
 
@@ -26,11 +26,18 @@
                 "-Dgtk_doc=false",
                 "-Dvapi=false"
             ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/pkgconfig",
+                "/share/gir-1.0",
+                "/share/man"
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/libsecret/-/archive/0.19.1/libsecret-0.19.1.tar.gz",
-                    "sha256": "303c6e8cf3e12534e885b0682cd6130716c6834397b76d3829321b6d83b2389c"
+                    "url": "https://ftp.gnome.org/pub/GNOME/sources/libsecret/0.20/libsecret-0.20.1.tar.xz",
+                    "sha256": "57f73e94ec6263a17a077fb809cf8cf424637a897a7f15b4eec42ce4aef52447"
                 }
             ]
         },
@@ -42,8 +49,7 @@
                 "-DCMAKE_INSTALL_LIBDIR=/app/lib",
                 "-DLIB_INSTALL_DIR=/app/lib",
                 "-DOPENTODOLIST_FLATPAK=ON",
-                "-DOPENTODOLIST_WITH_KNOTIFICATIONS=ON",
-                "-DQt5RemoteObjects_DIR=/app/usr/lib/all-linux-gnu/cmake/Qt5RemoteObjects"
+                "-DOPENTODOLIST_WITH_KNOTIFICATIONS=ON"
             ],
             "cleanup": [
                 "*.a"

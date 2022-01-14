@@ -558,7 +558,7 @@ void Application::deleteLibrary(Library* library)
 {
     if (library != nullptr) {
         // Remove any potential problems reported for this library:
-        m_problemManager->removeProblemsFor(library->uid(), Problem::SyncFailed);
+        m_problemManager->removeProblemsFor(library->uid());
 
         // Inform the background service about the removal:
         auto backgroundService = getBackgroundService();
