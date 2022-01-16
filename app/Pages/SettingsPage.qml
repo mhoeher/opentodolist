@@ -99,7 +99,7 @@ C.Page {
                     return 0;
                 }
                 model: Utils.Colors.themeNames
-                onCurrentIndexChanged: {
+                onActivated: {
                     var selectedTheme = themeEdit.model[themeEdit.currentIndex];
                     if (selectedTheme) {
                         var theme = Utils.Colors.themeNamesToIdMap[selectedTheme];
