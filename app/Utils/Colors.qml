@@ -16,38 +16,15 @@ Item {
     readonly property string lightThemeName: qsTr("Light")
     readonly property string darkThemeName: qsTr("Dark")
 
-    readonly property var themeNamesToIdMap: {
-        var result = {};
-        result[systemThemeName] = systemTheme;
-        result[lightThemeName] = lightTheme;
-        result[darkThemeName] = darkTheme;
-        return result;
-    }
-
-    readonly property var themeIdsToNameMap: {
-        var result = {};
-        result[systemTheme] = systemThemeName;
-        result[lightTheme] = lightThemeName;
-        result[darkTheme] = darkThemeName;
-        return result;
-    }
-
-    readonly property var themeNames: [
-        systemThemeName,
-        lightThemeName,
-        darkThemeName
-    ]
+    readonly property var themes: ([
+                                             { "name": systemTheme, "title": systemThemeName },
+                                             { "name": lightTheme, "title": lightThemeName },
+                                             { "name": darkTheme, "title": darkThemeName },
+                                         ])
 
 
     readonly property var materialBackground: Material.background
     readonly property int materialTheme: Material.theme
-    readonly property color materialOverlayDimColor: {
-        if (usingDarkColorTheme) {
-            return Qt.rgba(1, 1, 1, 1);
-        } else {
-            return Qt.rgba(0, 0, 0, 1);
-        }
-    }
 
     readonly property bool usingDarkColorTheme: {
         if (theme === lightTheme) {
