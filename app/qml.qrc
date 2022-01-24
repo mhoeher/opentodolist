@@ -152,5 +152,7 @@
         <file>Components/ApplicationShortcuts.qml</file>
         <file>Controls/PasswordField.qml</file>
         <file>Windows/+android/FolderSelectionDialog.qml</file>
+        <file>Controls/Popup.qml</file>
+        <file>Controls/ScrollIndicator.qml</file>
     </qresource>
 </RCC>
