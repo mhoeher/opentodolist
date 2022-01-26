@@ -2073,12 +2073,12 @@ msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "语言:"
 
-#: ../Pages/SettingsPage.qml:84
+#: ../Pages/SettingsPage.qml:105
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "主题:"
 
-#: ../Pages/SettingsPage.qml:127
+#: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "字体尺寸:"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "设定进度"
 
-#: ../Pages/SettingsPage.qml:144
+#: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "使用自定义字体尺寸"
 
-#: ../Pages/SettingsPage.qml:162
+#: ../Pages/SettingsPage.qml:176
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "使用紧凑风格"
 
-#: ../Pages/SettingsPage.qml:171
+#: ../Pages/SettingsPage.qml:185
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "缩小组件之间的间距并缩小字体尺寸。\n"
 "\n"
 "<em>需要重新启动应用。</em>"
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "使用紧凑的待办事项清单"
 
-#: ../Pages/SettingsPage.qml:189
+#: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "缩小待办事项和任务列表的边距使得屏幕上可以显示更多项目。"
 
-#: ../Pages/SettingsPage.qml:196
+#: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "覆盖缩放级别"
 
-#: ../Pages/SettingsPage.qml:203
+#: ../Pages/SettingsPage.qml:217
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "缩放级别:"
 
-#: ../Pages/SettingsPage.qml:221
+#: ../Pages/SettingsPage.qml:235
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "推荐"
 
-#: ../Pages/SettingsPage.qml:230
+#: ../Pages/SettingsPage.qml:244
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "资料库项目尺寸:"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "每 N 月"
 
-#: ../Pages/SettingsPage.qml:115
+#: ../Pages/SettingsPage.qml:129
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "系统托盘:"
 
-#: ../Pages/SettingsPage.qml:121
+#: ../Pages/SettingsPage.qml:135
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "点击以打开快捷笔记编辑器"
@@ -2416,7 +2416,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "设定进度"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:167
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "桌面模式"

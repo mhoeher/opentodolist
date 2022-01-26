@@ -203,6 +203,13 @@
         "updated": ""
     },
     {
+        "name": "Spanish (MX)",
+        "code": "es-mx",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
         "name": "Swedish",
         "code": "sv",
         "translations": 488,

@@ -1616,42 +1616,42 @@
         <translation type="unfinished">Idioma:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="84"/>
+        <location filename="../Pages/SettingsPage.qml" line="105"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="115"/>
+        <location filename="../Pages/SettingsPage.qml" line="129"/>
         <source>System Tray:</source>
         <translation type="unfinished">Safata del sistema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="121"/>
+        <location filename="../Pages/SettingsPage.qml" line="135"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Obre l&apos;editor de notes ràpides en fer clic</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="127"/>
+        <location filename="../Pages/SettingsPage.qml" line="141"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="144"/>
+        <location filename="../Pages/SettingsPage.qml" line="158"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Utilitza la mida del tipus de lletra personalitzada</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="153"/>
+        <location filename="../Pages/SettingsPage.qml" line="167"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Mode d&apos;escriptori</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="162"/>
+        <location filename="../Pages/SettingsPage.qml" line="176"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Utilitza l&apos;estil compacte</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="171"/>
+        <location filename="../Pages/SettingsPage.qml" line="185"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1660,27 +1660,27 @@
 &lt;em&gt;Requereix reiniciar l&apos;aplicació.&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="179"/>
+        <location filename="../Pages/SettingsPage.qml" line="193"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Utilitza llistes compactes de coses per fer</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="189"/>
+        <location filename="../Pages/SettingsPage.qml" line="203"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Reduïu el farciment en les llistes de coses per fer i tasques per ajustar-lo a més elements de la pantalla.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="196"/>
+        <location filename="../Pages/SettingsPage.qml" line="210"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Substitueix el factor d&apos;escalat</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="203"/>
+        <location filename="../Pages/SettingsPage.qml" line="217"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Factor d&apos;escalat:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="221"/>
+        <location filename="../Pages/SettingsPage.qml" line="235"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1689,7 +1689,7 @@ This requires a restart of the app.</source>
 Això requereix reiniciar l&apos;aplicació.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="230"/>
+        <location filename="../Pages/SettingsPage.qml" line="244"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">Mida de l&apos;element de la biblioteca:</translation>
     </message>

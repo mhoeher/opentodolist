@@ -2074,12 +2074,12 @@ msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Taal:"
 
-#: ../Pages/SettingsPage.qml:84
+#: ../Pages/SettingsPage.qml:105
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Thema:"
 
-#: ../Pages/SettingsPage.qml:127
+#: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Tekstgrootte:"
@@ -2104,17 +2104,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Voortgang instellen"
 
-#: ../Pages/SettingsPage.qml:144
+#: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Aangepaste tekstgrootte instellen"
 
-#: ../Pages/SettingsPage.qml:162
+#: ../Pages/SettingsPage.qml:176
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Compacte vormgeving gebruiken"
 
-#: ../Pages/SettingsPage.qml:171
+#: ../Pages/SettingsPage.qml:185
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2123,27 +2123,27 @@ msgstr "Verklein de ruimte tussen onderdelen en de lettergrootte.\n"
 "\n"
 "<em>Herstart OpenTodoList om de wijziging toe te passen.</em>"
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "Compacte takenlijsten gebruiken"
 
-#: ../Pages/SettingsPage.qml:189
+#: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "Verklein de ruimte tussen taken en lijstitems zodat er meer items op het scherm passen."
 
-#: ../Pages/SettingsPage.qml:196
+#: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Beeldgrootte afdwingen"
 
-#: ../Pages/SettingsPage.qml:203
+#: ../Pages/SettingsPage.qml:217
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Beeldgrootte:"
 
-#: ../Pages/SettingsPage.qml:221
+#: ../Pages/SettingsPage.qml:235
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2177,7 +2177,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Promoten"
 
-#: ../Pages/SettingsPage.qml:230
+#: ../Pages/SettingsPage.qml:244
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "Grootte van item in verzameling:"
@@ -2292,12 +2292,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "Elke x maanden"
 
-#: ../Pages/SettingsPage.qml:115
+#: ../Pages/SettingsPage.qml:129
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "Systeemvak:"
 
-#: ../Pages/SettingsPage.qml:121
+#: ../Pages/SettingsPage.qml:135
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Snelle notities openen na aanklikken"
@@ -2417,7 +2417,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Voortgang instellen"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:167
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Bureaubladmodus"

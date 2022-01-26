@@ -2073,12 +2073,12 @@ msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Idioma:"
 
-#: ../Pages/SettingsPage.qml:84
+#: ../Pages/SettingsPage.qml:105
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Pages/SettingsPage.qml:127
+#: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Mida de la tipografía:"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Defineix el progrés"
 
-#: ../Pages/SettingsPage.qml:144
+#: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Utilitza la mida del tipus de lletra personalitzada"
 
-#: ../Pages/SettingsPage.qml:162
+#: ../Pages/SettingsPage.qml:176
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Utilitza l'estil compacte"
 
-#: ../Pages/SettingsPage.qml:171
+#: ../Pages/SettingsPage.qml:185
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "Reduïu l'espai entre components i reduïu la mida del tipus de lletra.\
 "\n"
 "<em>Requereix reiniciar l'aplicació.</em>"
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "Utilitza llistes compactes de coses per fer"
 
-#: ../Pages/SettingsPage.qml:189
+#: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "Reduïu el farciment en les llistes de coses per fer i tasques per ajustar-lo a més elements de la pantalla."
 
-#: ../Pages/SettingsPage.qml:196
+#: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Substitueix el factor d'escalat"
 
-#: ../Pages/SettingsPage.qml:203
+#: ../Pages/SettingsPage.qml:217
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Factor d'escalat:"
 
-#: ../Pages/SettingsPage.qml:221
+#: ../Pages/SettingsPage.qml:235
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Promou"
 
-#: ../Pages/SettingsPage.qml:230
+#: ../Pages/SettingsPage.qml:244
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "Mida de l'element de la biblioteca:"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "Cada N mesos"
 
-#: ../Pages/SettingsPage.qml:115
+#: ../Pages/SettingsPage.qml:129
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "Safata del sistema:"
 
-#: ../Pages/SettingsPage.qml:121
+#: ../Pages/SettingsPage.qml:135
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Obre l'editor de notes ràpides en fer clic"
@@ -2416,7 +2416,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Defineix el progrés"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:167
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Mode d'escriptori"
