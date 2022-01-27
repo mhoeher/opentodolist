@@ -175,6 +175,8 @@ C.SwipeDelegate {
                 if (visible) {
                     let todo = swipeDelegate.item;
                     return "%1/%2".arg(todo.numDoneSubtasks).arg(todo.numSubtasks)
+                } else {
+                    return "";
                 }
             }
             color: Colors.textColor(Colors.positiveColor)
