@@ -44,8 +44,8 @@ ItemPage {
         filterBar.edit.forceActiveFocus();
     }
 
-    property var goBack: itemNotesEditor.editingNotes ? function() {
-        itemNotesEditor.finishEditing();
+    property var goBack: (todosWidget.header.itemNotesEditor || {}).editingNotes ? function() {
+        todosWidget.header.itemNotesEditor.finishEditing();
     } : undefined
 
     property var undo: {
@@ -230,7 +230,7 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
-        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
@@ -285,6 +285,8 @@ ItemPage {
             }
             headerComponent: Column {
                 id: column
+
+                property alias itemNotesEditor: itemNotesEditor
 
                 width: parent.width
                 spacing: AppSettings.smallSpace
