@@ -1804,12 +1804,12 @@ Això requereix reiniciar l&apos;aplicació.</translation>
         <translation type="unfinished">Afegeix una tasca nova...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="272"/>
+        <location filename="../Pages/TodoPage.qml" line="274"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="278"/>
+        <location filename="../Pages/TodoPage.qml" line="280"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1817,7 +1817,7 @@ Això requereix reiniciar l&apos;aplicació.</translation>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="194"/>
+        <location filename="../Widgets/TodosWidget.qml" line="203"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Venciment: %1</translation>
     </message>
@@ -1825,12 +1825,12 @@ Això requereix reiniciar l&apos;aplicació.</translation>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="266"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Llisca el dit per marcar-ho com a pendent</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="270"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Llisca el dit per marcar-ho com a fet</translation>
     </message>

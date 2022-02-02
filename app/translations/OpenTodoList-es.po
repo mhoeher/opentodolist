@@ -699,7 +699,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Añade una nueva tarea..."
 
-#: ../Widgets/TodosWidget.qml:194
+#: ../Widgets/TodosWidget.qml:203
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Ya está en marcha: %1"
@@ -1511,12 +1511,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Mañana"
 
-#: ../Widgets/TodosWidgetDelegate.qml:266
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Pase para marcar deshecho"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:270
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Pase a la marca hecha"
@@ -2452,12 +2452,12 @@ msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:272
+#: ../Pages/TodoPage.qml:274
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:278
+#: ../Pages/TodoPage.qml:280
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""

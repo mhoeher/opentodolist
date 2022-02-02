@@ -1804,12 +1804,12 @@ Detta kräver att programmet startas om.</translation>
         <translation type="unfinished">Lägg till ny uppgift ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="272"/>
+        <location filename="../Pages/TodoPage.qml" line="274"/>
         <source>Show Completed</source>
         <translation type="unfinished">Visa Slutförda</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="278"/>
+        <location filename="../Pages/TodoPage.qml" line="280"/>
         <source>Show At The End</source>
         <translation type="unfinished">Visa Vid Slutet</translation>
     </message>
@@ -1817,7 +1817,7 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="194"/>
+        <location filename="../Widgets/TodosWidget.qml" line="203"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Förfaller: %1</translation>
     </message>
@@ -1825,12 +1825,12 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="266"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Svep för att markera som ej klart</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="270"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Svep för att markera som klart</translation>
     </message>

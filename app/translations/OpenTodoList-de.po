@@ -695,7 +695,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Neue Unteraufgabe hinzufügen..."
 
-#: ../Widgets/TodosWidget.qml:194
+#: ../Widgets/TodosWidget.qml:203
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Fällig am: %1"
@@ -1514,12 +1514,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Morgen fällig"
 
-#: ../Widgets/TodosWidgetDelegate.qml:266
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Wischen, um Markierung rückgängig zu machen"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:270
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Wischen bis Markierung gemacht"
@@ -2461,12 +2461,12 @@ msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:272
+#: ../Pages/TodoPage.qml:274
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:278
+#: ../Pages/TodoPage.qml:280
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""
