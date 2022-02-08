@@ -182,8 +182,8 @@ C.ApplicationWindow {
     }
 
     onClosing: {
-        if (Qt.platform.os === "android") {
-            close.accepted = false;
+        switch (Qt.platform.os) {
+        case "android":
             if (stackView.canGoBack) {
                 stackView.goBack();
                 return;
@@ -197,8 +197,10 @@ C.ApplicationWindow {
                 // stop the GUI. This seems to work reliably.
                 OTL.Application.finishActivity();
             }
-        } else {
+            break;
+        default:
             close.accepted = true;
+            break;
         }
     }
 
@@ -427,6 +429,7 @@ C.ApplicationWindow {
             window.requestActivate();
             window.raise();
         }
+
     }
 
     Connections {
@@ -456,6 +459,7 @@ C.ApplicationWindow {
             switch (Qt.platform.os) {
             case "android":
             case "ios":
+            case "osx": // https://gitlab.com/rpdev/opentodolist/-/issues/518
                 d.showMainWindow();
                 break;
             default:
