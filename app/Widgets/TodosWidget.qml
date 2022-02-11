@@ -188,7 +188,7 @@ ListView {
 
                     Timer {
                         id: refocusNewItemEditTimer
-                        interval: 200
+                        interval: 1000
                         repeat: false
                         onTriggered: {
                             newItemTitelEdit.forceActiveFocus();
