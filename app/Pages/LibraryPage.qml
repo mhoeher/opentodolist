@@ -256,7 +256,7 @@ C.Page {
             case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
             case "title": return OTL.ItemsModel.TitleRole;
             case "createdAt": return OTL.ItemsModel.CreatedAtRole;
-            case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
+            case "updatedAt": return OTL.ItemsModel.EffectiveUpdatedAtRole;
 
                 // By default, order manually:
             default: return OTL.ItemsModel.WeightRole;
@@ -477,7 +477,7 @@ C.Page {
         C.MenuItem {
             text: qsTr("Updated At")
             checkable: true
-            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.UpdatedAtRole
+            checked: itemsModel.effectiveSortRole === OTL.ItemsModel.EffectiveUpdatedAtRole
             onTriggered: settings.sortBy = "updatedAt"
         }
     }

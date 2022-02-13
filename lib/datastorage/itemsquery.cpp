@@ -172,6 +172,9 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
     }
 
     if (item) {
+        properties["childrenUpdatedAt"] =
+                earliestChildUpdatedAt(transaction, entry->id.toByteArray());
+
         auto todoList = qobject_cast<TodoList*>(item);
         if (todoList) {
             properties["earliestChildDueDate"] =
@@ -247,6 +250,39 @@ QDateTime ItemsQuery::earliestChildDueDate(QLMDB::Transaction& transaction,
                         result = dueTo;
                     }
                 }
+            }
+        }
+    }
+
+    return result;
+}
+
+/**
+ * @brief Calculcate the most recent "updatedAt" time of any of the children of the item.
+ *
+ * This method searches (recursively) for any children of the item with the given
+ * @p parentId and returns the most recent updatedAt property from all of them.
+ *
+ * If the item does not have children, then an invalid result is returned.
+ */
+QDateTime ItemsQuery::earliestChildUpdatedAt(QLMDB::Transaction& transaction,
+                                             const QByteArray& parentId)
+{
+    QDateTime result;
+    const auto childIds = children()->getAll(transaction, parentId);
+
+    for (const auto& childId : childIds) {
+        auto data = items()->get(transaction, childId);
+        ItemPtr item(Item::decache(ItemCacheEntry::fromByteArray(data, childId)));
+        if (item && item->parentId() == parentId) {
+            auto itemUpdatedAt = item->updatedAt();
+            if (!result.isValid() || (itemUpdatedAt.isValid() && itemUpdatedAt > result)) {
+                result = itemUpdatedAt;
+            }
+            // Check children:
+            auto childrenUpdatedAt = earliestChildUpdatedAt(transaction, childId);
+            if (!result.isValid() || (childrenUpdatedAt.isValid() && childrenUpdatedAt > result)) {
+                result = childrenUpdatedAt;
             }
         }
     }
