@@ -94,7 +94,7 @@ ItemPage {
             case "title": return OTL.ItemsModel.TitleRole;
             case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
             case "createdAt": return OTL.ItemsModel.CreatedAtRole;
-            case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
+            case "updatedAt": return OTL.ItemsModel.EffectiveUpdatedAtRole;
             case "weight": // fall through
             default: return OTL.ItemsModel.WeightRole;
             }

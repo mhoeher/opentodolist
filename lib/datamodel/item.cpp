@@ -167,6 +167,7 @@ Item::Item(const QString& filename, QObject* parent)
       m_title(),
       m_createdAt(QDateTime::currentDateTimeUtc()),
       m_updatedAt(m_createdAt),
+      m_childrenUpdatedAt(),
       m_uid(QUuid::createUuid()),
       m_weight(0.0),
       m_loading(false)
@@ -362,6 +363,21 @@ QDateTime Item::updatedAt() const
 }
 
 /**
+ * @brief The effective date when the item has been updated at.
+ *
+ * This returns the date and time when the item has been last updated. In contrast to the
+ * updatedAt, this takes into account modifications of children.
+ */
+QDateTime Item::effectiveUpdatedAt() const
+{
+    auto result = m_updatedAt;
+    if (m_childrenUpdatedAt.isValid() && m_childrenUpdatedAt > result) {
+        result = m_childrenUpdatedAt;
+    }
+    return result;
+}
+
+/**
  * @brief The date and time when the item has been created.
  */
 QDateTime Item::createdAt() const
@@ -386,7 +402,9 @@ QDateTime Item::createdAt() const
  */
 void Item::applyCalculatedProperties(const QVariantMap& properties)
 {
-    Q_UNUSED(properties)
+    setChildrenUpdatedAt(
+            properties.value("childrenUpdatedAt", QVariant::fromValue(m_childrenUpdatedAt))
+                    .toDateTime());
 }
 
 /**
@@ -650,6 +668,15 @@ void Item::setUpdateAt()
     if (!m_loading) {
         m_updatedAt = QDateTime::currentDateTimeUtc();
     }
+}
+
+void Item::setChildrenUpdatedAt(const QDateTime& childrenUpdatedAt)
+{
+    if (m_childrenUpdatedAt == childrenUpdatedAt) {
+        return;
+    }
+    m_childrenUpdatedAt = childrenUpdatedAt;
+    emit updatedAtChanged();
 }
 
 /**

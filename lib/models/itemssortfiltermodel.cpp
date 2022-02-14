@@ -79,6 +79,7 @@ bool ItemsSortFilterModel::lessThan(const QModelIndex& source_left,
     // "most-recent on top" ordering):
     case ItemsModel::CreatedAtRole:
     case ItemsModel::UpdatedAtRole:
+    case ItemsModel::EffectiveUpdatedAtRole:
         return QSortFilterProxyModel::lessThan(source_right, source_left);
 
     // For the DueTo role, apply a little trick: Sort by the due to role

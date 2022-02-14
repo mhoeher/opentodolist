@@ -78,6 +78,7 @@ class Item : public QObject
     Q_PROPERTY(bool isValid READ isValid NOTIFY filenameChanged)
     Q_PROPERTY(QDateTime createdAt READ createdAt NOTIFY createdAtChanged)
     Q_PROPERTY(QDateTime updatedAt READ updatedAt NOTIFY updatedAtChanged)
+    Q_PROPERTY(QDateTime effectiveUpdatedAt READ effectiveUpdatedAt NOTIFY updatedAtChanged)
 
     friend class ItemChangedInhibitor;
 
@@ -161,6 +162,7 @@ public:
     QDateTime createdAt() const;
 
     QDateTime updatedAt() const;
+    QDateTime effectiveUpdatedAt() const;
 
 public slots:
 
@@ -180,14 +182,6 @@ signals:
      * This signal is emitted when Item::deleteItem() is used to delete the item.
      */
     void itemDeleted(Item* item);
-
-    /**
-     * @brief The item has been reloaded.
-     *
-     * This signal is emitted to indicate that the item has been reloaded. This is
-     * the case if the files on disk belonging to the item have changed.
-     */
-    void reloaded();
 
     /**
      * @brief Some properties of the item changed.
@@ -212,6 +206,7 @@ private:
     QString m_title;
     QDateTime m_createdAt;
     QDateTime m_updatedAt;
+    QDateTime m_childrenUpdatedAt;
     QUuid m_uid;
     double m_weight;
     bool m_loading;
@@ -224,6 +219,7 @@ private:
     void onItemDataLoadedFromCache(const QVariant& entry);
     void onChanged();
     void setUpdateAt();
+    void setChildrenUpdatedAt(const QDateTime& childrenUpdatedAt);
 };
 
 typedef QSharedPointer<Item> ItemPtr;
