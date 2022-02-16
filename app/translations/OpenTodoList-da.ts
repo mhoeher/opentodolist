@@ -891,7 +891,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="269"/>
+        <location filename="../Windows/MainWindow.qml" line="271"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Start med at &lt;a href=&apos;#newLibrary&apos;&gt; oprette et nyt bibliotek &lt;/a&gt;. Biblioteker bruges til at gemme forskellige slags ting som noter, todo lister og billeder.</translation>
     </message>

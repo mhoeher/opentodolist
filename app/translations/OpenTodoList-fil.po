@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Buksan &Kaliwa Side Bar"
 
-#: ../Windows/MainWindow.qml:269
+#: ../Windows/MainWindow.qml:271
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Magsimula sa pamamagitan ng <a href='#newLibrary'> paglikha ng isang bagong library </a>. Ginagamit ang mga aklatan upang mag-imbak ng iba't ibang uri ng mga item tulad ng mga tala, listahan ng todo at imahe."

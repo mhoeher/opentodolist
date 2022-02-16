@@ -663,12 +663,12 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="184"/>
         <source>Copy Item Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Artikel kopieren in...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="202"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todo kopieren in...</translation>
     </message>
 </context>
 <context>
@@ -891,7 +891,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="269"/>
+        <location filename="../Windows/MainWindow.qml" line="271"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Eine &lt;a href=&apos;#newLibrary&apos;&gt;neue Bibliothek anlegen&lt;/a&gt;. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder.</translation>
     </message>
@@ -1005,7 +1005,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
         <source>Select a Folder</source>
-        <translation type="unfinished">Verzeichnis auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
@@ -1768,12 +1768,12 @@ Dies erfordert einen Neustart der Anwendung.</translation>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Show Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abgeschlossene anzeigen</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="215"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Am Ende anzeigen</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="244"/>
@@ -1806,12 +1806,12 @@ Dies erfordert einen Neustart der Anwendung.</translation>
     <message>
         <location filename="../Pages/TodoPage.qml" line="274"/>
         <source>Show Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abgeschlossene anzeigen</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="280"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Am Ende anzeigen</translation>
     </message>
 </context>
 <context>

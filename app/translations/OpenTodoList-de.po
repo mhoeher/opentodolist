@@ -343,7 +343,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Öffne die &linke Seitenleiste"
 
-#: ../Windows/MainWindow.qml:269
+#: ../Windows/MainWindow.qml:271
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."
@@ -2434,40 +2434,40 @@ msgstr "Desktopmodus"
 #: ../Utils/ItemUtils.qml:184
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
-msgstr ""
+msgstr "Artikel kopieren in..."
 
 #: ../Utils/ItemUtils.qml:202
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
-msgstr ""
+msgstr "Todo kopieren in..."
 
 #: ../Pages/NewLibraryInFolderPage.qml:71
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
+msgstr "Einen Ordner auswählen"
 
 #: ../Pages/LibraryPage.qml:224
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
+msgstr "Bild auswählen"
 
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Abgeschlossene anzeigen"
 
 #: ../Pages/TodoListPage.qml:215
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Am Ende anzeigen"
 
 #: ../Pages/TodoPage.qml:274
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Abgeschlossene anzeigen"
 
 #: ../Pages/TodoPage.qml:280
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Am Ende anzeigen"
 
