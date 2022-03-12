@@ -154,5 +154,6 @@
         <file>Windows/+android/FolderSelectionDialog.qml</file>
         <file>Controls/Popup.qml</file>
         <file>Controls/ScrollIndicator.qml</file>
+        <file>Actions/ResetDueTo.qml</file>
     </qresource>
 </RCC>

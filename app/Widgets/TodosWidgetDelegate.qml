@@ -31,6 +31,7 @@ C.SwipeDelegate {
                                             setDueNextWeekAction,
                                             setDueThisWeekAction,
                                             setDueToAction,
+                                            resetDueToAction,
                                             deleteAction
                                         ])
     property bool allowSorting: false
@@ -422,6 +423,7 @@ C.SwipeDelegate {
     Actions.SetDueTomorrow { id: setDueTomorrowAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueThisWeek { id: setDueThisWeekAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueNextWeek { id: setDueNextWeekAction; item: swipeDelegate.item; hideButton: true }
+    Actions.ResetDueTo { id: resetDueToAction; item: swipeDelegate.item; hideButton: true }
     Actions.MoveTodo { id: moveTodoAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Todo" }
     Actions.CopyTodo { id: copyTodoAction; item: swipeDelegate.item; enabled: item.itemType === "Todo" }
     Actions.PromoteTask { id: promoteTaskAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Task"; todoList: swipeDelegate.parentItem }
