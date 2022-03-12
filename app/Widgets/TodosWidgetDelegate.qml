@@ -159,6 +159,13 @@ C.SwipeDelegate {
         }
 
         C.Label {
+            font.family: Fonts.icons
+            text: Icons.mdiNoteAlt
+            visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.notes !== ""
+            opacity: 0.5
+        }
+
+        C.Label {
             visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.numSubtasks > 0
             leftPadding: AppSettings.mediumSpace
             rightPadding: leftPadding
