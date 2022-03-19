@@ -853,8 +853,10 @@ Item* Application::cloneItem(Item* item)
 {
     Item* result = nullptr;
     if (item != nullptr) {
-        result = Item::decache(item->encache());
-        result->setCache(m_cache);
+        result = item->clone();
+        if (result->cache() == nullptr) {
+            result->setCache(m_cache);
+        }
     }
     return result;
 }

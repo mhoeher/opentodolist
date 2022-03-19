@@ -32,6 +32,10 @@ class TodoList : public TopLevelItem
 {
     Q_OBJECT
 
+    Q_PROPERTY(int percentageDone READ percentageDone WRITE setPercentageDone NOTIFY
+                       percentageDoneChanged)
+    Q_PROPERTY(int numTodos READ numTodos WRITE setNumTodos NOTIFY numTodosChanged)
+    Q_PROPERTY(int numDoneTodos READ numDoneTodos WRITE setNumDoneTodos NOTIFY numDoneTodosChanged)
 public:
     explicit TodoList(QObject* parent = nullptr);
     explicit TodoList(const QString& filename, QObject* parent = nullptr);
@@ -40,12 +44,30 @@ public:
 
     // Item interface
     void applyCalculatedProperties(const QVariantMap& properties) override;
+
+    int percentageDone() const;
+    int numTodos() const;
+    int numDoneTodos() const;
+
 signals:
+
+    void percentageDoneChanged();
+    void numTodosChanged();
+    void numDoneTodosChanged();
 
 public slots:
 
 protected:
+    void finishCloning(Item* source) override;
+
 private:
+    int m_percentageDone;
+    int m_numTodos;
+    int m_numDoneTodos;
+
+    void setPercentageDone(int newPercentageDone);
+    void setNumTodos(int newNumTodos);
+    void setNumDoneTodos(int newNumDoneTodos);
 private slots:
 };
 

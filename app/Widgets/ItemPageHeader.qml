@@ -9,6 +9,7 @@ Item {
     id: root
 
     property int counter: 0
+    property int total: 0
     property OTL.LibraryItem item: null
 
     width: parent.width
@@ -18,7 +19,7 @@ Item {
         id: pageHeading
         text: "<strong>%1</strong>%2".arg(
                   Markdown.markdownToHtml(root.item.title)).arg(
-                  root.counter > 0 ? " (%1)".arg(root.counter) :
+                  root.total > 0 ? " (%1/%2)".arg(root.counter).arg(root.total) :
                                      "")
         width: parent.width
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere

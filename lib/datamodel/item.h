@@ -105,6 +105,7 @@ public:
     Q_INVOKABLE bool save();
     Q_INVOKABLE QVariant toVariant() const;
     Q_INVOKABLE void fromVariant(QVariant data);
+    Q_INVOKABLE Item* clone();
 
     virtual Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
                          const QUuid& targetItemUid = QUuid());
@@ -199,6 +200,7 @@ signals:
 protected:
     virtual QVariantMap toMap() const;
     virtual void fromMap(QVariantMap map);
+    virtual void finishCloning(Item* source);
 
 private:
     QPointer<Cache> m_cache;

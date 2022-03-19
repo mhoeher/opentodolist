@@ -148,6 +148,17 @@ Item* Todo::copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
     return result;
 }
 
+void Todo::finishCloning(Item* source)
+{
+    ComplexItem::finishCloning(source);
+    auto sourceTodo = qobject_cast<Todo*>(source);
+    if (sourceTodo) {
+        m_percentageDone = sourceTodo->m_percentageDone;
+        m_numDoneSubtasks = sourceTodo->m_numDoneSubtasks;
+        m_numSubtasks = sourceTodo->m_numSubtasks;
+    }
+}
+
 QVariantMap Todo::toMap() const
 {
     auto result = ComplexItem::toMap();

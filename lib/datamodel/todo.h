@@ -63,6 +63,7 @@ public:
     void applyCalculatedProperties(const QVariantMap& properties) override;
     Item* copyTo(const QDir& targetDirectory, const QUuid& targetLibraryUuid,
                  const QUuid& targetItemUid) override;
+    void finishCloning(Item* source) override;
 
     int progress() const;
     void setProgress(int progress);

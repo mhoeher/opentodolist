@@ -273,12 +273,14 @@ ItemPage {
         C.MenuItem {
             text: qsTr("Show Completed")
             checked: settings.showUndone
+            checkable: true
             onClicked: settings.showUndone = !settings.showUndone
         }
 
         C.MenuItem {
             text: qsTr("Show At The End")
             checked: settings.groupDone
+            checkable: true
             visible: settings.showUndone
             height: visible ? implicitHeight : 0
             onClicked: settings.groupDone = !settings.groupDone
