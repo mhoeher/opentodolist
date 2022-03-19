@@ -286,6 +286,20 @@ void Item::fromVariant(QVariant data)
 }
 
 /**
+ * @brief Clone the item.
+ *
+ * This returns a clone of the item, i.e. a new instance (of the same type) with all the properties
+ * cloned from the other item.
+ */
+Item* Item::clone()
+{
+    auto result = Item::decache(this->encache());
+    result->finishCloning(this);
+    result->setCache(this->cache());
+    return result;
+}
+
+/**
  * @brief Create a copy of the item.
  *
  * This creates a copy of this item in the @p targetDirectory. The item will belong to the library
@@ -344,6 +358,18 @@ void Item::fromMap(QVariantMap map)
     m_updatedAt = QDateTime::fromString(map.value("updatedAt").toString(), Qt::ISODate);
     setTitle(map.value("title", m_title).toString());
     setWeight(map.value("weight", m_weight).toDouble());
+}
+
+/**
+ * @brief Finish cloning the item.
+ *
+ * This method is called by Item::clone() on the cloned instance. @p source is the item that this
+ * one has just been cloned from. This method can be used to copy over calculated properties from
+ * the source item.
+ */
+void Item::finishCloning(Item* source)
+{
+    // empty
 }
 
 /**

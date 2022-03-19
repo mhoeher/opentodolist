@@ -181,8 +181,8 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
                     earliestChildDueDate(transaction, entry->id.toByteArray());
         }
         auto todo = qobject_cast<Todo*>(item);
-        if (todo != nullptr) {
-            auto percentageDone = percentageForTodo(transaction, entry->id.toByteArray());
+        if (todo != nullptr || todoList != nullptr) {
+            auto percentageDone = percentageForListOfItems(transaction, entry->id.toByteArray());
             properties["percentageDone"] = percentageDone.percentageDone;
             properties["numSubtasks"] = percentageDone.numSubtasks;
             properties["numDoneSubtasks"] = percentageDone.numDoneSubtasks;
@@ -192,10 +192,16 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
     entry->calculatedData = properties;
 }
 
-ItemsQuery::PercentageForTodo ItemsQuery::percentageForTodo(QLMDB::Transaction& transaction,
-                                                            const QByteArray& todoId)
+/**
+ * @brief Calculates the percentage done for a list of checkable items.
+ *
+ * This calculates the percentage done (as well as number of total and open) items within a list of
+ * checkable items. It is applicable e.g. for a TodoList or Todo.
+ */
+ItemsQuery::PercentageForListOfItems
+ItemsQuery::percentageForListOfItems(QLMDB::Transaction& transaction, const QByteArray& todoId)
 {
-    PercentageForTodo result { 0, 0, 0 };
+    PercentageForListOfItems result { 0, 0, 0 };
 
     const auto taskIds = children()->getAll(transaction, todoId);
     if (!taskIds.isEmpty()) {
