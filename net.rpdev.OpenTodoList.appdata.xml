@@ -40,6 +40,12 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.39.1" date="2022-03-19">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#527: Fix building against newer versions of KF5 Syntax Highlighting</li>
+        </ul>
+      </release>
       <release version="3.39.0" date="2022-01-05">
         <p>This release includes the following changes:</p>
         <ul>
