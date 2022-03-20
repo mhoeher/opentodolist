@@ -44,8 +44,8 @@ ItemPage {
         filterBar.edit.forceActiveFocus();
     }
 
-    property var goBack: itemNotesEditor.editingNotes ? function() {
-        itemNotesEditor.finishEditing();
+    property var goBack: (todosWidget.header.itemNotesEditor || {}).editingNotes ? function() {
+        todosWidget.header.itemNotesEditor.finishEditing();
     } : undefined
 
     property var undo: {
@@ -94,7 +94,7 @@ ItemPage {
             case "title": return OTL.ItemsModel.TitleRole;
             case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
             case "createdAt": return OTL.ItemsModel.CreatedAtRole;
-            case "updatedAt": return OTL.ItemsModel.UpdatedAtRole;
+            case "updatedAt": return OTL.ItemsModel.EffectiveUpdatedAtRole;
             case "weight": // fall through
             default: return OTL.ItemsModel.WeightRole;
             }
@@ -118,6 +118,7 @@ ItemPage {
         category: "TodoListPage"
 
         property bool showUndone: false
+        property bool groupDone: false
         property string sortTodosBy: "weight"
     }
 
@@ -145,6 +146,7 @@ ItemPage {
     OTL.ItemsSortFilterModel {
         id: todosModel
         sortRole: d.sortTodosRole
+        groupDone: settings.groupDone
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             parentItem: page.item.uid
@@ -198,6 +200,28 @@ ItemPage {
         }
     }
 
+    C.Menu {
+        id: todosVisibilityMenu
+        parent: todosWidget.headerIcon2
+        modal: true
+
+        C.MenuItem {
+            text: qsTr("Show Completed")
+            checked: settings.showUndone
+            checkable: true
+            onClicked: settings.showUndone = !settings.showUndone
+        }
+
+        C.MenuItem {
+            text: qsTr("Show At The End")
+            checked: settings.groupDone
+            checkable: true
+            visible: settings.showUndone
+            height: visible ? implicitHeight : 0
+            onClicked: settings.groupDone = !settings.groupDone
+        }
+    }
+
     ItemScrollView {
         id: scrollView
 
@@ -208,7 +232,7 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
-        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
@@ -243,7 +267,7 @@ ItemPage {
             allowSorting: settings.sortTodosBy === "weight"
             allowSettingDueDate: true
             onHeaderButtonClicked: sortTodosByMenu.open()
-            onHeaderButton2Clicked: settings.showUndone = !settings.showUndone
+            onHeaderButton2Clicked: todosVisibilityMenu.open()
             onTodoClicked: d.openTodo(todo)
             onCreateNewItem: {
                 var properties = {
@@ -264,11 +288,14 @@ ItemPage {
             headerComponent: Column {
                 id: column
 
+                property alias itemNotesEditor: itemNotesEditor
+
                 width: parent.width
                 spacing: AppSettings.smallSpace
 
                 ItemPageHeader {
-                    counter: todosModel.count
+                    counter: page.item.numDoneTodos
+                    total: page.item.numTodos
                     item: page.item
                 }
 

@@ -31,6 +31,7 @@ C.SwipeDelegate {
                                             setDueNextWeekAction,
                                             setDueThisWeekAction,
                                             setDueToAction,
+                                            resetDueToAction,
                                             deleteAction
                                         ])
     property bool allowSorting: false
@@ -159,6 +160,13 @@ C.SwipeDelegate {
         }
 
         C.Label {
+            font.family: Fonts.icons
+            text: Icons.mdiNoteAlt
+            visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.notes !== ""
+            opacity: 0.5
+        }
+
+        C.Label {
             visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.numSubtasks > 0
             leftPadding: AppSettings.mediumSpace
             rightPadding: leftPadding
@@ -175,6 +183,8 @@ C.SwipeDelegate {
                 if (visible) {
                     let todo = swipeDelegate.item;
                     return "%1/%2".arg(todo.numDoneSubtasks).arg(todo.numSubtasks)
+                } else {
+                    return "";
                 }
             }
             color: Colors.textColor(Colors.positiveColor)
@@ -420,6 +430,7 @@ C.SwipeDelegate {
     Actions.SetDueTomorrow { id: setDueTomorrowAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueThisWeek { id: setDueThisWeekAction; item: swipeDelegate.item; hideButton: true }
     Actions.SetDueNextWeek { id: setDueNextWeekAction; item: swipeDelegate.item; hideButton: true }
+    Actions.ResetDueTo { id: resetDueToAction; item: swipeDelegate.item; hideButton: true }
     Actions.MoveTodo { id: moveTodoAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Todo" }
     Actions.CopyTodo { id: copyTodoAction; item: swipeDelegate.item; enabled: item.itemType === "Todo" }
     Actions.PromoteTask { id: promoteTaskAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Task"; todoList: swipeDelegate.parentItem }

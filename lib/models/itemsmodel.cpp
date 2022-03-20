@@ -130,10 +130,14 @@ QVariant ItemsModel::data(const QModelIndex& index, int role) const
             return item->title();
         case UidRole:
             return item->uid();
+        case DoneRole:
+            return item->property("done");
         case CreatedAtRole:
             return item->createdAt();
         case UpdatedAtRole:
             return item->updatedAt();
+        case EffectiveUpdatedAtRole:
+            return item->effectiveUpdatedAt();
         default:
             break;
         }
@@ -154,6 +158,8 @@ QHash<int, QByteArray> ItemsModel::roleNames() const
     result.insert(EffectiveDueToRole, "effectiveDueTo");
     result.insert(EffectiveDueToSpanRole, "effectiveDueToSpan");
     result.insert(UidRole, "uid");
+    result.insert(DoneRole, "done");
+    result.insert(EffectiveUpdatedAtRole, "effectiveUpdatedAt");
     return result;
 }
 
@@ -638,6 +644,11 @@ void ItemsModel::update(QVariantList items)
         beginInsertRows(QModelIndex(), m_ids.length(), m_ids.length() + newItems.length() - 1);
         for (const auto& item : qAsConst(newItems)) {
             connect(item, &Item::changed, this, &ItemsModel::itemChanged);
+            // Note: The updatedAt property might change intependent from the generic changed
+            // signal. To still be able to properly notify about any data change (esp. for sorting
+            // in a model above), we need to explicitly handle it here.
+            connect(item, &Item::updatedAtChanged, this, &ItemsModel::itemChanged);
+
             m_ids.append(item->uid());
             m_items.insert(item->uid(), item);
             QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);

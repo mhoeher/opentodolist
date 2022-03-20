@@ -182,6 +182,15 @@ ListView {
                             }
                             root.createNewItem(newItemTitelEdit.displayText, args);
                             newItemTitelEdit.clear();
+                            refocusNewItemEditTimer.restart();
+                        }
+                    }
+
+                    Timer {
+                        id: refocusNewItemEditTimer
+                        interval: 1000
+                        repeat: false
+                        onTriggered: {
                             newItemTitelEdit.forceActiveFocus();
                         }
                     }

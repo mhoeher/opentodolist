@@ -40,6 +40,22 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.39.0" date="2022-01-05">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#480: Show number of done/total number of tasks of a todo within todo lists.</li>
+            <li>#383: Improved selection of folders on Android.</li>
+            <li>#438: Improved generic file (and image) selection on Android.</li>
+            <li>#505: Fix showing of the color menu when it is opened from the dots menu.</li>
+            <li>#485: Added an option to show completed todos/tasks at the end of the list.</li>
+            <li>#448: Fix sync against OpenXChange WebDAV server.</li>
+            <li>#495: Clear warnings about a library when that library has been removed from the app.</li>
+            <li>#500: Using Esc when the app is in fullscreen mode will cause it to be shown windowed (unless there are pages on the page stack).</li>
+            <li>#494: Clicking a library/tag in the sidebar now always opens the library folder.</li>
+            <li>#483: Build one AAB file per Android target architecture.</li>
+            <li>#508: Fix the Snap build after updates in the build environment.</li>
+        </ul>
+      </release>
       <release version="3.38.0" date="2021-10-15">
         <p>This release includes the following changes:</p>
         <ul>

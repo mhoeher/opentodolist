@@ -145,6 +145,30 @@ void Translations::apply()
         }
     }
 
+    // Special pass for Chinese language variants. See
+    // https://gitlab.com/rpdev/opentodolist/-/issues/511 for more details. Basically, if localized
+    // translations are not available, we must correctly map to the "general" traditional/simplified
+    // Chinese ones.
+    if (langFile.isEmpty()) {
+        for (auto& uiLang : uiLanguages) {
+            QString lang;
+            if (uiLang == "zh-CN" || uiLang == "zh-SG") {
+                // Map these to simplified chinese:
+                lang = "zh_Hans";
+            } else if (uiLang == "zh-HK" || uiLang == "zh-TW") {
+                // And these to traditional ones:
+                lang = "zh_Hant";
+            }
+            if (!lang.isEmpty()) {
+                auto path = ":/translations/OpenTodoList-" + lang + ".qm";
+                if (QFile::exists(path)) {
+                    langFile = path;
+                    break;
+                }
+            }
+        }
+    }
+
     // Pass 2: Is there a file with the language part only:
     if (langFile.isEmpty()) {
         for (auto uiLang : uiLanguages) {

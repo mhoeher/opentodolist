@@ -30,6 +30,7 @@ class ItemsSortFilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool groupDone READ groupDone WRITE setGroupDone NOTIFY groupDoneChanged)
 public:
     explicit ItemsSortFilterModel(QObject* parent = nullptr);
 
@@ -37,13 +38,21 @@ public:
 
     Q_INVOKABLE int roleFromName(const QString& roleName) const;
 
+    bool groupDone() const;
+    void setGroupDone(bool newGroupDone);
+
 signals:
 
     void countChanged();
 
     // QSortFilterProxyModel interface
+    void groupDoneChanged();
+
 protected:
     bool lessThan(const QModelIndex& source_left, const QModelIndex& source_right) const override;
+
+private:
+    bool m_groupDone;
 };
 
 #endif // MODELS_ITEMSSORTFILTERMODEL_H_

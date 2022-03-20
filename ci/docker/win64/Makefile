@@ -8,7 +8,7 @@ build:
 	buildah bud --pull -t ${IMAGE} .
 
 publish:
-	buildah push docker://${IMAGE}
+	buildah push ${IMAGE}
 
 login:
 	buildah login registry.gitlab.com

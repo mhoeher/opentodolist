@@ -52,17 +52,17 @@ msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Liitä tiedosto"
 
-#: ../Widgets/Attachments.qml:41
+#: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Poistetaanko liite?"
 
-#: ../Widgets/Attachments.qml:45
+#: ../Widgets/Attachments.qml:44
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr ""
 
-#: ../Widgets/Attachments.qml:59
+#: ../Widgets/Attachments.qml:58
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Liitteet"
@@ -177,82 +177,82 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Huomiot"
 
-#: ../Widgets/LibrariesSideBar.qml:376
+#: ../Widgets/LibrariesSideBar.qml:384
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Aikataulu"
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:184
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Uusi kirjasto"
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Tietoja..."
 
-#: ../Pages/LibraryPage.qml:152
+#: ../Pages/LibraryPage.qml:153
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Punainen"
 
-#: ../Pages/LibraryPage.qml:159
+#: ../Pages/LibraryPage.qml:160
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Vihreä"
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:167
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Sininen"
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:174
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Keltainen"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:181
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Oranssi"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:188
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Liila"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:195
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Valkoinen"
 
-#: ../Pages/LibraryPage.qml:204
+#: ../Pages/LibraryPage.qml:205
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Nimeä uudelleen"
 
-#: ../Pages/LibraryPage.qml:214
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Poista"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:277
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:285
+#: ../Pages/LibraryPage.qml:290
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:298
+#: ../Pages/LibraryPage.qml:303
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:377
+#: ../Pages/LibraryPage.qml:382
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr ""
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Avaa &vasen sivupalkki"
 
-#: ../Windows/MainWindow.qml:279
+#: ../Windows/MainWindow.qml:271
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr ""
@@ -554,12 +554,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:158
+#: ../Pages/TodoListPage.qml:160
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:222
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr ""
@@ -569,12 +569,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:146
+#: ../Pages/TodoPage.qml:147
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/TodoPage.qml:171
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tehtävät"
@@ -684,17 +684,17 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Lisää tunniste"
 
-#: ../Pages/TodoListPage.qml:242
+#: ../Pages/TodoListPage.qml:264
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr ""
 
-#: ../Pages/TodoPage.qml:177
+#: ../Pages/TodoPage.qml:178
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Lisää uusi tehtävä..."
 
-#: ../Widgets/TodosWidget.qml:194
+#: ../Widgets/TodosWidget.qml:203
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr ""
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Tumma"
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:204
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Asetukset"
@@ -744,37 +744,37 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Teema:"
 
-#: ../Widgets/LibrariesSideBar.qml:233
+#: ../Widgets/LibrariesSideBar.qml:239
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Luo oletuskirjasto:"
 
-#: ../Pages/LibraryPage.qml:440
+#: ../Pages/LibraryPage.qml:445
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:452
+#: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:459
+#: ../Pages/LibraryPage.qml:464
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:466
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:473
+#: ../Pages/LibraryPage.qml:478
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr ""
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Kieli:"
 
-#: ../Pages/TodoListPage.qml:170
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manuaalisesti"
 
-#: ../Pages/TodoListPage.qml:176
+#: ../Pages/TodoListPage.qml:178
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nimi"
 
-#: ../Pages/TodoListPage.qml:182
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:188
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr ""
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:191
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Tilit"
 
-#: ../Widgets/LibrariesSideBar.qml:205
+#: ../Widgets/LibrariesSideBar.qml:211
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Käännä sovellus..."
@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr ""
 
-#: ../Widgets/TodosWidgetDelegate.qml:242
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr ""
 
-#: ../Widgets/TodosWidgetDelegate.qml:244
+#: ../Widgets/TodosWidgetDelegate.qml:270
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr ""
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:192
+#: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Muokkaa listaa"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Piilota aikataulu"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Näytä aikataulu"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:362
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Siirrä ylös"
 
-#: ../Widgets/LibrariesSideBar.qml:363
+#: ../Widgets/LibrariesSideBar.qml:371
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Siirrä alas"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:212
+#: ../Widgets/LibrariesSideBar.qml:218
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Lahjoita"
@@ -1923,37 +1923,37 @@ msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
 msgstr "Uuden kirjaston nimi"
 
-#: ../Pages/NewLibraryInFolderPage.qml:88
+#: ../Pages/NewLibraryInFolderPage.qml:97
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
 msgstr "Avaa kansio kirjastona"
 
-#: ../Pages/NewLibraryInFolderPage.qml:96
+#: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:100
+#: ../Pages/NewLibraryInFolderPage.qml:109
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
 msgstr "Kansio:"
 
-#: ../Pages/NewLibraryInFolderPage.qml:105
+#: ../Pages/NewLibraryInFolderPage.qml:114
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:111
+#: ../Pages/NewLibraryInFolderPage.qml:120
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
 msgstr "Valitse"
 
-#: ../Pages/NewLibraryInFolderPage.qml:116
+#: ../Pages/NewLibraryInFolderPage.qml:125
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
 msgstr "Nimi:"
 
-#: ../Pages/NewLibraryInFolderPage.qml:121
+#: ../Pages/NewLibraryInFolderPage.qml:130
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
 msgstr "Paikallisen kirjaston nimi"
@@ -2073,12 +2073,12 @@ msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Kieli:"
 
-#: ../Pages/SettingsPage.qml:84
+#: ../Pages/SettingsPage.qml:105
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Teema:"
 
-#: ../Pages/SettingsPage.qml:127
+#: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Fontin koko:"
@@ -2103,44 +2103,44 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Aseta edistyminen"
 
-#: ../Pages/SettingsPage.qml:144
+#: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Käytä mukautettua fontin kokoa"
 
-#: ../Pages/SettingsPage.qml:162
+#: ../Pages/SettingsPage.qml:176
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Käytä kompaktia tyyliä"
 
-#: ../Pages/SettingsPage.qml:171
+#: ../Pages/SettingsPage.qml:185
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:189
+#: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:196
+#: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Ohita skaalauskerroin"
 
-#: ../Pages/SettingsPage.qml:203
+#: ../Pages/SettingsPage.qml:217
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Skaalauskerroin:"
 
-#: ../Pages/SettingsPage.qml:221
+#: ../Pages/SettingsPage.qml:235
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2172,7 +2172,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:230
+#: ../Pages/SettingsPage.qml:244
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr ""
@@ -2287,12 +2287,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:115
+#: ../Pages/SettingsPage.qml:129
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:121
+#: ../Pages/SettingsPage.qml:135
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr ""
@@ -2317,7 +2317,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Kopioi"
 
-#: ../Pages/LibraryPage.qml:209
+#: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr "Kopioi"
@@ -2412,7 +2412,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Aseta eteneminen"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:167
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Työpöytätila"
@@ -2425,5 +2425,35 @@ msgstr ""
 #: ../Utils/ItemUtils.qml:202
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
+msgstr ""
+
+#: ../Pages/NewLibraryInFolderPage.qml:71
+msgctxt "NewLibraryInFolderPage|"
+msgid "Select a Folder"
+msgstr ""
+
+#: ../Pages/LibraryPage.qml:224
+msgctxt "LibraryPage|"
+msgid "Select Image"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:209
+msgctxt "TodoListPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoListPage.qml:215
+msgctxt "TodoListPage|"
+msgid "Show At The End"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:274
+msgctxt "TodoPage|"
+msgid "Show Completed"
+msgstr ""
+
+#: ../Pages/TodoPage.qml:280
+msgctxt "TodoPage|"
+msgid "Show At The End"
 msgstr ""
 

@@ -167,7 +167,9 @@ Item::Item(const QString& filename, QObject* parent)
       m_title(),
       m_createdAt(QDateTime::currentDateTimeUtc()),
       m_updatedAt(m_createdAt),
+      m_childrenUpdatedAt(),
       m_uid(QUuid::createUuid()),
+      m_weight(0.0),
       m_loading(false)
 {
     setupChangedSignal();
@@ -284,6 +286,20 @@ void Item::fromVariant(QVariant data)
 }
 
 /**
+ * @brief Clone the item.
+ *
+ * This returns a clone of the item, i.e. a new instance (of the same type) with all the properties
+ * cloned from the other item.
+ */
+Item* Item::clone()
+{
+    auto result = Item::decache(this->encache());
+    result->finishCloning(this);
+    result->setCache(this->cache());
+    return result;
+}
+
+/**
  * @brief Create a copy of the item.
  *
  * This creates a copy of this item in the @p targetDirectory. The item will belong to the library
@@ -345,6 +361,18 @@ void Item::fromMap(QVariantMap map)
 }
 
 /**
+ * @brief Finish cloning the item.
+ *
+ * This method is called by Item::clone() on the cloned instance. @p source is the item that this
+ * one has just been cloned from. This method can be used to copy over calculated properties from
+ * the source item.
+ */
+void Item::finishCloning(Item* source)
+{
+    // empty
+}
+
+/**
  * @brief The date and time when the item was last updated.
  */
 QDateTime Item::updatedAt() const
@@ -358,6 +386,21 @@ QDateTime Item::updatedAt() const
         result.setTime_t(0);
         return result;
     }
+}
+
+/**
+ * @brief The effective date when the item has been updated at.
+ *
+ * This returns the date and time when the item has been last updated. In contrast to the
+ * updatedAt, this takes into account modifications of children.
+ */
+QDateTime Item::effectiveUpdatedAt() const
+{
+    auto result = m_updatedAt;
+    if (m_childrenUpdatedAt.isValid() && m_childrenUpdatedAt > result) {
+        result = m_childrenUpdatedAt;
+    }
+    return result;
 }
 
 /**
@@ -385,7 +428,9 @@ QDateTime Item::createdAt() const
  */
 void Item::applyCalculatedProperties(const QVariantMap& properties)
 {
-    Q_UNUSED(properties)
+    setChildrenUpdatedAt(
+            properties.value("childrenUpdatedAt", QVariant::fromValue(m_childrenUpdatedAt))
+                    .toDateTime());
 }
 
 /**
@@ -649,6 +694,15 @@ void Item::setUpdateAt()
     if (!m_loading) {
         m_updatedAt = QDateTime::currentDateTimeUtc();
     }
+}
+
+void Item::setChildrenUpdatedAt(const QDateTime& childrenUpdatedAt)
+{
+    if (m_childrenUpdatedAt == childrenUpdatedAt) {
+        return;
+    }
+    m_childrenUpdatedAt = childrenUpdatedAt;
+    emit updatedAtChanged();
 }
 
 /**

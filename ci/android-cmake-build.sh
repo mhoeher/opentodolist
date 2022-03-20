@@ -33,13 +33,8 @@ fi
 
 mkdir -p build-android
 cd build-android
-unset CMAKE_ABI_ARGS
-if [ -n "$BUILD_APK" ]; then
-    CMAKE_ABI_ARGS="$CMAKE_ABI_ARGS -DANDROID_ABI=$ANDROID_ABIS"
-fi
-for abi in $ANDROID_ABIS; do
-    CMAKE_ABI_ARGS="$CMAKE_ABI_ARGS -DANDROID_BUILD_ABI_$abi=ON"
-done
+CMAKE_ABI_ARGS="-DANDROID_ABI=$ANDROID_ABIS"
+
 cmake \
     -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
@@ -71,69 +66,51 @@ OTL_VERSION="$(git describe --tags)"
 python ../bin/set-android-version-name \
     android-package-source/AndroidManifest.xml "$OTL_VERSION"
 
-# Fix: Remove some intermediate build files as we run out of disk space in CIs:
-if [ -n "$CI" ]; then
-    echo "Cleaning up build files to get free disk space..."
-    echo "Disk space before cleanup:"
-    df -h
-    rm -rf \
-        3rdparty \
-        app \
-        lib \
-        MultiAbi \
-        test
-    echo "Disk space after cleanup:"
-    df -h
-fi
+# Build APKs for each supported platform
+case "$ANDROID_ABIS" in
+    armeabi-v7a)
+        VERSION_OFFSET=1
+        break
+        ;;
+    arm64-v8a)
+        VERSION_OFFSET=2
+        break
+        ;;
+    x86_64)
+        VERSION_OFFSET=4;
+        break
+        ;;
+    x86)
+        VERSION_OFFSET=3;
+        break
+        ;;
+    *)
+        echo "Unhandled Android architecture: $ANDROID_ABIS"
+        exit 1
+        ;;
+esac
 
-if [ -n "$BUILD_AAB" ]; then
-    # Building Android AAB:
-    python ../bin/increase-android-version-code \
-        android-package-source/AndroidManifest.xml 0
+# Patch version code:
+python ../bin/increase-android-version-code \
+    android-package-source/AndroidManifest.xml $VERSION_OFFSET
 
-    androiddeployqt \
-        --output $PWD/android-build \
-        --aab \
-        --gradle \
-        --release \
-        --deployment bundled \
-        --input android_deployment_settings.json
-    cp android-build/build/outputs/bundle/release/android-build-release.aab \
-        OpenTodoList-${OTL_VERSION}.aab
-fi
+# Build APK:
+androiddeployqt \
+    --output $PWD/android-build \
+    --gradle \
+    --release \
+    --deployment bundled \
+    --input android_deployment_settings.json
+cp android-build/build/outputs/apk/release/android-build-release-unsigned.apk \
+    OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.apk
 
-if [ -n "$BUILD_APK" ]; then
-    # Build APKs for each supported platform
-    case "$ANDROID_ABIS" in
-        armeabi-v7a)
-            VERSION_OFFSET=1
-            break
-            ;;
-        arm64-v8a)
-            VERSION_OFFSET=2
-            break
-            ;;
-        x86_64)
-            VERSION_OFFSET=4;
-            break
-            ;;
-        x86)
-            VERSION_OFFSET=3;
-            break
-            ;;
-        *)
-            echo "Unhandled Android architecture: $ANDROID_ABIS"
-            exit 1
-            ;;
-    esac
-    python ../bin/increase-android-version-code \
-        android-package-source/AndroidManifest.xml $VERSION_OFFSET
-    androiddeployqt \
-        --output $PWD/android-build \
-        --gradle \
-        --release \
-        --deployment bundled \
-        --input android_deployment_settings.json
-    cp android-build/build/outputs/apk/release/android-build-release-unsigned.apk \
-        OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.apk
-fi
+# Build AAB:
+androiddeployqt \
+    --output $PWD/android-build \
+    --aab \
+    --gradle \
+    --release \
+    --deployment bundled \
+    --input android_deployment_settings.json
+cp android-build/build/outputs/bundle/release/android-build-release.aab \
+    OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.aab

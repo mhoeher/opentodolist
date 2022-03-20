@@ -32,11 +32,8 @@
         <file>Windows/CenteredDialog.qml</file>
         <file>Windows/DateSelectionDialog.qml</file>
         <file>Windows/FolderSelectionDialog.qml</file>
-        <file>Windows/OpenFileDialog.qml</file>
-        <file>Windows/OpenImageDialog.qml</file>
         <file>Windows/RenameItemDialog.qml</file>
         <file>Windows/RenameLibraryDialog.qml</file>
-        <file>Windows/+android/OpenImageDialog.qml</file>
         <file>Widgets/NewTopLevelItemButton.qml</file>
         <file>Widgets/SyncErrorNotificationBar.qml</file>
         <file>Widgets/TextInputBar.qml</file>
@@ -66,7 +63,6 @@
         <file>Widgets/ItemPage.qml</file>
         <file>Widgets/ItemScrollView.qml</file>
         <file>Pages/SettingsPage.qml</file>
-        <file>Windows/+ios/OpenImageDialog.qml</file>
         <file>Components/ToolBarAction.qml</file>
         <file>Pages/AccountsPage.qml</file>
         <file>Components/qmldir</file>
@@ -155,5 +151,9 @@
         <file>Components/ApplicationToolBarActions.qml</file>
         <file>Components/ApplicationShortcuts.qml</file>
         <file>Controls/PasswordField.qml</file>
+        <file>Windows/+android/FolderSelectionDialog.qml</file>
+        <file>Controls/Popup.qml</file>
+        <file>Controls/ScrollIndicator.qml</file>
+        <file>Actions/ResetDueTo.qml</file>
     </qresource>
 </RCC>

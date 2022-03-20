@@ -20,6 +20,7 @@
 #ifndef DATASTORAGE_ITEMSQUERY_H_
 #define DATASTORAGE_ITEMSQUERY_H_
 
+#include <QDateTime>
 #include <QObject>
 #include <QSet>
 #include <QSharedPointer>
@@ -78,7 +79,7 @@ protected:
     void setDataChanged(bool changed = true);
     bool hasDataChanged() const;
 
-    struct PercentageForTodo
+    struct PercentageForListOfItems
     {
         int numSubtasks;
         int numDoneSubtasks;
@@ -100,8 +101,10 @@ protected:
 
     void calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry* entry,
                          Item* item = nullptr);
-    PercentageForTodo percentageForTodo(QLMDB::Transaction& transaction, const QByteArray& todoId);
+    PercentageForListOfItems percentageForListOfItems(QLMDB::Transaction& transaction,
+                                                      const QByteArray& todoId);
     QDateTime earliestChildDueDate(QLMDB::Transaction& transaction, const QByteArray& parentId);
+    QDateTime earliestChildUpdatedAt(QLMDB::Transaction& transaction, const QByteArray& parentId);
 
     QSharedPointer<Item> itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid);
 

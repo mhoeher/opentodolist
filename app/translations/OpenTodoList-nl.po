@@ -52,17 +52,17 @@ msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Bestand bijvoegen"
 
-#: ../Widgets/Attachments.qml:41
+#: ../Widgets/Attachments.qml:40
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Bijlage verwijderen?"
 
-#: ../Widgets/Attachments.qml:45
+#: ../Widgets/Attachments.qml:44
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Weet u zeker dat u de bijlage <strong>%1</strong> wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
 
-#: ../Widgets/Attachments.qml:59
+#: ../Widgets/Attachments.qml:58
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Bijlagen"
@@ -177,82 +177,82 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notities"
 
-#: ../Widgets/LibrariesSideBar.qml:376
+#: ../Widgets/LibrariesSideBar.qml:384
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Schema"
 
-#: ../Widgets/LibrariesSideBar.qml:178
+#: ../Widgets/LibrariesSideBar.qml:184
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nieuwe verzameling"
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Over…"
 
-#: ../Pages/LibraryPage.qml:152
+#: ../Pages/LibraryPage.qml:153
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Rood"
 
-#: ../Pages/LibraryPage.qml:159
+#: ../Pages/LibraryPage.qml:160
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Groen"
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:167
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Blauw"
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:174
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Geel"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:181
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Oranje"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:188
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lila"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:195
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Wit"
 
-#: ../Pages/LibraryPage.qml:204
+#: ../Pages/LibraryPage.qml:205
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Naam wijzigen"
 
-#: ../Pages/LibraryPage.qml:214
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:277
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Naam van notitie"
 
-#: ../Pages/LibraryPage.qml:285
+#: ../Pages/LibraryPage.qml:290
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Naam van takenlijst"
 
-#: ../Pages/LibraryPage.qml:298
+#: ../Pages/LibraryPage.qml:303
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Zoekterm 1, zoekterm 2, ..."
 
-#: ../Pages/LibraryPage.qml:377
+#: ../Pages/LibraryPage.qml:382
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Deze verzameling is nog leeg! Voeg een <a href='#note'>notitie</a>, <a href='#todolist'>takenlijst</a> of <a href='#image'>afbeelding</a> toe."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "&Linkerzijbalk openen"
 
-#: ../Windows/MainWindow.qml:279
+#: ../Windows/MainWindow.qml:271
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "<a href='#newLibrary'>Maak een verzameling aan</a>. Verzamelingen worden gebruikt om items in op te slaan, zoals notities, takenlijsten en afbeeldingen."
@@ -554,12 +554,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Geen openstaande taken - alles is afgerond"
 
-#: ../Pages/TodoListPage.qml:158
+#: ../Pages/TodoListPage.qml:160
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Zoekterm 1, zoekterm 2, …"
 
-#: ../Pages/TodoListPage.qml:222
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Taken"
@@ -569,12 +569,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Afgeronde taken"
 
-#: ../Pages/TodoPage.qml:146
+#: ../Pages/TodoPage.qml:147
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Zoekterm 1, zoekterm 2, …"
 
-#: ../Pages/TodoPage.qml:171
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Taken"
@@ -684,17 +684,17 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Label toekennen"
 
-#: ../Pages/TodoListPage.qml:242
+#: ../Pages/TodoListPage.qml:264
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Taak toevoegen…"
 
-#: ../Pages/TodoPage.qml:177
+#: ../Pages/TodoPage.qml:178
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Taak toevoegen…"
 
-#: ../Widgets/TodosWidget.qml:194
+#: ../Widgets/TodosWidget.qml:203
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Vervalt op: %1"
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Donker"
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:204
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Instellingen"
@@ -744,37 +744,37 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Thema:"
 
-#: ../Widgets/LibrariesSideBar.qml:233
+#: ../Widgets/LibrariesSideBar.qml:239
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Standaardverzameling aanmaken"
 
-#: ../Pages/LibraryPage.qml:440
+#: ../Pages/LibraryPage.qml:445
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Sorteren op"
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:450
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Handmatig"
 
-#: ../Pages/LibraryPage.qml:452
+#: ../Pages/LibraryPage.qml:457
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Naam"
 
-#: ../Pages/LibraryPage.qml:459
+#: ../Pages/LibraryPage.qml:464
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Vervaldatum"
 
-#: ../Pages/LibraryPage.qml:466
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Aanmaakdatum"
 
-#: ../Pages/LibraryPage.qml:473
+#: ../Pages/LibraryPage.qml:478
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Bijwerkdatum"
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Taal:"
 
-#: ../Pages/TodoListPage.qml:170
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Handmatig"
 
-#: ../Pages/TodoListPage.qml:176
+#: ../Pages/TodoListPage.qml:178
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Naam"
 
-#: ../Pages/TodoListPage.qml:182
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Einddatum"
 
-#: ../Pages/TodoListPage.qml:188
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Aanmaakdatum"
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Bijwerkdatum"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Widgets/LibrariesSideBar.qml:185
+#: ../Widgets/LibrariesSideBar.qml:191
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Accounts"
 
-#: ../Widgets/LibrariesSideBar.qml:205
+#: ../Widgets/LibrariesSideBar.qml:211
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Vertaal deze app…"
@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Stel morgen in"
 
-#: ../Widgets/TodosWidgetDelegate.qml:242
+#: ../Widgets/TodosWidgetDelegate.qml:268
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Veeg om te markeren als onafgerond"
 
-#: ../Widgets/TodosWidgetDelegate.qml:244
+#: ../Widgets/TodosWidgetDelegate.qml:270
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Veeg om te markeren als afgerond"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Widgets/LibrariesSideBar.qml:192
+#: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Lijst aanpassen"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Planning verbergen"
 
-#: ../Widgets/LibrariesSideBar.qml:344
+#: ../Widgets/LibrariesSideBar.qml:352
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Planning tonen"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:362
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Omhoog verplaatsen"
 
-#: ../Widgets/LibrariesSideBar.qml:363
+#: ../Widgets/LibrariesSideBar.qml:371
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Omlaag verplaatsen"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Taak verplaatsen naar…"
 
-#: ../Widgets/LibrariesSideBar.qml:212
+#: ../Widgets/LibrariesSideBar.qml:218
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Doneren"
@@ -1923,37 +1923,37 @@ msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
 msgstr "Naam van mijn nieuwe verzameling"
 
-#: ../Pages/NewLibraryInFolderPage.qml:88
+#: ../Pages/NewLibraryInFolderPage.qml:97
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
 msgstr "Map openen als verzameling"
 
-#: ../Pages/NewLibraryInFolderPage.qml:96
+#: ../Pages/NewLibraryInFolderPage.qml:105
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
 msgstr "U kunt elke map als verzameling gebruiken.<br/><br/>Dit is vooral nuttig als u een ander hulpprogramma gebruikt (zoals een synchronisatieclient of een clouddienst) om met een server te synchroniseren."
 
-#: ../Pages/NewLibraryInFolderPage.qml:100
+#: ../Pages/NewLibraryInFolderPage.qml:109
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
 msgstr "Map:"
 
-#: ../Pages/NewLibraryInFolderPage.qml:105
+#: ../Pages/NewLibraryInFolderPage.qml:114
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
 msgstr "Locatie naar de als verzameling te gebruiken map"
 
-#: ../Pages/NewLibraryInFolderPage.qml:111
+#: ../Pages/NewLibraryInFolderPage.qml:120
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
 msgstr "Kiezen"
 
-#: ../Pages/NewLibraryInFolderPage.qml:116
+#: ../Pages/NewLibraryInFolderPage.qml:125
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
 msgstr "Naam:"
 
-#: ../Pages/NewLibraryInFolderPage.qml:121
+#: ../Pages/NewLibraryInFolderPage.qml:130
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
 msgstr "Mijn lokale verzameling"
@@ -2074,12 +2074,12 @@ msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Taal:"
 
-#: ../Pages/SettingsPage.qml:84
+#: ../Pages/SettingsPage.qml:105
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Thema:"
 
-#: ../Pages/SettingsPage.qml:127
+#: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Tekstgrootte:"
@@ -2104,17 +2104,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Voortgang instellen"
 
-#: ../Pages/SettingsPage.qml:144
+#: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Aangepaste tekstgrootte instellen"
 
-#: ../Pages/SettingsPage.qml:162
+#: ../Pages/SettingsPage.qml:176
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Compacte vormgeving gebruiken"
 
-#: ../Pages/SettingsPage.qml:171
+#: ../Pages/SettingsPage.qml:185
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2123,27 +2123,27 @@ msgstr "Verklein de ruimte tussen onderdelen en de lettergrootte.\n"
 "\n"
 "<em>Herstart OpenTodoList om de wijziging toe te passen.</em>"
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "Compacte takenlijsten gebruiken"
 
-#: ../Pages/SettingsPage.qml:189
+#: ../Pages/SettingsPage.qml:203
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "Verklein de ruimte tussen taken en lijstitems zodat er meer items op het scherm passen."
 
-#: ../Pages/SettingsPage.qml:196
+#: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Beeldgrootte afdwingen"
 
-#: ../Pages/SettingsPage.qml:203
+#: ../Pages/SettingsPage.qml:217
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Beeldgrootte:"
 
-#: ../Pages/SettingsPage.qml:221
+#: ../Pages/SettingsPage.qml:235
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2177,7 +2177,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Promoten"
 
-#: ../Pages/SettingsPage.qml:230
+#: ../Pages/SettingsPage.qml:244
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "Grootte van item in verzameling:"
@@ -2292,12 +2292,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "Elke x maanden"
 
-#: ../Pages/SettingsPage.qml:115
+#: ../Pages/SettingsPage.qml:129
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "Systeemvak:"
 
-#: ../Pages/SettingsPage.qml:121
+#: ../Pages/SettingsPage.qml:135
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Snelle notities openen na aanklikken"
@@ -2322,7 +2322,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: ../Pages/LibraryPage.qml:209
+#: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr "Kopiëren"
@@ -2417,7 +2417,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Voortgang instellen"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:167
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Bureaubladmodus"
@@ -2431,4 +2431,34 @@ msgstr "Item kopiëren naar…"
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr "Taak kopiëren naar…"
+
+#: ../Pages/NewLibraryInFolderPage.qml:71
+msgctxt "NewLibraryInFolderPage|"
+msgid "Select a Folder"
+msgstr "Kies een map"
+
+#: ../Pages/LibraryPage.qml:224
+msgctxt "LibraryPage|"
+msgid "Select Image"
+msgstr "Kies een afbeelding"
+
+#: ../Pages/TodoListPage.qml:209
+msgctxt "TodoListPage|"
+msgid "Show Completed"
+msgstr "Afgeronde taken tonen"
+
+#: ../Pages/TodoListPage.qml:215
+msgctxt "TodoListPage|"
+msgid "Show At The End"
+msgstr "Tonen aan einde van lijst"
+
+#: ../Pages/TodoPage.qml:274
+msgctxt "TodoPage|"
+msgid "Show Completed"
+msgstr "Afgeronde taken tonen"
+
+#: ../Pages/TodoPage.qml:280
+msgctxt "TodoPage|"
+msgid "Show At The End"
+msgstr "Tonen aan einde van lijst"
 

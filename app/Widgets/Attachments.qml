@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.2 as Dialogs
 
 import OpenTodoList 1.0 as OTL
 
@@ -14,7 +15,6 @@ Item {
     id: item
 
     property OTL.ComplexItem item
-    readonly property OpenFileDialog openFileDialog: dialog
 
     function attach() {
         dialog.open();
@@ -22,14 +22,13 @@ Item {
 
     height: childrenRect.height
 
-    OpenFileDialog {
+    Dialogs.FileDialog {
         id: dialog
 
         title: qsTr("Attach File")
-        parent: MainWindow.overlay
 
         onAccepted: {
-            item.item.attachFile(OTL.Application.urlToLocalFile(fileUrl))
+            item.item.attachFile(fileUrl)
         }
     }
 

@@ -31,9 +31,6 @@ C.ApplicationWindow {
     onVisibleChanged: if (visible) { OTL.Application.syncAllLibraries(); }
 
     function viewLibrary(lib, tag, special) {
-        lib = lib || librariesSideBar.currentLibrary;
-        tag = tag || librariesSideBar.currentTag;
-        special = special || librariesSideBar.specialView;
         stackView.clear();
         if (lib) {
             switch (special) {
@@ -152,6 +149,12 @@ C.ApplicationWindow {
         goBackShortcut.onActivated: {
             if (stackView.canGoBack) {
                 stackView.goBack();
+            } else {
+                // We are at the top of the stack. If the window is in fullscreen mode, go to
+                // "default" mode (which should usually be "windowed" on most systems).
+                if (window.visibility === Window.FullScreen) {
+                    window.visibility = Window.AutomaticVisibility;
+                }
             }
         }
         openShortcut.enabled: !!window.itemCreatedNotification
@@ -179,8 +182,8 @@ C.ApplicationWindow {
     }
 
     onClosing: {
-        if (Qt.platform.os === "android") {
-            close.accepted = false;
+        switch (Qt.platform.os) {
+        case "android":
             if (stackView.canGoBack) {
                 stackView.goBack();
                 return;
@@ -194,24 +197,20 @@ C.ApplicationWindow {
                 // stop the GUI. This seems to work reliably.
                 OTL.Application.finishActivity();
             }
-        } else {
+            break;
+        default:
             close.accepted = true;
+            break;
         }
     }
 
     LibrariesSideBar {
         id: librariesSideBar
 
-        function viewSelectedLibrary() {
-            window.viewLibrary(currentLibrary, currentTag, specialView);
-        }
-
         helpVisible: helpPage != null
         anchors.fill: parent
         compact: window.width < 600
-        onCurrentLibraryChanged: changeLibraryTimer.restart()
-        onCurrentTagChanged: changeLibraryTimer.restart()
-        onSpecialViewChanged: changeLibraryTimer.restart()
+        onShowLibrary: window.viewLibrary(library, tag, specialView)
         onNewLibrary: {
             stackView.clear();
             stackView.push(newLibraryPage);
@@ -261,13 +260,6 @@ C.ApplicationWindow {
 
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
-
-        Timer {
-            id: changeLibraryTimer
-            interval: 100
-            repeat: false
-            onTriggered: librariesSideBar.viewSelectedLibrary()
-        }
     }
 
     C.Pane {
@@ -281,7 +273,8 @@ C.ApplicationWindow {
                        "different kinds of items like notes, todo lists " +
                        "and images.")
             onLinkActivated: if (link === "#newLibrary") {
-                                 newLibraryAction.trigger();
+                                 stackView.clear();
+                                 stackView.push(newLibraryPage);
                              }
         }
     }
@@ -422,6 +415,7 @@ C.ApplicationWindow {
                 if (library) {
                     librariesSideBar.currentLibrary = library;
                     librariesSideBar.currentTag = "";
+                    viewLibrary(library)
                 }
             }
         }
@@ -435,6 +429,7 @@ C.ApplicationWindow {
             window.requestActivate();
             window.raise();
         }
+
     }
 
     Connections {
@@ -464,6 +459,7 @@ C.ApplicationWindow {
             switch (Qt.platform.os) {
             case "android":
             case "ios":
+            case "osx": // https://gitlab.com/rpdev/opentodolist/-/issues/518
                 d.showMainWindow();
                 break;
             default:

@@ -65,6 +65,20 @@ C.Page {
                 model: translations.availableLanguages()
                 textRole: "name"
                 valueRole: "code"
+                popup: C.Popup {
+                         y: page.availableHeight / 20
+                         width: languageEdit.width
+                         implicitHeight: contentItem.implicitHeight
+
+                         contentItem: ListView {
+                             clip: true
+                             implicitHeight: Math.min(contentHeight, page.availableHeight / 2)
+                             model: languageEdit.popup.visible ? languageEdit.delegateModel : null
+                             currentIndex: languageEdit.highlightedIndex
+
+                             C.ScrollIndicator.vertical: C.ScrollIndicator { }
+                         }
+                     }
                 currentIndex: {
                     var model = translations.availableLanguages();
                     for (var i = 0; i < model.length; ++i) {
@@ -77,7 +91,14 @@ C.Page {
                     // anything else, choose that:
                     return 0;
                 }
-                onCurrentValueChanged: translations.language = currentValue
+                onCurrentValueChanged: {
+                    // WA for rpdev/opentodolist#512:
+                    // Remeber current theme by manually saving it before
+                    // changing the language:
+                    let theme = Utils.Colors.theme;
+                    translations.language = currentValue;
+                    Utils.Colors.theme = theme;
+                }
             }
 
             C.Label {
@@ -87,27 +108,20 @@ C.Page {
             C.ComboBox {
                 id: themeEdit
                 Layout.fillWidth: true
-                currentIndex: {
-                    var currentTheme = Utils.Colors.theme;
-                    var themeName = Utils.Colors.themeIdsToNameMap[Utils.Colors.theme];
-                    if (themeName) {
-                        var idx = Utils.Colors.themeNames.indexOf(themeName);
-                        if (idx >= 0) {
-                            return idx;
+
+                model: Utils.Colors.themes
+                valueRole: "name"
+                textRole: "title"
+                onActivated: {
+                    Utils.Colors.theme = currentValue
+                }
+                Component.onCompleted: {
+                    for (var i = 0; i < Utils.Colors.themes.length; ++i) {
+                        if (Utils.Colors.themes[i].name === Utils.Colors.theme) {
+                            return i;
                         }
                     }
                     return 0;
-                }
-                model: Utils.Colors.themeNames
-                onCurrentIndexChanged: {
-                    var selectedTheme = themeEdit.model[themeEdit.currentIndex];
-                    if (selectedTheme) {
-                        var theme = Utils.Colors.themeNamesToIdMap[selectedTheme];
-                        if (theme) {
-
-                            Utils.Colors.theme = theme;
-                        }
-                    }
                 }
             }
 

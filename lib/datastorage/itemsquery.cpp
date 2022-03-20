@@ -172,14 +172,17 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
     }
 
     if (item) {
+        properties["childrenUpdatedAt"] =
+                earliestChildUpdatedAt(transaction, entry->id.toByteArray());
+
         auto todoList = qobject_cast<TodoList*>(item);
         if (todoList) {
             properties["earliestChildDueDate"] =
                     earliestChildDueDate(transaction, entry->id.toByteArray());
         }
         auto todo = qobject_cast<Todo*>(item);
-        if (todo != nullptr) {
-            auto percentageDone = percentageForTodo(transaction, entry->id.toByteArray());
+        if (todo != nullptr || todoList != nullptr) {
+            auto percentageDone = percentageForListOfItems(transaction, entry->id.toByteArray());
             properties["percentageDone"] = percentageDone.percentageDone;
             properties["numSubtasks"] = percentageDone.numSubtasks;
             properties["numDoneSubtasks"] = percentageDone.numDoneSubtasks;
@@ -189,10 +192,16 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
     entry->calculatedData = properties;
 }
 
-ItemsQuery::PercentageForTodo ItemsQuery::percentageForTodo(QLMDB::Transaction& transaction,
-                                                            const QByteArray& todoId)
+/**
+ * @brief Calculates the percentage done for a list of checkable items.
+ *
+ * This calculates the percentage done (as well as number of total and open) items within a list of
+ * checkable items. It is applicable e.g. for a TodoList or Todo.
+ */
+ItemsQuery::PercentageForListOfItems
+ItemsQuery::percentageForListOfItems(QLMDB::Transaction& transaction, const QByteArray& todoId)
 {
-    PercentageForTodo result { 0, 0, 0 };
+    PercentageForListOfItems result { 0, 0, 0 };
 
     const auto taskIds = children()->getAll(transaction, todoId);
     if (!taskIds.isEmpty()) {
@@ -247,6 +256,39 @@ QDateTime ItemsQuery::earliestChildDueDate(QLMDB::Transaction& transaction,
                         result = dueTo;
                     }
                 }
+            }
+        }
+    }
+
+    return result;
+}
+
+/**
+ * @brief Calculcate the most recent "updatedAt" time of any of the children of the item.
+ *
+ * This method searches (recursively) for any children of the item with the given
+ * @p parentId and returns the most recent updatedAt property from all of them.
+ *
+ * If the item does not have children, then an invalid result is returned.
+ */
+QDateTime ItemsQuery::earliestChildUpdatedAt(QLMDB::Transaction& transaction,
+                                             const QByteArray& parentId)
+{
+    QDateTime result;
+    const auto childIds = children()->getAll(transaction, parentId);
+
+    for (const auto& childId : childIds) {
+        auto data = items()->get(transaction, childId);
+        ItemPtr item(Item::decache(ItemCacheEntry::fromByteArray(data, childId)));
+        if (item && item->parentId() == parentId) {
+            auto itemUpdatedAt = item->updatedAt();
+            if (!result.isValid() || (itemUpdatedAt.isValid() && itemUpdatedAt > result)) {
+                result = itemUpdatedAt;
+            }
+            // Check children:
+            auto childrenUpdatedAt = earliestChildUpdatedAt(transaction, childId);
+            if (!result.isValid() || (childrenUpdatedAt.isValid() && childrenUpdatedAt > result)) {
+                result = childrenUpdatedAt;
             }
         }
     }

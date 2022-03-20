@@ -25,7 +25,7 @@ ItemPage {
     readonly property alias editingNotes: d.editingNotes
 
     function finishEditingNotes() {
-        itemNotesEditor.finishEditing();
+        todosWidget.header.itemNotesEditor.finishEditing();
     }
 
     function deleteItem() {
@@ -67,7 +67,7 @@ ItemPage {
     }
 
     property var goBack: editingNotes ? function() {
-        itemNotesEditor.finishEditing();
+        todosWidget.header.itemNotesEditor.finishEditing();
     } : undefined
 
     property var undo: {
@@ -133,6 +133,7 @@ ItemPage {
 
     OTL.ItemsSortFilterModel {
         id: tasks
+        groupDone: settings.groupDone
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             parentItem: page.item.uid
@@ -158,7 +159,7 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.todoList
-        C.ScrollBar.vertical.policy: itemNotesEditor.editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor || {} ).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
@@ -175,7 +176,7 @@ ItemPage {
             symbol: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new task...")
-            onHeaderButtonClicked: settings.showUndone = !settings.showUndone
+            onHeaderButtonClicked: tasksVisibilityMenu.open()
             onCreateNewItem: {
                 var properties = {
                     "title": title
@@ -193,6 +194,8 @@ ItemPage {
 
             headerComponent: Column {
                 id: column
+
+                property alias itemNotesEditor: itemNotesEditor
                 width: parent.width
                 spacing: AppSettings.smallSpace
 
@@ -238,13 +241,6 @@ ItemPage {
                         attach();
                     }
                 }
-
-                Connections {
-                    target: openFileDialog
-                    function onClosed() {
-                        d.reopenDrawer();
-                    }
-                }
             }
         }
     }
@@ -266,6 +262,29 @@ ItemPage {
         category: "TodoPage"
 
         property bool showUndone: false
+        property bool groupDone: false
+    }
+
+    C.Menu {
+        id: tasksVisibilityMenu
+        parent: todosWidget.headerIcon
+        modal: true
+
+        C.MenuItem {
+            text: qsTr("Show Completed")
+            checked: settings.showUndone
+            checkable: true
+            onClicked: settings.showUndone = !settings.showUndone
+        }
+
+        C.MenuItem {
+            text: qsTr("Show At The End")
+            checked: settings.groupDone
+            checkable: true
+            visible: settings.showUndone
+            height: visible ? implicitHeight : 0
+            onClicked: settings.groupDone = !settings.groupDone
+        }
     }
 
     Actions.CopyTodo { id: copyTodoAction; item: page.item }

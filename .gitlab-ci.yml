@@ -214,35 +214,24 @@ android_armv7:
   extends: .android-build
   variables:
     ANDROID_ABIS: armeabi-v7a
-    BUILD_APK: 1
 
 # Android build ARM64
 android_arm64_v8a:
   extends: .android-build
   variables:
     ANDROID_ABIS: arm64-v8a
-    BUILD_APK: 1
 
 # Android build x86
 android_x86:
   extends: .android-build
   variables:
     ANDROID_ABIS: x86
-    BUILD_APK: 1
 
 # Android build x86_64
 android_x64:
   extends: .android-build
   variables:
     ANDROID_ABIS: x86_64
-    BUILD_APK: 1
-
-# Android AAB
-android_aab:
-  extends: .android-build
-  variables:
-    ANDROID_ABIS: "armeabi-v7a arm64-v8a x86 x86_64"
-    BUILD_AAB: 1
 
 # Build the app as Flatpak
 flatpak:
@@ -269,6 +258,7 @@ snap::build:
       paths:
         - opentodolist*.snap
       expire_in: 1 week
+    allow_failure: true # The Snap docker is currently broken - allow this to fail!
 
 # Build the app for Arch Linux using pkgbuild
 archlinux-pkgbuild:
@@ -302,11 +292,6 @@ archlinux-pkgbuild:
         - build-android/*-aligned.apk
         - build-android/*-aligned.aab
       expire_in: 1 week
-
-sign::android_aab:
-  extends: .sign_apks
-  needs:
-    - android_aab
 
 sign::android_arm64_v8a:
   extends: .sign_apks
@@ -354,7 +339,7 @@ github:
         - cp build-macos/app/OpenTodoList.dmg uploads
         - cp OpenTodoList-Source-*.zip uploads
         - cp OpenTodoList-Source-*.tar.gz uploads
-        - cp *.snap uploads
+        - cp *.snap uploads || /bin/true # Snap docker image is currently broken - allow this to fail
         - ./ci/github-upload.py mhoeher opentodolist $CI_COMMIT_REF_NAME $GITHUB_ACCESS_TOKEN ./uploads/*
     rules:
       - if: $CI_COMMIT_TAG
