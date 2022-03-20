@@ -36,6 +36,9 @@
 #include "models/itemssortfiltermodel.h"
 
 #include "sync/account.h"
+#include "sync/webdavaccount.h"
+#include "sync/nextcloudaccount.h"
+#include "sync/owncloudaccount.h"
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
 
@@ -61,7 +64,11 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
 {
     //@uri OpenTodoList
 
-    qmlRegisterType<Account>(uri, 1, 0, "Account");
+    qmlRegisterUncreatableType<Account>(uri, 1, 0, "Account",
+                                        "Use one of the concrete account types instead.");
+    qmlRegisterType<WebDAVAccount>(uri, 1, 0, "WebDAVAccount");
+    qmlRegisterType<NextCloudAccount>(uri, 1, 0, "NextCloudAccount");
+    qmlRegisterType<OwnCloudAccount>(uri, 1, 0, "OwnCloudAccount");
     qmlRegisterSingletonType<Application>(uri, 1, 0, "Application",
                                           [=](QQmlEngine*, QJSEngine*) { return m_application; });
     qmlRegisterSingletonInstance<Application>(uri, 1, 0, "Application", m_application);

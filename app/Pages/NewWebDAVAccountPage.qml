@@ -10,7 +10,7 @@ import "../Controls" as C
 C.Page {
     id: page
 
-    property int type: -1
+    property int type: OTL.Account.WebDAV
     property alias buttons: buttons
     property alias serverAddressEdit: serverAddressEdit
     property alias usernameEdit: usernameEdit
@@ -45,6 +45,7 @@ C.Page {
         property bool validated: false
     }
 
+
     Connections {
         target: d.okButton
         function onClicked() {
@@ -52,10 +53,7 @@ C.Page {
             if (!/https?:\/\//i.exec(url)) {
                 url = "https://" + url;
             }
-            switch (account.type) {
-            case OTL.Account.NextCloud:
-                dav.serverType = OTL.WebDAVSynchronizer.NextCloud;
-                break;
+            switch (page.type) {
             case OTL.Account.OwnCloud:
                 dav.serverType = OTL.WebDAVSynchronizer.OwnCloud;
                 break;
@@ -63,7 +61,7 @@ C.Page {
                 dav.serverType = OTL.WebDAVSynchronizer.Generic;
                 break;
             default:
-                console.error("Unhandled account type", account.type);
+                console.error("Unhandled account type ", account.type);
                 return;
             }
             dav.url = url;
@@ -86,35 +84,25 @@ C.Page {
 
         onValidChanged: {
             if (d.validated && valid) {
+                let account = OTL.Application.createAccount(page.type);
+                account.baseUrl = dav.url;
+                account.username = dav.username;
+                account.password = dav.password;
+                account.backendSpecificData = {
+                    workarounds: dav.workarounds
+                };
+                if (accountNameEdit.text !== "") {
+                    account.name = accountNameEdit.text;
+                } else {
+                    account.name = accountNameEdit.placeholderText;
+                }
+                account.disableCertificateChecks = dav.disableCertificateCheck;
+
                 OTL.Application.saveAccount(account);
                 OTL.Application.saveAccountSecrets(account);
                 page.returnToPage(page.anchorPage);
             }
         }
-    }
-
-    OTL.Account {
-        id: account
-
-        type: page.type
-        baseUrl: dav.url
-        username: dav.username
-        password: dav.password
-        backendSpecificData: {
-            return {
-                workarounds: dav.workarounds
-            }
-        }
-
-        name: {
-            if (accountNameEdit.text !== "") {
-                return accountNameEdit.text;
-            } else {
-                return accountNameEdit.placeholderText;
-            }
-        }
-
-        disableCertificateChecks: dav.disableCertificateCheck
     }
 
     C.ScrollView {

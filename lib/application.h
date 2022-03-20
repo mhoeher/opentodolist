@@ -33,11 +33,11 @@
 #include "sync/synchronizer.h"
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
+#include "sync/account.h"
 
 class QRemoteObjectNode;
 class QTemporaryDir;
 
-class Account;
 class ApplicationSettings;
 class BackgroundServiceReplica;
 class Cache;
@@ -84,6 +84,8 @@ public:
     Q_INVOKABLE void removeAccount(Account* account);
     Q_INVOKABLE Account* loadAccount(const QUuid& uid);
     Q_INVOKABLE QVariantList accountUids();
+    Q_INVOKABLE Account* createAccount(Account::Type type);
+    Q_INVOKABLE QString accountTypeToString(Account::Type type);
 
     Q_INVOKABLE Library* addLocalLibrary(const QString& name);
     Q_INVOKABLE Library* addLibraryDirectory(const QString& directory);

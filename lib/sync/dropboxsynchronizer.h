@@ -2,6 +2,8 @@
 #define DROPBOXSYNCHRONIZER_H
 
 #include <QObject>
+#include <QString>
+#include <QDateTime>
 
 #include "synchronizer.h"
 
@@ -11,13 +13,7 @@ class DropboxSynchronizer : public Synchronizer
 public:
     explicit DropboxSynchronizer(QObject* parent = nullptr);
 
-signals:
-
-private:
-    QString m_refreshToken;
-
     // Synchronizer interface
-public:
     void validate() override;
     void synchronize() override;
     void stopSync() override;
@@ -25,6 +21,16 @@ public:
     QVariantMap toMap() const override;
     void fromMap(const QVariantMap& map) override;
     void setAccount(Account* account) override;
+signals:
+
+private:
+    // For OAuth
+    QString m_refreshToken;
+    QString m_accessToken;
+    QDateTime m_expirationAt;
+
+    // For PKCE Code Flow
+    QString m_codeVerifier;
 };
 
 #endif // DROPBOXSYNCHRONIZER_H

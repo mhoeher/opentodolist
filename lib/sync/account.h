@@ -27,19 +27,15 @@
 #include "webdavsynchronizer.h"
 
 class QSettings;
+class ApplicationSettings;
 
 class Account : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Account::Type type READ type WRITE setType NOTIFY typeChanged)
+    Q_PROPERTY(Account::Type type READ type NOTIFY typeChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
-    Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
-    Q_PROPERTY(QString baseUrl READ baseUrl WRITE setBaseUrl NOTIFY baseUrlChanged)
-    Q_PROPERTY(bool disableCertificateChecks READ disableCertificateChecks WRITE
-                       setDisableCertificateChecks NOTIFY disableCertificateChecksChanged)
-    Q_PROPERTY(QVariantMap backendSpecificData READ backendSpecificData WRITE setBackendSpecificData
-                       NOTIFY backendSpecificDataChanged)
+    friend class ApplicationSettings;
+
 public:
     explicit Account(QObject* parent = nullptr);
 
@@ -51,53 +47,48 @@ public:
     void setUid(const QUuid& uid);
 
     Type type() const;
-    void setType(const Type& type);
 
-    QString username() const;
-    void setUsername(const QString& username);
+    static Account* createAccount(Type type, QObject* parent = nullptr);
+    static Account* createAccount(QSettings* settings, QObject* parent = nullptr);
+    static QString typeToString(Type type);
 
-    QString password() const;
-    void setPassword(const QString& password);
+    virtual void save(QSettings* settings);
+    virtual void load(QSettings* settings);
+    /**
+     * @brief Get secrets (e.g. passwords) needed for communication with the server.
+     */
+    virtual QString accountSecrets() const = 0;
 
-    QString baseUrl() const;
-    void setBaseUrl(const QString& baseUrl);
-
-    bool disableCertificateChecks() const;
-    void setDisableCertificateChecks(bool disableCertificateChecks);
-
-    void save(QSettings* settings);
-    void load(QSettings* settings);
+    /**
+     * @brief Set the account secrets.
+     */
+    virtual void setAccountSecrets(const QString& secrets) = 0;
 
     QString name() const;
     void setName(const QString& name);
 
     Q_INVOKABLE QVariant toWebDAVServerType() const;
-    Q_INVOKABLE Synchronizer* createSynchronizer() const;
 
-    const QVariantMap& backendSpecificData() const;
-    void setBackendSpecificData(const QVariantMap& newBackendSpecificData);
+    /**
+     * @brief Create a Synchronizer suitable for running a sync against that account.
+     *
+     *  @note The caller takes ownership of the create object.
+     */
+    Q_INVOKABLE virtual Synchronizer* createSynchronizer() const = 0;
 
 signals:
 
     void uidChanged();
     void typeChanged();
     void nameChanged();
-    void usernameChanged();
-    void passwordChanged();
-    void baseUrlChanged();
-    void disableCertificateChecksChanged();
 
-    void backendSpecificDataChanged();
+protected:
+    void setType(const Type& type);
 
 private:
     QUuid m_uid;
     Type m_type;
     QString m_name;
-    QString m_username;
-    QString m_password;
-    QString m_baseUrl;
-    bool m_disableCertificateChecks;
-    QVariantMap m_backendSpecificData;
 };
 
 #endif // SYNC_ACCOUNT_H_

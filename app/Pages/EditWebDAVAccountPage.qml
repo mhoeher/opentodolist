@@ -9,11 +9,9 @@ import "../Windows" 1.0 as Windows
 
 import OpenTodoList 1.0 as OTL
 
-
 C.Page {
     id: page
 
-    property string type: ""
     property alias buttons: buttons
     property alias serverAddressEdit: serverAddressEdit
     property alias usernameEdit: usernameEdit
@@ -26,184 +24,193 @@ C.Page {
 
     property OTL.Account account
 
-    signal closePage()
+    signal closePage
 
     function deleteItem() {
-        deleteAccountDialog.deleteAccount(account);
+        deleteAccountDialog.deleteAccount(account)
     }
 
-    title: qsTr("Edit Account")
-    footer: C.DialogButtonBox {
-        id: buttons
+        title: qsTr("Edit Account")
+        footer: C.DialogButtonBox {
+            id: buttons
 
-        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
-        onRejected: closePage()
-    }
+            standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
+            onRejected: closePage()
+        }
 
-    Component.onCompleted: {
-        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
-    }
+        Component.onCompleted: {
+            d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
+        }
 
-    QtObject {
-        id: d
+        QtObject {
+            id: d
 
-        property bool validated: false
-        property var okButton: null
-    }
+            property bool validated: false
+            property var okButton: null
+        }
 
-    Binding {
-        target: d.okButton
-        property: "enabled"
-        value: accountNameEdit.displayText !== ""
-    }
+        Binding {
+            target: d.okButton
+            property: "enabled"
+            value: accountNameEdit.displayText !== ""
+        }
 
-    OTL.WebDAVSynchronizer {
-        id: dav
+        OTL.WebDAVSynchronizer {
+            id: dav
 
-        serverType: page.account.toWebDAVServerType()
+            serverType: {
+                switch (page.account.type) {
+                case OTL.Account.OwnCloud:
+                    return OTL.WebDAVSynchronizer.OwnCloud
+                case OTL.Account.WebDAV:
+                    return OTL.WebDAVSynchronizer.WevDAV
+                default:
+                    console.error("Unhandled account type ", page.account.type)
+                }
 
-        onValidatingChanged: {
-            if (!validating) {
-                d.validated = true;
+                onValidatingChanged: {
+                    if (!validating) {
+                        d.validated = true
+                    }
+                }
+
+                onValidChanged: {
+                    if (d.validated && valid) {
+                        page.account.username = dav.username
+                        page.account.password = dav.password
+                        page.account.baseUrl = dav.url
+                        page.account.name = accountNameEdit.text
+                        page.account.disableCertificateChecks = dav.disableCertificateCheck
+                        let backendSpecificData = page.account.backendSpecificData
+                        backendSpecificData.workarounds = dav.workarounds
+                        page.account.backendSpecificData = backendSpecificData
+
+                        OTL.Application.saveAccount(page.account)
+                        OTL.Application.saveAccountSecrets(page.account)
+                        page.closePage()
+                    }
+                }
             }
         }
 
-        onValidChanged: {
-            if (d.validated && valid) {
-                page.account.username = dav.username;
-                page.account.password = dav.password;
-                page.account.baseUrl = dav.url;
-                page.account.name = accountNameEdit.text;
-                page.account.disableCertificateChecks = dav.disableCertificateCheck;
-                let backendSpecificData = page.account.backendSpecificData;
-                backendSpecificData.workarounds = dav.workarounds;
-                page.account.backendSpecificData = backendSpecificData;
-
-                OTL.Application.saveAccount(page.account);
-                OTL.Application.saveAccountSecrets(page.account);
-                page.closePage();
+        Connections {
+            target: d.okButton
+            function onClicked() {
+                var url = serverAddressEdit.text
+                if (!/https?:\/\//i.exec(url)) {
+                    url = "https://" + url
+                }
+                dav.url = url
+                dav.username = usernameEdit.text
+                dav.password = passwordEdit.text
+                dav.disableCertificateCheck = disableCertificateChecksEdit.checked
+                d.validated = false
+                dav.validate()
             }
         }
-    }
 
-    Connections {
-        target: d.okButton
-        function onClicked() {
-            var url = serverAddressEdit.text;
-            if (!/https?:\/\//i.exec(url)) {
-                url = "https://" + url;
-            }
-            dav.url = url;
-            dav.username = usernameEdit.text;
-            dav.password = passwordEdit.text;
-            dav.disableCertificateCheck = disableCertificateChecksEdit.checked;
-            d.validated = false;
-            dav.validate();
+        Windows.DeleteAccountDialog {
+            id: deleteAccountDialog
+
+            onAccepted: page.closePage()
         }
-    }
 
-    Windows.DeleteAccountDialog {
-        id: deleteAccountDialog
+        C.ScrollView {
+            id: scrollView
 
-        onAccepted: page.closePage()
-    }
+            anchors.fill: parent
+            padding: Utils.AppSettings.mediumSpace
+            enabled: !dav.validating
 
-    C.ScrollView {
-        id: scrollView
+            GridLayout {
+                width: scrollView.availableWidth
+                columns: 2
+                columnSpacing: 10
+                rowSpacing: 10
+                implicitWidth: childrenRect.width
+                implicitHeight: childrenRect.height
 
-        anchors.fill: parent
-        padding: Utils.AppSettings.mediumSpace
-        enabled: !dav.validating
+                Components.Heading {
+                    text: qsTr("Edit Account")
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true
+                }
 
-        GridLayout {
-            width: scrollView.availableWidth
-            columns: 2
-            columnSpacing: 10
-            rowSpacing: 10
-            implicitWidth: childrenRect.width
-            implicitHeight: childrenRect.height
+                C.Label {
+                    text: qsTr("Name:")
+                }
 
-            Components.Heading {
-                text: qsTr("Edit Account")
-                Layout.columnSpan: 2
-                Layout.fillWidth: true
-            }
+                C.TextField {
+                    id: accountNameEdit
 
-            C.Label {
-                text: qsTr("Name:")
-            }
+                    text: account.name
+                    Layout.fillWidth: true
+                }
 
-            C.TextField {
-                id: accountNameEdit
+                C.Label {
+                    text: qsTr("Server Address:")
+                }
 
-                text: account.name
-                Layout.fillWidth: true
-            }
+                C.TextField {
+                    id: serverAddressEdit
 
-            C.Label {
-                text: qsTr("Server Address:")
-            }
+                    placeholderText: qsTr("https://myserver.example.com")
+                    inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
+                    Layout.fillWidth: true
+                    text: account.baseUrl
+                }
 
-            C.TextField {
-                id: serverAddressEdit
+                C.Label {
+                    text: qsTr("User:")
+                }
 
-                placeholderText: qsTr("https://myserver.example.com")
-                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
-                Layout.fillWidth: true
-                text: account.baseUrl
-            }
+                C.TextField {
+                    id: usernameEdit
 
-            C.Label {
-                text: qsTr("User:")
-            }
+                    placeholderText: qsTr("User Name")
+                    inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+                    Layout.fillWidth: true
+                    text: account.username
+                }
 
-            C.TextField {
-                id: usernameEdit
+                C.Label {
+                    text: qsTr("Password:")
+                }
 
-                placeholderText: qsTr("User Name")
-                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-                Layout.fillWidth: true
-                text: account.username
-            }
+                C.PasswordField {
+                    id: passwordEdit
 
-            C.Label {
-                text: qsTr("Password:")
-            }
+                    text: account.password
+                    placeholderText: qsTr("Password")
+                    Layout.fillWidth: true
+                }
 
-            C.PasswordField {
-                id: passwordEdit
+                Components.Empty {}
 
-                text: account.password
-                placeholderText: qsTr("Password")
-                Layout.fillWidth: true
-            }
+                C.CheckBox {
+                    id: disableCertificateChecksEdit
 
-            Components.Empty {}
+                    checked: account.disableCertificateChecks
+                    text: qsTr("Disable Certificate Checks")
+                }
 
-            C.CheckBox {
-                id: disableCertificateChecksEdit
+                C.Label {
+                    id: errorLabel
 
-                checked: account.disableCertificateChecks
-                text: qsTr("Disable Certificate Checks")
-            }
-
-            C.Label {
-                id: errorLabel
-
-                Layout.columnSpan: 2
-                Layout.fillWidth: true
-                text: qsTr("Failed to connect to the server. Please "
-                           + "check your user name, password and the server address and retry.")
-                Material.foreground: Material.Red
-                visible: d.validated && !dav.valid
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true
+                    text: qsTr("Failed to connect to the server. Please "
+                               + "check your user name, password and the server address and retry.")
+                    Material.foreground: Material.Red
+                    visible: d.validated && !dav.valid
+                }
             }
         }
-    }
 
-    C.BusyIndicator {
-        id: busyIndicator
+        C.BusyIndicator {
+            id: busyIndicator
 
-        anchors.centerIn: parent
-        visible: dav.validating
+            anchors.centerIn: parent
+            visible: dav.validating
+        }
     }
-}

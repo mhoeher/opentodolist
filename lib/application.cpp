@@ -286,7 +286,7 @@ void Application::saveAccountSecrets(Account* account)
 
         auto backgroundService = getBackgroundService();
         if (backgroundService) {
-            backgroundService->setAccountSecret(account->uid(), account->password());
+            backgroundService->setAccountSecret(account->uid(), account->accountSecrets());
         }
 
         // Check if the account we just saved credentials for was previously missing
@@ -355,6 +355,24 @@ Account* Application::loadAccount(const QUuid& uid)
 QVariantList Application::accountUids()
 {
     return m_appSettings->accountUids();
+}
+
+/**
+ * @brief Create an account.
+ *
+ * This is a wrapper for Account::createAccount(), which can be used in QML code.
+ */
+Account* Application::createAccount(Account::Type type)
+{
+    return Account::createAccount(type);
+}
+
+/**
+ * @brief Convert the account @p type to a string.
+ */
+QString Application::accountTypeToString(Account::Type type)
+{
+    return Account::typeToString(type);
 }
 
 /**

@@ -46,6 +46,7 @@
 
 #include "account.h"
 #include "datamodel/library.h"
+#include "webdavaccount.h"
 #include "webdavsynchronizer.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
@@ -307,12 +308,14 @@ void WebDAVSynchronizer::fromMap(const QVariantMap& map)
 
 void WebDAVSynchronizer::setAccount(Account* account)
 {
-    m_username = account->username();
-    m_password = account->password();
-    m_disableCertificateCheck = account->disableCertificateChecks();
-    m_workarounds = account->backendSpecificData().value("workarounds", 0).toInt();
-    m_url = account->baseUrl();
-    switch (account->type()) {
+    auto webDavAccount = qobject_cast<WebDAVAccount*>(account);
+    q_check_ptr(webDavAccount);
+    m_username = webDavAccount->username();
+    m_password = webDavAccount->password();
+    m_disableCertificateCheck = webDavAccount->disableCertificateChecks();
+    m_workarounds = webDavAccount->backendSpecificData().value("workarounds", 0).toInt();
+    m_url = webDavAccount->baseUrl();
+    switch (webDavAccount->type()) {
     case Account::NextCloud:
         m_serverType = NextCloud;
         break;
