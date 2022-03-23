@@ -559,7 +559,7 @@ msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "搜索词1，搜索词2，..."
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:246
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "待办事项"
@@ -684,7 +684,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "添加标签"
 
-#: ../Pages/TodoListPage.qml:264
+#: ../Pages/TodoListPage.qml:266
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "添加新的待办事项..."
@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "定于明日到期"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:276
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "滑动以标记为未完成"
 
-#: ../Widgets/TodosWidgetDelegate.qml:270
+#: ../Widgets/TodosWidgetDelegate.qml:278
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "滑动以标记为完成"
@@ -2446,7 +2446,7 @@ msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr "选择已完成"
 
-#: ../Pages/TodoListPage.qml:215
+#: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "显示在末尾"
@@ -2456,8 +2456,13 @@ msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "显示已完成"
 
-#: ../Pages/TodoPage.qml:280
+#: ../Pages/TodoPage.qml:281
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "显示在末尾"
+
+#: ../Actions/ResetDueTo.qml:8
+msgctxt "ResetDueTo|"
+msgid "Reset Due To"
+msgstr ""
 

@@ -10,7 +10,7 @@ msgstr ""
 #: ../Pages/AboutPage.qml:15
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr "О OpenTodoList"
+msgstr "Об OpenTodoList..."
 
 #: ../Pages/AboutPage.qml:29
 msgctxt "AboutPage|"
@@ -559,7 +559,7 @@ msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Поисковый запрос 1, поисковый запрос 2, ..."
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:246
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -684,7 +684,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Добавить метку"
 
-#: ../Pages/TodoListPage.qml:264
+#: ../Pages/TodoListPage.qml:266
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Добавить новую задачу ..."
@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Назначить завтра"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:276
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Проведите, чтобы пометить невыполненным"
 
-#: ../Widgets/TodosWidgetDelegate.qml:270
+#: ../Widgets/TodosWidgetDelegate.qml:278
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Проведите, чтобы отметить готово"
@@ -1539,52 +1539,52 @@ msgstr "Баскский"
 #: ../Pages/AccountTypeSelectionPage.qml:22
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
-msgstr ""
+msgstr "Выберите тип учётной записи"
 
 #: ../Pages/AccountTypeSelectionPage.qml:81
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
-msgstr ""
+msgstr "Тип учётной записи"
 
 #: ../Pages/AccountTypeSelectionPage.qml:102
 msgctxt "AccountTypeSelectionPage|"
 msgid "NextCloud"
-msgstr ""
+msgstr "NextCloud"
 
 #: ../Pages/AccountTypeSelectionPage.qml:107
 msgctxt "AccountTypeSelectionPage|"
 msgid "ownCloud"
-msgstr ""
+msgstr "ownCloud"
 
 #: ../Pages/AccountTypeSelectionPage.qml:112
 msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 #: ../appstartup.cpp:185
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
-msgstr ""
+msgstr "Управляйте своими персональными данными"
 
 #: ../appstartup.cpp:191
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr ""
+msgstr "Включить некоторую оптимизацию для тачскринов."
 
 #: ../appstartup.cpp:194
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
-msgstr ""
+msgstr "Запускать только фоновую службу"
 
 #: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
-msgstr ""
+msgstr "Запускать только графический интерфейс и подключаться к запущенной фоновой службе"
 
 #: ../appstartup.cpp:201
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
-msgstr ""
+msgstr "Задействовать консоль Windows для вывода отладочной информации"
 
 #: ../appstartup.cpp:334
 msgctxt "AppStartup|"
@@ -1599,28 +1599,28 @@ msgstr "Выход"
 #: ../Actions/DeleteCompletedChildren.qml:8
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Удалить Завершённые элементы"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:19
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
-msgstr ""
+msgstr "Удалить Завершённые элементы?"
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
-msgstr ""
+msgstr "Вы действительно хотите удалить все выполненные пункты todo-списка <strong>%1</strong>? Это действие нельзя отменить."
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
-msgstr ""
+msgstr "Вы действительно хотите удалить все выполненные пункты списка задач <strong>%1</strong>? Это действие нельзя отменить."
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
 #: ../Pages/EditNextCloudAccountPage.qml:69
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Изменить учётную запись"
 
 #: ../Pages/EditNextCloudAccountPage.qml:75
 msgctxt "EditNextCloudAccountPage|"
@@ -1630,47 +1630,47 @@ msgstr ""
 #: ../Pages/EditNextCloudAccountPage.qml:86
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Адрес сервера:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:93
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditNextCloudAccountPage.qml:101
 msgctxt "EditNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
+msgstr "Логин"
 
 #: ../Pages/EditNextCloudAccountPage.qml:111
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Пользователь:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:118
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: ../Pages/EditNextCloudAccountPage.qml:124
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:131
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: ../Pages/EditNextCloudAccountPage.qml:140
 msgctxt "EditNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Отключить проверки сертификатов"
 
 #: ../Pages/EditNextCloudAccountPage.qml:149
 msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
+msgstr "Не удалось подключиться к серверу. Пожалуйста, проверьте имя пользователя, пароль и адрес сервера и попытайтесь снова."
 
 #: ../Widgets/LibrariesSideBar.qml:198
 msgctxt "LibrariesSideBar|"
@@ -1690,12 +1690,12 @@ msgstr ""
 #: ../Widgets/LibrariesSideBar.qml:362
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
-msgstr ""
+msgstr "Передвинуть вверх"
 
 #: ../Widgets/LibrariesSideBar.qml:371
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
-msgstr ""
+msgstr "Передвинуть вниз"
 
 #: ../Windows/MainWindow.qml:398
 msgctxt "MainWindow|"
@@ -1705,48 +1705,48 @@ msgstr ""
 #: ../Windows/MainWindow.qml:494
 msgctxt "MainWindow|"
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: ../Pages/NewNextCloudAccountPage.qml:20
 #: ../Pages/NewNextCloudAccountPage.qml:74
 msgctxt "NewNextCloudAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Настройки соединения"
 
 #: ../Pages/NewNextCloudAccountPage.qml:80
 msgctxt "NewNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Адрес сервера:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:94
 msgctxt "NewNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
+msgstr "Логин"
 
 #: ../Pages/NewNextCloudAccountPage.qml:107
 msgctxt "NewNextCloudAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Проблемы со входом?"
 
 #: ../Pages/NewNextCloudAccountPage.qml:118
 msgctxt "NewNextCloudAccountPage|"
 msgid "We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well."
-msgstr ""
+msgstr "Мы попытались открыть Ваш браузер, чтобы Вы зашли в свой NextCloud. Пожалуйста, залогиньтесь и предоставьте доступ приложению OpenTodoList, чтобы продолжить. Проблемы со входом в NextCloud через браузер? Вы можете также ввести имя пользователя и пароль вручную."
 
 #: ../Pages/NewNextCloudAccountPage.qml:125
 msgctxt "NewNextCloudAccountPage|"
 msgid "Log in Manually"
-msgstr ""
+msgstr "Залогиниться вручную"
 
 #: ../Pages/NewNextCloudAccountPage.qml:131
 msgctxt "NewNextCloudAccountPage|"
 msgid "Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings."
-msgstr ""
+msgstr "В идеальном случае используйте пароли приложений вместо пароля пользователя. Если вход защищён 2-факторной аутентификацией (2FA), использовать пароли приложений для входа в NextCloud обязательно. Такие пароли можно создать в настройках пользователя."
 
 #: ../Pages/NewNextCloudAccountPage.qml:139
 msgctxt "NewNextCloudAccountPage|"
 msgid "Create App Password"
-msgstr ""
+msgstr "Создать пароль приложения"
 
 #: ../Pages/NewNextCloudAccountPage.qml:148
 msgctxt "NewNextCloudAccountPage|"
@@ -1961,7 +1961,7 @@ msgstr ""
 #: ../Pages/NewLibraryPage.qml:69
 msgctxt "NewLibraryPage|"
 msgid "Local Library"
-msgstr ""
+msgstr "Локальная библиотека"
 
 #: ../Pages/NewLibraryPage.qml:76
 msgctxt "NewLibraryPage|"
@@ -1981,12 +1981,12 @@ msgstr ""
 #: ../Pages/NewLocalLibraryPage.qml:62
 msgctxt "NewLocalLibraryPage|"
 msgid "Create a Local Library"
-msgstr ""
+msgstr "Создать локальную библиотеку"
 
 #: ../Pages/NewLocalLibraryPage.qml:70
 msgctxt "NewLocalLibraryPage|"
 msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr ""
+msgstr "Локальная библиотека хранится исключительно на Вашем устройстве, что делает её исключительно подходящей для соблюдения Вашей приватности!<br/><br/>Используйте её, если хотите хранить информацию только локально и регулярно делайте бэкапы своих данных при помощи других механизмов. Если Вам нужен доступ к информации с нескольких устройств, вместо локальной создайте синхронизируемую библиотеку."
 
 #: ../Pages/NewLocalLibraryPage.qml:80
 msgctxt "NewLocalLibraryPage|"
@@ -1996,7 +1996,7 @@ msgstr ""
 #: ../Pages/NewLocalLibraryPage.qml:85
 msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
-msgstr ""
+msgstr "Название моей локальной библиотеки"
 
 #: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:136
 msgctxt "NewWebDAVAccountPage|"
@@ -2442,7 +2442,7 @@ msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:215
+#: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2452,8 +2452,13 @@ msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:280
+#: ../Pages/TodoPage.qml:281
 msgctxt "TodoPage|"
 msgid "Show At The End"
+msgstr ""
+
+#: ../Actions/ResetDueTo.qml:8
+msgctxt "ResetDueTo|"
+msgid "Reset Due To"
 msgstr ""
 

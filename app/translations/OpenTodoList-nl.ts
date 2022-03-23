@@ -572,12 +572,12 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
         <source>Due on</source>
-        <translation type="unfinished">Vervalt op</translation>
+        <translation type="unfinished">Einddatum:</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
         <source>First due on %1.</source>
-        <translation type="unfinished">Vervalt allereerst op %1.</translation>
+        <translation type="unfinished">Eerste einddatum: %1.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
@@ -834,7 +834,7 @@
     <message>
         <location filename="../Pages/LibraryPage.qml" line="464"/>
         <source>Due To</source>
-        <translation type="unfinished">Vervaldatum</translation>
+        <translation type="unfinished">Einddatum</translation>
     </message>
     <message>
         <location filename="../Pages/LibraryPage.qml" line="471"/>
@@ -949,7 +949,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="166"/>
         <source>Due on:</source>
-        <translation type="unfinished">Vervalt op:</translation>
+        <translation type="unfinished">Einddatum:</translation>
     </message>
 </context>
 <context>
@@ -1489,11 +1489,19 @@
     </message>
 </context>
 <context>
+    <name>ResetDueTo</name>
+    <message>
+        <location filename="../Actions/ResetDueTo.qml" line="8"/>
+        <source>Reset Due To</source>
+        <translation type="unfinished">Einddatum herstellen</translation>
+    </message>
+</context>
+<context>
     <name>ScheduleViewPage</name>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
         <source>Overdue</source>
-        <translation type="unfinished">Vervallen</translation>
+        <translation type="unfinished">Verstreken</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="123"/>
@@ -1771,17 +1779,17 @@ Herstart OpenTodoList om de wijziging toe te passen.</translation>
         <translation type="unfinished">Afgeronde taken tonen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="215"/>
+        <location filename="../Pages/TodoListPage.qml" line="216"/>
         <source>Show At The End</source>
         <translation type="unfinished">Tonen aan einde van lijst</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="246"/>
         <source>Todos</source>
         <translation type="unfinished">Taken</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="264"/>
+        <location filename="../Pages/TodoListPage.qml" line="266"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Taak toevoegen…</translation>
     </message>
@@ -1809,7 +1817,7 @@ Herstart OpenTodoList om de wijziging toe te passen.</translation>
         <translation type="unfinished">Afgeronde taken tonen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="280"/>
+        <location filename="../Pages/TodoPage.qml" line="281"/>
         <source>Show At The End</source>
         <translation type="unfinished">Tonen aan einde van lijst</translation>
     </message>
@@ -1819,18 +1827,18 @@ Herstart OpenTodoList om de wijziging toe te passen.</translation>
     <message>
         <location filename="../Widgets/TodosWidget.qml" line="203"/>
         <source>Due on: %1</source>
-        <translation type="unfinished">Vervalt op: %1</translation>
+        <translation type="unfinished">Einddatum: %1</translation>
     </message>
 </context>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="276"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Veeg om te markeren als onafgerond</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="270"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="278"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Veeg om te markeren als afgerond</translation>
     </message>

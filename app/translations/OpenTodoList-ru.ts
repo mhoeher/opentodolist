@@ -74,12 +74,12 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Выберите тип учетной записи</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
         <source>Account Type</source>
-        <translation type="unfinished">Тип учетной записи</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="107"/>
         <source>ownCloud</source>
-        <translation type="unfinished">OwnCloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="112"/>
@@ -111,27 +111,27 @@
     <message>
         <location filename="../appstartup.cpp" line="185"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished">Управляйте своими личными данными.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="191"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished">Включает некоторые оптимизации для сенсорных экранов.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="194"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Запускать только фоновую службу</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="196"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Запускать только графический интерфейс и подключаться к запущенной фоновой службе</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="201"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Задействовать консоль Windows для вывода отладочной информации</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="334"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удалить Завершённые элементы</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
@@ -351,7 +351,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удалить Завершённые элементы</translation>
     </message>
 </context>
 <context>
@@ -359,17 +359,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удалить Завершённые элементы?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы действительно хотите удалить все выполненные пункты todo-списка &lt;strong&gt;%1&lt;/strong&gt;? Это действие нельзя отменить.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы действительно хотите удалить все выполненные пункты списка задач &lt;strong&gt;%1&lt;/strong&gt;? Это действие нельзя отменить.</translation>
     </message>
 </context>
 <context>
@@ -442,7 +442,7 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Редактировать учетную запись</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Логин</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="149"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Не удалось подключиться к серверу. Пожалуйста, проверьте ваше имя пользователя, пароль и адрес сервера и повторите попытку.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -501,7 +501,7 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Редактировать учетную запись</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="133"/>
@@ -546,7 +546,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="195"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Не удалось подключиться к серверу. Пожалуйста, проверьте ваше имя пользователя, пароль и адрес сервера и повторите попытку.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -726,12 +726,12 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Передвинуть вверх</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="371"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Передвинуть вниз</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="384"/>
@@ -1054,7 +1054,7 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="69"/>
         <source>Local Library</source>
-        <translation type="unfinished">Местная библиотека</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="76"/>
@@ -1082,7 +1082,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="70"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">Локальная библиотека хранится исключительно на вашем устройстве - это делает ее идеальной для обеспечения конфиденциальности! &lt;br/&gt; &lt;br/&gt; Используйте ее, если вы хотите хранить информацию только локально и регулярно выполнять резервное копирование всех ваших данных с помощью других механизмов. Если вам нужен доступ к вашей информации на нескольких устройствах, создайте библиотеку, которая будет синхронизироваться.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
@@ -1111,32 +1111,32 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Логин</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Проблемы со входом?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Мы попытались открыть Ваш браузер, чтобы Вы зашли в свой NextCloud. Пожалуйста, залогиньтесь и предоставьте доступ приложению OpenTodoList, чтобы продолжить. Проблемы со входом в NextCloud через браузер? Вы можете также ввести имя пользователя и пароль вручную.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Залогиниться вручную</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">В идеальном случае используйте пароли приложений вместо пароля пользователя. Если вход защищён 2-факторной аутентификацией (2FA), использовать пароли приложений для входа в NextCloud обязательно. Такие пароли можно создать в настройках пользователя.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать пароль приложения</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
@@ -1191,7 +1191,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="228"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Не удалось подключиться к серверу. Пожалуйста, проверьте ваше имя пользователя, пароль и адрес сервера и повторите попытку.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1273,7 +1273,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="207"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Не удалось подключиться к серверу. Пожалуйста, проверьте ваше имя пользователя, пароль и адрес сервера и повторите попытку.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1486,6 +1486,14 @@
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
         <source>Enter library title...</source>
         <translation type="unfinished">Введите название библиотеки ...</translation>
+    </message>
+</context>
+<context>
+    <name>ResetDueTo</name>
+    <message>
+        <location filename="../Actions/ResetDueTo.qml" line="8"/>
+        <source>Reset Due To</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1767,17 +1775,17 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="215"/>
+        <location filename="../Pages/TodoListPage.qml" line="216"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="246"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="264"/>
+        <location filename="../Pages/TodoListPage.qml" line="266"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Добавить новую задачу ...</translation>
     </message>
@@ -1805,7 +1813,7 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="280"/>
+        <location filename="../Pages/TodoPage.qml" line="281"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1821,12 +1829,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="276"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="270"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="278"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished"></translation>
     </message>
