@@ -33,7 +33,6 @@ C.Page {
         id: d
 
         property var okButton: null
-        property bool validated: false
         property bool manualLogin: false
         property OTL.NextCloudLoginFlow loginFlow: null
 
@@ -60,7 +59,7 @@ C.Page {
 
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
-        enabled: !dav.validating
+        enabled: account.loggingIn
 
         GridLayout {
             width: scrollView.availableWidth
@@ -236,7 +235,6 @@ C.Page {
                 text: qsTr("Failed to connect to the server. Please "
                            + "check your user name, password and the server address and retry.")
                 Material.foreground: Material.Red
-                visible: d.validated && !dav.valid
             }
         }
     }
@@ -245,39 +243,11 @@ C.Page {
         id: busyIndicator
 
         anchors.centerIn: parent
-        visible: dav.validating
-    }
-
-    OTL.WebDAVSynchronizer {
-        id: dav
-
-        serverType: OTL.WebDAVSynchronizer.NextCloud
-
-        onValidatingChanged: {
-            if (!validating) {
-                d.validated = true
-            }
-        }
-        onValidChanged: {
-            if (d.validated && valid) {
-                OTL.Application.saveAccount(account)
-                OTL.Application.saveAccountSecrets(account)
-                page.returnToPage(page.anchorPage)
-            }
-        }
+        visible: account.loggingIn
     }
 
     OTL.NextCloudAccount {
         id: account
-
-        baseUrl: dav.url
-        username: dav.username
-        password: dav.password
-        backendSpecificData: {
-            return {
-                "workarounds": dav.workarounds
-            }
-        }
 
         name: {
             if (accountNameEdit.text !== "") {
@@ -287,7 +257,15 @@ C.Page {
             }
         }
 
-        disableCertificateChecks: dav.disableCertificateCheck
+        onLoginFinished: {
+            if (success) {
+                OTL.Application.saveAccount(account)
+                OTL.Application.saveAccountSecrets(account)
+                page.returnToPage(page.anchorPage)
+            } else {
+                errorLabel.visible = true
+            }
+        }
     }
 
     Connections {
@@ -298,7 +276,6 @@ C.Page {
             passwordEdit.text = password
             serverAddressEdit.text = server
             loginInfoBox.visible = false
-            d.validated = false
         }
 
         function onReceivedLoginUrl(loginUrl) {
@@ -311,12 +288,13 @@ C.Page {
 
         function onClicked() {
             console.debug("Start validation")
-            dav.url = d.baseUrl(serverAddressEdit.text)
-            dav.username = usernameEdit.text
-            dav.password = passwordEdit.text
-            dav.disableCertificateCheck = disableCertificateChecksEdit.checked
-            d.validated = false
-            dav.validate()
+            account.baseUrl = d.baseUrl()
+            account.baseUrl = d.baseUrl(serverAddressEdit.text)
+            account.username = usernameEdit.text
+            account.password = passwordEdit.text
+            account.disableCertificateChecks = disableCertificateChecksEdit.checked
+            errorLabel.visible = false
+            account.login()
         }
     }
 

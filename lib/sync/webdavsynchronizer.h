@@ -37,8 +37,7 @@ class WebDAVJobFactory;
 class WebDAVSynchronizer : public Synchronizer
 {
     Q_OBJECT
-    Q_PROPERTY(QString remoteDirectory READ remoteDirectory WRITE setRemoteDirectory NOTIFY
-                       remoteDirectoryChanged)
+
     Q_PROPERTY(bool disableCertificateCheck READ disableCertificateCheck WRITE
                        setDisableCertificateCheck NOTIFY disableCertificateCheckChanged)
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
@@ -61,16 +60,10 @@ public:
     ~WebDAVSynchronizer() override;
 
     // Synchronizer interface
-    void validate() override;
     void synchronize() override;
     void stopSync() override;
     void findExistingLibraries() override;
-    QVariantMap toMap() const override;
-    void fromMap(const QVariantMap& map) override;
     void setAccount(Account* account) override;
-
-    QString remoteDirectory() const;
-    void setRemoteDirectory(const QString& remoteDirectory);
 
     bool disableCertificateCheck() const;
     void setDisableCertificateCheck(bool disableCertificateCheck);
@@ -87,14 +80,10 @@ public:
     WebDAVServerType serverType() const;
     void setServerType(const WebDAVServerType& serverType);
 
-    bool createDirs() const;
-    void setCreateDirs(bool createDirs);
-
     int workarounds() const;
     void setWorkarounds(int newWorkarounds);
 
 signals:
-    void remoteDirectoryChanged();
     void disableCertificateCheckChanged();
     void usernameChanged();
     void passwordChanged();
@@ -108,12 +97,12 @@ private:
     static const QString SyncLockFileName;
 
     QUrl m_url;
-    QString m_remoteDirectory;
+
     bool m_disableCertificateCheck;
     int m_workarounds;
     QString m_username;
     QString m_password;
-    bool m_createDirs;
+
     bool m_stopRequested;
     bool m_hasSyncErrors;
     WebDAVServerType m_serverType;

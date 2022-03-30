@@ -45,7 +45,15 @@
 /**
  * @brief Constructor.
  */
-Account::Account(QObject* parent) : QObject(parent), m_uid(QUuid::createUuid()), m_type(Invalid) {}
+Account::Account(QObject* parent)
+    : QObject(parent),
+      m_uid(QUuid::createUuid()),
+      m_type(Invalid),
+      m_name(),
+      m_loggingIn(false),
+      m_online(false)
+{
+}
 
 /**
  * @brief The type of server to connect to.
@@ -156,29 +164,6 @@ void Account::setName(const QString& name)
 }
 
 /**
- * @brief Convert the account type to WebDAV server type.
- *
- * If the account represents a connection to a WebDAV like service,
- * return the appropriate WebDAV synchronizer type.
- *
- * For other accounts, this returns the `Unknown` server type.
- */
-QVariant Account::toWebDAVServerType() const
-{
-    switch (m_type) {
-    case NextCloud:
-        return WebDAVSynchronizer::NextCloud;
-    case OwnCloud:
-        return WebDAVSynchronizer::OwnCloud;
-    case WebDAV:
-        return WebDAVSynchronizer::Generic;
-    case Invalid:
-        return WebDAVSynchronizer::Unknown;
-    }
-    return QVariant();
-}
-
-/**
  * @brief Set the type of the account.
  *
  * This shall be used in concrete sub-classes to set the concrete type of account.
@@ -186,6 +171,50 @@ QVariant Account::toWebDAVServerType() const
 void Account::setType(const Type& type)
 {
     m_type = type;
+}
+
+/**
+ * @brief Indicated that currently a login procedure is running.
+ *
+ * This property indicates if currently a login is running. A login is typically started by calling
+ * login(). The account will then go into the "logging in" state.
+ */
+bool Account::loggingIn() const
+{
+    return m_loggingIn;
+}
+
+/**
+ * @brief Set the loggingIn property.
+ */
+void Account::setLoggingIn(bool newLoggingIn)
+{
+    if (m_loggingIn == newLoggingIn)
+        return;
+    m_loggingIn = newLoggingIn;
+    emit loggingInChanged();
+}
+
+/**
+ * @brief Indicates if the account is online.
+ *
+ * This checks if the account is online. Being online indicates that the account is set up and ready
+ * to communicate with the remote server.
+ */
+bool Account::online() const
+{
+    return m_online;
+}
+
+/**
+ * @brief Set the online attribute.
+ */
+void Account::setOnline(bool newOnline)
+{
+    if (m_online == newOnline)
+        return;
+    m_online = newOnline;
+    emit onlineChanged();
 }
 
 /**
@@ -205,4 +234,27 @@ void Account::setUid(const QUuid& uid)
         m_uid = uid;
         emit uidChanged();
     }
+}
+
+/**
+ * @brief Log into the account.
+ *
+ * Logging in to the account checks if - given the setings of the account - we can communicate with
+ * the remote server.
+ *
+ * The default implementation does nothing but emit
+ * the loginFinished() signal with an error value and set the online property to false. Concrete
+ * subclasses shall implement this method and handle the login procedure accordingly. In particular:
+ *
+ * - Set the loggingIn property to true.
+ * - Set the online property to false.
+ * - Do whatever is needed to log in and bring the account online.
+ * - Set the online property accordingly to the result of the procedure.
+ * - Set the loggingIn property to false.
+ * - Emit the loginFinished() signal with a value indicating if the login was successful.
+ */
+void Account::login()
+{
+    setOnline(false);
+    emit loginFinished(false);
 }

@@ -1,5 +1,7 @@
 #include "owncloudaccount.h"
 
+#include <SynqClient/libsynqclient.h>
+
 OwnCloudAccount::OwnCloudAccount(QObject* parent) : WebDAVAccount { parent }
 {
     setType(OwnCloud);
@@ -12,4 +14,9 @@ Synchronizer* OwnCloudAccount::createSynchronizer() const
     Q_ASSERT(webDAVSync);
     webDAVSync->setServerType(WebDAVSynchronizer::OwnCloud);
     return result;
+}
+
+void OwnCloudAccount::fillServerType(SynqClient::WebDAVServerType& type) const
+{
+    type = SynqClient::WebDAVServerType::OwnCloud;
 }

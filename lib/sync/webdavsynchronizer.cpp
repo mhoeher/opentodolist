@@ -70,12 +70,10 @@ toSynqClientServerType(WebDAVSynchronizer::WebDAVServerType type)
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
     : Synchronizer(parent),
-      m_remoteDirectory(),
       m_disableCertificateCheck(false),
       m_workarounds(0),
       m_username(),
       m_password(),
-      m_createDirs(false),
       m_stopRequested(false),
       m_hasSyncErrors(false),
       m_nam(nullptr)
@@ -84,22 +82,6 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
 }
 
 WebDAVSynchronizer::~WebDAVSynchronizer() {}
-
-void WebDAVSynchronizer::validate()
-{
-    beginValidation();
-    auto factory = new SynqClient::WebDAVJobFactory(this);
-    setupFactory(*factory);
-    factory->setWorkarounds(SynqClient::WebDAVWorkaround::NoWorkarounds); // clear workarounds!
-    connect(factory, &SynqClient::WebDAVJobFactory::serverTestFinished, this, [=](bool success) {
-        factory->deleteLater();
-        if (success) {
-            m_workarounds = factory->workarounds();
-        }
-        endValidation(success);
-    });
-    factory->testServer();
-}
 
 void WebDAVSynchronizer::setupFactory(SynqClient::WebDAVJobFactory& factory)
 {
@@ -118,7 +100,7 @@ void WebDAVSynchronizer::synchronize()
         finished = true;
         if (!directory().isEmpty() && !synchronizing()) {
             SynqClient::DirectorySynchronizer sync;
-            sync.setRemoteDirectoryPath(m_remoteDirectory);
+            sync.setRemoteDirectoryPath(remoteDirectory());
             sync.setLocalDirectoryPath(directory());
             if (retryWithOneJobOnly) {
                 // WA for https://github.com/mhoeher/opentodolist/issues/46
@@ -248,7 +230,7 @@ void WebDAVSynchronizer::findExistingLibraries()
     QStringList dirsToCheck { "/", "/OpenTodoList" };
     for (const auto& dir : qAsConst(dirsToCheck)) {
         auto listFilesJob = factory->listFiles(compositeJob);
-        listFilesJob->setPath(m_remoteDirectory + dir);
+        listFilesJob->setPath(remoteDirectory() + dir);
         compositeJob->addJob(listFilesJob);
         connect(listFilesJob, &SynqClient::ListFilesJob::finished, this, [=]() {
             if (listFilesJob->error() == SynqClient::JobError::NoError) {
@@ -267,7 +249,7 @@ void WebDAVSynchronizer::findExistingLibraries()
                                     auto map = doc.toVariant().toMap();
                                     SynchronizerExistingLibrary library;
                                     library.setName(map.value("name").toString());
-                                    QDir base("/" + m_remoteDirectory);
+                                    QDir base("/" + remoteDirectory());
                                     QFileInfo fi(QDir::cleanPath(base.relativeFilePath(
                                             "/" + downloadJob->remoteFilename())));
                                     library.setPath("/" + fi.path());
@@ -289,21 +271,6 @@ void WebDAVSynchronizer::findExistingLibraries()
     });
 
     compositeJob->start();
-}
-
-QVariantMap WebDAVSynchronizer::toMap() const
-{
-    auto result = Synchronizer::toMap();
-    result["remoteDirectory"] = m_remoteDirectory;
-    result["createDirs"] = m_createDirs;
-    return result;
-}
-
-void WebDAVSynchronizer::fromMap(const QVariantMap& map)
-{
-    m_remoteDirectory = map.value("remoteDirectory").toString();
-    m_createDirs = map.value("createDirs", false).toBool();
-    Synchronizer::fromMap(map);
 }
 
 void WebDAVSynchronizer::setAccount(Account* account)
@@ -332,19 +299,6 @@ void WebDAVSynchronizer::setAccount(Account* account)
     }
 }
 
-QString WebDAVSynchronizer::remoteDirectory() const
-{
-    return m_remoteDirectory;
-}
-
-void WebDAVSynchronizer::setRemoteDirectory(const QString& remoteDirectory)
-{
-    if (m_remoteDirectory != remoteDirectory) {
-        m_remoteDirectory = remoteDirectory;
-        emit remoteDirectoryChanged();
-    }
-}
-
 bool WebDAVSynchronizer::disableCertificateCheck() const
 {
     return m_disableCertificateCheck;
@@ -354,7 +308,6 @@ void WebDAVSynchronizer::setDisableCertificateCheck(bool disableCertificateCheck
 {
     if (m_disableCertificateCheck != disableCertificateCheck) {
         m_disableCertificateCheck = disableCertificateCheck;
-        setValid(false);
         emit disableCertificateCheckChanged();
     }
 }
@@ -368,7 +321,6 @@ void WebDAVSynchronizer::setUsername(const QString& username)
 {
     if (m_username != username) {
         m_username = username;
-        setValid(false);
         emit usernameChanged();
     }
 }
@@ -382,7 +334,6 @@ void WebDAVSynchronizer::setPassword(const QString& password)
 {
     if (m_password != password) {
         m_password = password;
-        setValid(false);
         emit passwordChanged();
     }
 }
@@ -402,7 +353,6 @@ void WebDAVSynchronizer::setUrl(const QUrl& url)
 {
     if (m_url != url) {
         m_url = url;
-        setValid(false);
         emit urlChanged();
     }
 }
@@ -419,19 +369,8 @@ void WebDAVSynchronizer::setServerType(const WebDAVServerType& serverType)
 {
     if (m_serverType != serverType) {
         m_serverType = serverType;
-        setValid(false);
         emit serverTypeChanged();
     }
-}
-
-bool WebDAVSynchronizer::createDirs() const
-{
-    return m_createDirs;
-}
-
-void WebDAVSynchronizer::setCreateDirs(bool createDirs)
-{
-    m_createDirs = createDirs;
 }
 
 int WebDAVSynchronizer::workarounds() const
@@ -453,7 +392,7 @@ QVariantMap WebDAVSynchronizer::toFullMap() const
     result["url"] = m_url;
     result["username"] = m_username;
     result["password"] = m_password;
-    result["remoteDir"] = m_remoteDirectory;
+    result["remoteDir"] = remoteDirectory();
     result["serverType"] = m_serverType;
     return result;
 }
@@ -463,7 +402,7 @@ void WebDAVSynchronizer::fromFullMap(const QVariantMap& map)
     m_url = map["url"].toUrl();
     m_username = map["username"].toString();
     m_password = map["password"].toString();
-    m_remoteDirectory = map["remoteDir"].toString();
+    setRemoteDirectory(map["remoteDir"].toString());
     m_serverType = map["serverType"].value<WebDAVServerType>();
 }
 

@@ -1,5 +1,11 @@
 #include "webdavaccount.h"
 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+
+#include <SynqClient/WebDAVJobFactory>
+#include <SynqClient/libsynqclient.h>
+
 /**
  * @brief An account used to connect to a WebDAV server.
  *
@@ -119,6 +125,34 @@ void WebDAVAccount::setBackendSpecificData(const QVariantMap& newBackendSpecific
     emit backendSpecificDataChanged();
 }
 
+SynqClient::WebDAVJobFactory* WebDAVAccount::createWebDAVJobFactory(QObject* parent)
+{
+    auto factory = new SynqClient::WebDAVJobFactory(parent);
+
+    auto nam = new QNetworkAccessManager(factory);
+    nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+    connect(nam, &QNetworkAccessManager::sslErrors, this,
+            [=](QNetworkReply* reply, const QList<QSslError>& errors) {
+                if (!m_disableCertificateChecks) {
+                    reply->ignoreSslErrors(errors);
+                }
+            });
+
+    factory->setNetworkAccessManager(nam);
+    SynqClient::WebDAVServerType serverType;
+    fillServerType(serverType);
+    factory->setServerType(serverType);
+    auto url = QUrl(m_baseUrl);
+    url.setUserName(m_username);
+    url.setPassword(m_password);
+    factory->setUrl(url);
+    factory->setUserAgent(Synchronizer::HTTPUserAgent);
+    factory->setWorkarounds(static_cast<SynqClient::WebDAVWorkarounds>(
+            m_backendSpecificData.value("workarounds", 0).toInt()));
+
+    return factory;
+}
+
 void WebDAVAccount::save(QSettings* settings)
 {
     Account::save(settings);
@@ -156,4 +190,28 @@ Synchronizer* WebDAVAccount::createSynchronizer() const
     sync->setUrl(m_baseUrl);
     sync->setServerType(WebDAVSynchronizer::Generic);
     return sync;
+}
+
+void WebDAVAccount::login()
+{
+    setOnline(false);
+    setLoggingIn(true);
+
+    auto factory = createWebDAVJobFactory(this);
+    factory->setWorkarounds(SynqClient::WebDAVWorkaround::NoWorkarounds); // clear workarounds
+    connect(factory, &SynqClient::WebDAVJobFactory::serverTestFinished, this, [=](bool success) {
+        factory->deleteLater();
+        if (success) {
+            m_backendSpecificData["workarounds"] = static_cast<int>(factory->workarounds());
+            setOnline(true);
+        }
+        setLoggingIn(false);
+        emit loginFinished(success);
+    });
+    factory->testServer();
+}
+
+void WebDAVAccount::fillServerType(SynqClient::WebDAVServerType& type) const
+{
+    type = SynqClient::WebDAVServerType::Generic;
 }

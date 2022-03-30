@@ -291,7 +291,8 @@ void Application::saveAccountSecrets(Account* account)
 
         // Check if the account we just saved credentials for was previously missing
         // credentials and hence remove the problem:
-        for (const auto& problem : m_problemManager->problems()) {
+        const auto problems = m_problemManager->problems();
+        for (const auto& problem : problems) {
             QSharedPointer<Account> problemAccount =
                     qSharedPointerObjectCast<Account>(problem.contextObject());
             if (problemAccount && problemAccount->uid() == account->uid()) {
@@ -325,7 +326,8 @@ void Application::removeAccount(Account* account)
 
         m_settings->beginGroup("Accounts");
         m_settings->beginGroup(account->uid().toString());
-        for (const auto& key : m_settings->allKeys()) {
+        const auto allKeys = m_settings->allKeys();
+        for (const auto& key : allKeys) {
             m_settings->remove(key);
         }
         m_keyStore->deleteCredentials(account->uid().toString());
@@ -483,23 +485,17 @@ Library* Application::addNewLibraryToAccount(Account* account, const QString& na
             result->setUid(uid);
             result->save();
 
-            switch (account->type()) {
-            case Account::NextCloud:
-            case Account::OwnCloud:
-            case Account::WebDAV: {
-                WebDAVSynchronizer sync;
-                sync.setDirectory(result->directory());
-                sync.setAccountUid(account->uid());
-                sync.setServerType(account->toWebDAVServerType()
-                                           .value<WebDAVSynchronizer::WebDAVServerType>());
-                sync.setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
-                sync.setCreateDirs(true);
-                sync.save();
-                break;
-            }
-            case Account::Invalid:
-                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
-                               << "function";
+            auto sync = account->createSynchronizer();
+            if (sync) {
+                sync->setDirectory(result->directory());
+                sync->setAccountUid(account->uid());
+                sync->setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
+                sync->setCreateDirs(true);
+                sync->save();
+                delete sync;
+            } else {
+                qWarning() << "Failed to create synchronizer for account" << account->uid()
+                           << "of type" << account->type();
             }
 
             watchLibraryForChanges(result);
@@ -539,22 +535,16 @@ Library* Application::addExistingLibraryToAccount(Account* account,
             result->setUid(uid);
             result->save();
 
-            switch (account->type()) {
-            case Account::NextCloud:
-            case Account::OwnCloud:
-            case Account::WebDAV: {
-                WebDAVSynchronizer sync;
-                sync.setDirectory(result->directory());
-                sync.setAccountUid(account->uid());
-                sync.setServerType(account->toWebDAVServerType()
-                                           .value<WebDAVSynchronizer::WebDAVServerType>());
-                sync.setRemoteDirectory(library.path());
-                sync.save();
-                break;
-            }
-            case Account::Invalid:
-                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
-                               << "function";
+            auto sync = account->createSynchronizer();
+            if (sync) {
+                sync->setDirectory(result->directory());
+                sync->setAccountUid(account->uid());
+                sync->setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
+                sync->save();
+                delete sync;
+            } else {
+                qWarning() << "Failed to create synchronizer for account" << account->uid()
+                           << "of type" << account->type();
             }
 
             watchLibraryForChanges(result);
@@ -599,9 +589,8 @@ Note* Application::addNote(Library* library, QVariantMap properties)
         } else {
             note = new Note();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            note->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            note->setProperty(it.key().toUtf8(), it.value());
         }
         note->setLibraryId(library->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -623,9 +612,8 @@ NotePage* Application::addNotePage(Library* library, Note* note, QVariantMap pro
         } else {
             page = new NotePage();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            page->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            page->setProperty(it.key().toUtf8(), it.value());
         }
         page->setNoteUid(note->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -647,9 +635,8 @@ Image* Application::addImage(Library* library, QVariantMap properties)
         } else {
             image = new Image();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            image->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            image->setProperty(it.key().toUtf8(), it.value());
         }
         image->setLibraryId(library->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -671,9 +658,8 @@ TodoList* Application::addTodoList(Library* library, QVariantMap properties)
         } else {
             todoList = new TodoList();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            todoList->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            todoList->setProperty(it.key().toUtf8(), it.value());
         }
         todoList->setLibraryId(library->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -695,9 +681,8 @@ Todo* Application::addTodo(Library* library, TodoList* todoList, QVariantMap pro
         } else {
             todo = new Todo();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            todo->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            todo->setProperty(it.key().toUtf8(), it.value());
         }
         todo->setTodoListUid(todoList->uid());
         auto q = new InsertOrUpdateItemsQuery();

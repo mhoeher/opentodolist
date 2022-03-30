@@ -103,6 +103,8 @@ target_sources(
         sync/nextcloudaccount.cpp
         sync/owncloudaccount.h
         sync/owncloudaccount.cpp
+        sync/dropboxaccount.h
+        sync/dropboxaccount.cpp
 
         # Include SimpleCrypt source:
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp

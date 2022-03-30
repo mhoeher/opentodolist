@@ -1,11 +1,8 @@
 #include "dropboxsynchronizer.h"
 
-DropboxSynchronizer::DropboxSynchronizer(QObject* parent)
-    : Synchronizer(parent), m_refreshToken(), m_codeVerifier()
-{
-}
+#include "dropboxaccount.h"
 
-void DropboxSynchronizer::validate() {}
+DropboxSynchronizer::DropboxSynchronizer(QObject* parent) : Synchronizer(parent), m_accessToken() {}
 
 void DropboxSynchronizer::synchronize() {}
 
@@ -20,4 +17,23 @@ QVariantMap DropboxSynchronizer::toMap() const
 
 void DropboxSynchronizer::fromMap(const QVariantMap& map) {}
 
-void DropboxSynchronizer::setAccount(Account* account) {}
+void DropboxSynchronizer::setAccount(Account* account)
+{
+    auto dropboxAccount = qobject_cast<DropboxAccount*>(account);
+    q_check_ptr(dropboxAccount);
+
+    setAccessToken(dropboxAccount->accessToken());
+}
+
+const QString& DropboxSynchronizer::accessToken() const
+{
+    return m_accessToken;
+}
+
+void DropboxSynchronizer::setAccessToken(const QString& newAccessToken)
+{
+    if (m_accessToken == newAccessToken)
+        return;
+    m_accessToken = newAccessToken;
+    emit accessTokenChanged();
+}

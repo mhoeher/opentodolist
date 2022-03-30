@@ -70,11 +70,11 @@ private:
 class Synchronizer : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool validating READ validating NOTIFY validatingChanged)
-    Q_PROPERTY(bool valid READ valid NOTIFY validChanged)
     Q_PROPERTY(bool synchronizing READ synchronizing NOTIFY synchronizingChanged)
     Q_PROPERTY(bool findingLibraries READ findingLibraries NOTIFY findingLibrariesChanged)
     Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged)
+    Q_PROPERTY(QString remoteDirectory READ remoteDirectory WRITE setRemoteDirectory NOTIFY
+                       remoteDirectoryChanged)
     Q_PROPERTY(bool isNull READ isNull NOTIFY directoryChanged)
     Q_PROPERTY(
             QVariantList existingLibraries READ existingLibraries NOTIFY existingLibrariesChanged)
@@ -92,7 +92,7 @@ public:
         Upload
     };
 
-    Q_ENUM(LogType)
+    Q_ENUM(LogType);
 
     static const QString HTTPUserAgent;
 
@@ -110,12 +110,14 @@ public:
     explicit Synchronizer(QObject* parent = nullptr);
     virtual ~Synchronizer();
 
-    bool validating() const;
-    bool valid() const;
     bool synchronizing() const;
 
     QString directory() const;
     void setDirectory(const QString& directory);
+
+    QString remoteDirectory() const;
+    void setRemoteDirectory(const QString& remoteDirectory);
+
     bool isNull() const;
 
     Q_INVOKABLE bool save() const;
@@ -124,22 +126,6 @@ public:
     QString type() const;
 
     static Synchronizer* fromDirectory(const QString& dir, QObject* parent = nullptr);
-
-    /**
-     * @brief Validate the connection to the backend.
-     *
-     * This method can be used to check if a connection to the backend used for
-     * storing files can be established. Sub-classes are supposed to:
-     *
-     * 1. Set the validating property via @p setValidating() to true.
-     * 2. Set the valid property via @p setValid to false.
-     * 3. Test the connection to the backend.
-     * 4. Set the valid property to true or false depending on the outcome of the test.
-     * 5. Set the validating property to false.
-     *
-     * The method shall be implemented non-blocking.
-     */
-    Q_INVOKABLE virtual void validate() = 0;
 
     /**
      * @brief Synchronize the local directory with the backend.
@@ -170,6 +156,9 @@ public:
 
     bool findingLibraries() const;
 
+    bool createDirs() const;
+    void setCreateDirs(bool createDirs);
+
     QUuid uid() const;
 
     QDateTime lastSync() const;
@@ -193,10 +182,9 @@ public:
 
 signals:
 
-    void validatingChanged();
-    void validChanged();
     void synchronizingChanged();
     void directoryChanged();
+    void remoteDirectoryChanged();
     void existingLibrariesChanged();
     void findingLibrariesChanged();
     void secretChanged();
@@ -206,23 +194,19 @@ signals:
 public slots:
 
 protected:
-    void setValidating(bool validating);
-    void setValid(bool valid);
     void setSynchronizing(bool synchronizing);
-    void beginValidation();
-    void endValidation(bool valid);
     void setExistingLibraries(const QVariantList& existingLibraries);
     void setFindingLibraries(bool findingLibraries);
 
 private:
     QUuid m_uuid;
     QUuid m_accountUid;
-    bool m_validating;
-    bool m_valid;
     bool m_synchronizing;
     bool m_creatingDirectory;
     bool m_findingLibraries;
+    bool m_createDirs;
     QString m_directory;
+    QString m_remoteDirectory;
     QVariantList m_existingLibraries;
     QDateTime m_lastSync;
     QList<LogEntry> m_log;

@@ -7,6 +7,12 @@
 
 #include "account.h"
 
+namespace SynqClient {
+// Forward declarations
+class WebDAVJobFactory;
+enum class WebDAVServerType : quint32;
+}
+
 class WebDAVAccount : public Account
 {
     Q_OBJECT
@@ -51,6 +57,8 @@ private:
     bool m_disableCertificateChecks;
     QVariantMap m_backendSpecificData;
 
+    SynqClient::WebDAVJobFactory* createWebDAVJobFactory(QObject* parent = nullptr);
+
     // Account interface
 public:
     void save(QSettings* settings) override;
@@ -58,6 +66,10 @@ public:
     QString accountSecrets() const override;
     void setAccountSecrets(const QString& secrets) override;
     Synchronizer* createSynchronizer() const override;
+    void login() override;
+
+protected:
+    virtual void fillServerType(SynqClient::WebDAVServerType& type) const;
 };
 
 #endif // WEBDAVACCOUNT_H

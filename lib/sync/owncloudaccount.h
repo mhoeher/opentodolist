@@ -16,6 +16,10 @@ signals:
     // Account interface
 public:
     Synchronizer* createSynchronizer() const override;
+
+    // WebDAVAccount interface
+protected:
+    void fillServerType(SynqClient::WebDAVServerType& type) const override;
 };
 
 #endif // OWNCLOUDACCOUNT_H

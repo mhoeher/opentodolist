@@ -10,27 +10,30 @@
 class DropboxSynchronizer : public Synchronizer
 {
     Q_OBJECT
+
+    Q_PROPERTY(QString accessToken READ accessToken WRITE setAccessToken NOTIFY accessTokenChanged)
+
 public:
     explicit DropboxSynchronizer(QObject* parent = nullptr);
 
     // Synchronizer interface
-    void validate() override;
     void synchronize() override;
     void stopSync() override;
     void findExistingLibraries() override;
     QVariantMap toMap() const override;
     void fromMap(const QVariantMap& map) override;
     void setAccount(Account* account) override;
+
+    const QString& accessToken() const;
+    void setAccessToken(const QString& newAccessToken);
+
 signals:
+
+    void accessTokenChanged();
 
 private:
     // For OAuth
-    QString m_refreshToken;
     QString m_accessToken;
-    QDateTime m_expirationAt;
-
-    // For PKCE Code Flow
-    QString m_codeVerifier;
 };
 
 #endif // DROPBOXSYNCHRONIZER_H

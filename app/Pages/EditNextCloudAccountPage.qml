@@ -12,223 +12,209 @@ import "../Controls" as C
 C.Page {
     id: page
 
-    property string type: ""
-    property alias buttons: buttons
-    property alias serverAddressEdit: serverAddressEdit
-    property alias usernameEdit: usernameEdit
-    property alias accountNameEdit: accountNameEdit
-    property alias errorLabel: errorLabel
-    property alias disableCertificateChecksEdit: disableCertificateChecksEdit
-    property alias scrollView: scrollView
-    property alias busyIndicator: busyIndicator
-    property alias passwordEdit: passwordEdit
-    property OTL.Account account
+    property OTL.NextCloudAccount account
 
-    signal closePage()
+    signal closePage
 
     function deleteItem() {
-        deleteAccountDialog.deleteAccount(account);
+        deleteAccountDialog.deleteAccount(account)
     }
 
-    title: qsTr("Edit Account")
-    footer: C.DialogButtonBox {
-        id: buttons
+        title: qsTr("Edit Account")
+        footer: C.DialogButtonBox {
+            id: buttons
 
-        standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
-        onRejected: closePage()
-    }
+            standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
+            onRejected: closePage()
+        }
 
-    Component.onCompleted: {
-        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
-    }
+        Component.onCompleted: {
+            d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
+        }
 
-    QtObject {
-        id: d
+        QtObject {
+            id: d
 
-        property bool validated: false
-        property var okButton: null
-        property OTL.NextCloudLoginFlow loginFlow: null
-    }
+            property bool validated: false
+            property var okButton: null
+            property OTL.NextCloudLoginFlow loginFlow: null
+        }
 
-    C.ScrollView {
-        id: scrollView
+        C.ScrollView {
+            id: scrollView
 
-        anchors.fill: parent
-        padding: Utils.AppSettings.mediumSpace
-        enabled: !dav.validating
+            anchors.fill: parent
+            padding: Utils.AppSettings.mediumSpace
+            enabled: !accountCopy.loggingIn
 
-        GridLayout {
-            width: scrollView.availableWidth
-            columns: 2
-            columnSpacing: 10
-            rowSpacing: 10
-            implicitWidth: childrenRect.width
-            implicitHeight: childrenRect.height
+            GridLayout {
+                width: scrollView.availableWidth
+                columns: 2
+                columnSpacing: 10
+                rowSpacing: 10
+                implicitWidth: childrenRect.width
+                implicitHeight: childrenRect.height
 
-            Components.Heading {
-                text: qsTr("Edit Account")
-                Layout.columnSpan: 2
-                Layout.fillWidth: true
-            }
-
-            C.Label {
-                text: qsTr("Name:")
-            }
-
-            C.TextField {
-                id: accountNameEdit
-
-                text: page.account.name
-                Layout.fillWidth: true
-            }
-
-            C.Label {
-                text: qsTr("Server Address:")
-            }
-
-            C.TextField {
-                id: serverAddressEdit
-
-                text: page.account.baseUrl
-                placeholderText: qsTr("https://myserver.example.com")
-                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
-                Layout.fillWidth: true
-            }
-
-            Components.Empty {}
-
-            C.Button {
-                text: qsTr("Login")
-                Layout.alignment: Qt.AlignRight
-                onClicked: {
-                    d.loginFlow = OTL.Application.createNextCloudLoginFlow(disableCertificateChecksEdit.checked);
-                    d.loginFlow.startLoginFlow(serverAddressEdit.text);
+                Components.Heading {
+                    text: qsTr("Edit Account")
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true
                 }
-                enabled: serverAddressEdit.text !== "" && (d.loginFlow === null || !d.loginFlow.flowRunning)
+
+                C.Label {
+                    text: qsTr("Name:")
+                }
+
+                C.TextField {
+                    id: accountNameEdit
+
+                    text: page.account.name
+                    Layout.fillWidth: true
+                }
+
+                C.Label {
+                    text: qsTr("Server Address:")
+                }
+
+                C.TextField {
+                    id: serverAddressEdit
+
+                    text: page.account.baseUrl
+                    placeholderText: qsTr("https://myserver.example.com")
+                    inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhUrlCharactersOnly
+                    Layout.fillWidth: true
+                }
+
+                Components.Empty {}
+
+                C.Button {
+                    text: qsTr("Login")
+                    Layout.alignment: Qt.AlignRight
+                    onClicked: {
+                        d.loginFlow = OTL.Application.createNextCloudLoginFlow(
+                                    disableCertificateChecksEdit.checked)
+                        d.loginFlow.startLoginFlow(serverAddressEdit.text)
+                    }
+                    enabled: serverAddressEdit.text !== ""
+                             && (d.loginFlow === null
+                                 || !d.loginFlow.flowRunning)
+                }
+
+                C.Label {
+                    text: qsTr("User:")
+                }
+
+                C.TextField {
+                    id: usernameEdit
+
+                    text: page.account.username
+                    placeholderText: qsTr("User Name")
+                    inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+                    Layout.fillWidth: true
+                }
+
+                C.Label {
+                    text: qsTr("Password:")
+                }
+
+                C.PasswordField {
+                    id: passwordEdit
+
+                    text: page.account.password
+                    placeholderText: qsTr("Password")
+                    Layout.fillWidth: true
+                }
+
+                Components.Empty {}
+
+                C.CheckBox {
+                    id: disableCertificateChecksEdit
+
+                    text: qsTr("Disable Certificate Checks")
+                    checked: page.account.disableCertificateChecks
+                }
+
+                C.Label {
+                    id: errorLabel
+
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true
+                    text: qsTr("Failed to connect to the server. Please "
+                               + "check your user name, password and the server address and retry.")
+                    Material.foreground: Material.Red
+                    visible: false
+                }
+            }
+        }
+
+        C.BusyIndicator {
+            id: busyIndicator
+
+            anchors.centerIn: parent
+            visible: accountCopy.loggingIn
+        }
+
+        Windows.DeleteAccountDialog {
+            id: deleteAccountDialog
+
+            onAccepted: page.closePage()
+        }
+
+        Binding {
+            target: d.okButton
+            property: "enabled"
+            value: accountNameEdit.displayText !== ""
+                   && passwordEdit.text !== ""
+        }
+
+        OTL.NextCloudAccount {
+            id: accountCopy
+
+            onLoginFinished: {
+                if (success) {
+                    page.account.username = username
+                    page.account.password = password
+                    page.account.baseUrl = baseUrl
+                    page.account.name = accountNameEdit.text
+                    page.account.disableCertificateChecks = disableCertificateChecks
+                    page.account.backendSpecificData = backendSpecificData
+
+                    OTL.Application.saveAccount(page.account)
+                    OTL.Application.saveAccountSecrets(page.account)
+                    page.closePage()
+                } else {
+                    errorLabel.visible = true
+                }
+            }
+        }
+
+        Connections {
+            target: d.loginFlow
+
+            function onReceivedLogin(username, password, server) {
+                usernameEdit.text = username
+                passwordEdit.text = password
+                serverAddressEdit.text = server
             }
 
-            C.Label {
-                text: qsTr("User:")
+            function onReceivedLoginUrl(loginUrl) {
+                Qt.openUrlExternally(loginUrl)
             }
+        }
 
-            C.TextField {
-                id: usernameEdit
-
-                text: page.account.username
-                placeholderText: qsTr("User Name")
-                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-                Layout.fillWidth: true
-            }
-
-            C.Label {
-                text: qsTr("Password:")
-            }
-
-            C.PasswordField {
-                id: passwordEdit
-
-                text: page.account.password
-                placeholderText: qsTr("Password")
-                Layout.fillWidth: true
-            }
-
-            Components.Empty {}
-
-            C.CheckBox {
-                id: disableCertificateChecksEdit
-
-                text: qsTr("Disable Certificate Checks")
-                checked: page.account.disableCertificateChecks
-            }
-
-            C.Label {
-                id: errorLabel
-
-                Layout.columnSpan: 2
-                Layout.fillWidth: true
-                text: qsTr("Failed to connect to the server. Please "
-                           + "check your user name, password and the server address and retry.")
-                Material.foreground: Material.Red
-                visible: d.validated && !dav.valid
+        Connections {
+            target: d.okButton
+            function onClicked() {
+                var url = serverAddressEdit.text
+                if (!/https?:\/\//i.exec(url)) {
+                    url = "https://" + url
+                }
+                accountCopy.baseUrl = url
+                accountCopy.username = usernameEdit.text
+                accountCopy.password = passwordEdit.text
+                accountCopy.disableCertificateChecks = disableCertificateChecksEdit.checked
+                errorLabel.visible = false
+                accountCopy.login()
             }
         }
     }
-
-    C.BusyIndicator {
-        id: busyIndicator
-
-        anchors.centerIn: parent
-        visible: dav.validating
-    }
-
-    Windows.DeleteAccountDialog {
-        id: deleteAccountDialog
-
-        onAccepted: page.closePage()
-    }
-
-    Binding {
-        target: d.okButton
-        property: "enabled"
-        value: accountNameEdit.displayText !== "" && passwordEdit.text !== ""
-    }
-
-    OTL.WebDAVSynchronizer {
-        id: dav
-
-        serverType: page.account.toWebDAVServerType()
-
-        onValidatingChanged: {
-            if (!validating) {
-                d.validated = true;
-            }
-        }
-
-        onValidChanged: {
-            if (d.validated && valid) {
-                page.account.username = dav.username;
-                page.account.password = dav.password;
-                page.account.baseUrl = dav.url;
-                page.account.name = accountNameEdit.text;
-                page.account.disableCertificateChecks = dav.disableCertificateCheck;
-                let backendSpecificData = page.account.backendSpecificData;
-                backendSpecificData.workarounds = dav.workarounds;
-                page.account.backendSpecificData = backendSpecificData;
-
-                OTL.Application.saveAccount(page.account);
-                OTL.Application.saveAccountSecrets(page.account);
-                page.closePage();
-            }
-        }
-    }
-
-    Connections {
-        target: d.loginFlow
-
-        function onReceivedLogin(username, password, server) {
-            usernameEdit.text = username;
-            passwordEdit.text = password;
-            serverAddressEdit.text = server;
-        }
-
-        function onReceivedLoginUrl(loginUrl) {
-            Qt.openUrlExternally(loginUrl);
-        }
-    }
-
-    Connections {
-        target: d.okButton
-        function onClicked() {
-            var url = serverAddressEdit.text;
-            if (!/https?:\/\//i.exec(url)) {
-                url = "https://" + url;
-            }
-            dav.url = url;
-            dav.username = usernameEdit.text;
-            dav.password = passwordEdit.text;
-            dav.disableCertificateCheck = disableCertificateChecksEdit.checked;
-            d.validated = false;
-            dav.validate();
-        }
-    }
-}

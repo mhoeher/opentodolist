@@ -45,8 +45,9 @@ C.Page {
         QtObject {
             id: d
 
-            property bool validated: false
             property var okButton: null
+            property OTL.WebDAVAccount account: OTL.Application.createAccount(
+                                                    page.account.type)
         }
 
         Binding {
@@ -55,40 +56,23 @@ C.Page {
             value: accountNameEdit.displayText !== ""
         }
 
-        OTL.WebDAVSynchronizer {
-            id: dav
+        Connections {
+            target: d.account
 
-            serverType: {
-                switch (page.account.type) {
-                case OTL.Account.OwnCloud:
-                    return OTL.WebDAVSynchronizer.OwnCloud
-                case OTL.Account.WebDAV:
-                    return OTL.WebDAVSynchronizer.WevDAV
-                default:
-                    console.error("Unhandled account type ", page.account.type)
-                }
+            function onLoginFinished(success) {
+                if (success) {
+                    page.account.username = d.account.username
+                    page.account.password = d.account.password
+                    page.account.baseUrl = d.account.baseUrl
+                    page.account.name = accountNameEdit.text
+                    page.account.disableCertificateChecks = d.account.disableCertificateChecks
+                    page.account.backendSpecificData = d.account.backendSpecificData
 
-                onValidatingChanged: {
-                    if (!validating) {
-                        d.validated = true
-                    }
-                }
-
-                onValidChanged: {
-                    if (d.validated && valid) {
-                        page.account.username = dav.username
-                        page.account.password = dav.password
-                        page.account.baseUrl = dav.url
-                        page.account.name = accountNameEdit.text
-                        page.account.disableCertificateChecks = dav.disableCertificateCheck
-                        let backendSpecificData = page.account.backendSpecificData
-                        backendSpecificData.workarounds = dav.workarounds
-                        page.account.backendSpecificData = backendSpecificData
-
-                        OTL.Application.saveAccount(page.account)
-                        OTL.Application.saveAccountSecrets(page.account)
-                        page.closePage()
-                    }
+                    OTL.Application.saveAccount(page.account)
+                    OTL.Application.saveAccountSecrets(page.account)
+                    page.closePage()
+                } else {
+                    errorLabel.visible = true
                 }
             }
         }
@@ -100,12 +84,12 @@ C.Page {
                 if (!/https?:\/\//i.exec(url)) {
                     url = "https://" + url
                 }
-                dav.url = url
-                dav.username = usernameEdit.text
-                dav.password = passwordEdit.text
-                dav.disableCertificateCheck = disableCertificateChecksEdit.checked
-                d.validated = false
-                dav.validate()
+                d.account.baseUrl = url
+                d.account.username = usernameEdit.text
+                d.account.password = passwordEdit.text
+                d.account.disableCertificateChecks = disableCertificateChecksEdit.checked
+                errorLabel.visible = false
+                d.account.login()
             }
         }
 
@@ -120,7 +104,7 @@ C.Page {
 
             anchors.fill: parent
             padding: Utils.AppSettings.mediumSpace
-            enabled: !dav.validating
+            enabled: !d.account.loggingIn
 
             GridLayout {
                 width: scrollView.availableWidth
@@ -202,7 +186,7 @@ C.Page {
                     text: qsTr("Failed to connect to the server. Please "
                                + "check your user name, password and the server address and retry.")
                     Material.foreground: Material.Red
-                    visible: d.validated && !dav.valid
+                    visible: false
                 }
             }
         }
@@ -211,6 +195,6 @@ C.Page {
             id: busyIndicator
 
             anchors.centerIn: parent
-            visible: dav.validating
+            visible: d.account.loggingIn
         }
     }
