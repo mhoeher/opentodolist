@@ -170,7 +170,7 @@ msgstr "Openen"
 #: ../Widgets/ItemDueDateEditor.qml:28
 msgctxt "ItemDueDateEditor|"
 msgid "Due on"
-msgstr "Vervalt op"
+msgstr "Einddatum:"
 
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
@@ -470,7 +470,7 @@ msgstr "Er is niks ingepland. Ken een einddatum toe aan items om ze hier te tone
 #: ../Pages/ScheduleViewPage.qml:101
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
-msgstr "Vervallen"
+msgstr "Verstreken"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:43
 msgctxt "SyncErrorNotificationBar|"
@@ -559,7 +559,7 @@ msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Zoekterm 1, zoekterm 2, …"
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:246
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Taken"
@@ -684,7 +684,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Label toekennen"
 
-#: ../Pages/TodoListPage.qml:264
+#: ../Pages/TodoListPage.qml:266
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Taak toevoegen…"
@@ -697,7 +697,7 @@ msgstr "Taak toevoegen…"
 #: ../Widgets/TodosWidget.qml:203
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
-msgstr "Vervalt op: %1"
+msgstr "Einddatum: %1"
 
 #: ../Utils/Colors.qml:15
 msgctxt "Colors|"
@@ -767,7 +767,7 @@ msgstr "Naam"
 #: ../Pages/LibraryPage.qml:464
 msgctxt "LibraryPage|"
 msgid "Due To"
-msgstr "Vervaldatum"
+msgstr "Einddatum"
 
 #: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
@@ -1354,7 +1354,7 @@ msgstr "Verwijderen"
 #: ../Widgets/ItemDueDateEditor.qml:59
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
-msgstr "Vervalt allereerst op %1."
+msgstr "Eerste einddatum: %1."
 
 #: ../Widgets/ItemDueDateEditor.qml:71
 msgctxt "ItemDueDateEditor|"
@@ -1424,7 +1424,7 @@ msgstr "Aanmaken in:"
 #: ../Windows/NewItemWithDueDateDialog.qml:166
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Due on:"
-msgstr "Vervalt op:"
+msgstr "Einddatum:"
 
 #: ../Widgets/NewTopLevelItemButton.qml:48
 msgctxt "NewTopLevelItemButton|"
@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Stel morgen in"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:276
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Veeg om te markeren als onafgerond"
 
-#: ../Widgets/TodosWidgetDelegate.qml:270
+#: ../Widgets/TodosWidgetDelegate.qml:278
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Veeg om te markeren als afgerond"
@@ -2447,7 +2447,7 @@ msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr "Afgeronde taken tonen"
 
-#: ../Pages/TodoListPage.qml:215
+#: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "Tonen aan einde van lijst"
@@ -2457,8 +2457,13 @@ msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "Afgeronde taken tonen"
 
-#: ../Pages/TodoPage.qml:280
+#: ../Pages/TodoPage.qml:281
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "Tonen aan einde van lijst"
+
+#: ../Actions/ResetDueTo.qml:8
+msgctxt "ResetDueTo|"
+msgid "Reset Due To"
+msgstr "Einddatum herstellen"
 

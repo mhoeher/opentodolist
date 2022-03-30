@@ -560,7 +560,7 @@ msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "1. keresési kifejezés, 2. keresési kifejezés, ..."
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:246
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -685,7 +685,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Címke hozzáadása"
 
-#: ../Pages/TodoListPage.qml:264
+#: ../Pages/TodoListPage.qml:266
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Új teendő hozzáadása..."
@@ -1507,12 +1507,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Holnap esedékes"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:276
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Húzza az visszavonás jelölésére"
 
-#: ../Widgets/TodosWidgetDelegate.qml:270
+#: ../Widgets/TodosWidgetDelegate.qml:278
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Húzza az ujját a kész jelölésére"
@@ -2443,7 +2443,7 @@ msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:215
+#: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2453,8 +2453,13 @@ msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:280
+#: ../Pages/TodoPage.qml:281
 msgctxt "TodoPage|"
 msgid "Show At The End"
+msgstr ""
+
+#: ../Actions/ResetDueTo.qml:8
+msgctxt "ResetDueTo|"
+msgid "Reset Due To"
 msgstr ""
 

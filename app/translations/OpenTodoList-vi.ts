@@ -1490,6 +1490,14 @@
     </message>
 </context>
 <context>
+    <name>ResetDueTo</name>
+    <message>
+        <location filename="../Actions/ResetDueTo.qml" line="8"/>
+        <source>Reset Due To</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ScheduleViewPage</name>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
@@ -1768,17 +1776,17 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="215"/>
+        <location filename="../Pages/TodoListPage.qml" line="216"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="246"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="264"/>
+        <location filename="../Pages/TodoListPage.qml" line="266"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Thêm công việc mới ...</translation>
     </message>
@@ -1806,7 +1814,7 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="280"/>
+        <location filename="../Pages/TodoPage.qml" line="281"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1822,12 +1830,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="268"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="276"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Vuốt để đánh dấu hoàn tác</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="270"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="278"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Vuốt để đánh dấu xong</translation>
     </message>

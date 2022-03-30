@@ -560,7 +560,7 @@ msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Suchbegriff 1, Suchbegriff 2, ..."
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:246
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Aufgaben"
@@ -685,7 +685,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Neues Schlagwort hinzufügen"
 
-#: ../Pages/TodoListPage.qml:264
+#: ../Pages/TodoListPage.qml:266
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Neue Aufgabe hinzufügen..."
@@ -1514,12 +1514,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Morgen fällig"
 
-#: ../Widgets/TodosWidgetDelegate.qml:268
+#: ../Widgets/TodosWidgetDelegate.qml:276
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Wischen, um Markierung rückgängig zu machen"
 
-#: ../Widgets/TodosWidgetDelegate.qml:270
+#: ../Widgets/TodosWidgetDelegate.qml:278
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Wischen bis Markierung gemacht"
@@ -2456,7 +2456,7 @@ msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr "Abgeschlossene anzeigen"
 
-#: ../Pages/TodoListPage.qml:215
+#: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "Am Ende anzeigen"
@@ -2466,8 +2466,13 @@ msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "Abgeschlossene anzeigen"
 
-#: ../Pages/TodoPage.qml:280
+#: ../Pages/TodoPage.qml:281
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "Am Ende anzeigen"
+
+#: ../Actions/ResetDueTo.qml:8
+msgctxt "ResetDueTo|"
+msgid "Reset Due To"
+msgstr ""
 
