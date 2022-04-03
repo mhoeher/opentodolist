@@ -9,7 +9,7 @@ cd ..
 if [ -n "$CI" ]; then
     dnf install -y \
         make cmake ninja-build gcc g++ curl ccache \
-        qt5-{qtbase,qtdeclarative,qtremoteobjects,qtquickcontrols2}-devel \
+        qt5-{qtbase,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
         qt5-linguist \
         libsecret-devel
 

@@ -42,6 +42,7 @@ RUN \
         mingw64-qt5-qtwebsockets \
         mingw64-qt5-qtwinextras \
         mingw64-qt5-qtxmlpatterns \
+        mingw32-qt5-qtnetworkauth \
         mingw64-angleproject \
         mingw32-nsis \
         mingw32-nsiswrapper \

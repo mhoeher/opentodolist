@@ -76,7 +76,7 @@ COPY extract-qt-installer.sh /tmp/qt/
 RUN echo "${QT_INSTALLER_SHA256} -" > sum.txt && curl -fLs "${QT_INSTALLER_URL}" | tee /tmp/qt/installer.run | sha256sum -c sum.txt \
     && [ -z "${QT_CI_ENV_URL}" ] && echo "" > /tmp/qt/secrets.env || curl "${QT_CI_ENV_URL}" > /tmp/qt/secrets.env && . /tmp/qt/secrets.env \
     && export QT_CI_LOGIN="${QT_CI_LOGIN}" && export QT_CI_PASSWORD="${QT_CI_PASSWORD}" \
-    && QT_CI_PACKAGES=qt.qt5.$(echo "${QT_VERSION}" | tr -d .).${QT_BIN_PACKAGE},qt.tools.cmake,qt.tools.ninja /tmp/qt/extract-qt-installer.sh /tmp/qt/installer.run "${QT_PATH}" \
+    && QT_CI_PACKAGES=qt.qt5.$(echo "${QT_VERSION}" | tr -d .).${QT_BIN_PACKAGE},qt.qt5.$(echo "${QT_VERSION}" | tr -d .).qtnetworkauth.${QT_BIN_PACKAGE},qt.tools.cmake,qt.tools.ninja /tmp/qt/extract-qt-installer.sh /tmp/qt/installer.run "${QT_PATH}" \
     && find "${QT_PATH}" -mindepth 1 -maxdepth 1 ! -name "${QT_VERSION}" ! -name "Tools" -exec echo 'Cleaning Qt SDK: {}' \; -exec rm -r '{}' \; \
     && rm -rf "${QT_PATH}/Tools/QtCreator" /tmp/qt /root/.local/share/Qt /root/.config/Qt
 
