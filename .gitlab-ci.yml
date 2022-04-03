@@ -1,10 +1,10 @@
 variables:
-    WIN32_IMAGE: registry.gitlab.com/rpdev/opentodolist:win32
-    WIN64_IMAGE: registry.gitlab.com/rpdev/opentodolist:win64
-    UBUNTU_IMAGE: registry.gitlab.com/rpdev/opentodolist:ubuntu
-    ANDROID_IMAGE: registry.gitlab.com/rpdev/opentodolist:android
-    FLATPAK_IMAGE: registry.gitlab.com/rpdev/opentodolist:flatpak
-    SNAPCRAFT_IMAGE: registry.gitlab.com/rpdev/docker/snapcraft:latest
+    WIN32_IMAGE: registry.gitlab.com/rpdev/docker/qt5-windows:win32
+    WIN64_IMAGE: registry.gitlab.com/rpdev/docker/qt5-windows:win64
+    UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt5-ubuntu
+    ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt5-android
+    FLATPAK_IMAGE: registry.gitlab.com/rpdev/docker/flatpak-builder-kde
+    SNAPCRAFT_IMAGE: registry.gitlab.com/rpdev/docker/snapcraft
     NEXTCLOUD_IMAGE: nextcloud
     OWNCLOUD_IMAGE: owncloud
     CTEST_OUTPUT_ON_FAILURE: 1
