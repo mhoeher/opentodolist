@@ -24,7 +24,7 @@ apt-get install -y \
     qt515quickcontrols \
     qt515quickcontrols2 \
     qt515remoteobjects \
-    qt515networkauth \
+    qt515networkauth-no-lgpl \
     qt515svg \
     qt515translations \
     qt515x11extras \
