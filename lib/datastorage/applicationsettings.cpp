@@ -33,7 +33,7 @@
 #include "datastorage/libraryloader.h"
 #include "utils/jsonutils.h"
 
-#include <sync/webdavaccount.h>
+#include "sync/webdavaccount.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.ApplicationSettings", QtDebugMsg);
 
