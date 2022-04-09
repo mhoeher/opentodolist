@@ -86,6 +86,7 @@ Account* Account::createAccount(Type type, QObject* parent)
     case Invalid:
         return nullptr;
     }
+    return nullptr; // To silence cppcheck
 }
 
 /**
