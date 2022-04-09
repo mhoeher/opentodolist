@@ -27,11 +27,13 @@ xcodebuild \
     -configuration AppStoreDistribution \
     archive \
     -archivePath $PWD/build/OpenTodoList.xcarchive \
-    -allowProvisioningUpdates
+    -allowProvisioningUpdates \
+    -destination 'generic/platform=iOS'
 xcodebuild \
     -exportArchive \
     -archivePath $PWD/build/OpenTodoList.xcarchive \
     -exportPath $PWD/build \
     -exportOptionsPlist $PWD/../../app/ios/exportOptions.plist \
-    -allowProvisioningUpdates
+    -allowProvisioningUpdates \
+    -destination 'generic/platform=iOS'
 popd
