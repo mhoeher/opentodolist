@@ -16,6 +16,7 @@ mkdir -p build-ios-cmake
 cd build-ios-cmake
 
 export XCODEBUILD_FLAGS="-allowProvisioningUpdates"
+export XCODE_ARCHIVE_FLAGS="-destination;generic/platform=iOS"
 
 cmake \
     -GXcode \
@@ -27,7 +28,8 @@ cmake \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DQT_IOS_TEAM_ID="$IOS_TEAM_ID" \
-    -DQT_IOS_EXPORT_ARCHIVE_XCODEBUILD_FLAGS="$XCODEBUILD_FLAGS" \
+    -DQT_IOS_EXPORT_ARCHIVE_XCODEBUILD_FLAGS="${XCODEBUILD_FLAGS}" \
+    -DQT_IOS_ARCHIVE_XCODEBUILD_FLAGS="${XCODE_ARCHIVE_FLAGS}" \
     ..
 
 if [ -n "$CONFIGURE_ONLY" ]; then
