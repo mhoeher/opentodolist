@@ -9,10 +9,6 @@ if [ -n "$CI" ]; then
         http://nextcloud/index.php
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
             http://owncloud/index.php
-    QMAKE_EXTRA_FLAGS="
-        NEXTCLOUD_URL=http://admin:admin@nextcloud/
-        OWNCLOUD_URL=http://admin:admin@owncloud/
-    "
     CMAKE_EXTRA_FLAGS="
         -DOPENTODOLIST_NEXTCLOUD_TEST_URL=http://admin:admin@nextcloud/
         -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
@@ -60,12 +56,6 @@ if [ ! -f "$LINUXDEPLOYQT" ]; then
 fi
 
 "$LINUXDEPLOYQT" --appimage-extract
-
-# TODO: Check why the AppImage crashes when running on e.g. KDE Wayland on Fedora
-#./squashfs-root/AppRun AppImageBuild/usr/bin/OpenTodoList \
-#    -qmldir=../app -qmake=$QT_ROOT/bin/qmake \
-#    -appimage \
-#    -extra-plugins=platforms/libqwayland-generic.so,platforminputcontexts,wayland-graphics-integration-client,wayland-shell-integration,wayland-decoration-client
 
 ./squashfs-root/AppRun AppImageBuild/usr/bin/OpenTodoList \
     -qmldir=../app -qmake=$QT_ROOT/bin/qmake \

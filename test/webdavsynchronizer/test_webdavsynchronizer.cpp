@@ -27,8 +27,8 @@
 #include <QUuid>
 #include <QSet>
 
-#define WEBDAV_SYNCHRONIZER_TEST
 #include "sync/webdavsynchronizer.h"
+#include "../test-utils.h"
 
 #include "datamodel/library.h"
 #include "datamodel/note.h"
@@ -40,10 +40,6 @@
 #include "datastorage/libraryloader.h"
 #include "models/itemsmodel.h"
 #include "models/librariesmodel.h"
-
-#if defined(OPENTODOLIST_NEXTCLOUD_TEST_URL) || defined(OPENTODOLIST_OWNCLOUD_TEST_URL)
-#    define TEST_AGAINST_SERVER
-#endif
 
 class WebDAVSynchronizerTest : public QObject
 {
@@ -57,15 +53,10 @@ private slots:
     void disableCertificateCheck();
     void username();
     void password();
-
-#ifdef TEST_AGAINST_SERVER
-    void validate();
-    void validate_data();
     void synchronize();
     void synchronize_data();
     void findExistingEntries();
     void findExistingEntries_data();
-#endif // TEST_AGAINST_SERVER
     void cleanup() {}
     void cleanupTestCase() {}
 
@@ -113,30 +104,6 @@ void WebDAVSynchronizerTest::password()
     sync.setPassword("fooBarBas123!");
     QCOMPARE(sync.password(), QString("fooBarBas123!"));
     QCOMPARE(spy.count(), 1);
-}
-
-#ifdef TEST_AGAINST_SERVER
-
-void WebDAVSynchronizerTest::validate()
-{
-    QFETCH(QObject*, client);
-    auto davClient = static_cast<WebDAVSynchronizer*>(client);
-    Q_CHECK_PTR(davClient);
-    QCOMPARE(davClient->valid(), false);
-    QCOMPARE(davClient->validating(), false);
-    QSignalSpy validatingChanged(davClient, &Synchronizer::validatingChanged);
-    QSignalSpy validChanged(davClient, &Synchronizer::validChanged);
-    davClient->validate();
-    QVERIFY(validatingChanged.wait(30000));
-    QCOMPARE(validatingChanged.count(), 2);
-    QCOMPARE(validChanged.count(), 1);
-    QCOMPARE(davClient->valid(), true);
-    QCOMPARE(davClient->validating(), false);
-}
-
-void WebDAVSynchronizerTest::validate_data()
-{
-    createDavClients();
 }
 
 void WebDAVSynchronizerTest::synchronize()
@@ -353,41 +320,37 @@ void WebDAVSynchronizerTest::findExistingEntries_data()
     createDavClients();
 }
 
-#endif // TEST_AGAINST_SERVER
-
 void WebDAVSynchronizerTest::createDavClients()
 {
     QTest::addColumn<QObject*>("client");
 
-#ifdef OPENTODOLIST_NEXTCLOUD_TEST_URL
-    {
-        auto url = QUrl(OPENTODOLIST_NEXTCLOUD_TEST_URL);
-        auto client = new WebDAVSynchronizer();
-        client->setServerType(WebDAVSynchronizer::NextCloud);
-        client->setUrl(url.toString(QUrl::RemoveUserInfo | QUrl::PrettyDecoded));
-        client->setUsername(url.userName());
-        client->setPassword(url.password());
-        if (client->url().scheme() == "http") {
-            client->setDisableCertificateCheck(true);
+    const auto servers = readConfiguredWebDAVTestServers();
+    int count = 0;
+    for (const auto& server : servers) {
+        auto client = new WebDAVSynchronizer;
+        client->setUrl(server.url.toString());
+        client->setUsername(server.url.userName());
+        client->setPassword(server.url.password());
+        switch (server.type) {
+        case WebDAVAccount::WebDAV:
+            client->setServerType(WebDAVSynchronizer::Generic);
+            break;
+        case WebDAVAccount::NextCloud:
+            client->setServerType(WebDAVSynchronizer::NextCloud);
+            break;
+        case WebDAVAccount::OwnCloud:
+            client->setServerType(WebDAVSynchronizer::OwnCloud);
+            break;
+        default:
+            qWarning() << "Invalid WebDAV account type:" << server.type;
+            break;
         }
-        QTest::newRow("NextCloud") << static_cast<QObject*>(client);
-    }
-#endif
 
-#ifdef OPENTODOLIST_OWNCLOUD_TEST_URL
-    {
-        auto url = QUrl(OPENTODOLIST_OWNCLOUD_TEST_URL);
-        auto client = new WebDAVSynchronizer();
-        client->setServerType(WebDAVSynchronizer::OwnCloud);
-        client->setUrl(url.toString(QUrl::RemoveUserInfo | QUrl::PrettyDecoded));
-        client->setUsername(url.userName());
-        client->setPassword(url.password());
-        if (client->url().scheme() == "http") {
-            client->setDisableCertificateCheck(true);
-        }
-        QTest::newRow("ownCloud") << static_cast<QObject*>(client);
+        QTest::newRow(server.name.toUtf8()) << client;
     }
-#endif
+    if (count == 0) {
+        QSKIP("No suitable WebDAV servers configured");
+    }
 }
 
 void WebDAVSynchronizerTest::echoToFile(const QString& text, const QString& filename)

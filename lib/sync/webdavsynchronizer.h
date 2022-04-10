@@ -47,10 +47,6 @@ class WebDAVSynchronizer : public Synchronizer
                        NOTIFY serverTypeChanged)
     Q_PROPERTY(int workarounds READ workarounds WRITE setWorkarounds NOTIFY workaroundsChanged)
 
-#ifdef WEBDAV_SYNCHRONIZER_TEST
-    friend class WebDAVSynchronizerTest;
-#endif
-
 public:
     enum WebDAVServerType { Unknown = 0, Generic = 1, NextCloud = 2, OwnCloud = 3 };
 
