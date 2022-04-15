@@ -26,16 +26,16 @@
 
 class OwnCloudAccountTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void initTestCase() {}
-  void init() {}
-  void login();
-  void login_data();
-  void cleanup() {}
-  void cleanupTestCase() {}
+    void initTestCase() {}
+    void init() {}
+    void login();
+    void login_data();
+    void cleanup() {}
+    void cleanupTestCase() {}
 };
 
 void OwnCloudAccountTest::login()
