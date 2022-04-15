@@ -42,16 +42,16 @@ void NextCloudAccountTest::login()
 {
     QFETCH(QUrl, url);
 
-    WebDAVAccount account;
+    NextCloudAccount account;
     account.setBaseUrl(url.toString());
     account.setUsername(url.userName());
     account.setPassword(url.password());
     QVERIFY(!account.online());
-    QSignalSpy loggingInChanged(&account, &WebDAVAccount::loggingInChanged);
+    QSignalSpy loggingInChanged(&account, &NextCloudAccount::loggingInChanged);
     account.login();
     QCOMPARE(loggingInChanged.count(), 1);
-    QSignalSpy onlineChanged(&account, &WebDAVAccount::onlineChanged);
-    QSignalSpy loginFinished(&account, &WebDAVAccount::loginFinished);
+    QSignalSpy onlineChanged(&account, &NextCloudAccount::onlineChanged);
+    QSignalSpy loginFinished(&account, &NextCloudAccount::loginFinished);
     QVERIFY(loginFinished.wait());
     QVERIFY(loginFinished.at(0).at(0).toBool()); // 'success' shall be true
     QCOMPARE(loggingInChanged.count(), 2);

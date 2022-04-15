@@ -346,7 +346,8 @@ void WebDAVSynchronizerTest::createDavClients()
             break;
         }
 
-        QTest::newRow(server.name.toUtf8()) << client;
+        QTest::newRow(server.name.toUtf8()) << static_cast<QObject*>(client);
+        ++count;
     }
     if (count == 0) {
         QSKIP("No suitable WebDAV servers configured");

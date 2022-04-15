@@ -42,16 +42,16 @@ void OwnCloudAccountTest::login()
 {
     QFETCH(QUrl, url);
 
-    WebDAVAccount account;
+    OwnCloudAccount account;
     account.setBaseUrl(url.toString());
     account.setUsername(url.userName());
     account.setPassword(url.password());
     QVERIFY(!account.online());
-    QSignalSpy loggingInChanged(&account, &WebDAVAccount::loggingInChanged);
+    QSignalSpy loggingInChanged(&account, &OwnCloudAccount::loggingInChanged);
     account.login();
     QCOMPARE(loggingInChanged.count(), 1);
-    QSignalSpy onlineChanged(&account, &WebDAVAccount::onlineChanged);
-    QSignalSpy loginFinished(&account, &WebDAVAccount::loginFinished);
+    QSignalSpy onlineChanged(&account, &OwnCloudAccount::onlineChanged);
+    QSignalSpy loginFinished(&account, &OwnCloudAccount::loginFinished);
     QVERIFY(loginFinished.wait());
     QVERIFY(loginFinished.at(0).at(0).toBool()); // 'success' shall be true
     QCOMPARE(loggingInChanged.count(), 2);
