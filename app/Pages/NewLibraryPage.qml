@@ -9,7 +9,6 @@ import "../Utils" as Utils
 
 import OpenTodoList 1.0 as OTL
 
-
 C.Page {
     id: page
     property alias addLocalLibraryDelegate: addLocalLibraryDelegate
@@ -19,10 +18,12 @@ C.Page {
 
     signal accountSelected(var account)
     signal openPage(var component, var properties)
-    signal libraryCreated(OTL.Library library)
+    signal libraryCreated(var library)
 
     title: qsTr("Create Library")
-    onAccountSelected: page.openPage(newLibaryFromAccountPage, {account: account })
+    onAccountSelected: page.openPage(newLibaryFromAccountPage, {
+                                         "account": account
+                                     })
 
     Component {
         id: newLocalLibraryPage
@@ -77,6 +78,7 @@ C.Page {
                 width: parent.width
                 onClicked: page.openPage(newLibraryInFolderPage, {})
 
+
                 /* On iOS, we currently have no notion of a "file system" in that sense. So
                   don't even show this to the user. */
                 visible: Qt.platform.os !== "ios"
@@ -101,7 +103,7 @@ C.Page {
                     Connections {
                         target: accountDelegate
                         function onClicked() {
-                            page.accountSelected(account);
+                            page.accountSelected(account)
                         }
                     }
                 }
@@ -112,9 +114,11 @@ C.Page {
                 anchors.right: parent.right
                 anchors.rightMargin: 10
                 text: qsTr("Add Account")
-                onClicked: page.openPage(Qt.resolvedUrl("./AccountTypeSelectionPage.qml"), {
-                                                              anchorPage: page
-                                                              });
+                onClicked: page.openPage(Qt.resolvedUrl(
+                                             "./AccountTypeSelectionPage.qml"),
+                                         {
+                                             "anchorPage": page
+                                         })
             }
         }
     }

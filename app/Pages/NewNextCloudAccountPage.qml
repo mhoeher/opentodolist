@@ -12,7 +12,7 @@ C.Page {
     id: page
 
     signal closePage
-    signal returnToPage(C page)
+    signal returnToPage(var page)
     signal openPage(var component, var properties)
 
     property C.Page anchorPage: null
@@ -59,7 +59,7 @@ C.Page {
 
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
-        enabled: account.loggingIn
+        enabled: !account.loggingIn
 
         GridLayout {
             width: scrollView.availableWidth
@@ -235,6 +235,7 @@ C.Page {
                 text: qsTr("Failed to connect to the server. Please "
                            + "check your user name, password and the server address and retry.")
                 Material.foreground: Material.Red
+                visible: false
             }
         }
     }

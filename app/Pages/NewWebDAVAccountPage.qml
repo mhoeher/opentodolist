@@ -23,7 +23,7 @@ C.Page {
     property C.Page anchorPage: null
 
     signal closePage
-    signal returnToPage(C page)
+    signal returnToPage(var page)
     signal openPage(var component, var properties)
 
     title: qsTr("Connection Settings")
@@ -59,7 +59,7 @@ C.Page {
             d.account.password = passwordEdit.text
             d.account.disableCertificateChecks = disableCertificateChecksEdit.checked
             errorLabel.visible = false
-            d.login()
+            d.account.login()
         }
     }
 
@@ -69,12 +69,12 @@ C.Page {
         function onLoginFinished(success) {
             if (success) {
                 if (accountNameEdit.text !== "") {
-                    account.name = accountNameEdit.text
+                    d.account.name = accountNameEdit.text
                 } else {
-                    account.name = accountNameEdit.placeholderText
+                    d.account.name = accountNameEdit.placeholderText
                 }
-                OTL.Application.saveAccount(account)
-                OTL.Application.saveAccountSecrets(account)
+                OTL.Application.saveAccount(d.account)
+                OTL.Application.saveAccountSecrets(d.account)
                 page.returnToPage(page.anchorPage)
             } else {
                 errorLabel.visible = true

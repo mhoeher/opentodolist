@@ -13,8 +13,8 @@ C.Page {
     property alias buttons: buttonBox
     property alias nameEdit: nameEdit
 
-    signal closePage()
-    signal libraryCreated(OTL.Library library)
+    signal closePage
+    signal libraryCreated(var library)
 
     footer: C.DialogButtonBox {
         id: buttonBox
@@ -22,16 +22,16 @@ C.Page {
         onRejected: closePage()
         onAccepted: {
             if (nameEdit.displayText !== "") {
-                var lib = OTL.Application.addLocalLibrary(nameEdit.displayText);
+                var lib = OTL.Application.addLocalLibrary(nameEdit.displayText)
                 if (lib) {
-                    libraryCreated(lib);
+                    libraryCreated(lib)
                 }
             }
         }
     }
 
     Component.onCompleted: {
-        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
+        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
     }
 
     QtObject {

@@ -61,6 +61,7 @@ Long story short, here is the list of libraries that are needed to build the app
   - Declarative.
   - Remote Objects.
   - Quick Controls 2.
+  - Network Auth.
 - [`cmake`](https://cmake.org/) >= 3.5.1.
 - A suitable compiler.
 - `make`, `ninja-build` or another suitable build tool.

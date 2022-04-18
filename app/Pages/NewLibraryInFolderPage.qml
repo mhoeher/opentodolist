@@ -9,7 +9,6 @@ import "../Utils" as Utils
 
 import OpenTodoList 1.0 as OTL
 
-
 C.Page {
     id: page
 
@@ -18,29 +17,32 @@ C.Page {
     property alias folderPathEdit: folderPathEdit
     property alias openFolderButton: openFolderButton
 
-    signal closePage()
-    signal libraryCreated(OTL.Library library)
+    signal closePage
+    signal libraryCreated(var library)
 
     footer: C.DialogButtonBox {
         id: buttonBox
         standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
         onRejected: page.closePage()
     }
-    Component.onCompleted: d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
+    Component.onCompleted: d.okButton = buttons.standardButton(
+                               C.DialogButtonBox.Ok)
 
     QtObject {
         id: d
 
         property var okButton: null
         property bool isLibraryDir: OTL.Application.isLibraryDir(
-                                        OTL.Application.localFileToUrl(folderPathEdit.displayText))
+                                        OTL.Application.localFileToUrl(
+                                            folderPathEdit.displayText))
 
         onIsLibraryDirChanged: {
             if (isLibraryDir) {
                 nameEdit.text = OTL.Application.libraryNameFromDir(
-                            OTL.Application.localFileToUrl(folderPathEdit.displayText));
+                            OTL.Application.localFileToUrl(
+                                folderPathEdit.displayText))
             } else {
-                nameEdit.clear();
+                nameEdit.clear()
             }
         }
     }
@@ -48,19 +50,20 @@ C.Page {
     Binding {
         target: d.okButton
         property: "enabled"
-        value: OTL.Application.directoryExists(folderPathEdit.displayText) && !d.isLibraryDir ||
-               nameEdit.displayText !== ""
+        value: OTL.Application.directoryExists(folderPathEdit.displayText)
+               && !d.isLibraryDir || nameEdit.displayText !== ""
     }
 
     Connections {
         target: d.okButton
         function onClicked() {
-            var lib = OTL.Application.addLibraryDirectory(folderPathEdit.displayText);
+            var lib = OTL.Application.addLibraryDirectory(
+                        folderPathEdit.displayText)
             if (lib) {
                 if (nameEdit.enabled) {
-                    lib.name = nameEdit.displayText;
+                    lib.name = nameEdit.displayText
                 }
-                page.libraryCreated(lib);
+                page.libraryCreated(lib)
             }
         }
     }
@@ -74,9 +77,10 @@ C.Page {
         folder: {
             switch (Qt.platform.os) {
             case "android":
-                return "file://" + OTL.Application.getExternalFilesDir();
+                return "file://" + OTL.Application.getExternalFilesDir()
             default:
-                return StandardPaths.writableLocation(StandardPaths.HomeLocation)
+                return StandardPaths.writableLocation(
+                            StandardPaths.HomeLocation)
             }
         }
     }
