@@ -58,7 +58,6 @@ public:
     // Synchronizer interface
     void synchronize() override;
     void stopSync() override;
-    void findExistingLibraries() override;
     void setAccount(Account* account) override;
 
     bool disableCertificateCheck() const;

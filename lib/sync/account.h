@@ -25,6 +25,7 @@
 
 #include "synchronizer.h"
 #include "webdavsynchronizer.h"
+#include "remotelibraryinfo.h"
 
 class QSettings;
 class ApplicationSettings;
@@ -35,6 +36,11 @@ class Account : public QObject
     Q_PROPERTY(Account::Type type READ type NOTIFY typeChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(bool loggingIn READ loggingIn NOTIFY loggingInChanged)
+    Q_PROPERTY(bool online READ online WRITE setOnline NOTIFY onlineChanged)
+    Q_PROPERTY(QList<RemoteLibraryInfo> remoteLibraries READ remoteLibraries WRITE
+                       setRemoteLibraries NOTIFY remoteLibrariesChanged)
+    Q_PROPERTY(bool findingRemoteLibraries READ findingRemoteLibraries WRITE
+                       setFindingRemoteLibraries NOTIFY findingRemoteLibrariesChanged)
 
     friend class ApplicationSettings;
 
@@ -58,6 +64,7 @@ public:
     virtual void load(QSettings* settings);
 
     Q_INVOKABLE virtual void login();
+    Q_INVOKABLE virtual void findExistingLibraries();
 
     /**
      * @brief Get secrets (e.g. passwords) needed for communication with the server.
@@ -82,6 +89,10 @@ public:
     bool loggingIn() const;
 
     bool online() const;
+
+    const QList<RemoteLibraryInfo>& remoteLibraries() const;
+
+    bool findingRemoteLibraries() const;
 
 signals:
 
@@ -109,10 +120,22 @@ signals:
      */
     void loginError(const QString& message);
 
+    /**
+     * @brief The list of remote libraries changed.
+     */
+    void remoteLibrariesChanged();
+
+    /**
+     * @brief The findingRemoteLibraries property has changed.
+     */
+    void findingRemoteLibrariesChanged();
+
 protected:
     void setType(const Type& type);
     void setLoggingIn(bool newLoggingIn);
     void setOnline(bool newOnline);
+    void setRemoteLibraries(const QList<RemoteLibraryInfo>& newRemoteLibraries);
+    void setFindingRemoteLibraries(bool newFindingRemoteLibraries);
 
 private:
     QUuid m_uid;
@@ -120,8 +143,8 @@ private:
     QString m_name;
     bool m_loggingIn;
     bool m_online;
-
-    Q_PROPERTY(bool online READ online WRITE setOnline NOTIFY onlineChanged)
+    bool m_findingRemoteLibraries;
+    QList<RemoteLibraryInfo> m_remoteLibraries;
 };
 
 #endif // SYNC_ACCOUNT_H_

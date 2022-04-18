@@ -1,6 +1,6 @@
 /*
  * Copyright 2022 Martin Hoeher <martin@rpdev.net>
- +
+ *
  * This file is part of OpenTodoList.
  *
  * OpenTodoList is free software: you can redistribute it and/or modify
@@ -17,41 +17,46 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SYNC_DROPBOXSYNCHRONIZER_H_
-#define SYNC_DROPBOXSYNCHRONIZER_H_
+#ifndef SYNC_REMOTELIBRARYINFO_H_
+#define SYNC_REMOTELIBRARYINFO_H_
 
 #include <QObject>
 #include <QString>
-#include <QDateTime>
+#include <QUuid>
 
-#include "synchronizer.h"
-
-class DropboxSynchronizer : public Synchronizer
+/**
+ * @brief Information about an existing library on the server.
+ *
+ * This class encapsulates information about an existing library on a remote server.
+ */
+class RemoteLibraryInfo
 {
-    Q_OBJECT
+    Q_GADGET
 
-    Q_PROPERTY(QString accessToken READ accessToken WRITE setAccessToken NOTIFY accessTokenChanged)
+    Q_PROPERTY(QString name READ name)
+    Q_PROPERTY(QString path READ path)
+    Q_PROPERTY(QUuid uid READ uid)
 
 public:
-    explicit DropboxSynchronizer(QObject* parent = nullptr);
+    RemoteLibraryInfo();
 
-    // Synchronizer interface
-    void synchronize() override;
-    void stopSync() override;
-    QVariantMap toMap() const override;
-    void fromMap(const QVariantMap& map) override;
-    void setAccount(Account* account) override;
+    QString name() const;
+    void setName(const QString& name);
 
-    const QString& accessToken() const;
-    void setAccessToken(const QString& newAccessToken);
+    QString path() const;
+    void setPath(const QString& path);
 
-signals:
+    QUuid uid() const;
+    void setUid(const QUuid& uid);
 
-    void accessTokenChanged();
+    bool operator==(const RemoteLibraryInfo& other) const;
 
 private:
-    // For OAuth
-    QString m_accessToken;
+    QString m_name;
+    QString m_path;
+    QUuid m_uid;
 };
 
-#endif // SYNC_DROPBOXSYNCHRONIZER_H_
+Q_DECLARE_METATYPE(RemoteLibraryInfo)
+
+#endif // SYNC_REMOTELIBRARYINFO_H_

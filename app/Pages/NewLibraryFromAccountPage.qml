@@ -7,14 +7,11 @@ import "../Controls" as C
 
 import OpenTodoList 1.0 as OTL
 
-
 C.Page {
     id: page
 
     property alias buttons: buttonBox
-    property var account: ({
-                               "name": "user@host"
-                           })
+    property OTL.Account account
     property alias busyIndicator: busyIndicator
     property alias noLibrariesFoundLabel: noLibrariesFoundLabel
     property alias searchingForLibrariesLabel: searchingForLibrariesLabel
@@ -23,9 +20,8 @@ C.Page {
     property alias createNewLibraryButton: createNewLibraryButton
     property alias newLibraryNameEdit: newLibraryNameEdit
 
-
-    signal closePage()
-    signal libraryCreated(OTL.Library library)
+    signal closePage
+    signal libraryCreated(var library)
 
     footer: C.DialogButtonBox {
         id: buttonBox
@@ -34,52 +30,34 @@ C.Page {
         onAccepted: {
             if (createNewLibraryButton.checked) {
                 var lib = OTL.Application.addNewLibraryToAccount(
-                            page.account, newLibraryNameEdit.displayText);
+                            page.account, newLibraryNameEdit.displayText)
             } else {
                 lib = OTL.Application.addExistingLibraryToAccount(
-                            page.account, buttonGroup.checkedButton.existingAccount);
+                            page.account,
+                            buttonGroup.checkedButton.existingAccount)
             }
             if (lib) {
-                page.libraryCreated(lib);
+                page.libraryCreated(lib)
             }
         }
     }
 
+    onAccountChanged: account.findExistingLibraries()
+
     QtObject {
         id: d
 
-        property OTL.Synchronizer sync: page.account.createSynchronizer()
-
         property var okButton: buttons.standardButton(C.DialogButtonBox.Ok)
 
-        Component.onCompleted: sync.findExistingLibraries()
+        Component.onCompleted: page.account.findExistingLibraries()
     }
 
     Binding {
         target: d.okButton
         property: "enabled"
-        value: buttonGroup.checkedButton &&
-               (buttonGroup.checkedButton !== createNewLibraryButton ||
-                 newLibraryNameEdit.displayText !== "")
-    }
-
-    Connections {
-        target: d.sync
-        function onFindingLibrariesChanged() {
-            if (!d.sync.findingLibraries) {
-                var foundLibraries = [];
-                for (var i = 0; i < d.sync.existingLibraries.length; ++i) {
-                    var existingLib = d.sync.existingLibraries[i];
-                    if (!OTL.Application.libraryExists(existingLib.uid)) {
-                        foundLibraries.push(existingLib);
-                    }
-                }
-
-                page.accountsView.model = foundLibraries;
-
-                noLibrariesFoundLabel.visible = foundLibraries.length === 0;
-            }
-        }
+        value: buttonGroup.checkedButton
+               && (buttonGroup.checkedButton != createNewLibraryButton
+                   || newLibraryNameEdit.displayText !== "")
     }
 
     C.ButtonGroup {
@@ -134,7 +112,8 @@ C.Page {
 
                 text: qsTr("No libraries were found on the server.")
                 Layout.columnSpan: 2
-                visible: false
+                visible: page.account.remoteLibraries.length === 0
+                         && !page.account.findingRemoteLibraries
             }
 
             C.Label {
@@ -142,14 +121,14 @@ C.Page {
 
                 text: qsTr("Searching existing libraries...")
                 Layout.columnSpan: 2
-                visible: d.sync.findingLibraries
+                visible: page.account.findingRemoteLibraries
             }
 
             C.BusyIndicator {
                 id: busyIndicator
                 Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignHCenter
-                visible: d.sync.findingLibraries
+                visible: page.account.findingRemoteLibraries
             }
 
             Column {
@@ -168,8 +147,17 @@ C.Page {
                         width: parent.width
                         C.ButtonGroup.group: buttonGroup
                     }
-                    onModelChanged: console.warn(accountsView.model)
-                    model: []
+                    model: {
+                        let result = []
+                        page.account.remoteLibraries.forEach(remoteLib => {
+                                                                 if (!OTL.Application.libraryExists(
+                                                                         remoteLib.uid)) {
+                                                                     result.push(
+                                                                         remoteLib)
+                                                                 }
+                                                             })
+                        return result
+                    }
                 }
             }
 
@@ -200,7 +188,7 @@ C.Page {
                 Layout.fillWidth: true
                 onFocusChanged: {
                     if (focus) {
-                        createNewLibraryButton.checked = true;
+                        createNewLibraryButton.checked = true
                     }
                 }
             }

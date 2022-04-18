@@ -55,8 +55,6 @@ private slots:
     void password();
     void synchronize();
     void synchronize_data();
-    void findExistingEntries();
-    void findExistingEntries_data();
     void cleanup() {}
     void cleanupTestCase() {}
 
@@ -255,67 +253,6 @@ void WebDAVSynchronizerTest::synchronize()
 }
 
 void WebDAVSynchronizerTest::synchronize_data()
-{
-    createDavClients();
-}
-
-void WebDAVSynchronizerTest::findExistingEntries()
-{
-    QFETCH(QObject*, client);
-    auto davClient = static_cast<WebDAVSynchronizer*>(client);
-
-    QTemporaryDir dir1;
-    QTemporaryDir dir2;
-    QList<QUuid> uids;
-
-    {
-        Library lib(dir1.path());
-        lib.setName("foo");
-        lib.save();
-        uids.append(lib.uid());
-    }
-    {
-        Library lib(dir2.path());
-        lib.setName("bar");
-        lib.save();
-        uids.append(lib.uid());
-    }
-
-    auto dirName = QUuid::createUuid().toString() + "-" + __func__;
-
-    davClient->setDirectory(dir1.path());
-    davClient->setRemoteDirectory(dirName + "/lib1.otl");
-    davClient->synchronize();
-
-    davClient->setDirectory(dir2.path());
-    davClient->setRemoteDirectory(dirName + "/OpenTodoList/lib2.otl");
-    davClient->synchronize();
-
-    davClient->setRemoteDirectory(dirName);
-    QSignalSpy spy(davClient, &WebDAVSynchronizer::existingLibrariesChanged);
-    davClient->findExistingLibraries();
-    spy.wait();
-    auto existingLibs = davClient->existingLibraries();
-    QCOMPARE(existingLibs.length(), 2);
-    SynchronizerExistingLibrary lib1 = existingLibs.at(0).value<SynchronizerExistingLibrary>();
-    SynchronizerExistingLibrary lib2 = existingLibs.at(1).value<SynchronizerExistingLibrary>();
-    QVERIFY(lib1.name() == "foo" || lib2.name() == "foo");
-    QVERIFY(lib1.name() == "bar" || lib2.name() == "bar");
-    QVERIFY(lib1.name() != lib2.name());
-    QVERIFY(uids.contains(lib1.uid()));
-    QVERIFY(uids.contains(lib2.uid()));
-    QVERIFY(lib1.uid() != lib2.uid());
-    for (auto lib : existingLibs) {
-        auto l = lib.value<SynchronizerExistingLibrary>();
-        if (l.name() == "foo") {
-            QVERIFY(l.path() == "/lib1.otl");
-        } else {
-            QVERIFY(l.path() == "/OpenTodoList/lib2.otl");
-        }
-    }
-}
-
-void WebDAVSynchronizerTest::findExistingEntries_data()
 {
     createDavClients();
 }

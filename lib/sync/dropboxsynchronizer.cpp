@@ -27,8 +27,6 @@ void DropboxSynchronizer::synchronize() {}
 
 void DropboxSynchronizer::stopSync() {}
 
-void DropboxSynchronizer::findExistingLibraries() {}
-
 QVariantMap DropboxSynchronizer::toMap() const
 {
     return QVariantMap {};

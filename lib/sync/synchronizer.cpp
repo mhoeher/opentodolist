@@ -21,12 +21,15 @@
 
 #include <QDir>
 #include <QFile>
+#include <QJsonDocument>
 #include <QMap>
 #include <QMetaObject>
 
 #include <functional>
 
-#include "webdavsynchronizer.h"
+#include "sync/webdavsynchronizer.h"
+#include "sync/dropboxsynchronizer.h"
+
 #include "utils/jsonutils.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Synchronizer", QtWarningMsg)
@@ -53,11 +56,9 @@ Synchronizer::Synchronizer(QObject* parent)
       m_accountUid(),
       m_synchronizing(false),
       m_creatingDirectory(false),
-      m_findingLibraries(false),
       m_createDirs(false),
       m_directory(),
       m_remoteDirectory(),
-      m_existingLibraries(),
       m_lastSync(),
       m_log()
 {
@@ -91,31 +92,6 @@ void Synchronizer::setSynchronizing(bool synchronizing)
     if (m_synchronizing != synchronizing) {
         m_synchronizing = synchronizing;
         emit synchronizingChanged();
-    }
-}
-
-/**
- * @brief Set the list of existing libraries.
- */
-void Synchronizer::setExistingLibraries(const QVariantList& existingLibraries)
-{
-    if (existingLibraries != m_existingLibraries) {
-        m_existingLibraries = existingLibraries;
-        emit existingLibrariesChanged();
-    }
-}
-
-/**
- * @brief Set the finding libraries status.
- *
- * This method shall be called in sub-classes to indicate that searching for
- * libraries started or finished.
- */
-void Synchronizer::setFindingLibraries(bool findingLibraries)
-{
-    if (m_findingLibraries != findingLibraries) {
-        m_findingLibraries = findingLibraries;
-        emit findingLibrariesChanged();
     }
 }
 
@@ -274,16 +250,6 @@ QUuid Synchronizer::uid() const
     return m_uuid;
 }
 
-bool Synchronizer::findingLibraries() const
-{
-    return m_findingLibraries;
-}
-
-QVariantList Synchronizer::existingLibraries() const
-{
-    return m_existingLibraries;
-}
-
 bool Synchronizer::createDirs() const
 {
     return m_createDirs;
@@ -393,7 +359,10 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory, QObject* par
     Synchronizer* result = nullptr;
     if (!directory.isEmpty()) {
         static QMap<QString, std::function<Synchronizer*(QObject*)>> Synchronizers = {
-            { "WebDAVSynchronizer", [](QObject* parent) { return new WebDAVSynchronizer(parent); } }
+            { "WebDAVSynchronizer",
+              [](QObject* parent) { return new WebDAVSynchronizer(parent); } },
+            { "DropboxSynchronizer",
+              [](QObject* parent) { return new DropboxSynchronizer(parent); } },
         };
         QDir dir(directory);
         auto absFilePath = dir.absoluteFilePath(SaveFileName);
@@ -412,19 +381,6 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory, QObject* par
     }
     return result;
 }
-
-/**
- * @brief Start searching for existing libraries.
- *
- * This method triggers a search for existing libraries in the currently
- * set remote directory of the synchronizer. When the search is finished,
- * the existingLibraries property of the synchronizer is updated.
- *
- * The default implementation of this method does nothing. Sub-classes
- * can implement it if the appropriate functionality is supported by
- * the respective backends.
- */
-void Synchronizer::findExistingLibraries() {}
 
 /**
  * @brief Save the settings of the synchronizer to a variant map.
@@ -461,51 +417,4 @@ void Synchronizer::fromMap(const QVariantMap& map)
     m_createDirs = map.value("createDirs", false).toBool();
     m_lastSync = map.value("lastSync", m_lastSync).toDateTime();
     m_accountUid = map.value("account", QUuid()).toUuid();
-}
-
-/**
- * @brief Constructor.
- */
-SynchronizerExistingLibrary::SynchronizerExistingLibrary() : m_name(), m_path() {}
-
-/**
- * @brief The name if the library.
- */
-QString SynchronizerExistingLibrary::name() const
-{
-    return m_name;
-}
-
-/**
- * @brief Set the library name.
- */
-void SynchronizerExistingLibrary::setName(const QString& name)
-{
-    m_name = name;
-}
-
-/**
- * @brief The path (relative to the Synchronizer's remote directory).
- */
-QString SynchronizerExistingLibrary::path() const
-{
-    return m_path;
-}
-
-/**
- * @brief Set the path of the library.
- */
-void SynchronizerExistingLibrary::setPath(const QString& path)
-{
-    m_path = path;
-}
-
-QUuid SynchronizerExistingLibrary::uid() const
-{
-    return m_uid;
-}
-
-void SynchronizerExistingLibrary::setUid(const QUuid& uid)
-{
-    m_uid = uid;
 }

@@ -21,6 +21,7 @@
 #include <QSignalSpy>
 #include <QTest>
 
+#include "datamodel/library.h"
 #include "sync/owncloudaccount.h"
 #include "../test-utils.h"
 
@@ -34,6 +35,8 @@ private slots:
     void init() {}
     void login();
     void login_data();
+    void findExistingLibraries();
+    void findExistingLibraries_data();
     void cleanup() {}
     void cleanupTestCase() {}
 };
@@ -60,6 +63,73 @@ void OwnCloudAccountTest::login()
 }
 
 void OwnCloudAccountTest::login_data()
+{
+    addWebDAVServerTestUrls<WebDAVAccount::OwnCloud>();
+}
+
+void OwnCloudAccountTest::findExistingLibraries()
+{
+    QFETCH(QUrl, url);
+
+    OwnCloudAccount account;
+    account.setBaseUrl(url.toString());
+    account.setUsername(url.userName());
+    account.setPassword(url.password());
+
+    QTemporaryDir dir1;
+    QTemporaryDir dir2;
+    QList<QUuid> uids;
+    QList<QString> names;
+    QList<QString> paths;
+
+    {
+        Library lib(dir1.path());
+        lib.setName("foo");
+        lib.save();
+        uids.append(lib.uid());
+        names.append(lib.name());
+        paths.append("/" + QUuid::createUuid().toString() + ".otl");
+    }
+    {
+        Library lib(dir2.path());
+        lib.setName("bar");
+        lib.save();
+        uids.append(lib.uid());
+        names.append(lib.name());
+        paths.append("/OpenTodoList/" + QUuid::createUuid().toString() + ".otl");
+    }
+
+    auto davClient = account.createSynchronizer();
+
+    davClient->setDirectory(dir1.path());
+    davClient->setRemoteDirectory(paths[0]);
+    davClient->synchronize();
+
+    davClient->setDirectory(dir2.path());
+    davClient->setRemoteDirectory(paths[1]);
+    davClient->synchronize();
+
+    delete davClient;
+
+    QSignalSpy spy(&account, &WebDAVAccount::remoteLibrariesChanged);
+    QCOMPARE(account.remoteLibraries().length(), 0);
+    account.findExistingLibraries();
+    spy.wait();
+    const auto& existingLibs = account.remoteLibraries();
+    for (int i = 0; i < uids.length(); ++i) {
+        bool found = false;
+        for (const auto& existingLib : existingLibs) {
+            if (existingLib.name() == names[i] && existingLib.uid() == uids[i]
+                && existingLib.path() == paths[i]) {
+                found = true;
+                break;
+            }
+        }
+        QVERIFY2(found, qUtf8Printable("Found expected library at index " + QString::number(i)));
+    }
+}
+
+void OwnCloudAccountTest::findExistingLibraries_data()
 {
     addWebDAVServerTestUrls<WebDAVAccount::OwnCloud>();
 }

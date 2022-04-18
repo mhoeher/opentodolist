@@ -86,6 +86,7 @@ public:
     void setAccountSecrets(const QString& secrets) override;
     Synchronizer* createSynchronizer() const override;
     void login() override;
+    void findExistingLibraries() override;
 
 protected:
     virtual void fillServerType(SynqClient::WebDAVServerType& type) const;

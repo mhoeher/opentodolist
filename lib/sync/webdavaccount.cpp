@@ -22,8 +22,13 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
+#include <SynqClient/DownloadFileJob>
+#include <SynqClient/ListFilesJob>
+#include <SynqClient/CompositeJob>
 #include <SynqClient/WebDAVJobFactory>
 #include <SynqClient/libsynqclient.h>
+
+#include "datamodel/library.h"
 
 /**
  * @brief An account used to connect to a WebDAV server.
@@ -228,6 +233,66 @@ void WebDAVAccount::login()
         emit loginFinished(success);
     });
     factory->testServer();
+}
+
+/**
+ * @brief Implementation of Account::findExistingLibraries().
+ */
+void WebDAVAccount::findExistingLibraries()
+{
+    if (findingRemoteLibraries()) {
+        return;
+    }
+
+    setFindingRemoteLibraries(true);
+
+    auto compositeJob = new SynqClient::CompositeJob(this);
+    auto factory = createWebDAVJobFactory(compositeJob);
+
+    QSharedPointer<QList<RemoteLibraryInfo>> existingLibraries(new QList<RemoteLibraryInfo>);
+
+    QStringList dirsToCheck { "/", "/OpenTodoList" };
+    for (const auto& dir : qAsConst(dirsToCheck)) {
+        auto listFilesJob = factory->listFiles(compositeJob);
+        listFilesJob->setPath(dir);
+        compositeJob->addJob(listFilesJob);
+        connect(listFilesJob, &SynqClient::ListFilesJob::finished, this, [=]() {
+            if (listFilesJob->error() == SynqClient::JobError::NoError) {
+                auto entries = listFilesJob->entries();
+                for (const auto& entry : qAsConst(entries)) {
+                    if (entry.isDirectory() && entry.name().endsWith(".otl")) {
+                        // The entry is a folder, most likely containing OpenTodoList data. Try to
+                        // download the contained "library.json" file:
+                        auto downloadJob = factory->downloadFile(compositeJob);
+                        downloadJob->setRemoteFilename(listFilesJob->path() + "/" + entry.name()
+                                                       + "/" + Library::LibraryFileName);
+                        connect(downloadJob, &SynqClient::DownloadFileJob::finished, this, [=]() {
+                            if (downloadJob->error() == SynqClient::JobError::NoError) {
+                                auto doc = QJsonDocument::fromJson(downloadJob->data());
+                                if (doc.isObject()) {
+                                    auto map = doc.toVariant().toMap();
+                                    RemoteLibraryInfo library;
+                                    library.setName(map.value("name").toString());
+                                    QFileInfo fi(QDir::cleanPath(downloadJob->remoteFilename()));
+                                    library.setPath(fi.path());
+                                    library.setUid(map.value("uid").toUuid());
+                                    existingLibraries->append(library);
+                                }
+                            }
+                        });
+                        compositeJob->addJob(downloadJob);
+                    }
+                }
+            }
+        });
+    }
+    connect(compositeJob, &SynqClient::CompositeJob::finished, this, [=]() {
+        setRemoteLibraries(*existingLibraries);
+        setFindingRemoteLibraries(false);
+        compositeJob->deleteLater();
+    });
+
+    compositeJob->start();
 }
 
 void WebDAVAccount::fillServerType(SynqClient::WebDAVServerType& type) const

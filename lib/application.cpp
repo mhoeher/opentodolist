@@ -510,7 +510,7 @@ Library* Application::addNewLibraryToAccount(Account* account, const QString& na
 }
 
 Library* Application::addExistingLibraryToAccount(Account* account,
-                                                  const SynchronizerExistingLibrary& library)
+                                                  const RemoteLibraryInfo& library)
 {
     Library* result = nullptr;
     if (account && !library.uid().isNull() && !isLibraryUid(library.uid())) {

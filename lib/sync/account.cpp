@@ -51,8 +51,11 @@ Account::Account(QObject* parent)
       m_type(Invalid),
       m_name(),
       m_loggingIn(false),
-      m_online(false)
+      m_online(false),
+      m_findingRemoteLibraries(false),
+      m_remoteLibraries()
 {
+    qRegisterMetaType<QList<RemoteLibraryInfo>>();
 }
 
 /**
@@ -219,6 +222,49 @@ void Account::setOnline(bool newOnline)
 }
 
 /**
+ * @brief The list of remote libraries stored in the account.
+ *
+ * This is the list of accounts that are stored remotely on the account. Not all acounts might also
+ * be synchronized locally. To populate this list, call findExistingLibraries().
+ */
+const QList<RemoteLibraryInfo>& Account::remoteLibraries() const
+{
+    return m_remoteLibraries;
+}
+
+/**
+ * @brief Set the list of existing remote libraries.
+ */
+void Account::setRemoteLibraries(const QList<RemoteLibraryInfo>& newRemoteLibraries)
+{
+    if (m_remoteLibraries == newRemoteLibraries)
+        return;
+    m_remoteLibraries = newRemoteLibraries;
+    emit remoteLibrariesChanged();
+}
+
+/**
+ * @brief The account is currently looking for existing libraries on the server.
+ *
+ * If this property is true, the account is currently looking for existing libraries on the remote.
+ */
+bool Account::findingRemoteLibraries() const
+{
+    return m_findingRemoteLibraries;
+}
+
+/**
+ * @brief Set the findingRemoteLibraries property.
+ */
+void Account::setFindingRemoteLibraries(bool newFindingRemoteLibraries)
+{
+    if (m_findingRemoteLibraries == newFindingRemoteLibraries)
+        return;
+    m_findingRemoteLibraries = newFindingRemoteLibraries;
+    emit findingRemoteLibrariesChanged();
+}
+
+/**
  * @brief The globally unique ID of the account.
  */
 QUuid Account::uid() const
@@ -259,3 +305,21 @@ void Account::login()
     setOnline(false);
     emit loginFinished(false);
 }
+
+/**
+ * @brief Start searching for existing libraries.
+ *
+ * This method triggers a search for existing libraries.
+ *
+ * When the search is finished,
+ * the existingLibraries property of the synchronizer is updated.
+ *
+ * The default implementation of this method does nothing. Sub-classes
+ * can implement it if the appropriate functionality is supported by
+ * the respective backends. The implementation should:
+ *
+ * 1. Call setFindingRemoteLibraries(true).
+ * 2. Look for existing libraries and populate the remoteLibraries property.
+ * 3. Call setFindingRemoteLibraries(false).
+ */
+void Account::findExistingLibraries() {}
