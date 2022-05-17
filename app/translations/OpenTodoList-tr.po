@@ -110,37 +110,37 @@ msgstr "leylak"
 #: ../Windows/DeleteItemDialog.qml:19
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
-msgstr "Öğeyi silmek?"
+msgstr "Öğe Silinsin Mi ?"
 
 #: ../Windows/DeleteItemDialog.qml:32
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> resmini gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "<strong>%1</strong> resmini gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/DeleteItemDialog.qml:36
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> yapılacaklar listesini gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "<strong>%1</strong> yapılacaklar listesini gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/DeleteItemDialog.qml:40
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Gerçekten <strong>%1</strong> yapılacak olanı silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "Gerçekten <strong>%1</strong> yapılacak olanı silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/DeleteItemDialog.qml:44
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> görevini gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "<strong>%1</strong> görevini gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/DeleteItemDialog.qml:48
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>%1</strong> notunu gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "<strong>%1</strong> notunu gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
-msgstr "Kitaplık silinsin mi?"
+msgstr "Kitaplık Silinsin Mi ?"
 
 #: ../Windows/DeleteLibraryDialog.qml:33
 msgctxt "DeleteLibraryDialog|"
@@ -175,7 +175,7 @@ msgstr "Son tarih:"
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
-msgstr "notlar"
+msgstr "Notlar"
 
 #: ../Widgets/LibrariesSideBar.qml:384
 msgctxt "LibrariesSideBar|"
@@ -230,7 +230,7 @@ msgstr "Beyaz"
 #: ../Pages/LibraryPage.qml:205
 msgctxt "LibraryPage|"
 msgid "Rename"
-msgstr "Adını değiştirmek"
+msgstr "Yeniden Adlandır"
 
 #: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
@@ -450,7 +450,7 @@ msgstr "Yarın"
 #: ../Pages/ScheduleViewPage.qml:166
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
-msgstr "Bu hafta daha sonra"
+msgstr "Bu Haftanın Sonunda"
 
 #: ../Pages/ScheduleViewPage.qml:168
 msgctxt "ScheduleViewPage|"
@@ -782,7 +782,7 @@ msgstr "Güncelleme Tarihi:"
 #: ../Windows/MainWindow.qml:308
 msgctxt "MainWindow|"
 msgid "Rename"
-msgstr "Adını değiştirmek"
+msgstr "Yeniden Adlandır"
 
 #: ../Windows/MainWindow.qml:341
 msgctxt "MainWindow|"
@@ -973,7 +973,7 @@ msgstr "<strong>% 1 </strong> hesabını gerçekten kaldırmak istiyor musunuz? 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Edit Account"
-msgstr "Hesabı düzenlemek"
+msgstr "Hesabı Düzenle"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
 msgctxt "EditWebDAVAccountPageForm.ui|"
@@ -1028,7 +1028,7 @@ msgstr "Hesaplar"
 #: ../Widgets/LibrariesSideBar.qml:211
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
-msgstr "Uygulamayı Çevir ..."
+msgstr "Uygulamayı Çevir..."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1058,12 +1058,12 @@ msgstr "Sunucuda kitaplık bulunamadı."
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Searching existing libraries..."
-msgstr "Mevcut kütüphaneler aranıyor ..."
+msgstr "Mevcut kütüphaneler aranıyor..."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create a New Library"
-msgstr "Yeni Kitaplık Oluşturma"
+msgstr "Yeni Kitaplık Oluştur"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1078,7 +1078,7 @@ msgstr "Yeni kütüphanemin adı"
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Open a Folder as a Library"
-msgstr "Klasörü Kütüphane Olarak Açma"
+msgstr "Klasörü Kütüphane Olarak Aç"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
 msgctxt "NewLibraryInFolderPageForm.ui|"
@@ -1098,7 +1098,7 @@ msgstr "Kütüphane olarak kullanılacak klasörün yolu"
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Select"
-msgstr "seçmek"
+msgstr "Seç"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
 msgctxt "NewLibraryInFolderPageForm.ui|"
@@ -1108,7 +1108,7 @@ msgstr "Ad:"
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Yerel Kütüphane Adım"
+msgstr "Yerel Kitaplığımın Adı"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
 msgctxt "NewLibraryPageForm.ui|"
@@ -1153,7 +1153,7 @@ msgstr "Ad:"
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:53
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Yerel Kütüphane Adım"
+msgstr "Yerel Kitaplığımın Adı"
 
 #: ../Pages/NewWebDAVAccountPage.qml:197
 msgctxt "NewWebDAVAccountPage|"
@@ -1214,12 +1214,12 @@ msgstr "Sunucuya bağlanırken hata oluştu. Lütfen kullanıcı adınızı, şi
 #: ../Windows/DeleteItemDialog.qml:52
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>% 1 </strong> sayfasını gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "<strong>% 1 </strong> sayfasını gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/MainWindow.qml:109
 msgctxt "MainWindow|"
 msgid "Synchronizing library..."
-msgstr "Kütüphane senkronize ediliyor ..."
+msgstr "Kütüphane senkronize ediliyor..."
 
 #: ../Pages/NotePage.qml:132
 msgctxt "NotePage|"
@@ -1259,17 +1259,17 @@ msgstr "Tespit Edilen Sorunlar"
 #: ../Utils/Translations.qml:28
 msgctxt "Translations|"
 msgid "Danish"
-msgstr "Danimarkalı"
+msgstr "Danca"
 
 #: ../Utils/Translations.qml:36
 msgctxt "Translations|"
 msgid "Greek"
-msgstr "Yunan"
+msgstr "Yunanca"
 
 #: ../Utils/Translations.qml:56
 msgctxt "Translations|"
 msgid "Filipino"
-msgstr "Filipinli"
+msgstr "Filipince"
 
 #: ../Utils/Translations.qml:64
 msgctxt "Translations|"
@@ -1279,17 +1279,17 @@ msgstr "Macarca"
 #: ../Utils/Translations.qml:68
 msgctxt "Translations|"
 msgid "Italian"
-msgstr "İtalyan"
+msgstr "İtalyanca"
 
 #: ../Utils/Translations.qml:120
 msgctxt "Translations|"
 msgid "Vietnamese"
-msgstr "Vietnam"
+msgstr "Vietnamca"
 
 #: ../Utils/Translations.qml:44
 msgctxt "Translations|"
 msgid "Spanish"
-msgstr "İspanyol"
+msgstr "İspanyolca"
 
 #: ../Utils/Translations.qml:80
 msgctxt "Translations|"
@@ -1314,12 +1314,12 @@ msgstr "Portekizce"
 #: ../Utils/Translations.qml:96
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
-msgstr "Portekiz (Brezilyası)"
+msgstr "Brezilya Portekizcesi"
 
 #: ../Utils/Translations.qml:112
 msgctxt "Translations|"
 msgid "Turkish"
-msgstr "Türk"
+msgstr "Türkçe"
 
 #: ../Widgets/ItemCreatedNotification.qml:77
 msgctxt "ItemCreatedNotification|"
@@ -1329,7 +1329,7 @@ msgstr "Reddet"
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
 msgid "Spanish (Latin America & Caribbean)"
-msgstr "İspanyolca (Latin Amerika ve Karayipler)"
+msgstr "Latin Amerika ve Karayipler İspanyolcası"
 
 #: ../Utils/Translations.qml:100
 msgctxt "Translations|"
@@ -1344,7 +1344,7 @@ msgstr "İsveççe"
 #: ../Utils/Translations.qml:108
 msgctxt "Translations|"
 msgid "Turkmen"
-msgstr "Türkmen"
+msgstr "Türkmence"
 
 #: ../Actions/DeleteItem.qml:8
 msgctxt "DeleteItem|"
@@ -1404,7 +1404,7 @@ msgstr "Gelecek hafta"
 #: ../Windows/NewItemWithDueDateDialog.qml:96
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
-msgstr "Seç ..."
+msgstr "Seç..."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:115
 msgctxt "NewItemWithDueDateDialog|"
@@ -1414,7 +1414,7 @@ msgstr "Başlık:"
 #: ../Windows/NewItemWithDueDateDialog.qml:120
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
-msgstr "Yeni öğenizin başlığı ..."
+msgstr "Yeni öğenizin başlığı..."
 
 #: ../Windows/NewItemWithDueDateDialog.qml:126
 msgctxt "NewItemWithDueDateDialog|"
@@ -1479,12 +1479,12 @@ msgstr "Tamam olarak işaretlendiğinde tarihe göre yineleme"
 #: ../Actions/RenameItem.qml:8
 msgctxt "RenameItem|"
 msgid "Rename"
-msgstr "Adını değiştirmek"
+msgstr "Adını Değiştir"
 
 #: ../Actions/SetDueNextWeek.qml:8
 msgctxt "SetDueNextWeek|"
 msgid "Set Due This Week"
-msgstr "Bu Hafta Vadesi Ayarla"
+msgstr "Teslim Tarihi Bu Hafta"
 
 #: ../Actions/SetDueThisWeek.qml:8
 msgctxt "SetDueThisWeek|"
@@ -1499,12 +1499,12 @@ msgstr "Bitiş Tarihini Seçin"
 #: ../Actions/SetDueToday.qml:8
 msgctxt "SetDueToday|"
 msgid "Set Due Today"
-msgstr "Teslim Tarihi Bugün"
+msgstr "Teslim Tarihini Bugüne Ayarla"
 
 #: ../Actions/SetDueTomorrow.qml:8
 msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
-msgstr "Teslim Tarihi Yarın"
+msgstr "Teslim Tarihini Yarına Ayarla"
 
 #: ../Widgets/TodosWidgetDelegate.qml:276
 msgctxt "TodosWidgetDelegate|"
@@ -1544,7 +1544,7 @@ msgstr "Hesap Türünü Seçin"
 #: ../Pages/AccountTypeSelectionPage.qml:81
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
-msgstr "hesap tipi"
+msgstr "Hesap Türü"
 
 #: ../Pages/AccountTypeSelectionPage.qml:102
 msgctxt "AccountTypeSelectionPage|"
@@ -1609,12 +1609,12 @@ msgstr "Tamamlanan Öğeler Silinsin mi?"
 #: ../Windows/DeleteCompletedItemsDialog.qml:42
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "<strong>% 1 </strong> yapılacaklar listesindeki tüm tamamlanmış yapılacakları gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "<strong>% 1 </strong> yapılacaklar listesindeki tüm tamamlanmış yapılacakları gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Windows/DeleteCompletedItemsDialog.qml:48
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Yapılacak <strong>% 1 </strong> işleminde yapılan tüm görevleri gerçekten silmek istiyor musunuz? Bu geri alınamaz."
+msgstr "Yapılacak <strong>% 1 </strong> işleminde yapılan tüm görevleri gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz."
 
 #: ../Pages/EditNextCloudAccountPage.qml:33
 #: ../Pages/EditNextCloudAccountPage.qml:69
@@ -1695,7 +1695,7 @@ msgstr "Yukarı Taşı"
 #: ../Widgets/LibrariesSideBar.qml:371
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
-msgstr "Aşağı inmek"
+msgstr "Aşağı Taşı"
 
 #: ../Windows/MainWindow.qml:398
 msgctxt "MainWindow|"
@@ -1871,12 +1871,12 @@ msgstr "Bağış Yap"
 #: ../Windows/MainWindow.qml:319
 msgctxt "MainWindow|"
 msgid "Move"
-msgstr "Hareket"
+msgstr "Taşı"
 
 #: ../Actions/MoveTodo.qml:11
 msgctxt "MoveTodo|"
 msgid "Move"
-msgstr "Hareket"
+msgstr "Taşı"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:104
 msgctxt "NewLibraryFromAccountPage|"
@@ -1946,7 +1946,7 @@ msgstr "Kitaplık olarak kullanılacak bir klasörün yolu"
 #: ../Pages/NewLibraryInFolderPage.qml:120
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
-msgstr "Seçiniz"
+msgstr "Seç"
 
 #: ../Pages/NewLibraryInFolderPage.qml:125
 msgctxt "NewLibraryInFolderPage|"
@@ -2096,17 +2096,17 @@ msgstr "Ukraynaca"
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Süreci Ayarla"
 
 #: ../Actions/SetManualProgressAction.qml:8
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Süreci Ayarla"
 
 #: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Özel yazı fontu kullan"
 
 #: ../Pages/SettingsPage.qml:176
 msgctxt "SettingsPage|"
@@ -2145,7 +2145,9 @@ msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
+msgstr "Bunu kullanıcı arayüzünü manuel olarak büyütmek için kullanınız. Varsayılan ayarlarda, uygulama kendi ayarlarını cihaz ayarlarınıza göre uyarlayacaktır. Eğer bu ayar çalışması gerektiği gibi çalışmıyorsa, buradan Özel Büyütme Ayarı Faktörünü ayarlayabilirsiniz.\n"
+"\n"
+"Bu ayar değişikliği uygulamanın yeniden başlatılmasını gerektirir."
 
 #: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
@@ -2155,17 +2157,17 @@ msgstr ""
 #: ../Pages/LogViewPage.qml:32
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
-msgstr ""
+msgstr "Yukarıya Kaydır"
 
 #: ../Pages/LogViewPage.qml:38
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
-msgstr ""
+msgstr "Aşağıya Kaydır"
 
 #: ../Pages/ProblemsPage.qml:47
 msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
-msgstr ""
+msgstr "Kütüphane için eşitleme başarısız oldu"
 
 #: ../Actions/PromoteTask.qml:12
 msgctxt "PromoteTask|"
@@ -2185,107 +2187,107 @@ msgstr ""
 #: ../Pages/AboutPage.qml:91
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
+msgstr "Sistem Bilgisini Kopyala"
 
 #: ../appstartup.cpp:341
 msgctxt "AppStartup|"
 msgid "Quick Note"
-msgstr ""
+msgstr "Hızlı Not"
 
 #: ../Widgets/ItemDueDateEditor.qml:79
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
-msgstr ""
+msgstr "Her yıl yinelenir."
 
 #: ../Widgets/ItemDueDateEditor.qml:83
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
-msgstr ""
+msgstr "Her %1 haftada bir yinelenir."
 
 #: ../Widgets/ItemDueDateEditor.qml:85
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
-msgstr ""
+msgstr "Her %1 ayda bir yinelenir."
 
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
-msgstr ""
+msgstr "Geri Al"
 
 #: ../appstartup.cpp:280 ../appstartup.cpp:287
 msgctxt "QObject|"
 msgid "unknown"
-msgstr ""
+msgstr "Bilinmiyor"
 
 #: ../Windows/QuickNoteWindow.qml:19
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
-msgstr ""
+msgstr "Hızlı Notlar"
 
 #: ../Windows/QuickNoteWindow.qml:46
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
-msgstr ""
+msgstr "Hızlı Not Editörü"
 
 #: ../Windows/QuickNoteWindow.qml:57
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
-msgstr ""
+msgstr "Ana Sekmeyi Aç"
 
 #: ../Windows/QuickNoteWindow.qml:70
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
-msgstr ""
+msgstr "Hızlı Not Başlığı"
 
 #: ../Windows/QuickNoteWindow.qml:133
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: ../Windows/QuickNoteWindow.qml:140
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
-msgstr ""
+msgstr "Yazılan notları seçili olan kütüphaneye kaydet. Daha fazla kayıt seçenekleri için butona basılı tutunuz."
 
 #: ../Windows/QuickNoteWindow.qml:158
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
-msgstr ""
+msgstr "Not Olarak Kaydet"
 
 #: ../Windows/QuickNoteWindow.qml:169
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
-msgstr ""
+msgstr "Yapılacak Listesi Olarak Kaydet"
 
 #: ../Windows/QuickNoteWindow.qml:171
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
-msgstr ""
+msgstr "Hızlı Yapılacak Listesi"
 
 #: ../Windows/QuickNoteWindow.qml:161
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
-msgstr ""
+msgstr "Hızlı Not"
 
 #: ../Windows/QuickNoteWindow.qml:83
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
-msgstr ""
+msgstr "Notlarınızı Buraya Yazınız..."
 
 #: ../Windows/RecurrenceDialog.qml:47
 msgctxt "RecurrenceDialog|"
 msgid "Yearly"
-msgstr ""
+msgstr "Yıllık"
 
 #: ../Windows/RecurrenceDialog.qml:49
 msgctxt "RecurrenceDialog|"
 msgid "Every N Weeks"
-msgstr ""
+msgstr "Her N Hafta"
 
 #: ../Windows/RecurrenceDialog.qml:50
 msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
-msgstr ""
+msgstr "Her N Ay"
 
 #: ../Pages/SettingsPage.qml:129
 msgctxt "SettingsPage|"
@@ -2295,67 +2297,67 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:135
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
-msgstr ""
+msgstr "Tıklandığında Hızlı Notlar'ı Aç"
 
 #: ../Widgets/NoteItem.qml:75
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Teslim Tarihi %1"
 
 #: ../Widgets/TodoListItem.qml:76
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Teslim tarihi %1"
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: ../Pages/LibraryPage.qml:210
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Kütüphane Seç"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
+msgstr "Öğeyi Seç"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Ctrl+,"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Kütüphane Eşitleniyor..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
+msgstr "Geri Al"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Yeniden Adlandır"
 
 #: ../Components/ApplicationToolBarActions.qml:34
 msgctxt "ApplicationToolBarActions|"
@@ -2365,42 +2367,42 @@ msgstr ""
 #: ../Components/ApplicationToolBarActions.qml:45
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Kopyala"
 
 #: ../Components/ApplicationToolBarActions.qml:56
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Renk"
 
 #: ../Components/ApplicationToolBarActions.qml:67
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Etiket Ekle"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Dosya İliştir"
 
 #: ../Components/ApplicationToolBarActions.qml:83
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: ../Components/ApplicationToolBarActions.qml:90
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Sırala"
 
 #: ../Components/ApplicationToolBarActions.qml:98
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Teslim Tarihi Belirle"
 
 #: ../Components/ApplicationToolBarActions.qml:106
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: ../Components/ApplicationToolBarActions.qml:113
 msgctxt "ApplicationToolBarActions|"
@@ -2410,12 +2412,12 @@ msgstr ""
 #: ../Components/ApplicationToolBarActions.qml:120
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Süreci Ayarla"
 
 #: ../Pages/SettingsPage.qml:167
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
+msgstr "Masaüstü Modu"
 
 #: ../Utils/ItemUtils.qml:184
 msgctxt "ItemUtils|"
@@ -2440,17 +2442,17 @@ msgstr ""
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Tamamlananları Göster"
 
 #: ../Pages/TodoListPage.qml:216
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Sondakini göster"
 
 #: ../Pages/TodoPage.qml:274
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Tamamlananları Göster"
 
 #: ../Pages/TodoPage.qml:281
 msgctxt "TodoPage|"
