@@ -218,6 +218,10 @@ Synchronizer* WebDAVAccount::createSynchronizer() const
 
 void WebDAVAccount::login()
 {
+    if (loggingIn()) {
+        return;
+    }
+
     setOnline(false);
     setLoggingIn(true);
 
@@ -293,6 +297,17 @@ void WebDAVAccount::findExistingLibraries()
     });
 
     compositeJob->start();
+}
+
+/**
+ * @brief Implementation of Account::checkConnectivity().
+ */
+void WebDAVAccount::checkConnectivity()
+{
+    // TODO: Implement me (properly)
+    // rpdev/opentodolist#534
+    setOnline(true);
+    emit connectivityCheckFinished(true);
 }
 
 void WebDAVAccount::fillServerType(SynqClient::WebDAVServerType& type) const

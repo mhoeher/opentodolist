@@ -234,6 +234,8 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     &Application::showQuickNotesEditorRequested);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::serviceAboutToExit,
                     QCoreApplication::instance(), &QCoreApplication::quit);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::accountSecretChanged,
+                    this, &Application::onAccountSecretsChanged);
         }
     }
     return m_backgroundService;
@@ -1400,6 +1402,25 @@ void Application::onLocalCacheLibrariesChanged(const QVariantList& libraryUids)
         if (backgroundService) {
             backgroundService->notifyCacheLibrariesChanged(libraryUids, m_appInstanceUid);
         }
+    }
+}
+
+/**
+ * @brief The secrets of an account changed in the background service.
+ *
+ * This signal indicates that the secrets of the account with the given @p accountUid have
+ * changed. The secret is not @p secret.
+ */
+void Application::onAccountSecretsChanged(const QUuid& accountUid, const QString& secrets)
+{
+    auto account = loadAccount(accountUid);
+    if (account) {
+        qCDebug(log) << "Received new secrets for account" << accountUid
+                     << "from background service";
+        // Don't call "saveAccountSecrets" or the like to prevent an endless
+        // ping pong between the GUI and the background service (which also saves the secrets).
+        m_appSettings->setAccountSecret(account->uid(), secrets);
+        delete account;
     }
 }
 

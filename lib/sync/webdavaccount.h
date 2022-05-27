@@ -87,6 +87,7 @@ public:
     Synchronizer* createSynchronizer() const override;
     void login() override;
     void findExistingLibraries() override;
+    void checkConnectivity() override;
 
 protected:
     virtual void fillServerType(SynqClient::WebDAVServerType& type) const;

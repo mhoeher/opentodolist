@@ -41,6 +41,7 @@
 #include "sync/owncloudaccount.h"
 #include "sync/synchronizer.h"
 #include "sync/webdavsynchronizer.h"
+#include "sync/dropboxaccount.h"
 
 #include "utils/updateservice.h"
 #include "utils/syntaxhighlighting.h"
@@ -69,6 +70,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterType<WebDAVAccount>(uri, 1, 0, "WebDAVAccount");
     qmlRegisterType<NextCloudAccount>(uri, 1, 0, "NextCloudAccount");
     qmlRegisterType<OwnCloudAccount>(uri, 1, 0, "OwnCloudAccount");
+    qmlRegisterType<DropboxAccount>(uri, 1, 0, "DropboxAccount");
     qmlRegisterSingletonType<Application>(uri, 1, 0, "Application",
                                           [=](QQmlEngine*, QJSEngine*) { return m_application; });
     qmlRegisterSingletonInstance<Application>(uri, 1, 0, "Application", m_application);

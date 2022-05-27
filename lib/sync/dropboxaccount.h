@@ -24,6 +24,12 @@
 
 #include "account.h"
 
+// Forward declaractions:
+class QOAuth2AuthorizationCodeFlow;
+namespace SynqClient {
+class DropboxJobFactory;
+}
+
 class DropboxAccount : public Account
 {
     Q_OBJECT
@@ -34,9 +40,15 @@ public:
     explicit DropboxAccount(QObject* parent = nullptr);
 
     const QString& accessToken() const;
+
+public slots:
+
+    void verifyTokens();
+
 signals:
 
     void accessTokenChanged();
+    void authorizationUrlReceived(const QUrl& url);
 
 private:
     // OAuth props
@@ -49,6 +61,12 @@ private:
 
     void setAccessToken(const QString& newAccessToken);
 
+    // Utility methods
+    static QString createCodeVerifier();
+    QString getCodeChallenge() const;
+    SynqClient::DropboxJobFactory* createDropboxJobFactory(QObject* parent = nullptr) const;
+    QOAuth2AuthorizationCodeFlow* createOAuthAuthFlow(QObject* parent = nullptr) const;
+
     // Account interface
 public:
     void save(QSettings* settings) override;
@@ -56,6 +74,9 @@ public:
     QString accountSecrets() const override;
     void setAccountSecrets(const QString& secrets) override;
     Synchronizer* createSynchronizer() const override;
+    void login() override;
+    void findExistingLibraries() override;
+    void checkConnectivity() override;
 };
 
 #endif // SYNC_DROPBOXACCOUNT_H_

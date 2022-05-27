@@ -24,6 +24,7 @@
 #include "webdavaccount.h"
 #include "nextcloudaccount.h"
 #include "owncloudaccount.h"
+#include "dropboxaccount.h"
 
 /**
  * @class Account
@@ -86,6 +87,8 @@ Account* Account::createAccount(Type type, QObject* parent)
         return new NextCloudAccount(parent);
     case OwnCloud:
         return new OwnCloudAccount(parent);
+    case Dropbox:
+        return new DropboxAccount(parent);
     case Invalid:
         return nullptr;
     }
@@ -323,3 +326,26 @@ void Account::login()
  * 3. Call setFindingRemoteLibraries(false).
  */
 void Account::findExistingLibraries() {}
+
+/**
+ * @brief Check if the account can be brought online.
+ *
+ * This method is regularly called in order to test if the account can reach the server. The
+ * base class implementation sets the online property to false and emits connectivityCheckFinished()
+ * with a value of false. Concrete subclasses shall properly implement this method by running the
+ * following sequence:
+ *
+ * - First, call setOnline(false).
+ * - Run any kind of test which is needed to check if the server can be reached.
+ * - Call setOnline() with the result of these tests and finally emit connectivityCheckFinished
+ *   also with the result of this test.
+ *
+ *  @note In particular, this is a good place for token based connections to refresh their access
+ *  tokens. Make sure to emit the accountSecretsChanged() signal, so that the secrets are properly
+ *  persisted.
+ */
+void Account::checkConnectivity()
+{
+    setOnline(false);
+    emit connectivityCheckFinished(false);
+}

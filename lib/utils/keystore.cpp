@@ -360,7 +360,7 @@ void KeyStore::loadCredentials(const QString& key)
         }
         emit credentialsLoaded(key, secret, success);
     });
-    QTimer::singleShot(2000, job, &QKeychain::Job::start);
+    QTimer::singleShot(3000, job, &QKeychain::Job::start);
 #endif
 }
 

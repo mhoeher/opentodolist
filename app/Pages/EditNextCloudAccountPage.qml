@@ -96,7 +96,7 @@ C.Page {
                         d.loginFlow.startLoginFlow(serverAddressEdit.text)
                     }
                     enabled: serverAddressEdit.text !== ""
-                             && (d.loginFlow === null
+                             && (d.loginFlow == null
                                  || !d.loginFlow.flowRunning)
                 }
 

@@ -23,7 +23,8 @@ C.Page {
         let accountTypeName = OTL.Application.accountTypeToString(account.type)
         page.openPage(Qt.resolvedUrl(
                           "./Edit" + accountTypeName + "AccountPage.qml"), {
-                          "account": account
+                          "account": OTL.Application.loadAccount(
+                                         account.uid) // Load a copy of the account to ensure we have latest secrets
                       })
     }
 

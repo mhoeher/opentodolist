@@ -267,6 +267,7 @@ private slots:
                                                   const QUuid& appInstanceUid);
     void onLocalCacheDataChanged();
     void onLocalCacheLibrariesChanged(const QVariantList& libraryUids);
+    void onAccountSecretsChanged(const QUuid& accountUid, const QString& secrets);
 };
 
 #endif // APPLICATION_H_

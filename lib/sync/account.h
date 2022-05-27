@@ -33,6 +33,7 @@ class ApplicationSettings;
 class Account : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QUuid uid READ uid NOTIFY uidChanged)
     Q_PROPERTY(Account::Type type READ type NOTIFY typeChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(bool loggingIn READ loggingIn NOTIFY loggingInChanged)
@@ -47,7 +48,7 @@ class Account : public QObject
 public:
     explicit Account(QObject* parent = nullptr);
 
-    enum Type { Invalid = 0, WebDAV, NextCloud, OwnCloud };
+    enum Type { Invalid = 0, WebDAV, NextCloud, OwnCloud, Dropbox };
 
     Q_ENUM(Type);
 
@@ -65,6 +66,7 @@ public:
 
     Q_INVOKABLE virtual void login();
     Q_INVOKABLE virtual void findExistingLibraries();
+    Q_INVOKABLE virtual void checkConnectivity();
 
     /**
      * @brief Get secrets (e.g. passwords) needed for communication with the server.
@@ -129,6 +131,21 @@ signals:
      * @brief The findingRemoteLibraries property has changed.
      */
     void findingRemoteLibrariesChanged();
+
+    /**
+     * @brief The connectivity check finished.
+     *
+     * This signal is emitted to indicate that the check for connectivity to the server has
+     * finished. The @p online argument indicates if the account currently is online, i.e. the
+     * check was successful. If it is false, it means that no connection to the account could
+     * be made.
+     */
+    void connectivityCheckFinished(bool online);
+
+    /**
+     * @brief Indicates that the account secrets have changed.
+     */
+    void accountSecretsChanged();
 
 protected:
     void setType(const Type& type);

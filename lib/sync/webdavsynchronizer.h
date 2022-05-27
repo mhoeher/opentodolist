@@ -89,7 +89,6 @@ signals:
     void workaroundsChanged();
 
 private:
-    static const QString SyncLockFileName;
 
     QUrl m_url;
 

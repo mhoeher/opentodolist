@@ -51,8 +51,6 @@
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
 
-const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
-
 static SynqClient::WebDAVServerType
 toSynqClientServerType(WebDAVSynchronizer::WebDAVServerType type)
 {
@@ -149,7 +147,7 @@ void WebDAVSynchronizer::synchronize()
             SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
             sync.setSyncStateDatabase(&db);
 
-            QRegularExpression pathRe(
+            static QRegularExpression pathRe(
                     R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[a-zA-Z\.]+)?)?)?$)");
             sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
                 auto result = pathRe.match(path).hasMatch();
@@ -164,16 +162,6 @@ void WebDAVSynchronizer::synchronize()
             setSynchronizing(true);
             m_stopRequested = false;
             m_hasSyncErrors = false;
-            {
-                QDir syncDir(directory());
-                QFile file(syncDir.absoluteFilePath(SyncLockFileName));
-                if (!file.open(QIODevice::WriteOnly)) {
-                    qCWarning(::log) << "Failed to create sync lock:" << file.errorString();
-                    error() << tr("Failed to create sync lock:") << file.errorString();
-                } else {
-                    file.close();
-                }
-            }
 
             sync.start();
             loop.exec();
@@ -187,10 +175,6 @@ void WebDAVSynchronizer::synchronize()
                 }
             }
 
-            if (!m_stopRequested) {
-                QDir syncDir(directory());
-                syncDir.remove(SyncLockFileName);
-            }
             setSynchronizing(false);
         }
     }

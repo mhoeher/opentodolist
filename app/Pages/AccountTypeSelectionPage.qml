@@ -66,6 +66,9 @@ C.Page {
             }, {
                 "type": OTL.Account.WebDAV,
                 "name": qsTr("WebDAV")
+            }, {
+                "type": OTL.Account.Dropbox,
+                "name": qsTr("Dropbox")
             }]
         delegate: C.ItemDelegate {
             width: parent.width

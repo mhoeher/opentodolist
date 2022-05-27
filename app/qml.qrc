@@ -157,5 +157,7 @@
         <file>Actions/ResetDueTo.qml</file>
         <file>Pages/EditOwnCloudAccountPage.qml</file>
         <file>Pages/NewOwnCloudAccountPage.qml</file>
+        <file>Pages/NewDropboxAccountPage.qml</file>
+        <file>Pages/EditDropboxAccountPage.qml</file>
     </qresource>
 </RCC>

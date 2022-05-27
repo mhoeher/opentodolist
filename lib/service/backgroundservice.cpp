@@ -44,7 +44,8 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
       m_appSettings(new ApplicationSettings(cache, m_keyStore, nullptr, this)),
       m_cache(cache),
       m_syncDirs(),
-      m_watchedDirectories()
+      m_watchedDirectories(),
+      m_accountsCheckingConnectivity()
 {
     qCDebug(log) << "Creating OpenTodoList BackgroundService object";
     connect(m_appSettings, &ApplicationSettings::libraryLoaded, this,
@@ -64,7 +65,7 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     // Check if we need to sync every 5 min
     syncTimer->setInterval(1000 * 60 * 5);
     syncTimer->setSingleShot(false);
-    connect(syncTimer, &QTimer::timeout, [=]() {
+    connect(syncTimer, &QTimer::timeout, this, [=]() {
         for (auto lib : m_appSettings->librariesFromConfig()) {
             QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
             if (sync) {
@@ -94,6 +95,14 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     for (auto& library : m_appSettings->librariesFromConfig()) {
         watchLibraryForChanges(library);
     }
+
+    auto connectivityCheckTimer = new QTimer(this);
+    connectivityCheckTimer->setInterval(15 * 60 * 1000);
+    connectivityCheckTimer->setSingleShot(false);
+    connect(connectivityCheckTimer, &QTimer::timeout, this,
+            &BackgroundService::checkConnectivityOfAccounts);
+    connectivityCheckTimer->start();
+    QTimer::singleShot(5000, this, &BackgroundService::checkConnectivityOfAccounts);
 }
 
 BackgroundService::~BackgroundService()
@@ -163,6 +172,13 @@ void BackgroundService::setAccountSecret(const QUuid& accountUid, const QString&
 {
     qCDebug(log) << "Received account update for" << accountUid;
     m_appSettings->setAccountSecret(accountUid, password);
+
+    auto account = m_appSettings->loadAccount(accountUid);
+    if (account) {
+        // Startup connectivity check
+        checkConnectivityOfAccount(account);
+        syncLibrariesOfAccount(accountUid);
+    }
 }
 
 void BackgroundService::watchLibraryDirectory(const QUuid& libraryUid)
@@ -277,4 +293,71 @@ void BackgroundService::propagateCacheDataChanged()
 void BackgroundService::propagateCacheLibrariesChanged(const QVariantList& libraryUids)
 {
     emit cacheLibrariesChanged(libraryUids, QUuid());
+}
+
+/**
+ * @brief Start the connectivity check of the account.
+ *
+ * This starts the check for connectivity of the @p account. Note that this method
+ * assumes ownership of the account. Calling code must not access the account anymore.
+ */
+void BackgroundService::checkConnectivityOfAccount(Account* account)
+{
+    if (m_accountsCheckingConnectivity.contains(account->uid())) {
+        // A check already runs - skip
+        qCDebug(log) << "Account" << account->uid() << "still busy checking connectivity...";
+        delete account;
+        return;
+    }
+
+    qCDebug(log) << "Checking connectivity for account" << account;
+    connect(account, &Account::connectivityCheckFinished, this, [=](bool connected) {
+        // TODO: Do something useful with the connected state ;-)
+        qCDebug(log) << "Account" << account->uid() << "connected:" << connected;
+        m_accountsCheckingConnectivity.remove(account->uid());
+        account->deleteLater();
+    });
+    connect(account, &Account::accountSecretsChanged, this, [=]() {
+        // The secrets of the account changed - e.g. access tokens. Propagate to GUI
+        qCDebug(log) << "Secrets of account" << account->uid() << "changed - need to save them";
+        m_appSettings->saveAccount(account);
+        m_appSettings->saveAccountSecrets(account);
+        emit accountSecretChanged(account->uid(), account->accountSecrets());
+
+        // For all libraries belonging to this account, trigger a sync - in case the app was not
+        // used for a while, we otherwise might have these libraries sitting around with a sync
+        // error.
+        syncLibrariesOfAccount(account->uid());
+    });
+    m_accountsCheckingConnectivity.insert(account->uid());
+    account->checkConnectivity();
+}
+
+/**
+ * @brief Sync all libraries belonging to the account with the given @p uid.
+ */
+void BackgroundService::syncLibrariesOfAccount(const QUuid& uid)
+{
+    for (const auto& lib : m_appSettings->librariesFromConfig()) {
+        QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
+        if (sync) {
+            if (sync->accountUid() == uid) {
+                syncLibrary(lib->uid());
+            }
+        }
+    }
+}
+
+/**
+ * @brief Triggers a connectivity check for all accounts.
+ */
+void BackgroundService::checkConnectivityOfAccounts()
+{
+    const auto uids = m_appSettings->accountUids();
+    for (const auto& uid : uids) {
+        auto account = m_appSettings->loadAccount(uid.toUuid());
+        if (account) {
+            checkConnectivityOfAccount(account);
+        }
+    }
 }

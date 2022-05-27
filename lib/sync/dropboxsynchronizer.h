@@ -48,10 +48,14 @@ public:
 signals:
 
     void accessTokenChanged();
+    void stopRequested();
 
 private:
     // For OAuth
     QString m_accessToken;
+
+    // Sync control
+    bool m_stopRequested;
 };
 
 #endif // SYNC_DROPBOXSYNCHRONIZER_H_
