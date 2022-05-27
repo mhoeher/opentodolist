@@ -29,10 +29,10 @@
 #include "htmlsyntaxhighlighter.h"
 
 #ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
-#    include <KF5/KSyntaxHighlighting/definition.h>
-#    include <KF5/KSyntaxHighlighting/repository.h>
-#    include <KF5/KSyntaxHighlighting/syntaxhighlighter.h>
-#    include <KF5/KSyntaxHighlighting/theme.h>
+#    include <KSyntaxHighlighting/definition.h>
+#    include <KSyntaxHighlighting/repository.h>
+#    include <KSyntaxHighlighting/syntaxhighlighter.h>
+#    include <KSyntaxHighlighting/theme.h>
 #else
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/repository.h"
