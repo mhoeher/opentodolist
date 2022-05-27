@@ -89,7 +89,6 @@ signals:
     void workaroundsChanged();
 
 private:
-
     QUrl m_url;
 
     bool m_disableCertificateCheck;

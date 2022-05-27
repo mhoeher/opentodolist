@@ -42,7 +42,12 @@ workflow:
       when: never
     - if: $CI_COMMIT_MESSAGE =~ /Downloaded Translations from POEditor/i
       when: never
-    - when: always
+    - if: $CI_COMMIT_BRANCH
+      when: always
+    - if: $CI_COMMIT_TAG
+      when: always
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
 
 ################################################################################
 # Prepare Stage
