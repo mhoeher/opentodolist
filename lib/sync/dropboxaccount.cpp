@@ -236,7 +236,7 @@ void DropboxAccount::login()
     });
     connect(oauth, &QOAuth2AuthorizationCodeFlow::requestFailed, this,
             [=](const QAbstractOAuth::Error& error) {
-                qCDebug(log) << "Error during OAuth flow:" << (int)error;
+                qCDebug(log) << "Error during OAuth flow:" << static_cast<int>(error);
             });
     connect(oauth, &QOAuth2AuthorizationCodeFlow::error, this,
             [=](const QString& error, const QString& errorDescription, const QUrl& url) {
