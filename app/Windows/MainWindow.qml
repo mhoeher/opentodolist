@@ -28,23 +28,30 @@ C.ApplicationWindow {
 
     // Sync all libraries whenever we show the main window. This ensures that users get an up
     // to date view when e.g. restoring from the system tray or opening the GUI on Android.
-    onVisibleChanged: if (visible) { OTL.Application.syncAllLibraries(); }
+    onVisibleChanged: if (visible) {
+                          OTL.Application.syncAllLibraries()
+                      }
 
     function viewLibrary(lib, tag, special) {
-        stackView.clear();
+        stackView.clear()
         if (lib) {
             switch (special) {
             case "schedule":
-                stackView.push(scheduleViewPage, { library: lib});
-                break;
+                stackView.push(scheduleViewPage, {
+                                   "library": lib
+                               })
+                break
             default:
-                stackView.push(libraryPage, { library: lib, tag: tag });
-                break;
+                stackView.push(libraryPage, {
+                                   "library": lib,
+                                   "tag": tag
+                               })
+                break
             }
             if (d.completed) {
-                OTL.Application.saveValue("lastLibrary", lib.uid.toString());
-                OTL.Application.saveValue("lastTag", tag);
-                OTL.Application.saveValue("specialView", special);
+                OTL.Application.saveValue("lastLibrary", lib.uid.toString())
+                OTL.Application.saveValue("lastTag", tag)
+                OTL.Application.saveValue("specialView", special)
             }
         }
     }
@@ -70,9 +77,9 @@ C.ApplicationWindow {
 
         pageActions: {
             if (stackView.currentItem && stackView.currentItem.pageActions) {
-                return stackView.currentItem.pageActions;
+                return stackView.currentItem.pageActions
             } else {
-                return [];
+                return []
             }
         }
         dynamicPageActions: applicationToolBarActions.dynamicPageActions
@@ -93,32 +100,31 @@ C.ApplicationWindow {
 
         function createQuickNoteEditor() {
             if (!AppSettings.supportsQuickEditor) {
-                return;
+                return
             }
 
-            let componentUrl = Qt.resolvedUrl("./QuickNoteWindow.qml");
-            let component = Qt.createComponent(componentUrl);
-            quickNoteWindow = component.createObject();
+            let componentUrl = Qt.resolvedUrl("./QuickNoteWindow.qml")
+            let component = Qt.createComponent(componentUrl)
+            quickNoteWindow = component.createObject()
         }
 
         function showMainWindow() {
             if (!window.visible) {
-                window.show();
+                window.show()
             }
-            window.requestActivate();
-            window.raise();
+            window.requestActivate()
+            window.raise()
         }
 
         function hideMainWindow() {
-            window.hide();
+            window.hide()
         }
 
         function showQuickNotesEditor() {
-            quickNoteWindow.show();
-            quickNoteWindow.requestActivate();
-            quickNoteWindow.raise();
+            quickNoteWindow.show()
+            quickNoteWindow.requestActivate()
+            quickNoteWindow.raise()
         }
-
     }
 
     ApplicationShortcuts {
@@ -127,33 +133,34 @@ C.ApplicationWindow {
         settingsShortcut.onActivated: librariesSideBar.showSettings()
         quitShortcut.onActivated: Qt.quit()
         closeShortcut.onActivated: window.close()
-        closeShortcut.enabled: Qt.platform.os != "android" && Qt.platform.os != "ios"
+        closeShortcut.enabled: Qt.platform.os != "android"
+                               && Qt.platform.os != "ios"
         findShortcut.enabled: {
-            let currentItem = stackView.currentItem;
-            if (currentItem && typeof(currentItem.find) === "function") {
-                return true;
+            let currentItem = stackView.currentItem
+            if (currentItem && typeof (currentItem.find) === "function") {
+                return true
             }
-            return false;
+            return false
         }
         undoShortcut.enabled: {
-            let currentItem = stackView.currentItem;
-            if (currentItem && typeof(currentItem.undo) === "function") {
-                return true;
+            let currentItem = stackView.currentItem
+            if (currentItem && typeof (currentItem.undo) === "function") {
+                return true
             }
-            return false;
+            return false
         }
         undoShortcut.onActivated: {
-            let currentItem = stackView.currentItem;
-            currentItem.undo();
+            let currentItem = stackView.currentItem
+            currentItem.undo()
         }
         goBackShortcut.onActivated: {
             if (stackView.canGoBack) {
-                stackView.goBack();
+                stackView.goBack()
             } else {
                 // We are at the top of the stack. If the window is in fullscreen mode, go to
                 // "default" mode (which should usually be "windowed" on most systems).
                 if (window.visibility === Window.FullScreen) {
-                    window.visibility = Window.AutomaticVisibility;
+                    window.visibility = Window.AutomaticVisibility
                 }
             }
         }
@@ -167,26 +174,28 @@ C.ApplicationWindow {
     }
 
     Component.onCompleted: {
-        librariesSideBar.lastLibrary = OTL.Application.loadValue("lastLibrary", "");
-        librariesSideBar.lastTag = OTL.Application.loadValue("lastTag", "");
-        librariesSideBar.lastSpecialView = OTL.Application.loadValue("specialView", "");
+        librariesSideBar.lastLibrary = OTL.Application.loadValue("lastLibrary",
+                                                                 "")
+        librariesSideBar.lastTag = "" + OTL.Application.loadValue("lastTag", "")
+        librariesSideBar.lastSpecialView = "" + OTL.Application.loadValue(
+                    "specialView", "")
 
-        d.completed = true;
+        d.completed = true
 
-        defaultFontSize = font.pointSize;
-        font.pointSize = Qt.binding(function() {
-            return AppSettings.useCustomFontSize ? AppSettings.customFontSize : defaultFontSize;
-        });
+        defaultFontSize = font.pointSize
+        font.pointSize = Qt.binding(function () {
+            return AppSettings.useCustomFontSize ? AppSettings.customFontSize : defaultFontSize
+        })
 
-        d.createQuickNoteEditor();
+        d.createQuickNoteEditor()
     }
 
     onClosing: {
         switch (Qt.platform.os) {
         case "android":
             if (stackView.canGoBack) {
-                stackView.goBack();
-                return;
+                stackView.goBack()
+                return
             } else {
                 // Actually, we should be able to just keep "close.accepted" on "true" and let
                 // Qt close the app. BUT....
@@ -195,12 +204,12 @@ C.ApplicationWindow {
                 // for more information. For some reason this causes the app to hang during shut
                 // down. So we go the hard way and on the Java side ask the Activity to
                 // stop the GUI. This seems to work reliably.
-                OTL.Application.finishActivity();
+                OTL.Application.finishActivity()
             }
-            break;
+            break
         default:
-            close.accepted = true;
-            break;
+            close.accepted = true
+            break
         }
     }
 
@@ -212,49 +221,46 @@ C.ApplicationWindow {
         compact: window.width < 600
         onShowLibrary: window.viewLibrary(library, tag, specialView)
         onNewLibrary: {
-            stackView.clear();
-            stackView.push(newLibraryPage);
+            stackView.clear()
+            stackView.push(newLibraryPage)
         }
         onAboutPageRequested: {
             if (helpPage) {
-                stackView.pop(helpPage);
+                stackView.pop(helpPage)
             } else {
-                helpPage = stackView.push(
-                            aboutPage, {
-                                stack: stackView,
-                                onClosed: function() {
-                                    helpPage = null;
-                                    librariesSideBar.helpVisible = false;
-                                }
-                            });
+                helpPage = stackView.push(aboutPage, {
+                                              "stack": stackView,
+                                              "onClosed": function () {
+                                                  helpPage = null
+                                                  librariesSideBar.helpVisible = false
+                                              }
+                                          })
             }
         }
         onSettingsPageRequested: {
             if (settingsPage) {
-                stackView.pop(settingsPage);
+                stackView.pop(settingsPage)
             } else {
-                settingsPage = stackView.push(
-                            settingsPageComponent, {
-                                stack: stackView,
-                                onClosed: function() {
-                                    settingsPage = null;
-                                    librariesSideBar.settingsVisible = false;
-                                }
-                            });
+                settingsPage = stackView.push(settingsPageComponent, {
+                                                  "stack": stackView,
+                                                  "onClosed": function () {
+                                                      settingsPage = null
+                                                      librariesSideBar.settingsVisible = false
+                                                  }
+                                              })
             }
         }
         onAccountsPageRequested: {
             if (accountsPage) {
-                stackView.pop(accountsPage);
+                stackView.pop(accountsPage)
             } else {
-                accountsPage = stackView.push(
-                            accountsPageComponent, {
-                                stack: stackView,
-                                onClosed: function() {
-                                    accountsPage = null;
-                                    librariesSideBar.accountsVisible = false;
-                                }
-                            });
+                accountsPage = stackView.push(accountsPageComponent, {
+                                                  "stack": stackView,
+                                                  "onClosed": function () {
+                                                      accountsPage = null
+                                                      librariesSideBar.accountsVisible = false
+                                                  }
+                                              })
             }
         }
 
@@ -267,14 +273,13 @@ C.ApplicationWindow {
         visible: librariesSideBar.numberOfLibraries === 0
 
         BackgroundLabel {
-            text: Markdown.stylesheet +
-                  qsTr("Start by <a href='#newLibrary'>creating a new " +
-                       "library</a>. Libraries are used to store " +
-                       "different kinds of items like notes, todo lists " +
-                       "and images.")
+            text: Markdown.stylesheet + qsTr(
+                      "Start by <a href='#newLibrary'>creating a new "
+                      + "library</a>. Libraries are used to store "
+                      + "different kinds of items like notes, todo lists " + "and images.")
             onLinkActivated: if (link === "#newLibrary") {
-                                 stackView.clear();
-                                 stackView.push(newLibraryPage);
+                                 stackView.clear()
+                                 stackView.push(newLibraryPage)
                              }
         }
     }
@@ -282,36 +287,36 @@ C.ApplicationWindow {
     C.StackView {
         id: stackView
 
-        property bool hasSync: !!currentItem &&
-                               (typeof(currentItem.syncRunning) === "boolean")
+        property bool hasSync: !!currentItem
+                               && (typeof (currentItem.syncRunning) === "boolean")
         property bool syncRunning: !!currentItem && !!currentItem.syncRunning
         property int syncProgress: {
             if (currentItem) {
                 if (currentItem.syncProgress !== undefined) {
-                    return currentItem.syncProgress;
+                    return currentItem.syncProgress
                 }
             }
-            return -1;
+            return -1
         }
 
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
-        property bool canGoBack: currentItem !== null &&
-                                 (depth > 1 ||
-                                  typeof(currentItem.goBack) === "function")
+        property bool canGoBack: currentItem !== null
+                                 && (depth > 1
+                                     || typeof (currentItem.goBack) === "function")
 
-        property bool hasItem: currentItem &&
-                               currentItem.item !== undefined
+        property bool hasItem: currentItem && currentItem.item !== undefined
         property bool hasColor: hasItem && currentItem.item.color !== undefined
-        property bool isCheckable: hasItem && currentItem.item.done !== undefined
+        property bool isCheckable: hasItem
+                                   && currentItem.item.done !== undefined
         property bool isChecked: isCheckable ? currentItem.item.done : false
 
         function goBack(page) {
             if (page !== undefined && page !== null) {
-                stackView.pop(page);
-            } else if (typeof(currentItem.goBack) === "function") {
-                currentItem.goBack();
+                stackView.pop(page)
+            } else if (typeof (currentItem.goBack) === "function") {
+                currentItem.goBack()
             } else {
-                stackView.pop();
+                stackView.pop()
             }
         }
 
@@ -348,20 +353,20 @@ C.ApplicationWindow {
         ignoreUnknownSignals: true
 
         function onClosePage() {
-            stackView.goBack();
+            stackView.goBack()
         }
 
         function onReturnToPage(page) {
-            stackView.goBack(page);
+            stackView.goBack(page)
         }
 
         function onOpenPage(component, properties) {
-            stackView.push(component, properties);
+            stackView.push(component, properties)
         }
 
         function onClearAndOpenPage(component, properties) {
-            stackView.clear();
-            stackView.push(component, properties);
+            stackView.clear()
+            stackView.push(component, properties)
         }
     }
 
@@ -371,9 +376,12 @@ C.ApplicationWindow {
         id: libraryPage
         LibraryPage {
             onItemClicked: {
-                stackView.push(Qt.resolvedUrl("../Pages/" +
-                                              item.itemType + "Page.qml"),
-                               { item: OTL.Application.cloneItem(item), library: library, stack: stackView });
+                stackView.push(Qt.resolvedUrl(
+                                   "../Pages/" + item.itemType + "Page.qml"), {
+                                   "item": OTL.Application.cloneItem(item),
+                                   "library": library,
+                                   "stack": stackView
+                               })
             }
         }
     }
@@ -413,8 +421,8 @@ C.ApplicationWindow {
         NewLibraryPage {
             onLibraryCreated: {
                 if (library) {
-                    librariesSideBar.currentLibrary = library;
-                    librariesSideBar.currentTag = "";
+                    librariesSideBar.currentLibrary = library
+                    librariesSideBar.currentTag = ""
                     viewLibrary(library)
                 }
             }
@@ -424,34 +432,33 @@ C.ApplicationWindow {
     Connections {
         target: !!application ? application : null
         function onInstanceStarted() {
-            console.warn("Instance started");
-            window.show();
-            window.requestActivate();
-            window.raise();
+            console.warn("Instance started")
+            window.show()
+            window.requestActivate()
+            window.raise()
         }
-
     }
 
     Connections {
         target: OTL.Application
 
         function onShowWindowRequested() {
-            d.showMainWindow();
+            d.showMainWindow()
         }
 
         function onHideWindowRequested() {
-            d.hideMainWindow();
+            d.hideMainWindow()
         }
 
         function onShowQuickNotesEditorRequested() {
-            d.showQuickNotesEditor();
+            d.showQuickNotesEditor()
         }
 
         function onSystemTrayIconClicked() {
             if (AppSettings.showQuickNotesEditorOnSystemTrayClick) {
-                d.showQuickNotesEditor();
+                d.showQuickNotesEditor()
             } else {
-                d.showMainWindow();
+                d.showMainWindow()
             }
         }
 
@@ -459,11 +466,12 @@ C.ApplicationWindow {
             switch (Qt.platform.os) {
             case "android":
             case "ios":
-            case "osx": // https://gitlab.com/rpdev/opentodolist/-/issues/518
-                d.showMainWindow();
-                break;
+            case "osx":
+                // https://gitlab.com/rpdev/opentodolist/-/issues/518
+                d.showMainWindow()
+                break
             default:
-                break;
+                break
             }
         }
     }
@@ -472,9 +480,9 @@ C.ApplicationWindow {
         target: d.quickNoteWindow
 
         function onOpenMainWindow() {
-            window.show();
-            window.requestActivate();
-            window.raise();
+            window.show()
+            window.requestActivate()
+            window.raise()
         }
     }
 
@@ -484,6 +492,4 @@ C.ApplicationWindow {
         property alias width: window.width
         property alias height: window.height
     }
-
 }
-
