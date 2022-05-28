@@ -124,6 +124,19 @@ endif()
 if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
     target_link_libraries(opentodolist-common PRIVATE KF5::SyntaxHighlighting)
     target_compile_definitions(opentodolist-common PRIVATE OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+
+    # Some versions of the syntax highlighting library introduced a "bug" which causes the
+    # path to the KF5 folder not to be included in the header search path. While some systems
+    # already rolled out a fix, some don't (of the time of writing this, the 28th of May 2022, this
+    # affects at least Fedora). As a workaround, we manually add the parent folder of the
+    # "KSyntaxHighlighting" to the search paths:
+    get_target_property(KF5_SYNTAXHIGHLIGHTING_INCLUDE_DIRS KF5::SyntaxHighlighting INTERFACE_INCLUDE_DIRECTORIES)
+    foreach(path ${KF5_SYNTAXHIGHLIGHTING_INCLUDE_DIRS})
+        if(path MATCHES ".*KSyntaxHighlighting")
+            get_filename_component(path ${path} DIRECTORY)
+            target_include_directories(opentodolist-common PRIVATE ${path})
+        endif()
+    endforeach()
 else()
     include(qmake/kf5-syntax-highlighting.cmake)
     target_sources(
