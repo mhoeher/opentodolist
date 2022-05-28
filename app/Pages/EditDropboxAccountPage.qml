@@ -7,6 +7,7 @@ import OpenTodoList 1.0 as OTL
 import "../Components" as Components
 import "../Utils" as Utils
 import "../Controls" as C
+import "../Windows" 1.0 as Windows
 
 C.Page {
     id: page
@@ -18,6 +19,10 @@ C.Page {
     signal openPage(var component, var properties)
 
     property C.Page anchorPage: null
+
+    function deleteItem() {
+        deleteAccountDialog.deleteAccount(account)
+    }
 
     title: qsTr("Connection Settings")
     footer: C.DialogButtonBox {
@@ -179,5 +184,15 @@ C.Page {
         function onLoginError(message) {
             errorLabel.text = message
         }
+
+        function onAuthorizationUrlReceived(url) {
+            d.authorizationUrl = url
+        }
+    }
+
+    Windows.DeleteAccountDialog {
+        id: deleteAccountDialog
+
+        onAccepted: page.closePage()
     }
 }

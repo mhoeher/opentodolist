@@ -165,6 +165,7 @@ C.Page {
         onLoggingInChanged: if (loggingIn) {
                                 errorLabel.visible = false
                             }
+        onAuthorizationUrlReceived: url => d.authorizationUrl = url
     }
 
     Connections {

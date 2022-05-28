@@ -43,8 +43,7 @@ static const char* AccessToken = "accessToken";
 static const char* CodeVerifier = "codeVerifier";
 static const char* Expiration = "expiration";
 
-static const char* DropboxAppKey = "0m6k0evdacf3mk8";
-static const char* DropboxAppSecret = "j410cact7mooota";
+static const char* DropboxAppKey = "2llpx6hgwdzq7wr";
 
 static const char* DropboxAccessTokenUrl = "https://api.dropboxapi.com/oauth2/token";
 static const char* DropboxAuthorizationUrl = "https://www.dropbox.com/oauth2/authorize";
@@ -158,7 +157,7 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
                 case QOAuth2AuthorizationCodeFlow::Stage::RefreshingAccessToken:
                     parameters->remove("redirect_uri");
                     parameters->insert("client_id", DropboxAppKey);
-                    parameters->insert("client_secret", DropboxAppSecret);
+                    parameters->remove("client_secret");
                     break;
                 default:
                     break;
@@ -234,10 +233,6 @@ void DropboxAccount::login()
         setLoggingIn(false);
         emit loginFinished(true);
     });
-    connect(oauth, &QOAuth2AuthorizationCodeFlow::requestFailed, this,
-            [=](const QAbstractOAuth::Error& error) {
-                qCDebug(log) << "Error during OAuth flow:" << static_cast<int>(error);
-            });
     connect(oauth, &QOAuth2AuthorizationCodeFlow::error, this,
             [=](const QString& error, const QString& errorDescription, const QUrl& url) {
                 qCWarning(log) << "oAuth error:" << error << ":" << errorDescription << url;
@@ -269,6 +264,18 @@ void DropboxAccount::login()
     } else {
         qCDebug(log) << "Starting refresh";
         oauth->setProperty("refreshingTokens", true);
+        connect(oauth->networkAccessManager(), &QNetworkAccessManager::finished, this,
+                [=](QNetworkReply* reply) {
+                    if (reply->error() != QNetworkReply::NoError) {
+                        qCWarning(log) << "Failed to refresh tokens - trying to re-login";
+                        m_refreshToken.clear();
+                        m_accessToken.clear();
+                        setLoggingIn(false);
+                        connect(oauth->replyHandler(), &QObject::destroyed, this,
+                                [=](QObject*) { login(); });
+                        oauth->deleteLater();
+                    }
+                });
         oauth->refreshAccessToken();
     }
 }
