@@ -10,11 +10,11 @@ if [ -n "$CI" ]; then
     if [ ! -f /usr/bin/clang-format ]; then
         dnf install -y --nogpgcheck clang-tools-extra
     fi
-    if [ ! -f /usr/bin/python ]; then
+    if [ ! -f /usr/bin/python3 ]; then
         dnf install -y --nogpgcheck python
     fi
 fi
 
-./3rdparty/run-clang-format/run-clang-format.py \
+python3 ./3rdparty/run-clang-format/run-clang-format.py \
     -r app lib test \
     --exclude lib/qmake/kf5-syntax-highlighting

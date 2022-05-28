@@ -26,7 +26,7 @@
 #define UTILS_HTMLSYNTAXHIGHLIGHTER_H_
 
 #ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
-#    include <KF5/KSyntaxHighlighting/abstracthighlighter.h>
+#    include <KSyntaxHighlighting/abstracthighlighter.h>
 #else
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/abstracthighlighter.h"
 #endif

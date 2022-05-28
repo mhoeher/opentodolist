@@ -1,0 +1,44 @@
+/*
+ * Copyright 2022 Martin Hoeher <martin@rpdev.net>
+ +
+ * This file is part of OpenTodoList.
+ *
+ * OpenTodoList is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * OpenTodoList is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef SYNC_OWNCLOUDACCOUNT_H_
+#define SYNC_OWNCLOUDACCOUNT_H_
+
+#include <QObject>
+
+#include "webdavaccount.h"
+
+class OwnCloudAccount : public WebDAVAccount
+{
+    Q_OBJECT
+public:
+    explicit OwnCloudAccount(QObject* parent = nullptr);
+
+signals:
+
+    // Account interface
+public:
+    Synchronizer* createSynchronizer() const override;
+
+    // WebDAVAccount interface
+protected:
+    void fillServerType(SynqClient::WebDAVServerType& type) const override;
+};
+
+#endif // SYNC_OWNCLOUDACCOUNT_H_

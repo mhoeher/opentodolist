@@ -48,16 +48,6 @@ add_test(
 )
 """
 
-QMAKE = """
-include(../../config.pri)
-setupTest(${name.lower()})
-
-include(../../lib/lib.pri)
-
-SOURCES += \
-    test_${name.lower()}.cpp
-"""
-
 CPP = """\
 #include "${name.lower()}.h"
 
@@ -92,7 +82,6 @@ def _render(testname):
     unittest_dir = join(unittests_dir, testname.lower())
 
     cmake_file = join(unittest_dir, "CMakeLists.txt")
-    qmake_file = join(unittest_dir, testname.lower() + ".pro")
     cpp_file = join(unittest_dir, "test_" + testname.lower() + ".cpp")
 
     tests_cmake = join(unittests_dir, "CMakeLists.txt")
@@ -103,9 +92,6 @@ def _render(testname):
     with open(cmake_file, "w") as file:
         file.write(Template(CMAKE).render(name=testname))
 
-    with open(qmake_file, "w") as file:
-        file.write(Template(QMAKE).render(name=testname))
-
     with open(cpp_file, "w") as file:
         file.write(Template(CPP).render(name=testname))
 
@@ -114,12 +100,6 @@ def _render(testname):
     tests_cmake_content += "add_subdirectory(" + testname.lower() + ")\n"
     with open(tests_cmake, "w") as file:
         file.write(tests_cmake_content)
-
-    with open(tests_pro) as file:
-        tests_pro_content = file.read(-1)
-    tests_pro_content += "SUBDIRS += " + testname.lower() + "\n"
-    with open(tests_pro, "w") as file:
-        file.write(tests_pro_content)
 
 
 if __name__ == '__main__':

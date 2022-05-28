@@ -46,11 +46,10 @@
 
 #include "account.h"
 #include "datamodel/library.h"
+#include "webdavaccount.h"
 #include "webdavsynchronizer.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.WebDAVSynchronizer", QtDebugMsg);
-
-const QString WebDAVSynchronizer::SyncLockFileName = ".webdav-sync-running";
 
 static SynqClient::WebDAVServerType
 toSynqClientServerType(WebDAVSynchronizer::WebDAVServerType type)
@@ -69,12 +68,10 @@ toSynqClientServerType(WebDAVSynchronizer::WebDAVServerType type)
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
     : Synchronizer(parent),
-      m_remoteDirectory(),
       m_disableCertificateCheck(false),
       m_workarounds(0),
       m_username(),
       m_password(),
-      m_createDirs(false),
       m_stopRequested(false),
       m_hasSyncErrors(false),
       m_nam(nullptr)
@@ -83,22 +80,6 @@ WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
 }
 
 WebDAVSynchronizer::~WebDAVSynchronizer() {}
-
-void WebDAVSynchronizer::validate()
-{
-    beginValidation();
-    auto factory = new SynqClient::WebDAVJobFactory(this);
-    setupFactory(*factory);
-    factory->setWorkarounds(SynqClient::WebDAVWorkaround::NoWorkarounds); // clear workarounds!
-    connect(factory, &SynqClient::WebDAVJobFactory::serverTestFinished, this, [=](bool success) {
-        factory->deleteLater();
-        if (success) {
-            m_workarounds = factory->workarounds();
-        }
-        endValidation(success);
-    });
-    factory->testServer();
-}
 
 void WebDAVSynchronizer::setupFactory(SynqClient::WebDAVJobFactory& factory)
 {
@@ -117,7 +98,7 @@ void WebDAVSynchronizer::synchronize()
         finished = true;
         if (!directory().isEmpty() && !synchronizing()) {
             SynqClient::DirectorySynchronizer sync;
-            sync.setRemoteDirectoryPath(m_remoteDirectory);
+            sync.setRemoteDirectoryPath(remoteDirectory());
             sync.setLocalDirectoryPath(directory());
             if (retryWithOneJobOnly) {
                 // WA for https://github.com/mhoeher/opentodolist/issues/46
@@ -166,7 +147,7 @@ void WebDAVSynchronizer::synchronize()
             SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
             sync.setSyncStateDatabase(&db);
 
-            QRegularExpression pathRe(
+            static QRegularExpression pathRe(
                     R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[a-zA-Z\.]+)?)?)?$)");
             sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
                 auto result = pathRe.match(path).hasMatch();
@@ -181,16 +162,6 @@ void WebDAVSynchronizer::synchronize()
             setSynchronizing(true);
             m_stopRequested = false;
             m_hasSyncErrors = false;
-            {
-                QDir syncDir(directory());
-                QFile file(syncDir.absoluteFilePath(SyncLockFileName));
-                if (!file.open(QIODevice::WriteOnly)) {
-                    qCWarning(::log) << "Failed to create sync lock:" << file.errorString();
-                    error() << tr("Failed to create sync lock:") << file.errorString();
-                } else {
-                    file.close();
-                }
-            }
 
             sync.start();
             loop.exec();
@@ -204,10 +175,6 @@ void WebDAVSynchronizer::synchronize()
                 }
             }
 
-            if (!m_stopRequested) {
-                QDir syncDir(directory());
-                syncDir.remove(SyncLockFileName);
-            }
             setSynchronizing(false);
         }
     }
@@ -220,99 +187,16 @@ void WebDAVSynchronizer::stopSync()
     emit stopRequested();
 }
 
-/**
- * @brief Search for existing libraries.
- *
- * This method will search for existing libraries in the current
- * remote directory and the OpenTodoList sub-folder (relative to the
- * remote directory).
- */
-void WebDAVSynchronizer::findExistingLibraries()
-{
-    if (findingLibraries()) {
-        return;
-    }
-
-    setFindingLibraries(true);
-
-    auto compositeJob = new SynqClient::CompositeJob(this);
-    auto factory = new SynqClient::WebDAVJobFactory(compositeJob);
-    factory->setNetworkAccessManager(nam());
-    factory->setServerType(toSynqClientServerType(m_serverType));
-    factory->setUrl(createUrl());
-    factory->setUserAgent(Synchronizer::HTTPUserAgent);
-
-    QSharedPointer<QVariantList> existingLibraries(new QVariantList);
-
-    QStringList dirsToCheck { "/", "/OpenTodoList" };
-    for (const auto& dir : qAsConst(dirsToCheck)) {
-        auto listFilesJob = factory->listFiles(compositeJob);
-        listFilesJob->setPath(m_remoteDirectory + dir);
-        compositeJob->addJob(listFilesJob);
-        connect(listFilesJob, &SynqClient::ListFilesJob::finished, this, [=]() {
-            if (listFilesJob->error() == SynqClient::JobError::NoError) {
-                auto entries = listFilesJob->entries();
-                for (const auto& entry : qAsConst(entries)) {
-                    if (entry.isDirectory() && entry.name().endsWith(".otl")) {
-                        // The entry is a folder, most likely containing OpenTodoList data. Try to
-                        // download the contained "library.json" file:
-                        auto downloadJob = factory->downloadFile(compositeJob);
-                        downloadJob->setRemoteFilename(listFilesJob->path() + "/" + entry.name()
-                                                       + "/" + Library::LibraryFileName);
-                        connect(downloadJob, &SynqClient::DownloadFileJob::finished, this, [=]() {
-                            if (downloadJob->error() == SynqClient::JobError::NoError) {
-                                auto doc = QJsonDocument::fromJson(downloadJob->data());
-                                if (doc.isObject()) {
-                                    auto map = doc.toVariant().toMap();
-                                    SynchronizerExistingLibrary library;
-                                    library.setName(map.value("name").toString());
-                                    QDir base("/" + m_remoteDirectory);
-                                    QFileInfo fi(QDir::cleanPath(base.relativeFilePath(
-                                            "/" + downloadJob->remoteFilename())));
-                                    library.setPath("/" + fi.path());
-                                    library.setUid(map.value("uid").toUuid());
-                                    qWarning() << library.path();
-                                    existingLibraries->append(QVariant::fromValue(library));
-                                }
-                            }
-                        });
-                        compositeJob->addJob(downloadJob);
-                    }
-                }
-            }
-        });
-    }
-    connect(compositeJob, &SynqClient::CompositeJob::finished, this, [=]() {
-        setExistingLibraries(*existingLibraries);
-        setFindingLibraries(false);
-    });
-
-    compositeJob->start();
-}
-
-QVariantMap WebDAVSynchronizer::toMap() const
-{
-    auto result = Synchronizer::toMap();
-    result["remoteDirectory"] = m_remoteDirectory;
-    result["createDirs"] = m_createDirs;
-    return result;
-}
-
-void WebDAVSynchronizer::fromMap(const QVariantMap& map)
-{
-    m_remoteDirectory = map.value("remoteDirectory").toString();
-    m_createDirs = map.value("createDirs", false).toBool();
-    Synchronizer::fromMap(map);
-}
-
 void WebDAVSynchronizer::setAccount(Account* account)
 {
-    m_username = account->username();
-    m_password = account->password();
-    m_disableCertificateCheck = account->disableCertificateChecks();
-    m_workarounds = account->backendSpecificData().value("workarounds", 0).toInt();
-    m_url = account->baseUrl();
-    switch (account->type()) {
+    auto webDavAccount = qobject_cast<WebDAVAccount*>(account);
+    q_check_ptr(webDavAccount);
+    m_username = webDavAccount->username();
+    m_password = webDavAccount->password();
+    m_disableCertificateCheck = webDavAccount->disableCertificateChecks();
+    m_workarounds = webDavAccount->backendSpecificData().value("workarounds", 0).toInt();
+    m_url = webDavAccount->baseUrl();
+    switch (webDavAccount->type()) {
     case Account::NextCloud:
         m_serverType = NextCloud;
         break;
@@ -329,19 +213,6 @@ void WebDAVSynchronizer::setAccount(Account* account)
     }
 }
 
-QString WebDAVSynchronizer::remoteDirectory() const
-{
-    return m_remoteDirectory;
-}
-
-void WebDAVSynchronizer::setRemoteDirectory(const QString& remoteDirectory)
-{
-    if (m_remoteDirectory != remoteDirectory) {
-        m_remoteDirectory = remoteDirectory;
-        emit remoteDirectoryChanged();
-    }
-}
-
 bool WebDAVSynchronizer::disableCertificateCheck() const
 {
     return m_disableCertificateCheck;
@@ -351,7 +222,6 @@ void WebDAVSynchronizer::setDisableCertificateCheck(bool disableCertificateCheck
 {
     if (m_disableCertificateCheck != disableCertificateCheck) {
         m_disableCertificateCheck = disableCertificateCheck;
-        setValid(false);
         emit disableCertificateCheckChanged();
     }
 }
@@ -365,7 +235,6 @@ void WebDAVSynchronizer::setUsername(const QString& username)
 {
     if (m_username != username) {
         m_username = username;
-        setValid(false);
         emit usernameChanged();
     }
 }
@@ -379,7 +248,6 @@ void WebDAVSynchronizer::setPassword(const QString& password)
 {
     if (m_password != password) {
         m_password = password;
-        setValid(false);
         emit passwordChanged();
     }
 }
@@ -399,7 +267,6 @@ void WebDAVSynchronizer::setUrl(const QUrl& url)
 {
     if (m_url != url) {
         m_url = url;
-        setValid(false);
         emit urlChanged();
     }
 }
@@ -416,19 +283,8 @@ void WebDAVSynchronizer::setServerType(const WebDAVServerType& serverType)
 {
     if (m_serverType != serverType) {
         m_serverType = serverType;
-        setValid(false);
         emit serverTypeChanged();
     }
-}
-
-bool WebDAVSynchronizer::createDirs() const
-{
-    return m_createDirs;
-}
-
-void WebDAVSynchronizer::setCreateDirs(bool createDirs)
-{
-    m_createDirs = createDirs;
 }
 
 int WebDAVSynchronizer::workarounds() const
@@ -450,7 +306,7 @@ QVariantMap WebDAVSynchronizer::toFullMap() const
     result["url"] = m_url;
     result["username"] = m_username;
     result["password"] = m_password;
-    result["remoteDir"] = m_remoteDirectory;
+    result["remoteDir"] = remoteDirectory();
     result["serverType"] = m_serverType;
     return result;
 }
@@ -460,7 +316,7 @@ void WebDAVSynchronizer::fromFullMap(const QVariantMap& map)
     m_url = map["url"].toUrl();
     m_username = map["username"].toString();
     m_password = map["password"].toString();
-    m_remoteDirectory = map["remoteDir"].toString();
+    setRemoteDirectory(map["remoteDir"].toString());
     m_serverType = map["serverType"].value<WebDAVServerType>();
 }
 

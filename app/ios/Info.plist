@@ -7,7 +7,7 @@
         <key>CFBundleExecutable</key>
         <string>${EXECUTABLE_NAME}</string>
         <key>CFBundleGetInfoString</key>
-        <string>Created by Qt/QMake</string>
+        <string>Created by Qt/CMake</string>
         <key>CFBundleIdentifier</key>
         <string>${PRODUCT_BUNDLE_IDENTIFIER}</string>
         <key>CFBundleName</key>

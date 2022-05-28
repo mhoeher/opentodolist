@@ -13,21 +13,21 @@ C.Pane {
     id: root
 
     function show(item) {
-        d.item = item;
-        d.shown = true;
-        C.ApplicationWindow.window.itemCreatedNotification = root;
-        timer.start();
+        d.item = item
+        d.shown = true
+        C.ApplicationWindow.window.itemCreatedNotification = root
+        timer.start()
     }
 
     function trigger() {
         if (d.item) {
-            open(d.item);
+            open(d.item)
         }
     }
 
-    signal open(OTL.LibraryItem item)
+    signal open(var item)
 
-    Material.background:  Material.Green
+    Material.background: Material.Green
     z: 11
     anchors {
         left: parent.left
@@ -84,7 +84,8 @@ C.Pane {
 
         property bool shown: false
         property OTL.LibraryItem item: null
-        property string itemName: d.item ? Markdown.markdownToPlainText(d.item.title) : ""
+        property string itemName: d.item ? Markdown.markdownToPlainText(
+                                               d.item.title) : ""
     }
 
     Timer {

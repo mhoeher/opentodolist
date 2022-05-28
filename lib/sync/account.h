@@ -25,25 +25,30 @@
 
 #include "synchronizer.h"
 #include "webdavsynchronizer.h"
+#include "remotelibraryinfo.h"
 
 class QSettings;
+class ApplicationSettings;
 
 class Account : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Account::Type type READ type WRITE setType NOTIFY typeChanged)
+    Q_PROPERTY(QUuid uid READ uid NOTIFY uidChanged)
+    Q_PROPERTY(Account::Type type READ type NOTIFY typeChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
-    Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
-    Q_PROPERTY(QString baseUrl READ baseUrl WRITE setBaseUrl NOTIFY baseUrlChanged)
-    Q_PROPERTY(bool disableCertificateChecks READ disableCertificateChecks WRITE
-                       setDisableCertificateChecks NOTIFY disableCertificateChecksChanged)
-    Q_PROPERTY(QVariantMap backendSpecificData READ backendSpecificData WRITE setBackendSpecificData
-                       NOTIFY backendSpecificDataChanged)
+    Q_PROPERTY(bool loggingIn READ loggingIn NOTIFY loggingInChanged)
+    Q_PROPERTY(bool online READ online WRITE setOnline NOTIFY onlineChanged)
+    Q_PROPERTY(QList<RemoteLibraryInfo> remoteLibraries READ remoteLibraries WRITE
+                       setRemoteLibraries NOTIFY remoteLibrariesChanged)
+    Q_PROPERTY(bool findingRemoteLibraries READ findingRemoteLibraries WRITE
+                       setFindingRemoteLibraries NOTIFY findingRemoteLibrariesChanged)
+
+    friend class ApplicationSettings;
+
 public:
     explicit Account(QObject* parent = nullptr);
 
-    enum Type { Invalid = 0, WebDAV, NextCloud, OwnCloud };
+    enum Type { Invalid = 0, WebDAV, NextCloud, OwnCloud, Dropbox };
 
     Q_ENUM(Type);
 
@@ -51,53 +56,112 @@ public:
     void setUid(const QUuid& uid);
 
     Type type() const;
-    void setType(const Type& type);
 
-    QString username() const;
-    void setUsername(const QString& username);
+    static Account* createAccount(Type type, QObject* parent = nullptr);
+    static Account* createAccount(QSettings* settings, QObject* parent = nullptr);
+    static QString typeToString(Type type);
 
-    QString password() const;
-    void setPassword(const QString& password);
+    virtual void save(QSettings* settings);
+    virtual void load(QSettings* settings);
 
-    QString baseUrl() const;
-    void setBaseUrl(const QString& baseUrl);
+    Q_INVOKABLE virtual void login();
+    Q_INVOKABLE virtual void findExistingLibraries();
+    Q_INVOKABLE virtual void checkConnectivity();
 
-    bool disableCertificateChecks() const;
-    void setDisableCertificateChecks(bool disableCertificateChecks);
+    /**
+     * @brief Get secrets (e.g. passwords) needed for communication with the server.
+     */
+    virtual QString accountSecrets() const = 0;
 
-    void save(QSettings* settings);
-    void load(QSettings* settings);
+    /**
+     * @brief Set the account secrets.
+     */
+    virtual void setAccountSecrets(const QString& secrets) = 0;
 
     QString name() const;
     void setName(const QString& name);
 
-    Q_INVOKABLE QVariant toWebDAVServerType() const;
-    Q_INVOKABLE Synchronizer* createSynchronizer() const;
+    /**
+     * @brief Create a Synchronizer suitable for running a sync against that account.
+     *
+     *  @note The caller takes ownership of the create object.
+     */
+    Q_INVOKABLE virtual Synchronizer* createSynchronizer() const = 0;
 
-    const QVariantMap& backendSpecificData() const;
-    void setBackendSpecificData(const QVariantMap& newBackendSpecificData);
+    bool loggingIn() const;
+
+    bool online() const;
+
+    const QList<RemoteLibraryInfo>& remoteLibraries() const;
+
+    bool findingRemoteLibraries() const;
 
 signals:
 
     void uidChanged();
     void typeChanged();
     void nameChanged();
-    void usernameChanged();
-    void passwordChanged();
-    void baseUrlChanged();
-    void disableCertificateChecksChanged();
+    void loggingInChanged();
+    void onlineChanged();
 
-    void backendSpecificDataChanged();
+    /**
+     * @brief Indicates that the login procedure finished.
+     *
+     * This signal is emitted to indicate that the login procedure has finished. The @p success
+     * parameter indicated if the login was successfull or not.
+     *
+     * If an error occurred, the loginError() signal might have been emitted alongside this signal.
+     */
+    void loginFinished(bool success);
+
+    /**
+     * @brief Indicates that there was an error logging in.
+     *
+     * This signal is emitted during a login if an error occurs. It carries a descriptive @p message
+     * which should be shown to the user.
+     */
+    void loginError(const QString& message);
+
+    /**
+     * @brief The list of remote libraries changed.
+     */
+    void remoteLibrariesChanged();
+
+    /**
+     * @brief The findingRemoteLibraries property has changed.
+     */
+    void findingRemoteLibrariesChanged();
+
+    /**
+     * @brief The connectivity check finished.
+     *
+     * This signal is emitted to indicate that the check for connectivity to the server has
+     * finished. The @p online argument indicates if the account currently is online, i.e. the
+     * check was successful. If it is false, it means that no connection to the account could
+     * be made.
+     */
+    void connectivityCheckFinished(bool online);
+
+    /**
+     * @brief Indicates that the account secrets have changed.
+     */
+    void accountSecretsChanged();
+
+protected:
+    void setType(const Type& type);
+    void setLoggingIn(bool newLoggingIn);
+    void setOnline(bool newOnline);
+    void setRemoteLibraries(const QList<RemoteLibraryInfo>& newRemoteLibraries);
+    void setFindingRemoteLibraries(bool newFindingRemoteLibraries);
 
 private:
     QUuid m_uid;
     Type m_type;
     QString m_name;
-    QString m_username;
-    QString m_password;
-    QString m_baseUrl;
-    bool m_disableCertificateChecks;
-    QVariantMap m_backendSpecificData;
+    bool m_loggingIn;
+    bool m_online;
+    bool m_findingRemoteLibraries;
+    QList<RemoteLibraryInfo> m_remoteLibraries;
 };
 
 #endif // SYNC_ACCOUNT_H_

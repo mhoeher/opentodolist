@@ -22,4 +22,5 @@ class BackgroundService
     SIGNAL(systemTrayIconClicked());
     SIGNAL(showQuickNotesEditorRequested());
     SIGNAL(serviceAboutToExit());
+    SIGNAL(accountSecretChanged(const QUuid& accountUid, const QString& secret));
 }

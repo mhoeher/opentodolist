@@ -31,10 +31,10 @@
 #include <QVarLengthArray>
 
 #ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
-#    include <KF5/KSyntaxHighlighting/definition.h>
-#    include <KF5/KSyntaxHighlighting/format.h>
-#    include <KF5/KSyntaxHighlighting/state.h>
-#    include <KF5/KSyntaxHighlighting/theme.h>
+#    include <KSyntaxHighlighting/definition.h>
+#    include <KSyntaxHighlighting/format.h>
+#    include <KSyntaxHighlighting/state.h>
+#    include <KSyntaxHighlighting/theme.h>
 #else
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
 #    include "../3rdparty/KDE/syntax-highlighting/src/lib/format.h"

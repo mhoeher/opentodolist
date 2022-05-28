@@ -1,6 +1,6 @@
 /*
  * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
- +
+ *
  * This file is part of OpenTodoList.
  *
  * OpenTodoList is free software: you can redistribute it and/or modify
@@ -33,11 +33,12 @@
 #include "sync/synchronizer.h"
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
+#include "sync/account.h"
+#include "sync/remotelibraryinfo.h"
 
 class QRemoteObjectNode;
 class QTemporaryDir;
 
-class Account;
 class ApplicationSettings;
 class BackgroundServiceReplica;
 class Cache;
@@ -84,12 +85,14 @@ public:
     Q_INVOKABLE void removeAccount(Account* account);
     Q_INVOKABLE Account* loadAccount(const QUuid& uid);
     Q_INVOKABLE QVariantList accountUids();
+    Q_INVOKABLE Account* createAccount(Account::Type type);
+    Q_INVOKABLE QString accountTypeToString(Account::Type type);
 
     Q_INVOKABLE Library* addLocalLibrary(const QString& name);
     Q_INVOKABLE Library* addLibraryDirectory(const QString& directory);
     Q_INVOKABLE Library* addNewLibraryToAccount(Account* account, const QString& name);
     Q_INVOKABLE Library* addExistingLibraryToAccount(Account* account,
-                                                     const SynchronizerExistingLibrary& library);
+                                                     const RemoteLibraryInfo& library);
     Q_INVOKABLE void deleteLibrary(Library* library);
     Q_INVOKABLE Note* addNote(Library* library, QVariantMap properties);
     Q_INVOKABLE NotePage* addNotePage(Library* library, Note* note, QVariantMap properties);
@@ -264,6 +267,7 @@ private slots:
                                                   const QUuid& appInstanceUid);
     void onLocalCacheDataChanged();
     void onLocalCacheLibrariesChanged(const QVariantList& libraryUids);
+    void onAccountSecretsChanged(const QUuid& accountUid, const QString& secrets);
 };
 
 #endif // APPLICATION_H_

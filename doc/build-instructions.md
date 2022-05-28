@@ -61,7 +61,8 @@ Long story short, here is the list of libraries that are needed to build the app
   - Declarative.
   - Remote Objects.
   - Quick Controls 2.
-- `qmake` (it comes usually pre-installed with Qt) **or** [`cmake`](https://cmake.org/) >= 3.5.
+  - Network Auth.
+- [`cmake`](https://cmake.org/) >= 3.5.1.
 - A suitable compiler.
 - `make`, `ninja-build` or another suitable build tool.
 
@@ -168,30 +169,3 @@ There are several options available that you can pass to `cmake` when configurin
 | `OPENTODOLIST_UPDATE_TRANSLATIONS` | `OFF` | Update the translation files (`*.ts`) from the source files while building. |
 
 **Note:** There are additional options available, which allow fine tuning for specific targets. Please refer to the various build scripts in the top-level `ci` folder to learn more. However, usually, there is no reason to use them.
-
-
-### Build using `qmake`
-
-`qmake` is the default build system of Qt itself until version 5. Starting with Qt 6, the Qt project migrated to `cmake` as their default build system. `cmake` is far more powerful, so we recommend using it to also build OpenTodoList if possible. However, currently we also maintain a `qmake` based build, mostly because using Qt 5 not all supported platforms can be built for easily using `cmake`.
-
-The `qmake` based build is pretty similar to the `cmake` based one:
-
-```bash
-# Change into the source folder:
-cd path/to/opentodolist
-
-# Create a build directory:
-mkdir build
-cd build
-
-# Configure the project:
-qmake CONFIG+=release ..
-
-# Build it:
-make -j$(nproc)
-
-# And install it (might require running with `sudo`):
-make install
-```
-
-**Note:** The `qmake` based build is in *maintenance* mode. We will keep it working as long as required, but some new features will only be available with `cmake` over time.

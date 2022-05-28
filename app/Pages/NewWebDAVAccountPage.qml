@@ -10,7 +10,7 @@ import "../Controls" as C
 C.Page {
     id: page
 
-    property int type: -1
+    property int type: OTL.Account.WebDAV
     property alias buttons: buttons
     property alias serverAddressEdit: serverAddressEdit
     property alias usernameEdit: usernameEdit
@@ -22,8 +22,8 @@ C.Page {
     property alias passwordEdit: passwordEdit
     property C.Page anchorPage: null
 
-    signal closePage()
-    signal returnToPage(C.Page page)
+    signal closePage
+    signal returnToPage(var page)
     signal openPage(var component, var properties)
 
     title: qsTr("Connection Settings")
@@ -35,86 +35,51 @@ C.Page {
     }
 
     Component.onCompleted: {
-        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
+        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
     }
 
     QtObject {
         id: d
 
         property var okButton: null
-        property bool validated: false
+        property OTL.WebDAVAccount account: OTL.Application.createAccount(
+                                                page.type)
     }
 
     Connections {
         target: d.okButton
         function onClicked() {
-            var url = serverAddressEdit.text;
+            var url = serverAddressEdit.text
             if (!/https?:\/\//i.exec(url)) {
-                url = "https://" + url;
+                url = "https://" + url
             }
-            switch (account.type) {
-            case OTL.Account.NextCloud:
-                dav.serverType = OTL.WebDAVSynchronizer.NextCloud;
-                break;
-            case OTL.Account.OwnCloud:
-                dav.serverType = OTL.WebDAVSynchronizer.OwnCloud;
-                break;
-            case OTL.Account.WebDAV:
-                dav.serverType = OTL.WebDAVSynchronizer.Generic;
-                break;
-            default:
-                console.error("Unhandled account type", account.type);
-                return;
-            }
-            dav.url = url;
-            dav.username = usernameEdit.text;
-            dav.password = passwordEdit.text;
-            dav.disableCertificateCheck = disableCertificateChecksEdit.checked;
-            d.validated = false;
-            dav.validate();
+
+            d.account.baseUrl = url
+            d.account.username = usernameEdit.text
+            d.account.password = passwordEdit.text
+            d.account.disableCertificateChecks = disableCertificateChecksEdit.checked
+            errorLabel.visible = false
+            d.account.login()
         }
     }
 
-    OTL.WebDAVSynchronizer {
-        id: dav
+    Connections {
+        target: d.account
 
-        onValidatingChanged: {
-            if (!validating) {
-                d.validated = true;
-            }
-        }
-
-        onValidChanged: {
-            if (d.validated && valid) {
-                OTL.Application.saveAccount(account);
-                OTL.Application.saveAccountSecrets(account);
-                page.returnToPage(page.anchorPage);
-            }
-        }
-    }
-
-    OTL.Account {
-        id: account
-
-        type: page.type
-        baseUrl: dav.url
-        username: dav.username
-        password: dav.password
-        backendSpecificData: {
-            return {
-                workarounds: dav.workarounds
-            }
-        }
-
-        name: {
-            if (accountNameEdit.text !== "") {
-                return accountNameEdit.text;
+        function onLoginFinished(success) {
+            if (success) {
+                if (accountNameEdit.text !== "") {
+                    d.account.name = accountNameEdit.text
+                } else {
+                    d.account.name = accountNameEdit.placeholderText
+                }
+                OTL.Application.saveAccount(d.account)
+                OTL.Application.saveAccountSecrets(d.account)
+                page.returnToPage(page.anchorPage)
             } else {
-                return accountNameEdit.placeholderText;
+                errorLabel.visible = true
             }
         }
-
-        disableCertificateChecks: dav.disableCertificateCheck
     }
 
     C.ScrollView {
@@ -122,7 +87,7 @@ C.Page {
 
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
-        enabled: !dav.validating
+        enabled: !d.account.loggingIn
 
         GridLayout {
             width: scrollView.availableWidth
@@ -190,9 +155,10 @@ C.Page {
 
                 Layout.fillWidth: true
                 placeholderText: {
-                    if (usernameEdit.text !== "" && serverAddressEdit.text !== "") {
+                    if (usernameEdit.text !== ""
+                            && serverAddressEdit.text !== "") {
                         return usernameEdit.text + "@" + serverAddressEdit.text.replace(
-                                    /https?:\/\//i, "");
+                                    /https?:\/\//i, "")
                     } else {
                         return qsTr("Account Name")
                     }
@@ -207,7 +173,7 @@ C.Page {
                 text: qsTr("Failed to connect to the server. Please "
                            + "check your user name, password and the server address and retry.")
                 Material.foreground: Material.Red
-                visible: d.validated && !dav.valid
+                visible: false
             }
         }
     }
@@ -215,7 +181,7 @@ C.Page {
     C.BusyIndicator {
         id: busyIndicator
 
-        visible: dav.validating
+        visible: d.account.loggingIn
         anchors.centerIn: parent
     }
 }

@@ -20,21 +20,12 @@ C.Page {
 
     accounts: accountList.accounts
     onAccountSelected: {
-        switch (account.type) {
-        case OTL.Account.NextCloud:
-            page.openPage(Qt.resolvedUrl("./EditNextCloudAccountPage.qml"), {
-                          account: account
-                          });
-            break;
-        case OTL.Account.OwnCloud:
-        case OTL.Account.WebDAV:
-            page.openPage(Qt.resolvedUrl("./EditWebDAVAccountPage.qml"), {
-                          account: account
-                          });
-            break;
-        default:
-            console.error("Unhandled account type: ", account.type);
-        }
+        let accountTypeName = OTL.Application.accountTypeToString(account.type)
+        page.openPage(Qt.resolvedUrl(
+                          "./Edit" + accountTypeName + "AccountPage.qml"), {
+                          "account": OTL.Application.loadAccount(
+                                         account.uid) // Load a copy of the account to ensure we have latest secrets
+                      })
     }
 
     Utils.Accounts {
@@ -60,7 +51,7 @@ C.Page {
                 target: itemDelegate
 
                 function onClicked() {
-                    page.accountSelected(account);
+                    page.accountSelected(account)
                 }
             }
         }
@@ -75,8 +66,8 @@ C.Page {
         backgroundColor: Utils.Colors.positiveColor
         onClicked: {
             page.openPage(Qt.resolvedUrl("./AccountTypeSelectionPage.qml"), {
-                          anchorPage: page
-                          });
+                              "anchorPage": page
+                          })
         }
     }
 }

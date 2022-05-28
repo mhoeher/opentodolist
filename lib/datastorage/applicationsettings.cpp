@@ -33,6 +33,8 @@
 #include "datastorage/libraryloader.h"
 #include "utils/jsonutils.h"
 
+#include "sync/webdavaccount.h"
+
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.ApplicationSettings", QtDebugMsg);
 
 ApplicationSettings::ApplicationSettings(Cache* cache, KeyStore* keyStore,
@@ -182,11 +184,13 @@ Account* ApplicationSettings::loadAccount(const QUuid& uid)
         m_settings->beginGroup("Accounts");
         if (m_settings->childGroups().contains(uid.toString())) {
             m_settings->beginGroup(uid.toString());
-            result = new Account();
-            result->setUid(uid);
-            result->load(m_settings);
-            result->setPassword(m_secrets.value(result->uid().toString()).toString());
-            m_settings->endGroup();
+            result = Account::createAccount(m_settings);
+            if (result) {
+                result->setUid(uid);
+                result->load(m_settings);
+                result->setAccountSecrets(m_secrets.value(result->uid().toString()).toString());
+                m_settings->endGroup();
+            }
         }
         m_settings->endGroup();
     }
@@ -279,12 +283,13 @@ void ApplicationSettings::importAccountFromSynchronizer(const QString& syncUid,
             auto davSync = qobject_cast<WebDAVSynchronizer*>(sync.data());
             if (davSync) {
                 // Check if we (meanwhile) have an account that maps to the same URL+username:
-                auto existingAccount =
-                        std::find_if(accounts.begin(), accounts.end(),
-                                     [davSync](QSharedPointer<Account> account) {
-                                         return account->username() == davSync->username()
-                                                 && QUrl(account->baseUrl()) == davSync->url();
-                                     });
+                auto existingAccount = std::find_if(
+                        accounts.begin(), accounts.end(),
+                        [davSync](QSharedPointer<Account> account) {
+                            auto webDavAccount = qobject_cast<WebDAVAccount*>(account);
+                            return webDavAccount->username() == davSync->username()
+                                    && QUrl(webDavAccount->baseUrl()) == davSync->url();
+                        });
                 if (existingAccount != accounts.end()) {
                     // Connect the synchronizer to the existing account:
                     davSync->setAccountUid((*existingAccount)->uid());
@@ -295,7 +300,7 @@ void ApplicationSettings::importAccountFromSynchronizer(const QString& syncUid,
                 // assume, it is not yet ported and create one from it:
                 auto attrs =
                         JsonUtils::loadMap(sync->directory() + "/" + Synchronizer::SaveFileName);
-                Account account;
+                WebDAVAccount account;
                 account.setDisableCertificateChecks(attrs["disableCertificateCheck"].toBool());
                 auto serverType = attrs["serverType"].toString();
                 if (serverType == "NextCloud") {
@@ -368,9 +373,9 @@ void ApplicationSettings::saveAccountSecrets(Account* account)
 {
     if (account != nullptr) {
         if (m_keyStore) {
-            m_keyStore->saveCredentials(account->uid().toString(), account->password());
+            m_keyStore->saveCredentials(account->uid().toString(), account->accountSecrets());
         }
-        m_secrets.insert(account->uid().toString(), account->password());
+        m_secrets.insert(account->uid().toString(), account->accountSecrets());
         emit accountsChanged();
 
         // Check if the account we just saved credentials for was previously missing

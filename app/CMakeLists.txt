@@ -229,3 +229,6 @@ install(
     TARGETS OpenTodoList
     DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}
+    CACHE PATH "QML search path for project local files")

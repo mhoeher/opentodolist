@@ -26,6 +26,7 @@
 #include "rep_backgroundservice_source.h"
 
 class ApplicationSettings;
+class Account;
 class Cache;
 class DirectoryWatcher;
 class KeyStore;
@@ -70,6 +71,7 @@ private:
     QPointer<Cache> m_cache;
     QMap<QString, SyncInfo> m_syncDirs;
     QMap<QString, DirectoryWatcher*> m_watchedDirectories;
+    QSet<QUuid> m_accountsCheckingConnectivity;
 
     void onSyncFinished(const QString& libraryDirectory);
     void onSyncError(const QString& libraryDirectory, const QString& error);
@@ -78,6 +80,13 @@ private:
     void watchLibraryForChanges(QSharedPointer<Library> library);
     void propagateCacheDataChanged();
     void propagateCacheLibrariesChanged(const QVariantList& libraryUids);
+
+    void checkConnectivityOfAccount(Account* account);
+    void syncLibrariesOfAccount(const QUuid& uid);
+
+private slots:
+
+    void checkConnectivityOfAccounts();
 };
 
 #endif // SERVICE_BACKGROUNDSERVICE_H_

@@ -21,12 +21,15 @@
 
 #include <QDir>
 #include <QFile>
+#include <QJsonDocument>
 #include <QMap>
 #include <QMetaObject>
 
 #include <functional>
 
-#include "webdavsynchronizer.h"
+#include "sync/webdavsynchronizer.h"
+#include "sync/dropboxsynchronizer.h"
+
 #include "utils/jsonutils.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Synchronizer", QtWarningMsg)
@@ -51,13 +54,11 @@ Synchronizer::Synchronizer(QObject* parent)
     : QObject(parent),
       m_uuid(QUuid::createUuid()),
       m_accountUid(),
-      m_validating(false),
-      m_valid(false),
       m_synchronizing(false),
       m_creatingDirectory(false),
-      m_findingLibraries(false),
+      m_createDirs(false),
       m_directory(),
-      m_existingLibraries(),
+      m_remoteDirectory(),
       m_lastSync(),
       m_log()
 {
@@ -67,60 +68,6 @@ Synchronizer::Synchronizer(QObject* parent)
  * @brief Destructor.
  */
 Synchronizer::~Synchronizer() {}
-
-/**
- * @brief A validating is currently running.
- *
- * The validating property indicates, that currently the synchronizer checks if
- * a connection to the backend can be established. As soon as the validation is done, the
- * @sa valid property will be set to indicate the status fof the validation.
- *
- * @sa setValidating
- */
-bool Synchronizer::validating() const
-{
-    return m_validating;
-}
-
-/**
- * @brief Synchronizer::setValidating
- *
- * Set the validating property. This is intended to be used by sub-classes.
- */
-void Synchronizer::setValidating(bool validating)
-{
-    if (m_validating != validating) {
-        m_validating = validating;
-        emit validatingChanged();
-    }
-}
-
-/**
- * @brief Indicates whether a connection to the backend can be established.
- *
- * This property is set to true to indicate that a connection to the backend can be
- * established.
- *
- * @sa setValid
- */
-bool Synchronizer::valid() const
-{
-    return m_valid;
-}
-
-/**
- * @brief Set the valid property.
- *
- * This method is supposed to be used by sub-classes in their implementation of the
- * @p validate() method.
- */
-void Synchronizer::setValid(bool valid)
-{
-    if (m_valid != valid) {
-        m_valid = valid;
-        emit validChanged();
-    }
-}
 
 /**
  * @brief A synchronization is currently running.
@@ -145,63 +92,6 @@ void Synchronizer::setSynchronizing(bool synchronizing)
     if (m_synchronizing != synchronizing) {
         m_synchronizing = synchronizing;
         emit synchronizingChanged();
-    }
-}
-
-/**
- * @brief Begin validation.
- *
- * Begin the validation process. This is a utility method which sets
- * the validating property to true and the valid property to false.
- *
- * @sa setValidating
- * @sa setValid
- * @sa endValidation
- */
-void Synchronizer::beginValidation()
-{
-    setValidating(true);
-    setValid(false);
-}
-
-/**
- * @brief End validation.
- *
- * This is a utility method which sets the validating property to false and the valid
- * property to @p valid.
- *
- * @sa setValidating
- * @sa setValid
- * @sa beginValidation
- */
-void Synchronizer::endValidation(bool valid)
-{
-    setValidating(false);
-    setValid(valid);
-}
-
-/**
- * @brief Set the list of existing libraries.
- */
-void Synchronizer::setExistingLibraries(const QVariantList& existingLibraries)
-{
-    if (existingLibraries != m_existingLibraries) {
-        m_existingLibraries = existingLibraries;
-        emit existingLibrariesChanged();
-    }
-}
-
-/**
- * @brief Set the finding libraries status.
- *
- * This method shall be called in sub-classes to indicate that searching for
- * libraries started or finished.
- */
-void Synchronizer::setFindingLibraries(bool findingLibraries)
-{
-    if (m_findingLibraries != findingLibraries) {
-        m_findingLibraries = findingLibraries;
-        emit findingLibrariesChanged();
     }
 }
 
@@ -360,14 +250,14 @@ QUuid Synchronizer::uid() const
     return m_uuid;
 }
 
-bool Synchronizer::findingLibraries() const
+bool Synchronizer::createDirs() const
 {
-    return m_findingLibraries;
+    return m_createDirs;
 }
 
-QVariantList Synchronizer::existingLibraries() const
+void Synchronizer::setCreateDirs(bool createDirs)
 {
-    return m_existingLibraries;
+    m_createDirs = createDirs;
 }
 
 /**
@@ -388,6 +278,25 @@ QString Synchronizer::directory() const
 void Synchronizer::setDirectory(const QString& directory)
 {
     m_directory = directory;
+}
+
+/**
+ * @brief The remote directory where to sync into.
+ */
+QString Synchronizer::remoteDirectory() const
+{
+    return m_remoteDirectory;
+}
+
+/**
+ * @brief Set the remote directory to sync into.
+ */
+void Synchronizer::setRemoteDirectory(const QString& remoteDirectory)
+{
+    if (m_remoteDirectory != remoteDirectory) {
+        m_remoteDirectory = remoteDirectory;
+        emit remoteDirectoryChanged();
+    }
 }
 
 /**
@@ -450,7 +359,10 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory, QObject* par
     Synchronizer* result = nullptr;
     if (!directory.isEmpty()) {
         static QMap<QString, std::function<Synchronizer*(QObject*)>> Synchronizers = {
-            { "WebDAVSynchronizer", [](QObject* parent) { return new WebDAVSynchronizer(parent); } }
+            { "WebDAVSynchronizer",
+              [](QObject* parent) { return new WebDAVSynchronizer(parent); } },
+            { "DropboxSynchronizer",
+              [](QObject* parent) { return new DropboxSynchronizer(parent); } },
         };
         QDir dir(directory);
         auto absFilePath = dir.absoluteFilePath(SaveFileName);
@@ -471,19 +383,6 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory, QObject* par
 }
 
 /**
- * @brief Start searching for existing libraries.
- *
- * This method triggers a search for existing libraries in the currently
- * set remote directory of the synchronizer. When the search is finished,
- * the existingLibraries property of the synchronizer is updated.
- *
- * The default implementation of this method does nothing. Sub-classes
- * can implement it if the appropriate functionality is supported by
- * the respective backends.
- */
-void Synchronizer::findExistingLibraries() {}
-
-/**
  * @brief Save the settings of the synchronizer to a variant map.
  *
  * This method saves the settings of the synchronizer to a variant map. This is used for
@@ -497,6 +396,8 @@ QVariantMap Synchronizer::toMap() const
     result.insert("type", QString(metaObject()->className()));
     result.insert("uid", m_uuid);
     result.insert("lastSync", m_lastSync);
+    result["remoteDirectory"] = remoteDirectory();
+    result["createDirs"] = m_createDirs;
     if (!m_accountUid.isNull()) {
         result.insert("account", m_accountUid);
     }
@@ -512,53 +413,8 @@ QVariantMap Synchronizer::toMap() const
 void Synchronizer::fromMap(const QVariantMap& map)
 {
     m_uuid = map.value("uid", m_uuid).toUuid();
+    m_remoteDirectory = map.value("remoteDirectory").toString();
+    m_createDirs = map.value("createDirs", false).toBool();
     m_lastSync = map.value("lastSync", m_lastSync).toDateTime();
     m_accountUid = map.value("account", QUuid()).toUuid();
-}
-
-/**
- * @brief Constructor.
- */
-SynchronizerExistingLibrary::SynchronizerExistingLibrary() : m_name(), m_path() {}
-
-/**
- * @brief The name if the library.
- */
-QString SynchronizerExistingLibrary::name() const
-{
-    return m_name;
-}
-
-/**
- * @brief Set the library name.
- */
-void SynchronizerExistingLibrary::setName(const QString& name)
-{
-    m_name = name;
-}
-
-/**
- * @brief The path (relative to the Synchronizer's remote directory).
- */
-QString SynchronizerExistingLibrary::path() const
-{
-    return m_path;
-}
-
-/**
- * @brief Set the path of the library.
- */
-void SynchronizerExistingLibrary::setPath(const QString& path)
-{
-    m_path = path;
-}
-
-QUuid SynchronizerExistingLibrary::uid() const
-{
-    return m_uid;
-}
-
-void SynchronizerExistingLibrary::setUid(const QUuid& uid)
-{
-    m_uid = uid;
 }

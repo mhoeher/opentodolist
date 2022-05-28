@@ -13,29 +13,28 @@ import "../Fonts"
 import "../Utils"
 import "../Controls" as C
 
-
 C.Page {
     id: page
 
     property OTL.Library library: null
     property string tag: ""
 
-    signal itemClicked(OTL.TopLevelItem item)
-    signal closePage()
+    signal itemClicked(var item)
+    signal closePage
     signal openPage(var component, var properties)
 
     function newNote() {
-        newNoteBar.edit.forceActiveFocus();
-        newNoteBar.edit.text = "";
+        newNoteBar.edit.forceActiveFocus()
+        newNoteBar.edit.text = ""
     }
 
     function newTodoList() {
-        newTodoListBar.edit.forceActiveFocus();
-        newTodoListBar.edit.text = "";
+        newTodoListBar.edit.forceActiveFocus()
+        newTodoListBar.edit.text = ""
     }
 
     function newImage() {
-        openImageDialog.open();
+        openImageDialog.open()
     }
 
     function find() {
@@ -43,31 +42,30 @@ C.Page {
     }
 
     function deleteItem() {
-        deleteLibraryDialog.deleteLibrary(library);
+        deleteLibraryDialog.deleteLibrary(library)
     }
 
     function renameItem() {
-        renameLibraryDialog.renameLibrary(library);
+        renameLibraryDialog.renameLibrary(library)
     }
 
     function sort() {
-        sortByMenu.open();
+        sortByMenu.open()
     }
 
     property bool syncRunning: {
-        return library &&
-                OTL.Application.directoriesWithRunningSync.indexOf(
-                    library.directory) >= 0;
+        return library && OTL.Application.directoriesWithRunningSync.indexOf(
+                    library.directory) >= 0
     }
     property int syncProgress: {
-        let result = -1;
+        let result = -1
         if (library) {
-            result = OTL.Application.syncProgress[library.directory];
+            result = OTL.Application.syncProgress[library.directory]
             if (result === undefined) {
-                result = -1;
+                result = -1
             }
         }
-        return result;
+        return result
     }
 
     property alias pageActions: libraryActions.actions
@@ -93,16 +91,15 @@ C.Page {
     QtObject {
         id: d
 
-
         function createNote(library, edit, tags) {
             var properties = {
                 "title": edit.displayText,
                 "tags": tags
-            };
-            var result = OTL.Application.addNote(library, properties);
-            edit.text = "";
-            edit.focus = false;
-            return result;
+            }
+            var result = OTL.Application.addNote(library, properties)
+            edit.text = ""
+            edit.focus = false
+            return result
         }
 
         function createTodoList(library, edit, tags) {
@@ -111,33 +108,42 @@ C.Page {
                 "tags": tags
             }
 
-            var result = OTL.Application.addTodoList(library, properties);
-            edit.text = "";
-            edit.focus = false;
-            return result;
+            var result = OTL.Application.addTodoList(library, properties)
+            edit.text = ""
+            edit.focus = false
+            return result
         }
 
         function numberOfColumns(page) {
-            var minWidth = Math.max(AppSettings.effectiveFontMetrics.averageCharacterWidth, 5) * AppSettings.libraryItemWidthScaleFactor;
-            var result = page.width / minWidth;
-            result = Math.ceil(result);
-            result = Math.max(result, 1);
-            return result;
+            var minWidth = Math.max(
+                        AppSettings.effectiveFontMetrics.averageCharacterWidth,
+                        5) * AppSettings.libraryItemWidthScaleFactor
+            var result = page.width / minWidth
+            result = Math.ceil(result)
+            result = Math.max(result, 1)
+            return result
         }
 
         function sizeOfColumns(page, correction) {
             if (correction === undefined) {
-                correction = 0;
+                correction = 0
             }
-            return (page.width - correction) / numberOfColumns(page);
+            return (page.width - correction) / numberOfColumns(page)
         }
-
     }
 
-    RenameLibraryDialog { id: renameLibraryDialog }
-    DeleteLibraryDialog { id: deleteLibraryDialog }
-    DeleteItemDialog { id: deleteItemDialog }
-    RenameItemDialog { id: renameItemDialog }
+    RenameLibraryDialog {
+        id: renameLibraryDialog
+    }
+    DeleteLibraryDialog {
+        id: deleteLibraryDialog
+    }
+    DeleteItemDialog {
+        id: deleteItemDialog
+    }
+    RenameItemDialog {
+        id: renameItemDialog
+    }
 
     C.Menu {
         id: itemContextMenu
@@ -147,7 +153,9 @@ C.Page {
 
         modal: true
 
-        C.ButtonGroup { id: colorButtons }
+        C.ButtonGroup {
+            id: colorButtons
+        }
 
         C.MenuItem {
             text: qsTr("Red")
@@ -225,24 +233,25 @@ C.Page {
         nameFilters: ["Image Files (*.png *.bmp *.jpg *.jpeg *.gif)"]
 
         onAccepted: {
-            var filename = OTL.Application.urlToLocalFile(fileUrl);
-            var tags = [];
+            var filename = OTL.Application.urlToLocalFile(fileUrl)
+            var tags = []
             if (librariesSideBar.currentTag !== "") {
-                tags = [librariesSideBar.currentTag];
+                tags = [librariesSideBar.currentTag]
             }
             var properties = {
                 "title": OTL.Application.basename(filename),
                 "imageUrl": fileUrl,
                 "tags": tags
-            };
+            }
 
-            var image = OTL.Application.addImage(library, properties);
-            itemCreatedNotification.show(image);
+            var image = OTL.Application.addImage(library, properties)
+            itemCreatedNotification.show(image)
         }
     }
 
     OTL.ItemsSortFilterModel {
         id: itemsModel
+
 
         /**
          * @brief The role to sort by.
@@ -253,13 +262,18 @@ C.Page {
          */
         readonly property int effectiveSortRole: {
             switch (settings.sortBy) {
-            case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
-            case "title": return OTL.ItemsModel.TitleRole;
-            case "createdAt": return OTL.ItemsModel.CreatedAtRole;
-            case "updatedAt": return OTL.ItemsModel.EffectiveUpdatedAtRole;
+            case "dueTo":
+                return OTL.ItemsModel.EffectiveDueToRole
+            case "title":
+                return OTL.ItemsModel.TitleRole
+            case "createdAt":
+                return OTL.ItemsModel.CreatedAtRole
+            case "updatedAt":
+                return OTL.ItemsModel.EffectiveUpdatedAtRole
 
                 // By default, order manually:
-            default: return OTL.ItemsModel.WeightRole;
+            default:
+                return OTL.ItemsModel.WeightRole
             }
         }
 
@@ -276,12 +290,12 @@ C.Page {
         id: newNoteBar
         placeholderText: qsTr("Note Title")
         onAccepted: {
-            var tags = [];
+            var tags = []
             if (librariesSideBar.currentTag !== "") {
-                tags = [librariesSideBar.currentTag];
+                tags = [librariesSideBar.currentTag]
             }
-            var note = d.createNote(library, newNoteBar.edit, tags);
-            itemCreatedNotification.show(note);
+            var note = d.createNote(library, newNoteBar.edit, tags)
+            itemCreatedNotification.show(note)
         }
     }
 
@@ -289,12 +303,12 @@ C.Page {
         id: newTodoListBar
         placeholderText: qsTr("Todo List Title")
         onAccepted: {
-            var tags = [];
+            var tags = []
             if (librariesSideBar.currentTag !== "") {
-                tags = [librariesSideBar.currentTag];
+                tags = [librariesSideBar.currentTag]
             }
-            var todoList = d.createTodoList(library, newTodoListBar.edit, tags);
-            itemCreatedNotification.show(todoList);
+            var todoList = d.createTodoList(library, newTodoListBar.edit, tags)
+            itemCreatedNotification.show(todoList)
         }
     }
 
@@ -329,40 +343,41 @@ C.Page {
                 asynchronous: true
                 width: grid.cellWidth
                 height: grid.cellHeight
-                source: Qt.resolvedUrl("../Widgets/" + object.itemType +
-                                       "Item.qml")
+                source: Qt.resolvedUrl(
+                            "../Widgets/" + object.itemType + "Item.qml")
 
                 onLoaded: {
-                    item.allowReordering = Qt.binding(function() {
-                        return itemsModel.effectiveSortRole ===
-                                OTL.ItemsModel.WeightRole;
-                    });
-                    item.libraryItem = Qt.binding(function() {
-                        return object;
-                    });
-                    item.library = page.library;
-                    item.model = itemsModel;
-                    item.onClicked.connect(function() {
-                        itemClicked(object);
-                    });
-                    item.onReleased.connect(function(mouse) {
+                    item.allowReordering = Qt.binding(function () {
+                        return itemsModel.effectiveSortRole === OTL.ItemsModel.WeightRole
+                    })
+                    item.libraryItem = Qt.binding(function () {
+                        return object
+                    })
+                    item.library = page.library
+                    item.model = itemsModel
+                    item.onClicked.connect(function () {
+                        itemClicked(object)
+                    })
+                    item.onReleased.connect(function (mouse) {
                         switch (mouse.button) {
                         case Qt.RightButton:
-                            itemContextMenu.item = object;
-                            itemContextMenu.parent = gridItem;
-                            itemContextMenu.x = mouse.x;
-                            itemContextMenu.y = mouse.y;
-                            itemContextMenu.open();
-                            break;
+                            itemContextMenu.item = object
+                            itemContextMenu.parent = gridItem
+                            itemContextMenu.x = mouse.x
+                            itemContextMenu.y = mouse.y
+                            itemContextMenu.open()
+                            break
                         default:
-                            break;
+                            break
                         }
-                    });
-                    item.dragTile = Qt.binding(function() {return dragTile; });
+                    })
+                    item.dragTile = Qt.binding(function () {
+                        return dragTile
+                    })
                 }
             }
         }
-    }    
+    }
 
     PullToRefreshOverlay {
         anchors.fill: scrollView
@@ -378,24 +393,22 @@ C.Page {
 
     BackgroundLabel {
         visible: itemsModel.count === 0
-        text: Markdown.stylesheet +
-              qsTr("Nothing here yet! Start by adding a " +
-                   "<a href='#note'>note</a>, " +
-                   "<a href='#todolist'>todo list</a> or " +
-                   "<a href='#image'>image</a>.")
+        text: Markdown.stylesheet + qsTr(
+                  "Nothing here yet! Start by adding a " + "<a href='#note'>note</a>, "
+                  + "<a href='#todolist'>todo list</a> or " + "<a href='#image'>image</a>.")
         onLinkActivated: {
             switch (link) {
             case "#note":
-                page.newNote();
-                break;
+                page.newNote()
+                break
             case "#todolist":
-                page.newTodoList();
-                break;
+                page.newTodoList()
+                break
             case "#image":
-                page.newImage();
-                break;
+                page.newImage()
+                break
             default:
-                break;
+                break
             }
         }
     }
@@ -413,17 +426,15 @@ C.Page {
     SyncErrorNotificationBar {
         readonly property var syncErrors: {
             if (page.library) {
-                return OTL.Application.syncErrors[
-                        page.library.directory] || [];
+                return OTL.Application.syncErrors[page.library.directory] || []
             } else {
-                return [];
+                return []
             }
         }
 
         library: page.library
-        onShowErrors: page.openPage(syncErrorPage,
-                                    {
-                                        errors: syncErrors
+        onShowErrors: page.openPage(syncErrorPage, {
+                                        "errors": syncErrors
                                     })
     }
 
@@ -481,5 +492,4 @@ C.Page {
             onTriggered: settings.sortBy = "updatedAt"
         }
     }
-
 }

@@ -30,8 +30,6 @@ Item {
                     listModel.append({
                                     "name": account.name,
                                     "type": account.type,
-                                    "username": account.username,
-                                    "password": account.password,
                                     "account": account
                                 });
                 }

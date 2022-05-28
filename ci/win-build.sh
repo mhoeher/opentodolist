@@ -15,25 +15,23 @@ if [ "$TARGET" == win64 ]; then
     DEPLOY_DIR=deploy-win64
     MXE_DIR=x86_64-w64-mingw32
     CMAKE=mingw64-cmake
-    QMAKE=mingw64-qmake-qt5
     INSTALLER_FILE=win64-installer.nsis
     INSTALLER_OUTPUT_FILE=OpenTodoList-Windows-64bit.exe
     INSTALLER_OUTPUT_TARGET_FILE=OpenTodoList-${VERSION}-Windows-64bit.exe
     EXTRA_LIBS="\
-        /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-1_1-x64.dll \
-        /usr/$MXE_DIR/sys-root/mingw/bin/libssl-1_1-x64.dll"
+        /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-3-x64.dll \
+        /usr/$MXE_DIR/sys-root/mingw/bin/libssl-3-x64.dll"
 else
     BUILD_DIR=build-win32
     DEPLOY_DIR=deploy-win32
     MXE_DIR=i686-w64-mingw32
     CMAKE=mingw32-cmake
-    QMAKE=mingw32-qmake-qt5
     INSTALLER_FILE=win32-installer.nsis
     INSTALLER_OUTPUT_FILE=OpenTodoList-Windows-32bit.exe
     INSTALLER_OUTPUT_TARGET_FILE=OpenTodoList-${VERSION}-Windows-32bit.exe
     EXTRA_LIBS="\
-        /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-1_1.dll \
-        /usr/$MXE_DIR/sys-root/mingw/bin/libssl-1_1.dll"
+        /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-3.dll \
+        /usr/$MXE_DIR/sys-root/mingw/bin/libssl-3.dll"
 fi
 
 mkdir -p $BUILD_DIR

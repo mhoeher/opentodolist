@@ -10,22 +10,21 @@ import "../Controls" as C
 C.Page {
     id: page
 
-    property string selectedAccountType: ""
     property alias buttonBox: buttons
     property C.Page anchorPage: null
 
     signal accepted
     signal canceled
-    signal closePage()
+    signal closePage
     signal openPage(var component, var properties)
 
     title: qsTr("Select Account Type")
 
     Component.onCompleted: {
-        var button = buttonBox.standardButton(C.DialogButtonBox.Ok);
-        button.enabled = Qt.binding(function() {
-            return selectedAccountType !== "";
-        });
+        var button = buttonBox.standardButton(C.DialogButtonBox.Ok)
+        button.enabled = Qt.binding(function () {
+            return d.selectedAccountType > -1
+        })
     }
 
     footer: C.DialogButtonBox {
@@ -38,39 +37,15 @@ C.Page {
     QtObject {
         id: d
 
-        function openNextPage() {
-            var webDavTypeMap = {
-                "WebDAV": OTL.Account.WebDAV,
-                "OwnCloud": OTL.Account.OwnCloud
-            };
+        property int selectedAccountType: -1
 
-            switch (selectedAccountType) {
-            case "NextCloud":
-                page.openPage(
-                            Qt.resolvedUrl("./NewNextCloudAccountPage.qml"),
-                            {
-                                "anchorPage": page.anchorPage
-                            });
-                break;
-            case "WebDAV":
-            case "OwnCloud":
-                var type = webDavTypeMap[selectedAccountType];
-                if (type !== undefined) {
-                    page.openPage(
-                                Qt.resolvedUrl("./NewWebDAVAccountPage.qml"),
-                                {
-                                    "type": type,
-                                    "anchorPage": page.anchorPage
-                                });
-                } else {
-                    console.error("Cannot handle WebDAV server type", selectedAccountType);
-                }
-                break;
-            default:
-                console.error("Unhandled account type ", selectedAccountType,
-                              " in AccountTypeSelectionPageForm");
-                break;
-            }
+        function openNextPage() {
+            let accountTypeName = OTL.Application.accountTypeToString(
+                    d.selectedAccountType)
+            page.openPage(Qt.resolvedUrl(
+                              "./New" + accountTypeName + "AccountPage.qml"), {
+                              "anchorPage": page.anchorPage
+                          })
         }
     }
 
@@ -82,34 +57,27 @@ C.Page {
             width: parent.width
             padding: Utils.AppSettings.mediumSpace
         }
-        model: accountsModel
+        model: [{
+                "type": OTL.Account.NextCloud,
+                "name": qsTr("NextCloud")
+            }, {
+                "type": OTL.Account.OwnCloud,
+                "name": qsTr("ownCloud")
+            }, {
+                "type": OTL.Account.WebDAV,
+                "name": qsTr("WebDAV")
+            }, {
+                "type": OTL.Account.Dropbox,
+                "name": qsTr("Dropbox")
+            }]
         delegate: C.ItemDelegate {
             width: parent.width
-            text: name
-            down: page.selectedAccountType === type
+            text: modelData.name
+            down: d.selectedAccountType === modelData.type
             onClicked: {
-                page.selectedAccountType = type;
-                d.openNextPage();
+                d.selectedAccountType = modelData.type
+                d.openNextPage()
             }
-        }
-    }
-
-    ListModel {
-        id: accountsModel
-
-        ListElement {
-            type: "NextCloud"
-            name: qsTr("NextCloud")
-        }
-
-        ListElement {
-            type: "OwnCloud"
-            name: qsTr("ownCloud")
-        }
-
-        ListElement {
-            type: "WebDAV"
-            name: qsTr("WebDAV")
         }
     }
 }

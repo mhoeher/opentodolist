@@ -234,6 +234,8 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
                     &Application::showQuickNotesEditorRequested);
             connect(m_backgroundService.data(), &BackgroundServiceReplica::serviceAboutToExit,
                     QCoreApplication::instance(), &QCoreApplication::quit);
+            connect(m_backgroundService.data(), &BackgroundServiceReplica::accountSecretChanged,
+                    this, &Application::onAccountSecretsChanged);
         }
     }
     return m_backgroundService;
@@ -286,12 +288,13 @@ void Application::saveAccountSecrets(Account* account)
 
         auto backgroundService = getBackgroundService();
         if (backgroundService) {
-            backgroundService->setAccountSecret(account->uid(), account->password());
+            backgroundService->setAccountSecret(account->uid(), account->accountSecrets());
         }
 
         // Check if the account we just saved credentials for was previously missing
         // credentials and hence remove the problem:
-        for (const auto& problem : m_problemManager->problems()) {
+        const auto problems = m_problemManager->problems();
+        for (const auto& problem : problems) {
             QSharedPointer<Account> problemAccount =
                     qSharedPointerObjectCast<Account>(problem.contextObject());
             if (problemAccount && problemAccount->uid() == account->uid()) {
@@ -325,7 +328,8 @@ void Application::removeAccount(Account* account)
 
         m_settings->beginGroup("Accounts");
         m_settings->beginGroup(account->uid().toString());
-        for (const auto& key : m_settings->allKeys()) {
+        const auto allKeys = m_settings->allKeys();
+        for (const auto& key : allKeys) {
             m_settings->remove(key);
         }
         m_keyStore->deleteCredentials(account->uid().toString());
@@ -355,6 +359,24 @@ Account* Application::loadAccount(const QUuid& uid)
 QVariantList Application::accountUids()
 {
     return m_appSettings->accountUids();
+}
+
+/**
+ * @brief Create an account.
+ *
+ * This is a wrapper for Account::createAccount(), which can be used in QML code.
+ */
+Account* Application::createAccount(Account::Type type)
+{
+    return Account::createAccount(type);
+}
+
+/**
+ * @brief Convert the account @p type to a string.
+ */
+QString Application::accountTypeToString(Account::Type type)
+{
+    return Account::typeToString(type);
 }
 
 /**
@@ -465,23 +487,17 @@ Library* Application::addNewLibraryToAccount(Account* account, const QString& na
             result->setUid(uid);
             result->save();
 
-            switch (account->type()) {
-            case Account::NextCloud:
-            case Account::OwnCloud:
-            case Account::WebDAV: {
-                WebDAVSynchronizer sync;
-                sync.setDirectory(result->directory());
-                sync.setAccountUid(account->uid());
-                sync.setServerType(account->toWebDAVServerType()
-                                           .value<WebDAVSynchronizer::WebDAVServerType>());
-                sync.setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
-                sync.setCreateDirs(true);
-                sync.save();
-                break;
-            }
-            case Account::Invalid:
-                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
-                               << "function";
+            auto sync = account->createSynchronizer();
+            if (sync) {
+                sync->setDirectory(result->directory());
+                sync->setAccountUid(account->uid());
+                sync->setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
+                sync->setCreateDirs(true);
+                sync->save();
+                delete sync;
+            } else {
+                qWarning() << "Failed to create synchronizer for account" << account->uid()
+                           << "of type" << account->type();
             }
 
             watchLibraryForChanges(result);
@@ -496,7 +512,7 @@ Library* Application::addNewLibraryToAccount(Account* account, const QString& na
 }
 
 Library* Application::addExistingLibraryToAccount(Account* account,
-                                                  const SynchronizerExistingLibrary& library)
+                                                  const RemoteLibraryInfo& library)
 {
     Library* result = nullptr;
     if (account && !library.uid().isNull() && !isLibraryUid(library.uid())) {
@@ -521,22 +537,16 @@ Library* Application::addExistingLibraryToAccount(Account* account,
             result->setUid(uid);
             result->save();
 
-            switch (account->type()) {
-            case Account::NextCloud:
-            case Account::OwnCloud:
-            case Account::WebDAV: {
-                WebDAVSynchronizer sync;
-                sync.setDirectory(result->directory());
-                sync.setAccountUid(account->uid());
-                sync.setServerType(account->toWebDAVServerType()
-                                           .value<WebDAVSynchronizer::WebDAVServerType>());
-                sync.setRemoteDirectory(library.path());
-                sync.save();
-                break;
-            }
-            case Account::Invalid:
-                qCWarning(log) << "Invalid account" << account << "passed to addNewLibraryToAccount"
-                               << "function";
+            auto sync = account->createSynchronizer();
+            if (sync) {
+                sync->setDirectory(result->directory());
+                sync->setAccountUid(account->uid());
+                sync->setRemoteDirectory("OpenTodoList/" + result->uid().toString() + ".otl");
+                sync->save();
+                delete sync;
+            } else {
+                qWarning() << "Failed to create synchronizer for account" << account->uid()
+                           << "of type" << account->type();
             }
 
             watchLibraryForChanges(result);
@@ -581,9 +591,8 @@ Note* Application::addNote(Library* library, QVariantMap properties)
         } else {
             note = new Note();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            note->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            note->setProperty(it.key().toUtf8(), it.value());
         }
         note->setLibraryId(library->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -605,9 +614,8 @@ NotePage* Application::addNotePage(Library* library, Note* note, QVariantMap pro
         } else {
             page = new NotePage();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            page->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            page->setProperty(it.key().toUtf8(), it.value());
         }
         page->setNoteUid(note->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -629,9 +637,8 @@ Image* Application::addImage(Library* library, QVariantMap properties)
         } else {
             image = new Image();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            image->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            image->setProperty(it.key().toUtf8(), it.value());
         }
         image->setLibraryId(library->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -653,9 +660,8 @@ TodoList* Application::addTodoList(Library* library, QVariantMap properties)
         } else {
             todoList = new TodoList();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            todoList->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            todoList->setProperty(it.key().toUtf8(), it.value());
         }
         todoList->setLibraryId(library->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -677,9 +683,8 @@ Todo* Application::addTodo(Library* library, TodoList* todoList, QVariantMap pro
         } else {
             todo = new Todo();
         }
-        for (auto property : properties.keys()) {
-            auto value = properties.value(property);
-            todo->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            todo->setProperty(it.key().toUtf8(), it.value());
         }
         todo->setTodoListUid(todoList->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -1397,6 +1402,25 @@ void Application::onLocalCacheLibrariesChanged(const QVariantList& libraryUids)
         if (backgroundService) {
             backgroundService->notifyCacheLibrariesChanged(libraryUids, m_appInstanceUid);
         }
+    }
+}
+
+/**
+ * @brief The secrets of an account changed in the background service.
+ *
+ * This signal indicates that the secrets of the account with the given @p accountUid have
+ * changed. The secret is not @p secret.
+ */
+void Application::onAccountSecretsChanged(const QUuid& accountUid, const QString& secrets)
+{
+    auto account = loadAccount(accountUid);
+    if (account) {
+        qCDebug(log) << "Received new secrets for account" << accountUid
+                     << "from background service";
+        // Don't call "saveAccountSecrets" or the like to prevent an endless
+        // ping pong between the GUI and the background service (which also saves the secrets).
+        m_appSettings->setAccountSecret(account->uid(), secrets);
+        delete account;
     }
 }
 

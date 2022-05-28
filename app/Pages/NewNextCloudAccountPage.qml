@@ -11,8 +11,8 @@ import "../Controls" as C
 C.Page {
     id: page
 
-    signal closePage()
-    signal returnToPage(C.Page page)
+    signal closePage
+    signal returnToPage(var page)
     signal openPage(var component, var properties)
 
     property C.Page anchorPage: null
@@ -26,32 +26,31 @@ C.Page {
     }
 
     Component.onCompleted: {
-        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok);
+        d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
     }
 
     QtObject {
         id: d
 
         property var okButton: null
-        property bool validated: false
         property bool manualLogin: false
         property OTL.NextCloudLoginFlow loginFlow: null
 
         function baseUrl(fromUrl) {
-            var url = fromUrl;
+            var url = fromUrl
             if (!/https?:\/\//i.exec(url)) {
-                url = "https://" + url;
+                url = "https://" + url
             }
-            return url;
+            return url
         }
 
         function urlForCreatingAppSpecificPasswords(fromUrl) {
-            let url = d.baseUrl(fromUrl);
+            let url = d.baseUrl(fromUrl)
             if (!url.endsWith("/")) {
-                url += "/";
+                url += "/"
             }
-            url += "settings/user/security";
-            return url;
+            url += "settings/user/security"
+            return url
         }
     }
 
@@ -60,7 +59,7 @@ C.Page {
 
         anchors.fill: parent
         padding: Utils.AppSettings.mediumSpace
-        enabled: !dav.validating
+        enabled: !account.loggingIn
 
         GridLayout {
             width: scrollView.availableWidth
@@ -94,11 +93,14 @@ C.Page {
                 text: qsTr("Login")
                 Layout.alignment: Qt.AlignRight
                 onClicked: {
-                    d.loginFlow = OTL.Application.createNextCloudLoginFlow(disableCertificateChecksEdit.checked);
-                    d.loginFlow.startLoginFlow(d.baseUrl(serverAddressEdit.text));
-                    loginInfoBox.visible = true;
+                    d.loginFlow = OTL.Application.createNextCloudLoginFlow(
+                                disableCertificateChecksEdit.checked)
+                    d.loginFlow.startLoginFlow(d.baseUrl(
+                                                   serverAddressEdit.text))
+                    loginInfoBox.visible = true
                 }
-                enabled: serverAddressEdit.text !== "" && (d.loginFlow === null || !d.loginFlow.flowRunning)
+                enabled: serverAddressEdit.text !== ""
+                         && (d.loginFlow === null || !d.loginFlow.flowRunning)
             }
 
             C.GroupBox {
@@ -115,24 +117,26 @@ C.Page {
 
                     C.Label {
                         width: parent.width
-                        text: qsTr("We have tried to open your browser to log you in to " +
-                                   "your NextCloud instance. Please log in and grant access " +
-                                   "to OpenTodoList in order to proceed. Trouble accessing " +
-                                   "your NextCloud in the browser? You can manually enter " +
-                                   "your username and password as well.");
+                        text: qsTr(
+                                  "We have tried to open your browser to log you in to "
+                                  + "your NextCloud instance. Please log in and grant access "
+                                  + "to OpenTodoList in order to proceed. Trouble accessing "
+                                  + "your NextCloud in the browser? You can manually enter "
+                                  + "your username and password as well.")
                     }
                     C.Button {
                         text: qsTr("Log in Manually")
-                        onClicked: d.manualLogin = true;
+                        onClicked: d.manualLogin = true
                         anchors.right: parent.right
                     }
                     C.Label {
                         width: parent.width
-                        text: qsTr("Ideally, you use app specific passwords instead of your " +
-                                   "user password. In case your login is protected with " +
-                                   "2 Factor Authentication (2FA) you even must use app specific " +
-                                   "passwords to access your NextCloud. You can create such " +
-                                   "passwords in your user settings.")
+                        text: qsTr(
+                                  "Ideally, you use app specific passwords instead of your "
+                                  + "user password. In case your login is protected with "
+                                  + "2 Factor Authentication (2FA) you even must use app specific "
+                                  + "passwords to access your NextCloud. You can create such "
+                                  + "passwords in your user settings.")
                     }
 
                     C.Button {
@@ -147,19 +151,21 @@ C.Page {
                             C.MenuItem {
                                 text: qsTr("Account Settings")
                                 onTriggered: {
-                                    let url = serverAddressEdit.text;
-                                    url = d.urlForCreatingAppSpecificPasswords(url);
-                                    Qt.openUrlExternally(url);
-                                    console.debug(url);
+                                    let url = serverAddressEdit.text
+                                    url = d.urlForCreatingAppSpecificPasswords(
+                                                url)
+                                    Qt.openUrlExternally(url)
+                                    console.debug(url)
                                 }
                             }
                             C.MenuItem {
                                 text: qsTr("Copy Link")
                                 onTriggered: {
-                                    let url = serverAddressEdit.text;
-                                    url = d.urlForCreatingAppSpecificPasswords(url);
-                                    OTL.Application.copyToClipboard(url);
-                                    C.ToolTip.show(qsTr("Copied!"), 5000);
+                                    let url = serverAddressEdit.text
+                                    url = d.urlForCreatingAppSpecificPasswords(
+                                                url)
+                                    OTL.Application.copyToClipboard(url)
+                                    C.ToolTip.show(qsTr("Copied!"), 5000)
                                 }
                             }
                         }
@@ -211,9 +217,10 @@ C.Page {
 
                 Layout.fillWidth: true
                 placeholderText: {
-                    if (usernameEdit.text !== "" && serverAddressEdit.text !== "") {
+                    if (usernameEdit.text !== ""
+                            && serverAddressEdit.text !== "") {
                         return usernameEdit.text + "@" + serverAddressEdit.text.replace(
-                                    /https?:\/\//i, "");
+                                    /https?:\/\//i, "")
                     } else {
                         return qsTr("Account Name")
                     }
@@ -228,7 +235,7 @@ C.Page {
                 text: qsTr("Failed to connect to the server. Please "
                            + "check your user name, password and the server address and retry.")
                 Material.foreground: Material.Red
-                visible: d.validated && !dav.valid
+                visible: false
             }
         }
     }
@@ -237,65 +244,43 @@ C.Page {
         id: busyIndicator
 
         anchors.centerIn: parent
-        visible: dav.validating
+        visible: account.loggingIn
     }
 
-    OTL.WebDAVSynchronizer {
-        id: dav
-
-        serverType: OTL.WebDAVSynchronizer.NextCloud
-
-        onValidatingChanged: {
-            if (!validating) {
-                d.validated = true;
-            }
-        }
-        onValidChanged: {
-            if (d.validated && valid) {
-                OTL.Application.saveAccount(account);
-                OTL.Application.saveAccountSecrets(account);
-                page.returnToPage(page.anchorPage);
-            }
-        }
-    }
-
-    OTL.Account {
+    OTL.NextCloudAccount {
         id: account
-
-        type: OTL.Account.NextCloud
-        baseUrl: dav.url
-        username: dav.username
-        password: dav.password
-        backendSpecificData: {
-            return {
-                workarounds: dav.workarounds
-            }
-        }
 
         name: {
             if (accountNameEdit.text !== "") {
-                return accountNameEdit.text;
+                return accountNameEdit.text
             } else {
-                return accountNameEdit.placeholderText;
+                return accountNameEdit.placeholderText
             }
         }
 
-        disableCertificateChecks: dav.disableCertificateCheck
+        onLoginFinished: {
+            if (success) {
+                OTL.Application.saveAccount(account)
+                OTL.Application.saveAccountSecrets(account)
+                page.returnToPage(page.anchorPage)
+            } else {
+                errorLabel.visible = true
+            }
+        }
     }
 
     Connections {
         target: d.loginFlow
 
         function onReceivedLogin(username, password, server) {
-            usernameEdit.text = username;
-            passwordEdit.text = password;
-            serverAddressEdit.text = server;
-            loginInfoBox.visible = false;
-            d.validated = false;
+            usernameEdit.text = username
+            passwordEdit.text = password
+            serverAddressEdit.text = server
+            loginInfoBox.visible = false
         }
 
         function onReceivedLoginUrl(loginUrl) {
-            Qt.openUrlExternally(loginUrl);
+            Qt.openUrlExternally(loginUrl)
         }
     }
 
@@ -303,20 +288,21 @@ C.Page {
         target: d.okButton
 
         function onClicked() {
-            console.debug("Start validation");
-            dav.url = d.baseUrl(serverAddressEdit.text);
-            dav.username = usernameEdit.text;
-            dav.password = passwordEdit.text;
-            dav.disableCertificateCheck = disableCertificateChecksEdit.checked;
-            d.validated = false;
-            dav.validate();
+            console.debug("Start validation")
+            account.baseUrl = d.baseUrl()
+            account.baseUrl = d.baseUrl(serverAddressEdit.text)
+            account.username = usernameEdit.text
+            account.password = passwordEdit.text
+            account.disableCertificateChecks = disableCertificateChecksEdit.checked
+            errorLabel.visible = false
+            account.login()
         }
     }
 
     Binding {
         target: d.okButton
         property: "enabled"
-        value: serverAddressEdit.text !== "" && usernameEdit.text !== "" && passwordEdit.text !== ""
+        value: serverAddressEdit.text !== "" && usernameEdit.text !== ""
+               && passwordEdit.text !== ""
     }
 }
-
