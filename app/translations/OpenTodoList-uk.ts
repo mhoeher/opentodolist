@@ -72,28 +72,33 @@
 <context>
     <name>AccountTypeSelectionPage</name>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPage.qml" line="22"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="21"/>
         <source>Select Account Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPage.qml" line="81"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="56"/>
         <source>Account Type</source>
         <translation type="unfinished">Тип Акаунту</translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPage.qml" line="102"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="62"/>
         <source>NextCloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPage.qml" line="107"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="65"/>
         <source>ownCloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AccountTypeSelectionPage.qml" line="112"/>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="68"/>
         <source>WebDAV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/AccountTypeSelectionPage.qml" line="71"/>
+        <source>Dropbox</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -101,7 +106,7 @@
     <name>AccountsPage</name>
     <message>
         <location filename="../Pages/AccountsPage.qml" line="19"/>
-        <location filename="../Pages/AccountsPage.qml" line="50"/>
+        <location filename="../Pages/AccountsPage.qml" line="41"/>
         <source>Accounts</source>
         <translation type="unfinished">Акаунти</translation>
     </message>
@@ -145,6 +150,24 @@
     </message>
     <message>
         <location filename="../appstartup.cpp" line="394"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Application</name>
+    <message>
+        <location filename="../../lib/application.cpp" line="187"/>
+        <source>Background Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/application.cpp" line="192"/>
+        <source>App continues to sync your data in the background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/application.cpp" line="196"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -318,6 +341,14 @@
     </message>
 </context>
 <context>
+    <name>CopyItemQuery</name>
+    <message>
+        <location filename="../../lib/datastorage/copyitemquery.cpp" line="120"/>
+        <source>Copy of</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CopyTodo</name>
     <message>
         <location filename="../Actions/CopyTodo.qml" line="11"/>
@@ -437,60 +468,114 @@
     </message>
 </context>
 <context>
-    <name>EditNextCloudAccountPage</name>
+    <name>EditDropboxAccountPage</name>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="33"/>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="69"/>
-        <source>Edit Account</source>
-        <translation type="unfinished">Редагувати Акаунт</translation>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="27"/>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="67"/>
+        <source>Connection Settings</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="75"/>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="75"/>
+        <source>Trouble Signing In?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
+        <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="93"/>
+        <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="97"/>
+        <source>Authorize...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="106"/>
+        <source>Open Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="112"/>
+        <source>Copy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="116"/>
+        <source>Copied!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="125"/>
         <source>Name:</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="86"/>
+        <location filename="../Pages/EditDropboxAccountPage.qml" line="132"/>
+        <source>Dropbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditNextCloudAccountPage</name>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="23"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="59"/>
+        <source>Edit Account</source>
+        <translation type="unfinished">Редагувати Акаунт</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="65"/>
+        <source>Name:</source>
+        <translation type="unfinished">Ім&apos;я</translation>
+    </message>
+    <message>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="76"/>
         <source>Server Address:</source>
         <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="93"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="101"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="91"/>
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="104"/>
         <source>User:</source>
         <translation type="unfinished">Користувач</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="118"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User Name</source>
         <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="117"/>
         <source>Password:</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="131"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
         <source>Password</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="140"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="133"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
-        <location filename="../Pages/EditNextCloudAccountPage.qml" line="149"/>
+        <location filename="../Pages/EditNextCloudAccountPage.qml" line="142"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
@@ -498,53 +583,53 @@
 <context>
     <name>EditWebDAVAccountPage</name>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="35"/>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="127"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="33"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="118"/>
         <source>Edit Account</source>
         <translation type="unfinished">Редагувати Акаунт</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="133"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
         <source>Name:</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="144"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="135"/>
         <source>Server Address:</source>
         <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="150"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="157"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="148"/>
         <source>User:</source>
         <translation type="unfinished">Користувач</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="163"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
         <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="170"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="161"/>
         <source>Password:</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="177"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="168"/>
         <source>Password</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="187"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="178"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
-        <location filename="../Pages/EditWebDAVAccountPage.qml" line="195"/>
+        <location filename="../Pages/EditWebDAVAccountPage.qml" line="186"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
@@ -675,67 +760,67 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="184"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="187"/>
         <source>New Library</source>
         <translation type="unfinished">Нова бібліотека</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="191"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="193"/>
         <source>Accounts</source>
         <translation type="unfinished">Акаунти</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="200"/>
         <source>Edit List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="204"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="206"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="211"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="213"/>
         <source>Translate The App...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="218"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="228"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="239"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="241"/>
         <source>Create Default Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="352"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="352"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="362"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="364"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="371"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="384"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Schedule</source>
         <translation type="unfinished">Список</translation>
     </message>
@@ -743,107 +828,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="153"/>
+        <location filename="../Pages/LibraryPage.qml" line="161"/>
         <source>Red</source>
         <translation type="unfinished">Червоний</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="160"/>
+        <location filename="../Pages/LibraryPage.qml" line="168"/>
         <source>Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="167"/>
+        <location filename="../Pages/LibraryPage.qml" line="175"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="174"/>
+        <location filename="../Pages/LibraryPage.qml" line="182"/>
         <source>Yellow</source>
         <translation type="unfinished">Жовтий</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="181"/>
+        <location filename="../Pages/LibraryPage.qml" line="189"/>
         <source>Orange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="188"/>
+        <location filename="../Pages/LibraryPage.qml" line="196"/>
         <source>Lilac</source>
         <translation type="unfinished">Бузковий</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="195"/>
+        <location filename="../Pages/LibraryPage.qml" line="203"/>
         <source>White</source>
         <translation type="unfinished">Білий</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="205"/>
+        <location filename="../Pages/LibraryPage.qml" line="213"/>
         <source>Rename</source>
         <translation type="unfinished">Перейменувати</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="210"/>
+        <location filename="../Pages/LibraryPage.qml" line="218"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="215"/>
+        <location filename="../Pages/LibraryPage.qml" line="223"/>
         <source>Delete</source>
         <translation type="unfinished">Видалити</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="224"/>
+        <location filename="../Pages/LibraryPage.qml" line="232"/>
         <source>Select Image</source>
         <translation type="unfinished">Вибрати зображення</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="277"/>
+        <location filename="../Pages/LibraryPage.qml" line="291"/>
         <source>Note Title</source>
         <translation type="unfinished">Заголовок примітки </translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="290"/>
+        <location filename="../Pages/LibraryPage.qml" line="304"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Заголовок списку справ </translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="303"/>
+        <location filename="../Pages/LibraryPage.qml" line="317"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Пошук терміну 1, пошук терміну 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="382"/>
+        <location filename="../Pages/LibraryPage.qml" line="396"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Тут нічого ще немає! Почніть з додавання &lt;a href=&apos;#note&apos;&gt;примітка &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;список справ&lt;/a&gt; або &lt;a href=&apos;#image&apos;&gt;зображення&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="445"/>
+        <location filename="../Pages/LibraryPage.qml" line="456"/>
         <source>Sort By</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="450"/>
+        <location filename="../Pages/LibraryPage.qml" line="461"/>
         <source>Manually</source>
         <translation type="unfinished">Вручну</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="457"/>
+        <location filename="../Pages/LibraryPage.qml" line="468"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="464"/>
+        <location filename="../Pages/LibraryPage.qml" line="475"/>
         <source>Due To</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="471"/>
+        <location filename="../Pages/LibraryPage.qml" line="482"/>
         <source>Created At</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="478"/>
+        <location filename="../Pages/LibraryPage.qml" line="489"/>
         <source>Updated At</source>
         <translation type="unfinished"></translation>
     </message>
@@ -892,7 +977,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="271"/>
+        <location filename="../Windows/MainWindow.qml" line="276"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Почніть з &lt;a href=&apos;#newLibrary&apos;&gt;створення нової бібліотеки&lt;/a&gt;. Бібліотеки використовуються для зберігання різних видів предметів, таких як нотатки, списки справ та зображення.</translation>
     </message>
@@ -902,6 +987,60 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NewDropboxAccountPage</name>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="20"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="54"/>
+        <source>Connection Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="62"/>
+        <source>Trouble Signing In?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="73"/>
+        <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="80"/>
+        <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="86"/>
+        <source>Authorize...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="95"/>
+        <source>Open Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="101"/>
+        <source>Copy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="105"/>
+        <source>Copied!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="114"/>
+        <source>Name:</source>
+        <translation type="unfinished">Ім&apos;я</translation>
+    </message>
+    <message>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="121"/>
+        <source>Dropbox</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -956,47 +1095,47 @@
 <context>
     <name>NewLibraryFromAccountPage</name>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="104"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="82"/>
         <source>Create Library in Account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="91"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="121"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="99"/>
         <source>Existing Libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="129"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="107"/>
         <source>Select an existing library on the server to add it to the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="135"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
         <source>No libraries were found on the server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="143"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="122"/>
         <source>Searching existing libraries...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="177"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="165"/>
         <source>Create a New Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="185"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="173"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="199"/>
+        <location filename="../Pages/NewLibraryFromAccountPage.qml" line="187"/>
         <source>My new library&apos;s name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1004,42 +1143,42 @@
 <context>
     <name>NewLibraryInFolderPage</name>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="71"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="74"/>
         <source>Select a Folder</source>
         <translation type="unfinished">Вибрати теку</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="97"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="101"/>
         <source>Open a Folder as a Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="105"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
         <source>Folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="114"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
         <source>Path to a folder to use as a library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="120"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="124"/>
         <source>Select</source>
         <translation type="unfinished">Вибрати</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="125"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="129"/>
         <source>Name:</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryInFolderPage.qml" line="130"/>
+        <location filename="../Pages/NewLibraryInFolderPage.qml" line="134"/>
         <source>My Local Library Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1047,28 +1186,28 @@
 <context>
     <name>NewLibraryPage</name>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="24"/>
-        <location filename="../Pages/NewLibraryPage.qml" line="62"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="23"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="63"/>
         <source>Create Library</source>
         <translation type="unfinished">Створити бібліотеку</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="69"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="70"/>
         <source>Local Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="76"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="77"/>
         <source>Use Folder as Library</source>
         <translation type="unfinished">Використати теку як бібліотеку</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="87"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="89"/>
         <source>Add Libraries From Your Accounts</source>
         <translation type="unfinished">Додати бібліотеки з ваших акаунтів</translation>
     </message>
     <message>
-        <location filename="../Pages/NewLibraryPage.qml" line="114"/>
+        <location filename="../Pages/NewLibraryPage.qml" line="116"/>
         <source>Add Account</source>
         <translation type="unfinished">Додати акаунт</translation>
     </message>
@@ -1100,97 +1239,97 @@
     <name>NewNextCloudAccountPage</name>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="74"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="73"/>
         <source>Connection Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="80"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="79"/>
         <source>Server Address:</source>
         <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="94"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="93"/>
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="107"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="109"/>
         <source>Trouble Signing In?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="118"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="120"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="125"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="128"/>
         <source>Log in Manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="131"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="134"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="139"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="143"/>
         <source>Create App Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="148"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="152"/>
         <source>Account Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="157"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copy Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="168"/>
         <source>Copied!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="171"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="177"/>
         <source>User:</source>
         <translation type="unfinished">Користувач</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="178"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="184"/>
         <source>User Name</source>
         <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="185"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="191"/>
         <source>Password:</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="192"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="198"/>
         <source>Password</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="202"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="208"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="206"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="212"/>
         <source>Name:</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="218"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="225"/>
         <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewNextCloudAccountPage.qml" line="228"/>
+        <location filename="../Pages/NewNextCloudAccountPage.qml" line="235"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
@@ -1223,57 +1362,57 @@
     <name>NewWebDAVAccountPage</name>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="136"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="101"/>
         <source>Connection Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="142"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="107"/>
         <source>Server Address:</source>
         <translation type="unfinished">Адреса серверу</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="148"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="113"/>
         <source>https://myserver.example.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="154"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="119"/>
         <source>User:</source>
         <translation type="unfinished">Користувач</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="160"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="125"/>
         <source>User Name</source>
         <translation type="unfinished">Ім&apos;я користовуча</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="166"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="131"/>
         <source>Password:</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="172"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="137"/>
         <source>Password</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="181"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
         <source>Disable Certificate Checks</source>
         <translation type="unfinished">Відключити перевірку сертифікатів</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="185"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="150"/>
         <source>Name:</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="197"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="163"/>
         <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewWebDAVAccountPage.qml" line="207"/>
+        <location filename="../Pages/NewWebDAVAccountPage.qml" line="173"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
         <translation type="unfinished">помилка з&apos;єднання з сервером. Перевірте,будь ласка, ім&apos;я користувача, пароль та адресу серверу. Та повторіть спробу</translation>
     </message>
@@ -1297,6 +1436,14 @@
         <location filename="../Pages/NotePage.qml" line="195"/>
         <source>New Page</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenTodoList::Translations</name>
+    <message>
+        <location filename="../../lib/utils/translations.cpp" line="91"/>
+        <source>System Language</source>
+        <translation type="unfinished">Системна мова</translation>
     </message>
 </context>
 <context>

@@ -2462,7 +2462,8 @@ msgid "Show At The End"
 msgstr "Visa Vid Slutet"
 
 #: ../Actions/ResetDueTo.qml:8
+#, fuzzy
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr ""
+msgstr "Återställ pga"
 

@@ -10,7 +10,7 @@ msgstr ""
 #: ../Pages/AboutPage.qml:15
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr "Über OpenTodoList …"
+msgstr "Über …"
 
 #: ../Pages/AboutPage.qml:29
 msgctxt "AboutPage|"
@@ -170,7 +170,7 @@ msgstr "Öffnen"
 #: ../Widgets/ItemDueDateEditor.qml:28
 msgctxt "ItemDueDateEditor|"
 msgid "Due on"
-msgstr "Fällig zum"
+msgstr "Fällig am"
 
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
@@ -191,7 +191,7 @@ msgstr "Neue Bibliothek"
 #: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "About..."
-msgstr "Über OpenTodoList …"
+msgstr "Über…"
 
 #: ../Pages/LibraryPage.qml:153
 msgctxt "LibraryPage|"
@@ -371,7 +371,7 @@ msgstr "Name der Bibliothek:"
 #: ../Pages/NewLibraryPage.qml:66
 msgctxt "NewLibraryPage|"
 msgid "My New Library"
-msgstr "Meine neue Bibliothek"
+msgstr "Neue Bibliothek"
 
 #: ../Pages/NewLibraryPage.qml:73
 msgctxt "NewLibraryPage|"
@@ -583,7 +583,7 @@ msgstr "Unteraufgaben"
 #: ../Widgets/UpdateNotificationBar.qml:44
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
-msgstr "Die neue Version OpenTodoList %1 ist verfügbar."
+msgstr "Eine neue Version von OpenTodoList %1 ist verfügbar."
 
 #: ../Widgets/UpdateNotificationBar.qml:50
 msgctxt "UpdateNotificationBar|"
@@ -1151,7 +1151,7 @@ msgstr "Erstelle eine lokale Bibliothek"
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:37
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "Eine lokale Bibliothek wird ausschließlich auf Deinem Gerät gespeichert - das macht es perfekt für den Datenschutz prägnant!<br/><br/>Benutze es, wenn Du Informationen nur lokal speichern und alle Deine Daten regelmäßig über andere Mechanismen sichern willst. Wenn Du auf Deine Informationen über mehrere Geräte hinweg zugreifen musst, erstelle eine Bibliothek, die stattdessen synchronisiert wird."
+msgstr "Eine lokale Bibliothek wird ausschließlich auf Deinem Gerät gespeichert - das macht es perfekt für den Datenschutzorientierte Nutzer!<br/><br/>Nutze sie, wenn Du Informationen nur lokal speichern und alle Deine Daten regelmäßig über andere Mechanismen sichern willst. Wenn Du auf Deine Informationen über mehrere Geräte hinweg zugreifen musst, erstelle eine Bibliothek, die synchronisiert wird."
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:48
 msgctxt "NewLocalLibraryPageForm.ui|"
@@ -1161,7 +1161,7 @@ msgstr "Name:"
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:53
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Name meiner lokalen Bibliothek"
+msgstr "Name der lokalen Bibliothek"
 
 #: ../Pages/NewWebDAVAccountPage.qml:197
 msgctxt "NewWebDAVAccountPage|"
@@ -1182,7 +1182,7 @@ msgstr "Serveradresse:"
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "https://myserver.example.com"
-msgstr "https://meinserver.beispiel.com"
+msgstr "https://meinserver.example.com"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
 msgctxt "NewWebDAVAccountPageForm.ui|"
@@ -2474,5 +2474,5 @@ msgstr "Am Ende anzeigen"
 #: ../Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr ""
+msgstr "Zurücksetzen aufgrund von"
 

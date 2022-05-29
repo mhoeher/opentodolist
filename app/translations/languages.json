@@ -93,9 +93,9 @@
     {
         "name": "German",
         "code": "de",
-        "translations": 488,
-        "percentage": 99.8,
-        "updated": "2022-02-14T20:21:08+0000"
+        "translations": 489,
+        "percentage": 100,
+        "updated": "2022-05-02T12:04:31+0000"
     },
     {
         "name": "Greek",
@@ -145,6 +145,13 @@
         "translations": 301,
         "percentage": 61.55,
         "updated": "2020-06-28T18:32:43+0000"
+    },
+    {
+        "name": "Persian",
+        "code": "fa",
+        "translations": 14,
+        "percentage": 2.86,
+        "updated": "2022-05-18T17:38:03+0000"
     },
     {
         "name": "Polish",
@@ -212,16 +219,16 @@
     {
         "name": "Swedish",
         "code": "sv",
-        "translations": 488,
-        "percentage": 99.8,
-        "updated": "2021-12-22T09:22:34+0000"
+        "translations": 489,
+        "percentage": 100,
+        "updated": "2022-03-23T07:29:41+0000"
     },
     {
         "name": "Turkish",
         "code": "tr",
-        "translations": 416,
-        "percentage": 85.07,
-        "updated": "2021-11-10T11:17:10+0000"
+        "translations": 470,
+        "percentage": 96.11,
+        "updated": "2022-05-17T22:40:35+0000"
     },
     {
         "name": "Turkmen",
@@ -240,8 +247,8 @@
     {
         "name": "Vietnamese",
         "code": "vi",
-        "translations": 301,
-        "percentage": 61.55,
-        "updated": "2020-06-28T19:42:15+0000"
+        "translations": 314,
+        "percentage": 64.21,
+        "updated": "2022-04-18T13:32:06+0000"
     }
 ]
