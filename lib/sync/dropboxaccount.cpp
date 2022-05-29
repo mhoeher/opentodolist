@@ -25,8 +25,10 @@
 #include <QOAuth2AuthorizationCodeFlow>
 #include <QDesktopServices>
 #include <QOAuthHttpServerReplyHandler>
+#include <QAbstractOAuthReplyHandler>
 #include <QLoggingCategory>
 #include <QNetworkReply>
+#include <QUrlQuery>
 
 #include <SynqClient/CompositeJob>
 #include <SynqClient/ListFilesJob>
@@ -47,10 +49,42 @@ static const char* DropboxAppKey = "2llpx6hgwdzq7wr";
 
 static const char* DropboxAccessTokenUrl = "https://api.dropboxapi.com/oauth2/token";
 static const char* DropboxAuthorizationUrl = "https://www.dropbox.com/oauth2/authorize";
+#ifdef Q_OS_IOS
+static const char* DropboxRedirectUri = "opentodolist://dropbox.auth";
+#else
 static const char* DropboxRedirectUri = "http://localhost:1220";
 static const quint16 DropboxRedirectPort = 1220;
+#endif
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.DropboxAccount", QtDebugMsg);
+
+/**
+ * @brief Handle OAuth replies internally
+ */
+class DropboxInternalReplyHandler : public QOAuthOobReplyHandler
+{
+    Q_OBJECT
+public:
+    explicit DropboxInternalReplyHandler(QObject* parent = nullptr) : QOAuthOobReplyHandler(parent)
+    {
+        QDesktopServices::setUrlHandler("opentodolist", this, "handleReply");
+    }
+    ~DropboxInternalReplyHandler() override { QDesktopServices::unsetUrlHandler("opentodolist"); }
+
+    QString callback() const override { return DropboxRedirectUri; }
+
+private slots:
+    void handleReply(const QUrl& url)
+    {
+        QUrlQuery query(url);
+        QVariantMap parameters;
+        const auto queryItems = query.queryItems();
+        for (const auto& param : queryItems) {
+            parameters.insert(param.first, param.second);
+        }
+        emit callbackReceived(parameters);
+    }
+};
 
 DropboxAccount::DropboxAccount(QObject* parent)
     : Account { parent }, m_refreshToken(), m_accessToken(), m_expiration(), m_codeVerifier()
@@ -130,9 +164,13 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
     auto result = new QOAuth2AuthorizationCodeFlow(nam, parent);
     nam->setParent(result);
     nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+
+#ifdef Q_OS_IOS
+    auto replyHandler = new DropboxInternalReplyHandler(result);
+#else
     auto replyHandler = new QOAuthHttpServerReplyHandler(DropboxRedirectPort, result);
-    connect(replyHandler, &QOAuthHttpServerReplyHandler::callbackDataReceived, this,
-            [&](const auto& data) { qWarning() << data; });
+#endif
+
     result->setReplyHandler(replyHandler);
     result->setModifyParametersFunction(
             [=](QOAuth2AuthorizationCodeFlow::Stage stage, QVariantMap* parameters) {
@@ -394,3 +432,5 @@ void DropboxAccount::checkConnectivity()
             });
     oauth->refreshAccessToken();
 }
+
+#include "dropboxaccount.moc"

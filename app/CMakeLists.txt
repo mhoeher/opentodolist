@@ -63,6 +63,7 @@ else()
             UPLOAD_SYMBOL
             ASSET_DIR ios/Images.xcassets
             LAUNCHSCREEN_STORYBOARD "ios/LaunchScreen.storyboard"
+            CUSTOM_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in
         )
         target_sources(OpenTodoList PRIVATE  ${PROJECT_SOURCES} ${APP_RESOURCES})
         qt_generate_plugin_import(
