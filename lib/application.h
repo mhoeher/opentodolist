@@ -86,7 +86,16 @@ public:
     Q_INVOKABLE Account* loadAccount(const QUuid& uid);
     Q_INVOKABLE QVariantList accountUids();
     Q_INVOKABLE Account* createAccount(Account::Type type);
+    Q_INVOKABLE Account* createAccount(int type)
+    {
+        return createAccount(static_cast<Account::Type>(type));
+    }
+
     Q_INVOKABLE QString accountTypeToString(Account::Type type);
+    Q_INVOKABLE QString accountTypeToString(int type)
+    {
+        return accountTypeToString(static_cast<Account::Type>(type));
+    }
 
     Q_INVOKABLE Library* addLocalLibrary(const QString& name);
     Q_INVOKABLE Library* addLibraryDirectory(const QString& directory);
