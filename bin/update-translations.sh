@@ -11,4 +11,4 @@ fi
 
 cd "$(dirname "$(dirname "$(readlink -f "$0")")")"
 
-"$LUPDATE" -no-obsolete opentodolist.pro
+"$LUPDATE" -no-obsolete app lib -ts app/translations/*.ts
