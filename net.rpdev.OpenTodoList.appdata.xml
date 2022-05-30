@@ -40,6 +40,22 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+      <release version="3.40.0" date="2022-05-30">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#412: Support for Dropbox</li>
+            <li>#454: Reduce size of the app when distributed as Flatpak</li>
+            <li>#488: Better counter of open/all todos.</li>
+            <li>#517: Add option to context menus to allow resetting due date.</li>
+            <li>#504: Fix "recursive" sorting by last updated at date.</li>
+            <li>#516: Add icon to indicate that a todo contains a descriptive text.</li>
+            <li>#507: Keep input field focused when adding new todos/tasks.</li>
+            <li>#511: Fix in Chinese translations.</li>
+            <li>#518: Fix reopening the app when it is hidden to the dock on mac OS X.</li>
+            <li>#513: Fix that some entries in the language selection dropbox are sometimes hidden.</li>
+            <li>#512: Fix that setting the language resets the selected theme.</li>
+        </ul>
+      </release>
       <release version="3.39.1" date="2022-03-19">
         <p>This release includes the following changes:</p>
         <ul>
