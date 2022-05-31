@@ -5,7 +5,6 @@ import "../Components"
 import "../Controls" as C
 import "../Utils" as Utils
 
-
 C.Page {
     id: page
 
@@ -27,7 +26,7 @@ C.Page {
     height: stack.height
 
     onClose: {
-        stack.pop();
+        stack.pop()
     }
 
     C.ScrollView {
@@ -61,43 +60,61 @@ C.Page {
 
             C.ComboBox {
                 id: languageEdit
+
                 Layout.fillWidth: true
                 model: translations.availableLanguages()
                 textRole: "name"
                 valueRole: "code"
                 popup: C.Popup {
-                         y: page.availableHeight / 20
-                         width: languageEdit.width
-                         implicitHeight: contentItem.implicitHeight
+                    y: page.availableHeight / 20
+                    width: languageEdit.width
+                    implicitHeight: contentItem.implicitHeight
 
-                         contentItem: ListView {
-                             clip: true
-                             implicitHeight: Math.min(contentHeight, page.availableHeight / 2)
-                             model: languageEdit.popup.visible ? languageEdit.delegateModel : null
-                             currentIndex: languageEdit.highlightedIndex
+                    contentItem: ListView {
+                        clip: true
+                        implicitHeight: Math.min(contentHeight,
+                                                 page.availableHeight / 2)
+                        model: languageEdit.popup.visible ? languageEdit.delegateModel : null
+                        currentIndex: languageEdit.highlightedIndex
 
-                             C.ScrollIndicator.vertical: C.ScrollIndicator { }
-                         }
-                     }
+                        C.ScrollIndicator.vertical: C.ScrollIndicator {}
+                    }
+                }
                 currentIndex: {
-                    var model = translations.availableLanguages();
+                    var model = translations.availableLanguages()
                     for (var i = 0; i < model.length; ++i) {
-                        var lang = model[i];
+                        var lang = model[i]
                         if (lang.code === translations.language) {
-                            return i;
+                            return i
                         }
                     }
                     // The first entry is always the system language - hence, if we didn't match
                     // anything else, choose that:
-                    return 0;
+                    return 0
                 }
                 onCurrentValueChanged: {
-                    // WA for rpdev/opentodolist#512:
-                    // Remeber current theme by manually saving it before
-                    // changing the language:
-                    let theme = Utils.Colors.theme;
-                    translations.language = currentValue;
-                    Utils.Colors.theme = theme;
+                    if (enabled) {
+                        // WA for rpdev/opentodolist#540: We get a double change, the first
+                        // one is the user originated one, the second a "bogus" one which will always
+                        // reset to system language. Disable the edit and only accept changes after a
+                        // "cooldown".
+                        enabled = false
+                        reenableLanguageChangeTimer.start()
+
+                        // WA for rpdev/opentodolist#512:
+                        // Remeber current theme by manually saving it before
+                        // changing the language:
+                        let theme = Utils.Colors.theme
+                        translations.language = currentValue
+                        Utils.Colors.theme = theme
+                    }
+                }
+
+                Timer {
+                    id: reenableLanguageChangeTimer
+                    interval: 1000
+                    repeat: false
+                    onTriggered: languageEdit.enabled = true
                 }
             }
 
@@ -118,10 +135,10 @@ C.Page {
                 Component.onCompleted: {
                     for (var i = 0; i < Utils.Colors.themes.length; ++i) {
                         if (Utils.Colors.themes[i].name === Utils.Colors.theme) {
-                            return i;
+                            return i
                         }
                     }
-                    return 0;
+                    return 0
                 }
             }
 
@@ -182,8 +199,8 @@ C.Page {
             Empty {}
 
             C.Label {
-                text: qsTr("Reduce space between components and reduce the font size.\n\n" +
-                           "<em>Requires a restart of the app.</em>")
+                text: qsTr("Reduce space between components and reduce the font size.\n\n"
+                           + "<em>Requires a restart of the app.</em>")
                 Layout.fillWidth: true
             }
 
@@ -200,8 +217,8 @@ C.Page {
 
             C.Label {
                 Layout.fillWidth: true
-                text: qsTr("Reduce the padding in todo and task listings to fit more items on " +
-                           "the screen.")
+                text: qsTr("Reduce the padding in todo and task listings to fit more items on "
+                           + "the screen.")
             }
 
             Empty {}
@@ -223,7 +240,9 @@ C.Page {
                 value: Utils.AppSettings.uiScaling
                 stepSize: 25
                 editable: false
-                textFromValue: function(value, locale) { return Number(value).toLocaleString(locale, 'f', 0) + "%"; }
+                textFromValue: function (value, locale) {
+                    return Number(value).toLocaleString(locale, 'f', 0) + "%"
+                }
                 onValueChanged: Utils.AppSettings.uiScaling = value
                 Layout.fillWidth: true
                 enabled: Utils.AppSettings.overrideUiScaling
@@ -232,11 +251,11 @@ C.Page {
             Empty {}
 
             C.Label {
-                text: qsTr("Use this to manually scale the user interface. By default, the app " +
-                           "should adapt automatically according to your device configuration. " +
-                           "If this does not work properly, you can set a custom scaling factor " +
-                           "here.\n\n" +
-                           "This requires a restart of the app.")
+                text: qsTr(
+                          "Use this to manually scale the user interface. By default, the app "
+                          + "should adapt automatically according to your device configuration. "
+                          + "If this does not work properly, you can set a custom scaling factor "
+                          + "here.\n\n" + "This requires a restart of the app.")
                 Layout.fillWidth: true
             }
 
@@ -259,8 +278,7 @@ C.Page {
     Connections {
         target: buttons
         function onRejected() {
-            page.close();
+            page.close()
         }
     }
 }
-
