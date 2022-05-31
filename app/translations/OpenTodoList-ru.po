@@ -177,82 +177,82 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Заметки"
 
-#: ../Widgets/LibrariesSideBar.qml:384
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Расписание"
 
-#: ../Widgets/LibrariesSideBar.qml:184
+#: ../Widgets/LibrariesSideBar.qml:187
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Новая библиотека"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:228
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "О программе..."
 
-#: ../Pages/LibraryPage.qml:153
+#: ../Pages/LibraryPage.qml:161
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Красный"
 
-#: ../Pages/LibraryPage.qml:160
+#: ../Pages/LibraryPage.qml:168
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Зеленый"
 
-#: ../Pages/LibraryPage.qml:167
+#: ../Pages/LibraryPage.qml:175
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Синий"
 
-#: ../Pages/LibraryPage.qml:174
+#: ../Pages/LibraryPage.qml:182
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Желтый"
 
-#: ../Pages/LibraryPage.qml:181
+#: ../Pages/LibraryPage.qml:189
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Оранжевый"
 
-#: ../Pages/LibraryPage.qml:188
+#: ../Pages/LibraryPage.qml:196
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Сирень"
 
-#: ../Pages/LibraryPage.qml:195
+#: ../Pages/LibraryPage.qml:203
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Белый"
 
-#: ../Pages/LibraryPage.qml:205
+#: ../Pages/LibraryPage.qml:213
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Переименовать"
 
-#: ../Pages/LibraryPage.qml:215
+#: ../Pages/LibraryPage.qml:223
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../Pages/LibraryPage.qml:277
+#: ../Pages/LibraryPage.qml:291
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Заголовок заметки"
 
-#: ../Pages/LibraryPage.qml:290
+#: ../Pages/LibraryPage.qml:304
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Заголовок списка задач"
 
-#: ../Pages/LibraryPage.qml:303
+#: ../Pages/LibraryPage.qml:317
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Поисковый запрос 1, поисковый запрос 2, ..."
 
-#: ../Pages/LibraryPage.qml:382
+#: ../Pages/LibraryPage.qml:396
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Здесь пока ничего нет! Начните с добавления <a href='#note'> заметки </a>, <a href='#todolist'> списка задач </a> или <a href='#image'> изображения </a>."
@@ -342,12 +342,12 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Открыть левую боковую панель"
 
-#: ../Windows/MainWindow.qml:271
+#: ../Windows/MainWindow.qml:276
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Начните с <a href='#newLibrary'> создания новой библиотеки </a>. Библиотеки используются для хранения различных элементов, таких как заметки, списки задач и изображения."
 
-#: ../Pages/NewLibraryPage.qml:24 ../Pages/NewLibraryPage.qml:62
+#: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:63
 msgctxt "NewLibraryPage|"
 msgid "Create Library"
 msgstr "Создать Библиотеку"
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Темный"
 
-#: ../Widgets/LibrariesSideBar.qml:204
+#: ../Widgets/LibrariesSideBar.qml:206
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Настройки"
@@ -744,37 +744,37 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Тема:"
 
-#: ../Widgets/LibrariesSideBar.qml:239
+#: ../Widgets/LibrariesSideBar.qml:241
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Создать библиотеку по умолчанию"
 
-#: ../Pages/LibraryPage.qml:445
+#: ../Pages/LibraryPage.qml:456
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Сортировать по"
 
-#: ../Pages/LibraryPage.qml:450
+#: ../Pages/LibraryPage.qml:461
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Вручную"
 
-#: ../Pages/LibraryPage.qml:457
+#: ../Pages/LibraryPage.qml:468
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Заголовок"
 
-#: ../Pages/LibraryPage.qml:464
+#: ../Pages/LibraryPage.qml:475
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "До"
 
-#: ../Pages/LibraryPage.qml:471
+#: ../Pages/LibraryPage.qml:482
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Создано"
 
-#: ../Pages/LibraryPage.qml:478
+#: ../Pages/LibraryPage.qml:489
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Обновлено"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Не удалось подключиться к серверу. Пожалуйста, проверьте ваше имя пользователя, пароль и адрес сервера и повторите попытку."
 
-#: ../Widgets/LibrariesSideBar.qml:191
+#: ../Widgets/LibrariesSideBar.qml:193
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Учетные записи"
 
-#: ../Widgets/LibrariesSideBar.qml:211
+#: ../Widgets/LibrariesSideBar.qml:213
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Перевести приложение ..."
@@ -1155,7 +1155,7 @@ msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
 msgstr "Название моей локальной библиотеки"
 
-#: ../Pages/NewWebDAVAccountPage.qml:197
+#: ../Pages/NewWebDAVAccountPage.qml:163
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
 msgstr "Имя учетной записи"
@@ -1536,27 +1536,27 @@ msgctxt "Translations|"
 msgid "Basque"
 msgstr "Баскский"
 
-#: ../Pages/AccountTypeSelectionPage.qml:22
+#: ../Pages/AccountTypeSelectionPage.qml:21
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
 msgstr "Выберите тип учётной записи"
 
-#: ../Pages/AccountTypeSelectionPage.qml:81
+#: ../Pages/AccountTypeSelectionPage.qml:56
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
 msgstr "Тип учётной записи"
 
-#: ../Pages/AccountTypeSelectionPage.qml:102
+#: ../Pages/AccountTypeSelectionPage.qml:62
 msgctxt "AccountTypeSelectionPage|"
 msgid "NextCloud"
 msgstr "NextCloud"
 
-#: ../Pages/AccountTypeSelectionPage.qml:107
+#: ../Pages/AccountTypeSelectionPage.qml:65
 msgctxt "AccountTypeSelectionPage|"
 msgid "ownCloud"
 msgstr "ownCloud"
 
-#: ../Pages/AccountTypeSelectionPage.qml:112
+#: ../Pages/AccountTypeSelectionPage.qml:68
 msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
@@ -1616,83 +1616,83 @@ msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
 msgstr "Вы действительно хотите удалить все выполненные пункты списка задач <strong>%1</strong>? Это действие нельзя отменить."
 
-#: ../Pages/EditNextCloudAccountPage.qml:33
-#: ../Pages/EditNextCloudAccountPage.qml:69
+#: ../Pages/EditNextCloudAccountPage.qml:23
+#: ../Pages/EditNextCloudAccountPage.qml:59
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
 msgstr "Изменить учётную запись"
 
-#: ../Pages/EditNextCloudAccountPage.qml:75
+#: ../Pages/EditNextCloudAccountPage.qml:65
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:86
+#: ../Pages/EditNextCloudAccountPage.qml:76
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
 msgstr "Адрес сервера:"
 
-#: ../Pages/EditNextCloudAccountPage.qml:93
+#: ../Pages/EditNextCloudAccountPage.qml:83
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
 msgstr "https://myserver.example.com"
 
-#: ../Pages/EditNextCloudAccountPage.qml:101
+#: ../Pages/EditNextCloudAccountPage.qml:91
 msgctxt "EditNextCloudAccountPage|"
 msgid "Login"
 msgstr "Логин"
 
-#: ../Pages/EditNextCloudAccountPage.qml:111
+#: ../Pages/EditNextCloudAccountPage.qml:104
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
 msgstr "Пользователь:"
 
-#: ../Pages/EditNextCloudAccountPage.qml:118
+#: ../Pages/EditNextCloudAccountPage.qml:111
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
 msgstr "Имя пользователя"
 
-#: ../Pages/EditNextCloudAccountPage.qml:124
+#: ../Pages/EditNextCloudAccountPage.qml:117
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
 msgstr "Пароль:"
 
-#: ../Pages/EditNextCloudAccountPage.qml:131
+#: ../Pages/EditNextCloudAccountPage.qml:124
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
 msgstr "Пароль"
 
-#: ../Pages/EditNextCloudAccountPage.qml:140
+#: ../Pages/EditNextCloudAccountPage.qml:133
 msgctxt "EditNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr "Отключить проверки сертификатов"
 
-#: ../Pages/EditNextCloudAccountPage.qml:149
+#: ../Pages/EditNextCloudAccountPage.qml:142
 msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Не удалось подключиться к серверу. Пожалуйста, проверьте имя пользователя, пароль и адрес сервера и попытайтесь снова."
 
-#: ../Widgets/LibrariesSideBar.qml:198
+#: ../Widgets/LibrariesSideBar.qml:200
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:352
+#: ../Widgets/LibrariesSideBar.qml:353
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:352
+#: ../Widgets/LibrariesSideBar.qml:353
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:362
+#: ../Widgets/LibrariesSideBar.qml:364
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Передвинуть вверх"
 
-#: ../Widgets/LibrariesSideBar.qml:371
+#: ../Widgets/LibrariesSideBar.qml:373
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Передвинуть вниз"
@@ -1708,152 +1708,152 @@ msgid "Close"
 msgstr "Закрыть"
 
 #: ../Pages/NewNextCloudAccountPage.qml:20
-#: ../Pages/NewNextCloudAccountPage.qml:74
+#: ../Pages/NewNextCloudAccountPage.qml:73
 msgctxt "NewNextCloudAccountPage|"
 msgid "Connection Settings"
 msgstr "Настройки соединения"
 
-#: ../Pages/NewNextCloudAccountPage.qml:80
+#: ../Pages/NewNextCloudAccountPage.qml:79
 msgctxt "NewNextCloudAccountPage|"
 msgid "Server Address:"
 msgstr "Адрес сервера:"
 
-#: ../Pages/NewNextCloudAccountPage.qml:94
+#: ../Pages/NewNextCloudAccountPage.qml:93
 msgctxt "NewNextCloudAccountPage|"
 msgid "Login"
 msgstr "Логин"
 
-#: ../Pages/NewNextCloudAccountPage.qml:107
+#: ../Pages/NewNextCloudAccountPage.qml:109
 msgctxt "NewNextCloudAccountPage|"
 msgid "Trouble Signing In?"
 msgstr "Проблемы со входом?"
 
-#: ../Pages/NewNextCloudAccountPage.qml:118
+#: ../Pages/NewNextCloudAccountPage.qml:120
 msgctxt "NewNextCloudAccountPage|"
 msgid "We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well."
 msgstr "Мы попытались открыть Ваш браузер, чтобы Вы зашли в свой NextCloud. Пожалуйста, залогиньтесь и предоставьте доступ приложению OpenTodoList, чтобы продолжить. Проблемы со входом в NextCloud через браузер? Вы можете также ввести имя пользователя и пароль вручную."
 
-#: ../Pages/NewNextCloudAccountPage.qml:125
+#: ../Pages/NewNextCloudAccountPage.qml:128
 msgctxt "NewNextCloudAccountPage|"
 msgid "Log in Manually"
 msgstr "Залогиниться вручную"
 
-#: ../Pages/NewNextCloudAccountPage.qml:131
+#: ../Pages/NewNextCloudAccountPage.qml:134
 msgctxt "NewNextCloudAccountPage|"
 msgid "Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings."
 msgstr "В идеальном случае используйте пароли приложений вместо пароля пользователя. Если вход защищён 2-факторной аутентификацией (2FA), использовать пароли приложений для входа в NextCloud обязательно. Такие пароли можно создать в настройках пользователя."
 
-#: ../Pages/NewNextCloudAccountPage.qml:139
+#: ../Pages/NewNextCloudAccountPage.qml:143
 msgctxt "NewNextCloudAccountPage|"
 msgid "Create App Password"
 msgstr "Создать пароль приложения"
 
-#: ../Pages/NewNextCloudAccountPage.qml:148
+#: ../Pages/NewNextCloudAccountPage.qml:152
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Settings"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:157
+#: ../Pages/NewNextCloudAccountPage.qml:162
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copy Link"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:162
+#: ../Pages/NewNextCloudAccountPage.qml:168
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copied!"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:171
+#: ../Pages/NewNextCloudAccountPage.qml:177
 msgctxt "NewNextCloudAccountPage|"
 msgid "User:"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:178
+#: ../Pages/NewNextCloudAccountPage.qml:184
 msgctxt "NewNextCloudAccountPage|"
 msgid "User Name"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:185
+#: ../Pages/NewNextCloudAccountPage.qml:191
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password:"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:192
+#: ../Pages/NewNextCloudAccountPage.qml:198
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:202
+#: ../Pages/NewNextCloudAccountPage.qml:208
 msgctxt "NewNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:206
+#: ../Pages/NewNextCloudAccountPage.qml:212
 msgctxt "NewNextCloudAccountPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:218
+#: ../Pages/NewNextCloudAccountPage.qml:225
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Name"
 msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:228
+#: ../Pages/NewNextCloudAccountPage.qml:235
 msgctxt "NewNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Pages/AccountsPage.qml:19 ../Pages/AccountsPage.qml:50
+#: ../Pages/AccountsPage.qml:19 ../Pages/AccountsPage.qml:41
 msgctxt "AccountsPage|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:35 ../Pages/EditWebDAVAccountPage.qml:127
+#: ../Pages/EditWebDAVAccountPage.qml:33 ../Pages/EditWebDAVAccountPage.qml:118
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:133
+#: ../Pages/EditWebDAVAccountPage.qml:124
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:144
+#: ../Pages/EditWebDAVAccountPage.qml:135
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:150
+#: ../Pages/EditWebDAVAccountPage.qml:141
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:157
+#: ../Pages/EditWebDAVAccountPage.qml:148
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:163
+#: ../Pages/EditWebDAVAccountPage.qml:154
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:170
+#: ../Pages/EditWebDAVAccountPage.qml:161
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:177
+#: ../Pages/EditWebDAVAccountPage.qml:168
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:187
+#: ../Pages/EditWebDAVAccountPage.qml:178
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:195
+#: ../Pages/EditWebDAVAccountPage.qml:186
 msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:218
+#: ../Widgets/LibrariesSideBar.qml:220
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr ""
@@ -1878,102 +1878,102 @@ msgctxt "MoveTodo|"
 msgid "Move"
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:104
+#: ../Pages/NewLibraryFromAccountPage.qml:82
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:113
+#: ../Pages/NewLibraryFromAccountPage.qml:91
 msgctxt "NewLibraryFromAccountPage|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:121
+#: ../Pages/NewLibraryFromAccountPage.qml:99
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Existing Libraries"
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:129
+#: ../Pages/NewLibraryFromAccountPage.qml:107
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Select an existing library on the server to add it to the app."
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:135
+#: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
 msgid "No libraries were found on the server."
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:143
+#: ../Pages/NewLibraryFromAccountPage.qml:122
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Searching existing libraries..."
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:177
+#: ../Pages/NewLibraryFromAccountPage.qml:165
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a New Library"
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:185
+#: ../Pages/NewLibraryFromAccountPage.qml:173
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
 msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:199
+#: ../Pages/NewLibraryFromAccountPage.qml:187
 msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:97
+#: ../Pages/NewLibraryInFolderPage.qml:101
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:105
+#: ../Pages/NewLibraryInFolderPage.qml:109
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:109
+#: ../Pages/NewLibraryInFolderPage.qml:113
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:114
+#: ../Pages/NewLibraryInFolderPage.qml:118
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:120
+#: ../Pages/NewLibraryInFolderPage.qml:124
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:125
+#: ../Pages/NewLibraryInFolderPage.qml:129
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:130
+#: ../Pages/NewLibraryInFolderPage.qml:134
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:69
+#: ../Pages/NewLibraryPage.qml:70
 msgctxt "NewLibraryPage|"
 msgid "Local Library"
 msgstr "Локальная библиотека"
 
-#: ../Pages/NewLibraryPage.qml:76
+#: ../Pages/NewLibraryPage.qml:77
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:87
+#: ../Pages/NewLibraryPage.qml:89
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
 msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:114
+#: ../Pages/NewLibraryPage.qml:116
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
 msgstr ""
@@ -1998,52 +1998,52 @@ msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
 msgstr "Название моей локальной библиотеки"
 
-#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:136
+#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:101
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:142
+#: ../Pages/NewWebDAVAccountPage.qml:107
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:148
+#: ../Pages/NewWebDAVAccountPage.qml:113
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:154
+#: ../Pages/NewWebDAVAccountPage.qml:119
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:160
+#: ../Pages/NewWebDAVAccountPage.qml:125
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:166
+#: ../Pages/NewWebDAVAccountPage.qml:131
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:172
+#: ../Pages/NewWebDAVAccountPage.qml:137
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:181
+#: ../Pages/NewWebDAVAccountPage.qml:146
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:185
+#: ../Pages/NewWebDAVAccountPage.qml:150
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:207
+#: ../Pages/NewWebDAVAccountPage.qml:173
 msgctxt "NewWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
@@ -2317,7 +2317,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:210
+#: ../Pages/LibraryPage.qml:218
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr ""
@@ -2427,12 +2427,12 @@ msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:71
+#: ../Pages/NewLibraryInFolderPage.qml:74
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:224
+#: ../Pages/LibraryPage.qml:232
 msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
@@ -2460,5 +2460,136 @@ msgstr ""
 #: ../Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
+msgstr ""
+
+#: ../Pages/AccountTypeSelectionPage.qml:71
+msgctxt "AccountTypeSelectionPage|"
+msgid "Dropbox"
+msgstr ""
+
+#: ../../lib/application.cpp:187
+msgctxt "Application|"
+msgid "Background Sync"
+msgstr ""
+
+#: ../../lib/application.cpp:192
+msgctxt "Application|"
+msgid "App continues to sync your data in the background"
+msgstr ""
+
+#: ../../lib/application.cpp:196
+msgctxt "Application|"
+msgid "Quit"
+msgstr ""
+
+#: ../../lib/datastorage/copyitemquery.cpp:120
+msgctxt "CopyItemQuery|"
+msgid "Copy of"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:27
+#: ../Pages/EditDropboxAccountPage.qml:67
+msgctxt "EditDropboxAccountPage|"
+msgid "Connection Settings"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:75
+msgctxt "EditDropboxAccountPage|"
+msgid "Trouble Signing In?"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:86
+msgctxt "EditDropboxAccountPage|"
+msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:93
+msgctxt "EditDropboxAccountPage|"
+msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:97
+msgctxt "EditDropboxAccountPage|"
+msgid "Authorize..."
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:106
+msgctxt "EditDropboxAccountPage|"
+msgid "Open Browser"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:112
+msgctxt "EditDropboxAccountPage|"
+msgid "Copy Link"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:116
+msgctxt "EditDropboxAccountPage|"
+msgid "Copied!"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:125
+msgctxt "EditDropboxAccountPage|"
+msgid "Name:"
+msgstr ""
+
+#: ../Pages/EditDropboxAccountPage.qml:132
+msgctxt "EditDropboxAccountPage|"
+msgid "Dropbox"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:20 ../Pages/NewDropboxAccountPage.qml:54
+msgctxt "NewDropboxAccountPage|"
+msgid "Connection Settings"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:62
+msgctxt "NewDropboxAccountPage|"
+msgid "Trouble Signing In?"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:73
+msgctxt "NewDropboxAccountPage|"
+msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:80
+msgctxt "NewDropboxAccountPage|"
+msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:86
+msgctxt "NewDropboxAccountPage|"
+msgid "Authorize..."
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:95
+msgctxt "NewDropboxAccountPage|"
+msgid "Open Browser"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:101
+msgctxt "NewDropboxAccountPage|"
+msgid "Copy Link"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:105
+msgctxt "NewDropboxAccountPage|"
+msgid "Copied!"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:114
+msgctxt "NewDropboxAccountPage|"
+msgid "Name:"
+msgstr ""
+
+#: ../Pages/NewDropboxAccountPage.qml:121
+msgctxt "NewDropboxAccountPage|"
+msgid "Dropbox"
+msgstr ""
+
+#: ../../lib/utils/translations.cpp:91
+msgctxt "OpenTodoList::Translations|"
+msgid "System Language"
 msgstr ""
 
