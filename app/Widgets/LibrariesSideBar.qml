@@ -122,11 +122,11 @@ C.Pane {
 
         function removeLibraryIdFromListOfUids(list, library) {
             let result = []
-            for (const uid in list) {
-                if (uid !== library.uid.toString()) {
-                    result.push(uid)
-                }
-            }
+            list.forEach(uid => {
+                             if (uid !== library.uid.toString()) {
+                                 result.push(uid)
+                             }
+                         })
             return result
         }
 
