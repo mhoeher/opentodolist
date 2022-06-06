@@ -40,6 +40,15 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.40.1" date="2022-06-06">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#540: Fix selecting a different language for the user interface.</li>
+            <li>#543: Fix collapsing of libraries in the sidebar.</li>
+            <li>#542: Fix refreshing of access tokens for Dropbox.</li>
+            <li>#538: Fix/improve Dropbox login</li>
+        </ul>
+    </release>
       <release version="3.40.0" date="2022-05-30">
         <p>This release includes the following changes:</p>
         <ul>
