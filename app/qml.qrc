@@ -159,5 +159,9 @@
         <file>Pages/NewOwnCloudAccountPage.qml</file>
         <file>Pages/NewDropboxAccountPage.qml</file>
         <file>Pages/EditDropboxAccountPage.qml</file>
+        <file>Windows/WebViewDialog.qml</file>
+        <file>Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml</file>
+        <file>Windows/+android/WebViewDialog.qml</file>
+        <file>Windows/+ios/WebViewDialog.qml</file>
     </qresource>
 </RCC>

@@ -19,6 +19,10 @@
 
 #include "appstartup.h"
 
+#ifdef QT_WEBVIEW_LIB
+#    include <QtWebView>
+#endif
+
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.main", QtDebugMsg);
 
 QVector<QtMessageHandler> AppStartup::s_prevMessageHandler;
@@ -132,6 +136,10 @@ void AppStartup::createApp(int& argc, char* argv[])
             return;
         }
     }
+#endif
+#ifdef QT_WEBVIEW_LIB
+    // If we use QWebView, initialize it:
+    QtWebView::initialize();
 #endif
 #ifdef OTL_USE_SINGLE_APPLICATION
     m_app = new SingleApplication(argc, argv, true,

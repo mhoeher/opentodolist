@@ -128,6 +128,16 @@ target_link_libraries(
         Qt${QT_VERSION_MAJOR}::Widgets
 )
 
+if(ANDROID OR ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+    target_link_libraries(
+        OpenTodoList
+
+        PRIVATE
+
+            Qt${QT_VERSION_MAJOR}::WebView
+    )
+endif()
+
 if(OPENTODOLIST_FLATPAK)
     target_compile_definitions(OpenTodoList PRIVATE OPENTODOLIST_FLATPAK)
 endif()

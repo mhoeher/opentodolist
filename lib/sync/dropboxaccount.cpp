@@ -49,7 +49,7 @@ static const char* DropboxAppKey = "2llpx6hgwdzq7wr";
 
 static const char* DropboxAccessTokenUrl = "https://api.dropboxapi.com/oauth2/token";
 static const char* DropboxAuthorizationUrl = "https://www.dropbox.com/oauth2/authorize";
-#ifdef Q_OS_IOS
+#if defined(Q_OS_IOS)
 static const char* DropboxRedirectUri = "opentodolist://dropbox.auth";
 #else
 static const char* DropboxRedirectUri = "http://localhost:1220";
@@ -165,7 +165,7 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
     nam->setParent(result);
     nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 
-#ifdef Q_OS_IOS
+#if defined(Q_OS_IOS)
     auto replyHandler = new DropboxInternalReplyHandler(result);
 #else
     auto replyHandler = new QOAuthHttpServerReplyHandler(DropboxRedirectPort, result);
@@ -183,8 +183,8 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
                     parameters->insert("redirect_uri", DropboxRedirectUri);
                     parameters->insert("token_access_type", "offline");
 #ifdef Q_OS_IOS
-                    // On iOS, disable signup and instead display a link to the iOS app store
-                    // this is for compliance with signup restrictions).
+                    // On iOS, disable signup and instead display a link to the iOS app
+                    // store this is for compliance with signup restrictions).
                     parameters->insert("disable_signup", "true");
 #endif
                     break;
@@ -257,8 +257,6 @@ void DropboxAccount::login()
     setLoggingIn(true);
 
     auto oauth = createOAuthAuthFlow(this);
-    connect(oauth, &QOAuth2AuthorizationCodeFlow::authorizeWithBrowser, oauth,
-            &QDesktopServices::openUrl);
     connect(oauth, &QOAuth2AuthorizationCodeFlow::authorizeWithBrowser, this,
             &DropboxAccount::authorizationUrlReceived);
     connect(oauth, &QOAuth2AuthorizationCodeFlow::granted, this, [=]() {
