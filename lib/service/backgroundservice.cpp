@@ -125,6 +125,13 @@ void BackgroundService::syncLibrary(const QUuid& libraryUid)
             if (!account || !m_appSettings->hasSecretsForAccount(account.data())) {
                 return;
             }
+            if (account->needConnectivityCheck()) {
+                // The account indicated that we need to run a connectitivty check.
+                // In this case, don't sync and instead trigger the check. It will
+                // cause credentials to be renewed and in turn trigger a sync later.
+                checkConnectivityOfAccount(m_appSettings->loadAccount(account->uid()));
+                return;
+            }
             QSharedPointer<SyncJob> job(new SyncJob(library->directory(), account));
             m_syncDirs[library->directory()] = { job, libraryUid, NoSyncInfoFlags };
             connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, job.data(),
@@ -306,6 +313,13 @@ void BackgroundService::checkConnectivityOfAccount(Account* account)
     if (m_accountsCheckingConnectivity.contains(account->uid())) {
         // A check already runs - skip
         qCDebug(log) << "Account" << account->uid() << "still busy checking connectivity...";
+        delete account;
+        return;
+    }
+
+    if (!m_appSettings->hasSecretsForAccount(account)) {
+        qCDebug(log) << "No secrets for" << account->uid()
+                     << "loaded yet - skipping connectivity check";
         delete account;
         return;
     }

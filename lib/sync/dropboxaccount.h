@@ -77,6 +77,7 @@ public:
     void login() override;
     void findExistingLibraries() override;
     void checkConnectivity() override;
+    bool needConnectivityCheck() const override;
 };
 
 #endif // SYNC_DROPBOXACCOUNT_H_

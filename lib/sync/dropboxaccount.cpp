@@ -433,4 +433,15 @@ void DropboxAccount::checkConnectivity()
     oauth->refreshAccessToken();
 }
 
+/**
+ * @brief Implementation of Account::needConnectivityCheck().
+ *
+ * This implements the needConnectivityCheck method for Dropbox. This method returns true if
+ * the account has a refresh token set and the current access token expires in less than 5 mins.
+ */
+bool DropboxAccount::needConnectivityCheck() const
+{
+    return !m_refreshToken.isEmpty() && QDateTime::currentDateTime().secsTo(m_expiration) < 60 * 5;
+}
+
 #include "dropboxaccount.moc"
