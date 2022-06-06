@@ -7,6 +7,7 @@ import OpenTodoList 1.0 as OTL
 import "../Components" as Components
 import "../Utils" as Utils
 import "../Controls" as C
+import "../Windows" as W
 
 C.Page {
     id: page
@@ -94,7 +95,7 @@ C.Page {
                             C.MenuItem {
                                 text: qsTr("Open Browser")
                                 onTriggered: {
-                                    Qt.openUrlExternally(d.authorizationUrl)
+                                    webView.openUrl(d.authorizationUrl)
                                 }
                             }
                             C.MenuItem {
@@ -153,6 +154,7 @@ C.Page {
         }
 
         onLoginFinished: success => {
+                             webView.finish()
                              if (success) {
                                  OTL.Application.saveAccount(account)
                                  OTL.Application.saveAccountSecrets(account)
@@ -165,7 +167,10 @@ C.Page {
         onLoggingInChanged: if (loggingIn) {
                                 errorLabel.visible = false
                             }
-        onAuthorizationUrlReceived: url => d.authorizationUrl = url
+        onAuthorizationUrlReceived: url => {
+                                        d.authorizationUrl = url
+                                        webView.openUrl(url)
+                                    }
     }
 
     Connections {
@@ -174,5 +179,9 @@ C.Page {
         function onClicked() {
             account.login()
         }
+    }
+
+    W.WebViewDialog {
+        id: webView
     }
 }

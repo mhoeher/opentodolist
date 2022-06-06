@@ -105,7 +105,7 @@ C.Page {
                             C.MenuItem {
                                 text: qsTr("Open Browser")
                                 onTriggered: {
-                                    Qt.openUrlExternally(d.authorizationUrl)
+                                    webView.openUrl(d.authorizationUrl)
                                 }
                             }
                             C.MenuItem {
@@ -172,6 +172,7 @@ C.Page {
         }
 
         function onLoginFinished(success) {
+            webView.finish()
             if (success) {
                 OTL.Application.saveAccount(account)
                 OTL.Application.saveAccountSecrets(account)
@@ -187,6 +188,7 @@ C.Page {
 
         function onAuthorizationUrlReceived(url) {
             d.authorizationUrl = url
+            webView.openUrl(url)
         }
     }
 
@@ -194,5 +196,9 @@ C.Page {
         id: deleteAccountDialog
 
         onAccepted: page.closePage()
+    }
+
+    Windows.WebViewDialog {
+        id: webView
     }
 }
