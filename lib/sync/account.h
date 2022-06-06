@@ -67,6 +67,7 @@ public:
     Q_INVOKABLE virtual void login();
     Q_INVOKABLE virtual void findExistingLibraries();
     Q_INVOKABLE virtual void checkConnectivity();
+    Q_INVOKABLE virtual bool needConnectivityCheck() const;
 
     /**
      * @brief Get secrets (e.g. passwords) needed for communication with the server.

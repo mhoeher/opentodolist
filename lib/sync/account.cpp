@@ -349,3 +349,18 @@ void Account::checkConnectivity()
     setOnline(false);
     emit connectivityCheckFinished(false);
 }
+
+/**
+ * @brief Is a connectivity check required?
+ *
+ * This method returns true to indicate that a connectivity check for the account is requird. For
+ * example, if the account uses a token based authentication and the tokens expired, this method
+ * should return true to indicate that we need to call checkConnectivity() (which would cause
+ * such tokens to be renewed).
+ *
+ * The default implementation returns false. Subclasses shall override it if needed.
+ */
+bool Account::needConnectivityCheck() const
+{
+    return false;
+}
