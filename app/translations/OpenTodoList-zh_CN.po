@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:185
+#: ../appstartup.cpp:193
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "管理您的个人数据。"
 
-#: ../appstartup.cpp:191
+#: ../appstartup.cpp:199
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "打开一些针对触摸屏的优化。"
 
-#: ../appstartup.cpp:194
+#: ../appstartup.cpp:202
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "仅运行应用后台服务"
 
-#: ../appstartup.cpp:196
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "仅运行应用图形界面并连接至现有应用的后台服务"
 
-#: ../appstartup.cpp:201
+#: ../appstartup.cpp:209
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "在 Windows 上启用一个终端来获取调试输出"
 
-#: ../appstartup.cpp:334
+#: ../appstartup.cpp:342
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "打开"
 
-#: ../appstartup.cpp:394
+#: ../appstartup.cpp:402
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "退出"
@@ -2058,27 +2058,27 @@ msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "选择待办事详清单"
 
-#: ../Pages/SettingsPage.qml:45
+#: ../Pages/SettingsPage.qml:44
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr "设置"
 
-#: ../Pages/SettingsPage.qml:51
+#: ../Pages/SettingsPage.qml:50
 msgctxt "SettingsPage|"
 msgid "User Interface"
 msgstr "用户界面"
 
-#: ../Pages/SettingsPage.qml:59
+#: ../Pages/SettingsPage.qml:58
 msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "语言:"
 
-#: ../Pages/SettingsPage.qml:105
+#: ../Pages/SettingsPage.qml:122
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "主题:"
 
-#: ../Pages/SettingsPage.qml:141
+#: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "字体尺寸:"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "设定进度"
 
-#: ../Pages/SettingsPage.qml:158
+#: ../Pages/SettingsPage.qml:175
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "使用自定义字体尺寸"
 
-#: ../Pages/SettingsPage.qml:176
+#: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "使用紧凑风格"
 
-#: ../Pages/SettingsPage.qml:185
+#: ../Pages/SettingsPage.qml:202
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "缩小组件之间的间距并缩小字体尺寸。\n"
 "\n"
 "<em>需要重新启动应用。</em>"
 
-#: ../Pages/SettingsPage.qml:193
+#: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "使用紧凑的待办事项清单"
 
-#: ../Pages/SettingsPage.qml:203
+#: ../Pages/SettingsPage.qml:220
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "缩小待办事项和任务列表的边距使得屏幕上可以显示更多项目。"
 
-#: ../Pages/SettingsPage.qml:210
+#: ../Pages/SettingsPage.qml:227
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "覆盖缩放级别"
 
-#: ../Pages/SettingsPage.qml:217
+#: ../Pages/SettingsPage.qml:234
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "缩放级别:"
 
-#: ../Pages/SettingsPage.qml:235
+#: ../Pages/SettingsPage.qml:254
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "推荐"
 
-#: ../Pages/SettingsPage.qml:244
+#: ../Pages/SettingsPage.qml:263
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "资料库项目尺寸:"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "复制系统信息"
 
-#: ../appstartup.cpp:341
+#: ../appstartup.cpp:349
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "快捷笔记"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "撤销"
 
-#: ../appstartup.cpp:280 ../appstartup.cpp:287
+#: ../appstartup.cpp:288 ../appstartup.cpp:295
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "未知"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "每 N 月"
 
-#: ../Pages/SettingsPage.qml:129
+#: ../Pages/SettingsPage.qml:146
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "系统托盘:"
 
-#: ../Pages/SettingsPage.qml:135
+#: ../Pages/SettingsPage.qml:152
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "点击以打开快捷笔记编辑器"
@@ -2416,7 +2416,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "设定进度"
 
-#: ../Pages/SettingsPage.qml:167
+#: ../Pages/SettingsPage.qml:184
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "桌面模式"
@@ -2542,52 +2542,52 @@ msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:20 ../Pages/NewDropboxAccountPage.qml:54
+#: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:62
+#: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:73
+#: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:80
+#: ../Pages/NewDropboxAccountPage.qml:81
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:86
+#: ../Pages/NewDropboxAccountPage.qml:87
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:95
+#: ../Pages/NewDropboxAccountPage.qml:96
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:101
+#: ../Pages/NewDropboxAccountPage.qml:102
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:105
+#: ../Pages/NewDropboxAccountPage.qml:106
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:114
+#: ../Pages/NewDropboxAccountPage.qml:115
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
 msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:121
+#: ../Pages/NewDropboxAccountPage.qml:122
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
 msgstr ""
@@ -2595,5 +2595,10 @@ msgstr ""
 #: ../../lib/utils/translations.cpp:91
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
+msgstr ""
+
+#: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
+msgctxt "EmbeddedWebViewDialog|"
+msgid "Loading..."
 msgstr ""
 
