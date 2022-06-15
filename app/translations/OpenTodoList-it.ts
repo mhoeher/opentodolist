@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="185"/>
+        <location filename="../appstartup.cpp" line="193"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="191"/>
+        <location filename="../appstartup.cpp" line="199"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="194"/>
+        <location filename="../appstartup.cpp" line="202"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Esegui solamente in background</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="196"/>
+        <location filename="../appstartup.cpp" line="204"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Esegui solo l&apos;interfaccia e collega a servizio in background esistente</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="201"/>
+        <location filename="../appstartup.cpp" line="209"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Abilita console di debug su Windows</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="334"/>
+        <location filename="../appstartup.cpp" line="342"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="341"/>
+        <location filename="../appstartup.cpp" line="349"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="394"/>
+        <location filename="../appstartup.cpp" line="402"/>
         <source>Quit</source>
         <translation type="unfinished">Esci</translation>
     </message>
@@ -635,6 +635,14 @@
     </message>
 </context>
 <context>
+    <name>EmbeddedWebViewDialog</name>
+    <message>
+        <location filename="../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml" line="15"/>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ItemCreatedNotification</name>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
@@ -992,53 +1000,53 @@
 <context>
     <name>NewDropboxAccountPage</name>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="20"/>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="54"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="21"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="55"/>
         <source>Connection Settings</source>
         <translation type="unfinished">Impostazioni di connessione</translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="62"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="63"/>
         <source>Trouble Signing In?</source>
         <translation type="unfinished">Problemi di accesso?</translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="73"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="80"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="81"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="86"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="87"/>
         <source>Authorize...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="95"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="96"/>
         <source>Open Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="101"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="102"/>
         <source>Copy Link</source>
         <translation type="unfinished">Copia inidirizzo</translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="105"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="106"/>
         <source>Copied!</source>
         <translation type="unfinished">Copiato!</translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="114"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="115"/>
         <source>Name:</source>
         <translation type="unfinished">Nome:</translation>
     </message>
     <message>
-        <location filename="../Pages/NewDropboxAccountPage.qml" line="121"/>
+        <location filename="../Pages/NewDropboxAccountPage.qml" line="122"/>
         <source>Dropbox</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1475,8 +1483,8 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="280"/>
-        <location filename="../appstartup.cpp" line="287"/>
+        <location filename="../appstartup.cpp" line="288"/>
+        <location filename="../appstartup.cpp" line="295"/>
         <source>unknown</source>
         <translation type="unfinished">sconosciuto</translation>
     </message>
@@ -1757,84 +1765,84 @@ In caso di problemi con l&apos;accesso nel browser è anche possibile inserire m
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="45"/>
+        <location filename="../Pages/SettingsPage.qml" line="44"/>
         <source>Settings</source>
         <translation type="unfinished">Impostazioni</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="51"/>
+        <location filename="../Pages/SettingsPage.qml" line="50"/>
         <source>User Interface</source>
         <translation type="unfinished">Interfaccia utente</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="59"/>
+        <location filename="../Pages/SettingsPage.qml" line="58"/>
         <source>Language:</source>
         <translation type="unfinished">Lingua:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="105"/>
+        <location filename="../Pages/SettingsPage.qml" line="122"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="129"/>
+        <location filename="../Pages/SettingsPage.qml" line="146"/>
         <source>System Tray:</source>
         <translation type="unfinished">Area di notifica:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="135"/>
+        <location filename="../Pages/SettingsPage.qml" line="152"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Clicca per aprire Editor Note rapide</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="141"/>
+        <location filename="../Pages/SettingsPage.qml" line="158"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="158"/>
+        <location filename="../Pages/SettingsPage.qml" line="175"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Usa dimensione font personalizzata</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="167"/>
+        <location filename="../Pages/SettingsPage.qml" line="184"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Modalità Desktop</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="176"/>
+        <location filename="../Pages/SettingsPage.qml" line="193"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Usa stile compatto</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="185"/>
+        <location filename="../Pages/SettingsPage.qml" line="202"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
         <translation type="unfinished">Riduci lo spazio tra i componenti e riduci la dimensione del testo</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="193"/>
+        <location filename="../Pages/SettingsPage.qml" line="210"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Usa liste todo compatte</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="203"/>
+        <location filename="../Pages/SettingsPage.qml" line="220"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Riduci le distanze nelle liste todo e task per aumentare la densità di informazioni sullo schermo.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="210"/>
+        <location filename="../Pages/SettingsPage.qml" line="227"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Bypassa il fattore di scala</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="217"/>
+        <location filename="../Pages/SettingsPage.qml" line="234"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Fattore di scala:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="235"/>
+        <location filename="../Pages/SettingsPage.qml" line="254"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1843,7 +1851,7 @@ This requires a restart of the app.</source>
 Richiesto riavvio della app.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="244"/>
+        <location filename="../Pages/SettingsPage.qml" line="263"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">.Dimensione elemento Raccolta:</translation>
     </message>

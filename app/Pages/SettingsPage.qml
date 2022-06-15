@@ -272,6 +272,14 @@ C.Page {
                 onValueChanged: Utils.AppSettings.libraryItemWidthScaleFactor = value
                 Layout.fillWidth: true
             }
+
+            Empty {}
+
+            C.CheckBox {
+                text: qsTr("Show notes excerpt in listings")
+                checked: Utils.AppSettings.showNotesExcepts
+                onCheckedChanged: Utils.AppSettings.showNotesExcepts = checked
+            }
         }
     }
 

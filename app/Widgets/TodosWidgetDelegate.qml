@@ -13,7 +13,7 @@ import "../Actions" as Actions
 
 C.SwipeDelegate {
     id: swipeDelegate
-    
+
     property bool showParentItemInformation: false
     property var model: null
     property bool toggleDoneOnClose: false
@@ -21,30 +21,18 @@ C.SwipeDelegate {
     property OTL.LibraryItem parentItem: OTL.LibraryItem {}
     property OTL.Library library: null
     property bool hideDueDate: false
-    readonly property var itemActions: ([
-                                            renameAction,
-                                            copyTodoAction,
-                                            moveTodoAction,
-                                            promoteTaskAction,
-                                            setDueTodayAction,
-                                            setDueTomorrowAction,
-                                            setDueNextWeekAction,
-                                            setDueThisWeekAction,
-                                            setDueToAction,
-                                            resetDueToAction,
-                                            deleteAction
-                                        ])
+    readonly property var itemActions: ([renameAction, copyTodoAction, moveTodoAction, promoteTaskAction, setDueTodayAction, setDueTomorrowAction, setDueNextWeekAction, setDueThisWeekAction, setDueToAction, resetDueToAction, deleteAction])
     property bool allowSorting: false
     property bool drawSeperator: true
     property ItemDragTile dragTile
 
-    signal itemPressedAndHold()
-    signal itemClicked()
+    signal itemPressedAndHold
+    signal itemClicked
     signal setSwipeDelegate(var item)
 
     // The item has been saved (for later undo)
     signal itemSaved(var itemData)
-    
+
     width: parent ? parent.width : implicitWidth
     padding: 0
     topPadding: AppSettings.effectiveFontMetrics.height / (AppSettings.useCompactTodoLists ? 8 : 2)
@@ -52,46 +40,46 @@ C.SwipeDelegate {
     hoverEnabled: true
     contentItem: RowLayout {
         width: parent.width
-        
+
         C.ToolButton {
             font.family: Fonts.icons
             symbol: {
                 switch (swipeDelegate.item.itemType) {
                 case "Todo":
                 case "Task":
-                    return swipeDelegate.item.done ? Icons.mdiTaskAlt:
-                                         Icons.mdiCircle;
+                    return swipeDelegate.item.done ? Icons.mdiTaskAlt : Icons.mdiCircle
                 case "TodoList":
-                    return Icons.mdiChecklist;
+                    return Icons.mdiChecklist
                 case "Note":
-                    return Icons.mdiDescription;
+                    return Icons.mdiDescription
                 case "Image":
-                    return Icons.mdiImage;
+                    return Icons.mdiImage
                 default:
                     return Icons.mdiHelpOutline
                 }
             }
             onClicked: {
-                let data = OTL.Application.saveItem(swipeDelegate.item);
+                let data = OTL.Application.saveItem(swipeDelegate.item)
                 switch (swipeDelegate.item.itemType) {
                 case "Task":
                 case "Todo":
-                    swipeDelegate.item.done = !swipeDelegate.item.done;
-                    break;
+                    swipeDelegate.item.done = !swipeDelegate.item.done
+                    break
                 case "TodoList":
                 case "Note":
                 case "Image":
-                    swipeDelegate.item.markCurrentOccurrenceAsDone();
-                    break;
+                    swipeDelegate.item.markCurrentOccurrenceAsDone()
+                    break
                 default:
-                    return;
+                    return
                 }
-                swipeDelegate.itemSaved(data);
+                swipeDelegate.itemSaved(data)
             }
         }
         Column {
             Layout.fillWidth: true
-            
+            spacing: AppSettings.smallSpace
+
             C.Label {
                 text: Markdown.markdownToHtml(swipeDelegate.item.title)
                 textFormat: Text.RichText
@@ -99,10 +87,10 @@ C.SwipeDelegate {
                 font.strikeout: {
                     if (item && item.done !== undefined) {
                         if (item.done) {
-                            return true;
+                            return true
                         }
                     }
-                    return false;
+                    return false
                 }
             }
             Item {
@@ -125,8 +113,8 @@ C.SwipeDelegate {
                         width: contentWidth
                         height: contentHeight
                         color: {
-                            let result = Colors.itemColor(d.parentItem);
-                            return Colors.color(result);
+                            let result = Colors.itemColor(d.parentItem)
+                            return Colors.color(result)
                         }
                     }
                     C.Label {
@@ -139,9 +127,10 @@ C.SwipeDelegate {
                 }
 
                 Row {
-                    visible: swipeDelegate.item.effectiveDueTo !== undefined &&
-                             DateUtils.validDate(swipeDelegate.item.effectiveDueTo) &&
-                             !swipeDelegate.hideDueDate
+                    visible: swipeDelegate.item.effectiveDueTo !== undefined
+                             && DateUtils.validDate(
+                                 swipeDelegate.item.effectiveDueTo)
+                             && !swipeDelegate.hideDueDate
                     spacing: AppSettings.effectiveFontMetrics.height / 2
 
                     C.Label {
@@ -149,25 +138,45 @@ C.SwipeDelegate {
                         text: Icons.mdiEvent
                         width: contentWidth
                         height: contentHeight
-
                     }
                     C.Label {
                         Layout.fillWidth: true
-                        text: DateUtils.format(swipeDelegate.item.effectiveDueTo)
+                        text: DateUtils.format(
+                                  swipeDelegate.item.effectiveDueTo)
                     }
                 }
+            }
+
+            // Show the first line from the notes contents
+            C.Label {
+                width: parent.width
+                opacity: 0.5
+                elide: Text.ElideRight
+                wrapMode: Text.NoWrap
+                text: {
+                    let item = swipeDelegate.item
+                    if (AppSettings.showNotesExcepts
+                            && item.notes !== undefined) {
+                        return Markdown.firstPlainTextLineFromMarkdown(
+                                    item.notes)
+                    }
+                    return ""
+                }
+                visible: text !== ""
             }
         }
 
         C.Label {
             font.family: Fonts.icons
             text: Icons.mdiNoteAlt
-            visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.notes !== ""
+            visible: swipeDelegate.item.itemType === "Todo"
+                     && swipeDelegate.item.notes !== ""
             opacity: 0.5
         }
 
         C.Label {
-            visible: swipeDelegate.item.itemType === "Todo" && swipeDelegate.item.numSubtasks > 0
+            visible: swipeDelegate.item.itemType === "Todo"
+                     && swipeDelegate.item.numSubtasks > 0
             leftPadding: AppSettings.mediumSpace
             rightPadding: leftPadding
             background: Item {
@@ -181,10 +190,11 @@ C.SwipeDelegate {
             }
             text: {
                 if (visible) {
-                    let todo = swipeDelegate.item;
-                    return "%1/%2".arg(todo.numDoneSubtasks).arg(todo.numSubtasks)
+                    let todo = swipeDelegate.item
+                    return "%1/%2".arg(todo.numDoneSubtasks).arg(
+                                todo.numSubtasks)
                 } else {
-                    return "";
+                    return ""
                 }
             }
             color: Colors.textColor(Colors.positiveColor)
@@ -196,7 +206,6 @@ C.SwipeDelegate {
             height: toggleSwipeOpened.height
         }
 
-
         C.ToolButton {
             id: moveButton
             visible: {
@@ -204,42 +213,40 @@ C.SwipeDelegate {
                     switch (Qt.platform.os) {
                     case "ios":
                     case "android":
-                        return true;
+                        return true
                     default:
-                        return swipeDelegate.hovered;
+                        return swipeDelegate.hovered
                     }
                 } else {
-                    return false;
+                    return false
                 }
             }
             symbol: Icons.mdiDragHandle
             font.family: Fonts.icons
             onPressed: {
-                swipeDelegate.setSwipeDelegate(null);
-                reorderOverlay.startDrag();
+                swipeDelegate.setSwipeDelegate(null)
+                reorderOverlay.startDrag()
             }
         }
-        
+
         C.ToolButton {
             id: toggleSwipeOpened
             visible: {
                 switch (Qt.platform.os) {
                 case "ios":
                 case "android":
-                    return false;
+                    return false
                 default:
-                    return swipeDelegate.hovered;
+                    return swipeDelegate.hovered
                 }
             }
-            symbol: swipeDelegate.swipe.position === 0 ?
-                        Icons.mdiKeyboardArrowLeft :
-                        Icons.mdiKeyboardArrowRight
+            symbol: swipeDelegate.swipe.position
+                    === 0 ? Icons.mdiKeyboardArrowLeft : Icons.mdiKeyboardArrowRight
             onClicked: {
                 if (swipeDelegate.swipe.position === 0) {
-                    swipeDelegate.swipe.open(
-                                C.SwipeDelegate.Right);
+                    swipeDelegate.swipe.open(C.SwipeDelegate.Right)
                 } else {
-                    swipeDelegate.swipe.close();
+                    swipeDelegate.swipe.close()
                 }
             }
         }
@@ -259,79 +266,80 @@ C.SwipeDelegate {
         height: swipeDelegate.height
         width: swipeDelegate.width
         enabled: {
-            let item = swipeDelegate.item;
-            return item.done !== undefined || item.dueTo !== undefined;
+            let item = swipeDelegate.item
+            return item.done !== undefined || item.dueTo !== undefined
         }
 
         Material.background: Colors.positiveColor
-        
+
         C.Label {
             text: {
-                let item = swipeDelegate.item;
-                let done = item.done;
+                let item = swipeDelegate.item
+                let done = item.done
                 if (done === undefined) {
-                    done = !DateUtils.validDate(item.dueTo);
+                    done = !DateUtils.validDate(item.dueTo)
                 }
                 if (done) {
-                    return qsTr("Swipe to mark undone");
+                    return qsTr("Swipe to mark undone")
                 } else {
-                    return qsTr("Swipe to mark done");
+                    return qsTr("Swipe to mark done")
                 }
             }
             width: parent.width / 2
             anchors.fill: parent
         }
     }
-    
+
     onItemChanged: d.loadParentItem()
     onShowParentItemInformationChanged: d.loadParentItem()
 
     onClicked: {
         // Delay evaluation, as it overlaps with double clicks:
         if (!delayedClickTimer.afterDoubleClick) {
-            delayedClickTimer.start();
+            delayedClickTimer.start()
         }
-        delayedClickTimer.afterDoubleClick = false;
+        delayedClickTimer.afterDoubleClick = false
     }
-    
+
     onDoubleClicked: {
         // Remember that we detected a double click:
-        delayedClickTimer.afterDoubleClick = true;
-        
+        delayedClickTimer.afterDoubleClick = true
+
         // Handle the double click:
-        delayedClickTimer.stop();
-        renameAction.trigger();
+        delayedClickTimer.stop()
+        renameAction.trigger()
     }
-    
+
     swipe.onCompleted: {
         if (swipe.position > 0) {
             // Swipe from left to right to mark items as (un)done.
-            swipeDelegate.toggleDoneOnClose = true;
-            swipeDelegate.swipe.close();
+            swipeDelegate.toggleDoneOnClose = true
+            swipeDelegate.swipe.close()
         } else {
-            swipeDelegate.setSwipeDelegate(swipeDelegate);
+            swipeDelegate.setSwipeDelegate(swipeDelegate)
         }
     }
-    
+
     onPressAndHold: swipeDelegate.itemPressedAndHold()
     swipe.onClosed: {
         if (swipeDelegate.toggleDoneOnClose) {
-            let item = swipeDelegate.item;
+            let item = swipeDelegate.item
             switch (item.itemType) {
             case "Todo":
             case "Task":
-                let data = OTL.Application.saveItem(item);
-                item.done = !item.done;
-                swipeDelegate.itemSaved(data);
-                break;
+                let data = OTL.Application.saveItem(item)
+                item.done = !item.done
+                swipeDelegate.itemSaved(data)
+                break
             default:
-                if (typeof(item.markCurrentOccurrenceAsDone) === "function") {
-                    item.markCurrentOccurrenceAsDone();
+                if (typeof (item.markCurrentOccurrenceAsDone) === "function") {
+                    item.markCurrentOccurrenceAsDone()
                 } else {
-                    console.warn("Cannot toggle done state for", item, "of type", item.itemType);
+                    console.warn("Cannot toggle done state for", item,
+                                 "of type", item.itemType)
                 }
             }
-            swipeDelegate.toggleDoneOnClose = false;
+            swipeDelegate.toggleDoneOnClose = false
         }
     }
 
@@ -344,13 +352,13 @@ C.SwipeDelegate {
             if (swipeDelegate.showParentItemInformation) {
                 switch (swipeDelegate.item.itemType) {
                 case "Todo":
-                    OTL.Application.loadItem(swipeDelegate.item.todoListUid);
-                    break;
+                    OTL.Application.loadItem(swipeDelegate.item.todoListUid)
+                    break
                 default:
-                    break;
+                    break
                 }
             } else {
-                parentItem = null;
+                parentItem = null
             }
         }
     }
@@ -362,11 +370,11 @@ C.SwipeDelegate {
             switch (swipeDelegate.item.itemType) {
             case "Todo":
                 if (uid === swipeDelegate.item.todoListUid) {
-                    d.parentItem = OTL.Application.itemFromData(data);
+                    d.parentItem = OTL.Application.itemFromData(data)
                 }
-                break;
+                break
             default:
-                break;
+                break
             }
         }
     }
@@ -374,24 +382,23 @@ C.SwipeDelegate {
     Connections {
         target: swipeDelegate.item
         function onTodoListUidChanged() {
-            d.loadParentItem();
+            d.loadParentItem()
         }
         ignoreUnknownSignals: true
     }
-    
+
     ProgressItemOverlay {
         item: swipeDelegate.item
         height: background.height
         x: {
             if (swipeDelegate.swipe.rightItem) {
-                return swipeDelegate.swipe.position *
-                        swipeDelegate.swipe.rightItem.width;
+                return swipeDelegate.swipe.position * swipeDelegate.swipe.rightItem.width
             } else {
-                return 0;
+                return 0
             }
         }
     }
-    
+
     ReorderableListViewOverlay {
         id: reorderOverlay
         anchors.fill: parent
@@ -408,8 +415,8 @@ C.SwipeDelegate {
         interval: 300
         repeat: false
         onTriggered: {
-            swipeDelegate.setSwipeDelegate(null);
-            swipeDelegate.itemClicked();
+            swipeDelegate.setSwipeDelegate(null)
+            swipeDelegate.itemClicked()
         }
     }
 
@@ -423,15 +430,59 @@ C.SwipeDelegate {
         opacity: 0.1
     }
 
-    Actions.RenameItem { id: renameAction; item: swipeDelegate.item }
-    Actions.SetDueTo { id: setDueToAction; item: swipeDelegate.item }
-    Actions.DeleteItem { id: deleteAction; item: swipeDelegate.item }
-    Actions.SetDueToday { id: setDueTodayAction; item: swipeDelegate.item; hideButton: true }
-    Actions.SetDueTomorrow { id: setDueTomorrowAction; item: swipeDelegate.item; hideButton: true }
-    Actions.SetDueThisWeek { id: setDueThisWeekAction; item: swipeDelegate.item; hideButton: true }
-    Actions.SetDueNextWeek { id: setDueNextWeekAction; item: swipeDelegate.item; hideButton: true }
-    Actions.ResetDueTo { id: resetDueToAction; item: swipeDelegate.item; hideButton: true }
-    Actions.MoveTodo { id: moveTodoAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Todo" }
-    Actions.CopyTodo { id: copyTodoAction; item: swipeDelegate.item; enabled: item.itemType === "Todo" }
-    Actions.PromoteTask { id: promoteTaskAction; item: swipeDelegate.item; library: swipeDelegate.library; enabled: item.itemType === "Task"; todoList: swipeDelegate.parentItem }
+    Actions.RenameItem {
+        id: renameAction
+        item: swipeDelegate.item
+    }
+    Actions.SetDueTo {
+        id: setDueToAction
+        item: swipeDelegate.item
+    }
+    Actions.DeleteItem {
+        id: deleteAction
+        item: swipeDelegate.item
+    }
+    Actions.SetDueToday {
+        id: setDueTodayAction
+        item: swipeDelegate.item
+        hideButton: true
+    }
+    Actions.SetDueTomorrow {
+        id: setDueTomorrowAction
+        item: swipeDelegate.item
+        hideButton: true
+    }
+    Actions.SetDueThisWeek {
+        id: setDueThisWeekAction
+        item: swipeDelegate.item
+        hideButton: true
+    }
+    Actions.SetDueNextWeek {
+        id: setDueNextWeekAction
+        item: swipeDelegate.item
+        hideButton: true
+    }
+    Actions.ResetDueTo {
+        id: resetDueToAction
+        item: swipeDelegate.item
+        hideButton: true
+    }
+    Actions.MoveTodo {
+        id: moveTodoAction
+        item: swipeDelegate.item
+        library: swipeDelegate.library
+        enabled: item.itemType === "Todo"
+    }
+    Actions.CopyTodo {
+        id: copyTodoAction
+        item: swipeDelegate.item
+        enabled: item.itemType === "Todo"
+    }
+    Actions.PromoteTask {
+        id: promoteTaskAction
+        item: swipeDelegate.item
+        library: swipeDelegate.library
+        enabled: item.itemType === "Task"
+        todoList: swipeDelegate.parentItem
+    }
 }
