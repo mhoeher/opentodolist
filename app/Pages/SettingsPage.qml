@@ -276,7 +276,7 @@ C.Page {
             Empty {}
 
             C.CheckBox {
-                text: qsTr("Show notes except in listings")
+                text: qsTr("Show notes excerpt in listings")
                 checked: Utils.AppSettings.showNotesExcepts
                 onCheckedChanged: Utils.AppSettings.showNotesExcepts = checked
             }
