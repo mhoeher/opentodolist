@@ -46,6 +46,7 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent)
       m_recurrencePattern(NoRecurrence),
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
+      m_recurUntil(),
       m_recurInterval(0)
 {
     setupConnections();
@@ -63,6 +64,7 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent)
       m_recurrencePattern(NoRecurrence),
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
+      m_recurUntil(),
       m_recurInterval(0)
 {
     setupConnections();
@@ -101,6 +103,13 @@ void ComplexItem::setDueTo(const QDateTime& dueTo)
         QTime t = dueTo.time();
         t.setHMS(t.hour(), t.minute(), t.second(), 0);
         m_dueTo.setTime(t);
+
+        // If the item already has a recurUntil set, check if the new due date occurs after it.
+        // If this is the case, reset the recurUntil:
+        if (m_recurUntil.isValid() && m_dueTo >= m_recurUntil) {
+            setRecurUntil(QDateTime());
+        }
+
         emit dueToChanged();
     }
 }
@@ -407,6 +416,27 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
 }
 
 /**
+ * @brief Stop recurring after the specified date.
+ *
+ * If this is set, recurrence stops after the given date.
+ */
+const QDateTime& ComplexItem::recurUntil() const
+{
+    return m_recurUntil;
+}
+
+/**
+ * @brief Sets the date up to which the item recurs.
+ */
+void ComplexItem::setRecurUntil(const QDateTime& newRecurUntil)
+{
+    if (m_recurUntil == newRecurUntil)
+        return;
+    m_recurUntil = newRecurUntil;
+    emit recurUntilChanged();
+}
+
+/**
  * @brief The earliest due to date of the direct children of the item.
  *
  * This property holds the earliest due to date among the direct child items of that item.
@@ -511,6 +541,13 @@ QDateTime ComplexItem::nextDueTo() const
 void ComplexItem::setNextDueTo(const QDateTime& nextDueTo)
 {
     if (m_nextDueTo != nextDueTo) {
+        // Check if we have a valid end date set. If so, stop here and instead mark the
+        // item as done:
+        if (m_recurUntil.isValid() && m_recurUntil < nextDueTo) {
+            markItemAsDone();
+            return;
+        }
+
         m_nextDueTo = nextDueTo;
         emit nextDueToChanged();
     }
@@ -591,6 +628,7 @@ QVariantMap ComplexItem::toMap() const
     result["recurrencePattern"] = QVariant::fromValue(m_recurrencePattern);
     result["recurrenceSchedule"] = QVariant::fromValue(m_recurrenceSchedule);
     result["nextDueTo"] = m_nextDueTo;
+    result["recurUntil"] = m_recurUntil;
     result["recurInterval"] = m_recurInterval;
 
     return result;
@@ -607,6 +645,7 @@ void ComplexItem::fromMap(QVariantMap map)
     setRecurrenceSchedule(map.value("recurrenceSchedule", QVariant::fromValue(m_recurrenceSchedule))
                                   .value<RecurrenceSchedule>());
     setNextDueTo(map.value("nextDueTo", m_nextDueTo).toDateTime());
+    setRecurUntil(map.value("recurUntil", m_recurUntil).toDateTime());
     setRecurInterval(map.value("recurInterval", m_recurInterval).toInt());
 }
 

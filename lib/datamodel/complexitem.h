@@ -48,6 +48,7 @@ class ComplexItem : public Item
     Q_PROPERTY(QDateTime nextDueTo READ nextDueTo WRITE setNextDueTo NOTIFY nextDueToChanged)
     Q_PROPERTY(
             int recurInterval READ recurInterval WRITE setRecurInterval NOTIFY recurIntervalChanged)
+    Q_PROPERTY(QDateTime recurUntil READ recurUntil WRITE setRecurUntil NOTIFY recurUntilChanged)
     Q_PROPERTY(QDateTime effectiveDueTo READ effectiveDueTo NOTIFY effectiveDueToChanged)
     Q_PROPERTY(bool isRecurring READ isRecurring NOTIFY isRecurringChanged)
 public:
@@ -116,6 +117,9 @@ public:
     QDateTime earliestChildDueTo() const;
     void setEarliestChildDueTo(const QDateTime& earliestChildDueTo);
 
+    const QDateTime& recurUntil() const;
+    void setRecurUntil(const QDateTime& newRecurUntil);
+
 signals:
 
     void dueToChanged();
@@ -124,6 +128,7 @@ signals:
     void recurrencePatternChanged();
     void recurrenceScheduleChanged();
     void nextDueToChanged();
+    void recurUntilChanged();
     void recurIntervalChanged();
     void effectiveDueToChanged();
     void isRecurringChanged();
@@ -147,6 +152,7 @@ private:
     RecurrencePattern m_recurrencePattern;
     RecurrenceSchedule m_recurrenceSchedule;
     QDateTime m_nextDueTo;
+    QDateTime m_recurUntil;
     int m_recurInterval;
 
     void setupConnections();

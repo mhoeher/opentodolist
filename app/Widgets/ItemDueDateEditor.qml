@@ -25,7 +25,9 @@ GridLayout {
 
     Heading {
         level: 2
-        text: qsTr("Due on") + " " + root.item.effectiveDueTo.toLocaleDateString()
+        text: qsTr(
+                  "Due on") + " " + root.item.effectiveDueTo.toLocaleDateString(
+                  )
         wrapMode: "WrapAtWordBoundaryOrAnywhere"
         Layout.fillWidth: true
     }
@@ -34,7 +36,7 @@ GridLayout {
         symbol: d.validDate ? Icons.mdiEventBusy : ""
         font.family: Fonts.icons
         background: Item {}
-        onClicked: root.item.dueTo = new Date("");
+        onClicked: root.item.dueTo = new Date("")
     }
 
     C.ToolButton {
@@ -42,8 +44,8 @@ GridLayout {
         font.family: Fonts.icons
         background: Item {}
         onClicked: {
-            dueDateSelectionDialog.selectedDate = root.item.dueTo;
-            dueDateSelectionDialog.open();
+            dueDateSelectionDialog.selectedDate = root.item.dueTo
+            dueDateSelectionDialog.open()
         }
 
         DateSelectionDialog {
@@ -54,11 +56,12 @@ GridLayout {
 
     C.Label {
         text: {
-            let result = "";
+            let result = ""
             if (root.item.isRecurring) {
-                result = qsTr("First due on %1.").arg(root.item.dueTo.toLocaleDateString());
+                result = qsTr("First due on %1.").arg(
+                            root.item.dueTo.toLocaleDateString())
             }
-            return result;
+            return result
         }
         Layout.columnSpan: 3
         Layout.fillWidth: true
@@ -78,16 +81,18 @@ GridLayout {
             case OTL.ComplexItem.RecurYearly:
                 return qsTr("Recurs every year.")
             case OTL.ComplexItem.RecurEveryNDays:
-                return qsTr("Recurs every %1 days.").arg(root.item.recurInterval);
+                return qsTr("Recurs every %1 days.").arg(
+                            root.item.recurInterval)
             case OTL.ComplexItem.RecurEveryNWeeks:
-                return qsTr("Recurs every %1 weeks.").arg(root.item.recurInterval);
+                return qsTr("Recurs every %1 weeks.").arg(
+                            root.item.recurInterval)
             case OTL.ComplexItem.RecurEveryNMonths:
-                return qsTr("Recurs every %1 months.").arg(root.item.recurInterval);
+                return qsTr("Recurs every %1 months.").arg(
+                            root.item.recurInterval)
             default:
-                console.warn(
-                            "Warning: Unhandled recurrence pattern",
-                            root.item.recurrencePattern);
-                return "";
+                console.warn("Warning: Unhandled recurrence pattern",
+                             root.item.recurrencePattern)
+                return ""
             }
         }
         Layout.columnSpan: 2
@@ -100,7 +105,39 @@ GridLayout {
         background: Item {}
         onClicked: recurrenceDialog.edit(root.item)
 
-        RecurrenceDialog { id: recurrenceDialog }
+        RecurrenceDialog {
+            id: recurrenceDialog
+        }
     }
 
+    C.Label {
+        text: {
+            if (DateUtils.validDate(root.item.recurUntil)) {
+                return qsTr("Recurs until %1.").arg(
+                            root.item.recurUntil.toLocaleDateString())
+            } else {
+                return qsTr("Recurs indefinitely")
+            }
+        }
+        Layout.columnSpan: 2
+        Layout.fillWidth: true
+    }
+
+    C.ToolButton {
+        symbol: Icons.mdiCalendarToday
+        font.family: Fonts.icons
+        background: Item {}
+
+        onClicked: {
+            recurUntilSelectionDialog.selectedDate = root.item.recurUntil
+            recurUntilSelectionDialog.open()
+        }
+
+        DateSelectionDialog {
+            id: recurUntilSelectionDialog
+            onAccepted: {
+                root.item.recurUntil = recurUntilSelectionDialog.selectedDate
+            }
+        }
+    }
 }
