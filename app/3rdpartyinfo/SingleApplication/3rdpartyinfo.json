@@ -1,0 +1,8 @@
+{
+    "name": "SingleApplication",
+    "author": "Itay Grudev",
+    "website": "https://github.com/itay-grudev/SingleApplication",
+    "licenseUrl": "https://raw.githubusercontent.com/itay-grudev/SingleApplication/master/LICENSE",
+    "licenseType": "MIT",
+    "downloadUrl": "http://code.qt.io/cgit/qt-solutions/qt-solutions.git/"
+}
