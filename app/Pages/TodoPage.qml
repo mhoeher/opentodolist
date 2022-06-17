@@ -19,66 +19,74 @@ ItemPage {
     property OTL.TodoList todoList: null
     property Item parentDrawer: null
 
-    signal closePage()
+    signal closePage
     signal openPage(var component, var properties)
 
     readonly property alias editingNotes: d.editingNotes
 
     function finishEditingNotes() {
-        todosWidget.header.itemNotesEditor.finishEditing();
+        todosWidget.header.itemNotesEditor.finishEditing()
     }
 
     function deleteItem() {
-        confirmDeleteDialog.deleteItem(item);
+        confirmDeleteDialog.deleteItem(item)
     }
 
     function deleteCompletedItems() {
-        ItemUtils.deleteCompletedItems(item);
+        ItemUtils.deleteCompletedItems(item)
     }
 
     function renameItem() {
-        renameItemDialog.renameItem(item);
+        renameItemDialog.renameItem(item)
     }
 
     function moveItem() {
-        moveTodoAction.trigger();
+        moveTodoAction.trigger()
     }
 
     function copyItem() {
-        copyTodoAction.trigger();
+        copyTodoAction.trigger()
     }
 
     function setProgress() {
-        setManualProgressAction.trigger();
+        setManualProgressAction.trigger()
     }
 
     function setDueDate() {
-        dueDateSelectionDialog.selectedDate = item.dueTo;
-        dueDateSelectionDialog.open();
+        dueDateSelectionDialog.selectedDate = item.dueTo
+        dueDateSelectionDialog.open()
     }
 
     function find() {
-        filterBar.edit.forceActiveFocus();
-        d.reopenDrawer();
+        filterBar.edit.forceActiveFocus()
+        d.reopenDrawer()
     }
 
     function attach() {
-        d.attach();
+        d.attach()
     }
 
-    property var goBack: editingNotes ? function() {
-        todosWidget.header.itemNotesEditor.finishEditing();
+
+    /*
+      Attaches the list of files to the todo list.
+      */
+    function attachFiles(fileUrls) {
+        d.attachFiles(fileUrls)
+    }
+
+    property var goBack: editingNotes ? function () {
+        todosWidget.header.itemNotesEditor.finishEditing()
     } : undefined
 
     property var undo: {
         if (d.savedTaskStates.length > 0) {
-            return function() {
-                let list = d.savedTaskStates.slice();
-                OTL.Application.restoreItem(list.pop());
-                d.savedTaskStates = list;
-            };
+            return function () {
+                let list = d.savedTaskStates.slice()
+                OTL.Application.restoreItem(list.pop())
+                d.savedTaskStates = list
+            }
         } else {
-            return null;
+            return null
         }
     }
 
@@ -92,11 +100,12 @@ ItemPage {
 
         property var savedTaskStates: []
 
-        signal attach()
+        signal attach
+        signal attachFiles(var fileUrls)
 
         function reopenDrawer() {
             if (page.parentDrawer) {
-                page.parentDrawer.open();
+                page.parentDrawer.open()
             }
         }
     }
@@ -115,7 +124,7 @@ ItemPage {
     DeleteItemDialog {
         id: confirmDeleteDialog
         onAccepted: {
-            page.closePage();
+            page.closePage()
         }
         onClosed: d.reopenDrawer()
     }
@@ -159,7 +168,8 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.todoList
-        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor || {} ).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor
+                                      || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
@@ -180,16 +190,14 @@ ItemPage {
             onCreateNewItem: {
                 var properties = {
                     "title": title
-                };
-                var task = OTL.Application.addTask(
-                            page.library,
-                            page.item,
-                            properties);
+                }
+                var task = OTL.Application.addTask(page.library, page.item,
+                                                   properties)
             }
             onItemSaved: {
-                let list = d.savedTaskStates.slice();
-                list.push(itemData);
-                d.savedTaskStates = list;
+                let list = d.savedTaskStates.slice()
+                list.push(itemData)
+                d.savedTaskStates = list
             }
 
             headerComponent: Column {
@@ -215,7 +223,6 @@ ItemPage {
                     width: parent.width
                 }
 
-
                 ItemNotesEditor {
                     id: itemNotesEditor
                     item: page.item
@@ -227,7 +234,6 @@ ItemPage {
                         value: itemNotesEditor.editing
                     }
                 }
-
             }
 
             footerComponent: Attachments {
@@ -238,7 +244,10 @@ ItemPage {
                 Connections {
                     target: d
                     function onAttach() {
-                        attach();
+                        attach()
+                    }
+                    function onAttachFiles(fileUrls) {
+                        attachFiles(fileUrls)
                     }
                 }
             }
@@ -287,6 +296,8 @@ ItemPage {
         }
     }
 
-    Actions.CopyTodo { id: copyTodoAction; item: page.item }
+    Actions.CopyTodo {
+        id: copyTodoAction
+        item: page.item
+    }
 }
-

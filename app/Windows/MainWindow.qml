@@ -332,6 +332,39 @@ C.ApplicationWindow {
         onCurrentItemChanged: applicationToolBar.closeMenu()
     }
 
+    DropArea {
+        anchors.fill: stackView
+        keys: ["text/uri-list"]
+
+        onEntered: drag => {
+                       if (drag.hasUrls) {
+                           if (typeof (stackView.currentItem.attachFiles) == "function") {
+                               drag.accept(Qt.LinkAction)
+                               dropIndicator.visible = true
+                           }
+                       }
+                   }
+        onDropped: drop => {
+                       stackView.currentItem.attachFiles(drop.urls)
+                   }
+        onExited: {
+            dropIndicator.visible = false
+        }
+        onContainsDragChanged: {
+            if (!containsDrag) {
+                dropIndicator.visible = false
+            }
+        }
+    }
+
+    Rectangle {
+        id: dropIndicator
+        anchors.fill: stackView
+        color: "white"
+        opacity: 0.5
+        visible: false
+    }
+
     C.Pane {
         id: staticLeftSideBar
         width: librariesSideBar.compact ? 0 : Math.min(300, window.width / 3)
