@@ -978,6 +978,19 @@ QUrl Application::localFileToUrl(const QString& localFile) const
 }
 
 /**
+ * @brief Create a URL from the string.
+ *
+ * This creates a new QUrl from the given @p urlString. Note that the string is assumed to be
+ * a proper URL, i.e. it must start with a protocol like 'file://'.
+ *
+ * To convert a local path to a URL, use localFileToUrl() instead.
+ */
+QUrl Application::urlFromString(const QString& urlString) const
+{
+    return QUrl(urlString);
+}
+
+/**
  * @brief Clean the local file path given via the @p url.
  *
  * This method removes extra dots and dotdots from the file path
