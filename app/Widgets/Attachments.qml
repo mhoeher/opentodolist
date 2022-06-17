@@ -10,87 +10,91 @@ import "../Fonts"
 import "../Utils"
 import "../Windows"
 
-
 Item {
     id: item
 
     property OTL.ComplexItem item
 
     function attach() {
-        dialog.open();
+        dialog.open()
     }
 
-    height: childrenRect.height
+        height: childrenRect.height
 
-    Dialogs.FileDialog {
-        id: dialog
+        Dialogs.FileDialog {
+            id: dialog
 
-        title: qsTr("Attach File")
+            title: qsTr("Attach File")
+            selectMultiple: true
 
-        onAccepted: {
-            item.item.attachFile(fileUrl)
+            onAccepted: {
+                for (var i = 0; i < fileUrls.length; ++i) {
+                    item.item.attachFile(OTL.Application.urlFromString(
+                                             fileUrls[i]))
+                }
+            }
         }
-    }
 
-    CenteredDialog {
-        id: confirmDeleteAttachmentDialog
+        CenteredDialog {
+            id: confirmDeleteAttachmentDialog
 
-        property string attachment
+            property string attachment
 
-        title: qsTr("Delete Attachment?")
-        width: 400
+            title: qsTr("Delete Attachment?")
+            width: 400
 
-        C.Label {
-            text: qsTr("Are you sure you want to delete the attachment <strong>%1</strong>? This action " +
-                       "cannot be undone.").arg(confirmDeleteAttachmentDialog.attachment)
-            width: parent.width
-        }
-        standardButtons: C.Dialog.Ok | C.Dialog.Cancel
-        onAccepted: {
-            item.item.detachFile(attachment)
-        }
-    }
-
-    Heading {
-        id: header
-
-        level: 2
-        text: qsTr("Attachments")
-        visible: item.item.attachments.length > 0
-    }
-
-    Column {
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: header.bottom
-        }
-        Repeater {
-            model: item.item.attachments
-            delegate: MouseArea {
+            C.Label {
+                text: qsTr("Are you sure you want to delete the attachment <strong>%1</strong>? This action " + "cannot be undone.").arg(
+                          confirmDeleteAttachmentDialog.attachment)
                 width: parent.width
-                height: childrenRect.height
-                onClicked: OTL.Application.openUrl(OTL.Application.localFileToUrl(
-                                                       item.item.attachmentFileName(modelData)))
+            }
+            standardButtons: C.Dialog.Ok | C.Dialog.Cancel
+            onAccepted: {
+                item.item.detachFile(attachment)
+            }
+        }
 
-                RowLayout {
+        Heading {
+            id: header
+
+            level: 2
+            text: qsTr("Attachments")
+            visible: item.item.attachments.length > 0
+        }
+
+        Column {
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: header.bottom
+            }
+            Repeater {
+                model: item.item.attachments
+                delegate: MouseArea {
                     width: parent.width
+                    height: childrenRect.height
+                    onClicked: OTL.Application.openUrl(
+                                   OTL.Application.localFileToUrl(
+                                       item.item.attachmentFileName(modelData)))
 
-                    C.Label {
-                        text: modelData
-                        Layout.fillWidth: true
-                    }
+                    RowLayout {
+                        width: parent.width
 
-                    C.ToolButton {
-                        symbol: Icons.mdiDelete
-                        hoverEnabled: true
-                        onClicked: {
-                            confirmDeleteAttachmentDialog.attachment = modelData;
-                            confirmDeleteAttachmentDialog.open();
+                        C.Label {
+                            text: modelData
+                            Layout.fillWidth: true
+                        }
+
+                        C.ToolButton {
+                            symbol: Icons.mdiDelete
+                            hoverEnabled: true
+                            onClicked: {
+                                confirmDeleteAttachmentDialog.attachment = modelData
+                                confirmDeleteAttachmentDialog.open()
+                            }
                         }
                     }
                 }
             }
         }
     }
-}

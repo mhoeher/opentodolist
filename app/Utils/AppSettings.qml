@@ -10,6 +10,7 @@ Item {
     property int customFontSize: 12
     readonly property int defaultFontSize: fontMetrics.font.pointSize
     property bool useCompactTodoLists: false
+    property bool showNotesExcepts: false // Show first line of notes in item listings
     readonly property int effectiveFontSize: useCustomFontSize ? customFontSize : defaultFontSize
     property int libraryItemWidthScaleFactor: 40
 
@@ -17,9 +18,9 @@ Item {
         switch (Qt.platform.os) {
             case "ios":
             case "android":
-            return false;
+            return false
             default:
-            return true;
+            return true
         }
     }
 
@@ -43,20 +44,20 @@ Item {
         switch (Qt.platform.os) {
             case "android":
             case "ios":
-                // Not supported on these platforms - sorry
-                return false;
+            // Not supported on these platforms - sorry
+            return false
             default:
-                return true;
+            return true
         }
     }
 
     readonly property bool selectTextByMouse: {
         switch (Qt.platform.os) {
-        case "android":
-        case "ios":
-            return false;
-        default:
-            return true;
+            case "android":
+            case "ios":
+            return false
+            default:
+            return true
         }
     }
 
@@ -67,6 +68,7 @@ Item {
         property alias useCustomFontSize: settings.useCustomFontSize
         property alias useDenseVariant: settings.useDenseVariant
         property alias useCompactTodoLists: settings.useCompactTodoLists
+        property alias showNotesExcepts: settings.showNotesExcepts
         property alias uiScaling: settings.uiScaling
         property alias overrideUiScaling: settings.overrideUiScaling
         property alias libraryItemWidthScaleFactor: settings.libraryItemWidthScaleFactor

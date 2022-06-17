@@ -130,6 +130,7 @@ public:
 
     Q_INVOKABLE QString urlToLocalFile(const QUrl& url) const;
     Q_INVOKABLE QUrl localFileToUrl(const QString& localFile) const;
+    Q_INVOKABLE QUrl urlFromString(const QString& urlString) const;
     Q_INVOKABLE QUrl cleanPath(const QUrl& url) const;
     Q_INVOKABLE bool canListPath(const QUrl& url) const;
     Q_INVOKABLE QUrl getParentDirectory(const QUrl& url) const;
