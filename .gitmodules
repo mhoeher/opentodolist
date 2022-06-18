@@ -28,3 +28,6 @@
 [submodule "3rdparty/QtStaticCMake"]
 	path = 3rdparty/QtStaticCMake
 	url = https://gitlab.com/rpdev/QtStaticCMake.git
+[submodule "3rdparty/ral-json"]
+	path = 3rdparty/ral-json
+	url = ../ral-json.git

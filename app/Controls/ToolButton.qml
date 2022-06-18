@@ -17,12 +17,32 @@ QQC2.ToolButton {
     onClicked: {
         if (menu) {
             if (menu.visible) {
-                menu.close();
+                menu.close()
             } else {
-                menu.open();
+                menu.open()
             }
         }
     }
     Material.background: backgroundColor
-    Material.foreground: foregroundColor
+    Material.foreground: {
+        if (foregroundColor !== undefined || backgroundColor === undefined) {
+            return foregroundColor
+        } else {
+            if (backgroundColor.hslLightness < 0.5) {
+                return Qt.rgba(1, 1, 1, 1)
+            } else {
+                return Qt.rgba(0, 0, 0, 1)
+            }
+        }
+    }
+
+    Binding {
+        target: button
+        property: "background"
+        value: Rectangle {
+            color: backgroundColor
+            radius: width / 2
+        }
+        when: button.backgroundColor !== undefined
+    }
 }

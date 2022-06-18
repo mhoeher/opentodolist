@@ -15,9 +15,10 @@ C.ItemDelegate {
     property alias rightSymbol: symRight.text
     property alias rightSymbolIsClickable: symRight.enabled
     property alias rightSymbolIsVisible: symRight.visible
+    property alias symbolToolButton: sym
 
-    signal symbolClicked()
-    signal rightSymbolClicked()
+    signal symbolClicked
+    signal rightSymbolClicked
 
     topPadding: 0
     bottomPadding: 0
@@ -28,7 +29,6 @@ C.ItemDelegate {
             height: 1
             width: root.indent * 10
         }
-
 
         C.ToolButton {
             id: sym
@@ -57,5 +57,3 @@ C.ItemDelegate {
         }
     }
 }
-
-

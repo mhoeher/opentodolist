@@ -320,6 +320,7 @@ C.Pane {
                 bold: true
                 symbol: librarySection.collapsed
                         || !symbolIsClickable ? Icons.mdiKeyboardArrowRight : Icons.mdiKeyboardArrowDown
+                symbolToolButton.backgroundColor: library.color
                 highlighted: d.isSelectedLibrary(library) && currentTag === ""
                              && specialView === ""
                 symbolIsClickable: library.tags.length > 0
