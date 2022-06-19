@@ -22,9 +22,8 @@ Item {
             symbol: Fonts.Icons.mdiEdit
             text: qsTr("Rename")
             visible: {
-                return stackView.currentItem &&
-                        typeof(stackView.currentItem["renameItem"]) ===
-                        "function";
+                return stackView.currentItem
+                        && typeof (stackView.currentItem["renameItem"]) === "function"
             }
             onTriggered: stackView.currentItem.renameItem()
         },
@@ -33,9 +32,8 @@ Item {
             symbol: Fonts.Icons.mdiContentCut
             text: qsTr("Move")
             visible: {
-                return stackView.currentItem &&
-                        typeof(stackView.currentItem["moveItem"]) ===
-                        "function";
+                return stackView.currentItem
+                        && typeof (stackView.currentItem["moveItem"]) === "function"
             }
             onTriggered: stackView.currentItem.moveItem()
         },
@@ -44,9 +42,8 @@ Item {
             symbol: Fonts.Icons.mdiContentCopy
             text: qsTr("Copy")
             visible: {
-                return stackView.currentItem &&
-                        typeof(stackView.currentItem["copyItem"]) ===
-                        "function";
+                return stackView.currentItem
+                        && typeof (stackView.currentItem["copyItem"]) === "function"
             }
             onTriggered: stackView.currentItem.copyItem()
         },
@@ -63,16 +60,28 @@ Item {
         },
 
         ToolBarAction {
+            symbol: Fonts.Icons.mdiPalette
+            text: qsTr("Color")
+            visible: {
+                return stackView.currentItem
+                        && typeof (stackView.currentItem["selectColor"]) === "function"
+            }
+            onTriggered: stackView.currentItem.selectColor()
+        },
+
+        ToolBarAction {
             symbol: Fonts.Icons.mdiLabel
             text: qsTr("Add Tag")
-            visible: stackView.currentItem && (typeof(stackView.currentItem["addTag"]) === "function")
+            visible: stackView.currentItem
+                     && (typeof (stackView.currentItem["addTag"]) === "function")
             onTriggered: stackView.currentItem.addTag()
         },
 
         ToolBarAction {
             symbol: Fonts.Icons.mdiAttachment
             text: qsTr("Attach File")
-            visible: stackView.currentItem && (typeof(stackView.currentItem["attach"]) === "function")
+            visible: stackView.currentItem
+                     && (typeof (stackView.currentItem["attach"]) === "function")
             onTriggered: stackView.currentItem.attach()
         },
 
@@ -81,44 +90,48 @@ Item {
 
             symbol: Fonts.Icons.mdiSearch
             text: qsTr("Search")
-            visible: stackView.currentItem && (typeof(stackView.currentItem["find"]) === "function")
+            visible: stackView.currentItem
+                     && (typeof (stackView.currentItem["find"]) === "function")
             onTriggered: stackView.currentItem.find()
         },
 
         ToolBarAction {
             symbol: Fonts.Icons.mdiSort
             text: qsTr("Sort")
-            visible: stackView.currentItem &&
-                     typeof(stackView.currentItem.sort) === "function"
+            visible: stackView.currentItem
+                     && typeof (stackView.currentItem.sort) === "function"
             onTriggered: stackView.currentItem.sort()
         },
 
         ToolBarAction {
             symbol: Fonts.Icons.mdiCalendarToday
             text: qsTr("Set Due Date")
-            visible: stackView.currentItem &&
-                     typeof(stackView.currentItem.setDueDate) === "function"
+            visible: stackView.currentItem
+                     && typeof (stackView.currentItem.setDueDate) === "function"
             onTriggered: stackView.currentItem.setDueDate()
         },
 
         ToolBarAction {
             symbol: Fonts.Icons.mdiDelete
             text: qsTr("Delete")
-            visible: stackView.currentItem && typeof(stackView.currentItem["deleteItem"]) === "function"
+            visible: stackView.currentItem
+                     && typeof (stackView.currentItem["deleteItem"]) === "function"
             onTriggered: stackView.currentItem.deleteItem()
         },
 
         ToolBarAction {
             symbol: Fonts.Icons.mdiRemoveDone
             text: qsTr("Delete Completed Items")
-            visible: stackView.currentItem && typeof(stackView.currentItem["deleteCompletedItems"]) === "function"
+            visible: stackView.currentItem
+                     && typeof (stackView.currentItem["deleteCompletedItems"]) === "function"
             onTriggered: stackView.currentItem.deleteCompletedItems()
         },
 
         ToolBarAction {
             symbol: Fonts.Icons.mdiPublishedWithChanges
             text: qsTr("Set Progress")
-            visible: stackView.currentItem && typeof(stackView.currentItem["setProgress"]) === "function"
+            visible: stackView.currentItem
+                     && typeof (stackView.currentItem["setProgress"]) === "function"
             onTriggered: stackView.currentItem.setProgress()
         }
     ]
@@ -126,7 +139,7 @@ Item {
     Connections {
         target: shortcuts.findShortcut
         function onActivated() {
-            searchToolButtonAction.trigger();
+            searchToolButtonAction.trigger()
         }
     }
 }

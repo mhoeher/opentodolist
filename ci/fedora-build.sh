@@ -57,7 +57,7 @@ if [ -n "$CI" ]; then
         pushd ../3rdparty
         for dir in *; do
             if [ -d "$dir" ]; then
-                if [ "$dir" != "simplecrypt" -a "$dir" != "SingleApplication" ]; then
+                if [ "$dir" != "simplecrypt" -a "$dir" != "SingleApplication" -a "$dir" != "ral-json" ]; then
                     mv "$dir" "${dir}~"
                 fi
             fi

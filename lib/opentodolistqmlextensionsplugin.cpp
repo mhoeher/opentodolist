@@ -47,6 +47,7 @@
 #include "utils/syntaxhighlighting.h"
 #include "utils/problem.h"
 #include "utils/problemmanager.h"
+#include "utils/colors.h"
 
 #include "SynqClient/NextCloudLoginFlow"
 
@@ -73,6 +74,8 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterType<DropboxAccount>(uri, 1, 0, "DropboxAccount");
     qmlRegisterSingletonType<Application>(uri, 1, 0, "Application",
                                           [=](QQmlEngine*, QJSEngine*) { return m_application; });
+    qmlRegisterSingletonType<Colors>(uri, 1, 0, "Colors",
+                                     [=](QQmlEngine*, QJSEngine*) { return new Colors(); });
     qmlRegisterSingletonInstance<Application>(uri, 1, 0, "Application", m_application);
     qmlRegisterType<ComplexItem>(uri, 1, 0, "ComplexItem");
     qmlRegisterType<Image>(uri, 1, 0, "ImageItem");

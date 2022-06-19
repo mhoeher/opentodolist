@@ -37,6 +37,7 @@
 #include "todo.h"
 #include "task.h"
 #include "sync/synchronizer.h"
+#include "utils/colors.h"
 
 #include "utils/jsonutils.h"
 
@@ -101,9 +102,13 @@ Library::Library(const QString& directory, QObject* parent)
     : QObject(parent),
       m_uid(QUuid::createUuid()),
       m_name(),
+      m_color(),
+      m_defaultColor(),
       m_directory(directory),
       m_itemDataChanged(false)
 {
+    calculateDefaultColor();
+
     connect(this, &Library::uidChanged, this, &Library::changed);
     connect(this, &Library::nameChanged, this, &Library::changed);
     connect(this, &Library::tagsChanged, this, &Library::changed);
@@ -514,12 +519,41 @@ QString Library::defaultLibrariesLocation()
 }
 
 /**
+ * @brief Returns the color used to represent the library.
+ */
+const QColor& Library::color() const
+{
+    if (m_color.isValid()) {
+        return m_color;
+    }
+    return m_defaultColor;
+}
+
+/**
+ * @brief Sets the color used to represent the library.
+ */
+void Library::setColor(const QColor& newColor)
+{
+    if (m_color == newColor)
+        return;
+    m_color = newColor;
+    emit colorChanged();
+    emit changed();
+}
+
+void Library::resetColor()
+{
+    setColor(QColor());
+}
+
+/**
  * @brief Set the UID of the library.
  */
 void Library::setUid(const QUuid& uid)
 {
     if (m_uid != uid) {
         m_uid = uid;
+        calculateDefaultColor();
         emit uidChanged();
     }
 }
@@ -553,6 +587,27 @@ void Library::onChanged()
     }
 }
 
+/**
+ * @brief Calculates a default color for the library.
+ *
+ * This calculates a default color for the library, based on its UUID. The default color is used if
+ * the user does not explicitly set a color for the library.
+ */
+void Library::calculateDefaultColor()
+{
+    Colors colors;
+    const auto namedColors = colors.loadColors();
+    if (namedColors.isEmpty()) {
+        m_defaultColor = QColor("black");
+        emit colorChanged();
+        return;
+    }
+    auto index = m_uid.data1 % namedColors.length();
+    auto color = namedColors.at(index);
+    m_defaultColor = color.color();
+    emit colorChanged();
+}
+
 void Library::applyCalculatedData(const QVariantMap& properties)
 {
     setTags(properties.value("tags", m_tags).toStringList());
@@ -563,6 +618,8 @@ QVariantMap Library::toMap() const
     QVariantMap result;
     result["uid"] = m_uid;
     result["name"] = m_name;
+    result["color"] = m_color;
+    result["hasColor"] = m_color.isValid();
     return result;
 }
 
@@ -570,4 +627,7 @@ void Library::fromMap(QVariantMap map)
 {
     setUid(map.value("uid", m_uid).toUuid());
     setName(map.value("name", m_name).toString());
+    if (map.value("hasColor").toBool()) {
+        setColor(map.value("color", m_color).value<QColor>());
+    }
 }

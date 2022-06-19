@@ -17,9 +17,9 @@ QQC2.ToolButton {
     onClicked: {
         if (menu) {
             if (menu.visible) {
-                menu.close();
+                menu.close()
             } else {
-                menu.open();
+                menu.open()
             }
         }
     }

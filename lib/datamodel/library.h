@@ -25,6 +25,7 @@
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
+#include <QColor>
 
 #include <functional>
 
@@ -70,6 +71,7 @@ class Library : public QObject
     Q_PROPERTY(QUuid uid READ uid WRITE setUid NOTIFY uidChanged)
     Q_PROPERTY(bool isValid READ isValid CONSTANT)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(QStringList tags READ tags NOTIFY tagsChanged)
     Q_PROPERTY(QString directory READ directory CONSTANT)
     Q_PROPERTY(bool hasSynchronizer READ hasSynchronizer CONSTANT)
@@ -134,6 +136,11 @@ public:
 
     static QString defaultLibrariesLocation();
 
+    const QColor& color() const;
+    void setColor(const QColor& newColor);
+
+    Q_INVOKABLE void resetColor();
+
 signals:
 
     /**
@@ -145,6 +152,11 @@ signals:
      * @brief The name of the library changed.
      */
     void nameChanged();
+
+    /**
+     * @brief The color used to represent the library has changed.
+     */
+    void colorChanged();
 
     /**
      * @brief The list of tags changed.
@@ -194,6 +206,8 @@ signals:
 private:
     QUuid m_uid;
     QString m_name;
+    QColor m_color;
+    QColor m_defaultColor;
     QString m_directory;
     QPointer<Cache> m_cache;
 
@@ -211,6 +225,8 @@ private:
     void onCacheChanged();
     void onLibraryDataLoadedFromCache(const QVariant& entry);
     void onChanged();
+
+    void calculateDefaultColor();
 };
 
 #endif // DATAMODEL_LIBRARY_H_

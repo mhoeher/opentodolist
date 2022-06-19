@@ -79,6 +79,8 @@ target_sources(
         sync/syncrunner.h
         sync/webdavsynchronizer.cpp
         sync/webdavsynchronizer.h
+        utils/colors.h
+        utils/colors.cpp
         utils/directorywatcher.cpp
         utils/directorywatcher.h
         utils/htmlsyntaxhighlighter.cpp
