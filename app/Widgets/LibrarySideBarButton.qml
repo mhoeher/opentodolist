@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import "../Fonts"
 import "../Components"
 import "../Controls" as C
+import "../Utils" as Utils
 
 C.ItemDelegate {
     id: root
@@ -16,18 +17,28 @@ C.ItemDelegate {
     property alias rightSymbolIsClickable: symRight.enabled
     property alias rightSymbolIsVisible: symRight.visible
     property alias symbolToolButton: sym
+    property alias leftColorSwatch: leftColorSwatch
 
     signal symbolClicked
     signal rightSymbolClicked
 
     topPadding: 0
     bottomPadding: 0
+    leftPadding: 0
 
     width: parent.width
     contentItem: RowLayout {
+        Rectangle {
+            id: leftColorSwatch
+
+            height: sym.implicitHeight
+            width: Utils.AppSettings.smallSpace
+            color: "transparent"
+        }
+
         Item {
             height: 1
-            width: root.indent * 10
+            width: root.indent * Utils.AppSettings.mediumSpace
         }
 
         C.ToolButton {

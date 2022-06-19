@@ -320,7 +320,7 @@ C.Pane {
                 bold: true
                 symbol: librarySection.collapsed
                         || !symbolIsClickable ? Icons.mdiKeyboardArrowRight : Icons.mdiKeyboardArrowDown
-                symbolToolButton.backgroundColor: library.color
+                leftColorSwatch.color: library.color
                 highlighted: d.isSelectedLibrary(library) && currentTag === ""
                              && specialView === ""
                 symbolIsClickable: library.tags.length > 0
@@ -388,6 +388,7 @@ C.Pane {
                 symbol: Icons.mdiSchedule
                 visible: !librarySection.collapsed
                          && librarySection.scheduleEnabled
+                leftColorSwatch.color: library.color
                 highlighted: d.isSelectedLibrary(library) && currentTag === ""
                              && specialView === "schedule"
                 onClicked: {
@@ -408,6 +409,7 @@ C.Pane {
                     visible: !librarySection.collapsed
                     text: modelData
                     symbol: Icons.mdiLabel
+                    leftColorSwatch.color: library.color
                     highlighted: d.isSelectedLibrary(library)
                                  && currentTag === modelData
                                  && specialView === ""

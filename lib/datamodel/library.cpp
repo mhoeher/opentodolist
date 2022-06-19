@@ -538,6 +538,12 @@ void Library::setColor(const QColor& newColor)
         return;
     m_color = newColor;
     emit colorChanged();
+    emit changed();
+}
+
+void Library::resetColor()
+{
+    setColor(QColor());
 }
 
 /**
@@ -612,9 +618,8 @@ QVariantMap Library::toMap() const
     QVariantMap result;
     result["uid"] = m_uid;
     result["name"] = m_name;
-    if (m_color.isValid()) {
-        result["color"] = m_color;
-    }
+    result["color"] = m_color;
+    result["hasColor"] = m_color.isValid();
     return result;
 }
 
@@ -622,5 +627,7 @@ void Library::fromMap(QVariantMap map)
 {
     setUid(map.value("uid", m_uid).toUuid());
     setName(map.value("name", m_name).toString());
-    setColor(map.value("color", m_color).value<QColor>());
+    if (map.value("hasColor").toBool()) {
+        setColor(map.value("color", m_color).value<QColor>());
+    }
 }

@@ -139,6 +139,8 @@ public:
     const QColor& color() const;
     void setColor(const QColor& newColor);
 
+    Q_INVOKABLE void resetColor();
+
 signals:
 
     /**
