@@ -30,4 +30,4 @@
 	url = https://gitlab.com/rpdev/QtStaticCMake.git
 [submodule "3rdparty/ral-json"]
 	path = 3rdparty/ral-json
-	url = ../ral-json.git
+	url = https://gitlab.com/rpdev/ral-json.git
