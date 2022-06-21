@@ -47,22 +47,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Tải xuống: <a href='%1'>% 1 </a>"
 
-#: ../Widgets/Attachments.qml:28
+#: ../Widgets/Attachments.qml:33
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Đính kèm tập tin"
 
-#: ../Widgets/Attachments.qml:40
+#: ../Widgets/Attachments.qml:48
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Xóa tập tin đính kèm?"
 
-#: ../Widgets/Attachments.qml:44
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Bạn có chắc chắn muốn xóa tệp đính kèm <strong>% 1 </ strong> không? Hành động này không thể được hoàn tác."
 
-#: ../Widgets/Attachments.qml:58
+#: ../Widgets/Attachments.qml:66
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Tài liệu đính kèm"
@@ -178,7 +178,7 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Ghi chú"
 
-#: ../Widgets/LibrariesSideBar.qml:386
+#: ../Widgets/LibrariesSideBar.qml:387
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Lịch trình"
@@ -193,67 +193,67 @@ msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Về ứng dụng"
 
-#: ../Pages/LibraryPage.qml:161
+#: ../Pages/LibraryPage.qml:166
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Màu đỏ"
 
-#: ../Pages/LibraryPage.qml:168
+#: ../Pages/LibraryPage.qml:173
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "màu xanh lá"
 
-#: ../Pages/LibraryPage.qml:175
+#: ../Pages/LibraryPage.qml:180
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Màu xanh da trời"
 
-#: ../Pages/LibraryPage.qml:182
+#: ../Pages/LibraryPage.qml:187
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Màu vàng"
 
-#: ../Pages/LibraryPage.qml:189
+#: ../Pages/LibraryPage.qml:194
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "trái cam"
 
-#: ../Pages/LibraryPage.qml:196
+#: ../Pages/LibraryPage.qml:201
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lilac"
 
-#: ../Pages/LibraryPage.qml:203
+#: ../Pages/LibraryPage.qml:208
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "trắng"
 
-#: ../Pages/LibraryPage.qml:213
+#: ../Pages/LibraryPage.qml:218
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Đổi tên"
 
-#: ../Pages/LibraryPage.qml:223
+#: ../Pages/LibraryPage.qml:228
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Xóa bỏ"
 
-#: ../Pages/LibraryPage.qml:291
+#: ../Pages/LibraryPage.qml:306
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Tiêu đề ghi chú"
 
-#: ../Pages/LibraryPage.qml:304
+#: ../Pages/LibraryPage.qml:319
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Danh sách Todo"
 
-#: ../Pages/LibraryPage.qml:317
+#: ../Pages/LibraryPage.qml:332
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ..."
 
-#: ../Pages/LibraryPage.qml:396
+#: ../Pages/LibraryPage.qml:411
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Chưa có gì ở đây cả! Bắt đầu bằng cách thêm một <a href='#note'> ghi chú </a>, <a href='#todolist'> danh sách việc cần làm </a> hoặc <a href='#image'> hình ảnh </a>."
@@ -555,12 +555,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Không mở todos - mọi thứ đã xong"
 
-#: ../Pages/TodoListPage.qml:160
+#: ../Pages/TodoListPage.qml:175
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ..."
 
-#: ../Pages/TodoListPage.qml:246
+#: ../Pages/TodoListPage.qml:262
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -570,12 +570,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Todos đã hoàn thành"
 
-#: ../Pages/TodoPage.qml:147
+#: ../Pages/TodoPage.qml:156
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ..."
 
-#: ../Pages/TodoPage.qml:172
+#: ../Pages/TodoPage.qml:182
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Nhiệm vụ"
@@ -685,12 +685,12 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Thêm thẻ"
 
-#: ../Pages/TodoListPage.qml:266
+#: ../Pages/TodoListPage.qml:282
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Thêm công việc mới ..."
 
-#: ../Pages/TodoPage.qml:178
+#: ../Pages/TodoPage.qml:188
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Thêm nhiệm vụ mới ..."
@@ -750,32 +750,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Tạo thư viện mặc định"
 
-#: ../Pages/LibraryPage.qml:456
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Sắp xếp theo"
 
-#: ../Pages/LibraryPage.qml:461
+#: ../Pages/LibraryPage.qml:476
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Thủ công"
 
-#: ../Pages/LibraryPage.qml:468
+#: ../Pages/LibraryPage.qml:483
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Tiêu đề"
 
-#: ../Pages/LibraryPage.qml:475
+#: ../Pages/LibraryPage.qml:490
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Do"
 
-#: ../Pages/LibraryPage.qml:482
+#: ../Pages/LibraryPage.qml:497
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Tạo tại"
 
-#: ../Pages/LibraryPage.qml:489
+#: ../Pages/LibraryPage.qml:504
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Cập nhật tại"
@@ -825,27 +825,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Ngôn ngữ:"
 
-#: ../Pages/TodoListPage.qml:172
+#: ../Pages/TodoListPage.qml:187
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Thủ công"
 
-#: ../Pages/TodoListPage.qml:178
+#: ../Pages/TodoListPage.qml:193
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Tên"
 
-#: ../Pages/TodoListPage.qml:184
+#: ../Pages/TodoListPage.qml:199
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Ngày đáo hạn"
 
-#: ../Pages/TodoListPage.qml:190
+#: ../Pages/TodoListPage.qml:205
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Tạo tại"
 
-#: ../Pages/TodoListPage.qml:196
+#: ../Pages/TodoListPage.qml:211
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Cập nhật tại"
@@ -1222,12 +1222,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "Đồng bộ hóa thư viện ..."
 
-#: ../Pages/NotePage.qml:132
+#: ../Pages/NotePage.qml:140
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Trang chính"
 
-#: ../Pages/NotePage.qml:195
+#: ../Pages/NotePage.qml:207
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Trang mới"
@@ -1352,32 +1352,32 @@ msgctxt "DeleteItem|"
 msgid "Delete"
 msgstr "Xóa bỏ"
 
-#: ../Widgets/ItemDueDateEditor.qml:59
+#: ../Widgets/ItemDueDateEditor.qml:61
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
 msgstr "Đầu tiên do %1."
 
-#: ../Widgets/ItemDueDateEditor.qml:71
+#: ../Widgets/ItemDueDateEditor.qml:74
 msgctxt "ItemDueDateEditor|"
 msgid "No recurrence pattern set..."
 msgstr "Không có mẫu lặp lại ..."
 
-#: ../Widgets/ItemDueDateEditor.qml:73
+#: ../Widgets/ItemDueDateEditor.qml:76
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every day."
 msgstr "Tái phát mỗi ngày."
 
-#: ../Widgets/ItemDueDateEditor.qml:75
+#: ../Widgets/ItemDueDateEditor.qml:78
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every week."
 msgstr "Tái phát mỗi tuần."
 
-#: ../Widgets/ItemDueDateEditor.qml:77
+#: ../Widgets/ItemDueDateEditor.qml:80
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every month."
 msgstr "Tái phát hàng tháng."
 
-#: ../Widgets/ItemDueDateEditor.qml:81
+#: ../Widgets/ItemDueDateEditor.qml:84
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr "Truy xuất mỗi %1 ngày."
@@ -1507,12 +1507,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Đặt ngày mai"
 
-#: ../Widgets/TodosWidgetDelegate.qml:276
+#: ../Widgets/TodosWidgetDelegate.qml:283
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Vuốt để đánh dấu hoàn tác"
 
-#: ../Widgets/TodosWidgetDelegate.qml:278
+#: ../Widgets/TodosWidgetDelegate.qml:285
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Vuốt để đánh dấu xong"
@@ -1678,22 +1678,22 @@ msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:353
+#: ../Widgets/LibrariesSideBar.qml:354
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:353
+#: ../Widgets/LibrariesSideBar.qml:354
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:364
+#: ../Widgets/LibrariesSideBar.qml:365
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:373
+#: ../Widgets/LibrariesSideBar.qml:374
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr ""
@@ -2193,17 +2193,17 @@ msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:79
+#: ../Widgets/ItemDueDateEditor.qml:82
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
 msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:83
+#: ../Widgets/ItemDueDateEditor.qml:87
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
 msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:85
+#: ../Widgets/ItemDueDateEditor.qml:90
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
 msgstr ""
@@ -2318,7 +2318,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:218
+#: ../Pages/LibraryPage.qml:223
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr ""
@@ -2358,57 +2358,58 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:34
+#: ../Components/ApplicationToolBarActions.qml:33
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:45
+#: ../Components/ApplicationToolBarActions.qml:43
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:56
+#: ../Components/ApplicationToolBarActions.qml:53
+#: ../Components/ApplicationToolBarActions.qml:64
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:67
+#: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:74
+#: ../Components/ApplicationToolBarActions.qml:82
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:83
+#: ../Components/ApplicationToolBarActions.qml:92
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:90
+#: ../Components/ApplicationToolBarActions.qml:100
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:98
+#: ../Components/ApplicationToolBarActions.qml:108
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:106
+#: ../Components/ApplicationToolBarActions.qml:116
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:113
+#: ../Components/ApplicationToolBarActions.qml:124
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
 msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:120
+#: ../Components/ApplicationToolBarActions.qml:132
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr ""
@@ -2433,27 +2434,27 @@ msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:232
+#: ../Pages/LibraryPage.qml:237
 msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:209
+#: ../Pages/TodoListPage.qml:224
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:216
+#: ../Pages/TodoListPage.qml:231
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:274
+#: ../Pages/TodoPage.qml:283
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:281
+#: ../Pages/TodoPage.qml:290
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2597,5 +2598,20 @@ msgstr ""
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
+msgstr ""
+
+#: ../Pages/SettingsPage.qml:279
+msgctxt "SettingsPage|"
+msgid "Show notes excerpt in listings"
+msgstr ""
+
+#: ../Widgets/ItemDueDateEditor.qml:116
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs until %1."
+msgstr ""
+
+#: ../Widgets/ItemDueDateEditor.qml:119
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs indefinitely"
 msgstr ""
 

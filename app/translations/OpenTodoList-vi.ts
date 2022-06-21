@@ -201,57 +201,58 @@
         <translation type="unfinished">Đổi tên</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="33"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="43"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="53"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="64"/>
         <source>Color</source>
         <translation type="unfinished">Màu sắc</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="67"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Add Tag</source>
         <translation type="unfinished">Thêm thẻ</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="82"/>
         <source>Attach File</source>
         <translation type="unfinished">Đính kèm tập tin</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="92"/>
         <source>Search</source>
         <translation type="unfinished">Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="100"/>
         <source>Sort</source>
         <translation type="unfinished">Sắp xếp</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="108"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Đặt ngày đến hạn</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="106"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="116"/>
         <source>Delete</source>
         <translation type="unfinished">Xóa bỏ</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="124"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
         <source>Set Progress</source>
         <translation type="unfinished"></translation>
     </message>
@@ -259,22 +260,22 @@
 <context>
     <name>Attachments</name>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="28"/>
+        <location filename="../Widgets/Attachments.qml" line="33"/>
         <source>Attach File</source>
         <translation type="unfinished">Đính kèm tập tin</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="40"/>
+        <location filename="../Widgets/Attachments.qml" line="48"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">Xóa tập tin đính kèm?</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="44"/>
+        <location filename="../Widgets/Attachments.qml" line="52"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">Bạn có chắc chắn muốn xóa tệp đính kèm &lt;strong&gt;% 1 &lt;/ strong&gt; không? Hành động này không thể được hoàn tác.</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="58"/>
+        <location filename="../Widgets/Attachments.qml" line="66"/>
         <source>Attachments</source>
         <translation type="unfinished">Tài liệu đính kèm</translation>
     </message>
@@ -669,48 +670,58 @@
         <translation type="unfinished">Do</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="61"/>
         <source>First due on %1.</source>
         <translation type="unfinished">Đầu tiên do %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">Không có mẫu lặp lại ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="73"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Tái phát mỗi ngày.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="75"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Tái phát mỗi tuần.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="77"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Tái phát hàng tháng.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="79"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
         <source>Recurs every year.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Truy xuất mỗi %1 ngày.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="85"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>Recurs every %1 months.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
+        <source>Recurs until %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
+        <source>Recurs indefinitely</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -808,27 +819,27 @@
         <translation type="unfinished">Tạo thư viện mặc định</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="364"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="365"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="374"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="387"/>
         <source>Schedule</source>
         <translation type="unfinished">Lịch trình</translation>
     </message>
@@ -836,107 +847,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="161"/>
+        <location filename="../Pages/LibraryPage.qml" line="166"/>
         <source>Red</source>
         <translation type="unfinished">Màu đỏ</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="168"/>
+        <location filename="../Pages/LibraryPage.qml" line="173"/>
         <source>Green</source>
         <translation type="unfinished">màu xanh lá</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="175"/>
+        <location filename="../Pages/LibraryPage.qml" line="180"/>
         <source>Blue</source>
         <translation type="unfinished">Màu xanh da trời</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="182"/>
+        <location filename="../Pages/LibraryPage.qml" line="187"/>
         <source>Yellow</source>
         <translation type="unfinished">Màu vàng</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="189"/>
+        <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>Orange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="196"/>
+        <location filename="../Pages/LibraryPage.qml" line="201"/>
         <source>Lilac</source>
         <translation type="unfinished">Lilac</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="203"/>
+        <location filename="../Pages/LibraryPage.qml" line="208"/>
         <source>White</source>
         <translation type="unfinished">trắng</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="213"/>
+        <location filename="../Pages/LibraryPage.qml" line="218"/>
         <source>Rename</source>
         <translation type="unfinished">Đổi tên</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="218"/>
+        <location filename="../Pages/LibraryPage.qml" line="223"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="223"/>
+        <location filename="../Pages/LibraryPage.qml" line="228"/>
         <source>Delete</source>
         <translation type="unfinished">Xóa bỏ</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="232"/>
+        <location filename="../Pages/LibraryPage.qml" line="237"/>
         <source>Select Image</source>
         <translation type="unfinished">Chọn ảnh</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="291"/>
+        <location filename="../Pages/LibraryPage.qml" line="306"/>
         <source>Note Title</source>
         <translation type="unfinished">Tiêu đề ghi chú</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="304"/>
+        <location filename="../Pages/LibraryPage.qml" line="319"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Danh sách Todo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="317"/>
+        <location filename="../Pages/LibraryPage.qml" line="332"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="396"/>
+        <location filename="../Pages/LibraryPage.qml" line="411"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Chưa có gì ở đây cả! Bắt đầu bằng cách thêm một &lt;a href=&apos;#note&apos;&gt; ghi chú &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; danh sách việc cần làm &lt;/a&gt; hoặc &lt;a href=&apos;#image&apos;&gt; hình ảnh &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="456"/>
+        <location filename="../Pages/LibraryPage.qml" line="471"/>
         <source>Sort By</source>
         <translation type="unfinished">Sắp xếp theo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="461"/>
+        <location filename="../Pages/LibraryPage.qml" line="476"/>
         <source>Manually</source>
         <translation type="unfinished">Thủ công</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="468"/>
+        <location filename="../Pages/LibraryPage.qml" line="483"/>
         <source>Title</source>
         <translation type="unfinished">Tiêu đề</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="475"/>
+        <location filename="../Pages/LibraryPage.qml" line="490"/>
         <source>Due To</source>
         <translation type="unfinished">Do</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="482"/>
+        <location filename="../Pages/LibraryPage.qml" line="497"/>
         <source>Created At</source>
         <translation type="unfinished">Tạo tại</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="489"/>
+        <location filename="../Pages/LibraryPage.qml" line="504"/>
         <source>Updated At</source>
         <translation type="unfinished">Cập nhật tại</translation>
     </message>
@@ -1435,12 +1446,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="132"/>
+        <location filename="../Pages/NotePage.qml" line="140"/>
         <source>Main Page</source>
         <translation type="unfinished">Trang chính</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="195"/>
+        <location filename="../Pages/NotePage.qml" line="207"/>
         <source>New Page</source>
         <translation type="unfinished">Trang mới</translation>
     </message>
@@ -1853,6 +1864,11 @@ This requires a restart of the app.</source>
         <source>Library Item Size:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="279"/>
+        <source>Show notes excerpt in listings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SyncErrorNotificationBar</name>
@@ -1896,52 +1912,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="160"/>
+        <location filename="../Pages/TodoListPage.qml" line="175"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="172"/>
+        <location filename="../Pages/TodoListPage.qml" line="187"/>
         <source>Manually</source>
         <translation type="unfinished">Thủ công</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="178"/>
+        <location filename="../Pages/TodoListPage.qml" line="193"/>
         <source>Name</source>
         <translation type="unfinished">Tên</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="184"/>
+        <location filename="../Pages/TodoListPage.qml" line="199"/>
         <source>Due Date</source>
         <translation type="unfinished">Ngày đáo hạn</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="190"/>
+        <location filename="../Pages/TodoListPage.qml" line="205"/>
         <source>Created At</source>
         <translation type="unfinished">Tạo tại</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="196"/>
+        <location filename="../Pages/TodoListPage.qml" line="211"/>
         <source>Updated At</source>
         <translation type="unfinished">Cập nhật tại</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="209"/>
+        <location filename="../Pages/TodoListPage.qml" line="224"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="216"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="246"/>
+        <location filename="../Pages/TodoListPage.qml" line="262"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="266"/>
+        <location filename="../Pages/TodoListPage.qml" line="282"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Thêm công việc mới ...</translation>
     </message>
@@ -1949,27 +1965,27 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="147"/>
+        <location filename="../Pages/TodoPage.qml" line="156"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="172"/>
+        <location filename="../Pages/TodoPage.qml" line="182"/>
         <source>Tasks</source>
         <translation type="unfinished">Nhiệm vụ</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="178"/>
+        <location filename="../Pages/TodoPage.qml" line="188"/>
         <source>Add new task...</source>
         <translation type="unfinished">Thêm nhiệm vụ mới ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="274"/>
+        <location filename="../Pages/TodoPage.qml" line="283"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="281"/>
+        <location filename="../Pages/TodoPage.qml" line="290"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1985,12 +2001,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="276"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="283"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Vuốt để đánh dấu hoàn tác</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="278"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="285"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Vuốt để đánh dấu xong</translation>
     </message>

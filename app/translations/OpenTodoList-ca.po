@@ -47,22 +47,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Descarrega: <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:28
+#: ../Widgets/Attachments.qml:33
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Adjunta un fitxer"
 
-#: ../Widgets/Attachments.qml:40
+#: ../Widgets/Attachments.qml:48
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Voleu eliminar el fitxer adjunt?"
 
-#: ../Widgets/Attachments.qml:44
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Esteu segur que voleu suprimir el fitxer adjunt <strong>%1</strong>? Aquesta acció no es pot desfer."
 
-#: ../Widgets/Attachments.qml:58
+#: ../Widgets/Attachments.qml:66
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Fitxers adjunts"
@@ -177,7 +177,7 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notes"
 
-#: ../Widgets/LibrariesSideBar.qml:386
+#: ../Widgets/LibrariesSideBar.qml:387
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Programació"
@@ -192,67 +192,67 @@ msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Quant a..."
 
-#: ../Pages/LibraryPage.qml:161
+#: ../Pages/LibraryPage.qml:166
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Vermell"
 
-#: ../Pages/LibraryPage.qml:168
+#: ../Pages/LibraryPage.qml:173
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Verd"
 
-#: ../Pages/LibraryPage.qml:175
+#: ../Pages/LibraryPage.qml:180
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Blau"
 
-#: ../Pages/LibraryPage.qml:182
+#: ../Pages/LibraryPage.qml:187
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Groc"
 
-#: ../Pages/LibraryPage.qml:189
+#: ../Pages/LibraryPage.qml:194
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Taronja"
 
-#: ../Pages/LibraryPage.qml:196
+#: ../Pages/LibraryPage.qml:201
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lila"
 
-#: ../Pages/LibraryPage.qml:203
+#: ../Pages/LibraryPage.qml:208
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Blanc"
 
-#: ../Pages/LibraryPage.qml:213
+#: ../Pages/LibraryPage.qml:218
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Reanomena"
 
-#: ../Pages/LibraryPage.qml:223
+#: ../Pages/LibraryPage.qml:228
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../Pages/LibraryPage.qml:291
+#: ../Pages/LibraryPage.qml:306
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Títol de la nota"
 
-#: ../Pages/LibraryPage.qml:304
+#: ../Pages/LibraryPage.qml:319
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Títol de la llista de tasques"
 
-#: ../Pages/LibraryPage.qml:317
+#: ../Pages/LibraryPage.qml:332
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/LibraryPage.qml:396
+#: ../Pages/LibraryPage.qml:411
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Encara no hi ha res. Comenceu afegint una <a href='#note'>nota</a>, una <a href='#todolist'> lista de coses a fer </a> o una <a href='#image'> imatge </a>."
@@ -554,12 +554,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "Sense tasques pendents - tot fet"
 
-#: ../Pages/TodoListPage.qml:160
+#: ../Pages/TodoListPage.qml:175
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/TodoListPage.qml:246
+#: ../Pages/TodoListPage.qml:262
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Coses a fer"
@@ -569,12 +569,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Llistes completades"
 
-#: ../Pages/TodoPage.qml:147
+#: ../Pages/TodoPage.qml:156
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/TodoPage.qml:172
+#: ../Pages/TodoPage.qml:182
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tasques"
@@ -684,12 +684,12 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Afegeix una etiqueta"
 
-#: ../Pages/TodoListPage.qml:266
+#: ../Pages/TodoListPage.qml:282
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Afegeix una llista nova..."
 
-#: ../Pages/TodoPage.qml:178
+#: ../Pages/TodoPage.qml:188
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Afegeix una tasca nova..."
@@ -749,32 +749,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Crea una biblioteca predeterminada"
 
-#: ../Pages/LibraryPage.qml:456
+#: ../Pages/LibraryPage.qml:471
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Ordena per"
 
-#: ../Pages/LibraryPage.qml:461
+#: ../Pages/LibraryPage.qml:476
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manualment"
 
-#: ../Pages/LibraryPage.qml:468
+#: ../Pages/LibraryPage.qml:483
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Títol"
 
-#: ../Pages/LibraryPage.qml:475
+#: ../Pages/LibraryPage.qml:490
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Venç"
 
-#: ../Pages/LibraryPage.qml:482
+#: ../Pages/LibraryPage.qml:497
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Creat el"
 
-#: ../Pages/LibraryPage.qml:489
+#: ../Pages/LibraryPage.qml:504
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Actualitzat el"
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Idioma:"
 
-#: ../Pages/TodoListPage.qml:172
+#: ../Pages/TodoListPage.qml:187
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manualment"
 
-#: ../Pages/TodoListPage.qml:178
+#: ../Pages/TodoListPage.qml:193
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nom"
 
-#: ../Pages/TodoListPage.qml:184
+#: ../Pages/TodoListPage.qml:199
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Data de venciment"
 
-#: ../Pages/TodoListPage.qml:190
+#: ../Pages/TodoListPage.qml:205
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Creat el"
 
-#: ../Pages/TodoListPage.qml:196
+#: ../Pages/TodoListPage.qml:211
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Actualitzat el"
@@ -1221,12 +1221,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "S'està sincronitzant la biblioteca..."
 
-#: ../Pages/NotePage.qml:132
+#: ../Pages/NotePage.qml:140
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Pàgina principal"
 
-#: ../Pages/NotePage.qml:195
+#: ../Pages/NotePage.qml:207
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Nova pàgina"
@@ -1351,32 +1351,32 @@ msgctxt "DeleteItem|"
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../Widgets/ItemDueDateEditor.qml:59
+#: ../Widgets/ItemDueDateEditor.qml:61
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
 msgstr "Venç el %1."
 
-#: ../Widgets/ItemDueDateEditor.qml:71
+#: ../Widgets/ItemDueDateEditor.qml:74
 msgctxt "ItemDueDateEditor|"
 msgid "No recurrence pattern set..."
 msgstr "No s'ha establert cap patró de recurrència..."
 
-#: ../Widgets/ItemDueDateEditor.qml:73
+#: ../Widgets/ItemDueDateEditor.qml:76
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every day."
 msgstr "Es repeteix cada dia."
 
-#: ../Widgets/ItemDueDateEditor.qml:75
+#: ../Widgets/ItemDueDateEditor.qml:78
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every week."
 msgstr "Es repeteix cada setmana."
 
-#: ../Widgets/ItemDueDateEditor.qml:77
+#: ../Widgets/ItemDueDateEditor.qml:80
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every month."
 msgstr "Es repeteix cada mes."
 
-#: ../Widgets/ItemDueDateEditor.qml:81
+#: ../Widgets/ItemDueDateEditor.qml:84
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr "Es repeteix cada %1 dies."
@@ -1506,12 +1506,12 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Estableix el venciment a demà"
 
-#: ../Widgets/TodosWidgetDelegate.qml:276
+#: ../Widgets/TodosWidgetDelegate.qml:283
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Llisca el dit per marcar-ho com a pendent"
 
-#: ../Widgets/TodosWidgetDelegate.qml:278
+#: ../Widgets/TodosWidgetDelegate.qml:285
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Llisca el dit per marcar-ho com a fet"
@@ -1677,22 +1677,22 @@ msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Edita la llista"
 
-#: ../Widgets/LibrariesSideBar.qml:353
+#: ../Widgets/LibrariesSideBar.qml:354
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Amaga la planificació"
 
-#: ../Widgets/LibrariesSideBar.qml:353
+#: ../Widgets/LibrariesSideBar.qml:354
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Mostra la planificació"
 
-#: ../Widgets/LibrariesSideBar.qml:364
+#: ../Widgets/LibrariesSideBar.qml:365
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Moure Amunt"
 
-#: ../Widgets/LibrariesSideBar.qml:373
+#: ../Widgets/LibrariesSideBar.qml:374
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Moure avall"
@@ -2196,17 +2196,17 @@ msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Nota ràpida"
 
-#: ../Widgets/ItemDueDateEditor.qml:79
+#: ../Widgets/ItemDueDateEditor.qml:82
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
 msgstr "Es repeteix cada any."
 
-#: ../Widgets/ItemDueDateEditor.qml:83
+#: ../Widgets/ItemDueDateEditor.qml:87
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
 msgstr "Es repeteix cada %1 setmanes."
 
-#: ../Widgets/ItemDueDateEditor.qml:85
+#: ../Widgets/ItemDueDateEditor.qml:90
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
 msgstr "Es repeteix cada %1 mesos."
@@ -2321,7 +2321,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Copia"
 
-#: ../Pages/LibraryPage.qml:218
+#: ../Pages/LibraryPage.qml:223
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr "Copia"
@@ -2361,57 +2361,58 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
 msgstr "Canvia'n el nom"
 
-#: ../Components/ApplicationToolBarActions.qml:34
+#: ../Components/ApplicationToolBarActions.qml:33
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
 msgstr "Mou"
 
-#: ../Components/ApplicationToolBarActions.qml:45
+#: ../Components/ApplicationToolBarActions.qml:43
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
 msgstr "Copia"
 
-#: ../Components/ApplicationToolBarActions.qml:56
+#: ../Components/ApplicationToolBarActions.qml:53
+#: ../Components/ApplicationToolBarActions.qml:64
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
 msgstr "Color"
 
-#: ../Components/ApplicationToolBarActions.qml:67
+#: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
 msgstr "Afegeix una etiqueta"
 
-#: ../Components/ApplicationToolBarActions.qml:74
+#: ../Components/ApplicationToolBarActions.qml:82
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
 msgstr "Adjunta un fitxer"
 
-#: ../Components/ApplicationToolBarActions.qml:83
+#: ../Components/ApplicationToolBarActions.qml:92
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
 msgstr "Cerca"
 
-#: ../Components/ApplicationToolBarActions.qml:90
+#: ../Components/ApplicationToolBarActions.qml:100
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
 msgstr "Ordena"
 
-#: ../Components/ApplicationToolBarActions.qml:98
+#: ../Components/ApplicationToolBarActions.qml:108
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
 msgstr "Defineix la data de venciment"
 
-#: ../Components/ApplicationToolBarActions.qml:106
+#: ../Components/ApplicationToolBarActions.qml:116
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../Components/ApplicationToolBarActions.qml:113
+#: ../Components/ApplicationToolBarActions.qml:124
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
 msgstr "Suprimeix els elements completats"
 
-#: ../Components/ApplicationToolBarActions.qml:120
+#: ../Components/ApplicationToolBarActions.qml:132
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Defineix el progrés"
@@ -2436,27 +2437,27 @@ msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:232
+#: ../Pages/LibraryPage.qml:237
 msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:209
+#: ../Pages/TodoListPage.qml:224
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:216
+#: ../Pages/TodoListPage.qml:231
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:274
+#: ../Pages/TodoPage.qml:283
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:281
+#: ../Pages/TodoPage.qml:290
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2600,5 +2601,20 @@ msgstr ""
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
+msgstr ""
+
+#: ../Pages/SettingsPage.qml:279
+msgctxt "SettingsPage|"
+msgid "Show notes excerpt in listings"
+msgstr ""
+
+#: ../Widgets/ItemDueDateEditor.qml:116
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs until %1."
+msgstr ""
+
+#: ../Widgets/ItemDueDateEditor.qml:119
+msgctxt "ItemDueDateEditor|"
+msgid "Recurs indefinitely"
 msgstr ""
 
