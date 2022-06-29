@@ -32,6 +32,7 @@
 LibrariesModel::LibrariesModel(QObject* parent)
     : QAbstractListModel(parent), m_cache(nullptr), m_libraries(), m_uids(), m_updating(false)
 {
+    qRegisterMetaType<QList<Library*>>();
     connect(this, &LibrariesModel::rowsInserted, this, &LibrariesModel::countChanged);
     connect(this, &LibrariesModel::rowsRemoved, this, &LibrariesModel::countChanged);
 }
@@ -86,6 +87,14 @@ Library* LibrariesModel::get(int row) const
         return m_libraries.value(m_uids.at(row));
     }
     return nullptr;
+}
+
+/**
+ * @brief Returns the loaded libraries as a list.
+ */
+QList<Library*> LibrariesModel::libraries() const
+{
+    return m_libraries.values();
 }
 
 void LibrariesModel::fetch()

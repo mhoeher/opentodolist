@@ -22,9 +22,18 @@ ListView {
     property OTL.Library library: null
     property OTL.LibraryItem parentItem: null
 
+    // A function which looks up the library for an item in the list.
+    // The default is a function which returns the value of the set library. However, for
+    // lists with items from several libraries, this can be set to a function which looks up the
+    // library for a particular item.
+    property var libraryLookupFunction: function (item, library) {
+        return library
+    }
+
     property string symbol: Icons.mdiAdd
     property string symbolFont: Fonts.icons
     property bool headerItemVisible: true
+    property bool colorSwatchesVisible: false
 
     property string symbol2
     property string symbolFont2: Fonts.icons
@@ -40,11 +49,13 @@ ListView {
 
     property var itemsModel: null
 
-    signal headerButtonClicked()
-    signal headerButton2Clicked()
+    signal headerButtonClicked
+    signal headerButton2Clicked
     signal todoClicked(var todo)
     signal createNewItem(string title, var args)
-    signal itemSaved(var itemData) // Item has been saved (for undo)
+    signal itemSaved(var itemData)
+    // Item has been saved (for undo)
+
 
     /*
      * WA for https://gitlab.com/rpdev/opentodolist/-/issues/391
@@ -59,7 +70,7 @@ ListView {
      */
     model: {
         if (itemsModel.count === 0) {
-            return 1;
+            return 1
         } else {
             return itemsModel
         }
@@ -161,8 +172,8 @@ ListView {
                     Layout.row: 0
                     Layout.column: 2
                     onClicked: {
-                        dateDialog.selectedDate = newItemRow.dueDate;
-                        dateDialog.open();
+                        dateDialog.selectedDate = newItemRow.dueDate
+                        dateDialog.open()
                     }
                 }
 
@@ -173,16 +184,17 @@ ListView {
                     Layout.column: 3
                     Layout.row: 0
                     onClicked: {
-                        var title = newItemTitelEdit.displayText;
+                        var title = newItemTitelEdit.displayText
                         if (title !== "") {
-                            var args = {};
+                            var args = {}
                             if (DateUtils.validDate(newItemRow.dueDate)) {
-                                args.dueTo = newItemRow.dueDate;
-                                newItemRow.dueDate = new Date("");
+                                args.dueTo = newItemRow.dueDate
+                                newItemRow.dueDate = new Date("")
                             }
-                            root.createNewItem(newItemTitelEdit.displayText, args);
-                            newItemTitelEdit.clear();
-                            refocusNewItemEditTimer.restart();
+                            root.createNewItem(newItemTitelEdit.displayText,
+                                               args)
+                            newItemTitelEdit.clear()
+                            refocusNewItemEditTimer.restart()
                         }
                     }
 
@@ -191,7 +203,7 @@ ListView {
                         interval: 1000
                         repeat: false
                         onTriggered: {
-                            newItemTitelEdit.forceActiveFocus();
+                            newItemTitelEdit.forceActiveFocus()
                         }
                     }
                 }
@@ -201,9 +213,9 @@ ListView {
                 text: {
                     if (DateUtils.validDate(newItemRow.dueDate)) {
                         return qsTr("Due on: %1").arg(
-                                    newItemRow.dueDate.toLocaleDateString());
+                                    newItemRow.dueDate.toLocaleDateString())
                     } else {
-                        return "";
+                        return ""
                     }
                 }
                 visible: DateUtils.validDate(newItemRow.dueDate)
@@ -250,78 +262,86 @@ ListView {
         id: itemDelegate
 
         TodosWidgetDelegate {
-                id: swipeDelegate
+            id: swipeDelegate
 
-                property int updateCounter: 0
+            property int updateCounter: 0
 
-                showParentItemInformation: root.showParentItemInformation
-                model: root.model
-                item: object
-                parentItem: root.parentItem
-                library: root.library
-                allowSorting: root.allowSorting
-                hideDueDate: typeof(root.hideDueToLabelForSectionsFunction) === "function" ?
-                                 root.hideDueToLabelForSectionsFunction(ListView.section) : false
-                drawSeperator: {
-                    let result = updateCounter || true; // Force re-evaluation of binding
-                    if (index == root.model.rowCount() - 1) {
-                        // Dont draw separator for last item
-                        result = false;
-                    } else if (root.section.property !== "") {
-                        // Check if this is the last item in the current section.
-                        // Don't draw a separator for it in this case
-                        let nextItemSection = root.model.data(root.model.index(index + 1, 0),
-                                                       root.model.roleFromName(root.section.property));
-                        if (ListView.section !== nextItemSection) {
-                            result = false;
-                        }
-                    }
-                    return result;
-                }
-                dragTile: itemDragTile
-                onSetSwipeDelegate: {
-                    if (item !== d.openSwipeDelegate) {
-                        if (d.openSwipeDelegate) {
-                            d.openSwipeDelegate.swipe.close();
-                        }
-                    }
-                    d.openSwipeDelegate = item;
-                }
-
-                onItemPressedAndHold: showContextMenu({x: 0, y: 0})
-                onItemClicked: {
-                    root.todoClicked(item);
-                }
-                onItemSaved: root.itemSaved(itemData)
-
-                Connections {
-                    target: root.model
-
-                    function onModelReset() {
-                        swipeDelegate.updateCounter++;
-                    }
-
-                    function onRowsInserted(parent, first, last) {
-                        swipeDelegate.updateCounter++;
-                    }
-
-                    function onRowsRemoved(parent, first, last) {
-                        swipeDelegate.updateCounter++;
+            showParentItemInformation: root.showParentItemInformation
+            model: root.model
+            item: object
+            parentItem: root.parentItem
+            library: root.libraryLookupFunction(object, root.library)
+            leftColorSwatch.visible: colorSwatchesVisible
+            leftColorSwatch.color: library.color
+            allowSorting: root.allowSorting
+            hideDueDate: typeof (root.hideDueToLabelForSectionsFunction)
+                         === "function" ? root.hideDueToLabelForSectionsFunction(
+                                              ListView.section) : false
+            drawSeperator: {
+                let result = updateCounter || true
+                // Force re-evaluation of binding
+                if (index === root.model.rowCount() - 1) {
+                    // Dont draw separator for last item
+                    result = false
+                } else if (root.section.property !== "") {
+                    // Check if this is the last item in the current section.
+                    // Don't draw a separator for it in this case
+                    let nextItemSection = root.model.data(
+                            root.model.index(index + 1, 0),
+                            root.model.roleFromName(root.section.property))
+                    if (ListView.section !== nextItemSection) {
+                        result = false
                     }
                 }
+                return result
+            }
+            dragTile: itemDragTile
+            onSetSwipeDelegate: {
+                if (item !== d.openSwipeDelegate) {
+                    if (d.openSwipeDelegate) {
+                        d.openSwipeDelegate.swipe.close()
+                    }
+                }
+                d.openSwipeDelegate = item
+            }
 
-                function showContextMenu(mouse) {
-                    itemActionMenu.actions = swipeDelegate.itemActions;
-                    itemActionMenu.parent = swipeDelegate;
-                    itemActionMenu.popup(mouse.x, mouse.y);
+            onItemPressedAndHold: showContextMenu({
+                                                      "x": 0,
+                                                      "y": 0
+                                                  })
+            onItemClicked: {
+                root.todoClicked(item)
+            }
+            onItemSaved: root.itemSaved(itemData)
+
+            Connections {
+                target: root.model
+
+                function onModelReset() {
+                    swipeDelegate.updateCounter++
                 }
 
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton
-                    onClicked: showContextMenu(mouse)
+                function onRowsInserted(parent, first, last) {
+                    swipeDelegate.updateCounter++
+                }
+
+                function onRowsRemoved(parent, first, last) {
+                    swipeDelegate.updateCounter++
                 }
             }
+
+            function showContextMenu(mouse) {
+                itemActionMenu.actions = swipeDelegate.itemActions
+                itemActionMenu.parent = swipeDelegate
+                itemActionMenu.popup(mouse.x, mouse.y)
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton
+                onClicked: showContextMenu(mouse)
+            }
+        }
     }
 
     QtObject {
@@ -338,4 +358,3 @@ ListView {
         id: itemDragTile
     }
 }
-

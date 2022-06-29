@@ -369,7 +369,27 @@ void Item::fromMap(QVariantMap map)
  */
 void Item::finishCloning(Item* source)
 {
-    // empty
+    m_childrenUpdatedAt = source->m_childrenUpdatedAt;
+    m_parents = source->m_parents;
+}
+
+/**
+ * @brief A list of parents of the item UIDs, starting with the top most (i.e. the library).
+ */
+const QVector<QUuid>& Item::parents() const
+{
+    return m_parents;
+}
+
+/**
+ * @brief Set the item's parent UIDs list.
+ */
+void Item::setParents(const QVector<QUuid>& newParents)
+{
+    if (m_parents == newParents)
+        return;
+    m_parents = newParents;
+    emit parentsChanged();
 }
 
 /**
@@ -431,6 +451,7 @@ void Item::applyCalculatedProperties(const QVariantMap& properties)
     setChildrenUpdatedAt(
             properties.value("childrenUpdatedAt", QVariant::fromValue(m_childrenUpdatedAt))
                     .toDateTime());
+    setParents(properties.value("parents", QVariant::fromValue(m_parents)).value<QVector<QUuid>>());
 }
 
 /**
