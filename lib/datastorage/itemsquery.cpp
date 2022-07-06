@@ -20,10 +20,10 @@
 #include <qlmdb/cursor.h>
 #include <qlmdb/database.h>
 
-#include <algorithm>
-
 #include <QRandomGenerator>
 #include <QLoggingCategory>
+
+#include <algorithm>
 
 #include "datamodel/item.h"
 #include "datamodel/library.h"

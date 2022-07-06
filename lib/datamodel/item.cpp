@@ -248,9 +248,9 @@ bool Item::save()
     bool result = false;
     if (!m_loading) {
         if (isValid()) {
-            bool changed;
-            result = JsonUtils::patchJsonFile(m_filename, toMap(), &changed);
-            if (changed) {
+            bool changedValue;
+            result = JsonUtils::patchJsonFile(m_filename, toMap(), &changedValue);
+            if (changedValue) {
                 emit saved();
             }
         }

@@ -193,14 +193,14 @@ void Library::setName(const QString& name)
 void Library::deleteLibrary()
 {
     emit deletingLibrary(this);
-    QString directory = m_directory;
+    QString directoryValue = m_directory;
     if (isValid()) {
         QtConcurrent::run([=]() {
-            auto years = Library::years(directory);
+            auto years = Library::years(directoryValue);
             for (auto year : years) {
-                auto months = Library::months(directory, year);
+                auto months = Library::months(directoryValue, year);
                 for (auto month : months) {
-                    QDir dir(directory + "/" + year + "/" + month);
+                    QDir dir(directoryValue + "/" + year + "/" + month);
                     for (auto entry : dir.entryList(QDir::Files)) {
                         if (!dir.remove(entry)) {
                             qCWarning(log) << "Failed to remove file" << entry << "from"
@@ -212,18 +212,18 @@ void Library::deleteLibrary()
                         qCWarning(log) << "Failed to remove" << dir.absoluteFilePath(month);
                     }
                 }
-                if (!QDir(directory).rmdir(year)) {
-                    qCWarning(log) << "Failed to remove" << (directory + "/" + year);
+                if (!QDir(directoryValue).rmdir(year)) {
+                    qCWarning(log) << "Failed to remove" << (directoryValue + "/" + year);
                 }
             }
-            QDir dir(directory);
+            QDir dir(directoryValue);
             for (auto entry : dir.entryList(QDir::Files | QDir::Hidden)) {
                 if (!dir.remove(entry)) {
                     qCWarning(log) << "Failed to remove" << entry << "from" << dir.absolutePath();
                 }
             }
             dir.cdUp();
-            auto basename = QFileInfo(directory).baseName();
+            auto basename = QFileInfo(directoryValue).baseName();
             if (!dir.rmdir(basename)) {
                 qCWarning(log) << "Failed to remove library directory" << dir.absolutePath();
             }
@@ -378,12 +378,12 @@ bool Library::isInDefaultLocation() const
 {
     bool result = false;
     if (isValid()) {
-        auto defaultLibrariesLocation = Library::defaultLibrariesLocation();
-        defaultLibrariesLocation = QDir::cleanPath(defaultLibrariesLocation);
+        auto defaultLibrariesLocationValue = Library::defaultLibrariesLocation();
+        defaultLibrariesLocationValue = QDir::cleanPath(defaultLibrariesLocationValue);
 
         auto thisDir = QFileInfo(m_directory).absoluteDir().path();
 
-        result = thisDir == defaultLibrariesLocation;
+        result = thisDir == defaultLibrariesLocationValue;
     }
     return result;
 }
@@ -603,8 +603,8 @@ void Library::calculateDefaultColor()
         return;
     }
     auto index = m_uid.data1 % namedColors.length();
-    auto color = namedColors.at(index);
-    m_defaultColor = color.color();
+    auto colorValue = namedColors.at(index);
+    m_defaultColor = colorValue.color();
     emit colorChanged();
 }
 

@@ -347,9 +347,9 @@ void ItemsModel::setOverdueLabel(const QString& overdueLabel)
 {
     if (m_overdueLabel != overdueLabel) {
         m_overdueLabel = overdueLabel;
-        auto rowCount = this->rowCount();
-        if (rowCount > 0) {
-            emit dataChanged(index(0), index(rowCount));
+        auto rowCountValue = this->rowCount();
+        if (rowCountValue > 0) {
+            emit dataChanged(index(0), index(rowCountValue));
         }
         emit overdueLabelChanged();
     }
@@ -375,9 +375,9 @@ void ItemsModel::setTimeSpans(const QVariantMap& timeSpans)
 {
     if (m_timeSpans != timeSpans) {
         m_timeSpans = timeSpans;
-        auto rowCount = this->rowCount();
-        if (rowCount > 0) {
-            emit dataChanged(index(0), index(rowCount - 1));
+        auto rowCountValue = this->rowCount();
+        if (rowCountValue > 0) {
+            emit dataChanged(index(0), index(rowCountValue - 1));
         }
         emit timeSpansChanged();
     }
@@ -500,17 +500,17 @@ void ItemsModel::fetch()
         }
         q->setRecursive(m_recursive);
 
-        auto tag = m_tag;
-        auto onlyDone = m_onlyDone;
-        auto onlyUndone = m_onlyUndone;
-        auto onlyWithDueDate = m_onlyWithDueDate;
+        auto tagValue = m_tag;
+        auto onlyDoneValue = m_onlyDone;
+        auto onlyUndoneValue = m_onlyUndone;
+        auto onlyWithDueDateValue = m_onlyWithDueDate;
         auto itemMatchesFilter = getFilterFn();
-        auto defaultSearchResult = m_defaultSearchResult;
-        auto itemType = m_itemType.split(",", Qt::SkipEmptyParts);
+        auto defaultSearchResultValue = m_defaultSearchResult;
+        auto itemTypeValue = m_itemType.split(",", Qt::SkipEmptyParts);
         QSet<QUuid> itemUidsToExclude(m_itemsToExclude.constBegin(), m_itemsToExclude.constEnd());
 
         q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
-            if (!itemType.isEmpty() && !itemType.contains(item->itemType())) {
+            if (!itemTypeValue.isEmpty() && !itemTypeValue.contains(item->itemType())) {
                 return false;
             }
             if (itemUidsToExclude.contains(item->uid())) {
@@ -520,25 +520,25 @@ void ItemsModel::fetch()
             if (itemMatchesFilter) {
                 result = itemMatchesFilter(item, query);
             } else {
-                result = defaultSearchResult;
+                result = defaultSearchResultValue;
             }
-            if (onlyDone) {
+            if (onlyDoneValue) {
                 auto done = item->property("done");
                 if (!done.isNull() && !done.toBool()) {
                     result = false;
                 }
             }
-            if (onlyUndone) {
+            if (onlyUndoneValue) {
                 auto done = item->property("done");
                 if (!done.isNull() && done.toBool()) {
                     result = false;
                 }
             }
-            if (onlyWithDueDate && !item->property("dueTo").toDateTime().isValid()) {
+            if (onlyWithDueDateValue && !item->property("dueTo").toDateTime().isValid()) {
                 result = false;
             }
-            if (!tag.isEmpty()) {
-                if (!item->property("tags").toStringList().contains(tag)) {
+            if (!tagValue.isEmpty()) {
+                if (!item->property("tags").toStringList().contains(tagValue)) {
                     result = false;
                 }
             }
@@ -613,18 +613,18 @@ void ItemsModel::update(QVariantList items)
     auto idsToDelete = QSet<QUuid>(m_ids.begin(), m_ids.end());
 #endif
     QList<Item*> newItems;
-    for (const auto& data : qAsConst(items)) {
-        auto item = Item::decache(data, this);
+    for (const auto& dataValue : qAsConst(items)) {
+        auto item = Item::decache(dataValue, this);
         auto id = item->uid();
         if (m_items.contains(id)) {
             auto existingItem = m_items.value(id);
             existingItem->fromVariant(item->toVariant());
             existingItem->applyCalculatedProperties(
-                    data.value<ItemCacheEntry>().calculatedData.toMap());
+                    dataValue.value<ItemCacheEntry>().calculatedData.toMap());
             delete item;
             idsToDelete.remove(id);
         } else {
-            auto item_ = Item::decache(data, this);
+            auto item_ = Item::decache(dataValue, this);
             newItems << item_;
         }
     }
