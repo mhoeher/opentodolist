@@ -49,7 +49,14 @@ C.Pane {
                     doShowLibrary()
                 }
             }
+        } else if (lastLibrary == "" && lastTag == ""
+                   && lastSpecialView === "schedule") {
+            currentLibrary = null
+            currentTag = ""
+            specialView = lastSpecialView
+            doShowLibrary()
         }
+
         previousLibraryOpened = true
     }
 

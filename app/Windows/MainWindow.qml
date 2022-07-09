@@ -58,6 +58,11 @@ C.ApplicationWindow {
             switch (special) {
             case "schedule":
                 stackView.push(scheduleViewPage, {})
+                if (d.completed) {
+                    OTL.Application.saveValue("lastLibrary", "")
+                    OTL.Application.saveValue("lastTag", "")
+                    OTL.Application.saveValue("specialView", special)
+                }
                 break
             default:
                 break

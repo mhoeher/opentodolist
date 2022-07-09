@@ -158,15 +158,10 @@ CenteredDialog {
             model: OTL.LibrariesModel {
                 cache: dialog.library ? null : OTL.Application.cache
                 onUpdateFinished: {
-                    console.warn("Libraries model update finished")
                     if (!libraryEdit.currentValue) {
-                        console.warn("Need to select library")
                         let lastUid = pageSettings.lastLibraryUid
                         if (lastUid !== null) {
-                            console.warn("Has previous lib")
                             for (var i = 0; i < libraryEdit.count; ++i) {
-                                console.warn(libraryEdit.valueAt(i).uid,
-                                             lastUid)
                                 if (libraryEdit.valueAt(i).uid === lastUid) {
                                     libraryEdit.currentIndex = i
                                     break
