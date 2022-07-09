@@ -109,8 +109,8 @@ Account* Account::createAccount(Type type, QObject* parent)
 Account* Account::createAccount(QSettings* settings, QObject* parent)
 {
     q_check_ptr(settings);
-    auto type = settings->value("type", QVariant::fromValue(Invalid).toString()).value<Type>();
-    return createAccount(type, parent);
+    auto typeValue = settings->value("type", QVariant::fromValue(Invalid).toString()).value<Type>();
+    return createAccount(typeValue, parent);
 }
 
 /**

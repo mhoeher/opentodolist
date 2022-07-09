@@ -201,57 +201,58 @@
         <translation type="unfinished">Renombrar</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="34"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="33"/>
         <source>Move</source>
         <translation type="unfinished">Mover</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="45"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="43"/>
         <source>Copy</source>
         <translation type="unfinished">Copiar</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="56"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="53"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="64"/>
         <source>Color</source>
         <translation type="unfinished">Color</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="67"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
         <source>Add Tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="82"/>
         <source>Attach File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="83"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="92"/>
         <source>Search</source>
         <translation type="unfinished">Buscar</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="90"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="100"/>
         <source>Sort</source>
         <translation type="unfinished">Ordenar</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="98"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="108"/>
         <source>Set Due Date</source>
         <translation type="unfinished">Fijar la fecha de vencimiento</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="106"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="116"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="113"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="124"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished">Eliminar elementos completados</translation>
     </message>
     <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="120"/>
+        <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
         <source>Set Progress</source>
         <translation type="unfinished"></translation>
     </message>
@@ -259,22 +260,22 @@
 <context>
     <name>Attachments</name>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="28"/>
+        <location filename="../Widgets/Attachments.qml" line="33"/>
         <source>Attach File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="40"/>
+        <location filename="../Widgets/Attachments.qml" line="48"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">Borrar el archivo adjunto?</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="44"/>
+        <location filename="../Widgets/Attachments.qml" line="52"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">Estás seguro de que quieres borrar el adjunto &lt;strong&gt;%1&lt;/strong&gt;? Esta acción no puede deshacerse.</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="58"/>
+        <location filename="../Widgets/Attachments.qml" line="66"/>
         <source>Attachments</source>
         <translation type="unfinished">Anexos</translation>
     </message>
@@ -669,48 +670,58 @@
         <translation type="unfinished">Se espera que...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="59"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="61"/>
         <source>First due on %1.</source>
         <translation type="unfinished">Vence el %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">No se ha establecido un patrón de recurrencia...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="73"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Se repite todos los días.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="75"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Se repite cada semana.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="77"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Se repite cada mes.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="79"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
         <source>Recurs every year.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="81"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Se repite cada %1 días.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="83"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="85"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>Recurs every %1 months.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
+        <source>Recurs until %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
+        <source>Recurs indefinitely</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -769,175 +780,176 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="187"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="419"/>
+        <source>Schedule</source>
+        <translation type="unfinished">Programación</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
         <source>New Library</source>
         <translation type="unfinished">Nueva Biblioteca</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="193"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
         <source>Accounts</source>
         <translation type="unfinished">Cuentas</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="200"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
         <source>Edit List</source>
         <translation type="unfinished">Editar lista</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="206"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="213"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="245"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Traducir la aplicación...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="252"/>
         <source>Donate</source>
         <translation type="unfinished">Donar</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="228"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="260"/>
         <source>About...</source>
         <translation type="unfinished">Acerca de...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="241"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="273"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Crear una biblioteca predeterminada</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">Ocultar calendario</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="353"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Show Schedule</source>
         <translation type="unfinished">Mostrar calendario</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="364"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="397"/>
         <source>Move Up</source>
         <translation type="unfinished">Mover arriba</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="373"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="406"/>
         <source>Move Down</source>
         <translation type="unfinished">Move abajo</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
-        <source>Schedule</source>
-        <translation type="unfinished">Programación</translation>
     </message>
 </context>
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="161"/>
+        <location filename="../Pages/LibraryPage.qml" line="166"/>
         <source>Red</source>
         <translation type="unfinished">Rojo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="168"/>
+        <location filename="../Pages/LibraryPage.qml" line="173"/>
         <source>Green</source>
         <translation type="unfinished">Verde</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="175"/>
+        <location filename="../Pages/LibraryPage.qml" line="180"/>
         <source>Blue</source>
         <translation type="unfinished">Azul</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="182"/>
+        <location filename="../Pages/LibraryPage.qml" line="187"/>
         <source>Yellow</source>
         <translation type="unfinished">Amarillo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="189"/>
+        <location filename="../Pages/LibraryPage.qml" line="194"/>
         <source>Orange</source>
         <translation type="unfinished">Naranja</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="196"/>
+        <location filename="../Pages/LibraryPage.qml" line="201"/>
         <source>Lilac</source>
         <translation type="unfinished">Lila</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="203"/>
+        <location filename="../Pages/LibraryPage.qml" line="208"/>
         <source>White</source>
         <translation type="unfinished">Blanco</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="213"/>
+        <location filename="../Pages/LibraryPage.qml" line="218"/>
         <source>Rename</source>
         <translation type="unfinished">Renombrar</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="218"/>
+        <location filename="../Pages/LibraryPage.qml" line="223"/>
         <source>Copy</source>
         <translation type="unfinished">Copiar</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="223"/>
+        <location filename="../Pages/LibraryPage.qml" line="228"/>
         <source>Delete</source>
         <translation type="unfinished">Eliminar</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="232"/>
+        <location filename="../Pages/LibraryPage.qml" line="237"/>
         <source>Select Image</source>
         <translation type="unfinished">Seleccione la imagen</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="291"/>
+        <location filename="../Pages/LibraryPage.qml" line="306"/>
         <source>Note Title</source>
         <translation type="unfinished">Título de la nota</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="304"/>
+        <location filename="../Pages/LibraryPage.qml" line="319"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Título de la lista de todo</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="317"/>
+        <location filename="../Pages/LibraryPage.qml" line="332"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Término de búsqueda 1, término de búsqueda 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="396"/>
+        <location filename="../Pages/LibraryPage.qml" line="411"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Aún no hay nada aquí! Comienza añadiendo una lista de &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo&lt;/a&gt; o &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="456"/>
+        <location filename="../Pages/LibraryPage.qml" line="471"/>
         <source>Sort By</source>
         <translation type="unfinished">Ordenar por</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="461"/>
+        <location filename="../Pages/LibraryPage.qml" line="476"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="468"/>
+        <location filename="../Pages/LibraryPage.qml" line="483"/>
         <source>Title</source>
         <translation type="unfinished">Título</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="475"/>
+        <location filename="../Pages/LibraryPage.qml" line="490"/>
         <source>Due To</source>
         <translation type="unfinished">Debido a</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="482"/>
+        <location filename="../Pages/LibraryPage.qml" line="497"/>
         <source>Created At</source>
         <translation type="unfinished">Creado en</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="489"/>
+        <location filename="../Pages/LibraryPage.qml" line="504"/>
         <source>Updated At</source>
         <translation type="unfinished">Actualizado en</translation>
     </message>
@@ -945,12 +957,12 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="30"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
         <source>Sync Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="41"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
         <source>Sync Log</source>
         <translation type="unfinished">Registro de sincronización</translation>
     </message>
@@ -986,7 +998,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="276"/>
+        <location filename="../Windows/MainWindow.qml" line="290"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Empieza por &lt;a href=&apos;#newLibrary&apos;&gt;creando una nueva biblioteca&lt;/a&gt;. Las bibliotecas se usan para almacenar diferentes tipos de artículos como notas, listas de todo e imágenes.</translation>
     </message>
@@ -1056,47 +1068,52 @@
 <context>
     <name>NewItemWithDueDateDialog</name>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="105"/>
         <source>Today</source>
         <translation type="unfinished">Hoy</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="106"/>
         <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
         <source>This Week</source>
         <translation type="unfinished">Esta semana</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="108"/>
         <source>Next Week</source>
         <translation type="unfinished">La próxima semana</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="96"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="109"/>
         <source>Select...</source>
         <translation type="unfinished">Seleccione...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="115"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="139"/>
         <source>Title:</source>
         <translation type="unfinished">Título:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="144"/>
         <source>The title for your new item...</source>
         <translation type="unfinished">El título de su nuevo artículo...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
+        <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>
         <source>Create in:</source>
         <translation type="unfinished">Crear en:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="166"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="227"/>
         <source>Due on:</source>
         <translation type="unfinished">Ya está en marcha:</translation>
     </message>
@@ -1436,12 +1453,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="132"/>
+        <location filename="../Pages/NotePage.qml" line="140"/>
         <source>Main Page</source>
         <translation type="unfinished">Página principal</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="195"/>
+        <location filename="../Pages/NotePage.qml" line="207"/>
         <source>New Page</source>
         <translation type="unfinished">Nueva página</translation>
     </message>
@@ -1656,37 +1673,42 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="56"/>
+        <source>Schedule</source>
+        <translation type="unfinished">Programación</translation>
+    </message>
+    <message>
+        <location filename="../Pages/ScheduleViewPage.qml" line="120"/>
         <source>Overdue</source>
         <translation type="unfinished">Atrasado</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="123"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="142"/>
         <source>Today</source>
         <translation type="unfinished">Hoy</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="124"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
         <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="166"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="179"/>
         <source>Later This Week</source>
         <translation type="unfinished">A finales de esta semana</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="168"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="181"/>
         <source>Next Week</source>
         <translation type="unfinished">La próxima semana</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="169"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="182"/>
         <source>Coming Next</source>
         <translation type="unfinished">A continuación</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="196"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="261"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">No hay nada programado... Añade una fecha de vencimiento a los artículos para que aparezcan aquí.</translation>
     </message>
@@ -1854,6 +1876,11 @@ This requires a restart of the app.</source>
         <source>Library Item Size:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="279"/>
+        <source>Show notes excerpt in listings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SyncErrorNotificationBar</name>
@@ -1897,52 +1924,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="160"/>
+        <location filename="../Pages/TodoListPage.qml" line="175"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Término de búsqueda 1, término de búsqueda 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="172"/>
+        <location filename="../Pages/TodoListPage.qml" line="187"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="178"/>
+        <location filename="../Pages/TodoListPage.qml" line="193"/>
         <source>Name</source>
         <translation type="unfinished">Nombre</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="184"/>
+        <location filename="../Pages/TodoListPage.qml" line="199"/>
         <source>Due Date</source>
         <translation type="unfinished">Fecha de vencimiento</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="190"/>
+        <location filename="../Pages/TodoListPage.qml" line="205"/>
         <source>Created At</source>
         <translation type="unfinished">Creado en</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="196"/>
+        <location filename="../Pages/TodoListPage.qml" line="211"/>
         <source>Updated At</source>
         <translation type="unfinished">Actualizado en</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="209"/>
+        <location filename="../Pages/TodoListPage.qml" line="224"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="216"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="246"/>
+        <location filename="../Pages/TodoListPage.qml" line="262"/>
         <source>Todos</source>
         <translation type="unfinished">Pendientes</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="266"/>
+        <location filename="../Pages/TodoListPage.qml" line="282"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Añadir nueva Lista de Pendientes...</translation>
     </message>
@@ -1950,27 +1977,27 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="147"/>
+        <location filename="../Pages/TodoPage.qml" line="156"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Término de búsqueda 1, término de búsqueda 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="172"/>
+        <location filename="../Pages/TodoPage.qml" line="182"/>
         <source>Tasks</source>
         <translation type="unfinished">Tareas</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="178"/>
+        <location filename="../Pages/TodoPage.qml" line="188"/>
         <source>Add new task...</source>
         <translation type="unfinished">Añade una nueva tarea...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="274"/>
+        <location filename="../Pages/TodoPage.qml" line="283"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="281"/>
+        <location filename="../Pages/TodoPage.qml" line="290"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1978,7 +2005,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="203"/>
+        <location filename="../Widgets/TodosWidget.qml" line="215"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Ya está en marcha: %1</translation>
     </message>
@@ -1986,12 +2013,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="276"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="286"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">Pase para marcar deshecho</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="278"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="288"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">Pase a la marca hecha</translation>
     </message>

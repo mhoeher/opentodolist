@@ -79,11 +79,14 @@ void LibraryTest::testProperties()
 void LibraryTest::testLoad()
 {
     Library lib(m_dir->path());
+    lib.setName("Hello World");
+    lib.setColor(Qt::blue);
     lib.save();
 
     Library lib2(m_dir->path());
     QVERIFY(lib2.load());
     QCOMPARE(lib2.name(), lib.name());
+    QCOMPARE(lib2.color(), lib.color());
 }
 
 void LibraryTest::testFromJson()
@@ -110,11 +113,13 @@ void LibraryTest::testDecache()
 {
     Library lib(m_dir->path());
     lib.setName("Foo");
+    lib.setColor(Qt::red);
     auto cacheEntry = lib.encache();
 
     QScopedPointer<Library> lib2(Library::decache(cacheEntry));
     QCOMPARE(lib2->uid(), lib.uid());
     QCOMPARE(lib2->name(), lib.name());
+    QCOMPARE(lib2->color(), lib.color());
     QCOMPARE(lib2->directory(), lib.directory());
 }
 

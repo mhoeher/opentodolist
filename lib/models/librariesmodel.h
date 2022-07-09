@@ -40,6 +40,7 @@ class LibrariesModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY(Cache* cache READ cache WRITE setCache NOTIFY cacheChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(QList<Library*> libraries READ libraries NOTIFY updateFinished)
 public:
     enum Roles { LibraryRole = Qt::UserRole, NameRole };
     Q_ENUM(Roles);
@@ -51,6 +52,7 @@ public:
 
     int count() const;
     Q_INVOKABLE Library* get(int row) const;
+    QList<Library*> libraries() const;
 
     // QAbstractItemModel interface
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;

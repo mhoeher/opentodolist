@@ -151,8 +151,8 @@ bool Synchronizer::saveLog()
 {
     bool result = true;
     if (!m_directory.isEmpty() && !m_log.isEmpty()) {
-        QFile log(m_directory + "/" + LogFileName);
-        if (log.open(QIODevice::WriteOnly)) {
+        QFile logFile(m_directory + "/" + LogFileName);
+        if (logFile.open(QIODevice::WriteOnly)) {
             QVariantList list;
             for (auto entry : m_log) {
                 QVariantMap map;
@@ -162,11 +162,11 @@ bool Synchronizer::saveLog()
                 list.append(map);
             }
             auto json = QJsonDocument::fromVariant(list).toJson(QJsonDocument::Indented);
-            log.write(json);
-            log.close();
+            logFile.write(json);
+            logFile.close();
             result = true;
         } else {
-            qCWarning(::log) << "Failed to open log file for writing:" << log.errorString();
+            qCWarning(::log) << "Failed to open log file for writing:" << logFile.errorString();
         }
     }
     return result;
@@ -367,15 +367,15 @@ Synchronizer* Synchronizer::fromDirectory(const QString& directory, QObject* par
         QDir dir(directory);
         auto absFilePath = dir.absoluteFilePath(SaveFileName);
         auto map = JsonUtils::loadMap(absFilePath);
-        auto type = map.value("type").toString();
-        auto constructor = Synchronizers.value(type);
-        if (!type.isEmpty()) {
+        auto typeValue = map.value("type").toString();
+        auto constructor = Synchronizers.value(typeValue);
+        if (!typeValue.isEmpty()) {
             if (constructor) {
                 result = constructor(parent);
                 result->fromMap(map);
                 result->setDirectory(directory);
             } else {
-                qCWarning(::log) << "Unknown synchronizer type" << type;
+                qCWarning(::log) << "Unknown synchronizer type" << typeValue;
             }
         }
     }

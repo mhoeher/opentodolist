@@ -12,36 +12,43 @@ Item {
 
     property OTL.Library library
     readonly property var actions: {
-        let result = [];
+        let result = []
         if (syncNowAction.enabled) {
-            result.push(syncNowAction);
+            result.push(syncNowAction)
         }
         if (syncLogAction.enabled) {
-            result.push(syncLogAction);
+            result.push(syncLogAction)
         }
-        return result;
+        return result
     }
+    property var syncNowFunction: null
 
     signal openPage(var component, var properties)
-    
+
     C.Action {
         id: syncNowAction
 
         text: qsTr("Sync Now")
-        enabled: root.library.hasSynchronizer
+        enabled: (root.library && root.library.hasSynchronizer)
+                 || syncNowFunction
         onTriggered: {
-            console.debug("Manually started syncing " + root.library.name);
-            OTL.Application.syncLibrary(library);
+            if (root.library && root.library.hasSynchronizer) {
+                console.debug("Manually started syncing " + root.library.name)
+                OTL.Application.syncLibrary(library)
+            } else {
+                console.debug("Manually started syncing via callback function")
+                syncNowFunction()
+            }
         }
     }
-    
+
     C.Action {
         id: syncLogAction
 
         text: qsTr("Sync Log")
-        enabled: root.library.hasSynchronizer
-        onTriggered: root.openPage(
-                       Qt.resolvedUrl("../Pages/LogViewPage.qml"),
-                       {"log": root.library.syncLog()})
+        enabled: root.library && root.library.hasSynchronizer
+        onTriggered: root.openPage(Qt.resolvedUrl("../Pages/LogViewPage.qml"), {
+                                       "log": root.library.syncLog()
+                                   })
     }
 }

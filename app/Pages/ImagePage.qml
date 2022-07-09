@@ -16,37 +16,45 @@ ItemPage {
     property var library: null
     property OTL.ImageItem item: OTL.ImageItem {}
 
-    signal closePage()
+    signal closePage
     signal openPage(var component, var properties)
 
-    property var goBack: itemNotesEditor.editing ? function() {
-        itemNotesEditor.finishEditing();
+    property var goBack: itemNotesEditor.editing ? function () {
+        itemNotesEditor.finishEditing()
     } : undefined
     property alias pageActions: libraryActions.actions
 
     function deleteItem() {
-        confirmDeleteDialog.deleteItem(item);
+        confirmDeleteDialog.deleteItem(item)
     }
 
     function renameItem() {
-        renameItemDialog.renameItem(item);
+        renameItemDialog.renameItem(item)
     }
 
     function copyItem() {
-        copyTopLevelItemAction.trigger();
+        copyTopLevelItemAction.trigger()
     }
 
     function addTag() {
-        tagsEditor.addTag();
+        tagsEditor.addTag()
     }
 
     function attach() {
-        attachments.attach();
+        attachments.attach()
+    }
+
+
+    /*
+      Attach the files to the image.
+      */
+    function attachFiles(fileUrls) {
+        attachments.attachFiles(fileUrls)
     }
 
     function setDueDate() {
-        dueDateSelectionDialog.selectedDate = item.dueTo;
-        dueDateSelectionDialog.open();
+        dueDateSelectionDialog.selectedDate = item.dueTo
+        dueDateSelectionDialog.open()
     }
 
     title: Markdown.markdownToPlainText(item.title)
@@ -141,7 +149,6 @@ ItemPage {
                     width: parent.width
                 }
             }
-
         }
     }
 
@@ -152,6 +159,8 @@ ItemPage {
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
-    Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }
+    Actions.CopyTopLevelItem {
+        id: copyTopLevelItemAction
+        item: page.item
+    }
 }
-

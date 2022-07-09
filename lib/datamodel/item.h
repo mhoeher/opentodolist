@@ -79,6 +79,7 @@ class Item : public QObject
     Q_PROPERTY(QDateTime createdAt READ createdAt NOTIFY createdAtChanged)
     Q_PROPERTY(QDateTime updatedAt READ updatedAt NOTIFY updatedAtChanged)
     Q_PROPERTY(QDateTime effectiveUpdatedAt READ effectiveUpdatedAt NOTIFY updatedAtChanged)
+    Q_PROPERTY(QVector<QUuid> parents READ parents NOTIFY parentsChanged)
 
     friend class ItemChangedInhibitor;
 
@@ -165,6 +166,8 @@ public:
     QDateTime updatedAt() const;
     QDateTime effectiveUpdatedAt() const;
 
+    const QVector<QUuid>& parents() const;
+
 public slots:
 
 signals:
@@ -197,6 +200,8 @@ signals:
      */
     void saved();
 
+    void parentsChanged();
+
 protected:
     virtual QVariantMap toMap() const;
     virtual void fromMap(QVariantMap map);
@@ -213,6 +218,9 @@ private:
     double m_weight;
     bool m_loading;
 
+    // Calculated props
+    QVector<QUuid> m_parents;
+
     void setFilename(const QString& filename);
 
     void setupChangedSignal();
@@ -222,6 +230,7 @@ private:
     void onChanged();
     void setUpdateAt();
     void setChildrenUpdatedAt(const QDateTime& childrenUpdatedAt);
+    void setParents(const QVector<QUuid>& newParents);
 };
 
 typedef QSharedPointer<Item> ItemPtr;

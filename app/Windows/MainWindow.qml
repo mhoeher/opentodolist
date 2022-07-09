@@ -53,6 +53,20 @@ C.ApplicationWindow {
                 OTL.Application.saveValue("lastTag", tag)
                 OTL.Application.saveValue("specialView", special)
             }
+        } else if (lib === null) {
+            // Special case: If lib is null, check if a global view has been requested
+            switch (special) {
+            case "schedule":
+                stackView.push(scheduleViewPage, {})
+                if (d.completed) {
+                    OTL.Application.saveValue("lastLibrary", "")
+                    OTL.Application.saveValue("lastTag", "")
+                    OTL.Application.saveValue("specialView", special)
+                }
+                break
+            default:
+                break
+            }
         }
     }
 
@@ -330,6 +344,39 @@ C.ApplicationWindow {
         clip: true
         visible: depth > 0
         onCurrentItemChanged: applicationToolBar.closeMenu()
+    }
+
+    DropArea {
+        anchors.fill: stackView
+        keys: ["text/uri-list"]
+
+        onEntered: drag => {
+                       if (drag.hasUrls) {
+                           if (typeof (stackView.currentItem.attachFiles) == "function") {
+                               drag.accept(Qt.LinkAction)
+                               dropIndicator.visible = true
+                           }
+                       }
+                   }
+        onDropped: drop => {
+                       stackView.currentItem.attachFiles(drop.urls)
+                   }
+        onExited: {
+            dropIndicator.visible = false
+        }
+        onContainsDragChanged: {
+            if (!containsDrag) {
+                dropIndicator.visible = false
+            }
+        }
+    }
+
+    Rectangle {
+        id: dropIndicator
+        anchors.fill: stackView
+        color: "white"
+        opacity: 0.5
+        visible: false
     }
 
     C.Pane {

@@ -40,6 +40,16 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.41.0" date="2022-07-09">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#533: Allow assigning a color to a library.</li>
+            <li>#532: Implement a global schedule view (i.e. across all libraries).</li>
+            <li>#521: Allow attaching multiple files at once.</li>
+            <li>#522: Allow attaching files via drag and drop.</li>
+            <li>#336: Allow specifying an end date for recurring items.</li>
+        </ul>
+    </release>
     <release version="3.40.1" date="2022-06-06">
         <p>This release includes the following changes:</p>
         <ul>

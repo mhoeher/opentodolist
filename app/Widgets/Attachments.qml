@@ -10,15 +10,20 @@ import "../Fonts"
 import "../Utils"
 import "../Windows"
 
-
 Item {
     id: item
 
-    property OTL.ComplexItem item
-
     function attach() {
-        dialog.open();
+        dialog.open()
     }
+
+    function attachFiles(fileUrls) {
+        for (var i = 0; i < fileUrls.length; ++i) {
+            item.item.attachFile(OTL.Application.urlFromString(fileUrls[i]))
+        }
+    }
+
+    property OTL.ComplexItem item
 
     height: childrenRect.height
 
@@ -26,9 +31,12 @@ Item {
         id: dialog
 
         title: qsTr("Attach File")
+        selectMultiple: true
 
         onAccepted: {
-            item.item.attachFile(fileUrl)
+            for (var i = 0; i < fileUrls.length; ++i) {
+                item.item.attachFile(OTL.Application.urlFromString(fileUrls[i]))
+            }
         }
     }
 
@@ -41,8 +49,8 @@ Item {
         width: 400
 
         C.Label {
-            text: qsTr("Are you sure you want to delete the attachment <strong>%1</strong>? This action " +
-                       "cannot be undone.").arg(confirmDeleteAttachmentDialog.attachment)
+            text: qsTr("Are you sure you want to delete the attachment <strong>%1</strong>? This action " + "cannot be undone.").arg(
+                      confirmDeleteAttachmentDialog.attachment)
             width: parent.width
         }
         standardButtons: C.Dialog.Ok | C.Dialog.Cancel
@@ -70,8 +78,9 @@ Item {
             delegate: MouseArea {
                 width: parent.width
                 height: childrenRect.height
-                onClicked: OTL.Application.openUrl(OTL.Application.localFileToUrl(
-                                                       item.item.attachmentFileName(modelData)))
+                onClicked: OTL.Application.openUrl(
+                               OTL.Application.localFileToUrl(
+                                   item.item.attachmentFileName(modelData)))
 
                 RowLayout {
                     width: parent.width
@@ -85,8 +94,8 @@ Item {
                         symbol: Icons.mdiDelete
                         hoverEnabled: true
                         onClicked: {
-                            confirmDeleteAttachmentDialog.attachment = modelData;
-                            confirmDeleteAttachmentDialog.open();
+                            confirmDeleteAttachmentDialog.attachment = modelData
+                            confirmDeleteAttachmentDialog.open()
                         }
                     }
                 }

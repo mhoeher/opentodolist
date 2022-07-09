@@ -14,46 +14,54 @@ import "../Controls" as C
 
 ItemPage {
     id: page
-    
+
     property var library: null
     property OTL.Note item: OTL.Note {}
 
-    signal closePage()
+    signal closePage
     signal openPage(var component, var properties)
 
-    property var goBack: itemNotesEditor.editing ? function() {
-        itemNotesEditor.finishEditing();
+    property var goBack: itemNotesEditor.editing ? function () {
+        itemNotesEditor.finishEditing()
     } : undefined
     property alias pageActions: libraryActions.actions
-    
+
     function deleteItem() {
-        confirmDeleteDialog.deleteItem(item);
+        confirmDeleteDialog.deleteItem(item)
     }
 
     function renameItem() {
-        renameItemDialog.renameItem(item);
+        renameItemDialog.renameItem(item)
     }
 
     function copyItem() {
-        copyTopLevelItemAction.trigger();
+        copyTopLevelItemAction.trigger()
     }
 
     function addTag() {
-        tagsEditor.addTag();
+        tagsEditor.addTag()
     }
 
     function attach() {
-        attachments.attach();
+        attachments.attach()
+    }
+
+
+    /*
+      Attaches the list of files to the todo list.
+      */
+    function attachFiles(fileUrls) {
+        attachments.attachFiles(fileUrls)
     }
 
     function setDueDate() {
-        dueDateSelectionDialog.selectedDate = item.dueTo;
-        dueDateSelectionDialog.open();
+        dueDateSelectionDialog.selectedDate = item.dueTo
+        dueDateSelectionDialog.open()
     }
 
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
-    
+
     LibraryPageActions {
         id: libraryActions
 
@@ -142,15 +150,18 @@ ItemPage {
                                     cache: OTL.Application.cache
                                     parentItem: page.item.uid
                                     onCountChanged: {
-                                        var lastPage = itemNotesEditor.lastPageCreated;
-                                        if (lastPage !== null) {
+                                        var lastPage = itemNotesEditor.lastPageCreated
+                                        if (lastPage != null) {
                                             for (var i = 0; i < count; ++i) {
-                                                var idx = index(i, 0);
-                                                var modelPage = data(idx, OTL.ItemsModel.ItemRole);
+                                                var idx = index(i, 0)
+                                                var modelPage = data(
+                                                            idx,
+                                                            OTL.ItemsModel.ItemRole)
                                                 if (modelPage.uid === lastPage.uid) {
-                                                    pageTabBar.setCurrentIndex(i + 1);
-                                                    itemNotesEditor.lastPageCreated = null;
-                                                    break;
+                                                    pageTabBar.setCurrentIndex(
+                                                                i + 1)
+                                                    itemNotesEditor.lastPageCreated = null
+                                                    break
                                                 }
                                             }
                                         }
@@ -183,7 +194,8 @@ ItemPage {
                                 model: pagesModel
                                 delegate: C.MenuItem {
                                     text: title
-                                    onTriggered: pageTabBar.setCurrentIndex(index + 1)
+                                    onTriggered: pageTabBar.setCurrentIndex(
+                                                     index + 1)
                                 }
                             }
                         }
@@ -193,11 +205,11 @@ ItemPage {
                         onClicked: {
                             var args = {
                                 "title": qsTr("New Page")
-                            };
+                            }
 
                             var notePage = OTL.Application.addNotePage(
-                                        page.library, page.item, args);
-                            itemNotesEditor.lastPageCreated = notePage;
+                                        page.library, page.item, args)
+                            itemNotesEditor.lastPageCreated = notePage
                         }
                     }
                 }
@@ -207,12 +219,12 @@ ItemPage {
 
                     property OTL.ComplexItem editingItem: {
                         if (pageTabBar.currentIndex === 0) {
-                            return page.item;
+                            return page.item
                         } else {
                             return pagesModel.data(
                                         pagesModel.index(
                                             pageTabBar.currentIndex - 1, 0),
-                                        OTL.ItemsModel.ItemRole);
+                                        OTL.ItemsModel.ItemRole)
                         }
                     }
                     property OTL.NotePageItem lastPageCreated: null
@@ -220,18 +232,17 @@ ItemPage {
                     width: parent.width
                     extraButton.visible: pageTabBar.currentIndex > 0
                     extraButton.onClicked: {
-                        renameItemDialog.renameItem(editingItem);
+                        renameItemDialog.renameItem(editingItem)
                     }
                     extraButton2.visible: pageTabBar.currentIndex > 0
                     extraButton2.onClicked: {
-                        confirmDeletePageDialog.deleteItem(editingItem);
+                        confirmDeletePageDialog.deleteItem(editingItem)
                     }
-
 
                     onEditingItemChanged: {
                         // Indirection: Make sure we save before changing item to be edited.
-                        finishEditing();
-                        item = editingItem;
+                        finishEditing()
+                        item = editingItem
                     }
                     Component.onCompleted: item = editingItem
                 }
@@ -241,7 +252,6 @@ ItemPage {
                     item: page.item
                     width: parent.width
                 }
-
             }
         }
     }
@@ -253,6 +263,8 @@ ItemPage {
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
 
-    Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }
+    Actions.CopyTopLevelItem {
+        id: copyTopLevelItemAction
+        item: page.item
+    }
 }
-

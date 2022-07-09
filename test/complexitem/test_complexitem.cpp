@@ -126,6 +126,7 @@ void ComplexItemTest::recurrence()
         item.setRecurInterval(14);
         item.setRecurrenceSchedule(ComplexItem::RelativeToCurrentDate);
         item.setNextDueTo(QDateTime::currentDateTime());
+        item.setRecurUntil(QDateTime::currentDateTime());
 
         ComplexItem item2;
         item2.fromVariant(item.toVariant());
@@ -133,6 +134,7 @@ void ComplexItemTest::recurrence()
         QCOMPARE(item2.recurrenceSchedule(), ComplexItem::RelativeToCurrentDate);
         QCOMPARE(item2.recurInterval(), 14);
         QCOMPARE(item2.nextDueTo(), item.nextDueTo());
+        QCOMPARE(item2.recurUntil(), item.recurUntil());
     }
 
     {
@@ -499,6 +501,38 @@ void ComplexItemTest::recurrence()
         QVERIFY(item.dueTo().isNull());
         QVERIFY(item.effectiveDueTo().isNull());
         QVERIFY(item.nextDueTo().isNull());
+    }
+
+    {
+        // If we mark an item as done and the next occurrence would be after the recurUntil date,
+        // the item should be marked as done (i.e. the due date be removed in case of a
+        // ComplexItem).
+        ComplexItem item;
+        auto today = QDate::currentDate().startOfDay();
+        item.setDueTo(today);
+        item.setRecurrencePattern(ComplexItem::RecurWeekly);
+        item.setRecurUntil(today.addDays(1));
+        QCOMPARE(item.dueTo(), item.effectiveDueTo());
+        QSignalSpy nextDueToChanged(&item, &ComplexItem::nextDueToChanged);
+        QSignalSpy effectiveDueToChanged(&item, &ComplexItem::effectiveDueToChanged);
+        QSignalSpy dueDateChanged(&item, &ComplexItem::dueToChanged);
+        item.markCurrentOccurrenceAsDone(today);
+        QCOMPARE(nextDueToChanged.count(), 0);
+        QCOMPARE(effectiveDueToChanged.count(), 1);
+        QCOMPARE(dueDateChanged.count(), 1);
+        QVERIFY(!item.dueTo().isValid());
+    }
+
+    {
+        // If we set a dueTo on an item which already has a recurUntil, but the new dueTo is
+        // after the recurUntil, the recurUntil date shall be automatically reset:
+        ComplexItem item;
+        auto today = QDate::currentDate().startOfDay();
+        auto tomorrow = today.addDays(1);
+        item.setRecurUntil(today);
+        item.setDueTo(tomorrow);
+        QVERIFY(!item.recurUntil().isValid());
+        QCOMPARE(item.dueTo(), tomorrow);
     }
 }
 

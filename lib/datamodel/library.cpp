@@ -37,6 +37,7 @@
 #include "todo.h"
 #include "task.h"
 #include "sync/synchronizer.h"
+#include "utils/colors.h"
 
 #include "utils/jsonutils.h"
 
@@ -101,9 +102,13 @@ Library::Library(const QString& directory, QObject* parent)
     : QObject(parent),
       m_uid(QUuid::createUuid()),
       m_name(),
+      m_color(),
+      m_defaultColor(),
       m_directory(directory),
       m_itemDataChanged(false)
 {
+    calculateDefaultColor();
+
     connect(this, &Library::uidChanged, this, &Library::changed);
     connect(this, &Library::nameChanged, this, &Library::changed);
     connect(this, &Library::tagsChanged, this, &Library::changed);
@@ -188,14 +193,14 @@ void Library::setName(const QString& name)
 void Library::deleteLibrary()
 {
     emit deletingLibrary(this);
-    QString directory = m_directory;
+    QString directoryValue = m_directory;
     if (isValid()) {
         QtConcurrent::run([=]() {
-            auto years = Library::years(directory);
+            auto years = Library::years(directoryValue);
             for (auto year : years) {
-                auto months = Library::months(directory, year);
+                auto months = Library::months(directoryValue, year);
                 for (auto month : months) {
-                    QDir dir(directory + "/" + year + "/" + month);
+                    QDir dir(directoryValue + "/" + year + "/" + month);
                     for (auto entry : dir.entryList(QDir::Files)) {
                         if (!dir.remove(entry)) {
                             qCWarning(log) << "Failed to remove file" << entry << "from"
@@ -207,18 +212,18 @@ void Library::deleteLibrary()
                         qCWarning(log) << "Failed to remove" << dir.absoluteFilePath(month);
                     }
                 }
-                if (!QDir(directory).rmdir(year)) {
-                    qCWarning(log) << "Failed to remove" << (directory + "/" + year);
+                if (!QDir(directoryValue).rmdir(year)) {
+                    qCWarning(log) << "Failed to remove" << (directoryValue + "/" + year);
                 }
             }
-            QDir dir(directory);
+            QDir dir(directoryValue);
             for (auto entry : dir.entryList(QDir::Files | QDir::Hidden)) {
                 if (!dir.remove(entry)) {
                     qCWarning(log) << "Failed to remove" << entry << "from" << dir.absolutePath();
                 }
             }
             dir.cdUp();
-            auto basename = QFileInfo(directory).baseName();
+            auto basename = QFileInfo(directoryValue).baseName();
             if (!dir.rmdir(basename)) {
                 qCWarning(log) << "Failed to remove library directory" << dir.absolutePath();
             }
@@ -373,12 +378,12 @@ bool Library::isInDefaultLocation() const
 {
     bool result = false;
     if (isValid()) {
-        auto defaultLibrariesLocation = Library::defaultLibrariesLocation();
-        defaultLibrariesLocation = QDir::cleanPath(defaultLibrariesLocation);
+        auto defaultLibrariesLocationValue = Library::defaultLibrariesLocation();
+        defaultLibrariesLocationValue = QDir::cleanPath(defaultLibrariesLocationValue);
 
         auto thisDir = QFileInfo(m_directory).absoluteDir().path();
 
-        result = thisDir == defaultLibrariesLocation;
+        result = thisDir == defaultLibrariesLocationValue;
     }
     return result;
 }
@@ -514,12 +519,41 @@ QString Library::defaultLibrariesLocation()
 }
 
 /**
+ * @brief Returns the color used to represent the library.
+ */
+const QColor& Library::color() const
+{
+    if (m_color.isValid()) {
+        return m_color;
+    }
+    return m_defaultColor;
+}
+
+/**
+ * @brief Sets the color used to represent the library.
+ */
+void Library::setColor(const QColor& newColor)
+{
+    if (m_color == newColor)
+        return;
+    m_color = newColor;
+    emit colorChanged();
+    emit changed();
+}
+
+void Library::resetColor()
+{
+    setColor(QColor());
+}
+
+/**
  * @brief Set the UID of the library.
  */
 void Library::setUid(const QUuid& uid)
 {
     if (m_uid != uid) {
         m_uid = uid;
+        calculateDefaultColor();
         emit uidChanged();
     }
 }
@@ -553,6 +587,27 @@ void Library::onChanged()
     }
 }
 
+/**
+ * @brief Calculates a default color for the library.
+ *
+ * This calculates a default color for the library, based on its UUID. The default color is used if
+ * the user does not explicitly set a color for the library.
+ */
+void Library::calculateDefaultColor()
+{
+    Colors colors;
+    const auto namedColors = colors.loadColors();
+    if (namedColors.isEmpty()) {
+        m_defaultColor = QColor("black");
+        emit colorChanged();
+        return;
+    }
+    auto index = m_uid.data1 % namedColors.length();
+    auto colorValue = namedColors.at(index);
+    m_defaultColor = colorValue.color();
+    emit colorChanged();
+}
+
 void Library::applyCalculatedData(const QVariantMap& properties)
 {
     setTags(properties.value("tags", m_tags).toStringList());
@@ -563,6 +618,8 @@ QVariantMap Library::toMap() const
     QVariantMap result;
     result["uid"] = m_uid;
     result["name"] = m_name;
+    result["color"] = m_color;
+    result["hasColor"] = m_color.isValid();
     return result;
 }
 
@@ -570,4 +627,7 @@ void Library::fromMap(QVariantMap map)
 {
     setUid(map.value("uid", m_uid).toUuid());
     setName(map.value("name", m_name).toString());
+    if (map.value("hasColor").toBool()) {
+        setColor(map.value("color", m_color).value<QColor>());
+    }
 }

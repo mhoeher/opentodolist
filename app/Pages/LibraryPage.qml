@@ -49,6 +49,11 @@ C.Page {
         renameLibraryDialog.renameLibrary(library)
     }
 
+    function selectColor() {
+        colorDialog.selectedColor = page.library.color
+        colorDialog.open()
+    }
+
     function sort() {
         sortByMenu.open()
     }
@@ -247,6 +252,16 @@ C.Page {
             var image = OTL.Application.addImage(library, properties)
             itemCreatedNotification.show(image)
         }
+    }
+
+    ColorSelectionDialog {
+        id: colorDialog
+
+        onAccepted: if (selectedColor) {
+                        page.library.color = selectedColor
+                    } else {
+                        page.library.resetColor()
+                    }
     }
 
     OTL.ItemsSortFilterModel {

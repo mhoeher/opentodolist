@@ -21,59 +21,68 @@ ItemPage {
     property OTL.TodoList item: OTL.TodoList {}
     property alias pageActions: libraryActions.actions
 
-    signal closePage()
+    signal closePage
     signal openPage(var component, var properties)
 
     function deleteItem() {
-        confirmDeleteDialog.deleteItem(item);
+        confirmDeleteDialog.deleteItem(item)
     }
 
     function deleteCompletedItems() {
-        ItemUtils.deleteCompletedItems(item);
+        ItemUtils.deleteCompletedItems(item)
     }
 
     function renameItem() {
-        renameItemDialog.renameItem(item);
+        renameItemDialog.renameItem(item)
     }
 
     function copyItem() {
-        copyTopLevelItemAction.trigger();
+        copyTopLevelItemAction.trigger()
     }
 
     function find() {
-        filterBar.edit.forceActiveFocus();
+        filterBar.edit.forceActiveFocus()
     }
 
-    property var goBack: (todosWidget.header.itemNotesEditor || {}).editingNotes ? function() {
-        todosWidget.header.itemNotesEditor.finishEditing();
-    } : undefined
+    property var goBack: (todosWidget.header.itemNotesEditor
+                          || {}).editingNotes ? function () {
+                              todosWidget.header.itemNotesEditor.finishEditing()
+                          } : undefined
 
     property var undo: {
         if (d.savedTodoStates.length > 0) {
-            return function() {
+            return function () {
                 if (d.savedTodoStates.length > 0) {
-                    let list = d.savedTodoStates.slice();
-                    let todoData = list.pop();
-                    OTL.Application.restoreItem(todoData);
-                    d.savedTodoStates = list;
+                    let list = d.savedTodoStates.slice()
+                    let todoData = list.pop()
+                    OTL.Application.restoreItem(todoData)
+                    d.savedTodoStates = list
                 }
-            };
+            }
         } else {
-            return null;
+            return null
         }
     }
 
     function addTag() {
-        d.openTagsEditor();
+        d.openTagsEditor()
     }
 
     function attach() {
-        d.attach();
+        d.attach()
+    }
+
+
+    /*
+      Attaches the list of files to the todo list.
+      */
+    function attachFiles(fileUrls) {
+        d.attachFiles(fileUrls)
     }
 
     function setDueDate() {
-        dueDateSelectionDialog.selectedDate = item.dueTo;
-        dueDateSelectionDialog.open();
+        dueDateSelectionDialog.selectedDate = item.dueTo
+        dueDateSelectionDialog.open()
     }
 
     title: Markdown.markdownToPlainText(item.title)
@@ -91,26 +100,32 @@ ItemPage {
 
         property int sortTodosRole: {
             switch (settings.sortTodosBy) {
-            case "title": return OTL.ItemsModel.TitleRole;
-            case "dueTo": return OTL.ItemsModel.EffectiveDueToRole;
-            case "createdAt": return OTL.ItemsModel.CreatedAtRole;
-            case "updatedAt": return OTL.ItemsModel.EffectiveUpdatedAtRole;
-            case "weight": // fall through
-            default: return OTL.ItemsModel.WeightRole;
+            case "title":
+                return OTL.ItemsModel.TitleRole
+            case "dueTo":
+                return OTL.ItemsModel.EffectiveDueToRole
+            case "createdAt":
+                return OTL.ItemsModel.CreatedAtRole
+            case "updatedAt":
+                return OTL.ItemsModel.EffectiveUpdatedAtRole
+            case "weight":
+                // fall through
+            default:
+                return OTL.ItemsModel.WeightRole
             }
         }
 
         property var savedTodoStates: []
 
-        signal attach()
-        signal openTagsEditor()
+        signal attach
+        signal attachFiles(var fileUrls)
+        signal openTagsEditor
 
         function openTodo(todo) {
             page.openPage(todoPage, {
-                              item: OTL.Application.cloneItem(todo)
-                          });
+                              "item": OTL.Application.cloneItem(todo)
+                          })
         }
-
     }
 
     Settings {
@@ -125,7 +140,7 @@ ItemPage {
     DeleteItemDialog {
         id: confirmDeleteDialog
         onAccepted: {
-            page.closePage();
+            page.closePage()
         }
     }
 
@@ -190,13 +205,13 @@ ItemPage {
             text: qsTr("Created At")
             checked: settings.sortTodosBy === "createdAt"
             checkable: true
-            onTriggered: settings.sortTodosBy = "createdAt";
+            onTriggered: settings.sortTodosBy = "createdAt"
         }
         C.MenuItem {
             text: qsTr("Updated At")
             checked: settings.sortTodosBy === "updatedAt"
             checkable: true
-            onTriggered: settings.sortTodosBy = "updatedAt";
+            onTriggered: settings.sortTodosBy = "updatedAt"
         }
     }
 
@@ -232,7 +247,8 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
-        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor
+                                      || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
@@ -247,9 +263,9 @@ ItemPage {
             symbol: {
                 switch (settings.sortTodosBy) {
                 case "title":
-                    return Icons.mdiSortByAlpha;
+                    return Icons.mdiSortByAlpha
                 case "dueTo":
-                    return Icons.mdiEvent;
+                    return Icons.mdiEvent
                 case "createdAt":
                     // fall through
                 case "updatedAt":
@@ -257,7 +273,7 @@ ItemPage {
                 case "weight":
                     // fall through
                 default:
-                    return Icons.mdiFilterList;
+                    return Icons.mdiFilterList
                 }
             }
             symbol2: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
@@ -271,19 +287,19 @@ ItemPage {
             onTodoClicked: d.openTodo(todo)
             onCreateNewItem: {
                 var properties = {
-                    "title": title,
-                };
+                    "title": title
+                }
                 if (args.dueTo) {
                     properties.dueTo = args.dueTo
                 }
-                var todo = OTL.Application.addTodo(
-                            page.library, page.item, properties);
-                itemCreatedNotification.show(todo);
+                var todo = OTL.Application.addTodo(page.library, page.item,
+                                                   properties)
+                itemCreatedNotification.show(todo)
             }
             onItemSaved: {
-                let list = d.savedTodoStates.slice();
-                list.push(itemData);
-                d.savedTodoStates = list;
+                let list = d.savedTodoStates.slice()
+                list.push(itemData)
+                d.savedTodoStates = list
             }
             headerComponent: Column {
                 id: column
@@ -308,7 +324,7 @@ ItemPage {
                     Connections {
                         target: d
                         function onOpenTagsEditor() {
-                            tagsEditor.addTag();
+                            tagsEditor.addTag()
                         }
                     }
                 }
@@ -334,7 +350,10 @@ ItemPage {
                 Connections {
                     target: d
                     function onAttach() {
-                        attach();
+                        attach()
+                    }
+                    function onAttachFiles(fileUrls) {
+                        attachFiles(fileUrls)
                     }
                 }
             }
@@ -355,9 +374,14 @@ ItemPage {
 
     Component {
         id: todoPage
-        TodoPage { library: page.library; todoList: page.item }
+        TodoPage {
+            library: page.library
+            todoList: page.item
+        }
     }
 
-    Actions.CopyTopLevelItem { id: copyTopLevelItemAction; item: page.item }
+    Actions.CopyTopLevelItem {
+        id: copyTopLevelItemAction
+        item: page.item
+    }
 }
-
