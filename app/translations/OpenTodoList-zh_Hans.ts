@@ -778,69 +778,70 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="187"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="419"/>
+        <source>Schedule</source>
+        <translation type="unfinished">时间表</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
         <source>New Library</source>
         <translation type="unfinished">新资料库</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="193"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
         <source>Accounts</source>
         <translation type="unfinished">账户</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="200"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
         <source>Edit List</source>
         <translation type="unfinished">编辑列表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="206"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="213"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="245"/>
         <source>Translate The App...</source>
         <translation type="unfinished">帮助我们翻译这个应用...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="252"/>
         <source>Donate</source>
         <translation type="unfinished">捐助</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="228"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="260"/>
         <source>About...</source>
         <translation type="unfinished">关于...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="241"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="273"/>
         <source>Create Default Library</source>
         <translation type="unfinished">创建默认资料库</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">隐藏时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Show Schedule</source>
         <translation type="unfinished">显示时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="365"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="397"/>
         <source>Move Up</source>
         <translation type="unfinished">向上移动</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="374"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="406"/>
         <source>Move Down</source>
         <translation type="unfinished">向下移动</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="387"/>
-        <source>Schedule</source>
-        <translation type="unfinished">时间表</translation>
     </message>
 </context>
 <context>
@@ -954,12 +955,12 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="30"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
         <source>Sync Now</source>
         <translation type="unfinished">立即同步</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="41"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
         <source>Sync Log</source>
         <translation type="unfinished">同步日志</translation>
     </message>
@@ -995,7 +996,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="276"/>
+        <location filename="../Windows/MainWindow.qml" line="290"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">首先&lt;a href=&apos;#newLibrary&apos;&gt;创建一个新资料库&lt;/a&gt;。资料库用于存储各种项目，例如笔记、待办事项列表和图像。</translation>
     </message>
@@ -1065,47 +1066,52 @@
 <context>
     <name>NewItemWithDueDateDialog</name>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="105"/>
         <source>Today</source>
         <translation type="unfinished">今天</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="106"/>
         <source>Tomorrow</source>
         <translation type="unfinished">明天</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
         <source>This Week</source>
         <translation type="unfinished">本周</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="108"/>
         <source>Next Week</source>
         <translation type="unfinished">下周</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="96"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="109"/>
         <source>Select...</source>
         <translation type="unfinished">选择...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="115"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="139"/>
         <source>Title:</source>
         <translation type="unfinished">标题:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="144"/>
         <source>The title for your new item...</source>
         <translation type="unfinished">新项目的标题...</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
+        <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>
         <source>Create in:</source>
         <translation type="unfinished">创建于:</translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="166"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="227"/>
         <source>Due on:</source>
         <translation type="unfinished">到期于:</translation>
     </message>
@@ -1665,37 +1671,42 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="56"/>
+        <source>Schedule</source>
+        <translation type="unfinished">时间表</translation>
+    </message>
+    <message>
+        <location filename="../Pages/ScheduleViewPage.qml" line="120"/>
         <source>Overdue</source>
         <translation type="unfinished">逾期</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="123"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="142"/>
         <source>Today</source>
         <translation type="unfinished">今天</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="124"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
         <source>Tomorrow</source>
         <translation type="unfinished">明天</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="166"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="179"/>
         <source>Later This Week</source>
         <translation type="unfinished">本周晚些时候</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="168"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="181"/>
         <source>Next Week</source>
         <translation type="unfinished">下周</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="169"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="182"/>
         <source>Coming Next</source>
         <translation type="unfinished">下一步</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="196"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="261"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">尚未安排任何时间...在项目中添加截止日期，以便它们出现在此处。</translation>
     </message>
@@ -1996,7 +2007,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="203"/>
+        <location filename="../Widgets/TodosWidget.qml" line="215"/>
         <source>Due on: %1</source>
         <translation type="unfinished">到期于: %1</translation>
     </message>
@@ -2004,12 +2015,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="283"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="286"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished">滑动以标记为未完成</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="285"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="288"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished">滑动以标记为完成</translation>
     </message>

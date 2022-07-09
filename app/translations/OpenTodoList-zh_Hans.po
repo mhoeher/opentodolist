@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "笔记"
 
-#: ../Widgets/LibrariesSideBar.qml:387
+#: ../Widgets/LibrariesSideBar.qml:198 ../Widgets/LibrariesSideBar.qml:419
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "时间表"
 
-#: ../Widgets/LibrariesSideBar.qml:187
+#: ../Widgets/LibrariesSideBar.qml:219
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "新资料库"
 
-#: ../Widgets/LibrariesSideBar.qml:228
+#: ../Widgets/LibrariesSideBar.qml:260
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "关于..."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "左开侧边栏(&L)"
 
-#: ../Windows/MainWindow.qml:276
+#: ../Windows/MainWindow.qml:290
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "首先<a href='#newLibrary'>创建一个新资料库</a>。资料库用于存储各种项目，例如笔记、待办事项列表和图像。"
@@ -437,37 +437,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "输入资料库标题..."
 
-#: ../Pages/ScheduleViewPage.qml:123
+#: ../Pages/ScheduleViewPage.qml:142
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "今天"
 
-#: ../Pages/ScheduleViewPage.qml:124
+#: ../Pages/ScheduleViewPage.qml:143
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "明天"
 
-#: ../Pages/ScheduleViewPage.qml:166
+#: ../Pages/ScheduleViewPage.qml:179
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "本周晚些时候"
 
-#: ../Pages/ScheduleViewPage.qml:168
+#: ../Pages/ScheduleViewPage.qml:181
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "下周"
 
-#: ../Pages/ScheduleViewPage.qml:169
+#: ../Pages/ScheduleViewPage.qml:182
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "下一步"
 
-#: ../Pages/ScheduleViewPage.qml:196
+#: ../Pages/ScheduleViewPage.qml:261
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "尚未安排任何时间...在项目中添加截止日期，以便它们出现在此处。"
 
-#: ../Pages/ScheduleViewPage.qml:101
+#: ../Pages/ScheduleViewPage.qml:120
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "逾期"
@@ -694,7 +694,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "添加新任务..."
 
-#: ../Widgets/TodosWidget.qml:203
+#: ../Widgets/TodosWidget.qml:215
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "到期于: %1"
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "黑暗"
 
-#: ../Widgets/LibrariesSideBar.qml:206
+#: ../Widgets/LibrariesSideBar.qml:238
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "设置"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "主题:"
 
-#: ../Widgets/LibrariesSideBar.qml:241
+#: ../Widgets/LibrariesSideBar.qml:273
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "创建默认资料库"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。"
 
-#: ../Widgets/LibrariesSideBar.qml:193
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "账户"
 
-#: ../Widgets/LibrariesSideBar.qml:213
+#: ../Widgets/LibrariesSideBar.qml:245
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "帮助我们翻译这个应用..."
@@ -1381,47 +1381,47 @@ msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr "每 %1 天重复一次。"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:92
+#: ../Windows/NewItemWithDueDateDialog.qml:105
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Today"
 msgstr "今天"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:93
+#: ../Windows/NewItemWithDueDateDialog.qml:106
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Tomorrow"
 msgstr "明天"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:94
+#: ../Windows/NewItemWithDueDateDialog.qml:107
 msgctxt "NewItemWithDueDateDialog|"
 msgid "This Week"
 msgstr "本周"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:95
+#: ../Windows/NewItemWithDueDateDialog.qml:108
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Next Week"
 msgstr "下周"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:96
+#: ../Windows/NewItemWithDueDateDialog.qml:109
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
 msgstr "选择..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:115
+#: ../Windows/NewItemWithDueDateDialog.qml:139
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
 msgstr "标题:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:120
+#: ../Windows/NewItemWithDueDateDialog.qml:144
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
 msgstr "新项目的标题..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:126
+#: ../Windows/NewItemWithDueDateDialog.qml:186
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Create in:"
 msgstr "创建于:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:166
+#: ../Windows/NewItemWithDueDateDialog.qml:227
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Due on:"
 msgstr "到期于:"
@@ -1506,22 +1506,22 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "定于明日到期"
 
-#: ../Widgets/TodosWidgetDelegate.qml:283
+#: ../Widgets/TodosWidgetDelegate.qml:286
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "滑动以标记为未完成"
 
-#: ../Widgets/TodosWidgetDelegate.qml:285
+#: ../Widgets/TodosWidgetDelegate.qml:288
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "滑动以标记为完成"
 
-#: ../Menues/LibraryPageActions.qml:30
+#: ../Menues/LibraryPageActions.qml:31
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "立即同步"
 
-#: ../Menues/LibraryPageActions.qml:41
+#: ../Menues/LibraryPageActions.qml:48
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "同步日志"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。"
 
-#: ../Widgets/LibrariesSideBar.qml:200
+#: ../Widgets/LibrariesSideBar.qml:232
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "编辑列表"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "隐藏时间表"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "显示时间表"
 
-#: ../Widgets/LibrariesSideBar.qml:365
+#: ../Widgets/LibrariesSideBar.qml:397
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "向上移动"
 
-#: ../Widgets/LibrariesSideBar.qml:374
+#: ../Widgets/LibrariesSideBar.qml:406
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "向下移动"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "移动待办事项至..."
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:252
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "捐助"
@@ -2616,5 +2616,15 @@ msgstr ""
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
+msgstr ""
+
+#: ../Windows/NewItemWithDueDateDialog.qml:150
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Library"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:56
+msgctxt "ScheduleViewPage|"
+msgid "Schedule"
 msgstr ""
 

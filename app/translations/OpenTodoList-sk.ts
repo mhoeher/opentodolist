@@ -778,68 +778,69 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="187"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="419"/>
+        <source>Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
         <source>New Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="193"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
         <source>Accounts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="200"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
         <source>Edit List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="206"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="213"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="245"/>
         <source>Translate The App...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="220"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="252"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="228"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="260"/>
         <source>About...</source>
         <translation type="unfinished">O stránke</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="241"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="273"/>
         <source>Create Default Library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="354"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="365"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="397"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="374"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="406"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="387"/>
-        <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -954,12 +955,12 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="30"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
         <source>Sync Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="41"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
         <source>Sync Log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -995,7 +996,7 @@
         <translation type="unfinished">Otvor ToDo zoznam</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="276"/>
+        <location filename="../Windows/MainWindow.qml" line="290"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1065,47 +1066,52 @@
 <context>
     <name>NewItemWithDueDateDialog</name>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="92"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="105"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="93"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="106"/>
         <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="94"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
         <source>This Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="95"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="108"/>
         <source>Next Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="96"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="109"/>
         <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="115"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="139"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="120"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="144"/>
         <source>The title for your new item...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="126"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
+        <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>
         <source>Create in:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="166"/>
+        <location filename="../Windows/NewItemWithDueDateDialog.qml" line="227"/>
         <source>Due on:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1665,37 +1671,42 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="101"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="56"/>
+        <source>Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/ScheduleViewPage.qml" line="120"/>
         <source>Overdue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="123"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="142"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="124"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
         <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="166"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="179"/>
         <source>Later This Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="168"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="181"/>
         <source>Next Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="169"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="182"/>
         <source>Coming Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="196"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="261"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1992,7 +2003,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="203"/>
+        <location filename="../Widgets/TodosWidget.qml" line="215"/>
         <source>Due on: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2000,12 +2011,12 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="283"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="286"/>
         <source>Swipe to mark undone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="285"/>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="288"/>
         <source>Swipe to mark done</source>
         <translation type="unfinished"></translation>
     </message>

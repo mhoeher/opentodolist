@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Uwagi"
 
-#: ../Widgets/LibrariesSideBar.qml:387
+#: ../Widgets/LibrariesSideBar.qml:198 ../Widgets/LibrariesSideBar.qml:419
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Terminarz"
 
-#: ../Widgets/LibrariesSideBar.qml:187
+#: ../Widgets/LibrariesSideBar.qml:219
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nowa biblioteka"
 
-#: ../Widgets/LibrariesSideBar.qml:228
+#: ../Widgets/LibrariesSideBar.qml:260
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "O aplikacji"
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Otworzyć &Lewy pasek boczny"
 
-#: ../Windows/MainWindow.qml:276
+#: ../Windows/MainWindow.qml:290
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Zacznij od <a href='#newLibrary'> tworzenie nowej biblioteki</a>. Biblioteki są używane do przechowywania różnego rodzaju elementów, takich jak notatki, listy todo i obrazy."
@@ -437,37 +437,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Wpisz tytuł biblioteki..."
 
-#: ../Pages/ScheduleViewPage.qml:123
+#: ../Pages/ScheduleViewPage.qml:142
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Dziś"
 
-#: ../Pages/ScheduleViewPage.qml:124
+#: ../Pages/ScheduleViewPage.qml:143
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Jutro"
 
-#: ../Pages/ScheduleViewPage.qml:166
+#: ../Pages/ScheduleViewPage.qml:179
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Jeszcze w tym tygodniu"
 
-#: ../Pages/ScheduleViewPage.qml:168
+#: ../Pages/ScheduleViewPage.qml:181
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "W przyszłym tygodniu"
 
-#: ../Pages/ScheduleViewPage.qml:169
+#: ../Pages/ScheduleViewPage.qml:182
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Następne"
 
-#: ../Pages/ScheduleViewPage.qml:196
+#: ../Pages/ScheduleViewPage.qml:261
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "Nic zaplanowanego... Dodaj termin do pozycji, aby się tu pojawiły."
 
-#: ../Pages/ScheduleViewPage.qml:101
+#: ../Pages/ScheduleViewPage.qml:120
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Przeterminowane"
@@ -695,7 +695,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Dodaj nowe zadanie..."
 
-#: ../Widgets/TodosWidget.qml:203
+#: ../Widgets/TodosWidget.qml:215
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Due on: %1"
@@ -715,7 +715,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Ciemny"
 
-#: ../Widgets/LibrariesSideBar.qml:206
+#: ../Widgets/LibrariesSideBar.qml:238
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Ustawienia"
@@ -745,7 +745,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Temat:"
 
-#: ../Widgets/LibrariesSideBar.qml:241
+#: ../Widgets/LibrariesSideBar.qml:273
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Tworzenie Biblioteki Domyślnej"
@@ -1022,12 +1022,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Nie udało się połączyć z serwerem. Proszę sprawdzić nazwę użytkownika, hasło i adres serwera oraz powtórzyć próbę."
 
-#: ../Widgets/LibrariesSideBar.qml:193
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Konta"
 
-#: ../Widgets/LibrariesSideBar.qml:213
+#: ../Widgets/LibrariesSideBar.qml:245
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Przetłumaczyć aplikację..."
@@ -1383,47 +1383,47 @@ msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr "Powtarza się co %1 dni."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:92
+#: ../Windows/NewItemWithDueDateDialog.qml:105
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Today"
 msgstr "Dzisiaj"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:93
+#: ../Windows/NewItemWithDueDateDialog.qml:106
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Tomorrow"
 msgstr "Jutro"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:94
+#: ../Windows/NewItemWithDueDateDialog.qml:107
 msgctxt "NewItemWithDueDateDialog|"
 msgid "This Week"
 msgstr "W tym tygodniu"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:95
+#: ../Windows/NewItemWithDueDateDialog.qml:108
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Next Week"
 msgstr "W następnym tygodniu"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:96
+#: ../Windows/NewItemWithDueDateDialog.qml:109
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
 msgstr "Wybierz..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:115
+#: ../Windows/NewItemWithDueDateDialog.qml:139
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
 msgstr "Tytuł:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:120
+#: ../Windows/NewItemWithDueDateDialog.qml:144
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
 msgstr "Tytuł twojego nowego przedmiotu ..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:126
+#: ../Windows/NewItemWithDueDateDialog.qml:186
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Create in:"
 msgstr "Utwórz w:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:166
+#: ../Windows/NewItemWithDueDateDialog.qml:227
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Due on:"
 msgstr "Ze względu na:"
@@ -1508,22 +1508,22 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Ustaw termin na jutro"
 
-#: ../Widgets/TodosWidgetDelegate.qml:283
+#: ../Widgets/TodosWidgetDelegate.qml:286
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr "Przesuń, aby zaznaczyć cofnięte"
 
-#: ../Widgets/TodosWidgetDelegate.qml:285
+#: ../Widgets/TodosWidgetDelegate.qml:288
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Przesuń, aby oznaczyć jako gotowe"
 
-#: ../Menues/LibraryPageActions.qml:30
+#: ../Menues/LibraryPageActions.qml:31
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Synchronizuj teraz"
 
-#: ../Menues/LibraryPageActions.qml:41
+#: ../Menues/LibraryPageActions.qml:48
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Dziennik synchronizacji"
@@ -1674,27 +1674,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Nie udało się połączyć z serwerem. Sprawdź swoją nazwę użytkownika, hasło i adres serwera i spróbuj ponownie."
 
-#: ../Widgets/LibrariesSideBar.qml:200
+#: ../Widgets/LibrariesSideBar.qml:232
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Edytuj listę"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Ukryj harmonogram"
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Pokaż harmonogram"
 
-#: ../Widgets/LibrariesSideBar.qml:365
+#: ../Widgets/LibrariesSideBar.qml:397
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Podnieść"
 
-#: ../Widgets/LibrariesSideBar.qml:374
+#: ../Widgets/LibrariesSideBar.qml:406
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Padnij"
@@ -1865,7 +1865,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Przenieś do zrobienia ..."
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:252
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Darowizna"
@@ -2618,5 +2618,15 @@ msgstr ""
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
+msgstr ""
+
+#: ../Windows/NewItemWithDueDateDialog.qml:150
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Library"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:56
+msgctxt "ScheduleViewPage|"
+msgid "Schedule"
 msgstr ""
 

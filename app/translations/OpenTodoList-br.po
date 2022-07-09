@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notennoù"
 
-#: ../Widgets/LibrariesSideBar.qml:387
+#: ../Widgets/LibrariesSideBar.qml:198 ../Widgets/LibrariesSideBar.qml:419
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:187
+#: ../Widgets/LibrariesSideBar.qml:219
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Levraoueg nevez"
 
-#: ../Widgets/LibrariesSideBar.qml:228
+#: ../Widgets/LibrariesSideBar.qml:260
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "A-zivout..."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:276
+#: ../Windows/MainWindow.qml:290
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr ""
@@ -437,37 +437,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Bizskrivit titl al levraoueg..."
 
-#: ../Pages/ScheduleViewPage.qml:123
+#: ../Pages/ScheduleViewPage.qml:142
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Hiziv"
 
-#: ../Pages/ScheduleViewPage.qml:124
+#: ../Pages/ScheduleViewPage.qml:143
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Warc'hoazh"
 
-#: ../Pages/ScheduleViewPage.qml:166
+#: ../Pages/ScheduleViewPage.qml:179
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:168
+#: ../Pages/ScheduleViewPage.qml:181
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Ar sizhun a zeu"
 
-#: ../Pages/ScheduleViewPage.qml:169
+#: ../Pages/ScheduleViewPage.qml:182
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:196
+#: ../Pages/ScheduleViewPage.qml:261
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:101
+#: ../Pages/ScheduleViewPage.qml:120
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr ""
@@ -694,7 +694,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Ouzhpennañ un drevell nevez..."
 
-#: ../Widgets/TodosWidget.qml:203
+#: ../Widgets/TodosWidget.qml:215
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr ""
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Teñval"
 
-#: ../Widgets/LibrariesSideBar.qml:206
+#: ../Widgets/LibrariesSideBar.qml:238
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Arventennoù"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:241
+#: ../Widgets/LibrariesSideBar.qml:273
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Krouiñ ul levraoueg dre ziouer"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:193
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Kontoù"
 
-#: ../Widgets/LibrariesSideBar.qml:213
+#: ../Widgets/LibrariesSideBar.qml:245
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Treiñ ar meziant..."
@@ -1381,47 +1381,47 @@ msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr ""
 
-#: ../Windows/NewItemWithDueDateDialog.qml:92
+#: ../Windows/NewItemWithDueDateDialog.qml:105
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Today"
 msgstr "Hiziv"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:93
+#: ../Windows/NewItemWithDueDateDialog.qml:106
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Tomorrow"
 msgstr "Warc'hoazh"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:94
+#: ../Windows/NewItemWithDueDateDialog.qml:107
 msgctxt "NewItemWithDueDateDialog|"
 msgid "This Week"
 msgstr "Ar sizhun-mañ"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:95
+#: ../Windows/NewItemWithDueDateDialog.qml:108
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Next Week"
 msgstr "Ar sizhun a zeu"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:96
+#: ../Windows/NewItemWithDueDateDialog.qml:109
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
 msgstr "Diuzañ..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:115
+#: ../Windows/NewItemWithDueDateDialog.qml:139
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
 msgstr "Titl:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:120
+#: ../Windows/NewItemWithDueDateDialog.qml:144
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
 msgstr ""
 
-#: ../Windows/NewItemWithDueDateDialog.qml:126
+#: ../Windows/NewItemWithDueDateDialog.qml:186
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Create in:"
 msgstr "Krouiñ e:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:166
+#: ../Windows/NewItemWithDueDateDialog.qml:227
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Due on:"
 msgstr ""
@@ -1506,22 +1506,22 @@ msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr ""
 
-#: ../Widgets/TodosWidgetDelegate.qml:283
+#: ../Widgets/TodosWidgetDelegate.qml:286
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
 msgstr ""
 
-#: ../Widgets/TodosWidgetDelegate.qml:285
+#: ../Widgets/TodosWidgetDelegate.qml:288
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:30
+#: ../Menues/LibraryPageActions.qml:31
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:41
+#: ../Menues/LibraryPageActions.qml:48
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr ""
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:200
+#: ../Widgets/LibrariesSideBar.qml:232
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:354
+#: ../Widgets/LibrariesSideBar.qml:386
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:365
+#: ../Widgets/LibrariesSideBar.qml:397
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:374
+#: ../Widgets/LibrariesSideBar.qml:406
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr ""
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:220
+#: ../Widgets/LibrariesSideBar.qml:252
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr ""
@@ -2612,5 +2612,15 @@ msgstr ""
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
+msgstr ""
+
+#: ../Windows/NewItemWithDueDateDialog.qml:150
+msgctxt "NewItemWithDueDateDialog|"
+msgid "Library"
+msgstr ""
+
+#: ../Pages/ScheduleViewPage.qml:56
+msgctxt "ScheduleViewPage|"
+msgid "Schedule"
 msgstr ""
 
