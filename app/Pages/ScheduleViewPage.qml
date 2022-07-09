@@ -37,6 +37,7 @@ C.Page {
         }
         return result
     }
+
     property alias pageActions: libraryActions.actions
     property var undo: {
         if (d.savedItemStates.length > 0) {
@@ -86,6 +87,9 @@ C.Page {
         id: libraryActions
 
         library: page.library
+        syncNowFunction: function () {
+            d.triggerRefresh()
+        }
         onOpenPage: page.openPage(component, properties)
     }
 
@@ -239,6 +243,18 @@ C.Page {
             }
             return null
         }
+
+        // Triggers a refresh.
+        function triggerRefresh() {
+            if (page.library) {
+                OTL.Application.syncLibrary(page.library)
+            } else {
+                let libs = libraries.libraries
+                for (var i = 0; i < libs.length; ++i) {
+                    OTL.Application.syncLibrary(libs[i])
+                }
+            }
+        }
     }
 
     BackgroundLabel {
@@ -291,7 +307,7 @@ C.Page {
         anchors.fill: listView
         refreshEnabled: page.library == null || page.library.hasSynchronizer
         flickable: listView
-        onRefresh: OTL.Application.syncLibrary(page.library)
+        onRefresh: d.triggerRefresh()
     }
 
     SyncErrorNotificationBar {

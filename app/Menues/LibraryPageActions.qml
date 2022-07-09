@@ -21,6 +21,7 @@ Item {
         }
         return result
     }
+    property var syncNowFunction: null
 
     signal openPage(var component, var properties)
 
@@ -28,10 +29,16 @@ Item {
         id: syncNowAction
 
         text: qsTr("Sync Now")
-        enabled: root.library && root.library.hasSynchronizer
+        enabled: (root.library && root.library.hasSynchronizer)
+                 || syncNowFunction
         onTriggered: {
-            console.debug("Manually started syncing " + root.library.name)
-            OTL.Application.syncLibrary(library)
+            if (root.library && root.library.hasSynchronizer) {
+                console.debug("Manually started syncing " + root.library.name)
+                OTL.Application.syncLibrary(library)
+            } else {
+                console.debug("Manually started syncing via callback function")
+                syncNowFunction()
+            }
         }
     }
 
