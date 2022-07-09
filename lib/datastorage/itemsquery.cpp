@@ -21,11 +21,16 @@
 #include <qlmdb/database.h>
 
 #include <QRandomGenerator>
+#include <QLoggingCategory>
+
+#include <algorithm>
 
 #include "datamodel/item.h"
 #include "datamodel/library.h"
 #include "datamodel/todo.h"
 #include "datastorage/itemsquery.h"
+
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.ItemsQuery", QtWarningMsg);
 
 /**
  * @brief Constructor.
@@ -38,7 +43,8 @@ ItemsQuery::ItemsQuery(QObject* parent)
       m_children(),
       m_dataChanged(false),
       m_changedLibrariesUids(),
-      m_changedParentUids()
+      m_changedParentUids(),
+      m_parentsMap()
 {
 }
 
@@ -174,6 +180,7 @@ void ItemsQuery::calculateValues(QLMDB::Transaction& transaction, ItemCacheEntry
     if (item) {
         properties["childrenUpdatedAt"] =
                 earliestChildUpdatedAt(transaction, entry->id.toByteArray());
+        properties["parents"] = QVariant::fromValue(lookupParents(transaction, item));
 
         auto todoList = qobject_cast<TodoList*>(item);
         if (todoList) {
@@ -306,6 +313,52 @@ QSharedPointer<Item> ItemsQuery::itemFromCache(QLMDB::Transaction& t, const QUui
         return ItemPtr(Item::decache(ItemCacheEntry::fromByteArray(data, itemUid.toByteArray())));
     }
     return nullptr;
+}
+
+/**
+ * @brief Get a list of UIDs of the parents of the item.
+ *
+ * This returns a list of UIDs of the parents of the @p item. The first entry in the list
+ * is the UID of the library to which the item belongs, followed by the UIDs of the other parents
+ * (if any) up to the direct one of the item.
+ *
+ * If an error occurred, an empty list is returned.
+ */
+QVector<QUuid> ItemsQuery::lookupParents(QLMDB::Transaction& t, const Item* item)
+{
+    QVector<QUuid> result;
+    if (m_parentsMap.contains(item->uid())) {
+        // We already looked up parents for this item. Restore from the local cache
+        for (auto uid = item->parentId(); !uid.isNull(); uid = m_parentsMap.value(uid, QUuid())) {
+            result.append(uid);
+        }
+        std::reverse(result.begin(), result.end());
+    } else {
+        m_parentsMap[item->uid()] = item->parentId();
+        auto topLevelItem = qobject_cast<const TopLevelItem*>(item);
+        if (topLevelItem) {
+            // The item is a top level item. It does not have any other parents than the library it
+            // belongs to. Hence, create a new list containing only the library UID.
+            result.append(item->parentId());
+        } else {
+            // The item is an item which has another item as direct parent. Hence, look up the other
+            // item, retrieve its parents and then append the parent item's UID.
+            auto parentItem = itemFromCache(t, item->parentId());
+            if (parentItem) {
+                result = lookupParents(t, parentItem.data());
+                if (result.isEmpty()) {
+                    // This should not happen! Propagate through the empty list (which indicates an
+                    // error).
+                    return result;
+                }
+                result.append(item->parentId());
+            } else {
+                qCWarning(log) << "Failed to lookup parent item" << item->parentId() << "for item"
+                               << item->uid();
+            }
+        }
+    }
+    return result;
 }
 
 /**

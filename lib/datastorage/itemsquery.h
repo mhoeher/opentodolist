@@ -21,6 +21,7 @@
 #define DATASTORAGE_ITEMSQUERY_H_
 
 #include <QDateTime>
+#include <QHash>
 #include <QObject>
 #include <QSet>
 #include <QSharedPointer>
@@ -107,6 +108,7 @@ protected:
     QDateTime earliestChildUpdatedAt(QLMDB::Transaction& transaction, const QByteArray& parentId);
 
     QSharedPointer<Item> itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid);
+    QVector<QUuid> lookupParents(QLMDB::Transaction& t, const Item* item);
 
 private:
     QSharedPointer<QLMDB::Context> m_context;
@@ -116,6 +118,7 @@ private:
     bool m_dataChanged;
     QSet<QByteArray> m_changedLibrariesUids;
     QSet<QByteArray> m_changedParentUids;
+    QHash<QUuid, QUuid> m_parentsMap; // Maps from item UID -> parent UID
 
     void finish();
 };

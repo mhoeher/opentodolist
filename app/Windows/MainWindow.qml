@@ -53,6 +53,20 @@ C.ApplicationWindow {
                 OTL.Application.saveValue("lastTag", tag)
                 OTL.Application.saveValue("specialView", special)
             }
+        } else if (lib === null) {
+            // Special case: If lib is null, check if a global view has been requested
+            switch (special) {
+            case "schedule":
+                stackView.push(scheduleViewPage, {})
+                if (d.completed) {
+                    OTL.Application.saveValue("lastLibrary", "")
+                    OTL.Application.saveValue("lastTag", "")
+                    OTL.Application.saveValue("specialView", special)
+                }
+                break
+            default:
+                break
+            }
         }
     }
 

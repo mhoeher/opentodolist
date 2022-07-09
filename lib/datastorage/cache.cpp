@@ -141,23 +141,23 @@ bool Cache::open()
     m_valid = false;
     // Try to open env with initial size, but if we don't have enough disk space,
     // try to open it with less memory, down to at least 10MB.
-    auto cacheSize = m_cacheSize;
+    auto cacheSizeValue = m_cacheSize;
     do {
         m_context.reset(new QLMDB::Context);
         m_context->setMaxDBs(3);
         m_context->setPath(m_cacheDirectory);
-        m_context->setMapSize(cacheSize);
+        m_context->setMapSize(cacheSizeValue);
         if (m_context->open()) {
             break;
         } else if (m_context->lastError() == QLMDB::Errors::OutOfMemory) {
             m_context.clear();
-            cacheSize = cacheSize / 2;
-            if (cacheSize < 10U * 1024U * 1024U) {
+            cacheSizeValue = cacheSizeValue / 2;
+            if (cacheSizeValue < 10U * 1024U * 1024U) {
                 qCWarning(log) << "Finally failed to open cache - we need at "
                                   "least 10MB.";
                 break;
             } else {
-                qCWarning(log) << "Failed to open cache with size of" << cacheSize
+                qCWarning(log) << "Failed to open cache with size of" << cacheSizeValue
                                << "bytes, trying smaller cache...";
             }
         } else {

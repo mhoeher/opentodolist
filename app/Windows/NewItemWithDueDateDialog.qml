@@ -21,6 +21,7 @@ CenteredDialog {
     readonly property alias parentItem: parentEdit.currentValue
     readonly property alias itemType: d.itemType
     readonly property alias newItemTitle: titleEdit.displayText
+    readonly property alias selectedLibrary: d.selectedLibrary
 
     function newItemDueOn() {
         // Note: We make this a function to force evaluation when new items are
@@ -28,31 +29,31 @@ CenteredDialog {
         // the dates when the view remains open for a long time.
         switch (dueDateEdit.displayText) {
         case d.today:
-            return DateUtils.today();
+            return DateUtils.today()
         case d.tomorrow:
-            return DateUtils.tomorrow();
+            return DateUtils.tomorrow()
         case d.thisWeek:
-            return DateUtils.endOfThisWeek();
+            return DateUtils.endOfThisWeek()
         case d.nextWeek:
-            return DateUtils.endOfNextWeek();
+            return DateUtils.endOfNextWeek()
         default:
-            return d.customDate;
+            return d.customDate
         }
     }
 
     function createNote() {
-        d.itemType = "Note";
-        d.open();
+        d.itemType = "Note"
+        d.open()
     }
 
     function createTodoList() {
-        d.itemType = "TodoList";
-        d.open();
+        d.itemType = "TodoList"
+        d.open()
     }
 
     function createTodo() {
-        d.itemType = "Todo";
-        d.open();
+        d.itemType = "Todo"
+        d.open()
     }
 
     Settings {
@@ -61,28 +62,40 @@ CenteredDialog {
         category: "NewItemWithDueDateDialog/" + d.itemType
     }
 
+    Settings {
+        id: pageSettings
+
+        category: "NewItemWithDueDateDialog"
+
+        property var lastLibraryUid
+    }
+
     standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
     Component.onCompleted: {
-        let okButton = standardButton(C.DialogButtonBox.Ok);
-        d.okButton = okButton;
-        okButton.enabled = Qt.binding(function() {
-            let result = dialog.newItemTitle !== "" && DateUtils.validDate(dialog.newItemDueOn());
+        let okButton = standardButton(C.DialogButtonBox.Ok)
+        d.okButton = okButton
+        okButton.enabled = Qt.binding(function () {
+            let result = dialog.newItemTitle !== "" && DateUtils.validDate(
+                    dialog.newItemDueOn())
             if (d.itemType === "Todo") {
-                result = result && parentEdit.currentValue;
+                result = result && !!parentEdit.currentValue
             }
-            return result;
-        });
+            if (!d.selectedLibrary) {
+                result = false
+            }
+            return result
+        })
     }
 
     QtObject {
         id: d
 
         function open() {
-            titleEdit.clear();
-            customDate = null;
-            dueDateEdit.currentIndex = 0;
-            dialog.open();
-            titleEdit.forceActiveFocus();
+            titleEdit.clear()
+            customDate = null
+            dueDateEdit.currentIndex = 0
+            dialog.open()
+            titleEdit.forceActiveFocus()
         }
 
         property string itemType: ""
@@ -94,12 +107,23 @@ CenteredDialog {
         readonly property string thisWeek: qsTr("This Week")
         readonly property string nextWeek: qsTr("Next Week")
         readonly property string selectDate: qsTr("Select...")
+        property OTL.Library selectedLibrary: {
+            if (dialog.library) {
+                return dialog.library
+            } else if (libraryEdit.currentValue) {
+                return libraryEdit.currentValue
+            } else {
+                return null
+            }
+        }
 
         function accept() {
             if (okButton.enabled) {
-                dialog.accept();
+                dialog.accept()
             }
         }
+
+        onSelectedLibraryChanged: parentEdit.currentIndex = -1
     }
 
     ListModel {
@@ -123,6 +147,42 @@ CenteredDialog {
         }
 
         C.Label {
+            text: qsTr("Library")
+            visible: !dialog.library
+        }
+
+        C.ComboBox {
+            id: libraryEdit
+            visible: !dialog.library
+            Layout.fillWidth: true
+            model: OTL.LibrariesModel {
+                cache: dialog.library ? null : OTL.Application.cache
+                onUpdateFinished: {
+                    if (!libraryEdit.currentValue) {
+                        let lastUid = pageSettings.lastLibraryUid
+                        if (lastUid !== null) {
+                            for (var i = 0; i < libraryEdit.count; ++i) {
+                                if (libraryEdit.valueAt(i).uid === lastUid) {
+                                    libraryEdit.currentIndex = i
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            textRole: "name"
+            valueRole: "library"
+            delegate: C.ItemDelegate {
+                width: parent.width
+                text: name
+                onClicked: {
+                    pageSettings.lastLibraryUid = library.uid
+                }
+            }
+        }
+
+        C.Label {
             text: qsTr("Create in:")
             visible: d.needParent
         }
@@ -133,18 +193,19 @@ CenteredDialog {
             visible: d.needParent
             Layout.fillWidth: true
             model: OTL.ItemsModel {
-                cache: d.needParent ? OTL.Application.cache : null
-                parentItem: dialog.library.uid
+                cache: d.needParent
+                       && d.selectedLibrary ? OTL.Application.cache : null
+                parentItem: d.selectedLibrary ? d.selectedLibrary.uid : ""
                 itemType: "TodoList"
             }
             onCountChanged: {
-                if (!parentEdit.currentValue) {
-                    let lastUid = settings.value(dialog.library.uid, null);
+                if (!parentEdit.currentValue && d.selectedLibrary) {
+                    let lastUid = settings.value(d.selectedLibrary.uid, null)
                     if (lastUid !== null) {
                         for (var i = 0; i < parentEdit.count; ++i) {
                             if (parentEdit.valueAt(i).uid === lastUid) {
-                                parentEdit.currentIndex = i;
-                                break;
+                                parentEdit.currentIndex = i
+                                break
                             }
                         }
                     }
@@ -157,7 +218,7 @@ CenteredDialog {
                 width: parent.width
                 text: title
                 onClicked: {
-                    settings.setValue(dialog.library.uid, uid);
+                    settings.setValue(d.selectedLibrary.uid, uid)
                 }
             }
         }
@@ -169,18 +230,12 @@ CenteredDialog {
         C.ComboBox {
             id: dueDateEdit
 
-            model: [
-                d.today,
-                d.tomorrow,
-                d.thisWeek,
-                d.nextWeek,
-                d.selectDate
-            ]
+            model: [d.today, d.tomorrow, d.thisWeek, d.nextWeek, d.selectDate]
             displayText: {
                 if (DateUtils.validDate(d.customDate)) {
-                    return DateUtils.format(d.customDate);
+                    return DateUtils.format(d.customDate)
                 } else {
-                    return currentText;
+                    return currentText
                 }
             }
             delegate: C.ItemDelegate {
@@ -188,9 +243,9 @@ CenteredDialog {
                 width: parent.width
                 onClicked: {
                     if (modelData === d.selectDate) {
-                        dateSelectionDialog.open();
+                        dateSelectionDialog.open()
                     } else {
-                        d.customDate = null;
+                        d.customDate = null
                     }
                 }
             }
@@ -199,18 +254,17 @@ CenteredDialog {
             DateSelectionDialog {
                 id: dateSelectionDialog
                 onAccepted: {
-                    d.customDate = selectedDate;
+                    d.customDate = selectedDate
                     if (!DateUtils.validDate(d.customDate)) {
-                        dueDateEdit.currentIndex = 0;
+                        dueDateEdit.currentIndex = 0
                     }
                 }
                 onRejected: {
                     if (!DateUtils.validDate(d.customDate)) {
-                        dueDateEdit.currentIndex = 0;
+                        dueDateEdit.currentIndex = 0
                     }
                 }
             }
         }
-
     }
 }

@@ -49,7 +49,14 @@ C.Pane {
                     doShowLibrary()
                 }
             }
+        } else if (lastLibrary == "" && lastTag == ""
+                   && lastSpecialView === "schedule") {
+            currentLibrary = null
+            currentTag = ""
+            specialView = lastSpecialView
+            doShowLibrary()
         }
+
         previousLibraryOpened = true
     }
 
@@ -78,6 +85,10 @@ C.Pane {
         id: d
 
         function isSelectedLibrary(lib) {
+            if (lib === null && sidebar.currentLibrary == null) {
+                return true
+            }
+
             return !!lib && !!sidebar.currentLibrary
                     && lib.uid === sidebar.currentLibrary.uid
         }
@@ -179,6 +190,27 @@ C.Pane {
             model: sortFilterModel
             implicitWidth: childrenRect.width
             implicitHeight: childrenRect.height
+
+            header: Column {
+                width: parent.width
+
+                LibrarySideBarButton {
+                    text: qsTr("Schedule")
+                    symbol: Icons.mdiSchedule
+                    highlighted: d.isSelectedLibrary(null) && currentTag === ""
+                                 && specialView === "schedule"
+                    onClicked: {
+                        currentLibrary = null
+                        currentTag = ""
+                        specialView = "schedule"
+                        helpVisible = false
+                        settingsVisible = false
+                        accountsVisible = false
+                        sidebar.close()
+                        doShowLibrary()
+                    }
+                }
+            }
 
             footer: Column {
                 width: parent.width

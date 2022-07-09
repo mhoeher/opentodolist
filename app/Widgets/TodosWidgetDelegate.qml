@@ -25,6 +25,7 @@ C.SwipeDelegate {
     property bool allowSorting: false
     property bool drawSeperator: true
     property ItemDragTile dragTile
+    property alias leftColorSwatch: leftColorSwatch
 
     signal itemPressedAndHold
     signal itemClicked
@@ -42,6 +43,8 @@ C.SwipeDelegate {
         width: parent.width
 
         C.ToolButton {
+            id: leftToolButton
+
             font.family: Fonts.icons
             symbol: {
                 switch (swipeDelegate.item.itemType) {
@@ -341,6 +344,15 @@ C.SwipeDelegate {
             }
             swipeDelegate.toggleDoneOnClose = false
         }
+    }
+
+    Rectangle {
+        id: leftColorSwatch
+
+        height: parent.height
+        width: AppSettings.smallSpace
+        color: "transparent"
+        visible: false
     }
 
     QtObject {
