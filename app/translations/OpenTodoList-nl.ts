@@ -1103,7 +1103,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verzameling</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>

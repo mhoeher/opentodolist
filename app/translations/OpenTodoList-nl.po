@@ -2622,10 +2622,10 @@ msgstr "Wordt eeuwig herhaald"
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
+msgstr "Verzameling"
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
+msgstr "Schema"
 
