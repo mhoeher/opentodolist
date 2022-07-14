@@ -39,7 +39,11 @@ C.Pane {
     }
 
     function reopenLastLibrary() {
-        if (lastLibrary != "" && !previousLibraryOpened) {
+        if (previousLibraryOpened) {
+            return
+        }
+
+        if (lastLibrary != "") {
             for (var i = 0; i < librariesModel.count; ++i) {
                 var lib = librariesModel.get(i)
                 if (lib.uid.toString() === lastLibrary) {
