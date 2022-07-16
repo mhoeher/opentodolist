@@ -40,6 +40,12 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.41.1" date="2022-07-14">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#547: App UI reloads when the last opened view before exiting the app was the global schedule page.</li>
+        </ul>
+    </release>
     <release version="3.41.0" date="2022-07-09">
         <p>This release includes the following changes:</p>
         <ul>
