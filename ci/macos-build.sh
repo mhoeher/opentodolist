@@ -16,6 +16,11 @@ if [ -z "$QT_VERSION" ]; then
   exit 1
 fi
 
+if [ -z "$MACOS_TEAM_ID" ]; then
+    # Default Team ID to use:
+    MACOS_TEAM_ID="786Z636JV9"
+fi
+
 if [ -z "$OSX_DEPLOYMENT_TARGET" ]; then
     OSX_DEPLOYMENT_TARGET=10.13
 fi
@@ -75,42 +80,15 @@ ditto \
 # Make sure the app has been signed:
 codesign -v app/OpenTodoList.app
 
-# Upload the archive for notarization:
-REQUEST_UUID=$(xcrun altool \
-    --notarize-app \
-    -t osx \
-    -f "app/OpenTodoList.zip" \
-    --primary-bundle-id="net.rpdev.opentodolist.zip" \
-    -u "martin@rpdev.net" \
-    -p "$OPENTODOLIST_STORE_KEY" | \
-    grep 'RequestUUID =' | awk '{ print $3; }')
-
-i="0"
-while [ $i -lt 120 ]; do
-    echo "Waiting for notarization to complete..."
-    sleep 30
-    STATUS=$(xcrun altool \
-        --notarization-info $REQUEST_UUID \
-        -u "martin@rpdev.net" \
-        -p "$OPENTODOLIST_STORE_KEY" | \
-        grep 'Status:' | awk '{ print $2 $3; }')
-    echo "Notarization status is: ${STATUS}"
-    case $STATUS in
-        success)
-            echo "Notarization finished successfully..."
-            break
-        ;;
-        "inprogress")
-            echo "Notarization still ongoing..."
-            continue
-        ;;
-        *)
-            echo "Notarization finished with an error!"
-            false
-        ;;
-    esac
-    i=$[$i+1]
-done
+# Upload the archive for notarization (see
+# https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
+# for details):
+xcrun notarytool submit \
+    "app/OpenTodoList.zip" \
+    --wait \
+    --apple-id "martin@rpdev.net" \
+    --team-id "$MACOS_TEAM_ID" \
+    --password "$OPENTODOLIST_STORE_KEY"
 
 # Include the notarization ticket in the app bundle:
 xcrun stapler staple "app/OpenTodoList.app"
