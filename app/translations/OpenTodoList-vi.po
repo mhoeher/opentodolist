@@ -178,17 +178,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Ghi chú"
 
-#: ../Widgets/LibrariesSideBar.qml:198 ../Widgets/LibrariesSideBar.qml:419
+#: ../Widgets/LibrariesSideBar.qml:202 ../Widgets/LibrariesSideBar.qml:423
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Lịch trình"
 
-#: ../Widgets/LibrariesSideBar.qml:219
+#: ../Widgets/LibrariesSideBar.qml:223
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Thư viện mới"
 
-#: ../Widgets/LibrariesSideBar.qml:260
+#: ../Widgets/LibrariesSideBar.qml:264
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Về ứng dụng"
@@ -715,7 +715,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Tối"
 
-#: ../Widgets/LibrariesSideBar.qml:238
+#: ../Widgets/LibrariesSideBar.qml:242
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Cài đặt"
@@ -745,7 +745,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Chủ đề:"
 
-#: ../Widgets/LibrariesSideBar.qml:273
+#: ../Widgets/LibrariesSideBar.qml:277
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Tạo thư viện mặc định"
@@ -1021,12 +1021,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Không thể kết nối với máy chủ. Vui lòng kiểm tra tên người dùng, mật khẩu và địa chỉ máy chủ và thử lại."
 
-#: ../Widgets/LibrariesSideBar.qml:225
+#: ../Widgets/LibrariesSideBar.qml:229
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Tài khoản"
 
-#: ../Widgets/LibrariesSideBar.qml:245
+#: ../Widgets/LibrariesSideBar.qml:249
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Dịch ứng dụng ..."
@@ -1673,27 +1673,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Không thể kết nối đến server. Bạn hãy thử kiểm tra lại tên người dùng/mật khẩu  hoặc địa chỉ server và sau đó thử lại."
 
-#: ../Widgets/LibrariesSideBar.qml:232
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:386
+#: ../Widgets/LibrariesSideBar.qml:390
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:386
+#: ../Widgets/LibrariesSideBar.qml:390
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:397
+#: ../Widgets/LibrariesSideBar.qml:401
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:406
+#: ../Widgets/LibrariesSideBar.qml:410
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr ""
@@ -1864,7 +1864,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:252
+#: ../Widgets/LibrariesSideBar.qml:256
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr ""

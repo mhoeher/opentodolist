@@ -780,68 +780,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="419"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="202"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="423"/>
         <source>Schedule</source>
         <translation type="unfinished">Programación</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
         <source>New Library</source>
         <translation type="unfinished">Nueva Biblioteca</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="229"/>
         <source>Accounts</source>
         <translation type="unfinished">Cuentas</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
         <source>Edit List</source>
         <translation type="unfinished">Editar lista</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="242"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="245"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="249"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Traducir la aplicación...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="252"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="256"/>
         <source>Donate</source>
         <translation type="unfinished">Donar</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="260"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="264"/>
         <source>About...</source>
         <translation type="unfinished">Acerca de...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="273"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="277"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Crear una biblioteca predeterminada</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">Ocultar calendario</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
         <source>Show Schedule</source>
         <translation type="unfinished">Mostrar calendario</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="397"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="401"/>
         <source>Move Up</source>
         <translation type="unfinished">Mover arriba</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="406"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="410"/>
         <source>Move Down</source>
         <translation type="unfinished">Move abajo</translation>
     </message>

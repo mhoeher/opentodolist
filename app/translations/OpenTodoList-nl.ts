@@ -778,68 +778,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="419"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="202"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="423"/>
         <source>Schedule</source>
         <translation type="unfinished">Schema</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
         <source>New Library</source>
         <translation type="unfinished">Nieuwe verzameling</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="229"/>
         <source>Accounts</source>
         <translation type="unfinished">Accounts</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
         <source>Edit List</source>
         <translation type="unfinished">Lijst aanpassen</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="242"/>
         <source>Settings</source>
         <translation type="unfinished">Instellingen</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="245"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="249"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Vertaal deze app…</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="252"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="256"/>
         <source>Donate</source>
         <translation type="unfinished">Doneren</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="260"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="264"/>
         <source>About...</source>
         <translation type="unfinished">Over…</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="273"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="277"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Standaardverzameling aanmaken</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">Planning verbergen</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
         <source>Show Schedule</source>
         <translation type="unfinished">Planning tonen</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="397"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="401"/>
         <source>Move Up</source>
         <translation type="unfinished">Omhoog verplaatsen</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="406"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="410"/>
         <source>Move Down</source>
         <translation type="unfinished">Omlaag verplaatsen</translation>
     </message>

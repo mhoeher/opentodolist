@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notes"
 
-#: ../Widgets/LibrariesSideBar.qml:198 ../Widgets/LibrariesSideBar.qml:419
+#: ../Widgets/LibrariesSideBar.qml:202 ../Widgets/LibrariesSideBar.qml:423
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Programació"
 
-#: ../Widgets/LibrariesSideBar.qml:219
+#: ../Widgets/LibrariesSideBar.qml:223
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nova biblioteca"
 
-#: ../Widgets/LibrariesSideBar.qml:260
+#: ../Widgets/LibrariesSideBar.qml:264
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Quant a..."
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Fosc"
 
-#: ../Widgets/LibrariesSideBar.qml:238
+#: ../Widgets/LibrariesSideBar.qml:242
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Ajusts"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Widgets/LibrariesSideBar.qml:273
+#: ../Widgets/LibrariesSideBar.qml:277
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Crea una biblioteca predeterminada"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexió amb el servidor ha fallat. Comproveu el non d'usuari, contrasenya i adreça del servidor, i torneu-ho a provar."
 
-#: ../Widgets/LibrariesSideBar.qml:225
+#: ../Widgets/LibrariesSideBar.qml:229
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Comptes"
 
-#: ../Widgets/LibrariesSideBar.qml:245
+#: ../Widgets/LibrariesSideBar.qml:249
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Tradueix l'aplicació..."
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexió amb el servidor ha fallat. Comproveu el non d'usuari, contrasenya i adreça del servidor, i torneu-ho a provar."
 
-#: ../Widgets/LibrariesSideBar.qml:232
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Edita la llista"
 
-#: ../Widgets/LibrariesSideBar.qml:386
+#: ../Widgets/LibrariesSideBar.qml:390
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Amaga la planificació"
 
-#: ../Widgets/LibrariesSideBar.qml:386
+#: ../Widgets/LibrariesSideBar.qml:390
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Mostra la planificació"
 
-#: ../Widgets/LibrariesSideBar.qml:397
+#: ../Widgets/LibrariesSideBar.qml:401
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Moure Amunt"
 
-#: ../Widgets/LibrariesSideBar.qml:406
+#: ../Widgets/LibrariesSideBar.qml:410
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Moure avall"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Mou la Llista de tasques a..."
 
-#: ../Widgets/LibrariesSideBar.qml:252
+#: ../Widgets/LibrariesSideBar.qml:256
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Donatius"

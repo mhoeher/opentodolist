@@ -778,68 +778,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="198"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="419"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="202"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="423"/>
         <source>Schedule</source>
         <translation type="unfinished">时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="219"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
         <source>New Library</source>
         <translation type="unfinished">新资料库</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="229"/>
         <source>Accounts</source>
         <translation type="unfinished">账户</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="232"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
         <source>Edit List</source>
         <translation type="unfinished">编辑列表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="238"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="242"/>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="245"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="249"/>
         <source>Translate The App...</source>
         <translation type="unfinished">帮助我们翻译这个应用...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="252"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="256"/>
         <source>Donate</source>
         <translation type="unfinished">捐助</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="260"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="264"/>
         <source>About...</source>
         <translation type="unfinished">关于...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="273"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="277"/>
         <source>Create Default Library</source>
         <translation type="unfinished">创建默认资料库</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">隐藏时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="386"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
         <source>Show Schedule</source>
         <translation type="unfinished">显示时间表</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="397"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="401"/>
         <source>Move Up</source>
         <translation type="unfinished">向上移动</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="406"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="410"/>
         <source>Move Down</source>
         <translation type="unfinished">向下移动</translation>
     </message>
