@@ -370,7 +370,7 @@ appstore-macos:
         - macos
     when: manual
     script:
-      - xcrun altool --upload-package build-macos/dist-store/OpenTodoList-signed.pkg -u martin@rpdev.net  -p "$OPENTODOLIST_STORE_KEY" --type macos --apple-id 1490013766 --bundle-id net.rpdev.OpenTodoList --bundle-version $(cut -d '.' -f1).$(cut -d '.' -f2).$CI_PIPELINE_IID --bundle-short-version-string $(cat ../version.txt)
+      - xcrun altool --upload-package build-macos/dist-store/OpenTodoList-signed.pkg -u martin@rpdev.net  -p "$OPENTODOLIST_STORE_KEY" --type macos --apple-id 1490013766 --bundle-id net.rpdev.OpenTodoList --bundle-version $(cat version.txt | cut -d '.' -f1).$(cat version.txt | cut -d '.' -f2).$CI_PIPELINE_IID --bundle-short-version-string $(cat version.txt)
     needs:
       - macos
 
