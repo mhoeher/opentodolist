@@ -59,9 +59,15 @@ mkdir -p app/OpenTodoList.app/Contents/translations
 cp $QT_DIR/translations/qt*.qm app/OpenTodoList.app/Contents/translations/
 
 
+###########################################
+# Create app for distribution via website #
+###########################################
+
 # Include Qt Runtime in App Bundle. Also sign the bundle
 # and prepare it for notarization:
-pushd app
+mkdir -p dist-web
+cp -r app/OpenTodoList.app dist-web
+pushd dist-web
 $QT_DIR/bin/macdeployqt \
     OpenTodoList.app/ \
     -qmldir=../../app \
@@ -75,33 +81,26 @@ ditto \
     -ck --rsrc \
     --sequesterRsrc \
     --keepParent \
-    "app/OpenTodoList.app" "app/OpenTodoList.zip"
+    "dist-web/OpenTodoList.app" "dist-web/OpenTodoList.zip"
 
 # Make sure the app has been signed:
-codesign -v app/OpenTodoList.app
+codesign -v dist-web/OpenTodoList.app
 
 # Upload the archive for notarization (see
 # https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
 # for details):
 xcrun notarytool submit \
-    "app/OpenTodoList.zip" \
+    "dist-web/OpenTodoList.zip" \
     --wait \
     --apple-id "martin@rpdev.net" \
     --team-id "$MACOS_TEAM_ID" \
     --password "$OPENTODOLIST_STORE_KEY"
 
 # Include the notarization ticket in the app bundle:
-xcrun stapler staple "app/OpenTodoList.app"
-
-# Upload the App Bundle:
-xcrun altool \
-    --upload-app \
-    -f "app/OpenTodoList.app" \
-    -u "martin@rpdev.net" \
-    -p "$OPENTODOLIST_STORE_KEY" || true
+xcrun stapler staple "dist-web/OpenTodoList.app"
 
 # Prepare a "beautified" folder:
-cd app
+cd dist-web
 mkdir dmg.in
 cp -R OpenTodoList.app dmg.in
 cp ../../templates/macos/DS_Store ./dmg.in/.DS_Store
@@ -124,3 +123,39 @@ while [ $i -lt 5 ]; do
     fi
     i=$[$i+1]
 done
+
+cd ..
+cp dist-web/OpenTodoList.dmg app/
+
+
+#################################################
+# Create Package for Distribution via App Store #
+#################################################
+
+mkdir dist-store
+cp -r app/OpenTodoList.app dist-store
+
+pushd dist-store
+$QT_DIR/bin/macdeployqt \
+    OpenTodoList.app/ \
+    -qmldir=../../app \
+    -appstore-compliant \
+    -sign-for-notarization="3rd Party Mac Developer Application: Martin Hoeher (786Z636JV9)"
+popd
+xcrun codesign \
+    -s "3rd Party Mac Developer Application: Martin Hoeher (786Z636JV9)" \
+    -v -f \
+    -o runtime \
+    --entitlements ../app/OpenTodoList.entitlements \
+    "dist-store/OpenTodoList.app"
+
+# Upload the App Bundle:
+xcrun productbuild --component "dist-store/OpenTodoList.app" /Applications "dist-store/OpenTodoList.pkg"
+xcrun productsign --sign "3rd Party Mac Developer Installer: Martin Hoeher (786Z636JV9)" "dist-store/OpenTodoList.pkg" "dist-store/OpenTodoList-signed.pkg"
+#xcrun productsign --sign "Developer ID Installer: Martin Hoeher (786Z636JV9)" "dist-store/OpenTodoList.pkg" "dist-store/OpenTodoList-signed.pkg"
+xcrun altool --validate-app \
+    -f "dist-store/OpenTodoList-signed.pkg" \
+    -t macos \
+    -u "martin@rpdev.net" \
+    -p "$OPENTODOLIST_STORE_KEY"
+
