@@ -21,7 +21,12 @@ if(WIN32)
     set(APP_FLAGS WIN32)
 endif()
 
-if(APPLE)
+set(CI_PIPELINE_IID $ENV{CI_PIPELINE_IID})
+if("${CI_PIPELINE_IID}" STREQUAL "")
+    set(CI_PIPELINE_IID "0")
+endif()
+
+if(APPLE) 
     set(APP_FLAGS MACOSX_BUNDLE)
     set(PROJECT_SOURCES ${PROJECT_SOURCES} res/OpenTodoList.icns)
     set(MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns)
@@ -42,10 +47,6 @@ else()
         include(../3rdparty/QtIosCMake/AddQtIosApp.cmake)
         include(../3rdparty/QtStaticCMake/QtStaticCMake.cmake)
         add_executable(OpenTodoList)
-        set(CI_PIPELINE_IID $ENV{CI_PIPELINE_IID})
-        if("${CI_PIPELINE_IID}" STREQUAL "")
-            set(CI_PIPELINE_IID "0")
-        endif()
         add_qt_ios_app(
             OpenTodoList
             NAME "OpenTodoList"
@@ -85,6 +86,12 @@ else()
         add_executable(OpenTodoList ${APP_FLAGS} ${PROJECT_SOURCES} ${APP_RESOURCES})
     endif()
 endif()
+
+set_target_properties(
+    OpenTodoList
+    PROPERTIES
+        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
+)
 
 target_compile_definitions(
     OpenTodoList

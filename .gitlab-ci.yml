@@ -181,6 +181,7 @@ macos:
   artifacts:
     paths:
       - build-macos/app/OpenTodoList.dmg
+      - build-macos/dist-store/OpenTodoList-signed.pkg
     expire_in: 1 week
   variables:
     QT_VERSION: "5.15.2"
@@ -362,6 +363,16 @@ appstore:
         - xcrun altool --upload-app --type ios --file build-ios-cmake/app/OpenTodoListIpa/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
     needs:
       - ios
+
+appstore-macos:
+    stage: deploy
+    tags:
+        - macos
+    when: manual
+    script:
+      - xcrun altool --upload-package build-macos/dist-store/OpenTodoList-signed.pkg -u martin@rpdev.net  -p "$OPENTODOLIST_STORE_KEY" --type macos --apple-id 1490013766 --bundle-id net.rpdev.OpenTodoList --bundle-version $(cat version.txt | cut -d '.' -f1).$(cat version.txt | cut -d '.' -f2).$CI_PIPELINE_IID --bundle-short-version-string $(cat version.txt)
+    needs:
+      - macos
 
 aur_release:
     stage: deploy
