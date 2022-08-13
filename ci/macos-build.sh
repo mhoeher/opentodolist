@@ -35,7 +35,7 @@ cmake \
     -GNinja \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=$OSX_DEPLOYMENT_TARGET \
     -DCMAKE_PREFIX_PATH=$QT_DIR \
-    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
@@ -44,6 +44,8 @@ cmake \
     ..
 cmake --build .
 cmake --build . --target test
+
+exit 0
 
 # For each localized file, create an empty "lproj" folder in the
 # app bundle - this causes macOS to localize the system menu
