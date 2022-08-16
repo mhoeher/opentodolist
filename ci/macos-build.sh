@@ -45,8 +45,6 @@ cmake \
 cmake --build .
 cmake --build . --target test
 
-exit 0
-
 # For each localized file, create an empty "lproj" folder in the
 # app bundle - this causes macOS to localize the system menu
 # (see https://bugs.kde.org/show_bug.cgi?id=432685#c3):
