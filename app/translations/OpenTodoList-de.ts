@@ -484,7 +484,7 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wir haben versucht, Ihren Browser zu öffnen, um Sie bei Ihrem Dropbox-Konto anzumelden. Bitte melden Sie sich an und gewähren Sie OpenTodoList Zugang, um fortzufahren.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="93"/>
@@ -716,7 +716,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
         <source>Recurs until %1.</source>
-        <translation type="unfinished">Wiederholt sich bis %1.</translation>
+        <translation type="unfinished">Wiederholt sich bis 1%.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
@@ -1025,7 +1025,7 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wir haben versucht, Ihren Browser zu öffnen, um Sie bei Ihrem Dropbox-Konto anzumelden. Bitte melden Sie sich an und gewähren Sie OpenTodoList Zugang, um fortzufahren.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="81"/>
@@ -1103,7 +1103,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliothek</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>

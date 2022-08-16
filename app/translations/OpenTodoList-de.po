@@ -2516,7 +2516,7 @@ msgstr "Probleme bei der Anmeldung?"
 #: ../Pages/EditDropboxAccountPage.qml:86
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr "IWir haben versucht, Ihren Browser zu öffnen, um Sie bei Ihrem Dropbox-Konto anzumelden. Bitte melden Sie sich an und gewähren Sie OpenTodoList Zugang, um fortzufahren."
+msgstr "Wir haben versucht, Ihren Browser zu öffnen, um Sie bei Ihrem Dropbox-Konto anzumelden. Bitte melden Sie sich an und gewähren Sie OpenTodoList Zugang, um fortzufahren."
 
 #: ../Pages/EditDropboxAccountPage.qml:93
 msgctxt "EditDropboxAccountPage|"
@@ -2621,7 +2621,7 @@ msgstr "Auszug aus den Notizen in den Inseraten anzeigen"
 #: ../Widgets/ItemDueDateEditor.qml:116
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr "Wiederholt sich bis %1."
+msgstr "Wiederholt sich bis 1%."
 
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
@@ -2631,10 +2631,10 @@ msgstr "Unbegrenzt wiederkehrend"
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
+msgstr "Bibliothek"
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
+msgstr "Zeitplan"
 
