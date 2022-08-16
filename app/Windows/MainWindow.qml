@@ -208,6 +208,7 @@ C.ApplicationWindow {
         switch (Qt.platform.os) {
         case "android":
             if (stackView.canGoBack) {
+                close.accepted = false
                 stackView.goBack()
                 return
             } else {
