@@ -55,6 +55,22 @@ C.Page {
 
     title: library ? library.name : qsTr("Schedule")
 
+    savePage: function () {
+        let result = {}
+        if (page.library) {
+            result.library = page.library.uid
+        }
+        return result
+    }
+    restorePage: function (state) {
+        let libraryUid = state.library
+        if (libraryUid) {
+            d.restoreLibraryUid = libraryUid
+            OTL.Application.loadLibrary(d.restoreLibraryUid)
+        }
+    }
+    restoreUrl: Qt.resolvedUrl("./ScheduleViewPage.qml")
+
     Component {
         id: notePage
         NotePage {
@@ -134,6 +150,8 @@ C.Page {
         property int hasScheduledItems: items.count > 0
         property var locale: Qt.locale()
         property var savedItemStates: []
+
+        property var restoreLibraryUid
 
         function d2s(date) {
             return date.toLocaleDateString(locale, "yyyy-MM-dd")
@@ -376,5 +394,15 @@ C.Page {
         id: syncErrorPage
 
         SyncErrorViewPage {}
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onLibraryLoaded(uid, data) {
+            if (uid === d.restoreLibraryUid) {
+                page.library = OTL.Application.libraryFromData(data)
+            }
+        }
     }
 }

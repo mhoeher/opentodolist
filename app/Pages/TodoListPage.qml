@@ -85,6 +85,22 @@ ItemPage {
         dueDateSelectionDialog.open()
     }
 
+    savePage: function () {
+        return {
+            "library": page.library.uid,
+            "todoList": page.item.uid
+        }
+    }
+
+    restorePage: function (state) {
+        d.restoreLibraryUid = state.library
+        d.restoreTodoListUid = state.todoList
+        OTL.Application.loadLibrary(d.restoreLibraryUid)
+        OTL.Application.loadItem(d.restoreTodoListUid)
+    }
+
+    restoreUrl: Qt.resolvedUrl("./TodoListPage.qml")
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
@@ -116,6 +132,9 @@ ItemPage {
         }
 
         property var savedTodoStates: []
+
+        property var restoreLibraryUid
+        property var restoreTodoListUid
 
         signal attach
         signal attachFiles(var fileUrls)
@@ -383,5 +402,21 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onLibraryLoaded(uid, data) {
+            if (uid === d.restoreLibraryUid) {
+                page.library = OTL.Application.libraryFromData(data)
+            }
+        }
+
+        function onItemLoaded(uid, data) {
+            if (uid === d.restoreTodoListUid) {
+                page.item = OTL.Application.itemFromData(data)
+            }
+        }
     }
 }
