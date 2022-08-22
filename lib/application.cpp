@@ -18,7 +18,6 @@
  */
 
 #include "application.h"
-#include "datastorage/getlibraryquery.h"
 
 #include <QClipboard>
 #include <QCoreApplication>
@@ -57,6 +56,7 @@
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
 #include "datastorage/getitemquery.h"
+#include "datastorage/getlibraryquery.h"
 #include "datastorage/copyitemquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/librariesitemsquery.h"
