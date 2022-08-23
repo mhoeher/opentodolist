@@ -343,7 +343,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Thanh mở &bên trái"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:291
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Bắt đầu bằng cách <a href='#newL Library'> tạo thư viện mới </a>. Thư viện được sử dụng để lưu trữ các loại mặt hàng khác nhau như ghi chú, danh sách việc cần làm và hình ảnh."

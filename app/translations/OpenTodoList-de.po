@@ -343,7 +343,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Öffne die &linke Seitenleiste"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:291
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Eine <a href='#newLibrary'>neue Bibliothek anlegen</a>. Bibliotheken enthalten verschiedene Einträge, wie Notizen, Aufgabenlisten und Bilder."

@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Obre &Barra lateral esquerra"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:291
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Comenceu <a href='#newLibrary'>creant una nova biblioteca</a>. Les biblioteques s'utilitzen per emmagatzemar diferents tipos d'elements com notes, llistes de coses a fer i imatges."

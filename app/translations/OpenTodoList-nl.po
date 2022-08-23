@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "&Linkerzijbalk openen"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:291
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "<a href='#newLibrary'>Maak een verzameling aan</a>. Verzamelingen worden gebruikt om items in op te slaan, zoals notities, takenlijsten en afbeeldingen."

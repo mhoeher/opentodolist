@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Öppna &vänster sidofält"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:291
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Börja med att <a href='#newLibrary'> skapa ett nytt bibliotek </a>. Bibliotek används för att lagra olika typer av objekt som anteckningar, att-göra-listor och bilder."

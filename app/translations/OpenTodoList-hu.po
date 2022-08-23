@@ -343,7 +343,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Nyisd ki &Bal oldali sáv"
 
-#: ../Windows/MainWindow.qml:290
+#: ../Windows/MainWindow.qml:291
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Kezdje <a href='#newLibrary'> új könyvtár létrehozásával </a>. A könyvtárakat különféle elemek tárolására használják, például jegyzeteket, teendőlistákat és képeket."
