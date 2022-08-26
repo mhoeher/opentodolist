@@ -292,6 +292,7 @@ C.ApplicationWindow {
         clip: true
         visible: depth > 0
         stackId: "mainWindow"
+        startPageComponent: Qt.resolvedUrl("../Pages/StartPage.qml")
         onCurrentItemChanged: applicationToolBar.closeMenu()
     }
 

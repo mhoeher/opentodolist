@@ -11,6 +11,12 @@ QQC2.StackView {
      */
     property string stackId: ""
 
+
+    /**
+     * @brief If set, when upon restoring the stack is empty, create an instance of this component.
+     */
+    property var startPageComponent
+
     QtObject {
         id: d
 
@@ -52,6 +58,14 @@ QQC2.StackView {
         } catch (e) {
             console.warn("Error during restoring stack: ", e)
         }
+        try {
+            if (stack.depth === 0 && startPageComponent) {
+                stack.push(startPageComponent)
+            }
+        } catch (e2) {
+            console.warn("Error during creating start page: ", e2)
+        }
+
         d.initialized = true
     }
 
