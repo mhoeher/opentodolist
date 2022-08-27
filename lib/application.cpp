@@ -44,6 +44,14 @@
 #    include <QAndroidJniExceptionCleaner>
 #endif
 
+#ifdef Q_OS_IOS
+#    include <TargetConditionals.h>
+#    if TARGET_OS_SIMULATOR
+#        include <QTcpSocket>
+#        include <QHostAddress>
+#    endif
+#endif
+
 #include "SynqClient/NextCloudLoginFlow"
 
 #include "datamodel/image.h"
@@ -59,18 +67,11 @@
 #include "datastorage/getlibraryquery.h"
 #include "datastorage/copyitemquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
-#include "datastorage/librariesitemsquery.h"
-#include "datastorage/libraryloader.h"
 #include "datastorage/movetodoquery.h"
 #include "datastorage/promotetaskquery.h"
-#include "fileutils.h"
 #include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
-#include "sync/syncjob.h"
-#include "sync/syncrunner.h"
-#include "sync/webdavsynchronizer.h"
-#include "utils/directorywatcher.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
 
@@ -204,7 +205,17 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
         }
 #endif
 
+#if TARGET_OS_SIMULATOR
+        // Local socket not working on iOS simulator, use TCP
+        auto socket = new QTcpSocket(m_remoteObjectNode);
+        socket->connectToHost(QHostAddress(QStringLiteral("127.0.0.1")), 14782);
+        if (socket->waitForConnected()) {
+            m_remoteObjectNode->addClientSideConnection(socket);
+        }
+#else
         m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("local:opentodolist")));
+#endif
+
         m_backgroundService.reset(m_remoteObjectNode->acquire<BackgroundServiceReplica>());
         if (!m_backgroundService->waitForSource(5000)) {
             qCWarning(log) << "Failed to connect to background service";

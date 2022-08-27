@@ -400,7 +400,9 @@ void DropboxAccount::checkConnectivity()
         connect(job, &SynqClient::DropboxListFilesJob::finished, this, [=]() {
             auto success = job->error() == SynqClient::JobError::NoError;
             qCDebug(log) << "Account" << uid() << "finished connectivity check with" << success;
-            setOnline(success);
+            if (!success) {
+                qCDebug(log) << job->error() << ":" << job->errorString();
+            }
             setOnline(success);
             job->deleteLater();
         });

@@ -87,11 +87,13 @@ else()
     endif()
 endif()
 
-set_target_properties(
-    OpenTodoList
-    PROPERTIES
-        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
-)
+if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+    set_target_properties(
+        OpenTodoList
+        PROPERTIES
+            MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
+    )
+endif()
 
 target_compile_definitions(
     OpenTodoList
