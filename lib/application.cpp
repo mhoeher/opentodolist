@@ -46,10 +46,10 @@
 
 #ifdef Q_OS_IOS
 #    include <TargetConditionals.h>
-#if TARGET_OS_SIMULATOR
+#    if TARGET_OS_SIMULATOR
 #        include <QTcpSocket>
 #        include <QHostAddress>
-#endif
+#    endif
 #endif
 
 #include "SynqClient/NextCloudLoginFlow"

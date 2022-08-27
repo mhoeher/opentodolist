@@ -25,9 +25,9 @@
 
 #ifdef Q_OS_IOS
 #    include <TargetConditionals.h>
-#if TARGET_OS_SIMULATOR
+#    if TARGET_OS_SIMULATOR
 #        include <QTcpServer>
-#endif
+#    endif
 #endif
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.main", QtDebugMsg);
