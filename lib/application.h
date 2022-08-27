@@ -115,6 +115,8 @@ public:
     Q_INVOKABLE void deleteItem(Item* item);
     Q_INVOKABLE void deleteDoneTodos(TodoList* todoList);
     Q_INVOKABLE void deleteDoneTasks(Todo* todo);
+    Q_INVOKABLE void loadLibrary(const QUuid& uid);
+    Q_INVOKABLE Library* libraryFromData(const QVariant& data);
     Q_INVOKABLE void loadItem(const QUuid& uid);
     Q_INVOKABLE Item* itemFromData(const QVariant& data);
     Q_INVOKABLE Item* cloneItem(Item* item);
@@ -221,6 +223,14 @@ signals:
      * @brief The application entered the Qt::ApplicationActive state.
      */
     void applicationActivated();
+
+    /**
+     * @brief The data of a library has been loaded.
+     *
+     * This signal is emitted to indicate that the @p data of the library with the given @p uid
+     * has been loaded. Use the libraryFromData() method to create an item from the serialized data.
+     */
+    void libraryLoaded(const QUuid& uid, const QVariant& data);
 
     /**
      * @brief The data of an item has been loaded.

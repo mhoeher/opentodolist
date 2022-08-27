@@ -200,11 +200,12 @@ Account* ApplicationSettings::loadAccount(const QUuid& uid)
 void ApplicationSettings::initialize()
 {
     if (m_keyStore) {
-        connect(m_keyStore, &KeyStore::credentialsLoaded,
+        connect(m_keyStore, &KeyStore::credentialsLoaded, this,
                 [=](const QString& key, const QString& value, bool success) {
                     if (success) {
                         if (!m_secrets.contains(key)) {
                             m_secrets.insert(key, value);
+                            emit accountsChanged(); // Cause a reload of accounts in GUI
                             for (auto lib : librariesFromConfig()) {
                                 QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
                                 if (sync) {

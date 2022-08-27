@@ -60,6 +60,27 @@ ItemPage {
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
+    savePage: function () {
+        return {
+            "library": page.library.uid,
+            "image": page.item.uid
+        }
+    }
+    restorePage: function (state) {
+        d.restoreImageUid = state.image
+        d.restoreLibraryUid = state.library
+        OTL.Application.loadLibrary(d.restoreLibraryUid)
+        OTL.Application.loadItem(d.restoreImageUid)
+    }
+    restoreUrl: Qt.resolvedUrl("./ImagePage.qml")
+
+    QtObject {
+        id: d
+
+        property var restoreLibraryUid
+        property var restoreImageUid
+    }
+
     LibraryPageActions {
         id: libraryActions
 
@@ -162,5 +183,21 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onLibraryLoaded(uid, data) {
+            if (uid === d.restoreLibraryUid) {
+                page.library = OTL.Application.libraryFromData(data)
+            }
+        }
+
+        function onItemLoaded(uid, data) {
+            if (uid === d.restoreImageUid) {
+                page.item = OTL.Application.itemFromData(data)
+            }
+        }
     }
 }

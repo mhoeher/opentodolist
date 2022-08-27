@@ -19,9 +19,33 @@ C.Page {
     property OTL.Library library: null
     property string tag: ""
 
-    signal itemClicked(var item)
     signal closePage
     signal openPage(var component, var properties)
+
+    savePage: function () {
+        let result = {}
+        if (page.library) {
+            result.library = page.library.uid
+        }
+        if (page.tag !== "") {
+            result.tag = page.tag
+        }
+        return result
+    }
+
+    restorePage: function (data) {
+        let uid = data.library
+        if (uid) {
+            d.restoreLibraryUid = uid
+            OTL.Application.loadLibrary(uid)
+        }
+        let tag = data.tag
+        if (tag) {
+            page.tag = tag
+        }
+    }
+
+    restoreUrl: Qt.resolvedUrl("./LibraryPage.qml")
 
     function newNote() {
         newNoteBar.edit.forceActiveFocus()
@@ -96,6 +120,8 @@ C.Page {
     QtObject {
         id: d
 
+        property var restoreLibraryUid
+
         function createNote(library, edit, tags) {
             var properties = {
                 "title": edit.displayText,
@@ -134,6 +160,15 @@ C.Page {
                 correction = 0
             }
             return (page.width - correction) / numberOfColumns(page)
+        }
+
+        function openItem(item) {
+            page.C.StackView.view.push(Qt.resolvedUrl(
+                                           "./" + item.itemType + "Page.qml"), {
+                                           "item": OTL.Application.cloneItem(
+                                                       item),
+                                           "library": page.library
+                                       })
         }
     }
 
@@ -240,8 +275,8 @@ C.Page {
         onAccepted: {
             var filename = OTL.Application.urlToLocalFile(fileUrl)
             var tags = []
-            if (librariesSideBar.currentTag !== "") {
-                tags = [librariesSideBar.currentTag]
+            if (page.tag !== "") {
+                tags = [page.tag]
             }
             var properties = {
                 "title": OTL.Application.basename(filename),
@@ -306,8 +341,8 @@ C.Page {
         placeholderText: qsTr("Note Title")
         onAccepted: {
             var tags = []
-            if (librariesSideBar.currentTag !== "") {
-                tags = [librariesSideBar.currentTag]
+            if (page.tag !== "") {
+                tags = [page.tag]
             }
             var note = d.createNote(library, newNoteBar.edit, tags)
             itemCreatedNotification.show(note)
@@ -319,8 +354,8 @@ C.Page {
         placeholderText: qsTr("Todo List Title")
         onAccepted: {
             var tags = []
-            if (librariesSideBar.currentTag !== "") {
-                tags = [librariesSideBar.currentTag]
+            if (page.tag !== "") {
+                tags = [page.tag]
             }
             var todoList = d.createTodoList(library, newTodoListBar.edit, tags)
             itemCreatedNotification.show(todoList)
@@ -371,7 +406,7 @@ C.Page {
                     item.library = page.library
                     item.model = itemsModel
                     item.onClicked.connect(function () {
-                        itemClicked(object)
+                        d.openItem(object)
                     })
                     item.onReleased.connect(function (mouse) {
                         switch (mouse.button) {
@@ -462,7 +497,7 @@ C.Page {
     ItemCreatedNotification {
         id: itemCreatedNotification
 
-        onOpen: itemClicked(item)
+        onOpen: d.openItem(item)
     }
 
     C.Menu {
@@ -505,6 +540,16 @@ C.Page {
             checkable: true
             checked: itemsModel.effectiveSortRole === OTL.ItemsModel.EffectiveUpdatedAtRole
             onTriggered: settings.sortBy = "updatedAt"
+        }
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onLibraryLoaded(uid, data) {
+            if (uid === d.restoreLibraryUid) {
+                page.library = OTL.Application.libraryFromData(data)
+            }
         }
     }
 }

@@ -16,35 +16,39 @@ Item {
     readonly property string lightThemeName: qsTr("Light")
     readonly property string darkThemeName: qsTr("Dark")
 
-    readonly property var themes: ([
-                                             { "name": systemTheme, "title": systemThemeName },
-                                             { "name": lightTheme, "title": lightThemeName },
-                                             { "name": darkTheme, "title": darkThemeName },
-                                         ])
-
+    readonly property var themes: ([{
+                                        "name": systemTheme,
+                                        "title": systemThemeName
+                                    }, {
+                                        "name": lightTheme,
+                                        "title": lightThemeName
+                                    }, {
+                                        "name": darkTheme,
+                                        "title": darkThemeName
+                                    }])
 
     readonly property var materialBackground: Material.background
     readonly property int materialTheme: Material.theme
 
     readonly property bool usingDarkColorTheme: {
         if (theme === lightTheme) {
-            return false;
+            return false
         } else if (theme === darkTheme) {
-            return true;
+            return true
         } else {
             if (materialTheme === Material.Dark) {
-                return true;
+                return true
             } else {
-                return false;
+                return false
             }
         }
     }
 
     readonly property int syntaxHighlightingTheme: {
         if (usingDarkColorTheme) {
-            return OTL.SyntaxHighlighter.Dark;
+            return OTL.SyntaxHighlighter.Dark
         } else {
-            return OTL.SyntaxHighlighter.Light;
+            return OTL.SyntaxHighlighter.Light
         }
     }
 
@@ -52,9 +56,12 @@ Item {
 
     Material.theme: {
         switch (theme) {
-            case lightTheme: return Material.Light;
-            case darkTheme: return Material.Dark;
-            case systemTheme: return Material.System;
+            case lightTheme:
+            return Material.Light
+            case darkTheme:
+            return Material.Dark
+            case systemTheme:
+            return Material.System
         }
     }
 
@@ -63,9 +70,9 @@ Item {
     readonly property int negativeColor: Material.Red
     readonly property color linkColor: {
         if (usingDarkColorTheme) {
-            return Material.color(Material.LightGreen);
+            return Material.color(Material.LightGreen)
         } else {
-            return Material.color(Material.Teal);
+            return Material.color(Material.Teal)
         }
     }
 
@@ -75,56 +82,63 @@ Item {
 
     function color(base, shade) {
         if (shade !== undefined) {
-            return Material.color(base, shade);
+            return Material.color(base, shade)
         } else {
-            return Material.color(base);
+            return Material.color(base)
         }
     }
 
     function textColor(base, shade) {
-        let backgroundColor = color(base, shade);
+        let backgroundColor = color(base, shade)
+        return textColorForColor(backgroundColor)
+    }
+
+
+    /**
+     * @brief For a given background color, return a suitable text/foreground color.
+     */
+    function textColorForColor(backgroundColor) {
         if (backgroundColor.hslLightness > 0.5) {
             // The background is rather light... use a dark color for text:
-            return Qt.rgba(0, 0, 0, 1);
+            return Qt.rgba(0, 0, 0, 1)
         } else {
             // The background is dark, use a light color for text:
-            return Qt.rgba(1, 1, 1, 1);
+            return Qt.rgba(1, 1, 1, 1)
         }
     }
 
     function itemColor(item) {
         if (!item || item.color === undefined) {
-            return "#00000000";
+            return "#00000000"
         }
         switch (item.color) {
         case OTL.TopLevelItem.White:
-            return Material.Grey;
+            return Material.Grey
         case OTL.TopLevelItem.Red:
-            return Material.Red;
+            return Material.Red
         case OTL.TopLevelItem.Green:
-            return Material.Green;
+            return Material.Green
         case OTL.TopLevelItem.Blue:
-            return Material.Blue;
+            return Material.Blue
         case OTL.TopLevelItem.Yellow:
-            return Material.Yellow;
+            return Material.Yellow
         case OTL.TopLevelItem.Orange:
-            return Material.Orange;
+            return Material.Orange
         case OTL.TopLevelItem.Lilac:
-            return Material.Purple;
+            return Material.Purple
         }
     }
 
-    function materialItemBackgroundColor(item, shade=0.1) {
-        var result = materialBackground;
+    function materialItemBackgroundColor(item, shade = 0.1) {
+        var result = materialBackground
         if (item !== null) {
-            var c = itemColor(item);
-            c = Material.color(c);
-            c.a = shade;
-            result = Qt.tint(result, c);
+            var c = itemColor(item)
+            c = Material.color(c)
+            c.a = shade
+            result = Qt.tint(result, c)
         }
-        return result;
+        return result
     }
-
 
     Settings {
         category: "Colors"
