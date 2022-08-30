@@ -177,82 +177,82 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notes"
 
-#: ../Widgets/LibrariesSideBar.qml:202 ../Widgets/LibrariesSideBar.qml:423
+#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Programació"
 
-#: ../Widgets/LibrariesSideBar.qml:223
+#: ../Widgets/LibrariesSideBar.qml:75
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nova biblioteca"
 
-#: ../Widgets/LibrariesSideBar.qml:264
+#: ../Widgets/LibrariesSideBar.qml:116
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Quant a..."
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:201
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Vermell"
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:208
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Verd"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Blau"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:222
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Groc"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:229
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Taronja"
 
-#: ../Pages/LibraryPage.qml:201
+#: ../Pages/LibraryPage.qml:236
 msgctxt "LibraryPage|"
 msgid "Lilac"
 msgstr "Lila"
 
-#: ../Pages/LibraryPage.qml:208
+#: ../Pages/LibraryPage.qml:243
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Blanc"
 
-#: ../Pages/LibraryPage.qml:218
+#: ../Pages/LibraryPage.qml:253
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Reanomena"
 
-#: ../Pages/LibraryPage.qml:228
+#: ../Pages/LibraryPage.qml:263
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../Pages/LibraryPage.qml:306
+#: ../Pages/LibraryPage.qml:341
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Títol de la nota"
 
-#: ../Pages/LibraryPage.qml:319
+#: ../Pages/LibraryPage.qml:354
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Títol de la llista de tasques"
 
-#: ../Pages/LibraryPage.qml:332
+#: ../Pages/LibraryPage.qml:367
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/LibraryPage.qml:411
+#: ../Pages/LibraryPage.qml:446
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Encara no hi ha res. Comenceu afegint una <a href='#note'>nota</a>, una <a href='#todolist'> lista de coses a fer </a> o una <a href='#image'> imatge </a>."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Obre &Barra lateral esquerra"
 
-#: ../Windows/MainWindow.qml:291
+#: ../Windows/MainWindow.qml:238
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Comenceu <a href='#newLibrary'>creant una nova biblioteca</a>. Les biblioteques s'utilitzen per emmagatzemar diferents tipos d'elements com notes, llistes de coses a fer i imatges."
@@ -437,37 +437,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Escriu el títol de la biblioteca..."
 
-#: ../Pages/ScheduleViewPage.qml:142
+#: ../Pages/ScheduleViewPage.qml:160
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Avui"
 
-#: ../Pages/ScheduleViewPage.qml:143
+#: ../Pages/ScheduleViewPage.qml:161
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Demà"
 
-#: ../Pages/ScheduleViewPage.qml:179
+#: ../Pages/ScheduleViewPage.qml:197
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "A finals d'aquesta setmana"
 
-#: ../Pages/ScheduleViewPage.qml:181
+#: ../Pages/ScheduleViewPage.qml:199
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "La semana següent"
 
-#: ../Pages/ScheduleViewPage.qml:182
+#: ../Pages/ScheduleViewPage.qml:200
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "A continuació"
 
-#: ../Pages/ScheduleViewPage.qml:261
+#: ../Pages/ScheduleViewPage.qml:279
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "No hi ha res programat... Afegeix una data de venciment als elements per a què apareguin aquí."
 
-#: ../Pages/ScheduleViewPage.qml:120
+#: ../Pages/ScheduleViewPage.qml:136
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Vençut"
@@ -554,12 +554,12 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "Sense tasques pendents - tot fet"
 
-#: ../Pages/TodoListPage.qml:175
+#: ../Pages/TodoListPage.qml:194
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/TodoListPage.qml:262
+#: ../Pages/TodoListPage.qml:281
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Coses a fer"
@@ -569,12 +569,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Llistes completades"
 
-#: ../Pages/TodoPage.qml:156
+#: ../Pages/TodoPage.qml:168
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/TodoPage.qml:182
+#: ../Pages/TodoPage.qml:194
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tasques"
@@ -684,12 +684,12 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Afegeix una etiqueta"
 
-#: ../Pages/TodoListPage.qml:282
+#: ../Pages/TodoListPage.qml:301
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Afegeix una llista nova..."
 
-#: ../Pages/TodoPage.qml:188
+#: ../Pages/TodoPage.qml:200
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Afegeix una tasca nova..."
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Fosc"
 
-#: ../Widgets/LibrariesSideBar.qml:242
+#: ../Widgets/LibrariesSideBar.qml:95
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Ajusts"
@@ -744,37 +744,37 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Widgets/LibrariesSideBar.qml:277
+#: ../Widgets/LibrariesSideBar.qml:124
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Crea una biblioteca predeterminada"
 
-#: ../Pages/LibraryPage.qml:471
+#: ../Pages/LibraryPage.qml:506
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Ordena per"
 
-#: ../Pages/LibraryPage.qml:476
+#: ../Pages/LibraryPage.qml:511
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manualment"
 
-#: ../Pages/LibraryPage.qml:483
+#: ../Pages/LibraryPage.qml:518
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Títol"
 
-#: ../Pages/LibraryPage.qml:490
+#: ../Pages/LibraryPage.qml:525
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Venç"
 
-#: ../Pages/LibraryPage.qml:497
+#: ../Pages/LibraryPage.qml:532
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Creat el"
 
-#: ../Pages/LibraryPage.qml:504
+#: ../Pages/LibraryPage.qml:539
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Actualitzat el"
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Idioma:"
 
-#: ../Pages/TodoListPage.qml:187
+#: ../Pages/TodoListPage.qml:206
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manualment"
 
-#: ../Pages/TodoListPage.qml:193
+#: ../Pages/TodoListPage.qml:212
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nom"
 
-#: ../Pages/TodoListPage.qml:199
+#: ../Pages/TodoListPage.qml:218
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Data de venciment"
 
-#: ../Pages/TodoListPage.qml:205
+#: ../Pages/TodoListPage.qml:224
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Creat el"
 
-#: ../Pages/TodoListPage.qml:211
+#: ../Pages/TodoListPage.qml:230
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Actualitzat el"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexió amb el servidor ha fallat. Comproveu el non d'usuari, contrasenya i adreça del servidor, i torneu-ho a provar."
 
-#: ../Widgets/LibrariesSideBar.qml:229
+#: ../Widgets/LibrariesSideBar.qml:82
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Comptes"
 
-#: ../Widgets/LibrariesSideBar.qml:249
+#: ../Widgets/LibrariesSideBar.qml:101
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Tradueix l'aplicació..."
@@ -1221,12 +1221,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "S'està sincronitzant la biblioteca..."
 
-#: ../Pages/NotePage.qml:140
+#: ../Pages/NotePage.qml:162
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Pàgina principal"
 
-#: ../Pages/NotePage.qml:207
+#: ../Pages/NotePage.qml:229
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Nova pàgina"
@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:193
+#: ../appstartup.cpp:200
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Gestiona les teves dades personals."
 
-#: ../appstartup.cpp:199
+#: ../appstartup.cpp:206
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Activa algunes optimitzacions per a pantalles tàctils."
 
-#: ../appstartup.cpp:202
+#: ../appstartup.cpp:209
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Executa només el servei de l'aplicació en segon pla"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Executeu només la interfície gràfica de l'usuari de l'aplicació i connecteu-vos a un servei de l'aplicació en segon pla"
 
-#: ../appstartup.cpp:209
+#: ../appstartup.cpp:216
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Habilita una consola al Windows per recollir la sortida de depuració"
 
-#: ../appstartup.cpp:342
+#: ../appstartup.cpp:362
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Obre"
 
-#: ../appstartup.cpp:402
+#: ../appstartup.cpp:422
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Surt"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexió amb el servidor ha fallat. Comproveu el non d'usuari, contrasenya i adreça del servidor, i torneu-ho a provar."
 
-#: ../Widgets/LibrariesSideBar.qml:236
+#: ../Widgets/LibrariesSideBar.qml:89
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Edita la llista"
 
-#: ../Widgets/LibrariesSideBar.qml:390
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Amaga la planificació"
 
-#: ../Widgets/LibrariesSideBar.qml:390
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Mostra la planificació"
 
-#: ../Widgets/LibrariesSideBar.qml:401
+#: ../Widgets/LibrariesSideBar.qml:237
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Moure Amunt"
 
-#: ../Widgets/LibrariesSideBar.qml:410
+#: ../Widgets/LibrariesSideBar.qml:248
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Moure avall"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Mou la Llista de tasques a..."
 
-#: ../Widgets/LibrariesSideBar.qml:256
+#: ../Widgets/LibrariesSideBar.qml:108
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Donatius"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copia la informació del sistema"
 
-#: ../appstartup.cpp:349
+#: ../appstartup.cpp:369
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Nota ràpida"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Desfés"
 
-#: ../appstartup.cpp:288 ../appstartup.cpp:295
+#: ../appstartup.cpp:308 ../appstartup.cpp:315
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "desconegut"
@@ -2321,7 +2321,7 @@ msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Copia"
 
-#: ../Pages/LibraryPage.qml:223
+#: ../Pages/LibraryPage.qml:258
 msgctxt "LibraryPage|"
 msgid "Copy"
 msgstr "Copia"
@@ -2437,27 +2437,27 @@ msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:237
+#: ../Pages/LibraryPage.qml:272
 msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:224
+#: ../Pages/TodoListPage.qml:243
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:250
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:283
+#: ../Pages/TodoPage.qml:295
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:290
+#: ../Pages/TodoPage.qml:302
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2472,17 +2472,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr ""
 
-#: ../../lib/application.cpp:187
+#: ../../lib/application.cpp:189
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr ""
 
-#: ../../lib/application.cpp:192
+#: ../../lib/application.cpp:194
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:196
+#: ../../lib/application.cpp:198
 msgctxt "Application|"
 msgid "Quit"
 msgstr ""
@@ -2626,5 +2626,25 @@ msgstr ""
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
+msgstr ""
+
+#: ../Pages/StartPage.qml:34
+msgctxt "StartPage|"
+msgid "Libraries"
+msgstr ""
+
+#: ../Pages/StartPage.qml:59
+msgctxt "StartPage|"
+msgid "Add a new library"
+msgstr ""
+
+#: ../Pages/StartPage.qml:66
+msgctxt "StartPage|"
+msgid "Accounts"
+msgstr ""
+
+#: ../Pages/StartPage.qml:88
+msgctxt "StartPage|"
+msgid "Add an account"
 msgstr ""
 
