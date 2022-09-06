@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="200"/>
+        <location filename="../appstartup.cpp" line="196"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="206"/>
+        <location filename="../appstartup.cpp" line="202"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Ative algumas otimizações para telas sensíveis ao toque.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="209"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Execute apenas o serviço em segundo plano do aplicativo</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="211"/>
+        <location filename="../appstartup.cpp" line="207"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Execute apenas a GUI do aplicativo e conecte-se a um serviço de segundo plano do aplicativo existente</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="216"/>
+        <location filename="../appstartup.cpp" line="212"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Habilitar um console no Windows para coletar a saída de depuração</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="362"/>
+        <location filename="../appstartup.cpp" line="358"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="369"/>
+        <location filename="../appstartup.cpp" line="365"/>
         <source>Quick Note</source>
         <translation type="unfinished">Nota Rápida</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="422"/>
+        <location filename="../appstartup.cpp" line="418"/>
         <source>Quit</source>
         <translation type="unfinished">Sair</translation>
     </message>
@@ -1499,8 +1499,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="308"/>
-        <location filename="../appstartup.cpp" line="315"/>
+        <location filename="../appstartup.cpp" line="304"/>
+        <location filename="../appstartup.cpp" line="311"/>
         <source>unknown</source>
         <translation type="unfinished">desconhecido</translation>
     </message>

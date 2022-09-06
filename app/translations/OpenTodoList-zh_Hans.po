@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:200
+#: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "管理您的个人数据。"
 
-#: ../appstartup.cpp:206
+#: ../appstartup.cpp:202
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "打开一些针对触摸屏的优化。"
 
-#: ../appstartup.cpp:209
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "仅运行应用后台服务"
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:207
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "仅运行应用图形界面并连接至现有应用的后台服务"
 
-#: ../appstartup.cpp:216
+#: ../appstartup.cpp:212
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "在 Windows 上启用一个终端来获取调试输出"
 
-#: ../appstartup.cpp:362
+#: ../appstartup.cpp:358
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "打开"
 
-#: ../appstartup.cpp:422
+#: ../appstartup.cpp:418
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "退出"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "复制系统信息"
 
-#: ../appstartup.cpp:369
+#: ../appstartup.cpp:365
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "快捷笔记"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "撤销"
 
-#: ../appstartup.cpp:308 ../appstartup.cpp:315
+#: ../appstartup.cpp:304 ../appstartup.cpp:311
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "未知"

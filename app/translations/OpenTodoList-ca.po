@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:200
+#: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Gestiona les teves dades personals."
 
-#: ../appstartup.cpp:206
+#: ../appstartup.cpp:202
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Activa algunes optimitzacions per a pantalles tàctils."
 
-#: ../appstartup.cpp:209
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Executa només el servei de l'aplicació en segon pla"
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:207
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Executeu només la interfície gràfica de l'usuari de l'aplicació i connecteu-vos a un servei de l'aplicació en segon pla"
 
-#: ../appstartup.cpp:216
+#: ../appstartup.cpp:212
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Habilita una consola al Windows per recollir la sortida de depuració"
 
-#: ../appstartup.cpp:362
+#: ../appstartup.cpp:358
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Obre"
 
-#: ../appstartup.cpp:422
+#: ../appstartup.cpp:418
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Surt"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copia la informació del sistema"
 
-#: ../appstartup.cpp:369
+#: ../appstartup.cpp:365
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Nota ràpida"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Desfés"
 
-#: ../appstartup.cpp:308 ../appstartup.cpp:315
+#: ../appstartup.cpp:304 ../appstartup.cpp:311
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "desconegut"

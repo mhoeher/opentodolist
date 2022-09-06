@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:200
+#: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Управляйте своими персональными данными"
 
-#: ../appstartup.cpp:206
+#: ../appstartup.cpp:202
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Включить некоторую оптимизацию для тачскринов."
 
-#: ../appstartup.cpp:209
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Запускать только фоновую службу"
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:207
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Запускать только графический интерфейс и подключаться к запущенной фоновой службе"
 
-#: ../appstartup.cpp:216
+#: ../appstartup.cpp:212
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Задействовать консоль Windows для вывода отладочной информации"
 
-#: ../appstartup.cpp:362
+#: ../appstartup.cpp:358
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Открыть"
 
-#: ../appstartup.cpp:422
+#: ../appstartup.cpp:418
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Выход"
@@ -2187,7 +2187,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr ""
 
-#: ../appstartup.cpp:369
+#: ../appstartup.cpp:365
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
@@ -2212,7 +2212,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr ""
 
-#: ../appstartup.cpp:308 ../appstartup.cpp:315
+#: ../appstartup.cpp:304 ../appstartup.cpp:311
 msgctxt "QObject|"
 msgid "unknown"
 msgstr ""
