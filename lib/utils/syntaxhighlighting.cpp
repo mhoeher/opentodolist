@@ -28,17 +28,10 @@
 
 #include "htmlsyntaxhighlighter.h"
 
-#ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
-#    include <KSyntaxHighlighting/definition.h>
-#    include <KSyntaxHighlighting/repository.h>
-#    include <KSyntaxHighlighting/syntaxhighlighter.h>
-#    include <KSyntaxHighlighting/theme.h>
-#else
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/repository.h"
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/syntaxhighlighter.h"
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
-#endif
+#include <KSyntaxHighlighting/definition.h>
+#include <KSyntaxHighlighting/repository.h>
+#include <KSyntaxHighlighting/syntaxhighlighter.h>
+#include <KSyntaxHighlighting/theme.h>
 
 /**
  * @brief Constructor.
@@ -50,12 +43,6 @@ SyntaxHighlighter::SyntaxHighlighter(QObject* parent)
       m_document(nullptr),
       m_theme(Light)
 {
-// Initialize KDE syntax highlighting resources in case
-// we use static linking
-#ifndef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
-    Q_INIT_RESOURCE(syntax_data);
-    Q_INIT_RESOURCE(theme_data);
-#endif
     m_highlighter = new KSyntaxHighlighting::SyntaxHighlighter(this);
     m_repository = new KSyntaxHighlighting::Repository();
     m_highlighter->setDefinition(m_repository->definitionForFileName("test.md"));

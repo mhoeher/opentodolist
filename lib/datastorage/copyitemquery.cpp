@@ -138,14 +138,15 @@ void CopyItemQuery::run()
         // Find all children of the current item and also copy them:
         const auto childItemUids = children()->getAll(t, srcItemUid.toByteArray());
         for (const auto& childItemUid : childItemUids) {
-            if (seenUids.contains(childItemUid)) {
+            QUuid childItemUidTyped(childItemUid);
+            if (seenUids.contains(childItemUidTyped)) {
                 qCWarning(log) << "Item" << childItemUid
                                << "has already been visited for copying - circular item reference?";
                 continue;
             }
-            expectedParentMap.insert(childItemUid, srcItem->uid());
-            parentItemMap.insert(childItemUid, dstItem->uid());
-            itemQueue.enqueue(childItemUid);
+            expectedParentMap.insert(childItemUidTyped, srcItem->uid());
+            parentItemMap.insert(childItemUidTyped, dstItem->uid());
+            itemQueue.enqueue(childItemUidTyped);
         }
     }
 }

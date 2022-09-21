@@ -31,11 +31,11 @@
 #    include <QAndroidJniObject>
 #    include <QtAndroid>
 #else
-#    ifdef OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN
+# if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #        include <qt5keychain/keychain.h>
-#    else
-#        include <qtkeychain/keychain.h>
-#    endif
+#else
+#        include <qt6keychain/keychain.h>
+#endif
 #endif
 
 #include <simplecrypt.h>

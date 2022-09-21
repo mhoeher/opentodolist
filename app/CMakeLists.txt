@@ -101,6 +101,17 @@ target_compile_definitions(
         $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>
 )
 
+target_compile_options(
+    OpenTodoList
+    PRIVATE
+        $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+        $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Werror>
+)
+
+target_compile_features(
+    OpenTodoList PRIVATE cxx_std_14
+)
+
 set_target_properties(
     OpenTodoList
     PROPERTIES
@@ -181,14 +192,14 @@ if(OPENTODOLIST_UPDATE_TRANSLATIONS)
     if (NOT ${PROJECT_NAME}-MultiAbiBuild)
         # Only run this once per multi-abi build on Android. Otherwise, we might
         # get conflicting writes to the *.ts files from parallel sub-builds.
-        qt5_create_translation(
+        qt_create_translation(
             MESSAGES
             ${TS_SOURCE_FILES}
             ${TS_FILES}
         )
     endif()
 endif()
-qt5_add_translation(QM_FILES ${TS_FILES})
+qt_add_translation(QM_FILES ${TS_FILES})
 target_sources(OpenTodoList PRIVATE
     ${QM_FILES}
     ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
@@ -222,7 +233,7 @@ add_custom_command(
 
 # Helper targets to convert between *.ts and *.po files (for
 # external editing)
-get_target_property(LCONVERT_EXECUTABLE Qt5::lconvert IMPORTED_LOCATION)
+get_target_property(LCONVERT_EXECUTABLE Qt::lconvert IMPORTED_LOCATION)
 add_custom_target(opentodolist-po-to-ts)
 foreach(ts_file ${TS_FILES})
     string(REGEX REPLACE "ts$" "po" po_file ${ts_file})

@@ -164,6 +164,7 @@ There are several options available that you can pass to `cmake` when configurin
 | `OPENTODOLIST_USE_SYSTEM_LIBRARIES` | `OFF` | Use system versions of required 3rd party libraries instead of building them from source. The default is off. This option is mostly useful if you want to package the app e.g. for distribution via a package manager or if you build it locally and want to avoid long compilation times by re-using pre-built versions of the required modules. |
 | `OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of the QtKeychain library instead of building it from source. |
 | `OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of KDE's KSyntaxHighlighting library instead of building it from source. |
+| `OPENTODOLIST_USE_SYSTEM_ECM` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use system version of the ECM module. |
 | `OPENTODOLIST_USE_SYSTEM_QLMDB` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of the QLMDB library instead of building it from source. |
 | `OPENTODOLIST_USE_SYSTEM_SYNQCLIENT` | `${OPENTODOLIST_USE_SYSTEM_LIBRARIES}` | Use a system version of the SynqClient library instead of building it from source. |
 | `OPENTODOLIST_UPDATE_TRANSLATIONS` | `OFF` | Update the translation files (`*.ts`) from the source files while building. |

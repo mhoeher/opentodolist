@@ -122,10 +122,13 @@ void Translations::apply()
         language.replace("-", "_");
         QString filename = ":/translations/OpenTodoList-" + language + ".qm";
         if (QFile::exists(filename)) {
-            m_translator->load(filename);
-            qCDebug(log) << "Loaded translations from file" << filename;
-            m_engine->retranslate();
-            return;
+            if (m_translator->load(filename)) {
+                qCDebug(log) << "Loaded translations from file" << filename;
+                m_engine->retranslate();
+                return;
+            } else {
+                qCWarning(log) << "Failed loading translation from file" << filename;
+            }
         } else {
             qCWarning(log) << "Explicitly requested translation file" << filename << "not found";
         }

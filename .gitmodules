@@ -31,3 +31,6 @@
 [submodule "3rdparty/ral-json"]
 	path = 3rdparty/ral-json
 	url = https://gitlab.com/rpdev/ral-json.git
+[submodule "3rdparty/KDE/extra-cmake-modules"]
+	path = 3rdparty/KDE/extra-cmake-modules
+	url = https://github.com/KDE/extra-cmake-modules.git

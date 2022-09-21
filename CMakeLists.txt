@@ -5,34 +5,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(OpenTodoList)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-
 
 # Include modules:
 include(cmake/options.cmake)
 include(cmake/version.cmake)
 include(cmake/Flatpak.cmake)
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 # Enable unit tests:
 enable_testing()
-
-
-
-if(OPENTODOLIST_WITH_UPDATE_SERVICE)
-    add_definitions(-DOPENTODOLIST_WITH_UPDATE_SERVICE)
-endif()
-if(OPENTODOLIST_WITH_APPIMAGE_EXTRAS)
-    add_definitions(-DOPENTODOLIST_IS_APPIMAGE)
-endif()
-
-
-# Set C++ standard to use:
-set(CMAKE_CXX_STANDARD 14)
 
 # Add additional files for Android:
 set(
@@ -49,20 +29,6 @@ endif()
 
 if (ANDROID)
     include(3rdparty/android-openssl/CMakeLists.txt)
-endif()
-
-
-# Enable warnings:
-if(MSVC)
-  # Force to always compile with W4
-  if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
-    string(REGEX REPLACE "/W[0-4]" "/Wall" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-  else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall")
-  endif()
-elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-  # Update if necessary
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
 if(NOT OPENTODOLIST_QT_VERSIONS)
@@ -83,34 +49,21 @@ endif()
 find_package(QT NAMES ${OPENTODOLIST_QT_VERSIONS} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 
-if(NOT ANDROID)
-    if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
-        find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
-    endif()
-endif()
 
-if(OPENTODOLIST_USE_SYSTEM_QLMDB)
-    find_package(QLMDB-qt${QT_VERSION_MAJOR} REQUIRED)
-endif()
 
-if(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
-    find_package(SynqClient-qt${QT_VERSION_MAJOR} REQUIRED)
-endif()
-
-if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
-    find_package(KF5SyntaxHighlighting)
-endif()
+# if(NOT ANDROID)
+#     if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
+#         find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
+#     else()
+#         if("${QT_VERSION_MAJOR}" STREQUAL "6")
+#             set(BUILD_WITH_QT6 ON)
+#         endif() 
+#     endif()
+# endif()
 
 if(OPENTODOLIST_WITH_KNOTIFICATIONS)
     find_package(KF5Notifications REQUIRED)
 endif()
-
-# Set options of included 3rd party libraries:
-set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
-set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
-set(QLMDB_WITHOUT_TESTS ON CACHE BOOL "Do not build QLMDB unit tests")
-set(SYNQCLIENT_WITHOUT_TESTS ON CACHE BOOL "Disable tests in SynqClient")
-set(QTKEYCHAIN_STATIC ON CACHE BOOL "Build static QtKeychain library")
 
 # Build using static libraries:
 set(BUILD_SHARED_LIBS OFF)
@@ -137,9 +90,6 @@ install(
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 
-# Disable building translations in QtKeychain:
-set(BUILD_TRANSLATIONS NO CACHE BOOL "")
-
 
 # Include sub-directories:
 add_subdirectory(3rdparty)
@@ -148,6 +98,7 @@ add_subdirectory(app)
 if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
     add_subdirectory(test)
 endif()
+
 
 # Show other, project-related files:
 file(GLOB_RECURSE OTHER_FILES

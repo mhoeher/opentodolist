@@ -28,6 +28,10 @@ option(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN
     "Build against the system QtKeychain library."
     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
 )
+option(OPENTODOLIST_USE_SYSTEM_ECM
+    "Build against the system Extra CMake Modules (ECM)."
+    ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
+)
 option(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
     "Build against the system KDE Syntax Highlighting library."
     ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}

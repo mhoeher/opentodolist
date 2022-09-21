@@ -195,7 +195,7 @@ void Library::deleteLibrary()
     emit deletingLibrary(this);
     QString directoryValue = m_directory;
     if (isValid()) {
-        QtConcurrent::run([=]() {
+        (void)QtConcurrent::run([=]() {
             auto years = Library::years(directoryValue);
             for (auto year : years) {
                 auto months = Library::months(directoryValue, year);
@@ -217,7 +217,7 @@ void Library::deleteLibrary()
                 }
             }
             QDir dir(directoryValue);
-            for (auto entry : dir.entryList(QDir::Files | QDir::Hidden)) {
+            for (const auto& entry : dir.entryList(QDir::Files | QDir::Hidden)) {
                 if (!dir.remove(entry)) {
                     qCWarning(log) << "Failed to remove" << entry << "from" << dir.absolutePath();
                 }
@@ -315,10 +315,10 @@ QStringList Library::years(const QString& directory)
 {
     QStringList result;
     QDir dir(directory);
-    QRegExp re("^\\d{4}$");
+    QRegularExpression re("^\\d{4}$");
     if (!directory.isEmpty() && dir.exists()) {
         for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            if (re.indexIn(entry) == 0) {
+            if (re.match(entry).hasMatch()) {
                 result << entry;
             }
         }
@@ -332,10 +332,10 @@ QStringList Library::months(const QString& directory, const QString& year)
     if (!directory.isEmpty()) {
         auto path = directory + "/" + year;
         QDir dir(path);
-        QRegExp re("^[1-9][0-2]?$");
+        QRegularExpression re("^[1-9][0-2]?$");
         if (dir.exists()) {
             for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-                if (re.indexIn(entry) == 0) {
+                if (re.match(entry).hasMatch()) {
                     result << entry;
                 }
             }
@@ -350,13 +350,12 @@ QStringList Library::itemFiles(const QString& directory, const QString& year, co
     if (!directory.isEmpty()) {
         auto path = directory + "/" + year + "/" + month;
         QDir dir(path);
-        QRegExp re("^\\{[0-9a-f]{8,8}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{12,12}\\}"
-                   "\\.otl$");
-        re.setCaseSensitivity(Qt::CaseInsensitive);
+        QRegularExpression re("^\\{[0-9a-f]{8,8}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{12,12}\\}"
+                              "\\.otl$", QRegularExpression::CaseInsensitiveOption);
         if (dir.exists()) {
             QString suffix = "*." + Item::FileNameSuffix;
-            for (auto entry : dir.entryList({ suffix }, QDir::Files)) {
-                if (re.indexIn(entry) == 0) {
+            for (const auto &entry : dir.entryList({ suffix }, QDir::Files)) {
+                if (re.match(entry).hasMatch()) {
                     result << entry;
                 } else {
                     qCDebug(log) << "Skipping file" << entry << "in" << dir.absolutePath()

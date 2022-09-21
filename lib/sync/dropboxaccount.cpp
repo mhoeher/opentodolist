@@ -173,7 +173,7 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
 
     result->setReplyHandler(replyHandler);
     result->setModifyParametersFunction(
-            [=](QOAuth2AuthorizationCodeFlow::Stage stage, QVariantMap* parameters) {
+            [=](auto stage, auto parameters) {
                 switch (stage) {
                 case QOAuth2AuthorizationCodeFlow::Stage::RequestingAuthorization:
                     // Include code challenge and method in auth request, see
@@ -443,5 +443,3 @@ bool DropboxAccount::needConnectivityCheck() const
 {
     return !m_refreshToken.isEmpty() && QDateTime::currentDateTime().secsTo(m_expiration) < 60 * 5;
 }
-
-#include "dropboxaccount.moc"

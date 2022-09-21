@@ -233,7 +233,7 @@ void ApplicationSettings::initialize()
                     } else {
                         // Loading failed - create a problem:
                         qCWarning(log) << "Failed to load credentials for key" << key;
-                        QSharedPointer<Account> account(loadAccount(key));
+                        QSharedPointer<Account> account(loadAccount(QUuid(key)));
                         if (account && m_problemManager) {
                             Problem problem;
                             problem.setType(Problem::AccountSecretsMissing);
@@ -272,7 +272,7 @@ void ApplicationSettings::importAccountFromSynchronizer(const QString& syncUid,
     // Load all accounts:
     QList<QSharedPointer<Account>> accounts;
     for (const auto& accountId : accountUids()) {
-        accounts << QSharedPointer<Account>(loadAccount(accountId.toString()));
+        accounts << QSharedPointer<Account>(loadAccount(QUuid(accountId.toString())));
     }
 
     // Find the synchronizer:

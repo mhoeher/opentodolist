@@ -114,6 +114,17 @@ target_sources(
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
 )
 
+target_compile_features(
+    opentodolist-common PRIVATE cxx_std_14
+)
+
+target_compile_options(
+    opentodolist-common
+    PRIVATE
+        $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+        $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Werror>
+)
+
 if(ANDROID)
     target_sources(
         opentodolist-common
@@ -123,41 +134,33 @@ if(ANDROID)
     )
 endif()
 
-if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
-    target_link_libraries(opentodolist-common PRIVATE KF5::SyntaxHighlighting)
-    target_compile_definitions(opentodolist-common PRIVATE OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+# Some versions of the syntax highlighting library introduced a "bug" which causes the
+# path to the KF5 folder not to be included in the header search path. While some systems
+# already rolled out a fix, some don't (of the time of writing this, the 28th of May 2022, this
+# affects at least Fedora). As a workaround, we manually add the parent folder of the
+# "KSyntaxHighlighting" to the search paths:
+get_target_property(KF5_SYNTAXHIGHLIGHTING_INCLUDE_DIRS KF5::SyntaxHighlighting INTERFACE_INCLUDE_DIRECTORIES)
+foreach(path ${KF5_SYNTAXHIGHLIGHTING_INCLUDE_DIRS})
+    if(path MATCHES ".*KSyntaxHighlighting")
+        get_filename_component(path ${path} DIRECTORY)
+        target_include_directories(opentodolist-common PRIVATE ${path})
+    endif()
+endforeach()
 
-    # Some versions of the syntax highlighting library introduced a "bug" which causes the
-    # path to the KF5 folder not to be included in the header search path. While some systems
-    # already rolled out a fix, some don't (of the time of writing this, the 28th of May 2022, this
-    # affects at least Fedora). As a workaround, we manually add the parent folder of the
-    # "KSyntaxHighlighting" to the search paths:
-    get_target_property(KF5_SYNTAXHIGHLIGHTING_INCLUDE_DIRS KF5::SyntaxHighlighting INTERFACE_INCLUDE_DIRECTORIES)
-    foreach(path ${KF5_SYNTAXHIGHLIGHTING_INCLUDE_DIRS})
-        if(path MATCHES ".*KSyntaxHighlighting")
-            get_filename_component(path ${path} DIRECTORY)
-            target_include_directories(opentodolist-common PRIVATE ${path})
-        endif()
-    endforeach()
-else()
-    include(qmake/kf5-syntax-highlighting.cmake)
+if("${QT_VERSION_MAJOR}" STREQUAL "5")
+    unset(REPC_SOURCES)
+    qt5_generate_repc(REPC_SOURCES service/backgroundservice.rep SOURCE)
+    qt5_generate_repc(REPC_SOURCES service/backgroundservice.rep REPLICA)
     target_sources(
         opentodolist-common
         PRIVATE
-            ${KF5_SYNTAXHIGHLIGHTING_SOURCES}
-            ${KF5_SYNTAXHIGHLIGHTING_RESOURCES}
+        ${REPC_SOURCES}
     )
+    unset(REPC_SOURCES)
+else()
+    qt_add_repc_sources(opentodolist-common service/backgroundservice.rep)
+    qt_add_repc_replicas(opentodolist-common service/backgroundservice.rep)
 endif()
-
-unset(REPC_SOURCES)
-qt5_generate_repc(REPC_SOURCES service/backgroundservice.rep SOURCE)
-qt5_generate_repc(REPC_SOURCES service/backgroundservice.rep REPLICA)
-target_sources(
-    opentodolist-common
-    PRIVATE
-    ${REPC_SOURCES}
-)
-unset(REPC_SOURCES)
 
 # Set include paths
 target_include_directories(
@@ -168,20 +171,15 @@ target_include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt
         ${CMAKE_CURRENT_BINARY_DIR}/../3rdparty/qtkeychain
         ${CMAKE_CURRENT_BINARY_DIR}
-    PRIVATE
-        ${KF5_SYNTAXHIGHLIGHTING_INCLUDEPATHS}
 )
 
 # Add compile definitions
 target_compile_definitions(
     opentodolist-common
     PRIVATE
-        ${LIB_DEFINES}
-        ${KF5_SYNTAXHIGHLIGHTING_DEFINES}
+        $<$<BOOL:OPENTODOLIST_WITH_UPDATE_SERVICE>:OPENTODOLIST_WITH_UPDATE_SERVICE>
+        $<$<BOOL:OPENTODOLIST_WITH_APPIMAGE_EXTRAS>:OPENTODOLIST_IS_APPIMAGE>
 )
-if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
-    target_compile_definitions(opentodolist-common PRIVATE OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
-endif()
 
 # Link against Qt libraries
 target_link_libraries(opentodolist-common
@@ -195,41 +193,25 @@ target_link_libraries(opentodolist-common
         Qt${QT_VERSION_MAJOR}::RemoteObjects
         Qt${QT_VERSION_MAJOR}::NetworkAuth
 
+        $<$<BOOL:${ANDROID}>:Qt${QT_VERSION_MAJOR}::AndroidExtras>
+
+        # TODO: If possible, upgrade and remove this
+        # At least with Qt 5.15, we get linking errors on ARM64 using cmake. Hence, explicitly
+        # link against the missing libraries:
+        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libGLESv2.so>
+        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/liblog.so>
+        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libz.so>
+        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so>
+
         # Third party libraries:
         QLMDB::qlmdb-qt${QT_VERSION_MAJOR}
         SynqClient::synqclient-qt${QT_VERSION_MAJOR}
+        qt${QT_VERSION_MAJOR}keychain
+        KF5::SyntaxHighlighting
 
         # Optional libraries
         ${LIB_LIBRARIES}
 )
-
-if(ANDROID)
-    target_link_libraries(
-        opentodolist-common
-        PUBLIC
-            Qt${QT_VERSION_MAJOR}::AndroidExtras
-    )
-
-    if (ANDROID_ABI STREQUAL "arm64-v8a")
-        # TODO: If possible, upgrade and remove this
-        # At least with Qt 5.15, we get linking errors on ARM64 using cmake. Hence, explicitly
-        # link against the missing libraries:
-        target_link_libraries(
-            opentodolist-common
-            PUBLIC
-                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libGLESv2.so
-                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/liblog.so
-                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libz.so
-                ${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so
-        )
-    endif()
-else()
-    target_link_libraries(
-        opentodolist-common
-        PUBLIC
-            qt${QT_VERSION_MAJOR}keychain
-    )
-endif()
 
 install(
     TARGETS opentodolist-common

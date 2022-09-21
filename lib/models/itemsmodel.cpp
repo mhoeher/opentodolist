@@ -21,11 +21,11 @@
 
 #include <QQmlEngine>
 #include <QDateTime>
+#include <QRegularExpression>
 
 #include "datamodel/complexitem.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"
-#include "datamodel/notepage.h"
 
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
@@ -551,7 +551,7 @@ void ItemsModel::fetch()
 
 std::function<bool(ItemPtr item, GetItemsQuery* query)> ItemsModel::getFilterFn() const
 {
-    auto words = m_searchString.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+    auto words = m_searchString.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
     std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
     if (!words.isEmpty()) {
         itemMatchesFilter = [=](ItemPtr item, GetItemsQuery* query) {

@@ -30,17 +30,10 @@
 #include <QTextStream>
 #include <QVarLengthArray>
 
-#ifdef OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING
-#    include <KSyntaxHighlighting/definition.h>
-#    include <KSyntaxHighlighting/format.h>
-#    include <KSyntaxHighlighting/state.h>
-#    include <KSyntaxHighlighting/theme.h>
-#else
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/definition.h"
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/format.h"
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/state.h"
-#    include "../3rdparty/KDE/syntax-highlighting/src/lib/theme.h"
-#endif
+#include <KSyntaxHighlighting/definition.h>
+#include <KSyntaxHighlighting/format.h>
+#include <KSyntaxHighlighting/state.h>
+#include <KSyntaxHighlighting/theme.h>
 
 class HtmlHighlighterPrivate
 {
@@ -55,7 +48,11 @@ HtmlHighlighter::HtmlHighlighter() : d(new HtmlHighlighterPrivate())
     d->buffer.reset(new QBuffer());
     d->buffer->open(QIODevice::WriteOnly);
     d->out.reset(new QTextStream(d->buffer.get()));
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     d->out->setCodec("UTF-8");
+#else
+    d->out->setEncoding(QStringEncoder::Utf8);
+#endif
 }
 
 HtmlHighlighter::~HtmlHighlighter() {}
@@ -70,7 +67,11 @@ QString HtmlHighlighter::highlightData(QIODevice* dev, const QString& title)
     *d->out << "><pre>\n";
 
     QTextStream in(dev);
+    #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     in.setCodec("UTF-8");
+#else
+    in.setEncoding(QStringConverter::Utf8);
+#endif
     while (!in.atEnd()) {
         d->currentLine = in.readLine();
         state = highlightLine(d->currentLine, state);
