@@ -162,7 +162,6 @@
         <file>Windows/WebViewDialog.qml</file>
         <file>Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml</file>
         <file>Windows/+android/WebViewDialog.qml</file>
-        <file>Windows/+ios/WebViewDialog.qml</file>
         <file>3rdpartyinfo/ral-json/3rdpartyinfo.json</file>
         <file alias="ral.json">../3rdparty/ral-json/ral.json</file>
         <file>Windows/ColorSelectionDialog.qml</file>
