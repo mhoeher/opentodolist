@@ -32,7 +32,7 @@
 #include <QUrlQuery>
 
 #ifdef Q_OS_ANDROID
-#include <QtAndroidExtras>
+#    include <QtAndroidExtras>
 #endif
 
 #include <SynqClient/CompositeJob>
@@ -80,13 +80,14 @@ public:
         if (guiApp) {
             connect(guiApp, &QGuiApplication::applicationStateChanged, this,
                     [=](Qt::ApplicationState state) {
-                        if ( state == Qt::ApplicationActive) {
+                        if (state == Qt::ApplicationActive) {
                             auto activity = QtAndroid::androidActivity();
                             if (activity.isValid()) {
                                 auto handleExceptions = [=]() {
                                     QAndroidJniEnvironment env;
                                     if (env->ExceptionCheck()) {
-                                        qCWarning(log) << "An exception occurred during interfacing with Java.";
+                                        qCWarning(log) << "An exception occurred during "
+                                                          "interfacing with Java.";
                                         env->ExceptionDescribe();
                                         env->ExceptionClear();
                                         return true;
@@ -94,13 +95,15 @@ public:
                                     return false;
                                 };
 
-                                auto numPendingAppLinks = activity.callMethod<jint>("getPendingAppLinksCount");
+                                auto numPendingAppLinks =
+                                        activity.callMethod<jint>("getPendingAppLinksCount");
                                 if (handleExceptions()) {
                                     return;
                                 }
 
                                 for (int i = 0; i < numPendingAppLinks; ++i) {
-                                    auto appLink = activity.callObjectMethod("getPendingAppLink", "(I)Ljava/lang/String;", i);
+                                    auto appLink = activity.callObjectMethod(
+                                            "getPendingAppLink", "(I)Ljava/lang/String;", i);
                                     if (handleExceptions()) {
                                         return;
                                     }
