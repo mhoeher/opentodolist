@@ -1,6 +1,6 @@
 /*
  * Copyright 2020 Martin Hoeher <martin@rpdev.net>
- +
+ *
  * This file is part of OpenTodoList.
  *
  * OpenTodoList is free software: you can redistribute it and/or modify

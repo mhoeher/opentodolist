@@ -19,6 +19,7 @@
 
 #include "dropboxaccount.h"
 
+#include <QGuiApplication>
 #include <QVariant>
 #include <QVariantMap>
 #include <QJsonDocument>
@@ -29,6 +30,10 @@
 #include <QLoggingCategory>
 #include <QNetworkReply>
 #include <QUrlQuery>
+
+#ifdef Q_OS_ANDROID
+#include <QtAndroidExtras>
+#endif
 
 #include <SynqClient/CompositeJob>
 #include <SynqClient/ListFilesJob>
@@ -49,7 +54,7 @@ static const char* DropboxAppKey = "2llpx6hgwdzq7wr";
 
 static const char* DropboxAccessTokenUrl = "https://api.dropboxapi.com/oauth2/token";
 static const char* DropboxAuthorizationUrl = "https://www.dropbox.com/oauth2/authorize";
-#if defined(Q_OS_IOS)
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
 static const char* DropboxRedirectUri = "opentodolist://dropbox.auth";
 #else
 static const char* DropboxRedirectUri = "http://localhost:1220";
@@ -68,10 +73,60 @@ public:
     explicit DropboxInternalReplyHandler(QObject* parent = nullptr) : QOAuthOobReplyHandler(parent)
     {
         QDesktopServices::setUrlHandler("opentodolist", this, "handleReply");
-    }
-    ~DropboxInternalReplyHandler() override { QDesktopServices::unsetUrlHandler("opentodolist"); }
+#ifdef Q_OS_ANDROID
+        // On Android, the app specific URL is first received by the Java part and cached there. We
+        // need to wait until the app becomes active again and then get the URLs from the Java part.
+        auto guiApp = qobject_cast<QGuiApplication*>(QCoreApplication::instance());
+        if (guiApp) {
+            connect(guiApp, &QGuiApplication::applicationStateChanged, this,
+                    [=](Qt::ApplicationState state) {
+                        if ( state == Qt::ApplicationActive) {
+                            auto activity = QtAndroid::androidActivity();
+                            if (activity.isValid()) {
+                                auto handleExceptions = [=]() {
+                                    QAndroidJniEnvironment env;
+                                    if (env->ExceptionCheck()) {
+                                        qCWarning(log) << "An exception occurred during interfacing with Java.";
+                                        env->ExceptionDescribe();
+                                        env->ExceptionClear();
+                                        return true;
+                                    }
+                                    return false;
+                                };
 
-    QString callback() const override { return DropboxRedirectUri; }
+                                auto numPendingAppLinks = activity.callMethod<jint>("getPendingAppLinksCount");
+                                if (handleExceptions()) {
+                                    return;
+                                }
+
+                                for (int i = 0; i < numPendingAppLinks; ++i) {
+                                    auto appLink = activity.callObjectMethod("getPendingAppLink", "(I)Ljava/lang/String;", i);
+                                    if (handleExceptions()) {
+                                        return;
+                                    }
+                                    qCDebug(log) << "Received app link:" << appLink.toString();
+                                    QDesktopServices::openUrl(QUrl(appLink.toString()));
+                                }
+
+                                activity.callMethod<void>("clearPendingAppLinks");
+                                if (handleExceptions()) {
+                                    return;
+                                }
+                            }
+                        }
+                    });
+        }
+#endif
+    }
+    ~DropboxInternalReplyHandler() override
+    {
+        QDesktopServices::unsetUrlHandler("opentodolist");
+    }
+
+    QString callback() const override
+    {
+        return DropboxRedirectUri;
+    }
 
 private slots:
     void handleReply(const QUrl& url)
@@ -165,7 +220,7 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
     nam->setParent(result);
     nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 
-#if defined(Q_OS_IOS)
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
     auto replyHandler = new DropboxInternalReplyHandler(result);
 #else
     auto replyHandler = new QOAuthHttpServerReplyHandler(DropboxRedirectPort, result);
