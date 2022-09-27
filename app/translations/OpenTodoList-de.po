@@ -2648,12 +2648,12 @@ msgctxt "StartPage|"
 msgid "Add a new library"
 msgstr ""
 
-#: ../Pages/StartPage.qml:66
+#: ../Pages/StartPage.qml:78
 msgctxt "StartPage|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Pages/StartPage.qml:88
+#: ../Pages/StartPage.qml:100
 msgctxt "StartPage|"
 msgid "Add an account"
 msgstr ""

@@ -1897,12 +1897,12 @@ Isso requer uma reinicialização do aplicativo.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="66"/>
+        <location filename="../Pages/StartPage.qml" line="78"/>
         <source>Accounts</source>
         <translation type="unfinished">Contas</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="88"/>
+        <location filename="../Pages/StartPage.qml" line="100"/>
         <source>Add an account</source>
         <translation type="unfinished"></translation>
     </message>
