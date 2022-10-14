@@ -24,7 +24,7 @@ ItemPage {
     readonly property alias editingNotes: d.editingNotes
 
     function finishEditingNotes() {
-        todosWidget.header.itemNotesEditor.finishEditing()
+        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
     }
 
     function deleteItem() {
@@ -73,7 +73,7 @@ ItemPage {
     }
 
     property var goBack: editingNotes ? function () {
-        todosWidget.header.itemNotesEditor.finishEditing()
+        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
     } : undefined
 
     property var undo: {
@@ -180,7 +180,7 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.todoList
-        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor
+        C.ScrollBar.vertical.policy: (todosWidget.headerItem.item.itemNotesEditor
                                       || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
@@ -216,6 +216,7 @@ ItemPage {
                 id: column
 
                 property alias itemNotesEditor: itemNotesEditor
+
                 width: parent.width
                 spacing: AppSettings.smallSpace
 
