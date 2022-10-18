@@ -1949,42 +1949,42 @@ Dies erfordert einen Neustart der Anwendung.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="194"/>
+        <location filename="../Pages/TodoListPage.qml" line="195"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="206"/>
+        <location filename="../Pages/TodoListPage.qml" line="207"/>
         <source>Manually</source>
         <translation type="unfinished">Manuell</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="212"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Name</source>
         <translation type="unfinished">Name</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="218"/>
+        <location filename="../Pages/TodoListPage.qml" line="219"/>
         <source>Due Date</source>
         <translation type="unfinished">Fällig am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="224"/>
+        <location filename="../Pages/TodoListPage.qml" line="225"/>
         <source>Created At</source>
         <translation type="unfinished">Angelegt am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="230"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Updated At</source>
         <translation type="unfinished">Aktualisiert am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="243"/>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Show Completed</source>
         <translation type="unfinished">Abgeschlossene anzeigen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="250"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Show At The End</source>
         <translation type="unfinished">Am Ende anzeigen</translation>
     </message>
@@ -2017,12 +2017,12 @@ Dies erfordert einen Neustart der Anwendung.</translation>
         <translation type="unfinished">Neue Unteraufgabe hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="295"/>
+        <location filename="../Pages/TodoPage.qml" line="296"/>
         <source>Show Completed</source>
         <translation type="unfinished">Abgeschlossene anzeigen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="302"/>
+        <location filename="../Pages/TodoPage.qml" line="303"/>
         <source>Show At The End</source>
         <translation type="unfinished">Am Ende anzeigen</translation>
     </message>
@@ -2030,7 +2030,7 @@ Dies erfordert einen Neustart der Anwendung.</translation>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="215"/>
+        <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Fällig am: %1</translation>
     </message>

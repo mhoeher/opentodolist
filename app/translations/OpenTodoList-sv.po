@@ -554,7 +554,7 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Inga öppna att-göra - Allt klart"
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:195
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Sökterm 1, sökterm 2, ..."
@@ -694,7 +694,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Lägg till ny uppgift ..."
 
-#: ../Widgets/TodosWidget.qml:215
+#: ../Widgets/TodosWidget.qml:217
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Förfaller: %1"
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Språk:"
 
-#: ../Pages/TodoListPage.qml:206
+#: ../Pages/TodoListPage.qml:207
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manuellt"
 
-#: ../Pages/TodoListPage.qml:212
+#: ../Pages/TodoListPage.qml:213
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Namn"
 
-#: ../Pages/TodoListPage.qml:218
+#: ../Pages/TodoListPage.qml:219
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Förfallodatum"
 
-#: ../Pages/TodoListPage.qml:224
+#: ../Pages/TodoListPage.qml:225
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Skapad"
 
-#: ../Pages/TodoListPage.qml:230
+#: ../Pages/TodoListPage.qml:231
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Uppdaterat"
@@ -2442,22 +2442,22 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr "Välj Bild"
 
-#: ../Pages/TodoListPage.qml:243
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr "Visa Slutförda"
 
-#: ../Pages/TodoListPage.qml:250
+#: ../Pages/TodoListPage.qml:251
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "Visa Vid Slutet"
 
-#: ../Pages/TodoPage.qml:295
+#: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "Visa Slutförda"
 
-#: ../Pages/TodoPage.qml:302
+#: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "Visa Vid Slutet"

@@ -560,7 +560,7 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Pas de Todo en cours - tout est fait"
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:195
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
@@ -701,7 +701,7 @@ msgid "Add new task..."
 msgstr "Ajouter une nouvelle tâche..."
 
 #. Ou "Échéance :"
-#: ../Widgets/TodosWidget.qml:215
+#: ../Widgets/TodosWidget.qml:217
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Pour le: %1"
@@ -833,27 +833,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Langue"
 
-#: ../Pages/TodoListPage.qml:206
+#: ../Pages/TodoListPage.qml:207
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../Pages/TodoListPage.qml:212
+#: ../Pages/TodoListPage.qml:213
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nom"
 
-#: ../Pages/TodoListPage.qml:218
+#: ../Pages/TodoListPage.qml:219
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Date d'échéance"
 
-#: ../Pages/TodoListPage.qml:224
+#: ../Pages/TodoListPage.qml:225
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Créé à"
 
-#: ../Pages/TodoListPage.qml:230
+#: ../Pages/TodoListPage.qml:231
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Mis à jour à"
@@ -2460,22 +2460,22 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:243
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:250
+#: ../Pages/TodoListPage.qml:251
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:295
+#: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:302
+#: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""

@@ -100,7 +100,7 @@ msgstr "Żółty"
 #: ../Menues/ColorMenu.qml:54
 msgctxt "ColorMenu|"
 msgid "Orange"
-msgstr "Orange"
+msgstr "Pomarańczowy"
 
 #: ../Menues/ColorMenu.qml:61
 msgctxt "ColorMenu|"
@@ -215,7 +215,7 @@ msgstr "Żółty"
 #: ../Pages/LibraryPage.qml:229
 msgctxt "LibraryPage|"
 msgid "Orange"
-msgstr "Orange"
+msgstr "Pomarańczowy"
 
 #: ../Pages/LibraryPage.qml:236
 msgctxt "LibraryPage|"
@@ -554,7 +554,7 @@ msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Żadnych otwartych spraw - wszystko zrobione"
 
-#: ../Pages/TodoListPage.qml:194
+#: ../Pages/TodoListPage.qml:195
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Wyszukiwanie terminu 1, wyszukiwania terminu 2, ..."
@@ -695,7 +695,7 @@ msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Dodaj nowe zadanie..."
 
-#: ../Widgets/TodosWidget.qml:215
+#: ../Widgets/TodosWidget.qml:217
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Due on: %1"
@@ -825,27 +825,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Język:"
 
-#: ../Pages/TodoListPage.qml:206
+#: ../Pages/TodoListPage.qml:207
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Ręcznie"
 
-#: ../Pages/TodoListPage.qml:212
+#: ../Pages/TodoListPage.qml:213
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nazwa"
 
-#: ../Pages/TodoListPage.qml:218
+#: ../Pages/TodoListPage.qml:219
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Termin wymagalności"
 
-#: ../Pages/TodoListPage.qml:224
+#: ../Pages/TodoListPage.qml:225
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Utworzony w"
 
-#: ../Pages/TodoListPage.qml:230
+#: ../Pages/TodoListPage.qml:231
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Zaktualizowany na"
@@ -1015,7 +1015,7 @@ msgstr "Hasło"
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Disable Certificate Checks"
-msgstr "Kontrole zaświadczeń o wyłączeniu"
+msgstr "Wyłącz sprawdzanie certyfikatów"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
 msgctxt "EditWebDAVAccountPageForm.ui|"
@@ -2098,12 +2098,12 @@ msgstr "ukraiński"
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Ustaw postęp"
 
 #: ../Actions/SetManualProgressAction.qml:8
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Ustaw postęp"
 
 #: ../Pages/SettingsPage.qml:175
 msgctxt "SettingsPage|"
@@ -2113,7 +2113,7 @@ msgstr "Użyj niestandardowej czcionki"
 #: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
+msgstr "Użyj stylu kompaktowego"
 
 #: ../Pages/SettingsPage.qml:202
 msgctxt "SettingsPage|"
@@ -2444,22 +2444,22 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:243
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:250
+#: ../Pages/TodoListPage.qml:251
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:295
+#: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:302
+#: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""

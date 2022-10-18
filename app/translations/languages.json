@@ -163,9 +163,9 @@
     {
         "name": "Polish",
         "code": "pl",
-        "translations": 426,
-        "percentage": 81.14,
-        "updated": "2021-05-04T10:08:31+0000"
+        "translations": 429,
+        "percentage": 81.71,
+        "updated": "2022-10-02T21:05:32+0000"
     },
     {
         "name": "Portuguese",
@@ -184,9 +184,9 @@
     {
         "name": "Russian",
         "code": "ru",
-        "translations": 346,
-        "percentage": 65.9,
-        "updated": "2022-03-10T08:33:29+0000"
+        "translations": 504,
+        "percentage": 96,
+        "updated": "2022-10-13T12:01:33+0000"
     },
     {
         "name": "Slovak",

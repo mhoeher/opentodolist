@@ -1948,42 +1948,42 @@ Richiesto riavvio della app.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="194"/>
+        <location filename="../Pages/TodoListPage.qml" line="195"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Termine di ricerca 1, termine di ricerca 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="206"/>
+        <location filename="../Pages/TodoListPage.qml" line="207"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="212"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Name</source>
         <translation type="unfinished">Nome</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="218"/>
+        <location filename="../Pages/TodoListPage.qml" line="219"/>
         <source>Due Date</source>
         <translation type="unfinished">Scadenza</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="224"/>
+        <location filename="../Pages/TodoListPage.qml" line="225"/>
         <source>Created At</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="230"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Updated At</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="243"/>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Show Completed</source>
         <translation type="unfinished">Mostra Completati</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="250"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Show At The End</source>
         <translation type="unfinished">Mostra alla fine</translation>
     </message>
@@ -2016,12 +2016,12 @@ Richiesto riavvio della app.</translation>
         <translation type="unfinished">Aggiungi un nuovo compito...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="295"/>
+        <location filename="../Pages/TodoPage.qml" line="296"/>
         <source>Show Completed</source>
         <translation type="unfinished">Mostra Completati</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="302"/>
+        <location filename="../Pages/TodoPage.qml" line="303"/>
         <source>Show At The End</source>
         <translation type="unfinished">Mostra alla fine</translation>
     </message>
@@ -2029,7 +2029,7 @@ Richiesto riavvio della app.</translation>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="215"/>
+        <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">In scadenza il: %1</translation>
     </message>
