@@ -23,5 +23,5 @@ target_compile_definitions(
 
 add_test(
     NAME copyitemquery
-    COMMAND $<TARGET_FILE:test_copyitemquery> -platform minimal
+    COMMAND $<TARGET_FILE:test_copyitemquery> -platform minimal -nocrashhandler
 )

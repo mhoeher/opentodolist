@@ -44,10 +44,9 @@ ItemPage {
         filterBar.edit.forceActiveFocus()
     }
 
-    property var goBack: (todosWidget.header.itemNotesEditor
-                          || {}).editingNotes ? function () {
-                              todosWidget.header.itemNotesEditor.finishEditing()
-                          } : undefined
+    property var goBack: d.editingNotes ? function () {
+        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
+    } : undefined
 
     property var undo: {
         if (d.savedTodoStates.length > 0) {
@@ -85,6 +84,22 @@ ItemPage {
         dueDateSelectionDialog.open()
     }
 
+    savePage: function () {
+        return {
+            "library": page.library.uid,
+            "todoList": page.item.uid
+        }
+    }
+
+    restorePage: function (state) {
+        d.restoreLibraryUid = state.library
+        d.restoreTodoListUid = state.todoList
+        OTL.Application.loadLibrary(d.restoreLibraryUid)
+        OTL.Application.loadItem(d.restoreTodoListUid)
+    }
+
+    restoreUrl: Qt.resolvedUrl("./TodoListPage.qml")
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
@@ -116,6 +131,11 @@ ItemPage {
         }
 
         property var savedTodoStates: []
+
+        property var restoreLibraryUid
+        property var restoreTodoListUid
+
+        property bool editingNotes: false
 
         signal attach
         signal attachFiles(var fileUrls)
@@ -247,8 +267,7 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.item
-        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor
-                                      || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
+        C.ScrollBar.vertical.policy: d.editingNotes ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
         TodosWidget {
@@ -339,6 +358,12 @@ ItemPage {
                     id: itemNotesEditor
                     item: page.item
                     width: parent.width
+
+                    Binding {
+                        target: d
+                        property: "editingNotes"
+                        value: itemNotesEditor.editing
+                    }
                 }
             }
 
@@ -383,5 +408,21 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onLibraryLoaded(uid, data) {
+            if (uid === d.restoreLibraryUid) {
+                page.library = OTL.Application.libraryFromData(data)
+            }
+        }
+
+        function onItemLoaded(uid, data) {
+            if (uid === d.restoreTodoListUid) {
+                page.item = OTL.Application.itemFromData(data)
+            }
+        }
     }
 }

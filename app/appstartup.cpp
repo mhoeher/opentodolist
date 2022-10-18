@@ -23,6 +23,13 @@
 #    include <QtWebView>
 #endif
 
+#ifdef Q_OS_IOS
+#    include <TargetConditionals.h>
+#    if TARGET_OS_SIMULATOR
+#        include <QTcpServer>
+#    endif
+#endif
+
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.main", QtDebugMsg);
 
 QVector<QtMessageHandler> AppStartup::s_prevMessageHandler;
@@ -151,11 +158,7 @@ void AppStartup::createApp(int& argc, char* argv[])
     auto guiApp = qobject_cast<QGuiApplication*>(m_app);
     if (guiApp) {
         guiApp->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
-
-        qWarning() << "Screens:";
-        for (auto screen : guiApp->screens()) {
-            qWarning() << screen->name() << screen->devicePixelRatio();
-        }
+        guiApp->setDesktopFileName("net.rpdev.OpenTodoList");
     }
 
 #ifdef Q_OS_MACOS
@@ -255,7 +258,20 @@ void AppStartup::startBackgroundService()
         // User asked to only start GUI, skip running the background service.
         return;
     }
+#if TARGET_OS_SIMULATOR
+    // Local socket seems not to work on iOS simulator
+    auto tcpServer = new QTcpServer();
+    tcpServer->listen(QHostAddress(QStringLiteral("127.0.0.1")), 14782);
+    m_srcNode = new QRemoteObjectHost();
+    tcpServer->setParent(m_srcNode);
+    connect(tcpServer, &QTcpServer::newConnection, m_srcNode, [=]() {
+        qDebug() << "New connection from client to QtRO TCP server";
+        m_srcNode->addHostSideConnection(tcpServer->nextPendingConnection());
+        m_srcNode->enableRemoting(m_backgroundService);
+    });
+#else
     m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:opentodolist")));
+#endif
     m_backgroundService = new BackgroundService(m_cache);
     m_srcNode->enableRemoting(m_backgroundService);
 }

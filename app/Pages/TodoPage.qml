@@ -17,7 +17,6 @@ ItemPage {
     property OTL.Todo item: OTL.Todo {}
     property OTL.Library library: null
     property OTL.TodoList todoList: null
-    property Item parentDrawer: null
 
     signal closePage
     signal openPage(var component, var properties)
@@ -25,7 +24,7 @@ ItemPage {
     readonly property alias editingNotes: d.editingNotes
 
     function finishEditingNotes() {
-        todosWidget.header.itemNotesEditor.finishEditing()
+        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
     }
 
     function deleteItem() {
@@ -59,7 +58,6 @@ ItemPage {
 
     function find() {
         filterBar.edit.forceActiveFocus()
-        d.reopenDrawer()
     }
 
     function attach() {
@@ -75,7 +73,7 @@ ItemPage {
     }
 
     property var goBack: editingNotes ? function () {
-        todosWidget.header.itemNotesEditor.finishEditing()
+        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
     } : undefined
 
     property var undo: {
@@ -93,6 +91,25 @@ ItemPage {
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: todoList
 
+    savePage: function () {
+        return {
+            "library": page.library.uid,
+            "todoList": page.todoList.uid,
+            "todo": page.item.uid
+        }
+    }
+
+    restorePage: function (state) {
+        d.restoreLibraryUid = state.library
+        d.restoreTodoListUid = state.todoList
+        d.restoreTodoUid = state.todo
+        OTL.Application.loadLibrary(d.restoreLibraryUid)
+        OTL.Application.loadItem(d.restoreTodoListUid)
+        OTL.Application.loadItem(d.restoreTodoUid)
+    }
+
+    restoreUrl: Qt.resolvedUrl("./TodoPage.qml")
+
     QtObject {
         id: d
 
@@ -100,14 +117,12 @@ ItemPage {
 
         property var savedTaskStates: []
 
+        property var restoreLibraryUid
+        property var restoreTodoListUid
+        property var restoreTodoUid
+
         signal attach
         signal attachFiles(var fileUrls)
-
-        function reopenDrawer() {
-            if (page.parentDrawer) {
-                page.parentDrawer.open()
-            }
-        }
     }
 
     Actions.MoveTodo {
@@ -126,18 +141,15 @@ ItemPage {
         onAccepted: {
             page.closePage()
         }
-        onClosed: d.reopenDrawer()
     }
 
     DateSelectionDialog {
         id: dueDateSelectionDialog
         onAccepted: page.item.dueTo = selectedDate
-        onClosed: d.reopenDrawer()
     }
 
     RenameItemDialog {
         id: renameItemDialog
-        onClosed: d.reopenDrawer()
     }
 
     OTL.ItemsSortFilterModel {
@@ -168,7 +180,7 @@ ItemPage {
             bottom: parent.bottom
         }
         item: page.todoList
-        C.ScrollBar.vertical.policy: (todosWidget.header.itemNotesEditor
+        C.ScrollBar.vertical.policy: (todosWidget.headerItem.item.itemNotesEditor
                                       || {}).editing ? C.ScrollBar.AlwaysOn : C.ScrollBar.AsNeeded
         C.ScrollBar.vertical.interactive: true
 
@@ -204,6 +216,7 @@ ItemPage {
                 id: column
 
                 property alias itemNotesEditor: itemNotesEditor
+
                 width: parent.width
                 spacing: AppSettings.smallSpace
 
@@ -299,5 +312,23 @@ ItemPage {
     Actions.CopyTodo {
         id: copyTodoAction
         item: page.item
+    }
+
+    Connections {
+        target: OTL.Application
+
+        function onLibraryLoaded(uid, data) {
+            if (uid === d.restoreLibraryUid) {
+                page.library = OTL.Application.libraryFromData(data)
+            }
+        }
+
+        function onItemLoaded(uid, data) {
+            if (uid === d.restoreTodoListUid) {
+                page.todoList = OTL.Application.itemFromData(data)
+            } else if (uid === d.restoreTodoUid) {
+                page.item = OTL.Application.itemFromData(data)
+            }
+        }
     }
 }

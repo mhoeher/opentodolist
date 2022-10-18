@@ -45,7 +45,7 @@ C.Page {
             id: itemDelegate
 
             text: name
-            width: parent.width
+            width: listView.width
 
             Connections {
                 target: itemDelegate

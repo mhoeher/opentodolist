@@ -44,6 +44,14 @@
 #    include <QAndroidJniExceptionCleaner>
 #endif
 
+#ifdef Q_OS_IOS
+#    include <TargetConditionals.h>
+#    if TARGET_OS_SIMULATOR
+#        include <QTcpSocket>
+#        include <QHostAddress>
+#    endif
+#endif
+
 #include "SynqClient/NextCloudLoginFlow"
 
 #include "datamodel/image.h"
@@ -56,20 +64,14 @@
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
 #include "datastorage/getitemquery.h"
+#include "datastorage/getlibraryquery.h"
 #include "datastorage/copyitemquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
-#include "datastorage/librariesitemsquery.h"
-#include "datastorage/libraryloader.h"
 #include "datastorage/movetodoquery.h"
 #include "datastorage/promotetaskquery.h"
-#include "fileutils.h"
 #include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
-#include "sync/syncjob.h"
-#include "sync/syncrunner.h"
-#include "sync/webdavsynchronizer.h"
-#include "utils/directorywatcher.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
 
@@ -203,7 +205,17 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
         }
 #endif
 
+#if TARGET_OS_SIMULATOR
+        // Local socket not working on iOS simulator, use TCP
+        auto socket = new QTcpSocket(m_remoteObjectNode);
+        socket->connectToHost(QHostAddress(QStringLiteral("127.0.0.1")), 14782);
+        if (socket->waitForConnected()) {
+            m_remoteObjectNode->addClientSideConnection(socket);
+        }
+#else
         m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("local:opentodolist")));
+#endif
+
         m_backgroundService.reset(m_remoteObjectNode->acquire<BackgroundServiceReplica>());
         if (!m_backgroundService->waitForSource(5000)) {
             qCWarning(log) << "Failed to connect to background service";
@@ -800,6 +812,43 @@ void Application::deleteDoneTasks(Todo* todo)
 }
 
 /**
+ * @brief Request loading a library from the cache.
+ *
+ * This method triggers loading the library with the given @p uid from the cache. Once the
+ * item data is available, the libraryLoaded() signal is emitted.
+ *
+ * If the uid is null, this method has no effect.
+ */
+void Application::loadLibrary(const QUuid& uid)
+{
+    if (!uid.isNull()) {
+        auto q = new GetLibraryQuery();
+        q->setUid(uid);
+        connect(q, &GetLibraryQuery::libraryLoaded, this,
+                [=](const QVariant& data) { emit this->libraryLoaded(uid, data); });
+        m_cache->run(q);
+    }
+}
+
+/**
+ * @brief Create and return a library from cached data.
+ *
+ * This method takes the serialized item @p data and returns a library created from the data.
+ * If the data is invalid, a null pointer is returned. If creating a library was succesful, the
+ * resulting library is set up to automatically update from the cache in case of changes.
+ *
+ * @note Ownership is transferred to the caller.
+ */
+Library* Application::libraryFromData(const QVariant& data)
+{
+    auto library = Library::decache(data);
+    if (library) {
+        library->setCache(m_cache);
+    }
+    return library;
+}
+
+/**
  * @brief Request loading an item from the cache.
  *
  * This method triggers loading the item with the given @p uid from the cache. Once the
@@ -812,19 +861,8 @@ void Application::loadItem(const QUuid& uid)
     if (!uid.isNull()) {
         auto q = new GetItemQuery();
         q->setUid(uid);
-        QPointer<Application> _this = this;
-        connect(q, &GetItemQuery::itemLoaded, [_this, uid](const QVariant& data) {
-            if (_this) {
-                QMetaObject::invokeMethod(
-                        _this,
-                        [uid, data, _this]() {
-                            if (_this) {
-                                emit _this->itemLoaded(uid, data);
-                            }
-                        },
-                        Qt::QueuedConnection);
-            }
-        });
+        connect(q, &GetItemQuery::itemLoaded, this,
+                [=](const QVariant& data) { emit this->itemLoaded(uid, data); });
         m_cache->run(q);
     }
 }
@@ -833,7 +871,7 @@ void Application::loadItem(const QUuid& uid)
  * @brief Create and return an item from cached data.
  *
  * This method takes the serialized item @p data and returns an item created from the data.
- * If the data is invalid, a null pointer is returned. If creating an item was succesfull, the
+ * If the data is invalid, a null pointer is returned. If creating an item was succesful, the
  * resulting item is set up to automatically update from the cache in case of changes.
  *
  * @note Ownership is transferred to the caller.

@@ -5,461 +5,429 @@ import "../Components"
 import "../Controls" as C
 import "../Fonts"
 import "../Utils"
+import "../Pages" as Pages
 
 import OpenTodoList 1.0 as OTL
 
 C.Pane {
     id: sidebar
 
-    property OTL.Library currentLibrary: null
-    property string currentTag: ""
-    property string specialView: ""
     property alias numberOfLibraries: librariesModel.count
 
-    // For reopening the last view:
-    property string lastLibrary: ""
-    property string lastTag: ""
-    property string lastSpecialView: ""
-    property bool previousLibraryOpened: false
-
-    property bool helpVisible: false
-    property bool settingsVisible: false
-    property bool accountsVisible: false
     property bool compact: false
+
+    property C.StackView stack
 
     signal newLibrary
     signal aboutPageRequested
     signal settingsPageRequested
     signal accountsPageRequested
     signal close
-    signal showLibrary(var library, string tag, string specialView)
-
-    function doShowLibrary() {
-        showLibrary(currentLibrary, currentTag, specialView)
-    }
-
-    function reopenLastLibrary() {
-        if (previousLibraryOpened) {
-            return
-        }
-
-        if (lastLibrary != "") {
-            for (var i = 0; i < librariesModel.count; ++i) {
-                var lib = librariesModel.get(i)
-                if (lib.uid.toString() === lastLibrary) {
-                    currentLibrary = lib
-                    currentTag = lastTag
-                    specialView = lastSpecialView
-                    doShowLibrary()
-                }
-            }
-        } else if (lastLibrary == "" && lastTag == ""
-                   && lastSpecialView === "schedule") {
-            currentLibrary = null
-            currentTag = ""
-            specialView = lastSpecialView
-            doShowLibrary()
-        }
-
-        previousLibraryOpened = true
-    }
+    signal showLibrary(var library, string tag)
+    signal showSchedule(var library)
 
     function showSettings() {
-        settingsVisible = true
-        helpVisible = false
-        accountsVisible = false
         sidebar.settingsPageRequested()
-        sidebar.close()
     }
 
-    function showAccounts() {
-        accountsVisible = true
-        helpVisible = false
-        settingsVisible = false
-        sidebar.accountsPageRequested()
-        sidebar.close()
-    }
+        function showAccounts() {
+            sidebar.accountsPageRequested()
+        }
 
-    clip: true
-    padding: 0
-    onNewLibrary: close()
-    Component.onCompleted: sortFilterModel.update()
+            clip: true
+            padding: 0
+            Component.onCompleted: sortFilterModel.update()
 
-    QtObject {
-        id: d
-
-        function isSelectedLibrary(lib) {
-            if (lib === null && sidebar.currentLibrary == null) {
-                return true
+            Settings {
+                category: "LibrariesSideBar"
+                property alias collapsedLibraries: d.collapsedLibraries
+                property alias librariesWithoutSchedule: d.librariesWithoutSchedule
+                property alias libraryOrder: d.libraryOrder
             }
 
-            return !!lib && !!sidebar.currentLibrary
-                    && lib.uid === sidebar.currentLibrary.uid
-        }
+            C.ScrollView {
+                id: scrollView
 
-        property bool editingListEntries: false
-        property var collapsedLibraries: []
-        property var librariesWithoutSchedule: []
-        property var libraryOrder: []
-        readonly property var libraryWeights: {
-            let result = {}
-            for (var i = 0; i < libraryOrder.length; ++i) {
-                result[libraryOrder[i]] = i
-            }
-            return result
-        }
+                anchors.fill: parent
 
-        function collapse(library) {
-            collapsedLibraries = addLibraryIdToListOfUids(collapsedLibraries,
-                                                          library)
-        }
+                ListView {
+                    width: scrollView.availableWidth
+                    model: sortFilterModel
+                    implicitWidth: childrenRect.width
+                    implicitHeight: childrenRect.height
 
-        function expand(library) {
-            collapsedLibraries = removeLibraryIdFromListOfUids(
-                        collapsedLibraries, library)
-        }
+                    header: Column {
+                        width: parent.width
 
-        function showScheduleForLibrary(library) {
-            librariesWithoutSchedule = removeLibraryIdFromListOfUids(
-                        librariesWithoutSchedule, library)
-        }
+                        LibrarySideBarButton {
+                            text: qsTr("Schedule")
+                            symbol: Icons.mdiSchedule
+                            highlighted: d.bottommostPage instanceof Pages.ScheduleViewPage
+                                         && d.bottommostPage.library === null
+                            onClicked: sidebar.showSchedule(null)
+                        }
+                    }
 
-        function hideScheduleForLibrary(library) {
-            librariesWithoutSchedule = addLibraryIdToListOfUids(
-                        librariesWithoutSchedule, library)
-        }
+                    footer: Column {
+                        width: parent.width
 
-        function addLibraryIdToListOfUids(list, library) {
-            let uids = removeLibraryIdFromListOfUids(list, library)
-            uids.push(library.uid.toString())
-            return uids
-        }
+                        LibrarySideBarButton {
+                            text: qsTr("New Library")
+                            symbol: Icons.mdiAdd
+                            highlighted: d.bottommostPage instanceof Pages.NewLibraryPage
+                            onClicked: sidebar.newLibrary()
+                        }
 
-        function removeLibraryIdFromListOfUids(list, library) {
-            let result = []
-            list.forEach(uid => {
-                             if (uid !== library.uid.toString()) {
-                                 result.push(uid)
-                             }
-                         })
-            return result
-        }
+                        LibrarySideBarButton {
+                            text: qsTr("Accounts")
+                            symbol: Icons.mdiAccountCircle
+                            highlighted: d.bottommostPage instanceof Pages.AccountsPage
+                            onClicked: sidebar.showAccounts()
+                        }
 
-        function moveLibraryToIndex(library, index) {
-            // Get current order:
-            let order = []
-            let currentIndex = -1
-            for (var i = 0; i < sortFilterModel.count; ++i) {
-                let lib = sortFilterModel.get(i).library
-                order.push(lib.uid.toString())
-                if (lib === library) {
-                    currentIndex = i
-                }
-            }
+                        LibrarySideBarButton {
+                            text: qsTr("Edit List")
+                            symbol: d.editingListEntries ? Icons.mdiVisibility : Icons.mdiVisibilityOff
+                            onClicked: d.editingListEntries = !d.editingListEntries
+                        }
 
-            // Move library to desired index:
-            order = d.removeLibraryIdFromListOfUids(order, library)
-            order.splice(index, 0, library.uid.toString())
-            d.libraryOrder = order
-        }
+                        LibrarySideBarButton {
+                            text: qsTr("Settings")
+                            symbol: Icons.mdiSettings
+                            onClicked: sidebar.showSettings()
+                        }
 
-        function getLibraryCurrentIndex(library) {
-            for (var i = 0; i < sortFilterModel.count; ++i) {
-                let lib = sortFilterModel.get(i).library
-                if (lib === library) {
-                    return i
-                }
-            }
-            return -1
-        }
+                        LibrarySideBarButton {
+                            text: qsTr("Translate The App...")
+                            symbol: Icons.mdiTranslate
+                            onClicked: Qt.openUrlExternally(
+                                           "https://poeditor.com/join/project/ztvOymGNxn")
+                        }
 
-        // Update the sort/filter model on changes:
-        onLibraryWeightsChanged: sortFilterModel.update()
-    }
+                        LibrarySideBarButton {
+                            text: qsTr("Donate")
+                            symbol: Icons.mdiSavings
+                            visible: Qt.platform.os != "ios"
+                            onClicked: Qt.openUrlExternally(
+                                           "https://opentodolist.rpdev.net/donate/")
+                        }
 
-    Settings {
-        category: "LibrariesSideBar"
-        property alias collapsedLibraries: d.collapsedLibraries
-        property alias librariesWithoutSchedule: d.librariesWithoutSchedule
-        property alias libraryOrder: d.libraryOrder
-    }
+                        LibrarySideBarButton {
+                            text: qsTr("About...")
+                            symbol: Icons.mdiInfo
+                            highlighted: d.bottommostPage instanceof Pages.AboutPage
+                            onClicked: sidebar.aboutPageRequested()
+                        }
 
-    C.ScrollView {
-        id: scrollView
+                        LibrarySideBarButton {
+                            visible: isDebugBuild
+                            text: qsTr("Create Default Library")
+                            onClicked: {
+                                var lib = OTL.Application.addLocalLibrary(
+                                            "My Library")
 
-        anchors.fill: parent
+                                var note = OTL.Application.addNote(lib, {})
+                                note.title = "A Note"
+                                note.notes = "* This is a note\n* It stores arbitrary text"
 
-        ListView {
-            width: scrollView.availableWidth
-            model: sortFilterModel
-            implicitWidth: childrenRect.width
-            implicitHeight: childrenRect.height
+                                var todoList = OTL.Application.addTodoList(lib,
+                                                                           {})
+                                todoList.title = "A Todo List"
+                                todoList.notes = "* Todo lists contain todos.\n"
+                                        + "* Todos in turn can contain tasks."
 
-            header: Column {
-                width: parent.width
+                                var todo1 = OTL.Application.addTodo(lib,
+                                                                    todoList,
+                                                                    {})
+                                todo1.title = "A todo"
 
-                LibrarySideBarButton {
-                    text: qsTr("Schedule")
-                    symbol: Icons.mdiSchedule
-                    highlighted: d.isSelectedLibrary(null) && currentTag === ""
-                                 && specialView === "schedule"
-                    onClicked: {
-                        currentLibrary = null
-                        currentTag = ""
-                        specialView = "schedule"
-                        helpVisible = false
-                        settingsVisible = false
-                        accountsVisible = false
-                        sidebar.close()
-                        doShowLibrary()
+                                var todo2 = OTL.Application.addTodo(lib,
+                                                                    todoList,
+                                                                    {})
+                                todo2.title = "Another Todo"
+
+                                var image = OTL.Application.addImage(lib, {})
+                                image.title = "An Image"
+                                image.image = ":/sample.png"
+                            }
+                        }
                     }
                 }
             }
 
-            footer: Column {
-                width: parent.width
+            SortFilterModel {
+                id: sortFilterModel
+                model: OTL.LibrariesModel {
+                    id: librariesModel
 
-                LibrarySideBarButton {
-                    text: qsTr("New Library")
-                    symbol: Icons.mdiAdd
-                    onClicked: sidebar.newLibrary()
+                    cache: OTL.Application.cache
                 }
-
-                LibrarySideBarButton {
-                    text: qsTr("Accounts")
-                    symbol: Icons.mdiAccountCircle
-                    highlighted: accountsVisible
-                    onClicked: sidebar.showAccounts()
+                lessThan: function (left, right) {
+                    let weights = d.libraryWeights
+                    let leftLib = left.library
+                    let rightLib = right.library
+                    let leftWeight = d.libraryWeights[leftLib.uid.toString()]
+                    let rightWeight = d.libraryWeights[rightLib.uid.toString()]
+                    return leftWeight < rightWeight
                 }
+                delegate: Column {
+                    id: librarySection
 
-                LibrarySideBarButton {
-                    text: qsTr("Edit List")
-                    symbol: d.editingListEntries ? Icons.mdiVisibility : Icons.mdiVisibilityOff
-                    onClicked: d.editingListEntries = !d.editingListEntries
-                }
-
-                LibrarySideBarButton {
-                    text: qsTr("Settings")
-                    symbol: Icons.mdiSettings
-                    highlighted: settingsVisible
-                    onClicked: sidebar.showSettings()
-                }
-
-                LibrarySideBarButton {
-                    text: qsTr("Translate The App...")
-                    symbol: Icons.mdiTranslate
-                    onClicked: Qt.openUrlExternally(
-                                   "https://poeditor.com/join/project/ztvOymGNxn")
-                }
-
-                LibrarySideBarButton {
-                    text: qsTr("Donate")
-                    symbol: Icons.mdiSavings
-                    visible: Qt.platform.os != "ios"
-                    onClicked: Qt.openUrlExternally(
-                                   "https://opentodolist.rpdev.net/donate/")
-                }
-
-                LibrarySideBarButton {
-                    text: qsTr("About...")
-                    symbol: Icons.mdiInfo
-                    highlighted: helpVisible
-                    onClicked: {
-                        helpVisible = true
-                        settingsVisible = false
-                        sidebar.aboutPageRequested()
-                        sidebar.close()
-                    }
-                }
-
-                LibrarySideBarButton {
-                    visible: isDebugBuild
-                    text: qsTr("Create Default Library")
-                    onClicked: {
-                        var lib = OTL.Application.addLocalLibrary("My Library")
-
-                        var note = OTL.Application.addNote(lib, {})
-                        note.title = "A Note"
-                        note.notes = "* This is a note\n* It stores arbitrary text"
-
-                        var todoList = OTL.Application.addTodoList(lib, {})
-                        todoList.title = "A Todo List"
-                        todoList.notes = "* Todo lists contain todos.\n"
-                                + "* Todos in turn can contain tasks."
-
-                        var todo1 = OTL.Application.addTodo(lib, todoList, {})
-                        todo1.title = "A todo"
-
-                        var todo2 = OTL.Application.addTodo(lib, todoList, {})
-                        todo2.title = "Another Todo"
-
-                        var image = OTL.Application.addImage(lib, {})
-                        image.title = "An Image"
-                        image.image = ":/sample.png"
-                    }
-                }
-            }
-        }
-
-        Connections {
-            target: currentLibrary
-            function onLibraryDeleted() {
-                currentLibrary = null
-                currentTag = ""
-                specialView = ""
-                doShowLibrary()
-            }
-        }
-    }
-
-    SortFilterModel {
-        id: sortFilterModel
-        model: OTL.LibrariesModel {
-            id: librariesModel
-
-            cache: OTL.Application.cache
-            onUpdateFinished: sidebar.reopenLastLibrary()
-        }
-        lessThan: function (left, right) {
-            let weights = d.libraryWeights
-            let leftLib = left.library
-            let rightLib = right.library
-            let leftWeight = d.libraryWeights[leftLib.uid.toString()]
-            let rightWeight = d.libraryWeights[rightLib.uid.toString()]
-            return leftWeight < rightWeight
-        }
-        delegate: Column {
-            id: librarySection
-
-            readonly property bool collapsed: {
-                for (var i = 0; i < d.collapsedLibraries.length; ++i) {
-                    if (d.collapsedLibraries[i] === library.uid.toString()) {
-                        return true
-                    }
-                }
-                return false
-            }
-
-            readonly property bool scheduleEnabled: {
-                for (const libId in d.librariesWithoutSchedule) {
-                    if (libId === library.uid.toString()) {
+                    readonly property bool collapsed: {
+                        for (var i = 0; i < d.collapsedLibraries.length; ++i) {
+                            if (d.collapsedLibraries[i] === library.uid.toString(
+                                        )) {
+                                return true
+                            }
+                        }
                         return false
                     }
-                }
-                return true
-            }
 
-            width: parent.width
-
-            LibrarySideBarButton {
-                text: library.name
-                bold: true
-                symbol: librarySection.collapsed
-                        || !symbolIsClickable ? Icons.mdiKeyboardArrowRight : Icons.mdiKeyboardArrowDown
-                leftColorSwatch.color: library.color
-                highlighted: d.isSelectedLibrary(library) && currentTag === ""
-                             && specialView === ""
-                symbolIsClickable: library.tags.length > 0
-                                   || librarySection.scheduleEnabled
-                rightSymbolIsClickable: true
-                rightSymbolIsVisible: d.editingListEntries
-                rightSymbol: Icons.mdiEdit
-                onClicked: {
-                    currentLibrary = library
-                    currentTag = ""
-                    specialView = ""
-                    helpVisible = false
-                    settingsVisible = false
-                    sidebar.close()
-                    doShowLibrary()
-                }
-                onSymbolClicked: {
-                    if (librarySection.collapsed) {
-                        d.expand(library)
-                    } else {
-                        d.collapse(library)
+                    readonly property bool scheduleEnabled: {
+                        for (const libId in d.librariesWithoutSchedule) {
+                            if (libId === library.uid.toString()) {
+                                return false
+                            }
+                        }
+                        return true
                     }
-                }
-                onRightSymbolClicked: libraryContextMenu.open()
 
-                C.Menu {
-                    id: libraryContextMenu
+                    width: parent.width
 
-                    modal: true
-                    C.MenuItem {
-                        text: librarySection.scheduleEnabled ? qsTr("Hide Schedule") : qsTr(
-                                                                   "Show Schedule")
-                        onTriggered: {
-                            if (librarySection.scheduleEnabled) {
-                                d.hideScheduleForLibrary(library)
+                    LibrarySideBarButton {
+                        text: library.name
+                        bold: true
+                        symbol: librarySection.collapsed
+                                || !symbolIsClickable ? Icons.mdiKeyboardArrowRight : Icons.mdiKeyboardArrowDown
+                        leftColorSwatch.color: library.color
+                        symbolIsClickable: library.tags.length > 0
+                                           || librarySection.scheduleEnabled
+                        rightSymbolIsClickable: true
+                        rightSymbolIsVisible: d.editingListEntries
+                        rightSymbol: Icons.mdiEdit
+                        highlighted: d.bottommostPage instanceof Pages.LibraryPage
+                                     && d.bottommostPage.tag === ""
+                                     && d.bottommostPage.library.uid === library.uid
+                        onClicked: sidebar.showLibrary(library, "")
+                        onSymbolClicked: {
+                            if (librarySection.collapsed) {
+                                d.expand(library)
                             } else {
-                                d.showScheduleForLibrary(library)
+                                d.collapse(library)
+                            }
+                        }
+                        onRightSymbolClicked: libraryContextMenu.open()
+
+                        C.Menu {
+                            id: libraryContextMenu
+
+                            modal: true
+                            C.MenuItem {
+                                text: librarySection.scheduleEnabled ? qsTr("Hide Schedule") : qsTr(
+                                                                           "Show Schedule")
+                                onTriggered: {
+                                    if (librarySection.scheduleEnabled) {
+                                        d.hideScheduleForLibrary(library)
+                                    } else {
+                                        d.showScheduleForLibrary(library)
+                                    }
+                                }
+                            }
+                            C.MenuItem {
+                                text: qsTr("Move Up")
+                                onTriggered: {
+                                    let currentIndex = d.getLibraryCurrentIndex(
+                                            library)
+                                    if (currentIndex > 0) {
+                                        d.moveLibraryToIndex(library,
+                                                             currentIndex - 1)
+                                    }
+                                }
+                            }
+                            C.MenuItem {
+                                text: qsTr("Move Down")
+                                onTriggered: {
+                                    let currentIndex = d.getLibraryCurrentIndex(
+                                            library)
+                                    if (currentIndex < sortFilterModel.count - 1) {
+                                        d.moveLibraryToIndex(library,
+                                                             currentIndex + 1)
+                                    }
+                                }
                             }
                         }
                     }
-                    C.MenuItem {
-                        text: qsTr("Move Up")
-                        onTriggered: {
-                            let currentIndex = d.getLibraryCurrentIndex(library)
-                            if (currentIndex > 0) {
-                                d.moveLibraryToIndex(library, currentIndex - 1)
-                            }
-                        }
+
+                    LibrarySideBarButton {
+                        indent: 1
+                        text: qsTr("Schedule")
+                        symbol: Icons.mdiSchedule
+                        visible: !librarySection.collapsed
+                                 && librarySection.scheduleEnabled
+                        highlighted: d.bottommostPage instanceof Pages.ScheduleViewPage
+                                     && d.bottommostPage.library.uid === library.uid
+                        leftColorSwatch.color: library.color
+                        onClicked: sidebar.showSchedule(library)
                     }
-                    C.MenuItem {
-                        text: qsTr("Move Down")
-                        onTriggered: {
-                            let currentIndex = d.getLibraryCurrentIndex(library)
-                            if (currentIndex < sortFilterModel.count - 1) {
-                                d.moveLibraryToIndex(library, currentIndex + 1)
-                            }
+
+                    Repeater {
+                        model: library.tags
+                        delegate: LibrarySideBarButton {
+                            indent: 1
+                            visible: !librarySection.collapsed
+                            text: modelData
+                            symbol: Icons.mdiLabel
+                            leftColorSwatch.color: library.color
+                            highlighted: d.bottommostPage instanceof Pages.LibraryPage
+                                         && d.bottommostPage.library.uid === library.uid
+                                         && d.bottommostPage.tag === modelData
+                            onClicked: sidebar.showLibrary(library, modelData)
                         }
                     }
                 }
             }
 
-            LibrarySideBarButton {
-                indent: 1
-                text: qsTr("Schedule")
-                symbol: Icons.mdiSchedule
-                visible: !librarySection.collapsed
-                         && librarySection.scheduleEnabled
-                leftColorSwatch.color: library.color
-                highlighted: d.isSelectedLibrary(library) && currentTag === ""
-                             && specialView === "schedule"
-                onClicked: {
-                    currentLibrary = library
-                    currentTag = ""
-                    specialView = "schedule"
-                    helpVisible = false
-                    settingsVisible = false
+            Connections {
+                target: sidebar
+
+                function onNewLibrary() {
                     sidebar.close()
-                    doShowLibrary()
+                }
+
+                function onAboutPageRequested() {
+                    sidebar.close()
+                }
+
+                function onSettingsPageRequested() {
+                    sidebar.close()
+                }
+
+                function onAccountsPageRequested() {
+                    sidebar.close()
+                }
+
+                function onShowLibrary() {
+                    sidebar.close()
+                }
+
+                function onShowSchedule() {
+                    sidebar.close()
                 }
             }
 
-            Repeater {
-                model: library.tags
-                delegate: LibrarySideBarButton {
-                    indent: 1
-                    visible: !librarySection.collapsed
-                    text: modelData
-                    symbol: Icons.mdiLabel
-                    leftColorSwatch.color: library.color
-                    highlighted: d.isSelectedLibrary(library)
-                                 && currentTag === modelData
-                                 && specialView === ""
-                    onClicked: {
-                        currentLibrary = library
-                        currentTag = modelData
-                        specialView = ""
-                        helpVisible = false
-                        settingsVisible = false
-                        sidebar.close()
-                        doShowLibrary()
+            Connections {
+                target: sidebar.stack
+
+                function onCurrentItemChanged() {
+                    if (sidebar.stack.depth > 0) {
+                        d.bottommostPage = sidebar.stack.get(0)
+                    } else {
+                        d.bottommostPage = null
                     }
                 }
             }
-        }
-    }
-}
+
+            QtObject {
+                id: d
+
+                property bool editingListEntries: false
+                property var collapsedLibraries: []
+                property var librariesWithoutSchedule: []
+                property var libraryOrder: []
+                readonly property var libraryWeights: {
+                    let result = {}
+                    for (var i = 0; i < libraryOrder.length; ++i) {
+                        result[libraryOrder[i]] = i
+                    }
+                    return result
+                }
+                property C.Page bottommostPage
+
+                function isSelectedLibrary(lib) {
+                    if (lib === null && sidebar.currentLibrary === null) {
+                        return true
+                    }
+                        return !!lib && !!sidebar.currentLibrary
+                        && lib.uid === sidebar.currentLibrary.uid
+                    }
+
+                        function collapse(library) {
+                            collapsedLibraries = addLibraryIdToListOfUids(
+                            collapsedLibraries, library)
+                        }
+
+                            function expand(library) {
+                                collapsedLibraries = removeLibraryIdFromListOfUids(
+                                collapsedLibraries, library)
+                            }
+
+                                function showScheduleForLibrary(library) {
+                                    librariesWithoutSchedule = removeLibraryIdFromListOfUids(
+                                    librariesWithoutSchedule, library)
+                                }
+
+                                    function hideScheduleForLibrary(library) {
+                                        librariesWithoutSchedule = addLibraryIdToListOfUids(
+                                        librariesWithoutSchedule, library)
+                                    }
+
+                                        function addLibraryIdToListOfUids(list, library) {
+                                            let uids = removeLibraryIdFromListOfUids(
+                                            list, library)
+                                            uids.push(library.uid.toString())
+                                            return uids
+                                        }
+
+                                            function removeLibraryIdFromListOfUids(list, library) {
+                                                let result = []
+                                                list.forEach(uid => {
+                                                    if (uid !== library.uid.toString(
+                                                    )) {
+                                                        result.push(uid)
+                                                    }
+                                                    })
+                                                        return result
+                                                    }
+
+                                                        function moveLibraryToIndex(library, index) {
+                                                            // Get current order:
+                                                            let order = []
+                                                            let currentIndex = -1
+                                                            for (var i = 0; i
+                                                            < sortFilterModel.count; ++i) {
+                                                                let lib = sortFilterModel.get(
+                                                                i).library
+                                                                order.push(
+                                                                lib.uid.toString(
+                                                                ))
+                                                                if (lib === library) {
+                                                                    currentIndex = i
+                                                                }
+                                                                }
+
+                                                                    // Move library to desired index:
+                                                                    order = d.removeLibraryIdFromListOfUids(
+                                                                    order,
+                                                                    library)
+                                                                    order.splice(
+                                                                    index, 0,
+                                                                    library.uid.toString(
+                                                                    ))
+                                                                    d.libraryOrder = order
+                                                                }
+
+                                                                    function getLibraryCurrentIndex(library) {
+                                                                        for (var i = 0; i < sortFilterModel.count; ++i) {
+                                                                            let lib = sortFilterModel.get(
+                                                                            i).library
+                                                                            if (lib === library) {
+                                                                                return i
+                                                                            }
+                                                                            }
+                                                                                return -1
+                                                                            }
+
+                                                                                // Update the sort/filter model on changes:
+                                                                                onLibraryWeightsChanged: sortFilterModel.update()
+                                                                            }
+                                                                        }

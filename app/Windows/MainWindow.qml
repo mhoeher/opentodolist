@@ -32,47 +32,20 @@ C.ApplicationWindow {
                           OTL.Application.syncAllLibraries()
                       }
 
-    function viewLibrary(lib, tag, special) {
+    function viewLibrary(lib, tag) {
         stackView.clear()
-        if (lib) {
-            switch (special) {
-            case "schedule":
-                stackView.push(scheduleViewPage, {
-                                   "library": lib
-                               })
-                break
-            default:
-                stackView.push(libraryPage, {
-                                   "library": lib,
-                                   "tag": tag
-                               })
-                break
-            }
-            if (d.completed) {
-                OTL.Application.saveValue("lastLibrary", lib.uid.toString())
-                OTL.Application.saveValue("lastTag", tag)
-                OTL.Application.saveValue("specialView", special)
-            }
-        } else if (lib === null) {
-            // Special case: If lib is null, check if a global view has been requested
-            switch (special) {
-            case "schedule":
-                stackView.push(scheduleViewPage, {})
-                if (d.completed) {
-                    OTL.Application.saveValue("lastLibrary", "")
-                    OTL.Application.saveValue("lastTag", "")
-                    OTL.Application.saveValue("specialView", special)
-                }
-                break
-            default:
-                break
-            }
-        }
+        stackView.push(Qt.resolvedUrl("../Pages/LibraryPage.qml"), {
+                           "library": lib,
+                           "tag": tag
+                       })
     }
 
-    property Item helpPage: null
-    property Item settingsPage: null
-    property Item accountsPage: null
+    function viewSchedule(lib) {
+        stackView.clear()
+        stackView.push(Qt.resolvedUrl("../Pages/ScheduleViewPage.qml"), {
+                           "library": lib
+                       })
+    }
 
     header: ApplicationToolBar {
         id: applicationToolBar
@@ -188,12 +161,6 @@ C.ApplicationWindow {
     }
 
     Component.onCompleted: {
-        librariesSideBar.lastLibrary = OTL.Application.loadValue("lastLibrary",
-                                                                 "")
-        librariesSideBar.lastTag = "" + OTL.Application.loadValue("lastTag", "")
-        librariesSideBar.lastSpecialView = "" + OTL.Application.loadValue(
-                    "specialView", "")
-
         d.completed = true
 
         defaultFontSize = font.pointSize
@@ -208,6 +175,7 @@ C.ApplicationWindow {
         switch (Qt.platform.os) {
         case "android":
             if (stackView.canGoBack) {
+                close.accepted = false
                 stackView.goBack()
                 return
             } else {
@@ -230,52 +198,32 @@ C.ApplicationWindow {
     LibrariesSideBar {
         id: librariesSideBar
 
-        helpVisible: helpPage != null
         anchors.fill: parent
         compact: window.width < 600
-        onShowLibrary: window.viewLibrary(library, tag, specialView)
+        stack: stackView
+        onShowLibrary: window.viewLibrary(library, tag)
+        onShowSchedule: window.viewSchedule(library)
         onNewLibrary: {
             stackView.clear()
             stackView.push(newLibraryPage)
         }
         onAboutPageRequested: {
-            if (helpPage) {
-                stackView.pop(helpPage)
-            } else {
-                helpPage = stackView.push(aboutPage, {
-                                              "stack": stackView,
-                                              "onClosed": function () {
-                                                  helpPage = null
-                                                  librariesSideBar.helpVisible = false
-                                              }
-                                          })
-            }
+            stackView.clear()
+            stackView.push(Qt.resolvedUrl("../Pages/AboutPage.qml"))
         }
         onSettingsPageRequested: {
-            if (settingsPage) {
-                stackView.pop(settingsPage)
-            } else {
-                settingsPage = stackView.push(settingsPageComponent, {
-                                                  "stack": stackView,
-                                                  "onClosed": function () {
-                                                      settingsPage = null
-                                                      librariesSideBar.settingsVisible = false
-                                                  }
-                                              })
+            for (var i = 0; i < stackView.depth; ++i) {
+                let page = stackView.get(i)
+                if (page instanceof SettingsPage) {
+                    stackView.pop(page)
+                    return
+                }
             }
+            stackView.push(Qt.resolvedUrl("../Pages/SettingsPage.qml"))
         }
         onAccountsPageRequested: {
-            if (accountsPage) {
-                stackView.pop(accountsPage)
-            } else {
-                accountsPage = stackView.push(accountsPageComponent, {
-                                                  "stack": stackView,
-                                                  "onClosed": function () {
-                                                      accountsPage = null
-                                                      librariesSideBar.accountsVisible = false
-                                                  }
-                                              })
-            }
+            stackView.clear()
+            stackView.push(Qt.resolvedUrl("../Pages/AccountsPage.qml"))
         }
 
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
@@ -314,7 +262,7 @@ C.ApplicationWindow {
         }
 
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
-        property bool canGoBack: currentItem !== null
+        property bool canGoBack: currentItem != null
                                  && (depth > 1
                                      || typeof (currentItem.goBack) === "function")
 
@@ -343,6 +291,8 @@ C.ApplicationWindow {
 
         clip: true
         visible: depth > 0
+        stackId: "mainWindow"
+        startPageComponent: Qt.resolvedUrl("../Pages/StartPage.qml")
         onCurrentItemChanged: applicationToolBar.closeMenu()
     }
 
@@ -420,43 +370,6 @@ C.ApplicationWindow {
     UpdateNotificationBar {}
 
     Component {
-        id: libraryPage
-        LibraryPage {
-            onItemClicked: {
-                stackView.push(Qt.resolvedUrl(
-                                   "../Pages/" + item.itemType + "Page.qml"), {
-                                   "item": OTL.Application.cloneItem(item),
-                                   "library": library,
-                                   "stack": stackView
-                               })
-            }
-        }
-    }
-
-    Component {
-        id: scheduleViewPage
-        ScheduleViewPage {}
-    }
-
-    Component {
-        id: aboutPage
-
-        AboutPage {}
-    }
-
-    Component {
-        id: settingsPageComponent
-
-        SettingsPage {}
-    }
-
-    Component {
-        id: accountsPageComponent
-
-        AccountsPage {}
-    }
-
-    Component {
         id: problemsPage
 
         ProblemsPage {}
@@ -468,9 +381,7 @@ C.ApplicationWindow {
         NewLibraryPage {
             onLibraryCreated: {
                 if (library) {
-                    librariesSideBar.currentLibrary = library
-                    librariesSideBar.currentTag = ""
-                    viewLibrary(library)
+                    viewLibrary(library, "")
                 }
             }
         }

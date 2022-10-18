@@ -40,6 +40,20 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.42.0" date="2022-10-18">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#520: Remember the last opened item.</li>
+            <li>#576: Fix back button handling when a text editor is open.</li>
+            <li>#577: Use system browser for logging into Dropbox on iOS and Android.</li>
+            <li>#565: Set window icon properly on Wayland.</li>
+            <li>#536: Fix connection to background service in iOS simulator.</li>
+            <li>#549: Fix a crash when using the back button on Android.</li>
+            <li>#556: Increase the size of the icon tool buttons.</li>
+            <li>#354: Automatically upload to macOS app store.</li>
+            <li>#546: Update notarization on iOS.</li>
+        </ul>
+    </release>
     <release version="3.41.1" date="2022-07-14">
         <p>This release includes the following changes:</p>
         <ul>
