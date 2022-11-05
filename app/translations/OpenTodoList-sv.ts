@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="193"/>
+        <location filename="../appstartup.cpp" line="196"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Hantera din personliga data.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="199"/>
+        <location filename="../appstartup.cpp" line="202"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Slå på några optimeringar för pekskärmar.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="202"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Kör endast programmets bakgrundstjänst</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="207"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Kör endast programmets GUI och anslut till en befintlig bakgrundstjänst</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="209"/>
+        <location filename="../appstartup.cpp" line="212"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Aktivera en konsol på Windows för att samla felsökningsdata</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="342"/>
+        <location filename="../appstartup.cpp" line="358"/>
         <source>Open</source>
         <translation type="unfinished">Öppna</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="349"/>
+        <location filename="../appstartup.cpp" line="365"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="402"/>
+        <location filename="../appstartup.cpp" line="418"/>
         <source>Quit</source>
         <translation type="unfinished">Avsluta</translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="187"/>
+        <location filename="../../lib/application.cpp" line="189"/>
         <source>Background Sync</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="192"/>
+        <location filename="../../lib/application.cpp" line="194"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="196"/>
+        <location filename="../../lib/application.cpp" line="198"/>
         <source>Quit</source>
         <translation type="unfinished">Avsluta</translation>
     </message>
@@ -778,68 +778,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="202"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="423"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="63"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="263"/>
         <source>Schedule</source>
         <translation type="unfinished">Schema</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="75"/>
         <source>New Library</source>
         <translation type="unfinished">Nytt bibliotek</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="229"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="82"/>
         <source>Accounts</source>
         <translation type="unfinished">Konton</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="89"/>
         <source>Edit List</source>
         <translation type="unfinished">Redigera lista</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="242"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="95"/>
         <source>Settings</source>
         <translation type="unfinished">Inställningar</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="249"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="101"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Översätt programmet ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="256"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
         <source>Donate</source>
         <translation type="unfinished">Donera</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="264"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
         <source>About...</source>
         <translation type="unfinished">Om ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="277"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="124"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Skapa standardbibliotek</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">Dölj schema</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>Show Schedule</source>
         <translation type="unfinished">Visa schema</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="401"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="237"/>
         <source>Move Up</source>
         <translation type="unfinished">Flytta upp</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="410"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="248"/>
         <source>Move Down</source>
         <translation type="unfinished">Flytta ner</translation>
     </message>
@@ -847,107 +847,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="166"/>
+        <location filename="../Pages/LibraryPage.qml" line="201"/>
         <source>Red</source>
         <translation type="unfinished">Röd</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="173"/>
+        <location filename="../Pages/LibraryPage.qml" line="208"/>
         <source>Green</source>
         <translation type="unfinished">Grön</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="180"/>
+        <location filename="../Pages/LibraryPage.qml" line="215"/>
         <source>Blue</source>
         <translation type="unfinished">Blå</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="187"/>
+        <location filename="../Pages/LibraryPage.qml" line="222"/>
         <source>Yellow</source>
         <translation type="unfinished">Gul</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="194"/>
+        <location filename="../Pages/LibraryPage.qml" line="229"/>
         <source>Orange</source>
         <translation type="unfinished">Orange</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
+        <location filename="../Pages/LibraryPage.qml" line="236"/>
         <source>Lilac</source>
         <translation type="unfinished">Lila</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
+        <location filename="../Pages/LibraryPage.qml" line="243"/>
         <source>White</source>
         <translation type="unfinished">Vit</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="218"/>
+        <location filename="../Pages/LibraryPage.qml" line="253"/>
         <source>Rename</source>
         <translation type="unfinished">Byt namn</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="223"/>
+        <location filename="../Pages/LibraryPage.qml" line="258"/>
         <source>Copy</source>
         <translation type="unfinished">Kopiera</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="228"/>
+        <location filename="../Pages/LibraryPage.qml" line="263"/>
         <source>Delete</source>
         <translation type="unfinished">Ta bort</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="237"/>
+        <location filename="../Pages/LibraryPage.qml" line="272"/>
         <source>Select Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="306"/>
+        <location filename="../Pages/LibraryPage.qml" line="341"/>
         <source>Note Title</source>
         <translation type="unfinished">Anteckningstitel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="319"/>
+        <location filename="../Pages/LibraryPage.qml" line="354"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Att-göra-listans namn</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="332"/>
+        <location filename="../Pages/LibraryPage.qml" line="367"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Sökterm 1, sökterm 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="411"/>
+        <location filename="../Pages/LibraryPage.qml" line="446"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Ingenting här ännu! Börja med att lägga till en &lt;a href=&apos;#note&apos;&gt; anteckning &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; att-göra-lista &lt;/a&gt; eller &lt;a href=&apos;#image&apos;&gt; bild &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="471"/>
+        <location filename="../Pages/LibraryPage.qml" line="506"/>
         <source>Sort By</source>
         <translation type="unfinished">Sortera efter</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="476"/>
+        <location filename="../Pages/LibraryPage.qml" line="511"/>
         <source>Manually</source>
         <translation type="unfinished">Manuellt</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="483"/>
+        <location filename="../Pages/LibraryPage.qml" line="518"/>
         <source>Title</source>
         <translation type="unfinished">Titel</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="490"/>
+        <location filename="../Pages/LibraryPage.qml" line="525"/>
         <source>Due To</source>
         <translation type="unfinished">Förfaller</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="497"/>
+        <location filename="../Pages/LibraryPage.qml" line="532"/>
         <source>Created At</source>
         <translation type="unfinished">Skapad</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="504"/>
+        <location filename="../Pages/LibraryPage.qml" line="539"/>
         <source>Updated At</source>
         <translation type="unfinished">Uppdaterat</translation>
     </message>
@@ -996,7 +996,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="291"/>
+        <location filename="../Windows/MainWindow.qml" line="238"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Börja med att &lt;a href=&apos;#newLibrary&apos;&gt; skapa ett nytt bibliotek &lt;/a&gt;. Bibliotek används för att lagra olika typer av objekt som anteckningar, att-göra-listor och bilder.</translation>
     </message>
@@ -1451,12 +1451,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="140"/>
+        <location filename="../Pages/NotePage.qml" line="162"/>
         <source>Main Page</source>
         <translation type="unfinished">Huvudsida</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="207"/>
+        <location filename="../Pages/NotePage.qml" line="229"/>
         <source>New Page</source>
         <translation type="unfinished">Ny sida</translation>
     </message>
@@ -1499,8 +1499,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="288"/>
-        <location filename="../appstartup.cpp" line="295"/>
+        <location filename="../appstartup.cpp" line="304"/>
+        <location filename="../appstartup.cpp" line="311"/>
         <source>unknown</source>
         <translation type="unfinished">okänd</translation>
     </message>
@@ -1676,37 +1676,37 @@
         <translation type="unfinished">Schema</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="120"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
         <source>Overdue</source>
         <translation type="unfinished">Förfallna</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="142"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="160"/>
         <source>Today</source>
         <translation type="unfinished">Idag</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="161"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Imorgon</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="179"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="197"/>
         <source>Later This Week</source>
         <translation type="unfinished">Senare denna vecka</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="181"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="199"/>
         <source>Next Week</source>
         <translation type="unfinished">Nästa vecka</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="182"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="200"/>
         <source>Coming Next</source>
         <translation type="unfinished">Kommer härnäst</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="261"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="279"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Inget schemalagt ... Lägg till förfallodag till objekt för att de skall visas här.</translation>
     </message>
@@ -1885,6 +1885,29 @@ Detta kräver att programmet startas om.</translation>
     </message>
 </context>
 <context>
+    <name>StartPage</name>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="34"/>
+        <source>Libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="59"/>
+        <source>Add a new library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="78"/>
+        <source>Accounts</source>
+        <translation type="unfinished">Konton</translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="100"/>
+        <source>Add an account</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SyncErrorNotificationBar</name>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
@@ -1926,52 +1949,52 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="175"/>
+        <location filename="../Pages/TodoListPage.qml" line="195"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Sökterm 1, sökterm 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="187"/>
+        <location filename="../Pages/TodoListPage.qml" line="207"/>
         <source>Manually</source>
         <translation type="unfinished">Manuellt</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="193"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Name</source>
         <translation type="unfinished">Namn</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="199"/>
+        <location filename="../Pages/TodoListPage.qml" line="219"/>
         <source>Due Date</source>
         <translation type="unfinished">Förfallodatum</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="205"/>
+        <location filename="../Pages/TodoListPage.qml" line="225"/>
         <source>Created At</source>
         <translation type="unfinished">Skapad</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="211"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Updated At</source>
         <translation type="unfinished">Uppdaterat</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="224"/>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Show Completed</source>
         <translation type="unfinished">Visa Slutförda</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Show At The End</source>
         <translation type="unfinished">Visa Vid Slutet</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="262"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Todos</source>
         <translation type="unfinished">Att-göra</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="282"/>
+        <location filename="../Pages/TodoListPage.qml" line="301"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Lägg till ny att-göra ...</translation>
     </message>
@@ -1979,27 +2002,27 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="156"/>
+        <location filename="../Pages/TodoPage.qml" line="168"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Sökterm 1, sökterm 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="182"/>
+        <location filename="../Pages/TodoPage.qml" line="194"/>
         <source>Tasks</source>
         <translation type="unfinished">Uppgifter</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="188"/>
+        <location filename="../Pages/TodoPage.qml" line="200"/>
         <source>Add new task...</source>
         <translation type="unfinished">Lägg till ny uppgift ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="283"/>
+        <location filename="../Pages/TodoPage.qml" line="296"/>
         <source>Show Completed</source>
         <translation type="unfinished">Visa Slutförda</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="290"/>
+        <location filename="../Pages/TodoPage.qml" line="303"/>
         <source>Show At The End</source>
         <translation type="unfinished">Visa Vid Slutet</translation>
     </message>
@@ -2007,7 +2030,7 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="215"/>
+        <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Förfaller: %1</translation>
     </message>

@@ -25,7 +25,7 @@ msgstr "Приложение для управления задачами и з�
 #: ../Pages/AboutPage.qml:60
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "OpenTodoList выпущен на условиях GNU General Public License версии 3 или (на ваш выбор) любой более поздней версии. Вы можете найти копию лицензии ниже. Кроме того, используются несколько библиотек и ресурсов. Подробную информацию об условиях лицензии см. На странице <a href='3rdparty'> Стороннего программного обеспечения </a>."
+msgstr "OpenTodoList выпущен на условиях GNU General Public License версии 3 или (на ваш выбор) любой более поздней версии. Вы можете найти копию лицензии ниже. Кроме того, используются несколько библиотек и ресурсов. Подробную информацию об условиях лицензии см. на странице <a href='3rdparty'>Стороннее программное обеспечение</a>."
 
 #: ../Pages/AboutThirdPartyPage.qml:11
 msgctxt "AboutThirdPartyPage|"
@@ -105,7 +105,7 @@ msgstr "Оранжевый"
 #: ../Menues/ColorMenu.qml:61
 msgctxt "ColorMenu|"
 msgid "Lilac"
-msgstr "Сирень"
+msgstr "Сиреневый"
 
 #: ../Windows/DeleteItemDialog.qml:19
 msgctxt "DeleteItemDialog|"
@@ -115,27 +115,27 @@ msgstr "Удалить?"
 #: ../Windows/DeleteItemDialog.qml:32
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить изображение <strong>%1</strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить изображение <strong>%1</strong>? Это действие не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:36
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить список задач <strong>%1</strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить список задач <strong>%1</strong>? Это действие не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:40
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить задачу <strong>%1</strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить задачу <strong>%1</strong>? Это действие не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:44
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить задачу <strong>%1</strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить задачу <strong>%1</strong>? Это действие не может быть отменено."
 
 #: ../Windows/DeleteItemDialog.qml:48
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Вы действительно хотите удалить заметку <strong>%1</strong>? Это не может быть отменено."
+msgstr "Вы действительно хотите удалить заметку <strong>%1</strong>? Это действие не может быть отменено."
 
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
@@ -177,82 +177,82 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Заметки"
 
-#: ../Widgets/LibrariesSideBar.qml:202 ../Widgets/LibrariesSideBar.qml:423
+#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Расписание"
 
-#: ../Widgets/LibrariesSideBar.qml:223
+#: ../Widgets/LibrariesSideBar.qml:75
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Новая библиотека"
 
-#: ../Widgets/LibrariesSideBar.qml:264
+#: ../Widgets/LibrariesSideBar.qml:116
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "О программе..."
 
-#: ../Pages/LibraryPage.qml:166
+#: ../Pages/LibraryPage.qml:201
 msgctxt "LibraryPage|"
 msgid "Red"
 msgstr "Красный"
 
-#: ../Pages/LibraryPage.qml:173
+#: ../Pages/LibraryPage.qml:208
 msgctxt "LibraryPage|"
 msgid "Green"
 msgstr "Зеленый"
 
-#: ../Pages/LibraryPage.qml:180
+#: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Blue"
 msgstr "Синий"
 
-#: ../Pages/LibraryPage.qml:187
+#: ../Pages/LibraryPage.qml:222
 msgctxt "LibraryPage|"
 msgid "Yellow"
 msgstr "Желтый"
 
-#: ../Pages/LibraryPage.qml:194
+#: ../Pages/LibraryPage.qml:229
 msgctxt "LibraryPage|"
 msgid "Orange"
 msgstr "Оранжевый"
 
-#: ../Pages/LibraryPage.qml:201
+#: ../Pages/LibraryPage.qml:236
 msgctxt "LibraryPage|"
 msgid "Lilac"
-msgstr "Сирень"
+msgstr "Сиреневый"
 
-#: ../Pages/LibraryPage.qml:208
+#: ../Pages/LibraryPage.qml:243
 msgctxt "LibraryPage|"
 msgid "White"
 msgstr "Белый"
 
-#: ../Pages/LibraryPage.qml:218
+#: ../Pages/LibraryPage.qml:253
 msgctxt "LibraryPage|"
 msgid "Rename"
 msgstr "Переименовать"
 
-#: ../Pages/LibraryPage.qml:228
+#: ../Pages/LibraryPage.qml:263
 msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../Pages/LibraryPage.qml:306
+#: ../Pages/LibraryPage.qml:341
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Заголовок заметки"
 
-#: ../Pages/LibraryPage.qml:319
+#: ../Pages/LibraryPage.qml:354
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Заголовок списка задач"
 
-#: ../Pages/LibraryPage.qml:332
+#: ../Pages/LibraryPage.qml:367
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Поисковый запрос 1, поисковый запрос 2, ..."
 
-#: ../Pages/LibraryPage.qml:411
+#: ../Pages/LibraryPage.qml:446
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Здесь пока ничего нет! Начните с добавления <a href='#note'> заметки </a>, <a href='#todolist'> списка задач </a> или <a href='#image'> изображения </a>."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Открыть левую боковую панель"
 
-#: ../Windows/MainWindow.qml:291
+#: ../Windows/MainWindow.qml:238
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Начните с <a href='#newLibrary'> создания новой библиотеки </a>. Библиотеки используются для хранения различных элементов, таких как заметки, списки задач и изображения."
@@ -437,37 +437,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Введите название библиотеки ..."
 
-#: ../Pages/ScheduleViewPage.qml:142
+#: ../Pages/ScheduleViewPage.qml:160
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Cегодня"
 
-#: ../Pages/ScheduleViewPage.qml:143
+#: ../Pages/ScheduleViewPage.qml:161
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Завтра"
 
-#: ../Pages/ScheduleViewPage.qml:179
+#: ../Pages/ScheduleViewPage.qml:197
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Позже на этой неделе"
 
-#: ../Pages/ScheduleViewPage.qml:181
+#: ../Pages/ScheduleViewPage.qml:199
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Следующая неделя"
 
-#: ../Pages/ScheduleViewPage.qml:182
+#: ../Pages/ScheduleViewPage.qml:200
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Далее"
 
-#: ../Pages/ScheduleViewPage.qml:261
+#: ../Pages/ScheduleViewPage.qml:279
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "Ничего не запланировано ... Добавьте срок выполнения для элементов, чтобы они появились здесь."
 
-#: ../Pages/ScheduleViewPage.qml:120
+#: ../Pages/ScheduleViewPage.qml:136
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Просрочено"
@@ -475,7 +475,7 @@ msgstr "Просрочено"
 #: ../Widgets/SyncErrorNotificationBar.qml:43
 msgctxt "SyncErrorNotificationBar|"
 msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Были ошибки при синхронизации библиотеки. Пожалуйста, убедитесь, что настройки библиотеки обновлены."
+msgstr "Были ошибки при синхронизации библиотеки. Пожалуйста, убедитесь, что настройки библиотеки актуальны."
 
 #: ../Widgets/SyncErrorNotificationBar.qml:49
 msgctxt "SyncErrorNotificationBar|"
@@ -547,19 +547,19 @@ msgstr "WebDAV"
 #: ../Pages/SynchronizerBackendSelectionPage.qml:67
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
-msgstr "Местная библиотека"
+msgstr "Локальная библиотека"
 
 #: ../Widgets/TodoListItem.qml:128
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "Нет открытых задач - все сделано"
 
-#: ../Pages/TodoListPage.qml:175
+#: ../Pages/TodoListPage.qml:195
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Поисковый запрос 1, поисковый запрос 2, ..."
 
-#: ../Pages/TodoListPage.qml:262
+#: ../Pages/TodoListPage.qml:281
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -569,12 +569,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Завершенные Todos"
 
-#: ../Pages/TodoPage.qml:156
+#: ../Pages/TodoPage.qml:168
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Поисковый запрос 1, поисковый запрос 2, ..."
 
-#: ../Pages/TodoPage.qml:182
+#: ../Pages/TodoPage.qml:194
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Задачи"
@@ -672,7 +672,7 @@ msgstr "Включает некоторые оптимизации для сен
 #: ../main.cpp:128
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
-msgstr "Удалите ярлыки для AppImage."
+msgstr "Удалить ярлыки для AppImage."
 
 #: ../Widgets/ItemNotesEditor.qml:86
 msgctxt "ItemNotesEditor|"
@@ -684,17 +684,17 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Добавить метку"
 
-#: ../Pages/TodoListPage.qml:282
+#: ../Pages/TodoListPage.qml:301
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Добавить новую задачу ..."
 
-#: ../Pages/TodoPage.qml:188
+#: ../Pages/TodoPage.qml:200
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Добавить новое задание ..."
 
-#: ../Widgets/TodosWidget.qml:215
+#: ../Widgets/TodosWidget.qml:217
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "До: %1"
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Темный"
 
-#: ../Widgets/LibrariesSideBar.qml:242
+#: ../Widgets/LibrariesSideBar.qml:95
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Настройки"
@@ -744,37 +744,37 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Тема:"
 
-#: ../Widgets/LibrariesSideBar.qml:277
+#: ../Widgets/LibrariesSideBar.qml:124
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Создать библиотеку по умолчанию"
 
-#: ../Pages/LibraryPage.qml:471
+#: ../Pages/LibraryPage.qml:506
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Сортировать по"
 
-#: ../Pages/LibraryPage.qml:476
+#: ../Pages/LibraryPage.qml:511
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Вручную"
 
-#: ../Pages/LibraryPage.qml:483
+#: ../Pages/LibraryPage.qml:518
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Заголовок"
 
-#: ../Pages/LibraryPage.qml:490
+#: ../Pages/LibraryPage.qml:525
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "До"
 
-#: ../Pages/LibraryPage.qml:497
+#: ../Pages/LibraryPage.qml:532
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Создано"
 
-#: ../Pages/LibraryPage.qml:504
+#: ../Pages/LibraryPage.qml:539
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Обновлено"
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Язык:"
 
-#: ../Pages/TodoListPage.qml:187
+#: ../Pages/TodoListPage.qml:207
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Вручную"
 
-#: ../Pages/TodoListPage.qml:193
+#: ../Pages/TodoListPage.qml:213
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Название"
 
-#: ../Pages/TodoListPage.qml:199
+#: ../Pages/TodoListPage.qml:219
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Срок"
 
-#: ../Pages/TodoListPage.qml:205
+#: ../Pages/TodoListPage.qml:225
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Создано"
 
-#: ../Pages/TodoListPage.qml:211
+#: ../Pages/TodoListPage.qml:231
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Обновлен"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Не удалось подключиться к серверу. Пожалуйста, проверьте ваше имя пользователя, пароль и адрес сервера и повторите попытку."
 
-#: ../Widgets/LibrariesSideBar.qml:229
+#: ../Widgets/LibrariesSideBar.qml:82
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Учетные записи"
 
-#: ../Widgets/LibrariesSideBar.qml:249
+#: ../Widgets/LibrariesSideBar.qml:101
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Перевести приложение ..."
@@ -1118,7 +1118,7 @@ msgstr "Создать библиотеку"
 #: ../Pages/NewLibraryPageForm.ui.qml:32
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Local Library"
-msgstr "Местная библиотека"
+msgstr "Локальная библиотека"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:38
 msgctxt "NewLibraryPageForm.ui|"
@@ -1221,12 +1221,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "Синхронизация библиотеки ..."
 
-#: ../Pages/NotePage.qml:140
+#: ../Pages/NotePage.qml:162
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Главная страница"
 
-#: ../Pages/NotePage.qml:207
+#: ../Pages/NotePage.qml:229
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Новая страница"
@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:193
+#: ../appstartup.cpp:196
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Управляйте своими персональными данными"
 
-#: ../appstartup.cpp:199
+#: ../appstartup.cpp:202
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Включить некоторую оптимизацию для тачскринов."
 
-#: ../appstartup.cpp:202
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Запускать только фоновую службу"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:207
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Запускать только графический интерфейс и подключаться к запущенной фоновой службе"
 
-#: ../appstartup.cpp:209
+#: ../appstartup.cpp:212
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Задействовать консоль Windows для вывода отладочной информации"
 
-#: ../appstartup.cpp:342
+#: ../appstartup.cpp:358
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Открыть"
 
-#: ../appstartup.cpp:402
+#: ../appstartup.cpp:418
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Выход"
@@ -1625,7 +1625,7 @@ msgstr "Изменить учётную запись"
 #: ../Pages/EditNextCloudAccountPage.qml:65
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/EditNextCloudAccountPage.qml:76
 msgctxt "EditNextCloudAccountPage|"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Не удалось подключиться к серверу. Пожалуйста, проверьте имя пользователя, пароль и адрес сервера и попытайтесь снова."
 
-#: ../Widgets/LibrariesSideBar.qml:236
+#: ../Widgets/LibrariesSideBar.qml:89
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
-msgstr ""
+msgstr "Редактировать список"
 
-#: ../Widgets/LibrariesSideBar.qml:390
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
-msgstr ""
+msgstr "Скрыть расписание"
 
-#: ../Widgets/LibrariesSideBar.qml:390
+#: ../Widgets/LibrariesSideBar.qml:226
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
-msgstr ""
+msgstr "Показать расписание"
 
-#: ../Widgets/LibrariesSideBar.qml:401
+#: ../Widgets/LibrariesSideBar.qml:237
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Передвинуть вверх"
 
-#: ../Widgets/LibrariesSideBar.qml:410
+#: ../Widgets/LibrariesSideBar.qml:248
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Передвинуть вниз"
@@ -1700,7 +1700,7 @@ msgstr "Передвинуть вниз"
 #: ../Windows/MainWindow.qml:398
 msgctxt "MainWindow|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Удалить завершённое"
 
 #: ../Windows/MainWindow.qml:494
 msgctxt "MainWindow|"
@@ -1751,119 +1751,119 @@ msgstr "Создать пароль приложения"
 #: ../Pages/NewNextCloudAccountPage.qml:152
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Settings"
-msgstr ""
+msgstr "Настройки аккаунта"
 
 #: ../Pages/NewNextCloudAccountPage.qml:162
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Копировать ссылку"
 
 #: ../Pages/NewNextCloudAccountPage.qml:168
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Скопировано!"
 
 #: ../Pages/NewNextCloudAccountPage.qml:177
 msgctxt "NewNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Пользователь:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:184
 msgctxt "NewNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: ../Pages/NewNextCloudAccountPage.qml:191
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:198
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: ../Pages/NewNextCloudAccountPage.qml:208
 msgctxt "NewNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Отключить проверки сертификатов"
 
 #: ../Pages/NewNextCloudAccountPage.qml:212
 msgctxt "NewNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/NewNextCloudAccountPage.qml:225
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Name"
-msgstr ""
+msgstr "Имя аккаунта"
 
 #: ../Pages/NewNextCloudAccountPage.qml:235
 msgctxt "NewNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
+msgstr "Ошибка подключения к серверу. Пожалуйста проверьте ваши имя пользователя, пароль, адрес сервера и повторите попытку."
 
 #: ../Pages/AccountsPage.qml:19 ../Pages/AccountsPage.qml:41
 msgctxt "AccountsPage|"
 msgid "Accounts"
-msgstr ""
+msgstr "Аккаунты"
 
 #: ../Pages/EditWebDAVAccountPage.qml:33 ../Pages/EditWebDAVAccountPage.qml:118
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
-msgstr ""
+msgstr "Редактировать аккаунт"
 
 #: ../Pages/EditWebDAVAccountPage.qml:124
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:135
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Адрес сервера:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:141
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/EditWebDAVAccountPage.qml:148
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Пользователь:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:154
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: ../Pages/EditWebDAVAccountPage.qml:161
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../Pages/EditWebDAVAccountPage.qml:168
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: ../Pages/EditWebDAVAccountPage.qml:178
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Отключить проверки сертификатов"
 
 #: ../Pages/EditWebDAVAccountPage.qml:186
 msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
+msgstr "Ошибка подключения к серверу. Пожалуйста проверьте ваши имя пользователя, пароль, адрес сервера и повторите попытку."
 
 #: ../Utils/ItemUtils.qml:152
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:256
+#: ../Widgets/LibrariesSideBar.qml:108
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr ""
@@ -1871,47 +1871,47 @@ msgstr ""
 #: ../Windows/MainWindow.qml:319
 msgctxt "MainWindow|"
 msgid "Move"
-msgstr ""
+msgstr "Переместить"
 
 #: ../Actions/MoveTodo.qml:11
 msgctxt "MoveTodo|"
 msgid "Move"
-msgstr ""
+msgstr "Переместить"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:82
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
-msgstr ""
+msgstr "Создать библиотеку под аккаунтом"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:91
 msgctxt "NewLibraryFromAccountPage|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr ""
+msgstr "Библиотека, созданная под аккаунтом синхронизируется с ним. Это упрощает создание запасной копии библиотеки на сервере и её последующего восстановления. Кроме того, такими библиотеками можно делиться с другими пользователями (если это позволяет сервер)."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:99
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Existing Libraries"
-msgstr ""
+msgstr "Существующие библиотеки"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:107
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Select an existing library on the server to add it to the app."
-msgstr ""
+msgstr "Выберите существующую библиотеку с сервера для добавления в приложение."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
 msgid "No libraries were found on the server."
-msgstr ""
+msgstr "На сервере библиотек не обнаружено."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:122
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Searching existing libraries..."
-msgstr ""
+msgstr "Поиск существующих библиотек..."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:165
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a New Library"
-msgstr ""
+msgstr "Создать новую библиотеку"
 
 #: ../Pages/NewLibraryFromAccountPage.qml:173
 msgctxt "NewLibraryFromAccountPage|"
@@ -1921,42 +1921,42 @@ msgstr ""
 #: ../Pages/NewLibraryFromAccountPage.qml:187
 msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
-msgstr ""
+msgstr "Название моей новой библиотеки"
 
 #: ../Pages/NewLibraryInFolderPage.qml:101
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
-msgstr ""
+msgstr "Открыть папку как библиотеку"
 
 #: ../Pages/NewLibraryInFolderPage.qml:109
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr ""
+msgstr "Вы можете использовать любую папку для размещения библиотеки.<br/><br/>Это особенно полезно когда вы хотите использовать альтернативный способ синхронизации ваших данных с сервером (например отдельное приложение для синхронизации с облаком)."
 
 #: ../Pages/NewLibraryInFolderPage.qml:113
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
-msgstr ""
+msgstr "Папка:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:118
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
-msgstr ""
+msgstr "Путь к папке для использования в качестве библиотеки"
 
 #: ../Pages/NewLibraryInFolderPage.qml:124
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
-msgstr ""
+msgstr "Выбрать"
 
 #: ../Pages/NewLibraryInFolderPage.qml:129
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/NewLibraryInFolderPage.qml:134
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
-msgstr ""
+msgstr "Название моей локальной библиотеки"
 
 #: ../Pages/NewLibraryPage.qml:70
 msgctxt "NewLibraryPage|"
@@ -1966,17 +1966,17 @@ msgstr "Локальная библиотека"
 #: ../Pages/NewLibraryPage.qml:77
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
-msgstr ""
+msgstr "Использовать папку в качестве библиотеки"
 
 #: ../Pages/NewLibraryPage.qml:89
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
-msgstr ""
+msgstr "Добавить библиотеки из ваших аккаунтов"
 
 #: ../Pages/NewLibraryPage.qml:116
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
-msgstr ""
+msgstr "Добавить аккаунт"
 
 #: ../Pages/NewLocalLibraryPage.qml:62
 msgctxt "NewLocalLibraryPage|"
@@ -1991,7 +1991,7 @@ msgstr "Локальная библиотека хранится исключи�
 #: ../Pages/NewLocalLibraryPage.qml:80
 msgctxt "NewLocalLibraryPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/NewLocalLibraryPage.qml:85
 msgctxt "NewLocalLibraryPage|"
@@ -2001,52 +2001,52 @@ msgstr "Название моей локальной библиотеки"
 #: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:101
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Настройки соединения"
 
 #: ../Pages/NewWebDAVAccountPage.qml:107
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
+msgstr "Адрес сервера:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:113
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
+msgstr "https://myserver.example.com"
 
 #: ../Pages/NewWebDAVAccountPage.qml:119
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
+msgstr "Пользователь:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:125
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: ../Pages/NewWebDAVAccountPage.qml:131
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:137
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: ../Pages/NewWebDAVAccountPage.qml:146
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
+msgstr "Отключить проверки сертификатов"
 
 #: ../Pages/NewWebDAVAccountPage.qml:150
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/NewWebDAVAccountPage.qml:173
 msgctxt "NewWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
+msgstr "Ошибка подключения к серверу. Пожалуйста проверьте ваши имя пользователя, пароль, адрес сервера и повторите попытку."
 
 #: ../Pages/ProblemsPage.qml:18 ../Pages/ProblemsPage.qml:28
 msgctxt "ProblemsPage|"
@@ -2056,42 +2056,42 @@ msgstr ""
 #: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
-msgstr ""
+msgstr "Выбрать список задач"
 
 #: ../Pages/SettingsPage.qml:44
 msgctxt "SettingsPage|"
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: ../Pages/SettingsPage.qml:50
 msgctxt "SettingsPage|"
 msgid "User Interface"
-msgstr ""
+msgstr "Пользовательский интерфейс"
 
 #: ../Pages/SettingsPage.qml:58
 msgctxt "SettingsPage|"
 msgid "Language:"
-msgstr ""
+msgstr "Язык:"
 
 #: ../Pages/SettingsPage.qml:122
 msgctxt "SettingsPage|"
 msgid "Theme:"
-msgstr ""
+msgstr "Тема:"
 
 #: ../Pages/SettingsPage.qml:158
 msgctxt "SettingsPage|"
 msgid "Font Size:"
-msgstr ""
+msgstr "Размер шрифта:"
 
 #: ../Utils/Translations.qml:72
 msgctxt "Translations|"
 msgid "Japanese"
-msgstr ""
+msgstr "Японский"
 
 #: ../Utils/Translations.qml:116
 msgctxt "Translations|"
 msgid "Ukrainian"
-msgstr ""
+msgstr "Украинский"
 
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
@@ -2106,29 +2106,30 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:175
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
+msgstr "Использовать особый размер шрифта"
 
 #: ../Pages/SettingsPage.qml:193
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
+msgstr "Использовать компактный стиль"
 
 #: ../Pages/SettingsPage.qml:202
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
-msgstr ""
+msgstr "Уменьшить размер шрифта и расстояние между компонентами . \n"
+"<em>Требует перезапуска приложения</em>"
 
 #: ../Pages/SettingsPage.qml:210
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
-msgstr ""
+msgstr "Использовать компактные списки задач"
 
 #: ../Pages/SettingsPage.qml:220
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
-msgstr ""
+msgstr "Уменьшить поля в списках todo и заданий чтобы на экране умещалось больше информации."
 
 #: ../Pages/SettingsPage.qml:227
 msgctxt "SettingsPage|"
@@ -2138,19 +2139,21 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:234
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
-msgstr ""
+msgstr "Масштаб:"
 
 #: ../Pages/SettingsPage.qml:254
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
+msgstr "Ручное масштабирование интерфейса. По умолчанию приложение должно автоматически подстраиваться под ваше устройство. Если это не работает корректно, здесь вы можете установить свой коэффициент масштабирования.\n"
+"\n"
+"Потребуется перезапуск приложения."
 
 #: ../Utils/ItemUtils.qml:167
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
-msgstr ""
+msgstr "Преобразовать задачу в Todo и переместить в..."
 
 #: ../Pages/LogViewPage.qml:32
 msgctxt "LogViewPage|"
@@ -2165,7 +2168,7 @@ msgstr ""
 #: ../Pages/ProblemsPage.qml:47
 msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
-msgstr ""
+msgstr "Ошибка синхронизации для библиотеки"
 
 #: ../Actions/PromoteTask.qml:12
 msgctxt "PromoteTask|"
@@ -2185,34 +2188,34 @@ msgstr ""
 #: ../Pages/AboutPage.qml:91
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
+msgstr "Копировать системную информацию"
 
-#: ../appstartup.cpp:349
+#: ../appstartup.cpp:365
 msgctxt "AppStartup|"
 msgid "Quick Note"
-msgstr ""
+msgstr "Быстрая заметка"
 
 #: ../Widgets/ItemDueDateEditor.qml:82
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
-msgstr ""
+msgstr "Повторяется каждый год."
 
 #: ../Widgets/ItemDueDateEditor.qml:87
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
-msgstr ""
+msgstr "Повторяется каждые %1 недел(ь/и)."
 
 #: ../Widgets/ItemDueDateEditor.qml:90
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
-msgstr ""
+msgstr "Повторяется каждые %1 месяц(а/ев)."
 
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
 msgstr ""
 
-#: ../appstartup.cpp:288 ../appstartup.cpp:295
+#: ../appstartup.cpp:304 ../appstartup.cpp:311
 msgctxt "QObject|"
 msgid "unknown"
 msgstr ""
@@ -2220,117 +2223,117 @@ msgstr ""
 #: ../Windows/QuickNoteWindow.qml:19
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
-msgstr ""
+msgstr "Быстрые заметки"
 
 #: ../Windows/QuickNoteWindow.qml:46
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
-msgstr ""
+msgstr "Редактор быстрых заметок"
 
 #: ../Windows/QuickNoteWindow.qml:57
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
-msgstr ""
+msgstr "Открыть главное окно"
 
 #: ../Windows/QuickNoteWindow.qml:70
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
-msgstr ""
+msgstr "Заголовок быстрой заметки"
 
 #: ../Windows/QuickNoteWindow.qml:133
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: ../Windows/QuickNoteWindow.qml:140
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
-msgstr ""
+msgstr "Сохранить введённые заметки в выбранную библиотеку. Чтобы увидеть больше опций для сохранения, пожалуйста нажмите и удерживайте кнопку."
 
 #: ../Windows/QuickNoteWindow.qml:158
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
-msgstr ""
+msgstr "Сохранить как заметку"
 
 #: ../Windows/QuickNoteWindow.qml:169
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
-msgstr ""
+msgstr "Сохранить как список задач"
 
 #: ../Windows/QuickNoteWindow.qml:171
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
-msgstr ""
+msgstr "Быстрый список задач"
 
 #: ../Windows/QuickNoteWindow.qml:161
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
-msgstr ""
+msgstr "Быстрая заметка"
 
 #: ../Windows/QuickNoteWindow.qml:83
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
-msgstr ""
+msgstr "Пишите ваши заметки здесь..."
 
 #: ../Windows/RecurrenceDialog.qml:47
 msgctxt "RecurrenceDialog|"
 msgid "Yearly"
-msgstr ""
+msgstr "Ежегодно"
 
 #: ../Windows/RecurrenceDialog.qml:49
 msgctxt "RecurrenceDialog|"
 msgid "Every N Weeks"
-msgstr ""
+msgstr "Каждые N недель"
 
 #: ../Windows/RecurrenceDialog.qml:50
 msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
-msgstr ""
+msgstr "Каждые N месяцев"
 
 #: ../Pages/SettingsPage.qml:146
 msgctxt "SettingsPage|"
 msgid "System Tray:"
-msgstr ""
+msgstr "Системный лоток:"
 
 #: ../Pages/SettingsPage.qml:152
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
-msgstr ""
+msgstr "Открывать редактор быстрых заметок по клику"
 
 #: ../Widgets/NoteItem.qml:75
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Выполнить к %1"
 
 #: ../Widgets/TodoListItem.qml:76
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
+msgstr "Выполнить к %1"
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
-#: ../Pages/LibraryPage.qml:223
+#: ../Pages/LibraryPage.qml:258
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
+msgstr "Выбрать библиотеку"
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
@@ -2340,12 +2343,12 @@ msgstr ""
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
+msgstr "Ctrl+,"
 
 #: ../Components/ApplicationToolBar.qml:151
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
+msgstr "Синхронизация библиотеки..."
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
@@ -2355,58 +2358,58 @@ msgstr ""
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
+msgstr "Переименовать"
 
 #: ../Components/ApplicationToolBarActions.qml:33
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
+msgstr "Переместить"
 
 #: ../Components/ApplicationToolBarActions.qml:43
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
 #: ../Components/ApplicationToolBarActions.qml:53
 #: ../Components/ApplicationToolBarActions.qml:64
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
+msgstr "Цвет"
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
+msgstr "Добавить метку"
 
 #: ../Components/ApplicationToolBarActions.qml:82
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
+msgstr "Прикрепить файл"
 
 #: ../Components/ApplicationToolBarActions.qml:92
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: ../Components/ApplicationToolBarActions.qml:100
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
+msgstr "Сортировка"
 
 #: ../Components/ApplicationToolBarActions.qml:108
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
+msgstr "Установить дату исполнения"
 
 #: ../Components/ApplicationToolBarActions.qml:116
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: ../Components/ApplicationToolBarActions.qml:124
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
+msgstr "Удалить завершённое"
 
 #: ../Components/ApplicationToolBarActions.qml:132
 msgctxt "ApplicationToolBarActions|"
@@ -2421,7 +2424,7 @@ msgstr ""
 #: ../Utils/ItemUtils.qml:184
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
-msgstr ""
+msgstr "Скопировать пункт в..."
 
 #: ../Utils/ItemUtils.qml:202
 msgctxt "ItemUtils|"
@@ -2431,32 +2434,32 @@ msgstr ""
 #: ../Pages/NewLibraryInFolderPage.qml:74
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
+msgstr "Выбрать папку"
 
-#: ../Pages/LibraryPage.qml:237
+#: ../Pages/LibraryPage.qml:272
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
+msgstr "Выбрать изображение"
 
-#: ../Pages/TodoListPage.qml:224
+#: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Показывать завершённые"
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:251
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Показывать в конце"
 
-#: ../Pages/TodoPage.qml:283
+#: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Показывать завершённые"
 
-#: ../Pages/TodoPage.qml:290
+#: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Показывать в конце"
 
 #: ../Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
@@ -2466,22 +2469,22 @@ msgstr ""
 #: ../Pages/AccountTypeSelectionPage.qml:71
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
-#: ../../lib/application.cpp:187
+#: ../../lib/application.cpp:189
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
+msgstr "Фоновая синхронизация"
 
-#: ../../lib/application.cpp:192
+#: ../../lib/application.cpp:194
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
-msgstr ""
+msgstr "Приложение продолжает синхронизировать ваши данные в фоновом режиме"
 
-#: ../../lib/application.cpp:196
+#: ../../lib/application.cpp:198
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
+msgstr "Выйти"
 
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
@@ -2492,135 +2495,155 @@ msgstr ""
 #: ../Pages/EditDropboxAccountPage.qml:67
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Настройки соединения"
 
 #: ../Pages/EditDropboxAccountPage.qml:75
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Проблемы со входом?"
 
 #: ../Pages/EditDropboxAccountPage.qml:86
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
+msgstr "Мы попытались открыть ваш браузер, чтобы войти в ваш аккаунт Dropbox. Чтобы продолжить, пожалуйста войдите и дайте доступ OpenTodoList."
 
 #: ../Pages/EditDropboxAccountPage.qml:93
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
+msgstr "Ваш браузер не открылся? Вы можете повторить попытку открыть его или вручную скопировать требуемый URL в его адресную строку."
 
 #: ../Pages/EditDropboxAccountPage.qml:97
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
+msgstr "Авторизировать..."
 
 #: ../Pages/EditDropboxAccountPage.qml:106
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
+msgstr "Открыть браузер"
 
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Копировать ссылку"
 
 #: ../Pages/EditDropboxAccountPage.qml:116
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Скопировано!"
 
 #: ../Pages/EditDropboxAccountPage.qml:125
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/EditDropboxAccountPage.qml:132
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Настройки соединения"
 
 #: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Проблемы со входом?"
 
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
+msgstr "Мы попытались открыть ваш браузер, чтобы войти в ваш аккаунт Dropbox. Чтобы продолжить, пожалуйста войдите и дайте доступ OpenTodoList."
 
 #: ../Pages/NewDropboxAccountPage.qml:81
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
+msgstr "Ваш браузер не открылся? Вы можете повторить попытку открыть его или вручную скопировать требуемый URL в его адресную строку."
 
 #: ../Pages/NewDropboxAccountPage.qml:87
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
+msgstr "Авторизировать..."
 
 #: ../Pages/NewDropboxAccountPage.qml:96
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
+msgstr "Открыть браузер"
 
 #: ../Pages/NewDropboxAccountPage.qml:102
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Скопировать ссылку"
 
 #: ../Pages/NewDropboxAccountPage.qml:106
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Скопировано!"
 
 #: ../Pages/NewDropboxAccountPage.qml:115
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../Pages/NewDropboxAccountPage.qml:122
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../../lib/utils/translations.cpp:91
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
-msgstr ""
+msgstr "Язык системы"
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
-msgstr ""
+msgstr "Загрузка..."
 
 #: ../Pages/SettingsPage.qml:279
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
-msgstr ""
+msgstr "Показывать отрывки заметок в списках"
 
 #: ../Widgets/ItemDueDateEditor.qml:116
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr ""
+msgstr "Повторяется до %1."
 
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
-msgstr ""
+msgstr "Повторяется бесконечно"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
+msgstr "Библиотека"
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
+msgstr "Расписание"
+
+#: ../Pages/StartPage.qml:34
+msgctxt "StartPage|"
+msgid "Libraries"
+msgstr "Библиотеки"
+
+#: ../Pages/StartPage.qml:59
+msgctxt "StartPage|"
+msgid "Add a new library"
+msgstr "Добавить новую библотеку"
+
+#: ../Pages/StartPage.qml:78
+msgctxt "StartPage|"
+msgid "Accounts"
+msgstr "Аккаунты"
+
+#: ../Pages/StartPage.qml:100
+msgctxt "StartPage|"
+msgid "Add an account"
+msgstr "Добавить аккаунт"
 

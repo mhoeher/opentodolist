@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="193"/>
+        <location filename="../appstartup.cpp" line="196"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Pamahalaan ang iyong personal na data.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="199"/>
+        <location filename="../appstartup.cpp" line="202"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Lumipat sa ilang mga pag-optimize para sa mga touchscreens.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="202"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Only run the app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="207"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="209"/>
+        <location filename="../appstartup.cpp" line="212"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="342"/>
+        <location filename="../appstartup.cpp" line="358"/>
         <source>Open</source>
         <translation type="unfinished">Buksan</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="349"/>
+        <location filename="../appstartup.cpp" line="365"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="402"/>
+        <location filename="../appstartup.cpp" line="418"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="187"/>
+        <location filename="../../lib/application.cpp" line="189"/>
         <source>Background Sync</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="192"/>
+        <location filename="../../lib/application.cpp" line="194"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="196"/>
+        <location filename="../../lib/application.cpp" line="198"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -778,68 +778,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="202"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="423"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="63"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="263"/>
         <source>Schedule</source>
         <translation type="unfinished">Iskedyul</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="75"/>
         <source>New Library</source>
         <translation type="unfinished">Bagong Library</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="229"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="82"/>
         <source>Accounts</source>
         <translation type="unfinished">Mga Account</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="89"/>
         <source>Edit List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="242"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="95"/>
         <source>Settings</source>
         <translation type="unfinished">Mga setting</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="249"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="101"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Isalin ang App ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="256"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="264"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
         <source>About...</source>
         <translation type="unfinished">Tungkol sa ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="277"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="124"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Lumikha ng Default Library</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>Hide Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>Show Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="401"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="237"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="410"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="248"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
@@ -847,107 +847,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="166"/>
+        <location filename="../Pages/LibraryPage.qml" line="201"/>
         <source>Red</source>
         <translation type="unfinished">Pula</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="173"/>
+        <location filename="../Pages/LibraryPage.qml" line="208"/>
         <source>Green</source>
         <translation type="unfinished">Berde</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="180"/>
+        <location filename="../Pages/LibraryPage.qml" line="215"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="187"/>
+        <location filename="../Pages/LibraryPage.qml" line="222"/>
         <source>Yellow</source>
         <translation type="unfinished">Dilaw</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="194"/>
+        <location filename="../Pages/LibraryPage.qml" line="229"/>
         <source>Orange</source>
         <translation type="unfinished">Orange</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
+        <location filename="../Pages/LibraryPage.qml" line="236"/>
         <source>Lilac</source>
         <translation type="unfinished">Lilac</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
+        <location filename="../Pages/LibraryPage.qml" line="243"/>
         <source>White</source>
         <translation type="unfinished">Puti</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="218"/>
+        <location filename="../Pages/LibraryPage.qml" line="253"/>
         <source>Rename</source>
         <translation type="unfinished">Palitan ang pangalan</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="223"/>
+        <location filename="../Pages/LibraryPage.qml" line="258"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="228"/>
+        <location filename="../Pages/LibraryPage.qml" line="263"/>
         <source>Delete</source>
         <translation type="unfinished">Tanggalin</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="237"/>
+        <location filename="../Pages/LibraryPage.qml" line="272"/>
         <source>Select Image</source>
         <translation type="unfinished">Piliin ang Imahe</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="306"/>
+        <location filename="../Pages/LibraryPage.qml" line="341"/>
         <source>Note Title</source>
         <translation type="unfinished">Pamagat ng Tala</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="319"/>
+        <location filename="../Pages/LibraryPage.qml" line="354"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Pamagat ng Listahan ng Listahan</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="332"/>
+        <location filename="../Pages/LibraryPage.qml" line="367"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Paghahanap ng term 1, term sa paghahanap, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="411"/>
+        <location filename="../Pages/LibraryPage.qml" line="446"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Wala pa dito! Magsimula sa pamamagitan ng pagdaragdag ng isang &lt;a href=&apos;#note&apos;&gt; tala &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; listahan ng todo &lt;/a&gt; o &lt;a href=&apos;#image&apos;&gt; imahe &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="471"/>
+        <location filename="../Pages/LibraryPage.qml" line="506"/>
         <source>Sort By</source>
         <translation type="unfinished">Pagsunud-sunurin ayon</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="476"/>
+        <location filename="../Pages/LibraryPage.qml" line="511"/>
         <source>Manually</source>
         <translation type="unfinished">Manu-manong</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="483"/>
+        <location filename="../Pages/LibraryPage.qml" line="518"/>
         <source>Title</source>
         <translation type="unfinished">Pamagat</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="490"/>
+        <location filename="../Pages/LibraryPage.qml" line="525"/>
         <source>Due To</source>
         <translation type="unfinished">Dahil sa</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="497"/>
+        <location filename="../Pages/LibraryPage.qml" line="532"/>
         <source>Created At</source>
         <translation type="unfinished">Nilikha Sa</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="504"/>
+        <location filename="../Pages/LibraryPage.qml" line="539"/>
         <source>Updated At</source>
         <translation type="unfinished">Nai-update Sa</translation>
     </message>
@@ -996,7 +996,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="291"/>
+        <location filename="../Windows/MainWindow.qml" line="238"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Magsimula sa pamamagitan ng &lt;a href=&apos;#newLibrary&apos;&gt; paglikha ng isang bagong library &lt;/a&gt;. Ginagamit ang mga aklatan upang mag-imbak ng iba&apos;t ibang uri ng mga item tulad ng mga tala, listahan ng todo at imahe.</translation>
     </message>
@@ -1451,12 +1451,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="140"/>
+        <location filename="../Pages/NotePage.qml" line="162"/>
         <source>Main Page</source>
         <translation type="unfinished">Pangunahing Pahina</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="207"/>
+        <location filename="../Pages/NotePage.qml" line="229"/>
         <source>New Page</source>
         <translation type="unfinished">Bagong pahina</translation>
     </message>
@@ -1499,8 +1499,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="288"/>
-        <location filename="../appstartup.cpp" line="295"/>
+        <location filename="../appstartup.cpp" line="304"/>
+        <location filename="../appstartup.cpp" line="311"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1676,37 +1676,37 @@
         <translation type="unfinished">Iskedyul</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="120"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
         <source>Overdue</source>
         <translation type="unfinished">Overdue</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="142"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="160"/>
         <source>Today</source>
         <translation type="unfinished">Ngayon</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="161"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Bukas</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="179"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="197"/>
         <source>Later This Week</source>
         <translation type="unfinished">Mamaya This Week</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="181"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="199"/>
         <source>Next Week</source>
         <translation type="unfinished">Susunod na linggo</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="182"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="200"/>
         <source>Coming Next</source>
         <translation type="unfinished">Paparating</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="261"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="279"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Walang naka-iskedyul ... Magdagdag ng isang takdang petsa sa mga item para sa kanila na lumitaw dito.</translation>
     </message>
@@ -1881,6 +1881,29 @@ This requires a restart of the app.</source>
     </message>
 </context>
 <context>
+    <name>StartPage</name>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="34"/>
+        <source>Libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="59"/>
+        <source>Add a new library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="78"/>
+        <source>Accounts</source>
+        <translation type="unfinished">Mga Account</translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="100"/>
+        <source>Add an account</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SyncErrorNotificationBar</name>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
@@ -1922,52 +1945,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="175"/>
+        <location filename="../Pages/TodoListPage.qml" line="195"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Paghahanap ng term 1, term sa paghahanap, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="187"/>
+        <location filename="../Pages/TodoListPage.qml" line="207"/>
         <source>Manually</source>
         <translation type="unfinished">Manu-manong</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="193"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Name</source>
         <translation type="unfinished">Pangalan</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="199"/>
+        <location filename="../Pages/TodoListPage.qml" line="219"/>
         <source>Due Date</source>
         <translation type="unfinished">Takdang petsa</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="205"/>
+        <location filename="../Pages/TodoListPage.qml" line="225"/>
         <source>Created At</source>
         <translation type="unfinished">Nilikha Sa</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="211"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Updated At</source>
         <translation type="unfinished">Nai-update Sa</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="224"/>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="262"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="282"/>
+        <location filename="../Pages/TodoListPage.qml" line="301"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Magdagdag ng bagong todo ...</translation>
     </message>
@@ -1975,27 +1998,27 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="156"/>
+        <location filename="../Pages/TodoPage.qml" line="168"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Paghahanap ng term 1, term sa paghahanap, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="182"/>
+        <location filename="../Pages/TodoPage.qml" line="194"/>
         <source>Tasks</source>
         <translation type="unfinished">Mga Gawain</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="188"/>
+        <location filename="../Pages/TodoPage.qml" line="200"/>
         <source>Add new task...</source>
         <translation type="unfinished">Magdagdag ng bagong gawain ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="283"/>
+        <location filename="../Pages/TodoPage.qml" line="296"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="290"/>
+        <location filename="../Pages/TodoPage.qml" line="303"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2003,7 +2026,7 @@ This requires a restart of the app.</source>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="215"/>
+        <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Dahil sa:%1</translation>
     </message>

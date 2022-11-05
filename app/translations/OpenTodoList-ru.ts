@@ -31,7 +31,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="91"/>
         <source>Copy System Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копировать системную информацию</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="112"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="71"/>
         <source>Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dropbox</translation>
     </message>
 </context>
 <context>
@@ -108,68 +108,68 @@
         <location filename="../Pages/AccountsPage.qml" line="19"/>
         <location filename="../Pages/AccountsPage.qml" line="41"/>
         <source>Accounts</source>
-        <translation type="unfinished">Учетные записи</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="193"/>
+        <location filename="../appstartup.cpp" line="196"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="199"/>
+        <location filename="../appstartup.cpp" line="202"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="202"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Запускать только фоновую службу</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="207"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Запускать только графический интерфейс и подключаться к запущенной фоновой службе</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="209"/>
+        <location filename="../appstartup.cpp" line="212"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Задействовать консоль Windows для вывода отладочной информации</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="342"/>
+        <location filename="../appstartup.cpp" line="358"/>
         <source>Open</source>
         <translation type="unfinished">Открыть</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="349"/>
+        <location filename="../appstartup.cpp" line="365"/>
         <source>Quick Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Быстрая заметка</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="402"/>
+        <location filename="../appstartup.cpp" line="418"/>
         <source>Quit</source>
-        <translation type="unfinished">Выход</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="187"/>
+        <location filename="../../lib/application.cpp" line="189"/>
         <source>Background Sync</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Фоновая синхронизация</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="192"/>
+        <location filename="../../lib/application.cpp" line="194"/>
         <source>App continues to sync your data in the background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Приложение продолжает синхронизировать ваши данные в фоновом режиме</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="196"/>
+        <location filename="../../lib/application.cpp" line="198"/>
         <source>Quit</source>
-        <translation type="unfinished">Выход</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../Components/ApplicationToolBar.qml" line="151"/>
         <source>Synchronizing library...</source>
-        <translation type="unfinished">Синхронизация библиотеки ...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -203,12 +203,12 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="33"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переместить</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="43"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копировать</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="53"/>
@@ -234,12 +234,12 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="100"/>
         <source>Sort</source>
-        <translation type="unfinished">Сортировать</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="108"/>
         <source>Set Due Date</source>
-        <translation type="unfinished">Установить срок выполнения</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="116"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="124"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished">Удалить Завершённые элементы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
@@ -320,7 +320,7 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished">Сирень</translation>
+        <translation type="unfinished">Сиреневый</translation>
     </message>
 </context>
 <context>
@@ -354,7 +354,7 @@
     <message>
         <location filename="../Actions/CopyTodo.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копировать</translation>
     </message>
 </context>
 <context>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копировать</translation>
     </message>
 </context>
 <context>
@@ -383,7 +383,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished">Удалить Завершённые элементы</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -422,27 +422,27 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
         <source>Do you really want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Вы действительно хотите удалить изображение &lt;strong&gt;%1&lt;/strong&gt;? Это не может быть отменено.</translation>
+        <translation type="unfinished">Вы действительно хотите удалить изображение &lt;strong&gt;%1&lt;/strong&gt;? Это действие не может быть отменено.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
         <source>Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Вы действительно хотите удалить список задач &lt;strong&gt;%1&lt;/strong&gt;? Это не может быть отменено.</translation>
+        <translation type="unfinished">Вы действительно хотите удалить список задач &lt;strong&gt;%1&lt;/strong&gt;? Это действие не может быть отменено.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="40"/>
         <source>Do you really want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Вы действительно хотите удалить задачу &lt;strong&gt;%1&lt;/strong&gt;? Это не может быть отменено.</translation>
+        <translation type="unfinished">Вы действительно хотите удалить задачу &lt;strong&gt;%1&lt;/strong&gt;? Это действие не может быть отменено.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="44"/>
         <source>Do you really want to delete the task &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Вы действительно хотите удалить задачу &lt;strong&gt;%1&lt;/strong&gt;? Это не может быть отменено.</translation>
+        <translation type="unfinished">Вы действительно хотите удалить задачу &lt;strong&gt;%1&lt;/strong&gt;? Это действие не может быть отменено.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="48"/>
         <source>Do you really want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished">Вы действительно хотите удалить заметку &lt;strong&gt;%1&lt;/strong&gt;? Это не может быть отменено.</translation>
+        <translation type="unfinished">Вы действительно хотите удалить заметку &lt;strong&gt;%1&lt;/strong&gt;? Это действие не может быть отменено.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
@@ -484,22 +484,22 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Мы попытались открыть ваш браузер, чтобы войти в ваш аккаунт Dropbox. Чтобы продолжить, пожалуйста войдите и дайте доступ OpenTodoList.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="93"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ваш браузер не открылся? Вы можете повторить попытку открыть его или вручную скопировать требуемый URL в его адресную строку.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="97"/>
         <source>Authorize...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Авторизировать...</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="106"/>
         <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открыть браузер</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="112"/>
@@ -509,17 +509,17 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="116"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопировано!</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="125"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="132"/>
         <source>Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dropbox</translation>
     </message>
 </context>
 <context>
@@ -533,7 +533,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="65"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="76"/>
@@ -592,7 +592,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="135"/>
@@ -640,7 +640,7 @@
     <message>
         <location filename="../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml" line="15"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузка...</translation>
     </message>
 </context>
 <context>
@@ -696,7 +696,7 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
         <source>Recurs every year.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторяется каждый год.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
@@ -706,22 +706,22 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
         <source>Recurs every %1 weeks.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторяется каждые %1 недел(ь/и).</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>Recurs every %1 months.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторяется каждые %1 месяц(а/ев).</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
         <source>Recurs until %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторяется до %1.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
         <source>Recurs indefinitely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторяется бесконечно</translation>
     </message>
 </context>
 <context>
@@ -762,12 +762,12 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="167"/>
         <source>Convert Task to Todo and Move Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Преобразовать задачу в Todo и переместить в...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="184"/>
         <source>Copy Item Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопировать пункт в...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="202"/>
@@ -778,68 +778,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="202"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="423"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="63"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="263"/>
         <source>Schedule</source>
         <translation type="unfinished">Расписание</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="223"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="75"/>
         <source>New Library</source>
         <translation type="unfinished">Новая библиотека</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="229"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="82"/>
         <source>Accounts</source>
-        <translation type="unfinished">Учетные записи</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
-        <source>Edit List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="242"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="89"/>
+        <source>Edit List</source>
+        <translation type="unfinished">Редактировать список</translation>
+    </message>
+    <message>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="95"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="249"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="101"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Перевести приложение ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="256"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="264"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="277"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="124"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Создать библиотеку по умолчанию</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скрыть расписание</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="390"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
         <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показать расписание</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="401"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="237"/>
         <source>Move Up</source>
         <translation type="unfinished">Передвинуть вверх</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="410"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="248"/>
         <source>Move Down</source>
         <translation type="unfinished">Передвинуть вниз</translation>
     </message>
@@ -847,107 +847,107 @@
 <context>
     <name>LibraryPage</name>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="166"/>
+        <location filename="../Pages/LibraryPage.qml" line="201"/>
         <source>Red</source>
         <translation type="unfinished">Красный</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="173"/>
+        <location filename="../Pages/LibraryPage.qml" line="208"/>
         <source>Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="180"/>
+        <location filename="../Pages/LibraryPage.qml" line="215"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="187"/>
+        <location filename="../Pages/LibraryPage.qml" line="222"/>
         <source>Yellow</source>
         <translation type="unfinished">Желтый</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="194"/>
+        <location filename="../Pages/LibraryPage.qml" line="229"/>
         <source>Orange</source>
         <translation type="unfinished">Оранжевый</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
+        <location filename="../Pages/LibraryPage.qml" line="236"/>
         <source>Lilac</source>
-        <translation type="unfinished">Сирень</translation>
+        <translation type="unfinished">Сиреневый</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
+        <location filename="../Pages/LibraryPage.qml" line="243"/>
         <source>White</source>
         <translation type="unfinished">Белый</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="218"/>
+        <location filename="../Pages/LibraryPage.qml" line="253"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="223"/>
+        <location filename="../Pages/LibraryPage.qml" line="258"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копировать</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="228"/>
+        <location filename="../Pages/LibraryPage.qml" line="263"/>
         <source>Delete</source>
         <translation type="unfinished">Удалить</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="237"/>
+        <location filename="../Pages/LibraryPage.qml" line="272"/>
         <source>Select Image</source>
-        <translation type="unfinished">Выберите изображение</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="306"/>
+        <location filename="../Pages/LibraryPage.qml" line="341"/>
         <source>Note Title</source>
         <translation type="unfinished">Заголовок заметки</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="319"/>
+        <location filename="../Pages/LibraryPage.qml" line="354"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Заголовок списка задач</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="332"/>
+        <location filename="../Pages/LibraryPage.qml" line="367"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Поисковый запрос 1, поисковый запрос 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="411"/>
+        <location filename="../Pages/LibraryPage.qml" line="446"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Здесь пока ничего нет! Начните с добавления &lt;a href=&apos;#note&apos;&gt; заметки &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; списка задач &lt;/a&gt; или &lt;a href=&apos;#image&apos;&gt; изображения &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="471"/>
+        <location filename="../Pages/LibraryPage.qml" line="506"/>
         <source>Sort By</source>
         <translation type="unfinished">Сортировать по</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="476"/>
+        <location filename="../Pages/LibraryPage.qml" line="511"/>
         <source>Manually</source>
         <translation type="unfinished">Вручную</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="483"/>
+        <location filename="../Pages/LibraryPage.qml" line="518"/>
         <source>Title</source>
         <translation type="unfinished">Заголовок</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="490"/>
+        <location filename="../Pages/LibraryPage.qml" line="525"/>
         <source>Due To</source>
         <translation type="unfinished">До</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="497"/>
+        <location filename="../Pages/LibraryPage.qml" line="532"/>
         <source>Created At</source>
         <translation type="unfinished">Создано</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="504"/>
+        <location filename="../Pages/LibraryPage.qml" line="539"/>
         <source>Updated At</source>
         <translation type="unfinished"></translation>
     </message>
@@ -996,7 +996,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="291"/>
+        <location filename="../Windows/MainWindow.qml" line="238"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Начните с &lt;a href=&apos;#newLibrary&apos;&gt; создания новой библиотеки &lt;/a&gt;. Библиотеки используются для хранения различных элементов, таких как заметки, списки задач и изображения.</translation>
     </message>
@@ -1006,7 +1006,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="11"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переместить</translation>
     </message>
 </context>
 <context>
@@ -1025,22 +1025,22 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Мы попытались открыть ваш браузер, чтобы войти в ваш аккаунт Dropbox. Чтобы продолжить, пожалуйста войдите и дайте доступ OpenTodoList.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="81"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ваш браузер не открылся? Вы можете повторить попытку открыть его или вручную скопировать требуемый URL в его адресную строку.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="87"/>
         <source>Authorize...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Авторизировать...</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="96"/>
         <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открыть браузер</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="102"/>
@@ -1050,17 +1050,17 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="106"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопировано!</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="115"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="122"/>
         <source>Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dropbox</translation>
     </message>
 </context>
 <context>
@@ -1103,7 +1103,7 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Библиотека</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>
@@ -1121,12 +1121,12 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="82"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">Создать библиотеку в учетной записи</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="91"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">Библиотека, созданная в учетной записи, синхронизируется с ней. Это позволяет легко создать резервную копию библиотеки на сервере, а затем восстановить ее оттуда. Кроме того, такими библиотеками можно поделиться с другими пользователями (если сервер позволяет это).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="99"/>
@@ -1136,17 +1136,17 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="107"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished">Выберите существующую библиотеку на сервере, чтобы добавить ее в приложение.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
         <source>No libraries were found on the server.</source>
-        <translation type="unfinished">На сервере не найдено ни одной библиотеки.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="122"/>
         <source>Searching existing libraries...</source>
-        <translation type="unfinished">Поиск в существующих библиотеках ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="165"/>
@@ -1161,7 +1161,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="187"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished">Имя моей новой библиотеки</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1169,17 +1169,17 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="74"/>
         <source>Select a Folder</source>
-        <translation type="unfinished">Выберите папку</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="101"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished">Откройте папку как библиотеку</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished">Вы можете использовать любую папку в качестве места для библиотеки. &lt;br/&gt; &lt;br/&gt; Это особенно полезно, когда вы хотите использовать другой инструмент (например, клиент синхронизации облачного провайдера) для синхронизации ваших данных с сервером.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
@@ -1199,7 +1199,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="129"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="134"/>
@@ -1218,22 +1218,22 @@
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="70"/>
         <source>Local Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Локальная библиотека</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="77"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished">Использовать папку как библиотеку</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="89"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">Добавить библиотеки из ваших учетных записей</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="116"/>
         <source>Add Account</source>
-        <translation type="unfinished">Добавить учетную запись</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1251,7 +1251,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
@@ -1305,7 +1305,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="152"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Настройки аккаунта</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
@@ -1315,7 +1315,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="168"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопировано!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="177"/>
@@ -1345,12 +1345,12 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="212"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="225"/>
         <source>Account Name</source>
-        <translation type="unfinished">Имя учетной записи</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="235"/>
@@ -1427,12 +1427,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="150"/>
         <source>Name:</source>
-        <translation type="unfinished">Название:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="163"/>
         <source>Account Name</source>
-        <translation type="unfinished">Имя учетной записи</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="173"/>
@@ -1445,18 +1445,18 @@
     <message>
         <location filename="../Widgets/NoteItem.qml" line="75"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выполнить к %1</translation>
     </message>
 </context>
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="140"/>
+        <location filename="../Pages/NotePage.qml" line="162"/>
         <source>Main Page</source>
         <translation type="unfinished">Главная страница</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="207"/>
+        <location filename="../Pages/NotePage.qml" line="229"/>
         <source>New Page</source>
         <translation type="unfinished">Новая страница</translation>
     </message>
@@ -1466,7 +1466,7 @@
     <message>
         <location filename="../../lib/utils/translations.cpp" line="91"/>
         <source>System Language</source>
-        <translation type="unfinished">Системный язык</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1485,7 +1485,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="47"/>
         <source>Synchronization failed for library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка синхронизации для библиотеки</translation>
     </message>
 </context>
 <context>
@@ -1499,8 +1499,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="288"/>
-        <location filename="../appstartup.cpp" line="295"/>
+        <location filename="../appstartup.cpp" line="304"/>
+        <location filename="../appstartup.cpp" line="311"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1510,57 +1510,57 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="19"/>
         <source>Quick Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Быстрые заметки</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="46"/>
         <source>Quick Notes Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Редактор быстрых заметок</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="57"/>
         <source>Open the main window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открыть главное окно</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
         <source>Quick Note Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Заголовок быстрой заметки</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="83"/>
         <source>Type your notes here...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пишите ваши заметки здесь...</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="140"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить введённые заметки в выбранную библиотеку. Чтобы увидеть больше опций для сохранения, пожалуйста нажмите и удерживайте кнопку.</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="158"/>
         <source>Save as Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить как заметку</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="161"/>
         <source>Quick Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Быстрая заметка</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="169"/>
         <source>Save as Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить как список задач</translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
         <source>Quick Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Быстрый список задач</translation>
     </message>
 </context>
 <context>
@@ -1593,7 +1593,7 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Yearly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ежегодно</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
@@ -1603,12 +1603,12 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
         <source>Every N Weeks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каждые N недель</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
         <source>Every N Months</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каждые N месяцев</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
@@ -1676,37 +1676,37 @@
         <translation type="unfinished">Расписание</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="120"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
         <source>Overdue</source>
         <translation type="unfinished">Просрочено</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="142"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="160"/>
         <source>Today</source>
         <translation type="unfinished">Cегодня</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="143"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="161"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Завтра</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="179"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="197"/>
         <source>Later This Week</source>
         <translation type="unfinished">Позже на этой неделе</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="181"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="199"/>
         <source>Next Week</source>
         <translation type="unfinished">Следующая неделя</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="182"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="200"/>
         <source>Coming Next</source>
         <translation type="unfinished">Далее</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="261"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="279"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Ничего не запланировано ... Добавьте срок выполнения для элементов, чтобы они появились здесь.</translation>
     </message>
@@ -1716,7 +1716,7 @@
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выбрать библиотеку</translation>
     </message>
 </context>
 <context>
@@ -1724,7 +1724,7 @@
     <message>
         <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
         <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выбрать список задач</translation>
     </message>
 </context>
 <context>
@@ -1808,12 +1808,12 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="146"/>
         <source>System Tray:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Системный лоток:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="152"/>
         <source>Open Quick Notes Editor on Click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открывать редактор быстрых заметок по клику</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="158"/>
@@ -1823,7 +1823,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="175"/>
         <source>Use custom font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Использовать особый размер шрифта</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="184"/>
@@ -1833,24 +1833,25 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="193"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Использовать компактный стиль</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="202"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Уменьшить размер шрифта и расстояние между компонентами . 
+&lt;em&gt;Требует перезапуска приложения&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="210"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Использовать компактные списки задач</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="220"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Уменьшить поля в списках todo и заданий чтобы на экране умещалось больше информации.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="227"/>
@@ -1860,14 +1861,16 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="234"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Масштаб:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="254"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ручное масштабирование интерфейса. По умолчанию приложение должно автоматически подстраиваться под ваше устройство. Если это не работает корректно, здесь вы можете установить свой коэффициент масштабирования.
+
+Потребуется перезапуск приложения.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="263"/>
@@ -1877,7 +1880,30 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="279"/>
         <source>Show notes excerpt in listings</source>
+        <translation type="unfinished">Показывать отрывки заметок в списках</translation>
+    </message>
+</context>
+<context>
+    <name>StartPage</name>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="34"/>
+        <source>Libraries</source>
+        <translation type="unfinished">Библиотеки</translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="59"/>
+        <source>Add a new library</source>
+        <translation type="unfinished">Добавить новую библотеку</translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="78"/>
+        <source>Accounts</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/StartPage.qml" line="100"/>
+        <source>Add an account</source>
+        <translation type="unfinished">Добавить аккаунт</translation>
     </message>
 </context>
 <context>
@@ -1885,7 +1911,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
         <source>There were errors when synchronizing the library. Please ensure that the library settings are up to date.</source>
-        <translation type="unfinished">Были ошибки при синхронизации библиотеки. Пожалуйста, убедитесь, что настройки библиотеки обновлены.</translation>
+        <translation type="unfinished">Были ошибки при синхронизации библиотеки. Пожалуйста, убедитесь, что настройки библиотеки актуальны.</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
@@ -1911,7 +1937,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="76"/>
         <source>Due on %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выполнить к %1</translation>
     </message>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="128"/>
@@ -1922,52 +1948,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="175"/>
+        <location filename="../Pages/TodoListPage.qml" line="195"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Поисковый запрос 1, поисковый запрос 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="187"/>
+        <location filename="../Pages/TodoListPage.qml" line="207"/>
         <source>Manually</source>
         <translation type="unfinished">Вручную</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="193"/>
+        <location filename="../Pages/TodoListPage.qml" line="213"/>
         <source>Name</source>
         <translation type="unfinished">Название</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="199"/>
+        <location filename="../Pages/TodoListPage.qml" line="219"/>
         <source>Due Date</source>
         <translation type="unfinished">Срок</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="205"/>
+        <location filename="../Pages/TodoListPage.qml" line="225"/>
         <source>Created At</source>
         <translation type="unfinished">Создано</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="211"/>
+        <location filename="../Pages/TodoListPage.qml" line="231"/>
         <source>Updated At</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="224"/>
+        <location filename="../Pages/TodoListPage.qml" line="244"/>
         <source>Show Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показывать завершённые</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="251"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показывать в конце</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="262"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="282"/>
+        <location filename="../Pages/TodoListPage.qml" line="301"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Добавить новую задачу ...</translation>
     </message>
@@ -1975,35 +2001,35 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="156"/>
+        <location filename="../Pages/TodoPage.qml" line="168"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Поисковый запрос 1, поисковый запрос 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="182"/>
+        <location filename="../Pages/TodoPage.qml" line="194"/>
         <source>Tasks</source>
         <translation type="unfinished">Задачи</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="188"/>
+        <location filename="../Pages/TodoPage.qml" line="200"/>
         <source>Add new task...</source>
         <translation type="unfinished">Добавить новое задание ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="283"/>
+        <location filename="../Pages/TodoPage.qml" line="296"/>
         <source>Show Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показывать завершённые</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="290"/>
+        <location filename="../Pages/TodoPage.qml" line="303"/>
         <source>Show At The End</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показывать в конце</translation>
     </message>
 </context>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="215"/>
+        <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">До: %1</translation>
     </message>

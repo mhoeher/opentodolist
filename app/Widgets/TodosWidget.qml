@@ -79,6 +79,7 @@ ListView {
     header: C.Pane {
         property alias headerIcon: headerIcon
         property alias headerIcon2: headerIcon2
+        property alias item: headerComponentLoader.item
 
         width: parent.width
         height: column.contentHeight
@@ -89,6 +90,7 @@ ListView {
             width: parent.width
 
             Loader {
+                id: headerComponentLoader
                 width: parent.width
                 sourceComponent: root.headerComponent
             }

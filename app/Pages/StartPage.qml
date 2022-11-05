@@ -58,8 +58,20 @@ C.Page {
                 C.Button {
                     text: qsTr("Add a new library")
                     anchors.right: parent.right
-                    onClicked: page.C.StackView.view.push(
-                                   Qt.resolvedUrl("./NewLibraryPage.qml"))
+                    onClicked: {
+                        let newLibraryPage = page.C.StackView.view.push(
+                                Qt.resolvedUrl("./NewLibraryPage.qml"))
+                        newLibraryPage.libraryCreated.connect(
+                                    function (library) {
+                                        console.warn("onLibraryCreated")
+                                        let stack = page.C.StackView.view
+                                        stack.pop(page)
+                                        stack.push(Qt.resolvedUrl(
+                                                       "./LibraryPage.qml"), {
+                                                       "library": library
+                                                   })
+                                    })
+                    }
                 }
 
                 Cmp.Heading {
