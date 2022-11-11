@@ -3,6 +3,15 @@ cmake_minimum_required(VERSION 3.5.1)
 # Generate build commands JSON file:
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Enable running Qt specific tools automatically (otherwise, we have to
+# wrap stuff in Qt specific functions). See
+# https://www.kdab.com/wp-content/uploads/stories/QTVTC20-Using-Modern-CMake-Kevin-Funk.pdf
+# for more details.
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 project(OpenTodoList)
 
 

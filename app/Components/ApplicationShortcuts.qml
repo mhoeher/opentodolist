@@ -27,7 +27,7 @@ Item {
 
     Shortcut {
         id: closeShortcut
-        sequence: StandardKey.Close
+        sequence: [StandardKey.Close]
     }
 
     Shortcut {
@@ -42,11 +42,7 @@ Item {
 
     Shortcut {
         id: goBackShortcut
-        sequences: [
-            StandardKey.Back,
-            "Esc",
-            "Back"
-        ]
+        sequences: [StandardKey.Back, "Esc", "Back"]
         enabled: Qt.platform.os !== "android" && Qt.platform.os !== "ios"
     }
 
@@ -54,5 +50,4 @@ Item {
         id: openShortcut
         sequence: StandardKey.Open
     }
-
 }

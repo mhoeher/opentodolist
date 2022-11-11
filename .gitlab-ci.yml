@@ -184,9 +184,7 @@ macos:
       - build-macos/dist-store/OpenTodoList-signed.pkg
     expire_in: 1 week
   variables:
-    QT_VERSION: "5.15.2"
-    OSX_DEPLOYMENT_TARGET: "10.13" # Should be set to match Qt's minimum
-
+    QT_VERSION: "6.4.0"
 
 # iOS build:
 ios:

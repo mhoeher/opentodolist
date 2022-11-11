@@ -501,3 +501,6 @@ bool DropboxAccount::needConnectivityCheck() const
 {
     return !m_refreshToken.isEmpty() && QDateTime::currentDateTime().secsTo(m_expiration) < 60 * 5;
 }
+
+
+#include "dropboxaccount.moc"

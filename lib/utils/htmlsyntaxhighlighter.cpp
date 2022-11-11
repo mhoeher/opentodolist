@@ -29,6 +29,7 @@
 #include <QIODevice>
 #include <QTextStream>
 #include <QVarLengthArray>
+#include <QStringEncoder>
 
 #include <KSyntaxHighlighting/definition.h>
 #include <KSyntaxHighlighting/format.h>

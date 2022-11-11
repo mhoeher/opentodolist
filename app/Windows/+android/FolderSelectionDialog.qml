@@ -9,12 +9,11 @@ import "."
 
 import OpenTodoList 1.0 as OTL
 
-
 CenteredDialog {
     id: dialog
 
     property url folder
-    readonly property url fileUrl: folderListModel.folder
+    readonly property url selectedFolder: folderListModel.folder
 
     standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
     width: dialog.idealDialogWidth
@@ -30,19 +29,21 @@ CenteredDialog {
             C.ToolButton {
                 symbol: Fonts.Icons.mdiArrowUpward
                 visible: {
-                    let parentFolder = OTL.Application.getParentDirectory(folderListModel.folder);
-                    return OTL.Application.canListPath(parentFolder);
+                    let parentFolder = OTL.Application.getParentDirectory(
+                            folderListModel.folder)
+                    return OTL.Application.canListPath(parentFolder)
                 }
                 onClicked: {
-                     if (visible) {
-                         let parentFolder = OTL.Application.getParentDirectory(folderListModel.folder);
-                         folderListModel.folder = parentFolder;
-                     }
+                    if (visible) {
+                        let parentFolder = OTL.Application.getParentDirectory(
+                                folderListModel.folder)
+                        folderListModel.folder = parentFolder
+                    }
                 }
             }
 
             C.Label {
-                text: OTL.Application.urlToLocalFile(dialog.fileUrl)
+                text: OTL.Application.urlToLocalFile(dialog.selectedFolder)
                 elide: Text.ElideMiddle
 
                 Layout.fillWidth: true
@@ -61,7 +62,6 @@ CenteredDialog {
             width: scrollView.availableWidth
             height: scrollView.availableHeight
 
-
             model: FolderListModel {
                 id: folderListModel
 
@@ -73,10 +73,10 @@ CenteredDialog {
                 text: fileName
                 onClicked: {
                     let newFolder = OTL.Application.localFileToUrl(
-                            OTL.Application.urlToLocalFile(folderListModel.folder) + "/" +
-                            fileName);
+                            OTL.Application.urlToLocalFile(
+                                folderListModel.folder) + "/" + fileName)
                     if (OTL.Application.canListPath(newFolder)) {
-                        folderListModel.folder = newFolder;
+                        folderListModel.folder = newFolder
                     }
                 }
             }

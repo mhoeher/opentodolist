@@ -107,7 +107,9 @@ void AppStartup::setupGlobals()
     }
     qunsetenv("QT_AUTO_SCREEN_SCALE_FACTOR");
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
 
 #ifdef OPENTODOLIST_DEBUG
     QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
@@ -283,6 +285,7 @@ void AppStartup::startGUI()
         return;
     }
     m_engine = new QQmlApplicationEngine;
+    m_engine->setExtraFileSelectors({QString("qt%1").arg(QT_VERSION_MAJOR)});
     m_translations = new OpenTodoList::Translations(m_engine);
     QString qmlBase = "qrc:/";
     m_engine->addImportPath(qmlBase);

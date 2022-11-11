@@ -208,9 +208,6 @@ target_link_libraries(opentodolist-common
         SynqClient::synqclient-qt${QT_VERSION_MAJOR}
         qt${QT_VERSION_MAJOR}keychain
         KF5::SyntaxHighlighting
-
-        # Optional libraries
-        ${LIB_LIBRARIES}
 )
 
 install(

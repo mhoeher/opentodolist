@@ -29,6 +29,8 @@ if(NOT OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
             -DQRC_SYNTAX=ON
             -DNO_STANDARD_PATHS=ON
             -DBUILD_SHARED_LIBS=OFF
+        CMAKE_CACHE_ARGS
+            -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )
     ExternalProject_Add_StepDependencies(build_kf_syntax_highlighting build build_ecm)
 
@@ -62,8 +64,10 @@ if(NOT ANDROID AND NOT OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
             -DCMAKE_PREFIX_PATH=${OPENTODOLIST_MODULES_INSTALL_DIR}
             -DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}
             $<$<STREQUAL:${QT_VERSION_MAJOR},6>:-DBUILD_WITH_QT6=ON>
-            -DBUILD_TRANSLATIONS=ON
+            -DBUILD_TRANSLATIONS=OFF
             -DBUILD_SHARED_LIBS=OFF
+        CMAKE_CACHE_ARGS
+            -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )
     ExternalProject_Add_StepDependencies(build_qtkeychain build build_ecm)
 
@@ -75,6 +79,14 @@ if(NOT ANDROID AND NOT OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
             ${OPENTODOLIST_MODULES_INSTALL_DIR}/lib
     )
     target_link_libraries(qtkeychain_imported INTERFACE -lqt${QT_VERSION_MAJOR}keychain)
+    if(APPLE)
+        target_link_libraries(
+            qtkeychain_imported 
+            INTERFACE
+                "-framework Foundation"
+                "-framework Security"
+        )
+    endif()
     target_include_directories(
         qtkeychain_imported
         INTERFACE
@@ -104,6 +116,8 @@ if(NOT OPENTODOLIST_USE_SYSTEM_QLMDB)
             -DQLMDB_WITH_STATIC_LIBS=ON
             -DQLMDB_WITHOUT_TESTS=ON
             -DQLMDB_QT_VERSIONS=Qt${QT_VERSION_MAJOR}
+        CMAKE_CACHE_ARGS
+            -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )
     ExternalProject_Add_StepDependencies(build_qlmdb build build_ecm)
 
@@ -139,6 +153,8 @@ if(NOT OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
             -DBUILD_SHARED_LIBS=OFF
             -DSYNQCLIENT_WITHOUT_TESTS=ON
             -DSYNQCLIENT_QT_VERSIONS=Qt${QT_VERSION_MAJOR}
+        CMAKE_CACHE_ARGS
+            -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )
     ExternalProject_Add_StepDependencies(build_synqclient build build_ecm)
 

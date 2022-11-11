@@ -35,6 +35,7 @@
 #include "utils/problemmanager.h"
 #include "sync/account.h"
 #include "sync/remotelibraryinfo.h"
+#include "datastorage/cache.h"
 
 class QRemoteObjectNode;
 class QTemporaryDir;
