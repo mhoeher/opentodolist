@@ -62,13 +62,13 @@ ItemPage {
 
     savePage: function () {
         return {
-            "library": page.library.uid,
-            "image": page.item.uid
+            "library": OTL.Application.uuidToString(page.library.uid),
+            "image": OTL.Application.uuidToString(page.item.uid)
         }
     }
     restorePage: function (state) {
-        d.restoreImageUid = state.image
-        d.restoreLibraryUid = state.library
+        d.restoreImageUid = OTL.Application.uuidFromString(state.image)
+        d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
         OTL.Application.loadLibrary(d.restoreLibraryUid)
         OTL.Application.loadItem(d.restoreImageUid)
     }

@@ -19,9 +19,6 @@
 
 #include "appstartup.h"
 
-#ifdef QT_WEBVIEW_LIB
-#    include <QtWebView>
-#endif
 
 #ifdef Q_OS_IOS
 #    include <TargetConditionals.h>
@@ -145,10 +142,6 @@ void AppStartup::createApp(int& argc, char* argv[])
             return;
         }
     }
-#endif
-#ifdef QT_WEBVIEW_LIB
-    // If we use QWebView, initialize it:
-    QtWebView::initialize();
 #endif
 #ifdef OTL_USE_SINGLE_APPLICATION
     m_app = new SingleApplication(argc, argv, true,

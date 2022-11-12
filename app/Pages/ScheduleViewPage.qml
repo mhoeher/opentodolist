@@ -58,14 +58,14 @@ C.Page {
     savePage: function () {
         let result = {}
         if (page.library) {
-            result.library = page.library.uid
+            result.library = OTL.Application.uuidToString(page.library.uid)
         }
         return result
     }
     restorePage: function (state) {
         let libraryUid = state.library
         if (libraryUid) {
-            d.restoreLibraryUid = libraryUid
+            d.restoreLibraryUid = OTL.Application.uuidFromString(libraryUid)
             OTL.Application.loadLibrary(d.restoreLibraryUid)
         }
     }

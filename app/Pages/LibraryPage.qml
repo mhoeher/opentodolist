@@ -25,7 +25,7 @@ C.Page {
     savePage: function () {
         let result = {}
         if (page.library) {
-            result.library = page.library.uid
+            result.library = OTL.Application.uuidToString(page.library.uid)
         }
         if (page.tag !== "") {
             result.tag = page.tag
@@ -36,8 +36,8 @@ C.Page {
     restorePage: function (data) {
         let uid = data.library
         if (uid) {
-            d.restoreLibraryUid = uid
-            OTL.Application.loadLibrary(uid)
+            d.restoreLibraryUid = OTL.Application.uuidFromString(uid)
+            OTL.Application.loadLibrary(d.restoreLibraryUid)
         }
         let tag = data.tag
         if (tag) {

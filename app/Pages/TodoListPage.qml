@@ -86,14 +86,14 @@ ItemPage {
 
     savePage: function () {
         return {
-            "library": page.library.uid,
-            "todoList": page.item.uid
+            "library": OTL.Application.uuidToString(page.library.uid),
+            "todoList": OTL.Application.uuidToString(page.item.uid)
         }
     }
 
     restorePage: function (state) {
-        d.restoreLibraryUid = state.library
-        d.restoreTodoListUid = state.todoList
+        d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
+        d.restoreTodoListUid = OTL.Application.uuidFromString(state.todoList)
         OTL.Application.loadLibrary(d.restoreLibraryUid)
         OTL.Application.loadItem(d.restoreTodoListUid)
     }

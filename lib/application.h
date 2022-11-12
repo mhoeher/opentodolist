@@ -149,6 +149,8 @@ public:
     Q_INVOKABLE QString libraryNameFromDir(const QUrl& url) const;
 
     Q_INVOKABLE QString sha256(const QString& text) const;
+    Q_INVOKABLE QUuid uuidFromString(const QString& text) const;
+    Q_INVOKABLE QString uuidToString(const QUuid& uid) const;
 
     QString librariesLocation() const;
 

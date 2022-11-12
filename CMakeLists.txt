@@ -48,11 +48,7 @@ endif()
 set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets Network NetworkAuth)
 
 if(ANDROID)
-    set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras WebView)
-endif()
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
-    set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} WebView)
+    set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras)
 endif()
 
 find_package(QT NAMES ${OPENTODOLIST_QT_VERSIONS} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)

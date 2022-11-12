@@ -1156,6 +1156,25 @@ QString Application::sha256(const QString& text) const
 }
 
 /**
+ * @brief Create a QUuid from a string.
+ *
+ * This utility method can be used to convert a string representation of a UUID back into a QUuid
+ * value.
+ */
+QUuid Application::uuidFromString(const QString &text) const
+{
+    return QUuid::fromString(text);
+}
+
+/**
+ * @brief Returns a representation of the uid as a string.
+ */
+QString Application::uuidToString(const QUuid &uid) const
+{
+    return uid.toString();
+}
+
+/**
  * @brief Returns the home location of the current user.
  */
 QUrl Application::homeLocation() const
