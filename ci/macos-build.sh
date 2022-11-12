@@ -27,14 +27,13 @@ QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/macos
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
-cmake \
+$QT_DIR/bin/qt-cmake \
     -GNinja \
     -DCMAKE_PREFIX_PATH=$QT_DIR \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_OSX_ARCHITECTURES=x86_64 \
     $CMAKE_EXTRA_FLAGS \
     ..
 cmake --build .
