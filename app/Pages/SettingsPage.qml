@@ -22,8 +22,8 @@ C.Page {
 
         standardButtons: C.DialogButtonBox.Close
     }
-    width: stack.width
-    height: stack.height
+    width: parent.width
+    height: parent.height
 
     onClose: {
         stack.pop()
