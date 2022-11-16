@@ -350,11 +350,13 @@ QStringList Library::itemFiles(const QString& directory, const QString& year, co
     if (!directory.isEmpty()) {
         auto path = directory + "/" + year + "/" + month;
         QDir dir(path);
-        QRegularExpression re("^\\{[0-9a-f]{8,8}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{12,12}\\}"
-                              "\\.otl$", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpression re(
+                "^\\{[0-9a-f]{8,8}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{12,12}\\}"
+                "\\.otl$",
+                QRegularExpression::CaseInsensitiveOption);
         if (dir.exists()) {
             QString suffix = "*." + Item::FileNameSuffix;
-            for (const auto &entry : dir.entryList({ suffix }, QDir::Files)) {
+            for (const auto& entry : dir.entryList({ suffix }, QDir::Files)) {
                 if (re.match(entry).hasMatch()) {
                     result << entry;
                 } else {

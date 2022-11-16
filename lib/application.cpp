@@ -1161,7 +1161,7 @@ QString Application::sha256(const QString& text) const
  * This utility method can be used to convert a string representation of a UUID back into a QUuid
  * value.
  */
-QUuid Application::uuidFromString(const QString &text) const
+QUuid Application::uuidFromString(const QString& text) const
 {
     return QUuid::fromString(text);
 }
@@ -1169,7 +1169,7 @@ QUuid Application::uuidFromString(const QString &text) const
 /**
  * @brief Returns a representation of the uid as a string.
  */
-QString Application::uuidToString(const QUuid &uid) const
+QString Application::uuidToString(const QUuid& uid) const
 {
     return uid.toString();
 }

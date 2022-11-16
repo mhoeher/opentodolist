@@ -641,7 +641,8 @@ void ItemsModel::update(QVariantList items)
     }
 
     if (!newItems.isEmpty()) {
-        beginInsertRows(QModelIndex(), static_cast<int>(m_ids.length()), static_cast<int>(m_ids.length() + newItems.length() - 1));
+        beginInsertRows(QModelIndex(), static_cast<int>(m_ids.length()),
+                        static_cast<int>(m_ids.length() + newItems.length() - 1));
         for (const auto& item : qAsConst(newItems)) {
             connect(item, &Item::changed, this, &ItemsModel::itemChanged);
             // Note: The updatedAt property might change intependent from the generic changed

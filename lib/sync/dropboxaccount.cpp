@@ -230,35 +230,34 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
 #endif
 
     result->setReplyHandler(replyHandler);
-    result->setModifyParametersFunction(
-            [=](auto stage, auto parameters) {
-                switch (stage) {
-                case QOAuth2AuthorizationCodeFlow::Stage::RequestingAuthorization:
-                    // Include code challenge and method in auth request, see
-                    // https://datatracker.ietf.org/doc/html/rfc7636#section-4.3:
-                    parameters->insert("code_challenge", getCodeChallenge());
-                    parameters->insert("code_challenge_method", "S256");
-                    parameters->insert("redirect_uri", DropboxRedirectUri);
-                    parameters->insert("token_access_type", "offline");
+    result->setModifyParametersFunction([=](auto stage, auto parameters) {
+        switch (stage) {
+        case QOAuth2AuthorizationCodeFlow::Stage::RequestingAuthorization:
+            // Include code challenge and method in auth request, see
+            // https://datatracker.ietf.org/doc/html/rfc7636#section-4.3:
+            parameters->insert("code_challenge", getCodeChallenge());
+            parameters->insert("code_challenge_method", "S256");
+            parameters->insert("redirect_uri", DropboxRedirectUri);
+            parameters->insert("token_access_type", "offline");
 #ifdef Q_OS_IOS
-                    // On iOS, disable signup and instead display a link to the iOS app
-                    // store this is for compliance with signup restrictions).
-                    parameters->insert("disable_signup", "true");
+            // On iOS, disable signup and instead display a link to the iOS app
+            // store this is for compliance with signup restrictions).
+            parameters->insert("disable_signup", "true");
 #endif
-                    break;
-                case QOAuth2AuthorizationCodeFlow::Stage::RequestingAccessToken:
-                    parameters->insert("code_verifier", m_codeVerifier);
-                    parameters->insert("redirect_uri", DropboxRedirectUri);
-                    break;
-                case QOAuth2AuthorizationCodeFlow::Stage::RefreshingAccessToken:
-                    parameters->remove("redirect_uri");
-                    parameters->insert("client_id", DropboxAppKey);
-                    parameters->remove("client_secret");
-                    break;
-                default:
-                    break;
-                }
-            });
+            break;
+        case QOAuth2AuthorizationCodeFlow::Stage::RequestingAccessToken:
+            parameters->insert("code_verifier", m_codeVerifier);
+            parameters->insert("redirect_uri", DropboxRedirectUri);
+            break;
+        case QOAuth2AuthorizationCodeFlow::Stage::RefreshingAccessToken:
+            parameters->remove("redirect_uri");
+            parameters->insert("client_id", DropboxAppKey);
+            parameters->remove("client_secret");
+            break;
+        default:
+            break;
+        }
+    });
     result->setAccessTokenUrl(QUrl(DropboxAccessTokenUrl));
     result->setAuthorizationUrl(QUrl(DropboxAuthorizationUrl));
     result->setRefreshToken(m_refreshToken);
@@ -501,6 +500,5 @@ bool DropboxAccount::needConnectivityCheck() const
 {
     return !m_refreshToken.isEmpty() && QDateTime::currentDateTime().secsTo(m_expiration) < 60 * 5;
 }
-
 
 #include "dropboxaccount.moc"

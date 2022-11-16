@@ -31,11 +31,11 @@
 #    include <QAndroidJniObject>
 #    include <QtAndroid>
 #else
-# if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#    if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #        include <qt5keychain/keychain.h>
-#else
+#    else
 #        include <qt6keychain/keychain.h>
-#endif
+#    endif
 #endif
 
 #include <simplecrypt.h>

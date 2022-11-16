@@ -68,7 +68,7 @@ QString HtmlHighlighter::highlightData(QIODevice* dev, const QString& title)
     *d->out << "><pre>\n";
 
     QTextStream in(dev);
-    #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     in.setCodec("UTF-8");
 #else
     in.setEncoding(QStringConverter::Utf8);
