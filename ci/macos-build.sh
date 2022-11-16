@@ -7,14 +7,19 @@ BUILD_DIR=$PWD/build-macos
 rm -rf $BUILD_DIR
 
 if [ ! -d "$QT_INSTALLATION_DIR" ]; then
-    echo "The variable QT_INSTALLATION_DIR is not set"
-    exit 1
+    if [ -d "$HOME/Qt" ]; then
+        QT_INSTALLATION_DIR="$HOME/Qt"
+    else
+        echo "The variable QT_INSTALLATION_DIR is not set"
+        exit 1
+    fi
 fi
+echo "Using Qt installation in $QT_INSTALLATION_DIR"
 
 if [ -z "$QT_VERSION" ]; then
-  echo "The variable QT_VERSION is not set"
-  exit 1
+    QT_VERSION=$(ls "$QT_INSTALLATION_DIR" | grep -E '\d+\.\d+\.\d+' | sort -V | tail -n1)
 fi
+echo "Using Qt $QT_VERSION"
 
 if [ -z "$MACOS_TEAM_ID" ]; then
     # Default Team ID to use:

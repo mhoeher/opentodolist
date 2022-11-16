@@ -43,7 +43,7 @@ else()
             ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
             CACHE INTERNAL "Extra files for Android deployment"
         )
-    elseif(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+    elseif(IOS)
         include(../3rdparty/QtIosCMake/AddQtIosApp.cmake)
         include(../3rdparty/QtStaticCMake/QtStaticCMake.cmake)
         add_executable(OpenTodoList)
@@ -87,7 +87,7 @@ else()
     endif()
 endif()
 
-if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+if(APPLE AND NOT IOS)
     set_target_properties(
         OpenTodoList
         PROPERTIES
@@ -119,7 +119,7 @@ set_target_properties(
         MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
 )
 
-if(NOT ANDROID AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+if(NOT ANDROID AND NOT IOS)
     target_compile_definitions(OpenTodoList PRIVATE
         OTL_USE_SINGLE_APPLICATION
         QAPPLICATION_CLASS=QApplication)

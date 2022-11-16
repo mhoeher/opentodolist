@@ -31,10 +31,10 @@
 #include <QVarLengthArray>
 #include <QStringEncoder>
 
-#include <KSyntaxHighlighting/definition.h>
-#include <KSyntaxHighlighting/format.h>
-#include <KSyntaxHighlighting/state.h>
-#include <KSyntaxHighlighting/theme.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/definition.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/format.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/state.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/theme.h>
 
 class HtmlHighlighterPrivate
 {

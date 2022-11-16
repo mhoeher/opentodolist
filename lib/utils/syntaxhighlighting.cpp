@@ -28,10 +28,10 @@
 
 #include "htmlsyntaxhighlighter.h"
 
-#include <KSyntaxHighlighting/definition.h>
-#include <KSyntaxHighlighting/repository.h>
-#include <KSyntaxHighlighting/syntaxhighlighter.h>
-#include <KSyntaxHighlighting/theme.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/definition.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/repository.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/syntaxhighlighter.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/theme.h>
 
 /**
  * @brief Constructor.

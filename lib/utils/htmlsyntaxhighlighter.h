@@ -25,7 +25,7 @@
 #ifndef UTILS_HTMLSYNTAXHIGHLIGHTER_H_
 #define UTILS_HTMLSYNTAXHIGHLIGHTER_H_
 
-#include <KSyntaxHighlighting/abstracthighlighter.h>
+#include <KSyntaxHighlighting/KSyntaxHighlighting/abstracthighlighter.h>
 
 #include <QString>
 

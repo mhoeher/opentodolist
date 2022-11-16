@@ -10,6 +10,7 @@ if(NOT OPENTODOLIST_USE_SYSTEM_ECM)
         SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KDE/extra-cmake-modules
         CMAKE_ARGS
             -DCMAKE_INSTALL_PREFIX=${OPENTODOLIST_MODULES_INSTALL_DIR}
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
     )
 else()
     add_custom_target(build_ecm)
@@ -18,21 +19,103 @@ endif()
 
 # KF Syntax Highlighting
 if(NOT OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+    set(
+        KF_SYNTAX_HIGHLIGHTING_SOURCE_ARGS
+            SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KDE/syntax-highlighting
+    )
+    if(CMAKE_GENERATOR STREQUAL "Xcode")
+        # There is a bug in KDE Syntax Highlighting which prevents it from building with the
+        # "new" Xcode build system. Hence, build this dependency with ninja instead
+        set(KDE_SH_GENERATOR Ninja)
+    else()
+        set(KDE_SH_GENERATOR ${CMAKE_GENERATOR})
+    endif()
+    if(IOS)
+        # On iOS, KDE Syntax Highlighting does not build out of the box. This is because the
+        # build does not properly detect that we are cross-compiling. For this reason,
+        # we manually build the module once for the host and then pass the indexer executable
+        # into the iOS build of the module.
+        #
+        # In addition, we have to patch the source tree. We do this by doing a git clone of the
+        # submodule and patching this one in place.
+        # Note that this breaks if someone tries to build the iOS build from a release
+        # tarball. This is unfortunate but everything else will get complicated.
+
+        if(NOT QT_HOST_PATH)
+            message(FATAL_ERROR "QT_HOST_PATH is not set, but we need a host Qt to continue!")
+        endif()
+
+        ExternalProject_Add(
+            build_kf_syntax_highlighting_host
+            SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KDE/syntax-highlighting
+            CMAKE_GENERATOR
+                ${KDE_SH_GENERATOR}
+            CMAKE_ARGS
+                -DCMAKE_TOOLCHAIN_FILE=${QT_HOST_PATH}/lib/cmake/Qt6/qt.toolchain.cmake
+                -DCMAKE_INSTALL_PREFIX=${OPENTODOLIST_MODULES_INSTALL_DIR}-host
+                -DQT_MAJOR_VERSION=${QT_VERSION_MAJOR}
+                -DQRC_SYNTAX=ON
+                -DNO_STANDARD_PATHS=ON
+                -DBUILD_SHARED_LIBS=OFF
+            CMAKE_CACHE_ARGS
+                "-DCMAKE_PREFIX_PATH:STRING=${OPENTODOLIST_MODULES_INSTALL_DIR};${QT_HOST_PATH}" # ECM + Host Qt
+                -DCMAKE_OSX_SYSROOT:STRING=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+        )
+        ExternalProject_Add_StepDependencies(build_kf_syntax_highlighting_host build build_ecm)
+
+        set(KDE_SH_CROSSCOMPILING_EXTRA_ARGS
+            -DKATEHIGHLIGHTINGINDEXER_EXECUTABLE:STRING=${CMAKE_CURRENT_BINARY_DIR}/build_kf_syntax_highlighting_host-prefix/src/build_kf_syntax_highlighting_host-build/bin/katehighlightingindexer
+            -DCMAKE_CROSSCOMPILING:BOOL=ON
+            -DIOS:BOOL=ON
+        )
+        set(KDE_SH_CROSSCOMPILING_EXTRA_TARGETS build_kf_syntax_highlighting_host)
+
+        execute_process(
+            COMMAND
+                git describe --tags
+            WORKING_DIRECTORY
+                ${CMAKE_CURRENT_SOURCE_DIR}/KDE/syntax-highlighting
+            OUTPUT_VARIABLE
+                KF5_SYNTAX_HIGHLIGHTING_VERSION
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        set(KDE_SH_CROSSCOMPILING_IOS_EXTRA_PARAMS
+            GIT_REPOSITORY
+                ${CMAKE_CURRENT_SOURCE_DIR}/KDE/syntax-highlighting
+            GIT_TAG
+                ${KF5_SYNTAX_HIGHLIGHTING_VERSION}
+            PATCH_COMMAND
+                ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/KDE/syntax-highlighting-ios.patch <SOURCE_DIR> && git checkout <SOURCE_DIR> && git apply <SOURCE_DIR>/syntax-highlighting-ios.patch
+        )
+    unset(KF_SYNTAX_HIGHLIGHTING_SOURCE_ARGS)
+
+    endif()
+    set(
+        KF5_PREFIX_PATHS
+        ${OPENTODOLIST_MODULES_INSTALL_DIR}
+        ${CMAKE_PREFIX_PATH}
+    )
     ExternalProject_Add(
         build_kf_syntax_highlighting
-        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KDE/syntax-highlighting
+        ${KF_SYNTAX_HIGHLIGHTING_SOURCE_ARGS}
+        CMAKE_GENERATOR
+            ${KDE_SH_GENERATOR}
         CMAKE_ARGS
             -DCMAKE_INSTALL_PREFIX=${OPENTODOLIST_MODULES_INSTALL_DIR}
-            -DCMAKE_PREFIX_PATH=${OPENTODOLIST_MODULES_INSTALL_DIR}
-            -DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}
             -DQT_MAJOR_VERSION=${QT_VERSION_MAJOR}
             -DQRC_SYNTAX=ON
             -DNO_STANDARD_PATHS=ON
             -DBUILD_SHARED_LIBS=OFF
+            -DQt${QT_VERSION_MAJOR}_DIR=${QT_DIR}
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
         CMAKE_CACHE_ARGS
+            -DCMAKE_PREFIX_PATH:STRING=${KF5_PREFIX_PATHS}
             -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
+            -DECM_DIR:STRING=${OPENTODOLIST_MODULES_INSTALL_DIR}/share/ECM/cmake
+            ${KDE_SH_CROSSCOMPILING_EXTRA_ARGS}
+        ${KDE_SH_CROSSCOMPILING_IOS_EXTRA_PARAMS}
     )
-    ExternalProject_Add_StepDependencies(build_kf_syntax_highlighting build build_ecm)
+    ExternalProject_Add_StepDependencies(build_kf_syntax_highlighting configure build_ecm ${KDE_SH_CROSSCOMPILING_EXTRA_TARGETS})
 
     add_library(SyntaxHighlighting_imported INTERFACE)
     add_dependencies(SyntaxHighlighting_imported build_kf_syntax_highlighting)
@@ -66,6 +149,7 @@ if(NOT ANDROID AND NOT OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
             $<$<STREQUAL:${QT_VERSION_MAJOR},6>:-DBUILD_WITH_QT6=ON>
             -DBUILD_TRANSLATIONS=OFF
             -DBUILD_SHARED_LIBS=OFF
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
         CMAKE_CACHE_ARGS
             -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )
@@ -116,6 +200,7 @@ if(NOT OPENTODOLIST_USE_SYSTEM_QLMDB)
             -DQLMDB_WITH_STATIC_LIBS=ON
             -DQLMDB_WITHOUT_TESTS=ON
             -DQLMDB_QT_VERSIONS=Qt${QT_VERSION_MAJOR}
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
         CMAKE_CACHE_ARGS
             -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )
@@ -153,6 +238,7 @@ if(NOT OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
             -DBUILD_SHARED_LIBS=OFF
             -DSYNQCLIENT_WITHOUT_TESTS=ON
             -DSYNQCLIENT_QT_VERSIONS=Qt${QT_VERSION_MAJOR}
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
         CMAKE_CACHE_ARGS
             -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     )

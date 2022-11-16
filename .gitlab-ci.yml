@@ -197,6 +197,8 @@ ios:
     paths:
       - build-ios-cmake/app/OpenTodoListIpa/OpenTodoList.ipa
     expire_in: 1 week
+  variables:
+    QT_VERSION: "6.4.0"
 
 
 # Template for Android builds

@@ -126,7 +126,7 @@ QByteArray SimpleCrypt::encryptToByteArray(QByteArray plaintext)
     int pos(0);
     char lastChar(0);
 
-    int cnt = ba.length();
+    auto cnt = ba.length();
 
     while (pos < cnt) {
         ba[pos] = ba.at(pos) ^ m_keyParts.at(pos % 8) ^ lastChar;
@@ -208,7 +208,7 @@ QByteArray SimpleCrypt::decryptToByteArray(QByteArray cypher)
 
     ba = ba.mid(2);
     int pos(0);
-    int cnt(ba.length());
+    auto cnt = ba.length();
     char lastChar = 0;
 
     while (pos < cnt) {

@@ -12,6 +12,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# Set policies explicitly:
+cmake_policy(SET CMP0114 NEW) # Use independent step targets w/ external project on Xcode new build system.
+
 project(OpenTodoList)
 
 
@@ -53,6 +56,18 @@ endif()
 
 find_package(QT NAMES ${OPENTODOLIST_QT_VERSIONS} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+
+# Convenience: Set the QT_INSTALL_PREFIX based on QT_DIR (which is set by the first find_package
+# call above. The QT_DIR is set to something like
+# <prefix>/lib/cmake/Qt6, so we have to get the directory 3 times.
+if(NOT QT_INSTALL_PREFIX)
+    get_filename_component(QT_INSTALL_PREFIX ${QT_DIR} DIRECTORY)
+    get_filename_component(QT_INSTALL_PREFIX ${QT_INSTALL_PREFIX} DIRECTORY)
+    get_filename_component(QT_INSTALL_PREFIX ${QT_INSTALL_PREFIX} DIRECTORY)
+    if(QT_INSTALL_PREFIX STREQUAL "/")
+      set(QT_INSTALL_PREFIX "")
+    endif()
+endif()
 
 
 
@@ -100,7 +115,7 @@ install(
 add_subdirectory(3rdparty)
 add_subdirectory(lib)
 add_subdirectory(app)
-if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+if(NOT IOS)
     add_subdirectory(test)
 endif()
 

@@ -119,7 +119,7 @@ QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
 void ApplicationSettings::librariesToConfig(QList<QSharedPointer<Library>> libraries)
 {
     m_settings->sync();
-    m_settings->beginWriteArray("LibraryDirectories", libraries.length());
+    m_settings->beginWriteArray("LibraryDirectories", static_cast<int>(libraries.length()));
     for (auto i = 0; i < libraries.length(); ++i) {
         m_settings->setArrayIndex(i);
         auto dir = libraries[i]->directory();
