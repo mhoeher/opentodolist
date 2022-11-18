@@ -35,6 +35,26 @@ endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(OpenTodoList ${APP_FLAGS} ${PROJECT_SOURCES} ${APP_RESOURCES})
+
+    # Include Assets and special config for iOS
+    if(IOS)
+        set(asset_catalog_path "ios/Assets.xcassets")
+        target_sources(OpenTodoList PRIVATE ios/Images.xcassets)
+        set_source_files_properties(
+            ios/Images.xcassets
+            PROPERTIES
+                MACOSX_PACKAGE_LOCATION Resources
+        )
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                QT_IOS_LAUNCH_SCREEN ${CMAKE_CURRENT_SOURCE_DIR}/ios/LaunchScreen.storyboard
+        )
+        qt_import_plugins(
+            OpenTodoList
+            INCLUDE Qt::QIosOptionalPlugin_NSPhotoLibraryPlugin
+        )
+    endif()
 else()
     if(ANDROID)
         add_library(OpenTodoList SHARED ${PROJECT_SOURCES} ${APP_RESOURCES})
@@ -147,6 +167,8 @@ target_link_libraries(
         Qt${QT_VERSION_MAJOR}::Concurrent
         Qt${QT_VERSION_MAJOR}::Widgets
 )
+
+add_dependencies(OpenTodoList opentodolist-common)
 
 if(OPENTODOLIST_FLATPAK)
     target_compile_definitions(OpenTodoList PRIVATE OPENTODOLIST_FLATPAK)

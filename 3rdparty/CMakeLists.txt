@@ -156,7 +156,7 @@ if(NOT ANDROID AND NOT OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
     ExternalProject_Add_StepDependencies(build_qtkeychain build build_ecm)
 
     add_library(qtkeychain_imported INTERFACE)
-    add_dependencies(qtkeychain_imported build_synqclient)
+    add_dependencies(qtkeychain_imported build_qtkeychain)
     target_link_directories(
         qtkeychain_imported
         INTERFACE
