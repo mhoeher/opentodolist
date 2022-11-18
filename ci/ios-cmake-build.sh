@@ -49,6 +49,6 @@ if [ -n "$CONFIGURE_ONLY" ]; then
     exit 0
 fi
 
-cmake --build . --config Release -- "$XCODEBUILD_FLAGS"
+# cmake --build . --config Release -- "$XCODEBUILD_FLAGS" ## Leads to "Archive Failed" errors in next step - but we need at least CMake 3.25.0
 xcodebuild -project OpenTodoList.xcodeproj -scheme OpenTodoList -archivePath OpenTodoList.xcarchive -destination generic/platform=iOS archive
 xcodebuild -exportArchive -archivePath OpenTodoList.xcarchive -exportOptionsPlist ../app/ExportOptions.plist -exportPath OpenTodoList.ipa -allowProvisioningUpdates
