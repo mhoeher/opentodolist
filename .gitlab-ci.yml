@@ -195,7 +195,7 @@ ios:
     - ci/ios-cmake-build.sh
   artifacts:
     paths:
-      - build-ios-cmake/app/OpenTodoListIpa/OpenTodoList.ipa
+      - ./build-ios-cmake/OpenTodoList.ipa/OpenTodoList.ipa
     expire_in: 1 week
   variables:
     QT_VERSION: "6.4.0"
@@ -360,7 +360,7 @@ appstore:
         - macos
     when: manual
     script:
-        - xcrun altool --upload-app --type ios --file build-ios-cmake/app/OpenTodoListIpa/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
+        - xcrun altool --upload-app --type ios --file ./build-ios-cmake/OpenTodoList.ipa/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
     needs:
       - ios
 
