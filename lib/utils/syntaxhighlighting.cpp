@@ -24,14 +24,15 @@
 #include <QFile>
 #include <QTemporaryDir>
 
-#include <algorithm>
-
-#include "htmlsyntaxhighlighter.h"
-
 #include <KSyntaxHighlighting/KSyntaxHighlighting/definition.h>
 #include <KSyntaxHighlighting/KSyntaxHighlighting/repository.h>
 #include <KSyntaxHighlighting/KSyntaxHighlighting/syntaxhighlighter.h>
 #include <KSyntaxHighlighting/KSyntaxHighlighting/theme.h>
+
+#include <algorithm>
+
+
+#include "htmlsyntaxhighlighter.h"
 
 /**
  * @brief Constructor.
