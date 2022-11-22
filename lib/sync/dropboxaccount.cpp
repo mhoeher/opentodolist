@@ -81,7 +81,8 @@ public:
             connect(guiApp, &QGuiApplication::applicationStateChanged, this,
                     [=](Qt::ApplicationState state) {
                         if (state == Qt::ApplicationActive) {
-                            auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
+                            auto activity =
+                                    QJniObject(QNativeInterface::QAndroidApplication::context());
                             if (activity.isValid()) {
                                 auto handleExceptions = [=]() {
                                     QJniEnvironment env;

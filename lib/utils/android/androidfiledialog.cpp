@@ -63,15 +63,15 @@ void AndroidFileDialog::setReceiver(QObject* receiver)
 
 bool AndroidFileDialog::openFile()
 {
-    QJniObject ACTION_GET_CONTENT =
-            QJniObject::fromString("android.intent.action.GET_CONTENT");
+    QJniObject ACTION_GET_CONTENT = QJniObject::fromString("android.intent.action.GET_CONTENT");
     QJniObject intent("android/content/Intent");
     if (ACTION_GET_CONTENT.isValid() && intent.isValid()) {
         intent.callObjectMethod("setAction", "(Ljava/lang/String;)Landroid/content/Intent;",
                                 ACTION_GET_CONTENT.object<jstring>());
         intent.callObjectMethod("setType", "(Ljava/lang/String;)Landroid/content/Intent;",
                                 QJniObject::fromString("file/*").object<jstring>());
-        QtAndroidPrivate::startActivity(intent.object<jobject>(), EXISTING_FILE_NAME_REQUEST, m_receiver);
+        QtAndroidPrivate::startActivity(intent.object<jobject>(), EXISTING_FILE_NAME_REQUEST,
+                                        m_receiver);
         return true;
     } else {
         return false;
@@ -84,20 +84,21 @@ bool AndroidFileDialog::openImage()
         return false;
     }
 
-    QJniObject ACTION_PICK = QJniObject::getStaticObjectField(
-            "android/content/Intent", "ACTION_PICK", "Ljava/lang/String;");
+    QJniObject ACTION_PICK = QJniObject::getStaticObjectField("android/content/Intent",
+                                                              "ACTION_PICK", "Ljava/lang/String;");
     QJniObject EXTERNAL_CONTENT_URI =
             QJniObject::getStaticObjectField("android/provider/MediaStore$Images$Media",
-                                                    "EXTERNAL_CONTENT_URI", "Landroid/net/Uri;");
+                                             "EXTERNAL_CONTENT_URI", "Landroid/net/Uri;");
 
-    QJniObject intent = QJniObject(
-            "android/content/Intent", "(Ljava/lang/String;Landroid/net/Uri;)V",
-            ACTION_PICK.object<jstring>(), EXTERNAL_CONTENT_URI.object<jobject>());
+    QJniObject intent =
+            QJniObject("android/content/Intent", "(Ljava/lang/String;Landroid/net/Uri;)V",
+                       ACTION_PICK.object<jstring>(), EXTERNAL_CONTENT_URI.object<jobject>());
 
     if (ACTION_PICK.isValid() && intent.isValid()) {
         intent.callObjectMethod("setType", "(Ljava/lang/String;)Landroid/content/Intent;",
                                 QJniObject::fromString("image/*").object<jstring>());
-        QtAndroidPrivate::startActivity(intent.object<jobject>(), EXISTING_IMAGE_NAME_REQUEST, m_receiver);
+        QtAndroidPrivate::startActivity(intent.object<jobject>(), EXISTING_IMAGE_NAME_REQUEST,
+                                        m_receiver);
         return true;
     } else {
         return false;
@@ -107,7 +108,8 @@ bool AndroidFileDialog::openImage()
 bool AndroidFileDialog::ensureCanAccessImages()
 {
     const auto ReadExtStorage = "android.permission.READ_EXTERNAL_STORAGE";
-    if (QtAndroidPrivate::checkPermission(ReadExtStorage).result() == QtAndroidPrivate::PermissionResult::Denied) {
+    if (QtAndroidPrivate::checkPermission(ReadExtStorage).result()
+        == QtAndroidPrivate::PermissionResult::Denied) {
         auto result = QtAndroidPrivate::requestPermission(ReadExtStorage).result();
         if (result == QtAndroidPrivate::PermissionResult::Denied)
             return false;
@@ -136,8 +138,7 @@ AndroidFileDialog::ResultReceiver::ResultReceiver(AndroidFileDialog* dialog)
 AndroidFileDialog::ResultReceiver::~ResultReceiver() {}
 
 void AndroidFileDialog::ResultReceiver::handleActivityResult(int receiverRequestCode,
-                                                             int resultCode,
-                                                             const QJniObject& data)
+                                                             int resultCode, const QJniObject& data)
 {
     QString path;
     jint RESULT_OK = QJniObject::getStaticField<jint>("android/app/Activity", "RESULT_OK");
@@ -177,8 +178,10 @@ QString AndroidFileDialog::ResultReceiver::uriToPath(QJniObject uri)
     if (uri.toString().startsWith("file:", Qt::CaseInsensitive)) {
         return uri.callObjectMethod("getPath", "()Ljava/lang/String;").toString();
     } else {
-        QJniObject contentResolver = QJniObject(QNativeInterface::QAndroidApplication::context()).callObjectMethod(
-                "getContentResolver", "()Landroid/content/ContentResolver;");
+        QJniObject contentResolver =
+                QJniObject(QNativeInterface::QAndroidApplication::context())
+                        .callObjectMethod("getContentResolver",
+                                          "()Landroid/content/ContentResolver;");
         QJniObject cursor = contentResolver.callObjectMethod(
                 "query",
                 "(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;"

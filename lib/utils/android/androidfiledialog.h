@@ -67,8 +67,7 @@ private:
     public:
         explicit ResultReceiver(AndroidFileDialog* dialog);
         virtual ~ResultReceiver();
-        void handleActivityResult(int receiverRequestCode, int resultCode,
-                                  const QJniObject& data);
+        void handleActivityResult(int receiverRequestCode, int resultCode, const QJniObject& data);
         QString uriToPath(QJniObject uri);
 
     private:
