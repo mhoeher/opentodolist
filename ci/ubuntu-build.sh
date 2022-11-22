@@ -2,7 +2,20 @@
 
 set -e
 
-PREFIX_PATH=$QT_ROOT
+if [ ! -d "$QT_INSTALL_ROOT" ]; then
+    if [ -d "$HOME/Qt" ]; then
+        QT_INSTALL_ROOT="$HOME/Qt"
+    else
+        echo "The variable QT_INSTALL_ROOT is not set"
+        exit 1
+    fi
+fi
+echo "Using Qt installation in $QT_INSTALL_ROOT"
+
+if [ -z "$QT_VERSION" ]; then
+    QT_VERSION=$(ls "$QT_INSTALL_ROOT" | grep -E '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n1)
+fi
+echo "Using Qt $QT_VERSION"
 
 if [ -n "$CI" ]; then
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
@@ -15,7 +28,6 @@ if [ -n "$CI" ]; then
     "
 fi
 
-source $PREFIX_PATH/bin/qt511-env.sh || true
 export QT_QPA_PLATFORM=minimal
 
 mkdir -p build-ubuntu
@@ -23,7 +35,7 @@ cd build-ubuntu
 
 cmake \
     -GNinja \
-    -DCMAKE_PREFIX_PATH=$QT_ROOT \
+    -DCMAKE_PREFIX_PATH=$QT_INSTALL_ROOT/$QT_VERSION/gcc_64 \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_APPIMAGE_EXTRAS=ON \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \

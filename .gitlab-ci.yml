@@ -3,8 +3,8 @@
 variables:
   WIN32_IMAGE: registry.gitlab.com/rpdev/docker/qt5-windows:win32
   WIN64_IMAGE: registry.gitlab.com/rpdev/docker/qt5-windows:win64
-  UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt5-ubuntu
-  ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt5-android
+  UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt6-ubuntu
+  ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt6-android
   FLATPAK_IMAGE: registry.gitlab.com/rpdev/docker/flatpak-builder-kde
   SNAPCRAFT_IMAGE: registry.gitlab.com/rpdev/docker/snapcraft
   NEXTCLOUD_IMAGE: nextcloud
