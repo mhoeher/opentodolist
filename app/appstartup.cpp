@@ -268,13 +268,11 @@ void AppStartup::startBackgroundService()
         m_srcNode->enableRemoting(m_backgroundService);
     });
 #else
-    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral(
 #    ifdef Q_OS_ANDROID
-            "localabstract:opentodolist"
+    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("localabstract:opentodolist")));
 #    else
-            "local:opentodolist"
+    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:opentodolist")));
 #    endif
-            )));
 #endif
     m_backgroundService = new BackgroundService(m_cache);
     m_srcNode->enableRemoting(m_backgroundService);

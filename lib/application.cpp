@@ -213,13 +213,11 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
             m_remoteObjectNode->addClientSideConnection(socket);
         }
 #else
-        m_remoteObjectNode->connectToNode(QUrl(QStringLiteral(
 #    ifdef Q_OS_ANDROID
-                "localabstract:opentodolist"
+        m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("localabstract:opentodolist")));
 #    else
-                "local:opentodolist"
+        m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("local:opentodolist")));
 #    endif
-                )));
 #endif
 
         m_backgroundService.reset(m_remoteObjectNode->acquire<BackgroundServiceReplica>());
