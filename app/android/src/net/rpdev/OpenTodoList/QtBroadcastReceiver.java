@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
-import org.qtproject.qt5.android.bindings.QtActivity;
+import org.qtproject.qt.android.bindings.QtActivity;
 
 public class QtBroadcastReceiver extends BroadcastReceiver {
 

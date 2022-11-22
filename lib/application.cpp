@@ -40,8 +40,9 @@
 #include <QUuid>
 
 #ifdef Q_OS_ANDROID
-#    include <QtAndroid>
-#    include <QAndroidJniExceptionCleaner>
+#    include <private/qandroidextras_p.h>
+#    include <QJniEnvironment>
+#    include <QJniObject>
 #endif
 
 #ifdef Q_OS_IOS
@@ -185,23 +186,22 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
     if (!m_backgroundService || !m_backgroundService->isReplicaValid()) {
 #ifdef Q_OS_ANDROID
         {
-            QAndroidJniExceptionCleaner cleaner;
-            QAndroidJniObject s = QAndroidJniObject::fromString(tr("Background Sync"));
-            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
-                                                      "setBackgroundNotificationTitle",
-                                                      "(Ljava/lang/String;)V", s.object());
-            s = QAndroidJniObject::fromString(
-                    tr("App continues to sync your data in the background"));
-            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
-                                                      "setBackgroundNotificationText",
-                                                      "(Ljava/lang/String;)V", s.object());
-            s = QAndroidJniObject::fromString(tr("Quit"));
-            QAndroidJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
-                                                      "setBackgroundNotificationQuit",
-                                                      "(Ljava/lang/String;)V", s.object());
-            QAndroidJniObject::callStaticMethod<void>(
-                    "net/rpdev/OpenTodoList/BackgroundService", "startQtAndroidService",
-                    "(Landroid/content/Context;)V", QtAndroid::androidActivity().object());
+            QJniObject s = QJniObject::fromString(tr("Background Sync"));
+            QJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                               "setBackgroundNotificationTitle",
+                                               "(Ljava/lang/String;)V", s.object());
+            s = QJniObject::fromString(tr("App continues to sync your data in the background"));
+            QJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                               "setBackgroundNotificationText",
+                                               "(Ljava/lang/String;)V", s.object());
+            s = QJniObject::fromString(tr("Quit"));
+            QJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                               "setBackgroundNotificationQuit",
+                                               "(Ljava/lang/String;)V", s.object());
+            QJniObject::callStaticMethod<void>("net/rpdev/OpenTodoList/BackgroundService",
+                                               "startQtAndroidService",
+                                               "(Landroid/content/Context;)V",
+                                               QNativeInterface::QAndroidApplication::context());
         }
 #endif
 
@@ -213,7 +213,13 @@ QSharedPointer<BackgroundServiceReplica> Application::getBackgroundService()
             m_remoteObjectNode->addClientSideConnection(socket);
         }
 #else
-        m_remoteObjectNode->connectToNode(QUrl(QStringLiteral("local:opentodolist")));
+        m_remoteObjectNode->connectToNode(QUrl(QStringLiteral(
+#    ifdef Q_OS_ANDROID
+                "localabstract:opentodolist"
+#    else
+                "local:opentodolist"
+#    endif
+                )));
 #endif
 
         m_backgroundService.reset(m_remoteObjectNode->acquire<BackgroundServiceReplica>());
@@ -1080,9 +1086,9 @@ QString Application::htmlToPlainText(const QString& html) const
  */
 QString Application::getExternalFilesDir() const
 {
-    auto context = QtAndroid::androidContext();
-    QAndroidJniObject type = QAndroidJniObject::fromString(QString("Libraries"));
-    auto file = context.callObjectMethod(
+    auto context = QNativeInterface::QAndroidApplication::context();
+    QJniObject type = QJniObject::fromString(QString("Libraries"));
+    auto file = QJniObject(context).callMethod<jobject>(
             "getExternalFilesDir", "(Ljava/lang/String;)Ljava/io/File;", type.object<jstring>());
     qWarning() << "Got path to external files dir" << file.toString();
     return file.toString();
@@ -1264,8 +1270,8 @@ bool Application::openUrl(const QUrl& url)
 #ifdef Q_OS_ANDROID
 void Application::finishActivity()
 {
-    auto activity = QtAndroid::androidActivity();
-    QtAndroid::runOnAndroidThread(
+    auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
+    QNativeInterface::QAndroidApplication::runOnAndroidMainThread(
             [=]() { activity.callMethod<void>("finish", "()V", activity.object()); });
 }
 #endif

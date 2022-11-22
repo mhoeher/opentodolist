@@ -19,6 +19,10 @@
 
 #include "appstartup.h"
 
+#ifdef Q_OS_ANDROID
+#    include <private/qandroidextras_p.h>
+#endif
+
 #ifdef Q_OS_IOS
 #    include <TargetConditionals.h>
 #    if TARGET_OS_SIMULATOR
@@ -264,7 +268,13 @@ void AppStartup::startBackgroundService()
         m_srcNode->enableRemoting(m_backgroundService);
     });
 #else
-    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:opentodolist")));
+    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral(
+#    ifdef Q_OS_ANDROID
+            "localabstract:opentodolist"
+#    else
+            "local:opentodolist"
+#    endif
+            )));
 #endif
     m_backgroundService = new BackgroundService(m_cache);
     m_srcNode->enableRemoting(m_backgroundService);

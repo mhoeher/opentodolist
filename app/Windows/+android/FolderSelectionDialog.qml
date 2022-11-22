@@ -13,7 +13,7 @@ CenteredDialog {
     id: dialog
 
     property url folder
-    readonly property url selectedFolder: folderListModel.folder
+    property url selectedFolder: folderListModel.folder
 
     standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
     width: dialog.idealDialogWidth

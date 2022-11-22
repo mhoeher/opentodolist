@@ -177,8 +177,8 @@ target_include_directories(
 target_compile_definitions(
     opentodolist-common
     PRIVATE
-        $<$<BOOL:OPENTODOLIST_WITH_UPDATE_SERVICE>:OPENTODOLIST_WITH_UPDATE_SERVICE>
-        $<$<BOOL:OPENTODOLIST_WITH_APPIMAGE_EXTRAS>:OPENTODOLIST_IS_APPIMAGE>
+        $<$<BOOL:${OPENTODOLIST_WITH_UPDATE_SERVICE}>:OPENTODOLIST_WITH_UPDATE_SERVICE>
+        $<$<BOOL:${OPENTODOLIST_WITH_APPIMAGE_EXTRAS}>:OPENTODOLIST_IS_APPIMAGE>
 )
 
 # Link against Qt libraries
@@ -192,8 +192,7 @@ target_link_libraries(opentodolist-common
         Qt${QT_VERSION_MAJOR}::Sql
         Qt${QT_VERSION_MAJOR}::RemoteObjects
         Qt${QT_VERSION_MAJOR}::NetworkAuth
-
-        $<$<BOOL:${ANDROID}>:Qt${QT_VERSION_MAJOR}::AndroidExtras>
+        Qt${QT_VERSION_MAJOR}::CorePrivate
 
         # TODO: If possible, upgrade and remove this
         # At least with Qt 5.15, we get linking errors on ARM64 using cmake. Hence, explicitly

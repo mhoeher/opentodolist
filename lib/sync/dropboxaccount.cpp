@@ -32,7 +32,7 @@
 #include <QUrlQuery>
 
 #ifdef Q_OS_ANDROID
-#    include <QtAndroidExtras>
+#    include <QJniEnvironment>
 #endif
 
 #include <SynqClient/CompositeJob>
@@ -81,10 +81,10 @@ public:
             connect(guiApp, &QGuiApplication::applicationStateChanged, this,
                     [=](Qt::ApplicationState state) {
                         if (state == Qt::ApplicationActive) {
-                            auto activity = QtAndroid::androidActivity();
+                            auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
                             if (activity.isValid()) {
                                 auto handleExceptions = [=]() {
-                                    QAndroidJniEnvironment env;
+                                    QJniEnvironment env;
                                     if (env->ExceptionCheck()) {
                                         qCWarning(log) << "An exception occurred during "
                                                           "interfacing with Java.";

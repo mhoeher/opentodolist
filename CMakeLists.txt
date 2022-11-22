@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.19)
 
 # Generate build commands JSON file:
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -27,19 +27,6 @@ include(cmake/Flatpak.cmake)
 # Enable unit tests:
 enable_testing()
 
-# Add additional files for Android:
-set(
-    ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/app/android
-    CACHE INTERNAL "Extra files for Android deployment"
-)
-
-if(ANDROID_TARGET_SDK_VERSION)
-    set(
-        ANDROID_TARGET_SDK_VERSION ${ANDROID_TARGET_SDK_VERSION}
-        CACHE INTERNAL "Android Target SDK version to build against."
-    )
-endif()
-
 if (ANDROID)
     include(3rdparty/android-openssl/CMakeLists.txt)
 endif()
@@ -51,11 +38,15 @@ endif()
 
 set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets Network NetworkAuth)
 
-if(ANDROID)
-    set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras)
-endif()
 
 find_package(QT NAMES ${OPENTODOLIST_QT_VERSIONS} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+
+if(ANDROID)
+    if(QT_VERSION_MAJOR STREQUAL "5")
+        message(FATAL_ERROR "Support for building OpenTodoList for Android using Qt5 has been dropped. Please build using Qt6 or higher.")
+    endif()
+endif()
+
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 
 # Convenience: Set the QT_INSTALL_PREFIX based on QT_DIR (which is set by the first find_package
@@ -70,17 +61,33 @@ if(NOT QT_INSTALL_PREFIX)
     endif()
 endif()
 
+# Convenience: Set a path to a host Qt installation (for cross compiling). This is needed when
+# we cross-compile as we have to build some tools for the host.
+if(NOT QT_HOST_INSTALL_PREFIX)
+    set(QT_HOST_INSTALL_PREFIX ${QT_INSTALL_PREFIX})
+    if(ANDROID OR IOS)
+        # Check if this is a Qt installation made with the official installer
+        get_filename_component(_version_dir ${QT_INSTALL_PREFIX} DIRECTORY)
+        get_filename_component(_root_dir ${_version_dir} DIRECTORY)
+        if(EXISTS ${_root_dir}/MaintenanceTool.dat)
+            if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
+                set(QT_HOST_INSTALL_PREFIX ${_version_dir}/macos)
+            elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+                set(QT_HOST_INSTALL_PREFIX ${_version_dir}/gcc_64)
+            elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+                message("TODO: Implement auto-detection of Qt host tools on Windows")
+            endif()
+        endif()
+        unset(_version_dir)
+        unset(_root_dir)
+    endif()
+endif()
 
+# For KDE packages: Used when cross compiling
+if(NOT KF5_HOST_TOOLING)
+    set(KF5_HOST_TOOLING ${QT_HOST_INSTALL_PREFIX})
+endif()
 
-# if(NOT ANDROID)
-#     if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
-#         find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
-#     else()
-#         if("${QT_VERSION_MAJOR}" STREQUAL "6")
-#             set(BUILD_WITH_QT6 ON)
-#         endif() 
-#     endif()
-# endif()
 
 if(OPENTODOLIST_WITH_KNOTIFICATIONS)
     find_package(KF5Notifications REQUIRED)

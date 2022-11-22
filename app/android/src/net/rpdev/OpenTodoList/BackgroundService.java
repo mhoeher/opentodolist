@@ -15,8 +15,8 @@ import android.content.Intent;
 
 import net.rpdev.opentodolist.R;
 
-import org.qtproject.qt5.android.bindings.QtActivity;
-import org.qtproject.qt5.android.bindings.QtService;
+import org.qtproject.qt.android.bindings.QtActivity;
+import org.qtproject.qt.android.bindings.QtService;
 
 public class BackgroundService extends QtService
 {
@@ -95,15 +95,19 @@ public class BackgroundService extends QtService
 
         // Open app when activity is interacted with:
         Intent notifyIntent = new Intent(this, QtActivity.class);
+        int additionalFlags = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            additionalFlags = PendingIntent.FLAG_MUTABLE;
+         }
         PendingIntent notifyPendingIntent = PendingIntent.getActivity(
-                this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT | additionalFlags);
         m_notificationBuilder.setContentIntent(notifyPendingIntent);
 
         // Let user quit the app+service:
         Intent quitAppIntent = new Intent(context, QtBroadcastReceiver.class);
         quitAppIntent.setAction(QtBroadcastReceiver.ACTION_QUIT);
         PendingIntent pendingQuitAppIntent = PendingIntent.getBroadcast(
-                context, 0, quitAppIntent, 0);
+                context, 0, quitAppIntent, additionalFlags);
         m_notificationBuilder.addAction(R.mipmap.icon, "Quit", pendingQuitAppIntent);
 
         Notification notification = m_notificationBuilder.build();
