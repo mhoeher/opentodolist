@@ -42,19 +42,15 @@ cd $PROJECT_ROOT
 case "$ANDROID_ABIS" in
     armeabi-v7a)
         VERSION_OFFSET=1
-        break
         ;;
     arm64-v8a)
         VERSION_OFFSET=2
-        break
         ;;
     x86_64)
         VERSION_OFFSET=4;
-        break
         ;;
     x86)
         VERSION_OFFSET=3;
-        break
         ;;
     *)
         echo "Unhandled Android architecture: $ANDROID_ABIS"
