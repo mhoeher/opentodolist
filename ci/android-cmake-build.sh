@@ -38,23 +38,6 @@ export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
 
 cd $PROJECT_ROOT
 
-if [ -n "$CI" ]; then
-    which ccache || (apt-get update -y && apt-get install -y ccache)
-fi
-
-# Add path to ccache symlinks to PATH:
-export PATH=/usr/lib/ccache/:$PATH
-
-# Ensure that `clang` is symlinked to `ccache`:
-if [ ! -f /usr/lib/ccache/clang ]; then
-    ln -s ../../bin/ccache /usr/lib/ccache/clang || true
-fi
-
-# Ensure that `clang++` is symlinked to `ccache`:
-if [ ! -f /usr/lib/ccache/clang++ ]; then
-    ln -s ../../bin/ccache /usr/lib/ccache/clang++ || true
-fi
-
 # Build APKs for each supported platform
 case "$ANDROID_ABIS" in
     armeabi-v7a)
@@ -104,8 +87,6 @@ qt-cmake \
     -DCMAKE_FIND_ROOT_PATH=$QT_ROOT/$ANDROID_ABIS \
     -DANDROID_SDK=$ANDROID_SDK_ROOT \
     $CMAKE_ABI_ARGS \
-    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DOPENTODOLIST_ANDROID_VERSION_CODE=$OPENTODOLIST_VERSION_CODE \
     ..
 cmake --build .

@@ -14,7 +14,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden) # To avoid linker warnings building for iOS
 
 # Set policies explicitly:
-cmake_policy(SET CMP0114 NEW) # Use independent step targets w/ external project on Xcode new build system.
+# cmake_policy(SET CMP0114 NEW) # Use independent step targets w/ external project on Xcode new build system.
 
 project(OpenTodoList)
 

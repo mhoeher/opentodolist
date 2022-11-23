@@ -33,6 +33,12 @@ export QT_QPA_PLATFORM=minimal
 mkdir -p build-ubuntu
 cd build-ubuntu
 
+# Search for Qt libs in Qt installation explicitly. For some reason, we otherwise won't find
+# all Qt libs when running tests...
+# Also, add the path to the local modules we build in source, so we can find them later
+# during app image build. 
+export LD_LIBRARY_PATH=$QT_INSTALL_ROOT/$QT_VERSION/gcc_64/lib:$PWD/modules/lib
+
 cmake \
     -GNinja \
     -DCMAKE_PREFIX_PATH=$QT_INSTALL_ROOT/$QT_VERSION/gcc_64 \
@@ -69,7 +75,10 @@ fi
 
 "$LINUXDEPLOYQT" --appimage-extract
 
+# Note: We have to build on a newer Ubuntu than the oldest, still supported LTS one.
+# This is due to support of Qt6. Hence, we have to skip the glibc check.
 ./squashfs-root/AppRun AppImageBuild/usr/bin/OpenTodoList \
-    -qmldir=../app -qmake=$QT_ROOT/bin/qmake \
+    -qmldir=../app -qmake=$QT_INSTALL_ROOT/$QT_VERSION/gcc_64/bin/qmake \
     -appimage \
-    -extra-plugins=platforminputcontexts
+    -extra-plugins=platforminputcontexts \
+    -unsupported-allow-new-glibc
