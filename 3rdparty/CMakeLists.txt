@@ -299,7 +299,7 @@ if(NOT OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
     target_include_directories(
         synqclient_imported
         INTERFACE
-            ${OPENTODOLIST_MODULES_INSTALL_DIR}/include/synqclient-qt${QT_VERSION_MAJOR}
+            ${OPENTODOLIST_MODULES_INSTALL_DIR}/include/SynqClient-qt${QT_VERSION_MAJOR}
     )
     add_library(SynqClient::synqclient-qt${QT_VERSION_MAJOR} ALIAS synqclient_imported)
 else()
