@@ -10,6 +10,9 @@ fi
 
 VERSION=$(git describe --tags)
 
+# Ignore platform checks - needed to get the indexer build
+export KF_IGNORE_PLATFORM_CHECK="ON"
+
 if [ "$TARGET" == win64 ]; then
     BUILD_DIR=build-win64
     DEPLOY_DIR=deploy-win64
@@ -45,6 +48,7 @@ $CMAKE \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DCMAKE_INSTALL_PREFIX=/usr \
+    -DWINDOWS=ON \
     ..
 cmake --build . --target OpenTodoList
 rm -rf $PWD/_

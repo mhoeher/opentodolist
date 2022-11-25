@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
 
 variables:
-  WIN32_IMAGE: registry.gitlab.com/rpdev/docker/qt5-windows:win32
-  WIN64_IMAGE: registry.gitlab.com/rpdev/docker/qt5-windows:win64
+  WIN32_IMAGE: registry.gitlab.com/rpdev/docker/qt6-windows:win32
+  WIN64_IMAGE: registry.gitlab.com/rpdev/docker/qt6-windows:win64
   UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt6-ubuntu
   ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt6-android
-  FLATPAK_IMAGE: registry.gitlab.com/rpdev/docker/flatpak-builder-kde
+  FLATPAK_IMAGE: registry.gitlab.com/rpdev/docker/flatpak-builder-kde-qt6
   SNAPCRAFT_IMAGE: registry.gitlab.com/rpdev/docker/snapcraft
   NEXTCLOUD_IMAGE: nextcloud
   OWNCLOUD_IMAGE: owncloud

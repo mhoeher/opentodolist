@@ -4,8 +4,8 @@ include(ExternalProject)
 set(OPENTODOLIST_MODULES_INSTALL_DIR "${CMAKE_BINARY_DIR}/modules")
 
 # The preferrec linking method.
-if(UNIX AND NOT APPLE AND NOT ANDROID)
-    # On Unix, build shared - this makes it easier as we need to link against
+if((UNIX AND NOT APPLE AND NOT ANDROID) OR WINDOWS)
+    # On Unix and Windows, build shared - this makes it easier as we need to link against
     # several extra libs otherwise.
     set(OPENTODOLIST_MODULES_AS_SHARED_LIBS ON)
     set(OPENTODOLIST_MODULES_AS_STATIC_LIBS OFF)
@@ -47,7 +47,9 @@ foreach(variable ${MODULES_COMMON_CACHE_VARIABLES_TO_PASS_THROUGH})
     endif()
 endforeach()
 
-list(APPEND MODULES_COMMON_CACHE_ARGS -DCMAKE_INSTALL_LIBDIR:STRING=lib)
+if(NOT WINDOWS)
+    list(APPEND MODULES_COMMON_CACHE_ARGS -DCMAKE_INSTALL_LIBDIR:STRING=lib)
+endif()
 
 # ECM (needed for KF Syntax Highlighting and optional for other sub-modules)
 if(NOT OPENTODOLIST_USE_SYSTEM_ECM)
