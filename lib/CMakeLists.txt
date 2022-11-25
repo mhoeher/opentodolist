@@ -192,15 +192,7 @@ target_link_libraries(opentodolist-common
         Qt${QT_VERSION_MAJOR}::Sql
         Qt${QT_VERSION_MAJOR}::RemoteObjects
         Qt${QT_VERSION_MAJOR}::NetworkAuth
-        Qt${QT_VERSION_MAJOR}::CorePrivate
-
-        # TODO: If possible, upgrade and remove this
-        # At least with Qt 5.15, we get linking errors on ARM64 using cmake. Hence, explicitly
-        # link against the missing libraries:
-        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libGLESv2.so>
-        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/liblog.so>
-        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/${ANDROID_NATIVE_API_LEVEL}/libz.so>
-        $<$<STREQUAL:${ANDROID_ABI},"arm64-v8a">:${ANDROID_TOOLCHAIN_ROOT}/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so>
+        $<$<BOOL:${ANDROID}>:Qt${QT_VERSION_MAJOR}::CorePrivate>
 
         # Third party libraries:
         QLMDB::qlmdb-qt${QT_VERSION_MAJOR}

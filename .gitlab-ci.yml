@@ -14,17 +14,12 @@ variables:
   CCACHE_DIR: $CI_PROJECT_DIR/ccache
   ANDROID_MIN_SDK_INT: 21
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
-    
+
 
 stages:
   - prepare
   - build
-  - test
-  - installer
   - deploy
-  - beta
-  - candidate
-  - stable
 
 cache:
     paths:
@@ -214,8 +209,6 @@ ios:
       - build-android/OpenTodoList*.apk
       - build-android/OpenTodoList*.aab
     expire_in: 1 week
-  variables:
-    ANDROID_NDK_PLATFORM: android-$ANDROID_MIN_SDK_INT
 
 # Android build ARMv7
 android_armv7:
@@ -240,6 +233,42 @@ android_x64:
   extends: .android-build
   variables:
     ANDROID_ABIS: x86_64
+
+# Template for Android Sign jobs
+.sign_apks:
+    stage: build
+    tags:
+        - OpenTodoListPrivate
+    image: $ANDROID_IMAGE
+    script:
+        - ci/sign-apks.sh
+    artifacts:
+      paths:
+        - build-android/*-aligned.apk
+        - build-android/*-aligned.aab
+      expire_in: 1 week
+
+# Jobs for signing Android files
+
+sign::android_arm64_v8a:
+  extends: .sign_apks
+  needs:
+    - android_arm64_v8a
+
+sign::android_armv7:
+  extends: .sign_apks
+  needs:
+    - android_armv7
+
+sign::android_x64:
+  extends: .sign_apks
+  needs:
+    - android_x64
+
+sign::android_x86:
+  extends: .sign_apks
+  needs:
+    - android_x86
 
 # Build the app as Flatpak
 flatpak:
@@ -267,6 +296,8 @@ snap::build:
         - opentodolist*.snap
       expire_in: 1 week
     allow_failure: true # The Snap docker is currently broken - allow this to fail!
+    needs:
+      - appimage
 
 # Build the app for Arch Linux using pkgbuild
 archlinux-pkgbuild:
@@ -283,46 +314,8 @@ archlinux-pkgbuild:
     # Allow failure, Arch is very bleeding edge, so this should not prevent a release
     allow_failure: true
 
-
-################################################################################
-# Installer Stage
-################################################################################
-
-.sign_apks:
-    stage: installer
-    tags:
-        - OpenTodoListPrivate
-    image: $ANDROID_IMAGE
-    script:
-        - ci/sign-apks.sh
-    artifacts:
-      paths:
-        - build-android/*-aligned.apk
-        - build-android/*-aligned.aab
-      expire_in: 1 week
-
-sign::android_arm64_v8a:
-  extends: .sign_apks
-  needs:
-    - android_arm64_v8a
-
-sign::android_armv7:
-  extends: .sign_apks
-  needs:
-    - android_armv7
-
-sign::android_x64:
-  extends: .sign_apks
-  needs:
-    - android_x64
-
-sign::android_x86:
-  extends: .sign_apks
-  needs:
-    - android_x86
-
 aur_release_check:
-    stage: installer
+    stage: build
     image: fedora
     script:
         - ci/update-aur.sh

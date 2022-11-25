@@ -6,7 +6,7 @@ base: core20
 adopt-info: opentodolist # part to adopt appstream data from (first in parse list)
 apps:
     opentodolist:
-        command: usr/bin/OpenTodoList-launcher
+        command: usr/bin/OpenTodoList
         plugs:
         - home
         - x11
@@ -27,97 +27,10 @@ parts:
         parse-info: [net.rpdev.OpenTodoList.appdata.xml]
         override-build: ./ci/snapcraft-build.sh
         stage-packages:
-            - libasn1-8-heimdal
-            - libatk-bridge2.0-0
-            - libatk1.0-0
-            - libatspi2.0-0
-            - libavahi-client3
-            - libavahi-common3
-            - libcairo-gobject2
-            - libcairo2
-            - libclang1-6.0
-            - libcups2
-            - libdatrie1
-            - libdrm2
+            - libx11-6
+            - libxcb1
             - libegl1
-            - libepoxy0
+            - libgl1
+            - libglx0
             - libfontconfig1
             - libfreetype6
-            - libgdk-pixbuf2.0-0
-            - libgl1
-            - libgl1-mesa-dri
-            - libglvnd0
-            - libglx0
-            - libgraphite2-3
-            - libgssapi3-heimdal
-            - libgtk-3-0
-            - libharfbuzz0b
-            - libhcrypto4-heimdal
-            - libheimbase1-heimdal
-            - libheimntlm0-heimdal
-            - libhx509-5-heimdal
-            - libice6
-            - libicu66
-            - libjbig0
-            - libjpeg-turbo8
-            - libkrb5-26-heimdal
-            - liblcms2-2
-            - libldap-2.4-2
-            - libllvm6.0
-            - libltdl7
-            - libmng2
-            - libmtdev1
-            - libmysqlclient21
-            - libodbc1
-            - libpango-1.0-0
-            - libpangocairo-1.0-0
-            - libpangoft2-1.0-0
-            - libpcre2-16-0
-            - libpixman-1-0
-            - libpng16-16
-            - libpq5
-            - libroken18-heimdal
-            - libsasl2-2
-            - libsm6
-            - libsybdb5
-            - libthai0
-            - libtiff5
-            - libwayland-client0
-            - libwayland-cursor0
-            - libwayland-egl1
-            - libwayland-server0
-            - libwebp6
-            - libwebpdemux2
-            - libwebpmux3
-            - libwind0-heimdal
-            - libx11-6
-            - libx11-xcb1
-            - libxau6
-            - libxcb-glx0
-            - libxcb-icccm4
-            - libxcb-image0
-            - libxcb-keysyms1
-            - libxcb-randr0
-            - libxcb-render-util0
-            - libxcb-render0
-            - libxcb-shape0
-            - libxcb-shm0
-            - libxcb-sync1
-            - libxcb-util1
-            - libxcb-xfixes0
-            - libxcb-xinerama0
-            - libxcb-xinput0
-            - libxcb-xkb1
-            - libxcb1
-            - libxcomposite1
-            - libxcursor1
-            - libxdamage1
-            - libxdmcp6
-            - libxext6
-            - libxfixes3
-            - libxi6
-            - libxinerama1
-            - libxkbcommon-x11-0
-            - libxkbcommon0
-            - libxrandr2
-            - libxrender1

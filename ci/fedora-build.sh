@@ -9,8 +9,8 @@ cd ..
 if [ -n "$CI" ]; then
     dnf install -y \
         make cmake ninja-build gcc g++ curl ccache \
-        qt5-{qtbase,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
-        qt5-linguist \
+        qt6-{qtbase,qttools,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
+        qt6-linguist \
         libsecret-devel
 
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
@@ -31,17 +31,18 @@ cd fedora-build-cmake
 if [ -n "$SYSTEM_LIBS" ]; then
     if [ -n "$CI" ]; then
         dnf install -y \
-            qtkeychain-qt5-devel \
+            qtkeychain-qt6-devel \
             kf5-syntax-highlighting-devel
     fi
 
-    for project in qlmdb synqclient; do
+    for project in qlmdb synqclient qtkeychain; do
         mkdir -p ${project}-build
         cd ${project}-build
         cmake \
             -GNinja \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_INSTALL_PREFIX=$PWD/../_ \
+            -DBUILD_WITH_QT6=ON \
             ../../3rdparty/${project}
         cmake --build .
         cmake --install .

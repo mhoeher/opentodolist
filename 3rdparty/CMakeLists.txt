@@ -47,6 +47,7 @@ foreach(variable ${MODULES_COMMON_CACHE_VARIABLES_TO_PASS_THROUGH})
     endif()
 endforeach()
 
+list(APPEND MODULES_COMMON_CACHE_ARGS -DCMAKE_INSTALL_LIBDIR:STRING=lib)
 
 # ECM (needed for KF Syntax Highlighting and optional for other sub-modules)
 if(NOT OPENTODOLIST_USE_SYSTEM_ECM)
@@ -211,7 +212,7 @@ if(NOT ANDROID AND NOT OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
     target_link_libraries(qtkeychain_imported INTERFACE -lqt${QT_VERSION_MAJOR}keychain)
     if(APPLE)
         target_link_libraries(
-            qtkeychain_imported 
+            qtkeychain_imported
             INTERFACE
                 "-framework Foundation"
                 "-framework Security"
