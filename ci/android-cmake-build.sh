@@ -6,6 +6,29 @@ if [ -z "$ANDROID_ABIS" ]; then
     ANDROID_ABIS=arm64-v8a
 fi
 
+case "$ANDROID_ABIS" in
+    armeabi-v7a)
+        VERSION_OFFSET=1
+        QT_SUBDIR=android_armv7;
+        ;;
+    arm64-v8a)
+        VERSION_OFFSET=2
+        QT_SUBDIR=android_arm64_v8a;
+        ;;
+    x86_64)
+        VERSION_OFFSET=4;
+        QT_SUBDIR=android_x86_64;
+        ;;
+    x86)
+        VERSION_OFFSET=3;
+        QT_SUBDIR=android_x86;
+        ;;
+    *)
+        echo "Unhandled Android architecture: $ANDROID_ABIS"
+        exit 1
+        ;;
+esac
+
 if [ ! -d "$QT_INSTALL_ROOT" ]; then
     if [ -d "$HOME/Qt" ]; then
         QT_INSTALL_ROOT="$HOME/Qt"
@@ -31,32 +54,12 @@ if [ -z "$ANDROID_SDK_ROOT" ]; then
     exit 1
 fi
 
-export PATH=$QT_INSTALL_ROOT/$QT_VERSION/android_$(echo $ANDROID_ABIS | sed -e s/-/_/g )/bin:$PATH
+export PATH=$QT_INSTALL_ROOT/$QT_VERSION/$QT_SUBDIR/bin:$PATH
 export PROJECT_ROOT=$(cd $(dirname $0) && cd .. && pwd)
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
 
 
 cd $PROJECT_ROOT
-
-# Build APKs for each supported platform
-case "$ANDROID_ABIS" in
-    armeabi-v7a)
-        VERSION_OFFSET=1
-        ;;
-    arm64-v8a)
-        VERSION_OFFSET=2
-        ;;
-    x86_64)
-        VERSION_OFFSET=4;
-        ;;
-    x86)
-        VERSION_OFFSET=3;
-        ;;
-    *)
-        echo "Unhandled Android architecture: $ANDROID_ABIS"
-        exit 1
-        ;;
-esac
 
 PIPELINE_OFFSET=700
 VERSIONCODE_OFFSET=650
@@ -76,11 +79,9 @@ CMAKE_ABI_ARGS="-DANDROID_ABI=$ANDROID_ABIS"
 qt-cmake \
     -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=$QT_ROOT \
     -DANDROID_NATIVE_API_LEVEL=21 \
     -DANDROID_NDK=$ANDROID_NDK_ROOT \
     -DANDROID_STL=c++_shared \
-    -DCMAKE_FIND_ROOT_PATH=$QT_ROOT/$ANDROID_ABIS \
     -DANDROID_SDK=$ANDROID_SDK_ROOT \
     $CMAKE_ABI_ARGS \
     -DOPENTODOLIST_ANDROID_VERSION_CODE=$OPENTODOLIST_VERSION_CODE \
