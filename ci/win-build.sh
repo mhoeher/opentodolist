@@ -16,25 +16,25 @@ export KF_IGNORE_PLATFORM_CHECK="ON"
 if [ "$TARGET" == win64 ]; then
     BUILD_DIR=build-win64
     DEPLOY_DIR=deploy-win64
-    MXE_DIR=x86_64-w64-mingw32
+    MINGW_DIR=x86_64-w64-mingw32
     CMAKE=mingw64-cmake
     INSTALLER_FILE=win64-installer.nsis
     INSTALLER_OUTPUT_FILE=OpenTodoList-Windows-64bit.exe
     INSTALLER_OUTPUT_TARGET_FILE=OpenTodoList-${VERSION}-Windows-64bit.exe
     EXTRA_LIBS="\
-        /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-3-x64.dll \
-        /usr/$MXE_DIR/sys-root/mingw/bin/libssl-3-x64.dll"
+        /usr/$MINGW_DIR/sys-root/mingw/bin/libcrypto-3-x64.dll \
+        /usr/$MINGW_DIR/sys-root/mingw/bin/libssl-3-x64.dll"
 else
     BUILD_DIR=build-win32
     DEPLOY_DIR=deploy-win32
-    MXE_DIR=i686-w64-mingw32
+    MINGW_DIR=i686-w64-mingw32
     CMAKE=mingw32-cmake
     INSTALLER_FILE=win32-installer.nsis
     INSTALLER_OUTPUT_FILE=OpenTodoList-Windows-32bit.exe
     INSTALLER_OUTPUT_TARGET_FILE=OpenTodoList-${VERSION}-Windows-32bit.exe
     EXTRA_LIBS="\
-        /usr/$MXE_DIR/sys-root/mingw/bin/libcrypto-3.dll \
-        /usr/$MXE_DIR/sys-root/mingw/bin/libssl-3.dll"
+        /usr/$MINGW_DIR/sys-root/mingw/bin/libcrypto-3.dll \
+        /usr/$MINGW_DIR/sys-root/mingw/bin/libssl-3.dll"
 fi
 
 mkdir -p $BUILD_DIR
@@ -44,11 +44,10 @@ $CMAKE \
     -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
-    -DUSE_CREDENTIAL_STORE=ON \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DWINDOWS=ON \
+    -DQT_HOST_INSTALL_PREFIX=/usr \
     ..
 cmake --build . --target OpenTodoList
 rm -rf $PWD/_
@@ -65,8 +64,8 @@ cd ..
 
 cp \
     $EXTRA_LIBS \
-    /usr/$MXE_DIR/sys-root/mingw/bin/libEGL.dll \
-    /usr/$MXE_DIR/sys-root/mingw/bin/libGLESv2.dll \
+    /usr/$MINGW_DIR/sys-root/mingw/bin/libEGL.dll \
+    /usr/$MINGW_DIR/sys-root/mingw/bin/libGLESv2.dll \
     \
     $DEPLOY_DIR/bin/
 
@@ -80,8 +79,8 @@ fi
     --plugins platforms \
     --plugins imageformats \
     --plugins sqldrivers \
-    --plugins bearer \
-    --mingw-arch $MXE_DIR \
+    --mingw-arch $MINGW_DIR \
+    --qt-version 6 \
     $DEPLOY_DIR/bin/
 
 # Strip debug symbols to reduce file size:

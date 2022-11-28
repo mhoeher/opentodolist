@@ -184,6 +184,17 @@ target_compile_definitions(
 # Link against Qt libraries
 target_link_libraries(opentodolist-common
     PUBLIC
+        # Third party libraries.
+        #
+        # Note: When building these as part of the app build, we usually do
+        # so as static libraries. With static libraries, the order of linking is
+        # important, so make sure that we list them before the Qt libraries
+        # further down!
+        QLMDB::qlmdb-qt${QT_VERSION_MAJOR}
+        SynqClient::synqclient-qt${QT_VERSION_MAJOR}
+        qt${QT_VERSION_MAJOR}keychain
+        KF5::SyntaxHighlighting
+
         # Qt libraries:
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::Quick
@@ -193,12 +204,6 @@ target_link_libraries(opentodolist-common
         Qt${QT_VERSION_MAJOR}::RemoteObjects
         Qt${QT_VERSION_MAJOR}::NetworkAuth
         $<$<BOOL:${ANDROID}>:Qt${QT_VERSION_MAJOR}::CorePrivate>
-
-        # Third party libraries:
-        QLMDB::qlmdb-qt${QT_VERSION_MAJOR}
-        SynqClient::synqclient-qt${QT_VERSION_MAJOR}
-        qt${QT_VERSION_MAJOR}keychain
-        KF5::SyntaxHighlighting
 )
 
 install(

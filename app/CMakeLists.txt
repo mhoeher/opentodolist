@@ -26,7 +26,7 @@ if("${CI_PIPELINE_IID}" STREQUAL "")
     set(CI_PIPELINE_IID "0")
 endif()
 
-if(APPLE) 
+if(APPLE)
     set(APP_FLAGS MACOSX_BUNDLE)
     set(PROJECT_SOURCES ${PROJECT_SOURCES} res/OpenTodoList.icns)
     set(MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns)
@@ -168,7 +168,6 @@ target_link_libraries(
         # Qt libraries:
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Xml
         Qt${QT_VERSION_MAJOR}::Concurrent
         Qt${QT_VERSION_MAJOR}::Widgets
 )

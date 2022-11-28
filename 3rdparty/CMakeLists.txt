@@ -4,7 +4,7 @@ include(ExternalProject)
 set(OPENTODOLIST_MODULES_INSTALL_DIR "${CMAKE_BINARY_DIR}/modules")
 
 # The preferrec linking method.
-if((UNIX AND NOT APPLE AND NOT ANDROID) OR WINDOWS)
+if(UNIX AND NOT APPLE AND NOT ANDROID)
     # On Unix and Windows, build shared - this makes it easier as we need to link against
     # several extra libs otherwise.
     set(OPENTODOLIST_MODULES_AS_SHARED_LIBS ON)
@@ -267,6 +267,11 @@ if(NOT OPENTODOLIST_USE_SYSTEM_QLMDB)
         INTERFACE
             ${OPENTODOLIST_MODULES_INSTALL_DIR}/include/qlmdb-qt${QT_VERSION_MAJOR}
     )
+    target_compile_definitions(
+        qlmdb_imported
+        INTERFACE
+            $<IF:$<BOOL:${OPENTODOLIST_MODULES_AS_STATIC_LIBS}>,QLMDB_LIBRARY_STATIC,QLMDB_LIBRARY_SHARED>
+    )
     add_library(QLMDB::qlmdb-qt${QT_VERSION_MAJOR} ALIAS qlmdb_imported)
 else()
     add_custom_target(build_qlmdb)
@@ -303,6 +308,11 @@ if(NOT OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
         synqclient_imported
         INTERFACE
             ${OPENTODOLIST_MODULES_INSTALL_DIR}/include/SynqClient-qt${QT_VERSION_MAJOR}
+    )
+    target_compile_definitions(
+        qlmdb_imported
+        INTERFACE
+            $<IF:$<BOOL:${OPENTODOLIST_MODULES_AS_STATIC_LIBS}>,LIBSYNQCLIENT_LIBRARY_STATIC,LIBSYNQCLIENT_LIBRARY_SHARED>
     )
     add_library(SynqClient::synqclient-qt${QT_VERSION_MAJOR} ALIAS synqclient_imported)
 else()
