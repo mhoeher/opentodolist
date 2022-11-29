@@ -19,27 +19,27 @@
 
 #include "dropboxaccount.h"
 
-#include <QGuiApplication>
-#include <QVariant>
-#include <QVariantMap>
-#include <QJsonDocument>
-#include <QOAuth2AuthorizationCodeFlow>
-#include <QDesktopServices>
-#include <QOAuthHttpServerReplyHandler>
 #include <QAbstractOAuthReplyHandler>
+#include <QDesktopServices>
+#include <QGuiApplication>
+#include <QJsonDocument>
 #include <QLoggingCategory>
 #include <QNetworkReply>
+#include <QOAuth2AuthorizationCodeFlow>
+#include <QOAuthHttpServerReplyHandler>
 #include <QUrlQuery>
+#include <QVariant>
+#include <QVariantMap>
 
 #ifdef Q_OS_ANDROID
 #    include <QJniEnvironment>
 #endif
 
 #include <SynqClient/CompositeJob>
-#include <SynqClient/ListFilesJob>
-#include <SynqClient/DropboxListFilesJob>
 #include <SynqClient/DownloadFileJob>
 #include <SynqClient/DropboxJobFactory>
+#include <SynqClient/DropboxListFilesJob>
+#include <SynqClient/ListFilesJob>
 
 #include "dropboxsynchronizer.h"
 
@@ -74,8 +74,9 @@ public:
     {
         QDesktopServices::setUrlHandler("opentodolist", this, "handleReply");
 #ifdef Q_OS_ANDROID
-        // On Android, the app specific URL is first received by the Java part and cached there. We
-        // need to wait until the app becomes active again and then get the URLs from the Java part.
+        // On Android, the app specific URL is first received by the Java part and
+        // cached there. We need to wait until the app becomes active again and then
+        // get the URLs from the Java part.
         auto guiApp = qobject_cast<QGuiApplication*>(QCoreApplication::instance());
         if (guiApp) {
             connect(guiApp, &QGuiApplication::applicationStateChanged, this,
@@ -122,15 +123,9 @@ public:
         }
 #endif
     }
-    ~DropboxInternalReplyHandler() override
-    {
-        QDesktopServices::unsetUrlHandler("opentodolist");
-    }
+    ~DropboxInternalReplyHandler() override { QDesktopServices::unsetUrlHandler("opentodolist"); }
 
-    QString callback() const override
-    {
-        return DropboxRedirectUri;
-    }
+    QString callback() const override { return DropboxRedirectUri; }
 
 private slots:
     void handleReply(const QUrl& url)
@@ -159,9 +154,9 @@ const QString& DropboxAccount::accessToken() const
 /**
  * @brief Verify the validity of the tokens.
  *
- * Start verifying the tokens we have stored. This eventually emits the tokensVerified() signal.
- * If the outcome is that the tokens stored are no longer valid, the user has to grant access
- * again via the oAuth flow.
+ * Start verifying the tokens we have stored. This eventually emits the
+ * tokensVerified() signal. If the outcome is that the tokens stored are no
+ * longer valid, the user has to grant access again via the oAuth flow.
  */
 void DropboxAccount::verifyTokens() {}
 
@@ -192,7 +187,8 @@ QString DropboxAccount::createCodeVerifier()
  * @brief Create a code challenge from the code verifier.
  *
  * This creates a code challenge from the code verifier as described in
- * https://datatracker.ietf.org/doc/html/rfc7636#section-4.2 using the S256 method.
+ * https://datatracker.ietf.org/doc/html/rfc7636#section-4.2 using the S256
+ * method.
  */
 QString DropboxAccount::getCodeChallenge() const
 {
@@ -213,9 +209,9 @@ SynqClient::DropboxJobFactory* DropboxAccount::createDropboxJobFactory(QObject* 
 /**
  * @brief Create an OAuth 2 authorization code flow.
  *
- * This creates an OAuth 2 authorization code flow object suitable to gain access to the
- * user's data. If present, this will also pre-populate the flow with the refresh token
- * we received earlier.
+ * This creates an OAuth 2 authorization code flow object suitable to gain
+ * access to the user's data. If present, this will also pre-populate the flow
+ * with the refresh token we received earlier.
  */
 QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* parent) const
 {
@@ -397,8 +393,8 @@ void DropboxAccount::findExistingLibraries()
                 auto entries = listFilesJob->entries();
                 for (const auto& entry : qAsConst(entries)) {
                     if (entry.isDirectory() && entry.name().endsWith(".otl")) {
-                        // The entry is a folder, most likely containing OpenTodoList data. Try
-                        // to download the contained "library.json" file:
+                        // The entry is a folder, most likely containing OpenTodoList data.
+                        // Try to download the contained "library.json" file:
                         auto downloadJob = factory->downloadFile(compositeJob);
                         downloadJob->setRemoteFilename(listFilesJob->path() + "/" + entry.name()
                                                        + "/" + Library::LibraryFileName);
@@ -494,8 +490,9 @@ void DropboxAccount::checkConnectivity()
 /**
  * @brief Implementation of Account::needConnectivityCheck().
  *
- * This implements the needConnectivityCheck method for Dropbox. This method returns true if
- * the account has a refresh token set and the current access token expires in less than 5 mins.
+ * This implements the needConnectivityCheck method for Dropbox. This method
+ * returns true if the account has a refresh token set and the current access
+ * token expires in less than 5 mins.
  */
 bool DropboxAccount::needConnectivityCheck() const
 {

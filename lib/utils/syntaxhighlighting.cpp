@@ -31,7 +31,6 @@
 
 #include <algorithm>
 
-
 #include "htmlsyntaxhighlighter.h"
 
 /**
