@@ -153,7 +153,7 @@ void Translations::apply()
     // translations are not available, we must correctly map to the "general" traditional/simplified
     // Chinese ones.
     if (langFile.isEmpty()) {
-        for (auto& uiLang : uiLanguages) {
+        for (const auto& uiLang : uiLanguages) {
             QString lang;
             if (uiLang == "zh-CN" || uiLang == "zh-SG") {
                 // Map these to simplified chinese:

@@ -452,7 +452,7 @@ void AppStartup::debugMessageHandler(QtMsgType type, const QMessageLogContext& c
                 context.line, function);
         break;
     }
-    for (auto& handler : s_prevMessageHandler) {
+    for (const auto& handler : s_prevMessageHandler) {
         handler(type, context, msg);
     }
 }
