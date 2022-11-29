@@ -135,12 +135,14 @@ appimage:
 # Build on Fedora using cmake
 fedora-cmake:
   extends: .fedora
+  allow_failure: true
 
 # Build on Fedora using cmake and libraries from repositories
 fedora-cmake-system-libs:
   extends: .fedora
   variables:
     SYSTEM_LIBS: "1"
+  allow_failure: true
 
 # Windows 32bit build
 win32:
