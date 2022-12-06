@@ -33,6 +33,7 @@ parts:
             - libegl1
             - libgl1
             - libglx0
+            - libopengl0
             - libfontconfig1
             - libfreetype6
             - libdrm2
