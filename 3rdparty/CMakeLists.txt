@@ -3,7 +3,7 @@ include(ExternalProject)
 # The path where to install the sub-modules within the build folder
 set(OPENTODOLIST_MODULES_INSTALL_DIR "${CMAKE_BINARY_DIR}/modules")
 
-# The preferrec linking method.
+# The preferred linking method.
 if(UNIX AND NOT APPLE AND NOT ANDROID)
     # On Unix and Windows, build shared - this makes it easier as we need to link against
     # several extra libs otherwise.
@@ -320,3 +320,11 @@ else()
     add_custom_target(build_synqclient)
     find_package(SynqClient-qt${QT_VERSION_MAJOR} REQUIRED)
 endif()
+
+
+# Install additional libraries we might have built:
+install(
+    DIRECTORY ${OPENTODOLIST_MODULES_INSTALL_DIR}/lib/
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    FILES_MATCHING PATTERN "*.so.*"
+)
