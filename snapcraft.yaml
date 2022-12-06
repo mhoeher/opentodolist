@@ -39,3 +39,5 @@ parts:
             - libdrm2
             - libgl1-mesa-dri
             - libglvnd0
+            - libllvm12
+            - libsensors5
