@@ -37,7 +37,7 @@ Item {
 
     Shortcut {
         id: undoShortcut
-        sequence: StandardKey.Undo
+        sequence: [StandardKey.Undo]
     }
 
     Shortcut {
