@@ -17,6 +17,7 @@ apps:
         - pulseaudio
         - desktop
         - desktop-legacy
+        - wayland
         common-id: net.rpdev.OpenTodoList
         desktop: "usr/share/applications/net.rpdev.OpenTodoList.desktop"
 

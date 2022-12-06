@@ -14,7 +14,7 @@ chmod +x OpenTodoList*.AppImage
 
 # Move the usr folder contents into the target location:
 apt-get update && apt-get install -y rsync
-rsync -a --delete ./squashfs-root/usr $SNAPCRAFT_PART_INSTALL
+rsync -a ./squashfs-root/usr $SNAPCRAFT_PART_INSTALL
 
 # Patch desktop file entry:
 sed -i \
