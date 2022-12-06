@@ -35,3 +35,6 @@ parts:
             - libglx0
             - libfontconfig1
             - libfreetype6
+            - libdrm2
+            - libgl1-mesa-dri
+            - libglvnd0
