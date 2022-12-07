@@ -16,6 +16,9 @@ chmod +x OpenTodoList*.AppImage
 apt-get update && apt-get install -y rsync
 rsync -a ./squashfs-root/usr $SNAPCRAFT_PART_INSTALL
 
+# Copy the launcher script
+cp ../templates/snap/OpenTodoList-launcher $SNAPCRAFT_PART_INSTALL/usr/bin/
+
 # Patch desktop file entry:
 sed -i \
     -e 's#Icon=net.rpdev.OpenTodoList#Icon=\${SNAP}/usr/share/icons/hicolor/256x256/apps/net.rpdev.OpenTodoList.png#' \
