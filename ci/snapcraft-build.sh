@@ -18,6 +18,7 @@ rsync -a ./squashfs-root/usr $SNAPCRAFT_PART_INSTALL
 
 # Copy the launcher script
 cp ../templates/snap/OpenTodoList-launcher $SNAPCRAFT_PART_INSTALL/usr/bin/
+chmod +x $SNAPCRAFT_PART_INSTALL/usr/bin/OpenTodoList-launcher
 
 # Patch desktop file entry:
 sed -i \
