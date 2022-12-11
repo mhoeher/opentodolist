@@ -15,11 +15,7 @@ C.Page {
 
     property alias log: view.model
 
-    property var pageActions: ([
-                                   copyLogAction,
-                                   jumpToPageStart,
-                                   jumpToPageEnd
-                               ])
+    property var pageActions: ([copyLogAction, jumpToPageStart, jumpToPageEnd])
 
     C.Action {
         id: copyLogAction
@@ -50,23 +46,56 @@ C.Page {
             width: view.width
             C.ToolButton {
                 symbol: {
-                    var map = {
-                        "Debug": Icons.mdiInbox,
-                        "Warning": Icons.mdiFeedback,
-                        "Error": Icons.mdiError,
-                        "Download": Icons.mdiDownload,
-                        "Upload": Icons.mdiUpload,
-                        "LocalMkDir": Icons.mdiFolder,
-                        "RemoteMkDir": Icons.mdiDriveFolderUpload,
-                        "LocalDelete": Icons.mdiDelete,
-                        "RemoteDelete": Icons.mdiDeleteSweep
-                    };
-                    return map[modelData.type] || Icons.mdiHelpOutline;
+                    switch (modelData.type) {
+                    case OTL.Synchronizer.Debug:
+                        return Icons.mdiInbox
+                    case OTL.Synchronizer.Warning:
+                        return Icons.mdiFeedback
+                    case OTL.Synchronizer.Error:
+                        return Icons.mdiError
+                    case OTL.Synchronizer.Download:
+                        return Icons.mdiDownload
+                    case OTL.Synchronizer.Upload:
+                        return Icons.mdiUpload
+                    case OTL.Synchronizer.LocalMkDir:
+                        return Icons.mdiFolder
+                    case OTL.Synchronizer.RemoteMkDir:
+                        return Icons.mdiDriveFolderUpload
+                    case OTL.Synchronizer.LocalDelete:
+                        return Icons.mdiDelete
+                    case OTL.Synchronizer.RemoteDelete:
+                        return Icons.mdiDeleteSweep
+                    default:
+                        return Icons.mdiHelpOutline
+                    }
                 }
                 Layout.alignment: Qt.AlignTop
 
                 C.ToolTip {
-                    text: modelData.type
+                    text: {
+                        switch (modelData.type) {
+                        case OTL.Synchronizer.Debug:
+                            return qsTr("Debugging information")
+                        case OTL.Synchronizer.Warning:
+                            return qsTr("Warning")
+                        case OTL.Synchronizer.Error:
+                            return qsTr("Error")
+                        case OTL.Synchronizer.Download:
+                            return qsTr("Download")
+                        case OTL.Synchronizer.Upload:
+                            return qsTr("Upload")
+                        case OTL.Synchronizer.LocalMkDir:
+                            return qsTr("Create local folder")
+                        case OTL.Synchronizer.RemoteMkDir:
+                            return qsTr("Create remote folder")
+                        case OTL.Synchronizer.LocalDelete:
+                            return qsTr("Deleting locally")
+                        case OTL.Synchronizer.RemoteDelete:
+                            return qsTr("Deleting remotely")
+                        default:
+                            return qsTr("Unknown log message type")
+                        }
+                    }
                 }
             }
             C.Label {
