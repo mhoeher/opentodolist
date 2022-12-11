@@ -18,7 +18,7 @@ Item {
     property bool allowReordering: true
     property ItemDragTile dragTile
 
-    signal clicked()
+    signal clicked
     signal released(var mouse)
 
     ItemPane {
@@ -71,11 +71,11 @@ Item {
             C.Label {
                 id: dueToLabel
                 text: {
-                    let dueTo = item.libraryItem.effectiveDueTo;
+                    let dueTo = item.libraryItem.effectiveDueTo
                     if (DateUtils.validDate(dueTo)) {
-                        return qsTr("Due on %1").arg(DateUtils.format(dueTo));
+                        return qsTr("Due on %1").arg(DateUtils.format(dueTo))
                     }
-                    return "";
+                    return ""
                 }
                 visible: text !== ""
                 width: parent.width
@@ -87,9 +87,9 @@ Item {
 
                 y: {
                     if (dueToLabel.visible) {
-                    dueToLabel.height + AppSettings.smallSpace;
+                        dueToLabel.height + AppSettings.smallSpace
                     } else {
-                        return 0;
+                        return 0
                     }
                 }
                 width: parent.width
@@ -135,13 +135,13 @@ Item {
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: {
-            if (mouse.button === Qt.LeftButton) {
-                item.clicked()
-            }
-        }
+        onClicked: mouse => {
+                       if (mouse.button === Qt.LeftButton) {
+                           item.clicked()
+                       }
+                   }
         onPressAndHold: if (item.allowReordering) {
-                            reorderOverlay.startDrag();
+                            reorderOverlay.startDrag()
                         }
         onReleased: item.released(mouse)
     }

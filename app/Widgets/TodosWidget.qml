@@ -298,14 +298,6 @@ ListView {
                 return result
             }
             dragTile: itemDragTile
-            onSetSwipeDelegate: {
-                if (item !== d.openSwipeDelegate) {
-                    if (d.openSwipeDelegate) {
-                        d.openSwipeDelegate.swipe.close()
-                    }
-                }
-                d.openSwipeDelegate = item
-            }
 
             onItemPressedAndHold: showContextMenu({
                                                       "x": 0,
@@ -344,12 +336,6 @@ ListView {
                 onClicked: showContextMenu(mouse)
             }
         }
-    }
-
-    QtObject {
-        id: d
-
-        property C.SwipeDelegate openSwipeDelegate: null
     }
 
     Components.ItemActionMenu {
