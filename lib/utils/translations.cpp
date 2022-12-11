@@ -139,69 +139,64 @@ void Translations::apply()
     const auto uiLanguages = systemLocale.uiLanguages();
     QString langFile;
 
-    // Pass 1: Is there a file matching exactly the user locale?
-    for (auto uiLang : uiLanguages) {
-        auto path = ":/translations/OpenTodoList-" + uiLang.replace("-", "_") + ".qm";
+    for (const auto& uiLang : uiLanguages) {
+
+        // Check 1: Is there a file matching exactly the user locale?
+        auto path = ":/translations/OpenTodoList-" + QString(uiLang).replace("-", "_") + ".qm";
         if (QFile::exists(path)) {
+            qCDebug(log) << "Found directly matching translation file for UI language" << uiLang;
             langFile = path;
             break;
         }
-    }
 
-    // Special pass for Chinese language variants. See
-    // https://gitlab.com/rpdev/opentodolist/-/issues/511 for more details. Basically, if localized
-    // translations are not available, we must correctly map to the "general" traditional/simplified
-    // Chinese ones.
-    if (langFile.isEmpty()) {
-        for (const auto& uiLang : uiLanguages) {
-            QString lang;
-            if (uiLang == "zh-CN" || uiLang == "zh-SG") {
-                // Map these to simplified chinese:
-                lang = "zh_Hans";
-            } else if (uiLang == "zh-HK" || uiLang == "zh-TW") {
-                // And these to traditional ones:
-                lang = "zh_Hant";
-            }
-            if (!lang.isEmpty()) {
-                auto path = ":/translations/OpenTodoList-" + lang + ".qm";
-                if (QFile::exists(path)) {
-                    langFile = path;
-                    break;
-                }
-            }
+        // Special check for Chinese language variants. See
+        // https://gitlab.com/rpdev/opentodolist/-/issues/511 for more details. Basically, if
+        // localized translations are not available, we must correctly map to the "general"
+        // traditional/simplified Chinese ones.
+        QString lang;
+        if (uiLang == "zh-CN" || uiLang == "zh-SG") {
+            // Map these to simplified chinese:
+            lang = "zh_Hans";
+        } else if (uiLang == "zh-HK" || uiLang == "zh-TW") {
+            // And these to traditional ones:
+            lang = "zh_Hant";
         }
-    }
-
-    // Pass 2: Is there a file with the language part only:
-    if (langFile.isEmpty()) {
-        for (auto uiLang : uiLanguages) {
-            auto lang = uiLang.split("-")[0];
+        if (!lang.isEmpty()) {
             auto path = ":/translations/OpenTodoList-" + lang + ".qm";
             if (QFile::exists(path)) {
+                qCDebug(log) << "Special matching for Chinese yielded translation file for"
+                             << uiLang;
                 langFile = path;
                 break;
             }
         }
-    }
 
-    // Pass 3: Last resort: Use any translation which is at least related:
-    if (langFile.isEmpty()) {
-        for (auto uiLang : uiLanguages) {
-            auto lang = uiLang.split("-")[0];
-            QDir translationsDir(":/translations");
-            auto entries =
-                    translationsDir.entryList({ "OpenTodoList-" + lang + "_*.qm" }, QDir::Files);
-            if (!entries.isEmpty()) {
-                langFile = ":/translations/" + entries[0];
-            }
+        // Check 2: Is there a file with the language part only:
+        lang = uiLang.split("-")[0];
+        path = ":/translations/OpenTodoList-" + lang + ".qm";
+        if (QFile::exists(path)) {
+            qCDebug(log) << "Language part " << lang << " of" << uiLang
+                         << "yielded matching translations";
+            langFile = path;
+            break;
+        }
+
+        // Check 3: Last resort: Use any translation which is at least related:
+        lang = uiLang.split("-")[0];
+        QDir translationsDir(":/translations");
+        auto entries = translationsDir.entryList({ "OpenTodoList-" + lang + "_*.qm" }, QDir::Files);
+        if (!entries.isEmpty()) {
+            qCDebug(log) << "Wildcard matching of language" << lang << "of UI language" << uiLang
+                         << "yielded translations";
+            langFile = ":/translations/" + entries[0];
             break;
         }
     }
 
     if (!langFile.isEmpty()) {
         if (m_translator->load(langFile)) {
-            qCDebug(log) << "Successfully loaded translation"
-                         << "for UI languages" << systemLocale.uiLanguages();
+            qCDebug(log) << "Successfully loaded translation" << langFile << "for UI languages"
+                         << systemLocale.uiLanguages();
             m_engine->retranslate();
         } else {
             qCDebug(log) << "Failed to load translation file" << langFile;
