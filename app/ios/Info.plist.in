@@ -17,10 +17,6 @@
     <key>UIRequiresFullScreen</key>
     <string>${MACOSX_BUNDLE_REQUIRES_FULL_SCREEN}</string>
 
-    <!-- Hide the status bar -->
-    <key>UIStatusBarHidden</key>
-    <${MACOSX_BUNDLE_HIDDEN_STATUS_BAR}/>
-
     <!-- If supporting multitask LaunchScreen.storyboard must be provided -->
     <key>UILaunchStoryboardName</key>
     <string>${MACOSX_BUNDLE_LAUNCHSCREEN_STORYBOARD}</string>
@@ -31,7 +27,7 @@
 
     <!-- Name displayed -->
     <key>CFBundleIdentifier</key>
-    <string>${MACOSX_BUNDLE_GUI_IDENTIFIER}</string>
+    <string>net.rpdev.OpenTodoList</string>
 
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
