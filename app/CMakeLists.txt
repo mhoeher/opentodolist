@@ -38,7 +38,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
     # Include Assets and special config for iOS
     if(IOS)
-        set(asset_catalog_path "ios/Assets.xcassets")
         target_sources(OpenTodoList PRIVATE ios/Images.xcassets)
         set_source_files_properties(
             ios/Images.xcassets
@@ -132,9 +131,9 @@ set_target_properties(
     PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER net.rpdev.OpenTodoList
         MACOSX_BUNDLE_BUNDLE_NAME OpenTodoList
-        MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
         MACOSX_BUNDLE_BUNDLE_VERSION "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${OPENTODOLIST_VERSION_PATCH}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
+        MACOSX_BUNDLE_LONG_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${OPENTODOLIST_VERSION_PATCH}"
         QT_IOS_LAUNCH_SCREEN ${CMAKE_CURRENT_SOURCE_DIR}/ios/LaunchScreen.storyboard
 
         QT_ANDROID_EXTRA_LIBS "${ANDROID_EXTRA_LIBS}"
@@ -144,6 +143,24 @@ set_target_properties(
         QT_ANDROID_VERSION_NAME "${OPENTODOLIST_VERSION}"
         QT_ANDROID_VERSION_CODE "${OPENTODOLIST_ANDROID_VERSION_CODE}"
 )
+
+if(APPLE)
+    if(IOS)
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                MACOSX_BUNDLE_ICON_FILE AppIcon
+                XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon
+                XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"
+            )
+    else(IOS)
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
+            )
+    endif()
+endif()
 
 if(NOT ANDROID AND NOT IOS)
     target_compile_definitions(OpenTodoList PRIVATE

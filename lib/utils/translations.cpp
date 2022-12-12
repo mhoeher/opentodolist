@@ -162,7 +162,7 @@ void Translations::apply()
             lang = "zh_Hant";
         }
         if (!lang.isEmpty()) {
-            auto path = ":/translations/OpenTodoList-" + lang + ".qm";
+            path = ":/translations/OpenTodoList-" + lang + ".qm";
             if (QFile::exists(path)) {
                 qCDebug(log) << "Special matching for Chinese yielded translation file for"
                              << uiLang;
