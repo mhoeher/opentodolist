@@ -44,6 +44,9 @@
     <key>CFBundleName</key>
     <string>${MACOSX_BUNDLE_BUNDLE_NAME}</string>
 
+    <key>CFBundleDisplayName</key>
+    <string>${QT_INTERNAL_DOLLAR_VAR}{PRODUCT_NAME}</string>
+
     <key>CFBundlePackageType</key>
     <string>APPL</string>
 
@@ -60,6 +63,9 @@
 
     <key>CSResourcesFileMapped</key>
     <true/>
+
+    <key>CFBundleIconFile</key>
+    <string>${MACOSX_BUNDLE_ICON_FILE}</string>
 
     <!-- Copyright -->
     <key>NSHumanReadableCopyright</key>
@@ -84,7 +90,8 @@
         <string>${MACOSX_BUNDLE_LANDSCAPERIGHT}</string>
     </array>
 
-    ${QT_IOS_ITS_ENCRYPTION_KEYS}
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
 
     <!-- Custom URL schemes that the app handles -->
     <key>CFBundleURLTypes</key>
@@ -96,5 +103,8 @@
             </array>
         </dict>
     </array>
+
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
 </dict>
 </plist>
