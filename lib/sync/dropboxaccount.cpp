@@ -232,10 +232,10 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
         case QOAuth2AuthorizationCodeFlow::Stage::RequestingAuthorization:
             // Include code challenge and method in auth request, see
             // https://datatracker.ietf.org/doc/html/rfc7636#section-4.3:
-            parameters->insert("code_challenge", getCodeChallenge());
-            parameters->insert("code_challenge_method", "S256");
-            parameters->insert("redirect_uri", DropboxRedirectUri);
-            parameters->insert("token_access_type", "offline");
+            parameters->replace("code_challenge", getCodeChallenge());
+            parameters->replace("code_challenge_method", "S256");
+            parameters->replace("redirect_uri", DropboxRedirectUri);
+            parameters->replace("token_access_type", "offline");
 #ifdef Q_OS_IOS
             // On iOS, disable signup and instead display a link to the iOS app
             // store this is for compliance with signup restrictions).
@@ -243,12 +243,12 @@ QOAuth2AuthorizationCodeFlow* DropboxAccount::createOAuthAuthFlow(QObject* paren
 #endif
             break;
         case QOAuth2AuthorizationCodeFlow::Stage::RequestingAccessToken:
-            parameters->insert("code_verifier", m_codeVerifier);
-            parameters->insert("redirect_uri", DropboxRedirectUri);
+            parameters->replace("code_verifier", m_codeVerifier);
+            parameters->replace("redirect_uri", DropboxRedirectUri);
             break;
         case QOAuth2AuthorizationCodeFlow::Stage::RefreshingAccessToken:
             parameters->remove("redirect_uri");
-            parameters->insert("client_id", DropboxAppKey);
+            parameters->replace("client_id", DropboxAppKey);
             parameters->remove("client_secret");
             break;
         default:
