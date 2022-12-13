@@ -93,6 +93,22 @@ if(OPENTODOLIST_WITH_KNOTIFICATIONS)
     find_package(KF5Notifications REQUIRED)
 endif()
 
+if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+    find_package(KF5SyntaxHighlighting REQUIRED)
+endif()
+
+if(NOT ANDROID AND OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
+    find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
+endif()
+
+if(OPENTODOLIST_USE_SYSTEM_QLMDB)
+    find_package(QLMDB-qt${QT_VERSION_MAJOR} REQUIRED)
+endif()
+
+if(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
+    find_package(SynqClient-qt${QT_VERSION_MAJOR} REQUIRED)
+endif()
+
 # Build using static libraries:
 set(BUILD_SHARED_LIBS OFF)
 

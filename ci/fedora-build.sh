@@ -34,6 +34,7 @@ if [ -n "$SYSTEM_LIBS" ]; then
         cmake \
             -S ../3rdparty/$project \
             -B $project-build \
+            -GNinja \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=$PWD/_ \
             -DCMAKE_PREFIX_PATH=$PWD/_ \
