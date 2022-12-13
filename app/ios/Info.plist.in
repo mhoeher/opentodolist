@@ -19,11 +19,11 @@
 
     <!-- If supporting multitask LaunchScreen.storyboard must be provided -->
     <key>UILaunchStoryboardName</key>
-    <string>${MACOSX_BUNDLE_LAUNCHSCREEN_STORYBOARD}</string>
+    <string>LaunchScreenOTL</string>
 
     <!-- Optionnal StoryBoard filename -->
     <key>UIMainStoryboardFile</key>
-    <string>${MACOSX_BUNDLE_MAIN_STORYBOARD}</string>
+    <string>LaunchScreenOTL</string>
 
     <!-- Name displayed -->
     <key>CFBundleIdentifier</key>
