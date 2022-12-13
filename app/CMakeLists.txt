@@ -77,7 +77,7 @@ else()
             IPA
             UPLOAD_SYMBOL
             ASSET_DIR ios/Images.xcassets
-            LAUNCHSCREEN_STORYBOARD "ios/LaunchScreen.storyboard"
+            LAUNCHSCREEN_STORYBOARD "ios/LaunchScreenOTL.storyboard"
             CUSTOM_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in
         )
         target_sources(OpenTodoList PRIVATE  ${PROJECT_SOURCES} ${APP_RESOURCES})
@@ -108,6 +108,12 @@ if(APPLE)
             PROPERTIES
                 MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in
         )
+        target_sources(
+            OpenTodoList
+            PRIVATE
+                ios/LaunchScreenOTL.storyboard
+        )
+        set_source_files_properties(ios/LaunchScreenOTL.storyboard PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
     else(IOS)
         set_target_properties(
             OpenTodoList
@@ -142,7 +148,7 @@ set_target_properties(
         MACOSX_BUNDLE_BUNDLE_VERSION "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
         MACOSX_BUNDLE_LONG_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${OPENTODOLIST_VERSION_PATCH}"
-        QT_IOS_LAUNCH_SCREEN ${CMAKE_CURRENT_SOURCE_DIR}/ios/LaunchScreen.storyboard
+        MACOSX_BUNDLE_LAUNCHSCREEN_STORYBOARD LaunchScreen
 
         QT_ANDROID_EXTRA_LIBS "${ANDROID_EXTRA_LIBS}"
         QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android

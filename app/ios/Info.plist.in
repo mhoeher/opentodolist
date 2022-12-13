@@ -73,17 +73,10 @@
     <!-- Ui Orientation -->
     <key>UISupportedInterfaceOrientations</key>
     <array>
-        <string>${MACOSX_BUNDLE_PORTRAIT}</string>
-        <string>${MACOSX_BUNDLE_PORTRAITUPDOWN}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPELEFT}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPERIGHT}</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-        <string>${MACOSX_BUNDLE_PORTRAIT}</string>
-        <string>${MACOSX_BUNDLE_PORTRAITUPDOWN}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPELEFT}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPERIGHT}</string>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
 
     <key>ITSAppUsesNonExemptEncryption</key>
