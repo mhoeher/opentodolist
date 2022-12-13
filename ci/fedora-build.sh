@@ -45,7 +45,7 @@ if [ -n "$SYSTEM_LIBS" ]; then
         # If we build in the CIs, remove the source folder to make sure the app build
         # does not exidentally pick the in-source version up
         if [ -n "$CI" ]; then
-            mv $project $project-bak
+            mv ../3rdparty/$project ../3rdparty/$project-bak
         fi
     done
     CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DOPENTODOLIST_USE_SYSTEM_LIBRARIES=ON -DCMAKE_PREFIX_PATH=$PWD/_"
