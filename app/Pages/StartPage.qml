@@ -22,12 +22,15 @@ C.Page {
             id: flickable
             width: scrollView.availableWidth
             height: page.availableHeight
+            contentHeight: column.childrenRect.height
 
             Utils.Accounts {
                 id: accounts
             }
 
             Column {
+                id: column
+
                 width: flickable.width
 
                 Cmp.Heading {
