@@ -10,17 +10,18 @@ if [ -n "$CI" ]; then
     dnf install -y \
         make cmake ninja-build gcc g++ curl ccache \
         qt6-{qtbase,qttools,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
+        qt6-qtbase-{mysql,odbc,postgresql} \
         qt6-linguist \
         libsecret-devel
 
-    # curl -d install="true" -d adminlogin=admin -d adminpass=admin \
-    #     http://nextcloud/index.php
-    # curl -d install="true" -d adminlogin=admin -d adminpass=admin \
-    #         http://owncloud/index.php
-    # CMAKE_EXTRA_FLAGS="
-    #     -DOPENTODOLIST_NEXTCLOUD_TEST_URL=http://admin:admin@nextcloud/
-    #     -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
-    # "
+    curl -d install="true" -d adminlogin=admin -d adminpass=admin \
+        http://nextcloud/index.php
+    curl -d install="true" -d adminlogin=admin -d adminpass=admin \
+            http://owncloud/index.php
+    CMAKE_EXTRA_FLAGS="
+        -DOPENTODOLIST_NEXTCLOUD_TEST_URL=http://admin:admin@nextcloud/
+        -DOPENTODOLIST_OWNCLOUD_TEST_URL=http://admin:admin@owncloud/
+    "
 fi
 
 export QT_QPA_PLATFORM=minimal
@@ -29,11 +30,11 @@ mkdir -p fedora-build-cmake
 cd fedora-build-cmake
 
 if [ -n "$SYSTEM_LIBS" ]; then
-    for project in qlmdb synqclient qtkeychain KDE/extra-cmake-modules KDE/syntax-highlighting; do
+    for project in KDE/extra-cmake-modules KDE/syntax-highlighting qlmdb synqclient qtkeychain; do
         cmake \
             -S ../3rdparty/$project \
             -B $project-build \
-            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=$PWD/_ \
             -DCMAKE_PREFIX_PATH=$PWD/_ \
             -DBUILD_WITH_QT6=ON \
@@ -41,25 +42,15 @@ if [ -n "$SYSTEM_LIBS" ]; then
             -DSYNQCLIENT_WITHOUT_TESTS=ON
         cmake --build $project-build
         cmake --install $project-build
+        # If we build in the CIs, remove the source folder to make sure the app build
+        # does not exidentally pick the in-source version up
+        if [ -n "$CI" ]; then
+            mv $project $project-bak
+        fi
     done
     CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DOPENTODOLIST_USE_SYSTEM_LIBRARIES=ON -DCMAKE_PREFIX_PATH=$PWD/_"
 fi
 
-# If we build against system libs, move included libraries away, so we
-# cannot accidentally include them.
-# if [ -n "$CI" ]; then
-#     if [ -n "$SYSTEM_LIBS" ]; then
-#         pushd ../3rdparty
-#         for dir in *; do
-#             if [ -d "$dir" ]; then
-#                 if [ "$dir" != "simplecrypt" -a "$dir" != "SingleApplication" -a "$dir" != "ral-json" ]; then
-#                     mv "$dir" "${dir}~"
-#                 fi
-#             fi
-#         done
-#         popd
-#     fi
-# fi
 
 cmake \
     -GNinja \
