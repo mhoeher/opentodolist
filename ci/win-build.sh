@@ -79,6 +79,7 @@ fi
     --plugins platforms \
     --plugins imageformats \
     --plugins sqldrivers \
+    --plugins tls \
     --mingw-arch $MINGW_DIR \
     --qt-version 6 \
     $DEPLOY_DIR/bin/
