@@ -90,6 +90,16 @@ void AppStartup::setupGlobals()
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
     QCoreApplication::setOrganizationName("RPdev");
 
+    // Workaround for https://bugreports.qt.io/browse/QTBUG-109369:
+    // Switch back to old config file location on Android:
+#ifdef Q_OS_ANDROID
+    {
+        auto home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+        QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, home + "/" + ".config");
+        QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, home + "/" + ".config");
+    }
+#endif
+
     // Apply user settings:
     {
         QSettings settings;
