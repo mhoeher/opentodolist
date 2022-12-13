@@ -397,8 +397,7 @@ upload_translations:
   stage: deploy
   image: $SNAPCRAFT_IMAGE
   script:
-      - echo "$SNAPCRAFT_LOGIN_DATA" > ./login.txt
-      - snapcraft login "--with=./login.txt"
+      - snapcraft login
       - snapcraft upload opentodolist*.snap --release $SNAPCRAFT_CHANNEL
   needs:
     - snap::build
