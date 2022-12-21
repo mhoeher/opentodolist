@@ -397,7 +397,6 @@ upload_translations:
   stage: deploy
   image: $SNAPCRAFT_IMAGE
   script:
-      - snapcraft login
       - snapcraft upload opentodolist*.snap --release $SNAPCRAFT_CHANNEL
   needs:
     - snap::build
