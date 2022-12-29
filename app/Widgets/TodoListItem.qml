@@ -9,17 +9,19 @@ import "../Controls" as C
 import "../Utils"
 import "../Fonts"
 
-Item {
+MouseArea {
     id: item
 
     property OTL.Library library: null
     property OTL.TodoList libraryItem: OTL.TodoList {}
     property var model
     property bool allowReordering: true
-    property ItemDragTile dragTile
 
-    signal clicked
-    signal released(var mouse)
+    readonly property bool hovered: containsMouse
+
+    hoverEnabled: true
+    GridView.delayRemove: moveButton.dragging
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
 
     ItemPane {
         anchors.fill: parent
@@ -49,7 +51,7 @@ Item {
                 wrapMode: Text.NoWrap
                 minimumPointSize: 6
                 elide: Text.ElideRight
-                width: title.availableWidth
+                width: title.availableWidth - moveButton.width
                 fontSizeMode: Text.HorizontalFit
 
                 C.ToolTip {
@@ -130,20 +132,24 @@ Item {
                 opacity: 0.5
             }
         }
-    }
 
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: mouse => {
-                       if (mouse.button === Qt.LeftButton) {
-                           item.clicked()
-                       }
-                   }
-        onPressAndHold: if (item.allowReordering) {
-                            reorderOverlay.startDrag()
-                        }
-        onReleased: item.released(mouse)
+        MouseArea {
+            anchors.fill: parent
+
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+            onClicked: mouse => item.clicked(mouse)
+        }
+
+        ItemDragButton {
+            id: moveButton
+
+            item: item.libraryItem
+            model: item.model
+            listViewItem: item
+            anchors.verticalCenter: title.verticalCenter
+            anchors.right: title.right
+        }
     }
 
     ReorderableListViewOverlay {
@@ -152,6 +158,6 @@ Item {
         model: item.model
         layout: Qt.Horizontal
         item: libraryItem
-        dragTile: item.dragTile
+        dragTile: moveButton.dragTile
     }
 }

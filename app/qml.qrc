@@ -175,5 +175,6 @@
         <file>Dialogs/+qt5/FileDialog.qml</file>
         <file>Dialogs/FilesDialog.qml</file>
         <file>Dialogs/+qt5/FilesDialog.qml</file>
+        <file>Widgets/ItemDragButton.qml</file>
     </qresource>
 </RCC>

@@ -299,11 +299,11 @@ ItemPage {
             headerItem2Visible: true
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new todo...")
-            allowSorting: settings.sortTodosBy === "weight"
+            allowReordering: settings.sortTodosBy === "weight"
             allowSettingDueDate: true
             onHeaderButtonClicked: sortTodosByMenu.open()
             onHeaderButton2Clicked: todosVisibilityMenu.open()
-            onTodoClicked: d.openTodo(todo)
+            onTodoClicked: todo => d.openTodo(todo)
             onCreateNewItem: {
                 var properties = {
                     "title": title

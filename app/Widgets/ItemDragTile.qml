@@ -4,37 +4,58 @@ import OpenTodoList 1.0 as OTL
 
 import "../Utils"
 
-Item {
+MouseArea {
     id: dragTile
-    
+
     property OTL.LibraryItem item: null
-    property Item listItem: null
-    property var model: null
-    
+    property var model
+
     readonly property string mimeType: "opentodolist/" + model
+    readonly property bool dragging: drag.active
 
-    function startDrag(item, listItem, model) {
-        dragTile.item = item;
-        dragTile.listItem = listItem;
-        dragTile.model = model;
-        Qt.callLater(function() {
-            dragTile.Drag.active = true;
-            dragTile.Drag.startDrag();
-        });
-    }
+    drag.target: content
 
-    
-    opacity: 0.5
-    width: listItem ? listItem.width : 1
-    height: listItem ? listItem.height : 1
-    z: Drag.active ? 0 : 11
-    visible: dragTile.Drag.active
-    Drag.hotSpot.x: width / 2
-    Drag.hotSpot.y: height / 2
-    Drag.dragType: Drag.Automatic
-    Drag.mimeData: {
-        var result = {};
-        result[dragTile.mimeType] = "";
-        return result;
+    Item {
+        id: content
+
+        readonly property OTL.LibraryItem item: dragTile.item
+        readonly property alias dragging: dragTile.dragging
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
+
+        visible: dragTile.drag.active
+        width: parent.width
+        height: parent.height
+        z: Drag.active ? 0 : 11
+
+        Drag.hotSpot.x: width / 2
+        Drag.hotSpot.y: height / 2
+        Drag.dragType: Drag.Automatic
+        Drag.active: dragTile.drag.active
+        Drag.mimeData: {
+            var result = {}
+            result["opentodolist/" + dragTile.model] = ""
+            return result
+        }
+
+        states: State {
+            when: dragTile.dragging
+
+            ParentChange {
+                target: content
+                parent: dragTile.parent
+            }
+
+            AnchorChanges {
+                target: content
+                anchors {
+                    horizontalCenter: undefined
+                    verticalCenter: undefined
+                }
+            }
+        }
     }
 }

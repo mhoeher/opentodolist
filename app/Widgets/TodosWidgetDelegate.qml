@@ -21,9 +21,8 @@ C.SwipeDelegate {
     property OTL.Library library: null
     property bool hideDueDate: false
     readonly property var itemActions: ([renameAction, copyTodoAction, moveTodoAction, promoteTaskAction, setDueTodayAction, setDueTomorrowAction, setDueNextWeekAction, setDueThisWeekAction, setDueToAction, resetDueToAction, deleteAction])
-    property bool allowSorting: false
+    property bool allowReordering: false
     property bool drawSeperator: true
-    property ItemDragTile dragTile
     property alias leftColorSwatch: leftColorSwatch
 
     signal itemPressedAndHold
@@ -37,6 +36,8 @@ C.SwipeDelegate {
     topPadding: AppSettings.effectiveFontMetrics.height / (AppSettings.useCompactTodoLists ? 8 : 2)
     bottomPadding: topPadding
     hoverEnabled: true
+    ListView.delayRemove: moveButton.dragTile.dragging
+
     contentItem: RowLayout {
         width: parent.width
 
@@ -207,24 +208,11 @@ C.SwipeDelegate {
             height: toggleSwipeOpened.height
         }
 
-        C.ToolButton {
+        ItemDragButton {
             id: moveButton
-            visible: {
-                if (swipeDelegate.allowSorting) {
-                    switch (Qt.platform.os) {
-                    case "ios":
-                    case "android":
-                        return true
-                    default:
-                        return swipeDelegate.hovered
-                    }
-                } else {
-                    return false
-                }
-            }
-            symbol: Icons.mdiDragHandle
-            font.family: Fonts.icons
-            onPressed: reorderOverlay.startDrag()
+            item: swipeDelegate.item
+            model: swipeDelegate.library
+            listViewItem: swipeDelegate
         }
 
         C.ToolButton {
@@ -351,7 +339,7 @@ C.SwipeDelegate {
         id: reorderOverlay
         anchors.fill: parent
         model: swipeDelegate.model
-        dragTile: swipeDelegate.dragTile
+        dragTile: moveButton.dragTile
         item: swipeDelegate.item
     }
 

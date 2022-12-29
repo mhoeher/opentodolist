@@ -1,4 +1,5 @@
-import QtQuick 2.10
+import QtQuick
+import QtQml
 import QtQuick.Controls.Material 2.12
 
 import OpenTodoList 1.0 as OTL
@@ -14,13 +15,58 @@ Item {
     property OTL.LibraryItem item
     property ItemDragTile dragTile
 
-    function startDrag() {
-        dragTile.startDrag(item, root, model);
+    QtObject {
+        id: d
+
+        readonly property var dropKeys: {
+            let result = []
+            if (dragTile) {
+                for (let key in dragTile.Drag.mimeData) {
+                    result.push(key)
+                }
+            }
+            return result
+        }
+
+        function applyWeight(item, weight, dragTile) {
+            let copy = OTL.Application.cloneItem(item)
+            applyTimer.item = item
+            applyTimer.weight = weight
+            dragSourceBinding.target = dragTile
+        }
+    }
+
+    Connections {
+        id: dragSourceBinding
+
+        function onDraggingChanged() {
+            if (!target.dragging) {
+                applyTimer.restart()
+            }
+        }
+
+        ignoreUnknownSignals: true
+    }
+
+    Timer {
+        id: applyTimer
+
+        property OTL.LibraryItem item
+        property double weight
+
+        interval: 100
+        repeat: false
+        onTriggered: {
+            if (item) {
+                item.weight = weight
+            }
+            dragSourceBinding.target = null
+        }
     }
 
     C.Pane {
         id: itemBackground
-        visible: dragTile && dragTile.item === item && dragTile.Drag.active
+        visible: dragTile && dragTile.item == item && dragTile.dragging
         anchors.fill: parent
         Material.background: Material.Teal
         opacity: 0.2
@@ -54,31 +100,29 @@ Item {
             top: parent.top
             bottom: root.layout === Qt.Vertical ? parent.verticalCenter : parent.bottom
         }
-        keys: dragTile? [dragTile.mimeType] : []
+        keys: d.dropKeys
         onDropped: {
-            console.warn(drag.source);
-            console.warn(drag.source.item);
-            var item = drag.source.item;
-            if (item === object) {
-                return;
+            var item = drag.source.item
+            if (item === root.item) {
+                return
             }
-            var thisWeight = object.weight;
+            var thisWeight = root.item.weight
             if (index === 0) {
-                var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
+                var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01)
                 if (diff === 0) {
-                    diff = Math.random() + 0.1;
+                    diff = Math.random() + 0.1
                 }
-                item.weight = thisWeight - diff;
+                d.applyWeight(item, thisWeight - diff, drag.source)
             } else {
-                var prevWeight = root.model.data(
-                            root.model.index(index - 1, 0),
-                            OTL.ItemsModel.ItemRole).weight;
-                diff = thisWeight - prevWeight;
+                var prevWeight = root.model.data(root.model.index(index - 1,
+                                                                  0),
+                                                 OTL.ItemsModel.ItemRole).weight
+                diff = thisWeight - prevWeight
                 if (diff === 0) {
-                    diff = Math.random();
+                    diff = Math.random()
                 }
-                var diffFactor = (0.4 + 0.2 * Math.random());
-                item.weight = thisWeight - diff * diffFactor;
+                var diffFactor = (0.4 + 0.2 * Math.random())
+                d.applyWeight(item, thisWeight - diff * diffFactor, drag.source)
             }
         }
     }
@@ -91,29 +135,29 @@ Item {
             bottom: parent.bottom
             top: root.layout === Qt.Vertical ? parent.verticalCenter : parent.top
         }
-        keys: dragTile ? [dragTile.mimeType] : []
+        keys: d.dropKeys
         onDropped: {
-            var item = drag.source.item;
-            if (item === object) {
-                return;
+            var item = drag.source.item
+            if (item === root.item) {
+                return
             }
-            var thisWeight = object.weight;
+            var thisWeight = root.item.weight
             if (index === root.model.count - 1) {
-                var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01);
+                var diff = Math.abs(thisWeight) * (Math.random() * 0.1 + 0.01)
                 if (diff === 0) {
-                    diff = Math.random() + 0.1;
+                    diff = Math.random() + 0.1
                 }
-                item.weight = thisWeight + diff;
+                d.applyWeight(item, thisWeight + diff, drag.source)
             } else {
-                var nextWeight = root.model.data(
-                            root.model.index(index + 1, 0),
-                            OTL.ItemsModel.ItemRole).weight;
-                diff = nextWeight - thisWeight;
+                var nextWeight = root.model.data(root.model.index(index + 1,
+                                                                  0),
+                                                 OTL.ItemsModel.ItemRole).weight
+                diff = nextWeight - thisWeight
                 if (diff === 0) {
-                    diff = Math.random();
+                    diff = Math.random()
                 }
-                var diffFactor = (0.4 + 0.2 * Math.random());
-                item.weight = thisWeight + diff * diffFactor;
+                var diffFactor = (0.4 + 0.2 * Math.random())
+                d.applyWeight(item, thisWeight + diff * diffFactor, drag.source)
             }
         }
     }

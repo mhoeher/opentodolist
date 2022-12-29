@@ -8,7 +8,7 @@ import "../Components"
 import "../Controls" as C
 import "../Utils"
 
-Item {
+MouseArea {
     id: item
 
     property OTL.Library library: null
@@ -17,8 +17,21 @@ Item {
     property bool allowReordering: true
     property ItemDragTile dragTile
 
-    signal clicked()
-    signal released(var mouse)
+    readonly property bool hovered: containsMouse
+
+    hoverEnabled: true
+    GridView.delayRemove: moveButton.dragging
+
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: {
+            if (mouse.button === Qt.LeftButton) {
+                item.clicked()
+            }
+        }
+        onReleased: item.released(mouse)
+    }
 
     ItemPane {
         anchors.fill: parent
@@ -48,7 +61,7 @@ Item {
                 wrapMode: Text.NoWrap
                 minimumPointSize: 6
                 elide: Text.ElideRight
-                width: parent.width
+                width: parent.width - moveButton.width
                 fontSizeMode: Text.HorizontalFit
 
                 C.ToolTip {
@@ -70,11 +83,11 @@ Item {
             C.Label {
                 id: dueToLabel
                 text: {
-                    let dueTo = item.libraryItem.effectiveDueTo;
+                    let dueTo = item.libraryItem.effectiveDueTo
                     if (DateUtils.validDate(dueTo)) {
-                        return qsTr("Due on %1").arg(DateUtils.format(dueTo));
+                        return qsTr("Due on %1").arg(DateUtils.format(dueTo))
                     }
-                    return "";
+                    return ""
                 }
                 visible: text !== ""
                 width: parent.width
@@ -86,9 +99,9 @@ Item {
                 anchors.fill: parent
                 anchors.topMargin: {
                     if (dueToLabel.visible) {
-                    dueToLabel.height + AppSettings.smallSpace;
+                        dueToLabel.height + AppSettings.smallSpace
                     } else {
-                        return 0;
+                        return 0
                     }
                 }
                 text: Markdown.markdownToHtml(item.libraryItem.notes)
@@ -98,20 +111,24 @@ Item {
                 clip: true
             }
         }
-    }
 
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: {
-            if (mouse.button === Qt.LeftButton) {
-                item.clicked()
-            }
+        MouseArea {
+            anchors.fill: parent
+
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+            onClicked: mouse => item.clicked(mouse)
         }
-        onPressAndHold: if (item.allowReordering) {
-                            reorderOverlay.startDrag();
-                        }
-        onReleased: item.released(mouse)
+
+        ItemDragButton {
+            id: moveButton
+
+            item: item.libraryItem
+            model: item.model
+            listViewItem: item
+            anchors.verticalCenter: title.verticalCenter
+            anchors.right: title.right
+        }
     }
 
     ReorderableListViewOverlay {
@@ -120,6 +137,6 @@ Item {
         model: item.model
         layout: Qt.Horizontal
         item: libraryItem
-        dragTile: item.dragTile
+        dragTile: moveButton.dragTile
     }
 }

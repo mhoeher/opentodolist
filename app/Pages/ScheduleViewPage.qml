@@ -285,7 +285,7 @@ C.Page {
         id: listView
         anchors.fill: parent
         header: null
-        allowSorting: false
+        allowReordering: false
         showParentItemInformation: true
         colorSwatchesVisible: page.library == null
         hideDueToLabelForSectionsFunction: function (section) {
