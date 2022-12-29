@@ -179,7 +179,7 @@ macos:
       - build-macos/dist-store/OpenTodoList-signed.pkg
     expire_in: 1 week
   variables:
-    QT_VERSION: "6.4.1"
+    QT_VERSION: "6.5.0"
 
 # iOS build:
 ios:
@@ -193,7 +193,7 @@ ios:
       - ./build-ios-cmake/OpenTodoList.ipa/OpenTodoList.ipa
     expire_in: 1 week
   variables:
-    QT_VERSION: "6.4.1"
+    QT_VERSION: "6.5.0"
 
 
 # Template for Android builds
