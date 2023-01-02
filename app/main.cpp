@@ -28,6 +28,10 @@ int main(int argc, char* argv[])
         qputenv("TMPDIR", xdgRuntimeDir + "/app/net.rpdev.OpenTodoList");
     }
 #endif
+#ifdef Q_OS_IOS
+    // WA for https://bugreports.qt.io/browse/QTBUG-109737:
+    qputenv("QML_NO_TOUCH_COMPRESSION", "1");
+#endif
     AppStartup appStartup;
     qWarning() << "Starting app";
     return appStartup.exec(argc, argv);
