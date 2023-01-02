@@ -39,11 +39,17 @@ class GetItemsQuery : public ItemsQuery
 public:
     class ChildrenGenerator;
 
-    class ChildrenIterator : public std::iterator<std::forward_iterator_tag, ItemPtr>
+    class ChildrenIterator
     {
         friend class ChildrenGenerator;
 
     public:
+        using iterator_category = std::forward_iterator_tag;
+        using value_type = ItemPtr;
+        using difference_type = int;
+        using pointer = ItemPtr*;
+        using reference = ItemPtr&;
+
         ChildrenIterator();
         ChildrenIterator(const ChildrenIterator& other) = default;
         virtual ~ChildrenIterator();

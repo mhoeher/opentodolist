@@ -42,7 +42,7 @@ ListView {
     property string title
     property bool allowCreatingNewItems: false
     property string newItemPlaceholderText
-    property bool allowSorting: true
+    property bool allowReordering: true
     property bool allowSettingDueDate: false
     property var hideDueToLabelForSectionsFunction: null
     property bool showParentItemInformation: false
@@ -275,7 +275,7 @@ ListView {
             library: root.libraryLookupFunction(object, root.library)
             leftColorSwatch.visible: colorSwatchesVisible
             leftColorSwatch.color: library.color
-            allowSorting: root.allowSorting
+            allowReordering: root.allowReordering
             hideDueDate: typeof (root.hideDueToLabelForSectionsFunction)
                          === "function" ? root.hideDueToLabelForSectionsFunction(
                                               ListView.section) : false
@@ -296,15 +296,6 @@ ListView {
                     }
                 }
                 return result
-            }
-            dragTile: itemDragTile
-            onSetSwipeDelegate: {
-                if (item !== d.openSwipeDelegate) {
-                    if (d.openSwipeDelegate) {
-                        d.openSwipeDelegate.swipe.close()
-                    }
-                }
-                d.openSwipeDelegate = item
             }
 
             onItemPressedAndHold: showContextMenu({
@@ -346,17 +337,7 @@ ListView {
         }
     }
 
-    QtObject {
-        id: d
-
-        property C.SwipeDelegate openSwipeDelegate: null
-    }
-
     Components.ItemActionMenu {
         id: itemActionMenu
-    }
-
-    ItemDragTile {
-        id: itemDragTile
     }
 }

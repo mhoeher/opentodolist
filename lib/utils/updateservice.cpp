@@ -52,15 +52,12 @@ void UpdateService::checkForUpdates()
     QNetworkRequest req(updateUrl);
     auto reply = nam->get(req);
     if (reply) {
-        connect(reply,
-                static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(
-                        &QNetworkReply::error),
-                [=](QNetworkReply::NetworkError error) {
-                    qCWarning(log) << "Failed to get update information:" << error;
-                    reply->deleteLater();
-                    nam->deleteLater();
-                });
-        connect(reply, &QNetworkReply::finished, [=]() {
+        connect(reply, &QNetworkReply::errorOccurred, this, [=](QNetworkReply::NetworkError error) {
+            qCWarning(log) << "Failed to get update information:" << error;
+            reply->deleteLater();
+            nam->deleteLater();
+        });
+        connect(reply, &QNetworkReply::finished, this, [=]() {
             qCDebug(log) << "Received reply, checking...";
             auto doc = QJsonDocument::fromJson(reply->readAll());
             if (doc.isObject()) {

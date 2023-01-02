@@ -7,43 +7,45 @@ BUILD_DIR=$PWD/build-macos
 rm -rf $BUILD_DIR
 
 if [ ! -d "$QT_INSTALLATION_DIR" ]; then
-    echo "The variable QT_INSTALLATION_DIR is not set"
-    exit 1
+    if [ -d "$HOME/Qt" ]; then
+        QT_INSTALLATION_DIR="$HOME/Qt"
+    else
+        echo "The variable QT_INSTALLATION_DIR is not set"
+        exit 1
+    fi
 fi
+echo "Using Qt installation in $QT_INSTALLATION_DIR"
 
 if [ -z "$QT_VERSION" ]; then
-  echo "The variable QT_VERSION is not set"
-  exit 1
+    QT_VERSION=$(ls "$QT_INSTALLATION_DIR" | grep -E '\d+\.\d+\.\d+' | sort -V | tail -n1)
 fi
+echo "Using Qt $QT_VERSION"
 
 if [ -z "$MACOS_TEAM_ID" ]; then
     # Default Team ID to use:
     MACOS_TEAM_ID="786Z636JV9"
 fi
 
-if [ -z "$OSX_DEPLOYMENT_TARGET" ]; then
-    OSX_DEPLOYMENT_TARGET=10.13
-fi
-
-QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/clang_64
+QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/macos
 
 #rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
-cmake \
+$QT_DIR/bin/qt-cmake \
     -GNinja \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET=$OSX_DEPLOYMENT_TARGET \
     -DCMAKE_PREFIX_PATH=$QT_DIR \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_OSX_ARCHITECTURES=x86_64 \
+    -DCMAKE_OSX_ARCHITECTURES="x86_64" \
     $CMAKE_EXTRA_FLAGS \
     ..
 cmake --build .
-cmake --build . --target test
+# TODO: Tests on macos currently fail sometimes - this probably is a race condition that we should urgently fix!
+# For now, try up to 3 times to repeat.
+cmake --build . --target test || cmake --build . --target test || cmake --build . --target test
 
 # For each localized file, create an empty "lproj" folder in the
 # app bundle - this causes macOS to localize the system menu

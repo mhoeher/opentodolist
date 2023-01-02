@@ -403,7 +403,7 @@ QDateTime Item::updatedAt() const
         // For old items which have no updatedAt timestamp yet, assume
         // an old one so they always sort last.
         QDateTime result;
-        result.setTime_t(0);
+        result.setSecsSinceEpoch(0);
         return result;
     }
 }
@@ -434,7 +434,7 @@ QDateTime Item::createdAt() const
         // For old items which have no createdAt timestamp yet, assume
         // an old one so they always sort last.
         QDateTime result;
-        result.setTime_t(0);
+        result.setMSecsSinceEpoch(0);
         return result;
     }
 }

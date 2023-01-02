@@ -19,8 +19,8 @@
 
 #include "appstartup.h"
 
-#ifdef QT_WEBVIEW_LIB
-#    include <QtWebView>
+#ifdef Q_OS_ANDROID
+#    include <private/qandroidextras_p.h>
 #endif
 
 #ifdef Q_OS_IOS
@@ -90,6 +90,16 @@ void AppStartup::setupGlobals()
     QCoreApplication::setOrganizationDomain("www.rpdev.net");
     QCoreApplication::setOrganizationName("RPdev");
 
+    // Workaround for https://bugreports.qt.io/browse/QTBUG-109369:
+    // Switch back to old config file location on Android:
+#ifdef Q_OS_ANDROID
+    {
+        auto home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+        QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, home + "/" + ".config");
+        QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, home + "/" + ".config");
+    }
+#endif
+
     // Apply user settings:
     {
         QSettings settings;
@@ -107,7 +117,9 @@ void AppStartup::setupGlobals()
     }
     qunsetenv("QT_AUTO_SCREEN_SCALE_FACTOR");
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
 
 #ifdef OPENTODOLIST_DEBUG
     QLoggingCategory(nullptr).setEnabled(QtDebugMsg, true);
@@ -143,10 +155,6 @@ void AppStartup::createApp(int& argc, char* argv[])
             return;
         }
     }
-#endif
-#ifdef QT_WEBVIEW_LIB
-    // If we use QWebView, initialize it:
-    QtWebView::initialize();
 #endif
 #ifdef OTL_USE_SINGLE_APPLICATION
     m_app = new SingleApplication(argc, argv, true,
@@ -270,7 +278,11 @@ void AppStartup::startBackgroundService()
         m_srcNode->enableRemoting(m_backgroundService);
     });
 #else
+#    ifdef Q_OS_ANDROID
+    m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("localabstract:opentodolist")));
+#    else
     m_srcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:opentodolist")));
+#    endif
 #endif
     m_backgroundService = new BackgroundService(m_cache);
     m_srcNode->enableRemoting(m_backgroundService);
@@ -449,7 +461,7 @@ void AppStartup::debugMessageHandler(QtMsgType type, const QMessageLogContext& c
                 context.line, function);
         break;
     }
-    for (auto& handler : s_prevMessageHandler) {
+    for (const auto& handler : s_prevMessageHandler) {
         handler(type, context, msg);
     }
 }

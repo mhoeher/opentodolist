@@ -16,20 +16,17 @@ C.SwipeDelegate {
 
     property bool showParentItemInformation: false
     property var model: null
-    property bool toggleDoneOnClose: false
     property OTL.LibraryItem item: OTL.LibraryItem {}
     property OTL.LibraryItem parentItem: OTL.LibraryItem {}
     property OTL.Library library: null
     property bool hideDueDate: false
     readonly property var itemActions: ([renameAction, copyTodoAction, moveTodoAction, promoteTaskAction, setDueTodayAction, setDueTomorrowAction, setDueNextWeekAction, setDueThisWeekAction, setDueToAction, resetDueToAction, deleteAction])
-    property bool allowSorting: false
+    property bool allowReordering: false
     property bool drawSeperator: true
-    property ItemDragTile dragTile
     property alias leftColorSwatch: leftColorSwatch
 
     signal itemPressedAndHold
     signal itemClicked
-    signal setSwipeDelegate(var item)
 
     // The item has been saved (for later undo)
     signal itemSaved(var itemData)
@@ -39,6 +36,8 @@ C.SwipeDelegate {
     topPadding: AppSettings.effectiveFontMetrics.height / (AppSettings.useCompactTodoLists ? 8 : 2)
     bottomPadding: topPadding
     hoverEnabled: true
+    ListView.delayRemove: moveButton.dragTile.dragging
+
     contentItem: RowLayout {
         width: parent.width
 
@@ -209,27 +208,11 @@ C.SwipeDelegate {
             height: toggleSwipeOpened.height
         }
 
-        C.ToolButton {
+        ItemDragButton {
             id: moveButton
-            visible: {
-                if (swipeDelegate.allowSorting) {
-                    switch (Qt.platform.os) {
-                    case "ios":
-                    case "android":
-                        return true
-                    default:
-                        return swipeDelegate.hovered
-                    }
-                } else {
-                    return false
-                }
-            }
-            symbol: Icons.mdiDragHandle
-            font.family: Fonts.icons
-            onPressed: {
-                swipeDelegate.setSwipeDelegate(null)
-                reorderOverlay.startDrag()
-            }
+            item: swipeDelegate.item
+            model: swipeDelegate.library
+            listViewItem: swipeDelegate
         }
 
         C.ToolButton {
@@ -243,53 +226,17 @@ C.SwipeDelegate {
                     return swipeDelegate.hovered
                 }
             }
-            symbol: swipeDelegate.swipe.position
-                    === 0 ? Icons.mdiKeyboardArrowLeft : Icons.mdiKeyboardArrowRight
-            onClicked: {
-                if (swipeDelegate.swipe.position === 0) {
-                    swipeDelegate.swipe.open(C.SwipeDelegate.Right)
-                } else {
-                    swipeDelegate.swipe.close()
-                }
-            }
+            symbol: Icons.mdiMoreVert
+            onClicked: swipeDelegate.itemPressedAndHold()
         }
     }
     swipe.right: Row {
         anchors.right: parent.right
         height: parent.height
 
-        Components.ItemActionToolButtons {
-            id: itemToolButtonActions
-
-            model: swipeDelegate.itemActions
-        }
-    }
-
-    swipe.left: C.Pane {
-        height: swipeDelegate.height
-        width: swipeDelegate.width
-        enabled: {
-            let item = swipeDelegate.item
-            return item.done !== undefined || item.dueTo !== undefined
-        }
-
-        Material.background: Colors.positiveColor
-
         C.Label {
-            text: {
-                let item = swipeDelegate.item
-                let done = item.done
-                if (done === undefined) {
-                    done = !DateUtils.validDate(item.dueTo)
-                }
-                if (done) {
-                    return qsTr("Swipe to mark undone")
-                } else {
-                    return qsTr("Swipe to mark done")
-                }
-            }
-            width: parent.width / 2
-            anchors.fill: parent
+            text: qsTr("More Actions...")
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
 
@@ -314,37 +261,14 @@ C.SwipeDelegate {
     }
 
     swipe.onCompleted: {
-        if (swipe.position > 0) {
-            // Swipe from left to right to mark items as (un)done.
-            swipeDelegate.toggleDoneOnClose = true
-            swipeDelegate.swipe.close()
-        } else {
-            swipeDelegate.setSwipeDelegate(swipeDelegate)
+        if (swipe.position < 0) {
+            // Swipe from right to left - show context menu
+            swipeDelegate.itemPressedAndHold()
         }
+        swipe.close()
     }
 
     onPressAndHold: swipeDelegate.itemPressedAndHold()
-    swipe.onClosed: {
-        if (swipeDelegate.toggleDoneOnClose) {
-            let item = swipeDelegate.item
-            switch (item.itemType) {
-            case "Todo":
-            case "Task":
-                let data = OTL.Application.saveItem(item)
-                item.done = !item.done
-                swipeDelegate.itemSaved(data)
-                break
-            default:
-                if (typeof (item.markCurrentOccurrenceAsDone) === "function") {
-                    item.markCurrentOccurrenceAsDone()
-                } else {
-                    console.warn("Cannot toggle done state for", item,
-                                 "of type", item.itemType)
-                }
-            }
-            swipeDelegate.toggleDoneOnClose = false
-        }
-    }
 
     Rectangle {
         id: leftColorSwatch
@@ -415,7 +339,7 @@ C.SwipeDelegate {
         id: reorderOverlay
         anchors.fill: parent
         model: swipeDelegate.model
-        dragTile: swipeDelegate.dragTile
+        dragTile: moveButton.dragTile
         item: swipeDelegate.item
     }
 
@@ -426,10 +350,7 @@ C.SwipeDelegate {
 
         interval: 300
         repeat: false
-        onTriggered: {
-            swipeDelegate.setSwipeDelegate(null)
-            swipeDelegate.itemClicked()
-        }
+        onTriggered: swipeDelegate.itemClicked()
     }
 
     Rectangle {

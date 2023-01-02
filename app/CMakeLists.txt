@@ -26,7 +26,7 @@ if("${CI_PIPELINE_IID}" STREQUAL "")
     set(CI_PIPELINE_IID "0")
 endif()
 
-if(APPLE) 
+if(APPLE)
     set(APP_FLAGS MACOSX_BUNDLE)
     set(PROJECT_SOURCES ${PROJECT_SOURCES} res/OpenTodoList.icns)
     set(MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns)
@@ -35,6 +35,20 @@ endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(OpenTodoList ${APP_FLAGS} ${PROJECT_SOURCES} ${APP_RESOURCES})
+
+    # Include Assets and special config for iOS
+    if(IOS)
+        target_sources(OpenTodoList PRIVATE ios/Images.xcassets)
+        set_source_files_properties(
+            ios/Images.xcassets
+            PROPERTIES
+                MACOSX_PACKAGE_LOCATION Resources
+        )
+        qt_import_plugins(
+            OpenTodoList
+            INCLUDE Qt::QIosOptionalPlugin_NSPhotoLibraryPlugin
+        )
+    endif()
 else()
     if(ANDROID)
         add_library(OpenTodoList SHARED ${PROJECT_SOURCES} ${APP_RESOURCES})
@@ -43,7 +57,7 @@ else()
             ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
             CACHE INTERNAL "Extra files for Android deployment"
         )
-    elseif(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+    elseif(IOS)
         include(../3rdparty/QtIosCMake/AddQtIosApp.cmake)
         include(../3rdparty/QtStaticCMake/QtStaticCMake.cmake)
         add_executable(OpenTodoList)
@@ -63,7 +77,7 @@ else()
             IPA
             UPLOAD_SYMBOL
             ASSET_DIR ios/Images.xcassets
-            LAUNCHSCREEN_STORYBOARD "ios/LaunchScreen.storyboard"
+            LAUNCHSCREEN_STORYBOARD "ios/LaunchScreenOTL.storyboard"
             CUSTOM_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in
         )
         target_sources(OpenTodoList PRIVATE  ${PROJECT_SOURCES} ${APP_RESOURCES})
@@ -87,12 +101,26 @@ else()
     endif()
 endif()
 
-if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
-    set_target_properties(
-        OpenTodoList
-        PROPERTIES
-            MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
-    )
+if(APPLE)
+    if(IOS)
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist.in
+        )
+        target_sources(
+            OpenTodoList
+            PRIVATE
+                ios/LaunchScreenOTL.storyboard
+        )
+        set_source_files_properties(ios/LaunchScreenOTL.storyboard PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    else(IOS)
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
+        )
+    endif()
 endif()
 
 target_compile_definitions(
@@ -101,14 +129,54 @@ target_compile_definitions(
         $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>
 )
 
+target_compile_options(
+    OpenTodoList
+    PRIVATE
+        $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+        $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Werror>
+)
+
+target_compile_features(
+    OpenTodoList PRIVATE cxx_std_14
+)
+
 set_target_properties(
     OpenTodoList
     PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER net.rpdev.OpenTodoList
-        MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
+        MACOSX_BUNDLE_BUNDLE_NAME OpenTodoList
+        MACOSX_BUNDLE_BUNDLE_VERSION "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
+        MACOSX_BUNDLE_LONG_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${OPENTODOLIST_VERSION_PATCH}"
+        MACOSX_BUNDLE_LAUNCHSCREEN_STORYBOARD LaunchScreen
+
+        QT_ANDROID_EXTRA_LIBS "${ANDROID_EXTRA_LIBS}"
+        QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+        QT_ANDROID_TARGET_SDK_VERSION 32
+        QT_ANDROID_MIN_SDK_VERSION 23
+        QT_ANDROID_VERSION_NAME "${OPENTODOLIST_VERSION}"
+        QT_ANDROID_VERSION_CODE "${OPENTODOLIST_ANDROID_VERSION_CODE}"
 )
 
-if(NOT ANDROID AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+if(APPLE)
+    if(IOS)
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                MACOSX_BUNDLE_ICON_FILE AppIcon
+                XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon
+                XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"
+            )
+    else(IOS)
+        set_target_properties(
+            OpenTodoList
+            PROPERTIES
+                MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
+            )
+    endif()
+endif()
+
+if(NOT ANDROID AND NOT IOS)
     target_compile_definitions(OpenTodoList PRIVATE
         OTL_USE_SINGLE_APPLICATION
         QAPPLICATION_CLASS=QApplication)
@@ -132,20 +200,11 @@ target_link_libraries(
         # Qt libraries:
         Qt${QT_VERSION_MAJOR}::Qml
         Qt${QT_VERSION_MAJOR}::Quick
-        Qt${QT_VERSION_MAJOR}::Xml
         Qt${QT_VERSION_MAJOR}::Concurrent
         Qt${QT_VERSION_MAJOR}::Widgets
 )
 
-if(ANDROID OR ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
-    target_link_libraries(
-        OpenTodoList
-
-        PRIVATE
-
-            Qt${QT_VERSION_MAJOR}::WebView
-    )
-endif()
+add_dependencies(OpenTodoList opentodolist-common)
 
 if(OPENTODOLIST_FLATPAK)
     target_compile_definitions(OpenTodoList PRIVATE OPENTODOLIST_FLATPAK)
@@ -181,14 +240,14 @@ if(OPENTODOLIST_UPDATE_TRANSLATIONS)
     if (NOT ${PROJECT_NAME}-MultiAbiBuild)
         # Only run this once per multi-abi build on Android. Otherwise, we might
         # get conflicting writes to the *.ts files from parallel sub-builds.
-        qt5_create_translation(
+        qt_create_translation(
             MESSAGES
             ${TS_SOURCE_FILES}
             ${TS_FILES}
         )
     endif()
 endif()
-qt5_add_translation(QM_FILES ${TS_FILES})
+qt_add_translation(QM_FILES ${TS_FILES})
 target_sources(OpenTodoList PRIVATE
     ${QM_FILES}
     ${CMAKE_CURRENT_BINARY_DIR}/translations-copy.qrc
@@ -222,7 +281,7 @@ add_custom_command(
 
 # Helper targets to convert between *.ts and *.po files (for
 # external editing)
-get_target_property(LCONVERT_EXECUTABLE Qt5::lconvert IMPORTED_LOCATION)
+get_target_property(LCONVERT_EXECUTABLE Qt::lconvert IMPORTED_LOCATION)
 add_custom_target(opentodolist-po-to-ts)
 foreach(ts_file ${TS_FILES})
     string(REGEX REPLACE "ts$" "po" po_file ${ts_file})

@@ -64,14 +64,14 @@ ItemPage {
 
     savePage: function () {
         return {
-            "library": page.library.uid,
-            "note": page.item.uid
+            "library": OTL.Application.uuidToString(page.library.uid),
+            "note": OTL.Application.uuidToString(page.item.uid)
         }
     }
 
     restorePage: function (state) {
-        d.restoreLibraryUid = state.library
-        d.restoreNoteUid = state.note
+        d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
+        d.restoreNoteUid = OTL.Application.uuidFromString(state.note)
         OTL.Application.loadLibrary(d.restoreLibraryUid)
         OTL.Application.loadItem(d.restoreNoteUid)
     }

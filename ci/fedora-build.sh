@@ -9,8 +9,9 @@ cd ..
 if [ -n "$CI" ]; then
     dnf install -y \
         make cmake ninja-build gcc g++ curl ccache \
-        qt5-{qtbase,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
-        qt5-linguist \
+        qt6-{qtbase,qttools,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
+        qt6-qtbase-{mysql,odbc,postgresql} \
+        qt6-linguist \
         libsecret-devel
 
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
@@ -29,47 +30,33 @@ mkdir -p fedora-build-cmake
 cd fedora-build-cmake
 
 if [ -n "$SYSTEM_LIBS" ]; then
-    if [ -n "$CI" ]; then
-        dnf install -y \
-            qtkeychain-qt5-devel \
-            kf5-syntax-highlighting-devel
-    fi
-
-    for project in qlmdb synqclient; do
-        mkdir -p ${project}-build
-        cd ${project}-build
+    for project in KDE/extra-cmake-modules KDE/syntax-highlighting qlmdb synqclient qtkeychain; do
         cmake \
+            -S ../3rdparty/$project \
+            -B $project-build \
             -GNinja \
-            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_INSTALL_PREFIX=$PWD/../_ \
-            ../../3rdparty/${project}
-        cmake --build .
-        cmake --install .
-        cd ..
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=$PWD/_ \
+            -DCMAKE_PREFIX_PATH=$PWD/_ \
+            -DBUILD_WITH_QT6=ON \
+            -DQLMDB_WITHOUT_TESTS=ON \
+            -DSYNQCLIENT_WITHOUT_TESTS=ON
+        cmake --build $project-build
+        cmake --install $project-build
+        # If we build in the CIs, remove the source folder to make sure the app build
+        # does not exidentally pick the in-source version up
+        if [ -n "$CI" ]; then
+            mv ../3rdparty/$project ../3rdparty/$project-bak
+        fi
     done
     CMAKE_EXTRA_FLAGS="$CMAKE_EXTRA_FLAGS -DOPENTODOLIST_USE_SYSTEM_LIBRARIES=ON -DCMAKE_PREFIX_PATH=$PWD/_"
 fi
 
-# If we build against system libs, move included libraries away, so we
-# cannot accidentally include them.
-if [ -n "$CI" ]; then
-    if [ -n "$SYSTEM_LIBS" ]; then
-        pushd ../3rdparty
-        for dir in *; do
-            if [ -d "$dir" ]; then
-                if [ "$dir" != "simplecrypt" -a "$dir" != "SingleApplication" -a "$dir" != "ral-json" ]; then
-                    mv "$dir" "${dir}~"
-                fi
-            fi
-        done
-        popd
-    fi
-fi
 
 cmake \
     -GNinja \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DDOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
+    -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
     -DCMAKE_INSTALL_PREFIX=/usr \
     ${CMAKE_EXTRA_FLAGS} \
     ..

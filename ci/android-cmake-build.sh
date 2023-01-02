@@ -2,87 +2,26 @@
 
 set -e
 
-export PATH=$QT_ROOT/bin:$PATH
-export PROJECT_ROOT=$(cd $(dirname $0) && cd .. && pwd)
-export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
-ANDROID_TARGET_SDK_VERSION=30
-
 if [ -z "$ANDROID_ABIS" ]; then
-    ANDROID_ABIS="armeabi-v7a arm64-v8a x86 x86_64"
+    ANDROID_ABIS=arm64-v8a
 fi
 
-cd $PROJECT_ROOT
-
-if [ -n "$CI" ]; then
-    which ccache || (apt-get update -y && apt-get install -y ccache)
-fi
-
-# Add path to ccache symlinks to PATH:
-export PATH=/usr/lib/ccache/:$PATH
-
-# Ensure that `clang` is symlinked to `ccache`:
-if [ ! -f /usr/lib/ccache/clang ]; then
-    ln -s ../../bin/ccache /usr/lib/ccache/clang
-fi
-
-# Ensure that `clang++` is symlinked to `ccache`:
-if [ ! -f /usr/lib/ccache/clang++ ]; then
-    ln -s ../../bin/ccache /usr/lib/ccache/clang++
-fi
-
-
-mkdir -p build-android
-cd build-android
-CMAKE_ABI_ARGS="-DANDROID_ABI=$ANDROID_ABIS"
-
-cmake \
-    -GNinja \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=$QT_ROOT \
-    -DANDROID_NATIVE_API_LEVEL=21 \
-    -DANDROID_NDK=$ANDROID_NDK_ROOT \
-    -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
-    -DANDROID_STL=c++_shared \
-    -DCMAKE_FIND_ROOT_PATH=$QT_ROOT \
-    -DANDROID_SDK=$ANDROID_SDK_ROOT \
-    $CMAKE_ABI_ARGS \
-    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DANDROID_TARGET_SDK_VERSION=$ANDROID_TARGET_SDK_VERSION \
-    ..
-cmake --build .
-
-# Fix up target SDK version in deployment config:
-python \
-    ../bin/set-android-deployment-target-sdk.py \
-    android_deployment_settings.json $ANDROID_TARGET_SDK_VERSION \
-    --android-package-source-directory $PWD/android-package-source
-
-# Copy over package source:
-cp -r ../app/android ./android-package-source
-
-OTL_VERSION="$(git describe --tags)"
-
-python ../bin/set-android-version-name \
-    android-package-source/AndroidManifest.xml "$OTL_VERSION"
-
-# Build APKs for each supported platform
 case "$ANDROID_ABIS" in
     armeabi-v7a)
         VERSION_OFFSET=1
-        break
+        QT_SUBDIR=android_armv7;
         ;;
     arm64-v8a)
         VERSION_OFFSET=2
-        break
+        QT_SUBDIR=android_arm64_v8a;
         ;;
     x86_64)
         VERSION_OFFSET=4;
-        break
+        QT_SUBDIR=android_x86_64;
         ;;
     x86)
         VERSION_OFFSET=3;
-        break
+        QT_SUBDIR=android_x86;
         ;;
     *)
         echo "Unhandled Android architecture: $ANDROID_ABIS"
@@ -90,27 +29,70 @@ case "$ANDROID_ABIS" in
         ;;
 esac
 
-# Patch version code:
-python ../bin/increase-android-version-code \
-    android-package-source/AndroidManifest.xml $VERSION_OFFSET
+if [ ! -d "$QT_INSTALL_ROOT" ]; then
+    if [ -d "$HOME/Qt" ]; then
+        QT_INSTALL_ROOT="$HOME/Qt"
+    else
+        echo "The variable QT_INSTALL_ROOT is not set"
+        exit 1
+    fi
+fi
+echo "Using Qt installation in $QT_INSTALL_ROOT"
+
+if [ -z "$QT_VERSION" ]; then
+    QT_VERSION=$(ls "$QT_INSTALL_ROOT" | grep -E '\d+\.\d+\.\d+' | sort -V | tail -n1)
+fi
+echo "Using Qt $QT_VERSION"
+
+if [ -z "$ANDROID_NDK_ROOT" ]; then
+    echo "ANDROID_NDK_ROOT is unset!"
+    exit 1
+fi
+
+if [ -z "$ANDROID_SDK_ROOT" ]; then
+    echo "ANDROID_SDK_ROOT is unset!"
+    exit 1
+fi
+
+export PATH=$QT_INSTALL_ROOT/$QT_VERSION/$QT_SUBDIR/bin:$PATH
+export PROJECT_ROOT=$(cd $(dirname $0) && cd .. && pwd)
+export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
+
+
+cd $PROJECT_ROOT
+
+PIPELINE_OFFSET=700
+VERSIONCODE_OFFSET=650
+if [ -z "$CI_PIPELINE_IID" ]; then
+    CI_PIPELINE_IID=$PIPELINE_OFFSET
+fi
+
+let 'OPENTODOLIST_VERSION_CODE=VERSIONCODE_OFFSET + (CI_PIPELINE_IID - PIPELINE_OFFSET) * 5 + VERSION_OFFSET'
+
+echo "Using Version Code $OPENTODOLIST_VERSION_CODE"
+
+echo $PATH
+mkdir -p build-android
+cd build-android
+CMAKE_ABI_ARGS="-DANDROID_ABI=$ANDROID_ABIS"
+
+qt-cmake \
+    -GNinja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DANDROID_NATIVE_API_LEVEL=21 \
+    -DANDROID_NDK=$ANDROID_NDK_ROOT \
+    -DANDROID_STL=c++_shared \
+    -DANDROID_SDK=$ANDROID_SDK_ROOT \
+    $CMAKE_ABI_ARGS \
+    -DOPENTODOLIST_ANDROID_VERSION_CODE=$OPENTODOLIST_VERSION_CODE \
+    ..
+cmake --build .
 
 # Build APK:
-androiddeployqt \
-    --output $PWD/android-build \
-    --gradle \
-    --release \
-    --deployment bundled \
-    --input android_deployment_settings.json
-cp android-build/build/outputs/apk/release/android-build-release-unsigned.apk \
+cmake --build . --target apk
+cmake --build . --target aab
+OTL_VERSION="$(git describe --tags)"
+cp app/android-build/OpenTodoList.apk \
     OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.apk
-
-# Build AAB:
-androiddeployqt \
-    --output $PWD/android-build \
-    --aab \
-    --gradle \
-    --release \
-    --deployment bundled \
-    --input android_deployment_settings.json
-cp android-build/build/outputs/bundle/release/android-build-release.aab \
+cp app/android-build/build/outputs/bundle/release/android-build-release.aab \
     OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.aab

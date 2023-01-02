@@ -7,18 +7,21 @@ import OpenTodoList 1.0 as OTL
 import "../Components" as Components
 import "../Utils"
 
-
-Item {
+MouseArea {
     id: item
 
     property OTL.Library library: null
     property OTL.ImageItem libraryItem: OTL.ImageItem {}
     property var model
     property bool allowReordering: true
-    property ItemDragTile dragTile
 
-    signal clicked()
-    signal released(var mouse)
+    readonly property bool hovered: containsMouse
+
+    signal clicked(var mouse)
+
+    hoverEnabled: true
+    GridView.delayRemove: moveButton.dragging
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
 
     ItemPane {
         anchors.fill: parent
@@ -34,17 +37,11 @@ Item {
     }
 
     MouseArea {
+        id: mouseArea
+
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: {
-            if (mouse.button === Qt.LeftButton) {
-                item.clicked()
-            }
-        }
-        onPressAndHold: if (item.allowReordering) {
-                            reorderOverlay.startDrag();
-                        }
-        onReleased: item.released(mouse)
+        onClicked: mouse => item.clicked(mouse)
     }
 
     ReorderableListViewOverlay {
@@ -53,6 +50,19 @@ Item {
         model: item.model
         layout: Qt.Horizontal
         item: libraryItem
-        dragTile: item.dragTile
+        dragTile: moveButton.dragTile
+    }
+
+    ItemDragButton {
+        id: moveButton
+
+        item: item.libraryItem
+        model: item.model
+        listViewItem: item
+        anchors {
+            right: parent.right
+            top: parent.top
+            margins: AppSettings.smallSpace
+        }
     }
 }

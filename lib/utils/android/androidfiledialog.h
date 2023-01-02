@@ -20,11 +20,10 @@
 #ifndef UTILS_ANDROID_ANDROIDFILEDIALOG_H_
 #define UTILS_ANDROID_ANDROIDFILEDIALOG_H_
 
-#include <QAndroidActivityResultReceiver>
-#include <QAndroidJniObject>
+#include <private/qandroidextras_p.h>
+#include <QJniObject>
 #include <QObject>
 #include <QUrl>
-#include <QtAndroid>
 
 /**
  * @brief Select files on Android via Intents.
@@ -68,9 +67,8 @@ private:
     public:
         explicit ResultReceiver(AndroidFileDialog* dialog);
         virtual ~ResultReceiver();
-        void handleActivityResult(int receiverRequestCode, int resultCode,
-                                  const QAndroidJniObject& data);
-        QString uriToPath(QAndroidJniObject uri);
+        void handleActivityResult(int receiverRequestCode, int resultCode, const QJniObject& data);
+        QString uriToPath(QJniObject uri);
 
     private:
         AndroidFileDialog* m_dialog;

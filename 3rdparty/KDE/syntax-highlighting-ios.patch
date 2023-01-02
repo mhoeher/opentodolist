@@ -1,0 +1,25 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 06948f84..77f6b33a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -103,7 +103,7 @@ ecm_set_disabled_deprecation_versions(
+ include_directories(${CMAKE_CURRENT_BINARY_DIR})
+ add_subdirectory(data)
+ add_subdirectory(src)
+-if(TARGET Qt${QT_MAJOR_VERSION}::Gui)
++if(TARGET Qt${QT_MAJOR_VERSION}::Gui AND NOT IOS)
+     add_subdirectory(examples)
+     if (BUILD_TESTING)
+         add_subdirectory(autotests)
+diff --git a/src/indexer/CMakeLists.txt b/src/indexer/CMakeLists.txt
+index 77a16faf..3d5392e3 100644
+--- a/src/indexer/CMakeLists.txt
++++ b/src/indexer/CMakeLists.txt
+@@ -1,6 +1,6 @@
+ # when cross compiling, use either the executable offered or try to cross-compile it in place
+ 
+-if(CMAKE_CROSSCOMPILING AND KATEHIGHLIGHTINGINDEXER_EXECUTABLE)
++if(KATEHIGHLIGHTINGINDEXER_EXECUTABLE)
+     add_executable(katehighlightingindexer IMPORTED GLOBAL)
+     set_target_properties(katehighlightingindexer PROPERTIES IMPORTED_LOCATION ${KATEHIGHLIGHTINGINDEXER_EXECUTABLE})
+ elseif(CMAKE_CROSSCOMPILING)

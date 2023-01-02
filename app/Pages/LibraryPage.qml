@@ -1,7 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
 import Qt.labs.settings 1.0
-import QtQuick.Dialogs 1.2 as Dialogs
+import "../Dialogs" as Dialogs
 
 import OpenTodoList 1.0 as OTL
 
@@ -25,7 +25,7 @@ C.Page {
     savePage: function () {
         let result = {}
         if (page.library) {
-            result.library = page.library.uid
+            result.library = OTL.Application.uuidToString(page.library.uid)
         }
         if (page.tag !== "") {
             result.tag = page.tag
@@ -36,8 +36,8 @@ C.Page {
     restorePage: function (data) {
         let uid = data.library
         if (uid) {
-            d.restoreLibraryUid = uid
-            OTL.Application.loadLibrary(uid)
+            d.restoreLibraryUid = OTL.Application.uuidFromString(uid)
+            OTL.Application.loadLibrary(d.restoreLibraryUid)
         }
         let tag = data.tag
         if (tag) {
@@ -268,19 +268,22 @@ C.Page {
     Dialogs.FileDialog {
         id: openImageDialog
 
-        folder: shortcuts.pictures
+        currentFolder: {
+            let photosLocation = OTL.Application.getPhotoLibraryLocation()
+            return photosLocation
+        }
         title: qsTr("Select Image")
         nameFilters: ["Image Files (*.png *.bmp *.jpg *.jpeg *.gif)"]
 
         onAccepted: {
-            var filename = OTL.Application.urlToLocalFile(fileUrl)
+            var filename = OTL.Application.urlToLocalFile(selectedFile)
             var tags = []
             if (page.tag !== "") {
                 tags = [page.tag]
             }
             var properties = {
                 "title": OTL.Application.basename(filename),
-                "imageUrl": fileUrl,
+                "imageUrl": selectedFile,
                 "tags": tags
             }
 
@@ -395,6 +398,7 @@ C.Page {
                 height: grid.cellHeight
                 source: Qt.resolvedUrl(
                             "../Widgets/" + object.itemType + "Item.qml")
+                GridView.delayRemove: item ? item.GridView.delayRemove : false
 
                 onLoaded: {
                     item.allowReordering = Qt.binding(function () {
@@ -405,11 +409,11 @@ C.Page {
                     })
                     item.library = page.library
                     item.model = itemsModel
-                    item.onClicked.connect(function () {
-                        d.openItem(object)
-                    })
-                    item.onReleased.connect(function (mouse) {
+                    item.onClicked.connect(function (mouse) {
                         switch (mouse.button) {
+                        case Qt.LeftButton:
+                            d.openItem(object)
+                            break
                         case Qt.RightButton:
                             itemContextMenu.item = object
                             itemContextMenu.parent = gridItem
@@ -420,9 +424,6 @@ C.Page {
                         default:
                             break
                         }
-                    })
-                    item.dragTile = Qt.binding(function () {
-                        return dragTile
                     })
                 }
             }
@@ -461,10 +462,6 @@ C.Page {
                 break
             }
         }
-    }
-
-    ItemDragTile {
-        id: dragTile
     }
 
     NewTopLevelItemButton {

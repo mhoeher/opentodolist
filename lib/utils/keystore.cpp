@@ -27,14 +27,13 @@
 #include <QPointer>
 
 #ifdef Q_OS_ANDROID
-#    include <QAndroidJniExceptionCleaner>
-#    include <QAndroidJniObject>
-#    include <QtAndroid>
+#    include <QJniObject>
+#    include <QJniEnvironment>
 #else
-#    ifdef OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN
+#    if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #        include <qt5keychain/keychain.h>
 #    else
-#        include <qtkeychain/keychain.h>
+#        include <qt6keychain/keychain.h>
 #    endif
 #endif
 
@@ -100,18 +99,18 @@ bool securedReadSettings(QIODevice& device, QSettings::SettingsMap& map)
 #ifdef Q_OS_ANDROID
 QByteArray fromArray(const jbyteArray array)
 {
-    QAndroidJniEnvironment env;
+    QJniEnvironment env;
     jbyte* const bytes = env->GetByteArrayElements(array, nullptr);
     const QByteArray result(reinterpret_cast<const char*>(bytes), env->GetArrayLength(array));
     env->ReleaseByteArrayElements(array, bytes, JNI_ABORT);
     return result;
 }
 
-QAndroidJniObject toArray(const QByteArray& bytes)
+QJniObject toArray(const QByteArray& bytes)
 {
-    QAndroidJniEnvironment env;
+    QJniEnvironment env;
     const int length = bytes.length();
-    QAndroidJniObject array = QAndroidJniObject::fromLocalRef(env->NewByteArray(length));
+    QJniObject array = QJniObject::fromLocalRef(env->NewByteArray(length));
     env->SetByteArrayRegion(static_cast<jbyteArray>(array.object()), 0, length,
                             reinterpret_cast<const jbyte*>(bytes.constData()));
     return array;
@@ -170,12 +169,11 @@ void KeyStore::saveCredentials(const QString& key, const QString& value,
     bool success = false;
     QSettings settings;
     settings.beginGroup("KeyStore");
-    QAndroidJniExceptionCleaner cleaner(QAndroidJniExceptionCleaner::OutputMode::Verbose);
-    auto jContext = QtAndroid::androidContext();
-    auto jService = QAndroidJniObject::fromString(ServiceName);
-    auto jKey = QAndroidJniObject::fromString(key);
+    auto jContext = QJniObject(QNativeInterface::QAndroidApplication::context());
+    auto jService = QJniObject::fromString(ServiceName);
+    auto jKey = QJniObject::fromString(key);
     auto jPlainText = toArray(value.toUtf8());
-    auto ret = QAndroidJniObject::callStaticObjectMethod(
+    auto ret = QJniObject::callStaticObjectMethod(
             "net/rpdev/OpenTodoList/CryptoUtils", "encrypt",
             "(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;[B)Lnet/rpdev/"
             "OpenTodoList/CryptoUtils$EncryptionResult;",
@@ -210,7 +208,7 @@ void KeyStore::saveCredentials(const QString& key, const QString& value,
 
     // To be compatible with QtKeychain, emit saved signal delayed
     QPointer<KeyStore> _this = this;
-    QTimer::singleShot(0, [=]() {
+    QTimer::singleShot(0, this, [=]() {
         if (_this) {
             emit _this.data()->credentialsSaved(key, success);
         }
@@ -282,12 +280,11 @@ void KeyStore::loadCredentials(const QString& key)
     settings.beginGroup("KeyStore");
     for (auto s : { m_settings, &settings }) {
         if (s && s->contains(key + "/data")) {
-            QAndroidJniExceptionCleaner cleaner(QAndroidJniExceptionCleaner::OutputMode::Verbose);
-            auto jService = QAndroidJniObject::fromString(ServiceName);
-            auto jKey = QAndroidJniObject::fromString(key);
+            auto jService = QJniObject::fromString(ServiceName);
+            auto jKey = QJniObject::fromString(key);
             auto cipherText = QByteArray::fromHex(s->value(key + "/data").toByteArray());
             auto jCipherText = toArray(cipherText);
-            auto ret = QAndroidJniObject::callStaticObjectMethod(
+            auto ret = QJniObject::callStaticObjectMethod(
                     "net/rpdev/OpenTodoList/CryptoUtils", "decrypt",
                     "(Ljava/lang/String;Ljava/lang/String;[B)Lnet/rpdev/OpenTodoList/CryptoUtils$"
                     "DecryptionResult;",
@@ -319,7 +316,7 @@ void KeyStore::loadCredentials(const QString& key)
 
     // To be compatible with QtKeychain, emit saved signal delayed
     QPointer<KeyStore> _this = this;
-    QTimer::singleShot(0, [=]() {
+    QTimer::singleShot(0, this, [=]() {
         if (_this) {
             emit _this.data()->credentialsLoaded(key, value, success);
         }
@@ -371,10 +368,9 @@ void KeyStore::deleteCredentials(const QString& key)
     bool success = false;
 
     {
-        QAndroidJniExceptionCleaner cleaner(QAndroidJniExceptionCleaner::OutputMode::Verbose);
-        auto jService = QAndroidJniObject::fromString(ServiceName);
-        auto jKey = QAndroidJniObject::fromString(key);
-        auto ret = QAndroidJniObject::callStaticMethod<jboolean>(
+        auto jService = QJniObject::fromString(ServiceName);
+        auto jKey = QJniObject::fromString(key);
+        auto ret = QJniObject::callStaticMethod<jboolean>(
                 "net/rpdev/OpenTodoList/CryptoUtils", "deleteKey",
                 "(Ljava/lang/String;Ljava/lang/String;)Z", jService.object<jstring>(),
                 jKey.object<jstring>());
@@ -391,7 +387,7 @@ void KeyStore::deleteCredentials(const QString& key)
 
     // To be compatible with QtKeychain, emit saved signal delayed
     QPointer<KeyStore> _this = this;
-    QTimer::singleShot(0, [=]() {
+    QTimer::singleShot(0, this, [=]() {
         if (_this) {
             emit _this.data()->credentialsDeleted(key, success);
         }

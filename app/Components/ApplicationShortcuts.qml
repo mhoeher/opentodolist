@@ -17,42 +17,37 @@ Item {
 
     Shortcut {
         id: newShortcut
-        sequence: StandardKey.New
+        sequences: [StandardKey.New]
     }
 
     Shortcut {
         id: quitShortcut
-        sequence: StandardKey.Quit
+        sequences: [StandardKey.Quit]
     }
 
     Shortcut {
         id: closeShortcut
-        sequence: StandardKey.Close
+        sequences: [StandardKey.Close]
     }
 
     Shortcut {
         id: findShortcut
-        sequence: StandardKey.Find
+        sequences: [StandardKey.Find]
     }
 
     Shortcut {
         id: undoShortcut
-        sequence: StandardKey.Undo
+        sequences: [StandardKey.Undo]
     }
 
     Shortcut {
         id: goBackShortcut
-        sequences: [
-            StandardKey.Back,
-            "Esc",
-            "Back"
-        ]
+        sequences: [StandardKey.Back, "Esc", "Back"]
         enabled: Qt.platform.os !== "android" && Qt.platform.os !== "ios"
     }
 
     Shortcut {
         id: openShortcut
-        sequence: StandardKey.Open
+        sequences: [StandardKey.Open]
     }
-
 }

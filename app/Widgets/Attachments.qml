@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-import QtQuick.Dialogs 1.2 as Dialogs
 
 import OpenTodoList 1.0 as OTL
 
@@ -9,6 +8,7 @@ import "../Controls" as C
 import "../Fonts"
 import "../Utils"
 import "../Windows"
+import "../Dialogs" as Dialogs
 
 Item {
     id: item
@@ -27,15 +27,15 @@ Item {
 
     height: childrenRect.height
 
-    Dialogs.FileDialog {
+    Dialogs.FilesDialog {
         id: dialog
 
         title: qsTr("Attach File")
-        selectMultiple: true
 
         onAccepted: {
-            for (var i = 0; i < fileUrls.length; ++i) {
-                item.item.attachFile(OTL.Application.urlFromString(fileUrls[i]))
+            for (var i = 0; i < selectedFiles.length; ++i) {
+                item.item.attachFile(OTL.Application.urlFromString(
+                                         selectedFiles[i]))
             }
         }
     }

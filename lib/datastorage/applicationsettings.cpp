@@ -119,7 +119,7 @@ QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
 void ApplicationSettings::librariesToConfig(QList<QSharedPointer<Library>> libraries)
 {
     m_settings->sync();
-    m_settings->beginWriteArray("LibraryDirectories", libraries.length());
+    m_settings->beginWriteArray("LibraryDirectories", static_cast<int>(libraries.length()));
     for (auto i = 0; i < libraries.length(); ++i) {
         m_settings->setArrayIndex(i);
         auto dir = libraries[i]->directory();
@@ -233,7 +233,7 @@ void ApplicationSettings::initialize()
                     } else {
                         // Loading failed - create a problem:
                         qCWarning(log) << "Failed to load credentials for key" << key;
-                        QSharedPointer<Account> account(loadAccount(key));
+                        QSharedPointer<Account> account(loadAccount(QUuid(key)));
                         if (account && m_problemManager) {
                             Problem problem;
                             problem.setType(Problem::AccountSecretsMissing);
@@ -272,7 +272,7 @@ void ApplicationSettings::importAccountFromSynchronizer(const QString& syncUid,
     // Load all accounts:
     QList<QSharedPointer<Account>> accounts;
     for (const auto& accountId : accountUids()) {
-        accounts << QSharedPointer<Account>(loadAccount(accountId.toString()));
+        accounts << QSharedPointer<Account>(loadAccount(QUuid(accountId.toString())));
     }
 
     // Find the synchronizer:

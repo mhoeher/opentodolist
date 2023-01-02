@@ -73,8 +73,8 @@ C.Page {
 
         title: qsTr("Select a Folder")
         onAccepted: folderPathEdit.text = OTL.Application.urlToLocalFile(
-                        selectFolder.fileUrl)
-        folder: {
+                        selectFolder.selectedFolder)
+        selectedFolder: {
             switch (Qt.platform.os) {
             case "android":
                 return "file://" + OTL.Application.getExternalFilesDir()

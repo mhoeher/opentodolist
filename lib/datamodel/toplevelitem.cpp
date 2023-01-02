@@ -139,7 +139,7 @@ void TopLevelItem::removeTag(const QString& tag)
 {
     auto index = m_tags.indexOf(tag);
     if (index >= 0) {
-        removeTagAt(index);
+        removeTagAt(static_cast<int>(index));
     }
 }
 

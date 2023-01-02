@@ -132,7 +132,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
     }
 
     for (auto uid : librariesToRemove) {
-        auto index = m_uids.indexOf(uid);
+        auto index = static_cast<int>(m_uids.indexOf(uid));
         beginRemoveRows(QModelIndex(), index, index);
         m_uids.removeOne(uid);
         auto lib = m_libraries.take(uid);
@@ -141,8 +141,8 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
     }
 
     if (!newItems.isEmpty()) {
-        auto firstIndex = m_uids.length();
-        auto lastIndex = firstIndex + newItems.length() - 1;
+        auto firstIndex = static_cast<int>(m_uids.length());
+        auto lastIndex = static_cast<int>(firstIndex + newItems.length() - 1);
         beginInsertRows(QModelIndex(), firstIndex, lastIndex);
         for (auto lib : newItems) {
             QQmlEngine::setObjectOwnership(lib, QQmlEngine::CppOwnership);
@@ -161,7 +161,7 @@ void LibrariesModel::libraryChanged()
     auto lib = qobject_cast<Library*>(sender());
     if (lib) {
         auto uid = lib->uid();
-        auto idx = m_uids.indexOf(uid);
+        auto idx = static_cast<int>(m_uids.indexOf(uid));
         if (idx >= 0) {
             emit dataChanged(index(idx), index(idx));
             if (!m_updating && m_cache != nullptr) {
@@ -178,7 +178,7 @@ int LibrariesModel::rowCount(const QModelIndex& parent) const
     if (parent.isValid()) {
         return 0;
     } else {
-        return m_uids.length();
+        return static_cast<int>(m_uids.length());
     }
 }
 

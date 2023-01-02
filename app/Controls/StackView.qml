@@ -40,7 +40,7 @@ QQC2.StackView {
                         break
                     }
                 }
-                settings.setValue("state", state)
+                settings.setValue("state", JSON.stringify(state))
             }
         }
     }
@@ -48,7 +48,14 @@ QQC2.StackView {
     Component.onCompleted: {
         try {
             if (stack.stackId !== "") {
-                let state = settings.value("state", [])
+                let state = null
+                try {
+                    state = JSON.parse(settings.value("state", "[]"))
+                } catch (exc) {
+                    console.warn("Exception caught during stack state restoration:",
+                                 exc)
+                    state = []
+                }
                 for (var i = 0; i < state.length; ++i) {
                     let pageState = state[i]
                     let page = stack.push(Qt.resolvedUrl(pageState.url))

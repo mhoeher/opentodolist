@@ -249,11 +249,11 @@ QDateTime ItemsQuery::earliestChildDueDate(QLMDB::Transaction& transaction,
     for (const auto& childId : childIds) {
         auto data = items()->get(transaction, childId);
         ItemPtr item(Item::decache(ItemCacheEntry::fromByteArray(data, childId)));
-        if (item && item->parentId() == parentId) {
+        if (item && item->parentId() == QUuid(parentId)) {
             auto complexItem = qSharedPointerCast<ComplexItem>(item);
             if (complexItem) {
                 auto val = complexItem->property("done");
-                if (val.isValid() && val.type() == QVariant::Bool && val.toBool()) {
+                if (val.isValid() && val.typeId() == QMetaType::Bool && val.toBool()) {
                     // Ignore items which have a "done" state which is set to true
                     continue;
                 }
@@ -283,11 +283,12 @@ QDateTime ItemsQuery::earliestChildUpdatedAt(QLMDB::Transaction& transaction,
 {
     QDateTime result;
     const auto childIds = children()->getAll(transaction, parentId);
+    QUuid parentIdAsUuid(parentId);
 
     for (const auto& childId : childIds) {
         auto data = items()->get(transaction, childId);
         ItemPtr item(Item::decache(ItemCacheEntry::fromByteArray(data, childId)));
-        if (item && item->parentId() == parentId) {
+        if (item && item->parentId() == parentIdAsUuid) {
             auto itemUpdatedAt = item->updatedAt();
             if (!result.isValid() || (itemUpdatedAt.isValid() && itemUpdatedAt > result)) {
                 result = itemUpdatedAt;

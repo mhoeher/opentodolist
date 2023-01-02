@@ -160,10 +160,15 @@
         <file>Pages/NewDropboxAccountPage.qml</file>
         <file>Pages/EditDropboxAccountPage.qml</file>
         <file>Windows/WebViewDialog.qml</file>
-        <file>Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml</file>
         <file>3rdpartyinfo/ral-json/3rdpartyinfo.json</file>
         <file alias="ral.json">../3rdparty/ral-json/ral.json</file>
         <file>Windows/ColorSelectionDialog.qml</file>
         <file>Pages/StartPage.qml</file>
+        <file>Controls/DayOfWeekRow.qml</file>
+        <file>Controls/WeekNumberColumn.qml</file>
+        <file>Controls/MonthGrid.qml</file>
+        <file>Dialogs/FileDialog.qml</file>
+        <file>Dialogs/FilesDialog.qml</file>
+        <file>Widgets/ItemDragButton.qml</file>
     </qresource>
 </RCC>

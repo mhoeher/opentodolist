@@ -35,6 +35,7 @@
 #include "utils/problemmanager.h"
 #include "sync/account.h"
 #include "sync/remotelibraryinfo.h"
+#include "datastorage/cache.h"
 
 class QRemoteObjectNode;
 class QTemporaryDir;
@@ -136,6 +137,7 @@ public:
     Q_INVOKABLE QUrl cleanPath(const QUrl& url) const;
     Q_INVOKABLE bool canListPath(const QUrl& url) const;
     Q_INVOKABLE QUrl getParentDirectory(const QUrl& url) const;
+    Q_INVOKABLE QUrl getPhotoLibraryLocation() const;
     Q_INVOKABLE QString htmlToPlainText(const QString& html) const;
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE QString getExternalFilesDir() const;
@@ -148,6 +150,8 @@ public:
     Q_INVOKABLE QString libraryNameFromDir(const QUrl& url) const;
 
     Q_INVOKABLE QString sha256(const QString& text) const;
+    Q_INVOKABLE QUuid uuidFromString(const QString& text) const;
+    Q_INVOKABLE QString uuidToString(const QUuid& uid) const;
 
     QString librariesLocation() const;
 

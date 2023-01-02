@@ -1,7 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.12
-import Qt.labs.calendar 1.0
 
 import "../Components"
 import "../Controls" as C
@@ -18,8 +17,8 @@ CenteredDialog {
     onSelectedDateChanged: {
         if (selectedDate.getTime() === selectedDate.getTime()) {
             // Selected date is valid
-            grid.year = selectedDate.getFullYear();
-            grid.month = selectedDate.getMonth();
+            grid.year = selectedDate.getFullYear()
+            grid.month = selectedDate.getMonth()
         }
     }
     header: C.ToolBar {
@@ -33,12 +32,12 @@ CenteredDialog {
             C.ToolButton {
                 symbol: Icons.mdiKeyboardArrowLeft
                 onClicked: {
-                    var month = grid.month;
+                    var month = grid.month
                     if (month === 0) {
-                        grid.year -= 1;
-                        grid.month = 11;
+                        grid.year -= 1
+                        grid.month = 11
                     } else {
-                        grid.month -= 1;
+                        grid.month -= 1
                     }
                 }
             }
@@ -52,12 +51,12 @@ CenteredDialog {
             C.ToolButton {
                 symbol: Icons.mdiKeyboardArrowRight
                 onClicked: {
-                    var month = grid.month;
+                    var month = grid.month
                     if (month === 11) {
-                        grid.year += 1;
-                        grid.month = 0;
+                        grid.year += 1
+                        grid.month = 0
                     } else {
-                        grid.month += 1;
+                        grid.month += 1
                     }
                 }
             }
@@ -73,10 +72,13 @@ CenteredDialog {
         id: d
 
         function dateEquals(date1, date2) {
-            return (date1) && (date2) &&
-                   (date1.getFullYear() === date2.getFullYear()) &&
-                   (date1.getMonth() === date2.getMonth()) &&
-                   (date1.getDate() === date2.getDate());
+            return (date1)
+                    && (date2) && (date1.getFullYear() === date2.getFullYear(
+                                       )) && (date1.getMonth(
+                                                  ) === date2.getMonth(
+                                                  )) && (date1.getDate(
+                                                             ) === date2.getDate(
+                                                             ))
         }
     }
 
@@ -85,13 +87,13 @@ CenteredDialog {
 
         Empty {}
 
-        DayOfWeekRow {
+        C.DayOfWeekRow {
             id: dayOfWeekRow
             locale: grid.locale
             Layout.fillWidth: true
         }
 
-        WeekNumberColumn {
+        C.WeekNumberColumn {
             id: weekNumbers
             month: grid.month
             year: grid.year
@@ -99,12 +101,14 @@ CenteredDialog {
             Layout.fillHeight: true
         }
 
-        MonthGrid {
+        C.MonthGrid {
             id: grid
 
             delegate: C.ToolButton {
                 property var localDate: new Date(year, month, day)
-                property bool isToday: d.dateEquals(localDate, new Date()) // Highlight today
+                property bool isToday: d.dateEquals(
+                                           localDate,
+                                           new Date()) // Highlight today
 
                 opacity: model.month === grid.month ? 1.0 : 0.5
                 checked: d.dateEquals(localDate, dialog.selectedDate)
@@ -112,11 +116,11 @@ CenteredDialog {
                 background: C.Pane {
                     Material.background: {
                         if (checked) {
-                            return Material.Green;
+                            return Material.Green
                         } else if (isToday) {
-                            return Material.Purple;
+                            return Material.Purple
                         } else {
-                            return "white";
+                            return "white"
                         }
                     }
                     opacity: 0.5
@@ -126,7 +130,8 @@ CenteredDialog {
                 contentItem: C.Label {
                     text: model.day
                     font.pixelSize: grid.font.pixelSize
-                    font.bold: d.dateEquals(localDate, new Date()) // Make today bold
+                    font.bold: d.dateEquals(localDate,
+                                            new Date()) // Make today bold
                     font.family: AppSettings.defaultFontFamily
                     wrapMode: "NoWrap"
                 }

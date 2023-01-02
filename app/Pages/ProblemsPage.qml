@@ -38,18 +38,18 @@ C.Page {
                     switch (modelData.type) {
                     case "AccountSecretsMissing":
                         // The secrets for an account are missing:
-                        let account = modelData.contextObject;
-                        let msg = qsTr("Missing secrets for account");
-                        msg += " <strong>" + account.name + "</strong>";
-                        return msg;
+                        let account = modelData.contextObject
+                        let msg = qsTr("Missing secrets for account")
+                        msg += " <strong>" + account.name + "</strong>"
+                        return msg
                     case "SyncFailed":
-                        let library = modelData.contextObject;
+                        let library = modelData.contextObject
                         msg = qsTr("Synchronization failed for library")
-                        msg += " <strong>" + library.name + "</strong>: " + modelData.message;
-                        return msg;
+                        msg += " <strong>" + library.name + "</strong>: " + modelData.message
+                        return msg
                     default:
-                        console.warn("Unknown problem type", modelData.type);
-                        return "Unknown Problem";
+                        console.warn("Unknown problem type", modelData.type)
+                        return "Unknown Problem"
                     }
                 }
                 contentItem: C.Label {
@@ -61,29 +61,23 @@ C.Page {
                 onClicked: {
                     switch (modelData.type) {
                     case "AccountSecretsMissing":
-                        switch (modelData.contextObject.type) {
-                        case OTL.Account.NextCloud:
-                            page.openPage(Qt.resolvedUrl("./EditNextCloudAccountPage.qml"), {
-                                              account: modelData.contextObject
-                                          });
-                            break;
-                        case OTL.Account.OwnCloud:
-                        case OTL.Account.WebDAV:
-                            page.openPage(Qt.resolvedUrl("./EditWebDAVAccountPage.qml"), {
-                                              account: modelData.contextObject
-                                          });
-                            break;
-                        }
-                        break;
-
+                        let accountTypeName = OTL.Application.accountTypeToString(
+                                modelData.contextObject.type)
+                        page.openPage(
+                                    Qt.resolvedUrl(
+                                        "./Edit" + accountTypeName + "AccountPage.qml"),
+                                    {
+                                        "account": OTL.Application.loadAccount(
+                                                       modelData.contextObject.uid) // Load a copy of the account to ensure we have latest secrets
+                                    })
+                        break
                     case "SyncFailed":
                         page.openPage(Qt.resolvedUrl("./LibraryPage.qml"), {
-                                          library: modelData.contextObject
-                                      });
-                        break;
-
+                                          "library": modelData.contextObject
+                                      })
+                        break
                     default:
-                        console.warn("Unknown problem type", modelData.type);
+                        console.warn("Unknown problem type", modelData.type)
                     }
                 }
             }

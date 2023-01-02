@@ -21,11 +21,11 @@
 
 #include <QQmlEngine>
 #include <QDateTime>
+#include <QRegularExpression>
 
 #include "datamodel/complexitem.h"
 #include "datamodel/todolist.h"
 #include "datamodel/todo.h"
-#include "datamodel/notepage.h"
 
 #include "datastorage/getitemsquery.h"
 #include "datastorage/insertorupdateitemsquery.h"
@@ -89,7 +89,7 @@ int ItemsModel::count() const
 int ItemsModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid()) {
-        return m_ids.length();
+        return static_cast<int>(m_ids.length());
     } else {
         return 0;
     }
@@ -551,7 +551,7 @@ void ItemsModel::fetch()
 
 std::function<bool(ItemPtr item, GetItemsQuery* query)> ItemsModel::getFilterFn() const
 {
-    auto words = m_searchString.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+    auto words = m_searchString.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
     std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
     if (!words.isEmpty()) {
         itemMatchesFilter = [=](ItemPtr item, GetItemsQuery* query) {
@@ -631,7 +631,7 @@ void ItemsModel::update(QVariantList items)
 
     if (!idsToDelete.isEmpty()) {
         for (const auto& id : qAsConst(idsToDelete)) {
-            auto index = m_ids.indexOf(id);
+            auto index = static_cast<int>(m_ids.indexOf(id));
             beginRemoveRows(QModelIndex(), index, index);
             auto item = m_items.take(id);
             delete item;
@@ -641,7 +641,8 @@ void ItemsModel::update(QVariantList items)
     }
 
     if (!newItems.isEmpty()) {
-        beginInsertRows(QModelIndex(), m_ids.length(), m_ids.length() + newItems.length() - 1);
+        beginInsertRows(QModelIndex(), static_cast<int>(m_ids.length()),
+                        static_cast<int>(m_ids.length() + newItems.length() - 1));
         for (const auto& item : qAsConst(newItems)) {
             connect(item, &Item::changed, this, &ItemsModel::itemChanged);
             // Note: The updatedAt property might change intependent from the generic changed
@@ -669,7 +670,7 @@ void ItemsModel::itemChanged()
     if (item) {
         auto id = item->uid();
         if (m_items.contains(id)) {
-            auto index = m_ids.indexOf(id);
+            auto index = static_cast<int>(m_ids.indexOf(id));
             auto modelIndex = this->index(index);
             emit dataChanged(modelIndex, modelIndex);
         }

@@ -92,7 +92,7 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     });
     syncTimer->start();
 
-    for (auto& library : m_appSettings->librariesFromConfig()) {
+    for (const auto& library : m_appSettings->librariesFromConfig()) {
         watchLibraryForChanges(library);
     }
 

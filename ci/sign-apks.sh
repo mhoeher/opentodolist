@@ -19,7 +19,7 @@ for android_file in *.apk *.aab; do
         if [ -n "$ANDROID_MIN_SDK_INT" ]; then
             APKSIGNER_ARGS="$APKSIGNER_ARGS --min-sdk-version $ANDROID_MIN_SDK_INT"
         fi
-        /opt/android-sdk/build-tools/*/apksigner sign \
+        $ANDROID_SDK_ROOT/build-tools/*/apksigner sign \
             $APKSIGNER_ARGS $android_file_out
     fi
 done

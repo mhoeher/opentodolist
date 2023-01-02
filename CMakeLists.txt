@@ -1,13 +1,22 @@
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.16)
 
 # Generate build commands JSON file:
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(OpenTodoList)
-
+# Enable running Qt specific tools automatically (otherwise, we have to
+# wrap stuff in Qt specific functions). See
+# https://www.kdab.com/wp-content/uploads/stories/QTVTC20-Using-Modern-CMake-Kevin-Funk.pdf
+# for more details.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden) # To avoid linker warnings building for iOS
+
+# Set policies explicitly:
+# cmake_policy(SET CMP0114 NEW) # Use independent step targets w/ external project on Xcode new build system.
+
+project(OpenTodoList)
 
 
 # Include modules:
@@ -15,54 +24,11 @@ include(cmake/options.cmake)
 include(cmake/version.cmake)
 include(cmake/Flatpak.cmake)
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 # Enable unit tests:
 enable_testing()
 
-
-
-if(OPENTODOLIST_WITH_UPDATE_SERVICE)
-    add_definitions(-DOPENTODOLIST_WITH_UPDATE_SERVICE)
-endif()
-if(OPENTODOLIST_WITH_APPIMAGE_EXTRAS)
-    add_definitions(-DOPENTODOLIST_IS_APPIMAGE)
-endif()
-
-
-# Set C++ standard to use:
-set(CMAKE_CXX_STANDARD 14)
-
-# Add additional files for Android:
-set(
-    ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/app/android
-    CACHE INTERNAL "Extra files for Android deployment"
-)
-
-if(ANDROID_TARGET_SDK_VERSION)
-    set(
-        ANDROID_TARGET_SDK_VERSION ${ANDROID_TARGET_SDK_VERSION}
-        CACHE INTERNAL "Android Target SDK version to build against."
-    )
-endif()
-
 if (ANDROID)
     include(3rdparty/android-openssl/CMakeLists.txt)
-endif()
-
-
-# Enable warnings:
-if(MSVC)
-  # Force to always compile with W4
-  if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
-    string(REGEX REPLACE "/W[0-4]" "/Wall" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-  else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall")
-  endif()
-elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-  # Update if necessary
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
 if(NOT OPENTODOLIST_QT_VERSIONS)
@@ -72,21 +38,67 @@ endif()
 
 set(REQUIRED_QT_COMPONENTS Core Quick Qml Xml Concurrent Sql RemoteObjects LinguistTools Widgets Network NetworkAuth)
 
-if(ANDROID)
-    set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} AndroidExtras WebView)
-endif()
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
-    set(REQUIRED_QT_COMPONENTS ${REQUIRED_QT_COMPONENTS} WebView)
-endif()
 
 find_package(QT NAMES ${OPENTODOLIST_QT_VERSIONS} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
+
+if(ANDROID)
+    if(QT_VERSION_MAJOR STREQUAL "5")
+        message(FATAL_ERROR "Support for building OpenTodoList for Android using Qt5 has been dropped. Please build using Qt6 or higher.")
+    endif()
+endif()
+
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_QT_COMPONENTS} REQUIRED)
 
-if(NOT ANDROID)
-    if(OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
-        find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
+# Convenience: Set the QT_INSTALL_PREFIX based on QT_DIR (which is set by the first find_package
+# call above. The QT_DIR is set to something like
+# <prefix>/lib/cmake/Qt6, so we have to get the directory 3 times.
+if(NOT QT_INSTALL_PREFIX)
+    get_filename_component(QT_INSTALL_PREFIX ${QT_DIR} DIRECTORY)
+    get_filename_component(QT_INSTALL_PREFIX ${QT_INSTALL_PREFIX} DIRECTORY)
+    get_filename_component(QT_INSTALL_PREFIX ${QT_INSTALL_PREFIX} DIRECTORY)
+    if(QT_INSTALL_PREFIX STREQUAL "/")
+      set(QT_INSTALL_PREFIX "")
     endif()
+endif()
+
+# Convenience: Set a path to a host Qt installation (for cross compiling). This is needed when
+# we cross-compile as we have to build some tools for the host.
+if(NOT QT_HOST_INSTALL_PREFIX)
+    set(QT_HOST_INSTALL_PREFIX ${QT_INSTALL_PREFIX})
+    if(ANDROID OR IOS)
+        # Check if this is a Qt installation made with the official installer
+        get_filename_component(_version_dir ${QT_INSTALL_PREFIX} DIRECTORY)
+        get_filename_component(_root_dir ${_version_dir} DIRECTORY)
+        if(EXISTS ${_root_dir}/MaintenanceTool.dat)
+            if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
+                set(QT_HOST_INSTALL_PREFIX ${_version_dir}/macos)
+            elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+                set(QT_HOST_INSTALL_PREFIX ${_version_dir}/gcc_64)
+            elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+                message("TODO: Implement auto-detection of Qt host tools on Windows")
+            endif()
+        endif()
+        unset(_version_dir)
+        unset(_root_dir)
+    endif()
+endif()
+
+# For KDE packages: Used when cross compiling
+if(NOT KF5_HOST_TOOLING)
+    set(KF5_HOST_TOOLING ${QT_HOST_INSTALL_PREFIX})
+endif()
+
+
+if(OPENTODOLIST_WITH_KNOTIFICATIONS)
+    find_package(KF5Notifications REQUIRED)
+endif()
+
+if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
+    find_package(KF5SyntaxHighlighting REQUIRED)
+endif()
+
+if(NOT ANDROID AND OPENTODOLIST_USE_SYSTEM_QTKEYCHAIN)
+    find_package(Qt${QT_VERSION_MAJOR}Keychain REQUIRED)
 endif()
 
 if(OPENTODOLIST_USE_SYSTEM_QLMDB)
@@ -96,21 +108,6 @@ endif()
 if(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT)
     find_package(SynqClient-qt${QT_VERSION_MAJOR} REQUIRED)
 endif()
-
-if(OPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING)
-    find_package(KF5SyntaxHighlighting)
-endif()
-
-if(OPENTODOLIST_WITH_KNOTIFICATIONS)
-    find_package(KF5Notifications REQUIRED)
-endif()
-
-# Set options of included 3rd party libraries:
-set(QLMDB_WITH_STATIC_LIBS ON CACHE BOOL "Build QLMDB as static library")
-set(QLMDB_WITH_BUILTIN_LMDB ON CACHE BOOL "Use built in lmdb library")
-set(QLMDB_WITHOUT_TESTS ON CACHE BOOL "Do not build QLMDB unit tests")
-set(SYNQCLIENT_WITHOUT_TESTS ON CACHE BOOL "Disable tests in SynqClient")
-set(QTKEYCHAIN_STATIC ON CACHE BOOL "Build static QtKeychain library")
 
 # Build using static libraries:
 set(BUILD_SHARED_LIBS OFF)
@@ -137,17 +134,15 @@ install(
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 
-# Disable building translations in QtKeychain:
-set(BUILD_TRANSLATIONS NO CACHE BOOL "")
-
 
 # Include sub-directories:
 add_subdirectory(3rdparty)
 add_subdirectory(lib)
 add_subdirectory(app)
-if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+if(NOT IOS)
     add_subdirectory(test)
 endif()
+
 
 # Show other, project-related files:
 file(GLOB_RECURSE OTHER_FILES

@@ -48,10 +48,6 @@
 #    include <QSystemTrayIcon>
 #endif
 
-#ifdef Q_OS_ANDROID
-#    include <QtAndroidExtras>
-#endif
-
 #include <iostream>
 
 #ifdef Q_OS_WIN

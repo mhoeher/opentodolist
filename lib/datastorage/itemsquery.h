@@ -29,7 +29,7 @@
 
 class Cache;
 class Item;
-class ItemCacheEntry;
+struct ItemCacheEntry;
 class ItemsQueryRunnable;
 
 // Forward declarations:

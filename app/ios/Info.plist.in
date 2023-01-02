@@ -17,21 +17,17 @@
     <key>UIRequiresFullScreen</key>
     <string>${MACOSX_BUNDLE_REQUIRES_FULL_SCREEN}</string>
 
-    <!-- Hide the status bar -->
-    <key>UIStatusBarHidden</key>
-    <${MACOSX_BUNDLE_HIDDEN_STATUS_BAR}/>
-
     <!-- If supporting multitask LaunchScreen.storyboard must be provided -->
     <key>UILaunchStoryboardName</key>
-    <string>${MACOSX_BUNDLE_LAUNCHSCREEN_STORYBOARD}</string>
+    <string>LaunchScreenOTL</string>
 
     <!-- Optionnal StoryBoard filename -->
     <key>UIMainStoryboardFile</key>
-    <string>${MACOSX_BUNDLE_MAIN_STORYBOARD}</string>
+    <string>LaunchScreenOTL</string>
 
     <!-- Name displayed -->
     <key>CFBundleIdentifier</key>
-    <string>${MACOSX_BUNDLE_GUI_IDENTIFIER}</string>
+    <string>net.rpdev.OpenTodoList</string>
 
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
@@ -43,6 +39,9 @@
     <!-- Unique bundle name across AppStore -->
     <key>CFBundleName</key>
     <string>${MACOSX_BUNDLE_BUNDLE_NAME}</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>${QT_INTERNAL_DOLLAR_VAR}{PRODUCT_NAME}</string>
 
     <key>CFBundlePackageType</key>
     <string>APPL</string>
@@ -61,6 +60,9 @@
     <key>CSResourcesFileMapped</key>
     <true/>
 
+    <key>CFBundleIconFile</key>
+    <string>${MACOSX_BUNDLE_ICON_FILE}</string>
+
     <!-- Copyright -->
     <key>NSHumanReadableCopyright</key>
     <string>${MACOSX_BUNDLE_COPYRIGHT}</string>
@@ -71,20 +73,14 @@
     <!-- Ui Orientation -->
     <key>UISupportedInterfaceOrientations</key>
     <array>
-        <string>${MACOSX_BUNDLE_PORTRAIT}</string>
-        <string>${MACOSX_BUNDLE_PORTRAITUPDOWN}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPELEFT}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPERIGHT}</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-        <string>${MACOSX_BUNDLE_PORTRAIT}</string>
-        <string>${MACOSX_BUNDLE_PORTRAITUPDOWN}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPELEFT}</string>
-        <string>${MACOSX_BUNDLE_LANDSCAPERIGHT}</string>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
 
-    ${QT_IOS_ITS_ENCRYPTION_KEYS}
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
 
     <!-- Custom URL schemes that the app handles -->
     <key>CFBundleURLTypes</key>
@@ -96,5 +92,11 @@
             </array>
         </dict>
     </array>
+
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow selecting photos to add them to OpenTodoList</string>
 </dict>
 </plist>
