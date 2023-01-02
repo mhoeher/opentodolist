@@ -32,7 +32,11 @@ Item {
             let copy = OTL.Application.cloneItem(item)
             applyTimer.item = item
             applyTimer.weight = weight
-            dragSourceBinding.target = dragTile
+            if (dragTile.dragging) {
+                dragSourceBinding.target = dragTile
+            } else {
+                applyTimer.restart()
+            }
         }
     }
 

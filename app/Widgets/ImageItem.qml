@@ -21,6 +21,7 @@ MouseArea {
 
     hoverEnabled: true
     GridView.delayRemove: moveButton.dragging
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
 
     ItemPane {
         anchors.fill: parent
@@ -40,7 +41,6 @@ MouseArea {
 
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        hoverEnabled: true
         onClicked: mouse => item.clicked(mouse)
     }
 
