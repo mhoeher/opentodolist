@@ -95,5 +95,8 @@
 
     <key>LSRequiresIPhoneOS</key>
     <true/>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow selecting photos to add them to OpenTodoList</string>
 </dict>
 </plist>

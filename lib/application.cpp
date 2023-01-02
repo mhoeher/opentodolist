@@ -1066,6 +1066,23 @@ QUrl Application::getParentDirectory(const QUrl& url) const
 }
 
 /**
+ * @brief Get the URL of the photo library.
+ *
+ * This returns the location where photos are typically stored on the device. This value is
+ * - on some platforms, like iOS - used to address the photo library.
+ * @return
+ */
+QUrl Application::getPhotoLibraryLocation() const
+{
+    auto picturesPaths = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+    if (!picturesPaths.isEmpty()) {
+        return QUrl::fromLocalFile(picturesPaths.last());
+    } else {
+        return QUrl();
+    }
+}
+
+/**
  * @brief Converts HTML into plain text.
  *
  * This function gets an @p html string as input and returns the text converted

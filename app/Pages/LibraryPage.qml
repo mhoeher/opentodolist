@@ -268,7 +268,10 @@ C.Page {
     Dialogs.FileDialog {
         id: openImageDialog
 
-        currentFolder: shortcuts.pictures
+        currentFolder: {
+            let photosLocation = OTL.Application.getPhotoLibraryLocation()
+            return photosLocation
+        }
         title: qsTr("Select Image")
         nameFilters: ["Image Files (*.png *.bmp *.jpg *.jpeg *.gif)"]
 

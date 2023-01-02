@@ -137,6 +137,7 @@ public:
     Q_INVOKABLE QUrl cleanPath(const QUrl& url) const;
     Q_INVOKABLE bool canListPath(const QUrl& url) const;
     Q_INVOKABLE QUrl getParentDirectory(const QUrl& url) const;
+    Q_INVOKABLE QUrl getPhotoLibraryLocation() const;
     Q_INVOKABLE QString htmlToPlainText(const QString& html) const;
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE QString getExternalFilesDir() const;
