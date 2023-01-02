@@ -165,16 +165,10 @@
         <file>Windows/ColorSelectionDialog.qml</file>
         <file>Pages/StartPage.qml</file>
         <file>Controls/DayOfWeekRow.qml</file>
-        <file>Controls/+qt5/DayOfWeekRow.qml</file>
         <file>Controls/WeekNumberColumn.qml</file>
-        <file>Controls/+qt5/WeekNumberColumn.qml</file>
         <file>Controls/MonthGrid.qml</file>
-        <file>Controls/+qt5/MonthGrid.qml</file>
-        <file>Windows/+qt5/FolderSelectionDialog.qml</file>
         <file>Dialogs/FileDialog.qml</file>
-        <file>Dialogs/+qt5/FileDialog.qml</file>
         <file>Dialogs/FilesDialog.qml</file>
-        <file>Dialogs/+qt5/FilesDialog.qml</file>
         <file>Widgets/ItemDragButton.qml</file>
     </qresource>
 </RCC>
