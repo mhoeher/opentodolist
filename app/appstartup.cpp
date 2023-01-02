@@ -295,7 +295,6 @@ void AppStartup::startGUI()
         return;
     }
     m_engine = new QQmlApplicationEngine;
-    m_engine->setExtraFileSelectors({ QString("qt%1").arg(QT_VERSION_MAJOR) });
     m_translations = new OpenTodoList::Translations(m_engine);
     QString qmlBase = "qrc:/";
     m_engine->addImportPath(qmlBase);
