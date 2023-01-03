@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="196"/>
+        <location filename="../appstartup.cpp" line="204"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="202"/>
+        <location filename="../appstartup.cpp" line="210"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Ative algumas otimizações para telas sensíveis ao toque.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="205"/>
+        <location filename="../appstartup.cpp" line="213"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Execute apenas o serviço em segundo plano do aplicativo</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="207"/>
+        <location filename="../appstartup.cpp" line="215"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Execute apenas a GUI do aplicativo e conecte-se a um serviço de segundo plano do aplicativo existente</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="212"/>
+        <location filename="../appstartup.cpp" line="220"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Habilitar um console no Windows para coletar a saída de depuração</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="358"/>
+        <location filename="../appstartup.cpp" line="370"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="365"/>
+        <location filename="../appstartup.cpp" line="377"/>
         <source>Quick Note</source>
         <translation type="unfinished">Nota Rápida</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="418"/>
+        <location filename="../appstartup.cpp" line="430"/>
         <source>Quit</source>
         <translation type="unfinished">Sair</translation>
     </message>
@@ -162,12 +162,12 @@
         <translation type="unfinished">Sincronização em Segundo Plano</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="194"/>
+        <location filename="../../lib/application.cpp" line="193"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished">O aplicativo continua a sincronizar seus dados em segundo plano</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="198"/>
+        <location filename="../../lib/application.cpp" line="197"/>
         <source>Quit</source>
         <translation type="unfinished">Sair</translation>
     </message>
@@ -636,14 +636,6 @@
     </message>
 </context>
 <context>
-    <name>EmbeddedWebViewDialog</name>
-    <message>
-        <location filename="../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml" line="15"/>
-        <source>Loading...</source>
-        <translation type="unfinished">Carregando...</translation>
-    </message>
-</context>
-<context>
     <name>ItemCreatedNotification</name>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
@@ -897,57 +889,57 @@
         <translation type="unfinished">Excluir</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="272"/>
+        <location filename="../Pages/LibraryPage.qml" line="275"/>
         <source>Select Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="341"/>
+        <location filename="../Pages/LibraryPage.qml" line="344"/>
         <source>Note Title</source>
         <translation type="unfinished">Título da nota</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="354"/>
+        <location filename="../Pages/LibraryPage.qml" line="357"/>
         <source>Todo List Title</source>
         <translation type="unfinished">Título da Lista de Afazeres</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="367"/>
+        <location filename="../Pages/LibraryPage.qml" line="370"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Termo de busca 1, termo de busca 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="446"/>
+        <location filename="../Pages/LibraryPage.qml" line="447"/>
         <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
         <translation type="unfinished">Nada aqui ainda! Comece adicionando uma &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; ou &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="506"/>
+        <location filename="../Pages/LibraryPage.qml" line="503"/>
         <source>Sort By</source>
         <translation type="unfinished">Ordenar por</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="511"/>
+        <location filename="../Pages/LibraryPage.qml" line="508"/>
         <source>Manually</source>
         <translation type="unfinished">Manualmente</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="518"/>
+        <location filename="../Pages/LibraryPage.qml" line="515"/>
         <source>Title</source>
         <translation type="unfinished">Título</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="525"/>
+        <location filename="../Pages/LibraryPage.qml" line="522"/>
         <source>Due To</source>
         <translation type="unfinished">Devido a</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="532"/>
+        <location filename="../Pages/LibraryPage.qml" line="529"/>
         <source>Created At</source>
         <translation type="unfinished">Criado em</translation>
     </message>
     <message>
-        <location filename="../Pages/LibraryPage.qml" line="539"/>
+        <location filename="../Pages/LibraryPage.qml" line="536"/>
         <source>Updated At</source>
         <translation type="unfinished">Atualizado em</translation>
     </message>
@@ -973,19 +965,69 @@
         <translation type="unfinished">Log de Sincronização</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="26"/>
+        <location filename="../Pages/LogViewPage.qml" line="22"/>
         <source>Copy Log</source>
         <translation type="unfinished">Cópia de Log</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="32"/>
+        <location filename="../Pages/LogViewPage.qml" line="28"/>
         <source>Scroll to Top</source>
         <translation type="unfinished">Role para Cima</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="38"/>
+        <location filename="../Pages/LogViewPage.qml" line="34"/>
         <source>Scroll to Bottom</source>
         <translation type="unfinished">Role para Baixo</translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="78"/>
+        <source>Debugging information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="80"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="82"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="84"/>
+        <source>Download</source>
+        <translation type="unfinished">Download</translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="86"/>
+        <source>Upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="88"/>
+        <source>Create local folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="90"/>
+        <source>Create remote folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="92"/>
+        <source>Deleting locally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="94"/>
+        <source>Deleting remotely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/LogViewPage.qml" line="96"/>
+        <source>Unknown log message type</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1443,7 +1485,7 @@
 <context>
     <name>NoteItem</name>
     <message>
-        <location filename="../Widgets/NoteItem.qml" line="75"/>
+        <location filename="../Widgets/NoteItem.qml" line="89"/>
         <source>Due on %1</source>
         <translation type="unfinished">Vencimento em % 1</translation>
     </message>
@@ -1499,8 +1541,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="304"/>
-        <location filename="../appstartup.cpp" line="311"/>
+        <location filename="../appstartup.cpp" line="316"/>
+        <location filename="../appstartup.cpp" line="323"/>
         <source>unknown</source>
         <translation type="unfinished">desconhecido</translation>
     </message>
@@ -1887,22 +1929,22 @@ Isso requer uma reinicialização do aplicativo.</translation>
 <context>
     <name>StartPage</name>
     <message>
-        <location filename="../Pages/StartPage.qml" line="34"/>
+        <location filename="../Pages/StartPage.qml" line="37"/>
         <source>Libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="59"/>
+        <location filename="../Pages/StartPage.qml" line="62"/>
         <source>Add a new library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="78"/>
+        <location filename="../Pages/StartPage.qml" line="81"/>
         <source>Accounts</source>
         <translation type="unfinished">Contas</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="100"/>
+        <location filename="../Pages/StartPage.qml" line="103"/>
         <source>Add an account</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1936,12 +1978,12 @@ Isso requer uma reinicialização do aplicativo.</translation>
 <context>
     <name>TodoListItem</name>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="76"/>
+        <location filename="../Widgets/TodoListItem.qml" line="78"/>
         <source>Due on %1</source>
         <translation type="unfinished">Vencimento em % 1</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="128"/>
+        <location filename="../Widgets/TodoListItem.qml" line="130"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Sem afazeres abertos - tudo feito</translation>
     </message>
@@ -2038,13 +2080,8 @@ Isso requer uma reinicialização do aplicativo.</translation>
 <context>
     <name>TodosWidgetDelegate</name>
     <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="286"/>
-        <source>Swipe to mark undone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="288"/>
-        <source>Swipe to mark done</source>
+        <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
+        <source>More Actions...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

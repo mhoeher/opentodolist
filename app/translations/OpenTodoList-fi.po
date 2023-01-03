@@ -237,22 +237,22 @@ msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Poista"
 
-#: ../Pages/LibraryPage.qml:341
+#: ../Pages/LibraryPage.qml:344
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:354
+#: ../Pages/LibraryPage.qml:357
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:367
+#: ../Pages/LibraryPage.qml:370
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:446
+#: ../Pages/LibraryPage.qml:447
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr ""
@@ -292,7 +292,7 @@ msgctxt "LogViewPage|"
 msgid "Synchronization Log"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:26
+#: ../Pages/LogViewPage.qml:22
 msgctxt "LogViewPage|"
 msgid "Copy Log"
 msgstr "Kopioi loki"
@@ -549,7 +549,7 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Paikallinen kirjasto"
 
-#: ../Widgets/TodoListItem.qml:128
+#: ../Widgets/TodoListItem.qml:130
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr ""
@@ -749,32 +749,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Luo oletuskirjasto:"
 
-#: ../Pages/LibraryPage.qml:506
+#: ../Pages/LibraryPage.qml:503
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:511
+#: ../Pages/LibraryPage.qml:508
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:518
+#: ../Pages/LibraryPage.qml:515
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:525
+#: ../Pages/LibraryPage.qml:522
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:532
+#: ../Pages/LibraryPage.qml:529
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:539
+#: ../Pages/LibraryPage.qml:536
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr ""
@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:196
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Hallinnoi henkilökohtaisia tietojasi."
 
-#: ../appstartup.cpp:202
+#: ../appstartup.cpp:210
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr ""
 
-#: ../appstartup.cpp:205
+#: ../appstartup.cpp:213
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr ""
 
-#: ../appstartup.cpp:207
+#: ../appstartup.cpp:215
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr ""
 
-#: ../appstartup.cpp:212
+#: ../appstartup.cpp:220
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr ""
 
-#: ../appstartup.cpp:358
+#: ../appstartup.cpp:370
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Avaa"
 
-#: ../appstartup.cpp:418
+#: ../appstartup.cpp:430
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Lopeta"
@@ -2152,12 +2152,12 @@ msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:32
+#: ../Pages/LogViewPage.qml:28
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
 msgstr "Vieritä ylös"
 
-#: ../Pages/LogViewPage.qml:38
+#: ../Pages/LogViewPage.qml:34
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
 msgstr "Vieritä alas"
@@ -2187,7 +2187,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Kopioi järjestelmän tiedot"
 
-#: ../appstartup.cpp:365
+#: ../appstartup.cpp:377
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
@@ -2212,7 +2212,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Kumoa"
 
-#: ../appstartup.cpp:304 ../appstartup.cpp:311
+#: ../appstartup.cpp:316 ../appstartup.cpp:323
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "tuntematon"
@@ -2297,12 +2297,12 @@ msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr ""
 
-#: ../Widgets/NoteItem.qml:75
+#: ../Widgets/NoteItem.qml:89
 msgctxt "NoteItem|"
 msgid "Due on %1"
 msgstr ""
 
-#: ../Widgets/TodoListItem.qml:76
+#: ../Widgets/TodoListItem.qml:78
 msgctxt "TodoListItem|"
 msgid "Due on %1"
 msgstr ""
@@ -2433,7 +2433,7 @@ msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
 msgstr ""
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:275
 msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
@@ -2473,12 +2473,12 @@ msgctxt "Application|"
 msgid "Background Sync"
 msgstr ""
 
-#: ../../lib/application.cpp:194
+#: ../../lib/application.cpp:193
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:198
+#: ../../lib/application.cpp:197
 msgctxt "Application|"
 msgid "Quit"
 msgstr ""
@@ -2624,23 +2624,78 @@ msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr ""
 
-#: ../Pages/StartPage.qml:34
+#: ../Pages/StartPage.qml:37
 msgctxt "StartPage|"
 msgid "Libraries"
 msgstr ""
 
-#: ../Pages/StartPage.qml:59
+#: ../Pages/StartPage.qml:62
 msgctxt "StartPage|"
 msgid "Add a new library"
 msgstr ""
 
-#: ../Pages/StartPage.qml:78
+#: ../Pages/StartPage.qml:81
 msgctxt "StartPage|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Pages/StartPage.qml:100
+#: ../Pages/StartPage.qml:103
 msgctxt "StartPage|"
 msgid "Add an account"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:78
+msgctxt "LogViewPage|"
+msgid "Debugging information"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:80
+msgctxt "LogViewPage|"
+msgid "Warning"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:82
+msgctxt "LogViewPage|"
+msgid "Error"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:84
+msgctxt "LogViewPage|"
+msgid "Download"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:86
+msgctxt "LogViewPage|"
+msgid "Upload"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:88
+msgctxt "LogViewPage|"
+msgid "Create local folder"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:90
+msgctxt "LogViewPage|"
+msgid "Create remote folder"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:92
+msgctxt "LogViewPage|"
+msgid "Deleting locally"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:94
+msgctxt "LogViewPage|"
+msgid "Deleting remotely"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:96
+msgctxt "LogViewPage|"
+msgid "Unknown log message type"
+msgstr ""
+
+#: ../Widgets/TodosWidgetDelegate.qml:238
+msgctxt "TodosWidgetDelegate|"
+msgid "More Actions..."
 msgstr ""
 

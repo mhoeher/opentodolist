@@ -241,23 +241,23 @@ msgctxt "LibraryPage|"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../Pages/LibraryPage.qml:341
+#: ../Pages/LibraryPage.qml:344
 msgctxt "LibraryPage|"
 msgid "Note Title"
 msgstr "Titre de la note"
 
 #. "Liste des tâches" était très bien, mais "todo list" est utilisé partout ailleurs, j'ai donc mis ça aussi pour la cohérence de l'application
-#: ../Pages/LibraryPage.qml:354
+#: ../Pages/LibraryPage.qml:357
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
 msgstr "Titre de la todo list"
 
-#: ../Pages/LibraryPage.qml:367
+#: ../Pages/LibraryPage.qml:370
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
 
-#: ../Pages/LibraryPage.qml:446
+#: ../Pages/LibraryPage.qml:447
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
 msgstr "Rien pour l'instant ! Commencez par ajouter une <a href='#note'>note</a>, <a href='#todolist'>todo list</a> ou <a href='#image'>image</a>."
@@ -297,7 +297,7 @@ msgctxt "LogViewPage|"
 msgid "Synchronization Log"
 msgstr "Journal de synchronisation"
 
-#: ../Pages/LogViewPage.qml:26
+#: ../Pages/LogViewPage.qml:22
 msgctxt "LogViewPage|"
 msgid "Copy Log"
 msgstr "Copier le journal"
@@ -555,7 +555,7 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Bibliothèque locale"
 
-#: ../Widgets/TodoListItem.qml:128
+#: ../Widgets/TodoListItem.qml:130
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Pas de Todo en cours - tout est fait"
@@ -756,32 +756,32 @@ msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Créer la bibliothèque par défaut"
 
-#: ../Pages/LibraryPage.qml:506
+#: ../Pages/LibraryPage.qml:503
 msgctxt "LibraryPage|"
 msgid "Sort By"
 msgstr "Trier par"
 
-#: ../Pages/LibraryPage.qml:511
+#: ../Pages/LibraryPage.qml:508
 msgctxt "LibraryPage|"
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../Pages/LibraryPage.qml:518
+#: ../Pages/LibraryPage.qml:515
 msgctxt "LibraryPage|"
 msgid "Title"
 msgstr "Titre"
 
-#: ../Pages/LibraryPage.qml:525
+#: ../Pages/LibraryPage.qml:522
 msgctxt "LibraryPage|"
 msgid "Due To"
 msgstr "Échéance"
 
-#: ../Pages/LibraryPage.qml:532
+#: ../Pages/LibraryPage.qml:529
 msgctxt "LibraryPage|"
 msgid "Created At"
 msgstr "Créé à"
 
-#: ../Pages/LibraryPage.qml:539
+#: ../Pages/LibraryPage.qml:536
 msgctxt "LibraryPage|"
 msgid "Updated At"
 msgstr "Mis à jour à"
@@ -1064,7 +1064,7 @@ msgstr "Choisir une bibliothèque existante sur le serveur pour l'ajouter à l'a
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "No libraries were found on the server."
-msgstr "Aucune bibliothèque n'a été trouvée sur le serveur."
+msgstr "Aucune bibliothèque trouvée sur le serveur."
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
 msgctxt "NewLibraryFromAccountPageForm.ui|"
@@ -1578,37 +1578,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:196
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Gérer vos données personnelles."
 
-#: ../appstartup.cpp:202
+#: ../appstartup.cpp:210
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Activer les optimisations pour écrans tactiles."
 
-#: ../appstartup.cpp:205
+#: ../appstartup.cpp:213
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Exécuter uniquement le service d'arrière-plan de l'application"
 
-#: ../appstartup.cpp:207
+#: ../appstartup.cpp:215
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Exécutez uniquement l'interface graphique de l'application et connectez-vous à un service d'arrière-plan existant"
 
-#: ../appstartup.cpp:212
+#: ../appstartup.cpp:220
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Activez une console sous Windows pour recueillir les données de débogage"
 
-#: ../appstartup.cpp:358
+#: ../appstartup.cpp:370
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../appstartup.cpp:418
+#: ../appstartup.cpp:430
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Quitter"
@@ -1918,7 +1918,7 @@ msgstr "Sélectionner une bibliothèque existante pour l'ajouter à l'applicatio
 #: ../Pages/NewLibraryFromAccountPage.qml:113
 msgctxt "NewLibraryFromAccountPage|"
 msgid "No libraries were found on the server."
-msgstr "Aucune bibliothèque trouvée sur le serveur"
+msgstr "Aucune bibliothèque trouvée sur le serveur."
 
 #: ../Pages/NewLibraryFromAccountPage.qml:122
 msgctxt "NewLibraryFromAccountPage|"
@@ -2174,12 +2174,12 @@ msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Convertir une tâche en Todo et la déplacer dans..."
 
-#: ../Pages/LogViewPage.qml:32
+#: ../Pages/LogViewPage.qml:28
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
 msgstr "Défiler vers le haut"
 
-#: ../Pages/LogViewPage.qml:38
+#: ../Pages/LogViewPage.qml:34
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
 msgstr "Défiler vers le bas"
@@ -2209,7 +2209,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copier les Informations Système"
 
-#: ../appstartup.cpp:365
+#: ../appstartup.cpp:377
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Note Rapide"
@@ -2234,7 +2234,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Annuler"
 
-#: ../appstartup.cpp:304 ../appstartup.cpp:311
+#: ../appstartup.cpp:316 ../appstartup.cpp:323
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "inconnu"
@@ -2319,15 +2319,15 @@ msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Ouvrir l’Éditeur de Notes Rapides au Clic"
 
-#: ../Widgets/NoteItem.qml:75
+#: ../Widgets/NoteItem.qml:89
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr "Exigible le %1"
+msgstr "Pour le %1"
 
-#: ../Widgets/TodoListItem.qml:76
+#: ../Widgets/TodoListItem.qml:78
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr "Exigible le %1"
+msgstr "Pour le %1"
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
@@ -2357,7 +2357,7 @@ msgstr "Choisir Bibliothèque"
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr "Sélectionner un article"
+msgstr "Sélectionner un élément"
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
@@ -2372,7 +2372,7 @@ msgstr "Synchronisation de la bibliothèque..."
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr "annuler"
+msgstr "Annuler"
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
@@ -2382,7 +2382,7 @@ msgstr "Renommer"
 #: ../Components/ApplicationToolBarActions.qml:33
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr "Se déplacer"
+msgstr "Déplacer"
 
 #: ../Components/ApplicationToolBarActions.qml:43
 msgctxt "ApplicationToolBarActions|"
@@ -2398,7 +2398,7 @@ msgstr "Couleur"
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr "Ajouter une étiquette"
+msgstr "Ajouter un tag"
 
 #: ../Components/ApplicationToolBarActions.qml:82
 msgctxt "ApplicationToolBarActions|"
@@ -2408,12 +2408,12 @@ msgstr "Pièce jointe"
 #: ../Components/ApplicationToolBarActions.qml:92
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr "Chercher"
+msgstr "Recherche"
 
 #: ../Components/ApplicationToolBarActions.qml:100
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr "Sorte"
+msgstr "Trier"
 
 #: ../Components/ApplicationToolBarActions.qml:108
 msgctxt "ApplicationToolBarActions|"
@@ -2423,7 +2423,7 @@ msgstr "Définir la date d'échéance"
 #: ../Components/ApplicationToolBarActions.qml:116
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr "Effacer"
+msgstr "Supprimer"
 
 #: ../Components/ApplicationToolBarActions.qml:124
 msgctxt "ApplicationToolBarActions|"
@@ -2453,216 +2453,271 @@ msgstr "Copier la tâche dans..."
 #: ../Pages/NewLibraryInFolderPage.qml:74
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
+msgstr "Choisir un dossier"
 
-#: ../Pages/LibraryPage.qml:272
+#: ../Pages/LibraryPage.qml:275
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
+msgstr "Choisir une image"
 
 #: ../Pages/TodoListPage.qml:244
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Montrer les terminés"
 
 #: ../Pages/TodoListPage.qml:251
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Afficher à la fin"
 
 #: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
+msgstr "Montrer les terminés"
 
 #: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
+msgstr "Afficher à la fin"
 
 #: ../Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr ""
+msgstr "Réinitialiser l'échéance"
 
 #: ../Pages/AccountTypeSelectionPage.qml:71
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../../lib/application.cpp:189
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
+msgstr "Synchronisation en arrière plan"
 
-#: ../../lib/application.cpp:194
+#: ../../lib/application.cpp:193
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
-msgstr ""
+msgstr "L'application poursuit la synchronisation de vos données en arrière plan"
 
-#: ../../lib/application.cpp:198
+#: ../../lib/application.cpp:197
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
+msgstr "Quitter"
 
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
-msgstr ""
+msgstr "Copie de"
 
 #: ../Pages/EditDropboxAccountPage.qml:27
 #: ../Pages/EditDropboxAccountPage.qml:67
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Paramètres de connexion"
 
 #: ../Pages/EditDropboxAccountPage.qml:75
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Des difficultés pour s'enregistrer ?"
 
 #: ../Pages/EditDropboxAccountPage.qml:86
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
+msgstr "Nous avons tenté d'ouvrir le navigateur pour vour vous connectez à Dropbox. Veuillez vous connecter et autoriser l'accès à OpenTodoList."
 
 #: ../Pages/EditDropboxAccountPage.qml:93
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
+msgstr "Votre navigateur ne s'est pas ouvert ? Vous essayer de l'ouvrir à nouveau ou copiez l'URL requise manuellement dans votre navigateur."
 
 #: ../Pages/EditDropboxAccountPage.qml:97
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
+msgstr "Autorisation..."
 
 #: ../Pages/EditDropboxAccountPage.qml:106
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
+msgstr "Ouvrir le navigateur"
 
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Copier le lien"
 
 #: ../Pages/EditDropboxAccountPage.qml:116
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Copié !"
 
 #: ../Pages/EditDropboxAccountPage.qml:125
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nom:"
 
 #: ../Pages/EditDropboxAccountPage.qml:132
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Paramètres de connexion"
 
 #: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Des difficultés pour s'enregistrer ?"
 
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
+msgstr "Nous avons tenté d'ouvrir le navigateur pour vour vous connectez à Dropbox. Veuillez vous connecter et autoriser l'accès à OpenTodoList."
 
 #: ../Pages/NewDropboxAccountPage.qml:81
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
+msgstr "Votre navigateur ne s'est pas ouvert  ? Réessayez ou copiez l'URL vers la barre de votre navigateur."
 
 #: ../Pages/NewDropboxAccountPage.qml:87
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
+msgstr "Autorisation..."
 
 #: ../Pages/NewDropboxAccountPage.qml:96
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
+msgstr "Ouvrir le navigateur"
 
 #: ../Pages/NewDropboxAccountPage.qml:102
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Copier le lien"
 
 #: ../Pages/NewDropboxAccountPage.qml:106
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Copié !"
 
 #: ../Pages/NewDropboxAccountPage.qml:115
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Nom:"
 
 #: ../Pages/NewDropboxAccountPage.qml:122
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../../lib/utils/translations.cpp:91
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
-msgstr ""
+msgstr "Langue du système"
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
-msgstr ""
+msgstr "Chargement..."
 
 #: ../Pages/SettingsPage.qml:279
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
-msgstr ""
+msgstr "Montrer un extrait des notes dans les listes"
 
 #: ../Widgets/ItemDueDateEditor.qml:116
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr ""
+msgstr "Répéter jusq'au %1"
 
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
-msgstr ""
+msgstr "Répéter indéfiniment"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
+msgstr "Bibliothèque"
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
+msgstr "Planifier"
 
-#: ../Pages/StartPage.qml:34
+#: ../Pages/StartPage.qml:37
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
+msgstr "Bibliothèques"
 
-#: ../Pages/StartPage.qml:59
+#: ../Pages/StartPage.qml:62
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
+msgstr "Ajouter une nouvelle bibliothèque"
 
-#: ../Pages/StartPage.qml:78
+#: ../Pages/StartPage.qml:81
 msgctxt "StartPage|"
 msgid "Accounts"
-msgstr ""
+msgstr "Comptes"
 
-#: ../Pages/StartPage.qml:100
+#: ../Pages/StartPage.qml:103
 msgctxt "StartPage|"
 msgid "Add an account"
+msgstr "Ajouter un compte"
+
+#: ../Pages/LogViewPage.qml:78
+msgctxt "LogViewPage|"
+msgid "Debugging information"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:80
+msgctxt "LogViewPage|"
+msgid "Warning"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:82
+msgctxt "LogViewPage|"
+msgid "Error"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:84
+msgctxt "LogViewPage|"
+msgid "Download"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:86
+msgctxt "LogViewPage|"
+msgid "Upload"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:88
+msgctxt "LogViewPage|"
+msgid "Create local folder"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:90
+msgctxt "LogViewPage|"
+msgid "Create remote folder"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:92
+msgctxt "LogViewPage|"
+msgid "Deleting locally"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:94
+msgctxt "LogViewPage|"
+msgid "Deleting remotely"
+msgstr ""
+
+#: ../Pages/LogViewPage.qml:96
+msgctxt "LogViewPage|"
+msgid "Unknown log message type"
+msgstr ""
+
+#: ../Widgets/TodosWidgetDelegate.qml:238
+msgctxt "TodosWidgetDelegate|"
+msgid "More Actions..."
 msgstr ""
 
