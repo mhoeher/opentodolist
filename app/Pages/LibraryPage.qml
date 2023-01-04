@@ -100,7 +100,7 @@ C.Page {
     property alias pageActions: libraryActions.actions
 
     clip: true
-    title: library.name
+    title: library?.name ?? ""
 
     Settings {
         id: settings
@@ -334,7 +334,7 @@ C.Page {
             cache: OTL.Application.cache
             tag: page.tag
             searchString: filterBar.text
-            parentItem: page.library.uid
+            parentItem: page.library?.uid ?? ""
         }
         sortRole: effectiveSortRole
     }
@@ -432,7 +432,7 @@ C.Page {
 
     PullToRefreshOverlay {
         anchors.fill: scrollView
-        refreshEnabled: page.library.hasSynchronizer
+        refreshEnabled: page.library?.hasSynchronizer ?? false
         flickable: grid
         onRefresh: OTL.Application.syncLibrary(page.library)
     }
