@@ -40,6 +40,12 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.43.0" date="2023-01-04">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#5.4.1: Migrate the app to Qt6</li>
+        </ul>
+    </release>
     <release version="3.42.0" date="2022-10-18">
         <p>This release includes the following changes:</p>
         <ul>
