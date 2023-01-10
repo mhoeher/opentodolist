@@ -837,114 +837,6 @@
     </message>
 </context>
 <context>
-    <name>LibraryPage</name>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
-        <source>Red</source>
-        <translation type="unfinished">Rood</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
-        <source>Green</source>
-        <translation type="unfinished">Groen</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="215"/>
-        <source>Blue</source>
-        <translation type="unfinished">Blauw</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="222"/>
-        <source>Yellow</source>
-        <translation type="unfinished">Geel</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="229"/>
-        <source>Orange</source>
-        <translation type="unfinished">Oranje</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="236"/>
-        <source>Lilac</source>
-        <translation type="unfinished">Lila</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="243"/>
-        <source>White</source>
-        <translation type="unfinished">Wit</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="253"/>
-        <source>Rename</source>
-        <translation type="unfinished">Naam wijzigen</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="258"/>
-        <source>Copy</source>
-        <translation type="unfinished">Kopiëren</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="263"/>
-        <source>Delete</source>
-        <translation type="unfinished">Verwijderen</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="275"/>
-        <source>Select Image</source>
-        <translation type="unfinished">Kies een afbeelding</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="344"/>
-        <source>Note Title</source>
-        <translation type="unfinished">Naam van notitie</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="357"/>
-        <source>Todo List Title</source>
-        <translation type="unfinished">Naam van takenlijst</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="370"/>
-        <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="447"/>
-        <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
-        <translation type="unfinished">Deze verzameling is nog leeg! Voeg een &lt;a href=&apos;#note&apos;&gt;notitie&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;takenlijst&lt;/a&gt; of &lt;a href=&apos;#image&apos;&gt;afbeelding&lt;/a&gt; toe.</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="503"/>
-        <source>Sort By</source>
-        <translation type="unfinished">Sorteren op</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="508"/>
-        <source>Manually</source>
-        <translation type="unfinished">Handmatig</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="515"/>
-        <source>Title</source>
-        <translation type="unfinished">Naam</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="522"/>
-        <source>Due To</source>
-        <translation type="unfinished">Einddatum</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="529"/>
-        <source>Created At</source>
-        <translation type="unfinished">Aanmaakdatum</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="536"/>
-        <source>Updated At</source>
-        <translation type="unfinished">Bijwerkdatum</translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="31"/>
@@ -982,17 +874,17 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Foutopsporingsinformatie</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Waarschuwing</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="82"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Foutmelding</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="84"/>
@@ -1002,32 +894,32 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="86"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uploaden</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lokale map aanmaken</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Externe map aanmaken</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bezig met verwijderen van lokale kopie…</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bezig met verwijderen van externe kopie…</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Onbekend soort logbericht</translation>
     </message>
 </context>
 <context>
@@ -2082,7 +1974,7 @@ Herstart OpenTodoList om de wijziging toe te passen.</translation>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
         <source>More Actions...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Meer acties…</translation>
     </message>
 </context>
 <context>

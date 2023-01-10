@@ -2652,55 +2652,55 @@ msgstr "Account toevoegen"
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
+msgstr "Foutopsporingsinformatie"
 
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
+msgstr "Waarschuwing"
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
+msgstr "Foutmelding"
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
+msgstr "Downloaden"
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
+msgstr "Uploaden"
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
+msgstr "Lokale map aanmaken"
 
 #: ../Pages/LogViewPage.qml:90
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
+msgstr "Externe map aanmaken"
 
 #: ../Pages/LogViewPage.qml:92
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
+msgstr "Bezig met verwijderen van lokale kopie…"
 
 #: ../Pages/LogViewPage.qml:94
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
+msgstr "Bezig met verwijderen van externe kopie…"
 
 #: ../Pages/LogViewPage.qml:96
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
+msgstr "Onbekend soort logbericht"
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
+msgstr "Meer acties…"
 
