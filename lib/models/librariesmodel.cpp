@@ -60,7 +60,7 @@ void LibrariesModel::setCache(Cache* cache)
         } else {
             beginResetModel();
             m_uids.clear();
-            for (auto lib : m_libraries.values()) {
+            for (const auto& lib : qAsConst(m_libraries)) {
                 delete lib;
             }
             m_libraries.clear();
@@ -117,7 +117,7 @@ void LibrariesModel::librariesAvailable(QVariantList libraries)
     auto librariesToRemove = QSet<QUuid>::fromList(m_uids);
 #endif
     QList<Library*> newItems;
-    for (auto entry : libraries) {
+    for (const auto& entry : libraries) {
         auto lib = Library::decache(entry, this);
         auto uid = lib->uid();
         librariesToRemove.remove(uid);

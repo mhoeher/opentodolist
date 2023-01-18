@@ -129,7 +129,7 @@ bool Synchronizer::loadLog()
             auto json = QJsonDocument::fromJson(logFile.readAll());
             if (json.isArray()) {
                 auto array = json.toVariant().toList();
-                for (auto obj : array) {
+                for (const auto& obj : array) {
                     LogEntry entry;
                     auto map = obj.toMap();
                     entry.time = map.value("time").toDateTime();
@@ -154,7 +154,7 @@ bool Synchronizer::saveLog()
         QFile logFile(m_directory + "/" + LogFileName);
         if (logFile.open(QIODevice::WriteOnly)) {
             QVariantList list;
-            for (auto entry : m_log) {
+            for (const auto& entry : m_log) {
                 QVariantMap map;
                 map["type"] = QVariant::fromValue(entry.type);
                 map["time"] = entry.time;

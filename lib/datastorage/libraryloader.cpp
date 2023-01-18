@@ -208,7 +208,7 @@ void LibraryLoader::itemsInserted()
     } else {
         qCDebug(log) << "Removing deleted items from cache for" << this;
         auto q = new DeleteItemsQuery();
-        for (auto id : m_itemsToDelete) {
+        for (auto id : qAsConst(m_itemsToDelete)) {
             q->deleteItem(id);
         }
         connect(q, &DeleteItemsQuery::finished, this, &LibraryLoader::scanFinished,

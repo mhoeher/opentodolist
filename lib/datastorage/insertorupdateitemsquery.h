@@ -76,8 +76,8 @@ public:
 
 public slots:
 
-    void add(Item* item, InsertFlags flags = NoFlags);
-    void add(Library* library, InsertFlags flags = NoFlags);
+    void add(Item* item, InsertOrUpdateItemsQuery::InsertFlags flags = NoFlags);
+    void add(Library* library, InsertOrUpdateItemsQuery::InsertFlags flags = NoFlags);
 
 protected:
     // ItemsQuery interface

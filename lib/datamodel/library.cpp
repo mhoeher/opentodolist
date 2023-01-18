@@ -197,11 +197,11 @@ void Library::deleteLibrary()
     if (isValid()) {
         (void)QtConcurrent::run([=]() {
             auto years = Library::years(directoryValue);
-            for (auto year : years) {
+            for (const auto& year : years) {
                 auto months = Library::months(directoryValue, year);
-                for (auto month : months) {
+                for (const auto& month : months) {
                     QDir dir(directoryValue + "/" + year + "/" + month);
-                    for (auto entry : dir.entryList(QDir::Files)) {
+                    for (const auto& entry : dir.entryList(QDir::Files)) {
                         if (!dir.remove(entry)) {
                             qCWarning(log) << "Failed to remove file" << entry << "from"
                                            << dir.absolutePath();
@@ -272,7 +272,7 @@ QVariant Library::syncLog()
         if (sync) {
             sync->loadLog();
             auto log = sync->log();
-            for (auto entry : log) {
+            for (const auto& entry : log) {
                 QVariantMap map;
                 map["time"] = entry.time;
                 map["type"] = QVariant::fromValue(entry.type);
@@ -315,9 +315,9 @@ QStringList Library::years(const QString& directory)
 {
     QStringList result;
     QDir dir(directory);
-    QRegularExpression re("^\\d{4}$");
+    static QRegularExpression re("^\\d{4}$");
     if (!directory.isEmpty() && dir.exists()) {
-        for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        for (const auto& entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (re.match(entry).hasMatch()) {
                 result << entry;
             }
@@ -332,9 +332,9 @@ QStringList Library::months(const QString& directory, const QString& year)
     if (!directory.isEmpty()) {
         auto path = directory + "/" + year;
         QDir dir(path);
-        QRegularExpression re("^[1-9][0-2]?$");
+        static QRegularExpression re("^[1-9][0-2]?$");
         if (dir.exists()) {
-            for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            for (const auto& entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
                 if (re.match(entry).hasMatch()) {
                     result << entry;
                 }
@@ -350,7 +350,7 @@ QStringList Library::itemFiles(const QString& directory, const QString& year, co
     if (!directory.isEmpty()) {
         auto path = directory + "/" + year + "/" + month;
         QDir dir(path);
-        QRegularExpression re(
+        static QRegularExpression re(
                 "^\\{[0-9a-f]{8,8}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{4,4}-[0-9a-f]{12,12}\\}"
                 "\\.otl$",
                 QRegularExpression::CaseInsensitiveOption);

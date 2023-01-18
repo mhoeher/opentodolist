@@ -749,9 +749,8 @@ Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)
         } else {
             task = new Task();
         }
-        for (const auto& property : properties.keys()) {
-            auto value = properties.value(property);
-            task->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            task->setProperty(it.key().toUtf8(), it.value());
         }
         task->setTodoUid(todo->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -1429,9 +1428,9 @@ void Application::onLibraryDeleted(const QUuid& libraryUid)
 void Application::onLibrariesChanged(QVariantList librariesUids)
 {
     auto libs = m_appSettings->librariesFromConfig();
-    for (auto id : librariesUids) {
+    for (const auto& id : librariesUids) {
         auto uid = id.toUuid();
-        for (auto lib : libs) {
+        for (const auto& lib : libs) {
             if (uid == lib->uid()) {
                 if (m_directoriesWithRunningSync.contains(lib->directory())) {
                     m_librariesWithChanges.insert(lib->directory());

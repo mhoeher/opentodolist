@@ -345,16 +345,17 @@ void AppStartup::startGUI()
     // Handle application state changes
     auto guiApp = qobject_cast<QGuiApplication*>(m_app);
     if (guiApp) {
-        connect(guiApp, &QGuiApplication::applicationStateChanged, [=](Qt::ApplicationState state) {
-            qCDebug(log) << "Application state changed to" << state;
-            switch (state) {
-            case Qt::ApplicationActive:
-                emit m_application->applicationActivated();
-                break;
-            default:
-                break;
-            }
-        });
+        connect(guiApp, &QGuiApplication::applicationStateChanged, this,
+                [=](Qt::ApplicationState state) {
+                    qCDebug(log) << "Application state changed to" << state;
+                    switch (state) {
+                    case Qt::ApplicationActive:
+                        emit m_application->applicationActivated();
+                        break;
+                    default:
+                        break;
+                    }
+                });
     }
 }
 
@@ -408,19 +409,20 @@ void AppStartup::showTrayIcon()
     m_trayIcon = new QSystemTrayIcon(this);
     m_trayIcon->setIcon(QIcon(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png"));
     m_trayIcon->setContextMenu(m_trayMenu);
-    connect(m_trayIcon, &QSystemTrayIcon::activated, [=](QSystemTrayIcon::ActivationReason reason) {
-        switch (reason) {
-        case QSystemTrayIcon::Trigger:
-            if (m_backgroundService) {
-                emit m_backgroundService->systemTrayIconClicked();
-            } else if (m_application) {
-                emit m_application->systemTrayIconClicked();
-            }
-            break;
-        default:
-            break;
-        }
-    });
+    connect(m_trayIcon, &QSystemTrayIcon::activated, this,
+            [=](QSystemTrayIcon::ActivationReason reason) {
+                switch (reason) {
+                case QSystemTrayIcon::Trigger:
+                    if (m_backgroundService) {
+                        emit m_backgroundService->systemTrayIconClicked();
+                    } else if (m_application) {
+                        emit m_application->systemTrayIconClicked();
+                    }
+                    break;
+                default:
+                    break;
+                }
+            });
     m_trayIcon->show();
 
     if (m_trayIcon->isSystemTrayAvailable()) {

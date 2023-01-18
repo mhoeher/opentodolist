@@ -469,9 +469,9 @@ QString ItemsModel::timeSpanLabel(Item* item, int role) const
         auto dueDate = dueTo.date().toString("yyyy-MM-dd");
         // Note: Keys in the map are sorted, so we iterate from least to most
         //       recent entries:
-        for (auto key : m_timeSpans.keys()) {
-            if (dueDate >= key) {
-                result = m_timeSpans.value(key).toString();
+        for (auto it = m_timeSpans.constBegin(); it != m_timeSpans.constEnd(); ++it) {
+            if (dueDate >= it.key()) {
+                result = it.value().toString();
             }
         }
     }
@@ -480,14 +480,14 @@ QString ItemsModel::timeSpanLabel(Item* item, int role) const
 
 void ItemsModel::reset()
 {
-    emit beginResetModel();
+    beginResetModel();
     m_ids.clear();
-    for (auto item : m_items.values()) {
+    for (const auto& item : qAsConst(m_items)) {
         delete item;
     }
     m_items.clear();
     triggerFetch();
-    emit endResetModel();
+    endResetModel();
     emit countChanged();
 }
 
@@ -551,7 +551,8 @@ void ItemsModel::fetch()
 
 std::function<bool(ItemPtr item, GetItemsQuery* query)> ItemsModel::getFilterFn() const
 {
-    auto words = m_searchString.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
+    static QRegularExpression re("\\s+");
+    auto words = m_searchString.split(re, Qt::SkipEmptyParts);
     std::function<bool(ItemPtr, GetItemsQuery*)> itemMatchesFilter;
     if (!words.isEmpty()) {
         itemMatchesFilter = [=](ItemPtr item, GetItemsQuery* query) {

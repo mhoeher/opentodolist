@@ -177,11 +177,12 @@ private:
     Q_PROPERTY(QList<QUuid> itemsToExclude READ itemsToExclude WRITE setItemsToExclude NOTIFY
                        itemsToExcludeChanged)
 
+    std::function<bool(ItemPtr item, GetItemsQuery* query)> getFilterFn() const;
+
 private slots:
 
     void reset();
     void fetch();
-    std::function<bool(ItemPtr item, GetItemsQuery* query)> getFilterFn() const;
     void triggerFetch();
     void update(QVariantList items);
     void itemChanged();
