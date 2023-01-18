@@ -301,7 +301,7 @@ void GetItemsQueryTest::run()
         auto q = new GetItemsQuery();
         q->setParent(todoList.uid());
         q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
-            for (auto i : query->childrenOf(item->uid())) {
+            for (const auto& i : query->childrenOf(item->uid())) {
                 if (i->title().contains("task", Qt::CaseInsensitive)) {
                     return true;
                 }

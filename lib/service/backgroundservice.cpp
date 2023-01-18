@@ -66,7 +66,7 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
     syncTimer->setInterval(1000 * 60 * 5);
     syncTimer->setSingleShot(false);
     connect(syncTimer, &QTimer::timeout, this, [=]() {
-        for (auto lib : m_appSettings->librariesFromConfig()) {
+        for (const auto& lib : m_appSettings->librariesFromConfig()) {
             QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
             if (sync) {
                 auto lastSync = sync->lastSync();
@@ -259,7 +259,7 @@ void BackgroundService::doDeleteLibrary(const QUuid& libraryUid)
         q->deleteLibrary(library.data(), library->isInDefaultLocation());
         m_cache->run(q);
         auto libs = m_appSettings->librariesFromConfig();
-        for (auto lib : libs) {
+        for (const auto& lib : libs) {
             if (lib->directory() == library->directory()) {
                 libs.removeOne(lib);
                 break;
@@ -281,7 +281,7 @@ void BackgroundService::watchLibraryForChanges(QSharedPointer<Library> library)
         auto uid = library->uid();
         watcher->setDirectory(library->directory());
         m_watchedDirectories[library->directory()] = watcher;
-        connect(watcher, &DirectoryWatcher::directoryChanged, [=]() {
+        connect(watcher, &DirectoryWatcher::directoryChanged, this, [=]() {
             auto loader = new LibraryLoader();
             loader->setCache(m_cache);
             loader->setDirectory(directory);

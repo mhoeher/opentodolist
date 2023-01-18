@@ -62,7 +62,7 @@ void LibrariesItemsQuery::run()
                                 ItemPtr item_(Item::decache(itemEntry));
                                 auto topLevelItem = item_.objectCast<TopLevelItem>();
                                 if (topLevelItem != nullptr) {
-                                    for (auto tag : topLevelItem->tags()) {
+                                    for (const auto& tag : topLevelItem->tags()) {
                                         tags.insert(tag);
                                     }
                                 }

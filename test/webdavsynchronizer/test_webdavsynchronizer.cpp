@@ -135,7 +135,7 @@ void WebDAVSynchronizerTest::synchronize()
     davClient->setRemoteDirectory(dirName);
     QList<bool> syncState;
     QVERIFY(!davClient->synchronizing());
-    connect(davClient, &WebDAVSynchronizer::synchronizingChanged,
+    connect(davClient, &WebDAVSynchronizer::synchronizingChanged, this,
             [&]() { syncState << davClient->synchronizing(); });
     davClient->synchronize();
     QVERIFY(!davClient->synchronizing());

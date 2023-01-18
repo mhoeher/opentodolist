@@ -91,7 +91,7 @@ QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
                     // https://gitlab.com/rpdev/opentodolist/issues/222
                     auto query = new LibrariesItemsQuery();
                     query->setIncludeCalculatedValues(false);
-                    connect(query, &LibrariesItemsQuery::librariesAvailable,
+                    connect(query, &LibrariesItemsQuery::librariesAvailable, this,
                             [=](QVariantList libraries) {
                                 for (const auto& entry : libraries) {
                                     auto cacheEntry = entry.value<LibraryCacheEntry>();
@@ -206,7 +206,7 @@ void ApplicationSettings::initialize()
                         if (!m_secrets.contains(key)) {
                             m_secrets.insert(key, value);
                             emit accountsChanged(); // Cause a reload of accounts in GUI
-                            for (auto lib : librariesFromConfig()) {
+                            for (const auto& lib : librariesFromConfig()) {
                                 QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
                                 if (sync) {
                                     if (sync->accountUid().isNull()
@@ -330,7 +330,7 @@ void ApplicationSettings::loadLibraries()
     qCDebug(log) << "Loading libraries...";
     m_secrets.clear();
 
-    for (auto library : librariesFromConfig()) {
+    for (const auto& library : librariesFromConfig()) {
         qCDebug(log) << "Loading library" << library->name() << "from" << library->directory();
         auto loader = new LibraryLoader();
         loader->setDirectory(library->directory());
