@@ -259,12 +259,7 @@ void BackgroundService::doDeleteLibrary(const QUuid& libraryUid)
         q->deleteLibrary(library.data(), library->isInDefaultLocation());
         m_cache->run(q);
         auto libs = m_appSettings->librariesFromConfig();
-        for (const auto& lib : libs) {
-            if (lib->directory() == library->directory()) {
-                libs.removeOne(lib);
-                break;
-            }
-        }
+        libs.removeIf([=](auto lib) { return lib->directory() == library->directory(); });
         m_appSettings->librariesToConfig(libs);
         emit libraryDeleted(libraryUid, library->directory());
     } else {
