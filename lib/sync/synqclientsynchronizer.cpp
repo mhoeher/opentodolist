@@ -27,14 +27,34 @@
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.SynqClientSynchronizer", QtDebugMsg);
 
+/**
+ * @class SynqClientSynchronizer
+ * @brief Base class for synchronizers using the SynqClient library.
+ *
+ * This class serves as a common base class for synchronizers that are based on the SynqClient
+ * library. In particular, it introduces some shared setup and utility code and hence avoids
+ * duplicating this in each conctrete SynqClient-based Synchronizer implementation.
+ */
+
+/**
+ * @brief Constructor.
+ */
 SynqClientSynchronizer::SynqClientSynchronizer(QObject* parent) : Synchronizer { parent } {}
 
+/**
+ * @brief Stop the currently running sync.
+ *
+ * This causes the sync to be stopped (if it is running).
+ */
 void SynqClientSynchronizer::stopSync()
 {
     qCWarning(::log) << "Stopping SynqClient sync";
     emit stopRequested();
 }
 
+/**
+ * @brief Set up common settings of the used DirectorySynchronizer.
+ */
 void SynqClientSynchronizer::setupDirectorySynchronizer(SynqClient::DirectorySynchronizer& sync)
 {
     sync.setRemoteDirectoryPath(remoteDirectory());
@@ -83,6 +103,11 @@ void SynqClientSynchronizer::setupDirectorySynchronizer(SynqClient::DirectorySyn
     });
 }
 
+/**
+ * @brief Run the actual sync.
+ *
+ * This method will invoke the synchronization and wait until it is done before returning.
+ */
 void SynqClientSynchronizer::runDirectorySynchronizer(SynqClient::DirectorySynchronizer& sync)
 {
     QEventLoop loop;
