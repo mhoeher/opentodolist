@@ -40,7 +40,7 @@ C.Page {
             }
 
             C.Label {
-                text: "(c) RPdev 2013-2021 - v%1".arg(applicationVersion)
+                text: "(c) RPdev 2013-2023 - v%1".arg(applicationVersion)
                 width: parent.width
                 padding: Utils.AppSettings.smallSpace
             }
@@ -61,18 +61,16 @@ C.Page {
             C.Label {
                 function linkHandler(link) {}
 
-                text: qsTr("OpenTodoList is released under the terms of the " +
-                           "<a href='app-license'>GNU General Public License" +
-                           "</a> version 3 or (at your " +
-                           "choice) any later version.")
+                text: qsTr("OpenTodoList is released under the terms of the "
+                           + "<a href='app-license'>GNU General Public License"
+                           + "</a> version 3 or (at your " + "choice) any later version.")
                 width: parent.width
                 onLinkActivated: {
                     switch (link) {
                     case "app-license":
                         Qt.openUrlExternally(
-                                    "https://gitlab.com/rpdev/opentodolist/" +
-                                    "raw/stable/COPYING");
-                        break;
+                                    "https://gitlab.com/rpdev/opentodolist/" + "raw/stable/COPYING")
+                        break
                     }
                 }
                 padding: Utils.AppSettings.smallSpace
@@ -82,8 +80,7 @@ C.Page {
                 anchors.right: parent.right
                 text: qsTr("Report an Issue")
                 onClicked: Qt.openUrlExternally(
-                               "https://gitlab.com/rpdev/opentodolist/" +
-                               "issues/new")
+                               "https://gitlab.com/rpdev/opentodolist/" + "issues/new")
             }
 
             C.Button {
@@ -97,8 +94,9 @@ C.Page {
                             "version": gitVersion
                         },
                         "os": Qt.platform.os
-                    };
-                    OTL.Application.copyToClipboard(JSON.stringify(info, null, "    "));
+                    }
+                    OTL.Application.copyToClipboard(JSON.stringify(info, null,
+                                                                   "    "))
                 }
             }
 
@@ -151,8 +149,8 @@ C.Page {
                 }
 
                 C.Label {
-                    text: qsTr("<a href='%2'>%1</a>").arg(
-                              item.author).arg(item.website)
+                    text: qsTr("<a href='%2'>%1</a>").arg(item.author).arg(
+                              item.website)
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
@@ -163,8 +161,8 @@ C.Page {
                 }
 
                 C.Label {
-                    text: qsTr("<a href='%1'>%2</a>").arg(
-                              item.licenseUrl).arg(item.licenseType)
+                    text: qsTr("<a href='%1'>%2</a>").arg(item.licenseUrl).arg(
+                              item.licenseType)
                     Layout.fillWidth: true
                 }
 
@@ -173,8 +171,7 @@ C.Page {
                 }
 
                 C.Label {
-                    text: qsTr("<a href='%1'>%1</a>").arg(
-                              item.downloadUrl)
+                    text: qsTr("<a href='%1'>%1</a>").arg(item.downloadUrl)
                     Layout.fillWidth: true
                 }
             }

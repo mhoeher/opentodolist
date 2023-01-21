@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -25,7 +25,7 @@
 #include <QRegularExpression>
 #include <QtConcurrent>
 
-#include "sync/synchronizer.h"
+#include "sync/synqclientsynchronizer.h"
 
 class QNetworkAccessManager;
 
@@ -34,7 +34,7 @@ namespace SynqClient {
 class WebDAVJobFactory;
 }
 
-class WebDAVSynchronizer : public Synchronizer
+class WebDAVSynchronizer : public SynqClientSynchronizer
 {
     Q_OBJECT
 
@@ -57,7 +57,6 @@ public:
 
     // Synchronizer interface
     void synchronize() override;
-    void stopSync() override;
     void setAccount(Account* account) override;
 
     bool disableCertificateCheck() const;
@@ -84,7 +83,6 @@ signals:
     void passwordChanged();
     void urlChanged();
     void serverTypeChanged();
-    void stopRequested();
 
     void workaroundsChanged();
 
@@ -96,7 +94,6 @@ private:
     QString m_username;
     QString m_password;
 
-    bool m_stopRequested;
     bool m_hasSyncErrors;
     WebDAVServerType m_serverType;
     QNetworkAccessManager* m_nam;
