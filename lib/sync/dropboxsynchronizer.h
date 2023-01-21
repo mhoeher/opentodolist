@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2022-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -24,9 +24,9 @@
 #include <QString>
 #include <QDateTime>
 
-#include "synchronizer.h"
+#include "synqclientsynchronizer.h"
 
-class DropboxSynchronizer : public Synchronizer
+class DropboxSynchronizer : public SynqClientSynchronizer
 {
     Q_OBJECT
 
@@ -37,7 +37,6 @@ public:
 
     // Synchronizer interface
     void synchronize() override;
-    void stopSync() override;
     QVariantMap toMap() const override;
     void fromMap(const QVariantMap& map) override;
     void setAccount(Account* account) override;
@@ -48,14 +47,10 @@ public:
 signals:
 
     void accessTokenChanged();
-    void stopRequested();
 
 private:
     // For OAuth
     QString m_accessToken;
-
-    // Sync control
-    bool m_stopRequested;
 };
 
 #endif // SYNC_DROPBOXSYNCHRONIZER_H_
