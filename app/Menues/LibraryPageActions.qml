@@ -19,6 +19,10 @@ Item {
         if (syncLogAction.enabled) {
             result.push(syncLogAction)
         }
+        if (openLibraryInFileExplorerAction.enabled) {
+            result.push(openLibraryInFileExplorerAction)
+        }
+
         return result
     }
     property var syncNowFunction: null
@@ -50,5 +54,22 @@ Item {
         onTriggered: root.openPage(Qt.resolvedUrl("../Pages/LogViewPage.qml"), {
                                        "log": root.library.syncLog()
                                    })
+    }
+
+    C.Action {
+        id: openLibraryInFileExplorerAction
+
+        text: qsTr("Open Library Folder")
+        enabled: {
+            switch (Qt.platform.os) {
+            case "ios":
+            case "android":
+                return false
+            default:
+                return true
+            }
+        }
+        onTriggered: Qt.openUrlExternally(OTL.Application.localFileToUrl(
+                                              root.library.directory))
     }
 }
