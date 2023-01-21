@@ -17,10 +17,9 @@ CenteredDialog {
     property var excludeTodoLists: []
 
     function clear() {
-        comboBox.currentIndex = -1;
-        d.findInitial(false);
+        comboBox.currentIndex = -1
+        d.findInitial(false)
     }
-
 
     title: qsTr("Select Todo List")
     modal: true
@@ -30,9 +29,9 @@ CenteredDialog {
         id: buttons
 
         standardButtons: C.DialogButtonBox.Ok | C.DialogButtonBox.Cancel
-        Component.onCompleted: d.okButton = buttons.standardButton(C.DialogButtonBox.Ok)
+        Component.onCompleted: d.okButton = buttons.standardButton(
+                                   C.DialogButtonBox.Ok)
     }
-
 
     QtObject {
         id: d
@@ -43,13 +42,14 @@ CenteredDialog {
         function findInitial(clear = true) {
             if (selectInitial) {
                 if (clear) {
-                    selectInitial = false;
+                    selectInitial = false
                 }
                 for (var i = 0; i < model.count; ++i) {
-                    let list = model.data(model.index(i, 0), OTL.ItemsModel.ItemRole);
+                    let list = model.data(model.index(i, 0),
+                                          OTL.ItemsModel.ItemRole)
                     if (list.uid === root.initialTodoList.uid) {
-                        comboBox.currentIndex = i;
-                        break;
+                        comboBox.currentIndex = i
+                        break
                     }
                 }
             }
@@ -70,16 +70,10 @@ CenteredDialog {
                 cache: OTL.Application.cache
                 itemType: "TodoList"
                 itemsToExclude: root.excludeTodoLists
+                parentItem: root.library?.uid ?? ""
                 onCountChanged: d.findInitial()
             }
         }
-    }
-
-    Binding {
-        target: comboBox.model
-        property: "parentItem"
-        value: root.library.uid
-        when: root.library
     }
 
     Binding {
