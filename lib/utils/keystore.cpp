@@ -357,7 +357,11 @@ void KeyStore::loadCredentials(const QString& key)
         }
         emit credentialsLoaded(key, secret, success);
     });
+#    ifdef OPENTODOLIST_FLATPAK
     QTimer::singleShot(3000, job, &QKeychain::Job::start);
+#    else
+    job->start();
+#    endif
 #endif
 }
 

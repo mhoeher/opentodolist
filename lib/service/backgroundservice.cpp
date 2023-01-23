@@ -22,6 +22,7 @@
 #include <QCoreApplication>
 #include <QLoggingCategory>
 #include <QThreadPool>
+#include <QTimer>
 
 #include "datamodel/library.h"
 #include "datastorage/applicationsettings.h"

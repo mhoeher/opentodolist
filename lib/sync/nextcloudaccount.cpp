@@ -21,6 +21,8 @@
 
 #include <SynqClient/libsynqclient.h>
 
+#include "sync/webdavsynchronizer.h"
+
 NextCloudAccount::NextCloudAccount(QObject* parent) : WebDAVAccount { parent }
 {
     setType(NextCloud);

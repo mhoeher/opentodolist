@@ -27,6 +27,7 @@
 #include <QNetworkReply>
 #include <QOAuth2AuthorizationCodeFlow>
 #include <QOAuthHttpServerReplyHandler>
+#include <QRandomGenerator>
 #include <QUrlQuery>
 #include <QVariant>
 #include <QVariantMap>

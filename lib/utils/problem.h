@@ -36,7 +36,7 @@ class Problem
     Q_GADGET
 
     Q_PROPERTY(QUuid id READ id CONSTANT)
-    Q_PROPERTY(QString type READ typeName CONSTANT)
+    Q_PROPERTY(Problem::ProblemType type READ type CONSTANT)
     Q_PROPERTY(QObject* contextObject READ getContextObject CONSTANT)
     Q_PROPERTY(QString message READ message CONSTANT)
 

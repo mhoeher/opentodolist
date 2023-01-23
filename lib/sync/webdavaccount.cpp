@@ -21,6 +21,7 @@
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QSettings>
 
 #include <SynqClient/DownloadFileJob>
 #include <SynqClient/ListFilesJob>
@@ -29,6 +30,7 @@
 #include <SynqClient/libsynqclient.h>
 
 #include "datamodel/library.h"
+#include "sync/webdavsynchronizer.h"
 
 /**
  * @brief An account used to connect to a WebDAV server.

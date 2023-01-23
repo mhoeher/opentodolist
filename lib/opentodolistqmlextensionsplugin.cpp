@@ -93,6 +93,7 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterType<ItemsSortFilterModel>(uri, 1, 0, "ItemsSortFilterModel");
     qmlRegisterUncreatableType<ProblemManager>(uri, 1, 0, "ProblemManager",
                                                "Use Application.problemManager");
+    qmlRegisterUncreatableType<Problem>(uri, 1, 0, "Problem", "Use ProblemManager to get Problems");
 
     qmlRegisterUncreatableType<Synchronizer>(uri, 1, 0, "Synchronizer",
                                              "Use specific synchronizer");
