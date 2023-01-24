@@ -22,6 +22,7 @@
 #include <QAbstractOAuthReplyHandler>
 #include <QDesktopServices>
 #include <QGuiApplication>
+#include <QJniObject>
 #include <QJsonDocument>
 #include <QLoggingCategory>
 #include <QNetworkReply>
