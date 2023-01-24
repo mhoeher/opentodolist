@@ -24,47 +24,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="83"/>
+        <location filename="../Pages/AboutPage.qml" line="81"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Ilmoita ongelmasta</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="91"/>
+        <location filename="../Pages/AboutPage.qml" line="88"/>
         <source>Copy System Information</source>
         <translation type="unfinished">Kopioi järjestelmän tiedot</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="112"/>
+        <location filename="../Pages/AboutPage.qml" line="110"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Kolmansien osapuolten kirjastot ja resurssit</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="149"/>
+        <location filename="../Pages/AboutPage.qml" line="147"/>
         <source>Author:</source>
         <translation type="unfinished">Tekijä:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="154"/>
+        <location filename="../Pages/AboutPage.qml" line="152"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="161"/>
+        <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>License:</source>
         <translation type="unfinished">Lisenssi:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="166"/>
+        <location filename="../Pages/AboutPage.qml" line="164"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="172"/>
+        <location filename="../Pages/AboutPage.qml" line="170"/>
         <source>Download:</source>
         <translation type="unfinished">Lataa:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="176"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -139,17 +139,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
+        <location filename="../appstartup.cpp" line="371"/>
         <source>Open</source>
         <translation type="unfinished">Avaa</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="377"/>
+        <location filename="../appstartup.cpp" line="378"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="430"/>
+        <location filename="../appstartup.cpp" line="432"/>
         <source>Quit</source>
         <translation type="unfinished">Lopeta</translation>
     </message>
@@ -839,14 +839,19 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
         <source>Sync Now</source>
         <translation type="unfinished">Synkronoi nyt</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
         <source>Sync Log</source>
         <translation type="unfinished">Synkronointiloki</translation>
+    </message>
+    <message>
+        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <source>Open Library Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1651,14 +1656,6 @@
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
         <translation type="unfinished">Valitse kirjasto</translation>
-    </message>
-</context>
-<context>
-    <name>SelectTodoListDialog</name>
-    <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
-        <source>Select Todo List</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

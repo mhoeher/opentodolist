@@ -24,47 +24,47 @@
         <translation type="unfinished">OpenTodoList es publica sota els termes de la &lt;a href=&apos;app-license&apos;&gt;Llicència Pública General de GNU&lt;/a&gt; versió 3 o (a la vostra elecció) qualsevol versió posterior.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="83"/>
+        <location filename="../Pages/AboutPage.qml" line="81"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Informa d&apos;un problema</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="91"/>
+        <location filename="../Pages/AboutPage.qml" line="88"/>
         <source>Copy System Information</source>
         <translation type="unfinished">Copia la informació del sistema</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="112"/>
+        <location filename="../Pages/AboutPage.qml" line="110"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Biblioteques i recursos de tercers</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="149"/>
+        <location filename="../Pages/AboutPage.qml" line="147"/>
         <source>Author:</source>
         <translation type="unfinished">Autor:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="154"/>
+        <location filename="../Pages/AboutPage.qml" line="152"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="161"/>
+        <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>License:</source>
         <translation type="unfinished">Licència:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="166"/>
+        <location filename="../Pages/AboutPage.qml" line="164"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="172"/>
+        <location filename="../Pages/AboutPage.qml" line="170"/>
         <source>Download:</source>
         <translation type="unfinished">Descàrrega:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="176"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -139,17 +139,17 @@
         <translation type="unfinished">Habilita una consola al Windows per recollir la sortida de depuració</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
+        <location filename="../appstartup.cpp" line="371"/>
         <source>Open</source>
         <translation type="unfinished">Obre</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="377"/>
+        <location filename="../appstartup.cpp" line="378"/>
         <source>Quick Note</source>
         <translation type="unfinished">Nota ràpida</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="430"/>
+        <location filename="../appstartup.cpp" line="432"/>
         <source>Quit</source>
         <translation type="unfinished">Surt</translation>
     </message>
@@ -839,14 +839,19 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
         <source>Sync Now</source>
         <translation type="unfinished">Sincronitza ara</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
         <source>Sync Log</source>
         <translation type="unfinished">Registre de sincronització</translation>
+    </message>
+    <message>
+        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <source>Open Library Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1651,14 +1656,6 @@
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
         <translation type="unfinished">Selecciona la biblioteca</translation>
-    </message>
-</context>
-<context>
-    <name>SelectTodoListDialog</name>
-    <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
-        <source>Select Todo List</source>
-        <translation type="unfinished">Selecciona la llista de coses per fer</translation>
     </message>
 </context>
 <context>
