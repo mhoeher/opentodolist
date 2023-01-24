@@ -27,6 +27,7 @@
 #include "datastorage/librariesitemsquery.h"
 #include "datastorage/cache.h"
 #include "sync/account.h"
+#include "sync/webdavsynchronizer.h"
 #include "utils/keystore.h"
 #include "utils/problemmanager.h"
 #include "utils/problem.h"
@@ -150,6 +151,19 @@ void ApplicationSettings::saveAccount(Account* account)
 }
 
 /**
+ * @brief Load the secrets for the given @p account.
+ *
+ * This usually should not be needed as we try to load secrets once on app startup. However, if this
+ * failed for whatever reason, we can manually retry later.
+ */
+void ApplicationSettings::loadSecretsForAccount(Account* account)
+{
+    if (account) {
+        m_keyStore->loadCredentials(account->uid().toString());
+    }
+}
+
+/**
  * @brief Find a library by its @p uid.
  *
  * Returns the library with the given uid or a nullptr if no such library
@@ -206,6 +220,12 @@ void ApplicationSettings::initialize()
                         if (!m_secrets.contains(key)) {
                             m_secrets.insert(key, value);
                             emit accountsChanged(); // Cause a reload of accounts in GUI
+                            // Remove any previously created problems for this account - might
+                            // happen if the user rejects loading on app startup.
+                            if (m_problemManager != nullptr) {
+                                m_problemManager->removeProblemsFor(QUuid::fromString(key),
+                                                                    Problem::AccountSecretsMissing);
+                            }
                             for (const auto& lib : librariesFromConfig()) {
                                 QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
                                 if (sync) {

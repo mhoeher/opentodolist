@@ -21,6 +21,7 @@
 
 #ifdef Q_OS_ANDROID
 #    include <private/qandroidextras_p.h>
+#    include <QStandardPaths>
 #endif
 
 #ifdef Q_OS_IOS

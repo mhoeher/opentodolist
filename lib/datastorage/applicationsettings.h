@@ -47,6 +47,7 @@ public:
     QList<QSharedPointer<Library>> librariesFromConfig();
     void librariesToConfig(QList<QSharedPointer<Library>> libraries);
     void saveAccount(Account* account);
+    void loadSecretsForAccount(Account* account);
 
     QSharedPointer<Library> libraryById(const QUuid& uid);
 

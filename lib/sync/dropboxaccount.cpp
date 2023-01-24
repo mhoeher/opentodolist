@@ -27,12 +27,14 @@
 #include <QNetworkReply>
 #include <QOAuth2AuthorizationCodeFlow>
 #include <QOAuthHttpServerReplyHandler>
+#include <QRandomGenerator>
 #include <QUrlQuery>
 #include <QVariant>
 #include <QVariantMap>
 
 #ifdef Q_OS_ANDROID
 #    include <QJniEnvironment>
+#    include <QJniObject>
 #endif
 
 #include <SynqClient/CompositeJob>

@@ -21,6 +21,8 @@
 
 #include <SynqClient/libsynqclient.h>
 
+#include "sync/webdavsynchronizer.h"
+
 OwnCloudAccount::OwnCloudAccount(QObject* parent) : WebDAVAccount { parent }
 {
     setType(OwnCloud);
