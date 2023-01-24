@@ -22,7 +22,6 @@
 #include <QAbstractOAuthReplyHandler>
 #include <QDesktopServices>
 #include <QGuiApplication>
-#include <QJniObject>
 #include <QJsonDocument>
 #include <QLoggingCategory>
 #include <QNetworkReply>
@@ -35,6 +34,7 @@
 
 #ifdef Q_OS_ANDROID
 #    include <QJniEnvironment>
+#    include <QJniObject>
 #endif
 
 #include <SynqClient/CompositeJob>
