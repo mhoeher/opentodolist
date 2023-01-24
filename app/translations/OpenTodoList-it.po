@@ -889,42 +889,42 @@ msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList è rilasciato sotto i termini della <a href='app-license'>GNU General Public License</a> versione 3 o (a vostra scelta) qualsiasi versione successiva."
 
-#: ../Pages/AboutPage.qml:83
+#: ../Pages/AboutPage.qml:81
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Segnala un problema"
 
-#: ../Pages/AboutPage.qml:112
+#: ../Pages/AboutPage.qml:110
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Librerie e risorse di terzi"
 
-#: ../Pages/AboutPage.qml:149
+#: ../Pages/AboutPage.qml:147
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Autore:"
 
-#: ../Pages/AboutPage.qml:154
+#: ../Pages/AboutPage.qml:152
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:161
+#: ../Pages/AboutPage.qml:159
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licenza:"
 
-#: ../Pages/AboutPage.qml:166
+#: ../Pages/AboutPage.qml:164
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:172
+#: ../Pages/AboutPage.qml:170
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Scaricare:"
 
-#: ../Pages/AboutPage.qml:176
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1517,12 +1517,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Swipe per contrassegnare completato"
 
-#: ../Menues/LibraryPageActions.qml:31
+#: ../Menues/LibraryPageActions.qml:35
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Sincronizza ora"
 
-#: ../Menues/LibraryPageActions.qml:48
+#: ../Menues/LibraryPageActions.qml:52
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Log di sincronizzazione"
@@ -1587,12 +1587,12 @@ msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Abilita console di debug su Windows"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:371
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Apri"
 
-#: ../appstartup.cpp:430
+#: ../appstartup.cpp:432
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Esci"
@@ -2186,12 +2186,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Creazione sync lock fallita:"
 
-#: ../Pages/AboutPage.qml:91
+#: ../Pages/AboutPage.qml:88
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copia informazioni di sistema"
 
-#: ../appstartup.cpp:377
+#: ../appstartup.cpp:378
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Nota rapida"
@@ -2701,5 +2701,10 @@ msgstr ""
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
+msgstr ""
+
+#: ../Menues/LibraryPageActions.qml:62
+msgctxt "LibraryPageActions|"
+msgid "Open Library Folder"
 msgstr ""
 

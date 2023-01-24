@@ -889,42 +889,42 @@ msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList wordt verspreid onder de voorwaarden van de <a href='app-license'>GNU General Public License</a>, versie 3 of (indien gewenst) hoger."
 
-#: ../Pages/AboutPage.qml:83
+#: ../Pages/AboutPage.qml:81
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Probleem melden"
 
-#: ../Pages/AboutPage.qml:112
+#: ../Pages/AboutPage.qml:110
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Externe bibliotheken en bronnen"
 
-#: ../Pages/AboutPage.qml:149
+#: ../Pages/AboutPage.qml:147
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Maker:"
 
-#: ../Pages/AboutPage.qml:154
+#: ../Pages/AboutPage.qml:152
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:161
+#: ../Pages/AboutPage.qml:159
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licentie:"
 
-#: ../Pages/AboutPage.qml:166
+#: ../Pages/AboutPage.qml:164
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:172
+#: ../Pages/AboutPage.qml:170
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Downloaden:"
 
-#: ../Pages/AboutPage.qml:176
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1516,12 +1516,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Veeg om te markeren als afgerond"
 
-#: ../Menues/LibraryPageActions.qml:31
+#: ../Menues/LibraryPageActions.qml:35
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Nu synchroniseren"
 
-#: ../Menues/LibraryPageActions.qml:48
+#: ../Menues/LibraryPageActions.qml:52
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Synchronisatielogboek"
@@ -1586,12 +1586,12 @@ msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Windows-opdrachtprompt openen om foutopsporingsuitvoer te tonen"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:371
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Openen"
 
-#: ../appstartup.cpp:430
+#: ../appstartup.cpp:432
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Afsluiten"
@@ -2187,12 +2187,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Er kan geen synchronisatievergrendeling worden aangemaakt:"
 
-#: ../Pages/AboutPage.qml:91
+#: ../Pages/AboutPage.qml:88
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Systeeminformatie kopiëren"
 
-#: ../appstartup.cpp:377
+#: ../appstartup.cpp:378
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Snelle notitie"
@@ -2703,4 +2703,9 @@ msgstr "Onbekend soort logbericht"
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
 msgstr "Meer acties…"
+
+#: ../Menues/LibraryPageActions.qml:62
+msgctxt "LibraryPageActions|"
+msgid "Open Library Folder"
+msgstr "Verzamelingsmap openen"
 

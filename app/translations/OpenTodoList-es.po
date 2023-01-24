@@ -894,42 +894,42 @@ msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList se publica bajo los términos de la <a href='app-license'>GNU General Public License</a> versión 3 o (a su elección) cualquier versión posterior."
 
-#: ../Pages/AboutPage.qml:83
+#: ../Pages/AboutPage.qml:81
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Informar de un asunto"
 
-#: ../Pages/AboutPage.qml:112
+#: ../Pages/AboutPage.qml:110
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Bibliotecas y recursos de terceros"
 
-#: ../Pages/AboutPage.qml:149
+#: ../Pages/AboutPage.qml:147
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Autor:"
 
-#: ../Pages/AboutPage.qml:154
+#: ../Pages/AboutPage.qml:152
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:161
+#: ../Pages/AboutPage.qml:159
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licencia:"
 
-#: ../Pages/AboutPage.qml:166
+#: ../Pages/AboutPage.qml:164
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:172
+#: ../Pages/AboutPage.qml:170
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Descarga:"
 
-#: ../Pages/AboutPage.qml:176
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1521,12 +1521,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Pase a la marca hecha"
 
-#: ../Menues/LibraryPageActions.qml:31
+#: ../Menues/LibraryPageActions.qml:35
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Sincronizar ahora"
 
-#: ../Menues/LibraryPageActions.qml:48
+#: ../Menues/LibraryPageActions.qml:52
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Registro de sincronización"
@@ -1591,12 +1591,12 @@ msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Habilite una consola en Windows para recopilar resultados de depuración"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:371
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Abierta"
 
-#: ../appstartup.cpp:430
+#: ../appstartup.cpp:432
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Abandonar"
@@ -2191,12 +2191,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "No se pudo crear el bloqueo de sincronización:"
 
-#: ../Pages/AboutPage.qml:91
+#: ../Pages/AboutPage.qml:88
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copiar información del sistema"
 
-#: ../appstartup.cpp:377
+#: ../appstartup.cpp:378
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Nota rápida"
@@ -2706,5 +2706,10 @@ msgstr ""
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
+msgstr ""
+
+#: ../Menues/LibraryPageActions.qml:62
+msgctxt "LibraryPageActions|"
+msgid "Open Library Folder"
 msgstr ""
 
