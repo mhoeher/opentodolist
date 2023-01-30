@@ -101,7 +101,6 @@ QVariantList Translations::availableLanguages() const
 void Translations::load()
 {
     QSettings settings;
-    qCWarning(log) << settings.fileName();
     settings.beginGroup("Language");
     m_language = settings.value("language", m_language).toString();
     settings.endGroup();

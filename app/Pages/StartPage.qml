@@ -12,6 +12,15 @@ C.Page {
 
     padding: 0
 
+    savePage: function () {
+        let result = {}
+        return result
+    }
+
+    restorePage: function (data) {}
+
+    restoreUrl: Qt.resolvedUrl("./StartPage.qml")
+
     C.ScrollView {
         id: scrollView
 
