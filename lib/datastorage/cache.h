@@ -52,6 +52,8 @@ class Library;
 class Cache : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int numberOfRunningTransactions READ numberOfRunningTransactions WRITE
+                       setNumberOfRunningTransactions NOTIFY numberOfRunningTransactionsChanged)
 public:
     static const QByteArray RootId;
     static const QByteArray VersionKey;
@@ -78,6 +80,8 @@ public:
     bool setItemTimestamp(const Item* item);
     bool setLibraryTimestamp(const Library* library, QLMDB::Transaction* transaction);
     bool setLibraryTimestamp(const Library* library);
+
+    int numberOfRunningTransactions() const;
 
 signals:
 
@@ -106,6 +110,11 @@ signals:
      */
     void finished();
 
+    /**
+     * @brief The number of jobs running on the cache changed.
+     */
+    void numberOfRunningTransactionsChanged();
+
 public slots:
 
 private:
@@ -119,11 +128,15 @@ private:
     QSharedPointer<QLMDB::Database> m_fileTimestamps;
     QSharedPointer<QTemporaryDir> m_tmpCacheDir;
     QThreadPool* m_threadPool;
+    QThreadPool* m_nonDBThreadPool;
+    int m_numberOfRunningTransactions;
     bool m_valid;
 
     bool openDBs();
     bool initVersion0();
     bool initVersion1();
+
+    void setNumberOfRunningTransactions(int newNumberOfRunningTransactions);
 };
 
 #endif // DATASTORAGE_CACHE_H_

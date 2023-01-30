@@ -49,6 +49,8 @@ public:
     explicit ItemsQuery(QObject* parent = nullptr);
     ~ItemsQuery() override;
 
+    bool isNonDBQuery() const;
+
 signals:
 
     /**
@@ -73,6 +75,7 @@ signals:
     void librariesChanged(QVariantList libraries);
 
 protected:
+    Cache* cache() const;
     QSharedPointer<QLMDB::Context> context() const;
     QSharedPointer<QLMDB::Database> global() const;
     QSharedPointer<QLMDB::Database> items() const;
@@ -109,13 +112,16 @@ protected:
 
     QSharedPointer<Item> itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid);
     QVector<QUuid> lookupParents(QLMDB::Transaction& t, const Item* item);
+    void setIsNonDBQuery(bool newIsNonDBQuery);
 
 private:
+    Cache* m_cache;
     QSharedPointer<QLMDB::Context> m_context;
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
     bool m_dataChanged;
+    bool m_isNonDBQuery;
     QSet<QByteArray> m_changedLibrariesUids;
     QSet<QByteArray> m_changedParentUids;
     QHash<QUuid, QUuid> m_parentsMap; // Maps from item UID -> parent UID

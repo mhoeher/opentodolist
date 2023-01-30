@@ -58,7 +58,7 @@ void GetLibraryItemsUIDsItemsQuery::addLibrary(const QUuid uid)
 void GetLibraryItemsUIDsItemsQuery::run()
 {
     QSet<QUuid> result;
-    QLMDB::Transaction t(*context());
+    QLMDB::Transaction t(*context(), QLMDB::Transaction::ReadOnly);
 
     while (!m_itemQueue.isEmpty()) {
         auto nextId = m_itemQueue.dequeue();

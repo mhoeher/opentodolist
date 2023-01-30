@@ -111,6 +111,8 @@ target_sources(
         sync/remotelibraryinfo.cpp
         sync/synqclientsynchronizer.h
         sync/synqclientsynchronizer.cpp
+        datastorage/loadlibraryquery.h
+        datastorage/loadlibraryquery.cpp
 
         # Include SimpleCrypt source:
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp

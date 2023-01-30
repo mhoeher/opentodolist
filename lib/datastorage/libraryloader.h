@@ -21,10 +21,10 @@
 #define DATASTORAGE_LIBRARYLOADER_H_
 
 #include <QObject>
+#include <QUuid>
+#include <QSet>
 #include <QThread>
 #include <QFutureWatcher>
-
-#include "datamodel/item.h"
 
 class LibraryLoaderWorker;
 class Cache;
