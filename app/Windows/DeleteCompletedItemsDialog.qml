@@ -6,13 +6,12 @@ import "../Components"
 import "../Controls" as C
 import "../Utils"
 
-
 CenteredDialog {
     id: dialog
 
     function deleteCompletedItems(item) {
-        d.item = item;
-        dialog.open();
+        d.item = item
+        dialog.open()
     }
 
     standardButtons: C.Dialog.Ok | C.Dialog.Cancel
@@ -22,14 +21,15 @@ CenteredDialog {
     onAccepted: {
         switch (d.item.itemType) {
         case "TodoList":
-            OTL.Application.deleteDoneTodos(d.item);
-            break;
+            OTL.Application.deleteDoneTodos(d.item)
+            break
         case "Todo":
-            OTL.Application.deleteDoneTasks(d.item);
-            break;
+            OTL.Application.deleteDoneTasks(d.item)
+            break
         default:
-            console.error("Unhandled item type ", d.item.itemType, " for item ", d.item);
-            break;
+            console.error("Unhandled item type ", d.item.itemType,
+                          " for item ", d.item)
+            break
         }
     }
 
@@ -39,40 +39,30 @@ CenteredDialog {
         property OTL.LibraryItem item
         property OTL.Library library
 
-        readonly property string deleteTodoListItems: qsTr(
-                                                          "Do you really want to delete all done " +
-                                                          "todos in the todo list " +
-                                                          "<strong>%1</strong>? This cannot be " +
-                                                          "undone."
-                                                          )
-        readonly property string deleteTodoItems: qsTr(
-                                                      "Do you really want to delete all done " +
-                                                      "tasks in the todo " +
-                                                      "<strong>%1</strong>? This cannot be " +
-                                                      "undone."
-                                                      )
+        readonly property string deleteTodoListItems: qsTr("Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone.")
+        readonly property string deleteTodoItems: qsTr("Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone.")
     }
 
     C.Label {
         width: dialog.availableWidth
         text: {
             if (d.item) {
-                var msg;
+                var msg
                 switch (d.item.itemType) {
                 case "TodoList":
-                    msg = d.deleteTodoListItems;
-                    break;
+                    msg = d.deleteTodoListItems
+                    break
                 case "Todo":
-                    msg = d.deleteTodoItems;
-                    break;
+                    msg = d.deleteTodoItems
+                    break
                 default:
-                    console.debug("Warning: Unhandled item type " +
-                                  d.item.itemType);
-                    return;
+                    console.debug(
+                                "Warning: Unhandled item type " + d.item.itemType)
+                    return
                 }
-                return msg.arg(Markdown.markdownToPlainText(d.item.title));
+                return msg.arg(Markdown.markdownToPlainText(d.item.title))
             }
-            return "";
+            return ""
         }
     }
 }
