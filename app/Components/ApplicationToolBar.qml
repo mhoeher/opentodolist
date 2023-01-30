@@ -14,7 +14,9 @@ C.ToolBar {
     id: headerToolBar
 
     property string title: ""
-    property var pageActions: {[]}
+    property var pageActions: {
+        []
+    }
 
     property alias sidebarControl: sidebarControl
     property alias backToolButton: backToolButton
@@ -26,7 +28,6 @@ C.ToolBar {
         pageMenuToolButton.menu.close()
     }
 
-
     leftPadding: 10
     rightPadding: 10
 
@@ -34,37 +35,34 @@ C.ToolBar {
         id: d
 
         property int numVisibleDynamicPageMenuItems: {
-            return visibleDynamicPageActions.length -
-                    numVisibleDynamicToolBarButtons;
+            return visibleDynamicPageActions.length - numVisibleDynamicToolBarButtons
         }
 
         property int numVisibleDynamicToolBarButtons: {
-            var numButtons = widthForDynamicPageToolButtons /
-                    (pageMenuToolButton.width + toolBarLayout.spacing);
-            numButtons = parseInt(numButtons);
+            var numButtons = widthForDynamicPageToolButtons
+                    / (pageMenuToolButton.width + toolBarLayout.spacing)
+            numButtons = parseInt(numButtons)
             // Cap to maximum number of available actions:
-            numButtons = Math.min(numButtons, visibleDynamicPageActions.length);
-            return numButtons;
+            numButtons = Math.min(numButtons, visibleDynamicPageActions.length)
+            return numButtons
         }
 
         property int widthForDynamicPageToolButtons: {
             // Calculate the space available for dynamic tool buttons:
-            var availableWidth = toolBarLayout.width;
+            var availableWidth = toolBarLayout.width
             // We need some space for the "static" buttons:
-            availableWidth -=
-                    sidebarControl.width * (sidebarControl.visible ? 1 : 0) +
-                    problemsButton.width * (problemsButton.visible ? 1 : 0) +
-                    backToolButton.width * (backToolButton.visible ? 1 : 0) +
-                    busyIndicator.implicitWidth * (busyIndicator.visible ? 1 : 0) +
-                    pageMenuToolButton.width;
+            availableWidth -= sidebarControl.width * (sidebarControl.visible ? 1 : 0)
+                    + problemsButton.width * (problemsButton.visible ? 1 : 0) + backToolButton.width
+                    * (backToolButton.visible ? 1 : 0) + busyIndicator.implicitWidth
+                    * (busyIndicator.visible ? 1 : 0) + pageMenuToolButton.width
             // Reserve some "minimum" space for the label:
-            availableWidth -= Math.min(
-                        fontMetrics.averageCharacterWidth * 30,
-                        fontMetrics.boundingRect(pageTitleLabel.text).width);
-            availableWidth -= 3 * toolBarLayout.spacing;
+            availableWidth -= Math.min(fontMetrics.averageCharacterWidth * 30,
+                                       fontMetrics.boundingRect(
+                                           pageTitleLabel.text).width)
+            availableWidth -= 3 * toolBarLayout.spacing
 
             // Cap to 0:
-            return Math.max(availableWidth, 0);
+            return Math.max(availableWidth, 0)
         }
 
         property var visibleDynamicToolBarButtons
@@ -73,37 +71,39 @@ C.ToolBar {
         property var visibleDynamicPageActions
 
         visibleDynamicPageActions: {
-            var result = [];
+            var result = []
             for (var i = 0; i < dynamicPageActions.length; ++i) {
-                var action = dynamicPageActions[i];
+                var action = dynamicPageActions[i]
                 if (action.visible) {
-                    result.push(action);
+                    result.push(action)
                 }
             }
-            return result;
+            return result
         }
 
         visibleDynamicToolBarButtons: {
-            var result = [];
+            var result = []
             for (var i = 0; i < numVisibleDynamicToolBarButtons; ++i) {
-                var action = visibleDynamicPageActions[i];
-                result.push(action);
+                var action = visibleDynamicPageActions[i]
+                result.push(action)
             }
-            return result;
+            return result
         }
 
         visibleDynamicPageMenuItems: {
-            var result = [];
+            var result = []
             for (var i = 0; i < numVisibleDynamicPageMenuItems; ++i) {
-                var action = visibleDynamicPageActions[
-                            numVisibleDynamicToolBarButtons + i];
-                result.push(action);
+                var action = visibleDynamicPageActions[numVisibleDynamicToolBarButtons + i]
+                result.push(action)
             }
-            return result;
+            return result
         }
     }
 
-    FontMetrics { id: fontMetrics; font: pageTitleLabel.font }
+    FontMetrics {
+        id: fontMetrics
+        font: pageTitleLabel.font
+    }
 
     RowLayout {
         id: toolBarLayout
@@ -124,9 +124,9 @@ C.ToolBar {
                 switch (Qt.platform.os) {
                 case "ios":
                 case "macos":
-                    return Fonts.Icons.mdiArrowBackIosNew;
+                    return Fonts.Icons.mdiArrowBackIosNew
                 default:
-                    return Fonts.Icons.mdiArrowBack;
+                    return Fonts.Icons.mdiArrowBack
                 }
             }
             Layout.alignment: Qt.AlignVCenter
@@ -138,6 +138,19 @@ C.ToolBar {
             symbol: Fonts.Icons.mdiReportProblem
             Material.foreground: Utils.Colors.negativeColor
             Layout.alignment: Qt.AlignVCenter
+        }
+
+        C.ToolButton {
+            id: cacheAccessIndicator
+
+            symbol: Fonts.Icons.mdiCached
+            background: Item {}
+            opacity: OTL.Application.cache.numberOfRunningTransactions > 0 ? 1.0 : 0.0
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 200
+                }
+            }
         }
 
         C.BusyIndicator {
@@ -179,7 +192,8 @@ C.ToolBar {
                 visible: action.visible
                 Layout.alignment: Qt.AlignVCenter
                 C.ToolTip.text: action.text
-                C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered && action.text !== ""
+                C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered
+                                   && action.text !== ""
                 C.ToolTip.delay: Utils.AppSettings.tooltipDelay
                 C.ToolTip.timeout: Utils.AppSettings.tooltipTimeout
             }
@@ -191,30 +205,37 @@ C.ToolBar {
             property int numPageActions: pageActions.length
 
             symbol: Fonts.Icons.mdiMoreVert
-            visible: d.numVisibleDynamicPageMenuItems > 0 ||
-                     numPageActions > 0
+            visible: d.numVisibleDynamicPageMenuItems > 0 || numPageActions > 0
             Layout.alignment: Qt.AlignVCenter
             property var pageMenuEntries: {
-                let result = [];
-                let dynamicPageActions = d.visibleDynamicPageMenuItems;
+                let result = []
+                let dynamicPageActions = d.visibleDynamicPageMenuItems
                 for (var i = 0; i < dynamicPageActions.length; ++i) {
-                    let item = dynamicPageActions[i];
-                    result.push({"type": "item", "item": item});
+                    let item = dynamicPageActions[i]
+                    result.push({
+                                    "type": "item",
+                                    "item": item
+                                })
                 }
                 if (dynamicPageActions.length > 0 && pageActions.length > 0) {
-                    result.push({"type": "separator"})
+                    result.push({
+                                    "type": "separator"
+                                })
                 }
                 for (i = 0; i < pageActions.length; ++i) {
-                    let item = pageActions[i];
-                    result.push({"type": "item", "item": item});
+                    let item = pageActions[i]
+                    result.push({
+                                    "type": "item",
+                                    "item": item
+                                })
                 }
-                return result;
+                return result
             }
 
             onPageMenuEntriesChanged: {
-                pageMenuEntriesModel.clear();
+                pageMenuEntriesModel.clear()
                 for (var i = 0; i < pageMenuEntries.length; ++i) {
-                    pageMenuEntriesModel.append(pageMenuEntries[i]);
+                    pageMenuEntriesModel.append(pageMenuEntries[i])
                 }
             }
 

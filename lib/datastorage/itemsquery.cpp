@@ -37,11 +37,13 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.ItemsQuery", QtWarningMsg);
  */
 ItemsQuery::ItemsQuery(QObject* parent)
     : QObject(parent),
+      m_cache(nullptr),
       m_context(),
       m_global(),
       m_items(),
       m_children(),
       m_dataChanged(false),
+      m_isNonDBQuery(false),
       m_changedLibrariesUids(),
       m_changedParentUids(),
       m_parentsMap()
@@ -52,6 +54,14 @@ ItemsQuery::ItemsQuery(QObject* parent)
  * @brief Destructor.
  */
 ItemsQuery::~ItemsQuery() {}
+
+/**
+ * @brief The Cache the query runs on.
+ */
+Cache* ItemsQuery::cache() const
+{
+    return m_cache;
+}
 
 /**
  * @brief The database containing global settings.
@@ -360,6 +370,27 @@ QVector<QUuid> ItemsQuery::lookupParents(QLMDB::Transaction& t, const Item* item
         }
     }
     return result;
+}
+
+/**
+ * @brief Indicates if this query is unrelated to the actual database.
+ *
+ * If this is set to true, the query will be run via a dedicated thread pool. This is useful to
+ * parallelize and not block any work that could happen in parallel on the database.
+ *
+ * The default is false (i.e. queries are run in the thread pool dedicated for work on the DB).
+ */
+bool ItemsQuery::isNonDBQuery() const
+{
+    return m_isNonDBQuery;
+}
+
+/**
+ * @brief Set if the query is not related to the actual database.
+ */
+void ItemsQuery::setIsNonDBQuery(bool newIsNonDBQuery)
+{
+    m_isNonDBQuery = newIsNonDBQuery;
 }
 
 /**

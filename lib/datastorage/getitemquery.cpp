@@ -37,7 +37,7 @@ void GetItemQuery::setUid(const QUuid& uid)
 
 void GetItemQuery::run()
 {
-    QLMDB::Transaction t(*context());
+    QLMDB::Transaction t(*context(), QLMDB::Transaction::ReadOnly);
     auto uid = m_uid.toByteArray();
     auto data = items()->get(t, uid);
     if (!data.isNull()) {

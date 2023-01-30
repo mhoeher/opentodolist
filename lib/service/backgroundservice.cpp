@@ -28,7 +28,7 @@
 #include "datastorage/applicationsettings.h"
 #include "datastorage/cache.h"
 #include "datastorage/deleteitemsquery.h"
-#include "datastorage/libraryloader.h"
+#include "datastorage/loadlibraryquery.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "sync/syncjob.h"
@@ -224,12 +224,10 @@ void BackgroundService::onSyncFinished(const QString& libraryDirectory)
             // Load changes from disk:
             auto lib = m_appSettings->libraryById(entry.libraryUid);
             if (lib) {
-                auto loader = new LibraryLoader();
-                loader->setCache(m_cache);
-                loader->setLibraryId(lib->uid());
-                loader->setDirectory(lib->directory());
-                connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-                loader->scan();
+                auto q = new LoadLibraryQuery();
+                q->setLibraryId(lib->uid());
+                q->setDirectory(lib->directory());
+                m_cache->run(q);
             }
         }
     }
@@ -278,12 +276,10 @@ void BackgroundService::watchLibraryForChanges(QSharedPointer<Library> library)
         watcher->setDirectory(library->directory());
         m_watchedDirectories[library->directory()] = watcher;
         connect(watcher, &DirectoryWatcher::directoryChanged, this, [=]() {
-            auto loader = new LibraryLoader();
-            loader->setCache(m_cache);
-            loader->setDirectory(directory);
-            loader->setLibraryId(uid);
-            connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-            loader->scan();
+            auto q = new LoadLibraryQuery;
+            q->setDirectory(directory);
+            q->setLibraryId(uid);
+            m_cache->run(q);
         });
     }
 }

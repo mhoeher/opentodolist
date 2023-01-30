@@ -40,7 +40,7 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.LibrariesItemsQuery", QtDebugMsg)
 void LibrariesItemsQuery::run()
 {
     QVariantList result;
-    QLMDB::Transaction t(*context());
+    QLMDB::Transaction t(*context(), QLMDB::Transaction::ReadOnly);
     QLMDB::Cursor itemsCursor(t, *items());
     QLMDB::Cursor childrenCursor(t, *children());
     QLMDB::Cursor topLevelItemIdsCursor(t, *children());

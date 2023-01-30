@@ -25,13 +25,13 @@
 #include "datamodel/library.h"
 #include "fileutils.h"
 #include "datastorage/librariesitemsquery.h"
+#include "datastorage/loadlibraryquery.h"
 #include "datastorage/cache.h"
 #include "sync/account.h"
 #include "sync/webdavsynchronizer.h"
 #include "utils/keystore.h"
 #include "utils/problemmanager.h"
 #include "utils/problem.h"
-#include "datastorage/libraryloader.h"
 #include "utils/jsonutils.h"
 
 #include "sync/webdavaccount.h"
@@ -352,12 +352,10 @@ void ApplicationSettings::loadLibraries()
 
     for (const auto& library : librariesFromConfig()) {
         qCDebug(log) << "Loading library" << library->name() << "from" << library->directory();
-        auto loader = new LibraryLoader();
-        loader->setDirectory(library->directory());
-        loader->setLibraryId(library->uid());
-        loader->setCache(m_cache);
-        connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-        loader->scan();
+        auto q = new LoadLibraryQuery();
+        q->setDirectory(library->directory());
+        q->setLibraryId(library->uid());
+        m_cache->run(q);
     }
 
     // Load secrets of all accounts:

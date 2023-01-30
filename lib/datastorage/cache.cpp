@@ -91,6 +91,8 @@ Cache::Cache(QObject* parent)
       m_items(),
       m_children(),
       m_threadPool(new QThreadPool(this)),
+      m_nonDBThreadPool(new QThreadPool(this)),
+      m_numberOfRunningTransactions(0),
       m_valid(false)
 {
 }
@@ -98,7 +100,16 @@ Cache::Cache(QObject* parent)
 /**
  * @brief Destructor.
  */
-Cache::~Cache() {}
+Cache::~Cache()
+{
+    // Explicitly delete the thread pool - this causes us to wait for remaining jobs. Otherwise,
+    // we might have dangling jobs accessing already destroyed resources.
+    delete m_nonDBThreadPool;
+    m_nonDBThreadPool = nullptr;
+
+    delete m_threadPool;
+    m_threadPool = nullptr;
+}
 
 /**
  * @brief The directory where the on-disk cache is stored.
@@ -211,6 +222,7 @@ void Cache::run(ItemsQuery* query)
             delete query;
         } else {
             qCDebug(log) << "Preparing query" << query << "for run";
+            query->m_cache = this;
             query->m_context = m_context;
             query->m_global = m_global;
             query->m_items = m_items;
@@ -220,7 +232,16 @@ void Cache::run(ItemsQuery* query)
             connect(query, &ItemsQuery::librariesChanged, this, &Cache::librariesChanged,
                     Qt::QueuedConnection);
             connect(query, &ItemsQuery::finished, this, &Cache::finished, Qt::QueuedConnection);
-            m_threadPool->start(new ItemsQueryRunnable(query));
+            connect(
+                    query, &ItemsQuery::finished, this,
+                    [=]() { setNumberOfRunningTransactions(numberOfRunningTransactions() - 1); },
+                    Qt::QueuedConnection);
+            if (query->isNonDBQuery()) {
+                m_nonDBThreadPool->start(new ItemsQueryRunnable(query));
+            } else {
+                m_threadPool->start(new ItemsQueryRunnable(query));
+            }
+            setNumberOfRunningTransactions(m_numberOfRunningTransactions + 1);
         }
     }
 }
@@ -356,6 +377,24 @@ bool Cache::setLibraryTimestamp(const Library* library)
 {
     QLMDB::Transaction t(*m_context);
     return setLibraryTimestamp(library, &t);
+}
+
+/**
+ * @brief Get the number of running transactions.
+ *
+ * This returns the number of jobs that are currently run on the cache.
+ */
+int Cache::numberOfRunningTransactions() const
+{
+    return m_numberOfRunningTransactions;
+}
+
+void Cache::setNumberOfRunningTransactions(int newNumberOfRunningTransactions)
+{
+    if (m_numberOfRunningTransactions == newNumberOfRunningTransactions)
+        return;
+    m_numberOfRunningTransactions = newNumberOfRunningTransactions;
+    emit numberOfRunningTransactionsChanged();
 }
 
 bool Cache::openDBs()
