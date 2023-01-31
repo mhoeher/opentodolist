@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Hantera din personliga data."
 
-#: ../appstartup.cpp:210
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Slå på några optimeringar för pekskärmar."
 
-#: ../appstartup.cpp:213
+#: ../appstartup.cpp:214
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Kör endast programmets bakgrundstjänst"
 
-#: ../appstartup.cpp:215
+#: ../appstartup.cpp:216
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Kör endast programmets GUI och anslut till en befintlig bakgrundstjänst"
 
-#: ../appstartup.cpp:220
+#: ../appstartup.cpp:221
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Aktivera en konsol på Windows för att samla felsökningsdata"
 
-#: ../appstartup.cpp:371
+#: ../appstartup.cpp:372
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Öppna"
 
-#: ../appstartup.cpp:432
+#: ../appstartup.cpp:433
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Avsluta"
@@ -1601,7 +1601,7 @@ msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Ta bort slutförda objekt"
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:19
+#: ../Windows/DeleteCompletedItemsDialog.qml:18
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
 msgstr "Vill du ta bort slutförda objekt?"
@@ -1611,7 +1611,7 @@ msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
 msgstr "Vill du verkligen ta bort alla slutförda att-göra från att-göra-listan <strong>%1</strong>? Det kan inte ångras."
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:48
+#: ../Windows/DeleteCompletedItemsDialog.qml:43
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
 msgstr "Vill du verkligen ta bort alla slutförda uppgifter från <strong>%1</strong>? Det kan inte ångras."
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Kopiera systeminformation"
 
-#: ../appstartup.cpp:378
+#: ../appstartup.cpp:379
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Snabb notis"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Ångra"
 
-#: ../appstartup.cpp:316 ../appstartup.cpp:323
+#: ../appstartup.cpp:317 ../appstartup.cpp:324
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "okänd"
@@ -2346,7 +2346,7 @@ msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
 msgstr "Ctrl+,"
 
-#: ../Components/ApplicationToolBar.qml:151
+#: ../Components/ApplicationToolBar.qml:164
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
 msgstr "Synkroniserar bibliotek..."
@@ -2471,12 +2471,12 @@ msgstr "Återställ pga"
 #: ../Pages/AccountTypeSelectionPage.qml:71
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../../lib/application.cpp:189
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
+msgstr "Bakgrundssynkronisering"
 
 #: ../../lib/application.cpp:193
 msgctxt "Application|"
@@ -2486,7 +2486,7 @@ msgstr ""
 #: ../../lib/application.cpp:197
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
+msgstr "Avsluta"
 
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
@@ -2527,32 +2527,32 @@ msgstr ""
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Kopiera Länk"
 
 #: ../Pages/EditDropboxAccountPage.qml:116
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Kopierat!"
 
 #: ../Pages/EditDropboxAccountPage.qml:125
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Namn:"
 
 #: ../Pages/EditDropboxAccountPage.qml:132
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Anslutningsinställningar"
 
 #: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Problem att logga in?"
 
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
@@ -2622,32 +2622,32 @@ msgstr ""
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
+msgstr "Bibliotek"
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
+msgstr "Schemalägg"
 
-#: ../Pages/StartPage.qml:37
+#: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
+msgstr "Bibliotek"
 
-#: ../Pages/StartPage.qml:62
+#: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
+msgstr "Lägg till bibliotek"
 
-#: ../Pages/StartPage.qml:81
+#: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Pages/StartPage.qml:103
+#: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
-msgstr ""
+msgstr "Lägg till konto"
 
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
@@ -2657,22 +2657,22 @@ msgstr ""
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
+msgstr "Ladda ner"
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
+msgstr "Ladda upp"
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
@@ -2707,5 +2707,10 @@ msgstr ""
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
+msgstr ""
+
+#: ../Pages/ProblemsPage.qml:91
+msgctxt "ProblemsPage|"
+msgid "Retry Sync"
 msgstr ""
 

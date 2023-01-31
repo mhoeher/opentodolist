@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Beheer uw persoonlijke gegevens."
 
-#: ../appstartup.cpp:210
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Schakel touchscreen-optimalisaties in."
 
-#: ../appstartup.cpp:213
+#: ../appstartup.cpp:214
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Alleen achtergronddienst starten"
 
-#: ../appstartup.cpp:215
+#: ../appstartup.cpp:216
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Alleen venster tonen en verbinding maken met een reeds opgestarte achtergronddienst"
 
-#: ../appstartup.cpp:220
+#: ../appstartup.cpp:221
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Windows-opdrachtprompt openen om foutopsporingsuitvoer te tonen"
 
-#: ../appstartup.cpp:371
+#: ../appstartup.cpp:372
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Openen"
 
-#: ../appstartup.cpp:432
+#: ../appstartup.cpp:433
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Afsluiten"
@@ -1601,7 +1601,7 @@ msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Afgeronde items verwijderen"
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:19
+#: ../Windows/DeleteCompletedItemsDialog.qml:18
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
 msgstr "Afgeronde items verwijderen?"
@@ -1611,7 +1611,7 @@ msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
 msgstr "Weet u zeker dat u alle afgeronde items op <strong>%1</strong> wilt verwijderen? Dit kan niet ongedaan worden gemaakt."
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:48
+#: ../Windows/DeleteCompletedItemsDialog.qml:43
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
 msgstr "Weet u zeker dat u alle afgeronde items op <strong>%1</strong> wilt verwijderen? Dit kan niet ongedaan worden gemaakt."
@@ -2192,7 +2192,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Systeeminformatie kopiëren"
 
-#: ../appstartup.cpp:378
+#: ../appstartup.cpp:379
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Snelle notitie"
@@ -2217,7 +2217,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: ../appstartup.cpp:316 ../appstartup.cpp:323
+#: ../appstartup.cpp:317 ../appstartup.cpp:324
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "Onbekend"
@@ -2347,7 +2347,7 @@ msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
 msgstr "Ctrl+,"
 
-#: ../Components/ApplicationToolBar.qml:151
+#: ../Components/ApplicationToolBar.qml:164
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
 msgstr "Bezig met synchroniseren van verzameling…"
@@ -2629,22 +2629,22 @@ msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr "Schema"
 
-#: ../Pages/StartPage.qml:37
+#: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
 msgstr "Verzamelingen"
 
-#: ../Pages/StartPage.qml:62
+#: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
 msgstr "Verzameling samenstellen"
 
-#: ../Pages/StartPage.qml:81
+#: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
 msgstr "Accounts"
 
-#: ../Pages/StartPage.qml:103
+#: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
 msgstr "Account toevoegen"
@@ -2708,4 +2708,9 @@ msgstr "Meer acties…"
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
 msgstr "Verzamelingsmap openen"
+
+#: ../Pages/ProblemsPage.qml:91
+msgctxt "ProblemsPage|"
+msgid "Retry Sync"
+msgstr "Opnieuw synchroniseren"
 

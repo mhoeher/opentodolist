@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="210"/>
+        <location filename="../appstartup.cpp" line="211"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="213"/>
+        <location filename="../appstartup.cpp" line="214"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Nur den Hintergrundservice der Anwendung starten</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="215"/>
+        <location filename="../appstartup.cpp" line="216"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Nur Anwendungs-GUI starten und mit einem existierenden Hintergrunddienst verbinden</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="220"/>
+        <location filename="../appstartup.cpp" line="221"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Unter Windows eine Konsole zum Sammeln von Debug-Ausgaben aktivieren</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="371"/>
+        <location filename="../appstartup.cpp" line="372"/>
         <source>Open</source>
         <translation type="unfinished">Öffnen</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="378"/>
+        <location filename="../appstartup.cpp" line="379"/>
         <source>Quick Note</source>
         <translation type="unfinished">Kurznotiz</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="432"/>
+        <location filename="../appstartup.cpp" line="433"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -183,7 +183,7 @@
 <context>
     <name>ApplicationToolBar</name>
     <message>
-        <location filename="../Components/ApplicationToolBar.qml" line="151"/>
+        <location filename="../Components/ApplicationToolBar.qml" line="164"/>
         <source>Synchronizing library...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -389,7 +389,7 @@
 <context>
     <name>DeleteCompletedItemsDialog</name>
     <message>
-        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="18"/>
         <source>Delete Completed Items?</source>
         <translation type="unfinished">Erledigte Einträge löschen?</translation>
     </message>
@@ -399,7 +399,7 @@
         <translation type="unfinished">Möchtest du wirklich alle erledigten Einträge in der Liste &lt;strong&gt;%1&lt;/strong&gt; löschen? Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="43"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
         <translation type="unfinished">Möchtest du wirklich alle erledigten Aufgaben in der Liste &lt;strong&gt;%1&lt;/strong&gt; löschen? Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
@@ -851,7 +851,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="62"/>
         <source>Open Library Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliotheksverzeichnis öffnen</translation>
     </message>
 </context>
 <context>
@@ -879,52 +879,52 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Informationen zur Fehlerbeseitigung</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Warnung</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="82"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fehler</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="84"/>
         <source>Download</source>
-        <translation type="unfinished">Herunterladen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="86"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Upload</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anlegen eines lokalen Verzeichnisses</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anlegen eines Verzeichnisses auf dem Server</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lokal löschen</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Auf dem Server löschen</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Unbekannter Benachrichtigungstyp</translation>
     </message>
 </context>
 <context>
@@ -1426,6 +1426,11 @@
         <source>Synchronization failed for library</source>
         <translation type="unfinished">Synchronisation der Bibliothek ist fehlgeschlagen</translation>
     </message>
+    <message>
+        <location filename="../Pages/ProblemsPage.qml" line="91"/>
+        <source>Retry Sync</source>
+        <translation type="unfinished">Synchronisation erneut versuchen</translation>
+    </message>
 </context>
 <context>
     <name>PromoteTask</name>
@@ -1438,8 +1443,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="316"/>
-        <location filename="../appstartup.cpp" line="323"/>
+        <location filename="../appstartup.cpp" line="317"/>
+        <location filename="../appstartup.cpp" line="324"/>
         <source>unknown</source>
         <translation type="unfinished">Unbekannt</translation>
     </message>
@@ -1818,24 +1823,24 @@ Dies erfordert einen Neustart der Anwendung.</translation>
 <context>
     <name>StartPage</name>
     <message>
-        <location filename="../Pages/StartPage.qml" line="37"/>
+        <location filename="../Pages/StartPage.qml" line="46"/>
         <source>Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliotheken</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="62"/>
+        <location filename="../Pages/StartPage.qml" line="71"/>
         <source>Add a new library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neue Bibliothek hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="81"/>
+        <location filename="../Pages/StartPage.qml" line="90"/>
         <source>Accounts</source>
         <translation type="unfinished">Konten</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="103"/>
+        <location filename="../Pages/StartPage.qml" line="112"/>
         <source>Add an account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konto hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -1971,7 +1976,7 @@ Dies erfordert einen Neustart der Anwendung.</translation>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
         <source>More Actions...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Weitere Aktionen...</translation>
     </message>
 </context>
 <context>
@@ -1989,7 +1994,7 @@ Dies erfordert einen Neustart der Anwendung.</translation>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished">Herunterladen</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

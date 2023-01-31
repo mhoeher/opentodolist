@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Gérer vos données personnelles.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="210"/>
+        <location filename="../appstartup.cpp" line="211"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="213"/>
+        <location filename="../appstartup.cpp" line="214"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Exécuter uniquement le service d&apos;arrière-plan de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="215"/>
+        <location filename="../appstartup.cpp" line="216"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Exécutez uniquement l&apos;interface graphique de l&apos;application et connectez-vous à un service d&apos;arrière-plan existant</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="220"/>
+        <location filename="../appstartup.cpp" line="221"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Activez une console sous Windows pour recueillir les données de débogage</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="371"/>
+        <location filename="../appstartup.cpp" line="372"/>
         <source>Open</source>
         <translation type="unfinished">Ouvrir</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="378"/>
+        <location filename="../appstartup.cpp" line="379"/>
         <source>Quick Note</source>
         <translation type="unfinished">Note Rapide</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="432"/>
+        <location filename="../appstartup.cpp" line="433"/>
         <source>Quit</source>
         <translation type="unfinished">Quitter</translation>
     </message>
@@ -183,7 +183,7 @@
 <context>
     <name>ApplicationToolBar</name>
     <message>
-        <location filename="../Components/ApplicationToolBar.qml" line="151"/>
+        <location filename="../Components/ApplicationToolBar.qml" line="164"/>
         <source>Synchronizing library...</source>
         <translation type="unfinished">Synchronisation de la bibliothèque...</translation>
     </message>
@@ -389,7 +389,7 @@
 <context>
     <name>DeleteCompletedItemsDialog</name>
     <message>
-        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="18"/>
         <source>Delete Completed Items?</source>
         <translation type="unfinished">Effacer les éléments terminé ?</translation>
     </message>
@@ -399,7 +399,7 @@
         <translation type="unfinished">Voulez-vous vraiment effacer les todos de la liste &lt;strong&gt;%1&lt;/strong&gt;? Ceci ne pourra pas être annulé.</translation>
     </message>
     <message>
-        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="43"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
         <translation type="unfinished">Voulez-vous vraiment effacer les tâches de la liste &lt;strong&gt;%1&lt;/strong&gt;? Ceci ne pourra pas être annulé. </translation>
     </message>
@@ -1426,6 +1426,11 @@
         <source>Synchronization failed for library</source>
         <translation type="unfinished">La synchronisation a échoué pour la bibliothèque</translation>
     </message>
+    <message>
+        <location filename="../Pages/ProblemsPage.qml" line="91"/>
+        <source>Retry Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PromoteTask</name>
@@ -1438,8 +1443,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="316"/>
-        <location filename="../appstartup.cpp" line="323"/>
+        <location filename="../appstartup.cpp" line="317"/>
+        <location filename="../appstartup.cpp" line="324"/>
         <source>unknown</source>
         <translation type="unfinished">inconnu</translation>
     </message>
@@ -1818,22 +1823,22 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
 <context>
     <name>StartPage</name>
     <message>
-        <location filename="../Pages/StartPage.qml" line="37"/>
+        <location filename="../Pages/StartPage.qml" line="46"/>
         <source>Libraries</source>
         <translation type="unfinished">Bibliothèques</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="62"/>
+        <location filename="../Pages/StartPage.qml" line="71"/>
         <source>Add a new library</source>
         <translation type="unfinished">Ajouter une nouvelle bibliothèque</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="81"/>
+        <location filename="../Pages/StartPage.qml" line="90"/>
         <source>Accounts</source>
         <translation type="unfinished">Comptes</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="103"/>
+        <location filename="../Pages/StartPage.qml" line="112"/>
         <source>Add an account</source>
         <translation type="unfinished">Ajouter un compte</translation>
     </message>
