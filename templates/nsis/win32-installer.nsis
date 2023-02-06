@@ -77,19 +77,18 @@ SectionEnd
 
 
 Function .onInit
-  ReadRegStr $R0 HKLM "${PROJECT_REG_UNINSTALL_KEY}" "UninstallString"
+  ReadRegStr $R0 HKLM "${PROJECT_REG_UNINSTALL_KEY}" "QuietUninstallString"
   StrCmp $R0 "" done
 
   MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
-    "${PROGRAM_NAME} is already installed. $\n$\nClick `OK` to remove the \
-    previous version or `Cancel` to cancel this upgrade." \
+    "${PROGRAM_NAME} is already installed. If you proceed, the existing installation will be updated." \
     IDOK uninst
   Abort
 
 ;Run the uninstaller
 uninst:
     ClearErrors
-    Exec $R0
+    ExecWait $R0
 done:
 
 FunctionEnd
