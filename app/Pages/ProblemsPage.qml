@@ -36,13 +36,13 @@ C.Page {
                 width: parent.width
                 text: {
                     switch (modelData.type) {
-                    case "AccountSecretsMissing":
+                    case OTL.Problem.AccountSecretsMissing:
                         // The secrets for an account are missing:
                         let account = modelData.contextObject
                         let msg = qsTr("Missing secrets for account")
                         msg += " <strong>" + account.name + "</strong>"
                         return msg
-                    case "SyncFailed":
+                    case OTL.Problem.SyncFailed:
                         let library = modelData.contextObject
                         msg = qsTr("Synchronization failed for library")
                         msg += " <strong>" + library.name + "</strong>: " + modelData.message
@@ -53,14 +53,14 @@ C.Page {
                     }
                 }
                 contentItem: C.Label {
-                    rightPadding: control.spacing
+                    rightPadding: control.spacing + quickSolutionButton.width
                     text: control.text
                     font: control.font
                     verticalAlignment: Text.AlignVCenter
                 }
                 onClicked: {
                     switch (modelData.type) {
-                    case "AccountSecretsMissing":
+                    case OTL.Problem.AccountSecretsMissing:
                         let accountTypeName = OTL.Application.accountTypeToString(
                                 modelData.contextObject.type)
                         page.openPage(
@@ -71,7 +71,7 @@ C.Page {
                                                        modelData.contextObject.uid) // Load a copy of the account to ensure we have latest secrets
                                     })
                         break
-                    case "SyncFailed":
+                    case OTL.Problem.SyncFailed:
                         page.openPage(Qt.resolvedUrl("./LibraryPage.qml"), {
                                           "library": modelData.contextObject
                                       })
@@ -79,6 +79,35 @@ C.Page {
                     default:
                         console.warn("Unknown problem type", modelData.type)
                     }
+                }
+
+                C.Button {
+                    id: quickSolutionButton
+                    anchors.right: parent.right
+                    anchors.rightMargin: control.rightPadding
+                    text: {
+                        switch (modelData.type) {
+                        case OTL.Problem.SyncFailed:
+                            return qsTr("Retry Sync")
+                        case OTL.Problem.AccountSecretsMissing:
+                            return "Load Secrets"
+                        default:
+                            return ""
+                        }
+                    }
+                    onClicked: {
+                        switch (modelData.type) {
+                        case OTL.Problem.AccountSecretsMissing:
+                            OTL.Application.loadSecretsForAccounts(
+                                        modelData.contextObject)
+                            break
+                        case OTL.Problem.SyncFailed:
+                            OTL.Application.syncLibrary(modelData.contextObject)
+                            break
+                        }
+                    }
+
+                    visible: text !== ""
                 }
             }
         }

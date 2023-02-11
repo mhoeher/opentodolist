@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -45,7 +45,6 @@
 #include "SynqClient/WebDAVJobFactory"
 
 #include "account.h"
-#include "datamodel/library.h"
 #include "webdavaccount.h"
 #include "webdavsynchronizer.h"
 
@@ -67,12 +66,11 @@ toSynqClientServerType(WebDAVSynchronizer::WebDAVServerType type)
 }
 
 WebDAVSynchronizer::WebDAVSynchronizer(QObject* parent)
-    : Synchronizer(parent),
+    : SynqClientSynchronizer(parent),
       m_disableCertificateCheck(false),
       m_workarounds(0),
       m_username(),
       m_password(),
-      m_stopRequested(false),
       m_hasSyncErrors(false),
       m_nam(nullptr)
 {
@@ -98,47 +96,11 @@ void WebDAVSynchronizer::synchronize()
         finished = true;
         if (!directory().isEmpty() && !synchronizing()) {
             SynqClient::DirectorySynchronizer sync;
-            sync.setRemoteDirectoryPath(remoteDirectory());
-            sync.setLocalDirectoryPath(directory());
+            setupDirectorySynchronizer(sync);
             if (retryWithOneJobOnly) {
                 // WA for https://github.com/mhoeher/opentodolist/issues/46
                 sync.setMaxJobs(1);
             }
-            sync.setSyncConflictStrategy(SynqClient::SyncConflictStrategy::RemoteWins);
-            connect(&sync, &SynqClient::DirectorySynchronizer::logMessageAvailable, this,
-                    [=](SynqClient::SynchronizerLogEntryType type, const QString& message) {
-                        switch (type) {
-                        case SynqClient::SynchronizerLogEntryType::Information:
-                            writeLog(Synchronizer::Debug) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::Warning:
-                            writeLog(Synchronizer::Warning) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::Error:
-                            writeLog(Synchronizer::Error) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::LocalMkDir:
-                            writeLog(Synchronizer::LocalMkDir) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::RemoteMkDir:
-                            writeLog(Synchronizer::RemoteMkDir) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::LocalDelete:
-                            writeLog(Synchronizer::LocalDelete) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::RemoteDelete:
-                            writeLog(Synchronizer::RemoteDelete) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::Upload:
-                            writeLog(Synchronizer::Upload) << message;
-                            break;
-                        case SynqClient::SynchronizerLogEntryType::Download:
-                            writeLog(Synchronizer::Download) << message;
-                            break;
-                        }
-                    });
-            connect(&sync, &SynqClient::DirectorySynchronizer::progress, this,
-                    &WebDAVSynchronizer::progress);
 
             SynqClient::WebDAVJobFactory factory;
             setupFactory(factory);
@@ -147,44 +109,19 @@ void WebDAVSynchronizer::synchronize()
             SynqClient::SQLSyncStateDatabase db(directory() + "/.otlwebdavsync.db");
             sync.setSyncStateDatabase(&db);
 
-            static QRegularExpression pathRe(
-                    R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[a-zA-Z\.]+)?)?)?$)");
-            sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
-                auto result = pathRe.match(path).hasMatch();
-                return result;
-            });
-
-            QEventLoop loop;
-            connect(&sync, &SynqClient::DirectorySynchronizer::finished, &loop, &QEventLoop::quit);
-            connect(this, &WebDAVSynchronizer::stopRequested, &sync,
-                    &SynqClient::DirectorySynchronizer::stop);
-
-            setSynchronizing(true);
-            m_stopRequested = false;
             m_hasSyncErrors = false;
+            runDirectorySynchronizer(sync);
 
-            sync.start();
-            loop.exec();
-
-            if (sync.error() != SynqClient::SynchronizerError::NoError) {
+            if (sync.error() != SynqClient::SynchronizerError::NoError
+                && sync.error() != SynqClient::SynchronizerError::Stopped) {
                 m_hasSyncErrors = true;
-                emit syncError(sync.errorString());
                 if (sync.retryWithFewerJobs() && !retryWithOneJobOnly) {
                     retryWithOneJobOnly = true;
                     finished = false;
                 }
             }
-
-            setSynchronizing(false);
         }
     }
-}
-
-void WebDAVSynchronizer::stopSync()
-{
-    qCWarning(::log) << "Stopping WebDAV sync";
-    m_stopRequested = true;
-    emit stopRequested();
 }
 
 void WebDAVSynchronizer::setAccount(Account* account)

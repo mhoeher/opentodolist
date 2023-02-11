@@ -24,47 +24,47 @@
         <translation type="unfinished">OpenTodoList släpps under villkoren i &lt;a href=&apos;app-license&apos;&gt; GNU General Public License &lt;/a&gt; version 3 eller (efter eget val) någon senare version.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="83"/>
+        <location filename="../Pages/AboutPage.qml" line="81"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Rapportera ett problem</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="91"/>
+        <location filename="../Pages/AboutPage.qml" line="88"/>
         <source>Copy System Information</source>
         <translation type="unfinished">Kopiera systeminformation</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="112"/>
+        <location filename="../Pages/AboutPage.qml" line="110"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Tredjepartsbibliotek och resurser</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="149"/>
+        <location filename="../Pages/AboutPage.qml" line="147"/>
         <source>Author:</source>
         <translation type="unfinished">Författare:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="154"/>
+        <location filename="../Pages/AboutPage.qml" line="152"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="161"/>
+        <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>License:</source>
         <translation type="unfinished">Licens:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="166"/>
+        <location filename="../Pages/AboutPage.qml" line="164"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="172"/>
+        <location filename="../Pages/AboutPage.qml" line="170"/>
         <source>Download:</source>
         <translation type="unfinished">Ladda ner:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="176"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -139,17 +139,17 @@
         <translation type="unfinished">Aktivera en konsol på Windows för att samla felsökningsdata</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
+        <location filename="../appstartup.cpp" line="371"/>
         <source>Open</source>
         <translation type="unfinished">Öppna</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="377"/>
+        <location filename="../appstartup.cpp" line="378"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="430"/>
+        <location filename="../appstartup.cpp" line="432"/>
         <source>Quit</source>
         <translation type="unfinished">Avsluta</translation>
     </message>
@@ -837,124 +837,21 @@
     </message>
 </context>
 <context>
-    <name>LibraryPage</name>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
-        <source>Red</source>
-        <translation type="unfinished">Röd</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
-        <source>Green</source>
-        <translation type="unfinished">Grön</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="215"/>
-        <source>Blue</source>
-        <translation type="unfinished">Blå</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="222"/>
-        <source>Yellow</source>
-        <translation type="unfinished">Gul</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="229"/>
-        <source>Orange</source>
-        <translation type="unfinished">Orange</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="236"/>
-        <source>Lilac</source>
-        <translation type="unfinished">Lila</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="243"/>
-        <source>White</source>
-        <translation type="unfinished">Vit</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="253"/>
-        <source>Rename</source>
-        <translation type="unfinished">Byt namn</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="258"/>
-        <source>Copy</source>
-        <translation type="unfinished">Kopiera</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="263"/>
-        <source>Delete</source>
-        <translation type="unfinished">Ta bort</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="275"/>
-        <source>Select Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="344"/>
-        <source>Note Title</source>
-        <translation type="unfinished">Anteckningstitel</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="357"/>
-        <source>Todo List Title</source>
-        <translation type="unfinished">Att-göra-listans namn</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="370"/>
-        <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished">Sökterm 1, sökterm 2, ...</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="447"/>
-        <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
-        <translation type="unfinished">Ingenting här ännu! Börja med att lägga till en &lt;a href=&apos;#note&apos;&gt; anteckning &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; att-göra-lista &lt;/a&gt; eller &lt;a href=&apos;#image&apos;&gt; bild &lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="503"/>
-        <source>Sort By</source>
-        <translation type="unfinished">Sortera efter</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="508"/>
-        <source>Manually</source>
-        <translation type="unfinished">Manuellt</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="515"/>
-        <source>Title</source>
-        <translation type="unfinished">Titel</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="522"/>
-        <source>Due To</source>
-        <translation type="unfinished">Förfaller</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="529"/>
-        <source>Created At</source>
-        <translation type="unfinished">Skapad</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="536"/>
-        <source>Updated At</source>
-        <translation type="unfinished">Uppdaterat</translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
         <source>Sync Now</source>
         <translation type="unfinished">Synkronisera nu</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
         <source>Sync Log</source>
         <translation type="unfinished">Synkroniseringslogg</translation>
+    </message>
+    <message>
+        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <source>Open Library Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1759,14 +1656,6 @@
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
         <translation type="unfinished">Välj bibliotek</translation>
-    </message>
-</context>
-<context>
-    <name>SelectTodoListDialog</name>
-    <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
-        <source>Select Todo List</source>
-        <translation type="unfinished">Välj att-göra-lista</translation>
     </message>
 </context>
 <context>

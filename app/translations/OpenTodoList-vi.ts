@@ -24,47 +24,47 @@
         <translation type="unfinished">OpenTodoList được phát hành theo các điều khoản của &lt;a href=&apos;app-license&apos;&gt; GNU General Public License &lt;/a&gt; phiên bản 3 hoặc (theo lựa chọn của bạn) bất kỳ phiên bản nào sau này.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="83"/>
+        <location filename="../Pages/AboutPage.qml" line="81"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Báo cáo một vấn đề</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="91"/>
+        <location filename="../Pages/AboutPage.qml" line="88"/>
         <source>Copy System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="112"/>
+        <location filename="../Pages/AboutPage.qml" line="110"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Thư viện và tài nguyên của bên thứ ba</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="149"/>
+        <location filename="../Pages/AboutPage.qml" line="147"/>
         <source>Author:</source>
         <translation type="unfinished">Tác giả:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="154"/>
+        <location filename="../Pages/AboutPage.qml" line="152"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="161"/>
+        <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>License:</source>
         <translation type="unfinished">Giấy phép:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="166"/>
+        <location filename="../Pages/AboutPage.qml" line="164"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="172"/>
+        <location filename="../Pages/AboutPage.qml" line="170"/>
         <source>Download:</source>
         <translation type="unfinished">Tải xuống:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="176"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -139,17 +139,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
+        <location filename="../appstartup.cpp" line="371"/>
         <source>Open</source>
         <translation type="unfinished">Mở</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="377"/>
+        <location filename="../appstartup.cpp" line="378"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="430"/>
+        <location filename="../appstartup.cpp" line="432"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -838,124 +838,21 @@
     </message>
 </context>
 <context>
-    <name>LibraryPage</name>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
-        <source>Red</source>
-        <translation type="unfinished">Màu đỏ</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
-        <source>Green</source>
-        <translation type="unfinished">màu xanh lá</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="215"/>
-        <source>Blue</source>
-        <translation type="unfinished">Màu xanh da trời</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="222"/>
-        <source>Yellow</source>
-        <translation type="unfinished">Màu vàng</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="229"/>
-        <source>Orange</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="236"/>
-        <source>Lilac</source>
-        <translation type="unfinished">Lilac</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="243"/>
-        <source>White</source>
-        <translation type="unfinished">trắng</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="253"/>
-        <source>Rename</source>
-        <translation type="unfinished">Đổi tên</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="258"/>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="263"/>
-        <source>Delete</source>
-        <translation type="unfinished">Xóa bỏ</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="275"/>
-        <source>Select Image</source>
-        <translation type="unfinished">Chọn ảnh</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="344"/>
-        <source>Note Title</source>
-        <translation type="unfinished">Tiêu đề ghi chú</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="357"/>
-        <source>Todo List Title</source>
-        <translation type="unfinished">Danh sách Todo</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="370"/>
-        <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished">Tìm kiếm thuật ngữ 1, tìm kiếm thuật ngữ 2, ...</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="447"/>
-        <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
-        <translation type="unfinished">Chưa có gì ở đây cả! Bắt đầu bằng cách thêm một &lt;a href=&apos;#note&apos;&gt; ghi chú &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; danh sách việc cần làm &lt;/a&gt; hoặc &lt;a href=&apos;#image&apos;&gt; hình ảnh &lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="503"/>
-        <source>Sort By</source>
-        <translation type="unfinished">Sắp xếp theo</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="508"/>
-        <source>Manually</source>
-        <translation type="unfinished">Thủ công</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="515"/>
-        <source>Title</source>
-        <translation type="unfinished">Tiêu đề</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="522"/>
-        <source>Due To</source>
-        <translation type="unfinished">Do</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="529"/>
-        <source>Created At</source>
-        <translation type="unfinished">Tạo tại</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="536"/>
-        <source>Updated At</source>
-        <translation type="unfinished">Cập nhật tại</translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
         <source>Sync Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
         <source>Sync Log</source>
         <translation type="unfinished">Nhật ký đồng bộ hóa</translation>
+    </message>
+    <message>
+        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <source>Open Library Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1759,14 +1656,6 @@
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SelectTodoListDialog</name>
-    <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
-        <source>Select Todo List</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

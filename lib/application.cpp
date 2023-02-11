@@ -306,18 +306,6 @@ void Application::saveAccountSecrets(Account* account)
         if (backgroundService) {
             backgroundService->setAccountSecret(account->uid(), account->accountSecrets());
         }
-
-        // Check if the account we just saved credentials for was previously missing
-        // credentials and hence remove the problem:
-        const auto problems = m_problemManager->problems();
-        for (const auto& problem : problems) {
-            QSharedPointer<Account> problemAccount =
-                    qSharedPointerObjectCast<Account>(problem.contextObject());
-            if (problemAccount && problemAccount->uid() == account->uid()) {
-                m_problemManager->removeProblem(problem);
-                break;
-            }
-        }
     }
 }
 
@@ -385,6 +373,19 @@ QVariantList Application::accountUids()
 Account* Application::createAccount(Account::Type type)
 {
     return Account::createAccount(type);
+}
+
+/**
+ * @brief Start loading secrets for the given account.
+ *
+ * This starts loading the secrets for the given account. Note that this usually should not be
+ * needed, however, if e.g. the user rejected loading the secrets after app startup, we still can
+ * try to load them on demand later on.
+ * @param account
+ */
+void Application::loadSecretsForAccounts(Account* account)
+{
+    m_appSettings->loadSecretsForAccount(account);
 }
 
 /**
@@ -749,9 +750,8 @@ Task* Application::addTask(Library* library, Todo* todo, QVariantMap properties)
         } else {
             task = new Task();
         }
-        for (const auto& property : properties.keys()) {
-            auto value = properties.value(property);
-            task->setProperty(property.toUtf8(), value);
+        for (auto it = properties.constBegin(); it != properties.constEnd(); ++it) {
+            task->setProperty(it.key().toUtf8(), it.value());
         }
         task->setTodoUid(todo->uid());
         auto q = new InsertOrUpdateItemsQuery();
@@ -1429,9 +1429,9 @@ void Application::onLibraryDeleted(const QUuid& libraryUid)
 void Application::onLibrariesChanged(QVariantList librariesUids)
 {
     auto libs = m_appSettings->librariesFromConfig();
-    for (auto id : librariesUids) {
+    for (const auto& id : librariesUids) {
         auto uid = id.toUuid();
-        for (auto lib : libs) {
+        for (const auto& lib : libs) {
             if (uid == lib->uid()) {
                 if (m_directoriesWithRunningSync.contains(lib->directory())) {
                     m_librariesWithChanges.insert(lib->directory());

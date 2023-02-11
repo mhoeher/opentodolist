@@ -1,6 +1,6 @@
 /*
- * Copyright 2022 Martin Hoeher <martin@rpdev.net>
- +
+ * Copyright 2023 Martin Hoeher <martin@rpdev.net>
+ *
  * This file is part of OpenTodoList.
  *
  * OpenTodoList is free software: you can redistribute it and/or modify
@@ -17,27 +17,29 @@
  * along with OpenTodoList.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "owncloudaccount.h"
+#ifndef SYNC_SYNQCLIENTSYNCHRONIZER_H_
+#define SYNC_SYNQCLIENTSYNCHRONIZER_H_
 
-#include <SynqClient/libsynqclient.h>
+#include "synchronizer.h"
 
-#include "sync/webdavsynchronizer.h"
-
-OwnCloudAccount::OwnCloudAccount(QObject* parent) : WebDAVAccount { parent }
-{
-    setType(OwnCloud);
+namespace SynqClient {
+class DirectorySynchronizer;
 }
 
-Synchronizer* OwnCloudAccount::createSynchronizer() const
+class SynqClientSynchronizer : public Synchronizer
 {
-    auto result = WebDAVAccount::createSynchronizer();
-    auto webDAVSync = qobject_cast<WebDAVSynchronizer*>(result);
-    Q_ASSERT(webDAVSync);
-    webDAVSync->setServerType(WebDAVSynchronizer::OwnCloud);
-    return result;
-}
+    Q_OBJECT
+public:
+    explicit SynqClientSynchronizer(QObject* parent = nullptr);
 
-void OwnCloudAccount::fillServerType(SynqClient::WebDAVServerType& type) const
-{
-    type = SynqClient::WebDAVServerType::OwnCloud;
-}
+    void stopSync() override;
+
+signals:
+    void stopRequested();
+
+protected:
+    void setupDirectorySynchronizer(SynqClient::DirectorySynchronizer& sync);
+    void runDirectorySynchronizer(SynqClient::DirectorySynchronizer& sync);
+};
+
+#endif // SYNC_SYNQCLIENTSYNCHRONIZER_H_

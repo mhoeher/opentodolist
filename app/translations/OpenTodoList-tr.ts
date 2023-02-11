@@ -24,47 +24,47 @@
         <translation type="unfinished">OpenTodoList, &lt;a href=&apos;app-license&apos;&gt; GNU Genel Kamu Lisansı &lt;/a&gt; sürüm 3 veya (sizin seçiminize göre) daha sonraki herhangi bir sürümün şartları uyarınca yayınlanır.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="83"/>
+        <location filename="../Pages/AboutPage.qml" line="81"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Sorun Bildirin</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="91"/>
+        <location filename="../Pages/AboutPage.qml" line="88"/>
         <source>Copy System Information</source>
         <translation type="unfinished">Sistem Bilgisini Kopyala</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="112"/>
+        <location filename="../Pages/AboutPage.qml" line="110"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Üçüncü Şahıs Kütüphaneleri ve Kaynakları</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="149"/>
+        <location filename="../Pages/AboutPage.qml" line="147"/>
         <source>Author:</source>
         <translation type="unfinished">Yazar:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="154"/>
+        <location filename="../Pages/AboutPage.qml" line="152"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="161"/>
+        <location filename="../Pages/AboutPage.qml" line="159"/>
         <source>License:</source>
         <translation type="unfinished">Lisans:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="166"/>
+        <location filename="../Pages/AboutPage.qml" line="164"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="172"/>
+        <location filename="../Pages/AboutPage.qml" line="170"/>
         <source>Download:</source>
         <translation type="unfinished">İndir:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="176"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -139,17 +139,17 @@
         <translation type="unfinished">Windows&apos;ta hata ayıklama çıktısını toplamak için bir konsolu etkinleştirin</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
+        <location filename="../appstartup.cpp" line="371"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="377"/>
+        <location filename="../appstartup.cpp" line="378"/>
         <source>Quick Note</source>
         <translation type="unfinished">Hızlı Not</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="430"/>
+        <location filename="../appstartup.cpp" line="432"/>
         <source>Quit</source>
         <translation type="unfinished">Çıkış</translation>
     </message>
@@ -837,123 +837,20 @@
     </message>
 </context>
 <context>
-    <name>LibraryPage</name>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="201"/>
-        <source>Red</source>
-        <translation type="unfinished">Kırmızı</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="208"/>
-        <source>Green</source>
-        <translation type="unfinished">Yeşil</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="215"/>
-        <source>Blue</source>
-        <translation type="unfinished">Mavi</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="222"/>
-        <source>Yellow</source>
-        <translation type="unfinished">Sarı</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="229"/>
-        <source>Orange</source>
-        <translation type="unfinished">Portakal</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="236"/>
-        <source>Lilac</source>
-        <translation type="unfinished">leylak</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="243"/>
-        <source>White</source>
-        <translation type="unfinished">Beyaz</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="253"/>
-        <source>Rename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="258"/>
-        <source>Copy</source>
-        <translation type="unfinished">Kopyala</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="263"/>
-        <source>Delete</source>
-        <translation type="unfinished">Sil</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="275"/>
-        <source>Select Image</source>
-        <translation type="unfinished">Fotoğraf seç</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="344"/>
-        <source>Note Title</source>
-        <translation type="unfinished">Not Başlığı</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="357"/>
-        <source>Todo List Title</source>
-        <translation type="unfinished">Yapılacaklar Listesi Başlığı</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="370"/>
-        <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished">Arama terimi 1, arama terimi 2, ...</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="447"/>
-        <source>Nothing here yet! Start by adding a &lt;a href=&apos;#note&apos;&gt;note&lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt;todo list&lt;/a&gt; or &lt;a href=&apos;#image&apos;&gt;image&lt;/a&gt;.</source>
-        <translation type="unfinished">Burada henüz bir şey yok! Bir &lt;a href=&apos;#note&apos;&gt; not &lt;/a&gt;, &lt;a href=&apos;#todolist&apos;&gt; yapılacaklar listesi &lt;/a&gt; veya &lt;a href=&apos;#image&apos;&gt; resim &lt;/a&gt; ekleyerek başlayın.</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="503"/>
-        <source>Sort By</source>
-        <translation type="unfinished">Göre sırala</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="508"/>
-        <source>Manually</source>
-        <translation type="unfinished">el ile</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="515"/>
-        <source>Title</source>
-        <translation type="unfinished">Başlık</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="522"/>
-        <source>Due To</source>
-        <translation type="unfinished">Nedeniyle</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="529"/>
-        <source>Created At</source>
-        <translation type="unfinished">Oluşturma Tarihi</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LibraryPage.qml" line="536"/>
-        <source>Updated At</source>
-        <translation type="unfinished">Güncelleme Tarihi:</translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="31"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
         <source>Sync Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="48"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
         <source>Sync Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <source>Open Library Folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1759,14 +1656,6 @@
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
         <translation type="unfinished">Kütüphane Seç</translation>
-    </message>
-</context>
-<context>
-    <name>SelectTodoListDialog</name>
-    <message>
-        <location filename="../Windows/SelectTodoListDialog.qml" line="25"/>
-        <source>Select Todo List</source>
-        <translation type="unfinished">Yapılacaklar Listesi Seçin</translation>
     </message>
 </context>
 <context>

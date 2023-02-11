@@ -889,42 +889,42 @@ msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList 是根据<a href='app-license'> GNU通用公共许可证</a>第3版或（根据您的选择）任何更高版本的条款发行的。"
 
-#: ../Pages/AboutPage.qml:83
+#: ../Pages/AboutPage.qml:81
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "报告问题"
 
-#: ../Pages/AboutPage.qml:112
+#: ../Pages/AboutPage.qml:110
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "第三方库和资源"
 
-#: ../Pages/AboutPage.qml:149
+#: ../Pages/AboutPage.qml:147
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "作者:"
 
-#: ../Pages/AboutPage.qml:154
+#: ../Pages/AboutPage.qml:152
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:161
+#: ../Pages/AboutPage.qml:159
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "许可:"
 
-#: ../Pages/AboutPage.qml:166
+#: ../Pages/AboutPage.qml:164
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a> "
 
-#: ../Pages/AboutPage.qml:172
+#: ../Pages/AboutPage.qml:170
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "下载："
 
-#: ../Pages/AboutPage.qml:176
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1 </a>"
@@ -1516,12 +1516,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "滑动以标记为完成"
 
-#: ../Menues/LibraryPageActions.qml:31
+#: ../Menues/LibraryPageActions.qml:35
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "立即同步"
 
-#: ../Menues/LibraryPageActions.qml:48
+#: ../Menues/LibraryPageActions.qml:52
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "同步日志"
@@ -1586,12 +1586,12 @@ msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "在 Windows 上启用一个终端来获取调试输出"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:371
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "打开"
 
-#: ../appstartup.cpp:430
+#: ../appstartup.cpp:432
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "退出"
@@ -2186,12 +2186,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "创建同步锁失败:"
 
-#: ../Pages/AboutPage.qml:91
+#: ../Pages/AboutPage.qml:88
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "复制系统信息"
 
-#: ../appstartup.cpp:377
+#: ../appstartup.cpp:378
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "快捷笔记"
@@ -2701,5 +2701,10 @@ msgstr ""
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
+msgstr ""
+
+#: ../Menues/LibraryPageActions.qml:62
+msgctxt "LibraryPageActions|"
+msgid "Open Library Folder"
 msgstr ""
 

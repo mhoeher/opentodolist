@@ -132,7 +132,10 @@ void DeleteItemsQuery::run()
     QLMDB::Transaction t(*context());
     int i = 0;
     while (i < m_itemsToDelete.length()) {
-        const auto& itemToDelete = m_itemsToDelete.at(i);
+        // Important: Don't store a reference here! Some of the functions we call will change the
+        // list. Starting from Qt 6, QList is a vector internally and hence, insertions might render
+        // these references invalid.
+        auto itemToDelete = m_itemsToDelete.at(i);
         i++;
         if (!itemToDelete.uid.isNull()) {
             QQueue<QByteArray> queue;
@@ -160,12 +163,13 @@ void DeleteItemsQuery::run()
 
                     auto itemData = items()->get(t, nextId);
                     if (!itemData.isEmpty()) {
-                        auto item = Item::decache(ItemCacheEntry::fromByteArray(itemData, nextId));
+                        QScopedPointer<Item> item(
+                                Item::decache(ItemCacheEntry::fromByteArray(itemData, nextId)));
                         if (item != nullptr) {
                             item->deleteItem();
-                            delete item;
                         }
-                        markAsChanged(&t, item->uid().toByteArray());
+
+                        markAsChanged(&t, nextId);
                     }
                 } else {
                     if (!items()->get(t, nextId).isNull()) {

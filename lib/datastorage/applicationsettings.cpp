@@ -25,12 +25,13 @@
 #include "datamodel/library.h"
 #include "fileutils.h"
 #include "datastorage/librariesitemsquery.h"
+#include "datastorage/loadlibraryquery.h"
 #include "datastorage/cache.h"
 #include "sync/account.h"
+#include "sync/webdavsynchronizer.h"
 #include "utils/keystore.h"
 #include "utils/problemmanager.h"
 #include "utils/problem.h"
-#include "datastorage/libraryloader.h"
 #include "utils/jsonutils.h"
 
 #include "sync/webdavaccount.h"
@@ -91,7 +92,7 @@ QList<QSharedPointer<Library>> ApplicationSettings::librariesFromConfig()
                     // https://gitlab.com/rpdev/opentodolist/issues/222
                     auto query = new LibrariesItemsQuery();
                     query->setIncludeCalculatedValues(false);
-                    connect(query, &LibrariesItemsQuery::librariesAvailable,
+                    connect(query, &LibrariesItemsQuery::librariesAvailable, this,
                             [=](QVariantList libraries) {
                                 for (const auto& entry : libraries) {
                                     auto cacheEntry = entry.value<LibraryCacheEntry>();
@@ -146,6 +147,19 @@ void ApplicationSettings::saveAccount(Account* account)
         m_settings->endGroup();
         m_settings->sync();
         emit accountsChanged();
+    }
+}
+
+/**
+ * @brief Load the secrets for the given @p account.
+ *
+ * This usually should not be needed as we try to load secrets once on app startup. However, if this
+ * failed for whatever reason, we can manually retry later.
+ */
+void ApplicationSettings::loadSecretsForAccount(Account* account)
+{
+    if (account) {
+        m_keyStore->loadCredentials(account->uid().toString());
     }
 }
 
@@ -206,7 +220,13 @@ void ApplicationSettings::initialize()
                         if (!m_secrets.contains(key)) {
                             m_secrets.insert(key, value);
                             emit accountsChanged(); // Cause a reload of accounts in GUI
-                            for (auto lib : librariesFromConfig()) {
+                            // Remove any previously created problems for this account - might
+                            // happen if the user rejects loading on app startup.
+                            if (m_problemManager != nullptr) {
+                                m_problemManager->removeProblemsFor(QUuid::fromString(key),
+                                                                    Problem::AccountSecretsMissing);
+                            }
+                            for (const auto& lib : librariesFromConfig()) {
                                 QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
                                 if (sync) {
                                     if (sync->accountUid().isNull()
@@ -330,14 +350,12 @@ void ApplicationSettings::loadLibraries()
     qCDebug(log) << "Loading libraries...";
     m_secrets.clear();
 
-    for (auto library : librariesFromConfig()) {
+    for (const auto& library : librariesFromConfig()) {
         qCDebug(log) << "Loading library" << library->name() << "from" << library->directory();
-        auto loader = new LibraryLoader();
-        loader->setDirectory(library->directory());
-        loader->setLibraryId(library->uid());
-        loader->setCache(m_cache);
-        connect(loader, &LibraryLoader::scanFinished, loader, &LibraryLoader::deleteLater);
-        loader->scan();
+        auto q = new LoadLibraryQuery();
+        q->setDirectory(library->directory());
+        q->setLibraryId(library->uid());
+        m_cache->run(q);
     }
 
     // Load secrets of all accounts:

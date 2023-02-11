@@ -24,7 +24,6 @@
 #include <QUuid>
 
 #include "synchronizer.h"
-#include "webdavsynchronizer.h"
 #include "remotelibraryinfo.h"
 
 class QSettings;

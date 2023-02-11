@@ -91,6 +91,7 @@ public:
     {
         return createAccount(static_cast<Account::Type>(type));
     }
+    Q_INVOKABLE void loadSecretsForAccounts(Account* account);
 
     Q_INVOKABLE QString accountTypeToString(Account::Type type);
     Q_INVOKABLE QString accountTypeToString(int type)

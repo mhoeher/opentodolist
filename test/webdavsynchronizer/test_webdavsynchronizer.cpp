@@ -37,7 +37,7 @@
 #include "datamodel/todo.h"
 #include "datamodel/task.h"
 #include "datastorage/cache.h"
-#include "datastorage/libraryloader.h"
+#include "datastorage/loadlibraryquery.h"
 #include "models/itemsmodel.h"
 #include "models/librariesmodel.h"
 
@@ -135,7 +135,7 @@ void WebDAVSynchronizerTest::synchronize()
     davClient->setRemoteDirectory(dirName);
     QList<bool> syncState;
     QVERIFY(!davClient->synchronizing());
-    connect(davClient, &WebDAVSynchronizer::synchronizingChanged,
+    connect(davClient, &WebDAVSynchronizer::synchronizingChanged, this,
             [&]() { syncState << davClient->synchronizing(); });
     davClient->synchronize();
     QVERIFY(!davClient->synchronizing());
@@ -152,12 +152,11 @@ void WebDAVSynchronizerTest::synchronize()
         Cache cache;
         cache.setCacheDirectory(tmpDir.path());
         QVERIFY(cache.open());
-        LibraryLoader loader;
-        loader.setLibraryId(library.uid());
-        loader.setCache(&cache);
-        loader.setDirectory(dir2.path());
-        loader.scan();
-        QSignalSpy spy(&loader, &LibraryLoader::scanFinished);
+        auto q = new LoadLibraryQuery;
+        q->setLibraryId(library.uid());
+        q->setDirectory(dir2.path());
+        QSignalSpy spy(q, &LoadLibraryQuery::finished);
+        cache.run(q);
         QVERIFY(spy.wait());
 
         {
@@ -207,12 +206,11 @@ void WebDAVSynchronizerTest::synchronize()
         Cache cache;
         cache.setCacheDirectory(tmpDir.path());
         QVERIFY(cache.open());
-        LibraryLoader loader;
-        loader.setLibraryId(library.uid());
-        loader.setCache(&cache);
-        loader.setDirectory(dir2.path());
-        loader.scan();
-        QSignalSpy spy(&loader, &LibraryLoader::scanFinished);
+        auto q = new LoadLibraryQuery;
+        q->setLibraryId(library.uid());
+        q->setDirectory(dir2.path());
+        QSignalSpy spy(q, &LoadLibraryQuery::finished);
+        cache.run(q);
         QVERIFY(spy.wait());
 
         {

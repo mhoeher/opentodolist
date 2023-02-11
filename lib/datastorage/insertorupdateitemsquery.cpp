@@ -78,7 +78,7 @@ void InsertOrUpdateItemsQuery::run()
     QLMDB::Cursor itemCursor(t, *items());
     QLMDB::Cursor childrenCursor(t, *children());
 
-    for (auto lib : m_libEntries) {
+    for (const auto& lib : m_libEntries) {
         auto data = lib.toByteArray();
         auto id = lib.id.toByteArray();
 

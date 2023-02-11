@@ -55,7 +55,7 @@ DirectoryWatcher::~DirectoryWatcher()
 void DirectoryWatcher::setDirectory(const QString& directory)
 {
     QMetaObject::invokeMethod(m_worker, "setDirectory", Qt::QueuedConnection,
-                              Q_ARG(const QString&, directory));
+                              Q_ARG(QString, directory));
 }
 
 DirectoryWatcherWorker::DirectoryWatcherWorker() : QObject(), m_watcher(nullptr), m_directory() {}
@@ -70,13 +70,14 @@ void DirectoryWatcherWorker::setDirectory(const QString& directory)
         // Create watcher on-demand when we first set a directory.
         if (m_watcher == nullptr) {
             m_watcher = new QFileSystemWatcher(this);
-            connect(m_watcher, &QFileSystemWatcher::directoryChanged, [=](const QString& dir) {
-                emit directoryChanged();
-                if (!m_directory.isEmpty()) {
-                    this->watchDir(dir);
-                }
-            });
-            connect(m_watcher, &QFileSystemWatcher::fileChanged,
+            connect(m_watcher, &QFileSystemWatcher::directoryChanged, this,
+                    [=](const QString& dir) {
+                        emit directoryChanged();
+                        if (!m_directory.isEmpty()) {
+                            this->watchDir(dir);
+                        }
+                    });
+            connect(m_watcher, &QFileSystemWatcher::fileChanged, this,
                     [=](const QString&) { emit directoryChanged(); });
         }
 
@@ -99,10 +100,10 @@ void DirectoryWatcherWorker::watchDir(const QString& directory)
         QDir dir(directory);
         if (dir.exists()) {
             m_watcher->addPath(directory);
-            for (auto entry : dir.entryList(QDir::Files)) {
+            for (const auto& entry : dir.entryList(QDir::Files)) {
                 m_watcher->addPath(dir.absoluteFilePath(entry));
             }
-            for (auto entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            for (const auto& entry : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
                 watchDir(dir.absoluteFilePath(entry));
             }
         }

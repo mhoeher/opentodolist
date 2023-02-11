@@ -889,42 +889,42 @@ msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList släpps under villkoren i <a href='app-license'> GNU General Public License </a> version 3 eller (efter eget val) någon senare version."
 
-#: ../Pages/AboutPage.qml:83
+#: ../Pages/AboutPage.qml:81
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Rapportera ett problem"
 
-#: ../Pages/AboutPage.qml:112
+#: ../Pages/AboutPage.qml:110
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Tredjepartsbibliotek och resurser"
 
-#: ../Pages/AboutPage.qml:149
+#: ../Pages/AboutPage.qml:147
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Författare:"
 
-#: ../Pages/AboutPage.qml:154
+#: ../Pages/AboutPage.qml:152
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:161
+#: ../Pages/AboutPage.qml:159
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licens:"
 
-#: ../Pages/AboutPage.qml:166
+#: ../Pages/AboutPage.qml:164
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:172
+#: ../Pages/AboutPage.qml:170
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Ladda ner:"
 
-#: ../Pages/AboutPage.qml:176
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1516,12 +1516,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Svep för att markera som klart"
 
-#: ../Menues/LibraryPageActions.qml:31
+#: ../Menues/LibraryPageActions.qml:35
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Synkronisera nu"
 
-#: ../Menues/LibraryPageActions.qml:48
+#: ../Menues/LibraryPageActions.qml:52
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Synkroniseringslogg"
@@ -1586,12 +1586,12 @@ msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Aktivera en konsol på Windows för att samla felsökningsdata"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:371
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Öppna"
 
-#: ../appstartup.cpp:430
+#: ../appstartup.cpp:432
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Avsluta"
@@ -2186,12 +2186,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Kunde inte skapa synkroniseringslås"
 
-#: ../Pages/AboutPage.qml:91
+#: ../Pages/AboutPage.qml:88
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Kopiera systeminformation"
 
-#: ../appstartup.cpp:377
+#: ../appstartup.cpp:378
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Snabb notis"
@@ -2702,5 +2702,10 @@ msgstr ""
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
+msgstr ""
+
+#: ../Menues/LibraryPageActions.qml:62
+msgctxt "LibraryPageActions|"
+msgid "Open Library Folder"
 msgstr ""
 

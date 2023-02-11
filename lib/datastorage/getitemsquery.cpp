@@ -39,7 +39,7 @@ GetItemsQuery::GetItemsQuery(QObject* parent)
 void GetItemsQuery::run()
 {
     QVariantList result;
-    QLMDB::Transaction t(*context());
+    QLMDB::Transaction t(*context(), QLMDB::Transaction::ReadOnly);
     m_transaction = &t;
     QLMDB::Cursor itemsCursor(t, *items());
     QLMDB::Cursor childrenCursor(t, *children());

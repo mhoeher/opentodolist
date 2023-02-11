@@ -112,8 +112,8 @@ void SynchronizerTest::logging()
         QCOMPARE(sync.log().length(), Synchronizer::MaxLogEntries);
         sync.debug() << "Bar";
         QCOMPARE(sync.log().length(), Synchronizer::MaxLogEntries);
-        QCOMPARE(sync.log()[0].message, QString("Foo "));
-        QCOMPARE(sync.log()[Synchronizer::MaxLogEntries - 1].message, QString("Bar "));
+        QCOMPARE(sync.log().at(0).message, QString("Foo "));
+        QCOMPARE(sync.log().at(Synchronizer::MaxLogEntries - 1).message, QString("Bar "));
     }
 }
 

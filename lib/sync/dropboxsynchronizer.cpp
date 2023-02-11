@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2022-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -25,10 +25,8 @@
 
 #include "dropboxaccount.h"
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.DropboxSynchronizer", QtDebugMsg);
-
 DropboxSynchronizer::DropboxSynchronizer(QObject* parent)
-    : Synchronizer(parent), m_accessToken(), m_stopRequested(false)
+    : SynqClientSynchronizer(parent), m_accessToken()
 {
 }
 
@@ -36,43 +34,7 @@ void DropboxSynchronizer::synchronize()
 {
     if (!directory().isEmpty() && !synchronizing()) {
         SynqClient::DirectorySynchronizer sync;
-        sync.setRemoteDirectoryPath(remoteDirectory());
-        sync.setLocalDirectoryPath(directory());
-        sync.setSyncConflictStrategy(SynqClient::SyncConflictStrategy::RemoteWins);
-        connect(&sync, &SynqClient::DirectorySynchronizer::logMessageAvailable, this,
-                [=](SynqClient::SynchronizerLogEntryType type, const QString& message) {
-                    switch (type) {
-                    case SynqClient::SynchronizerLogEntryType::Information:
-                        writeLog(Synchronizer::Debug) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Warning:
-                        writeLog(Synchronizer::Warning) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Error:
-                        writeLog(Synchronizer::Error) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::LocalMkDir:
-                        writeLog(Synchronizer::LocalMkDir) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::RemoteMkDir:
-                        writeLog(Synchronizer::RemoteMkDir) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::LocalDelete:
-                        writeLog(Synchronizer::LocalDelete) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::RemoteDelete:
-                        writeLog(Synchronizer::RemoteDelete) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Upload:
-                        writeLog(Synchronizer::Upload) << message;
-                        break;
-                    case SynqClient::SynchronizerLogEntryType::Download:
-                        writeLog(Synchronizer::Download) << message;
-                        break;
-                    }
-                });
-        connect(&sync, &SynqClient::DirectorySynchronizer::progress, this,
-                &DropboxSynchronizer::progress);
+        setupDirectorySynchronizer(sync);
 
         SynqClient::DropboxJobFactory factory;
         QNetworkAccessManager nam;
@@ -85,37 +47,8 @@ void DropboxSynchronizer::synchronize()
         SynqClient::SQLSyncStateDatabase db(directory() + "/.otldropboxsync.db");
         sync.setSyncStateDatabase(&db);
 
-        static QRegularExpression pathRe(
-                R"(^\/(library\.json|\d\d\d\d(\/\d\d?(\/[^\.]+\.[a-zA-Z\.]+)?)?)?$)");
-        sync.setFilter([=](const QString& path, const SynqClient::FileInfo&) {
-            auto result = pathRe.match(path).hasMatch();
-            return result;
-        });
-
-        QEventLoop loop;
-        connect(&sync, &SynqClient::DirectorySynchronizer::finished, &loop, &QEventLoop::quit);
-        connect(this, &DropboxSynchronizer::stopRequested, &sync,
-                &SynqClient::DirectorySynchronizer::stop);
-
-        setSynchronizing(true);
-        m_stopRequested = false;
-
-        sync.start();
-        loop.exec();
-
-        if (sync.error() != SynqClient::SynchronizerError::NoError) {
-            emit syncError(sync.errorString());
-        }
-
-        setSynchronizing(false);
+        runDirectorySynchronizer(sync);
     }
-}
-
-void DropboxSynchronizer::stopSync()
-{
-    qCWarning(::log) << "Stopping Dropbox sync";
-    m_stopRequested = true;
-    emit stopRequested();
 }
 
 QVariantMap DropboxSynchronizer::toMap() const

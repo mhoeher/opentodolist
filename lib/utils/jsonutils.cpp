@@ -68,8 +68,8 @@ static Q_LOGGING_CATEGORY(log, "OpenTodoList.JsonUtils", QtWarningMsg)
             qCWarning(log) << "Failed to open" << filename << "for reading:" << file.errorString();
         }
     }
-    for (auto key : data.keys()) {
-        properties[key] = data[key];
+    for (auto it = data.constBegin(); it != data.constEnd(); ++it) {
+        properties[it.key()] = it.value();
     }
     auto doc = QJsonDocument::fromVariant(properties);
     auto newFileContent = doc.toJson(QJsonDocument::Indented);
