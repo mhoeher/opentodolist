@@ -17,11 +17,6 @@ C.Page {
     property C.StackView stack: null
 
     padding: 0
-    footer: C.DialogButtonBox {
-        id: buttons
-
-        standardButtons: C.DialogButtonBox.Close
-    }
     width: parent.width
     height: parent.height
 
