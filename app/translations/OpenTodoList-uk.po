@@ -2063,27 +2063,27 @@ msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:44
+#: ../Pages/SettingsPage.qml:39
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:50
+#: ../Pages/SettingsPage.qml:45
 msgctxt "SettingsPage|"
 msgid "User Interface"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:58
+#: ../Pages/SettingsPage.qml:53
 msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:122
+#: ../Pages/SettingsPage.qml:117
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:158
+#: ../Pages/SettingsPage.qml:153
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr ""
@@ -2108,44 +2108,44 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:175
+#: ../Pages/SettingsPage.qml:170
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:193
+#: ../Pages/SettingsPage.qml:188
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:202
+#: ../Pages/SettingsPage.qml:197
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:210
+#: ../Pages/SettingsPage.qml:205
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:220
+#: ../Pages/SettingsPage.qml:215
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:227
+#: ../Pages/SettingsPage.qml:222
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:234
+#: ../Pages/SettingsPage.qml:229
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:254
+#: ../Pages/SettingsPage.qml:249
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2177,7 +2177,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:263
+#: ../Pages/SettingsPage.qml:258
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr ""
@@ -2292,12 +2292,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:146
+#: ../Pages/SettingsPage.qml:141
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:152
+#: ../Pages/SettingsPage.qml:147
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr ""
@@ -2418,7 +2418,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:184
+#: ../Pages/SettingsPage.qml:179
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr ""
@@ -2604,7 +2604,7 @@ msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:279
+#: ../Pages/SettingsPage.qml:274
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
 msgstr ""

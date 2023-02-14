@@ -1722,57 +1722,57 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="44"/>
+        <location filename="../Pages/SettingsPage.qml" line="39"/>
         <source>Settings</source>
         <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="50"/>
+        <location filename="../Pages/SettingsPage.qml" line="45"/>
         <source>User Interface</source>
         <translation type="unfinished">Interface utilisateur</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="58"/>
+        <location filename="../Pages/SettingsPage.qml" line="53"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="122"/>
+        <location filename="../Pages/SettingsPage.qml" line="117"/>
         <source>Theme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="146"/>
+        <location filename="../Pages/SettingsPage.qml" line="141"/>
         <source>System Tray:</source>
         <translation type="unfinished">Barre des Tâches:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="152"/>
+        <location filename="../Pages/SettingsPage.qml" line="147"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Ouvrir l’Éditeur de Notes Rapides au Clic</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="158"/>
+        <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="175"/>
+        <location filename="../Pages/SettingsPage.qml" line="170"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Utiliser une taille de police personnalisée</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="184"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Mode bureau</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="193"/>
+        <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Utiliser un style compact</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="202"/>
+        <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1781,27 +1781,27 @@
 &lt;em&gt;Nécessite un redémarrage de l&apos;application.&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="210"/>
+        <location filename="../Pages/SettingsPage.qml" line="205"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Utiliser des listes des tâches compactes</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="220"/>
+        <location filename="../Pages/SettingsPage.qml" line="215"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Réduire l&apos;écart de remplissage dans les listes de tâches et d&apos;actions pour faire tenir plus d&apos;éléments à l&apos;écran.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="227"/>
+        <location filename="../Pages/SettingsPage.qml" line="222"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Remplacer le facteur d&apos;échelle</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="234"/>
+        <location filename="../Pages/SettingsPage.qml" line="229"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Facteur d&apos;échelle:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="254"/>
+        <location filename="../Pages/SettingsPage.qml" line="249"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1810,12 +1810,12 @@ This requires a restart of the app.</source>
 Cela nécessite un redémarrage de l&apos;application.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="263"/>
+        <location filename="../Pages/SettingsPage.qml" line="258"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">Taille des Objets de la Bibliothèque:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="279"/>
+        <location filename="../Pages/SettingsPage.qml" line="274"/>
         <source>Show notes excerpt in listings</source>
         <translation type="unfinished">Montrer un extrait des notes dans les listes</translation>
     </message>

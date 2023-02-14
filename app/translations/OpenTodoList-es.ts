@@ -99,7 +99,7 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="71"/>
         <source>Dropbox</source>
-        <translation type="unfinished">buzón</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -519,7 +519,7 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="132"/>
         <source>Dropbox</source>
-        <translation type="unfinished">buzón</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1001,7 +1001,7 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="122"/>
         <source>Dropbox</source>
-        <translation type="unfinished">buzón</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1724,57 +1724,57 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="44"/>
+        <location filename="../Pages/SettingsPage.qml" line="39"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="50"/>
+        <location filename="../Pages/SettingsPage.qml" line="45"/>
         <source>User Interface</source>
         <translation type="unfinished">Interfaz de usuario</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="58"/>
+        <location filename="../Pages/SettingsPage.qml" line="53"/>
         <source>Language:</source>
         <translation type="unfinished">Lenguaje:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="122"/>
+        <location filename="../Pages/SettingsPage.qml" line="117"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="146"/>
+        <location filename="../Pages/SettingsPage.qml" line="141"/>
         <source>System Tray:</source>
         <translation type="unfinished">Bandeja del sistema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="152"/>
+        <location filename="../Pages/SettingsPage.qml" line="147"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Abra el editor de notas rápidas al hacer clic</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="158"/>
+        <location filename="../Pages/SettingsPage.qml" line="153"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="175"/>
+        <location filename="../Pages/SettingsPage.qml" line="170"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Usar tamaño de fuente personalizado</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="184"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Modo de escritorio</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="193"/>
+        <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Usar estilo compacto</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="202"/>
+        <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1783,27 +1783,27 @@
 &lt;em&gt;Requiere reiniciar la aplicación.&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="210"/>
+        <location filename="../Pages/SettingsPage.qml" line="205"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Usar listas de tareas compactas</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="220"/>
+        <location filename="../Pages/SettingsPage.qml" line="215"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Reduzca el relleno en las listas de tareas pendientes para que quepan más elementos en la pantalla.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="227"/>
+        <location filename="../Pages/SettingsPage.qml" line="222"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Anular factor de escala</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="234"/>
+        <location filename="../Pages/SettingsPage.qml" line="229"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Factor de escala:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="254"/>
+        <location filename="../Pages/SettingsPage.qml" line="249"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1812,12 +1812,12 @@ This requires a restart of the app.</source>
 Esto requiere un reinicio de la aplicación.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="263"/>
+        <location filename="../Pages/SettingsPage.qml" line="258"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">Tamaño del elemento de la biblioteca:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="279"/>
+        <location filename="../Pages/SettingsPage.qml" line="274"/>
         <source>Show notes excerpt in listings</source>
         <translation type="unfinished">Mostrar extracto de notas en listados</translation>
     </message>
