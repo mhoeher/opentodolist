@@ -8,13 +8,12 @@ import "../Controls" as C
 import "../Utils"
 import "../Fonts"
 
-
 Column {
     id: editor
 
     property OTL.ComplexItem item: null
 
-    signal doneEditing()
+    signal doneEditing
 
     QtObject {
         id: d
@@ -22,55 +21,55 @@ Column {
         property var savedTexts: ({})
 
         function loadText() {
-            let hash = OTL.Application.sha256(item.notes);
+            let hash = OTL.Application.sha256(item.notes)
             if (!savedTexts[hash]) {
                 // We have not saved the text before, so assume this is a real update from the
                 // server.
-                textArea.text = item.notes;
+                textArea.text = item.notes
             } else {
                 // This is a "fake" update we caused on our own. Irgnore it but remove the
                 // hash from out list.
-                delete savedTexts[hash];
+                delete savedTexts[hash]
             }
-            saveTimer.stop();
+            saveTimer.stop()
         }
 
         function saveText() {
-            item.notes = textArea.text;
-            saveTimer.stop();
+            item.notes = textArea.text
+            saveTimer.stop()
 
             // Remember the currently saved text - the item will emit an update when we
             // auto saved and then a sync is triggered. This update would cause the text in
             // the editor to be discarded, which is certainly not what a user wants.
             // Note, that this is still only a poor man's sync solution for notes and might
             // still fail when multiple users work in parallel on the same note.
-            savedTexts[OTL.Application.sha256(textArea.text)] = true;
+            savedTexts[OTL.Application.sha256(textArea.text)] = true
         }
     }
 
     Component.onCompleted: {
         if (item) {
-            d.loadText();
+            d.loadText()
 
             // Remember the initial item's text.
-            d.savedTexts[OTL.Application.sha256(item.notes)] = true;
+            d.savedTexts[OTL.Application.sha256(item.notes)] = true
         }
-        textArea.forceActiveFocus();
+        textArea.forceActiveFocus()
     }
     Component.onDestruction: d.saveText()
     onItemChanged: {
-        d.loadText();
+        d.loadText()
 
         // Remember the initial item's text.
-        d.savedTexts = {};
-        d.savedTexts[OTL.Application.sha256(item.notes)] = true;
+        d.savedTexts = {}
+        d.savedTexts[OTL.Application.sha256(item.notes)] = true
     }
 
     Connections {
         target: item
         ignoreUnknownSignals: true
         function onNotesChanged() {
-            d.loadText();
+            d.loadText()
         }
     }
 
@@ -78,7 +77,7 @@ Column {
         id: textArea
 
         width: parent.width
-        font.family: "Courier New, Courier, Fixed"
+        font.family: AppSettings.fixedFont.family
 
         onTextChanged: saveTimer.start()
         onFocusChanged: if (!focus) {

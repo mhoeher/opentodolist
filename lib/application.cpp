@@ -29,6 +29,7 @@
 #include <QFileInfo>
 #include <QGuiApplication>
 #include <QJsonDocument>
+#include <QMimeData>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QProcess>
@@ -1082,19 +1083,6 @@ QUrl Application::getPhotoLibraryLocation() const
     }
 }
 
-/**
- * @brief Converts HTML into plain text.
- *
- * This function gets an @p html string as input and returns the text converted
- * to plain text.
- */
-QString Application::htmlToPlainText(const QString& html) const
-{
-    QTextDocument doc;
-    doc.setHtml(html);
-    return doc.toPlainText();
-}
-
 #ifdef Q_OS_ANDROID
 /**
  * @brief Get the absolute path to the app specific external files directory.
@@ -1308,6 +1296,17 @@ void Application::copyToClipboard(const QString& text)
     if (app != nullptr) {
         auto clipboard = app->clipboard();
         clipboard->setText(text);
+    }
+}
+
+void Application::copyHtmlToClipboard(const QString& html)
+{
+    auto app = qobject_cast<QGuiApplication*>(qApp);
+    if (app) {
+        auto mimeData = new QMimeData();
+        mimeData->setHtml(html);
+        mimeData->setText(html);
+        app->clipboard()->setMimeData(mimeData);
     }
 }
 
