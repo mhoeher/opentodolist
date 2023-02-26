@@ -9,7 +9,9 @@ def _mkdirs(path):
         pass  # Directory already exists
 
 
-def mk_appicon(icon, icon_transparent, icon_badge, output_dir, inkscape=None):
+def mk_appicon(
+        icon, icon_transparent, icon_badge, icon_monochrome, output_dir, 
+        inkscape=None):
     from os.path import join
     from os.path import abspath
     from subprocess import check_call
@@ -149,6 +151,24 @@ def mk_appicon(icon, icon_transparent, icon_badge, output_dir, inkscape=None):
         ]
         check_call(args)
 
+    # Create monochrome icons for Desktop
+    for i in [16, 32, 64, 128, 256]:
+        out_dir = join(
+            output_dir,
+            "app", "icons", "hicolor", f"{i}x{i}", "apps"
+        )
+        _mkdirs(out_dir)
+        out_file = join(out_dir, "net.rpdev.OpenTodoList-Monochrome.png")
+        args = [
+            inkscape,
+            "-z",
+            "-o", out_file,
+            "-w", str(i),
+            "-h", str(i),
+            icon_monochrome
+        ]
+        check_call(args)
+
     # Create Windows Icon file:
     out_dir = join(output_dir, "app", "res")
     _mkdirs(out_dir)
@@ -212,6 +232,10 @@ if __name__ == "__main__":
         dirname(basename(__file__)),
         "assets", "OpenTodoList-Icon.svg"
     )
+    icon_monochrome = join(
+        dirname(basename(__file__)),
+        "assets", "OpenTodoList-Monochrome.svg"
+    )
     output_dir = join(
         dirname(basename(__file__))
     )
@@ -242,10 +266,22 @@ if __name__ == "__main__":
         default=icon_badge
     )
     parser.add_argument(
+        "--icon-monochrome", "-m",
+        help="Path to monochrome icon file. "
+             "Defaults to {}".format(icon_monochrome),
+        default=icon_monochrome
+    )
+    parser.add_argument(
         "--output", "-o",
         help="Path to output directory. Defaults to {}".format(output_dir),
         default=output_dir
     )
     args = parser.parse_args()
     mk_appicon(
-        args.icon, args.icon_transparent, args.icon_badge, args.output, inkscape=args.inkscape)
+        args.icon, 
+        args.icon_transparent, 
+        args.icon_badge, 
+        args.icon_monochrome, 
+        args.output, 
+        inkscape=args.inkscape
+    )

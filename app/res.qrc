@@ -19,5 +19,10 @@
         <file>Fonts/Roboto/Roboto-Bold.ttf</file>
         <file>Fonts/Roboto/Roboto-Italic.ttf</file>
         <file>Fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>icons/hicolor/128x128/apps/net.rpdev.OpenTodoList-Monochrome.png</file>
+        <file>icons/hicolor/16x16/apps/net.rpdev.OpenTodoList-Monochrome.png</file>
+        <file>icons/hicolor/256x256/apps/net.rpdev.OpenTodoList-Monochrome.png</file>
+        <file>icons/hicolor/32x32/apps/net.rpdev.OpenTodoList-Monochrome.png</file>
+        <file>icons/hicolor/64x64/apps/net.rpdev.OpenTodoList-Monochrome.png</file>
     </qresource>
 </RCC>

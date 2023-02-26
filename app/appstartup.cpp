@@ -388,7 +388,7 @@ void AppStartup::showTrayIcon()
 #ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
     m_statusNotifierItem = new KStatusNotifierItem(app);
     m_statusNotifierItem->setStatus(KStatusNotifierItem::Active);
-    m_statusNotifierItem->setIconByName("net.rpdev.OpenTodoList");
+    m_statusNotifierItem->setIconByName(getIconName());
     m_statusNotifierItem->setContextMenu(m_trayMenu);
     connect(m_statusNotifierItem, &KStatusNotifierItem::activateRequested, this,
             [=](bool active, QPoint) {
@@ -406,9 +406,11 @@ void AppStartup::showTrayIcon()
                     }
                 }
             });
+    connect(m_application, &Application::useMonochromeTrayIconChanged, m_statusNotifierItem,
+            [=]() { m_statusNotifierItem->setIconByName(getIconName()); });
 #else
     m_trayIcon = new QSystemTrayIcon(this);
-    m_trayIcon->setIcon(QIcon(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png"));
+    m_trayIcon->setIcon(loadIcon());
     m_trayIcon->setContextMenu(m_trayMenu);
     connect(m_trayIcon, &QSystemTrayIcon::activated, this,
             [=](QSystemTrayIcon::ActivationReason reason) {
@@ -424,6 +426,8 @@ void AppStartup::showTrayIcon()
                     break;
                 }
             });
+    connect(m_application, &Application::useMonochromeTrayIconChanged, m_trayIcon,
+            [=]() { m_trayIcon->setIcon(loadIcon()); });
     m_trayIcon->show();
 
     if (m_trayIcon->isSystemTrayAvailable()) {
@@ -466,6 +470,32 @@ void AppStartup::debugMessageHandler(QtMsgType type, const QMessageLogContext& c
     }
     for (const auto& handler : s_prevMessageHandler) {
         handler(type, context, msg);
+    }
+}
+
+/**
+ * @brief Load the configured icon for the system tray.
+ *
+ * This returns an icon - either a monochrome one or a coloured one - depending on what
+ * the user configured.
+ */
+QIcon AppStartup::loadIcon() const
+{
+    if (m_application->useMonochromeTrayIcon()) {
+        QIcon result(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList-Monochrome.png");
+        result.setIsMask(true);
+        return result;
+    } else {
+        return QIcon(":/icons/hicolor/64x64/apps/net.rpdev.OpenTodoList.png");
+    }
+}
+
+QString AppStartup::getIconName() const
+{
+    if (m_application->useMonochromeTrayIcon()) {
+        return "net.rpdev.OpenTodoList-Monochrome";
+    } else {
+        return "net.rpdev.OpenTodoList";
     }
 }
 
