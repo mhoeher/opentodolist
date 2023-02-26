@@ -3,6 +3,8 @@ pragma Singleton
 import QtQuick 2.10
 import Qt.labs.settings 1.0
 
+import OpenTodoList 1.0 as OTL
+
 Item {
     id: settings
 
@@ -36,7 +38,9 @@ Item {
     readonly property int tooltipDelay: 500
     readonly property int tooltipTimeout: 10000
 
-    property string defaultFontFamily: "Roboto,Noto,Sans"
+    property font defaultFont: fontUtils.systemFont(
+                                         OTL.FontUtils.GeneralFont)
+    property font fixedFont: fontUtils.systemFont(OTL.FontUtils.FixedFont)
 
     property bool showQuickNotesEditorOnSystemTrayClick: false
 
@@ -86,5 +90,9 @@ Item {
         id: effFontMetrics
 
         font.pointSize: settings.effectiveFontSize
+    }
+
+    OTL.FontUtils {
+        id: fontUtils
     }
 }

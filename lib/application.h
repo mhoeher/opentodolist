@@ -139,7 +139,6 @@ public:
     Q_INVOKABLE bool canListPath(const QUrl& url) const;
     Q_INVOKABLE QUrl getParentDirectory(const QUrl& url) const;
     Q_INVOKABLE QUrl getPhotoLibraryLocation() const;
-    Q_INVOKABLE QString htmlToPlainText(const QString& html) const;
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE QString getExternalFilesDir() const;
 #endif
@@ -189,6 +188,7 @@ public slots:
 
     void syncLibrary(Library* library);
     void copyToClipboard(const QString& text);
+    void copyHtmlToClipboard(const QString& html);
     void clearSyncErrors(Library* library);
 
 signals:
