@@ -184,6 +184,9 @@ public:
     void
     setPropagateCacheEventsFromBackgroundService(bool propagateCacheEventsFromBackgroundService);
 
+    bool useMonochromeTrayIcon() const;
+    void setUseMonochromeTrayIcon(bool newUseMonochromeTrayIcon);
+
 public slots:
 
     void syncLibrary(Library* library);
@@ -245,6 +248,8 @@ signals:
      */
     void itemLoaded(const QUuid& uid, const QVariant& data);
 
+    void useMonochromeTrayIconChanged();
+
 private:
     Cache* m_cache;
     KeyStore* m_keyStore;
@@ -261,6 +266,7 @@ private:
     QSet<QUuid> m_librariesRequestedForDeletion;
     QUuid m_appInstanceUid;
     bool m_propagateCacheEventsFromBackgroundService;
+    bool m_useMonochromeTrayIcon;
 
     void initialize();
 
@@ -278,6 +284,9 @@ private:
     void importAccountsFromSynchronizers();
 
     QSharedPointer<BackgroundServiceReplica> getBackgroundService();
+
+    Q_PROPERTY(bool useMonochromeTrayIcon READ useMonochromeTrayIcon WRITE setUseMonochromeTrayIcon
+                       NOTIFY useMonochromeTrayIconChanged)
 
 private slots:
 

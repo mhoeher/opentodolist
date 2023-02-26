@@ -79,6 +79,12 @@
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg);
 
+#ifdef Q_OS_MAC
+static bool DEFAULT_USE_MONOCHROME_TRAY_ICON = true;
+#else
+static bool DEFAULT_USE_MONOCHROME_TRAY_ICON = false;
+#endif
+
 /**
  * @brief Constructor.
  *
@@ -102,7 +108,8 @@ Application::Application(Cache* cache, QObject* parent)
       m_backgroundService(),
       m_librariesRequestedForDeletion(),
       m_appInstanceUid(QUuid::createUuid()),
-      m_propagateCacheEventsFromBackgroundService(false)
+      m_propagateCacheEventsFromBackgroundService(false),
+      m_useMonochromeTrayIcon(DEFAULT_USE_MONOCHROME_TRAY_ICON)
 {
     Q_CHECK_PTR(cache);
     initialize();
@@ -130,7 +137,8 @@ Application::Application(Cache* cache, const QString& applicationDir, QObject* p
       m_backgroundService(),
       m_librariesRequestedForDeletion(),
       m_appInstanceUid(QUuid::createUuid()),
-      m_propagateCacheEventsFromBackgroundService(false)
+      m_propagateCacheEventsFromBackgroundService(false),
+      m_useMonochromeTrayIcon(DEFAULT_USE_MONOCHROME_TRAY_ICON)
 {
     Q_CHECK_PTR(cache);
     initialize();
@@ -153,6 +161,11 @@ void Application::initialize()
     // Set up propagation from local cache to the background service
     connect(m_cache, &Cache::dataChanged, this, &Application::onLocalCacheDataChanged);
     connect(m_cache, &Cache::librariesChanged, this, &Application::onLocalCacheLibrariesChanged);
+
+    m_settings->beginGroup("Application");
+    m_useMonochromeTrayIcon =
+            m_settings->value("useMonochromeTrayIcon", m_useMonochromeTrayIcon).toBool();
+    m_settings->endGroup();
 }
 
 /**
@@ -1317,6 +1330,22 @@ void Application::clearSyncErrors(Library* library)
         emit syncErrorsChanged();
         m_problemManager->removeProblemsFor(library->uid(), Problem::SyncFailed);
     }
+}
+
+bool Application::useMonochromeTrayIcon() const
+{
+    return m_useMonochromeTrayIcon;
+}
+
+void Application::setUseMonochromeTrayIcon(bool newUseMonochromeTrayIcon)
+{
+    if (m_useMonochromeTrayIcon == newUseMonochromeTrayIcon)
+        return;
+    m_useMonochromeTrayIcon = newUseMonochromeTrayIcon;
+    m_settings->beginGroup("Application");
+    m_settings->setValue("useMonochromeTrayIcon", m_useMonochromeTrayIcon);
+    m_settings->endGroup();
+    emit useMonochromeTrayIconChanged();
 }
 
 void Application::setPropagateCacheEventsFromBackgroundService(
