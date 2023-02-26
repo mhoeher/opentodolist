@@ -285,7 +285,8 @@ private:
 
     QSharedPointer<BackgroundServiceReplica> getBackgroundService();
 
-    Q_PROPERTY(bool useMonochromeTrayIcon READ useMonochromeTrayIcon WRITE setUseMonochromeTrayIcon NOTIFY useMonochromeTrayIconChanged)
+    Q_PROPERTY(bool useMonochromeTrayIcon READ useMonochromeTrayIcon WRITE setUseMonochromeTrayIcon
+                       NOTIFY useMonochromeTrayIconChanged)
 
 private slots:
 
