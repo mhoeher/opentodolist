@@ -1591,7 +1591,7 @@ msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Abrir"
 
-#: ../appstartup.cpp:433
+#: ../appstartup.cpp:437
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Sair"
@@ -2058,27 +2058,27 @@ msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Selecionar Lista de Tarefas"
 
-#: ../Pages/SettingsPage.qml:39
+#: ../Pages/SettingsPage.qml:41
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr "Configurações"
 
-#: ../Pages/SettingsPage.qml:45
+#: ../Pages/SettingsPage.qml:47
 msgctxt "SettingsPage|"
 msgid "User Interface"
 msgstr "Interface de Usuário"
 
-#: ../Pages/SettingsPage.qml:53
+#: ../Pages/SettingsPage.qml:55
 msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Linguagem:"
 
-#: ../Pages/SettingsPage.qml:117
+#: ../Pages/SettingsPage.qml:119
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Tamanho da Fonte"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Definir Progresso"
 
-#: ../Pages/SettingsPage.qml:170
+#: ../Pages/SettingsPage.qml:179
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Usar tamanho de fonte personalizado"
 
-#: ../Pages/SettingsPage.qml:188
+#: ../Pages/SettingsPage.qml:197
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Usar Estilo Compacto"
 
-#: ../Pages/SettingsPage.qml:197
+#: ../Pages/SettingsPage.qml:206
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "Reduza o espaço entre os componentes e reduza o tamanho da fonte.\n"
 "\n"
 "<em>Requer uma reinicialização do aplicativo.</em>"
 
-#: ../Pages/SettingsPage.qml:205
+#: ../Pages/SettingsPage.qml:214
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "Use listas de tarefas compactas"
 
-#: ../Pages/SettingsPage.qml:215
+#: ../Pages/SettingsPage.qml:224
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "Reduza o preenchimento nas listas de tarefas e tarefas para ajustar mais itens na tela."
 
-#: ../Pages/SettingsPage.qml:222
+#: ../Pages/SettingsPage.qml:231
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Substituir Fator de Escala"
 
-#: ../Pages/SettingsPage.qml:229
+#: ../Pages/SettingsPage.qml:238
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Fator de Escala:"
 
-#: ../Pages/SettingsPage.qml:249
+#: ../Pages/SettingsPage.qml:258
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Promover"
 
-#: ../Pages/SettingsPage.qml:258
+#: ../Pages/SettingsPage.qml:267
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "Tamanho do item da biblioteca:"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "A cada N meses"
 
-#: ../Pages/SettingsPage.qml:141
+#: ../Pages/SettingsPage.qml:143
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "Bandeja do Sistema:"
 
-#: ../Pages/SettingsPage.qml:147
+#: ../Pages/SettingsPage.qml:156
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Abra o Editor de notas rápidas ao clicar"
@@ -2417,7 +2417,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Definir Progresso"
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:188
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Modo de Area de Trabalho"
@@ -2472,17 +2472,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr "Dropbox"
 
-#: ../../lib/application.cpp:189
+#: ../../lib/application.cpp:203
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr "Sincronização em Segundo Plano"
 
-#: ../../lib/application.cpp:193
+#: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr "O aplicativo continua a sincronizar seus dados em segundo plano"
 
-#: ../../lib/application.cpp:197
+#: ../../lib/application.cpp:211
 msgctxt "Application|"
 msgid "Quit"
 msgstr "Sair"
@@ -2603,7 +2603,7 @@ msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
 msgstr "Carregando..."
 
-#: ../Pages/SettingsPage.qml:274
+#: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
 msgstr "Mostrar trecho de notas em listagens"
@@ -2631,85 +2631,95 @@ msgstr "Cronograma"
 #: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
+msgstr "Bibliotecas\n"
+"\n"
+""
 
 #: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
+msgstr "Adicionar uma nova biblioteca\n"
+""
 
 #: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
-msgstr ""
+msgstr "Contas"
 
 #: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
-msgstr ""
+msgstr "Adicionar uma conta"
 
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
+msgstr "Informações de depuração"
 
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
+msgstr "Baixar"
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
+msgstr "Enviar"
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
+msgstr "Criar pasta local"
 
 #: ../Pages/LogViewPage.qml:90
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
+msgstr "Criar pasta remota"
 
 #: ../Pages/LogViewPage.qml:92
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
+msgstr "Deletando localmente"
 
 #: ../Pages/LogViewPage.qml:94
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
+msgstr "Deletando remotamente\n"
+""
 
 #: ../Pages/LogViewPage.qml:96
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
+msgstr "Tipo de mensagem de registro desconhecido"
 
+#. Traduzido
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
+msgstr "Mais ações..."
 
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
-msgstr ""
+msgstr "Abrir Pasta da Biblioteca"
 
 #: ../Pages/ProblemsPage.qml:91
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
+msgstr "Repetir Sincronização"
+
+#: ../Pages/SettingsPage.qml:148
+msgctxt "SettingsPage|"
+msgid "Monochrome Icon"
 msgstr ""
 

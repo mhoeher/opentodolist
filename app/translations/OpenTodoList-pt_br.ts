@@ -149,7 +149,7 @@
         <translation type="unfinished">Nota Rápida</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="433"/>
+        <location filename="../appstartup.cpp" line="437"/>
         <source>Quit</source>
         <translation type="unfinished">Sair</translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="189"/>
+        <location filename="../../lib/application.cpp" line="203"/>
         <source>Background Sync</source>
         <translation type="unfinished">Sincronização em Segundo Plano</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="193"/>
+        <location filename="../../lib/application.cpp" line="207"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished">O aplicativo continua a sincronizar seus dados em segundo plano</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="197"/>
+        <location filename="../../lib/application.cpp" line="211"/>
         <source>Quit</source>
         <translation type="unfinished">Sair</translation>
     </message>
@@ -717,34 +717,6 @@
     </message>
 </context>
 <context>
-    <name>ItemNotesEditor</name>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
-        <source>Notes</source>
-        <translation type="unfinished">Notas</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
-        <source>No notes added yet - click here to add some.</source>
-        <translation type="unfinished">Nenhuma nota adicionada ainda - clique aqui para adicionar algumas.</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
-        <source>Export to File...</source>
-        <translation type="unfinished">Exportar para Arquivo...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
-        <source>Markdown files</source>
-        <translation type="unfinished">Arquivos Markdown</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
-        <source>All files</source>
-        <translation type="unfinished">Todos os arquivos</translation>
-    </message>
-</context>
-<context>
     <name>ItemUtils</name>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="152"/>
@@ -851,7 +823,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="62"/>
         <source>Open Library Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abrir Pasta da Biblioteca</translation>
     </message>
 </context>
 <context>
@@ -879,52 +851,53 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Informações de depuração</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aviso</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="82"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erro</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="84"/>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="86"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviar</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Criar pasta local</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Criar pasta remota</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deletando localmente</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deletando remotamente
+</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tipo de mensagem de registro desconhecido</translation>
     </message>
 </context>
 <context>
@@ -1429,7 +1402,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="91"/>
         <source>Retry Sync</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Repetir Sincronização</translation>
     </message>
 </context>
 <context>
@@ -1722,57 +1695,62 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="39"/>
+        <location filename="../Pages/SettingsPage.qml" line="41"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="45"/>
+        <location filename="../Pages/SettingsPage.qml" line="47"/>
         <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="53"/>
+        <location filename="../Pages/SettingsPage.qml" line="55"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="117"/>
+        <location filename="../Pages/SettingsPage.qml" line="119"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="141"/>
+        <location filename="../Pages/SettingsPage.qml" line="143"/>
         <source>System Tray:</source>
         <translation type="unfinished">Bandeja do Sistema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="147"/>
+        <location filename="../Pages/SettingsPage.qml" line="148"/>
+        <source>Monochrome Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="156"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Abra o Editor de notas rápidas ao clicar</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="153"/>
+        <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="170"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Usar tamanho de fonte personalizado</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="179"/>
+        <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Modo de Area de Trabalho</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="188"/>
+        <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Usar Estilo Compacto</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="197"/>
+        <location filename="../Pages/SettingsPage.qml" line="206"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1781,27 +1759,27 @@
 &lt;em&gt;Requer uma reinicialização do aplicativo.&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="205"/>
+        <location filename="../Pages/SettingsPage.qml" line="214"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Use listas de tarefas compactas</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="215"/>
+        <location filename="../Pages/SettingsPage.qml" line="224"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Reduza o preenchimento nas listas de tarefas e tarefas para ajustar mais itens na tela.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="222"/>
+        <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Substituir Fator de Escala</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="229"/>
+        <location filename="../Pages/SettingsPage.qml" line="238"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Fator de Escala:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="249"/>
+        <location filename="../Pages/SettingsPage.qml" line="258"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1810,12 +1788,12 @@ This requires a restart of the app.</source>
 Isso requer uma reinicialização do aplicativo.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="258"/>
+        <location filename="../Pages/SettingsPage.qml" line="267"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">Tamanho do item da biblioteca:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="274"/>
+        <location filename="../Pages/SettingsPage.qml" line="283"/>
         <source>Show notes excerpt in listings</source>
         <translation type="unfinished">Mostrar trecho de notas em listagens</translation>
     </message>
@@ -1825,12 +1803,15 @@ Isso requer uma reinicialização do aplicativo.</translation>
     <message>
         <location filename="../Pages/StartPage.qml" line="46"/>
         <source>Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliotecas
+
+</translation>
     </message>
     <message>
         <location filename="../Pages/StartPage.qml" line="71"/>
         <source>Add a new library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adicionar uma nova biblioteca
+</translation>
     </message>
     <message>
         <location filename="../Pages/StartPage.qml" line="90"/>
@@ -1840,7 +1821,7 @@ Isso requer uma reinicialização do aplicativo.</translation>
     <message>
         <location filename="../Pages/StartPage.qml" line="112"/>
         <source>Add an account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adicionar uma conta</translation>
     </message>
 </context>
 <context>
@@ -1976,7 +1957,7 @@ Isso requer uma reinicialização do aplicativo.</translation>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
         <source>More Actions...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mais ações...</translation>
     </message>
 </context>
 <context>
@@ -1994,7 +1975,7 @@ Isso requer uma reinicialização do aplicativo.</translation>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

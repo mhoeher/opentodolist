@@ -149,7 +149,7 @@
         <translation type="unfinished">Note Rapide</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="433"/>
+        <location filename="../appstartup.cpp" line="437"/>
         <source>Quit</source>
         <translation type="unfinished">Quitter</translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="189"/>
+        <location filename="../../lib/application.cpp" line="203"/>
         <source>Background Sync</source>
         <translation type="unfinished">Synchronisation en arrière plan</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="193"/>
+        <location filename="../../lib/application.cpp" line="207"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished">L&apos;application poursuit la synchronisation de vos données en arrière plan</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="197"/>
+        <location filename="../../lib/application.cpp" line="211"/>
         <source>Quit</source>
         <translation type="unfinished">Quitter</translation>
     </message>
@@ -714,34 +714,6 @@
         <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
         <source>Recurs indefinitely</source>
         <translation type="unfinished">Répéter indéfiniment</translation>
-    </message>
-</context>
-<context>
-    <name>ItemNotesEditor</name>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
-        <source>Notes</source>
-        <translation type="unfinished">Notes</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
-        <source>No notes added yet - click here to add some.</source>
-        <translation type="unfinished">Aucune note n&apos;a encore été ajoutée - cliquez ici pour en ajouter.</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
-        <source>Export to File...</source>
-        <translation type="unfinished">Exporter vers le fichier...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
-        <source>Markdown files</source>
-        <translation type="unfinished">Fichiers Markdown</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
-        <source>All files</source>
-        <translation type="unfinished">Tous les fichiers</translation>
     </message>
 </context>
 <context>
@@ -1722,57 +1694,62 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="39"/>
+        <location filename="../Pages/SettingsPage.qml" line="41"/>
         <source>Settings</source>
         <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="45"/>
+        <location filename="../Pages/SettingsPage.qml" line="47"/>
         <source>User Interface</source>
         <translation type="unfinished">Interface utilisateur</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="53"/>
+        <location filename="../Pages/SettingsPage.qml" line="55"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="117"/>
+        <location filename="../Pages/SettingsPage.qml" line="119"/>
         <source>Theme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="141"/>
+        <location filename="../Pages/SettingsPage.qml" line="143"/>
         <source>System Tray:</source>
         <translation type="unfinished">Barre des Tâches:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="147"/>
+        <location filename="../Pages/SettingsPage.qml" line="148"/>
+        <source>Monochrome Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="156"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Ouvrir l’Éditeur de Notes Rapides au Clic</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="153"/>
+        <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="170"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Utiliser une taille de police personnalisée</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="179"/>
+        <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Mode bureau</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="188"/>
+        <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Utiliser un style compact</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="197"/>
+        <location filename="../Pages/SettingsPage.qml" line="206"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1781,27 +1758,27 @@
 &lt;em&gt;Nécessite un redémarrage de l&apos;application.&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="205"/>
+        <location filename="../Pages/SettingsPage.qml" line="214"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Utiliser des listes des tâches compactes</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="215"/>
+        <location filename="../Pages/SettingsPage.qml" line="224"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Réduire l&apos;écart de remplissage dans les listes de tâches et d&apos;actions pour faire tenir plus d&apos;éléments à l&apos;écran.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="222"/>
+        <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Remplacer le facteur d&apos;échelle</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="229"/>
+        <location filename="../Pages/SettingsPage.qml" line="238"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Facteur d&apos;échelle:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="249"/>
+        <location filename="../Pages/SettingsPage.qml" line="258"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1810,12 +1787,12 @@ This requires a restart of the app.</source>
 Cela nécessite un redémarrage de l&apos;application.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="258"/>
+        <location filename="../Pages/SettingsPage.qml" line="267"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">Taille des Objets de la Bibliothèque:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="274"/>
+        <location filename="../Pages/SettingsPage.qml" line="283"/>
         <source>Show notes excerpt in listings</source>
         <translation type="unfinished">Montrer un extrait des notes dans les listes</translation>
     </message>

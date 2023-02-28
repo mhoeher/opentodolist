@@ -149,7 +149,7 @@
         <translation type="unfinished">快捷笔记</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="433"/>
+        <location filename="../appstartup.cpp" line="437"/>
         <source>Quit</source>
         <translation type="unfinished">退出</translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="189"/>
+        <location filename="../../lib/application.cpp" line="203"/>
         <source>Background Sync</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="193"/>
+        <location filename="../../lib/application.cpp" line="207"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="197"/>
+        <location filename="../../lib/application.cpp" line="211"/>
         <source>Quit</source>
         <translation type="unfinished">退出</translation>
     </message>
@@ -714,34 +714,6 @@
         <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
         <source>Recurs indefinitely</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ItemNotesEditor</name>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
-        <source>Notes</source>
-        <translation type="unfinished">笔记</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
-        <source>No notes added yet - click here to add some.</source>
-        <translation type="unfinished">尚未添加任何笔记 - 单击此处添加一些笔记。</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
-        <source>Export to File...</source>
-        <translation type="unfinished">导出到文件...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
-        <source>Markdown files</source>
-        <translation type="unfinished">Markdown 文件</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
-        <source>All files</source>
-        <translation type="unfinished">所有的文件</translation>
     </message>
 </context>
 <context>
@@ -1722,57 +1694,62 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="39"/>
+        <location filename="../Pages/SettingsPage.qml" line="41"/>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="45"/>
+        <location filename="../Pages/SettingsPage.qml" line="47"/>
         <source>User Interface</source>
         <translation type="unfinished">用户界面</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="53"/>
+        <location filename="../Pages/SettingsPage.qml" line="55"/>
         <source>Language:</source>
         <translation type="unfinished">语言:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="117"/>
+        <location filename="../Pages/SettingsPage.qml" line="119"/>
         <source>Theme:</source>
         <translation type="unfinished">主题:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="141"/>
+        <location filename="../Pages/SettingsPage.qml" line="143"/>
         <source>System Tray:</source>
         <translation type="unfinished">系统托盘:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="147"/>
+        <location filename="../Pages/SettingsPage.qml" line="148"/>
+        <source>Monochrome Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="156"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">点击以打开快捷笔记编辑器</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="153"/>
+        <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="170"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use custom font size</source>
         <translation type="unfinished">使用自定义字体尺寸</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="179"/>
+        <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">桌面模式</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="188"/>
+        <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">使用紧凑风格</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="197"/>
+        <location filename="../Pages/SettingsPage.qml" line="206"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1781,27 +1758,27 @@
 &lt;em&gt;需要重新启动应用。&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="205"/>
+        <location filename="../Pages/SettingsPage.qml" line="214"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">使用紧凑的待办事项清单</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="215"/>
+        <location filename="../Pages/SettingsPage.qml" line="224"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">缩小待办事项和任务列表的边距使得屏幕上可以显示更多项目。</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="222"/>
+        <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">覆盖缩放级别</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="229"/>
+        <location filename="../Pages/SettingsPage.qml" line="238"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">缩放级别:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="249"/>
+        <location filename="../Pages/SettingsPage.qml" line="258"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1810,12 +1787,12 @@ This requires a restart of the app.</source>
 这需要重新启动应用。</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="258"/>
+        <location filename="../Pages/SettingsPage.qml" line="267"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">资料库项目尺寸:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="274"/>
+        <location filename="../Pages/SettingsPage.qml" line="283"/>
         <source>Show notes excerpt in listings</source>
         <translation type="unfinished"></translation>
     </message>

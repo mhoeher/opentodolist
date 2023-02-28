@@ -1591,7 +1591,7 @@ msgctxt "AppStartup|"
 msgid "Open"
 msgstr "打开"
 
-#: ../appstartup.cpp:433
+#: ../appstartup.cpp:437
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "退出"
@@ -2058,27 +2058,27 @@ msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "选择待办事详清单"
 
-#: ../Pages/SettingsPage.qml:39
+#: ../Pages/SettingsPage.qml:41
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr "设置"
 
-#: ../Pages/SettingsPage.qml:45
+#: ../Pages/SettingsPage.qml:47
 msgctxt "SettingsPage|"
 msgid "User Interface"
 msgstr "用户界面"
 
-#: ../Pages/SettingsPage.qml:53
+#: ../Pages/SettingsPage.qml:55
 msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "语言:"
 
-#: ../Pages/SettingsPage.qml:117
+#: ../Pages/SettingsPage.qml:119
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "主题:"
 
-#: ../Pages/SettingsPage.qml:153
+#: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "字体尺寸:"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "设定进度"
 
-#: ../Pages/SettingsPage.qml:170
+#: ../Pages/SettingsPage.qml:179
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "使用自定义字体尺寸"
 
-#: ../Pages/SettingsPage.qml:188
+#: ../Pages/SettingsPage.qml:197
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "使用紧凑风格"
 
-#: ../Pages/SettingsPage.qml:197
+#: ../Pages/SettingsPage.qml:206
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "缩小组件之间的间距并缩小字体尺寸。\n"
 "\n"
 "<em>需要重新启动应用。</em>"
 
-#: ../Pages/SettingsPage.qml:205
+#: ../Pages/SettingsPage.qml:214
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "使用紧凑的待办事项清单"
 
-#: ../Pages/SettingsPage.qml:215
+#: ../Pages/SettingsPage.qml:224
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "缩小待办事项和任务列表的边距使得屏幕上可以显示更多项目。"
 
-#: ../Pages/SettingsPage.qml:222
+#: ../Pages/SettingsPage.qml:231
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "覆盖缩放级别"
 
-#: ../Pages/SettingsPage.qml:229
+#: ../Pages/SettingsPage.qml:238
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "缩放级别:"
 
-#: ../Pages/SettingsPage.qml:249
+#: ../Pages/SettingsPage.qml:258
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "推荐"
 
-#: ../Pages/SettingsPage.qml:258
+#: ../Pages/SettingsPage.qml:267
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "资料库项目尺寸:"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "每 N 月"
 
-#: ../Pages/SettingsPage.qml:141
+#: ../Pages/SettingsPage.qml:143
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "系统托盘:"
 
-#: ../Pages/SettingsPage.qml:147
+#: ../Pages/SettingsPage.qml:156
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "点击以打开快捷笔记编辑器"
@@ -2417,7 +2417,7 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "设定进度"
 
-#: ../Pages/SettingsPage.qml:179
+#: ../Pages/SettingsPage.qml:188
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "桌面模式"
@@ -2472,17 +2472,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr ""
 
-#: ../../lib/application.cpp:189
+#: ../../lib/application.cpp:203
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr ""
 
-#: ../../lib/application.cpp:193
+#: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:197
+#: ../../lib/application.cpp:211
 msgctxt "Application|"
 msgid "Quit"
 msgstr ""
@@ -2603,7 +2603,7 @@ msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:274
+#: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
 msgstr ""
@@ -2711,5 +2711,10 @@ msgstr ""
 #: ../Pages/ProblemsPage.qml:91
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
+msgstr ""
+
+#: ../Pages/SettingsPage.qml:148
+msgctxt "SettingsPage|"
+msgid "Monochrome Icon"
 msgstr ""
 
