@@ -11,7 +11,10 @@ Item {
         theme: Colors.usingDarkColorTheme ? OTL.SyntaxHighlighter.Dark : OTL.SyntaxHighlighter.Light
     }
 
-    readonly property string stylesheet: "
+    readonly property string stylesheet: "<style type='text/css' rel='stylesheet'>"
+                                         + stylesheetContent + "</style>"
+
+    readonly property string stylesheetContent: "
 a, a:visited {
 color: %1;
 text-decoration: none;
@@ -43,7 +46,8 @@ padding-right: 0.4em;
         if (text === "") {
             return ""
         }
-        return textUtils.markdownToHtml(text, stylesheet, syntaxHighlighter)
+        return textUtils.markdownToHtml(text, stylesheetContent,
+                                        syntaxHighlighter)
     }
 
     function markdownToPlainText(text) {
