@@ -38,8 +38,7 @@ Item {
     readonly property int tooltipDelay: 500
     readonly property int tooltipTimeout: 10000
 
-    property font defaultFont: fontUtils.systemFont(
-                                         OTL.FontUtils.GeneralFont)
+    property font defaultFont: fontUtils.systemFont(OTL.FontUtils.GeneralFont)
     property font fixedFont: fontUtils.systemFont(OTL.FontUtils.FixedFont)
 
     property bool showQuickNotesEditorOnSystemTrayClick: false
@@ -67,6 +66,9 @@ Item {
 
     readonly property FontMetrics effectiveFontMetrics: effFontMetrics
 
+    // Expose sub-settings
+    property alias todoListPageSettings: todoListPageSettings
+
     Settings {
         property alias customFontSIze: settings.customFontSize
         property alias useCustomFontSize: settings.useCustomFontSize
@@ -80,6 +82,15 @@ Item {
         property alias desktopMode: settings.desktopMode
 
         category: "ApplicationWindow"
+    }
+
+    Settings {
+        id: todoListPageSettings
+        category: "TodoListPage"
+
+        property bool showUndone: false
+        property bool groupDone: false
+        property string sortTodosBy: "weight"
     }
 
     FontMetrics {
