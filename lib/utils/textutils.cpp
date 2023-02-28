@@ -69,6 +69,8 @@ QString TextUtils::markdownToHtml(const QString& text, const QString& stylesheet
         }
     }
 
+    html = removeBodyStyle(html);
+
     return html;
 }
 
@@ -175,4 +177,25 @@ void TextUtils::highlightCodeBlocks(QTextDocument& doc, SyntaxHighlighter* highl
             }
         }
     }
+}
+
+/**
+ * @brief Remove the style section from the HTML body element.
+ *
+ * This prevents us from having hard-coded font metrics in the generated HTML.
+ */
+QString TextUtils::removeBodyStyle(const QString& html) const
+{
+    auto index = html.indexOf("<body");
+    if (index >= 0) {
+        const QString BeginOfStyle = "style=\"";
+        index = html.indexOf(BeginOfStyle, index);
+        if (index >= 0) {
+            auto closingIndex = html.indexOf("\"", index + BeginOfStyle.length());
+            if (closingIndex >= 0) {
+                return html.mid(0, index) + html.mid(closingIndex + 1);
+            }
+        }
+    }
+    return html;
 }

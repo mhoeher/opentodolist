@@ -40,6 +40,7 @@ public:
 private:
     void fixFormatting(QTextDocument& doc) const;
     void highlightCodeBlocks(QTextDocument& doc, SyntaxHighlighter* highlighter) const;
+    QString removeBodyStyle(const QString& html) const;
 };
 
 #endif // UTILS_TEXTUTILS_H_

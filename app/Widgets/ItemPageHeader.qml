@@ -17,10 +17,10 @@ Item {
 
     Heading {
         id: pageHeading
-        text: "<strong>%1</strong>%2".arg(
-                  Markdown.markdownToHtml(root.item.title)).arg(
-                  root.total > 0 ? " (%1/%2)".arg(root.counter).arg(root.total) :
-                                     "")
+        text: Markdown.markdownToHtml(
+                  "%1%2".arg(root.item.title).arg(
+                      root.total > 0 ? " (%1/%2)".arg(root.counter).arg(
+                                           root.total) : ""))
         width: parent.width
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         font.bold: false
@@ -29,4 +29,3 @@ Item {
         topPadding: 0
     }
 }
-
