@@ -106,7 +106,7 @@ void TextUtils::fixFormatting(QTextDocument& doc) const
                 format.setTopMargin(10);
                 format.setBottomMargin(10);
                 QTextCursor cursor(block);
-                cursor.select(QTextCursor::BlockUnderCursor);
+                cursor.select(QTextCursor::LineUnderCursor);
                 cursor.mergeBlockFormat(format);
             }
         }
