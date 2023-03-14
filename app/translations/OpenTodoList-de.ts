@@ -719,22 +719,22 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="152"/>
+        <location filename="../Utils/ItemUtils.qml" line="174"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Verschiebe Todo zu...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="167"/>
+        <location filename="../Utils/ItemUtils.qml" line="189"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished">Unteraufgabe in Aufgabe konvertieren und verschieben nach …</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <location filename="../Utils/ItemUtils.qml" line="205"/>
         <source>Copy Item Into...</source>
         <translation type="unfinished">Artikel kopieren in...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <location filename="../Utils/ItemUtils.qml" line="222"/>
         <source>Copy Todo Into...</source>
         <translation type="unfinished">Todo kopieren in...</translation>
     </message>
@@ -1854,7 +1854,7 @@ Dies erfordert einen Neustart der Anwendung.</translation>
         <translation type="unfinished">Fällig am %1</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="130"/>
+        <location filename="../Widgets/TodoListItem.qml" line="132"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Keine offenen Aufgaben - alles erledigt</translation>
     </message>
@@ -1862,52 +1862,52 @@ Dies erfordert einen Neustart der Anwendung.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="195"/>
+        <location filename="../Pages/TodoListPage.qml" line="172"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="207"/>
+        <location filename="../Pages/TodoListPage.qml" line="184"/>
         <source>Manually</source>
         <translation type="unfinished">Manuell</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="213"/>
+        <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Name</source>
         <translation type="unfinished">Name</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="219"/>
+        <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Due Date</source>
         <translation type="unfinished">Fällig am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="225"/>
+        <location filename="../Pages/TodoListPage.qml" line="202"/>
         <source>Created At</source>
         <translation type="unfinished">Angelegt am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="208"/>
         <source>Updated At</source>
         <translation type="unfinished">Aktualisiert am</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="221"/>
         <source>Show Completed</source>
         <translation type="unfinished">Abgeschlossene anzeigen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <location filename="../Pages/TodoListPage.qml" line="229"/>
         <source>Show At The End</source>
         <translation type="unfinished">Am Ende anzeigen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="281"/>
+        <location filename="../Pages/TodoListPage.qml" line="260"/>
         <source>Todos</source>
         <translation type="unfinished">Aufgaben</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="301"/>
+        <location filename="../Pages/TodoListPage.qml" line="280"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Neue Aufgabe hinzufügen...</translation>
     </message>

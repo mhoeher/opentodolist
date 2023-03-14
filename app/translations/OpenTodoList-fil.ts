@@ -719,22 +719,22 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="152"/>
+        <location filename="../Utils/ItemUtils.qml" line="174"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="167"/>
+        <location filename="../Utils/ItemUtils.qml" line="189"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <location filename="../Utils/ItemUtils.qml" line="205"/>
         <source>Copy Item Into...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <location filename="../Utils/ItemUtils.qml" line="222"/>
         <source>Copy Todo Into...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1850,7 +1850,7 @@ This requires a restart of the app.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="130"/>
+        <location filename="../Widgets/TodoListItem.qml" line="132"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">✔ Walang bukas na todos - tapos na ang lahat</translation>
     </message>
@@ -1858,52 +1858,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="195"/>
+        <location filename="../Pages/TodoListPage.qml" line="172"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Paghahanap ng term 1, term sa paghahanap, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="207"/>
+        <location filename="../Pages/TodoListPage.qml" line="184"/>
         <source>Manually</source>
         <translation type="unfinished">Manu-manong</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="213"/>
+        <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Name</source>
         <translation type="unfinished">Pangalan</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="219"/>
+        <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Due Date</source>
         <translation type="unfinished">Takdang petsa</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="225"/>
+        <location filename="../Pages/TodoListPage.qml" line="202"/>
         <source>Created At</source>
         <translation type="unfinished">Nilikha Sa</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="208"/>
         <source>Updated At</source>
         <translation type="unfinished">Nai-update Sa</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="221"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <location filename="../Pages/TodoListPage.qml" line="229"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="281"/>
+        <location filename="../Pages/TodoListPage.qml" line="260"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="301"/>
+        <location filename="../Pages/TodoListPage.qml" line="280"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Magdagdag ng bagong todo ...</translation>
     </message>

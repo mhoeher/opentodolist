@@ -550,17 +550,17 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Lokalt bibliotek"
 
-#: ../Widgets/TodoListItem.qml:130
+#: ../Widgets/TodoListItem.qml:132
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Ingen åbne todos - alt gjort"
 
-#: ../Pages/TodoListPage.qml:195
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Søgeudtryk 1, søgeudtryk 2, ..."
 
-#: ../Pages/TodoListPage.qml:281
+#: ../Pages/TodoListPage.qml:260
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -685,7 +685,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Tilføj tag"
 
-#: ../Pages/TodoListPage.qml:301
+#: ../Pages/TodoListPage.qml:280
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Tilføj nyt todo..."
@@ -825,27 +825,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Sprog:"
 
-#: ../Pages/TodoListPage.qml:207
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "manuelt"
 
-#: ../Pages/TodoListPage.qml:213
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Navn"
 
-#: ../Pages/TodoListPage.qml:219
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Afleveringsdato"
 
-#: ../Pages/TodoListPage.qml:225
+#: ../Pages/TodoListPage.qml:202
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Oprettet kl"
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:208
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Opdateret kl"
@@ -1859,7 +1859,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:152
+#: ../Utils/ItemUtils.qml:174
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
@@ -2148,7 +2148,7 @@ msgid "Use this to manually scale the user interface. By default, the app should
 "This requires a restart of the app."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:167
+#: ../Utils/ItemUtils.qml:189
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr ""
@@ -2419,12 +2419,12 @@ msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:184
+#: ../Utils/ItemUtils.qml:205
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:202
+#: ../Utils/ItemUtils.qml:222
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr ""
@@ -2439,12 +2439,12 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:221
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:251
+#: ../Pages/TodoListPage.qml:229
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""

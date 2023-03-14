@@ -719,22 +719,22 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="152"/>
+        <location filename="../Utils/ItemUtils.qml" line="174"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Mou la Llista de tasques a...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="167"/>
+        <location filename="../Utils/ItemUtils.qml" line="189"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished">Converteix la tasca en Per fer i desplaça-ho a...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <location filename="../Utils/ItemUtils.qml" line="205"/>
         <source>Copy Item Into...</source>
         <translation type="unfinished">Copia l&apos;element a...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <location filename="../Utils/ItemUtils.qml" line="222"/>
         <source>Copy Todo Into...</source>
         <translation type="unfinished">Copia la llista a...</translation>
     </message>
@@ -1854,7 +1854,7 @@ Això requereix reiniciar l&apos;aplicació.</translation>
         <translation type="unfinished">Venç el %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="130"/>
+        <location filename="../Widgets/TodoListItem.qml" line="132"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">Sense tasques pendents - tot fet</translation>
     </message>
@@ -1862,52 +1862,52 @@ Això requereix reiniciar l&apos;aplicació.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="195"/>
+        <location filename="../Pages/TodoListPage.qml" line="172"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de cerca 1, terme de cerca 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="207"/>
+        <location filename="../Pages/TodoListPage.qml" line="184"/>
         <source>Manually</source>
         <translation type="unfinished">Manualment</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="213"/>
+        <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Name</source>
         <translation type="unfinished">Nom</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="219"/>
+        <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Due Date</source>
         <translation type="unfinished">Data de venciment</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="225"/>
+        <location filename="../Pages/TodoListPage.qml" line="202"/>
         <source>Created At</source>
         <translation type="unfinished">Creat el</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="208"/>
         <source>Updated At</source>
         <translation type="unfinished">Actualitzat el</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="221"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <location filename="../Pages/TodoListPage.qml" line="229"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="281"/>
+        <location filename="../Pages/TodoListPage.qml" line="260"/>
         <source>Todos</source>
         <translation type="unfinished">Coses a fer</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="301"/>
+        <location filename="../Pages/TodoListPage.qml" line="280"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Afegeix una llista nova...</translation>
     </message>

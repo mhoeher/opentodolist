@@ -549,17 +549,17 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "本地资料库"
 
-#: ../Widgets/TodoListItem.qml:130
+#: ../Widgets/TodoListItem.qml:132
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔没有待办事项-一切都完成了"
 
-#: ../Pages/TodoListPage.qml:195
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "搜索词1，搜索词2，..."
 
-#: ../Pages/TodoListPage.qml:281
+#: ../Pages/TodoListPage.qml:260
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "待办事项"
@@ -684,7 +684,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "添加标签"
 
-#: ../Pages/TodoListPage.qml:301
+#: ../Pages/TodoListPage.qml:280
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "添加新的待办事项..."
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "语言:"
 
-#: ../Pages/TodoListPage.qml:207
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "手动"
 
-#: ../Pages/TodoListPage.qml:213
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "名称"
 
-#: ../Pages/TodoListPage.qml:219
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "到期日期"
 
-#: ../Pages/TodoListPage.qml:225
+#: ../Pages/TodoListPage.qml:202
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "创建于"
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:208
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "更新于"
@@ -1858,7 +1858,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。"
 
-#: ../Utils/ItemUtils.qml:152
+#: ../Utils/ItemUtils.qml:174
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "移动待办事项至..."
@@ -2151,7 +2151,7 @@ msgstr "使用此来手动缩放用户界面。默认情况下，应用程序应
 "\n"
 "这需要重新启动应用。"
 
-#: ../Utils/ItemUtils.qml:167
+#: ../Utils/ItemUtils.qml:189
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "转换任务为待办事项并移动至..."
@@ -2422,12 +2422,12 @@ msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "桌面模式"
 
-#: ../Utils/ItemUtils.qml:184
+#: ../Utils/ItemUtils.qml:205
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
 msgstr "复制项目至..."
 
-#: ../Utils/ItemUtils.qml:202
+#: ../Utils/ItemUtils.qml:222
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr "复制待办事项至..."
@@ -2442,12 +2442,12 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr "选择图片"
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:221
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr "选择已完成"
 
-#: ../Pages/TodoListPage.qml:251
+#: ../Pages/TodoListPage.qml:229
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "显示在末尾"
