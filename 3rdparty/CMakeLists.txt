@@ -4,7 +4,7 @@ include(ExternalProject)
 set(OPENTODOLIST_MODULES_INSTALL_DIR "${CMAKE_BINARY_DIR}/modules")
 
 # The preferred linking method.
-if(UNIX AND NOT APPLE AND NOT ANDROID)
+if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT OPENTODOLIST_FORCE_STATIC_3RD_PARTY_LIBRARIES)
     # On Unix and Windows, build shared - this makes it easier as we need to link against
     # several extra libs otherwise.
     set(OPENTODOLIST_MODULES_AS_SHARED_LIBS ON)

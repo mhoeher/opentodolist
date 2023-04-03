@@ -54,3 +54,9 @@ pacman -Sy --noconfirm \
 # an "emergency" release and cannot build due to broken dependencies.
 
 cp /home/build/opentodolist-*.pkg.tar.zst build-arch
+
+
+# Try to install the package and run the app (w/o GUI) to make
+# sure we got all dependencies right:
+pacman -U --noconfirm /home/build/opentodolist-*.pkg.tar.zst
+OpenTodoList -platform minimal --version
