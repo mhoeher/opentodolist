@@ -44,3 +44,7 @@ option(OPENTODOLIST_USE_SYSTEM_SYNQCLIENT
     "Build against the system SynqClient library."
      ${OPENTODOLIST_USE_SYSTEM_LIBRARIES}
 )
+option(OPENTODOLIST_FORCE_STATIC_3RD_PARTY_LIBRARIES
+    "Force building 3rd party dependencies as static libraries."
+    OFF
+)
