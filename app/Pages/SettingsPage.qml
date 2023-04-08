@@ -5,6 +5,8 @@ import "../Components"
 import "../Controls" as C
 import "../Utils" as Utils
 
+import OpenTodoList 1.0 as OTL
+
 C.Page {
     id: page
 
@@ -17,11 +19,6 @@ C.Page {
     property C.StackView stack: null
 
     padding: 0
-    footer: C.DialogButtonBox {
-        id: buttons
-
-        standardButtons: C.DialogButtonBox.Close
-    }
     width: parent.width
     height: parent.height
 
@@ -144,8 +141,15 @@ C.Page {
 
             C.Label {
                 text: qsTr("System Tray:")
-                visible: Utils.AppSettings.supportsQuickEditor
             }
+
+            C.CheckBox {
+                checked: OTL.Application.useMonochromeTrayIcon
+                text: qsTr("Monochrome Icon")
+                onCheckedChanged: OTL.Application.useMonochromeTrayIcon = checked
+            }
+
+            Empty {}
 
             C.CheckBox {
                 checked: Utils.AppSettings.showQuickNotesEditorOnSystemTrayClick

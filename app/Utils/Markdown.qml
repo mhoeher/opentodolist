@@ -4,8 +4,6 @@ import QtQuick 2.0
 
 import OpenTodoList 1.0 as OTL
 
-import "./TextUtils.js" as TextUtils
-
 Item {
     id: root
 
@@ -13,8 +11,10 @@ Item {
         theme: Colors.usingDarkColorTheme ? OTL.SyntaxHighlighter.Dark : OTL.SyntaxHighlighter.Light
     }
 
-    readonly property string stylesheet: "
-<style type='text/css'>
+    readonly property string stylesheet: "<style type='text/css' rel='stylesheet'>"
+                                         + stylesheetContent + "</style>"
+
+    readonly property string stylesheetContent: "
 a, a:visited {
 color: %1;
 text-decoration: none;
@@ -32,10 +32,6 @@ pre {
 white-space: pre-wrap;
 }
 
-del {
-text-decoration: line-through;
-}
-
 table {
 margin-top: 0.5em;
 margin-bottom: 0.5em;
@@ -44,15 +40,18 @@ td, th {
 padding-left: 0.4em;
 padding-right: 0.4em;
 }
-</style>
 ".arg(Colors.linkColor).arg(Colors.color(Colors.negativeColor))
 
     function markdownToHtml(text) {
-        return stylesheet + TextUtils.markdownToHtml(text)
+        if (text === "") {
+            return ""
+        }
+        return textUtils.markdownToHtml(text, stylesheetContent,
+                                        syntaxHighlighter)
     }
 
     function markdownToPlainText(text) {
-        return OTL.Application.htmlToPlainText(TextUtils.markdownToHtml(text))
+        return textUtils.htmlToPlainText(textUtils.markdownToHtml(text))
     }
 
 
@@ -69,5 +68,9 @@ padding-right: 0.4em;
             }
         }
         return ""
+    }
+
+    OTL.TextUtils {
+        id: textUtils
     }
 }

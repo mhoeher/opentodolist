@@ -132,7 +132,7 @@ CenteredDialog {
                     font.pixelSize: grid.font.pixelSize
                     font.bold: d.dateEquals(localDate,
                                             new Date()) // Make today bold
-                    font.family: AppSettings.defaultFontFamily
+                    font.family: AppSettings.defaultFont.family
                     wrapMode: "NoWrap"
                 }
 

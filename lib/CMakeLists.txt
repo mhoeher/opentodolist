@@ -113,6 +113,10 @@ target_sources(
         sync/synqclientsynchronizer.cpp
         datastorage/loadlibraryquery.h
         datastorage/loadlibraryquery.cpp
+        utils/textutils.h
+        utils/textutils.cpp
+        utils/fontutils.h
+        utils/fontutils.cpp
 
         # Include SimpleCrypt source:
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp

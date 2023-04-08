@@ -115,6 +115,9 @@ private:
     void showTrayIcon();
     static void debugMessageHandler(QtMsgType type, const QMessageLogContext& context,
                                     const QString& msg);
+
+    QIcon loadIcon() const;
+    QString getIconName() const;
 };
 
 #endif // APPSTARTUP_H_

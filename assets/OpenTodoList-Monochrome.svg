@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46666"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   sodipodi:docname="OpenTodoList-Monochrome.svg"
+   inkscape:export-filename="/home/martin/OpenTodoList-Icon-2020.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.42"
+     inkscape:cx="230.6338"
+     inkscape:cy="258.09859"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1610"
+     inkscape:window-height="1073"
+     inkscape:window-x="2119"
+     inkscape:window-y="204"
+     inkscape:window-maximized="0"
+     showborder="false"
+     inkscape:pagecheckerboard="false"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Background"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect983"
+       width="135.46666"
+       height="135.46666"
+       x="3.5603841e-06"
+       y="3.5603841e-06" />
+  </g>
+  <g
+     inkscape:label="Main Icon"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path928"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.535375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 67.733333 20.988383 A 46.74498 46.74498 0 0 0 20.988383 67.733333 A 46.74498 46.74498 0 0 0 67.733333 114.47828 A 46.74498 46.74498 0 0 0 114.47828 67.733333 A 46.74498 46.74498 0 0 0 67.733333 20.988383 z M 75.721476 25.868705 A 35.598843 41.86478 0 0 1 111.32034 67.733333 A 35.598843 41.86478 0 0 1 75.721476 109.59796 A 35.598843 41.86478 0 0 1 40.123132 67.733333 A 35.598843 41.86478 0 0 1 75.721476 25.868705 z " />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 59.764478,60.2023 q 2.293785,0 3.470088,3.764174 2.352591,7.057789 3.35246,7.057789 0.764585,0 1.587999,-1.176314 16.526988,-24.290555 30.583781,-34.583174 5.940294,-4.352311 11.586524,-4.352311 7.46952,0 8.99871,0.470497 0.64698,0.176432 0.64698,1.47037 0,1.058666 -1.35275,2.646677 -37.818002,43.405436 -45.052246,56.462339 -2.470241,4.46995 -11.410119,4.46995 -2.940742,0 -6.17556,-1.529184 -1.352767,-0.705779 -4.70522,-8.998688 -4.234681,-10.469059 -4.234681,-18.350273 0,-2.881925 4.117053,-4.764008 5.646238,-2.587861 8.469354,-2.587861 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:69.3098px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.16855"
+       id="path932" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Border (Applied by App Stores)"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       id="rect36"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.88976;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 0,0 V 100 C 0,44.599999 44.599999,0 100,0 Z m 412,0 c 55.40001,0 100,44.599999 100,100 V 0 Z M 0,412 V 512 H 100 C 44.599999,512 0,467.40001 0,412 Z m 512,0 c 0,55.40001 -44.59999,100 -100,100 h 100 z"
+       transform="scale(0.26458333)"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

@@ -549,17 +549,17 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Lokalt bibliotek"
 
-#: ../Widgets/TodoListItem.qml:130
+#: ../Widgets/TodoListItem.qml:132
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Inga öppna att-göra - Allt klart"
 
-#: ../Pages/TodoListPage.qml:195
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Sökterm 1, sökterm 2, ..."
 
-#: ../Pages/TodoListPage.qml:281
+#: ../Pages/TodoListPage.qml:260
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Att-göra"
@@ -684,7 +684,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Lägg till tagg"
 
-#: ../Pages/TodoListPage.qml:301
+#: ../Pages/TodoListPage.qml:280
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Lägg till ny att-göra ..."
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Språk:"
 
-#: ../Pages/TodoListPage.qml:207
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manuellt"
 
-#: ../Pages/TodoListPage.qml:213
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Namn"
 
-#: ../Pages/TodoListPage.qml:219
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Förfallodatum"
 
-#: ../Pages/TodoListPage.qml:225
+#: ../Pages/TodoListPage.qml:202
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Skapad"
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:208
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Uppdaterat"
@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Hantera din personliga data."
 
-#: ../appstartup.cpp:210
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Slå på några optimeringar för pekskärmar."
 
-#: ../appstartup.cpp:213
+#: ../appstartup.cpp:214
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Kör endast programmets bakgrundstjänst"
 
-#: ../appstartup.cpp:215
+#: ../appstartup.cpp:216
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Kör endast programmets GUI och anslut till en befintlig bakgrundstjänst"
 
-#: ../appstartup.cpp:220
+#: ../appstartup.cpp:221
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Aktivera en konsol på Windows för att samla felsökningsdata"
 
-#: ../appstartup.cpp:371
+#: ../appstartup.cpp:372
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Öppna"
 
-#: ../appstartup.cpp:432
+#: ../appstartup.cpp:437
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Avsluta"
@@ -1601,7 +1601,7 @@ msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Ta bort slutförda objekt"
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:19
+#: ../Windows/DeleteCompletedItemsDialog.qml:18
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
 msgstr "Vill du ta bort slutförda objekt?"
@@ -1611,7 +1611,7 @@ msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
 msgstr "Vill du verkligen ta bort alla slutförda att-göra från att-göra-listan <strong>%1</strong>? Det kan inte ångras."
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:48
+#: ../Windows/DeleteCompletedItemsDialog.qml:43
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
 msgstr "Vill du verkligen ta bort alla slutförda uppgifter från <strong>%1</strong>? Det kan inte ångras."
@@ -1858,7 +1858,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Kunde inte ansluta till servern. Kontrollera ditt användarnamn, lösenord och serveradress och försök igen."
 
-#: ../Utils/ItemUtils.qml:152
+#: ../Utils/ItemUtils.qml:174
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Flytta denna att-göra till ..."
@@ -2058,27 +2058,27 @@ msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Välj att-göra-lista"
 
-#: ../Pages/SettingsPage.qml:44
+#: ../Pages/SettingsPage.qml:41
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr "Inställningar"
 
-#: ../Pages/SettingsPage.qml:50
+#: ../Pages/SettingsPage.qml:47
 msgctxt "SettingsPage|"
 msgid "User Interface"
 msgstr "Användargränssnitt"
 
-#: ../Pages/SettingsPage.qml:58
+#: ../Pages/SettingsPage.qml:55
 msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Språk:"
 
-#: ../Pages/SettingsPage.qml:122
+#: ../Pages/SettingsPage.qml:119
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Pages/SettingsPage.qml:158
+#: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Teckenstorlek:"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Ange förlopp"
 
-#: ../Pages/SettingsPage.qml:175
+#: ../Pages/SettingsPage.qml:179
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Använd anpassad teckenstorlek"
 
-#: ../Pages/SettingsPage.qml:193
+#: ../Pages/SettingsPage.qml:197
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Använd kompakt stil"
 
-#: ../Pages/SettingsPage.qml:202
+#: ../Pages/SettingsPage.qml:206
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "Minska utrymmet mellan komponenter och minska teckenstorleken.\n"
 "\n"
 "<em> Kräver att programmet startas om.</em>"
 
-#: ../Pages/SettingsPage.qml:210
+#: ../Pages/SettingsPage.qml:214
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "Använd kompakta att-göra-listor"
 
-#: ../Pages/SettingsPage.qml:220
+#: ../Pages/SettingsPage.qml:224
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "Minska utfyllnad i att-göra- och uppgiftslistor för att få plats med fler objekt på skärmen."
 
-#: ../Pages/SettingsPage.qml:227
+#: ../Pages/SettingsPage.qml:231
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Åsidosätt skalningsfaktor"
 
-#: ../Pages/SettingsPage.qml:234
+#: ../Pages/SettingsPage.qml:238
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Skalningsfaktor:"
 
-#: ../Pages/SettingsPage.qml:254
+#: ../Pages/SettingsPage.qml:258
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2151,7 +2151,7 @@ msgstr "Använd detta för att manuellt skala användargränssnittet. Som standa
 "\n"
 "Detta kräver att programmet startas om."
 
-#: ../Utils/ItemUtils.qml:167
+#: ../Utils/ItemUtils.qml:189
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Konvertera uppgift till Att-göra och flytta till..."
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Marknadsför"
 
-#: ../Pages/SettingsPage.qml:263
+#: ../Pages/SettingsPage.qml:267
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "Biblioteksobjektets storlek:"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Kopiera systeminformation"
 
-#: ../appstartup.cpp:378
+#: ../appstartup.cpp:379
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Snabb notis"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Ångra"
 
-#: ../appstartup.cpp:316 ../appstartup.cpp:323
+#: ../appstartup.cpp:317 ../appstartup.cpp:324
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "okänd"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "Varje N månad"
 
-#: ../Pages/SettingsPage.qml:146
+#: ../Pages/SettingsPage.qml:143
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "Systemfält:"
 
-#: ../Pages/SettingsPage.qml:152
+#: ../Pages/SettingsPage.qml:156
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Öppna snabbnotisredigerare vid klick"
@@ -2346,7 +2346,7 @@ msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
 msgstr "Ctrl+,"
 
-#: ../Components/ApplicationToolBar.qml:151
+#: ../Components/ApplicationToolBar.qml:164
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
 msgstr "Synkroniserar bibliotek..."
@@ -2417,17 +2417,17 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Ange förlopp"
 
-#: ../Pages/SettingsPage.qml:184
+#: ../Pages/SettingsPage.qml:188
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Skrivbordsläge"
 
-#: ../Utils/ItemUtils.qml:184
+#: ../Utils/ItemUtils.qml:205
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
 msgstr "Kopiera objekt till..."
 
-#: ../Utils/ItemUtils.qml:202
+#: ../Utils/ItemUtils.qml:222
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr "Kopiera att-göra till..."
@@ -2442,12 +2442,12 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr "Välj Bild"
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:221
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr "Visa Slutförda"
 
-#: ../Pages/TodoListPage.qml:251
+#: ../Pages/TodoListPage.qml:229
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "Visa Vid Slutet"
@@ -2471,22 +2471,22 @@ msgstr "Återställ pga"
 #: ../Pages/AccountTypeSelectionPage.qml:71
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
-#: ../../lib/application.cpp:189
+#: ../../lib/application.cpp:203
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
+msgstr "Bakgrundssynkronisering"
 
-#: ../../lib/application.cpp:193
+#: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:197
+#: ../../lib/application.cpp:211
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
+msgstr "Avsluta"
 
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
@@ -2527,32 +2527,32 @@ msgstr ""
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Kopiera Länk"
 
 #: ../Pages/EditDropboxAccountPage.qml:116
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Kopierat!"
 
 #: ../Pages/EditDropboxAccountPage.qml:125
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Namn:"
 
 #: ../Pages/EditDropboxAccountPage.qml:132
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Anslutningsinställningar"
 
 #: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Problem att logga in?"
 
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
@@ -2604,7 +2604,7 @@ msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:279
+#: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
 msgstr ""
@@ -2622,32 +2622,32 @@ msgstr ""
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
+msgstr "Bibliotek"
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
+msgstr "Schemalägg"
 
-#: ../Pages/StartPage.qml:37
+#: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
+msgstr "Bibliotek"
 
-#: ../Pages/StartPage.qml:62
+#: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
+msgstr "Lägg till bibliotek"
 
-#: ../Pages/StartPage.qml:81
+#: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Pages/StartPage.qml:103
+#: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
-msgstr ""
+msgstr "Lägg till konto"
 
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
@@ -2657,22 +2657,22 @@ msgstr ""
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
+msgstr "Ladda ner"
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
+msgstr "Ladda upp"
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
@@ -2707,5 +2707,15 @@ msgstr ""
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
+msgstr ""
+
+#: ../Pages/ProblemsPage.qml:91
+msgctxt "ProblemsPage|"
+msgid "Retry Sync"
+msgstr ""
+
+#: ../Pages/SettingsPage.qml:148
+msgctxt "SettingsPage|"
+msgid "Monochrome Icon"
 msgstr ""
 

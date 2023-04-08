@@ -76,7 +76,6 @@
         <file>Pages/NewLibraryFromAccountPage.qml</file>
         <file>Components/PullToRefreshOverlay.qml</file>
         <file>Pages/ProblemsPage.qml</file>
-        <file>Utils/TextUtils.js</file>
         <file>Windows/RecurrenceDialog.qml</file>
         <file>Widgets/TodosWidgetDelegate.qml</file>
         <file>Utils/ItemUtils.qml</file>
@@ -94,7 +93,6 @@
         <file>Components/AutoScrollOverlay.qml</file>
         <file>Widgets/ItemDragTile.qml</file>
         <file>Utils/SyntaxHighlighter.qml</file>
-        <file>3rdpartyinfo/showdownjs/3rdpartyinfo.json</file>
         <file>Pages/NewNextCloudAccountPage.qml</file>
         <file>Pages/EditNextCloudAccountPage.qml</file>
         <file>Actions/DeleteCompletedChildren.qml</file>

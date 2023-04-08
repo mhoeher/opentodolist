@@ -29,6 +29,7 @@
 #include <QFileInfo>
 #include <QGuiApplication>
 #include <QJsonDocument>
+#include <QMimeData>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QProcess>
@@ -78,6 +79,12 @@
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg);
 
+#ifdef Q_OS_MAC
+static bool DEFAULT_USE_MONOCHROME_TRAY_ICON = true;
+#else
+static bool DEFAULT_USE_MONOCHROME_TRAY_ICON = false;
+#endif
+
 /**
  * @brief Constructor.
  *
@@ -101,7 +108,8 @@ Application::Application(Cache* cache, QObject* parent)
       m_backgroundService(),
       m_librariesRequestedForDeletion(),
       m_appInstanceUid(QUuid::createUuid()),
-      m_propagateCacheEventsFromBackgroundService(false)
+      m_propagateCacheEventsFromBackgroundService(false),
+      m_useMonochromeTrayIcon(DEFAULT_USE_MONOCHROME_TRAY_ICON)
 {
     Q_CHECK_PTR(cache);
     initialize();
@@ -129,7 +137,8 @@ Application::Application(Cache* cache, const QString& applicationDir, QObject* p
       m_backgroundService(),
       m_librariesRequestedForDeletion(),
       m_appInstanceUid(QUuid::createUuid()),
-      m_propagateCacheEventsFromBackgroundService(false)
+      m_propagateCacheEventsFromBackgroundService(false),
+      m_useMonochromeTrayIcon(DEFAULT_USE_MONOCHROME_TRAY_ICON)
 {
     Q_CHECK_PTR(cache);
     initialize();
@@ -152,6 +161,11 @@ void Application::initialize()
     // Set up propagation from local cache to the background service
     connect(m_cache, &Cache::dataChanged, this, &Application::onLocalCacheDataChanged);
     connect(m_cache, &Cache::librariesChanged, this, &Application::onLocalCacheLibrariesChanged);
+
+    m_settings->beginGroup("Application");
+    m_useMonochromeTrayIcon =
+            m_settings->value("useMonochromeTrayIcon", m_useMonochromeTrayIcon).toBool();
+    m_settings->endGroup();
 }
 
 /**
@@ -1082,19 +1096,6 @@ QUrl Application::getPhotoLibraryLocation() const
     }
 }
 
-/**
- * @brief Converts HTML into plain text.
- *
- * This function gets an @p html string as input and returns the text converted
- * to plain text.
- */
-QString Application::htmlToPlainText(const QString& html) const
-{
-    QTextDocument doc;
-    doc.setHtml(html);
-    return doc.toPlainText();
-}
-
 #ifdef Q_OS_ANDROID
 /**
  * @brief Get the absolute path to the app specific external files directory.
@@ -1311,6 +1312,17 @@ void Application::copyToClipboard(const QString& text)
     }
 }
 
+void Application::copyHtmlToClipboard(const QString& html)
+{
+    auto app = qobject_cast<QGuiApplication*>(qApp);
+    if (app) {
+        auto mimeData = new QMimeData();
+        mimeData->setHtml(html);
+        mimeData->setText(html);
+        app->clipboard()->setMimeData(mimeData);
+    }
+}
+
 void Application::clearSyncErrors(Library* library)
 {
     if (library) {
@@ -1318,6 +1330,22 @@ void Application::clearSyncErrors(Library* library)
         emit syncErrorsChanged();
         m_problemManager->removeProblemsFor(library->uid(), Problem::SyncFailed);
     }
+}
+
+bool Application::useMonochromeTrayIcon() const
+{
+    return m_useMonochromeTrayIcon;
+}
+
+void Application::setUseMonochromeTrayIcon(bool newUseMonochromeTrayIcon)
+{
+    if (m_useMonochromeTrayIcon == newUseMonochromeTrayIcon)
+        return;
+    m_useMonochromeTrayIcon = newUseMonochromeTrayIcon;
+    m_settings->beginGroup("Application");
+    m_settings->setValue("useMonochromeTrayIcon", m_useMonochromeTrayIcon);
+    m_settings->endGroup();
+    emit useMonochromeTrayIconChanged();
 }
 
 void Application::setPropagateCacheEventsFromBackgroundService(

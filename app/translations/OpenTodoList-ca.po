@@ -549,17 +549,17 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Biblioteca local"
 
-#: ../Widgets/TodoListItem.qml:130
+#: ../Widgets/TodoListItem.qml:132
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "Sense tasques pendents - tot fet"
 
-#: ../Pages/TodoListPage.qml:195
+#: ../Pages/TodoListPage.qml:172
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de cerca 1, terme de cerca 2, ..."
 
-#: ../Pages/TodoListPage.qml:281
+#: ../Pages/TodoListPage.qml:260
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Coses a fer"
@@ -684,7 +684,7 @@ msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Afegeix una etiqueta"
 
-#: ../Pages/TodoListPage.qml:301
+#: ../Pages/TodoListPage.qml:280
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Afegeix una llista nova..."
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Idioma:"
 
-#: ../Pages/TodoListPage.qml:207
+#: ../Pages/TodoListPage.qml:184
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manualment"
 
-#: ../Pages/TodoListPage.qml:213
+#: ../Pages/TodoListPage.qml:190
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nom"
 
-#: ../Pages/TodoListPage.qml:219
+#: ../Pages/TodoListPage.qml:196
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Data de venciment"
 
-#: ../Pages/TodoListPage.qml:225
+#: ../Pages/TodoListPage.qml:202
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Creat el"
 
-#: ../Pages/TodoListPage.qml:231
+#: ../Pages/TodoListPage.qml:208
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Actualitzat el"
@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:205
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Gestiona les teves dades personals."
 
-#: ../appstartup.cpp:210
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Activa algunes optimitzacions per a pantalles tàctils."
 
-#: ../appstartup.cpp:213
+#: ../appstartup.cpp:214
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Executa només el servei de l'aplicació en segon pla"
 
-#: ../appstartup.cpp:215
+#: ../appstartup.cpp:216
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Executeu només la interfície gràfica de l'usuari de l'aplicació i connecteu-vos a un servei de l'aplicació en segon pla"
 
-#: ../appstartup.cpp:220
+#: ../appstartup.cpp:221
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Habilita una consola al Windows per recollir la sortida de depuració"
 
-#: ../appstartup.cpp:371
+#: ../appstartup.cpp:372
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Obre"
 
-#: ../appstartup.cpp:432
+#: ../appstartup.cpp:437
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Surt"
@@ -1601,7 +1601,7 @@ msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Suprimeix els elements completats"
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:19
+#: ../Windows/DeleteCompletedItemsDialog.qml:18
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
 msgstr "Voleu suprimir els elements completats?"
@@ -1611,7 +1611,7 @@ msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
 msgstr "Esteu segur que voleu suprimir definitivament tots els elements per fer a la llista <strong>%1</strong>? Això no es pot desfer."
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:48
+#: ../Windows/DeleteCompletedItemsDialog.qml:43
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
 msgstr "Esteu segur que voleu suprimir definitivament totes les tasques fetes a la llista <strong>%1</strong>? Això no es pot desfer."
@@ -1858,7 +1858,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "No s'ha pogut connectar al servidor. Comproveu el nom d'usuari, la contrasenya i l'adreça del servidor i torneu-ho a provar."
 
-#: ../Utils/ItemUtils.qml:152
+#: ../Utils/ItemUtils.qml:174
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Mou la Llista de tasques a..."
@@ -2058,27 +2058,27 @@ msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
 msgstr "Selecciona la llista de coses per fer"
 
-#: ../Pages/SettingsPage.qml:44
+#: ../Pages/SettingsPage.qml:41
 msgctxt "SettingsPage|"
 msgid "Settings"
 msgstr "Ajusts"
 
-#: ../Pages/SettingsPage.qml:50
+#: ../Pages/SettingsPage.qml:47
 msgctxt "SettingsPage|"
 msgid "User Interface"
 msgstr "Interfície de l'usuari"
 
-#: ../Pages/SettingsPage.qml:58
+#: ../Pages/SettingsPage.qml:55
 msgctxt "SettingsPage|"
 msgid "Language:"
 msgstr "Idioma:"
 
-#: ../Pages/SettingsPage.qml:122
+#: ../Pages/SettingsPage.qml:119
 msgctxt "SettingsPage|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Pages/SettingsPage.qml:158
+#: ../Pages/SettingsPage.qml:162
 msgctxt "SettingsPage|"
 msgid "Font Size:"
 msgstr "Mida de la tipografía:"
@@ -2103,17 +2103,17 @@ msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
 msgstr "Defineix el progrés"
 
-#: ../Pages/SettingsPage.qml:175
+#: ../Pages/SettingsPage.qml:179
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
 msgstr "Utilitza la mida del tipus de lletra personalitzada"
 
-#: ../Pages/SettingsPage.qml:193
+#: ../Pages/SettingsPage.qml:197
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
 msgstr "Utilitza l'estil compacte"
 
-#: ../Pages/SettingsPage.qml:202
+#: ../Pages/SettingsPage.qml:206
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
@@ -2122,27 +2122,27 @@ msgstr "Reduïu l'espai entre components i reduïu la mida del tipus de lletra.\
 "\n"
 "<em>Requereix reiniciar l'aplicació.</em>"
 
-#: ../Pages/SettingsPage.qml:210
+#: ../Pages/SettingsPage.qml:214
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
 msgstr "Utilitza llistes compactes de coses per fer"
 
-#: ../Pages/SettingsPage.qml:220
+#: ../Pages/SettingsPage.qml:224
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
 msgstr "Reduïu el farciment en les llistes de coses per fer i tasques per ajustar-lo a més elements de la pantalla."
 
-#: ../Pages/SettingsPage.qml:227
+#: ../Pages/SettingsPage.qml:231
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
 msgstr "Substitueix el factor d'escalat"
 
-#: ../Pages/SettingsPage.qml:234
+#: ../Pages/SettingsPage.qml:238
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
 msgstr "Factor d'escalat:"
 
-#: ../Pages/SettingsPage.qml:254
+#: ../Pages/SettingsPage.qml:258
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
@@ -2151,7 +2151,7 @@ msgstr "Utilitzeu això per escalar manualment la interfície d'usuari. Per defe
 "\n"
 "Això requereix reiniciar l'aplicació."
 
-#: ../Utils/ItemUtils.qml:167
+#: ../Utils/ItemUtils.qml:189
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Converteix la tasca en Per fer i desplaça-ho a..."
@@ -2176,7 +2176,7 @@ msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Promou"
 
-#: ../Pages/SettingsPage.qml:263
+#: ../Pages/SettingsPage.qml:267
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
 msgstr "Mida de l'element de la biblioteca:"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copia la informació del sistema"
 
-#: ../appstartup.cpp:378
+#: ../appstartup.cpp:379
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Nota ràpida"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Desfés"
 
-#: ../appstartup.cpp:316 ../appstartup.cpp:323
+#: ../appstartup.cpp:317 ../appstartup.cpp:324
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "desconegut"
@@ -2291,12 +2291,12 @@ msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
 msgstr "Cada N mesos"
 
-#: ../Pages/SettingsPage.qml:146
+#: ../Pages/SettingsPage.qml:143
 msgctxt "SettingsPage|"
 msgid "System Tray:"
 msgstr "Safata del sistema:"
 
-#: ../Pages/SettingsPage.qml:152
+#: ../Pages/SettingsPage.qml:156
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
 msgstr "Obre l'editor de notes ràpides en fer clic"
@@ -2346,7 +2346,7 @@ msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
 msgstr "Ctrl+,"
 
-#: ../Components/ApplicationToolBar.qml:151
+#: ../Components/ApplicationToolBar.qml:164
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
 msgstr "S'està sincronitzant la biblioteca..."
@@ -2417,17 +2417,17 @@ msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
 msgstr "Defineix el progrés"
 
-#: ../Pages/SettingsPage.qml:184
+#: ../Pages/SettingsPage.qml:188
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Mode d'escriptori"
 
-#: ../Utils/ItemUtils.qml:184
+#: ../Utils/ItemUtils.qml:205
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
 msgstr "Copia l'element a..."
 
-#: ../Utils/ItemUtils.qml:202
+#: ../Utils/ItemUtils.qml:222
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr "Copia la llista a..."
@@ -2442,12 +2442,12 @@ msgctxt "LibraryPage|"
 msgid "Select Image"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:244
+#: ../Pages/TodoListPage.qml:221
 msgctxt "TodoListPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoListPage.qml:251
+#: ../Pages/TodoListPage.qml:229
 msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2472,17 +2472,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr ""
 
-#: ../../lib/application.cpp:189
+#: ../../lib/application.cpp:203
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr ""
 
-#: ../../lib/application.cpp:193
+#: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:197
+#: ../../lib/application.cpp:211
 msgctxt "Application|"
 msgid "Quit"
 msgstr ""
@@ -2603,7 +2603,7 @@ msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
 msgstr ""
 
-#: ../Pages/SettingsPage.qml:279
+#: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
 msgstr ""
@@ -2628,22 +2628,22 @@ msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr ""
 
-#: ../Pages/StartPage.qml:37
+#: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
 msgstr ""
 
-#: ../Pages/StartPage.qml:62
+#: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
 msgstr ""
 
-#: ../Pages/StartPage.qml:81
+#: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Pages/StartPage.qml:103
+#: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
 msgstr ""
@@ -2706,5 +2706,15 @@ msgstr ""
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
+msgstr ""
+
+#: ../Pages/ProblemsPage.qml:91
+msgctxt "ProblemsPage|"
+msgid "Retry Sync"
+msgstr ""
+
+#: ../Pages/SettingsPage.qml:148
+msgctxt "SettingsPage|"
+msgid "Monochrome Icon"
 msgstr ""
 

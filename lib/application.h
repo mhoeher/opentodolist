@@ -139,7 +139,6 @@ public:
     Q_INVOKABLE bool canListPath(const QUrl& url) const;
     Q_INVOKABLE QUrl getParentDirectory(const QUrl& url) const;
     Q_INVOKABLE QUrl getPhotoLibraryLocation() const;
-    Q_INVOKABLE QString htmlToPlainText(const QString& html) const;
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE QString getExternalFilesDir() const;
 #endif
@@ -185,10 +184,14 @@ public:
     void
     setPropagateCacheEventsFromBackgroundService(bool propagateCacheEventsFromBackgroundService);
 
+    bool useMonochromeTrayIcon() const;
+    void setUseMonochromeTrayIcon(bool newUseMonochromeTrayIcon);
+
 public slots:
 
     void syncLibrary(Library* library);
     void copyToClipboard(const QString& text);
+    void copyHtmlToClipboard(const QString& html);
     void clearSyncErrors(Library* library);
 
 signals:
@@ -245,6 +248,8 @@ signals:
      */
     void itemLoaded(const QUuid& uid, const QVariant& data);
 
+    void useMonochromeTrayIconChanged();
+
 private:
     Cache* m_cache;
     KeyStore* m_keyStore;
@@ -261,6 +266,7 @@ private:
     QSet<QUuid> m_librariesRequestedForDeletion;
     QUuid m_appInstanceUid;
     bool m_propagateCacheEventsFromBackgroundService;
+    bool m_useMonochromeTrayIcon;
 
     void initialize();
 
@@ -278,6 +284,9 @@ private:
     void importAccountsFromSynchronizers();
 
     QSharedPointer<BackgroundServiceReplica> getBackgroundService();
+
+    Q_PROPERTY(bool useMonochromeTrayIcon READ useMonochromeTrayIcon WRITE setUseMonochromeTrayIcon
+                       NOTIFY useMonochromeTrayIconChanged)
 
 private slots:
 

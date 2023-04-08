@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="205"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Gestiona les teves dades personals.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="210"/>
+        <location filename="../appstartup.cpp" line="211"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Activa algunes optimitzacions per a pantalles tàctils.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="213"/>
+        <location filename="../appstartup.cpp" line="214"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Executa només el servei de l&apos;aplicació en segon pla</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="215"/>
+        <location filename="../appstartup.cpp" line="216"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Executeu només la interfície gràfica de l&apos;usuari de l&apos;aplicació i connecteu-vos a un servei de l&apos;aplicació en segon pla</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="220"/>
+        <location filename="../appstartup.cpp" line="221"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Habilita una consola al Windows per recollir la sortida de depuració</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="371"/>
+        <location filename="../appstartup.cpp" line="372"/>
         <source>Open</source>
         <translation type="unfinished">Obre</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="378"/>
+        <location filename="../appstartup.cpp" line="379"/>
         <source>Quick Note</source>
         <translation type="unfinished">Nota ràpida</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="432"/>
+        <location filename="../appstartup.cpp" line="437"/>
         <source>Quit</source>
         <translation type="unfinished">Surt</translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="189"/>
+        <location filename="../../lib/application.cpp" line="203"/>
         <source>Background Sync</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="193"/>
+        <location filename="../../lib/application.cpp" line="207"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="197"/>
+        <location filename="../../lib/application.cpp" line="211"/>
         <source>Quit</source>
         <translation type="unfinished">Surt</translation>
     </message>
@@ -183,7 +183,7 @@
 <context>
     <name>ApplicationToolBar</name>
     <message>
-        <location filename="../Components/ApplicationToolBar.qml" line="151"/>
+        <location filename="../Components/ApplicationToolBar.qml" line="164"/>
         <source>Synchronizing library...</source>
         <translation type="unfinished">S&apos;està sincronitzant la biblioteca...</translation>
     </message>
@@ -389,7 +389,7 @@
 <context>
     <name>DeleteCompletedItemsDialog</name>
     <message>
-        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="19"/>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="18"/>
         <source>Delete Completed Items?</source>
         <translation type="unfinished">Voleu suprimir els elements completats?</translation>
     </message>
@@ -399,7 +399,7 @@
         <translation type="unfinished">Esteu segur que voleu suprimir definitivament tots els elements per fer a la llista &lt;strong&gt;%1&lt;/strong&gt;? Això no es pot desfer.</translation>
     </message>
     <message>
-        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="48"/>
+        <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="43"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
         <translation type="unfinished">Esteu segur que voleu suprimir definitivament totes les tasques fetes a la llista &lt;strong&gt;%1&lt;/strong&gt;? Això no es pot desfer.</translation>
     </message>
@@ -717,52 +717,24 @@
     </message>
 </context>
 <context>
-    <name>ItemNotesEditor</name>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="32"/>
-        <source>Notes</source>
-        <translation type="unfinished">Notes</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="86"/>
-        <source>No notes added yet - click here to add some.</source>
-        <translation type="unfinished">Encara no s&apos;han afegit notes - cliqueu aquí per afegir-ne.</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="115"/>
-        <source>Export to File...</source>
-        <translation type="unfinished">Exporta a un fitxer...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="119"/>
-        <source>Markdown files</source>
-        <translation type="unfinished">Fitxers de marcatge</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/ItemNotesEditor.qml" line="120"/>
-        <source>All files</source>
-        <translation type="unfinished">Tots els fitxers</translation>
-    </message>
-</context>
-<context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="152"/>
+        <location filename="../Utils/ItemUtils.qml" line="174"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Mou la Llista de tasques a...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="167"/>
+        <location filename="../Utils/ItemUtils.qml" line="189"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished">Converteix la tasca en Per fer i desplaça-ho a...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="184"/>
+        <location filename="../Utils/ItemUtils.qml" line="205"/>
         <source>Copy Item Into...</source>
         <translation type="unfinished">Copia l&apos;element a...</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="202"/>
+        <location filename="../Utils/ItemUtils.qml" line="222"/>
         <source>Copy Todo Into...</source>
         <translation type="unfinished">Copia la llista a...</translation>
     </message>
@@ -1426,6 +1398,11 @@
         <source>Synchronization failed for library</source>
         <translation type="unfinished">No s&apos;ha pogut sincronitzar la biblioteca</translation>
     </message>
+    <message>
+        <location filename="../Pages/ProblemsPage.qml" line="91"/>
+        <source>Retry Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PromoteTask</name>
@@ -1438,8 +1415,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="316"/>
-        <location filename="../appstartup.cpp" line="323"/>
+        <location filename="../appstartup.cpp" line="317"/>
+        <location filename="../appstartup.cpp" line="324"/>
         <source>unknown</source>
         <translation type="unfinished">desconegut</translation>
     </message>
@@ -1717,57 +1694,62 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="44"/>
+        <location filename="../Pages/SettingsPage.qml" line="41"/>
         <source>Settings</source>
         <translation type="unfinished">Ajusts</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="50"/>
+        <location filename="../Pages/SettingsPage.qml" line="47"/>
         <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="58"/>
+        <location filename="../Pages/SettingsPage.qml" line="55"/>
         <source>Language:</source>
         <translation type="unfinished">Idioma:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="122"/>
+        <location filename="../Pages/SettingsPage.qml" line="119"/>
         <source>Theme:</source>
         <translation type="unfinished">Tema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="146"/>
+        <location filename="../Pages/SettingsPage.qml" line="143"/>
         <source>System Tray:</source>
         <translation type="unfinished">Safata del sistema:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="152"/>
+        <location filename="../Pages/SettingsPage.qml" line="148"/>
+        <source>Monochrome Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Pages/SettingsPage.qml" line="156"/>
         <source>Open Quick Notes Editor on Click</source>
         <translation type="unfinished">Obre l&apos;editor de notes ràpides en fer clic</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="158"/>
+        <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="175"/>
+        <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use custom font size</source>
         <translation type="unfinished">Utilitza la mida del tipus de lletra personalitzada</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="184"/>
+        <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
         <translation type="unfinished">Mode d&apos;escriptori</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="193"/>
+        <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Use Compact Style</source>
         <translation type="unfinished">Utilitza l&apos;estil compacte</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="202"/>
+        <location filename="../Pages/SettingsPage.qml" line="206"/>
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
@@ -1776,27 +1758,27 @@
 &lt;em&gt;Requereix reiniciar l&apos;aplicació.&lt;/em&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="210"/>
+        <location filename="../Pages/SettingsPage.qml" line="214"/>
         <source>Use compact todo lists</source>
         <translation type="unfinished">Utilitza llistes compactes de coses per fer</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="220"/>
+        <location filename="../Pages/SettingsPage.qml" line="224"/>
         <source>Reduce the padding in todo and task listings to fit more items on the screen.</source>
         <translation type="unfinished">Reduïu el farciment en les llistes de coses per fer i tasques per ajustar-lo a més elements de la pantalla.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="227"/>
+        <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
         <translation type="unfinished">Substitueix el factor d&apos;escalat</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="234"/>
+        <location filename="../Pages/SettingsPage.qml" line="238"/>
         <source>Scale Factor:</source>
         <translation type="unfinished">Factor d&apos;escalat:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="254"/>
+        <location filename="../Pages/SettingsPage.qml" line="258"/>
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
@@ -1805,12 +1787,12 @@ This requires a restart of the app.</source>
 Això requereix reiniciar l&apos;aplicació.</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="263"/>
+        <location filename="../Pages/SettingsPage.qml" line="267"/>
         <source>Library Item Size:</source>
         <translation type="unfinished">Mida de l&apos;element de la biblioteca:</translation>
     </message>
     <message>
-        <location filename="../Pages/SettingsPage.qml" line="279"/>
+        <location filename="../Pages/SettingsPage.qml" line="283"/>
         <source>Show notes excerpt in listings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1818,22 +1800,22 @@ Això requereix reiniciar l&apos;aplicació.</translation>
 <context>
     <name>StartPage</name>
     <message>
-        <location filename="../Pages/StartPage.qml" line="37"/>
+        <location filename="../Pages/StartPage.qml" line="46"/>
         <source>Libraries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="62"/>
+        <location filename="../Pages/StartPage.qml" line="71"/>
         <source>Add a new library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="81"/>
+        <location filename="../Pages/StartPage.qml" line="90"/>
         <source>Accounts</source>
         <translation type="unfinished">Comptes</translation>
     </message>
     <message>
-        <location filename="../Pages/StartPage.qml" line="103"/>
+        <location filename="../Pages/StartPage.qml" line="112"/>
         <source>Add an account</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1872,7 +1854,7 @@ Això requereix reiniciar l&apos;aplicació.</translation>
         <translation type="unfinished">Venç el %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/TodoListItem.qml" line="130"/>
+        <location filename="../Widgets/TodoListItem.qml" line="132"/>
         <source>✔ No open todos - everything done</source>
         <translation type="unfinished">Sense tasques pendents - tot fet</translation>
     </message>
@@ -1880,52 +1862,52 @@ Això requereix reiniciar l&apos;aplicació.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="195"/>
+        <location filename="../Pages/TodoListPage.qml" line="172"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de cerca 1, terme de cerca 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="207"/>
+        <location filename="../Pages/TodoListPage.qml" line="184"/>
         <source>Manually</source>
         <translation type="unfinished">Manualment</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="213"/>
+        <location filename="../Pages/TodoListPage.qml" line="190"/>
         <source>Name</source>
         <translation type="unfinished">Nom</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="219"/>
+        <location filename="../Pages/TodoListPage.qml" line="196"/>
         <source>Due Date</source>
         <translation type="unfinished">Data de venciment</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="225"/>
+        <location filename="../Pages/TodoListPage.qml" line="202"/>
         <source>Created At</source>
         <translation type="unfinished">Creat el</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="231"/>
+        <location filename="../Pages/TodoListPage.qml" line="208"/>
         <source>Updated At</source>
         <translation type="unfinished">Actualitzat el</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="244"/>
+        <location filename="../Pages/TodoListPage.qml" line="221"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="251"/>
+        <location filename="../Pages/TodoListPage.qml" line="229"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="281"/>
+        <location filename="../Pages/TodoListPage.qml" line="260"/>
         <source>Todos</source>
         <translation type="unfinished">Coses a fer</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="301"/>
+        <location filename="../Pages/TodoListPage.qml" line="280"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Afegeix una llista nova...</translation>
     </message>

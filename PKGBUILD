@@ -48,6 +48,7 @@ build() {
                 -DOPENTODOLIST_USE_SYSTEM_QTKEYCHAIN=ON \
                 -DOPENTODOLIST_USE_SYSTEM_KF_SYNTAX_HIGHLIGHTING=OFF \
                 -DOPENTODOLIST_QT_VERSIONS=Qt6 \
+                -DOPENTODOLIST_FORCE_STATIC_3RD_PARTY_LIBRARIES=ON \
                 ..
         cmake --build .
 }

@@ -113,22 +113,8 @@ ItemPage {
     QtObject {
         id: d
 
-        property int sortTodosRole: {
-            switch (settings.sortTodosBy) {
-            case "title":
-                return OTL.ItemsModel.TitleRole
-            case "dueTo":
-                return OTL.ItemsModel.EffectiveDueToRole
-            case "createdAt":
-                return OTL.ItemsModel.CreatedAtRole
-            case "updatedAt":
-                return OTL.ItemsModel.EffectiveUpdatedAtRole
-            case "weight":
-                // fall through
-            default:
-                return OTL.ItemsModel.WeightRole
-            }
-        }
+        property int sortTodosRole: ItemUtils.todosSortRoleFromString(
+                                        AppSettings.todoListPageSettings.sortTodosBy)
 
         property var savedTodoStates: []
 
@@ -146,15 +132,6 @@ ItemPage {
                               "item": OTL.Application.cloneItem(todo)
                           })
         }
-    }
-
-    Settings {
-        id: settings
-        category: "TodoListPage"
-
-        property bool showUndone: false
-        property bool groupDone: false
-        property string sortTodosBy: "weight"
     }
 
     DeleteItemDialog {
@@ -181,12 +158,12 @@ ItemPage {
     OTL.ItemsSortFilterModel {
         id: todosModel
         sortRole: d.sortTodosRole
-        groupDone: settings.groupDone
+        groupDone: AppSettings.todoListPageSettings.groupDone
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             parentItem: page.item.uid
             searchString: filterBar.text
-            onlyUndone: !settings.showUndone
+            onlyUndone: !AppSettings.todoListPageSettings.showUndone
         }
     }
 
@@ -205,33 +182,33 @@ ItemPage {
 
         C.MenuItem {
             text: qsTr("Manually")
-            checked: settings.sortTodosBy === "weight"
+            checked: AppSettings.todoListPageSettings.sortTodosBy === "weight"
             checkable: true
-            onTriggered: settings.sortTodosBy = "weight"
+            onTriggered: AppSettings.todoListPageSettings.sortTodosBy = "weight"
         }
         C.MenuItem {
             text: qsTr("Name")
-            checked: settings.sortTodosBy === "title"
+            checked: AppSettings.todoListPageSettings.sortTodosBy === "title"
             checkable: true
-            onTriggered: settings.sortTodosBy = "title"
+            onTriggered: AppSettings.todoListPageSettings.sortTodosBy = "title"
         }
         C.MenuItem {
             text: qsTr("Due Date")
-            checked: settings.sortTodosBy === "dueTo"
+            checked: AppSettings.todoListPageSettings.sortTodosBy === "dueTo"
             checkable: true
-            onTriggered: settings.sortTodosBy = "dueTo"
+            onTriggered: AppSettings.todoListPageSettings.sortTodosBy = "dueTo"
         }
         C.MenuItem {
             text: qsTr("Created At")
-            checked: settings.sortTodosBy === "createdAt"
+            checked: AppSettings.todoListPageSettings.sortTodosBy === "createdAt"
             checkable: true
-            onTriggered: settings.sortTodosBy = "createdAt"
+            onTriggered: AppSettings.todoListPageSettings.sortTodosBy = "createdAt"
         }
         C.MenuItem {
             text: qsTr("Updated At")
-            checked: settings.sortTodosBy === "updatedAt"
+            checked: AppSettings.todoListPageSettings.sortTodosBy === "updatedAt"
             checkable: true
-            onTriggered: settings.sortTodosBy = "updatedAt"
+            onTriggered: AppSettings.todoListPageSettings.sortTodosBy = "updatedAt"
         }
     }
 
@@ -242,18 +219,20 @@ ItemPage {
 
         C.MenuItem {
             text: qsTr("Show Completed")
-            checked: settings.showUndone
+            checked: AppSettings.todoListPageSettings.showUndone
             checkable: true
-            onClicked: settings.showUndone = !settings.showUndone
+            onClicked: AppSettings.todoListPageSettings.showUndone
+                       = !AppSettings.todoListPageSettings.showUndone
         }
 
         C.MenuItem {
             text: qsTr("Show At The End")
-            checked: settings.groupDone
+            checked: AppSettings.todoListPageSettings.groupDone
             checkable: true
-            visible: settings.showUndone
+            visible: AppSettings.todoListPageSettings.showUndone
             height: visible ? implicitHeight : 0
-            onClicked: settings.groupDone = !settings.groupDone
+            onClicked: AppSettings.todoListPageSettings.groupDone
+                       = !AppSettings.todoListPageSettings.groupDone
         }
     }
 
@@ -280,7 +259,7 @@ ItemPage {
             library: page.library
             title: qsTr("Todos")
             symbol: {
-                switch (settings.sortTodosBy) {
+                switch (AppSettings.todoListPageSettings.sortTodosBy) {
                 case "title":
                     return Icons.mdiSortByAlpha
                 case "dueTo":
@@ -295,11 +274,11 @@ ItemPage {
                     return Icons.mdiFilterList
                 }
             }
-            symbol2: settings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
+            symbol2: AppSettings.todoListPageSettings.showUndone ? Icons.mdiVisibility : Icons.mdiVisibilityOff
             headerItem2Visible: true
             allowCreatingNewItems: true
             newItemPlaceholderText: qsTr("Add new todo...")
-            allowReordering: settings.sortTodosBy === "weight"
+            allowReordering: AppSettings.todoListPageSettings.sortTodosBy === "weight"
             allowSettingDueDate: true
             onHeaderButtonClicked: sortTodosByMenu.open()
             onHeaderButton2Clicked: todosVisibilityMenu.open()
