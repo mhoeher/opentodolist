@@ -2481,7 +2481,7 @@ msgstr "Bakgrundssynkronisering"
 #: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
-msgstr ""
+msgstr "Appen fortsätter att synkronisera din data i bakgrunden"
 
 #: ../../lib/application.cpp:211
 msgctxt "Application|"
@@ -2491,38 +2491,38 @@ msgstr "Avsluta"
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
-msgstr ""
+msgstr "Kopia av"
 
 #: ../Pages/EditDropboxAccountPage.qml:27
 #: ../Pages/EditDropboxAccountPage.qml:67
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
+msgstr "Connection Settings"
 
 #: ../Pages/EditDropboxAccountPage.qml:75
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
+msgstr "Problem att logga in?"
 
 #: ../Pages/EditDropboxAccountPage.qml:86
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
+msgstr "Vi har försökt öppna din webbläsare för att logga in dig på ditt Dropbox-konto. Logga in och ge åtkomst till OpenTodoList för att fortsätta."
 
 #: ../Pages/EditDropboxAccountPage.qml:93
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
+msgstr "Öppnades inte din webbläsare? Du kan försöka öppna den igen eller kopiera önskad URL manuellt till din webbläsare."
 
 #: ../Pages/EditDropboxAccountPage.qml:97
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
+msgstr "Godkänn..."
 
 #: ../Pages/EditDropboxAccountPage.qml:106
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
+msgstr "Öppna Webbläsare"
 
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
@@ -2557,67 +2557,67 @@ msgstr "Problem att logga in?"
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
+msgstr "Vi har försökt öppna din webbläsare för att logga in dig på ditt Dropbox-konto. Logga in och ge åtkomst till OpenTodoList för att fortsätta."
 
 #: ../Pages/NewDropboxAccountPage.qml:81
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
+msgstr "Öppnades inte din webbläsare? Du kan försöka öppna den igen eller kopiera önskad URL manuellt till din webbläsare."
 
 #: ../Pages/NewDropboxAccountPage.qml:87
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
+msgstr "Godkänn…"
 
 #: ../Pages/NewDropboxAccountPage.qml:96
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
+msgstr "Öppna Webbläsare"
 
 #: ../Pages/NewDropboxAccountPage.qml:102
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
+msgstr "Kopiera Länk"
 
 #: ../Pages/NewDropboxAccountPage.qml:106
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
+msgstr "Kopierad!"
 
 #: ../Pages/NewDropboxAccountPage.qml:115
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
+msgstr "Namn:"
 
 #: ../Pages/NewDropboxAccountPage.qml:122
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: ../../lib/utils/translations.cpp:91
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
-msgstr ""
+msgstr "System Language"
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
-msgstr ""
+msgstr "Laddar…"
 
 #: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
-msgstr ""
+msgstr "Visa anteckningsutdrag i listor"
 
 #: ../Widgets/ItemDueDateEditor.qml:116
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr ""
+msgstr "Återkommer tills %1."
 
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
-msgstr ""
+msgstr "Återkommer på obestämd tid"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
@@ -2642,7 +2642,7 @@ msgstr "Lägg till bibliotek"
 #: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
-msgstr ""
+msgstr "Konton"
 
 #: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
@@ -2652,7 +2652,7 @@ msgstr "Lägg till konto"
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
+msgstr "Felsökningsinformation"
 
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
@@ -2677,45 +2677,46 @@ msgstr "Ladda upp"
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
+msgstr "Skapa en lokal mapp"
 
 #: ../Pages/LogViewPage.qml:90
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
+msgstr "Skapa fjärrmapp"
 
 #: ../Pages/LogViewPage.qml:92
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
+msgstr "Raderar lokalt"
 
 #: ../Pages/LogViewPage.qml:94
+#, fuzzy
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
+msgstr "Tar bort på distans"
 
 #: ../Pages/LogViewPage.qml:96
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
+msgstr "Okänd loggmeddelandetyp"
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
+msgstr "Fler åtgärder..."
 
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
-msgstr ""
+msgstr "Öppna biblioteksmappen"
 
 #: ../Pages/ProblemsPage.qml:91
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
-msgstr ""
+msgstr "Försök att synkronisera igen"
 
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
+msgstr "Enfärgad Ikon"
 

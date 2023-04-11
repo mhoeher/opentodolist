@@ -164,7 +164,7 @@
     <message>
         <location filename="../../lib/application.cpp" line="207"/>
         <source>App continues to sync your data in the background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Appen fortsätter att synkronisera din data i bakgrunden</translation>
     </message>
     <message>
         <location filename="../../lib/application.cpp" line="211"/>
@@ -346,7 +346,7 @@
     <message>
         <location filename="../../lib/datastorage/copyitemquery.cpp" line="120"/>
         <source>Copy of</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopia av</translation>
     </message>
 </context>
 <context>
@@ -474,7 +474,7 @@
         <location filename="../Pages/EditDropboxAccountPage.qml" line="27"/>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="67"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="75"/>
@@ -484,12 +484,12 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vi har försökt öppna din webbläsare för att logga in dig på ditt Dropbox-konto. Logga in och ge åtkomst till OpenTodoList för att fortsätta.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="93"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppnades inte din webbläsare? Du kan försöka öppna den igen eller kopiera önskad URL manuellt till din webbläsare.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="97"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="106"/>
         <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna Webbläsare</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="112"/>
@@ -509,7 +509,7 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="116"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopierat!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="125"/>
@@ -708,12 +708,12 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
         <source>Recurs until %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Återkommer tills %1.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
         <source>Recurs indefinitely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Återkommer på obestämd tid</translation>
     </message>
 </context>
 <context>
@@ -823,7 +823,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="62"/>
         <source>Open Library Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna biblioteksmappen</translation>
     </message>
 </context>
 <context>
@@ -851,7 +851,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Felsökningsinformation</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
@@ -876,27 +876,27 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skapa en lokal mapp</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skapa fjärrmapp</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Raderar lokalt</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tar bort på distans</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Okänd loggmeddelandetyp</translation>
     </message>
 </context>
 <context>
@@ -926,7 +926,7 @@
         <location filename="../Pages/NewDropboxAccountPage.qml" line="21"/>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="55"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="63"/>
@@ -936,12 +936,12 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vi har försökt öppna din webbläsare för att logga in dig på ditt Dropbox-konto. Logga in och ge åtkomst till OpenTodoList för att fortsätta.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="81"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppnades inte din webbläsare? Du kan försöka öppna den igen eller kopiera önskad URL manuellt till din webbläsare.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="87"/>
@@ -951,7 +951,7 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="96"/>
         <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna Webbläsare</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="102"/>
@@ -961,7 +961,7 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="106"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopierat!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="115"/>
@@ -1176,7 +1176,7 @@
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="73"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="79"/>
@@ -1226,7 +1226,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="168"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopierat!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="177"/>
@@ -1298,7 +1298,7 @@
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="101"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="107"/>
@@ -1377,7 +1377,7 @@
     <message>
         <location filename="../../lib/utils/translations.cpp" line="91"/>
         <source>System Language</source>
-        <translation type="unfinished">Systemspråk</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1401,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="91"/>
         <source>Retry Sync</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Försök att synkronisera igen</translation>
     </message>
 </context>
 <context>
@@ -1721,7 +1721,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="148"/>
         <source>Monochrome Icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enfärgad Ikon</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="156"/>
@@ -1794,7 +1794,7 @@ Detta kräver att programmet startas om.</translation>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="283"/>
         <source>Show notes excerpt in listings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa anteckningsutdrag i listor</translation>
     </message>
 </context>
 <context>
@@ -1953,7 +1953,7 @@ Detta kräver att programmet startas om.</translation>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
         <source>More Actions...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fler åtgärder...</translation>
     </message>
 </context>
 <context>
