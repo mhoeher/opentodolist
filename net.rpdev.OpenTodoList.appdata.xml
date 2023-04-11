@@ -40,6 +40,12 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.44.1" date="2023-04-11">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#616: Fix retrieving of tags within a library</li>
+        </ul>
+    </release>
     <release version="3.44.0" date="2023-04-08">
         <p>This release includes the following changes:</p>
         <ul>

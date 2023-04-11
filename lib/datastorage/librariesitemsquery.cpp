@@ -55,7 +55,7 @@ void LibrariesItemsQuery::run()
                     QSet<QString> tags;
                     auto topIt = topLevelItemIdsCursor.findKey(item.key());
                     while (topIt.isValid()) {
-                        auto data = items()->get(topIt.value());
+                        auto data = items()->get(t, topIt.value());
                         if (!data.isNull()) {
                             auto itemEntry = ItemCacheEntry::fromByteArray(data, item.key());
                             if (itemEntry.valid) {
