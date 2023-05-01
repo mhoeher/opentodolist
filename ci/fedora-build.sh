@@ -12,7 +12,8 @@ if [ -n "$CI" ]; then
         qt6-{qtbase,qttools,qtdeclarative,qtremoteobjects,qtquickcontrols2,qtnetworkauth}-devel \
         qt6-qtbase-{mysql,odbc,postgresql} \
         qt6-linguist \
-        libsecret-devel
+        libsecret-devel \
+        perl
 
     curl -d install="true" -d adminlogin=admin -d adminpass=admin \
         http://nextcloud/index.php
