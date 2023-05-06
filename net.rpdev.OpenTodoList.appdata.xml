@@ -40,6 +40,25 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.44.0" date="2023-04-08">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#614: Fix the Arch Linux Build</li>
+            <li>#548: Improve Speed of Cache Queries</li>
+            <li>#607: Crash on Android when deleting all completed todos</li>
+            <li>#610: Monochrome System Tray Icon</li>
+            <li>#575: Fix several Markdown rendering issues</li>
+            <li>#609: Remove useless close button in settings</li>
+            <li>#596: The sync sometimes hangs</li>
+            <li>#608: Bad Spanish Translations</li>
+            <li>#544: Improvements of Windows installer</li>
+            <li>#584: Quick Solutions Buttons in Problems View</li>
+            <li>#581: Path to a library in the user interface</li>
+            <li>#481: Improved moving of todos</li>
+            <li>#537: Instable unit test</li>
+            <li>#530: Shared base class for SynqClient-based classes</li>
+        </ul>
+    </release>
     <release version="3.43.0" date="2023-01-04">
         <p>This release includes the following changes:</p>
         <ul>

@@ -97,7 +97,7 @@ Column {
         anchors.right: parent.right
         anchors.rightMargin: 10
         backgroundColor: Colors.positiveColor
-        symbol: Icons.mdiSaveAlt
+        symbol: Icons.mdiCheck
         font.family: Fonts.icons
     }
 

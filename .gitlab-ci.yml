@@ -1,8 +1,6 @@
 # yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
 
 variables:
-  WIN32_IMAGE: registry.gitlab.com/rpdev/docker/qt6-windows:win32
-  WIN64_IMAGE: registry.gitlab.com/rpdev/docker/qt6-windows:win64
   UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt6-ubuntu
   ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt6-android
   FLATPAK_IMAGE: registry.gitlab.com/rpdev/docker/flatpak-builder-kde-qt6
@@ -14,6 +12,8 @@ variables:
   CCACHE_DIR: $CI_PROJECT_DIR/ccache
   ANDROID_MIN_SDK_INT: 21
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
+  # Exit PowerShell scripts with an error when an error occurs:
+  ErrorActionPreference: STOP
 
 
 stages:
@@ -142,29 +142,19 @@ fedora-cmake-system-libs:
   variables:
     SYSTEM_LIBS: "1"
 
-# Windows 32bit build
-win32:
+# Native Windows build:
+windows-mingw-w64:
   stage: build
-  image: $WIN32_IMAGE
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
   script:
-    - ./ci/win32-build.sh
-  artifacts:
-    paths:
-      - deploy-win32/OpenTodoList-*-Windows-32bit.exe
-    expire_in: 1 week
-
-
-# Windows 64bit build
-win64:
-  stage: build
-  image: $WIN64_IMAGE
-  script:
-    - ./ci/win64-build.sh
+    - ci/win-build.ps1
   artifacts:
     paths:
       - deploy-win64/OpenTodoList-*-Windows-64bit.exe
     expire_in: 1 week
-
 
 # macOS build:
 macos:
@@ -334,7 +324,6 @@ github:
         - yum install -y --nogpgcheck python3 python3-requests
         - mkdir uploads
         - cp build-ubuntu/OpenTodoList-*-x86_64.AppImage uploads
-        - cp deploy-win32/OpenTodoList-*-Windows-32bit.exe uploads
         - cp deploy-win64/OpenTodoList-*-Windows-64bit.exe uploads
         - cp build-android/*-aligned.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
