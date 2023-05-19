@@ -2,9 +2,13 @@
 
 set -e
 
-BUILD_DIR=$PWD/build-macos
+# Install secrets when running in CI:
+. ci/apple/get-secrets.sh
 
-rm -rf $BUILD_DIR
+# Install Qt in CI if needed
+bash ci/apple/macos-install-qt.sh
+
+BUILD_DIR=$PWD/build-macos
 
 if [ ! -d "$QT_INSTALLATION_DIR" ]; then
     if [ -d "$HOME/Qt" ]; then
@@ -26,39 +30,25 @@ if [ -z "$MACOS_TEAM_ID" ]; then
     MACOS_TEAM_ID="786Z636JV9"
 fi
 
-QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/macos
+export QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/macos
 
 #rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
+
+export PATH=$QT_INSTALLATION_DIR/Tools/Ninja:$QT_INSTALLATION_DIR/Tools/CMake/CMake.app/Contents/bin:$PATH
 
 $QT_DIR/bin/qt-cmake \
     -GNinja \
     -DCMAKE_PREFIX_PATH=$QT_DIR \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
-    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_OSX_ARCHITECTURES="x86_64" \
-    $CMAKE_EXTRA_FLAGS \
+    -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \
     ..
 cmake --build .
 # TODO: Tests on macos currently fail sometimes - this probably is a race condition that we should urgently fix!
 # For now, try up to 3 times to repeat.
 cmake --build . --target test || cmake --build . --target test || cmake --build . --target test
-
-# For each localized file, create an empty "lproj" folder in the
-# app bundle - this causes macOS to localize the system menu
-# (see https://bugs.kde.org/show_bug.cgi?id=432685#c3):
-for ts_file in ../app/translations/*.ts; do
-    lang="$(basename $ts_file | tr - .  | cut -f 2 -d .)"
-    mkdir -p app/OpenTodoList.app/Contents/Resources/${lang}.lproj
-    echo '"Empty Translation" = "Empty Translation";' > app/OpenTodoList.app/Contents/Resources/${lang}.lproj/Empty.strings
-done
-
-# Include Qt translations:
-mkdir -p app/OpenTodoList.app/Contents/translations
-cp $QT_DIR/translations/qt*.qm app/OpenTodoList.app/Contents/translations/
 
 
 ###########################################
@@ -153,11 +143,12 @@ xcrun codesign \
 
 # Upload the App Bundle:
 xcrun productbuild --component "dist-store/OpenTodoList.app" /Applications "dist-store/OpenTodoList.pkg"
-xcrun productsign --sign "3rd Party Mac Developer Installer: Martin Hoeher (786Z636JV9)" "dist-store/OpenTodoList.pkg" "dist-store/OpenTodoList-signed.pkg"
-#xcrun productsign --sign "Developer ID Installer: Martin Hoeher (786Z636JV9)" "dist-store/OpenTodoList.pkg" "dist-store/OpenTodoList-signed.pkg"
+xcrun productsign \
+    --sign "3rd Party Mac Developer Installer: Martin Hoeher (786Z636JV9)" \
+    "dist-store/OpenTodoList.pkg" \
+    "dist-store/OpenTodoList-signed.pkg"
 xcrun altool --validate-app \
     -f "dist-store/OpenTodoList-signed.pkg" \
     -t macos \
     -u "martin@rpdev.net" \
     -p "$OPENTODOLIST_STORE_KEY"
-

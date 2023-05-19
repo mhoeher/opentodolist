@@ -2,6 +2,13 @@
 
 set -e
 
+# Install secrets when running in CI:
+. ci/apple/get-secrets.sh
+
+# Install Qt in CI if needed
+export QT_INSTALL_IOS="1"
+bash ci/apple/macos-install-qt.sh
+
 if [ ! -d "$QT_INSTALLATION_DIR" ]; then
     if [ -d "$HOME/Qt" ]; then
         QT_INSTALLATION_DIR="$HOME/Qt"
@@ -20,29 +27,20 @@ echo "Using Qt $QT_VERSION"
 QT_DIR_IOS=$QT_INSTALLATION_DIR/$QT_VERSION/ios
 QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/macos
 
-if [ -z "$IOS_TEAM_ID" ]; then
-    # Default Team ID to use:
-    IOS_TEAM_ID="786Z636JV9"
-fi
-
+rm -rf build-ios-cmake
 mkdir -p build-ios-cmake
 cd build-ios-cmake
 
-export XCODEBUILD_FLAGS="-allowProvisioningUpdates"
-export XCODE_ARCHIVE_FLAGS="-destination;generic/platform=iOS"
+export PATH=$QT_INSTALLATION_DIR/Tools/Ninja:$QT_INSTALLATION_DIR/Tools/CMake/CMake.app/Contents/bin:$PATH
 
-cmake \
+$QT_DIR_IOS/bin/qt-cmake \
     -S .. \
     -B . \
-    -DCMAKE_GENERATOR:STRING=Xcode \
+    -DCMAKE_BUILD_TYPE=Release \
     -DQT_QMAKE_EXECUTABLE:FILEPATH=$QT_DIR_IOS/bin/qmake \
     -DCMAKE_PREFIX_PATH:PATH=$QT_DIR_IOS \
-    -DCMAKE_TOOLCHAIN_FILE:FILEPATH=$QT_DIR_IOS/lib/cmake/Qt6/qt.toolchain.cmake \
     -DCMAKE_OSX_ARCHITECTURES:STRING=arm64 \
     -DCMAKE_OSX_SYSROOT:STRING=iphoneos \
-    -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM:STRING=$IOS_TEAM_ID \
-    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DQT_HOST_PATH=$QT_DIR
 
 if [ -n "$CONFIGURE_ONLY" ]; then
@@ -50,5 +48,6 @@ if [ -n "$CONFIGURE_ONLY" ]; then
 fi
 
 # cmake --build . --config Release -- "$XCODEBUILD_FLAGS" ## Leads to "Archive Failed" errors in next step - but we need at least CMake 3.25.0
-xcodebuild -project OpenTodoList.xcodeproj -scheme OpenTodoList -archivePath OpenTodoList.xcarchive -destination generic/platform=iOS archive
-xcodebuild -exportArchive -archivePath OpenTodoList.xcarchive -exportOptionsPlist ../app/ExportOptions.plist -exportPath OpenTodoList.ipa -allowProvisioningUpdates
+xcodebuild -project OpenTodoList.xcodeproj -scheme opentodolist-common -destination generic/platform=iOS -quiet -configuration Release
+xcodebuild -project OpenTodoList.xcodeproj -scheme OpenTodoList -archivePath OpenTodoList.xcarchive -destination generic/platform=iOS archive -quiet -configuration Release
+xcodebuild -exportArchive -archivePath OpenTodoList.xcarchive -exportOptionsPlist ../app/ExportOptions.plist -exportPath OpenTodoList.ipa -quiet -configuration Release

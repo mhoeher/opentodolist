@@ -12,6 +12,7 @@ variables:
   CCACHE_DIR: $CI_PROJECT_DIR/ccache
   ANDROID_MIN_SDK_INT: 21
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
+  QT_VERSION: "6.5.1"
   # Exit PowerShell scripts with an error when an error occurs:
   ErrorActionPreference: STOP
 
@@ -160,7 +161,8 @@ windows-mingw-w64:
 macos:
   stage: build
   tags:
-    - macos
+    - saas-macos-medium-m1
+  image: macos-12-xcode-14
   script:
     - ci/macos-build.sh
   artifacts:
@@ -168,22 +170,19 @@ macos:
       - build-macos/app/OpenTodoList.dmg
       - build-macos/dist-store/OpenTodoList-signed.pkg
     expire_in: 1 week
-  variables:
-    QT_VERSION: "6.5.0"
 
 # iOS build:
 ios:
   stage: build
   tags:
-    - macos
+    - saas-macos-medium-m1
+  image: macos-12-xcode-14
   script:
     - ci/ios-cmake-build.sh
   artifacts:
     paths:
       - ./build-ios-cmake/OpenTodoList.ipa/OpenTodoList.ipa
     expire_in: 1 week
-  variables:
-    QT_VERSION: "6.5.0"
 
 
 # Template for Android builds
@@ -223,42 +222,6 @@ android_x64:
   extends: .android-build
   variables:
     ANDROID_ABIS: x86_64
-
-# Template for Android Sign jobs
-.sign_apks:
-    stage: build
-    tags:
-        - OpenTodoListPrivate
-    image: $ANDROID_IMAGE
-    script:
-        - ci/sign-apks.sh
-    artifacts:
-      paths:
-        - build-android/*-aligned.apk
-        - build-android/*-aligned.aab
-      expire_in: 1 week
-
-# Jobs for signing Android files
-
-sign::android_arm64_v8a:
-  extends: .sign_apks
-  needs:
-    - android_arm64_v8a
-
-sign::android_armv7:
-  extends: .sign_apks
-  needs:
-    - android_armv7
-
-sign::android_x64:
-  extends: .sign_apks
-  needs:
-    - android_x64
-
-sign::android_x86:
-  extends: .sign_apks
-  needs:
-    - android_x86
 
 # Build the app as Flatpak
 flatpak:
@@ -325,7 +288,7 @@ github:
         - mkdir uploads
         - cp build-ubuntu/OpenTodoList-*-x86_64.AppImage uploads
         - cp deploy-win64/OpenTodoList-*-Windows-64bit.exe uploads
-        - cp build-android/*-aligned.apk uploads
+        - cp build-android/*.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - cp OpenTodoList-Source-*.zip uploads
         - cp OpenTodoList-Source-*.tar.gz uploads
@@ -339,7 +302,8 @@ github:
 appstore:
     stage: deploy
     tags:
-        - macos
+      - saas-macos-medium-m1
+    image: macos-12-xcode-14
     when: manual
     script:
         - xcrun altool --upload-app --type ios --file ./build-ios-cmake/OpenTodoList.ipa/OpenTodoList.ipa -u "$APPSTORE_USER" -p "$APPSTORE_PASSWORD"
@@ -349,7 +313,8 @@ appstore:
 appstore-macos:
     stage: deploy
     tags:
-        - macos
+      - saas-macos-medium-m1
+    image: macos-12-xcode-14
     when: manual
     script:
       - xcrun altool --upload-package build-macos/dist-store/OpenTodoList-signed.pkg -u martin@rpdev.net  -p "$OPENTODOLIST_STORE_KEY" --type macos --apple-id 1490013766 --bundle-id net.rpdev.OpenTodoList --bundle-version $(cat version.txt | cut -d '.' -f1).$(cat version.txt | cut -d '.' -f2).$CI_PIPELINE_IID --bundle-short-version-string $(cat version.txt)

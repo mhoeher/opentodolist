@@ -2,6 +2,16 @@
 
 set -e
 
+# Fetch secure files - see https://docs.gitlab.com/ee/ci/secure_files/index.html#use-secure-files-in-cicd-jobs
+if [ -n "$CI" ]; then
+    export SECURE_FILES_DOWNLOAD_PATH=.secure-files
+    export QT_ANDROID_KEYSTORE_PATH=$PWD/$SECURE_FILES_DOWNLOAD_PATH/android_release.keystore
+    curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    CMAKE_SIGNING_ARGS="-DQT_ANDROID_SIGN_AAB=ON"
+else
+    CMAKE_SIGNING_ARGS="-DQT_ANDROID_SIGN_AAB=OFF"
+fi
+
 if [ -z "$ANDROID_ABIS" ]; then
     ANDROID_ABIS=arm64-v8a
 fi
@@ -71,7 +81,6 @@ let 'OPENTODOLIST_VERSION_CODE=VERSIONCODE_OFFSET + (CI_PIPELINE_IID - PIPELINE_
 
 echo "Using Version Code $OPENTODOLIST_VERSION_CODE"
 
-echo $PATH
 mkdir -p build-android
 cd build-android
 CMAKE_ABI_ARGS="-DANDROID_ABI=$ANDROID_ABIS"
@@ -84,12 +93,13 @@ qt-cmake \
     -DANDROID_STL=c++_shared \
     -DANDROID_SDK=$ANDROID_SDK_ROOT \
     $CMAKE_ABI_ARGS \
+    $CMAKE_SIGNING_ARGS \
     -DOPENTODOLIST_ANDROID_VERSION_CODE=$OPENTODOLIST_VERSION_CODE \
+    --fresh \
     ..
 cmake --build .
 
 # Build APK:
-cmake --build . --target apk
 cmake --build . --target aab
 OTL_VERSION="$(git describe --tags)"
 cp app/android-build/OpenTodoList.apk \
