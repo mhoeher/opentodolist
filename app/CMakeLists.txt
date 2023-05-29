@@ -149,6 +149,11 @@ set_target_properties(
         MACOSX_BUNDLE_SHORT_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${CI_PIPELINE_IID}"
         MACOSX_BUNDLE_LONG_VERSION_STRING "${OPENTODOLIST_VERSION_MAJOR}.${OPENTODOLIST_VERSION_MINOR}.${OPENTODOLIST_VERSION_PATCH}"
         MACOSX_BUNDLE_LAUNCHSCREEN_STORYBOARD LaunchScreen
+        XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES
+        XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "${OPENTODOLIST_APPLE_CODE_SIGN_IDENTITY}"
+        XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "${OPENTODOLIST_APPLE_TEAM_ID}"
+        XCODE_ATTRIBUTE_CODE_SIGN_STYLE "${OPENTODOLIST_APPLE_CODE_SIGN_STYLE}"
+        XCODE_PROPERTY_PRODUCT_BUNDLE_IDENTIFIER "net.rpdev.OpenTodoList"
 
         QT_ANDROID_EXTRA_LIBS "${ANDROID_EXTRA_LIBS}"
         QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
@@ -172,6 +177,40 @@ if(APPLE)
             OpenTodoList
             PROPERTIES
                 MACOSX_BUNDLE_ICON_FILE OpenTodoList.icns
+            )
+            # Create empty translation files - needed to localize the menu bar on macOS
+            # (https://bugs.kde.org/show_bug.cgi?id=432685#c3):
+            file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/Empty.strings "\"Empty Translation\" = \"Empty Translation\";")
+            file(GLOB _ts_files ${CMAKE_CURRENT_SOURCE_DIR}/translations/*.ts)
+            foreach(_ts_file ${_ts_files})
+                get_filename_component(_ts_name "${_ts_file}" NAME)
+                string(REPLACE "-" ";" _ts_name "${_ts_name}")
+                string(REPLACE "." ";" _ts_name "${_ts_name}")
+                list(GET _ts_name 1 _ts_lang)
+                add_custom_command(
+                    TARGET OpenTodoList 
+                    POST_BUILD
+                    COMMAND
+                        ${CMAKE_COMMAND} -E make_directory "$<TARGET_BUNDLE_DIR:OpenTodoList>/Contents/Resources/${_ts_lang}.lproj"
+                    COMMAND
+                        ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/Empty.strings "$<TARGET_BUNDLE_DIR:OpenTodoList>/Contents/Resources/${_ts_lang}.lproj/"
+                    COMMENT "Create empty strings file for ${_ts_name}"
+                )
+            endforeach()
+
+            # Include Qt's translations:
+            get_target_property(_qmake_executable Qt::qmake IMPORTED_LOCATION)
+            get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
+            get_filename_component(_qt_dir "${_qt_bin_dir}" DIRECTORY)
+            file(GLOB _qm_files ${_qt_dir}/translations/qt*.qm)
+            add_custom_command(
+                TARGET OpenTodoList 
+                POST_BUILD
+                COMMAND
+                    ${CMAKE_COMMAND} -E make_directory "$<TARGET_BUNDLE_DIR:OpenTodoList>/Contents/translations"
+                COMMAND
+                    ${CMAKE_COMMAND} -E copy ${_qm_files} "$<TARGET_BUNDLE_DIR:OpenTodoList>/Contents/translations"
+                COMMENT "Copy Qt translations"
             )
     endif()
 endif()

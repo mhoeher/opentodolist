@@ -1,46 +1,22 @@
 $ErrorActionPreference = "Stop"
 
 # Configuration:
-$QT_INSTALLER_URL="http://download.qt.io/official_releases/online_installers/qt-unified-windows-x64-online.exe"
-$QT_VERSION="6.5.0"
-$QT_VERSION_INSTALLER="650"
+$QT_ARCHIVE_URL="https://gitlab.com/api/v4/projects/46171955/packages/generic/Qt6/$env:QT_VERSION/Qt-mingw-w64.zip"
 
 # Expected paths:
 $CMAKE_PATH="C:\Qt\Tools\CMake_64\bin"
 $NINJA_PATH="C:\Qt\Tools\Ninja"
 $MINGW_PATH="C:\Qt\Tools\mingw1120_64\bin\"
-$QT_PATH="C:\Qt\$QT_VERSION\mingw_64\"
+$QT_PATH="C:\Qt\$env:QT_VERSION\mingw_64\"
 $PERL_PATH="C:\Strawberry\perl\bin"
 $NSIS_PATH="C:\Program Files (x86)\NSIS"
 
 
 if(-Not (Test-Path -Path "$QT_PATH")) {
     # Install Qt
-    Invoke-WebRequest -o "qt-unified.exe" $QT_INSTALLER_URL
-
-    if (-not $?) {
-        Write-Error -Message "Failed to download Qt installer."
-    }
-
-    .\qt-unified.exe install `
-        --na -m "$env:QT_LOGIN_USER" --pw "$env:QT_LOGIN_PASSWORD" `
-        --accept-messages `
-        --confirm-command `
-        --accept-obligations `
-        --accept-licenses `
-        --auto-answer message.id=Ok `
-        --no-force-installations `
-        --no-default-installations `
-        --root=C:\Qt `
-        `
-        qt.tools.cmake `
-        qt.tools.ninja `
-        qt.qt6.$QT_VERSION_INSTALLER.win64_mingw `
-        qt.qt6.$QT_VERSION_INSTALLER.addons
-
-    if (-not $?) {
-        Write-Error -Message "Failed to install Qt."
-    }
+    Invoke-WebRequest -o "Qt-mingw-w64.zip" $QT_ARCHIVE_URL
+    New-Item -Path 'C:\Qt' -ItemType Directory
+    Expand-Archive -Path "Qt-mingw-w64.zip" -DestinationPath "C:\Qt"
 }
 
 if(-Not (Test-Path -Path "$PERL_PATH")) {
