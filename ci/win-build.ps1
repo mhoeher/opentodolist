@@ -22,7 +22,7 @@ if(-Not (Test-Path -Path "$QT_PATH")) {
 if(-Not (Test-Path -Path "$PERL_PATH")) {
     # Install Strawberry Perl (needed for KDE Syntax Highlighting)
     choco install -y strawberryperl
-    
+
     if (-not $?) {
         Write-Error -Message "Failed to install Perl."
     }
@@ -67,9 +67,7 @@ if (-not $?) {
     Write-Error -Message "Failed to install OpenTodoList."
 }
 
-# TODO: Remote "--no-translations" once Qt 6.5.1 is released
-# https://gitlab.com/rpdev/opentodolist/-/issues/619
-windeployqt --qmldir app --compiler-runtime --no-translations deploy-win64\bin
+windeployqt --qmldir app --compiler-runtime  deploy-win64\bin
 
 if (-not $?) {
     Write-Error -Message "Failed to deploy Qt binaries for OpenTodoList."
@@ -77,7 +75,7 @@ if (-not $?) {
 
 Copy-Item -Path templates\nsis\win64-installer.nsis -Destination deploy-win64
 
-Set-Location -Path deploy-win64 
+Set-Location -Path deploy-win64
 
 $OPENTODOLIST_VERSION = git describe --tags
 
