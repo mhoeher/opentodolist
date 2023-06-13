@@ -49,6 +49,13 @@
         "updated": "2022-01-07T07:17:07+0000"
     },
     {
+        "name": "Czech",
+        "code": "cs",
+        "translations": 0,
+        "percentage": 0,
+        "updated": ""
+    },
+    {
         "name": "Danish",
         "code": "da",
         "translations": 301,
@@ -184,9 +191,9 @@
     {
         "name": "Russian",
         "code": "ru",
-        "translations": 504,
-        "percentage": 93.51,
-        "updated": "2022-10-13T12:01:33+0000"
+        "translations": 539,
+        "percentage": 100,
+        "updated": "2023-06-03T18:48:14+0000"
     },
     {
         "name": "Slovak",
@@ -247,9 +254,9 @@
     {
         "name": "Ukrainian",
         "code": "uk",
-        "translations": 140,
-        "percentage": 25.97,
-        "updated": "2020-08-24T20:58:59+0000"
+        "translations": 432,
+        "percentage": 80.15,
+        "updated": "2023-06-03T20:04:32+0000"
     },
     {
         "name": "Vietnamese",

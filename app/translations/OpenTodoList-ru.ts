@@ -193,7 +193,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отменить</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
@@ -254,7 +254,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установить прогресс</translation>
     </message>
 </context>
 <context>
@@ -346,7 +346,7 @@
     <message>
         <location filename="../../lib/datastorage/copyitemquery.cpp" line="120"/>
         <source>Copy of</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копия</translation>
     </message>
 </context>
 <context>
@@ -721,7 +721,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="174"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переместить все в...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="189"/>
@@ -736,7 +736,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="222"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопировать все в...</translation>
     </message>
 </context>
 <context>
@@ -775,7 +775,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожертвовать</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
@@ -823,7 +823,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="62"/>
         <source>Open Library Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открыть папку библиотеки</translation>
     </message>
 </context>
 <context>
@@ -841,27 +841,27 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="28"/>
         <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пролистать наверх</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="34"/>
         <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пролистать вниз</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отладочная информация</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Внимание</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="82"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="84"/>
@@ -871,32 +871,32 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="86"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузить</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать локальную папку</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать удаленную папку</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Локальное удаление</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удаление удаленного</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Неизвестный тип сообщения журнала</translation>
     </message>
 </context>
 <context>
@@ -1067,7 +1067,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="173"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">Создайте новую библиотеку, которая будет синхронизироваться с сервером. Такая библиотека может быть добавлена в приложение на других устройствах, а также для синхронизации данных.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="187"/>
@@ -1386,7 +1386,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="18"/>
         <location filename="../Pages/ProblemsPage.qml" line="28"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Обнаружены проблемы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
@@ -1401,7 +1401,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="91"/>
         <source>Retry Sync</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторить синхронизацию</translation>
     </message>
 </context>
 <context>
@@ -1409,7 +1409,7 @@
     <message>
         <location filename="../Actions/PromoteTask.qml" line="12"/>
         <source>Promote</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Продвигать</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1418,7 @@
         <location filename="../appstartup.cpp" line="317"/>
         <location filename="../appstartup.cpp" line="324"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Неизвестный</translation>
     </message>
 </context>
 <context>
@@ -1581,7 +1581,7 @@
     <message>
         <location filename="../Actions/ResetDueTo.qml" line="8"/>
         <source>Reset Due To</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сбросить из-за</translation>
     </message>
 </context>
 <context>
@@ -1640,7 +1640,7 @@
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выберите предмет</translation>
     </message>
 </context>
 <context>
@@ -1688,7 +1688,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установить прогресс</translation>
     </message>
 </context>
 <context>
@@ -1721,7 +1721,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="148"/>
         <source>Monochrome Icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Монохромная икона</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="156"/>
@@ -1741,7 +1741,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Режим рабочего стола</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="197"/>
@@ -1769,7 +1769,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переопределить коэффициент масштабирования</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="238"/>
@@ -1788,7 +1788,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="267"/>
         <source>Library Item Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Размер элемента библиотеки:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="283"/>
@@ -1952,7 +1952,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
         <source>More Actions...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Больше действий</translation>
     </message>
 </context>
 <context>
