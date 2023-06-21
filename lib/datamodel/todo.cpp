@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -179,6 +179,15 @@ void Todo::fromMap(QVariantMap map)
 int Todo::numDoneSubtasks() const
 {
     return m_numDoneSubtasks;
+}
+
+bool Todo::canBeMarkedAsDone() const
+{
+    auto result = ComplexItem::canBeMarkedAsDone();
+    if (!result) {
+        result = !m_done;
+    }
+    return result;
 }
 
 void Todo::setNumDoneSubtasks(int newNumDoneSubtasks)

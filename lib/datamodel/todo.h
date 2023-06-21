@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -42,6 +42,9 @@ class Todo : public ComplexItem
     Q_PROPERTY(int numSubtasks READ numSubtasks WRITE setNumSubtasks NOTIFY numSubtasksChanged)
     Q_PROPERTY(int numDoneSubtasks READ numDoneSubtasks WRITE setNumDoneSubtasks NOTIFY
                        numDoneSubtasksChanged)
+    Q_PROPERTY(int numTodos READ numSubtasks WRITE setNumSubtasks NOTIFY numSubtasksChanged)
+    Q_PROPERTY(int numDoneTodos READ numDoneSubtasks WRITE setNumDoneSubtasks NOTIFY
+                       numDoneSubtasksChanged)
 
 public:
     explicit Todo(const QString& filename, QObject* parent = nullptr);
@@ -71,6 +74,8 @@ public:
     int numSubtasks() const;
 
     int numDoneSubtasks() const;
+
+    bool canBeMarkedAsDone() const override;
 
 signals:
 

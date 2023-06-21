@@ -171,29 +171,29 @@ C.ApplicationWindow {
         d.createQuickNoteEditor()
     }
 
-    onClosing: {
-        switch (Qt.platform.os) {
-        case "android":
-            if (stackView.canGoBack) {
-                close.accepted = false
-                stackView.goBack()
-                return
-            } else {
-                // Actually, we should be able to just keep "close.accepted" on "true" and let
-                // Qt close the app. BUT....
-                //close.accepted = true;
-                // This is not working. See https://gitlab.com/rpdev/opentodolist/-/issues/371
-                // for more information. For some reason this causes the app to hang during shut
-                // down. So we go the hard way and on the Java side ask the Activity to
-                // stop the GUI. This seems to work reliably.
-                OTL.Application.finishActivity()
-            }
-            break
-        default:
-            close.accepted = true
-            break
-        }
-    }
+    onClosing: close => {
+                   switch (Qt.platform.os) {
+                       case "android":
+                       if (stackView.canGoBack) {
+                           close.accepted = false
+                           stackView.goBack()
+                           return
+                       } else {
+                           // Actually, we should be able to just keep "close.accepted" on "true" and let
+                           // Qt close the app. BUT....
+                           //close.accepted = true;
+                           // This is not working. See https://gitlab.com/rpdev/opentodolist/-/issues/371
+                           // for more information. For some reason this causes the app to hang during shut
+                           // down. So we go the hard way and on the Java side ask the Activity to
+                           // stop the GUI. This seems to work reliably.
+                           OTL.Application.finishActivity()
+                       }
+                       break
+                       default:
+                       close.accepted = true
+                       break
+                   }
+               }
 
     LibrariesSideBar {
         id: librariesSideBar

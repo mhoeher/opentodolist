@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -119,6 +119,8 @@ public:
 
     const QDateTime& recurUntil() const;
     void setRecurUntil(const QDateTime& newRecurUntil);
+
+    Q_INVOKABLE virtual bool canBeMarkedAsDone() const;
 
 signals:
 

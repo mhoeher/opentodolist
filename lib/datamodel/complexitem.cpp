@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -434,6 +434,19 @@ void ComplexItem::setRecurUntil(const QDateTime& newRecurUntil)
         return;
     m_recurUntil = newRecurUntil;
     emit recurUntilChanged();
+}
+
+/**
+ * @brief Check if the item can be marked as done.
+ *
+ * This method returns a boolean flag indicating if the item can be marked as done. The
+ * ComplexItem class returns true in case the item has an effectiveDueTo date set.
+ *
+ * Subclasses should extend this method to add class specific logic on top.
+ */
+bool ComplexItem::canBeMarkedAsDone() const
+{
+    return effectiveDueTo().isValid();
 }
 
 /**

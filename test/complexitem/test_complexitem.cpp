@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -148,13 +148,17 @@ void ComplexItemTest::recurrence()
     {
         // Marking an item which recurs daily as done should reschedule it to tomorrow.
         ComplexItem item;
+        QVERIFY(!item.canBeMarkedAsDone());
         auto today = QDate::currentDate().startOfDay();
         item.setDueTo(today);
+        QVERIFY(item.canBeMarkedAsDone());
         item.setRecurrencePattern(ComplexItem::RecurDaily);
+        QVERIFY(item.canBeMarkedAsDone());
         QCOMPARE(item.dueTo(), item.effectiveDueTo());
         QSignalSpy nextDueToChanged(&item, &ComplexItem::nextDueToChanged);
         QSignalSpy effectiveDueToChanged(&item, &ComplexItem::effectiveDueToChanged);
         item.markCurrentOccurrenceAsDone(today);
+        QVERIFY(item.canBeMarkedAsDone());
         QCOMPARE(nextDueToChanged.count(), 1);
         QCOMPARE(effectiveDueToChanged.count(), 1);
         auto expectedNextDate = today.addDays(1);
@@ -521,6 +525,7 @@ void ComplexItemTest::recurrence()
         QCOMPARE(effectiveDueToChanged.count(), 1);
         QCOMPARE(dueDateChanged.count(), 1);
         QVERIFY(!item.dueTo().isValid());
+        QVERIFY(!item.canBeMarkedAsDone());
     }
 
     {
