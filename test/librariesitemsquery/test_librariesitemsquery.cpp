@@ -70,6 +70,7 @@ void LibrariesItemsQueryTest::run()
     TodoList todoList;
     todoList.setTitle("A todo list");
     todoList.setLibraryId(lib.uid());
+    todoList.setTags({ "Tag 1" });
     Todo todo;
     todo.setTitle("A todo");
     todo.setTodoListUid(todoList.uid());
@@ -79,9 +80,11 @@ void LibrariesItemsQueryTest::run()
     Note note;
     note.setTitle("A note");
     note.setLibraryId(lib.uid());
+    note.setTags({ "Tag 2" });
     Image image;
     image.setTitle("An image");
     image.setLibraryId(lib.uid());
+    image.setTags({ "Tag 3" });
 
     {
         auto q = new InsertOrUpdateItemsQuery;
@@ -102,6 +105,7 @@ void LibrariesItemsQueryTest::run()
 
     {
         auto q = new LibrariesItemsQuery();
+        q->setIncludeCalculatedValues(true);
         QSignalSpy librariesAvailable(q, &LibrariesItemsQuery::librariesAvailable);
         QSignalSpy destroyed(q, &LibrariesItemsQuery::destroyed);
         cache.run(q);
@@ -113,6 +117,17 @@ void LibrariesItemsQueryTest::run()
         QVERIFY(entry.valid);
         auto eEntry = lib.encache();
         QCOMPARE(entry, lib.encache());
+
+        // https://gitlab.com/rpdev/opentodolist/-/issues/616: Check if we properly read
+        // back tags for libraries:
+        auto lib2 = Library::decache(entry);
+        QVERIFY(lib2 != nullptr);
+        auto tags = lib2->tags();
+        QCOMPARE(tags.length(), 3);
+        QVERIFY(tags.contains("Tag 1"));
+        QVERIFY(tags.contains("Tag 2"));
+        QVERIFY(tags.contains("Tag 3"));
+        delete lib2;
     }
 
     {
