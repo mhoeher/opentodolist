@@ -27,27 +27,44 @@ echo "Using Qt $QT_VERSION"
 QT_DIR_IOS=$QT_INSTALLATION_DIR/$QT_VERSION/ios
 QT_DIR=$QT_INSTALLATION_DIR/$QT_VERSION/macos
 
-rm -rf build-ios-cmake
-mkdir -p build-ios-cmake
-cd build-ios-cmake
-
 export PATH=$QT_INSTALLATION_DIR/Tools/Ninja:$QT_INSTALLATION_DIR/Tools/CMake/CMake.app/Contents/bin:$PATH
 
-$QT_DIR_IOS/bin/qt-cmake \
-    -S .. \
-    -B . \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DQT_QMAKE_EXECUTABLE:FILEPATH=$QT_DIR_IOS/bin/qmake \
-    -DCMAKE_PREFIX_PATH:PATH=$QT_DIR_IOS \
-    -DCMAKE_OSX_ARCHITECTURES:STRING=arm64 \
-    -DCMAKE_OSX_SYSROOT:STRING=iphoneos \
-    -DQT_HOST_PATH=$QT_DIR
 
-if [ -n "$CONFIGURE_ONLY" ]; then
-    exit 0
-fi
+# The iOS build is currently a bit unstable... as setting up the environment
+# is quite costly, we rather retry the actual build several times (cleaning up
+# in between) rather than giving up immediately.
+i=0
+while [[ $i -lt 5 ]]
+do
+    ((i++))
+    rm -rf build-ios-cmake
+    mkdir -p build-ios-cmake
+    cd build-ios-cmake
 
-# cmake --build . --config Release -- "$XCODEBUILD_FLAGS" ## Leads to "Archive Failed" errors in next step - but we need at least CMake 3.25.0
-xcodebuild -project OpenTodoList.xcodeproj -scheme opentodolist-common -destination generic/platform=iOS -quiet -configuration Release
-xcodebuild -project OpenTodoList.xcodeproj -scheme OpenTodoList -archivePath OpenTodoList.xcarchive -destination generic/platform=iOS archive -quiet -configuration Release
-xcodebuild -exportArchive -archivePath OpenTodoList.xcarchive -exportOptionsPlist ../app/ExportOptions.plist -exportPath OpenTodoList.ipa -quiet -configuration Release
+    $QT_DIR_IOS/bin/qt-cmake \
+        -S .. \
+        -B . \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DQT_QMAKE_EXECUTABLE:FILEPATH=$QT_DIR_IOS/bin/qmake \
+        -DCMAKE_PREFIX_PATH:PATH=$QT_DIR_IOS \
+        -DCMAKE_OSX_ARCHITECTURES:STRING=arm64 \
+        -DCMAKE_OSX_SYSROOT:STRING=iphoneos \
+        -DQT_HOST_PATH=$QT_DIR
+
+    if [ -n "$CONFIGURE_ONLY" ]; then
+        exit 0
+    fi
+
+    # cmake --build . --config Release -- "$XCODEBUILD_FLAGS" ## Leads to "Archive Failed" errors in next step - but we need at least CMake 3.25.0
+    if xcodebuild -project OpenTodoList.xcodeproj -scheme opentodolist-common -destination generic/platform=iOS -quiet -configuration Release && \
+        xcodebuild -project OpenTodoList.xcodeproj -scheme OpenTodoList -archivePath OpenTodoList.xcarchive -destination generic/platform=iOS archive -quiet -configuration Release && \
+        xcodebuild -exportArchive -archivePath OpenTodoList.xcarchive -exportOptionsPlist ../app/ExportOptions.plist -exportPath OpenTodoList.ipa -quiet -configuration Release; then
+        exit 0
+    else
+        echo "Build attempt $i failed"
+    fi
+    cd ..
+done
+
+# Still here? Then we didn't get a succesful build!
+exit 1
