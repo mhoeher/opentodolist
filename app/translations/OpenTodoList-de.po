@@ -2726,5 +2726,4 @@ msgstr "Synchronisation erneut versuchen"
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
 

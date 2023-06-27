@@ -1862,52 +1862,52 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="172"/>
+        <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="184"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Manually</source>
         <translation type="unfinished">Manuellement</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="190"/>
+        <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Name</source>
         <translation type="unfinished">Nom</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="196"/>
+        <location filename="../Pages/TodoListPage.qml" line="197"/>
         <source>Due Date</source>
         <translation type="unfinished">Date d&apos;échéance</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="202"/>
+        <location filename="../Pages/TodoListPage.qml" line="203"/>
         <source>Created At</source>
         <translation type="unfinished">Créé à</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="208"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Updated At</source>
         <translation type="unfinished">Mis à jour à</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="221"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Show Completed</source>
         <translation type="unfinished">Montrer les terminés</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="229"/>
+        <location filename="../Pages/TodoListPage.qml" line="230"/>
         <source>Show At The End</source>
         <translation type="unfinished">Afficher à la fin</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="260"/>
+        <location filename="../Pages/TodoListPage.qml" line="261"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="280"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Ajouter un nouveau todo...</translation>
     </message>
@@ -1915,27 +1915,27 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="168"/>
+        <location filename="../Pages/TodoPage.qml" line="169"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="194"/>
+        <location filename="../Pages/TodoPage.qml" line="195"/>
         <source>Tasks</source>
         <translation type="unfinished">Tâches</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="200"/>
+        <location filename="../Pages/TodoPage.qml" line="201"/>
         <source>Add new task...</source>
         <translation type="unfinished">Ajouter une nouvelle tâche...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="296"/>
+        <location filename="../Pages/TodoPage.qml" line="297"/>
         <source>Show Completed</source>
         <translation type="unfinished">Montrer les terminés</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="303"/>
+        <location filename="../Pages/TodoPage.qml" line="304"/>
         <source>Show At The End</source>
         <translation type="unfinished">Afficher à la fin</translation>
     </message>

@@ -2721,5 +2721,4 @@ msgstr "Repetir Sincronização"
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
 

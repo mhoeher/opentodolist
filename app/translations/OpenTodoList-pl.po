@@ -2156,7 +2156,6 @@ msgstr "Użyj tej opcji by ręcznie przeskalować interfejs. Domyślnie, aplikac
 #: ../Utils/ItemUtils.qml:189
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:28
 msgctxt "LogViewPage|"
@@ -2176,547 +2175,438 @@ msgstr "Synchronizacja biblioteki nie powiodła się"
 #: ../Actions/PromoteTask.qml:12
 msgctxt "PromoteTask|"
 msgid "Promote"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:267
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
-msgstr ""
 
 #: ../../lib/sync/webdavsynchronizer.cpp:177
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
-msgstr ""
 
 #: ../Pages/AboutPage.qml:88
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
 
 #: ../appstartup.cpp:379
 msgctxt "AppStartup|"
 msgid "Quick Note"
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:82
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:87
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:90
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
-msgstr ""
 
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
-msgstr ""
 
 #: ../appstartup.cpp:317 ../appstartup.cpp:324
 msgctxt "QObject|"
 msgid "unknown"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:19
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:46
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:57
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:70
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:133
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:140
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:158
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:169
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:171
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:161
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
-msgstr ""
 
 #: ../Windows/QuickNoteWindow.qml:83
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
-msgstr ""
 
 #: ../Windows/RecurrenceDialog.qml:47
 msgctxt "RecurrenceDialog|"
 msgid "Yearly"
-msgstr ""
 
 #: ../Windows/RecurrenceDialog.qml:49
 msgctxt "RecurrenceDialog|"
 msgid "Every N Weeks"
-msgstr ""
 
 #: ../Windows/RecurrenceDialog.qml:50
 msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:143
 msgctxt "SettingsPage|"
 msgid "System Tray:"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:156
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
-msgstr ""
 
 #: ../Widgets/NoteItem.qml:89
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
 
 #: ../Widgets/TodoListItem.qml:78
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
 
 #: ../Actions/CopyTodo.qml:11
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
 
 #: ../Actions/CopyTopLevelItem.qml:11
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
 
 #: ../Pages/LibraryPage.qml:258
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
 
 #: ../Windows/SelectLibraryDialog.qml:22
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
 
 #: ../Windows/SelectTopLevelItemDialog.qml:22
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
 
 #: ../Components/ApplicationShortcuts.qml:15
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
 
 #: ../Components/ApplicationToolBar.qml:164
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:16
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:23
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:33
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:43
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:53
 #: ../Components/ApplicationToolBarActions.qml:64
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:74
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:82
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:92
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:100
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:108
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:116
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:124
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
 
 #: ../Components/ApplicationToolBarActions.qml:132
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:188
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
 
 #: ../Utils/ItemUtils.qml:205
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
-msgstr ""
 
 #: ../Utils/ItemUtils.qml:222
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
-msgstr ""
 
 #: ../Pages/NewLibraryInFolderPage.qml:74
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
 
 #: ../Pages/LibraryPage.qml:275
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
 
 #: ../Pages/TodoListPage.qml:221
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
 
 #: ../Pages/TodoListPage.qml:229
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
 
 #: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
 
 #: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
 
 #: ../Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr ""
 
 #: ../Pages/AccountTypeSelectionPage.qml:71
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
 
 #: ../../lib/application.cpp:203
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
 
 #: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
-msgstr ""
 
 #: ../../lib/application.cpp:211
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
 
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:27
 #: ../Pages/EditDropboxAccountPage.qml:67
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:75
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:86
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:93
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:97
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:106
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:116
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:125
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:132
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:81
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:87
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:96
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:102
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:106
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:115
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:122
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
 
 #: ../../lib/utils/translations.cpp:91
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
-msgstr ""
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:116
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
-msgstr ""
 
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
 
 #: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
 
 #: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
 
 #: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
-msgstr ""
 
 #: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:90
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:92
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:94
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:96
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
 
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
-msgstr ""
 
 #: ../Pages/ProblemsPage.qml:91
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
 

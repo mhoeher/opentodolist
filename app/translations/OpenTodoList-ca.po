@@ -2435,286 +2435,229 @@ msgstr "Copia la llista a..."
 #: ../Pages/NewLibraryInFolderPage.qml:74
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
 
 #: ../Pages/LibraryPage.qml:275
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
 
 #: ../Pages/TodoListPage.qml:221
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
 
 #: ../Pages/TodoListPage.qml:229
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
 
 #: ../Pages/TodoPage.qml:296
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
 
 #: ../Pages/TodoPage.qml:303
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
 
 #: ../Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr ""
 
 #: ../Pages/AccountTypeSelectionPage.qml:71
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
 
 #: ../../lib/application.cpp:203
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
 
 #: ../../lib/application.cpp:207
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
-msgstr ""
 
 #: ../../lib/application.cpp:211
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
 
 #: ../../lib/datastorage/copyitemquery.cpp:120
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:27
 #: ../Pages/EditDropboxAccountPage.qml:67
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:75
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:86
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:93
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:97
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:106
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:112
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:116
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:125
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
 
 #: ../Pages/EditDropboxAccountPage.qml:132
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:63
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:74
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:81
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:87
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:96
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:102
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:106
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:115
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
 
 #: ../Pages/NewDropboxAccountPage.qml:122
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
 
 #: ../../lib/utils/translations.cpp:91
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
-msgstr ""
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:283
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:116
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr ""
 
 #: ../Widgets/ItemDueDateEditor.qml:119
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
-msgstr ""
 
 #: ../Windows/NewItemWithDueDateDialog.qml:150
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
 
 #: ../Pages/ScheduleViewPage.qml:56
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
 
 #: ../Pages/StartPage.qml:46
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
 
 #: ../Pages/StartPage.qml:71
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
 
 #: ../Pages/StartPage.qml:90
 msgctxt "StartPage|"
 msgid "Accounts"
-msgstr ""
 
 #: ../Pages/StartPage.qml:112
 msgctxt "StartPage|"
 msgid "Add an account"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:90
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:92
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:94
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:96
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
 
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
-msgstr ""
 
 #: ../Pages/ProblemsPage.qml:91
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
 

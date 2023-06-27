@@ -2669,70 +2669,56 @@ msgstr "Ajouter un compte"
 #: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:90
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:92
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:94
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
 
 #: ../Pages/LogViewPage.qml:96
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
 
 #: ../Menues/LibraryPageActions.qml:62
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
-msgstr ""
 
 #: ../Pages/ProblemsPage.qml:91
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
-msgstr ""
 
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
 
