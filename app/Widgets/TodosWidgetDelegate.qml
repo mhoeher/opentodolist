@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.0
 import OpenTodoList 1.0 as OTL
 
 import "../Components" as Components
+import "../Components/Tooltips" as Tooltips
 import "../Controls" as C
 import "../Utils"
 import "../Fonts"
@@ -37,6 +38,7 @@ C.SwipeDelegate {
     bottomPadding: topPadding
     hoverEnabled: true
     ListView.delayRemove: moveButton.dragTile.dragging
+    opacity: item?.isFutureInstance ? 0.5 : 1.0
 
     contentItem: RowLayout {
         width: parent.width
@@ -61,6 +63,14 @@ C.SwipeDelegate {
                 }
             }
             onClicked: {
+                if (swipeDelegate.item.isFutureInstance) {
+                    // If this is a future instance, ask the user if we really wants to mark it
+                    // as done:
+                    markFutureInstanceAsDone.item = swipeDelegate.item
+                    markFutureInstanceAsDone.visible = true
+                    return
+                }
+
                 let data = OTL.Application.saveItem(swipeDelegate.item)
                 switch (swipeDelegate.item.itemType) {
                 case "Task":
@@ -417,5 +427,9 @@ C.SwipeDelegate {
         library: swipeDelegate.library
         enabled: item.itemType === "Task"
         todoList: swipeDelegate.parentItem
+    }
+
+    Tooltips.MarkFutureInstanceAsDone {
+        id: markFutureInstanceAsDone
     }
 }

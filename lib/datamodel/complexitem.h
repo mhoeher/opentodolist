@@ -50,6 +50,8 @@ class ComplexItem : public Item
             int recurInterval READ recurInterval WRITE setRecurInterval NOTIFY recurIntervalChanged)
     Q_PROPERTY(QDateTime recurUntil READ recurUntil WRITE setRecurUntil NOTIFY recurUntilChanged)
     Q_PROPERTY(QDateTime effectiveDueTo READ effectiveDueTo NOTIFY effectiveDueToChanged)
+    Q_PROPERTY(QDateTime nextEffectiveDueTo READ nextEffectiveDueTo NOTIFY effectiveDueToChanged)
+    Q_PROPERTY(bool isFutureInstance READ isFutureInstance NOTIFY effectiveDueToChanged)
     Q_PROPERTY(bool isRecurring READ isRecurring NOTIFY isRecurringChanged)
 public:
     /**
@@ -112,7 +114,9 @@ public:
     void setRecurInterval(int recurInterval);
 
     QDateTime effectiveDueTo() const;
+    QDateTime nextEffectiveDueTo(const QDateTime& today = QDateTime()) const;
     bool isRecurring() const;
+    bool isFutureInstance() const;
 
     QDateTime earliestChildDueTo() const;
     void setEarliestChildDueTo(const QDateTime& earliestChildDueTo);

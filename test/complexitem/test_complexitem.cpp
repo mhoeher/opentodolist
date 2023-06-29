@@ -35,6 +35,7 @@ private slots:
     void testPersistence();
     void attachments();
     void recurrence();
+    void testIsFutureInstance();
     void cleanupTestCase() {}
 };
 
@@ -539,6 +540,28 @@ void ComplexItemTest::recurrence()
         QVERIFY(!item.recurUntil().isValid());
         QCOMPARE(item.dueTo(), tomorrow);
     }
+}
+
+void ComplexItemTest::testIsFutureInstance()
+{
+    ComplexItem item;
+    item.setDueTo(QDateTime::currentDateTime().addDays(-1));
+    item.setRecurrencePattern(ComplexItem::RecurDaily);
+
+    // Item is due in the past, definitely no future instance!
+    QVERIFY(!item.isFutureInstance());
+
+    // Item is due today - also no future instance:
+    item.setDueTo(QDateTime::currentDateTime());
+    QVERIFY(!item.isFutureInstance());
+
+    // Item is due tomorrow - when we recur daily, this is "future" enough:
+    item.markCurrentOccurrenceAsDone();
+    QVERIFY(item.isFutureInstance());
+
+    // Item is due the day after - definitely future!
+    item.setDueTo(QDateTime::currentDateTime().addDays(2));
+    QVERIFY(item.isFutureInstance());
 }
 
 QTEST_MAIN(ComplexItemTest)
