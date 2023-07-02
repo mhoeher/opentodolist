@@ -674,6 +674,7 @@ void ComplexItem::setupConnections()
 
     connect(this, &ComplexItem::recurrencePatternChanged, this, &ComplexItem::isRecurringChanged);
     connect(this, &ComplexItem::recurIntervalChanged, this, &ComplexItem::isRecurringChanged);
+    connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::isRecurringChanged);
 }
 
 void ComplexItem::setAttachments(const QStringList& attachments)
