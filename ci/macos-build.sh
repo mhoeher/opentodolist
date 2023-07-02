@@ -132,10 +132,10 @@ $QT_DIR/bin/macdeployqt \
     OpenTodoList.app/ \
     -qmldir=../../app \
     -appstore-compliant \
-    -sign-for-notarization="3rd Party Mac Developer Application: Martin Hoeher (786Z636JV9)"
+    -sign-for-notarization="Apple Distribution: Martin Hoeher (786Z636JV9)"
 popd
 xcrun codesign \
-    -s "3rd Party Mac Developer Application: Martin Hoeher (786Z636JV9)" \
+    -s "Apple Distribution: Martin Hoeher (786Z636JV9)" \
     -v -f \
     -o runtime \
     --entitlements ../app/OpenTodoList.entitlements \

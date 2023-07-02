@@ -7,7 +7,6 @@ import OpenTodoList 1.0 as OTL
 import "../Components" as Components
 import "../Controls" as C
 
-
 CenteredDialog {
     id: dialog
 
@@ -18,12 +17,12 @@ CenteredDialog {
     property int recurInterval: item ? item.recurInterval : 1
 
     function edit(item) {
-        dialog.item = item;
-        recurrencePattern = item.recurrencePattern;
-        recurrenceSchedule = item.recurrenceSchedule;
-        recurInterval = item.recurInterval;
-        d.updateRecurrencePatternEdit();
-        open();
+        dialog.item = item
+        recurrencePattern = item.recurrencePattern
+        recurrenceSchedule = item.recurrenceSchedule
+        recurInterval = item.recurInterval
+        d.updateRecurrencePatternEdit()
+        open()
     }
 
     standardButtons: C.Dialog.Ok | C.Dialog.Cancel
@@ -32,40 +31,63 @@ CenteredDialog {
 
     onAccepted: {
         if (dialog.item) {
-            dialog.item.recurrencePattern = recurrencePattern;
-            dialog.item.recurrenceSchedule = recurrenceSchedule;
-            dialog.item.recurInterval = recurInterval;
+            dialog.item.recurrencePattern = recurrencePattern
+            dialog.item.recurrenceSchedule = recurrenceSchedule
+            dialog.item.recurInterval = recurInterval
         }
     }
 
     Component.onCompleted: {
-        patternModel.dynamicRoles = true;
-        patternModel.append({"name": qsTr("Never"), type: OTL.ComplexItem.NoRecurrence});
-        patternModel.append({"name": qsTr("Daily"), type: OTL.ComplexItem.RecurDaily});
-        patternModel.append({"name": qsTr("Weekly"), type: OTL.ComplexItem.RecurWeekly});
-        patternModel.append({"name": qsTr("Monthly"), type: OTL.ComplexItem.RecurMonthly});
-        patternModel.append({"name": qsTr("Yearly"), type: OTL.ComplexItem.RecurYearly});
-        patternModel.append({"name": qsTr("Every N Days"), type: OTL.ComplexItem.RecurEveryNDays});
-        patternModel.append({"name": qsTr("Every N Weeks"), type: OTL.ComplexItem.RecurEveryNWeeks});
-        patternModel.append({"name": qsTr("Every N Months"), type: OTL.ComplexItem.RecurEveryNMonths});
-        d.updateRecurrencePatternEdit();
+        patternModel.dynamicRoles = true
+        patternModel.append({
+                                "name": qsTr("Never"),
+                                "type": OTL.ComplexItem.NoRecurrence
+                            })
+        patternModel.append({
+                                "name": qsTr("Daily"),
+                                "type": OTL.ComplexItem.RecurDaily
+                            })
+        patternModel.append({
+                                "name": qsTr("Weekly"),
+                                "type": OTL.ComplexItem.RecurWeekly
+                            })
+        patternModel.append({
+                                "name": qsTr("Monthly"),
+                                "type": OTL.ComplexItem.RecurMonthly
+                            })
+        patternModel.append({
+                                "name": qsTr("Yearly"),
+                                "type": OTL.ComplexItem.RecurYearly
+                            })
+        patternModel.append({
+                                "name": qsTr("Every N Days"),
+                                "type": OTL.ComplexItem.RecurEveryNDays
+                            })
+        patternModel.append({
+                                "name": qsTr("Every N Weeks"),
+                                "type": OTL.ComplexItem.RecurEveryNWeeks
+                            })
+        patternModel.append({
+                                "name": qsTr("Every N Months"),
+                                "type": OTL.ComplexItem.RecurEveryNMonths
+                            })
+        d.updateRecurrencePatternEdit()
     }
 
     QtObject {
         id: d
 
         function updateRecurrencePatternEdit() {
-            recurrencePatternEdit.currentIndex = 0;
-            for (let i = 0; i < patternModel.count; ++i) {
-                var entry = patternModel.get(i);
-                if (entry["type"] === recurrencePattern) {
-                    recurrencePatternEdit.currentIndex = i;
-                    break;
+            for (var i = 0; i < patternModel.count; ++i) {
+                var entry = patternModel.get(i)
+                if (entry["type"] === dialog.recurrencePattern) {
+                    recurrencePatternEdit.currentIndex = i
+                    return
                 }
             }
+            recurrencePatternEdit.currentIndex = 0
         }
     }
-
 
     GridLayout {
         width: dialog.availableWidth
@@ -77,7 +99,9 @@ CenteredDialog {
 
         C.ComboBox {
             id: recurrencePatternEdit
-            model: ListModel { id: patternModel }
+            model: ListModel {
+                id: patternModel
+            }
             textRole: "name"
             valueRole: "type"
             Layout.fillWidth: true
@@ -86,9 +110,9 @@ CenteredDialog {
 
         C.Label {
             text: qsTr("Number of days:")
-            visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays ||
-                     dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNWeeks ||
-                     dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNMonths
+            visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays
+                     || dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNWeeks
+                     || dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNMonths
         }
 
         C.SpinBox {
@@ -96,9 +120,9 @@ CenteredDialog {
             to: Math.pow(2, 31) - 1
             value: dialog.recurInterval
             Layout.fillWidth: true
-            visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays ||
-                     dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNWeeks ||
-                     dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNMonths
+            visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays
+                     || dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNWeeks
+                     || dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNMonths
             onValueChanged: dialog.recurInterval = value
         }
 
@@ -107,13 +131,13 @@ CenteredDialog {
             checked: dialog.recurrenceSchedule === OTL.ComplexItem.RelativeToCurrentDate
             Layout.fillWidth: true
             Layout.columnSpan: 2
-            visible: dialog.recurrencePattern !== OTL.ComplexItem.NoRecurrence &&
-                     dialog.recurrencePattern !== OTL.ComplexItem.RecurDaily
+            visible: dialog.recurrencePattern !== OTL.ComplexItem.NoRecurrence
+                     && dialog.recurrencePattern !== OTL.ComplexItem.RecurDaily
             onCheckedChanged: {
                 if (checked) {
-                    dialog.recurrenceSchedule = OTL.ComplexItem.RelativeToCurrentDate;
+                    dialog.recurrenceSchedule = OTL.ComplexItem.RelativeToCurrentDate
                 } else {
-                    dialog.recurrenceSchedule = OTL.ComplexItem.RelativeToOriginalDueDate;
+                    dialog.recurrenceSchedule = OTL.ComplexItem.RelativeToOriginalDueDate
                 }
             }
         }

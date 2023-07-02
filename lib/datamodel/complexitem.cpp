@@ -667,6 +667,7 @@ void ComplexItem::setupConnections()
     connect(this, &ComplexItem::recurrenceScheduleChanged, this, &ComplexItem::changed);
     connect(this, &ComplexItem::recurIntervalChanged, this, &ComplexItem::changed);
     connect(this, &ComplexItem::nextDueToChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::recurUntilChanged, this, &ComplexItem::changed);
 
     connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::effectiveDueToChanged);
     connect(this, &ComplexItem::nextDueToChanged, this, &ComplexItem::effectiveDueToChanged);
