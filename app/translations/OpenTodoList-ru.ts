@@ -656,62 +656,62 @@
 <context>
     <name>ItemDueDateEditor</name>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="32"/>
         <source>Due on</source>
         <translation type="unfinished">Выполнить к</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="61"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>First due on %1.</source>
         <translation type="unfinished">Первая отсечка на %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">Не задан шаблон повторения ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="92"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Повторяется каждый день.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="94"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Повторяется каждую неделю.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="96"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Повторяется каждый месяц.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="98"/>
         <source>Recurs every year.</source>
         <translation type="unfinished">Повторяется каждый год.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="100"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Повторяется каждые %1 дней.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="103"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished">Повторяется каждые %1 недел(ь/и).</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="106"/>
         <source>Recurs every %1 months.</source>
         <translation type="unfinished">Повторяется каждые %1 месяц(а/ев).</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="144"/>
         <source>Recurs until %1.</source>
         <translation type="unfinished">Повторяется до %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="147"/>
         <source>Recurs indefinitely</source>
         <translation type="unfinished">Повторяется бесконечно</translation>
     </message>
@@ -1482,7 +1482,7 @@
 <context>
     <name>RecurrenceDialog</name>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="30"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="29"/>
         <source>Edit Recurrence</source>
         <translation type="unfinished">Редактировать повторение</translation>
     </message>
@@ -1492,52 +1492,52 @@
         <translation type="unfinished">Никогда</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Daily</source>
         <translation type="unfinished">Ежедневно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="51"/>
         <source>Weekly</source>
         <translation type="unfinished">Еженедельно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Monthly</source>
         <translation type="unfinished">Ежемесячно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="59"/>
         <source>Yearly</source>
         <translation type="unfinished">Ежегодно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="63"/>
         <source>Every N Days</source>
         <translation type="unfinished">Каждые N дней</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="67"/>
         <source>Every N Weeks</source>
         <translation type="unfinished">Каждые N недель</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="71"/>
         <source>Every N Months</source>
         <translation type="unfinished">Каждые N месяцев</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="97"/>
         <source>Recurs:</source>
         <translation type="unfinished">Повторять:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="112"/>
         <source>Number of days:</source>
         <translation type="unfinished">Количество дней:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="130"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Повторить относительно даты при пометке как сделано</translation>
     </message>
@@ -1945,14 +1945,6 @@ This requires a restart of the app.</source>
         <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">До: %1</translation>
-    </message>
-</context>
-<context>
-    <name>TodosWidgetDelegate</name>
-    <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
-        <source>More Actions...</source>
-        <translation type="unfinished">Больше действий</translation>
     </message>
 </context>
 <context>

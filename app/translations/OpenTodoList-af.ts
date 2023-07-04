@@ -1589,13 +1589,6 @@ This requires a restart of the app.</source>
     </message>
 </context>
 <context>
-    <name>TodosWidgetDelegate</name>
-    <message>
-        <source>More Actions...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>UpdateNotificationBar</name>
     <message>
         <source>An update to OpenTodoList %1 is available.</source>
