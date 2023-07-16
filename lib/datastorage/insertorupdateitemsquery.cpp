@@ -98,8 +98,11 @@ void InsertOrUpdateItemsQuery::run()
         }
     }
     for (auto item : m_itemEntries) {
+        ItemPtr i(Item::decache(item));
+        if (i.isNull()) {
+            continue;
+        }
         if (m_calcWeight.contains(item.id)) {
-            auto i = Item::decache(item);
             auto parentId = item.parentId;
             double weight = 0.0;
             auto childIds = children()->getAll(t, parentId.toByteArray());
@@ -116,14 +119,30 @@ void InsertOrUpdateItemsQuery::run()
             weight += 1.0 + QRandomGenerator::securelySeeded().generateDouble();
             i->setWeight(weight);
             item = i->encache();
-            delete i;
         }
         if (m_save.contains(item.id)) {
-            auto i = Item::decache(item);
-            if (i->isValid()) {
-                i->save();
+            i->save();
+        }
+        // Check if the item was re-scheduled (after the current occurrence has been marked as
+        // done). In tihs case, mark all children as undone:
+        {
+            auto complexItem = i.objectCast<ComplexItem>();
+            if (complexItem && complexItem->newRecurrenceCreated()) {
+                forAllChildren(t, i->uid().toByteArray(), ChildRecursionMode::RecursiveChildren,
+                               [=](ItemPtr childItem) {
+                                   auto todo = childItem.objectCast<Todo>();
+                                   if (todo && todo->done()) {
+                                       todo->setDone(false);
+                                       return true;
+                                   }
+                                   auto task = childItem.objectCast<Task>();
+                                   if (task && task->done()) {
+                                       task->setDone(false);
+                                       return true;
+                                   }
+                                   return false;
+                               });
             }
-            delete i;
         }
         auto data = item.toByteArray();
         auto id = item.id.toByteArray();

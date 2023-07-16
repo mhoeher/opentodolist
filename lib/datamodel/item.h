@@ -51,6 +51,18 @@ struct ItemCacheEntry
     QUuid parentId;
     QVariant data;
     QVariant metaData;
+    /**
+     * @brief Additional runtime data.
+     *
+     * This is a map of data which holds additional properties of the item. This information
+     * is not serialized, but only stored in the instance of the cache entry. The purpose is
+     * to allow transferring additional runtime flags and data along with the item data which is
+     * then evaluated. For example, if additional processing is desired after certain changes in
+     * an item while these changes are applied to disk and cache, such flags can be stored in
+     * the map and are then passed into the writing procedure. There, the flags are evaluated but
+     * not written to the cache and to disk.
+     */
+    QVariantMap runtimeData;
     QVariant calculatedData;
     bool valid;
 
@@ -157,6 +169,8 @@ public:
     ItemCacheEntry encache() const;
     static Item* decache(const ItemCacheEntry& entry, QObject* parent = nullptr);
     static Item* decache(const QVariant& entry, QObject* parent = nullptr);
+    void loadCachedData(const ItemCacheEntry& entry);
+    void loadCachedData(const QVariant& entry);
 
     Cache* cache() const;
     void setCache(Cache* cache);
@@ -206,6 +220,8 @@ protected:
     virtual QVariantMap toMap() const;
     virtual void fromMap(QVariantMap map);
     virtual void finishCloning(Item* source);
+    virtual QVariantMap getRuntimeData() const;
+    virtual void applyRuntimeData(const QVariantMap& runtimeData);
 
 private:
     QPointer<Cache> m_cache;

@@ -53,6 +53,9 @@ class ComplexItem : public Item
     Q_PROPERTY(QDateTime nextEffectiveDueTo READ nextEffectiveDueTo NOTIFY effectiveDueToChanged)
     Q_PROPERTY(bool isFutureInstance READ isFutureInstance NOTIFY effectiveDueToChanged)
     Q_PROPERTY(bool isRecurring READ isRecurring NOTIFY isRecurringChanged)
+    Q_PROPERTY(bool newRecurrenceCreated READ newRecurrenceCreated WRITE setNewRecurrenceCreated
+                       NOTIFY newRecurrenceCreatedChanged)
+
 public:
     /**
      * @brief Determines the recurrence pattern of an item with a due date set.
@@ -126,6 +129,8 @@ public:
 
     Q_INVOKABLE virtual bool canBeMarkedAsDone() const;
 
+    bool newRecurrenceCreated() const;
+
 signals:
 
     void dueToChanged();
@@ -139,6 +144,8 @@ signals:
     void effectiveDueToChanged();
     void isRecurringChanged();
     void earliestChildDueToChanged();
+
+    void newRecurrenceCreatedChanged();
 
 public slots:
 
@@ -160,14 +167,19 @@ private:
     QDateTime m_nextDueTo;
     QDateTime m_recurUntil;
     int m_recurInterval;
+    bool m_newRecurrenceCreated;
 
     void setupConnections();
     void setAttachments(const QStringList& attachments);
+    void setNewRecurrenceCreated(bool newNewRecurrenceCreated);
 
 protected:
     // Item interface
     QVariantMap toMap() const override;
     void fromMap(QVariantMap map) override;
+    QVariantMap getRuntimeData() const override;
+    void applyRuntimeData(const QVariantMap& runtimeData) override;
+
     virtual void markItemAsDone();
 };
 

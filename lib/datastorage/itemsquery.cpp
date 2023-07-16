@@ -22,6 +22,8 @@
 
 #include <QRandomGenerator>
 #include <QLoggingCategory>
+#include <QSet>
+#include <QQueue>
 
 #include <algorithm>
 
@@ -315,6 +317,50 @@ QDateTime ItemsQuery::earliestChildUpdatedAt(QLMDB::Transaction& transaction,
 }
 
 /**
+ * @brief Call a function for all children of an item.
+ *
+ * This calls the callable @p fn for all children of the item with the uid @p itemId. The @p
+ * transaction is used to run any actions against the cache. The @p mode determines which children
+ * are evaluated, e.g. if we run on direct children only or if the function shall be called
+ * recursively for all children.
+ *
+ * This method can be used for both querying information as well as changing child items. If a
+ * particular item shall be saved back, the callable shall return true.
+ */
+void ItemsQuery::forAllChildren(QLMDB::Transaction& transaction, const QByteArray& itemId,
+                                ChildRecursionMode mode,
+                                std::function<bool(QSharedPointer<Item>)> fn)
+{
+    QSet<QByteArray> visitedChildren; // To protect against circles
+    QQueue<QByteArray> parents;
+
+    parents.enqueue(itemId);
+
+    while (!parents.isEmpty()) {
+        auto id = parents.dequeue();
+        visitedChildren.insert(id);
+        const auto childIds = children()->getAll(transaction, id);
+        for (const auto& childId : childIds) {
+            // Check if we already visited this one:
+            if (visitedChildren.contains(childId)) {
+                continue;
+            }
+            // Load the item and apply the function on it:
+            auto item = itemFromCache(transaction, QUuid(childId));
+            if (item) {
+                if (fn(item)) {
+                    // If "fn" returns true, this is an indication that the item was changes.
+                    // Hence, write it back to cache:
+                    itemToCache(transaction, item);
+                }
+                // Check for the children of the item later:
+                parents.enqueue(item->uid().toByteArray());
+            }
+        }
+    }
+}
+
+/**
  * @brief Load an item from the cache, using the specified transaction.
  */
 QSharedPointer<Item> ItemsQuery::itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid)
@@ -324,6 +370,30 @@ QSharedPointer<Item> ItemsQuery::itemFromCache(QLMDB::Transaction& t, const QUui
         return ItemPtr(Item::decache(ItemCacheEntry::fromByteArray(data, itemUid.toByteArray())));
     }
     return nullptr;
+}
+
+/**
+ * @brief Write an item to the cache.
+ *
+ * This writes the given @p item to the cache, using the transaction @p t.
+ */
+void ItemsQuery::itemToCache(QLMDB::Transaction& t, QSharedPointer<Item> item)
+{
+    if (!item) {
+        return;
+    }
+    auto cacheEntry = item->encache();
+    auto data = cacheEntry.toByteArray();
+    auto id = cacheEntry.id.toByteArray();
+    QLMDB::Cursor itemCursor(t, *items());
+    QLMDB::Cursor childrenCursor(t, *children());
+    auto it = itemCursor.findKey(id);
+    if (!it.isValid() || it.value() != data) {
+        itemCursor.put(id, data);
+        markAsChanged(&t, id);
+        item->save(); // Also save to disk!
+    }
+    childrenCursor.put(cacheEntry.parentId.toByteArray(), id, QLMDB::Cursor::NoDuplicateData);
 }
 
 /**
