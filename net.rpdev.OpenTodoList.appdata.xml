@@ -40,6 +40,20 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.45.0" date="2023-07-16">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>#515: Recurring sub-tasks</li>
+            <li>#622: Refactor the recurrence editor</li>
+            <li>#620: Fix setting re-scheduling mode</li>
+            <li>#621: Prevent accidental marking of items scheduled in the future</li>
+            <li>#623: "Auto-close" items when all tasks within it are done</li>
+            <li>#619: Remove no-translations workaround on Windows</li>
+            <li>#586: Use shared macOS runners to build the app automatically</li>
+            <li>#618: Better icon for "save notes" button</li>
+            <li>#585: USe shared Windows runners to build the app automatically</li>
+        </ul>
+    </release>
     <release version="3.44.1" date="2023-04-11">
         <p>This release includes the following changes:</p>
         <ul>
