@@ -66,7 +66,7 @@ private:
  * @brief Constructor.
  */
 ItemCacheEntry::ItemCacheEntry()
-    : id(), parentId(), data(), metaData(), calculatedData(), valid(false)
+    : id(), parentId(), data(), metaData(), runtimeData(), calculatedData(), valid(false)
 {
 }
 
@@ -374,6 +374,33 @@ void Item::finishCloning(Item* source)
 }
 
 /**
+ * @brief Get meta information stored along the item when caching.
+ *
+ * This returns a map which contains data that is stored together with other data when the item is
+ * encached. This can be used to add additional information that must be preserved "in memory", but
+ * must not be included in the actual data cache on disk.
+ *
+ * Concrete subclasses shall override this method and add any information needed on top.
+ */
+QVariantMap Item::getRuntimeData() const
+{
+    return QVariantMap();
+}
+
+/**
+ * @brief Apply runtime data.
+ *
+ * Apply runtime data stored in an ItemCacheEntry which previously has been generated using
+ * getRuntimeData().
+ *
+ * Concrete subclasses shall extend this method and restore back any data needed.
+ */
+void Item::applyRuntimeData(const QVariantMap& runtimeData)
+{
+    Q_UNUSED(runtimeData);
+}
+
+/**
  * @brief A list of parents of the item UIDs, starting with the top most (i.e. the library).
  */
 const QVector<QUuid>& Item::parents() const
@@ -596,6 +623,7 @@ ItemCacheEntry Item::encache() const
     QVariantMap meta;
     meta["filename"] = FileUtils::toPersistedPath(m_filename);
     result.metaData = meta;
+    result.runtimeData = getRuntimeData();
     result.valid = true;
     return result;
 }
@@ -606,16 +634,7 @@ Item* Item::decache(const ItemCacheEntry& entry, QObject* parent)
     if (entry.valid) {
         result = Item::createItem(entry.data.toMap(), parent);
         if (result) {
-            ItemChangedInhibitor inhibitor(result);
-            result->applyCalculatedProperties(entry.calculatedData.toMap());
-            auto meta = entry.metaData.toMap();
-            auto path = meta["filename"].toString();
-            path = FileUtils::fromPersistedPath(path);
-            result->setFilename(path);
-            auto topLevelItem = qobject_cast<TopLevelItem*>(result);
-            if (topLevelItem != nullptr) {
-                topLevelItem->setLibraryId(entry.parentId);
-            }
+            result->loadCachedData(entry);
         }
     }
     return result;
@@ -625,6 +644,29 @@ Item* Item::decache(const QVariant& entry, QObject* parent)
 {
     auto cacheEntry = entry.value<ItemCacheEntry>();
     return decache(cacheEntry, parent);
+}
+
+void Item::loadCachedData(const ItemCacheEntry& entry)
+{
+    if (entry.valid) {
+        ItemChangedInhibitor inhibitor(this);
+        fromMap(entry.data.toMap());
+        applyCalculatedProperties(entry.calculatedData.toMap());
+        applyRuntimeData(entry.runtimeData);
+        auto meta = entry.metaData.toMap();
+        auto path = meta["filename"].toString();
+        path = FileUtils::fromPersistedPath(path);
+        this->setFilename(path);
+        auto topLevelItem = qobject_cast<TopLevelItem*>(this);
+        if (topLevelItem != nullptr) {
+            topLevelItem->setLibraryId(entry.parentId);
+        }
+    }
+}
+
+void Item::loadCachedData(const QVariant& entry)
+{
+    loadCachedData(entry.value<ItemCacheEntry>());
 }
 
 /**
@@ -695,9 +737,7 @@ void Item::onItemDataLoadedFromCache(const QVariant& entry)
 {
     ItemPtr item(Item::decache(entry));
     if (item != nullptr) {
-        ItemChangedInhibitor inhibitor(this);
-        this->fromMap(item->toMap());
-        this->applyCalculatedProperties(entry.value<ItemCacheEntry>().calculatedData.toMap());
+        loadCachedData(entry);
     }
 }
 

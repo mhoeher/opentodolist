@@ -47,7 +47,8 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent)
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
       m_recurUntil(),
-      m_recurInterval(0)
+      m_recurInterval(0),
+      m_newRecurrenceCreated(false)
 {
     setupConnections();
 }
@@ -65,7 +66,8 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent)
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
       m_recurUntil(),
-      m_recurInterval(0)
+      m_recurInterval(0),
+      m_newRecurrenceCreated(false)
 {
     setupConnections();
 }
@@ -263,6 +265,7 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
         // Mark the current occurrence of this item as done
         auto nextDueTo_ = nextEffectiveDueTo(today);
         if (nextDueTo_.isValid()) {
+            setNewRecurrenceCreated(true); // Mark the item so we know it was scheduled again
             setNextDueTo(nextDueTo_);
         } else {
             markItemAsDone();
@@ -271,6 +274,25 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
         // Simply mark the item as done:
         markItemAsDone();
     }
+}
+
+/**
+ * @brief Indicates that a new occurrence of the item has been created.
+ *
+ * This property is true after the item was been marked as done and - if the item has a recurrence
+ * pattern set - a new occurrence was scheduled for the future.
+ */
+bool ComplexItem::newRecurrenceCreated() const
+{
+    return m_newRecurrenceCreated;
+}
+
+void ComplexItem::setNewRecurrenceCreated(bool newNewRecurrenceCreated)
+{
+    if (m_newRecurrenceCreated == newNewRecurrenceCreated)
+        return;
+    m_newRecurrenceCreated = newNewRecurrenceCreated;
+    emit newRecurrenceCreatedChanged();
 }
 
 /**
@@ -713,6 +735,19 @@ void ComplexItem::fromMap(QVariantMap map)
     setNextDueTo(map.value("nextDueTo", m_nextDueTo).toDateTime());
     setRecurUntil(map.value("recurUntil", m_recurUntil).toDateTime());
     setRecurInterval(map.value("recurInterval", m_recurInterval).toInt());
+}
+
+QVariantMap ComplexItem::getRuntimeData() const
+{
+    auto result = Item::getRuntimeData();
+    result["newRecurrenceCreated"] = m_newRecurrenceCreated;
+    return result;
+}
+
+void ComplexItem::applyRuntimeData(const QVariantMap& runtimeData)
+{
+    Item::applyRuntimeData(runtimeData);
+    setNewRecurrenceCreated(runtimeData.value("newRecurrenceCreated", false).toBool());
 }
 
 /**

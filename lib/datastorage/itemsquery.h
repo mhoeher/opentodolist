@@ -91,6 +91,14 @@ protected:
     };
 
     /**
+     * @brief Determines how to recurse over children.
+     */
+    enum class ChildRecursionMode {
+        DirectChildrenOnly, //!< Run for direct children only.
+        RecursiveChildren //!< Run for all children recursively.
+    };
+
+    /**
      * @brief Run the query.
      *
      * Sub-classes must implement this class to provide actual functionality.
@@ -109,8 +117,11 @@ protected:
                                                       const QByteArray& todoId);
     QDateTime earliestChildDueDate(QLMDB::Transaction& transaction, const QByteArray& parentId);
     QDateTime earliestChildUpdatedAt(QLMDB::Transaction& transaction, const QByteArray& parentId);
+    void forAllChildren(QLMDB::Transaction& transaction, const QByteArray& itemId,
+                        ChildRecursionMode mode, std::function<bool(QSharedPointer<Item>)> fn);
 
     QSharedPointer<Item> itemFromCache(QLMDB::Transaction& t, const QUuid& itemUid);
+    void itemToCache(QLMDB::Transaction& t, QSharedPointer<Item> item);
     QVector<QUuid> lookupParents(QLMDB::Transaction& t, const Item* item);
     void setIsNonDBQuery(bool newIsNonDBQuery);
 

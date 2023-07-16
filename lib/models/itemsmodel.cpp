@@ -619,9 +619,7 @@ void ItemsModel::update(QVariantList items)
         auto id = item->uid();
         if (m_items.contains(id)) {
             auto existingItem = m_items.value(id);
-            existingItem->fromVariant(item->toVariant());
-            existingItem->applyCalculatedProperties(
-                    dataValue.value<ItemCacheEntry>().calculatedData.toMap());
+            existingItem->loadCachedData(dataValue.value<ItemCacheEntry>());
             delete item;
             idsToDelete.remove(id);
         } else {
