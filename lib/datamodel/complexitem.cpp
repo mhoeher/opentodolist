@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -47,7 +47,8 @@ ComplexItem::ComplexItem(const QString& filename, QObject* parent)
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
       m_recurUntil(),
-      m_recurInterval(0)
+      m_recurInterval(0),
+      m_newRecurrenceCreated(false)
 {
     setupConnections();
 }
@@ -65,7 +66,8 @@ ComplexItem::ComplexItem(const QDir& dir, QObject* parent)
       m_recurrenceSchedule(RelativeToOriginalDueDate),
       m_nextDueTo(),
       m_recurUntil(),
-      m_recurInterval(0)
+      m_recurInterval(0),
+      m_newRecurrenceCreated(false)
 {
     setupConnections();
 }
@@ -261,158 +263,36 @@ void ComplexItem::markCurrentOccurrenceAsDone(const QDateTime& today)
 
     if (isRecurring()) {
         // Mark the current occurrence of this item as done
-        switch (m_recurrencePattern) {
-
-        case NoRecurrence:
-            // Should not happen - is implicitly handled in `isRecurring()`.
-            break;
-
-        case RecurDaily: {
-            auto nextDueToValue = effectiveDueTo().addDays(1);
-            if (nextDueToValue <= _today) {
-                nextDueToValue = _today.addDays(1);
-            }
-            setNextDueTo(nextDueToValue);
-            break;
-        }
-
-        case RecurWeekly: {
-            switch (m_recurrenceSchedule) {
-            case RelativeToOriginalDueDate: {
-                auto nextDueToValue = m_dueTo;
-                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addDays(7);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            case RelativeToCurrentDate: {
-                auto nextDueToValue = _today.addDays(7);
-                while (nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addDays(7);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            }
-            break;
-        }
-
-        case RecurMonthly: {
-            switch (m_recurrenceSchedule) {
-            case RelativeToOriginalDueDate: {
-                auto nextDueToValue = m_dueTo;
-                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addMonths(1);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            case RelativeToCurrentDate: {
-                auto nextDueToValue = _today.addMonths(1);
-                while (nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addMonths(1);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            }
-            break;
-        }
-
-        case RecurYearly: {
-            switch (m_recurrenceSchedule) {
-            case RelativeToOriginalDueDate: {
-                auto nextDueToValue = m_dueTo;
-                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addYears(1);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            case RelativeToCurrentDate: {
-                auto nextDueToValue = _today.addYears(1);
-                while (nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addYears(1);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            }
-            break;
-        }
-
-        case RecurEveryNDays: {
-            switch (m_recurrenceSchedule) {
-            case RelativeToOriginalDueDate: {
-                auto nextDueToValue = m_dueTo;
-                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addDays(m_recurInterval);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            case RelativeToCurrentDate: {
-                auto nextDueToValue = _today.addDays(m_recurInterval);
-                while (nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addDays(m_recurInterval);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            }
-            break;
-        }
-
-        case RecurEveryNWeeks: {
-            switch (m_recurrenceSchedule) {
-            case RelativeToOriginalDueDate: {
-                auto nextDueToValue = m_dueTo;
-                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addDays(m_recurInterval * 7);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            case RelativeToCurrentDate: {
-                auto nextDueToValue = _today.addDays(m_recurInterval * 7);
-                while (nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addDays(m_recurInterval * 7);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            }
-            break;
-        }
-
-        case RecurEveryNMonths: {
-            switch (m_recurrenceSchedule) {
-            case RelativeToOriginalDueDate: {
-                auto nextDueToValue = m_dueTo;
-                auto eDT = effectiveDueTo();
-                while (nextDueToValue <= _today || nextDueToValue <= eDT) {
-                    nextDueToValue = nextDueToValue.addMonths(m_recurInterval);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            case RelativeToCurrentDate: {
-                auto nextDueToValue = _today.addMonths(m_recurInterval);
-                while (nextDueToValue <= effectiveDueTo()) {
-                    nextDueToValue = nextDueToValue.addMonths(m_recurInterval);
-                }
-                setNextDueTo(nextDueToValue);
-                break;
-            }
-            }
-            break;
-        }
+        auto nextDueTo_ = nextEffectiveDueTo(today);
+        if (nextDueTo_.isValid()) {
+            setNewRecurrenceCreated(true); // Mark the item so we know it was scheduled again
+            setNextDueTo(nextDueTo_);
+        } else {
+            markItemAsDone();
         }
     } else {
         // Simply mark the item as done:
         markItemAsDone();
     }
+}
+
+/**
+ * @brief Indicates that a new occurrence of the item has been created.
+ *
+ * This property is true after the item was been marked as done and - if the item has a recurrence
+ * pattern set - a new occurrence was scheduled for the future.
+ */
+bool ComplexItem::newRecurrenceCreated() const
+{
+    return m_newRecurrenceCreated;
+}
+
+void ComplexItem::setNewRecurrenceCreated(bool newNewRecurrenceCreated)
+{
+    if (m_newRecurrenceCreated == newNewRecurrenceCreated)
+        return;
+    m_newRecurrenceCreated = newNewRecurrenceCreated;
+    emit newRecurrenceCreatedChanged();
 }
 
 /**
@@ -434,6 +314,19 @@ void ComplexItem::setRecurUntil(const QDateTime& newRecurUntil)
         return;
     m_recurUntil = newRecurUntil;
     emit recurUntilChanged();
+}
+
+/**
+ * @brief Check if the item can be marked as done.
+ *
+ * This method returns a boolean flag indicating if the item can be marked as done. The
+ * ComplexItem class returns true in case the item has an effectiveDueTo date set.
+ *
+ * Subclasses should extend this method to add class specific logic on top.
+ */
+bool ComplexItem::canBeMarkedAsDone() const
+{
+    return effectiveDueTo().isValid();
 }
 
 /**
@@ -506,6 +399,166 @@ QDateTime ComplexItem::effectiveDueTo() const
 }
 
 /**
+ * @brief Returns the next effective due date of the item.
+ *
+ * This returns the next due to date of the item if it would be marked as done in its current
+ * state. The next date will be calculated relative to @p today (which is the current date by
+ * default).
+ *
+ * This method returns an invalid date if the item has no recurrence set.
+ *
+ * @note This method returns the recur until date (if set).
+ */
+QDateTime ComplexItem::nextEffectiveDueTo(const QDateTime& today) const
+{
+    auto _today = today;
+    if (_today.isNull() || !_today.isValid()) {
+        auto currentDate = QDate::currentDate();
+        _today = currentDate.startOfDay();
+    }
+
+    if (isRecurring()) {
+        switch (m_recurrencePattern) {
+
+        case NoRecurrence:
+            // Should not happen - is implicitly handled in `isRecurring()`.
+            break;
+
+        case RecurDaily: {
+            auto nextDueToValue = effectiveDueTo().addDays(1);
+            if (nextDueToValue <= _today) {
+                nextDueToValue = _today.addDays(1);
+            }
+            return nextDueToValue;
+        }
+
+        case RecurWeekly: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueToValue = m_dueTo;
+                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addDays(7);
+                }
+                return nextDueToValue;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueToValue = _today.addDays(7);
+                while (nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addDays(7);
+                }
+                return nextDueToValue;
+            }
+            }
+            break;
+        }
+
+        case RecurMonthly: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueToValue = m_dueTo;
+                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addMonths(1);
+                }
+                return nextDueToValue;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueToValue = _today.addMonths(1);
+                while (nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addMonths(1);
+                }
+                return nextDueToValue;
+            }
+            }
+            break;
+        }
+
+        case RecurYearly: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueToValue = m_dueTo;
+                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addYears(1);
+                }
+                return nextDueToValue;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueToValue = _today.addYears(1);
+                while (nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addYears(1);
+                }
+                return nextDueToValue;
+            }
+            }
+            break;
+        }
+
+        case RecurEveryNDays: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueToValue = m_dueTo;
+                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addDays(m_recurInterval);
+                }
+                return nextDueToValue;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueToValue = _today.addDays(m_recurInterval);
+                while (nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addDays(m_recurInterval);
+                }
+                return nextDueToValue;
+            }
+            }
+            break;
+        }
+
+        case RecurEveryNWeeks: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueToValue = m_dueTo;
+                while (nextDueToValue <= _today || nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addDays(m_recurInterval * 7);
+                }
+                return nextDueToValue;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueToValue = _today.addDays(m_recurInterval * 7);
+                while (nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addDays(m_recurInterval * 7);
+                }
+                return nextDueToValue;
+            }
+            }
+            break;
+        }
+
+        case RecurEveryNMonths: {
+            switch (m_recurrenceSchedule) {
+            case RelativeToOriginalDueDate: {
+                auto nextDueToValue = m_dueTo;
+                auto eDT = effectiveDueTo();
+                while (nextDueToValue <= _today || nextDueToValue <= eDT) {
+                    nextDueToValue = nextDueToValue.addMonths(m_recurInterval);
+                }
+                return nextDueToValue;
+            }
+            case RelativeToCurrentDate: {
+                auto nextDueToValue = _today.addMonths(m_recurInterval);
+                while (nextDueToValue <= effectiveDueTo()) {
+                    nextDueToValue = nextDueToValue.addMonths(m_recurInterval);
+                }
+                return nextDueToValue;
+            }
+            }
+            break;
+        }
+        }
+    }
+
+    return QDateTime();
+}
+
+/**
  * @brief Indicates if the item recurs.
  *
  * An item recurs in the following cases:
@@ -522,6 +575,39 @@ bool ComplexItem::isRecurring() const
             && ((m_recurrencePattern != RecurEveryNDays && m_recurrencePattern != RecurEveryNWeeks
                  && m_recurrencePattern != RecurEveryNMonths)
                 || m_recurInterval > 0);
+}
+
+/**
+ * @brief Indicates if the item is a future instance.
+ *
+ * This property is true when the next effecture due to date of the item is scheduled farther into
+ * the future as its recurrence interval. For example:
+ *
+ * Consider an item which recurs weekly each Wednesday. Assume that we have Monday, with the next
+ * due to date on the following Wednesday.
+ *
+ * - In this state, isFutureInstance() would be false, because the currently scheduled instance
+ *   is the "current" one.
+ * - Now, when we mark the current occurrence as done, it will be rescheduled to Wednesday the
+ *   following week. In this state, the property will in fact be true, because the item is
+ *   farther into the future (a week and two days) then the recurrence interval (which is one
+ *   week).
+ *
+ *  @note If the item has no recurrence set, this property is false.
+ */
+bool ComplexItem::isFutureInstance() const
+{
+    if (isRecurring()) {
+        auto today = QDate::currentDate().startOfDay();
+        auto effectiveDueTo_ = this->effectiveDueTo();
+        auto nextEffectiveDueTo_ = this->nextEffectiveDueTo();
+        auto intervalInDays = effectiveDueTo_.daysTo(nextEffectiveDueTo_);
+        auto daysToDueDate = today.daysTo(effectiveDueTo_);
+
+        return daysToDueDate > 0 && intervalInDays <= daysToDueDate;
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -603,12 +689,14 @@ void ComplexItem::setupConnections()
     connect(this, &ComplexItem::recurrenceScheduleChanged, this, &ComplexItem::changed);
     connect(this, &ComplexItem::recurIntervalChanged, this, &ComplexItem::changed);
     connect(this, &ComplexItem::nextDueToChanged, this, &ComplexItem::changed);
+    connect(this, &ComplexItem::recurUntilChanged, this, &ComplexItem::changed);
 
     connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::effectiveDueToChanged);
     connect(this, &ComplexItem::nextDueToChanged, this, &ComplexItem::effectiveDueToChanged);
 
     connect(this, &ComplexItem::recurrencePatternChanged, this, &ComplexItem::isRecurringChanged);
     connect(this, &ComplexItem::recurIntervalChanged, this, &ComplexItem::isRecurringChanged);
+    connect(this, &ComplexItem::dueToChanged, this, &ComplexItem::isRecurringChanged);
 }
 
 void ComplexItem::setAttachments(const QStringList& attachments)
@@ -647,6 +735,19 @@ void ComplexItem::fromMap(QVariantMap map)
     setNextDueTo(map.value("nextDueTo", m_nextDueTo).toDateTime());
     setRecurUntil(map.value("recurUntil", m_recurUntil).toDateTime());
     setRecurInterval(map.value("recurInterval", m_recurInterval).toInt());
+}
+
+QVariantMap ComplexItem::getRuntimeData() const
+{
+    auto result = Item::getRuntimeData();
+    result["newRecurrenceCreated"] = m_newRecurrenceCreated;
+    return result;
+}
+
+void ComplexItem::applyRuntimeData(const QVariantMap& runtimeData)
+{
+    Item::applyRuntimeData(runtimeData);
+    setNewRecurrenceCreated(runtimeData.value("newRecurrenceCreated", false).toBool());
 }
 
 /**

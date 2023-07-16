@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -69,6 +69,7 @@ void TodoTest::testPersistence()
     QCOMPARE(todo.percentageDone(), 0);
     QCOMPARE(todo.numSubtasks(), 0);
     QCOMPARE(todo.numDoneSubtasks(), 0);
+    QVERIFY(todo.canBeMarkedAsDone());
 
     QUuid uid = QUuid::createUuid();
 
@@ -78,6 +79,7 @@ void TodoTest::testPersistence()
 
     QCOMPARE(todo.progress(), 50);
     QCOMPARE(todo.percentageDone(), 50);
+    QVERIFY(!todo.canBeMarkedAsDone());
 
     anotherTodo.fromVariant(todo.toVariant());
 

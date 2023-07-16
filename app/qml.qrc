@@ -168,5 +168,7 @@
         <file>Dialogs/FileDialog.qml</file>
         <file>Dialogs/FilesDialog.qml</file>
         <file>Widgets/ItemDragButton.qml</file>
+        <file>Components/Tooltips/AllSubtasksDone.qml</file>
+        <file>Components/Tooltips/MarkFutureInstanceAsDone.qml</file>
     </qresource>
 </RCC>

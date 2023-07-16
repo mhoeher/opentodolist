@@ -7,17 +7,17 @@ msgstr ""
 "Project-Id-Version: OpenTodoList\n"
 "Language: pt\n"
 
-#: ../Pages/AboutPage.qml:15
+#: 
 msgctxt "AboutPage|"
 msgid "About..."
 msgstr "Sobre..."
 
-#: ../Pages/AboutPage.qml:29
+#: 
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Pages/AboutPage.qml:36
+#: 
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Um aplicativo de gerenciamento de todo e tarefa."
@@ -47,107 +47,107 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Descarregar: <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:33
+#: 
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Anexar arquivo"
 
-#: ../Widgets/Attachments.qml:48
+#: 
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Apagar anexo?"
 
-#: ../Widgets/Attachments.qml:52
+#: 
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Tem a certeza que quer apagar o anexo <strong>%1</strong>? Esta acção não pode ser desfeita."
 
-#: ../Widgets/Attachments.qml:66
+#: 
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Anexos"
 
-#: ../Menues/ColorMenu.qml:15
+#: 
 msgctxt "ColorMenu|"
 msgid "Color"
 msgstr "Cor"
 
-#: ../Menues/ColorMenu.qml:19
+#: 
 msgctxt "ColorMenu|"
 msgid "White"
 msgstr "Branco"
 
-#: ../Menues/ColorMenu.qml:26
+#: 
 msgctxt "ColorMenu|"
 msgid "Red"
 msgstr "Vermelho"
 
-#: ../Menues/ColorMenu.qml:33
+#: 
 msgctxt "ColorMenu|"
 msgid "Green"
 msgstr "Verde"
 
-#: ../Menues/ColorMenu.qml:40
+#: 
 msgctxt "ColorMenu|"
 msgid "Blue"
 msgstr "Azul"
 
-#: ../Menues/ColorMenu.qml:47
+#: 
 msgctxt "ColorMenu|"
 msgid "Yellow"
 msgstr "Amarelo"
 
-#: ../Menues/ColorMenu.qml:54
+#: 
 msgctxt "ColorMenu|"
 msgid "Orange"
 msgstr "Laranja"
 
-#: ../Menues/ColorMenu.qml:61
+#: 
 msgctxt "ColorMenu|"
 msgid "Lilac"
 msgstr "Lilás"
 
-#: ../Windows/DeleteItemDialog.qml:19
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
 msgstr "Eliminar item?"
 
-#: ../Windows/DeleteItemDialog.qml:32
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
 msgstr "Você realmente quer apagar a imagem <strong>%1</strong>? Isto não pode ser desfeito."
 
-#: ../Windows/DeleteItemDialog.qml:36
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
 msgstr "Você realmente quer apagar a lista completa <strong>%1</strong>? Isto não pode ser desfeito."
 
-#: ../Windows/DeleteItemDialog.qml:40
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
 msgstr "Você realmente quer apagar o todo <strong>%1</strong>? Isto não pode ser desfeito."
 
-#: ../Windows/DeleteItemDialog.qml:44
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
 msgstr "Você realmente quer apagar a tarefa <strong>%1</strong>? Isto não pode ser desfeito."
 
-#: ../Windows/DeleteItemDialog.qml:48
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
 msgstr "Você realmente quer apagar a nota <strong>%1</strong>? Isto não pode ser desfeito."
 
-#: ../Windows/DeleteLibraryDialog.qml:19
+#: 
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
 msgstr "Eliminar biblioteca?"
 
-#: ../Windows/DeleteLibraryDialog.qml:33
+#: 
 msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
 msgstr "Você realmente quer remover a biblioteca <strong>%1</strong> da aplicação? <em>Isso irá remover quaisquer arquivos pertencentes à biblioteca.</em>"
 
-#: ../Windows/DeleteLibraryDialog.qml:40
+#: 
 msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
 msgstr "Você realmente quer remover a biblioteca <strong>%1</strong> da aplicação? Note que os arquivos dentro da biblioteca não serão removidos, então você pode restaurar a biblioteca mais tarde."
@@ -157,17 +157,17 @@ msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
 msgstr "Selecione uma Pasta"
 
-#: ../Widgets/ItemCreatedNotification.qml:66
+#: 
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
 msgstr "<strong>%1</strong> foi criado."
 
-#: ../Widgets/ItemCreatedNotification.qml:72
+#: 
 msgctxt "ItemCreatedNotification|"
 msgid "Open"
 msgstr "Aberto"
 
-#: ../Widgets/ItemDueDateEditor.qml:28
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Due on"
 msgstr "Devido em"
@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notas"
 
-#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Horário"
 
-#: ../Widgets/LibrariesSideBar.qml:75
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nova Biblioteca"
 
-#: ../Widgets/LibrariesSideBar.qml:116
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Sobre..."
@@ -287,17 +287,17 @@ msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Enter Secrets"
 msgstr "Insira os segredos"
 
-#: ../Pages/LogViewPage.qml:14
+#: 
 msgctxt "LogViewPage|"
 msgid "Synchronization Log"
 msgstr "Log de Sincronização"
 
-#: ../Pages/LogViewPage.qml:22
+#: 
 msgctxt "LogViewPage|"
 msgid "Copy Log"
 msgstr "Diário de cópias"
 
-#: ../Windows/MainWindow.qml:24
+#: 
 msgctxt "MainWindow|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
@@ -342,12 +342,12 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Aberto &Barra do Lado Esquerdo"
 
-#: ../Windows/MainWindow.qml:238
+#: 
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Comece por <a href='#newLibrary'>criando uma nova biblioteca</a>. As bibliotecas são usadas para armazenar diferentes tipos de itens como notas, todas as listas e imagens."
 
-#: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:63
+#: 
 msgctxt "NewLibraryPage|"
 msgid "Create Library"
 msgstr "Criar biblioteca"
@@ -392,17 +392,17 @@ msgctxt "NewLibraryPage|"
 msgid "Please select a library location"
 msgstr "Por favor, selecione um local de biblioteca"
 
-#: ../Widgets/NewTopLevelItemButton.qml:54
+#: 
 msgctxt "NewTopLevelItemButton|"
 msgid "Note"
 msgstr "Nota"
 
-#: ../Widgets/NewTopLevelItemButton.qml:43
+#: 
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo List"
 msgstr "Lista completa"
 
-#: ../Widgets/NewTopLevelItemButton.qml:58
+#: 
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
 msgstr "Imagem"
@@ -417,72 +417,72 @@ msgctxt "OpenImageDialog|"
 msgid "Select Image"
 msgstr "Selecione Imagem"
 
-#: ../Windows/RenameItemDialog.qml:22
+#: 
 msgctxt "RenameItemDialog|"
 msgid "Rename Item"
 msgstr "Renomear Item"
 
-#: ../Windows/RenameItemDialog.qml:33
+#: 
 msgctxt "RenameItemDialog|"
 msgid "Enter item title..."
 msgstr "Digite o título do item..."
 
-#: ../Windows/RenameLibraryDialog.qml:20
+#: 
 msgctxt "RenameLibraryDialog|"
 msgid "Rename Library"
 msgstr "Renomear biblioteca"
 
-#: ../Windows/RenameLibraryDialog.qml:37
+#: 
 msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Digite o título da biblioteca..."
 
-#: ../Pages/ScheduleViewPage.qml:160
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Hoje"
 
-#: ../Pages/ScheduleViewPage.qml:161
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Amanhã"
 
-#: ../Pages/ScheduleViewPage.qml:197
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Mais Tarde Esta Semana"
 
-#: ../Pages/ScheduleViewPage.qml:199
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Próxima Semana"
 
-#: ../Pages/ScheduleViewPage.qml:200
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "A seguir"
 
-#: ../Pages/ScheduleViewPage.qml:279
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "Nada programado... Adicione uma data de vencimento aos itens para que eles apareçam aqui."
 
-#: ../Pages/ScheduleViewPage.qml:136
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Vencido"
 
-#: ../Widgets/SyncErrorNotificationBar.qml:43
+#: 
 msgctxt "SyncErrorNotificationBar|"
 msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
 msgstr "Houve erros ao sincronizar a biblioteca. Por favor, certifique-se de que as configurações da biblioteca estão atualizadas."
 
-#: ../Widgets/SyncErrorNotificationBar.qml:49
+#: 
 msgctxt "SyncErrorNotificationBar|"
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: ../Widgets/SyncErrorNotificationBar.qml:53
+#: 
 msgctxt "SyncErrorNotificationBar|"
 msgid "View"
 msgstr "Ver"
@@ -549,17 +549,17 @@ msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
 msgstr "Biblioteca Local"
 
-#: ../Widgets/TodoListItem.qml:132
+#: 
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
 msgstr "✔ Não abrir todos - tudo feito"
 
-#: ../Pages/TodoListPage.qml:172
+#: 
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Termo de pesquisa 1, termo de pesquisa 2, ..."
 
-#: ../Pages/TodoListPage.qml:260
+#: 
 msgctxt "TodoListPage|"
 msgid "Todos"
 msgstr "Todos"
@@ -569,27 +569,27 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Todos Completados"
 
-#: ../Pages/TodoPage.qml:168
+#: 
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Termo de pesquisa 1, termo de pesquisa 2, ..."
 
-#: ../Pages/TodoPage.qml:194
+#: 
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tarefas"
 
-#: ../Widgets/UpdateNotificationBar.qml:44
+#: 
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
 msgstr "Uma atualização para OpenTodoList %1 está disponível."
 
-#: ../Widgets/UpdateNotificationBar.qml:50
+#: 
 msgctxt "UpdateNotificationBar|"
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: ../Widgets/UpdateNotificationBar.qml:54
+#: 
 msgctxt "UpdateNotificationBar|"
 msgid "Download"
 msgstr "Descarregar"
@@ -679,42 +679,42 @@ msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
 msgstr "Nenhuma nota adicionada ainda - clique aqui para adicionar algumas."
 
-#: ../Widgets/TagsEditor.qml:34
+#: 
 msgctxt "TagsEditor|"
 msgid "Add Tag"
 msgstr "Adicionar etiqueta"
 
-#: ../Pages/TodoListPage.qml:280
+#: 
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Adicionar novo todo..."
 
-#: ../Pages/TodoPage.qml:200
+#: 
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Adicionar nova tarefa..."
 
-#: ../Widgets/TodosWidget.qml:217
+#: 
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Devo continuar: %1"
 
-#: ../Utils/Colors.qml:15
+#: 
 msgctxt "Colors|"
 msgid "System"
 msgstr "Sistema"
 
-#: ../Utils/Colors.qml:16
+#: 
 msgctxt "Colors|"
 msgid "Light"
 msgstr "Luz"
 
-#: ../Utils/Colors.qml:17
+#: 
 msgctxt "Colors|"
 msgid "Dark"
 msgstr "Escuro"
 
-#: ../Widgets/LibrariesSideBar.qml:95
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Configurações"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Widgets/LibrariesSideBar.qml:124
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Criar biblioteca predefinida"
@@ -824,27 +824,27 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
 msgstr "Linguagem:"
 
-#: ../Pages/TodoListPage.qml:184
+#: 
 msgctxt "TodoListPage|"
 msgid "Manually"
 msgstr "Manualmente"
 
-#: ../Pages/TodoListPage.qml:190
+#: 
 msgctxt "TodoListPage|"
 msgid "Name"
 msgstr "Nome"
 
-#: ../Pages/TodoListPage.qml:196
+#: 
 msgctxt "TodoListPage|"
 msgid "Due Date"
 msgstr "Data de vencimento"
 
-#: ../Pages/TodoListPage.qml:202
+#: 
 msgctxt "TodoListPage|"
 msgid "Created At"
 msgstr "Criado em"
 
-#: ../Pages/TodoListPage.qml:208
+#: 
 msgctxt "TodoListPage|"
 msgid "Updated At"
 msgstr "Atualizado em"
@@ -884,47 +884,47 @@ msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdev 2013-2020, versão %1"
 
-#: ../Pages/AboutPage.qml:64
+#: 
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList é lançado sob os termos da <a href='app-license'>GNU General Public License</a> versão 3 ou (à sua escolha) qualquer versão posterior."
 
-#: ../Pages/AboutPage.qml:81
+#: 
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Relatar um problema"
 
-#: ../Pages/AboutPage.qml:110
+#: 
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Bibliotecas e Recursos de Terceiros"
 
-#: ../Pages/AboutPage.qml:147
+#: 
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Autor:"
 
-#: ../Pages/AboutPage.qml:152
+#: 
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:159
+#: 
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licença:"
 
-#: ../Pages/AboutPage.qml:164
+#: 
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:170
+#: 
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Descarregar:"
 
-#: ../Pages/AboutPage.qml:174
+#: 
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -959,12 +959,12 @@ msgctxt "AccountsPageForm.ui|"
 msgid "Accounts"
 msgstr "Contas"
 
-#: ../Windows/DeleteAccountDialog.qml:19
+#: 
 msgctxt "DeleteAccountDialog|"
 msgid "Delete Account?"
 msgstr "Eliminar conta?"
 
-#: ../Windows/DeleteAccountDialog.qml:36
+#: 
 msgctxt "DeleteAccountDialog|"
 msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
 msgstr "Você realmente quer remover a conta <strong>%1</strong>? Isto irá remover todas as bibliotecas pertencentes à conta do seu dispositivo?<br/><br/>>i>Note: Você pode restaurá-las do servidor adicionando de volta a conta.</i>"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Falha na conexão com o servidor. Por favor, verifique o seu nome de utilizador, palavra-passe e o endereço do servidor e tente novamente."
 
-#: ../Widgets/LibrariesSideBar.qml:82
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Contas"
 
-#: ../Widgets/LibrariesSideBar.qml:101
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Traduzir a aplicação..."
@@ -1155,7 +1155,7 @@ msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
 msgstr "Nome da minha biblioteca local"
 
-#: ../Pages/NewWebDAVAccountPage.qml:163
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
 msgstr "Nome da conta"
@@ -1211,7 +1211,7 @@ msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Falha na conexão com o servidor. Por favor, verifique o seu nome de usuário, senha e o endereço do servidor e tente novamente."
 
-#: ../Windows/DeleteItemDialog.qml:52
+#: 
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
 msgstr "Você realmente quer apagar a página <strong>%1</strong>? Isto não pode ser desfeito."
@@ -1221,12 +1221,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "Biblioteca sincronizadora..."
 
-#: ../Pages/NotePage.qml:162
+#: 
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Página principal"
 
-#: ../Pages/NotePage.qml:229
+#: 
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Nova Página"
@@ -1246,7 +1246,7 @@ msgctxt "ItemNotesEditor|"
 msgid "All files"
 msgstr "Todos os ficheiros"
 
-#: ../Pages/ProblemsPage.qml:42
+#: 
 msgctxt "ProblemsPage|"
 msgid "Missing secrets for account"
 msgstr "Dados de acesso em falta para a conta"
@@ -1321,7 +1321,7 @@ msgctxt "Translations|"
 msgid "Turkish"
 msgstr "Turco"
 
-#: ../Widgets/ItemCreatedNotification.qml:77
+#: 
 msgctxt "ItemCreatedNotification|"
 msgid "Dismiss"
 msgstr "Indeferimento"
@@ -1346,162 +1346,162 @@ msgctxt "Translations|"
 msgid "Turkmen"
 msgstr "Turkmenistan"
 
-#: ../Actions/DeleteItem.qml:8
+#: 
 msgctxt "DeleteItem|"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../Widgets/ItemDueDateEditor.qml:61
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
 msgstr "Primeiro devido em %1."
 
-#: ../Widgets/ItemDueDateEditor.qml:74
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "No recurrence pattern set..."
 msgstr "Nenhum padrão de recorrência definido..."
 
-#: ../Widgets/ItemDueDateEditor.qml:76
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every day."
 msgstr "Recorre todos os dias."
 
-#: ../Widgets/ItemDueDateEditor.qml:78
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every week."
 msgstr "Recorre todas as semanas."
 
-#: ../Widgets/ItemDueDateEditor.qml:80
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every month."
 msgstr "Recorre todos os meses."
 
-#: ../Widgets/ItemDueDateEditor.qml:84
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
 msgstr "Recorre a cada %1 dias."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:105
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Today"
 msgstr "Hoje"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:106
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Tomorrow"
 msgstr "Amanhã"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:107
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "This Week"
 msgstr "Esta Semana"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:108
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Next Week"
 msgstr "Semana seguinte"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:109
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
 msgstr "Seleccionar..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:139
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
 msgstr "Título:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:144
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
 msgstr "O título do seu novo artigo..."
 
-#: ../Windows/NewItemWithDueDateDialog.qml:186
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Create in:"
 msgstr "Criar em:"
 
-#: ../Windows/NewItemWithDueDateDialog.qml:227
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Due on:"
 msgstr "Devido:"
 
-#: ../Widgets/NewTopLevelItemButton.qml:48
+#: 
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo"
 msgstr "Todo"
 
-#: ../Windows/RecurrenceDialog.qml:30
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Edit Recurrence"
 msgstr "Editar Recurrence"
 
-#: ../Windows/RecurrenceDialog.qml:43
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Never"
 msgstr "Nunca"
 
-#: ../Windows/RecurrenceDialog.qml:44
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Daily"
 msgstr "Diário"
 
-#: ../Windows/RecurrenceDialog.qml:45
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Weekly"
 msgstr "Semanalmente"
 
-#: ../Windows/RecurrenceDialog.qml:46
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Monthly"
 msgstr "Mensal"
 
-#: ../Windows/RecurrenceDialog.qml:48
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Every N Days"
 msgstr "Todos os N Dias"
 
-#: ../Windows/RecurrenceDialog.qml:75
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Recurs:"
 msgstr "Recursão:"
 
-#: ../Windows/RecurrenceDialog.qml:88
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
 msgstr "Número de dias:"
 
-#: ../Windows/RecurrenceDialog.qml:106
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Recurar relativamente à data em que a marcação foi feita"
 
-#: ../Actions/RenameItem.qml:8
+#: 
 msgctxt "RenameItem|"
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../Actions/SetDueNextWeek.qml:8
+#: 
 msgctxt "SetDueNextWeek|"
 msgid "Set Due This Week"
 msgstr "Set Due This Week"
 
-#: ../Actions/SetDueThisWeek.qml:8
+#: 
 msgctxt "SetDueThisWeek|"
 msgid "Set Due Next Week"
 msgstr "Prazo de entrega na próxima semana"
 
-#: ../Actions/SetDueTo.qml:8
+#: 
 msgctxt "SetDueTo|"
 msgid "Select Due Date"
 msgstr "Seleccione Data de vencimento"
 
-#: ../Actions/SetDueToday.qml:8
+#: 
 msgctxt "SetDueToday|"
 msgid "Set Due Today"
 msgstr "Prazo de entrega hoje"
 
-#: ../Actions/SetDueTomorrow.qml:8
+#: 
 msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
 msgstr "Prazo de entrega Amanhã"
@@ -1516,1201 +1516,959 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Deslizar para marcar feito"
 
-#: ../Menues/LibraryPageActions.qml:35
+#: 
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
-msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:52
+#: 
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
-msgstr ""
 
 #: ../Pages/SettingsPageForm.ui.qml:65
 msgctxt "SettingsPageForm.ui|"
 msgid "Font Size:"
-msgstr ""
 
 #: ../Utils/Translations.qml:52
 msgctxt "Translations|"
 msgid "Basque"
-msgstr ""
 
-#: ../Pages/AccountTypeSelectionPage.qml:21
+#: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "Select Account Type"
-msgstr ""
 
-#: ../Pages/AccountTypeSelectionPage.qml:56
+#: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
-msgstr ""
 
-#: ../Pages/AccountTypeSelectionPage.qml:62
+#: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "NextCloud"
-msgstr ""
 
-#: ../Pages/AccountTypeSelectionPage.qml:65
+#: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "ownCloud"
-msgstr ""
 
-#: ../Pages/AccountTypeSelectionPage.qml:68
+#: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
-msgstr ""
 
-#: ../appstartup.cpp:205
+#: 
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
-msgstr ""
 
-#: ../appstartup.cpp:211
+#: 
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr ""
 
-#: ../appstartup.cpp:214
+#: 
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
-msgstr ""
 
-#: ../appstartup.cpp:216
+#: 
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
-msgstr ""
 
-#: ../appstartup.cpp:221
+#: 
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
-msgstr ""
 
-#: ../appstartup.cpp:372
+#: 
 msgctxt "AppStartup|"
 msgid "Open"
-msgstr ""
 
-#: ../appstartup.cpp:437
+#: 
 msgctxt "AppStartup|"
 msgid "Quit"
-msgstr ""
 
-#: ../Actions/DeleteCompletedChildren.qml:8
+#: 
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
-msgstr ""
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:18
+#: 
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Delete Completed Items?"
-msgstr ""
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:42
+#: 
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done todos in the todo list <strong>%1</strong>? This cannot be undone."
-msgstr ""
 
-#: ../Windows/DeleteCompletedItemsDialog.qml:43
+#: 
 msgctxt "DeleteCompletedItemsDialog|"
 msgid "Do you really want to delete all done tasks in the todo <strong>%1</strong>? This cannot be undone."
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:23
-#: ../Pages/EditNextCloudAccountPage.qml:59
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Edit Account"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:65
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:76
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:83
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:91
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:104
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:111
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:117
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:124
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:133
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
 
-#: ../Pages/EditNextCloudAccountPage.qml:142
+#: 
 msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:89
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
-msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
-msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
-msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:237
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
-msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:248
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
-msgstr ""
 
 #: ../Windows/MainWindow.qml:398
 msgctxt "MainWindow|"
 msgid "Delete Completed Items"
-msgstr ""
 
 #: ../Windows/MainWindow.qml:494
 msgctxt "MainWindow|"
 msgid "Close"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:20
-#: ../Pages/NewNextCloudAccountPage.qml:73
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:79
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Server Address:"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:93
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Login"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:109
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:120
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well."
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:128
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Log in Manually"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:134
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings."
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:143
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Create App Password"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:152
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Settings"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:162
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:168
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Copied!"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:177
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "User:"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:184
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "User Name"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:191
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password:"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:198
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Password"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:208
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:212
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:225
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Account Name"
-msgstr ""
 
-#: ../Pages/NewNextCloudAccountPage.qml:235
+#: 
 msgctxt "NewNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
 
-#: ../Pages/AccountsPage.qml:19 ../Pages/AccountsPage.qml:41
+#: 
 msgctxt "AccountsPage|"
 msgid "Accounts"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:33 ../Pages/EditWebDAVAccountPage.qml:118
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Edit Account"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:124
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:135
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:141
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:148
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:154
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:161
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:168
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:178
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
 
-#: ../Pages/EditWebDAVAccountPage.qml:186
+#: 
 msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
 
-#: ../Utils/ItemUtils.qml:174
+#: 
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
-msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:108
+#: 
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
-msgstr ""
 
 #: ../Windows/MainWindow.qml:319
 msgctxt "MainWindow|"
 msgid "Move"
-msgstr ""
 
-#: ../Actions/MoveTodo.qml:11
+#: 
 msgctxt "MoveTodo|"
 msgid "Move"
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:82
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create Library in Account"
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:91
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:99
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Existing Libraries"
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:107
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Select an existing library on the server to add it to the app."
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:113
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "No libraries were found on the server."
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:122
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Searching existing libraries..."
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:165
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a New Library"
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:173
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr ""
 
-#: ../Pages/NewLibraryFromAccountPage.qml:187
+#: 
 msgctxt "NewLibraryFromAccountPage|"
 msgid "My new library's name"
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:101
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Open a Folder as a Library"
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:109
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:113
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Folder:"
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:118
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Path to a folder to use as a library"
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:124
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select"
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:129
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:134
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "My Local Library Name"
-msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:70
+#: 
 msgctxt "NewLibraryPage|"
 msgid "Local Library"
-msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:77
+#: 
 msgctxt "NewLibraryPage|"
 msgid "Use Folder as Library"
-msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:89
+#: 
 msgctxt "NewLibraryPage|"
 msgid "Add Libraries From Your Accounts"
-msgstr ""
 
-#: ../Pages/NewLibraryPage.qml:116
+#: 
 msgctxt "NewLibraryPage|"
 msgid "Add Account"
-msgstr ""
 
-#: ../Pages/NewLocalLibraryPage.qml:62
+#: 
 msgctxt "NewLocalLibraryPage|"
 msgid "Create a Local Library"
-msgstr ""
 
-#: ../Pages/NewLocalLibraryPage.qml:70
+#: 
 msgctxt "NewLocalLibraryPage|"
 msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr ""
 
-#: ../Pages/NewLocalLibraryPage.qml:80
+#: 
 msgctxt "NewLocalLibraryPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/NewLocalLibraryPage.qml:85
+#: 
 msgctxt "NewLocalLibraryPage|"
 msgid "My Local Library Name"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:29 ../Pages/NewWebDAVAccountPage.qml:101
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:107
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Server Address:"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:113
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "https://myserver.example.com"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:119
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "User:"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:125
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "User Name"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:131
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password:"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:137
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Password"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:146
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Disable Certificate Checks"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:150
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/NewWebDAVAccountPage.qml:173
+#: 
 msgctxt "NewWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr ""
 
-#: ../Pages/ProblemsPage.qml:18 ../Pages/ProblemsPage.qml:28
+#: 
 msgctxt "ProblemsPage|"
 msgid "Problems Detected"
-msgstr ""
 
 #: ../Windows/SelectTodoListDialog.qml:25
 msgctxt "SelectTodoListDialog|"
 msgid "Select Todo List"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:41
+#: 
 msgctxt "SettingsPage|"
 msgid "Settings"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:47
+#: 
 msgctxt "SettingsPage|"
 msgid "User Interface"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:55
+#: 
 msgctxt "SettingsPage|"
 msgid "Language:"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:119
+#: 
 msgctxt "SettingsPage|"
 msgid "Theme:"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:162
+#: 
 msgctxt "SettingsPage|"
 msgid "Font Size:"
-msgstr ""
 
 #: ../Utils/Translations.qml:72
 msgctxt "Translations|"
 msgid "Japanese"
-msgstr ""
 
 #: ../Utils/Translations.qml:116
 msgctxt "Translations|"
 msgid "Ukrainian"
-msgstr ""
 
 #: ../Windows/MainWindow.qml:405
 msgctxt "MainWindow|"
 msgid "Set Progress"
-msgstr ""
 
-#: ../Actions/SetManualProgressAction.qml:8
+#: 
 msgctxt "SetManualProgressAction|"
 msgid "Set Progress"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:179
+#: 
 msgctxt "SettingsPage|"
 msgid "Use custom font size"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:197
+#: 
 msgctxt "SettingsPage|"
 msgid "Use Compact Style"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:206
+#: 
 msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:214
+#: 
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:224
+#: 
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:231
+#: 
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:238
+#: 
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:258
+#: 
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
 
-#: ../Utils/ItemUtils.qml:189
+#: 
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:28
+#: 
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:34
+#: 
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
-msgstr ""
 
-#: ../Pages/ProblemsPage.qml:47
+#: 
 msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
-msgstr ""
 
-#: ../Actions/PromoteTask.qml:12
+#: 
 msgctxt "PromoteTask|"
 msgid "Promote"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:267
+#: 
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
-msgstr ""
 
 #: ../../lib/sync/webdavsynchronizer.cpp:177
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
-msgstr ""
 
-#: ../Pages/AboutPage.qml:88
+#: 
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
 
-#: ../appstartup.cpp:379
+#: 
 msgctxt "AppStartup|"
 msgid "Quick Note"
-msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:82
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
-msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:87
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
-msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:90
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
-msgstr ""
 
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
-msgstr ""
 
-#: ../appstartup.cpp:317 ../appstartup.cpp:324
+#: 
 msgctxt "QObject|"
 msgid "unknown"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:19
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:46
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:57
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:70
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:133
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Save"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:140
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:158
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:169
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:171
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:161
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
-msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:83
+#: 
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
-msgstr ""
 
-#: ../Windows/RecurrenceDialog.qml:47
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Yearly"
-msgstr ""
 
-#: ../Windows/RecurrenceDialog.qml:49
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Every N Weeks"
-msgstr ""
 
-#: ../Windows/RecurrenceDialog.qml:50
+#: 
 msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:143
+#: 
 msgctxt "SettingsPage|"
 msgid "System Tray:"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:156
+#: 
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
-msgstr ""
 
-#: ../Widgets/NoteItem.qml:89
+#: 
 msgctxt "NoteItem|"
 msgid "Due on %1"
-msgstr ""
 
-#: ../Widgets/TodoListItem.qml:78
+#: 
 msgctxt "TodoListItem|"
 msgid "Due on %1"
-msgstr ""
 
-#: ../Actions/CopyTodo.qml:11
+#: 
 msgctxt "CopyTodo|"
 msgid "Copy"
-msgstr ""
 
-#: ../Actions/CopyTopLevelItem.qml:11
+#: 
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
-msgstr ""
 
 #: ../Pages/LibraryPage.qml:258
 msgctxt "LibraryPage|"
 msgid "Copy"
-msgstr ""
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
-msgstr ""
 
-#: ../Windows/SelectLibraryDialog.qml:22
+#: 
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
-msgstr ""
 
-#: ../Windows/SelectTopLevelItemDialog.qml:22
+#: 
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
-msgstr ""
 
-#: ../Components/ApplicationShortcuts.qml:15
+#: 
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
-msgstr ""
 
-#: ../Components/ApplicationToolBar.qml:164
+#: 
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:16
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:23
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:33
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:43
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:53
-#: ../Components/ApplicationToolBarActions.qml:64
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:74
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:82
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:92
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:100
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:108
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:116
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:124
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
-msgstr ""
 
-#: ../Components/ApplicationToolBarActions.qml:132
+#: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:188
+#: 
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
-msgstr ""
 
-#: ../Utils/ItemUtils.qml:205
+#: 
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
-msgstr ""
 
-#: ../Utils/ItemUtils.qml:222
+#: 
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
-msgstr ""
 
-#: ../Pages/NewLibraryInFolderPage.qml:74
+#: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
-msgstr ""
 
 #: ../Pages/LibraryPage.qml:275
 msgctxt "LibraryPage|"
 msgid "Select Image"
-msgstr ""
 
-#: ../Pages/TodoListPage.qml:221
+#: 
 msgctxt "TodoListPage|"
 msgid "Show Completed"
-msgstr ""
 
-#: ../Pages/TodoListPage.qml:229
+#: 
 msgctxt "TodoListPage|"
 msgid "Show At The End"
-msgstr ""
 
-#: ../Pages/TodoPage.qml:296
+#: 
 msgctxt "TodoPage|"
 msgid "Show Completed"
-msgstr ""
 
-#: ../Pages/TodoPage.qml:303
+#: 
 msgctxt "TodoPage|"
 msgid "Show At The End"
-msgstr ""
 
-#: ../Actions/ResetDueTo.qml:8
+#: 
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr ""
 
-#: ../Pages/AccountTypeSelectionPage.qml:71
+#: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
-msgstr ""
 
-#: ../../lib/application.cpp:203
+#: 
 msgctxt "Application|"
 msgid "Background Sync"
-msgstr ""
 
-#: ../../lib/application.cpp:207
+#: 
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
-msgstr ""
 
-#: ../../lib/application.cpp:211
+#: 
 msgctxt "Application|"
 msgid "Quit"
-msgstr ""
 
-#: ../../lib/datastorage/copyitemquery.cpp:120
+#: 
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:27
-#: ../Pages/EditDropboxAccountPage.qml:67
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:75
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:86
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:93
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:97
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:106
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:112
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:116
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:125
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/EditDropboxAccountPage.qml:132
+#: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:21 ../Pages/NewDropboxAccountPage.qml:55
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:63
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:74
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:81
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:87
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:96
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:102
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:106
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:115
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
-msgstr ""
 
-#: ../Pages/NewDropboxAccountPage.qml:122
+#: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
-msgstr ""
 
-#: ../../lib/utils/translations.cpp:91
+#: 
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
-msgstr ""
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:283
+#: 
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
-msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:116
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
-msgstr ""
 
-#: ../Widgets/ItemDueDateEditor.qml:119
+#: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
-msgstr ""
 
-#: ../Windows/NewItemWithDueDateDialog.qml:150
+#: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
-msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:56
+#: 
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
-msgstr ""
 
-#: ../Pages/StartPage.qml:46
+#: 
 msgctxt "StartPage|"
 msgid "Libraries"
-msgstr ""
 
-#: ../Pages/StartPage.qml:71
+#: 
 msgctxt "StartPage|"
 msgid "Add a new library"
-msgstr ""
 
-#: ../Pages/StartPage.qml:90
+#: 
 msgctxt "StartPage|"
 msgid "Accounts"
-msgstr ""
 
-#: ../Pages/StartPage.qml:112
+#: 
 msgctxt "StartPage|"
 msgid "Add an account"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:78
+#: 
 msgctxt "LogViewPage|"
 msgid "Debugging information"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:80
+#: 
 msgctxt "LogViewPage|"
 msgid "Warning"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:82
+#: 
 msgctxt "LogViewPage|"
 msgid "Error"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:84
+#: 
 msgctxt "LogViewPage|"
 msgid "Download"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:86
+#: 
 msgctxt "LogViewPage|"
 msgid "Upload"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:88
+#: 
 msgctxt "LogViewPage|"
 msgid "Create local folder"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:90
+#: 
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:92
+#: 
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:94
+#: 
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
-msgstr ""
 
-#: ../Pages/LogViewPage.qml:96
+#: 
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
-msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
-msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:62
+#: 
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
-msgstr ""
 
-#: ../Pages/ProblemsPage.qml:91
+#: 
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
-msgstr ""
 
-#: ../Pages/SettingsPage.qml:148
+#: 
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
 

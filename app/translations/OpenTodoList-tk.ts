@@ -656,62 +656,62 @@
 <context>
     <name>ItemDueDateEditor</name>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="32"/>
         <source>Due on</source>
         <translation type="unfinished">Berilmeli</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="61"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>First due on %1.</source>
         <translation type="unfinished">Ilki bilen %1 tölemeli.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">Gaýtalanma nusgasy ýok ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="92"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Her gün gaýtalanýar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="94"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Her hepde gaýtalanýar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="96"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Her aý gaýtalanýar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="98"/>
         <source>Recurs every year.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="100"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Her %1 günden gaýtalanýar.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="103"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="106"/>
         <source>Recurs every %1 months.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="144"/>
         <source>Recurs until %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="147"/>
         <source>Recurs indefinitely</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1482,7 +1482,7 @@
 <context>
     <name>RecurrenceDialog</name>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="30"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="29"/>
         <source>Edit Recurrence</source>
         <translation type="unfinished">Urrygy-ýygydan redaktirläň</translation>
     </message>
@@ -1492,52 +1492,52 @@
         <translation type="unfinished">Hiç haçan</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Daily</source>
         <translation type="unfinished">Her gün</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="51"/>
         <source>Weekly</source>
         <translation type="unfinished">Hepdelik</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Monthly</source>
         <translation type="unfinished">Aýlyk</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="59"/>
         <source>Yearly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="63"/>
         <source>Every N Days</source>
         <translation type="unfinished">Her N gün</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="67"/>
         <source>Every N Weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="71"/>
         <source>Every N Months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="97"/>
         <source>Recurs:</source>
         <translation type="unfinished">Gaýtalama:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="112"/>
         <source>Number of days:</source>
         <translation type="unfinished">Günleriň sany:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="130"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Edilişi ýaly bellik edilende senä görä gaýtalaň</translation>
     </message>
@@ -1858,52 +1858,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="172"/>
+        <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="184"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Manually</source>
         <translation type="unfinished">El bilen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="190"/>
+        <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Name</source>
         <translation type="unfinished">Ady</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="196"/>
+        <location filename="../Pages/TodoListPage.qml" line="197"/>
         <source>Due Date</source>
         <translation type="unfinished">Berlen senesi</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="202"/>
+        <location filename="../Pages/TodoListPage.qml" line="203"/>
         <source>Created At</source>
         <translation type="unfinished">Döredildi</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="208"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Updated At</source>
         <translation type="unfinished">Täzelendi</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="221"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="229"/>
+        <location filename="../Pages/TodoListPage.qml" line="230"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="260"/>
+        <location filename="../Pages/TodoListPage.qml" line="261"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="280"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Täze todo goşuň ...</translation>
     </message>
@@ -1911,27 +1911,27 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="168"/>
+        <location filename="../Pages/TodoPage.qml" line="169"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="194"/>
+        <location filename="../Pages/TodoPage.qml" line="195"/>
         <source>Tasks</source>
         <translation type="unfinished">Wezipeler</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="200"/>
+        <location filename="../Pages/TodoPage.qml" line="201"/>
         <source>Add new task...</source>
         <translation type="unfinished">Täze wezipe goşuň ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="296"/>
+        <location filename="../Pages/TodoPage.qml" line="297"/>
         <source>Show Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="303"/>
+        <location filename="../Pages/TodoPage.qml" line="304"/>
         <source>Show At The End</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1942,14 +1942,6 @@ This requires a restart of the app.</source>
         <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Berilmeli: %1</translation>
-    </message>
-</context>
-<context>
-    <name>TodosWidgetDelegate</name>
-    <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
-        <source>More Actions...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

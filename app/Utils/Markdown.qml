@@ -43,7 +43,7 @@ padding-right: 0.4em;
 ".arg(Colors.linkColor).arg(Colors.color(Colors.negativeColor))
 
     function markdownToHtml(text) {
-        if (text === "") {
+        if (text === "" || !text) {
             return ""
         }
         return textUtils.markdownToHtml(text, stylesheetContent,

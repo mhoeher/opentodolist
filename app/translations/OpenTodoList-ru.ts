@@ -193,7 +193,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отменить</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
@@ -254,7 +254,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установить прогресс</translation>
     </message>
 </context>
 <context>
@@ -346,7 +346,7 @@
     <message>
         <location filename="../../lib/datastorage/copyitemquery.cpp" line="120"/>
         <source>Copy of</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копия</translation>
     </message>
 </context>
 <context>
@@ -656,62 +656,62 @@
 <context>
     <name>ItemDueDateEditor</name>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="32"/>
         <source>Due on</source>
         <translation type="unfinished">Выполнить к</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="61"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>First due on %1.</source>
         <translation type="unfinished">Первая отсечка на %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">Не задан шаблон повторения ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="92"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Повторяется каждый день.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="94"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Повторяется каждую неделю.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="96"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Повторяется каждый месяц.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="98"/>
         <source>Recurs every year.</source>
         <translation type="unfinished">Повторяется каждый год.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="100"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Повторяется каждые %1 дней.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="103"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished">Повторяется каждые %1 недел(ь/и).</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="106"/>
         <source>Recurs every %1 months.</source>
         <translation type="unfinished">Повторяется каждые %1 месяц(а/ев).</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="144"/>
         <source>Recurs until %1.</source>
         <translation type="unfinished">Повторяется до %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="147"/>
         <source>Recurs indefinitely</source>
         <translation type="unfinished">Повторяется бесконечно</translation>
     </message>
@@ -721,7 +721,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="174"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переместить все в...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="189"/>
@@ -736,7 +736,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="222"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопировать все в...</translation>
     </message>
 </context>
 <context>
@@ -775,7 +775,7 @@
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожертвовать</translation>
     </message>
     <message>
         <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
@@ -823,7 +823,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="62"/>
         <source>Open Library Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открыть папку библиотеки</translation>
     </message>
 </context>
 <context>
@@ -841,27 +841,27 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="28"/>
         <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пролистать наверх</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="34"/>
         <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пролистать вниз</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отладочная информация</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Внимание</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="82"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="84"/>
@@ -871,32 +871,32 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="86"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузить</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать локальную папку</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать удаленную папку</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Локальное удаление</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удаление удаленного</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Неизвестный тип сообщения журнала</translation>
     </message>
 </context>
 <context>
@@ -1067,7 +1067,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="173"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">Создайте новую библиотеку, которая будет синхронизироваться с сервером. Такая библиотека может быть добавлена в приложение на других устройствах, а также для синхронизации данных.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="187"/>
@@ -1386,7 +1386,7 @@
         <location filename="../Pages/ProblemsPage.qml" line="18"/>
         <location filename="../Pages/ProblemsPage.qml" line="28"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Обнаружены проблемы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
@@ -1401,7 +1401,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="91"/>
         <source>Retry Sync</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторить синхронизацию</translation>
     </message>
 </context>
 <context>
@@ -1409,7 +1409,7 @@
     <message>
         <location filename="../Actions/PromoteTask.qml" line="12"/>
         <source>Promote</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Продвигать</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1418,7 @@
         <location filename="../appstartup.cpp" line="317"/>
         <location filename="../appstartup.cpp" line="324"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Неизвестный</translation>
     </message>
 </context>
 <context>
@@ -1482,7 +1482,7 @@
 <context>
     <name>RecurrenceDialog</name>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="30"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="29"/>
         <source>Edit Recurrence</source>
         <translation type="unfinished">Редактировать повторение</translation>
     </message>
@@ -1492,52 +1492,52 @@
         <translation type="unfinished">Никогда</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Daily</source>
         <translation type="unfinished">Ежедневно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="51"/>
         <source>Weekly</source>
         <translation type="unfinished">Еженедельно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Monthly</source>
         <translation type="unfinished">Ежемесячно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="59"/>
         <source>Yearly</source>
         <translation type="unfinished">Ежегодно</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="63"/>
         <source>Every N Days</source>
         <translation type="unfinished">Каждые N дней</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="67"/>
         <source>Every N Weeks</source>
         <translation type="unfinished">Каждые N недель</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="71"/>
         <source>Every N Months</source>
         <translation type="unfinished">Каждые N месяцев</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="97"/>
         <source>Recurs:</source>
         <translation type="unfinished">Повторять:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="112"/>
         <source>Number of days:</source>
         <translation type="unfinished">Количество дней:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="130"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Повторить относительно даты при пометке как сделано</translation>
     </message>
@@ -1581,7 +1581,7 @@
     <message>
         <location filename="../Actions/ResetDueTo.qml" line="8"/>
         <source>Reset Due To</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сбросить из-за</translation>
     </message>
 </context>
 <context>
@@ -1640,7 +1640,7 @@
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выберите предмет</translation>
     </message>
 </context>
 <context>
@@ -1688,7 +1688,7 @@
     <message>
         <location filename="../Actions/SetManualProgressAction.qml" line="8"/>
         <source>Set Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установить прогресс</translation>
     </message>
 </context>
 <context>
@@ -1721,7 +1721,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="148"/>
         <source>Monochrome Icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Монохромная икона</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="156"/>
@@ -1741,7 +1741,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Режим рабочего стола</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="197"/>
@@ -1769,7 +1769,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переопределить коэффициент масштабирования</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="238"/>
@@ -1788,7 +1788,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="267"/>
         <source>Library Item Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Размер элемента библиотеки:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="283"/>
@@ -1861,52 +1861,52 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="172"/>
+        <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Поисковый запрос 1, поисковый запрос 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="184"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Manually</source>
         <translation type="unfinished">Вручную</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="190"/>
+        <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Name</source>
         <translation type="unfinished">Название</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="196"/>
+        <location filename="../Pages/TodoListPage.qml" line="197"/>
         <source>Due Date</source>
         <translation type="unfinished">Срок</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="202"/>
+        <location filename="../Pages/TodoListPage.qml" line="203"/>
         <source>Created At</source>
         <translation type="unfinished">Создано</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="208"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Updated At</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="221"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Show Completed</source>
         <translation type="unfinished">Показывать завершённые</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="229"/>
+        <location filename="../Pages/TodoListPage.qml" line="230"/>
         <source>Show At The End</source>
         <translation type="unfinished">Показывать в конце</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="260"/>
+        <location filename="../Pages/TodoListPage.qml" line="261"/>
         <source>Todos</source>
         <translation type="unfinished">Todos</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="280"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Добавить новую задачу ...</translation>
     </message>
@@ -1914,27 +1914,27 @@ This requires a restart of the app.</source>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="168"/>
+        <location filename="../Pages/TodoPage.qml" line="169"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Поисковый запрос 1, поисковый запрос 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="194"/>
+        <location filename="../Pages/TodoPage.qml" line="195"/>
         <source>Tasks</source>
         <translation type="unfinished">Задачи</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="200"/>
+        <location filename="../Pages/TodoPage.qml" line="201"/>
         <source>Add new task...</source>
         <translation type="unfinished">Добавить новое задание ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="296"/>
+        <location filename="../Pages/TodoPage.qml" line="297"/>
         <source>Show Completed</source>
         <translation type="unfinished">Показывать завершённые</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="303"/>
+        <location filename="../Pages/TodoPage.qml" line="304"/>
         <source>Show At The End</source>
         <translation type="unfinished">Показывать в конце</translation>
     </message>
@@ -1945,14 +1945,6 @@ This requires a restart of the app.</source>
         <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">До: %1</translation>
-    </message>
-</context>
-<context>
-    <name>TodosWidgetDelegate</name>
-    <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
-        <source>More Actions...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

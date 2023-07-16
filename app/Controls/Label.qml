@@ -7,7 +7,7 @@ QQC2.Label {
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
     function linkHandler(link) {
-        Qt.openUrlExternally(link);
+        Qt.openUrlExternally(link)
     }
 
     onLinkActivated: linkHandler(link)
@@ -17,7 +17,6 @@ QQC2.Label {
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.NoButton
-        cursorShape: parent.hoveredLink !== "" ? Qt.PointingHandCursor :
-                                                 Qt.ArrowCursor
+        cursorShape: parent.hoveredLink !== "" ? Qt.PointingHandCursor : Qt.ArrowCursor
     }
 }

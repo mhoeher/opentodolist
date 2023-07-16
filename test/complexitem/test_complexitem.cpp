@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2020-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -35,6 +35,7 @@ private slots:
     void testPersistence();
     void attachments();
     void recurrence();
+    void testIsFutureInstance();
     void cleanupTestCase() {}
 };
 
@@ -148,13 +149,17 @@ void ComplexItemTest::recurrence()
     {
         // Marking an item which recurs daily as done should reschedule it to tomorrow.
         ComplexItem item;
+        QVERIFY(!item.canBeMarkedAsDone());
         auto today = QDate::currentDate().startOfDay();
         item.setDueTo(today);
+        QVERIFY(item.canBeMarkedAsDone());
         item.setRecurrencePattern(ComplexItem::RecurDaily);
+        QVERIFY(item.canBeMarkedAsDone());
         QCOMPARE(item.dueTo(), item.effectiveDueTo());
         QSignalSpy nextDueToChanged(&item, &ComplexItem::nextDueToChanged);
         QSignalSpy effectiveDueToChanged(&item, &ComplexItem::effectiveDueToChanged);
         item.markCurrentOccurrenceAsDone(today);
+        QVERIFY(item.canBeMarkedAsDone());
         QCOMPARE(nextDueToChanged.count(), 1);
         QCOMPARE(effectiveDueToChanged.count(), 1);
         auto expectedNextDate = today.addDays(1);
@@ -521,6 +526,7 @@ void ComplexItemTest::recurrence()
         QCOMPARE(effectiveDueToChanged.count(), 1);
         QCOMPARE(dueDateChanged.count(), 1);
         QVERIFY(!item.dueTo().isValid());
+        QVERIFY(!item.canBeMarkedAsDone());
     }
 
     {
@@ -534,6 +540,28 @@ void ComplexItemTest::recurrence()
         QVERIFY(!item.recurUntil().isValid());
         QCOMPARE(item.dueTo(), tomorrow);
     }
+}
+
+void ComplexItemTest::testIsFutureInstance()
+{
+    ComplexItem item;
+    item.setDueTo(QDateTime::currentDateTime().addDays(-1));
+    item.setRecurrencePattern(ComplexItem::RecurDaily);
+
+    // Item is due in the past, definitely no future instance!
+    QVERIFY(!item.isFutureInstance());
+
+    // Item is due today - also no future instance:
+    item.setDueTo(QDateTime::currentDateTime());
+    QVERIFY(!item.isFutureInstance());
+
+    // Item is due tomorrow - when we recur daily, this is "future" enough:
+    item.markCurrentOccurrenceAsDone();
+    QVERIFY(item.isFutureInstance());
+
+    // Item is due the day after - definitely future!
+    item.setDueTo(QDateTime::currentDateTime().addDays(2));
+    QVERIFY(item.isFutureInstance());
 }
 
 QTEST_MAIN(ComplexItemTest)

@@ -6,6 +6,7 @@ import Qt.labs.settings 1.0
 import OpenTodoList 1.0 as OTL
 
 import "../Components"
+import "../Components/Tooltips" as Tooltips
 import "../Controls" as C
 import "../Fonts"
 import "../Windows"
@@ -403,5 +404,9 @@ ItemPage {
                 page.item = OTL.Application.itemFromData(data)
             }
         }
+    }
+
+    Tooltips.AllSubtasksDone {
+        item: page.item
     }
 }

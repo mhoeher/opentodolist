@@ -164,7 +164,7 @@
     <message>
         <location filename="../../lib/application.cpp" line="207"/>
         <source>App continues to sync your data in the background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Appen fortsätter att synkronisera din data i bakgrunden</translation>
     </message>
     <message>
         <location filename="../../lib/application.cpp" line="211"/>
@@ -346,7 +346,7 @@
     <message>
         <location filename="../../lib/datastorage/copyitemquery.cpp" line="120"/>
         <source>Copy of</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopia av</translation>
     </message>
 </context>
 <context>
@@ -474,7 +474,7 @@
         <location filename="../Pages/EditDropboxAccountPage.qml" line="27"/>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="67"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="75"/>
@@ -484,12 +484,12 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vi har försökt öppna din webbläsare för att logga in dig på ditt Dropbox-konto. Logga in och ge åtkomst till OpenTodoList för att fortsätta.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="93"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppnades inte din webbläsare? Du kan försöka öppna den igen eller kopiera önskad URL manuellt till din webbläsare.</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="97"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="106"/>
         <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna Webbläsare</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="112"/>
@@ -509,7 +509,7 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="116"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopierat!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="125"/>
@@ -656,64 +656,64 @@
 <context>
     <name>ItemDueDateEditor</name>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="28"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="32"/>
         <source>Due on</source>
         <translation type="unfinished">Förfaller</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="61"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>First due on %1.</source>
         <translation type="unfinished">Förfaller först %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="74"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>No recurrence pattern set...</source>
         <translation type="unfinished">Inget upprepningsmönster angivet ...</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="76"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="92"/>
         <source>Recurs every day.</source>
         <translation type="unfinished">Återkommer varje dag.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="78"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="94"/>
         <source>Recurs every week.</source>
         <translation type="unfinished">Återkommer varje vecka.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="80"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="96"/>
         <source>Recurs every month.</source>
         <translation type="unfinished">Återkommer varje månad.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="82"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="98"/>
         <source>Recurs every year.</source>
         <translation type="unfinished">Återkommer varje år.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="84"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="100"/>
         <source>Recurs every %1 days.</source>
         <translation type="unfinished">Återkommer var %1:e dag.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="87"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="103"/>
         <source>Recurs every %1 weeks.</source>
         <translation type="unfinished">Återkommer var %1 vecka.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="106"/>
         <source>Recurs every %1 months.</source>
         <translation type="unfinished">Återkommer var %1 månad.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="116"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="144"/>
         <source>Recurs until %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Återkommer tills %1.</translation>
     </message>
     <message>
-        <location filename="../Widgets/ItemDueDateEditor.qml" line="119"/>
+        <location filename="../Widgets/ItemDueDateEditor.qml" line="147"/>
         <source>Recurs indefinitely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Återkommer på obestämd tid</translation>
     </message>
 </context>
 <context>
@@ -823,7 +823,7 @@
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="62"/>
         <source>Open Library Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna biblioteksmappen</translation>
     </message>
 </context>
 <context>
@@ -851,7 +851,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Debugging information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Felsökningsinformation</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="80"/>
@@ -876,27 +876,27 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Create local folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skapa en lokal mapp</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="90"/>
         <source>Create remote folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skapa fjärrmapp</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="92"/>
         <source>Deleting locally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Raderar lokalt</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="94"/>
         <source>Deleting remotely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tar bort på distans</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="96"/>
         <source>Unknown log message type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Okänd loggmeddelandetyp</translation>
     </message>
 </context>
 <context>
@@ -926,7 +926,7 @@
         <location filename="../Pages/NewDropboxAccountPage.qml" line="21"/>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="55"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="63"/>
@@ -936,12 +936,12 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
         <source>We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vi har försökt öppna din webbläsare för att logga in dig på ditt Dropbox-konto. Logga in och ge åtkomst till OpenTodoList för att fortsätta.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="81"/>
         <source>Didn&apos;t your browser open? You can retry opening it or copy the required URL manually to your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppnades inte din webbläsare? Du kan försöka öppna den igen eller kopiera önskad URL manuellt till din webbläsare.</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="87"/>
@@ -951,7 +951,7 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="96"/>
         <source>Open Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna Webbläsare</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="102"/>
@@ -961,7 +961,7 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="106"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopierat!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="115"/>
@@ -1176,7 +1176,7 @@
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="73"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="79"/>
@@ -1226,7 +1226,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="168"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopierat!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="177"/>
@@ -1298,7 +1298,7 @@
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="101"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Anslutningsinställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="107"/>
@@ -1377,7 +1377,7 @@
     <message>
         <location filename="../../lib/utils/translations.cpp" line="91"/>
         <source>System Language</source>
-        <translation type="unfinished">Systemspråk</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1401,7 @@
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="91"/>
         <source>Retry Sync</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Försök att synkronisera igen</translation>
     </message>
 </context>
 <context>
@@ -1482,7 +1482,7 @@
 <context>
     <name>RecurrenceDialog</name>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="30"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="29"/>
         <source>Edit Recurrence</source>
         <translation type="unfinished">Redigera upprepning</translation>
     </message>
@@ -1492,52 +1492,52 @@
         <translation type="unfinished">Aldrig</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="44"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Daily</source>
         <translation type="unfinished">Dagligen</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="45"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="51"/>
         <source>Weekly</source>
         <translation type="unfinished">Varje vecka</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="46"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Monthly</source>
         <translation type="unfinished">En gång per månad</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="59"/>
         <source>Yearly</source>
         <translation type="unfinished">Årligen</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="48"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="63"/>
         <source>Every N Days</source>
         <translation type="unfinished">Var N:e dag</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="49"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="67"/>
         <source>Every N Weeks</source>
         <translation type="unfinished">Varje N vecka</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="50"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="71"/>
         <source>Every N Months</source>
         <translation type="unfinished">Varje N månad</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="75"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="97"/>
         <source>Recurs:</source>
         <translation type="unfinished">Återkommer:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="88"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="112"/>
         <source>Number of days:</source>
         <translation type="unfinished">Antal dagar:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="106"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="130"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Återkommande relativt det datum då du markerar som klart</translation>
     </message>
@@ -1721,7 +1721,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="148"/>
         <source>Monochrome Icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enfärgad Ikon</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="156"/>
@@ -1794,7 +1794,7 @@ Detta kräver att programmet startas om.</translation>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="283"/>
         <source>Show notes excerpt in listings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa anteckningsutdrag i listor</translation>
     </message>
 </context>
 <context>
@@ -1862,52 +1862,52 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodoListPage</name>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="172"/>
+        <location filename="../Pages/TodoListPage.qml" line="173"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Sökterm 1, sökterm 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="184"/>
+        <location filename="../Pages/TodoListPage.qml" line="185"/>
         <source>Manually</source>
         <translation type="unfinished">Manuellt</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="190"/>
+        <location filename="../Pages/TodoListPage.qml" line="191"/>
         <source>Name</source>
         <translation type="unfinished">Namn</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="196"/>
+        <location filename="../Pages/TodoListPage.qml" line="197"/>
         <source>Due Date</source>
         <translation type="unfinished">Förfallodatum</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="202"/>
+        <location filename="../Pages/TodoListPage.qml" line="203"/>
         <source>Created At</source>
         <translation type="unfinished">Skapad</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="208"/>
+        <location filename="../Pages/TodoListPage.qml" line="209"/>
         <source>Updated At</source>
         <translation type="unfinished">Uppdaterat</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="221"/>
+        <location filename="../Pages/TodoListPage.qml" line="222"/>
         <source>Show Completed</source>
         <translation type="unfinished">Visa Slutförda</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="229"/>
+        <location filename="../Pages/TodoListPage.qml" line="230"/>
         <source>Show At The End</source>
         <translation type="unfinished">Visa Vid Slutet</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="260"/>
+        <location filename="../Pages/TodoListPage.qml" line="261"/>
         <source>Todos</source>
         <translation type="unfinished">Att-göra</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoListPage.qml" line="280"/>
+        <location filename="../Pages/TodoListPage.qml" line="281"/>
         <source>Add new todo...</source>
         <translation type="unfinished">Lägg till ny att-göra ...</translation>
     </message>
@@ -1915,27 +1915,27 @@ Detta kräver att programmet startas om.</translation>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="168"/>
+        <location filename="../Pages/TodoPage.qml" line="169"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Sökterm 1, sökterm 2, ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="194"/>
+        <location filename="../Pages/TodoPage.qml" line="195"/>
         <source>Tasks</source>
         <translation type="unfinished">Uppgifter</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="200"/>
+        <location filename="../Pages/TodoPage.qml" line="201"/>
         <source>Add new task...</source>
         <translation type="unfinished">Lägg till ny uppgift ...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="296"/>
+        <location filename="../Pages/TodoPage.qml" line="297"/>
         <source>Show Completed</source>
         <translation type="unfinished">Visa Slutförda</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="303"/>
+        <location filename="../Pages/TodoPage.qml" line="304"/>
         <source>Show At The End</source>
         <translation type="unfinished">Visa Vid Slutet</translation>
     </message>
@@ -1946,14 +1946,6 @@ Detta kräver att programmet startas om.</translation>
         <location filename="../Widgets/TodosWidget.qml" line="217"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Förfaller: %1</translation>
-    </message>
-</context>
-<context>
-    <name>TodosWidgetDelegate</name>
-    <message>
-        <location filename="../Widgets/TodosWidgetDelegate.qml" line="238"/>
-        <source>More Actions...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
