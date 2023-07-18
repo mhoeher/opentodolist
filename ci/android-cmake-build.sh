@@ -7,10 +7,11 @@ if [ -n "$CI" ]; then
     export SECURE_FILES_DOWNLOAD_PATH=.secure-files
     export QT_ANDROID_KEYSTORE_PATH=$PWD/$SECURE_FILES_DOWNLOAD_PATH/android_release.keystore
     curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
-    CMAKE_SIGNING_ARGS="-DQT_ANDROID_SIGN_AAB=ON"
+    CMAKE_SIGNING_ARGS="-DQT_ANDROID_SIGN_AAB=ON -DQT_ANDROID_SIGN_APK=ON -DQT_ANDROID_DEPLOY_RELEASE=ON"
 else
-    CMAKE_SIGNING_ARGS="-DQT_ANDROID_SIGN_AAB=OFF"
+    CMAKE_SIGNING_ARGS="-DQT_ANDROID_SIGN_AAB=OFF -DQT_ANDROID_SIGN_APK=OFF"
 fi
+
 
 if [ -z "$ANDROID_ABIS" ]; then
     ANDROID_ABIS=arm64-v8a
@@ -100,7 +101,15 @@ qt-cmake \
 cmake --build .
 
 # Build APK:
-cmake --build . --target aab
+# TODO: Currently, we cannot create release builds due to a bug in Qt. Hence,
+# manually run the deployment tool:
+#
+# cmake --build . --target aab
+deploycmd=$(cat build.ninja | grep androiddeployqt | grep aab | sed -e 's/ *COMMAND *=//g' | sed -e 's/--sign/--release --sign/g')
+pushd .
+eval $deploycmd
+popd
+
 OTL_VERSION="$(git describe --tags)"
 cp app/android-build/OpenTodoList.apk \
     OpenTodoList-${ANDROID_ABIS}-${OTL_VERSION}.apk
